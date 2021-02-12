@@ -172,7 +172,7 @@ const fixAudienceAgeOnContent = async (dispositif: Dispositif) => {
 };
 export const fixAudienceAgeOnContents = async (_: any, res: Res) => {
   try {
-    logger.info("[fixAudienceAgeOnContents] call received");
+    logger.info("[fixAudienceAgeOnContents] received a call");
 
     // @ts-ignore
     const dispositifs: Dispositif[] = await getAllContentsFromDB();

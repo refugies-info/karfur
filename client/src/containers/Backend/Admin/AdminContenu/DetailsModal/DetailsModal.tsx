@@ -274,7 +274,7 @@ export const DetailsModal = (props: Props) => {
                 dispositif.updatedAt
               ).fromNow()}`}
               <Title>Date de publication</Title>
-              {dispositif.publishedAt
+              {dispositif.publishedAt && dispositif.status === "Actif"
                 ? `${moment(dispositif.publishedAt).format(
                     "LLL"
                   )} soit ${moment(dispositif.publishedAt).fromNow()}`
