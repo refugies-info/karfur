@@ -23,7 +23,7 @@ interface Props {
 }
 
 export const CardHeaderContent = (props: Props) => {
-  const title = ["Titre de séjour", "Acte de naissance"].includes(
+  const title = ["Titre de séjour", "Acte de naissance OFPRA"].includes(
     props.subitem.title
   )
     ? "Pas possible sans"
