@@ -264,7 +264,7 @@ export class Dispositif extends Component {
             }
             Swal.fire({
               title: "Erreur",
-              text: "Accès non authorisé",
+              text: "Accès non authorisé 1",
               type: "error",
               timer: 1200,
             });
@@ -415,7 +415,7 @@ export class Dispositif extends Component {
           }
           Swal.fire({
             title: "Erreur",
-            text: "Accès non authorisé",
+            text: `Accès non authorisé 2, status : ${err.status}, message : ${err.message}`,
             type: "error",
             timer: 1200,
           });
