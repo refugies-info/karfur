@@ -26,7 +26,7 @@ export const CardHeaderContent = (props: Props) => {
   const title = ["Titre de séjour", "Acte de naissance OFPRA"].includes(
     props.subitem.title
   )
-    ? "Pas possible sans"
+    ? "Impossible sans"
     : props.subitem.title;
   // in lecture mode, display title and icon or in edition when all types of infocard are already displayed
   if (
