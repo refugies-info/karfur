@@ -251,6 +251,7 @@ export class Dispositif extends Component {
             dispositif.status !== "Actif" &&
             !this.props.admin &&
             !this.props.user.contributions.includes(dispositif._id) &&
+            !!dispositif.mainSponsor &&
             !this.props.user.structures.includes(dispositif.mainSponsor._id)
           ) {
             if (_.isEmpty(this.props.user)) {
