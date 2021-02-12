@@ -234,13 +234,13 @@ class Dashboard extends Component {
           </ul>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <AsyncCSV />
-            <FButton
+            {/* <FButton
               type="dark"
               className="mt-16 ml-16"
               onClick={this.fixAudienceAgeOnContents}
             >
               Clean contenu (ne pas utiliser)
-            </FButton>
+            </FButton> */}
           </div>
         </div>
         <NoGeolocModal
