@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { ReactComponent as DispoImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_dispositif.svg";
-// import { ReactComponent as DemarcheImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_demarche.svg";
-import DemarcheImage from "../../../assets/qui-sommes-nous/QuiSommesNous_demarche.png";
+import DemarcheImage from "../../../assets/qui-sommes-nous/demarche_light.svg";
 
 import { ReactComponent as ParcoursImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_parcours.svg";
 import { NavLink } from "react-router-dom";
 
 import FButton from "../../../components/FigmaUI/FButton/FButton";
+import "./Mission.scss";
 
 const MissionContentContainer = styled.div`
   display: flex;
@@ -78,7 +78,7 @@ const MissionDemarche = (props) => (
   <MissionDetailContainer>
     {/* <DemarcheImage /> */}
     <div>
-      <img src={DemarcheImage} />
+      <img src={DemarcheImage} className={"demarche-img"} />
     </div>
     <MissionDetailTitle>
       {props.t(

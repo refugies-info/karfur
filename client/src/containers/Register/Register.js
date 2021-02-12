@@ -15,7 +15,7 @@ import { fetchUserActionCreator } from "../../services/User/user.actions";
 import styled from "styled-components";
 import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 import { Gauge } from "../../components/UI/Gauge/Gauge";
-import {colors} from "colors";
+import { colors } from "colors";
 import {
   fetchLanguesActionCreator,
   toggleLangueActionCreator,

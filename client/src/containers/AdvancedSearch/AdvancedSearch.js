@@ -338,10 +338,10 @@ export class AdvancedSearch extends Component {
           this.queryDispositifs({
             "tags.name": tag ? decodeURIComponent(tag) : "",
             "audienceAge.bottomValue": topValue
-              ? { $lt: parseInt(topValue, 10) }
+              ? { $lte: parseInt(topValue, 10) }
               : "",
             "audienceAge.topValue": bottomValue
-              ? { $gt: parseInt(bottomValue, 10) }
+              ? { $gte: parseInt(bottomValue, 10) }
               : "",
             niveauFrancais: niveauFrancaisObj ? niveauFrancaisObj.query : "",
           })
@@ -404,8 +404,8 @@ export class AdvancedSearch extends Component {
         .map((x) =>
           x.queryName === "audienceAge"
             ? {
-                "audienceAge.bottomValue": { $lt: x.topValue },
-                "audienceAge.topValue": { $gt: x.bottomValue },
+                "audienceAge.bottomValue": { $lte: x.topValue },
+                "audienceAge.topValue": { $gte: x.bottomValue },
               }
             : { [x.queryName]: x.query }
         )
@@ -443,7 +443,6 @@ export class AdvancedSearch extends Component {
         ...query,
         ...this.state.filter,
         status: "Actif",
-        ...{ demarcheId: { $exists: false } },
       },
       locale: props.languei18nCode,
     })
@@ -554,44 +553,6 @@ export class AdvancedSearch extends Component {
 
           dispositifs = dispositifsVille;
           this.setState({ dispositifsFullFrance });
-
-          /*           dispositifs = dispositifs.filter((disp) => {
-            if (
-              disp.contenu[1] &&
-              disp.contenu[1].children &&
-              disp.contenu[1].children.length > 0
-            ) {
-              const geolocInfocard = disp.contenu[1].children.find(
-                (infocard) => infocard.title === "Zone d'action"
-              );
-              if (geolocInfocard && geolocInfocard.departments) {
-                for (i = 0; i < geolocInfocard.departments.length; i++) {
-                  if (
-                    geolocInfocard.departments[i] === "All" ||
-                    geolocInfocard.departments[i].split(" - ")[1] ===
-                      localisationSearch.query[1].long_name ||
-                    geolocInfocard.departments[i].split(" - ")[1] ===
-                      localisationSearch.query[0].long_name
-                  ) {
-                    return true;
-                  } else if (i + 1 === geolocInfocard.departments.length) {
-                    return false;
-                  }
-                }
-              }
-            }
-            return true;
-          }); */
-          //On applique le filtre géographique maintenant
-          /*           dispositifs = dispositifs.filter(
-            
-          );
-          const filterDoubles = [
-            ...new Set(dispositifs.map((x) => x.demarcheId || x._id)),
-          ]; //Je vire les doublons créés par les variantes
-          dispositifs = filterDoubles.map((x) =>
-            dispositifs.find((y) => y.demarcheId === x || y._id === x)
-          ); */
         }
         dispositifs = dispositifs.map((x) => ({
           ...x,
@@ -1199,8 +1160,7 @@ export class AdvancedSearch extends Component {
               {" "}
               {this.state.countShow +
                 "/" +
-                this.props.dispositifs.filter((elem) => !elem.demarcheId)
-                  .length +
+                this.props.dispositifs.length +
                 " " +
                 t("AdvancedSearch.résultats", "résultats")}
             </FilterTitle>

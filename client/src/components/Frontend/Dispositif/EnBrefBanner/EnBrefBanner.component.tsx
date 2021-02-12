@@ -63,6 +63,7 @@ export const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
     <Row>
       <b className="en-bref">{props.t("Dispositif.En bref", "En bref")} </b>
       {childrenArray.map((card: DispositifContent, key: number) => {
+        if (!card) return;
         // selected card, not Important
         if (
           card.type === "card" &&

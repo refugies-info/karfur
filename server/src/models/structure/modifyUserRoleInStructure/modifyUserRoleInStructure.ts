@@ -1,5 +1,5 @@
 import { RequestFromClient, Res } from "../../../types/interface";
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import { checkIfUserIsAuthorizedToModifyStructure } from "../structure.service";
 import { ObjectId } from "mongoose";
 import { updateStructureMember } from "../structure.repository";

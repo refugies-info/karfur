@@ -3,7 +3,7 @@ import { getAllUsersFromDB } from "../users.repository";
 import { Res, Picture } from "../../../types/interface";
 import { UserDoc } from "../../../schema/schemaUser";
 import { ObjectId } from "mongoose";
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import { LangueDoc } from "../../../schema/schemaLangue";
 import _ from "lodash";
 
@@ -74,7 +74,9 @@ const getSelectedLanguages = (langues: LangueDoc[]) => {
 
   const languesFiltered = langues
     .filter((langue) =>
-      ["gb", "ru", "sa", "ir", "er", "af"].includes(langue.langueCode)
+      ["Anglais", "Russe", "Persan", "Pachto", "Arabe", "Tigrinya"].includes(
+        langue.langueFr
+      )
     )
     .map((langue) => ({
       langueCode: langue.langueCode,
@@ -84,7 +86,7 @@ const getSelectedLanguages = (langues: LangueDoc[]) => {
   return _.uniq(languesFiltered);
 };
 
-const adaptUsers = (users: UserDoc[]) =>
+export const adaptUsers = (users: UserDoc[]) =>
   users.map((user) => {
     const simplifiedStructures =
       user.structures && user.structures.length > 0
@@ -123,6 +125,7 @@ const adaptUsers = (users: UserDoc[]) =>
       langues,
       structures: simplifiedStructures,
       nbStructures: user.structures ? user.structures.length : 0,
+      nbContributions: user.contributions ? user.contributions.length : 0,
     };
   });
 

@@ -143,7 +143,6 @@ export class UserProfile extends Component {
       query: {
         creatorId: userId,
         status: { $ne: "Supprimé" },
-        demarcheId: { $exists: false },
       },
       sort: { updatedAt: -1 },
       populate: "participants",
@@ -167,7 +166,6 @@ export class UserProfile extends Component {
               "En attente admin",
             ],
           },
-          demarcheId: { $exists: false },
         },
         sort: { updatedAt: -1 },
       }).then((data) => {

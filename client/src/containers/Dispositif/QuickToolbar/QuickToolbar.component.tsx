@@ -69,6 +69,7 @@ export class QuickToolbar extends Component<Props, StateType> {
         "Pourquoi c'est intéressant ?",
         "Comment je m'engage ?",
         "La démarche par étapes",
+        "Comment faire ?",
         "Et après ?",
       ].includes(title)
     ) {

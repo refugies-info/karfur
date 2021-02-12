@@ -55,10 +55,9 @@ const user1 = {
   ],
   email: "email1",
   selectedLanguages: [
-    { langueCode: "fr", langueFr: "français" },
-    { langueCode: "en", langueFr: "anglais" },
-    { langueCode: "gb", langueFr: "anglais" },
-    { langueCode: "sa", langueFr: "pachto" },
+    { langueCode: "fr", langueFr: "Français" },
+    { langueCode: "gb", langueFr: "Anglais" },
+    { langueCode: "sa", langueFr: "Pachto" },
   ],
 };
 
@@ -109,10 +108,11 @@ const simplifiedUser1 = {
   ],
   email: "email1",
   langues: [
-    { langueCode: "gb", langueFr: "anglais" },
-    { langueCode: "sa", langueFr: "pachto" },
+    { langueCode: "gb", langueFr: "Anglais" },
+    { langueCode: "sa", langueFr: "Pachto" },
   ],
   nbStructures: 2,
+  nbContributions: 0,
 };
 
 const simplifiedUser3 = {
@@ -127,6 +127,7 @@ const simplifiedUser3 = {
       role: ["Rédacteur"],
     },
   ],
+  nbContributions: 0,
 };
 
 const simplifiedUser4 = {
@@ -163,6 +164,7 @@ const simplifiedUser2 = {
   nbStructures: 0,
   roles: [],
   structures: [],
+  nbContributions: 0,
 };
 
 const users = [user1, user2, user3, user4];

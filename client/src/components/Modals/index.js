@@ -3,7 +3,6 @@ import DemarcheCreateModal from "./DemarcheCreateModal/DemarcheCreateModal";
 import DispositifValidateModal from "./DispositifValidateModal/DispositifValidateModal";
 import EnConstructionModal from "./EnConstructionModal/EnConstructionModal";
 import LanguageModal from "./LanguageModal/LanguageModal";
-import MapModal from "./MapModal/MapModal";
 import ReactionModal from "./ReactionModal/ReactionModal";
 import ThanksModal from "./ThanksModal/ThanksModal";
 import TranslationModal from "./TranslationModal/TranslationModal";
@@ -16,8 +15,6 @@ import RejectionModal from "./RejectionModal/RejectionModal";
 import AddMemberModal from "./AddMemberModal/AddMemberModal";
 import EditMemberModal from "./EditMemberModal/EditMemberModal";
 import RejectTradModal from "./RejectTradModal/RejectTradModal";
-import CheckDemarcheModal from "./CheckDemarcheModal/CheckDemarcheModal";
-import VarianteCreateModal from "./VarianteCreateModal/VarianteCreateModal";
 import EtapeModal from "./EtapeModal/EtapeModal";
 import Modal from "./Modal";
 import TagsModal from "./TagsModal/TagsModal";
@@ -32,7 +29,6 @@ export {
   DispositifValidateModal,
   EnConstructionModal,
   LanguageModal,
-  MapModal,
   ReactionModal,
   ThanksModal,
   TranslationModal,
@@ -45,8 +41,6 @@ export {
   AddMemberModal,
   EditMemberModal,
   RejectTradModal,
-  CheckDemarcheModal,
-  VarianteCreateModal,
   EtapeModal,
   TagsModal,
   FrameModal,
