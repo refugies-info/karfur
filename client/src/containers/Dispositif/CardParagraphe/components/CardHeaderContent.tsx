@@ -22,12 +22,21 @@ interface Props {
   typeContenu: "dispositif" | "demarche";
 }
 
+const getTitle = (
+  initialTitle: string,
+  typeContenu: "dispositif" | "demarche"
+) => {
+  if (["Titre de séjour", "Acte de naissance OFPRA"].includes(initialTitle))
+    return "Impossible sans";
+
+  if (typeContenu === "demarche" && initialTitle === "Zone d'action")
+    return "Localisation";
+
+  return initialTitle;
+};
 export const CardHeaderContent = (props: Props) => {
-  const title = ["Titre de séjour", "Acte de naissance OFPRA"].includes(
-    props.subitem.title
-  )
-    ? "Impossible sans"
-    : props.subitem.title;
+  // we change the header of the infocards for demarches for acte de naissance, titre de séjour and zone d'action
+  const title = getTitle(props.subitem.title, props.typeContenu);
   // in lecture mode, display title and icon or in edition when all types of infocard are already displayed
   if (
     props.disableEdit ||
