@@ -16,6 +16,7 @@ export function* fetchUser(
   action: ReturnType<typeof fetchUserActionCreator>
 ): SagaIterator {
   try {
+    logger.info("fetchUser saga");
     yield put(startLoading(LoadingStatusKey.FETCH_USER));
     const isAuth = yield call(API.isAuth);
     if (isAuth) {
@@ -34,6 +35,7 @@ export function* fetchUser(
       yield put(setUserActionCreator(null));
     }
     yield put(finishLoading(LoadingStatusKey.FETCH_USER));
+    logger.info("fetchUser saga finish");
 
     if (action.payload && action.payload.shouldRedirect) {
       yield put(

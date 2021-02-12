@@ -269,9 +269,11 @@ export const AdminUsers = () => {
   return (
     <div className="admin-users">
       <SearchBarContainer>
-        <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
-          {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
-        </FButton>
+        {process.env.NODE_ENV === "production" && (
+          <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
+            {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
+          </FButton>
+        )}
         <CustomSearchBar
           value={search}
           // @ts-ignore
