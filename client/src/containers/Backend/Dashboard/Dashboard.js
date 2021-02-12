@@ -8,6 +8,8 @@ import { targetByTag } from "./data";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { NoGeolocModal } from "./NoGeolocModal";
 import AsyncCSV from "./AsyncCSV";
+import { logger } from "logger";
+import Swal from "sweetalert2";
 
 moment.locale("fr");
 
@@ -73,7 +75,6 @@ class Dashboard extends Component {
         "tags.0.name": tag.name,
         status: "Actif",
         typeContenu: "demarche",
-        demarcheId: { $exists: false },
       }).then((data) => {
         this.setState({
           nbDemarchesByMainTag: {
@@ -93,6 +94,27 @@ class Dashboard extends Component {
     this.setState((prevState) => ({
       showNoGeolocModal: !prevState.showNoGeolocModal,
     }));
+
+  fixAudienceAgeOnContents = async () => {
+    try {
+      await API.fixAudienceAgeOnContents();
+
+      Swal.fire({
+        title: "Yay...",
+        text: "Modifications effectuées",
+        type: "success",
+        timer: 1500,
+      });
+    } catch (error) {
+      logger.error("fixAudienceAgeOnContents error", { error });
+      Swal.fire({
+        title: "Oh non!",
+        text: "Something went wrong",
+        type: "error",
+        timer: 1500,
+      });
+    }
+  };
 
   render() {
     const {
@@ -210,7 +232,16 @@ class Dashboard extends Component {
               Nombre de traducteurs ou experts : <b>{nbTraductors}</b>
             </li>
           </ul>
-          <AsyncCSV />
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <AsyncCSV />
+            <FButton
+              type="dark"
+              className="mt-16 ml-16"
+              onClick={this.fixAudienceAgeOnContents}
+            >
+              Clean contenu (ne pas utiliser)
+            </FButton>
+          </div>
         </div>
         <NoGeolocModal
           dispositifsWithoutGeoloc={dispositifsWithoutGeoloc}

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { Col, Row, Spinner } from "reactstrap";
@@ -31,12 +30,10 @@ import { ContenuDispositif } from "../../components/Frontend/Dispositif/ContenuD
 import {
   BookmarkedModal,
   DispositifCreateModal,
-  DemarcheCreateModal,
   DispositifValidateModal,
   ReactionModal,
   EnConstructionModal,
   ResponsableModal,
-  VarianteCreateModal,
   RejectionModal,
   TagsModal,
   FrameModal,
@@ -55,27 +52,19 @@ import SideTrad from "./SideTrad/SideTrad";
 import ExpertSideTrad from "./SideTrad/ExpertSideTrad";
 import { initializeTimer } from "../Translation/functions";
 import { readAudio } from "../Layout/functions";
-import MoteurVariantes from "./MoteurVariantes/MoteurVariantes";
 import {
   contenu,
   menu,
   filtres,
-  onBoardSteps,
   importantCard,
   showModals,
   menuDemarche,
   demarcheSteps,
   customConvertOption,
+  infocardsDemarcheTitles,
+  infocardFranceEntiere,
 } from "./data";
-import {
-  switchVariante,
-  initializeVariantes,
-  initializeInfoCards,
-  verifierDemarche,
-  validateVariante,
-  deleteVariante,
-  calculFiabilite,
-} from "./functions";
+import { calculFiabilite } from "./functions";
 import { breakpoints } from "utils/breakpoints.js";
 import { BackButton } from "../../components/Frontend/Dispositif/BackButton";
 import { colors } from "colors";
@@ -89,7 +78,7 @@ import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner"
 import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFooter";
 import { initGA, Event } from "../../tracking/dispatch";
 import { fetchActiveStructuresActionCreator } from "../../services/ActiveStructures/activeStructures.actions";
-// var opentype = require('opentype.js');
+import { logger } from "../../logger";
 
 moment.locale("fr");
 
@@ -114,12 +103,6 @@ export class Dispositif extends Component {
     this._isMounted = false;
     this.initializeTimer = initializeTimer.bind(this);
     this.readAudio = readAudio.bind(this);
-    this.switchVariante = switchVariante.bind(this);
-    this.initializeVariantes = initializeVariantes.bind(this);
-    this.initializeInfoCards = initializeInfoCards.bind(this);
-    this.verifierDemarche = verifierDemarche.bind(this);
-    this.validateVariante = validateVariante.bind(this);
-    this.deleteVariante = deleteVariante.bind(this);
   }
 
   state = {
@@ -165,22 +148,18 @@ export class Dispositif extends Component {
     time: 0,
     initialTime: 0,
     typeContenu: "dispositif",
-    variantes: [],
     search: {},
-    inVariante: false,
     allDemarches: [],
     demarcheId: null,
-    isVarianteValidated: false,
     dispositif: {},
     _id: undefined,
-    checkingVariante: false,
     printing: false,
     didThank: false,
     finalValidation: false,
     tutorielSection: "",
     displayTuto: true,
     addMapBtn: true,
-    initialMenu: JSON.parse(JSON.stringify(menu)),
+    initialMenu: [],
   };
 
   componentDidMount() {
@@ -236,8 +215,6 @@ export class Dispositif extends Component {
     const typeContenu = (props.match.path || "").includes("demarche")
       ? "demarche"
       : "dispositif";
-    const checkingVariante = _.get(props, "location.state.checkingVariante"),
-      textInput = _.get(props, "location.state.textInput");
 
     // if an itemId is present : initialize dispositif lecture or dispositif modification
     // if no itemId and user logged in : initialize new dispo creation
@@ -298,21 +275,62 @@ export class Dispositif extends Component {
           const disableEdit = true;
 
           if (dispositif.status === "Brouillon" && this._isMounted) {
-            this.initializeTimer(3 * 60 * 1000, () =>
-              this.valider_dispositif("Brouillon", true)
-            );
+            this.initializeTimer(3 * 60 * 1000, () => {
+              this.valider_dispositif("Brouillon", true);
+            });
           }
           const secondarySponsor = dispositif.sponsors.filter(
             (sponsor) => !sponsor._id && sponsor.nom
           );
           const sponsors = secondarySponsor || [];
 
+          // for demarche we need to be compatible with the moteur de cas.
+          // remove infocards not in list
+          // for infocard age requis, rename ageTitle in contentTitle
+          // if no infocard zone d'action, add one
+          const menu =
+            dispositif.typeContenu === "dispositif"
+              ? dispositif.contenu
+              : dispositif.contenu.map((part) => {
+                  if (part.title !== "C'est pour qui ?") {
+                    return part;
+                  }
+                  const children = part.children
+                    .filter((child) =>
+                      infocardsDemarcheTitles.includes(child.title)
+                    )
+                    .map((child) => {
+                      if (child.title === "Âge requis" && child.ageTitle) {
+                        const newFormatChild = {
+                          ...child,
+                          contentTitle: child.ageTitle,
+                        };
+                        delete newFormatChild.ageTitle;
+                        return newFormatChild;
+                      }
+                      return child;
+                    });
+                  if (
+                    children.filter((child) => child.title === "Zone d'action")
+                      .length > 0
+                  ) {
+                    return {
+                      ...part,
+                      children: children,
+                    };
+                  }
+                  return {
+                    ...part,
+                    children: children.concat([infocardFranceEntiere]),
+                  };
+                });
+
           //Enregistrement automatique du dispositif toutes les 3 minutes
           this._isMounted &&
             this.setState(
               {
                 _id: itemId,
-                menu: dispositif.contenu || [],
+                menu: menu || [],
                 content: {
                   titreInformatif: dispositif.titreInformatif,
                   titreMarque: dispositif.titreMarque,
@@ -348,22 +366,19 @@ export class Dispositif extends Component {
                     : {},
                 mainSponsor: dispositif.mainSponsor || {},
                 status: dispositif.status,
-                variantes: dispositif.variantes || [],
                 fiabilite: calculFiabilite(dispositif),
                 disableEdit,
                 typeContenu,
-                checkingVariante,
                 ...(dispositif.status === "Brouillon" && {
                   initialTime: dispositif.timeSpent,
                 }),
+                initialMenu:
+                  dispositif.typeContenu === "dispositif"
+                    ? JSON.parse(JSON.stringify(menu))
+                    : JSON.parse(JSON.stringify(menuDemarche)),
               },
               () => {
-                if (typeContenu === "demarche") {
-                  this.initializeInfoCards();
-                  this.initializeVariantes(itemId, props);
-                } else {
-                  this.setColors();
-                }
+                this.setColors();
               }
             );
           document.title =
@@ -443,9 +458,10 @@ export class Dispositif extends Component {
             };
           }),
           typeContenu,
-          ...(textInput && {
-            content: { ...contenu, titreInformatif: textInput },
-          }),
+          initialMenu:
+            typeContenu === "dispositif"
+              ? JSON.parse(JSON.stringify(menu))
+              : JSON.parse(JSON.stringify(menuDemarche)),
         },
         () => this.setColors()
       );
@@ -586,16 +602,7 @@ export class Dispositif extends Component {
 
   handleContentClick = (key, editable, subkey = undefined) => {
     let state = [...this.state.menu];
-    if (
-      state.length > key &&
-      key >= 0 &&
-      !this.state.disableEdit &&
-      (!this.state.inVariante ||
-        _.get(
-          this.state.uiArray,
-          key + (subkey ? ".children." + subkey : "") + ".varianteSelected"
-        ))
-    ) {
+    if (state.length > key && key >= 0 && !this.state.disableEdit) {
       if (editable) {
         state = state.map((x) => {
           const hasNewContent =
@@ -662,6 +669,7 @@ export class Dispositif extends Component {
         const newRawBlocks = rawBlocks.filter(
           (_, i) => i < textPosition - 3 || i >= textPosition
         );
+        // we have to modify inlineStyleRanges and entityRanges after removing blocks otherwise style (bold and links) are not on the right words
         const newRawContentState = {
           ...rawContentState,
           blocks: newRawBlocks.map((x) =>
@@ -670,6 +678,22 @@ export class Dispositif extends Component {
                   ...x,
                   text: x.text.replace("Bon à savoir :", ""),
                   type: "header-six",
+                  inlineStyleRanges: x.inlineStyleRanges
+                    ? x.inlineStyleRanges.map((style) => {
+                        return {
+                          ...style,
+                          offset: style.offset - 14,
+                        };
+                      })
+                    : [],
+                  entityRanges: x.entityRanges
+                    ? x.entityRanges.map((style) => {
+                        return {
+                          ...style,
+                          offset: style.offset - 14,
+                        };
+                      })
+                    : [],
                 }
               : x
           ),
@@ -819,10 +843,12 @@ export class Dispositif extends Component {
         prevState[key].type = "cards";
         newChild = importantCard;
       } else if (type === "card") {
+        const menuFiche =
+          this.state.typeContenu === "dispositif" ? menu : menuDemarche;
         // the new child is an infocard which title is subkey (a title that is not already displayed)
         newChild =
-          menu[1].children.filter((x) => x.title === subkey).length > 0
-            ? menu[1].children.filter((x) => x.title === subkey)[0]
+          menuFiche[1].children.filter((x) => x.title === subkey).length > 0
+            ? menuFiche[1].children.filter((x) => x.title === subkey)[0]
             : importantCard;
       } else if (type === "accordion") {
         newChild = {
@@ -847,13 +873,16 @@ export class Dispositif extends Component {
         };
       } else if (type === "etape") {
         newChild = {
-          ...newChild,
+          type: "etape",
+          title: "",
           papiers: [],
           duree: "00",
           timeStepDuree: "minutes",
           delai: "00",
           timeStepDelai: "minutes",
           option: {},
+          isFakeContent: false,
+          content: "",
         };
       }
       newChild.type = type;
@@ -1004,17 +1033,6 @@ export class Dispositif extends Component {
     this.setState((prevState) => ({
       inputBtnClicked: !prevState.inputBtnClicked,
     }));
-  toggleCheckingVariante = () =>
-    this.setState((pS) => ({ checkingVariante: !pS.checkingVariante }));
-  toggleInVariante = () =>
-    this.setState((pS) => ({
-      inVariante: !pS.inVariante,
-      ...(!pS.inVariante &&
-        pS.disableEdit && {
-          checkingVariante: false,
-          showModals: { ...this.state.showModals, variante: true },
-        }),
-    }));
 
   toggleNiveau = (selectedLevels, key, subkey) => {
     this.setState(
@@ -1103,21 +1121,20 @@ export class Dispositif extends Component {
           : x
       ),
     });
-  setMarkers = (markers, key, subkey) =>
+  setMarkers = (markers, key, subkey) => {
     this.setState({
       menu: [...this.state.menu].map((x, i) =>
         i === key
           ? {
               ...x,
               children: x.children.map((y, ix) =>
-                ix === subkey
-                  ? { ...y, markers: markers, isFakeContent: false }
-                  : y
+                ix === subkey ? { ...y, markers, isFakeContent: false } : y
               ),
             }
           : x
       ),
     });
+  };
 
   toggleHelp = () =>
     this.setState((prevState) => ({ withHelp: !prevState.withHelp }));
@@ -1295,38 +1312,8 @@ export class Dispositif extends Component {
       }),
     }));
     this.setState({ uiArray: uiArray, showSpinnerPrint: true, printing: true });
-    /*  this.html2canvas(document.getElementById('contenu-0')).then((canvas) => {
-              const imgData = canvas.toDataURL("image/png");
-              const pdf = new jsPDF();
-              pdf.addImage(imgData, "PNG", 0, 0);
-              pdf.save("download.pdf");
-            }) */
-    /*             savePDF(
-              this.newRef.current,
-              {
-                fileName:
-                  (this.state.typeContenu || "dispositif") +
-                  (this.state.content && this.state.content.titreMarque
-                    ? " - " + this.state.content.titreMarque
-                    : "") +
-                  ".pdf",
-                scale: 0.5,
-                margin: {
-                  top: "2cm",
-                  left: "1.5cm",
-                  right: "1.5cm",
-                  bottom: "2cm",
-                },
-              },
-              this._isMounted &&
-                setTimeout(() => {
-                  this._isMounted &&
-                    this.setState({ showSpinnerPrint: false, printing: false });
-                }, 3000)
-            ) */
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
   editDispositif = (_ = null, disableEdit = false) => {
     this.props.history.push({
       state: {
@@ -1420,17 +1407,17 @@ export class Dispositif extends Component {
     sauvegarde = false,
     saveAndEdit = false
   ) => {
-    if (!auto && !this.verifierDemarche()) {
-      return;
-    }
     this.setState({ isDispositifLoading: !auto });
     let content = { ...this.state.content };
-    const uiArray = { ...this.state.uiArray },
-      inVariante = this.state.inVariante;
+
     Object.keys(content).map((k) => (content[k] = h2p(content[k])));
+    // do not save automatically when lecture mode
     if (
       auto &&
-      !Object.keys(content).some((k) => content[k] && content[k] !== contenu[k])
+      (!Object.keys(content).some(
+        (k) => content[k] && content[k] !== contenu[k]
+      ) ||
+        this.state.disableEdit)
     ) {
       return;
     }
@@ -1456,7 +1443,7 @@ export class Dispositif extends Component {
     }
     let dispositif = {
       ...content,
-      contenu: [...this.state.menu].map((x, i) => {
+      contenu: [...this.state.menu].map((x) => {
         const hasNewContent =
           x.editable && x.editorState && x.editorState.getCurrentContent();
         // if user removed text with store empty string without html balise (so that it works with translation)
@@ -1473,13 +1460,11 @@ export class Dispositif extends Component {
           ...{
             content: hasNewContent ? content : x.content,
           },
-          ...(inVariante && {
-            isVariante: _.get(uiArray, `${i}.varianteSelected`),
-          }),
+
           editable: false,
           type: x.type,
           ...(x.children && {
-            children: x.children.map((y, j) => {
+            children: x.children.map((y) => {
               // eslint-disable-next-line
               const { editorState, ...noEditor } = y;
               const hasNewContent =
@@ -1498,12 +1483,7 @@ export class Dispositif extends Component {
               return {
                 ...noEditor,
                 ...(hasNewContent && { content }),
-                ...(inVariante && {
-                  isVariante: _.get(
-                    uiArray,
-                    `${i}.children.${j}.varianteSelected`
-                  ),
-                }),
+
                 editable: false,
                 ...(y.title && { title: h2p(y.title) }),
               };
@@ -1516,33 +1496,44 @@ export class Dispositif extends Component {
       avancement: 1,
       status: status,
       typeContenu: this.state.typeContenu,
-      ...(this.state.inVariante
-        ? { demarcheId: this.state._id }
-        : { dispositifId: this.state._id }),
+      ...{ dispositifId: this.state._id },
       ...(!this.state._id &&
         this.state.status !== "Brouillon" && { timeSpent: this.state.time }),
       autoSave: auto,
     };
     dispositif.mainSponsor = this.state.mainSponsor._id || null;
     const mainSponsorPopulate = this.state.mainSponsor;
-    if (dispositif.typeContenu === "dispositif") {
-      let cardElement =
-        (this.state.menu.find((x) => x.title === "C'est pour qui ?") || [])
-          .children || [];
-      dispositif.audience = cardElement.some((x) => x.title === "Public visé")
-        ? cardElement
-            .filter((x) => x.title === "Public visé")
-            .map((x) => x.contentTitle)
-        : filtres.audience;
-      dispositif.audienceAge = cardElement.some((x) => x.title === "Âge requis")
-        ? cardElement
-            .filter((x) => x.title === "Âge requis")
-            .map((x) => ({
+    let cardElement =
+      (this.state.menu.find((x) => x.title === "C'est pour qui ?") || [])
+        .children || [];
+
+    dispositif.audienceAge = cardElement.some((x) => x.title === "Âge requis")
+      ? cardElement
+          .filter((x) => x.title === "Âge requis")
+          .map((x) => {
+            if (x.contentTitle === "De ** à ** ans") {
+              return {
+                contentTitle: x.contentTitle,
+                bottomValue: parseInt(x.bottomValue, 10),
+                topValue: parseInt(x.topValue, 10),
+              };
+            }
+            if (x.contentTitle === "Plus de ** ans") {
+              return {
+                contentTitle: x.contentTitle,
+                bottomValue: parseInt(x.bottomValue, 10),
+                topValue: 999,
+              };
+            }
+
+            return {
               contentTitle: x.contentTitle,
-              bottomValue: x.bottomValue,
-              topValue: x.topValue,
-            }))
-        : [{ contentTitle: "Plus de ** ans", bottomValue: -1, topValue: 999 }];
+              bottomValue: -1,
+              topValue: parseInt(x.topValue, 10),
+            };
+          })
+      : [{ contentTitle: "Plus de ** ans", bottomValue: -1, topValue: 999 }];
+    if (dispositif.typeContenu === "dispositif") {
       dispositif.niveauFrancais = cardElement.some(
         (x) => x.title === "Niveau de français"
       )
@@ -1550,32 +1541,13 @@ export class Dispositif extends Component {
             .filter((x) => x.title === "Niveau de français")
             .map((x) => x.contentTitle)
         : filtres.niveauFrancais;
-      dispositif.cecrlFrancais = cardElement.some(
-        (x) => x.title === "Niveau de français"
-      )
-        ? [
-            ...new Set(
-              cardElement
-                .filter((x) => x.title === "Niveau de français")
-                .map((x) => x.niveaux)
-                .reduce((acc, curr) => [...acc, ...curr])
-            ),
-          ]
-        : [];
-      dispositif.isFree = cardElement.some(
-        (x) => x.title === "Combien ça coûte ?"
-      )
-        ? cardElement.find((x) => x.title === "Combien ça coûte ?").free
-        : true;
     } else {
-      dispositif.variantes = this.state.variantes;
       delete dispositif.titreMarque;
     }
     if (status !== "Brouillon") {
       if (
         this.state.status &&
         this.state._id &&
-        !inVariante &&
         ![
           "",
           "En attente non prioritaire",
@@ -1586,7 +1558,6 @@ export class Dispositif extends Component {
         dispositif.status = this.state.status;
       } else if (dispositif.mainSponsor) {
         const mainSponsor = mainSponsorPopulate;
-        //Si l'auteur appartient à la structure principale je la fait passer directe en validation
         const membre = mainSponsor
           ? (mainSponsor.membres || []).find(
               (x) => x.userId === this.props.userId
@@ -1607,6 +1578,8 @@ export class Dispositif extends Component {
         dispositif.status = "En attente non prioritaire";
       }
     }
+
+    logger.info("[valider_dispositif] dispositif before call", { dispositif });
     API.add_dispositif(dispositif).then((data) => {
       const newDispo = data.data.data;
       if (!auto && this._isMounted) {
@@ -1634,15 +1607,13 @@ export class Dispositif extends Component {
         });
       } else if (this._isMounted) {
         NotificationManager.success(
-          // eslint-disable-next-line quotes
-          'Retrouvez votre contribution dans votre page "Mon profil"',
+          "Retrouvez votre contribution dans votre page 'Mon profil'",
           "Enregistrement automatique",
           5000,
           () => {
             Swal.fire(
               "Enregistrement automatique",
-              // eslint-disable-next-line quotes
-              'Retrouvez votre contribution dans votre page "Mon profil"',
+              "Retrouvez votre contribution dans votre page 'Mon profil'",
               "success"
             );
           }
@@ -1667,17 +1638,13 @@ export class Dispositif extends Component {
       showModals,
       isDispositifLoading,
       typeContenu,
-      withHelp,
       disableEdit,
-      inVariante,
-      checkingVariante,
       printing,
       didThank,
       mainTag,
     } = this.state;
     const tag =
       mainTag && mainTag.short ? mainTag.short.split(" ").join("-") : "noImage";
-
     return (
       <div
         id="dispositif"
@@ -1726,21 +1693,10 @@ export class Dispositif extends Component {
             className="main-col"
           >
             <section className={"banniere-dispo " + tag}>
-              {(inVariante ||
-                checkingVariante ||
-                (typeContenu === "dispositif" && !disableEdit)) && (
+              {!disableEdit && (
                 // yellow banner in top of a demarche to create a variante
                 // To see this component, create a new demarche then select an existing demarche
                 <BandeauEdition
-                  withHelp={withHelp}
-                  disableEdit={disableEdit}
-                  checkingVariante={checkingVariante}
-                  editDispositif={this.editDispositif}
-                  upcoming={this.upcoming}
-                  valider_dispositif={this.valider_dispositif}
-                  toggleHelp={this.toggleHelp}
-                  toggleCheckingVariante={this.toggleCheckingVariante}
-                  toggleInVariante={this.toggleInVariante}
                   typeContenu={typeContenu}
                   toggleTutoriel={this.toggleTutoriel}
                   displayTuto={this.state.displayTuto}
@@ -1756,31 +1712,27 @@ export class Dispositif extends Component {
                 {windowWidth >= breakpoints.smLimit && (
                   <BackButton goBack={this.goBack} />
                 )}
-                {!inVariante && (
-                  // top right part of dispositif (3 different designs : create/modify, read, sponsor gets the dispositif "En attente")
-                  <TopRightHeader
-                    disableEdit={this.state.disableEdit}
-                    withHelp={this.state.withHelp}
-                    showSpinnerBookmark={this.state.showSpinnerBookmark}
-                    pinned={this.state.pinned}
-                    bookmarkDispositif={this.bookmarkDispositif}
-                    toggleHelp={this.toggleHelp}
-                    toggleModal={this.toggleModal}
-                    toggleDispositifValidateModal={
-                      this.toggleDispositifValidateModal
-                    }
-                    editDispositif={this.editDispositif}
-                    valider_dispositif={this.valider_dispositif}
-                    toggleDispositifCreateModal={
-                      this.toggleDispositifCreateModal
-                    }
-                    translating={translating}
-                    status={this.state.status}
-                    typeContenu={typeContenu}
-                    langue={i18n.language}
-                    t={t}
-                  />
-                )}
+
+                <TopRightHeader
+                  disableEdit={this.state.disableEdit}
+                  withHelp={this.state.withHelp}
+                  showSpinnerBookmark={this.state.showSpinnerBookmark}
+                  pinned={this.state.pinned}
+                  bookmarkDispositif={this.bookmarkDispositif}
+                  toggleHelp={this.toggleHelp}
+                  toggleModal={this.toggleModal}
+                  toggleDispositifValidateModal={
+                    this.toggleDispositifValidateModal
+                  }
+                  editDispositif={this.editDispositif}
+                  valider_dispositif={this.valider_dispositif}
+                  toggleDispositifCreateModal={this.toggleDispositifCreateModal}
+                  translating={translating}
+                  status={this.state.status}
+                  typeContenu={typeContenu}
+                  langue={i18n.language}
+                  t={t}
+                />
               </Row>
               <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
                 <div className={"bloc-titre "}>
@@ -1797,9 +1749,9 @@ export class Dispositif extends Component {
                           <ContentEditable
                             id="titreInformatif"
                             html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
-                            disabled={disableEdit || inVariante}
+                            disabled={disableEdit}
                             onClick={(e) => {
-                              if (!disableEdit && !inVariante) {
+                              if (!disableEdit) {
                                 this.onInputClicked(e);
                               }
                             }}
@@ -1855,45 +1807,44 @@ export class Dispositif extends Component {
               </Col>
             </section>
 
-            {!inVariante && (
-              <Row className="tags-row backgroundColor-darkColor">
-                <Col
-                  style={{ display: "flex", alignItems: "center" }}
-                  lg="8"
-                  md="8"
-                  sm="8"
-                  xs="8"
-                  className="col right-bar"
-                >
-                  {
-                    // display En bref banner if content is a dispositif or if content is a demarch but not in edition mode
-                    (disableEdit || typeContenu !== "demarche") && (
-                      // TO DO : connect component to store when store updated after changing infocards
-                      <EnBrefBanner menu={this.state.menu} isRTL={isRTL} />
-                    )
-                  }
-                </Col>
-                <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
-                  {
-                    // Tags on the right of a dispositif or a demarche
-                    <Tags
-                      tags={this.state.tags}
-                      disableEdit={this.state.disableEdit}
-                      changeTag={this.changeTag}
-                      addTag={this.addTag}
-                      openTag={this.openTag}
-                      deleteTag={this.deleteTag}
-                      history={this.props.history}
-                      toggleTutorielModal={this.toggleTutorielModal}
-                      displayTuto={this.state.displayTuto}
-                      updateUIArray={this.updateUIArray}
-                      isRTL={isRTL}
-                      t={t}
-                    />
-                  }
-                </Col>
-              </Row>
-            )}
+            <Row className="tags-row backgroundColor-darkColor">
+              <Col
+                style={{ display: "flex", alignItems: "center" }}
+                lg="8"
+                md="8"
+                sm="8"
+                xs="8"
+                className="col right-bar"
+              >
+                {
+                  // display En bref banner if content is a dispositif or if content is a demarch but not in edition mode
+                  (disableEdit || typeContenu !== "demarche") && (
+                    // TO DO : connect component to store when store updated after changing infocards
+                    <EnBrefBanner menu={this.state.menu} isRTL={isRTL} />
+                  )
+                }
+              </Col>
+              <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
+                {
+                  // Tags on the right of a dispositif or a demarche
+                  <Tags
+                    tags={this.state.tags}
+                    disableEdit={this.state.disableEdit}
+                    changeTag={this.changeTag}
+                    addTag={this.addTag}
+                    openTag={this.openTag}
+                    deleteTag={this.deleteTag}
+                    history={this.props.history}
+                    toggleTutorielModal={this.toggleTutorielModal}
+                    displayTuto={this.state.displayTuto}
+                    updateUIArray={this.updateUIArray}
+                    isRTL={isRTL}
+                    t={t}
+                    typeContenu={typeContenu}
+                  />
+                }
+              </Col>
+            </Row>
 
             <Row className="no-margin-right">
               {!translating && !printing && (
@@ -1927,11 +1878,7 @@ export class Dispositif extends Component {
                   }
                 </Col>
               )}
-              {inVariante && disableEdit && (
-                <Col className="variante-col">
-                  <div className="radio-btn" />
-                </Col>
-              )}
+
               <Col
                 xl={translating || printing ? "12" : "7"}
                 lg={translating || printing ? "12" : "7"}
@@ -1941,7 +1888,7 @@ export class Dispositif extends Component {
                 className="pt-40 col-middle"
                 id={"pageContent"}
               >
-                {disableEdit && !inVariante && (
+                {disableEdit && (
                   // Part about last update
                   <Row className="fiabilite-row">
                     <Col
@@ -1964,25 +1911,6 @@ export class Dispositif extends Component {
                     </Col>
                   </Row>
                 )}
-
-                {typeContenu === "demarche" && !(disableEdit && inVariante) && (
-                  // MoteurVariantes displayed when creating a variante of a demarche or reading a variante or modifying a variante
-                  // in more details, it is displayed when asking 'is it the demarche you are looking for?' and at step 2 (but not at step 1) of variante creation or when reading a demarche
-                  // at step 1 of variante creation, disableEdit and inVariante are true, what is displayed is in contenuDispositif (with radio-buttons)
-                  <MoteurVariantes
-                    itemId={this.state._id}
-                    disableEdit={disableEdit}
-                    inVariante={inVariante}
-                    validateVariante={this.validateVariante}
-                    deleteVariante={this.deleteVariante}
-                    filtres={filtres}
-                    upcoming={this.upcoming}
-                    switchVariante={this.switchVariante}
-                    variantes={this.state.variantes}
-                    allDemarches={this.state.allDemarches}
-                    search={this.state.search}
-                  />
-                )}
                 <ContenuDispositif
                   showMapButton={this.showMapButton}
                   updateUIArray={this.updateUIArray}
@@ -1997,7 +1925,6 @@ export class Dispositif extends Component {
                   uiArray={this.state.uiArray}
                   t={this.state.t}
                   disableEdit={this.state.disableEdit}
-                  inVariante={this.state.inVariante}
                   menu={this.state.menu}
                   removeItem={this.removeItem}
                   changeTitle={this.changeCardTitle}
@@ -2023,7 +1950,7 @@ export class Dispositif extends Component {
                   {...this.state}
                 />
 
-                {this.state.disableEdit && !inVariante && (
+                {this.state.disableEdit && (
                   <>
                     {!printing && (
                       <FeedbackFooter
@@ -2044,28 +1971,6 @@ export class Dispositif extends Component {
                         <ContribCaroussel
                           contributeurs={this.state.contributeurs}
                         />
-                        {/* {// add contributors : desactivated 
-                        !this.state.disableEdit  && (
-                          <div className="ecran-protection">
-                            <div className="content-wrapper">
-                              <Icon
-                                name="alert-triangle-outline"
-                                fill="#FFFFFF"
-                              />
-                              <span>
-                                Ajout des contributeurs{" "}
-                                <u
-                                  className="pointer"
-                                  onClick={() =>
-                                    this.toggleModal(true, "construction")
-                                  }
-                                >
-                                  disponible prochainement
-                                </u>
-                              </span>
-                            </div>
-                          </div>
-                        )} */}
                       </div>
                     )}
                   </>
@@ -2090,6 +1995,7 @@ export class Dispositif extends Component {
                   displayTuto={this.state.displayTuto}
                   updateUIArray={this.updateUIArray}
                   dispositif={this.state.dispositif}
+                  typeContenu={typeContenu}
                 />
 
                 {false && <Commentaires />}
@@ -2146,14 +2052,14 @@ export class Dispositif extends Component {
               show={this.state.showBookmarkModal}
               toggle={this.toggleBookmarkModal}
             />
-            {typeContenu === "demarche" && (
+            {/* {typeContenu === "demarche" && (
               <DemarcheCreateModal
                 show={this.state.showDispositifCreateModal}
                 toggle={this.toggleDispositifCreateModal}
                 typeContenu={typeContenu}
                 onBoardSteps={onBoardSteps}
               />
-            )}
+            )} */}
             {typeContenu === "dispositif" && (
               <DispositifCreateModal
                 show={this.state.showDispositifCreateModal}
@@ -2196,12 +2102,7 @@ export class Dispositif extends Component {
               toggle={this.toggleTutorielModal}
               section={this.state.tutorielSection}
             />
-            <VarianteCreateModal
-              titreInformatif={this.state.content.titreInformatif}
-              show={showModals.variante}
-              toggle={() => this.toggleModal(false, "variante")}
-              upcoming={this.upcoming}
-            />
+
             <DraftModal
               show={this.state.showDraftModal}
               toggle={this.toggleDraftModal}

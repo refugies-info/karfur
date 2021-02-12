@@ -7,7 +7,7 @@ $tailleBig: 80px;
 .sponsor-footer {
   color: white;
   background-color: $darkColor;
-  padding: 20px 40px;
+  padding: 32px;
   @include media-max("lg-limit") {
     width: 116%;
   }

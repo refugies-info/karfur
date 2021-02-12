@@ -15,6 +15,39 @@ export interface RequestFromClient<Query> {
   user?: UserDoc;
 }
 
+export interface AudienceAge {
+  contentTitle: "Plus de ** ans" | "De ** à ** ans" | "Moins de ** ans";
+  bottomValue: number | string;
+  topValue: number | string;
+}
+
+export interface DispositifContent {
+  type: string;
+  title: string;
+  editable: boolean;
+  content: string;
+  children?: DispositifContent[];
+  placeholder?: string;
+  tutoriel?: Record<string, string>;
+  target?: string;
+  contentTitle?: string;
+  isFakeContent?: boolean;
+  titleIcon?: string;
+  typeIcon?: string;
+  bottomValue?: number;
+  topValue?: number;
+  free?: boolean;
+  price?: number;
+  footerHref?: string;
+  footerIcon?: string;
+  footer?: string;
+  niveaux?: string[];
+  departments?: string[];
+  contentBody?: string;
+  ageTitle?: string;
+  noContent?: boolean;
+}
+
 export interface Res {
   status: Function;
 }

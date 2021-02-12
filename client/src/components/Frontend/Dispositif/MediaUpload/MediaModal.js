@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Tab from "./StyledTab";
 import Dropzone from "react-dropzone";
 import API from "../../../../utils/API";
+import { logger } from "logger";
 
 const Tabs = styled.div`
   display: flex;
@@ -84,8 +85,8 @@ class MediaModal extends Component {
         })
         .catch((e) => {
           this.setState({ loading: false });
-          // eslint-disable-next-line no-console
-          console.log(e);
+          logger.error("uploadImageCallBack error", { error: e });
+
           reject(e);
         });
     });

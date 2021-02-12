@@ -243,10 +243,18 @@ export const AdminStructures = () => {
         </FButton>
       </SearchBarContainer>
       <StyledHeader>
-        <StyledTitle>Structures</StyledTitle>
-        <FigureContainer>{nbNonDeletedStructures}</FigureContainer>
-
-        <StyledSort marginTop="16px">
+        <div
+          style={{
+            marginTop: "8px",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <StyledTitle>Structures</StyledTitle>
+          <FigureContainer>{nbNonDeletedStructures}</FigureContainer>
+        </div>
+        <StyledSort marginTop="8px">
           {correspondingStatus.sort(compare).map((element) => {
             const status = element.status;
             const nbStructures = getNbStructuresByStatus(

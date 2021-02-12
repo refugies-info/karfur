@@ -73,21 +73,9 @@ describe("getDispositifArray", () => {
 
     const query = { status: "Actif", "audienceAge.bottomValue": 25 };
 
-    const newQuery = {
-      $or: [
-        query,
-        {
-          "variantes.bottomValue": 25,
-
-          "variantes.topValue": undefined,
-          status: "Actif",
-        },
-      ],
-    };
-
     const res = await getDispositifArray(query);
 
-    expect(Dispositif.find).toHaveBeenCalledWith(newQuery, neededFields);
+    expect(Dispositif.find).toHaveBeenCalledWith(query, neededFields);
     expect(res).toEqual(dispositifsList);
   });
 
@@ -102,21 +90,9 @@ describe("getDispositifArray", () => {
       "audienceAge.topValue": 50,
     };
 
-    const newQuery = {
-      $or: [
-        query,
-        {
-          "variantes.bottomValue": 25,
-
-          "variantes.topValue": 50,
-          status: "Actif",
-        },
-      ],
-    };
-
     const res = await getDispositifArray(query);
 
-    expect(Dispositif.find).toHaveBeenCalledWith(newQuery, neededFields);
+    expect(Dispositif.find).toHaveBeenCalledWith(query, neededFields);
     expect(res).toEqual(dispositifsList);
   });
 });

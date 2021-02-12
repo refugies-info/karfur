@@ -1,44 +1,25 @@
-import React, { Component, useState } from "react";
-import {
-  Col,
-  Card,
-  CardBody,
-  CardHeader,
-  CardFooter,
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Input,
-  Tooltip,
-} from "reactstrap";
-import ContentEditable from "react-contenteditable";
+import React, { Component } from "react";
+import { Col, Card, CardBody, CardHeader, CardFooter } from "reactstrap";
 import Swal from "sweetalert2";
-import styled from "styled-components";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import FSwitch from "../../../components/FigmaUI/FSwitch/FSwitch";
-
 import "./CardParagraphe.scss";
 import { colors } from "colors";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { Props } from "./CardParagraphe.container";
 import { DispositifContent, Tag } from "../../../types/interface";
-import { filtres, cardTitles } from "../data";
+import { filtres, cardTitlesDispositif, cardTitlesDemarche } from "../data";
 import _ from "lodash";
-import { infoCardIcon } from "../../../components/Icon/Icon";
 import { FrenchLevelModal } from "../FrenchLevelModal";
 import GeolocModal from "../../../components/Modals/GeolocModal/GeolocModal";
 import API from "../../../utils/API";
+import {
+  FrenchCECRLevel,
+  DepartmentsSelected,
+  AdminGeolocPublicationButton,
+} from "./components/CardParagrapheComponents";
 
-const niveaux = ["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"];
-const frequencesPay = [
-  "une seule fois ",
-  "à chaque fois",
-  "par heure",
-  "par semaine",
-  "par mois",
-  "par an",
-];
+import { CardBodyContent } from "./components/CardBodyContent";
+import { CardFooterContent } from "./components/CardFooterContent";
+import { CardHeaderContent } from "./components/CardHeaderContent";
 
 // difficult to type
 type Element = any;
@@ -50,28 +31,6 @@ interface Content {
   titreInformatif: string;
   titreMarque: string;
 }
-
-const ButtonText = styled.p`
-  font-size: 16px;
-  line-height: 20px;
-  margin: 0;
-`;
-
-const ButtonTextBody = styled.p`
-  font-size: 22px;
-  line-height: 20px;
-  margin: 0;
-`;
-
-const TitleTextBody = styled.p`
-  font-size: 22px;
-  line-height: 20px;
-  margin: 0;
-  padding-bottom: 12px;
-  padding-top: 10px;
-  font-weight: 600;
-  margin-top: ${(props) => props.mt || 0};
-`;
 
 export interface PropsBeforeInjection {
   subkey: number;
@@ -97,55 +56,22 @@ export interface PropsBeforeInjection {
   admin: boolean;
   toggleGeolocModal: (arg1: boolean) => void;
   showGeolocModal: boolean;
+  typeContenu: "dispositif" | "demarche";
 }
 type StateType = {
   isDropdownOpen: boolean;
   isOptionsOpen: boolean;
-  showNiveaux: boolean;
   tooltipOpen: boolean;
   showFrenchLevelModal: boolean;
-};
-
-const GeolocTooltipItem = (props: any) => {
-  const { item, id } = props;
-  const [tooltipOpen, setTooltipOpen] = useState(false);
-
-  const toggle = () => setTooltipOpen(!tooltipOpen);
-
-  return (
-    <>
-      <button
-        key={id + "d"}
-        id={"Tooltip-" + id}
-        className={"backgroundColor-darkColor active "}
-      >
-        {item.split(" ")[0].length > 1
-          ? item.split(" ")[0]
-          : "0" + item.split(" ")[0]}
-      </button>
-      <Tooltip
-        placement="top"
-        offset="0px, 8px"
-        isOpen={tooltipOpen}
-        target={"Tooltip-" + id}
-        toggle={toggle}
-      >
-        {item}
-      </Tooltip>
-    </>
-  );
 };
 
 export class CardParagraphe extends Component<Props> {
   state: StateType = {
     isDropdownOpen: false,
     isOptionsOpen: false,
-    showNiveaux: false,
     tooltipOpen: false,
     showFrenchLevelModal: false,
   };
-
-  toggleNiveaux = () => this.setState({ showNiveaux: !this.state.showNiveaux });
 
   validateLevels = (selectedLevels: string[]) => {
     this.props.toggleNiveau(
@@ -241,53 +167,8 @@ export class CardParagraphe extends Component<Props> {
     }
   };
 
-  getTextForAgeInfocard = (
-    ageRange: string | undefined,
-    bottomValue: number | undefined,
-    topValue: number | undefined
-  ) => {
-    if (ageRange === "De ** à ** ans") {
-      return (
-        this.props.t("Dispositif.De", "De") +
-        " " +
-        bottomValue +
-        " " +
-        this.props.t("Dispositif.à", "à") +
-        " " +
-        topValue +
-        " " +
-        this.props.t("Dispositif.ans", "ans")
-      );
-    }
-
-    if (ageRange === "Moins de ** ans") {
-      return (
-        this.props.t("Dispositif.Moins de", "Moins de") +
-        " " +
-        topValue +
-        " " +
-        this.props.t("Dispositif.ans", "ans")
-      );
-    }
-
-    return (
-      this.props.t("Dispositif.Plus de", "Plus de") +
-      " " +
-      bottomValue +
-      " " +
-      this.props.t("Dispositif.ans", "ans")
-    );
-  };
-
   render() {
-    const { subitem, subkey, disableEdit, t } = this.props;
-    const { showNiveaux } = this.state;
-    const jsUcfirst = (string: string, title: string) => {
-      if (title === "Public visé" && string && string.length > 1) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-      }
-      return string;
-    };
+    const { subitem, subkey, disableEdit } = this.props;
 
     let dispositifId = "";
     if (this.props.location.pathname) {
@@ -298,306 +179,12 @@ export class CardParagraphe extends Component<Props> {
     }
 
     // filter cards to have maximum one infocard by category
-    const availableCardTitles = cardTitles.filter(
-      (x) => !this.props.cards.includes(x.title)
-    );
-
-    const contentTitle = (subitem: DispositifContent) => {
-      let cardTitle = cardTitles.find((x) => x.title === subitem.title);
-      // edition mode of cards with options
-      // for example Public visé, Age requis, Durée, Niveau de français
-      if (
-        cardTitle &&
-        cardTitle.options &&
-        cardTitle.options.length > 0 &&
-        !disableEdit &&
-        subitem.title !== "Zone d'action"
-      ) {
-        if (
-          !subitem.contentTitle ||
-          !cardTitle.options.some(
-            (x: string) =>
-              // @ts-ignore : check if subitem.contentTitle is undefined already done
-              x.toUpperCase() === subitem.contentTitle.toUpperCase()
+    const availablecardTitles =
+      this.props.typeContenu === "dispositif"
+        ? cardTitlesDispositif.filter(
+            (x) => !this.props.cards.includes(x.title)
           )
-        ) {
-          subitem.contentTitle = cardTitle.options[0];
-          subitem.contentBody = "A modifier";
-        }
-        return (
-          <ButtonDropdown
-            isOpen={this.state.isOptionsOpen}
-            toggle={this.toggleOptions}
-            className="content-title"
-          >
-            <DropdownToggle caret={!disableEdit}>
-              {subitem.title === "Âge requis" ? (
-                // case Age Requis
-                <span>
-                  {subitem.contentTitle.split("**").map((x, i, arr) => (
-                    <React.Fragment key={i}>
-                      <span>{x}</span>
-                      {i < arr.length - 1 && (
-                        <Input
-                          type="number"
-                          className="color-darkColor age-input"
-                          value={
-                            (arr[0] === "De " && i === 0) ||
-                            arr[0] === "Plus de "
-                              ? subitem.bottomValue
-                              : subitem.topValue
-                          }
-                          onClick={(e) => e.stopPropagation()}
-                          onMouseUp={() =>
-                            (this.props.subitem || {}).isFakeContent &&
-                            this.props.changeAge(
-                              { target: { value: "" } },
-                              this.props.keyValue,
-                              this.props.subkey,
-                              i === 0 || arr[0] === "Plus de"
-                            )
-                          }
-                          onChange={(e) =>
-                            this.props.changeAge(
-                              e,
-                              this.props.keyValue,
-                              this.props.subkey,
-                              (arr[0] === "De " && i === 0) ||
-                                arr[0] === "Plus de "
-                            )
-                          }
-                        />
-                      )}
-                    </React.Fragment>
-                  ))}
-                </span>
-              ) : (
-                <span>
-                  {subitem.contentTitle &&
-                    jsUcfirst(
-                      t(
-                        "Dispositif." + subitem.contentTitle,
-                        subitem.contentTitle
-                      ),
-                      cardTitle.title
-                    )}
-                </span>
-              )}
-            </DropdownToggle>
-            <DropdownMenu>
-              {cardTitle.options.map((option, key: number) => {
-                return (
-                  //@ts-ignore
-                  <DropdownItem key={key} id={key}>
-                    {cardTitle ? jsUcfirst(option, cardTitle.title) : ""}
-                  </DropdownItem>
-                );
-              })}
-            </DropdownMenu>
-          </ButtonDropdown>
-        );
-        // case infocard Combien ça coute (lecture and edition)
-      } else if (subitem.title === "Combien ça coûte ?") {
-        return (
-          <>
-            {disableEdit ? (
-              <div className="card-custom-title">
-                {subitem.free
-                  ? t("Dispositif.Gratuit", "Gratuit")
-                  : t("Dispositif.Payant", "Payant")}
-              </div>
-            ) : (
-              <FSwitch
-                className="card-custom-title"
-                precontent="Gratuit"
-                content="Payant"
-                checked={!subitem.free}
-                onClick={() =>
-                  this.props.toggleFree(this.props.keyValue, this.props.subkey)
-                }
-              />
-            )}
-            {!subitem.free && (
-              <span className="color-darkColor price-details">
-                {disableEdit ? (
-                  <span>{subitem.price}</span>
-                ) : (
-                  <Input
-                    type="number"
-                    className="color-darkColor age-input"
-                    disabled={disableEdit}
-                    value={subitem.price}
-                    onMouseUp={() =>
-                      (this.props.subitem || {}).isFakeContent &&
-                      this.props.changePrice(
-                        { target: { value: "" } },
-                        this.props.keyValue,
-                        this.props.subkey
-                      )
-                    }
-                    onChange={(e) =>
-                      this.props.changePrice(
-                        e,
-                        this.props.keyValue,
-                        this.props.subkey
-                      )
-                    }
-                  />
-                )}
-                <span>€ </span>
-                <ButtonDropdown
-                  isOpen={!disableEdit && this.state.isOptionsOpen}
-                  toggle={this.toggleOptions}
-                  className="content-title price-frequency"
-                >
-                  <DropdownToggle caret={!disableEdit}>
-                    <span>
-                      {subitem.contentTitle &&
-                        t(
-                          "Dispositif." + subitem.contentTitle,
-                          subitem.contentTitle
-                        )}
-                    </span>
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    {frequencesPay.map((f, key) => (
-                      //@ts-ignore
-                      <DropdownItem key={key} id={key}>
-                        {f}
-                      </DropdownItem>
-                    ))}
-                  </DropdownMenu>
-                </ButtonDropdown>
-              </span>
-            )}
-          </>
-        );
-      } else if (subitem.title === "Zone d'action") {
-        if (disableEdit) {
-          return (
-            <TitleTextBody>
-              {subitem.departments && subitem.departments.length > 1
-                ? t("Dispositif.Départements", "Départements")
-                : subitem.departments && subitem.departments[0] === "All"
-                ? t("Dispositif.France entière", "France entière")
-                : t("Dispositif.Département", "Département")}
-            </TitleTextBody>
-          );
-        }
-
-        if (!disableEdit) {
-          return (
-            <FButton
-              type="precision"
-              className={"mb-8"}
-              //name="plus-circle-outline"
-              onClick={() => this.props.toggleGeolocModal(true)}
-            >
-              <ButtonTextBody>{"Sélectionner"}</ButtonTextBody>
-            </FButton>
-          );
-        }
-      }
-
-      let texte;
-      if (subitem.title === "Âge requis") {
-        if (subitem.ageTitle) {
-          texte = this.getTextForAgeInfocard(
-            subitem.ageTitle,
-            subitem.bottomValue,
-            subitem.topValue
-          );
-        } else {
-          texte = this.getTextForAgeInfocard(
-            subitem.contentTitle,
-            subitem.bottomValue,
-            subitem.topValue
-          );
-        }
-      } else if (subitem.title === "Combien ça coûte ?") {
-        texte = subitem.free
-          ? t("Dispositif.gratuit", "gratuit")
-          : subitem.price +
-            " € " +
-            t("Dispositif." + subitem.contentTitle, subitem.contentTitle);
-      } else if (cardTitle && cardTitle.options) {
-        texte = jsUcfirst(
-          t("Dispositif." + subitem.contentTitle, subitem.contentTitle),
-          cardTitle.title
-        );
-      } else {
-        texte = subitem.contentTitle;
-      }
-
-      // display infocards (except combien ça coute)
-      // edition of infocards Important
-      return (
-        <ContentEditable
-          //@ts-ignore
-          id={this.props.keyValue}
-          className="card-input"
-          data-subkey={subkey}
-          data-target="contentTitle"
-          html={texte} // innerHTML of the editable div
-          disabled={this.props.disableEdit} // use true to disable editing
-          onChange={this.props.handleMenuChange} // handle innerHTML change
-          onMouseUp={this.emptyPlaceholder}
-        />
-      );
-    };
-
-    const cardHeaderContent = (subitem: DispositifContent) => {
-      // in lecture mode, display title and icon or in edition when all types of infocard are already displayed
-      if (this.props.disableEdit || availableCardTitles.length === 0) {
-        return (
-          <>
-            {infoCardIcon(subitem.titleIcon, "#FFFFFF")}
-            <span className="header-content">
-              {subitem.title && t("Dispositif." + subitem.title, subitem.title)}
-            </span>
-          </>
-        );
-      }
-      // in edition mode
-      return (
-        <ButtonDropdown
-          isOpen={this.state.isDropdownOpen}
-          toggle={this.toggleDropdown}
-        >
-          {
-            // title and icon
-            <DropdownToggle
-              caret={!this.props.disableEdit}
-              className="header-value"
-            >
-              <div className="icon-title">
-                {infoCardIcon(subitem.titleIcon, "#FFFFFF")}
-                <span className="header-content">{subitem.title}</span>
-              </div>
-            </DropdownToggle>
-          }
-          <DropdownMenu>
-            {
-              // drop down with the list of possible info cards
-              availableCardTitles.map((cardTitle, key) => {
-                return (
-                  <DropdownItem
-                    key={key}
-                    // @ts-ignore
-                    id={key}
-                  >
-                    <div className="icon-title">
-                      {infoCardIcon(cardTitle.titleIcon)}
-                      <span className="header-content">{cardTitle.title}</span>
-                    </div>
-                  </DropdownItem>
-                );
-              })
-            }
-          </DropdownMenu>
-        </ButtonDropdown>
-      );
-    };
+        : cardTitlesDemarche.filter((x) => !this.props.cards.includes(x.title));
 
     const computeCardClassName = () => {
       const safeMainTag =
@@ -605,44 +192,18 @@ export class CardParagraphe extends Component<Props> {
           ? "noImage"
           : this.props.mainTag.short.replace(/ /g, "-");
 
-      return (
+      const className =
         subitem.title
           .replace(/ /g, "-")
           .replace("-?", "")
           .replace("-!", "")
           .replace("'", "-") +
         "-" +
-        safeMainTag
-      );
-    };
+        safeMainTag;
 
-    const cardFooterContent = (subitem: DispositifContent) => {
-      // in lecture mode, display button with a link to evaluate french level in infocard Niveau de français
-      if (subitem.title === "Niveau de français" && disableEdit) {
-        return (
-          <FButton
-            type="light-action"
-            name={subitem.footerIcon}
-            onClick={() => this.footerClicked(subitem)}
-          >
-            {subitem.footer &&
-              t("Dispositif." + subitem.footer, subitem.footer)}
-          </FButton>
-        );
-      }
-
-      if (!disableEdit && subitem.title === "Niveau de français") {
-        return (
-          <FButton
-            type="precision"
-            name="plus-circle-outline"
-            onClick={() => this.toggleFrenchLevelModal(true)}
-          >
-            <ButtonText>Préciser le niveau</ButtonText>
-          </FButton>
-        );
-      }
-      return false;
+      if (subitem.title === "Combien ça coûte ?")
+        return className + "-" + subitem.free;
+      return className;
     };
 
     // returns infocards using components defined above, mainly header, content and title
@@ -663,87 +224,89 @@ export class CardParagraphe extends Component<Props> {
             id={"info-card-" + this.props.keyValue + "-" + subkey}
           >
             <CardHeader className="backgroundColor-darkColor">
-              {cardHeaderContent(subitem)}
+              <CardHeaderContent
+                subitem={subitem}
+                disableEdit={disableEdit}
+                availablecardTitles={availablecardTitles}
+                t={this.props.t}
+                isDropdownOpen={this.state.isDropdownOpen}
+                toggleDropdown={this.toggleDropdown}
+                typeContenu={this.props.typeContenu}
+              />
             </CardHeader>
             <CardBody>
               <span className="color-darkColor card-custom-title">
-                {contentTitle(subitem)}
+                <CardBodyContent
+                  subitem={subitem}
+                  isOptionsOpen={this.state.isOptionsOpen}
+                  toggleOptions={this.toggleOptions}
+                  disableEdit={this.props.disableEdit}
+                  changeAge={this.props.changeAge}
+                  changePrice={this.props.changePrice}
+                  toggleFree={this.props.toggleFree}
+                  keyValue={this.props.keyValue}
+                  subkey={this.props.subkey}
+                  t={this.props.t}
+                  typeContenu={this.props.typeContenu}
+                  toggleGeolocModal={this.props.toggleGeolocModal}
+                  handleMenuChange={this.props.handleMenuChange}
+                  emptyPlaceholder={this.emptyPlaceholder}
+                />
               </span>
+
               {subitem.title === "Niveau de français" &&
-                (showNiveaux ||
-                  ((subitem.niveaux || []).length > 0 && (
-                    // info card Niveau de francais, selection of level in edit mode
-                    <div className="color-darkColor niveaux-wrapper">
-                      {niveaux
-                        .filter((nv) =>
-                          (subitem.niveaux || []).some((x: string) => x === nv)
-                        )
-                        .map((nv, key) => (
-                          <button
-                            key={key}
-                            className={"backgroundColor-darkColor active"}
-                          >
-                            {nv}
-                          </button>
-                        ))}
-                    </div>
-                  )))}
+                (subitem.niveaux || []).length > 0 && (
+                  <FrenchCECRLevel subitem={subitem} />
+                )}
               {subitem.title === "Zone d'action" &&
                 (subitem.departments || []).length > 0 && (
-                  <div className="color-darkColor niveaux-wrapper">
-                    {subitem.departments && subitem.departments.length > 1 ? (
-                      subitem.departments.map((nv, key) => (
-                        <GeolocTooltipItem key={key} item={nv} id={key} />
-                      ))
-                    ) : subitem.departments &&
-                      subitem.departments.length === 1 &&
-                      (!disableEdit || subitem.departments[0] !== "All") ? (
-                      <TitleTextBody mt={"8px"}>
-                        {subitem.departments[0] === "All"
-                          ? "France entière"
-                          : subitem.departments[0]}
-                      </TitleTextBody>
-                    ) : null}
-                  </div>
+                  <DepartmentsSelected
+                    subitem={subitem}
+                    disableEdit={disableEdit}
+                  />
                 )}
-              {this.props.admin &&
-                subitem.title === "Zone d'action" &&
-                subitem.departments &&
-                dispositifId !== "" &&
-                !this.props.disableEdit && (
-                  <FButton
-                    type="validate"
-                    name="checkmark"
-                    className={"mt-10"}
-                    onClick={() => this.onValidateGeoloc(dispositifId, subitem)}
-                    disabled={subitem.departments.length === 0}
-                  >
-                    <ButtonText>Publier Geoloc</ButtonText>
-                  </FButton>
-                )}
+              <AdminGeolocPublicationButton
+                admin={this.props.admin}
+                subitem={subitem}
+                dispositifId={dispositifId}
+                disableEdit={this.props.disableEdit}
+                onValidateGeoloc={this.onValidateGeoloc}
+              />
             </CardBody>
             {
               // footer for card Niveau de français to assess level in a website
-              <CardFooter>{cardFooterContent(subitem)}</CardFooter>
+              <CardFooter>
+                <CardFooterContent
+                  subitem={subitem}
+                  disableEdit={disableEdit}
+                  footerClicked={this.footerClicked}
+                  t={this.props.t}
+                  toggleFrenchLevelModal={this.toggleFrenchLevelModal}
+                />
+              </CardFooter>
             }
             {
-              // deletion of an infocard in edit mode
-              !this.props.disableEdit && (
-                <div className="card-icons">
-                  <div
-                    onClick={() =>
-                      this.props.deleteCard(this.props.keyValue, subkey)
-                    }
-                  >
-                    <EVAIcon
-                      size="xlarge"
-                      name="close-circle"
-                      fill={colors.noirCD}
-                      className="delete-icon"
-                    />
+              // deletion of an infocard in edit mode except for zone d'action in demarche
+              !this.props.disableEdit &&
+                !(
+                  this.props.typeContenu === "demarche" &&
+                  subitem.title === "Zone d'action"
+                ) && (
+                  <div className="card-icons">
+                    <div
+                      onClick={() =>
+                        this.props.deleteCard(this.props.keyValue, subkey)
+                      }
+                    >
+                      <EVAIcon
+                        size="xlarge"
+                        name="close-circle"
+                        fill={colors.noirCD}
+                        className="delete-icon"
+                      />
+                    </div>
                   </div>
-                </div>
-              )
+                )
             }
           </Card>
         </Col>
@@ -770,34 +333,3 @@ export class CardParagraphe extends Component<Props> {
     );
   }
 }
-
-interface PlusCardProps {
-  addItem: (arg1: number, arg2: string, arg3?: string | null) => void;
-  keyValue: number;
-  cards: string[];
-}
-
-const PlusCard = (props: PlusCardProps) => {
-  const availableCardTitles = cardTitles.filter(
-    (x) => !props.cards.includes(x.title)
-  );
-  const nextTitle =
-    availableCardTitles.length > 0 ? availableCardTitles[0].title : "";
-  return (
-    <Col xl="4" lg="6" md="6" sm="12" xs="12" className="card-col">
-      <Card
-        className="add-card"
-        onClick={() => props.addItem(props.keyValue, "card", nextTitle)}
-      >
-        <CardHeader className="backgroundColor-darkColor">
-          Ajouter un item
-        </CardHeader>
-        <CardBody>
-          <span className="add-sign">+</span>
-        </CardBody>
-      </Card>
-    </Col>
-  );
-};
-
-export { PlusCard };

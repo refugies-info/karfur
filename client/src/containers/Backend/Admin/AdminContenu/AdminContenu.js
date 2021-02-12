@@ -100,12 +100,18 @@ export const AdminContenu = () => {
     const dispositifsFilteredBySearch = !!search
       ? dispositifs.filter(
           (dispo) =>
-            dispo.titreInformatif &&
-            dispo.titreInformatif
-              .normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "")
-              .toLowerCase()
-              .includes(search.toLowerCase())
+            (dispo.titreInformatif &&
+              dispo.titreInformatif
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+                .includes(search.toLowerCase())) ||
+            (dispo.titreMarque &&
+              dispo.titreMarque
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+                .includes(search.toLowerCase()))
         )
       : dispositifs;
 
@@ -279,12 +285,11 @@ export const AdminContenu = () => {
       }
     }
   };
-  // eslint-disable-next-line no-console
-  console.log("sele", selectedStructureId);
   const nbNonDeletedDispositifs =
     dispositifs.length > 0
       ? dispositifs.filter((dispo) => dispo.status !== "Supprimé").length
       : 0;
+
   return (
     <div>
       <SearchBarContainer>
@@ -305,9 +310,18 @@ export const AdminContenu = () => {
         </FButton>
       </SearchBarContainer>
       <StyledHeader>
-        <StyledTitle>Contenus</StyledTitle>
-        <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
-        <StyledSort>
+        <div
+          style={{
+            marginTop: "8px",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <StyledTitle>Contenus</StyledTitle>
+          <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
+        </div>
+        <StyledSort marginTop="8px">
           {correspondingStatus.sort(compare).map((status) => {
             const nbContent = getNbDispositifsByStatus(
               dispositifsForCount,

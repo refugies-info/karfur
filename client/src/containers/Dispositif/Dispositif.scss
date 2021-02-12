@@ -344,8 +344,12 @@ $imgHeight: 350px;
     }
   }
 
-  .aside-right.sideView {
-    display: none;
+  .aside-right {
+    background-color: #dadada;
+
+    .sideView {
+      display: none;
+    }
   }
 
   .anchor {
@@ -658,6 +662,9 @@ $imgHeight: 350px;
     }
   }
 
+  #pageContent {
+    background-color: #dadada;
+  }
   .accordeon-col {
     .title-bloc {
       position: relative;
@@ -666,60 +673,16 @@ $imgHeight: 350px;
       align-items: center;
       margin-bottom: 20px;
       flex-wrap: wrap;
+
+      p {
+        margin-bottom: 0px;
+      }
     }
 
-    #accordion-header {
-      background: #ffffff;
-      border-radius: 12px;
-      border: 0.5px solid $noir;
-      outline: none;
-      box-shadow: none;
-      color: $darkColor;
-      padding: 10px;
-      cursor: pointer;
-      display: inline-block;
-      position: relative;
-      padding-left: 15px;
-
-      &.active {
-        transition: all 0.2s ease;
-      }
-
-      h5 {
-        display: flex;
-        margin: auto;
-        line-height: 38px;
-      }
-      .accordion-text {
-        margin: 0 22px 0 0;
-        font-size: 22px;
-        font-weight: 600;
-      }
-      .accordion-number,
-      .accordion-expand {
-        width: 50px;
-        height: 50px;
-
-        border-radius: 1.25em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .accordion-number {
-        background: #ffffff;
-        color: black;
-      }
-
-      .accordion-expand {
-        border: 2px solid #ffffff;
-        box-sizing: border-box;
-      }
-      [contenteditable="true"]:empty:before {
-        content: attr(placeholder);
-        display: block;
-        color: #828282;
-      }
+    [contenteditable="true"]:empty:before {
+      content: attr(placeholder);
+      display: block;
+      color: #828282;
     }
 
     .contenu-accordeon {
@@ -747,8 +710,8 @@ $imgHeight: 350px;
 
     .accordeon-delete-icon {
       position: absolute;
-      top: -16px;
-      right: -16px;
+      top: 20px;
+      right: 16px;
     }
   }
 
@@ -926,13 +889,10 @@ $imgHeight: 350px;
 
   div[contenteditable="true"] {
     min-width: 20px;
-    background: $jauneClair;
+    background: $attention;
     outline: none;
     min-height: 38px;
-    padding-right: 40px;
-    padding-left: 8px;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding: 5px;
   }
 
   h1 div[contenteditable="true"] {

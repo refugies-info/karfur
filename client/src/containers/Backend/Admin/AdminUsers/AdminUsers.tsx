@@ -11,7 +11,7 @@ import {
   Content,
 } from "../sharedComponents/StyledAdmin";
 import { userHeaders, correspondingStatus } from "./data";
-import { Table } from "reactstrap";
+import { Table, Spinner } from "reactstrap";
 import { useSelector } from "react-redux";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
@@ -35,6 +35,9 @@ import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "./UserDetailsModal/UserDetailsModal";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
+import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import API from "../../../../utils/API";
+import Swal from "sweetalert2";
 
 moment.locale("fr");
 declare const window: Window;
@@ -68,6 +71,7 @@ export const AdminUsers = () => {
   const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
     false
   );
+  const [isExportLoading, setIsExportLoading] = useState(false);
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
   const [
     selectedStructureId,
@@ -214,6 +218,28 @@ export const AdminUsers = () => {
     };
   };
 
+  const exportToAirtable = async () => {
+    try {
+      setIsExportLoading(true);
+      await API.exportUsers();
+      setIsExportLoading(false);
+
+      Swal.fire({
+        title: "Yay...",
+        text: `Export en cours de ${users ? users.length : 0} users`,
+        type: "success",
+        timer: 1500,
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Oh non!",
+        text: "Something went wrong",
+        type: "error",
+        timer: 1500,
+      });
+    }
+  };
+
   const getNbUsersByStatus = (users: SimplifiedUser[], status: string) => {
     if (status === "Admin") {
       return users.filter((user) => user.roles.includes("Admin")).length;
@@ -243,6 +269,9 @@ export const AdminUsers = () => {
   return (
     <div className="admin-users">
       <SearchBarContainer>
+        <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
+          {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
+        </FButton>
         <CustomSearchBar
           value={search}
           // @ts-ignore
@@ -251,10 +280,18 @@ export const AdminUsers = () => {
         />
       </SearchBarContainer>
       <StyledHeader>
-        <StyledTitle>Utilisateurs</StyledTitle>
-        <FigureContainer>{users.length}</FigureContainer>
-
-        <StyledSort marginTop="16px">
+        <div
+          style={{
+            marginTop: "8px",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <StyledTitle>Utilisateurs</StyledTitle>
+          <FigureContainer>{users.length}</FigureContainer>
+        </div>
+        <StyledSort marginTop="8px">
           {correspondingStatus.sort(compare).map((element) => {
             const status = element.status;
             const nbUsers = getNbUsersByStatus(usersForCount, status);

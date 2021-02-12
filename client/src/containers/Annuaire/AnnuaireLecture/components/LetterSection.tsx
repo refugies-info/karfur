@@ -4,6 +4,7 @@ import { Structure, Picture } from "../../../../types/interface";
 import "./LetterSection.scss";
 import LinesEllipsis from "react-lines-ellipsis";
 import { ObjectId } from "mongodb";
+import placeholder from "../../../../assets/annuaire/placeholder_logo_annuaire.svg";
 
 interface Props {
   letter: string;
@@ -64,28 +65,35 @@ interface StructureCardProps {
   onStructureCardClick: (id: ObjectId) => void;
   id: ObjectId;
 }
-const StructureCard = (props: StructureCardProps) => (
-  <StructureCardContainer onClick={() => props.onStructureCardClick(props.id)}>
-    <div
-      style={{
-        width: "150px",
-        height: "100px",
-        display: "flex",
-        justifyContent: "center",
-      }}
+const StructureCard = (props: StructureCardProps) => {
+  const getSecureUrl = (picture: Picture | null) => {
+    if (picture && picture.secure_url) return picture.secure_url;
+
+    return placeholder;
+  };
+  return (
+    <StructureCardContainer
+      onClick={() => props.onStructureCardClick(props.id)}
     >
-      {props.picture && props.picture.secure_url && (
+      <div
+        style={{
+          width: "150px",
+          height: "100px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <img
           className="sponsor-img"
-          src={props.picture.secure_url}
+          src={getSecureUrl(props.picture)}
           alt={props.acronyme}
         />
-      )}
-    </div>
-    {(!props.picture || !props.picture.secure_url) && <div></div>}
-    <LinesEllipsis text={props.nom} maxLine="4" trimRight basedOn="letters" />
-  </StructureCardContainer>
-);
+      </div>
+      {(!props.picture || !props.picture.secure_url) && <div></div>}
+      <LinesEllipsis text={props.nom} maxLine="4" trimRight basedOn="letters" />
+    </StructureCardContainer>
+  );
+};
 
 export const LetterSection = (props: Props) => (
   <MainContainer className="letter-section">

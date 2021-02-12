@@ -271,6 +271,11 @@ export default {
 
   getFiguresOnUsers: () => axios.get(burl + "/user/getFiguresOnUsers"),
 
+  exportUsers: () => axios.post(burl + "/user/exportUsers", {}, { headers }),
+
+  fixAudienceAgeOnContents: () =>
+    axios.post(burl + "/dispositifs/fixAudienceAgeOnContents"),
+
   getActiveStructures: () =>
     axios.get(burl + "/structures/getActiveStructures"),
 

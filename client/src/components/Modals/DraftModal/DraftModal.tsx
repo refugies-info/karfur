@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
@@ -12,7 +13,12 @@ import imageViolet from "../../../assets/illu_pasdepanique.svg";
 interface Props {
   toggle: () => void;
   show: boolean;
-  valider_dispositif: (arg: string, arg1: boolean, arg2: boolean, arg3: boolean) => void;
+  valider_dispositif: (
+    arg: string,
+    arg1: boolean,
+    arg2: boolean,
+    arg3: boolean
+  ) => void;
   navigateToProfilePage: () => void;
   status: "string";
 }
@@ -173,7 +179,12 @@ export const DraftModal = (props: Props) => (
           name="log-out-outline"
           className="mr-8"
           onClick={() => {
-            props.valider_dispositif(props.status, false, true, false);
+            props.valider_dispositif(
+              props.status || "Brouillon",
+              false,
+              true,
+              false
+            );
             props.toggle();
             props.navigateToProfilePage();
           }}
@@ -184,7 +195,12 @@ export const DraftModal = (props: Props) => (
           type="validate"
           name="save-outline"
           onClick={() => {
-            props.valider_dispositif(props.status, false, true, true);
+            props.valider_dispositif(
+              props.status || "Brouillon",
+              false,
+              true,
+              true
+            );
             props.toggle();
           }}
         >
