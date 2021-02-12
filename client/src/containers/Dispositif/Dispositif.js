@@ -275,9 +275,9 @@ export class Dispositif extends Component {
           const disableEdit = true;
 
           if (dispositif.status === "Brouillon" && this._isMounted) {
-            this.initializeTimer(3 * 60 * 1000, () =>
-              this.valider_dispositif("Brouillon", true)
-            );
+            this.initializeTimer(3 * 60 * 1000, () => {
+              this.valider_dispositif("Brouillon", true);
+            });
           }
           const secondarySponsor = dispositif.sponsors.filter(
             (sponsor) => !sponsor._id && sponsor.nom
@@ -771,19 +771,9 @@ export class Dispositif extends Component {
   };
 
   onEditorStateChange = (editorState, key, subkey = null) => {
-    // eslint-disable-next-line no-console
-    // console.log("onEditorStateChange", editorState, key, subkey);
     let state = [...this.state.menu];
 
     if (state.length > key) {
-      // console.log(
-      //   "editor state current context plain text",
-      //   editorState.getCurrentContent().getPlainText()
-      // );
-      // console.log(
-      //   "editor state current context",
-      //   editorState.getCurrentContent()
-      // );
       const content =
         editorState.getCurrentContent().getPlainText() !== ""
           ? convertToHTML(customConvertOption)(editorState.getCurrentContent())
@@ -793,7 +783,6 @@ export class Dispositif extends Component {
         state[key].children[subkey].isFakeContent = false;
         state[key].children[subkey].content = content;
       } else {
-        // console.log("editor state change", content);
         state[key].editorState = editorState;
         state[key].isFakeContent = false;
         state[key].content = content;
@@ -1132,21 +1121,20 @@ export class Dispositif extends Component {
           : x
       ),
     });
-  setMarkers = (markers, key, subkey) =>
+  setMarkers = (markers, key, subkey) => {
     this.setState({
       menu: [...this.state.menu].map((x, i) =>
         i === key
           ? {
               ...x,
               children: x.children.map((y, ix) =>
-                ix === subkey
-                  ? { ...y, markers: markers, isFakeContent: false }
-                  : y
+                ix === subkey ? { ...y, markers, isFakeContent: false } : y
               ),
             }
           : x
       ),
     });
+  };
 
   toggleHelp = () =>
     this.setState((prevState) => ({ withHelp: !prevState.withHelp }));
@@ -1423,9 +1411,13 @@ export class Dispositif extends Component {
     let content = { ...this.state.content };
 
     Object.keys(content).map((k) => (content[k] = h2p(content[k])));
+    // do not save automatically when lecture mode
     if (
       auto &&
-      !Object.keys(content).some((k) => content[k] && content[k] !== contenu[k])
+      (!Object.keys(content).some(
+        (k) => content[k] && content[k] !== contenu[k]
+      ) ||
+        this.state.disableEdit)
     ) {
       return;
     }
@@ -1615,15 +1607,13 @@ export class Dispositif extends Component {
         });
       } else if (this._isMounted) {
         NotificationManager.success(
-          // eslint-disable-next-line quotes
-          'Retrouvez votre contribution dans votre page "Mon profil"',
+          "Retrouvez votre contribution dans votre page 'Mon profil'",
           "Enregistrement automatique",
           5000,
           () => {
             Swal.fire(
               "Enregistrement automatique",
-              // eslint-disable-next-line quotes
-              'Retrouvez votre contribution dans votre page "Mon profil"',
+              "Retrouvez votre contribution dans votre page 'Mon profil'",
               "success"
             );
           }
