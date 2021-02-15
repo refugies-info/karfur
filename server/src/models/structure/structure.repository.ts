@@ -1,6 +1,6 @@
 import { Structure, StructureDoc } from "../../schema/schemaStructure";
 import { ObjectId } from "mongoose";
-import logger = require("../../logger");
+import logger from "../../logger";
 import { asyncForEach } from "../../libs/asyncForEach";
 
 export const getStructureFromDB = async (

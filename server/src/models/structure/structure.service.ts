@@ -1,5 +1,5 @@
 import { ObjectId } from "mongoose";
-import logger = require("../../logger");
+import logger from "../../logger";
 import { getStructureFromDB } from "./structure.repository";
 import { Membre } from "../../types/interface";
 
