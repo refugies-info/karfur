@@ -38,6 +38,8 @@ import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstRespo
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import API from "../../../../utils/API";
 import Swal from "sweetalert2";
+import { userSelector } from "../../../../services/User/user.selectors";
+import { logger } from "../../../../logger";
 
 moment.locale("fr");
 declare const window: Window;
@@ -108,6 +110,10 @@ export const AdminUsers = () => {
   };
 
   const users = useSelector(activeUsersSelector);
+
+  const me = useSelector(userSelector);
+  const myEmail = me && me.user && me.user.email ? me.user.email : null;
+  const myPseudo = me && me.user && me.user.username ? me.user.username : null;
 
   const reorder = (element: { name: string; order: string }) => {
     if (sortedHeader.name === element.name) {
@@ -239,7 +245,27 @@ export const AdminUsers = () => {
       });
     }
   };
+  const sendTestMail = async (email: string | null, pseudo: string | null) => {
+    try {
+      if (!email) return;
+      await API.sendMail({ query: { email, pseudo } });
 
+      Swal.fire({
+        title: "Yay...",
+        text: `Envoi en cours à ${email}`,
+        type: "success",
+        timer: 1500,
+      });
+    } catch (error) {
+      logger.error("fixAudienceAgeOnContents error", { error });
+      Swal.fire({
+        title: "Oh non!",
+        text: "Something went wrong",
+        type: "error",
+        timer: 1500,
+      });
+    }
+  };
   const getNbUsersByStatus = (users: SimplifiedUser[], status: string) => {
     if (status === "Admin") {
       return users.filter((user) => user.roles.includes("Admin")).length;
@@ -269,6 +295,15 @@ export const AdminUsers = () => {
   return (
     <div className="admin-users">
       <SearchBarContainer>
+        {myEmail && (
+          <FButton
+            type="dark"
+            className="mr-8"
+            onClick={() => sendTestMail(myEmail, myPseudo)}
+          >
+            TEST : M'envoyer un email
+          </FButton>
+        )}
         {process.env.REACT_APP_ENV === "production" && (
           <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
             {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
