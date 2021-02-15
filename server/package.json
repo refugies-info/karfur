@@ -19,6 +19,7 @@
   "dependencies": {
     "@google-cloud/translate": "^2.1.3",
     "@google/maps": "^1.0.2",
+    "@sendgrid/mail": "^7.4.2",
     "airtable": "^0.7.2",
     "authy": "^1.4.0",
     "axios-logger": "^1.0.0",
