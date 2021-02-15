@@ -251,6 +251,7 @@ export class Dispositif extends Component {
             dispositif.status !== "Actif" &&
             !this.props.admin &&
             !this.props.user.contributions.includes(dispositif._id) &&
+            !!dispositif.mainSponsor &&
             !this.props.user.structures.includes(dispositif.mainSponsor._id)
           ) {
             if (_.isEmpty(this.props.user)) {
@@ -264,7 +265,7 @@ export class Dispositif extends Component {
             }
             Swal.fire({
               title: "Erreur",
-              text: "Accès non authorisé",
+              text: "Accès non authorisé 1",
               type: "error",
               timer: 1200,
             });
@@ -415,7 +416,7 @@ export class Dispositif extends Component {
           }
           Swal.fire({
             title: "Erreur",
-            text: "Accès non authorisé",
+            text: `Accès non authorisé 2, status : ${err.status}, message : ${err.message}`,
             type: "error",
             timer: 1200,
           });

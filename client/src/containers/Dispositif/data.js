@@ -157,7 +157,7 @@ const menuDemarche = [
       },
       {
         type: "card",
-        title: "Acte de naissance",
+        title: "Acte de naissance OFPRA",
         typeIcon: "eva",
         titleIcon: "alert-triangle-outline",
       },
@@ -490,7 +490,7 @@ const cardTitlesDemarche = [
     titleIcon: "alert-triangle-outline",
   },
   {
-    title: "Acte de naissance",
+    title: "Acte de naissance OFPRA",
     titleIcon: "alert-triangle-outline",
   },
 ];

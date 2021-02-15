@@ -382,6 +382,11 @@ export default {
     });
   },
 
+  sendMail: (query) =>
+    axios.post(burl + "/miscellaneous/sendMail", query, {
+      headers,
+    }),
+
   get_tts: (query) => {
     return axios.post(burl + "/tts/get_tts", query, {
       headers: headers,
