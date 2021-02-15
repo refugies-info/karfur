@@ -76,7 +76,7 @@ class App extends Component {
 
   componentDidMount() {
     //On désactive les logs en prod
-    if (process.env.NODE_ENV === "production") {
+    if (process.env.REACT_APP_ENV === "production") {
       // eslint-disable-next-line no-console
       console.log = function () {};
     }

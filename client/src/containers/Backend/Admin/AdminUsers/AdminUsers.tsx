@@ -269,7 +269,8 @@ export const AdminUsers = () => {
   return (
     <div className="admin-users">
       <SearchBarContainer>
-        {process.env.NODE_ENV === "production" && (
+        <div>{process.env.NODE_ENV}</div>
+        {process.env.REACT_APP_ENV === "production" && (
           <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
             {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
           </FButton>
