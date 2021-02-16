@@ -10,21 +10,8 @@ const formData = require("express-form-data");
 const path = require("path");
 const compression = require("compression");
 const startup = require("./startup/startup");
-// const scanner = require('./i18nscanner.js'); // Si besoin de lancer une extraction des strings manquantes en traduction
-
-// var log = console.log;
-// console.log = function() {
-//     log.apply(console, arguments);
-//     // Print the stack trace
-//     console.trace();
-// };
-
-// const session = require('express-session');
-// const sessionstore = require('sessionstore');
-
-// const oauthLoginCallback = require('./controllers/account/france-connect').oauthLoginCallback
-// const oauthLogoutCallback = require('./controllers/account/france-connect').oauthLogoutCallback
-// const getUser = require('./controllers/account/france-connect').getUser
+const cron = require("node-cron");
+const { testCron } = require("./crons/testCron");
 
 const { NODE_ENV, CLOUD_NAME, API_KEY, API_SECRET, MONGODB_URI } = process.env;
 
@@ -43,6 +30,8 @@ cloudinary.config({
 });
 //On définit notre objet express nommé app
 const app = express();
+
+cron.schedule("* * * * *", testCron);
 
 var http = require("http").Server(app);
 var io = require("socket.io")(http);

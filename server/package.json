@@ -47,6 +47,7 @@
     "messaging-api-messenger": "^0.7.16",
     "moment": "^2.29.1",
     "mongoose": "^5.10.1",
+    "node-cron": "^2.0.3",
     "nodemailer": "^6.3.0",
     "parse-json": "^4.0.0",
     "password-hash": "^1.2.2",
