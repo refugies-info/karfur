@@ -16,7 +16,9 @@ export const sendMail = async (req: RequestFromClient<User>, res: Res) => {
     });
     const msg = {
       to: email,
-      from: "nour@refugies.info",
+      from: { email: "agathe@refugies.info", name: "Agathe de Réfugiés.info" },
+      cc: "agkieny+1@gmail.com",
+      reply_to: "agathe.kieny@lamednum.coop",
       templateId: "d-8d24f015c9f24e388f2735d37222db22",
       dynamicTemplateData: {
         first_name: pseudo || "test",
