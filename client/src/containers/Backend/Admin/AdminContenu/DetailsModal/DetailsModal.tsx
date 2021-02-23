@@ -133,11 +133,12 @@ export const DetailsModal = (props: Props) => {
   const dispatch = useDispatch();
 
   const dispositif = useSelector(dispositifSelector(selectedDispositifId));
-
   useEffect(() => {
     if (dispositif) {
       if (dispositif.adminComments) {
         setAdminComments(dispositif.adminComments);
+      } else {
+        setAdminComments("");
       }
 
       if (dispositif.adminProgressionStatus) {
@@ -149,6 +150,8 @@ export const DetailsModal = (props: Props) => {
         setAdminProgressionStatusGroup2(
           dispositif.adminPercentageProgressionStatus
         );
+      } else {
+        setAdminProgressionStatusGroup2(null);
       }
     }
   }, [dispositif]);
