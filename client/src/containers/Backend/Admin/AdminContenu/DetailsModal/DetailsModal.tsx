@@ -193,7 +193,7 @@ export const DetailsModal = (props: Props) => {
     await API.updateDispositifAdminComments({
       query: {
         dispositifId: dispositif._id,
-        adminComments: adminComments || dispositif.adminComments,
+        adminComments,
         adminProgressionStatus: adminProgressionStatusGroup1,
         adminPercentageProgressionStatus: adminProgressionStatusGroup2,
       },
