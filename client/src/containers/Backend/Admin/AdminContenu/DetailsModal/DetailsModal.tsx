@@ -114,7 +114,7 @@ const CreatorContainer = styled.div`
 `;
 
 moment.locale("fr");
-const statusModifiable = ["En attente", "En attente admin"];
+const statusModifiable = ["En attente", "En attente admin", "Brouillon"];
 
 export const DetailsModal = (props: Props) => {
   const selectedDispositifId = props.selectedDispositifId;
