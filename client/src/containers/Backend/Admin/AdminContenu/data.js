@@ -105,6 +105,13 @@ export const progressionData = [
     group: 1,
   },
   {
+    storedStatus: "À contacter",
+    displayedStatus: "À contacter",
+    color: lightBlue,
+    textColor: colors.darkColor,
+    group: 1,
+  },
+  {
     storedStatus: "Contacté",
     displayedStatus: "Contacté",
     color: lightBlue,
