@@ -120,20 +120,9 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
     dispatch(fetchAllUsersActionsCreator());
   };
 
-  const isValidateDisabled =
-    !structure.mail_contact ||
-    !structure.contact ||
-    !structure.phone_contact ||
-    !structure.nom;
   const onValidate = async () => {
     try {
-      if (
-        !structure.mail_contact ||
-        !structure.contact ||
-        !structure.phone_contact ||
-        !structure.nom
-      )
-        return;
+      if (!structure.nom) return;
 
       const membres = structure.responsable
         ? [
@@ -340,7 +329,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
           type="validate"
           name="checkmark-outline"
           onClick={onValidate}
-          disabled={isValidateDisabled}
+          disabled={!structure.nom}
         >
           Créer
         </FButton>
