@@ -10,9 +10,9 @@ interface User {
 }
 export const sendMail = async (req: RequestFromClient<User>, res: Res) => {
   try {
+    console.log("send mail log", req);
     logger.info("send mail", {
-      body: req.body,
-      parsedBody: JSON.stringify(req.body),
+      req,
     });
     const { email, pseudo } = req.body.query;
     logger.info("[sendMail] send mail received", {
