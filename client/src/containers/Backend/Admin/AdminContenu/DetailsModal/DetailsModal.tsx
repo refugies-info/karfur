@@ -114,7 +114,7 @@ const CreatorContainer = styled.div`
 `;
 
 moment.locale("fr");
-const statusModifiable = ["En attente", "En attente admin"];
+const statusModifiable = ["En attente", "En attente admin", "Brouillon"];
 
 export const DetailsModal = (props: Props) => {
   const selectedDispositifId = props.selectedDispositifId;
@@ -133,11 +133,12 @@ export const DetailsModal = (props: Props) => {
   const dispatch = useDispatch();
 
   const dispositif = useSelector(dispositifSelector(selectedDispositifId));
-
   useEffect(() => {
     if (dispositif) {
       if (dispositif.adminComments) {
         setAdminComments(dispositif.adminComments);
+      } else {
+        setAdminComments("");
       }
 
       if (dispositif.adminProgressionStatus) {
@@ -149,6 +150,8 @@ export const DetailsModal = (props: Props) => {
         setAdminProgressionStatusGroup2(
           dispositif.adminPercentageProgressionStatus
         );
+      } else {
+        setAdminProgressionStatusGroup2(null);
       }
     }
   }, [dispositif]);
@@ -190,7 +193,7 @@ export const DetailsModal = (props: Props) => {
     await API.updateDispositifAdminComments({
       query: {
         dispositifId: dispositif._id,
-        adminComments: adminComments || dispositif.adminComments,
+        adminComments,
         adminProgressionStatus: adminProgressionStatusGroup1,
         adminPercentageProgressionStatus: adminProgressionStatusGroup2,
       },
