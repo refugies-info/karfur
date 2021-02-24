@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import API from "../../utils/API";
 
 import "./Footer.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 
@@ -69,6 +69,7 @@ export class Footer extends Component {
                     style={{ textDecoration: "underline" }}
                     target="_blank"
                     href="https://accueil-integration-refugies.fr/"
+                    rel="noopener noreferrer"
                   >
                     {
                       "Délégation interministérielle à l’accueil et l’intégration des réfugiés"
@@ -79,6 +80,7 @@ export class Footer extends Component {
                     style={{ textDecoration: "underline" }}
                     target="_blank"
                     href="https://lamednum.coop/"
+                    rel="noopener noreferrer"
                   >
                     {"Mednum"}
                   </a>
