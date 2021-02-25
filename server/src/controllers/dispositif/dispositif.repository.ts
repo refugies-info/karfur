@@ -38,6 +38,7 @@ export const updateDispositifInDB = async (
       }
     | { audienceAge: AudienceAge[] }
     | { audienceAge: AudienceAge[]; contenu: any }
+    | { nbVues: number }
 ) =>
   await Dispositif.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif);
 

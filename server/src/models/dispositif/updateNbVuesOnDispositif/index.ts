@@ -1,0 +1,1 @@
+export { updateNbVuesOnDispositif } from "./updateNbVuesOnDispositif";

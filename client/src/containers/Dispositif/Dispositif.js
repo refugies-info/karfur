@@ -246,6 +246,10 @@ export class Dispositif extends Component {
               label: "dispositifId",
               value: dispositif._id,
             });
+            const nbVues = dispositif.nbVues ? dispositif.nbVues + 1 : 1;
+            API.updateNbVuesOnDispositif({
+              query: { id: dispositif._id, nbVues },
+            });
           }
 
           // case dispositif not active and user neither admin nor contributor nor in structure
