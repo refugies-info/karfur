@@ -17,8 +17,6 @@ import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import produce from "immer";
 import withSizes from "react-sizes";
-// import Cookies from 'js-cookie';
-
 import i18n from "../../i18n";
 import Streamline from "../../assets/streamline";
 import SearchItem from "./SearchItem/SearchItem";
@@ -825,12 +823,14 @@ export class AdvancedSearch extends Component {
           recherche: this.state.recherche.map((x, i) =>
             i === 0 ? initial_data[i] : x
           ),
+          order: "theme",
         },
         () => this.queryDispositifs()
       );
     } else {
-      const order = tri.value,
-        croissant = order === this.state.order ? !this.state.croissant : true;
+      const order = tri.value;
+      const croissant =
+        order === this.state.order ? !this.state.croissant : false;
       this.setState(
         (pS) => ({
           dispositifs: this.sortFunction(pS.dispositifs, order, croissant),
