@@ -28,7 +28,7 @@ export const sendMail = async (req: RequestFromClient<User>, res: Res) => {
 
     return res.status(200).json({ text: "OK" });
   } catch (error) {
-    logger.error("[sendMail] error", { error });
+    logger.error("[sendMail] error", { error: error.message });
     return res.status(500).json({ text: "K0" });
   }
 };

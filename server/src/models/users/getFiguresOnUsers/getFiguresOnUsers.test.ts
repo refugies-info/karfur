@@ -113,7 +113,7 @@ describe("getFiguresOnUsers", () => {
     expect(logger.error).toHaveBeenCalledWith(
       "[getFiguresOnUsers] error while getting users",
       {
-        error: new Error("error"),
+        error: "error",
       }
     );
   });

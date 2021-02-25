@@ -22,7 +22,9 @@ export const removeAudienceAgeOnDemarches = async (_: any, res: Res) => {
 
     res.status(200).json({ text: "OK" });
   } catch (error) {
-    logger.error("[removeAudienceAgeOnDemarches] error", { error });
+    logger.error("[removeAudienceAgeOnDemarches] error", {
+      error: error.message,
+    });
     res.status(500).json({ text: "KO" });
   }
 };

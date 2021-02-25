@@ -17,8 +17,6 @@ import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import produce from "immer";
 import withSizes from "react-sizes";
-// import Cookies from 'js-cookie';
-
 import i18n from "../../i18n";
 import Streamline from "../../assets/streamline";
 import SearchItem from "./SearchItem/SearchItem";
@@ -556,7 +554,9 @@ export class AdvancedSearch extends Component {
         }
         dispositifs = dispositifs.map((x) => ({
           ...x,
-          nbVues: (this.state.nbVues.find((y) => y._id === x._id) || {}).count,
+          nbVues: x.nbVues || 0,
+          nbVuesOld: (this.state.nbVues.find((y) => y._id === x._id) || {})
+            .count,
         })); //Je rajoute la donnée sur le nombre de vues par dispositif
 
         if (this.state.activeTri === "Par thème") {
@@ -671,7 +671,8 @@ export class AdvancedSearch extends Component {
         nbVues: countEvents,
         dispositifs: pS.dispositifs.map((x) => ({
           ...x,
-          nbVues: (countEvents.find((y) => y._id === x._id) || {}).count,
+          nbVues: x.nbVues || 0,
+          nbVuesOld: (countEvents.find((y) => y._id === x._id) || {}).count,
         })),
       }));
     });
@@ -825,12 +826,14 @@ export class AdvancedSearch extends Component {
           recherche: this.state.recherche.map((x, i) =>
             i === 0 ? initial_data[i] : x
           ),
+          order: "theme",
         },
         () => this.queryDispositifs()
       );
     } else {
-      const order = tri.value,
-        croissant = order === this.state.order ? !this.state.croissant : true;
+      const order = tri.value;
+      const croissant =
+        order === this.state.order ? !this.state.croissant : false;
       this.setState(
         (pS) => ({
           dispositifs: this.sortFunction(pS.dispositifs, order, croissant),
@@ -1355,13 +1358,22 @@ export class AdvancedSearch extends Component {
                   {this.state.principalThemeList.length > 0 ? (
                     this.state.principalThemeList.map((dispositif, index) => {
                       return (
-                        <SearchResultCard
-                          key={index}
-                          pin={this.pin}
-                          pinnedList={this.state.pinned}
-                          dispositif={dispositif}
-                          showPinned={true}
-                        />
+                        // TO REMOVE JUSTE FOR TEST
+                        <div key={index}>
+                          {"new " +
+                            dispositif.nbVues +
+                            " - old " +
+                            dispositif.nbVuesOld +
+                            " - published " +
+                            dispositif.publishedAt}
+                          <SearchResultCard
+                            key={index}
+                            pin={this.pin}
+                            pinnedList={this.state.pinned}
+                            dispositif={dispositif}
+                            showPinned={true}
+                          />
+                        </div>
                       );
                     })
                   ) : (
@@ -1421,13 +1433,22 @@ export class AdvancedSearch extends Component {
                       this.state.principalThemeListFullFrance.map(
                         (dispositif, index) => {
                           return (
-                            <SearchResultCard
-                              key={index}
-                              pin={this.pin}
-                              pinnedList={this.state.pinned}
-                              dispositif={dispositif}
-                              showPinned={true}
-                            />
+                            // TO REMOVE JUSTE FOR TEST
+                            <div key={index}>
+                              {"new " +
+                                dispositif.nbVues +
+                                " - old " +
+                                dispositif.nbVuesOld +
+                                " - published " +
+                                dispositif.publishedAt}
+                              <SearchResultCard
+                                key={index}
+                                pin={this.pin}
+                                pinnedList={this.state.pinned}
+                                dispositif={dispositif}
+                                showPinned={true}
+                              />
+                            </div>
                           );
                         }
                       )
@@ -1523,13 +1544,22 @@ export class AdvancedSearch extends Component {
                   {this.state.secondaryThemeList.length > 0 ? (
                     this.state.secondaryThemeList.map((dispositif, index) => {
                       return (
-                        <SearchResultCard
-                          key={index}
-                          pin={this.pin}
-                          pinnedList={this.state.pinned}
-                          dispositif={dispositif}
-                          showPinned={true}
-                        />
+                        // TO REMOVE JUSTE FOR TEST
+                        <div key={index}>
+                          {"new " +
+                            dispositif.nbVues +
+                            " - old " +
+                            dispositif.nbVuesOld +
+                            " - published " +
+                            dispositif.publishedAt}
+                          <SearchResultCard
+                            key={index}
+                            pin={this.pin}
+                            pinnedList={this.state.pinned}
+                            dispositif={dispositif}
+                            showPinned={true}
+                          />
+                        </div>
                       );
                     })
                   ) : (
@@ -1590,13 +1620,23 @@ export class AdvancedSearch extends Component {
                       this.state.secondaryThemeListFullFrance.map(
                         (dispositif, index) => {
                           return (
-                            <SearchResultCard
-                              key={index}
-                              pin={this.pin}
-                              pinnedList={this.state.pinned}
-                              dispositif={dispositif}
-                              showPinned={true}
-                            />
+                            // TO REMOVE JUSTE FOR TEST
+                            <div key={index}>
+                              {"new " +
+                                dispositif.nbVues +
+                                " - " +
+                                "old " +
+                                dispositif.nbVuesOld +
+                                " published " +
+                                dispositif.publishedAt}
+                              <SearchResultCard
+                                key={index}
+                                pin={this.pin}
+                                pinnedList={this.state.pinned}
+                                dispositif={dispositif}
+                                showPinned={true}
+                              />
+                            </div>
                           );
                         }
                       )
@@ -1635,13 +1675,22 @@ export class AdvancedSearch extends Component {
                   {dispositifs.length > 0 ? (
                     dispositifs.map((dispositif, index) => {
                       return (
-                        <SearchResultCard
-                          key={index}
-                          pin={this.pin}
-                          pinnedList={this.state.pinned}
-                          dispositif={dispositif}
-                          showPinned={true}
-                        />
+                        // TO REMOVE JUSTE FOR TEST
+                        <div key={index}>
+                          {"new " +
+                            dispositif.nbVues +
+                            " - old " +
+                            dispositif.nbVuesOld +
+                            " - published " +
+                            dispositif.publishedAt}
+                          <SearchResultCard
+                            key={index}
+                            pin={this.pin}
+                            pinnedList={this.state.pinned}
+                            dispositif={dispositif}
+                            showPinned={true}
+                          />
+                        </div>
                       );
                     })
                   ) : (
@@ -1671,13 +1720,23 @@ export class AdvancedSearch extends Component {
                     this.state.dispositifsFullFrance.map(
                       (dispositif, index) => {
                         return (
-                          <SearchResultCard
-                            key={index}
-                            pin={this.pin}
-                            pinnedList={this.state.pinned}
-                            dispositif={dispositif}
-                            showPinned={true}
-                          />
+                          // TO REMOVE JUSTE FOR TEST
+                          <div key={index}>
+                            {"new " +
+                              dispositif.nbVues +
+                              " - " +
+                              "old " +
+                              dispositif.nbVuesOld +
+                              " published " +
+                              dispositif.publishedAt}
+                            <SearchResultCard
+                              key={index}
+                              pin={this.pin}
+                              pinnedList={this.state.pinned}
+                              dispositif={dispositif}
+                              showPinned={true}
+                            />
+                          </div>
                         );
                       }
                     )
@@ -1741,13 +1800,23 @@ export class AdvancedSearch extends Component {
                       {this.state.dispositifs.length > 0 ? (
                         this.state.dispositifs.map((dispositif, index) => {
                           return (
-                            <SearchResultCard
-                              key={index}
-                              pin={this.pin}
-                              pinnedList={this.state.pinned}
-                              dispositif={dispositif}
-                              showPinned={true}
-                            />
+                            // TO REMOVE JUSTE FOR TEST
+                            <div key={index}>
+                              {"new " +
+                                dispositif.nbVues +
+                                " - " +
+                                "old " +
+                                dispositif.nbVuesOld +
+                                " published " +
+                                dispositif.publishedAt}
+                              <SearchResultCard
+                                key={index}
+                                pin={this.pin}
+                                pinnedList={this.state.pinned}
+                                dispositif={dispositif}
+                                showPinned={true}
+                              />
+                            </div>
                           );
                         })
                       ) : (
@@ -1806,13 +1875,23 @@ export class AdvancedSearch extends Component {
                       {this.state.nonTranslated.length > 0 ? (
                         this.state.nonTranslated.map((dispositif, index) => {
                           return (
-                            <SearchResultCard
-                              key={index}
-                              pin={this.pin}
-                              pinnedList={this.state.pinned}
-                              dispositif={dispositif}
-                              showPinned={true}
-                            />
+                            // TO REMOVE JUSTE FOR TEST
+                            <div key={index}>
+                              {"new " +
+                                dispositif.nbVues +
+                                " - " +
+                                "old " +
+                                dispositif.nbVuesOld +
+                                " published " +
+                                dispositif.publishedAt}
+                              <SearchResultCard
+                                key={index}
+                                pin={this.pin}
+                                pinnedList={this.state.pinned}
+                                dispositif={dispositif}
+                                showPinned={true}
+                              />
+                            </div>
                           );
                         })
                       ) : (
@@ -1839,13 +1918,23 @@ export class AdvancedSearch extends Component {
                     >
                       {dispositifs.map((dispositif, index) => {
                         return (
-                          <SearchResultCard
-                            key={index}
-                            pin={this.pin}
-                            pinnedList={this.state.pinned}
-                            dispositif={dispositif}
-                            showPinned={true}
-                          />
+                          // TO REMOVE JUSTE FOR TEST
+                          <div key={index}>
+                            {"new " +
+                              dispositif.nbVues +
+                              " - " +
+                              "old " +
+                              dispositif.nbVuesOld +
+                              " published " +
+                              dispositif.publishedAt}
+                            <SearchResultCard
+                              key={index}
+                              pin={this.pin}
+                              pinnedList={this.state.pinned}
+                              dispositif={dispositif}
+                              showPinned={true}
+                            />
+                          </div>
                         );
                       })}
                       {!showSpinner &&
