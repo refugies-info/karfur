@@ -918,7 +918,7 @@ async function delete_trads(req, res) {
       res.status(200).json({ text: "OK" });
     }
   } catch (error) {
-    logger.error("[delete_trads] error", { error });
+    logger.error("[delete_trads] error", { error: error.message });
     return res.status(400).json({ text: "Requête invalide" });
   }
 }

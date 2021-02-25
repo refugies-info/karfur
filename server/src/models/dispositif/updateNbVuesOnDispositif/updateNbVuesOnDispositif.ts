@@ -23,7 +23,7 @@ export const updateNbVuesOnDispositif = async (
 
     res.status(200).json({ text: "OK" });
   } catch (error) {
-    logger.error("[updateNbVuesOnDispositif] error", { error });
+    logger.error("[updateNbVuesOnDispositif] error", { error: error.message });
     res.status(500).json({ text: "KO" });
   }
 };
