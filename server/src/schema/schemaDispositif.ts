@@ -164,6 +164,11 @@ var dispositifSchema = new mongoose.Schema(
       type: Date,
       required: false,
     },
+    nbVues: {
+      type: Number,
+      unique: false,
+      required: false,
+    },
   },
   // @ts-ignore
   { timestamps: { createdAt: "created_at" } }
@@ -232,6 +237,7 @@ export interface DispositifDoc extends mongoose.Document {
   adminProgressionStatus?: string;
   adminPercentageProgressionStatus: string;
   lastAdminUpdate?: number;
+  nbVues?: number;
 }
 
 export const Dispositif = mongoose.model<DispositifDoc>(

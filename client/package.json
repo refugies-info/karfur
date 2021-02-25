@@ -123,8 +123,7 @@
     "cypress:open": "cypress open",
     "test:types": "tsc --noEmit",
     "test:unit": "jest",
-    "test:lint": "eslint . --ext ts,tsx,js --quiet --cache",
-    "postbuild": "find ./build -type f -name '*.css' -o -name '*.js' -exec gzip -k '{}' \\;"
+    "test:lint": "eslint . --ext ts,tsx,js --quiet --cache"
   },
   "proxy": "http://localhost:8000",
   "bugs": {

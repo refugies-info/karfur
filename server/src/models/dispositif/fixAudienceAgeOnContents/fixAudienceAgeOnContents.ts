@@ -185,7 +185,7 @@ export const fixAudienceAgeOnContents = async (_: any, res: Res) => {
 
     res.status(200).json({ text: "OK" });
   } catch (error) {
-    logger.error("[fixAudienceAgeOnContents] error", { error });
+    logger.error("[fixAudienceAgeOnContents] error", { error: error.message });
     res.status(500).json({ text: "KO" });
   }
 };

@@ -147,7 +147,7 @@ export const exportUsers = async (req: RequestFromClient<{}>, res: Res) => {
       text: "OK",
     });
   } catch (error) {
-    logger.error("[exportUsers] error", { error });
+    logger.error("[exportUsers] error", { error: error.message });
     res.status(500).json({ text: "Erreur interne" });
   }
 };

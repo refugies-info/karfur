@@ -6,3 +6,9 @@ export const checkIfUserIsAdmin = (requestUserRoles: { nom: string }[]) => {
 
   return;
 };
+
+export const checkRequestIsFromSite = (fromSite: boolean) => {
+  if (!fromSite) throw new Error("NOT_FROM_SITE");
+
+  return;
+};

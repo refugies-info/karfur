@@ -10,6 +10,8 @@ const {
 } = require("./dispositif/dispositif.service");
 
 import { fixAudienceAgeOnContents } from "../models/dispositif/fixAudienceAgeOnContents";
+import { updateNbVuesOnDispositif } from "../models/dispositif/updateNbVuesOnDispositif";
+import { populateNbVuesOnDispositifs } from "../models/dispositif/populateNbVuesOnDispositifs";
 
 module.exports = function (app) {
   app.post("/add_dispositif", checkToken.check, dispositif.add_dispositif);
@@ -42,4 +44,6 @@ module.exports = function (app) {
   app.post("/updateDispositifAdminComments", updateDispositifAdminComments);
   app.get("/getNbDispositifsByRegion", getNbDispositifsByRegion);
   app.post("/fixAudienceAgeOnContents", fixAudienceAgeOnContents);
+  app.post("/updateNbVuesOnDispositif", updateNbVuesOnDispositif);
+  app.post("/populateNbVuesOnDispositifs", populateNbVuesOnDispositifs);
 };
