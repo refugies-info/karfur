@@ -220,13 +220,6 @@ export class Dispositif extends Component {
     // if no itemId and user logged in : initialize new dispo creation
     // if no itemId and user not logged in : redirect to login page
     if (itemId) {
-      API.log_event({
-        app: "App",
-        page: "Dispositif",
-        action: "readDispositif",
-        label: "dispositifId",
-        value: itemId,
-      });
       // work in progress : store dispo in redux and in state. the goal is not to have dispo in state anymore
       this.props.fetchSelectedDispositif({
         selectedDispositifId: itemId,
@@ -244,6 +237,15 @@ export class Dispositif extends Component {
           if (!dispositif || !dispositif._id) {
             this._isMounted = false;
             return this.props.history.push("/");
+          }
+          if (dispositif.status === "Actif") {
+            API.log_event({
+              app: "App",
+              page: "Dispositif",
+              action: "readDispositif",
+              label: "dispositifId",
+              value: dispositif._id,
+            });
           }
 
           // case dispositif not active and user neither admin nor contributor nor in structure
