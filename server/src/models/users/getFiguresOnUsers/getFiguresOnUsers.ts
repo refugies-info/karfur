@@ -28,7 +28,9 @@ export const getFiguresOnUsers = async (req: {}, res: Res) => {
       },
     });
   } catch (error) {
-    logger.error("[getFiguresOnUsers] error while getting users", { error });
+    logger.error("[getFiguresOnUsers] error while getting users", {
+      error: error.message,
+    });
     res.status(200).json({
       data: {
         nbContributors: 0,

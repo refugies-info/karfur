@@ -150,7 +150,7 @@ export const getAllUsers = async (_: any, res: Res) => {
       data: adaptedUsers,
     });
   } catch (error) {
-    logger.error("[getAllUsers] error", { error });
+    logger.error("[getAllUsers] error", { error: error.message });
     res.status(500).json({ text: "Erreur interne" });
   }
 };

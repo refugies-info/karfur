@@ -51,7 +51,9 @@ export const getDispositifs = async (
       });
     }
   } catch (error) {
-    logger.error("[getDispositifs] error while getting dispositifs", { error });
+    logger.error("[getDispositifs] error while getting dispositifs", {
+      error: error.message,
+    });
     switch (error) {
       case 500:
         res.status(500).json({
@@ -164,7 +166,7 @@ export const updateDispositifStatus = async (
     }
     res.status(200).json({ text: "OK" });
   } catch (error) {
-    logger.error("[updateDispositifStatus] error", { error });
+    logger.error("[updateDispositifStatus] error", { error: error.message });
     return res.status(500).json({ text: "Erreur interne" });
   }
 };
@@ -209,7 +211,9 @@ export const modifyDispositifMainSponsor = async (
 
     res.status(200).json({ text: "OK" });
   } catch (error) {
-    logger.error("[modifyDispositifMainSponsor] error", { error });
+    logger.error("[modifyDispositifMainSponsor] error", {
+      error: error.message,
+    });
     return res.status(500).json({ text: "Erreur interne" });
   }
 };
@@ -256,7 +260,9 @@ export const updateDispositifAdminComments = async (
 
     res.status(200).json({ text: "OK" });
   } catch (error) {
-    logger.error("[updateDispositifAdminComments] error", { error });
+    logger.error("[updateDispositifAdminComments] error", {
+      error: error.message,
+    });
     return res.status(500).json({ text: "Erreur interne" });
   }
 };
@@ -278,7 +284,7 @@ export const getNbDispositifsByRegion = async (req: {}, res: Res) => {
       .status(200)
       .json({ text: "OK", data: { regionFigures, dispositifsWithoutGeoloc } });
   } catch (error) {
-    logger.error("[getNbDispositifsByRegion] error", { error });
+    logger.error("[getNbDispositifsByRegion] error", { error: error.message });
     return res.status(500).json({ text: "Erreur" });
   }
 };
