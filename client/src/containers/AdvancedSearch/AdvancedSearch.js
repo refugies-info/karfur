@@ -554,7 +554,9 @@ export class AdvancedSearch extends Component {
         }
         dispositifs = dispositifs.map((x) => ({
           ...x,
-          nbVues: (this.state.nbVues.find((y) => y._id === x._id) || {}).count,
+          nbVues: x.nbVues || 0,
+          nbVuesOld: (this.state.nbVues.find((y) => y._id === x._id) || {})
+            .count,
         })); //Je rajoute la donnée sur le nombre de vues par dispositif
 
         if (this.state.activeTri === "Par thème") {
@@ -669,7 +671,8 @@ export class AdvancedSearch extends Component {
         nbVues: countEvents,
         dispositifs: pS.dispositifs.map((x) => ({
           ...x,
-          nbVues: (countEvents.find((y) => y._id === x._id) || {}).count,
+          nbVues: x.nbVues || 0,
+          nbVuesOld: (countEvents.find((y) => y._id === x._id) || {}).count,
         })),
       }));
     });
@@ -1357,7 +1360,12 @@ export class AdvancedSearch extends Component {
                       return (
                         // TO REMOVE JUSTE FOR TEST
                         <div key={index}>
-                          {dispositif.nbVues + "-" + dispositif.publishedAt}
+                          {"new " +
+                            dispositif.nbVues +
+                            " - old " +
+                            dispositif.nbVuesOld +
+                            " - published " +
+                            dispositif.publishedAt}
                           <SearchResultCard
                             key={index}
                             pin={this.pin}
@@ -1427,7 +1435,12 @@ export class AdvancedSearch extends Component {
                           return (
                             // TO REMOVE JUSTE FOR TEST
                             <div key={index}>
-                              {dispositif.nbVues + "-" + dispositif.publishedAt}
+                              {"new " +
+                                dispositif.nbVues +
+                                " - old " +
+                                dispositif.nbVuesOld +
+                                " - published " +
+                                dispositif.publishedAt}
                               <SearchResultCard
                                 key={index}
                                 pin={this.pin}
@@ -1533,7 +1546,12 @@ export class AdvancedSearch extends Component {
                       return (
                         // TO REMOVE JUSTE FOR TEST
                         <div key={index}>
-                          {dispositif.nbVues + "-" + dispositif.publishedAt}
+                          {"new " +
+                            dispositif.nbVues +
+                            " - old " +
+                            dispositif.nbVuesOld +
+                            " - published " +
+                            dispositif.publishedAt}
                           <SearchResultCard
                             key={index}
                             pin={this.pin}
@@ -1604,7 +1622,13 @@ export class AdvancedSearch extends Component {
                           return (
                             // TO REMOVE JUSTE FOR TEST
                             <div key={index}>
-                              {dispositif.nbVues + "-" + dispositif.publishedAt}
+                              {"new " +
+                                dispositif.nbVues +
+                                " - " +
+                                "old " +
+                                dispositif.nbVuesOld +
+                                " published " +
+                                dispositif.publishedAt}
                               <SearchResultCard
                                 key={index}
                                 pin={this.pin}
@@ -1653,7 +1677,12 @@ export class AdvancedSearch extends Component {
                       return (
                         // TO REMOVE JUSTE FOR TEST
                         <div key={index}>
-                          {dispositif.nbVues + "-" + dispositif.publishedAt}
+                          {"new " +
+                            dispositif.nbVues +
+                            " - old " +
+                            dispositif.nbVuesOld +
+                            " - published " +
+                            dispositif.publishedAt}
                           <SearchResultCard
                             key={index}
                             pin={this.pin}
@@ -1693,7 +1722,13 @@ export class AdvancedSearch extends Component {
                         return (
                           // TO REMOVE JUSTE FOR TEST
                           <div key={index}>
-                            {dispositif.nbVues + "-" + dispositif.publishedAt}
+                            {"new " +
+                              dispositif.nbVues +
+                              " - " +
+                              "old " +
+                              dispositif.nbVuesOld +
+                              " published " +
+                              dispositif.publishedAt}
                             <SearchResultCard
                               key={index}
                               pin={this.pin}
@@ -1767,7 +1802,13 @@ export class AdvancedSearch extends Component {
                           return (
                             // TO REMOVE JUSTE FOR TEST
                             <div key={index}>
-                              {dispositif.nbVues + "-" + dispositif.publishedAt}
+                              {"new " +
+                                dispositif.nbVues +
+                                " - " +
+                                "old " +
+                                dispositif.nbVuesOld +
+                                " published " +
+                                dispositif.publishedAt}
                               <SearchResultCard
                                 key={index}
                                 pin={this.pin}
@@ -1836,7 +1877,13 @@ export class AdvancedSearch extends Component {
                           return (
                             // TO REMOVE JUSTE FOR TEST
                             <div key={index}>
-                              {dispositif.nbVues + "-" + dispositif.publishedAt}
+                              {"new " +
+                                dispositif.nbVues +
+                                " - " +
+                                "old " +
+                                dispositif.nbVuesOld +
+                                " published " +
+                                dispositif.publishedAt}
                               <SearchResultCard
                                 key={index}
                                 pin={this.pin}
@@ -1873,7 +1920,13 @@ export class AdvancedSearch extends Component {
                         return (
                           // TO REMOVE JUSTE FOR TEST
                           <div key={index}>
-                            {dispositif.nbVues + "-" + dispositif.publishedAt}
+                            {"new " +
+                              dispositif.nbVues +
+                              " - " +
+                              "old " +
+                              dispositif.nbVuesOld +
+                              " published " +
+                              dispositif.publishedAt}
                             <SearchResultCard
                               key={index}
                               pin={this.pin}

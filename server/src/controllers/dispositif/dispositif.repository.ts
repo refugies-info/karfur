@@ -20,6 +20,7 @@ export const getDispositifArray = async (query: any) => {
     avancement: 1,
     status: 1,
     nbMots: 1,
+    nbVues: 1,
   };
 
   return await Dispositif.find(query, neededFields).lean();
