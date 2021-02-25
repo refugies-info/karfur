@@ -1355,13 +1355,17 @@ export class AdvancedSearch extends Component {
                   {this.state.principalThemeList.length > 0 ? (
                     this.state.principalThemeList.map((dispositif, index) => {
                       return (
-                        <SearchResultCard
-                          key={index}
-                          pin={this.pin}
-                          pinnedList={this.state.pinned}
-                          dispositif={dispositif}
-                          showPinned={true}
-                        />
+                        // TO REMOVE JUSTE FOR TEST
+                        <div key={index}>
+                          {dispositif.nbVues + "-" + dispositif.publishedAt}
+                          <SearchResultCard
+                            key={index}
+                            pin={this.pin}
+                            pinnedList={this.state.pinned}
+                            dispositif={dispositif}
+                            showPinned={true}
+                          />
+                        </div>
                       );
                     })
                   ) : (
@@ -1421,13 +1425,17 @@ export class AdvancedSearch extends Component {
                       this.state.principalThemeListFullFrance.map(
                         (dispositif, index) => {
                           return (
-                            <SearchResultCard
-                              key={index}
-                              pin={this.pin}
-                              pinnedList={this.state.pinned}
-                              dispositif={dispositif}
-                              showPinned={true}
-                            />
+                            // TO REMOVE JUSTE FOR TEST
+                            <div key={index}>
+                              {dispositif.nbVues + "-" + dispositif.publishedAt}
+                              <SearchResultCard
+                                key={index}
+                                pin={this.pin}
+                                pinnedList={this.state.pinned}
+                                dispositif={dispositif}
+                                showPinned={true}
+                              />
+                            </div>
                           );
                         }
                       )
@@ -1523,13 +1531,17 @@ export class AdvancedSearch extends Component {
                   {this.state.secondaryThemeList.length > 0 ? (
                     this.state.secondaryThemeList.map((dispositif, index) => {
                       return (
-                        <SearchResultCard
-                          key={index}
-                          pin={this.pin}
-                          pinnedList={this.state.pinned}
-                          dispositif={dispositif}
-                          showPinned={true}
-                        />
+                        // TO REMOVE JUSTE FOR TEST
+                        <div key={index}>
+                          {dispositif.nbVues + "-" + dispositif.publishedAt}
+                          <SearchResultCard
+                            key={index}
+                            pin={this.pin}
+                            pinnedList={this.state.pinned}
+                            dispositif={dispositif}
+                            showPinned={true}
+                          />
+                        </div>
                       );
                     })
                   ) : (
@@ -1590,13 +1602,17 @@ export class AdvancedSearch extends Component {
                       this.state.secondaryThemeListFullFrance.map(
                         (dispositif, index) => {
                           return (
-                            <SearchResultCard
-                              key={index}
-                              pin={this.pin}
-                              pinnedList={this.state.pinned}
-                              dispositif={dispositif}
-                              showPinned={true}
-                            />
+                            // TO REMOVE JUSTE FOR TEST
+                            <div key={index}>
+                              {dispositif.nbVues + "-" + dispositif.publishedAt}
+                              <SearchResultCard
+                                key={index}
+                                pin={this.pin}
+                                pinnedList={this.state.pinned}
+                                dispositif={dispositif}
+                                showPinned={true}
+                              />
+                            </div>
                           );
                         }
                       )
@@ -1635,13 +1651,17 @@ export class AdvancedSearch extends Component {
                   {dispositifs.length > 0 ? (
                     dispositifs.map((dispositif, index) => {
                       return (
-                        <SearchResultCard
-                          key={index}
-                          pin={this.pin}
-                          pinnedList={this.state.pinned}
-                          dispositif={dispositif}
-                          showPinned={true}
-                        />
+                        // TO REMOVE JUSTE FOR TEST
+                        <div key={index}>
+                          {dispositif.nbVues + "-" + dispositif.publishedAt}
+                          <SearchResultCard
+                            key={index}
+                            pin={this.pin}
+                            pinnedList={this.state.pinned}
+                            dispositif={dispositif}
+                            showPinned={true}
+                          />
+                        </div>
                       );
                     })
                   ) : (
@@ -1671,13 +1691,17 @@ export class AdvancedSearch extends Component {
                     this.state.dispositifsFullFrance.map(
                       (dispositif, index) => {
                         return (
-                          <SearchResultCard
-                            key={index}
-                            pin={this.pin}
-                            pinnedList={this.state.pinned}
-                            dispositif={dispositif}
-                            showPinned={true}
-                          />
+                          // TO REMOVE JUSTE FOR TEST
+                          <div key={index}>
+                            {dispositif.nbVues + "-" + dispositif.publishedAt}
+                            <SearchResultCard
+                              key={index}
+                              pin={this.pin}
+                              pinnedList={this.state.pinned}
+                              dispositif={dispositif}
+                              showPinned={true}
+                            />
+                          </div>
                         );
                       }
                     )
@@ -1741,13 +1765,17 @@ export class AdvancedSearch extends Component {
                       {this.state.dispositifs.length > 0 ? (
                         this.state.dispositifs.map((dispositif, index) => {
                           return (
-                            <SearchResultCard
-                              key={index}
-                              pin={this.pin}
-                              pinnedList={this.state.pinned}
-                              dispositif={dispositif}
-                              showPinned={true}
-                            />
+                            // TO REMOVE JUSTE FOR TEST
+                            <div key={index}>
+                              {dispositif.nbVues + "-" + dispositif.publishedAt}
+                              <SearchResultCard
+                                key={index}
+                                pin={this.pin}
+                                pinnedList={this.state.pinned}
+                                dispositif={dispositif}
+                                showPinned={true}
+                              />
+                            </div>
                           );
                         })
                       ) : (
@@ -1806,13 +1834,17 @@ export class AdvancedSearch extends Component {
                       {this.state.nonTranslated.length > 0 ? (
                         this.state.nonTranslated.map((dispositif, index) => {
                           return (
-                            <SearchResultCard
-                              key={index}
-                              pin={this.pin}
-                              pinnedList={this.state.pinned}
-                              dispositif={dispositif}
-                              showPinned={true}
-                            />
+                            // TO REMOVE JUSTE FOR TEST
+                            <div key={index}>
+                              {dispositif.nbVues + "-" + dispositif.publishedAt}
+                              <SearchResultCard
+                                key={index}
+                                pin={this.pin}
+                                pinnedList={this.state.pinned}
+                                dispositif={dispositif}
+                                showPinned={true}
+                              />
+                            </div>
                           );
                         })
                       ) : (
@@ -1839,13 +1871,17 @@ export class AdvancedSearch extends Component {
                     >
                       {dispositifs.map((dispositif, index) => {
                         return (
-                          <SearchResultCard
-                            key={index}
-                            pin={this.pin}
-                            pinnedList={this.state.pinned}
-                            dispositif={dispositif}
-                            showPinned={true}
-                          />
+                          // TO REMOVE JUSTE FOR TEST
+                          <div key={index}>
+                            {dispositif.nbVues + "-" + dispositif.publishedAt}
+                            <SearchResultCard
+                              key={index}
+                              pin={this.pin}
+                              pinnedList={this.state.pinned}
+                              dispositif={dispositif}
+                              showPinned={true}
+                            />
+                          </div>
                         );
                       })}
                       {!showSpinner &&
