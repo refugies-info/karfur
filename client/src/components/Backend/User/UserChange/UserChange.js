@@ -363,23 +363,79 @@ const userChange = (props) => {
               </Input>
             </Col>
           </FormGroup>
-          {props.user ?
-          <div style={{flexDirection: "row", position: "flex", flex: 1, justifyContent: "flex-start"}}>
-            <p>Temps Passé 3 mois (En minutes):</p>
-          <p>{(props.user.progression && (props.user.progression.threeMonthsIndicator.length > 0)) ?  parseFloat(moment.duration(props.user.progression.threeMonthsIndicator[0].timeSpent).asMinutes()).toFixed(2) : 0}</p>
-            <p>Nombre Mots 3 mois:</p>
-          <p>{(props.user.progression && (props.user.progression.threeMonthsIndicator.length > 0)) ? props.user.progression.threeMonthsIndicator[0].wordsCount : 0}</p>
-            <p>Temps Passé 6 mois (En minutes):</p>
-          <p>{(props.user.progression && (props.user.progression.sixMonthsIndicator.length > 0)) ?  parseFloat(moment.duration(props.user.progression.sixMonthsIndicator[0].timeSpent).asMinutes()).toFixed(2) : 0}</p>
-            <p>Nombre Mots 6 mois:</p>
-          <p>{(props.user.progression && (props.user.progression.sixMonthsIndicator.length > 0)) ? props.user.progression.sixMonthsIndicator[0].wordsCount : 0}</p>
-            <p>Temps Passé 12 mois (En minutes):</p>
-          <p>{(props.user.progression && (props.user.progression.twelveMonthsIndicator.length > 0)) ?  parseFloat(moment.duration(props.user.progression.twelveMonthsIndicator[0].timeSpent).asMinutes()).toFixed(2) : 0}</p>
-            <p>Nombre Mots 12 mois:</p>
-          <p>{(props.user.progression && (props.user.progression.twelveMonthsIndicator.length > 0)) ? props.user.progression.twelveMonthsIndicator[0].wordsCount : 0}</p>
-          </div>
-          : null
-          }
+          {props.user ? (
+            <div
+              style={{
+                flexDirection: "row",
+                position: "flex",
+                flex: 1,
+                justifyContent: "flex-start",
+              }}
+            >
+              <p>Temps Passé 3 mois (En minutes):</p>
+              <p>
+                {props.user.progression &&
+                props.user.progression.threeMonthsIndicator.length > 0
+                  ? parseFloat(
+                      moment
+                        .duration(
+                          props.user.progression.threeMonthsIndicator[0]
+                            .timeSpent
+                        )
+                        .asMinutes()
+                    ).toFixed(2)
+                  : 0}
+              </p>
+              <p>Nombre Mots 3 mois:</p>
+              <p>
+                {props.user.progression &&
+                props.user.progression.threeMonthsIndicator.length > 0
+                  ? props.user.progression.threeMonthsIndicator[0].wordsCount
+                  : 0}
+              </p>
+              <p>Temps Passé 6 mois (En minutes):</p>
+              <p>
+                {props.user.progression &&
+                props.user.progression.sixMonthsIndicator.length > 0
+                  ? parseFloat(
+                      moment
+                        .duration(
+                          props.user.progression.sixMonthsIndicator[0].timeSpent
+                        )
+                        .asMinutes()
+                    ).toFixed(2)
+                  : 0}
+              </p>
+              <p>Nombre Mots 6 mois:</p>
+              <p>
+                {props.user.progression &&
+                props.user.progression.sixMonthsIndicator.length > 0
+                  ? props.user.progression.sixMonthsIndicator[0].wordsCount
+                  : 0}
+              </p>
+              <p>Temps Passé 12 mois (En minutes):</p>
+              <p>
+                {props.user.progression &&
+                props.user.progression.twelveMonthsIndicator.length > 0
+                  ? parseFloat(
+                      moment
+                        .duration(
+                          props.user.progression.twelveMonthsIndicator[0]
+                            .timeSpent
+                        )
+                        .asMinutes()
+                    ).toFixed(2)
+                  : 0}
+              </p>
+              <p>Nombre Mots 12 mois:</p>
+              <p>
+                {props.user.progression &&
+                props.user.progression.twelveMonthsIndicator.length > 0
+                  ? props.user.progression.twelveMonthsIndicator[0].wordsCount
+                  : 0}
+              </p>
+            </div>
+          ) : null}
         </>
       )}
     </Form>
@@ -389,9 +445,8 @@ const userChange = (props) => {
 const ProfilePic = (props) => {
   if (props.uploading) {
     return <Spinner color="dark" className="fadeIn fadeOut" />;
-  } 
-    return <img className="img-circle" src={props.imgSrc} alt="profile" />;
-  
+  }
+  return <img className="img-circle" src={props.imgSrc} alt="profile" />;
 };
 
 export default userChange;

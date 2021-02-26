@@ -18,7 +18,7 @@ import FButton from "../../../components/FigmaUI/FButton/FButton";
 import marioProfile from "../../../assets/mario-profile.jpg";
 
 import "./StringTranslation.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 
 export class StringTranslation extends Component {
   state = {
@@ -311,17 +311,9 @@ export class StringTranslation extends Component {
           </Row>
           <Row className="trad-footer">
             <Col lg="auto" className="left-col">
-              <EVAIcon
-                name="clock"
-                fill={colors.grisFonce}
-                className="mr-10"
-              />
+              <EVAIcon name="clock" fill={colors.grisFonce} className="mr-10" />
               <span className="timer">{ms(time)} passées</span>
-              <EVAIcon
-                name="hash"
-                fill={colors.grisFonce}
-                className="mr-10"
-              />
+              <EVAIcon name="hash" fill={colors.grisFonce} className="mr-10" />
               <span className="words">
                 {nbMotsRestants} mot{nbMotsRestants > 1 && "s"} restant
                 {nbMotsRestants > 1 && "s"}
