@@ -1,28 +1,38 @@
-# controllers
+# Target organization of backend :
 
-declare routes
-import workflows
+![SA](../images/SA1.png)
 
-# workflows
+# Controllers
 
 ## Responsibility
 
-A workflow is where the logic of a route is orchestrated
+A controller is where we declare the routes for every business entity (user, dispositif, structure etc)
 
 ## Collaborators
 
-- Import only **modules**
+- import only **workflows**
+
+# Workflows
+
+## Responsibility
+
+> A workflow is where the logic of a route is orchestrated
+
+## Collaborators
+
+- Import only **modules** and **connectors**
+- **Controllers** will import workflows
 
 ## Checks
 
 - ✅ Fully unit tested
 - ✅ Throw http code for the client
 
-# modules
+# Modules
 
 ## Responsibility
 
-> A module is a business autonomous brick responsible for handling a business mission as sending mail, generating PDF or updating data.
+> A module is a business autonomous brick responsible for handling a business mission
 > We want to have each module independant from other modules.
 
 ## Collaborators
@@ -57,30 +67,43 @@ A workflow is where the logic of a route is orchestrated
 
 - ✅ Every function should be used on workflow only
 
-TO DO
-
-# libs
-
-# schema
-
-# Connector
+# Libs
 
 ## Responsibility
 
-A connector is the link between the app and :
-
-- a technical provider like Stripe, Paypal, Sendgrid
-- partner provider like Otakeys, pragmatik
-- the database
+> A lib is a singleton with the intelligence to do non business related stuff.
 
 ## Collaborators
 
-- **Modules** are the only ones that can import connectors to contact external services.
+- any file can import `libs/\*``
+
+## Checks
+
+- ✅ Can be used by any other project without modification
+- ✅ Fully tested
+
+# Schemas
+
+## Responsibility
+
+> Schema are use to declare mongodb collections. There is one schema per collection.
+
+## Checks
+
+- ✅ Fully typed
+
+# Connectors
+
+## Responsibility
+
+> A connector is the link between the app and a technical provider like Sendgrid
+
+## Collaborators
+
+- **Modules** and **Worflows** can import connectors to contact external services.
 
 ## Checks
 
 - ✅ No business logic
 - ✅ Functions are typed
-- ✅ Connector type should live only in connector folder or endPoint entry
 - ✅ Fully unit tested
-- ✅ Fully mocked
