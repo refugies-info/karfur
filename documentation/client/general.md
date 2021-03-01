@@ -1,21 +1,3 @@
-# Technical standards
-
-Features should be in **camelcase**.
-All text should be in **english** (features, comments, commit messages and github discussions).
-For typing, we use **typescript** on client and server.
-
-## Git flow
-
-We use 3 branches :
-
-- dev for development
-- staging-frontend and staging-backend for staging
-- master-frontend and master-backend for production
-
-All commits in staging's and master's branches should be in dev.
-
-Before opening a pull request, please run in client and server folders : `npm run test:lint`, `npm run test:types`, `npm run test:unit`
-
 ## How to refactor actual code ?
 
 ### Client
@@ -26,13 +8,6 @@ Before opening a pull request, please run in client and server folders : `npm ru
 4. Type components (example in QuickToolBar)
 5. Add unit tests
 
-### Server
-
-1. Separate logic in different single responsibility functions
-2. Use async/await and try/catch syntax
-3. Type files
-4. Add unit tests
-
 ## How to add logs ?
 
 ### Client
@@ -40,16 +15,6 @@ Before opening a pull request, please run in client and server folders : `npm ru
 - use the logger `logger.info()`, `logger.warn()`or `logger.error()`
 - Put the name of the component and of the specific function in log (example : `logger.info("[Dispositif] create a new dispositif : ", {data : XXX})`)
 - Do not put logs in render
-
-### Server
-
-- use `logger.info()`, `logger.warn()`or `logger.error()`
-- add context to the log, function name for example
-
-## How to document code ?
-
-- create single responsibility functions with transparent names
-- in complex parts, add comments in english
 
 ## How to write good css ?
 

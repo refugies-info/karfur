@@ -10,7 +10,6 @@
   "scripts": {
     "start": "node dist/server.js",
     "tsc": "tsc",
-    "heroku-postbuild": "cd ../client && npm install --only=dev && npm install && npm run build",
     "test": "npm run test:unit && npm run test:lint && npm run test:types",
     "test:lint": "eslint . --ext ts,tsx,js --quiet --cache",
     "test:types": "tsc --noEmit",
