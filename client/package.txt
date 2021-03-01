@@ -8,23 +8,12 @@
 
 
 
-    "rc-slider": "^8.6.7",(enlever MessengerSendToMessenger)
-
-
-    
-
-   
-
-
-
 
 
     // U ?
     "font-awesome": "^4.7.0",
 
-    // ds string translation, a verifier ?
-    "himalaya": "^1.1.0",
-  "pretty-ms": "^4.0.0",
+  
   
 
 
@@ -38,13 +27,6 @@
 
 
     
-
-
-  
-
-
-
-
 
 
 
