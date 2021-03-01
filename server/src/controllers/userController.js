@@ -1,9 +1,9 @@
 const account = require("./account/lib.js");
 const checkToken = require("./account/checkToken");
-import { getFiguresOnUsers } from "../models/users/getFiguresOnUsers";
-import { getAllUsers } from "../models/users/getAllUsers";
-import { updateUser } from "../models/users/updateUser";
-import { exportUsers } from "../models/users/exportUsers";
+import { getFiguresOnUsers } from "../workflows/users/getFiguresOnUsers";
+import { getAllUsers } from "../workflows/users/getAllUsers";
+import { updateUser } from "../workflows/users/updateUser";
+import { exportUsers } from "../workflows/users/exportUsers";
 
 module.exports = function (app) {
   app.post("/login", checkToken.getId, checkToken.getRoles, account.login);

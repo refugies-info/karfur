@@ -1,6 +1,6 @@
 import { Res } from "../../../types/interface";
 import logger from "../../../logger";
-import { getStructuresFromDB } from "../../../models/structure/structure.repository";
+import { getStructuresFromDB } from "../structure.repository";
 
 export const getActiveStructures = async (req: {}, res: Res) => {
   try {
