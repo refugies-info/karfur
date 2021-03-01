@@ -209,7 +209,6 @@ class EditableParagraph extends Component {
             }
             editorState={props.editorState}
             toolbarCustomButtons={[
-              // <MediaUpload modalState={this.state.modalState} insertBlock={this.insertBlock} />,
               // eslint-disable-next-line react/jsx-key
               <CustomOption editorState={props.editorState} />,
             ]}
