@@ -8,7 +8,6 @@ Refugies.info is a project to offer a better experience to refugees in France as
 
 - [Demo](#demo)
 - [Contributing](#contributing)
-- [Creators](#creators)
 - [Team](#team)
 - [Community](#community)
 - [License](#license)
