@@ -1,46 +1,6 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 
 export default class MessengerSendToMessenger extends Component {
-  static propTypes = {
-    pageId: PropTypes.string.isRequired,
-    appId: PropTypes.string.isRequired,
-
-    dataRef: PropTypes.string,
-    color: PropTypes.string,
-    size: PropTypes.string,
-    enforceLogin: PropTypes.bool,
-    ctaText: PropTypes.oneOf([
-      "GET_THIS_IN_MESSENGER",
-      "RECEIVE_THIS_IN_MESSENGER",
-      "SEND_THIS_TO_ME",
-      "GET_CUSTOMER_ASSISTANCE",
-      "GET_CUSTOMER_SERVICE",
-      "GET_SUPPORT",
-      "LET_US_CHAT",
-      "SEND_ME_MESSAGES",
-      "ALERT_ME_IN_MESSENGER",
-      "SEND_ME_UPDATES",
-      "MESSAGE_ME",
-      "LET_ME_KNOW",
-      "KEEP_ME_UPDATED",
-      "TELL_ME_MORE",
-      "SUBSCRIBE_IN_MESSENGER",
-      "SUBSCRIBE_TO_UPDATES",
-      "GET_MESSAGES",
-      "SUBSCRIBE",
-      "GET_STARTED_IN_MESSENGER",
-      "LEARN_MORE_IN_MESSENGER",
-      "GET_STARTED",
-      "SEND_TO_MESSENGER",
-    ]),
-    autoLogAppEvents: PropTypes.bool,
-    xfbml: PropTypes.bool,
-    version: PropTypes.string,
-    language: PropTypes.string,
-    debug: PropTypes.bool,
-  };
-
   static defaultProps = {
     dataRef: undefined,
     color: "blue",
