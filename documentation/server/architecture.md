@@ -20,7 +20,7 @@ A controller is where we declare the routes for every business entity (user, dis
 
 ## Collaborators
 
-- Import only **modules** and **connectors**
+- Import **modules**, **connectors** or **libs**
 - **Controllers** will import workflows
 
 ## Checks
@@ -71,7 +71,7 @@ A controller is where we declare the routes for every business entity (user, dis
 
 ## Responsibility
 
-> A lib is a singleton with the intelligence to do non business related stuff.
+> A lib is a singleton with the intelligence to do non business related stuff. For example, libs do authorization checks.
 
 ## Collaborators
 
