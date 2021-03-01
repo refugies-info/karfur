@@ -1,5 +1,9 @@
+# this docker file is not used, we don't user docker in dev for the moment (issue acces mongodb)
+
 # Instructions:
 # /!\ This dockerfile should be use for local tests purposes only!
+
+
 
 # Use a node 10 base image
 ARG NODE_VERSION=10
