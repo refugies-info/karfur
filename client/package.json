@@ -34,8 +34,6 @@
     "immer": "^5.3.6",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.15",
-    "lodash-es": "^4.17.11",
-    "lodash-move": "^1.1.1",
     "lodash.debounce": "^4.0.8",
     "lottie-web": "^5.4.4",
     "moment": "^2.24.0",
