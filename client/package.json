@@ -52,7 +52,6 @@
     "react-dependent-script": "^1.1.2",
     "react-dom": "^16.8.0",
     "react-draft-wysiwyg": "^1.13.2",
-    "react-dropzone": "^10.2.1",
     "react-eva-icons": "0.0.7",
     "react-flippy": "^0.1.5",
     "react-ga": "^3.1.2",
@@ -83,7 +82,6 @@
     "styled-components": "^4.4.1",
     "sweetalert2": "^8.10.7",
     "typesafe-actions": "^5.1.0",
-    "video-react": "^0.14.1",
     "zxcvbn": "^4.4.2"
   },
   "scripts": {
