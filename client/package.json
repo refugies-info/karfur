@@ -32,7 +32,6 @@
     "i18next-browser-languagedetector": "^2.2.4",
     "i18next-xhr-backend": "^1.5.1",
     "immer": "^5.3.6",
-    "immutable": "^4.0.0-rc.12",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.15",
     "lodash-es": "^4.17.11",
