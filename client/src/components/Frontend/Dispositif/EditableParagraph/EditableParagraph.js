@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ContentEditable from "react-contenteditable";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorBlock } from "draft-js";
-import { Player } from "video-react";
 import { withTranslation } from "react-i18next";
 import {
   boldBtn,
@@ -41,26 +40,6 @@ const MyCustomBlock = (props) => (
     </div>
   </div>
 );
-
-const MyImageBlock = (props) => {
-  const { block, contentState } = props;
-  if (block.getEntityAt(0)) {
-    const data = contentState.getEntity(block.getEntityAt(0)).getData();
-    if (data.alt !== undefined) {
-      return (
-        <div className="image-wrapper">
-          <img {...data} alt={(data || {}).alt} />
-        </div>
-      );
-    }
-    return (
-      <div className="video-wrapper">
-        <Player playsInline {...data} />
-      </div>
-    );
-  }
-  return false;
-};
 
 // not used anymore ?
 // const Audio = (props) => {
@@ -115,11 +94,6 @@ function myBlockRenderer(contentBlock) {
   if (type === "header-six") {
     return {
       component: MyCustomBlock,
-    };
-  } else if (type === "atomic") {
-    return {
-      component: MyImageBlock, //Media,
-      //editable: false,
     };
   }
   return undefined;
