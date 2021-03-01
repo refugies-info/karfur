@@ -1,8 +1,11 @@
 # Technical standards
 
-Features should be in **camelcase**.
-All text should be in **english** (features, comments, commit messages and github discussions).
-For typing, we use **typescript** on client and server.
+## Global
+
+- Features should be in **camelcase**.
+- Only use **named exports**
+- All text should be in **english** (features, comments, commit messages and github discussions).
+- For typing, we use **typescript** on client and server.
 
 ## Git flow
 
@@ -14,7 +17,7 @@ We use 3 branches :
 
 All commits in staging's and master's branches should be in dev.
 
-Before opening a pull request, please run in client and server folders : `npm run test:lint`, `npm run test:types`, `npm run test:unit`
+Before opening a pull request, please run in client and server folders : `npm run test`
 
 ## How to document code ?
 
