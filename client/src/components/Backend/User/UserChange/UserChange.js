@@ -15,7 +15,6 @@ import passwdCheck from "zxcvbn";
 import "rc-slider/assets/index.css";
 import moment from "moment";
 
-// import DraggableList from '../../../../components/UI/DraggableList/DraggableList';
 import marioProfile from "../../../../assets/mario-profile.jpg";
 import { colorAvancement } from "../../../Functions/ColorFunctions";
 
@@ -235,20 +234,6 @@ const userChange = (props) => {
           </Row>
         </Col>
       </FormGroup>
-
-      {/* {langues_list.length>0 && 
-        <FormGroup row>
-          <Col md="3">
-            <Label htmlFor="text-input">Classement des langues</Label>
-          </Col>
-          <Col xs="12" md="9">
-            <DraggableList 
-              items={langues_list}
-              maxLength={props.langues.length}
-              {...props}
-              />
-          </Col>
-        </FormGroup>} */}
 
       <FormGroup row>
         <Col md="3">
