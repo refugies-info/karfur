@@ -238,13 +238,6 @@ export class Dispositif extends Component {
             return this.props.history.push("/");
           }
           if (dispositif.status === "Actif") {
-            API.log_event({
-              app: "App",
-              page: "Dispositif",
-              action: "readDispositif",
-              label: "dispositifId",
-              value: dispositif._id,
-            });
             const nbVues = dispositif.nbVues ? dispositif.nbVues + 1 : 1;
             API.updateNbVuesOnDispositif({
               query: { id: dispositif._id, nbVues },
