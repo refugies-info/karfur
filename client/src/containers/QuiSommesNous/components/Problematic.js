@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { ReactComponent as StatusImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_réfugiés.svg";
 import InfoImage from "../../../assets/qui-sommes-nous/plein_dinfos.svg";
 
 import { ReactComponent as AccompagnementImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_accompagnement.svg";
@@ -50,7 +49,11 @@ export const Problematic = (props) => (
 
 const Statut = (props) => (
   <ProblematicDetailContainer>
-    <StatusImage />
+    <img
+      src={
+        "https://storage.googleapis.com/refugies-info-assets/qui-sommes-nous/QuiSommesNous_re%CC%81fugie%CC%81s.svg"
+      }
+    />
     <TextContainer>
       <ProblematicDetailTitle>
         {props.t(

@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { ReactComponent as DispoImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_dispositif.svg";
-import DemarcheImage from "../../../assets/qui-sommes-nous/demarche_light.svg";
 
 import { ReactComponent as ParcoursImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_parcours.svg";
 import { NavLink } from "react-router-dom";
@@ -55,7 +53,12 @@ export const Mission = (props) => (
 
 const MissionDispositif = (props) => (
   <MissionDetailContainer>
-    <DispoImage />
+    <img
+      src={
+        "https://storage.googleapis.com/refugies-info-assets/qui-sommes-nous/QuiSommesNous_dispositif.svg"
+      }
+      className="dispo-img"
+    />
     <MissionDetailTitle>
       {props.t(
         "QuiSommesNous.recenser",
@@ -76,9 +79,13 @@ const MissionDispositif = (props) => (
 
 const MissionDemarche = (props) => (
   <MissionDetailContainer>
-    {/* <DemarcheImage /> */}
     <div>
-      <img src={DemarcheImage} className={"demarche-img"} />
+      <img
+        src={
+          "https://storage.googleapis.com/refugies-info-assets/qui-sommes-nous/demarche_light.svg"
+        }
+        className={"demarche-img"}
+      />
     </div>
     <MissionDetailTitle>
       {props.t(

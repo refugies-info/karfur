@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { ReactComponent as Terrain } from "../../../assets/qui-sommes-nous/QuiSommesNous_terrain.svg";
 import { NavLink } from "react-router-dom";
-import Engagement from "../../../assets/qui-sommes-nous/micro_engagement.svg";
-import Code from "../../../assets/qui-sommes-nous/code_ouvert.svg";
 import "./Contribution.scss";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 
@@ -52,7 +50,12 @@ export const Contribution = (props) => (
 const ContributionCode = (props) => (
   <ContributionDetailContainer>
     <div>
-      <img src={Code} className="etat-ouvert-img" />
+      <img
+        src={
+          "https://storage.googleapis.com/refugies-info-assets/qui-sommes-nous/code_ouvert.svg"
+        }
+        className="etat-ouvert-img"
+      />
     </div>
     <TextContainer>
       <ContributionDetailTitle>
@@ -115,8 +118,11 @@ const ContributionTerrain = (props) => (
 
 const ContributionEngagement = (props) => (
   <ContributionDetailContainer>
-    {/* <Engagement /> */}
-    <img src={Engagement} />
+    <img
+      src={
+        "https://storage.googleapis.com/refugies-info-assets/qui-sommes-nous/micro_engagement.svg"
+      }
+    />
     <TextContainer>
       <ContributionDetailTitle>
         {props.t(
