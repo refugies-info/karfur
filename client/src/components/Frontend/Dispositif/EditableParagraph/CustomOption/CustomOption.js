@@ -1,15 +1,9 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import EVAIcon from "../../../../UI/EVAIcon/EVAIcon";
 import { convertFromHTML } from "draft-convert";
 
 class CustomOption extends Component {
-  static propTypes = {
-    onChange: PropTypes.func,
-    editorState: PropTypes.object,
-  };
-
   toggleBold = () => {
     const { editorState, onChange } = this.props;
     // const newState = RichUtils.toggleBlockType(

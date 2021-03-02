@@ -1,5 +1,4 @@
 import React from "react";
-import { Player } from "video-react";
 import h2p from "html2plaintext";
 
 const contenu = {
@@ -660,15 +659,6 @@ const customConvertOption = {
       return (
         <div className="image-wrapper">
           <img {...entity.data} alt={(entity.data || {}).alt} />
-        </div>
-      );
-    } else if (
-      entity.type === "embedded_link" ||
-      entity.type === "EMBEDDED_LINK"
-    ) {
-      return (
-        <div className="video-wrapper">
-          <Player playsInline {...entity.data} />
         </div>
       );
     }
