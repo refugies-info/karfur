@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 
 import * as eva from "eva-icons";
 
@@ -70,12 +69,6 @@ class EVAIcon extends Component {
     return icon;
   }
 }
-
-EVAIcon.propTypes = {
-  fill: PropTypes.string,
-  name: PropTypes.string,
-  size: PropTypes.string,
-};
 
 EVAIcon.defaultProps = {
   fill: "#fff",

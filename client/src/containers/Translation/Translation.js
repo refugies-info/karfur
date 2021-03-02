@@ -10,7 +10,6 @@ import _ from "lodash";
 import produce from "immer";
 
 import API from "../../utils/API";
-import StringTranslation from "./StringTranslation/StringTranslation";
 import Dispositif from "../Dispositif/Dispositif";
 import { menu } from "../Dispositif/data";
 import { initializeTimer } from "./functions";
@@ -554,29 +553,8 @@ export class TranslationHOC extends Component {
           {...this.props}
         />
       );
-    } else if (this.state.type === "string") {
-      return (
-        <StringTranslation
-          translate={this.translate}
-          setArticle={this.setArticle}
-          setRef={this.setRef}
-          valider={this.valider}
-          onSkip={this.onSkip}
-          handleChange={this.handleChange}
-          handleCheckboxClicked={this.handleCheckboxClicked}
-          handleSliderChange={this.handleSliderChange}
-          handleCheckboxChange={this.handleCheckboxChange}
-          onKeyPress={this.handleKeyPress}
-          handleChangeEnCours={this.handleChangeEnCours}
-          handleClickText={this.handleClickText}
-          fwdSetState={this.fwdSetState}
-          {...this.state}
-        />
-      );
-      // eslint-disable-next-line
-    } else {
-      return false;
     }
+    return false;
   }
 }
 

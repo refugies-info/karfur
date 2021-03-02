@@ -9,9 +9,9 @@ const {
   getNbDispositifsByRegion,
 } = require("./dispositif/dispositif.service");
 
-import { fixAudienceAgeOnContents } from "../models/dispositif/fixAudienceAgeOnContents";
-import { updateNbVuesOnDispositif } from "../models/dispositif/updateNbVuesOnDispositif";
-import { populateNbVuesOnDispositifs } from "../models/dispositif/populateNbVuesOnDispositifs";
+import { fixAudienceAgeOnContents } from "../workflows/dispositif/fixAudienceAgeOnContents";
+import { updateNbVuesOnDispositif } from "../workflows/dispositif/updateNbVuesOnDispositif";
+import { populateNbVuesOnDispositifs } from "../workflows/dispositif/populateNbVuesOnDispositifs";
 
 module.exports = function (app) {
   app.post("/add_dispositif", checkToken.check, dispositif.add_dispositif);
