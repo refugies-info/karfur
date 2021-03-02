@@ -115,22 +115,10 @@ export default {
     });
   },
 
-  log_event: (event) => {
-    return axios.post(burl + "/events/log_event", event, { headers: headers });
-  },
   get_event: (params) => {
     return axios.post(burl + "/events/get_event", params, { headers: headers });
   },
-  distinct_event: (distinct) => {
-    return axios.post(burl + "/events/distinct_event", distinct, {
-      headers: headers,
-    });
-  },
-  distinct_count_event: (query) => {
-    return axios.post(burl + "/events/distinct_count_event", query, {
-      headers: headers,
-    });
-  },
+
   getArticle: (params = {}) => {
     return axios.post(burl + "/article/get_article", params, {
       headers: headers,
@@ -153,12 +141,6 @@ export default {
 
   remove_traduction: (query) => {
     return axios.post(burl + "/article/remove_traduction", query, {
-      headers: headers,
-    });
-  },
-
-  aggregate_events: (query) => {
-    return axios.post(burl + "/events/aggregate_events", query, {
       headers: headers,
     });
   },
@@ -272,9 +254,6 @@ export default {
   getFiguresOnUsers: () => axios.get(burl + "/user/getFiguresOnUsers"),
 
   exportUsers: () => axios.post(burl + "/user/exportUsers", {}, { headers }),
-
-  fixAudienceAgeOnContents: () =>
-    axios.post(burl + "/dispositifs/fixAudienceAgeOnContents"),
 
   getActiveStructures: () =>
     axios.get(burl + "/structures/getActiveStructures"),

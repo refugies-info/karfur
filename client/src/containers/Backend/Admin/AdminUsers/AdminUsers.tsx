@@ -257,7 +257,7 @@ export const AdminUsers = () => {
         timer: 1500,
       });
     } catch (error) {
-      logger.error("fixAudienceAgeOnContents error", { error });
+      logger.error("sendTestMail error", { error });
       Swal.fire({
         title: "Oh non!",
         text: "Something went wrong",

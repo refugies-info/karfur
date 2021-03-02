@@ -1,29 +1,5 @@
-import Cookies from "js-cookie";
 import ReactGA from "react-ga";
-
-import API from "../utils/API";
 import { logger } from "../logger";
-
-// checks dataLayer[] to be available and pushes data to it
-const pushtoDataLayer = (data) => {
-  (window.dataLayer = window.dataLayer || []).push(data);
-};
-// dispatch() will decide whether to push directly into the DL
-// or enhance with API-provided data first
-export const dispatch = (data) => {
-  data.cookie = Cookies.get("_ga");
-  if (!data.action) return;
-  API.log_event(data).then(
-    function (data) {
-      pushtoDataLayer(data);
-    },
-    function (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
-      return;
-    }
-  );
-};
 
 export const initGA = () => {
   if (process.env.REACT_APP_ENV !== "production") {

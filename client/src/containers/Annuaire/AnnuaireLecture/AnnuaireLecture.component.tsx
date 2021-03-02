@@ -12,7 +12,7 @@ import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus
 import { setSelectedStructureActionCreator } from "../../../services/SelectedStructure/selectedStructure.actions";
 import { Header } from "./components/Header";
 import Skeleton from "react-loading-skeleton";
-import { Event } from "../../../tracking/dispatch";
+import { Event, initGA } from "../../../tracking/dispatch";
 
 declare const window: Window;
 
@@ -80,11 +80,6 @@ export interface PropsBeforeInjection {
   history: any;
 }
 export const AnnuaireLectureComponent = (props: Props) => {
-  // @ts-ignore
-  // const param = props.location.state;
-  // const [selectedLetter, setSelectedLetter] = useState(
-  //   (param && param.letter) || "a"
-  // );
   const [stopScroll, setStopScroll] = useState(false);
 
   const structures = useSelector(activeStructuresSelector);
@@ -114,6 +109,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
     window.addEventListener("scroll", handleScroll);
     window.scrollTo(0, 0);
 
+    initGA();
     Event("ANNUAIRE_VIEW", "", "");
     return () => {
       window.removeEventListener("scroll", handleScroll);
