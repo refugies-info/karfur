@@ -123,11 +123,7 @@ export default {
       headers: headers,
     });
   },
-  distinct_count_event: (query) => {
-    return axios.post(burl + "/events/distinct_count_event", query, {
-      headers: headers,
-    });
-  },
+
   getArticle: (params = {}) => {
     return axios.post(burl + "/article/get_article", params, {
       headers: headers,
