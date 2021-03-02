@@ -142,26 +142,32 @@ export class TopRightHeader extends React.Component<Props> {
                 Modifier la fiche
               </FButton>
             )}
-          <div className="top-icon-wrapper" onClick={props.bookmarkDispositif}>
-            {props.showSpinnerBookmark ? (
-              <Spinner color="success" />
-            ) : (
-              <FButton
-                className="default"
-                name={"bookmark" + (props.pinned ? "" : "-outline")}
+          {this.props.selectedDispositif &&
+            this.props.selectedDispositif.status === "Actif" && (
+              <div
+                className="top-icon-wrapper"
+                onClick={props.bookmarkDispositif}
               >
-                {props.pinned
-                  ? props.t(
-                      "Dispositif.Enlever des favoris",
-                      "Enlever des favoris"
-                    )
-                  : props.t(
-                      "Dispositif.Ajouter aux favoris",
-                      "Ajouter aux favoris"
-                    )}
-              </FButton>
+                {props.showSpinnerBookmark ? (
+                  <Spinner color="success" />
+                ) : (
+                  <FButton
+                    className="default"
+                    name={"bookmark" + (props.pinned ? "" : "-outline")}
+                  >
+                    {props.pinned
+                      ? props.t(
+                          "Dispositif.Enlever des favoris",
+                          "Enlever des favoris"
+                        )
+                      : props.t(
+                          "Dispositif.Ajouter aux favoris",
+                          "Ajouter aux favoris"
+                        )}
+                  </FButton>
+                )}
+              </div>
             )}
-          </div>
         </Col>
       );
     }

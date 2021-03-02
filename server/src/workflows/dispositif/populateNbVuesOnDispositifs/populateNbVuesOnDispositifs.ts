@@ -1,16 +1,21 @@
-import { Res } from "../../../types/interface";
+import { Res, RequestFromClient } from "../../../types/interface";
 import logger = require("../../../logger");
 import Event from "../../../schema/schemaEvent";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { ObjectId } from "mongoose";
 import { updateDispositifInDB } from "../../../controllers/dispositif/dispositif.repository";
+import { checkRequestIsFromPostman } from "../../../libs/checkAuthorizations";
 
 interface AggregateEvent {
   _id: ObjectId;
   count: number;
 }
-export const populateNbVuesOnDispositifs = async (_: any, res: Res) => {
+export const populateNbVuesOnDispositifs = async (
+  req: RequestFromClient<{}>,
+  res: Res
+) => {
   try {
+    checkRequestIsFromPostman(req.fromPostman);
     const aggregateEvents: AggregateEvent[] = await Event.aggregate([
       {
         $match: {
@@ -53,6 +58,9 @@ export const populateNbVuesOnDispositifs = async (_: any, res: Res) => {
     logger.error("[populateNbVuesOnDispositifs] error", {
       error: error.message,
     });
-    res.status(500).json({ text: "KO" });
+    if (error.message === "NOT_AUTHORIZED") {
+      return res.status(404).json({ text: "NOT_AUTHORIZED" });
+    }
+    return res.status(500).json({ text: "KO" });
   }
 };
