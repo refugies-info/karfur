@@ -157,12 +157,6 @@ export default {
     });
   },
 
-  aggregate_events: (query) => {
-    return axios.post(burl + "/events/aggregate_events", query, {
-      headers: headers,
-    });
-  },
-
   add_article: (query) => {
     return axios.post(burl + "/article/add_article", query, {
       headers: headers,

@@ -114,63 +114,8 @@ async function distinct_event(req, res) {
     });
 }
 
-function aggregate_events(req, res) {
-  if (!req.fromSite) {
-    return res.status(405).json({ text: "Requête bloquée par API" });
-  }
-  logger.info("aggregate_events", req.body);
-
-  var find = new Promise(function (resolve, reject) {
-    Event.aggregate(req.body).exec(function (err, result) {
-      if (err) {
-        reject(500);
-      } else {
-        if (result) {
-          resolve(result);
-        } else {
-          reject(404);
-        }
-      }
-    });
-  });
-
-  find.then(
-    function (result) {
-      res.status(200).json({
-        text: "Succès",
-        data: result,
-      });
-    },
-    // eslint-disable-next-line no-use-before-define
-    (e) => _errorHandler(e, res)
-  );
-}
-
-const _errorHandler = (error, res) => {
-  switch (error) {
-    case 500:
-      res.status(500).json({
-        text: "Erreur interne",
-        data: error,
-      });
-      break;
-    case 404:
-      res.status(404).json({
-        text: "Pas de résultats",
-        data: error,
-      });
-      break;
-    default:
-      res.status(500).json({
-        text: "Erreur interne",
-        data: error,
-      });
-  }
-};
-
 //On exporte notre fonction
 exports.log_event = log_event;
 exports.get_event = get_event;
 exports.distinct_count_event = distinct_count_event;
 exports.distinct_event = distinct_event;
-exports.aggregate_events = aggregate_events;

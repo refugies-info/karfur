@@ -10,5 +10,4 @@ module.exports = function (app) {
     events.distinct_count_event
   );
   app.post("/distinct_event", checkToken.check, events.distinct_event);
-  app.post("/aggregate_events", checkToken.getId, events.aggregate_events);
 };
