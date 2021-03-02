@@ -8,10 +8,7 @@ export { socket };
 
 const headers = {
   "Content-Type": "application/json",
-  "x-access-token":
-    process.env.NODE_ENV === "test"
-      ? process.env.REACT_APP_FAKE_TOKEN
-      : localStorage.getItem("token") || undefined,
+  "x-access-token": localStorage.getItem("token") || undefined,
   "site-secret": process.env.REACT_APP_SITE_SECRET,
 };
 
