@@ -84,11 +84,10 @@
     "build": "react-app-env build",
     "test": "npm run test:unit && npm run test:lint && npm run test:types",
     "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage",
-    "nwtest": "node_modules/nightwatch/bin/nightwatch -c nightwatch.json",
-    "cypress:open": "cypress open",
     "test:types": "tsc --noEmit",
     "test:unit": "jest",
-    "test:lint": "eslint . --ext ts,tsx,js --quiet --cache"
+    "test:lint": "eslint . --ext ts,tsx,js --quiet --cache",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "proxy": "http://localhost:8000",
   "bugs": {
