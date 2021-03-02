@@ -94,6 +94,8 @@ app.use(function (_, res, next) {
 
 //Checking request origin
 app.use(function (req, _, next) {
+  req.fromPostman =
+    req.headers["postman-secret"] === process.env.POSTMAN_SECRET;
   req.fromSite =
     req.headers["site-secret"] === process.env.REACT_APP_SITE_SECRET;
   next();

@@ -10,6 +10,7 @@ export interface RequestFromClient<Query> {
     locale?: string;
   };
   fromSite: boolean;
+  fromPostman: boolean;
   query?: Query;
   userId?: ObjectId;
   user?: UserDoc;

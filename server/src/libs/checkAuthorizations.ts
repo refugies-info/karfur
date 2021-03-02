@@ -12,3 +12,9 @@ export const checkRequestIsFromSite = (fromSite: boolean) => {
 
   return;
 };
+
+export const checkRequestIsFromPostman = (fromPostman: boolean) => {
+  if (!fromPostman) throw new Error("NOT_AUTHORIZED");
+
+  return;
+};
