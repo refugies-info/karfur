@@ -23,7 +23,6 @@ import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
-import "../../../node_modules/video-react/dist/video-react.css";
 import API from "../../utils/API";
 import Sponsors from "../../components/Frontend/Dispositif/Sponsors/Sponsors";
 import { ContenuDispositif } from "../../components/Frontend/Dispositif/ContenuDispositif";

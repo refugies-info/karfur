@@ -15,7 +15,6 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import FButton from "../../FigmaUI/FButton/FButton";
 
-// import DraggableList from '../../UI/DraggableList/DraggableList';
 import API from "../../../utils/API";
 import { fetchUserActionCreator } from "../../../services/User/user.actions";
 
@@ -53,15 +52,6 @@ class TraducteurModal extends Component {
         i === key + 1 ? { ...x, checked: !x.checked } : x
       ),
     }));
-  };
-
-  handleDraggableListChange = (value) => {
-    let langues_list = [...this.state.langues].filter((x) => x.checked);
-    let newOrder = [];
-    value.forEach((item) => {
-      newOrder.push(langues_list[item]);
-    });
-    this.shadowSelectedLanguages = newOrder;
   };
 
   onValidate = () => {
@@ -139,18 +129,6 @@ class TraducteurModal extends Component {
                 );
               })}
           </FormGroup>
-
-          {/* {langues_list.length>0 && 
-            <>
-              <h3>Veuillez prioriser vos langues de travail</h3>
-              <FormGroup>
-                <DraggableList 
-                  items={langues_list}
-                  maxLength={langues.length}
-                  handleDraggableListChange={this.handleDraggableListChange}
-                  />
-              </FormGroup>
-            </>} */}
         </ModalBody>
         <ModalFooter>
           <FButton className="validate hero" onClick={this.onValidate}>

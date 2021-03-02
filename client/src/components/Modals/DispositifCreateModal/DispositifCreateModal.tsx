@@ -85,6 +85,16 @@ interface StateType {
   step: number;
 }
 
+const getIFrameSrc = (step: number) => {
+  if (step === 1) {
+    return "https://www.loom.com/embed/43573b5bd3c349d9abb28c0c61af1a5f?autoplay=true";
+  }
+  if (step === 2) {
+    return "https://www.loom.com/embed/aa6bc53a6ed545cb9ec0196cbb40d5bf?autoplay=true";
+  }
+  return "https://www.loom.com/embed/a213b540704f4d598c338e50c4f07cdd?autoplay=true";
+};
+
 export class DispositifCreateModal extends Component<Props, StateType> {
   state: StateType = { step: 1 };
   changeStep = (next = true) => {
@@ -144,20 +154,17 @@ export class DispositifCreateModal extends Component<Props, StateType> {
             </div>
           )}
           <VideoContainer step={this.state.step}>
-            {/* <FButton type="tuto" name={"play-circle-outline"}>
-              Découvrir en vidéo
-            </FButton>
-             */}
-            <div
+            <iframe
+              src={getIFrameSrc(this.state.step)}
+              frameBorder="0"
               style={{
-                fontWeight: "bold",
-                fontSize: "22px",
-                lineHeight: "28px",
-                color: "#5e5e5e",
+                top: "0",
+                left: " 0",
+                width: "100%",
+                height: "100%",
+                borderRadius: "12px",
               }}
-            >
-              Bientôt disponible
-            </div>
+            ></iframe>
           </VideoContainer>
           <ButtonsContainer>
             <FButton

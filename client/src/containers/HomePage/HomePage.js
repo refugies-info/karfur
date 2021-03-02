@@ -12,7 +12,7 @@ import API from "../../utils/API";
 import styled from "styled-components";
 
 import "./HomePage.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 import { initial_data } from "../AdvancedSearch/data";
 import HomeSearch from "./HomeSearch";
 import CatList from "./CatList";
@@ -372,32 +372,6 @@ export class HomePage extends Component {
             </span>
           </div>
         </section>
-        {/* <div>
-            <button onClick={() => this.changeLanguage('fr')}>fr</button>
-            <button onClick={() => this.changeLanguage('en')}>en</button>
-            <button onClick={() => this.changeLanguage('ar')}>ar</button>
-            <h1>{t('Bienvenue')}</h1>
-        </div>
-        <div>Toolbar, SideDrawer and Backdrop</div>
-
-        <SendToMessenger messengerAppId="300548213983436" pageId="423112408432299" />
-
-        <MessengerSendToMessenger 
-          pageId="423112408432299" 
-          appId="300548213983436" 
-          ctaText="SEND_THIS_TO_ME"
-          language= 'fr_FR'
-          size="xlarge"
-          dataRef="/dispositif/5cd43ce8b472e46bd90e8f58" />
-
-        <Notifications/>
-
-        <div>{t('Elément principal')}</div>
-        <div>{t('Elément secondaire')}</div>
-        <div>{t('Troisième élément')}</div>
-        <div>{t('Quatrième élément')}</div>
-        <div>{t('accueil.Cinquième élément')}</div>
-        <div>{t('accueil.Six')}</div> */}
       </div>
     );
   }

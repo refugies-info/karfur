@@ -1,12 +1,12 @@
 const structure = require("./structure/lib.js");
 const checkToken = require("./account/checkToken");
-import { getAllStructures } from "../models/structure/getAllStructures";
+import { getAllStructures } from "../workflows/structure/getAllStructures";
 import { targetErrosOnDispositifsAssociesInStructures } from "./structure/cleanStructure";
-import { getStructureById } from "../models/structure/getStructureById";
-import { getActiveStructures } from "../models/structure/getActiveStructures";
-import { createStructure } from "../models/structure/createStructure";
-import { updateStructure } from "../models/structure/updateStructure";
-import { modifyUserRoleInStructure } from "../models/structure/modifyUserRoleInStructure";
+import { getStructureById } from "../workflows/structure/getStructureById";
+import { getActiveStructures } from "../workflows/structure/getActiveStructures";
+import { createStructure } from "../workflows/structure/createStructure";
+import { updateStructure } from "../workflows/structure/updateStructure";
+import { modifyUserRoleInStructure } from "../workflows/structure/modifyUserRoleInStructure";
 
 module.exports = function (app) {
   app.post("/get_structure", structure.get_structure);
