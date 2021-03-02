@@ -115,9 +115,6 @@ export default {
     });
   },
 
-  log_event: (event) => {
-    return axios.post(burl + "/events/log_event", event, { headers: headers });
-  },
   get_event: (params) => {
     return axios.post(burl + "/events/get_event", params, { headers: headers });
   },
