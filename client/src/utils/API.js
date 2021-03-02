@@ -255,9 +255,6 @@ export default {
 
   exportUsers: () => axios.post(burl + "/user/exportUsers", {}, { headers }),
 
-  fixAudienceAgeOnContents: () =>
-    axios.post(burl + "/dispositifs/fixAudienceAgeOnContents"),
-
   getActiveStructures: () =>
     axios.get(burl + "/structures/getActiveStructures"),
 
