@@ -1,10 +1,18 @@
+/* eslint-disable no-console */
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { Spinner } from "reactstrap";
 
 import API from "../utils/API";
 import UnauthorizedAccess from "./Navigation/UnauthorizedAccess/UnauthorizedAccess";
 import { fetchUserActionCreator } from "../services/User/user.actions";
+const loading = () => (
+  <div className="spinner-container">
+    test
+    <Spinner color="red" className="waiting-spinner" />
+  </div>
+);
 
 const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
   const { user, fetchUser } = rest;
@@ -47,17 +55,25 @@ const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
               roles.filter((x) => route.restriction.includes(x.nom)).length > 0;
             if (isAuthorized) {
               return (
-                <Component {...props} socket={socket} socketFn={socketFn} />
+                <React.Suspense fallback={loading()}>
+                  <Component {...props} socket={socket} socketFn={socketFn} />
+                </React.Suspense>
               );
-            } 
-              return <UnauthorizedAccess />;
-            
-          } 
-            return <Component {...props} socket={socket} socketFn={socketFn} />;
-          
-        } 
-          return <Component {...props} socket={socket} socketFn={socketFn} />;
-        
+            }
+            return <UnauthorizedAccess />;
+          }
+          return (
+            <React.Suspense fallback={loading()}>
+              <Component {...props} socket={socket} socketFn={socketFn} />;
+            </React.Suspense>
+          );
+        }
+
+        return (
+          <React.Suspense fallback={loading()}>
+            <Component {...props} socket={socket} socketFn={socketFn} />;
+          </React.Suspense>
+        );
       }}
     />
   );

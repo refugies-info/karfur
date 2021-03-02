@@ -1,23 +1,72 @@
+import React from "react";
 import HomePage from "./containers/HomePage/HomePage";
-import Dashboard from "./containers/Backend/Dashboard/Dashboard";
+// import Dashboard from "./containers/Backend/Dashboard/Dashboard";
 import { Admin } from "./containers/Backend/Admin/Admin";
-import UserDash from "./containers/Backend/UserDash/UserDash";
-import UserDashContrib from "./containers/Backend/UserDashContrib/UserDashContrib";
-import UserDashStruct from "./containers/Backend/UserDashStruct/UserDashStruct";
-import UserProfile from "./containers/Backend/UserProfile/UserProfile";
-import Dispositif from "./containers/Dispositif/Dispositif";
-import Avancement from "./containers/Avancement/Avancement";
-import Translation from "./containers/Translation/Translation";
-import AdvancedSearch from "./containers/AdvancedSearch/AdvancedSearch";
-import QuiSommesNous from "./containers/QuiSommesNous/QuiSommesNous";
-import CommentContribuer from "./containers/CommentContribuer/CommentContribuer";
-import MentionsLegales from "./containers/MentionsLegales/MentionsLegales";
-import PolitiqueConfidentialite from "./containers/PolitiqueConfidentialite/PolitiqueConfidentialite";
+// import UserDash from "./containers/Backend/UserDash/UserDash";
+// import UserDashContrib from "./containers/Backend/UserDashContrib/UserDashContrib";
+// import UserDashStruct from "./containers/Backend/UserDashStruct/UserDashStruct";
+// import UserProfile from "./containers/Backend/UserProfile/UserProfile";
+// import Dispositif from "./containers/Dispositif/Dispositif";
+// import Avancement from "./containers/Avancement/Avancement";
+// import Translation from "./containers/Translation/Translation";
+// import AdvancedSearch from "./containers/AdvancedSearch/AdvancedSearch";
+// import QuiSommesNous from "./containers/QuiSommesNous/QuiSommesNous";
+// import CommentContribuer from "./containers/CommentContribuer/CommentContribuer";
+// import MentionsLegales from "./containers/MentionsLegales/MentionsLegales";
+// import PolitiqueConfidentialite from "./containers/PolitiqueConfidentialite/PolitiqueConfidentialite";
 import { AnnuaireCreate } from "./containers/Annuaire/AnnuaireCreate";
 import {
   AnnuaireLecture,
   AnnuaireDetail,
 } from "./containers/Annuaire/AnnuaireLecture";
+
+const Dashboard = React.lazy(() =>
+  import("./containers/Backend/Dashboard/Dashboard")
+);
+// const { Admin } = React.lazy(() => import("./containers/Backend/Admin/Admin"));
+const UserDash = React.lazy(() =>
+  import("./containers/Backend/UserDash/UserDash")
+);
+const UserDashContrib = React.lazy(() =>
+  import("./containers/Backend/UserDashContrib/UserDashContrib")
+);
+const UserDashStruct = React.lazy(() =>
+  import("./containers/Backend/UserDashStruct/UserDashStruct")
+);
+const UserProfile = React.lazy(() =>
+  import("./containers/Backend/UserProfile/UserProfile")
+);
+const Dispositif = React.lazy(() =>
+  import("./containers/Dispositif/Dispositif")
+);
+const Avancement = React.lazy(() =>
+  import("./containers/Avancement/Avancement")
+);
+const Translation = React.lazy(() =>
+  import("./containers/Translation/Translation")
+);
+const QuiSommesNous = React.lazy(() =>
+  import("./containers/QuiSommesNous/QuiSommesNous")
+);
+const CommentContribuer = React.lazy(() =>
+  import("./containers/CommentContribuer/CommentContribuer")
+);
+const MentionsLegales = React.lazy(() =>
+  import("./containers/MentionsLegales/MentionsLegales")
+);
+const PolitiqueConfidentialite = React.lazy(() =>
+  import("./containers/PolitiqueConfidentialite/PolitiqueConfidentialite")
+);
+// const { AnnuaireCreate } = React.lazy(() =>
+//   import("./containers/Annuaire/AnnuaireCreate")
+// );
+// const { AnnuaireLecture, AnnuaireDetail } = React.lazy(() =>
+//   import("./containers/Annuaire/AnnuaireLecture")
+// );
+
+const AdvancedSearch = React.lazy(() =>
+  import("./containers/AdvancedSearch/AdvancedSearch")
+);
 
 const routes = [
   {

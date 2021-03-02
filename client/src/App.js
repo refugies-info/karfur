@@ -16,6 +16,7 @@ import { history } from "./services/configureStore";
 
 const loading = () => (
   <div className="spinner-container">
+    test app loading
     <Spinner color="success" className="waiting-spinner" />
   </div>
 );
