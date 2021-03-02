@@ -118,11 +118,6 @@ export default {
   get_event: (params) => {
     return axios.post(burl + "/events/get_event", params, { headers: headers });
   },
-  distinct_event: (distinct) => {
-    return axios.post(burl + "/events/distinct_event", distinct, {
-      headers: headers,
-    });
-  },
 
   getArticle: (params = {}) => {
     return axios.post(burl + "/article/get_article", params, {
