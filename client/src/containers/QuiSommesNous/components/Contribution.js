@@ -4,6 +4,7 @@ import { ReactComponent as Terrain } from "../../../assets/qui-sommes-nous/QuiSo
 import { NavLink } from "react-router-dom";
 import "./Contribution.scss";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
+import { assetsOnServer } from "../../../assets/assetsOnServer";
 
 const ContributionContentContainer = styled.div`
   display: flex;
@@ -51,9 +52,8 @@ const ContributionCode = (props) => (
   <ContributionDetailContainer>
     <div>
       <img
-        src={
-          "https://storage.googleapis.com/refugies-info-assets/qui-sommes-nous/code_ouvert.svg"
-        }
+        src={assetsOnServer.quiSommesNous.codeOuvert}
+        alt="code ouvert"
         className="etat-ouvert-img"
       />
     </div>
@@ -119,9 +119,8 @@ const ContributionTerrain = (props) => (
 const ContributionEngagement = (props) => (
   <ContributionDetailContainer>
     <img
-      src={
-        "https://storage.googleapis.com/refugies-info-assets/qui-sommes-nous/micro_engagement.svg"
-      }
+      src={assetsOnServer.quiSommesNous.microEngagement}
+      alt="micro-engagement"
     />
     <TextContainer>
       <ContributionDetailTitle>

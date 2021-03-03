@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { ReactComponent as AccompagnementImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_accompagnement.svg";
+import { assetsOnServer } from "../../../assets/assetsOnServer";
 
 const ProblematicContentContainer = styled.div`
   display: flex;
@@ -48,9 +49,8 @@ export const Problematic = (props) => (
 const Statut = (props) => (
   <ProblematicDetailContainer>
     <img
-      src={
-        "https://storage.googleapis.com/refugies-info-assets/qui-sommes-nous/QuiSommesNous_re%CC%81fugie%CC%81s.svg"
-      }
+      src={assetsOnServer.quiSommesNous.statutRefugie}
+      alt="statut-refugie"
     />
     <TextContainer>
       <ProblematicDetailTitle>
@@ -71,12 +71,7 @@ const Statut = (props) => (
 
 const Information = (props) => (
   <ProblematicDetailContainer>
-    <img
-      src={
-        "https://storage.googleapis.com/refugies-info-assets/qui-sommes-nous/plein_dinfos.svg"
-      }
-      alt="info"
-    />
+    <img src={assetsOnServer.quiSommesNous.information} alt="info" />
     <TextContainer>
       <ProblematicDetailTitle>
         {props.t(

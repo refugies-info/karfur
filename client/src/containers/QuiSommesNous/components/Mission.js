@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import "./Mission.scss";
+import { assetsOnServer } from "../../../assets/assetsOnServer";
 
 const MissionContentContainer = styled.div`
   display: flex;
@@ -54,10 +55,9 @@ export const Mission = (props) => (
 const MissionDispositif = (props) => (
   <MissionDetailContainer>
     <img
-      src={
-        "https://storage.googleapis.com/refugies-info-assets/qui-sommes-nous/QuiSommesNous_dispositif.svg"
-      }
+      src={assetsOnServer.quiSommesNous.recenserDispositif}
       className="dispo-img"
+      alt="recenser"
     />
     <MissionDetailTitle>
       {props.t(
@@ -81,10 +81,9 @@ const MissionDemarche = (props) => (
   <MissionDetailContainer>
     <div>
       <img
-        src={
-          "https://storage.googleapis.com/refugies-info-assets/qui-sommes-nous/demarche_light.svg"
-        }
+        src={assetsOnServer.quiSommesNous.vulgariserDemarche}
         className={"demarche-img"}
+        alt="vulgariser"
       />
     </div>
     <MissionDetailTitle>
