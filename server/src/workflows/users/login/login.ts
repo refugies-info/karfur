@@ -16,22 +16,6 @@ interface User {
   phone?: string;
 }
 
-// export const callBackResponse = (name: string, res: Res) => {
-//   switch (name) {
-//     case "ERROR_WHILE_SENDING_ADMIN_CODE":
-//       return res.status(404).json({
-//         text: "Erreur à l'envoi du code à ce numéro",
-//       });
-//     case "NO_CODE_SUPPLIED":
-//       return res.status(501).json({ text: "no code supplied" });
-//     case "WRONG_ADMIN_CODE":
-//       return res.status(402).json({
-//         text: "Erreur à la vérification du code",
-//         data: "no-alert",
-//       });
-//   }
-// };
-
 // route called when login or register
 export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
   try {
@@ -58,37 +42,37 @@ export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
     }
 
     // @ts-ignore : no authenticate on user Model from mongodb
-    if (user.authenticate(req.body.password)) {
-      logger.info("[Login] password correct for user", {
+    if (!user.authenticate(req.body.password)) {
+      logger.error("[Login] incorrect password", {
         username: req.body && req.body.username,
       });
 
-      // check if user is admin
-      if (
-        (user.roles || []).some(
-          (x) =>
-            x &&
-            x.toString() ===
-              req.roles.find((x) => x.nom === "Admin")._id.toString()
-        )
-      ) {
-        // due to the functioning of authy, adminLogin is responsible to respond to the request
-        await adminLogin(req.body, user, res);
-        return;
-      }
-      await proceedWithLogin(user);
-      return res.status(200).json({
-        // @ts-ignore
-        token: user.getToken(),
-        text: "Authentification réussi",
-      });
+      throw new Error("INVALID_PASSWORD");
     }
 
-    logger.error("[Login] incorrect password", {
+    logger.info("[Login] password correct for user", {
       username: req.body && req.body.username,
     });
 
-    throw new Error("INVALID_PASSWORD");
+    // check if user is admin
+    if (
+      (user.roles || []).some(
+        (x) =>
+          x &&
+          x.toString() ===
+            req.roles.find((x) => x.nom === "Admin")._id.toString()
+      )
+    ) {
+      // due to the functioning of authy, adminLogin is responsible to respond to the request
+      await adminLogin(req.body, user, res);
+      return;
+    }
+    await proceedWithLogin(user);
+    return res.status(200).json({
+      // @ts-ignore
+      token: user.getToken(),
+      text: "Authentification réussi",
+    });
   } catch (error) {
     return loginExceptionsManager(error, res);
   }
