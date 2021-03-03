@@ -4,9 +4,10 @@ import { getFiguresOnUsers } from "../workflows/users/getFiguresOnUsers";
 import { getAllUsers } from "../workflows/users/getAllUsers";
 import { updateUser } from "../workflows/users/updateUser";
 import { exportUsers } from "../workflows/users/exportUsers";
+import { login } from "../workflows/users/login";
 
 module.exports = function (app) {
-  app.post("/login", checkToken.getId, checkToken.getRoles, account.login);
+  app.post("/login", checkToken.getId, checkToken.getRoles, login);
   app.post("/signup", checkToken.getRoles, account.signup);
   app.post("/checkUserExists", account.checkUserExists);
   app.post(

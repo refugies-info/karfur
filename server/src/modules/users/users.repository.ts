@@ -36,3 +36,15 @@ export const removeRoleAndStructureInDB = async (
     },
     { upsert: true }
   );
+
+export const getUserByUsernameFromDB = async (username: string) =>
+  await User.findOne({ username });
+
+export const createUser = async (user: {
+  username: string;
+  password: string;
+  roles: ObjectId[];
+  status: string;
+  last_connected: Date;
+  // @ts-ignore
+}) => await User.create(user);

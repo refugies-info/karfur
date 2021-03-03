@@ -16,6 +16,16 @@ export interface RequestFromClient<Query> {
   user?: UserDoc;
 }
 
+export interface RequestFromClientWithBody<Query> {
+  body: Query;
+  fromSite: boolean;
+  fromPostman: boolean;
+  query?: Query;
+  userId?: ObjectId;
+  user?: UserDoc;
+  roles: { nom: string; _id: ObjectId }[];
+}
+
 export interface AudienceAge {
   contentTitle: "Plus de ** ans" | "De ** à ** ans" | "Moins de ** ans";
   bottomValue: number | string;
