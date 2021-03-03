@@ -1,20 +1,14 @@
 import axios from "axios";
-// import openSocket from 'socket.io-client';
 
 import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
-import Cookies from "js-cookie";
 
 const socket = null;
 export { socket };
 
 const headers = {
   "Content-Type": "application/json",
-  "x-access-token":
-    process.env.NODE_ENV === "test"
-      ? process.env.REACT_APP_FAKE_TOKEN
-      : localStorage.getItem("token") || undefined,
-  "cookie-id": Cookies.get("_ga"),
+  "x-access-token": localStorage.getItem("token") || undefined,
   "site-secret": process.env.REACT_APP_SITE_SECRET,
 };
 
