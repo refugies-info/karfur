@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { getAllUsersFromDB } from "../users.repository";
+import { getAllUsersFromDB } from "../../../modules/users/users.repository";
 import { Res, Picture } from "../../../types/interface";
 import { UserDoc } from "../../../schema/schemaUser";
 import { ObjectId } from "mongoose";

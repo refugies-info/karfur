@@ -1,12 +1,12 @@
 import { RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
-import { checkIfUserIsAuthorizedToModifyStructure } from "../structure.service";
+import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
 import { ObjectId } from "mongoose";
-import { updateStructureMember } from "../structure.repository";
+import { updateStructureMember } from "../../../modules/structure/structure.repository";
 import {
   removeRoleAndStructureOfUser,
   updateRoleAndStructureOfResponsable,
-} from "../../users/users.service";
+} from "../../../modules/users/users.service";
 
 interface Query {
   membreId: ObjectId;

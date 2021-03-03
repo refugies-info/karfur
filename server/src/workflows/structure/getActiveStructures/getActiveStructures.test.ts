@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { getActiveStructures } from "./getActiveStructures";
-import { getStructuresFromDB } from "src/workflows/structure/structure.repository";
+import { getStructuresFromDB } from "../../../modules/structure/structure.repository";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -10,7 +10,7 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-jest.mock("src/workflows/structure/structure.repository", () => ({
+jest.mock("../../../modules/structure/structure.repository", () => ({
   getStructuresFromDB: jest
     .fn()
     .mockResolvedValue([{ id: "id1" }, { id: "id2" }]),

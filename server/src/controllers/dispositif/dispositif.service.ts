@@ -12,7 +12,7 @@ import {
   getActiveDispositifsFromDBWithoutPopulate,
 } from "./dispositif.repository";
 import { ObjectId } from "mongoose";
-import { updateAssociatedDispositifsInStructure } from "../../workflows/structure/structure.repository";
+import { updateAssociatedDispositifsInStructure } from "../../modules/structure/structure.repository";
 import {
   removeUselessContent,
   adaptDispositifMainSponsorAndCreatorId,
