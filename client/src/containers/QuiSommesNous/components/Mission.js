@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import { ReactComponent as ParcoursImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_parcours.svg";
 import { NavLink } from "react-router-dom";
 
 import FButton from "../../../components/FigmaUI/FButton/FButton";
@@ -106,7 +105,11 @@ const MissionDemarche = (props) => (
 
 const MissionParcours = (props) => (
   <MissionDetailContainer>
-    <ParcoursImage />
+    <img
+      src={assetsOnServer.quiSommesNous.parcours}
+      alt="parcours"
+      className="parcours-img"
+    />
     <MissionDetailTitle>
       {props.t(
         "QuiSommesNous.parcours",

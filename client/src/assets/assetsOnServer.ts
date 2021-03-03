@@ -9,5 +9,9 @@ export const assetsOnServer = {
     vulgariserDemarche: bucketUrlQSN + "demarche_light.svg",
     statutRefugie: bucketUrlQSN + "QuiSommesNous_refugies.svg",
     information: bucketUrlQSN + "plein_dinfos.svg",
+    accompagnement: bucketUrlQSN + "QuiSommesNous_accompagnement.svg",
+    header: bucketUrlQSN + "QuiSommesNous_header.svg",
+    parcours: bucketUrlQSN + "QuiSommesNous_parcours.svg",
+    terrain: bucketUrlQSN + "QuiSommesNous_terrain.svg",
   },
 };

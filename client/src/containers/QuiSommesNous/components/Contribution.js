@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { ReactComponent as Terrain } from "../../../assets/qui-sommes-nous/QuiSommesNous_terrain.svg";
 import { NavLink } from "react-router-dom";
 import "./Contribution.scss";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
@@ -50,13 +49,11 @@ export const Contribution = (props) => (
 
 const ContributionCode = (props) => (
   <ContributionDetailContainer>
-    <div>
-      <img
-        src={assetsOnServer.quiSommesNous.codeOuvert}
-        alt="code ouvert"
-        className="etat-ouvert-img"
-      />
-    </div>
+    <img
+      src={assetsOnServer.quiSommesNous.codeOuvert}
+      alt="code ouvert"
+      className="etat-ouvert-img"
+    />
     <TextContainer>
       <ContributionDetailTitle>
         {props.t(
@@ -86,7 +83,11 @@ const ContributionCode = (props) => (
 
 const ContributionTerrain = (props) => (
   <ContributionDetailContainer>
-    <Terrain />
+    <img
+      src={assetsOnServer.quiSommesNous.terrain}
+      alt="terrain"
+      className="etat-ouvert-img"
+    />
     <TextContainer>
       <ContributionDetailTitle>
         {props.t(

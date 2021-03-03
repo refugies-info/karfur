@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-import HeaderBackgroungImage from "../../assets/qui-sommes-nous/QuiSommesNous_header.svg";
 import styled from "styled-components";
 
 import { Mission } from "./components/Mission";
@@ -11,6 +10,7 @@ import { Team } from "./components/Team";
 import { MemberDetails } from "./components/MemberDetails";
 import { Partners } from "./components/Partners";
 import i18n from "../../i18n";
+import { assetsOnServer } from "../../assets/assetsOnServer";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -20,7 +20,7 @@ const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url(${HeaderBackgroungImage});
+  background-image: url(${assetsOnServer.quiSommesNous.header});
   margin-top: -75px;
   width: 100%;
   height: 720px;

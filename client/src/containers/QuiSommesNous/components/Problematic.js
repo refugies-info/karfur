@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { ReactComponent as AccompagnementImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_accompagnement.svg";
 import { assetsOnServer } from "../../../assets/assetsOnServer";
 
 const ProblematicContentContainer = styled.div`
@@ -91,7 +90,11 @@ const Information = (props) => (
 
 const Accompagnement = (props) => (
   <ProblematicDetailContainer>
-    <AccompagnementImage />
+    <img
+      src={assetsOnServer.quiSommesNous.accompagnement}
+      alt="accompagnement"
+    />
+
     <TextContainer>
       <ProblematicDetailTitle>
         {props.t(
