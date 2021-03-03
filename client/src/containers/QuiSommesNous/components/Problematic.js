@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import InfoImage from "../../../assets/qui-sommes-nous/plein_dinfos.svg";
-
 import { ReactComponent as AccompagnementImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_accompagnement.svg";
 
 const ProblematicContentContainer = styled.div`
@@ -73,7 +71,12 @@ const Statut = (props) => (
 
 const Information = (props) => (
   <ProblematicDetailContainer>
-    <img src={InfoImage} />
+    <img
+      src={
+        "https://storage.googleapis.com/refugies-info-assets/qui-sommes-nous/plein_dinfos.svg"
+      }
+      alt="info"
+    />
     <TextContainer>
       <ProblematicDetailTitle>
         {props.t(
