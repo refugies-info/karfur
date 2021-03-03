@@ -43,6 +43,10 @@ export const register = async (
       username: user.username,
       error: error.message,
     });
+
+    if (error.message === "PASSWORD_TOO_WEAK") {
+      throw new Error("PASSWORD_TOO_WEAK");
+    }
     throw new Error("INTERNAL");
   }
 };
