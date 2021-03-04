@@ -7,7 +7,7 @@ import { createUser } from "./users.repository";
 import { ObjectId } from "mongoose";
 
 export const register = async (
-  user: { username: string; password: string },
+  user: { username: string; password: string; email?: string },
   userRole: { nom: string; _id: ObjectId }
 ) => {
   try {
@@ -27,6 +27,7 @@ export const register = async (
       roles,
       status: "Actif",
       last_connected: new Date(),
+      email: user.email,
     };
     const savedUser = await createUser(userToSave);
 

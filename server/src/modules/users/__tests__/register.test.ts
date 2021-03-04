@@ -30,17 +30,40 @@ describe("register", () => {
     }
   });
 
-  it("should create user", async () => {
+  it("should create user without email", async () => {
     const userToSave = {
       username: "username",
       password: "hashedPassword",
       roles: ["id_user"],
       status: "Actif",
       last_connected: mockDate,
+      email: undefined,
     };
     const savedUser = { ...userToSave, getToken: () => "token" };
     createUser.mockResolvedValueOnce(savedUser);
     const user = { username: "username", password: "46gh!§ççà" };
+    const res = await register(user, userRole);
+    expect(createUser).toHaveBeenCalledWith(userToSave);
+    expect(res).toEqual({ user: savedUser, token: "token" });
+  });
+
+  it("should create user with email", async () => {
+    const userToSave = {
+      username: "username",
+      password: "hashedPassword",
+      roles: ["id_user"],
+      status: "Actif",
+      last_connected: mockDate,
+      email: "email",
+    };
+
+    const savedUser = { ...userToSave, getToken: () => "token" };
+    createUser.mockResolvedValueOnce(savedUser);
+    const user = {
+      username: "username",
+      password: "46gh!§ççà",
+      email: "email",
+    };
     const res = await register(user, userRole);
     expect(createUser).toHaveBeenCalledWith(userToSave);
     expect(res).toEqual({ user: savedUser, token: "token" });
