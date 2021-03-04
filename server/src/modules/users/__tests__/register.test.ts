@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { register } from "../register";
 import { createUser } from "../users.repository";
 
