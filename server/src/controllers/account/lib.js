@@ -2,10 +2,10 @@ const { User } = require("../../schema/schemaUser");
 const Role = require("../../schema/schemaRole.js");
 const { Langue } = require("../../schema/schemaLangue");
 const passwordHash = require("password-hash");
-const passwdCheck = require("zxcvbn");
 const crypto = require("crypto");
 const logger = require("../../logger");
 const nodemailer = require("nodemailer");
+import { computePasswordStrengthScore } from "../../libs/computePasswordStrengthScore";
 
 const transporter = nodemailer.createTransport({
   host: "pro2.mail.ovh.net",
@@ -178,7 +178,9 @@ function change_password(req, res) {
         return res.status(404).json({ text: "L'utilisateur n'existe pas" });
       } else if (!user.authenticate(newUser.password)) {
         return res.status(401).json({ text: "Echec d'authentification" });
-      } else if ((passwdCheck(newUser.newPassword) || {}).score < 1) {
+      } else if (
+        (computePasswordStrengthScore(newUser.newPassword) || {}).score < 1
+      ) {
         return res
           .status(402)
           .json({ text: "Le mot de passe est trop faible" });
@@ -309,7 +311,7 @@ function set_new_password(req, res) {
             "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
         });
       }
-      if ((passwdCheck(newPassword) || {}).score < 1) {
+      if ((computePasswordStrengthScore(newPassword) || {}).score < 1) {
         return res
           .status(401)
           .json({ text: "Le mot de passe est trop faible" });
@@ -473,7 +475,7 @@ function signup(req, res) {
     let user = req.body;
 
     if (user.password) {
-      if ((passwdCheck(user.password) || {}).score < 1) {
+      if ((computePasswordStrengthScore(user.password) || {}).score < 1) {
         return res
           .status(401)
           .json({ text: "Le mot de passe est trop faible" });
