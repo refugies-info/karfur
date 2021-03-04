@@ -11,7 +11,7 @@ export const sendWelcomeMail = async (email: string, username: string) => {
         email: "contact@refugies.info",
         name: "L'équipe de Réfugiés.info",
       },
-      cc: "contact@refugies.info",
+      // cc: "contact@refugies.info",
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
         pseudo: username,

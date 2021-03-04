@@ -22,10 +22,10 @@ import {
   toggleLangueModalActionCreator,
 } from "../../services/Langue/langue.actions";
 import { logger } from "../../logger";
-import passwdCheck from "zxcvbn";
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
 import img from "../../assets/login_background.svg";
 import { LoadingStatusKey } from "../../services/LoadingStatus/loadingStatus.actions";
+import { computePasswordStrengthScore } from "../../lib/index";
 
 const StyledHeader = styled.div`
   font-weight: 500;
@@ -589,8 +589,7 @@ const getStrength = (score) => {
 };
 
 const PasswordField = (props) => {
-  // from 0 to 4, 4 is very strong
-  const passwordScore = passwdCheck(props.value).score;
+  const passwordScore = computePasswordStrengthScore(props.value).score;
   return (
     <>
       <div

@@ -1,205 +1,231 @@
-import { ReactComponent as CertificationFLE } from "../../../../../assets/annuaire/activités/Français/CertificationFLE.svg";
-import { ReactComponent as CoursFrançais } from "../../../../../assets/annuaire/activités/Français/CoursFrançais.svg";
-import { ReactComponent as SupportApprentissage } from "../../../../../assets/annuaire/activités/Français/SupportAutoApprentissage.svg";
-import { ReactComponent as AteliersSocioLinguistique } from "../../../../../assets/annuaire/activités/Français/AteliersSocio-linguistique.svg";
-
-import { ReactComponent as AccompagnementVersLogement } from "../../../../../assets/annuaire/activités/Logement/AccompagnementVersLogement.svg";
-import { ReactComponent as CentreHébergement } from "../../../../../assets/annuaire/activités/Logement/CentreHebergement.svg";
-import { ReactComponent as ColocationSolidaire } from "../../../../../assets/annuaire/activités/Logement/ColocationSolidaire.svg";
-import { ReactComponent as HébergementCitoyen } from "../../../../../assets/annuaire/activités/Logement/HebergementCitoyen.svg";
-import { ReactComponent as HébergementLongueDurée } from "../../../../../assets/annuaire/activités/Logement/HebergementLongueDuree.svg";
-import { ReactComponent as IntermédiationLocative } from "../../../../../assets/annuaire/activités/Logement/IntermediationLocative.svg";
-import { ReactComponent as RésidenceSociale } from "../../../../../assets/annuaire/activités/Logement/ResidenceSociale.svg";
-
-import { ReactComponent as AccompagnementGlobal } from "../../../../../assets/annuaire/activités/Administratif/AccompagnementGlobal.svg";
-import { ReactComponent as AccompagnementJuridique } from "../../../../../assets/annuaire/activités/Administratif/AccompagnementJuridique.svg";
-import { ReactComponent as AccueilMineurs } from "../../../../../assets/annuaire/activités/Administratif/AccueilMineurs.svg";
-import { ReactComponent as DomiciliationPostale } from "../../../../../assets/annuaire/activités/Administratif/DomiciliationPostale.svg";
-import { ReactComponent as Interprétariat } from "../../../../../assets/annuaire/activités/Administratif/Interpretariat.svg";
-
-import { ReactComponent as AccompagnementVersLemploi } from "../../../../../assets/annuaire/activités/InsertionPro/AccompagnementVersLemploi.svg";
-import { ReactComponent as BilanDéfinitionProjet } from "../../../../../assets/annuaire/activités/InsertionPro/BilanDefinitionProjet.svg";
-import { ReactComponent as Coaching } from "../../../../../assets/annuaire/activités/InsertionPro/Coaching.svg";
-import { ReactComponent as MiseEnRelation } from "../../../../../assets/annuaire/activités/InsertionPro/MiseEnRelation.svg";
-
-import { ReactComponent as AidesFinancières } from "../../../../../assets/annuaire/activités/Mobilité/AidesFinancieres.svg";
-import { ReactComponent as CoursConduite } from "../../../../../assets/annuaire/activités/Mobilité/CoursConduite.svg";
-import { ReactComponent as FormationCode } from "../../../../../assets/annuaire/activités/Mobilité/FormationCode.svg";
-
-import { ReactComponent as Alternance } from "../../../../../assets/annuaire/activités/FormationPro/Alternance.svg";
-import { ReactComponent as Apprentissage } from "../../../../../assets/annuaire/activités/FormationPro/Apprentissage.svg";
-import { ReactComponent as FormationsCertifiantes } from "../../../../../assets/annuaire/activités/FormationPro/FormationsCertifiantes.svg";
-import { ReactComponent as FormationsNonCertifiantes } from "../../../../../assets/annuaire/activités/FormationPro/FormationsNonCertifiantes.svg";
-
-import { ReactComponent as AutoApprentissage } from "../../../../../assets/annuaire/activités/Etudes/AutoApprentissage.svg";
-import { ReactComponent as DiplômeUniversitairePasserelle } from "../../../../../assets/annuaire/activités/Etudes/DiplomeUniversitairePasserelle.svg";
-import { ReactComponent as FormationContinue } from "../../../../../assets/annuaire/activités/Etudes/FormationContinue.svg";
-import { ReactComponent as FormationInitiale } from "../../../../../assets/annuaire/activités/Etudes/FormationInitiale.svg";
-import { ReactComponent as FormationsCiviques } from "../../../../../assets/annuaire/activités/Etudes/FormationsCiviques.svg";
-
-import { ReactComponent as AccompagnementPsy } from "../../../../../assets/annuaire/activités/Sante/AccompagnementPsy.svg";
-import { ReactComponent as BilanSanté } from "../../../../../assets/annuaire/activités/Sante/BilanSante.svg";
-import { ReactComponent as ParcoursDeSoin } from "../../../../../assets/annuaire/activités/Sante/ParcoursDeSoin.svg";
-
-import { ReactComponent as ActivitésManuelles } from "../../../../../assets/annuaire/activités/Loisirs/ActivitesManuelles.svg";
-import { ReactComponent as TournoiSportifs } from "../../../../../assets/annuaire/activités/Loisirs/TournoiSportifs.svg";
-
-import { ReactComponent as HistoireFrance } from "../../../../../assets/annuaire/activités/Culture/HistoireFrance.svg";
-import { ReactComponent as VisiteVille } from "../../../../../assets/annuaire/activités/Culture/VisiteVille.svg";
-
-import { ReactComponent as MissionsPonctuelles } from "../../../../../assets/annuaire/activités/Bénévolat/MissionsPonctuelles.svg";
-import { ReactComponent as ServiceCiviqueFrançais } from "../../../../../assets/annuaire/activités/Bénévolat/ServiceCiviqueFrançais.svg";
-import { ReactComponent as ServiceCiviqueRéfugiés } from "../../../../../assets/annuaire/activités/Bénévolat/ServiceCiviqueRefugies.svg";
-
-import { ReactComponent as Parrainage } from "../../../../../assets/annuaire/activités/Rencontre/Parrainage.svg";
+import { assetsOnServer } from "../../../../../assets/assetsOnServer";
 
 export const activities = [
   {
     tag: "Français",
     activity: "Sessions de certification FLE",
-    image: CertificationFLE,
+    image: assetsOnServer.annuaire.activites.francais.certificationFLE,
   },
-  { tag: "Français", activity: "Cours de français", image: CoursFrançais },
+  {
+    tag: "Français",
+    activity: "Cours de français",
+    image: assetsOnServer.annuaire.activites.francais.coursFrancais,
+  },
   {
     tag: "Français",
     activity: "Support d'auto-apprentissage",
-    image: SupportApprentissage,
+    image: assetsOnServer.annuaire.activites.francais.supportAutoApprentissage,
   },
   {
     tag: "Français",
     activity: "Ateliers socio-linguistique",
-    image: AteliersSocioLinguistique,
+    image: assetsOnServer.annuaire.activites.francais.ateliersSocioLinguistique,
   },
   {
     tag: "Logement",
     activity: "Hébergement citoyen",
-    image: HébergementCitoyen,
+    image: assetsOnServer.annuaire.activites.logement.hébergementCitoyen,
   },
   {
     tag: "Logement",
     activity: "Hébergement longue durée",
-    image: HébergementLongueDurée,
+    image: assetsOnServer.annuaire.activites.logement.hébergementLongueDurée,
   },
   {
     tag: "Logement",
     activity: "Centre d'hébergement",
-    image: CentreHébergement,
+    image: assetsOnServer.annuaire.activites.logement.centreHébergement,
   },
   {
     tag: "Logement",
     activity: "Accompagnement vers et dans le logement",
-    image: AccompagnementVersLogement,
+    image:
+      assetsOnServer.annuaire.activites.logement.accompagnementVersLogement,
   },
-  { tag: "Logement", activity: "Résidence sociale", image: RésidenceSociale },
+  {
+    tag: "Logement",
+    activity: "Résidence sociale",
+    image: assetsOnServer.annuaire.activites.logement.résidenceSociale,
+  },
   {
     tag: "Logement",
     activity: "Colocation solidaire",
-    image: ColocationSolidaire,
+    image: assetsOnServer.annuaire.activites.logement.colocationSolidaire,
   },
   {
     tag: "Logement",
     activity: "Intermédiation locative",
-    image: IntermédiationLocative,
+    image: assetsOnServer.annuaire.activites.logement.intermédiationLocative,
   },
   {
     tag: "Administratif",
     activity: "Accompagnement global",
-    image: AccompagnementGlobal,
+    image: assetsOnServer.annuaire.activites.administratif.accompagnementGlobal,
   },
-  { tag: "Administratif", activity: "Interprétariat", image: Interprétariat },
+  {
+    tag: "Administratif",
+    activity: "Interprétariat",
+    image: assetsOnServer.annuaire.activites.administratif.interprétariat,
+  },
   {
     tag: "Administratif",
     activity: "Accueil des mineurs",
-    image: AccueilMineurs,
+    image: assetsOnServer.annuaire.activites.administratif.accueilMineurs,
   },
   {
     tag: "Administratif",
     activity: "Domiciliation postale",
-    image: DomiciliationPostale,
+    image: assetsOnServer.annuaire.activites.administratif.domiciliationPostale,
   },
   {
     tag: "Administratif",
     activity: "Accompagnement juridique",
-    image: AccompagnementJuridique,
+    image:
+      assetsOnServer.annuaire.activites.administratif.accompagnementJuridique,
   },
 
   {
     tag: "Insertion pro",
     activity: "Accompagnement vers l'emploi",
-    image: AccompagnementVersLemploi,
+    image:
+      assetsOnServer.annuaire.activites.insertionPro.accompagnementVersLemploi,
   },
-  { tag: "Insertion pro", activity: "Mise en relation", image: MiseEnRelation },
+  {
+    tag: "Insertion pro",
+    activity: "Mise en relation",
+    image: assetsOnServer.annuaire.activites.insertionPro.miseEnRelation,
+  },
   {
     tag: "Insertion pro",
     activity: "Coaching / Suivi dans l'emploi",
-    image: Coaching,
+    image: assetsOnServer.annuaire.activites.insertionPro.coaching,
   },
   {
     tag: "Insertion pro",
     activity: "Bilan et définition du projet",
-    image: BilanDéfinitionProjet,
+    image: assetsOnServer.annuaire.activites.insertionPro.bilanDéfinitionProjet,
   },
-  { tag: "Mobilité", activity: "Aides financières", image: AidesFinancières },
-  { tag: "Mobilité", activity: "Cours de conduite", image: CoursConduite },
-  { tag: "Mobilité", activity: "Formation au code", image: FormationCode },
+
+  {
+    tag: "Mobilité",
+    activity: "Aides financières",
+    image: assetsOnServer.annuaire.activites.mobilite.aidesFinancières,
+  },
+  {
+    tag: "Mobilité",
+    activity: "Cours de conduite",
+    image: assetsOnServer.annuaire.activites.mobilite.coursConduite,
+  },
+  {
+    tag: "Mobilité",
+    activity: "Formation au code",
+    image: assetsOnServer.annuaire.activites.mobilite.formationCode,
+  },
 
   {
     tag: "Formation pro",
     activity: "Formations certifiantes",
-    image: FormationsCertifiantes,
+    image:
+      assetsOnServer.annuaire.activites.formationPro.formationsCertifiantes,
   },
   {
     tag: "Formation pro",
     activity: "Formations non certifiantes",
-    image: FormationsNonCertifiantes,
+    image:
+      assetsOnServer.annuaire.activites.formationPro.formationsNonCertifiantes,
   },
-  { tag: "Formation pro", activity: "Apprentissage", image: Apprentissage },
-  { tag: "Formation pro", activity: "Alternance", image: Alternance },
+  {
+    tag: "Formation pro",
+    activity: "Apprentissage",
+    image: assetsOnServer.annuaire.activites.formationPro.apprentissage,
+  },
+  {
+    tag: "Formation pro",
+    activity: "Alternance",
+    image: assetsOnServer.annuaire.activites.formationPro.alternance,
+  },
 
   {
     tag: "Études",
     activity: "Diplôme Universitaire Passerelle",
-    image: DiplômeUniversitairePasserelle,
+    image:
+      assetsOnServer.annuaire.activites.etudes.diplômeUniversitairePasserelle,
   },
-  { tag: "Études", activity: "Formation initiale", image: FormationInitiale },
-  { tag: "Études", activity: "Formation continue", image: FormationContinue },
+  {
+    tag: "Études",
+    activity: "Formation initiale",
+    image: assetsOnServer.annuaire.activites.etudes.formationInitiale,
+  },
+  {
+    tag: "Études",
+    activity: "Formation continue",
+    image: assetsOnServer.annuaire.activites.etudes.formationContinue,
+  },
   {
     tag: "Études",
     activity: "Auto-apprentissage (MOOC)",
-    image: AutoApprentissage,
+    image: assetsOnServer.annuaire.activites.etudes.autoApprentissage,
   },
-  { tag: "Études", activity: "Formations civiques", image: FormationsCiviques },
+  {
+    tag: "Études",
+    activity: "Formations civiques",
+    image: assetsOnServer.annuaire.activites.etudes.formationsCiviques,
+  },
 
-  { tag: "Santé", activity: "Bilan de santé", image: BilanSanté },
-  { tag: "Santé", activity: "Parcours de soin", image: ParcoursDeSoin },
+  {
+    tag: "Santé",
+    activity: "Bilan de santé",
+    image: assetsOnServer.annuaire.activites.sante.bilanSanté,
+  },
+  {
+    tag: "Santé",
+    activity: "Parcours de soin",
+    image: assetsOnServer.annuaire.activites.sante.parcoursDeSoin,
+  },
   {
     tag: "Santé",
     activity: "Accompagnement psychologique",
-    image: AccompagnementPsy,
+    image: assetsOnServer.annuaire.activites.sante.accompagnementPsy,
   },
 
-  { tag: "Loisir", activity: "Activités manuelles", image: ActivitésManuelles },
-  { tag: "Loisir", activity: "Tournois sportifs", image: TournoiSportifs },
-  { tag: "Culture", activity: "Visite de la ville", image: VisiteVille },
+  {
+    tag: "Loisir",
+    activity: "Activités manuelles",
+    image: assetsOnServer.annuaire.activites.loisirs.activitésManuelles,
+  },
+  {
+    tag: "Loisir",
+    activity: "Tournois sportifs",
+    image: assetsOnServer.annuaire.activites.loisirs.tournoiSportifs,
+  },
+  {
+    tag: "Culture",
+    activity: "Visite de la ville",
+    image: assetsOnServer.annuaire.activites.culture.visiteVille,
+  },
   {
     tag: "Culture",
     activity: "Cours d'histoire de France",
-    image: HistoireFrance,
+    image: assetsOnServer.annuaire.activites.culture.histoireFrance,
   },
   {
     tag: "Bénévolat",
     activity: "Service civique pour français (ou européens)",
-    image: ServiceCiviqueFrançais,
+    image: assetsOnServer.annuaire.activites.benevolat.serviceCiviqueFrançais,
   },
   {
     tag: "Bénévolat",
     activity: "Service civique pour réfugiés",
-    image: ServiceCiviqueRéfugiés,
+    image: assetsOnServer.annuaire.activites.benevolat.serviceCiviqueRéfugiés,
   },
   {
     tag: "Bénévolat",
     activity: "Missions ponctuelles",
-    image: MissionsPonctuelles,
+    image: assetsOnServer.annuaire.activites.benevolat.missionsPonctuelles,
   },
-  { tag: "Rencontre", activity: "Parrainage", image: Parrainage },
+  {
+    tag: "Rencontre",
+    activity: "Parrainage",
+    image: assetsOnServer.annuaire.activites.rencontre.parrainage,
+  },
 ];
