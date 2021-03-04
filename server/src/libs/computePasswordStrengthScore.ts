@@ -1,27 +1,3 @@
-export const jsUcfirst = (string: string) =>
-  string &&
-  string.length > 1 &&
-  string.charAt(0).toUpperCase() + string.slice(1, string.length);
-
-export const limitNbCaracters = (string: string, nbCaractersMax: number) =>
-  string.substring(0, Math.min(string.length, nbCaractersMax)) +
-  (string.length > nbCaractersMax ? "..." : "");
-
-export const removeAccents = (str = "") => {
-  var accents =
-    "ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž";
-  var accentsOut =
-    "AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz";
-  const newStr = str.split("");
-  var i, x;
-  for (i = 0; i < str.length; i++) {
-    if ((x = accents.indexOf(str[i])) !== -1) {
-      newStr[i] = accentsOut[x];
-    }
-  }
-  return newStr.join("");
-};
-
 // rules for password check :
 // nbNumUpper = nbNumeric + nbUpper
 // score 0 (cannot set password): length < 5
@@ -30,7 +6,7 @@ export const removeAccents = (str = "") => {
 // score 2.5 : length >= 7 + nbNumUpper>=3
 // score 3.5 : length >= 7 + nbNumUpper>=3 + at least 1 special caractere
 
-// make sure to use same function in backend
+// make sure to use same function in frontend
 export const computePasswordStrengthScore = (
   password: string
 ): { score: number } => {
