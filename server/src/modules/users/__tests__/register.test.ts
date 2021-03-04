@@ -1,6 +1,11 @@
 // @ts-nocheck
 import { register } from "../register";
 import { createUser } from "../users.repository";
+import { sendWelcomeMail } from "../../mail/mail.service";
+
+jest.mock("../../mail/mail.service", () => ({
+  sendWelcomeMail: jest.fn(),
+}));
 
 jest.mock("../users.repository", () => ({
   createUser: jest.fn(),
@@ -43,6 +48,7 @@ describe("register", () => {
     createUser.mockResolvedValueOnce(savedUser);
     const user = { username: "username", password: "46gh!§ççà" };
     const res = await register(user, userRole);
+    expect(sendWelcomeMail).not.toHaveBeenCalled();
     expect(createUser).toHaveBeenCalledWith(userToSave);
     expect(res).toEqual({ user: savedUser, token: "token" });
   });
@@ -66,6 +72,7 @@ describe("register", () => {
     };
     const res = await register(user, userRole);
     expect(createUser).toHaveBeenCalledWith(userToSave);
+    expect(sendWelcomeMail).toHaveBeenCalledWith("email", "username");
     expect(res).toEqual({ user: savedUser, token: "token" });
   });
 
