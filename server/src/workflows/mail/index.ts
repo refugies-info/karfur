@@ -1,1 +1,0 @@
-export { sendMail } from "./sendMail";

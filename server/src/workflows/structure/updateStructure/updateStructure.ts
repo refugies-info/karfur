@@ -1,8 +1,8 @@
 import { Res, RequestFromClient } from "../../../types/interface";
 import { StructureDoc } from "../../../schema/schemaStructure";
 import logger from "../../../logger";
-import { updateStructureInDB } from "../structure.repository";
-import { checkIfUserIsAuthorizedToModifyStructure } from "../structure.service";
+import { updateStructureInDB } from "../../../modules/structure/structure.repository";
+import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
 
 // route called when modify structure but not its members (use another route for this)
 export const updateStructure = async (

@@ -1,5 +1,6 @@
 const bucketUrl = "https://storage.googleapis.com/refugies-info-assets/";
 const bucketUrlQSN = bucketUrl + "qui-sommes-nous/";
+const bucketUrlCC = bucketUrl + "comment-contribuer/";
 
 export const assetsOnServer = {
   quiSommesNous: {
@@ -13,5 +14,8 @@ export const assetsOnServer = {
     header: bucketUrlQSN + "QuiSommesNous_header.svg",
     parcours: bucketUrlQSN + "QuiSommesNous_parcours.svg",
     terrain: bucketUrlQSN + "QuiSommesNous_terrain.svg",
+  },
+  commentContribuer: {
+    traduction: bucketUrlCC + "CommentContribuer_imageTrad.svg",
   },
 };

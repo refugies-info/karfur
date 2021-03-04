@@ -5,8 +5,8 @@ import {
   Membre,
 } from "../../../types/interface";
 import logger from "../../../logger";
-import { updateRoleAndStructureOfResponsable } from "../../users/users.service";
-import { createStructureInDB } from "../structure.repository";
+import { updateRoleAndStructureOfResponsable } from "../../../modules/users/users.service";
+import { createStructureInDB } from "../../../modules/structure/structure.repository";
 
 interface ReceivedStructure {
   picture: Picture | null;

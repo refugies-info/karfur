@@ -21,7 +21,7 @@ const logger = require("../../logger");
 const { updateLanguagesAvancement } = require("../langues/langues.service");
 const {
   updateAssociatedDispositifsInStructure,
-} = require("../../workflows/structure/structure.repository");
+} = require("../../modules/structure/structure.repository");
 
 // const gmail_auth = require('./gmail_auth');
 

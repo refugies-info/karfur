@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { updateStructure } from "./updateStructure";
-import { updateStructureInDB } from "../structure.repository";
-import { checkIfUserIsAuthorizedToModifyStructure } from "../structure.service";
+import { updateStructureInDB } from "../../../modules/structure/structure.repository";
+import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -11,7 +11,7 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-jest.mock("../structure.repository", () => ({
+jest.mock("../../../modules/structure/structure.repository", () => ({
   updateStructureInDB: jest.fn().mockResolvedValue({
     nom: "structure",
     acronyme: "acronyme",
@@ -19,7 +19,7 @@ jest.mock("../structure.repository", () => ({
   }),
 }));
 
-jest.mock("../structure.service", () => ({
+jest.mock("../../../modules/structure/structure.service", () => ({
   checkIfUserIsAuthorizedToModifyStructure: jest.fn(),
 }));
 
