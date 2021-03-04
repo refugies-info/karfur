@@ -1,15 +1,15 @@
 // @ts-nocheck
-import { getStructuresFromDB } from "src/workflows/structure/structure.repository";
-import { getUserById } from "../../users/users.repository";
+import { getStructuresFromDB } from "src/modules/structure/structure.repository";
+import { getUserById } from "../../../modules/users/users.repository";
 import { getAllStructures } from "./getAllStructures";
 
-jest.mock("src/workflows/structure/structure.repository", () => ({
+jest.mock("src/modules/structure/structure.repository", () => ({
   getStructuresFromDB: jest
     .fn()
     .mockResolvedValue([{ id: "id1" }, { id: "id2" }]),
 }));
 
-jest.mock("../../users/users.repository", () => ({
+jest.mock("../../../modules/users/users.repository", () => ({
   getUserById: jest.fn().mockResolvedValue({
     _id: "id1",
     username: "respo",

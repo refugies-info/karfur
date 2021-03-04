@@ -1,5 +1,8 @@
 // @ts-nocheck
-import { updateRoleAndStructureOfResponsable } from "../users.service";
+import {
+  updateRoleAndStructureOfResponsable,
+  proceedWithLogin,
+} from "../users.service";
 import { getUserById, updateUserInDB } from "../users.repository";
 import { getRoleByName } from "../../../controllers/role/role.repository";
 
@@ -121,6 +124,21 @@ describe("updateRoleAndStructureOfResponsable", () => {
     expect(updateUserInDB).toHaveBeenCalledWith("userId", {
       roles: ["hasStructureId"],
       structures: ["structId"],
+    });
+  });
+});
+
+describe("proceedWithLogin", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  const mockDate = new Date(1466424490000);
+  jest.spyOn(global, "Date").mockImplementation(() => mockDate);
+
+  it("should call updateUserInDB", async () => {
+    await proceedWithLogin({ _id: "id", username: "test" });
+    expect(updateUserInDB).toHaveBeenCalledWith("id", {
+      last_connected: mockDate,
     });
   });
 });

@@ -1,6 +1,6 @@
 import { Res, RequestFromClient } from "../../../types/interface";
 import logger from "../../../logger";
-import { getAllUsersFromDB } from "../users.repository";
+import { getAllUsersFromDB } from "../../../modules/users/users.repository";
 import { adaptUsers } from "../getAllUsers/getAllUsers";
 import { ObjectId } from "mongoose";
 import moment from "moment";

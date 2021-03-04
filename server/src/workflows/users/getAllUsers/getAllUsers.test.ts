@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { getAllUsers } from "./getAllUsers";
-import { getAllUsersFromDB } from "../users.repository";
+import { getAllUsersFromDB } from "../../../modules/users/users.repository";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -10,7 +10,7 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-jest.mock("../users.repository", () => ({
+jest.mock("../../../modules/users/users.repository", () => ({
   getAllUsersFromDB: jest.fn(),
 }));
 
