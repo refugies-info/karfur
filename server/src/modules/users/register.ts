@@ -5,6 +5,7 @@ import passwdCheck from "zxcvbn";
 import passwordHash from "password-hash";
 import { createUser } from "./users.repository";
 import { ObjectId } from "mongoose";
+import { sendWelcomeMail } from "../mail/mail.service";
 
 export const register = async (
   user: { username: string; password: string; email?: string },
@@ -30,6 +31,10 @@ export const register = async (
       email: user.email,
     };
     const savedUser = await createUser(userToSave);
+
+    if (savedUser.email) {
+      await sendWelcomeMail(savedUser.email, savedUser.username);
+    }
 
     logger.info("[Register] successfully registered a new user", {
       username: user.username,
