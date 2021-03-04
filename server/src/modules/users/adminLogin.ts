@@ -10,7 +10,7 @@ const requestSMSAdminLogin = async (
   authyId: string,
   username: string,
   res: Res
-) =>
+) => {
   authy.request_sms(authyId, true, function (err_sms: Error) {
     if (err_sms) {
       logger.error("[Login] error while sending sms for admin", {
@@ -28,6 +28,7 @@ const requestSMSAdminLogin = async (
     });
     return loginExceptionsManager(new Error("NO_CODE_SUPPLIED"), res);
   });
+};
 
 export const adminLogin = async (
   userFromRequest: {
@@ -52,28 +53,27 @@ export const adminLogin = async (
     });
 
     // code provided : check if code is correct
-    return authy.verify(
-      userFromDB.authy_id,
-      userFromRequest.code,
-      async function (err: Error, result: any) {
-        if (err || !result) {
-          logger.error("[Login] error while verifying admin code", {
-            username,
-          });
-          return loginExceptionsManager(new Error("WRONG_ADMIN_CODE"), res);
-        }
-
-        logger.info("[Login] admin user, code provided is correct", {
+    return authy.verify(userFromDB.authy_id, userFromRequest.code, function (
+      err: Error,
+      result: any
+    ) {
+      if (err || !result) {
+        logger.error("[Login] error while verifying admin code", {
           username,
         });
-        proceedWithLogin(userFromDB);
-        return res.status(200).json({
-          // @ts-ignore
-          token: userFromDB.getToken(),
-          text: "Authentification réussi",
-        });
+        return loginExceptionsManager(new Error("WRONG_ADMIN_CODE"), res);
       }
-    );
+
+      logger.info("[Login] admin user, code provided is correct", {
+        username,
+      });
+      proceedWithLogin(userFromDB);
+      return res.status(200).json({
+        // @ts-ignore
+        token: userFromDB.getToken(),
+        text: "Authentification réussi",
+      });
+    });
   }
 
   // user already authy_id and no code provided --> send sms
