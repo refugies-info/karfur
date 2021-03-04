@@ -12,7 +12,6 @@ export const register = async (
 ) => {
   try {
     logger.info("[Register] register attempt", { username: user.username });
-
     if ((passwdCheck(user.password) || {}).score < 1) {
       logger.error("[Register] register failed, password too weak", {
         username: user.username,
@@ -20,7 +19,6 @@ export const register = async (
       throw new Error("PASSWORD_TOO_WEAK");
     }
     const hashedPassword = passwordHash.generate(user.password);
-
     const roles = [userRole._id];
 
     const userToSave = {
