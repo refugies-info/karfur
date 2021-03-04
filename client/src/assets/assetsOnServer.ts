@@ -2,6 +2,7 @@ const bucketUrl = "https://storage.googleapis.com/refugies-info-assets/";
 const bucketUrlQSN = bucketUrl + "qui-sommes-nous/";
 const bucketUrlCC = bucketUrl + "comment-contribuer/";
 const bucketUrlAnnuaireActivites = bucketUrl + "annuaire/activit%C3%A9s/";
+const bucketUrlPartners = bucketUrl + "logosPartenaires/";
 
 export const assetsOnServer = {
   quiSommesNous: {
@@ -141,5 +142,33 @@ export const assetsOnServer = {
         parrainage: bucketUrlAnnuaireActivites + "Rencontre/Parrainage.svg",
       },
     },
+  },
+  partners: {
+    Coallia: bucketUrlPartners + "coallia.png",
+    Aurore: bucketUrlPartners + "aurore.png",
+    AER: bucketUrlPartners + "action_emploi_refugies.png",
+    Benenova: bucketUrlPartners + "benenova.png",
+    CASP: bucketUrlPartners + "casp.png",
+    Causons: bucketUrlPartners + "causons.png",
+    CESAM: bucketUrlPartners + "cesam.png",
+    Duo: bucketUrlPartners + "duo_for_a_job.png",
+    COS: bucketUrlPartners + "fondation_cos.png",
+    ForumRefugies: bucketUrlPartners + "forum_refugies.png",
+    FranceHorizon: bucketUrlPartners + "france_horizon.png",
+    FTDA: bucketUrlPartners + "france_terre_asile.png",
+    SOS: bucketUrlPartners + "groupe_sos.png",
+    Habitat: bucketUrlPartners + "habitat_humanisme.png",
+    IFRI: bucketUrlPartners + "ifri.png",
+    JRS: bucketUrlPartners + "jrs_france.png",
+    Konexio: bucketUrlPartners + "konexio.png",
+    Puy: bucketUrlPartners + "puy_de_dome.png",
+    Simplon: bucketUrlPartners + "simplon.png",
+    Singa: bucketUrlPartners + "singa.png",
+    MissionLocale: bucketUrlPartners + "unml.png",
+    WERO: bucketUrlPartners + "wero.png",
+    CNAM: bucketUrlPartners + "CNAM.png",
+    CRF: bucketUrlPartners + "CRF.png",
+    EachOne: bucketUrlPartners + "each_one.png",
+    INALCO: bucketUrlPartners + "inalco.png",
   },
 };
