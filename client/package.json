@@ -75,8 +75,7 @@
     "stringquery": "^1.0.8",
     "styled-components": "^4.4.1",
     "sweetalert2": "^8.10.7",
-    "typesafe-actions": "^5.1.0",
-    "zxcvbn": "^4.4.2"
+    "typesafe-actions": "^5.1.0"
   },
   "scripts": {
     "start": "react-app-env start",
