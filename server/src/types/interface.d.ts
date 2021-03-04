@@ -121,3 +121,9 @@ export interface IStructure {
   hasResponsibleSeenNotification?: boolean;
   toJSON?: () => IStructure;
 }
+
+export interface IMailEvent {
+  username: string;
+  email: string;
+  templateName: string;
+}

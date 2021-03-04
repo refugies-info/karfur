@@ -1,7 +1,8 @@
 import { sendMail } from "../../connectors/sendgrid/sendMail";
 import logger from "../../logger";
+import { addMailEvent } from "./mail.repository";
 
-export const sendWelcomeMail = (email: string, username: string) => {
+export const sendWelcomeMail = async (email: string, username: string) => {
   try {
     logger.info("[sendWelcomeMail] received", { email });
     const dynamicData = {
@@ -15,7 +16,10 @@ export const sendWelcomeMail = (email: string, username: string) => {
         pseudo: username,
       },
     };
-    return sendMail("newUserWelcome", dynamicData);
+    const templateName = "newUserWelcome";
+    sendMail(templateName, dynamicData);
+    await addMailEvent({ templateName, username, email });
+    return;
   } catch (error) {
     logger.error("[sendWelcomeMail] error", { email, error: error.message });
   }
