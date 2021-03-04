@@ -12,17 +12,9 @@ import styled from "styled-components";
 import HeaderBackgroungImage from "../../assets/comment-contribuer/CommentContribuer-header.svg";
 import BackgroundDispositif from "../../assets/comment-contribuer/CommentContribuer-background_orange.svg";
 import { assetsOnServer } from "../../assets/assetsOnServer";
-import DispositifImage from "../../assets/comment-contribuer/CommentContribuer-dispositif.png";
-
 import BackgroundDemarche from "../../assets/comment-contribuer/CommentContribuer-background_rouge.svg";
-import DemarcheImage from "../../assets/comment-contribuer/CommentContribuer-demarche.png";
-
 import BackgroundStructure from "../../assets/comment-contribuer/CommentContribuer-background_violet.svg";
-import StructureImage from "../../assets/comment-contribuer/CommentContribuer-structure.png";
-
 import BackgroundLexique from "../../assets/comment-contribuer/CommentContribuer-background_bleu.svg";
-import LexiqueImage from "../../assets/comment-contribuer/CommentContribuer-lexique.png";
-
 import BackgroundTraduction from "../../assets/comment-contribuer/CommentContribuer_backgroundTraduction.svg";
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
 import { ReactComponent as PapillonViolet } from "../../assets/comment-contribuer/CommentContribuer-papillon_violet.svg";
@@ -289,7 +281,7 @@ const TraduireAnchor = styled.div`
 
 const DispositifCard = (props) => (
   <DispoCardContainer>
-    <img src={DispositifImage} alt="dispositif" />
+    <img src={assetsOnServer.commentContribuer.dispositif} alt="dispositif" />
     <div
       style={{
         display: "flex",
@@ -329,7 +321,7 @@ const DispositifCard = (props) => (
 
 const StructureCard = (props) => (
   <StructureCardContainer>
-    <img src={StructureImage} alt="structure" />
+    <img src={assetsOnServer.commentContribuer.structure} alt="structure" />
     <div
       style={{
         display: "flex",
@@ -367,7 +359,7 @@ const StructureCard = (props) => (
 
 const DemarcheCard = (props) => (
   <DemarcheCardContainer>
-    <img src={DemarcheImage} alt="demarche" />
+    <img src={assetsOnServer.commentContribuer.demarche} alt="demarche" />
     <div
       style={{
         display: "flex",
@@ -406,7 +398,7 @@ const DemarcheCard = (props) => (
 
 const LexiqueCard = (props) => (
   <LexiqueCardContainer>
-    <img src={LexiqueImage} alt="lexique" />
+    <img src={assetsOnServer.commentContribuer.lexique} alt="lexique" />
     <div
       style={{
         display: "flex",

@@ -18,6 +18,10 @@ export const assetsOnServer = {
   },
   commentContribuer: {
     traduction: bucketUrlCC + "CommentContribuer_imageTrad.svg",
+    lexique: bucketUrlCC + "CommentContribuer-lexique.png",
+    demarche: bucketUrlCC + "CommentContribuer-demarche.png",
+    structure: bucketUrlCC + "CommentContribuer-structure.png",
+    dispositif: bucketUrlCC + "CommentContribuer-dispositif.png",
   },
   annuaire: {
     activites: {
