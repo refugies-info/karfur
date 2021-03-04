@@ -1,13 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { ReactComponent as DispoImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_dispositif.svg";
-import DemarcheImage from "../../../assets/qui-sommes-nous/demarche_light.svg";
 
-import { ReactComponent as ParcoursImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_parcours.svg";
 import { NavLink } from "react-router-dom";
 
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import "./Mission.scss";
+import { assetsOnServer } from "../../../assets/assetsOnServer";
 
 const MissionContentContainer = styled.div`
   display: flex;
@@ -55,7 +53,11 @@ export const Mission = (props) => (
 
 const MissionDispositif = (props) => (
   <MissionDetailContainer>
-    <DispoImage />
+    <img
+      src={assetsOnServer.quiSommesNous.recenserDispositif}
+      className="dispo-img"
+      alt="recenser"
+    />
     <MissionDetailTitle>
       {props.t(
         "QuiSommesNous.recenser",
@@ -76,9 +78,12 @@ const MissionDispositif = (props) => (
 
 const MissionDemarche = (props) => (
   <MissionDetailContainer>
-    {/* <DemarcheImage /> */}
     <div>
-      <img src={DemarcheImage} className={"demarche-img"} />
+      <img
+        src={assetsOnServer.quiSommesNous.vulgariserDemarche}
+        className={"demarche-img"}
+        alt="vulgariser"
+      />
     </div>
     <MissionDetailTitle>
       {props.t(
@@ -100,7 +105,11 @@ const MissionDemarche = (props) => (
 
 const MissionParcours = (props) => (
   <MissionDetailContainer>
-    <ParcoursImage />
+    <img
+      src={assetsOnServer.quiSommesNous.parcours}
+      alt="parcours"
+      className="parcours-img"
+    />
     <MissionDetailTitle>
       {props.t(
         "QuiSommesNous.parcours",

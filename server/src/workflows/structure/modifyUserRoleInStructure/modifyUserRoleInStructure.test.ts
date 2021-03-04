@@ -1,11 +1,11 @@
 // @ts-nocheck
 import { modifyUserRoleInStructure } from "./modifyUserRoleInStructure";
-import { checkIfUserIsAuthorizedToModifyStructure } from "../structure.service";
-import { updateStructureMember } from "../structure.repository";
+import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
+import { updateStructureMember } from "../../../modules/structure/structure.repository";
 import {
   removeRoleAndStructureOfUser,
   updateRoleAndStructureOfResponsable,
-} from "../../users/users.service";
+} from "../../../modules/users/users.service";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -15,15 +15,15 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-jest.mock("../structure.repository", () => ({
+jest.mock("../../../modules/structure/structure.repository", () => ({
   updateStructureMember: jest.fn(),
 }));
 
-jest.mock("../structure.service", () => ({
+jest.mock("../../../modules/structure/structure.service", () => ({
   checkIfUserIsAuthorizedToModifyStructure: jest.fn(),
 }));
 
-jest.mock("../../users/users.service", () => ({
+jest.mock("../../../modules/users/users.service", () => ({
   removeRoleAndStructureOfUser: jest.fn(),
   updateRoleAndStructureOfResponsable: jest.fn(),
 }));

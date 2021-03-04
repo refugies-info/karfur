@@ -6,6 +6,7 @@ import {
 } from "./users.repository";
 import { ObjectId } from "mongoose";
 import { getRoleByName } from "../../controllers/role/role.repository";
+import { UserDoc } from "../../schema/schemaUser";
 
 const getUserRoles = (roles: ObjectId[] | null, newRole: ObjectId) => {
   if (!roles) return [newRole];
@@ -55,4 +56,9 @@ export const removeRoleAndStructureOfUser = async (
     userId,
     structureId
   );
+};
+
+export const proceedWithLogin = async (user: UserDoc) => {
+  const userToSave = { last_connected: new Date() };
+  return await updateUserInDB(user._id, userToSave);
 };

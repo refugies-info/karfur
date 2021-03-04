@@ -1,4 +1,3 @@
-import Cookies from "js-cookie";
 import { updateObject } from "../utility";
 import { Language } from "../../types/interface";
 import { LangueActions } from "./langue.actions";
@@ -22,7 +21,8 @@ export const langueReducer = createReducer<LangueState, LangueActions>(
   initialLangueState,
   {
     TOGGLE_LANGUE: (state, action) => {
-      Cookies.set("languei18nCode", action.payload);
+      // @ts-ignore
+      localStorage.setItem("languei18nCode", action.payload);
       return updateObject(state, { languei18nCode: action.payload });
     },
     TOGGLE_LANG_MODAL: (state) =>

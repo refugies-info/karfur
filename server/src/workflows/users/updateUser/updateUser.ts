@@ -2,7 +2,10 @@ import { RequestFromClient, Res } from "../../../types/interface";
 import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { getRoleByName } from "../../../controllers/role/role.repository";
-import { getUserById, updateUserInDB } from "../users.repository";
+import {
+  getUserById,
+  updateUserInDB,
+} from "../../../modules/users/users.repository";
 
 interface User {
   _id: ObjectId;

@@ -11,23 +11,19 @@ import SVGIcon from "../../components/UI/SVGIcon/SVGIcon";
 import styled from "styled-components";
 import HeaderBackgroungImage from "../../assets/comment-contribuer/CommentContribuer-header.svg";
 import BackgroundDispositif from "../../assets/comment-contribuer/CommentContribuer-background_orange.svg";
-// import { ReactComponent as DispositifImage } from "../../assets/comment-contribuer/CommentContribuer-dispositif.svg";
+import { assetsOnServer } from "../../assets/assetsOnServer";
 import DispositifImage from "../../assets/comment-contribuer/CommentContribuer-dispositif.png";
 
 import BackgroundDemarche from "../../assets/comment-contribuer/CommentContribuer-background_rouge.svg";
-// import { ReactComponent as DemarcheImage } from "../../assets/comment-contribuer/CommentContribuer-demarche.svg";
 import DemarcheImage from "../../assets/comment-contribuer/CommentContribuer-demarche.png";
 
 import BackgroundStructure from "../../assets/comment-contribuer/CommentContribuer-background_violet.svg";
-// import { ReactComponent as StructureImage } from "../../assets/comment-contribuer/CommentContribuer-structure.svg";
 import StructureImage from "../../assets/comment-contribuer/CommentContribuer-structure.png";
 
 import BackgroundLexique from "../../assets/comment-contribuer/CommentContribuer-background_bleu.svg";
-// import { ReactComponent as LexiqueImage } from "../../assets/comment-contribuer/CommentContribuer-lexique.svg";
 import LexiqueImage from "../../assets/comment-contribuer/CommentContribuer-lexique.png";
 
 import BackgroundTraduction from "../../assets/comment-contribuer/CommentContribuer_backgroundTraduction.svg";
-import { ReactComponent as TradImage } from "../../assets/comment-contribuer/CommentContribuer_imageTrad.svg";
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
 import { ReactComponent as PapillonViolet } from "../../assets/comment-contribuer/CommentContribuer-papillon_violet.svg";
 import { ReactComponent as PapillonRose } from "../../assets/comment-contribuer/CommentContribuer-papillon_rose.svg";
@@ -293,8 +289,7 @@ const TraduireAnchor = styled.div`
 
 const DispositifCard = (props) => (
   <DispoCardContainer>
-    {/* <DispositifImage /> */}
-    <img src={DispositifImage} />
+    <img src={DispositifImage} alt="dispositif" />
     <div
       style={{
         display: "flex",
@@ -334,8 +329,7 @@ const DispositifCard = (props) => (
 
 const StructureCard = (props) => (
   <StructureCardContainer>
-    {/* <StructureImage /> */}
-    <img src={StructureImage} />
+    <img src={StructureImage} alt="structure" />
     <div
       style={{
         display: "flex",
@@ -373,8 +367,7 @@ const StructureCard = (props) => (
 
 const DemarcheCard = (props) => (
   <DemarcheCardContainer>
-    {/* <DemarcheImage /> */}
-    <img src={DemarcheImage} />
+    <img src={DemarcheImage} alt="demarche" />
     <div
       style={{
         display: "flex",
@@ -413,8 +406,7 @@ const DemarcheCard = (props) => (
 
 const LexiqueCard = (props) => (
   <LexiqueCardContainer>
-    {/* <LexiqueImage /> */}
-    <img src={LexiqueImage} />
+    <img src={LexiqueImage} alt="lexique" />
     <div
       style={{
         display: "flex",
@@ -553,7 +545,10 @@ class CommentContribuer extends Component {
             )}
           </div>
           <TradContentContainer>
-            <TradImage />
+            <img
+              src={assetsOnServer.commentContribuer.traduction}
+              alt="traduction"
+            />
             <LanguagesContainer>
               <TradHeaderContainer>
                 {t(

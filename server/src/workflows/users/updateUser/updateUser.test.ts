@@ -1,7 +1,10 @@
 // @ts-nocheck
 import { updateUser } from "./updateUser";
 import { getRoleByName } from "../../../controllers/role/role.repository";
-import { getUserById, updateUserInDB } from "../users.repository";
+import {
+  getUserById,
+  updateUserInDB,
+} from "../../../modules/users/users.repository";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -14,7 +17,7 @@ jest.mock("../../../controllers/role/role.repository", () => ({
   getRoleByName: jest.fn(),
 }));
 
-jest.mock("../users.repository", () => ({
+jest.mock("../../../modules/users/users.repository", () => ({
   getUserById: jest.fn(),
   updateUserInDB: jest.fn(),
 }));
