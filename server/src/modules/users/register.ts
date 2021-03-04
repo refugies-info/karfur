@@ -1,6 +1,5 @@
 import logger from "../../logger";
-// @ts-ignore
-import passwdCheck from "zxcvbn";
+import { computePasswordStrengthScore } from "../../libs/computePasswordStrengthScore";
 // @ts-ignore
 import passwordHash from "password-hash";
 import { createUser } from "./users.repository";
@@ -13,7 +12,7 @@ export const register = async (
 ) => {
   try {
     logger.info("[Register] register attempt", { username: user.username });
-    if ((passwdCheck(user.password) || {}).score < 1) {
+    if ((computePasswordStrengthScore(user.password) || {}).score < 1) {
       logger.error("[Register] register failed, password too weak", {
         username: user.username,
       });

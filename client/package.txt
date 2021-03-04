@@ -15,6 +15,3 @@
     // check realy needed
     "moment": "^2.24.0",
 
-
-    // A changer
-    "zxcvbn": "^4.4.2"

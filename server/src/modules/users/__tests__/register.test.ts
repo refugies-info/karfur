@@ -26,7 +26,7 @@ describe("register", () => {
   jest.spyOn(global, "Date").mockImplementation(() => mockDate);
 
   it("should throw if password too weak", async () => {
-    const user = { username: "username", password: "password" };
+    const user = { username: "username", password: "pass" };
     try {
       await register(user, userRole);
     } catch (error) {
