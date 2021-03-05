@@ -1,5 +1,5 @@
 import { RequestFromClient, Res } from "../../../types/interface";
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import {
   getDraftDispositifs,
   updateDispositifInDB,
@@ -22,59 +22,64 @@ export const sendDraftReminderMail = async (
     logger.info(
       `[sendDraftReminderMail] ${dispositifs.length} dispositifs in Brouillon`
     );
-    const nbDaysBeforeReminder = 1;
+    const nbDaysBeforeReminder = 8;
 
     await asyncForEach(dispositifs, async (dispositif) => {
-      logger.info(
-        `[sendDraftReminderMail] dispositif with id ${dispositif._id} `
-      );
-
-      if (dispositif.draftReminderMailSentDate) {
+      try {
         logger.info(
-          `[sendDraftReminderMail] dispositif with id ${dispositif._id} has already received reminder `
+          `[sendDraftReminderMail] dispositif with id ${dispositif._id} `
         );
-        return;
-      }
 
-      const lastUpdate =
-        dispositif.lastModificationDate || dispositif.updatedAt;
-      const nbDaysFromNow = Math.round(
-        moment(moment()).diff(lastUpdate) / (1000 * 60 * 60 * 24)
-      );
+        if (dispositif.draftReminderMailSentDate) {
+          logger.info(
+            `[sendDraftReminderMail] dispositif with id ${dispositif._id} has already received reminder `
+          );
+          return;
+        }
 
-      if (nbDaysFromNow < nbDaysBeforeReminder) {
+        const lastUpdate =
+          dispositif.lastModificationDate || dispositif.updatedAt;
+        const nbDaysFromNow = Math.round(
+          moment(moment()).diff(lastUpdate) / (1000 * 60 * 60 * 24)
+        );
+        if (nbDaysFromNow < nbDaysBeforeReminder) {
+          logger.info(
+            `[sendDraftReminderMail] dispositif with id ${dispositif._id} has been updated ${nbDaysFromNow} ago`
+          );
+          return;
+        }
+
+        // @ts-ignore populate creatorId
+        if (!dispositif.creatorId.email) {
+          logger.info(
+            `[sendDraftReminderMail] dispositif with id ${dispositif._id}, creator has no email related`
+          );
+          return;
+        }
+
         logger.info(
-          `[sendDraftReminderMail] dispositif with id ${dispositif._id} has been updated ${nbDaysFromNow} ago`
+          `[sendDraftReminderMail] dispositif with id ${dispositif._id} has not been updated since ${nbDaysFromNow} days, send a mail`
         );
-        return;
-      }
 
-      // @ts-ignore populate creatorId
-      if (!dispositif.creatorId.email) {
-        logger.info(
-          `[sendDraftReminderMail] dispositif with id ${dispositif._id}, creator has no email related`
+        await sendDraftReminderMailService(
+          // @ts-ignore populate creatorId
+          dispositif.creatorId.email,
+          // @ts-ignore populate creatorId
+          dispositif.creatorId.username,
+          // @ts-ignore
+          dispositif.titreInformatif,
+          // @ts-ignore populate creatorId
+          dispositif.creatorId._id,
+          dispositif._id
         );
-        return;
+        await updateDispositifInDB(dispositif._id, {
+          draftReminderMailSentDate: Date.now(),
+        });
+      } catch (error) {
+        logger.error("[sendDraftReminderMail] error with the dispositif", {
+          dispositifId: dispositif._id,
+        });
       }
-
-      logger.info(
-        `[sendDraftReminderMail] dispositif with id ${dispositif._id} has not been updated since ${nbDaysFromNow} days, send a mail`
-      );
-
-      await sendDraftReminderMailService(
-        // @ts-ignore populate creatorId
-        dispositif.creatorId.email,
-        // @ts-ignore populate creatorId
-        dispositif.creatorId.username,
-        // @ts-ignore
-        dispositif.titreInformatif,
-        // @ts-ignore populate creatorId
-        dispositif.creatorId._id,
-        dispositif._id
-      );
-      await updateDispositifInDB(dispositif._id, {
-        draftReminderMailSentDate: Date.now(),
-      });
     });
 
     return res.status(200).json({ text: "OK" });
