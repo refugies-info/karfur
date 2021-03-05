@@ -1577,6 +1577,7 @@ export class Dispositif extends Component {
         dispositif.status = "En attente non prioritaire";
       }
     }
+    dispositif.lastModificationDate = Date.now();
 
     logger.info("[valider_dispositif] dispositif before call", { dispositif });
     API.add_dispositif(dispositif).then((data) => {

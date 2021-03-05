@@ -148,6 +148,9 @@ var dispositifSchema = new mongoose.Schema(
     publishedAt: {
       type: Date,
     },
+    lastModificationDate: {
+      type: Date,
+    },
     adminComments: {
       type: String,
       required: false,
@@ -238,6 +241,7 @@ export interface DispositifDoc extends mongoose.Document {
   adminPercentageProgressionStatus: string;
   lastAdminUpdate?: number;
   nbVues?: number;
+  lastModificationDate?: number;
 }
 
 export const Dispositif = mongoose.model<DispositifDoc>(
