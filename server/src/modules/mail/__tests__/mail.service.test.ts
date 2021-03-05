@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { sendWelcomeMail } from "../mail.service";
+import { sendWelcomeMail, sendDraftReminderMailService } from "../mail.service";
 import { sendMail } from "../../../connectors/sendgrid/sendMail";
 import { addMailEvent } from "../mail.repository";
 
@@ -37,6 +37,44 @@ describe("sendWelcomeMail", () => {
       username: "username",
       email: "email",
       userId: "userId",
+    });
+  });
+});
+
+describe("sendDraftReminderMailService", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  it("should call send mail and add mail event", async () => {
+    await sendDraftReminderMailService(
+      "email",
+      "username",
+      "titre",
+      "userId",
+      "dispositifId"
+    );
+    const templateName = "draftReminder";
+    const dynamicData = {
+      to: "email",
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      // cc: "contact@refugies.info",
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        pseudo: "username",
+        titreInformatif: "titre",
+      },
+    };
+
+    expect(sendMail).toHaveBeenCalledWith(templateName, dynamicData);
+    expect(addMailEvent).toHaveBeenCalledWith({
+      templateName,
+      username: "username",
+      email: "email",
+      userId: "userId",
+      dispositifId: "dispositifId",
     });
   });
 });

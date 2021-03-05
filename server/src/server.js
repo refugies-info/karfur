@@ -87,6 +87,7 @@ app.use("/structures", router);
 app.use("/tts", router);
 app.use("/miscellaneous", router);
 app.use("/indicator", router);
+app.use("/mail", router);
 require(__dirname + "/controllers/userController")(router);
 require(__dirname + "/controllers/eventsController")(router);
 require(__dirname + "/controllers/translateController")(router);
@@ -100,6 +101,7 @@ require(__dirname + "/controllers/structureController")(router);
 require(__dirname + "/controllers/ttsController")(router);
 require(__dirname + "/controllers/miscellaneousController")(router);
 require(__dirname + "/controllers/indicatorController")(router);
+require(__dirname + "/controllers/mailController")(router);
 
 var port = process.env.PORT;
 app.get("*", (req, res) => {

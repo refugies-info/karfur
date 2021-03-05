@@ -127,4 +127,5 @@ export interface IMailEvent {
   email: string;
   templateName: string;
   userId: ObjectId;
+  dispositifId?: ObjectId;
 }
