@@ -88,7 +88,6 @@ app.use("/traduction", router);
 app.use("/dispositifs", router);
 app.use("/structures", router);
 app.use("/tts", router);
-app.use("/webhook", router);
 app.use("/miscellaneous", router);
 app.use("/indicator", router);
 require(__dirname + "/controllers/userController")(router);
@@ -102,7 +101,6 @@ require(__dirname + "/controllers/traductionController")(router);
 require(__dirname + "/controllers/dispositifController")(router);
 require(__dirname + "/controllers/structureController")(router);
 require(__dirname + "/controllers/ttsController")(router);
-require(__dirname + "/messenger/controller")(router);
 require(__dirname + "/controllers/miscellaneousController")(router);
 require(__dirname + "/controllers/indicatorController")(router);
 
