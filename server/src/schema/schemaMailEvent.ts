@@ -18,6 +18,8 @@ const mailEventSchema = new mongoose.Schema(
       unique: false,
       required: true,
     },
+    userId: { type: mongoose.Types.ObjectId, ref: "User" },
+    dispositifId: { type: mongoose.Types.ObjectId, ref: "Dispositif" },
   },
   // @ts-ignore : https://github.com/Automattic/mongoose/issues/9606
   { timestamps: { createdAt: "created_at" } }

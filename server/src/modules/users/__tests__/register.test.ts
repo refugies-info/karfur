@@ -63,7 +63,7 @@ describe("register", () => {
       email: "email",
     };
 
-    const savedUser = { ...userToSave, getToken: () => "token" };
+    const savedUser = { ...userToSave, getToken: () => "token", _id: "userId" };
     createUser.mockResolvedValueOnce(savedUser);
     const user = {
       username: "username",
@@ -72,7 +72,7 @@ describe("register", () => {
     };
     const res = await register(user, userRole);
     expect(createUser).toHaveBeenCalledWith(userToSave);
-    expect(sendWelcomeMail).toHaveBeenCalledWith("email", "username");
+    expect(sendWelcomeMail).toHaveBeenCalledWith("email", "username", "userId");
     expect(res).toEqual({ user: savedUser, token: "token" });
   });
 

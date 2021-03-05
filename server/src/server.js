@@ -1,6 +1,5 @@
 "use strict";
 require("dotenv").config();
-//Définition des modules
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -9,32 +8,11 @@ const cloudinary = require("cloudinary");
 const formData = require("express-form-data");
 const path = require("path");
 const compression = require("compression");
-const startup = require("./startup/startup");
-// const scanner = require('./i18nscanner.js'); // Si besoin de lancer une extraction des strings manquantes en traduction
-
-// var log = console.log;
-// console.log = function() {
-//     log.apply(console, arguments);
-//     // Print the stack trace
-//     console.trace();
-// };
-
-// const session = require('express-session');
-// const sessionstore = require('sessionstore');
-
-// const oauthLoginCallback = require('./controllers/account/france-connect').oauthLoginCallback
-// const oauthLogoutCallback = require('./controllers/account/france-connect').oauthLogoutCallback
-// const getUser = require('./controllers/account/france-connect').getUser
+const logger = require("./logger");
 
 const { NODE_ENV, CLOUD_NAME, API_KEY, API_SECRET, MONGODB_URI } = process.env;
 
-if (NODE_ENV === "dev") {
-  // eslint-disable-next-line no-console
-  console.log("dev environment");
-} else {
-  // eslint-disable-next-line no-console
-  console.log(NODE_ENV + " environment");
-}
+logger.info(NODE_ENV + " environment");
 
 cloudinary.config({
   cloud_name: CLOUD_NAME,
@@ -44,25 +22,17 @@ cloudinary.config({
 //On définit notre objet express nommé app
 const app = express();
 
-var http = require("http").Server(app);
-var io = require("socket.io")(http);
-
 //Connexion à la base de donnée
 mongoose.set("debug", false);
 let db_path = MONGODB_URI;
 
-// eslint-disable-next-line no-console
-console.log("NODE_ENV : ", NODE_ENV);
 mongoose
   .connect(db_path, { useNewUrlParser: true })
   .then(() => {
-    // eslint-disable-next-line no-console
-    console.log("Connected to mongoDB");
-    startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
+    logger.info("Connected to mongoDB");
   })
   .catch((e) => {
-    // eslint-disable-next-line no-console
-    console.log("Error while DB connecting", { error: e });
+    logger.error("Error while DB connecting", { error: e.message });
   });
 
 //Body Parser
@@ -115,9 +85,9 @@ app.use("/traduction", router);
 app.use("/dispositifs", router);
 app.use("/structures", router);
 app.use("/tts", router);
-app.use("/webhook", router);
 app.use("/miscellaneous", router);
 app.use("/indicator", router);
+app.use("/mail", router);
 require(__dirname + "/controllers/userController")(router);
 require(__dirname + "/controllers/eventsController")(router);
 require(__dirname + "/controllers/translateController")(router);
@@ -129,48 +99,12 @@ require(__dirname + "/controllers/traductionController")(router);
 require(__dirname + "/controllers/dispositifController")(router);
 require(__dirname + "/controllers/structureController")(router);
 require(__dirname + "/controllers/ttsController")(router);
-require(__dirname + "/messenger/controller")(router);
 require(__dirname + "/controllers/miscellaneousController")(router);
 require(__dirname + "/controllers/indicatorController")(router);
-// app.get('/login-callback', oauthLoginCallback);
-// app.get('/logout-callback', oauthLogoutCallback);
-// app.get('/user', getUser);
+require(__dirname + "/controllers/mailController")(router);
 
-//Partie dédiée à la messagerie instantanée
-io.on("connection", function (socket) {
-  // eslint-disable-next-line no-console
-  console.log("user connected");
-  socket.on("subscribeToChat", function () {
-    // eslint-disable-next-line no-console
-    console.log("user subscribed");
-  });
-  socket.on("client:sendMessage", function (msg) {
-    if (msg && msg.data && msg.data.text) {
-      // eslint-disable-next-line no-console
-      console.log("message utilisateur : " + msg.data.text);
-    }
-    io.emit("MessageSent", msg);
-  });
-  socket.on("agent:sendMessage", function (msg) {
-    if (msg && msg.data && msg.data.text) {
-      // eslint-disable-next-line no-console
-      console.log("message agent : " + msg.data.text);
-    }
-    io.emit("MessageSent", msg);
-  });
-  socket.on("disconnect", function () {
-    // eslint-disable-next-line no-console
-    console.log("user disconnected");
-  });
-});
-
-//Définition et mise en place du port d'écoute
-var ioport = process.env.PORTIO;
-// eslint-disable-next-line no-use-before-define, no-console
-io.listen(ioport, () => console.log(`Listening on port ${port}`));
 var port = process.env.PORT;
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../../client", "build", "index.html"));
 });
-// eslint-disable-next-line no-console
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(port, () => logger.info(`Listening on port ${port}`));
