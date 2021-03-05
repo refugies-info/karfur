@@ -16,7 +16,7 @@ describe("sendWelcomeMail", () => {
     jest.clearAllMocks();
   });
   it("should call send mail and add mail event", async () => {
-    await sendWelcomeMail("email", "username");
+    await sendWelcomeMail("email", "username", "userId");
     const templateName = "newUserWelcome";
     const dynamicData = {
       to: "email",
@@ -36,6 +36,7 @@ describe("sendWelcomeMail", () => {
       templateName,
       username: "username",
       email: "email",
+      userId: "userId",
     });
   });
 });

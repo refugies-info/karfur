@@ -32,7 +32,7 @@ export const register = async (
     const savedUser = await createUser(userToSave);
 
     if (savedUser.email) {
-      await sendWelcomeMail(savedUser.email, savedUser.username);
+      await sendWelcomeMail(savedUser.email, savedUser.username, savedUser._id);
     }
 
     logger.info("[Register] successfully registered a new user", {
