@@ -22,9 +22,6 @@ cloudinary.config({
 //On définit notre objet express nommé app
 const app = express();
 
-var http = require("http").Server(app);
-var io = require("socket.io")(http);
-
 //Connexion à la base de donnée
 mongoose.set("debug", false);
 let db_path = MONGODB_URI;
@@ -104,33 +101,6 @@ require(__dirname + "/controllers/ttsController")(router);
 require(__dirname + "/controllers/miscellaneousController")(router);
 require(__dirname + "/controllers/indicatorController")(router);
 
-//Partie dédiée à la messagerie instantanée
-io.on("connection", function (socket) {
-  logger.info("user connected");
-  socket.on("subscribeToChat", function () {
-    logger.info("user subscribed");
-  });
-  socket.on("client:sendMessage", function (msg) {
-    if (msg && msg.data && msg.data.text) {
-      logger.info("message utilisateur : " + msg.data.text);
-    }
-    io.emit("MessageSent", msg);
-  });
-  socket.on("agent:sendMessage", function (msg) {
-    if (msg && msg.data && msg.data.text) {
-      logger.info("message agent : " + msg.data.text);
-    }
-    io.emit("MessageSent", msg);
-  });
-  socket.on("disconnect", function () {
-    logger.info("user disconnected");
-  });
-});
-
-//Définition et mise en place du port d'écoute
-var ioport = process.env.PORTIO;
-// eslint-disable-next-line no-use-before-define, no-console
-io.listen(ioport, () => logger.info(`Listening on port ${port}`));
 var port = process.env.PORT;
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../../client", "build", "index.html"));
