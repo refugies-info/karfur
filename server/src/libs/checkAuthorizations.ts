@@ -18,3 +18,10 @@ export const checkRequestIsFromPostman = (fromPostman: boolean) => {
 
   return;
 };
+
+export const checkCronAuthorization = (cronToken: string) => {
+  if (!cronToken || process.env.CRON_TOKEN !== cronToken) {
+    throw new Error("NOT_AUTHORIZED");
+  }
+  return;
+};

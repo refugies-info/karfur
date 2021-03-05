@@ -23,3 +23,11 @@ Before opening a pull request, please run in client and server folders : `npm ru
 
 - create single responsibility functions with transparent names
 - in complex parts, add comments in english
+
+## Logs
+
+Use :
+
+- `logger.info([functionName], {data})`
+- `logger.warn([functionName], {data})`
+- `logger.error([functionName], {error : error.message})`

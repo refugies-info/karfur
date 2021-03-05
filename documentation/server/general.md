@@ -12,11 +12,3 @@
 ## Testing
 
 > Every new workflow and module should be **fully tested**.
-
-## Logs
-
-Use :
-
-- `logger.info([functionName], {data})`
-- `logger.warn([functionName], {data})`
-- `logger.error([functionName], {error : error.message})`

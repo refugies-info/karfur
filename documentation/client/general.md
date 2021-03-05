@@ -1,19 +1,33 @@
-## How to refactor actual code ?
+# Client specific standards
 
-### Client
+Project was created and uses create-react-app to start and build (webpack config is generated automatically).
+
+## Redux usage
 
 1. Put all API calls in sagas and store infos in redux store
-2. Separate components in multiple small reusable components to increase modularity and separate logic in different functions
-3. Create XXX.container (with connnection to redux and HOC) and XXX.component files (example in QuickToolBar)
-4. Type components (example in QuickToolBar)
-5. Add unit tests
+2. Create XXX.container (with connnection to HOC) and XXX.component files (example in AnnuaireLecture). Use Hooks to access redux store.
+
+## Write small and reusable components
+
+Separate components in multiple small reusable components to increase modularity and separate logic in different functions
+
+## Typing
+
+> Every new client file should be **fully typed**. If possible, type existing files.
+
+## Testing
+
+> Every file should be **fully tested**.
+
+See SubComponents.test.tsx for examples of snapshot tests.
+
+## How to add assets ?
+
+In order to have a light bundle, put the assets on GCP bucket like explained in assets storage doc in private repo.
 
 ## How to add logs ?
 
-### Client
-
-- use the logger `logger.info()`, `logger.warn()`or `logger.error()`
-- Put the name of the component and of the specific function in log (example : `logger.info("[Dispositif] create a new dispositif : ", {data : XXX})`)
+- see [global standards](../general.md)
 - Do not put logs in render
 
 ## How to write good css ?
