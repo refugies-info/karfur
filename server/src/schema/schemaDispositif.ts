@@ -172,6 +172,11 @@ var dispositifSchema = new mongoose.Schema(
       unique: false,
       required: false,
     },
+    draftReminderMailSentDate: {
+      type: Date,
+      unique: false,
+      required: false,
+    },
   },
   // @ts-ignore
   { timestamps: { createdAt: "created_at" } }
@@ -242,6 +247,8 @@ export interface DispositifDoc extends mongoose.Document {
   lastAdminUpdate?: number;
   nbVues?: number;
   lastModificationDate?: number;
+  updatedAt: number;
+  draftReminderMailSentDate?: number;
 }
 
 export const Dispositif = mongoose.model<DispositifDoc>(

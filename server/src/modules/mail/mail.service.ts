@@ -30,3 +30,40 @@ export const sendWelcomeMail = async (
     logger.error("[sendWelcomeMail] error", { email, error: error.message });
   }
 };
+
+export const sendDraftReminderMailService = async (
+  email: string,
+  username: string,
+  titreInformatif: string,
+  userId: ObjectId,
+  dispositifId: ObjectId
+) => {
+  try {
+    logger.info("[sendDraftReminderMailService] received", {
+      email,
+      dispositifId,
+    });
+    const dynamicData = {
+      to: email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      // cc: "contact@refugies.info",
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        pseudo: username,
+        titreInformatif,
+      },
+    };
+    const templateName = "draftReminder";
+    sendMail(templateName, dynamicData);
+    await addMailEvent({ templateName, username, email, userId, dispositifId });
+    return;
+  } catch (error) {
+    logger.error("[sendDraftReminderMailService] error", {
+      email,
+      error: error.message,
+    });
+  }
+};
