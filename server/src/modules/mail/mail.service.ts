@@ -67,3 +67,36 @@ export const sendOneDraftReminderMailService = async (
     });
   }
 };
+
+export const sendMultipleDraftsReminderMailService = async (
+  email: string,
+  username: string,
+  userId: ObjectId
+) => {
+  try {
+    logger.info("[sendMultipleDraftsReminderMailService] received", {
+      email,
+    });
+    const dynamicData = {
+      to: email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      // cc: "contact@refugies.info",
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        pseudo: username,
+      },
+    };
+    const templateName = "multipleDraftsReminder";
+    sendMail(templateName, dynamicData);
+    await addMailEvent({ templateName, username, email, userId });
+    return;
+  } catch (error) {
+    logger.error("[sendMultipleDraftsReminderMailService] error", {
+      email,
+      error: error.message,
+    });
+  }
+};

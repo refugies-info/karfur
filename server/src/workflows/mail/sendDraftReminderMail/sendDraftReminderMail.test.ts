@@ -5,7 +5,10 @@ import {
   getDraftDispositifs,
   updateDispositifInDB,
 } from "../../../controllers/dispositif/dispositif.repository";
-import { sendOneDraftReminderMailService } from "../../../modules/mail/mail.service";
+import {
+  sendOneDraftReminderMailService,
+  sendMultipleDraftsReminderMailService,
+} from "../../../modules/mail/mail.service";
 import moment from "moment";
 import mockdate from "mockdate";
 import logger from "../../../logger";
@@ -24,6 +27,7 @@ jest.mock("../../../controllers/dispositif/dispositif.repository", () => ({
 
 jest.mock("../../../modules/mail/mail.service", () => ({
   sendOneDraftReminderMailService: jest.fn(),
+  sendMultipleDraftsReminderMailService: jest.fn(),
 }));
 
 type MockResponse = { json: any; status: any };
@@ -40,8 +44,6 @@ describe("sendDraftReminderMail", () => {
   });
 
   const res = mockResponse();
-  //   const mockDate = new Date(1466424490000);
-  //   jest.spyOn(global, "Date").mockImplementation(() => mockDate);
 
   it("should return 404 if not authorized", async () => {
     checkCronAuthorization.mockImplementationOnce(() => {
@@ -134,6 +136,7 @@ describe("sendDraftReminderMail", () => {
     expect(updateDispositifInDB).not.toHaveBeenCalledWith("id4", {
       draftReminderMailSentDate: 1573380000000,
     });
+    expect(sendMultipleDraftsReminderMailService).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
@@ -171,6 +174,71 @@ describe("sendDraftReminderMail", () => {
     );
 
     expect(updateDispositifInDB).not.toHaveBeenCalledWith("id1", {
+      draftReminderMailSentDate: 1573380000000,
+    });
+
+    expect(res.status).toHaveBeenCalledWith(200);
+  });
+
+  it("should get dispositifs sendMultipleDraftsReminderMailService for dispos with same creator", async () => {
+    getDraftDispositifs.mockResolvedValueOnce([
+      {
+        _id: "id1",
+        titreInformatif: "titre",
+        lastModificationDate: moment.utc("2019-02-01T13:00:00.232Z"),
+        creatorId: { email: "email", username: "pseudo", _id: "userId" },
+      },
+      {
+        _id: "id2",
+        titreInformatif: "titre",
+        lastModificationDate: moment.utc("2019-02-01T13:00:00.232Z"),
+        creatorId: { email: "email", username: "pseudo", _id: "userId" },
+      },
+    ]);
+    const req = { body: { query: { cronToken: "cronToken" } } };
+    await sendDraftReminderMail(req, res);
+    expect(checkCronAuthorization).toHaveBeenCalledWith("cronToken");
+    expect(getDraftDispositifs).toHaveBeenCalledWith();
+    expect(sendOneDraftReminderMailService).not.toHaveBeenCalled();
+    expect(sendMultipleDraftsReminderMailService).toHaveBeenCalledWith(
+      "email",
+      "pseudo",
+      "userId"
+    );
+
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id1", {
+      draftReminderMailSentDate: 1573380000000,
+    });
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id2", {
+      draftReminderMailSentDate: 1573380000000,
+    });
+
+    expect(res.status).toHaveBeenCalledWith(200);
+  });
+
+  it("should get dispositifs sendOneDraftReminderMailService for dispo with object in titre info", async () => {
+    getDraftDispositifs.mockResolvedValueOnce([
+      {
+        _id: "id1",
+        titreInformatif: { fr: "titre" },
+        lastModificationDate: moment.utc("2019-02-01T13:00:00.232Z"),
+        creatorId: { email: "email", username: "pseudo", _id: "userId" },
+      },
+    ]);
+    const req = { body: { query: { cronToken: "cronToken" } } };
+    await sendDraftReminderMail(req, res);
+    expect(checkCronAuthorization).toHaveBeenCalledWith("cronToken");
+    expect(getDraftDispositifs).toHaveBeenCalledWith();
+    expect(sendOneDraftReminderMailService).toHaveBeenCalledWith(
+      "email",
+      "pseudo",
+      "titre",
+      "userId",
+      "id1"
+    );
+    expect(sendMultipleDraftsReminderMailService).not.toHaveBeenCalled();
+
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id1", {
       draftReminderMailSentDate: 1573380000000,
     });
 
