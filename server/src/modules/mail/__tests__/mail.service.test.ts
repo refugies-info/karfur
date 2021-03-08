@@ -1,5 +1,8 @@
 // @ts-nocheck
-import { sendWelcomeMail, sendDraftReminderMailService } from "../mail.service";
+import {
+  sendWelcomeMail,
+  sendOneDraftReminderMailService,
+} from "../mail.service";
 import { sendMail } from "../../../connectors/sendgrid/sendMail";
 import { addMailEvent } from "../mail.repository";
 
@@ -41,19 +44,19 @@ describe("sendWelcomeMail", () => {
   });
 });
 
-describe("sendDraftReminderMailService", () => {
+describe("sendOneDraftReminderMailService", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
   it("should call send mail and add mail event", async () => {
-    await sendDraftReminderMailService(
+    await sendOneDraftReminderMailService(
       "email",
       "username",
       "titre",
       "userId",
       "dispositifId"
     );
-    const templateName = "draftReminder";
+    const templateName = "oneDraftReminder";
     const dynamicData = {
       to: "email",
       from: {

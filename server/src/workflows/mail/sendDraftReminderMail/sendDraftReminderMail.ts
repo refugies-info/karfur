@@ -6,7 +6,7 @@ import {
 } from "../../../controllers/dispositif/dispositif.repository";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import moment from "moment";
-import { sendDraftReminderMailService } from "../../../modules/mail/mail.service";
+import { sendOneDraftReminderMailService } from "../../../modules/mail/mail.service";
 import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
 
 export const sendDraftReminderMail = async (
@@ -61,7 +61,7 @@ export const sendDraftReminderMail = async (
           `[sendDraftReminderMail] dispositif with id ${dispositif._id} has not been updated since ${nbDaysFromNow} days, send a mail`
         );
 
-        await sendDraftReminderMailService(
+        await sendOneDraftReminderMailService(
           // @ts-ignore populate creatorId
           dispositif.creatorId.email,
           // @ts-ignore populate creatorId

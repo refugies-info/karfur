@@ -31,7 +31,7 @@ export const sendWelcomeMail = async (
   }
 };
 
-export const sendDraftReminderMailService = async (
+export const sendOneDraftReminderMailService = async (
   email: string,
   username: string,
   titreInformatif: string,
@@ -39,7 +39,7 @@ export const sendDraftReminderMailService = async (
   dispositifId: ObjectId
 ) => {
   try {
-    logger.info("[sendDraftReminderMailService] received", {
+    logger.info("[sendOneDraftReminderMailService] received", {
       email,
       dispositifId,
     });
@@ -56,12 +56,12 @@ export const sendDraftReminderMailService = async (
         titreInformatif,
       },
     };
-    const templateName = "draftReminder";
+    const templateName = "oneDraftReminder";
     sendMail(templateName, dynamicData);
     await addMailEvent({ templateName, username, email, userId, dispositifId });
     return;
   } catch (error) {
-    logger.error("[sendDraftReminderMailService] error", {
+    logger.error("[sendOneDraftReminderMailService] error", {
       email,
       error: error.message,
     });
