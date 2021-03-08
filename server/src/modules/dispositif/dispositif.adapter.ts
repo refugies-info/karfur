@@ -55,8 +55,9 @@ export const formatDispositifsByCreator = (dispositifs: Dispositif[]) => {
 
   dispositifs.forEach((dispositif) => {
     const elementIndex = formattedArray.findIndex(
-      (obj) => obj.creatorId === dispositif.creatorId._id
+      (obj) => obj.creatorId.toString() === dispositif.creatorId._id.toString()
     );
+
     const isCreatorIdInArray = elementIndex !== -1;
 
     if (!isCreatorIdInArray) {

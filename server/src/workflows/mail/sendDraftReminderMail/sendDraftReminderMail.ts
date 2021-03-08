@@ -42,9 +42,8 @@ export const sendDraftReminderMail = async (
     const dispositifWithFormattedTitle = filteredDispositifs.map((dispo) => {
       // @ts-ignore : titreInformatif type Object
       const formattedTitle = dispo.titreInformatif.fr || dispo.titreInformatif;
-      return { ...dispo, titreInformatif: formattedTitle };
+      return { ...dispo.toJSON(), titreInformatif: formattedTitle };
     });
-
     const formattedRecipients = formatDispositifsByCreator(
       // @ts-ignore populate creatorId
       dispositifWithFormattedTitle
@@ -69,6 +68,10 @@ export const sendDraftReminderMail = async (
           });
           return;
         }
+
+        logger.info(
+          `[sendDraftReminderMail] send mail to ${recipient.email} for multiple dispositifs`
+        );
 
         await sendMultipleDraftsReminderMailService(
           recipient.email,
