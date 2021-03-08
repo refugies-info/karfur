@@ -31,7 +31,7 @@ export const sendWelcomeMail = async (
   }
 };
 
-export const sendDraftReminderMailService = async (
+export const sendOneDraftReminderMailService = async (
   email: string,
   username: string,
   titreInformatif: string,
@@ -39,7 +39,7 @@ export const sendDraftReminderMailService = async (
   dispositifId: ObjectId
 ) => {
   try {
-    logger.info("[sendDraftReminderMailService] received", {
+    logger.info("[sendOneDraftReminderMailService] received", {
       email,
       dispositifId,
     });
@@ -56,12 +56,45 @@ export const sendDraftReminderMailService = async (
         titreInformatif,
       },
     };
-    const templateName = "draftReminder";
+    const templateName = "oneDraftReminder";
     sendMail(templateName, dynamicData);
     await addMailEvent({ templateName, username, email, userId, dispositifId });
     return;
   } catch (error) {
-    logger.error("[sendDraftReminderMailService] error", {
+    logger.error("[sendOneDraftReminderMailService] error", {
+      email,
+      error: error.message,
+    });
+  }
+};
+
+export const sendMultipleDraftsReminderMailService = async (
+  email: string,
+  username: string,
+  userId: ObjectId
+) => {
+  try {
+    logger.info("[sendMultipleDraftsReminderMailService] received", {
+      email,
+    });
+    const dynamicData = {
+      to: email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      // cc: "contact@refugies.info",
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        pseudo: username,
+      },
+    };
+    const templateName = "multipleDraftsReminder";
+    sendMail(templateName, dynamicData);
+    await addMailEvent({ templateName, username, email, userId });
+    return;
+  } catch (error) {
+    logger.error("[sendMultipleDraftsReminderMailService] error", {
       email,
       error: error.message,
     });
