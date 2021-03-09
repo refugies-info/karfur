@@ -49,7 +49,6 @@ export const sendDraftReminderMail = async (
     });
 
     const formattedRecipients = formatDispositifsByCreator(
-      // @ts-ignore populate creatorId
       dispositifsWithFormattedTitle
     );
 
