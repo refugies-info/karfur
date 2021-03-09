@@ -84,8 +84,14 @@ export const ActivityCard = (props: Props) => {
       isLectureMode={props.isLectureMode}
     >
       <ImageContainer>
-        {!props.image && <img src={placeholder} className="image" />}
-        <div>{props.image && <img src={props.image} className="image" />}</div>
+        {!props.image && (
+          <img src={placeholder} className="image" alt="placeholder" />
+        )}
+        <div>
+          {props.image && (
+            <img src={props.image} className="image" alt={props.activity} />
+          )}
+        </div>
       </ImageContainer>
       <Text>{props.activity}</Text>
       {props.isLectureMode && props.tag && (
