@@ -1,4 +1,5 @@
 import mongoose, { ObjectId } from "mongoose";
+import { UserDoc } from "./schemaUser";
 
 var dispositifSchema = new mongoose.Schema(
   {
@@ -182,63 +183,37 @@ var dispositifSchema = new mongoose.Schema(
   { timestamps: { createdAt: "created_at" } }
 );
 
-export interface DispositifDoc extends mongoose.Document {
+export interface Dispositif {
   _id: ObjectId;
   titreMarque?: Object;
-  titreInformatif: Object;
+  titreInformatif: Record<string, string> | string;
   abstract?: Object;
   contact?: string;
   externalLink?: string;
-
   contenu?: Object;
-
   sponsors?: Object;
-
   mainSponsor?: ObjectId;
-
   audience?: Object;
-
   audienceAge?: Object;
-
   tags?: Object;
-
   localisation?: Object;
-
   niveauFrancais?: Object;
-
-  creatorId: ObjectId;
-
+  creatorId: ObjectId | UserDoc;
   nbMots?: number;
-
   merci?: Object;
-
   pasMerci?: Object;
-
   bravo?: Object;
-
   suggestions?: Object;
-
   questions?: Object;
-
   signalements?: Object;
-
   traductions?: ObjectId[];
-
   participants?: ObjectId[];
-
   avancement?: Object;
-
   timeSpent?: number;
-
   variantes?: Object;
-
-  typeContenu?: string;
-  enum: ["dispositif", "demarche"];
-
+  typeContenu?: "dispositif" | "demarche";
   demarcheId?: ObjectId;
-
   autoSave?: boolean;
-
   publishedAt?: number;
   created_at: number;
   adminComments?: string;
@@ -249,6 +224,16 @@ export interface DispositifDoc extends mongoose.Document {
   lastModificationDate?: number;
   updatedAt: number;
   draftReminderMailSentDate?: number;
+}
+
+interface DispositifBaseDoc extends Dispositif, mongoose.Document {}
+
+export interface DispositifDoc extends DispositifBaseDoc {
+  creatorId: ObjectId;
+}
+
+export interface DispositifPopulatedDoc extends DispositifBaseDoc {
+  creatorId: UserDoc;
 }
 
 export const Dispositif = mongoose.model<DispositifDoc>(
