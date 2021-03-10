@@ -508,13 +508,6 @@ export class Dispositif extends Component {
   handleChange = (ev) => {
     var value = ev.target.value;
 
-    const correctValue = value.replace(/&nbsp;/, " ");
-    if (ev.currentTarget.id === "titreInformatif") {
-      value = correctValue.substring(0, 40);
-    }
-    if (ev.currentTarget.id === "titreMarque") {
-      value = correctValue.substring(0, 20);
-    }
     // update selected dispositif in redux
     this.props.updateSelectedDispositif({
       [ev.currentTarget.id]: value,
