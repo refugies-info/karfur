@@ -5,9 +5,16 @@ import {
   updateDispositifInDB,
 } from "../../../controllers/dispositif/dispositif.repository";
 import { asyncForEach } from "../../../libs/asyncForEach";
-import moment from "moment";
-import { sendDraftReminderMailService } from "../../../modules/mail/mail.service";
+import {
+  sendOneDraftReminderMailService,
+  sendMultipleDraftsReminderMailService,
+} from "../../../modules/mail/mail.service";
 import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
+import {
+  filterDispositifsForDraftReminders,
+  formatDispositifsByCreator,
+} from "../../../modules/dispositif/dispositif.adapter";
+import { isTitreInformatifObject } from "../../../types/typeguards";
 
 export const sendDraftReminderMail = async (
   req: RequestFromClient<{ cronToken: string }>,
@@ -22,62 +29,68 @@ export const sendDraftReminderMail = async (
     logger.info(
       `[sendDraftReminderMail] ${dispositifs.length} dispositifs in Brouillon`
     );
+
     const nbDaysBeforeReminder = 8;
 
-    await asyncForEach(dispositifs, async (dispositif) => {
+    const filteredDispositifs = filterDispositifsForDraftReminders(
+      dispositifs,
+      nbDaysBeforeReminder
+    );
+
+    logger.info(
+      `[sendDraftReminderMail] send ${filteredDispositifs.length} reminders`
+    );
+
+    const dispositifsWithFormattedTitle = filteredDispositifs.map((dispo) => {
+      if (isTitreInformatifObject(dispo.titreInformatif)) {
+        return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif.fr };
+      }
+      return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif };
+    });
+
+    const formattedRecipients = formatDispositifsByCreator(
+      dispositifsWithFormattedTitle
+    );
+
+    await asyncForEach(formattedRecipients, async (recipient) => {
       try {
-        logger.info(
-          `[sendDraftReminderMail] dispositif with id ${dispositif._id} `
-        );
-
-        if (dispositif.draftReminderMailSentDate) {
+        if (recipient.dispositifs.length === 1) {
+          const dispositifId = recipient.dispositifs[0]._id;
           logger.info(
-            `[sendDraftReminderMail] dispositif with id ${dispositif._id} has already received reminder `
+            `[sendDraftReminderMail] send mail to ${recipient.email} for dispositif with id ${dispositifId} `
           );
-          return;
-        }
-
-        const lastUpdate =
-          dispositif.lastModificationDate || dispositif.updatedAt;
-        const nbDaysFromNow = Math.round(
-          moment(moment()).diff(lastUpdate) / (1000 * 60 * 60 * 24)
-        );
-        if (nbDaysFromNow < nbDaysBeforeReminder) {
-          logger.info(
-            `[sendDraftReminderMail] dispositif with id ${dispositif._id} has been updated ${nbDaysFromNow} ago`
+          await sendOneDraftReminderMailService(
+            recipient.email,
+            recipient.username,
+            recipient.dispositifs[0].titreInformatif,
+            recipient.creatorId,
+            dispositifId
           );
-          return;
-        }
-
-        // @ts-ignore populate creatorId
-        if (!dispositif.creatorId.email) {
-          logger.info(
-            `[sendDraftReminderMail] dispositif with id ${dispositif._id}, creator has no email related`
-          );
+          await updateDispositifInDB(dispositifId, {
+            draftReminderMailSentDate: Date.now(),
+          });
           return;
         }
 
         logger.info(
-          `[sendDraftReminderMail] dispositif with id ${dispositif._id} has not been updated since ${nbDaysFromNow} days, send a mail`
+          `[sendDraftReminderMail] send mail to ${recipient.email} for multiple dispositifs`
         );
 
-        await sendDraftReminderMailService(
-          // @ts-ignore populate creatorId
-          dispositif.creatorId.email,
-          // @ts-ignore populate creatorId
-          dispositif.creatorId.username,
-          // @ts-ignore
-          dispositif.titreInformatif,
-          // @ts-ignore populate creatorId
-          dispositif.creatorId._id,
-          dispositif._id
+        await sendMultipleDraftsReminderMailService(
+          recipient.email,
+          recipient.username,
+          recipient.creatorId
         );
-        await updateDispositifInDB(dispositif._id, {
-          draftReminderMailSentDate: Date.now(),
-        });
+
+        recipient.dispositifs.map(
+          async (dispositif) =>
+            await updateDispositifInDB(dispositif._id, {
+              draftReminderMailSentDate: Date.now(),
+            })
+        );
       } catch (error) {
-        logger.error("[sendDraftReminderMail] error with the dispositif", {
-          dispositifId: dispositif._id,
+        logger.error("[sendDraftReminderMail] error with the recipient", {
+          creatorId: recipient.creatorId,
         });
       }
     });
