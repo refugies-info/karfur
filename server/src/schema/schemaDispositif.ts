@@ -183,7 +183,7 @@ var dispositifSchema = new mongoose.Schema(
   { timestamps: { createdAt: "created_at" } }
 );
 
-export interface Dispositif {
+export interface DispositifDoc extends mongoose.Document {
   _id: ObjectId;
   titreMarque?: Object;
   titreInformatif: Record<string, string> | string;
@@ -226,13 +226,11 @@ export interface Dispositif {
   draftReminderMailSentDate?: number;
 }
 
-interface DispositifBaseDoc extends Dispositif, mongoose.Document {}
-
-export interface DispositifDoc extends DispositifBaseDoc {
+export interface DispositifNotPopulateDoc extends DispositifDoc {
   creatorId: ObjectId;
 }
 
-export interface DispositifPopulatedDoc extends DispositifBaseDoc {
+export interface DispositifPopulatedDoc extends DispositifDoc {
   creatorId: UserDoc;
 }
 
