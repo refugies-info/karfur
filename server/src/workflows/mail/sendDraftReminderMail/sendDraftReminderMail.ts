@@ -14,6 +14,7 @@ import {
   filterDispositifsForDraftReminders,
   formatDispositifsByCreator,
 } from "../../../modules/dispositif/dispositif.adapter";
+import { isTitreInformatifObject } from "../../../types/typeguards";
 
 export const sendDraftReminderMail = async (
   req: RequestFromClient<{ cronToken: string }>,
@@ -28,6 +29,7 @@ export const sendDraftReminderMail = async (
     logger.info(
       `[sendDraftReminderMail] ${dispositifs.length} dispositifs in Brouillon`
     );
+
     const nbDaysBeforeReminder = 8;
 
     const filteredDispositifs = filterDispositifsForDraftReminders(
@@ -39,14 +41,15 @@ export const sendDraftReminderMail = async (
       `[sendDraftReminderMail] send ${filteredDispositifs.length} reminders`
     );
 
-    const dispositifWithFormattedTitle = filteredDispositifs.map((dispo) => {
-      // @ts-ignore : titreInformatif type Object
-      const formattedTitle = dispo.titreInformatif.fr || dispo.titreInformatif;
-      return { ...dispo.toJSON(), titreInformatif: formattedTitle };
+    const dispositifsWithFormattedTitle = filteredDispositifs.map((dispo) => {
+      if (isTitreInformatifObject(dispo.titreInformatif)) {
+        return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif.fr };
+      }
+      return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif };
     });
+
     const formattedRecipients = formatDispositifsByCreator(
-      // @ts-ignore populate creatorId
-      dispositifWithFormattedTitle
+      dispositifsWithFormattedTitle
     );
 
     await asyncForEach(formattedRecipients, async (recipient) => {

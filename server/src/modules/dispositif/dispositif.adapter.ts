@@ -1,10 +1,10 @@
-import { DispositifDoc } from "../../schema/schemaDispositif";
+import { DispositifPopulatedDoc } from "../../schema/schemaDispositif";
 import logger = require("../../logger");
 import moment from "moment";
 import { ObjectId } from "mongoose";
 
 export const filterDispositifsForDraftReminders = (
-  dispositifs: DispositifDoc[],
+  dispositifs: DispositifPopulatedDoc[],
   nbDaysBeforeReminder: number
 ) =>
   dispositifs.filter((dispositif) => {
@@ -27,7 +27,6 @@ export const filterDispositifsForDraftReminders = (
       return false;
     }
 
-    // @ts-ignore populate creatorId
     if (!dispositif.creatorId.email) {
       logger.info(
         `[sendDraftReminderMail] dispositif with id ${dispositif._id}, creator has no email related`
@@ -41,7 +40,7 @@ export const filterDispositifsForDraftReminders = (
 interface Dispositif {
   _id: ObjectId;
   titreInformatif: string;
-  creatorId: { _id: ObjectId; username: string; email: string };
+  creatorId: { _id: ObjectId; username: string; email?: string };
 }
 
 interface FormattedDispositif {

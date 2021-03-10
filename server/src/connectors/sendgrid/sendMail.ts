@@ -11,6 +11,7 @@ export const sendMail = async (
 ) => {
   if (process.env.NODE_ENV === "dev") {
     logger.info("[sendMail] no mail sent in dev env");
+    return;
   }
   if (!dynamicData.from.email) {
     logger.error("[sendMail] no email provided");

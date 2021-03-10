@@ -1,5 +1,8 @@
 import { IDispositif, AudienceAge } from "../../types/interface";
-import { Dispositif } from "../../schema/schemaDispositif";
+import {
+  Dispositif,
+  DispositifPopulatedDoc,
+} from "../../schema/schemaDispositif";
 import { ObjectId } from "mongoose";
 
 export const getDispositifsFromDB = async (
@@ -70,7 +73,10 @@ export const removeAudienceAgeInDB = async (dispositifId: ObjectId) =>
 export const removeVariantesInDB = async (dispositifId: ObjectId) =>
   await Dispositif.update({ _id: dispositifId }, { $unset: { variantes: "" } });
 
-export const getDraftDispositifs = async () =>
+export const getDraftDispositifs = async (): Promise<
+  DispositifPopulatedDoc[]
+> =>
+  // @ts-ignore populate creatorId
   await Dispositif.find(
     { status: "Brouillon" },
     {
