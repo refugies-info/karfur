@@ -19,6 +19,7 @@ const adaptDispositifsAssocies = (dispositifs: IDispositif[]) =>
     tags: dispositif.tags,
     abstract: dispositif.abstract,
     status: dispositif.status,
+    suggestions: dispositif.suggestions,
   }));
 
 export const getStructureById = async (
