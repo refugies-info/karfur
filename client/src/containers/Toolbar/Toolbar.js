@@ -259,6 +259,15 @@ export class Toolbar extends React.Component {
                     {t("Toolbar.Ma structure", "Ma structure")}
                   </DropdownItem>
                 )}
+                {membreStruct && (
+                  <DropdownItem
+                    onClick={() => {
+                      this.navigateTo("/backend/user-dash-notifications");
+                    }}
+                  >
+                    {t("Toolbar.Mes notifications", "Mes notifications")}
+                  </DropdownItem>
+                )}
                 {admin && (
                   <DropdownItem
                     onClick={() => this.navigateTo("/backend/admin")}
