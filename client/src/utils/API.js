@@ -1,20 +1,14 @@
 import axios from "axios";
-// import openSocket from 'socket.io-client';
 
 import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
-import Cookies from "js-cookie";
 
 const socket = null;
 export { socket };
 
 const headers = {
   "Content-Type": "application/json",
-  "x-access-token":
-    process.env.NODE_ENV === "test"
-      ? process.env.REACT_APP_FAKE_TOKEN
-      : localStorage.getItem("token") || undefined,
-  "cookie-id": Cookies.get("_ga"),
+  "x-access-token": localStorage.getItem("token") || undefined,
   "site-secret": process.env.REACT_APP_SITE_SECRET,
 };
 
@@ -115,22 +109,10 @@ export default {
     });
   },
 
-  log_event: (event) => {
-    return axios.post(burl + "/events/log_event", event, { headers: headers });
-  },
   get_event: (params) => {
     return axios.post(burl + "/events/get_event", params, { headers: headers });
   },
-  distinct_event: (distinct) => {
-    return axios.post(burl + "/events/distinct_event", distinct, {
-      headers: headers,
-    });
-  },
-  distinct_count_event: (query) => {
-    return axios.post(burl + "/events/distinct_count_event", query, {
-      headers: headers,
-    });
-  },
+
   getArticle: (params = {}) => {
     return axios.post(burl + "/article/get_article", params, {
       headers: headers,
@@ -153,12 +135,6 @@ export default {
 
   remove_traduction: (query) => {
     return axios.post(burl + "/article/remove_traduction", query, {
-      headers: headers,
-    });
-  },
-
-  aggregate_events: (query) => {
-    return axios.post(burl + "/events/aggregate_events", query, {
       headers: headers,
     });
   },
@@ -273,15 +249,17 @@ export default {
 
   exportUsers: () => axios.post(burl + "/user/exportUsers", {}, { headers }),
 
-  fixAudienceAgeOnContents: () =>
-    axios.post(burl + "/dispositifs/fixAudienceAgeOnContents"),
-
   getActiveStructures: () =>
     axios.get(burl + "/structures/getActiveStructures"),
 
   getDispositifs: (params) => {
     return axios.post(burl + "/dispositifs/getDispositifs", params);
   },
+
+  updateNbVuesOnDispositif: (params) =>
+    axios.post(burl + "/dispositifs/updateNbVuesOnDispositif", params, {
+      headers,
+    }),
 
   getAllDispositifs: () => axios.get(burl + "/dispositifs/getAllDispositifs"),
   getAllStructures: () => axios.get(burl + "/structures/getAllStructures"),

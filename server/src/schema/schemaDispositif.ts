@@ -1,4 +1,5 @@
 import mongoose, { ObjectId } from "mongoose";
+import { UserDoc } from "./schemaUser";
 
 var dispositifSchema = new mongoose.Schema(
   {
@@ -148,6 +149,9 @@ var dispositifSchema = new mongoose.Schema(
     publishedAt: {
       type: Date,
     },
+    lastModificationDate: {
+      type: Date,
+    },
     adminComments: {
       type: String,
       required: false,
@@ -164,6 +168,16 @@ var dispositifSchema = new mongoose.Schema(
       type: Date,
       required: false,
     },
+    nbVues: {
+      type: Number,
+      unique: false,
+      required: false,
+    },
+    draftReminderMailSentDate: {
+      type: Date,
+      unique: false,
+      required: false,
+    },
   },
   // @ts-ignore
   { timestamps: { createdAt: "created_at" } }
@@ -172,66 +186,52 @@ var dispositifSchema = new mongoose.Schema(
 export interface DispositifDoc extends mongoose.Document {
   _id: ObjectId;
   titreMarque?: Object;
-  titreInformatif: Object;
+  titreInformatif: Record<string, string> | string;
   abstract?: Object;
   contact?: string;
   externalLink?: string;
-
   contenu?: Object;
-
   sponsors?: Object;
-
   mainSponsor?: ObjectId;
-
   audience?: Object;
-
   audienceAge?: Object;
-
   tags?: Object;
-
   localisation?: Object;
-
   niveauFrancais?: Object;
-
-  creatorId: ObjectId;
-
+  creatorId: ObjectId | UserDoc;
   nbMots?: number;
-
   merci?: Object;
-
   pasMerci?: Object;
-
   bravo?: Object;
-
   suggestions?: Object;
-
   questions?: Object;
-
   signalements?: Object;
-
   traductions?: ObjectId[];
-
   participants?: ObjectId[];
-
   avancement?: Object;
-
   timeSpent?: number;
-
   variantes?: Object;
-
-  typeContenu?: string;
-  enum: ["dispositif", "demarche"];
-
+  typeContenu?: "dispositif" | "demarche";
   demarcheId?: ObjectId;
-
   autoSave?: boolean;
-
   publishedAt?: number;
   created_at: number;
   adminComments?: string;
   adminProgressionStatus?: string;
   adminPercentageProgressionStatus: string;
   lastAdminUpdate?: number;
+  nbVues?: number;
+  lastModificationDate?: number;
+  updatedAt: number;
+  draftReminderMailSentDate?: number;
+}
+
+export interface DispositifNotPopulateDoc extends DispositifDoc {
+  creatorId: ObjectId;
+}
+
+export interface DispositifPopulatedDoc extends DispositifDoc {
+  creatorId: UserDoc;
 }
 
 export const Dispositif = mongoose.model<DispositifDoc>(

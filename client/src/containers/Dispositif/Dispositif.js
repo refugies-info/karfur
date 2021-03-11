@@ -23,7 +23,6 @@ import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
-import "../../../node_modules/video-react/dist/video-react.css";
 import API from "../../utils/API";
 import Sponsors from "../../components/Frontend/Dispositif/Sponsors/Sponsors";
 import { ContenuDispositif } from "../../components/Frontend/Dispositif/ContenuDispositif";
@@ -220,13 +219,6 @@ export class Dispositif extends Component {
     // if no itemId and user logged in : initialize new dispo creation
     // if no itemId and user not logged in : redirect to login page
     if (itemId) {
-      API.log_event({
-        app: "App",
-        page: "Dispositif",
-        action: "readDispositif",
-        label: "dispositifId",
-        value: itemId,
-      });
       // work in progress : store dispo in redux and in state. the goal is not to have dispo in state anymore
       this.props.fetchSelectedDispositif({
         selectedDispositifId: itemId,
@@ -245,12 +237,19 @@ export class Dispositif extends Component {
             this._isMounted = false;
             return this.props.history.push("/");
           }
+          if (dispositif.status === "Actif") {
+            const nbVues = dispositif.nbVues ? dispositif.nbVues + 1 : 1;
+            API.updateNbVuesOnDispositif({
+              query: { id: dispositif._id, nbVues },
+            });
+          }
 
           // case dispositif not active and user neither admin nor contributor nor in structure
           if (
             dispositif.status !== "Actif" &&
             !this.props.admin &&
             !this.props.user.contributions.includes(dispositif._id) &&
+            !!dispositif.mainSponsor &&
             !this.props.user.structures.includes(dispositif.mainSponsor._id)
           ) {
             if (_.isEmpty(this.props.user)) {
@@ -264,7 +263,7 @@ export class Dispositif extends Component {
             }
             Swal.fire({
               title: "Erreur",
-              text: "Accès non authorisé",
+              text: "Accès non authorisé 1",
               type: "error",
               timer: 1200,
             });
@@ -415,7 +414,7 @@ export class Dispositif extends Component {
           }
           Swal.fire({
             title: "Erreur",
-            text: "Accès non authorisé",
+            text: `Accès non authorisé 2, status : ${err.status}, message : ${err.message}`,
             type: "error",
             timer: 1200,
           });
@@ -509,13 +508,6 @@ export class Dispositif extends Component {
   handleChange = (ev) => {
     var value = ev.target.value;
 
-    const correctValue = value.replace(/&nbsp;/, " ");
-    if (ev.currentTarget.id === "titreInformatif") {
-      value = correctValue.substring(0, 40);
-    }
-    if (ev.currentTarget.id === "titreMarque") {
-      value = correctValue.substring(0, 20);
-    }
     // update selected dispositif in redux
     this.props.updateSelectedDispositif({
       [ev.currentTarget.id]: value,
@@ -1578,6 +1570,7 @@ export class Dispositif extends Component {
         dispositif.status = "En attente non prioritaire";
       }
     }
+    dispositif.lastModificationDate = Date.now();
 
     logger.info("[valider_dispositif] dispositif before call", { dispositif });
     API.add_dispositif(dispositif).then((data) => {

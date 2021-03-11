@@ -372,7 +372,7 @@ class EtapeParagraphe extends Component {
                 }
                 onClick={this.toggleConfigurationOpen}
               >
-                {(!disableEdit || subitem.option) && (
+                {subitem.option && subitem.option.texte && (
                   <div className="etape-data" id="etape-option">
                     <EVAIcon
                       name={((subitem.option || {}).logo || "at") + "-outline"}
@@ -397,7 +397,7 @@ class EtapeParagraphe extends Component {
                     </Tooltip>
                   </div>
                 )}
-                {(!disableEdit || subitem.duree) && (
+                {subitem.duree && subitem.duree !== "00" && (
                   <div className="etape-data" id="etape-duree">
                     <EVAIcon
                       name="clock-outline"
@@ -422,7 +422,7 @@ class EtapeParagraphe extends Component {
                     </Tooltip>
                   </div>
                 )}
-                {(!disableEdit || subitem.delai) && (
+                {subitem.delai && subitem.delai !== "00" && (
                   <div className="etape-data" id="etape-delai">
                     <EVAIcon
                       name="undo"
@@ -455,8 +455,7 @@ class EtapeParagraphe extends Component {
                     </Tooltip>
                   </div>
                 )}
-                {(!disableEdit ||
-                  (subitem.papiers && subitem.papiers.length > 0)) && (
+                {subitem.papiers && subitem.papiers.length > 0 && (
                   <div className="etape-data" id="etape-papiers">
                     <EVAIcon
                       name="file-text-outline"
@@ -857,9 +856,8 @@ class EtapeParagraphe extends Component {
               id={"collapse" + keyValue + "-" + subkey}
               aria-labelledby={"heading" + keyValue + "-" + subkey}
             >
-              {disableEdit && subitem.option && (
+              {subitem.option && subitem.option.ctaField && (
                 <div className="realisation-wrapper">
-                  {/*<h5>{t("Dispositif.realisation etape", "Je réalise cette étape :")}</h5>*/}
                   <div className="real-btns">
                     <FButton
                       type="dark"
