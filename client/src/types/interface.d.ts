@@ -149,7 +149,7 @@ export interface AudienceAge {
   bottomValue: number | string;
   topValue: number | string;
 }
-export interface Dispositif {
+export interface IDispositif {
   _id: ObjectId;
   abstract: string;
   audience: string[];

@@ -3,9 +3,9 @@ import {
   FETCH_ACTIVE_DISPOSITIFS,
 } from "./activeDispositifs.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { Dispositif } from "../../types/interface";
+import { IDispositif } from "../../types/interface";
 
-export const setActiveDispositifsActionsCreator = (value: Dispositif[]) =>
+export const setActiveDispositifsActionsCreator = (value: IDispositif[]) =>
   action(SET_ACTIVE_DISPOSITIFS, value);
 
 export const fetchActiveDispositifsActionsCreator = () =>
