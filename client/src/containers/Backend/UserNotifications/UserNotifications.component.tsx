@@ -14,6 +14,8 @@ import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.
 import { Spinner } from "reactstrap";
 import styled from "styled-components";
 import { formatNotifications } from "./lib";
+import { Notification } from "./components/Notification";
+import { ReactionLectureModal } from "../../../components/Modals";
 
 const MainContainer = styled.div`
   background: #edebeb;
@@ -26,9 +28,10 @@ const MainContainer = styled.div`
   height: fit-content;
 `;
 
-const RowContainer = styled.div`
+const TitleContainer = styled.div`
   display: flex;
   flex-direction: row;
+  margin-bottom: 32px;
 `;
 const NumberContainer = styled.div`
   background: #212121;
@@ -52,6 +55,8 @@ export interface PropsBeforeInjection {
   history: any;
 }
 export const UserNotificationsComponent = (props: Props) => {
+  // const selectedReaction
+
   const dispatch = useDispatch();
   const structureId = useSelector(userStructureIdSelector);
   const isLoading = useSelector(
@@ -90,11 +95,27 @@ export const UserNotificationsComponent = (props: Props) => {
 
   return (
     <MainContainer>
-      <RowContainer>
+      <TitleContainer>
         <Title>Vous avez</Title>
         <NumberContainer>{nbNotifications}</NumberContainer>
-        <Title>{nbNotifications < 3 ? "notification" : "notifications"}</Title>
-      </RowContainer>
+        <Title>{nbNotifications < 2 ? "notification" : "notifications"}</Title>
+      </TitleContainer>
+      {notifications.map((notif) => (
+        <Notification
+          type={notif.type}
+          read={notif.read}
+          key={notif.suggestionId || notif.type}
+          title={notif.title}
+          createdAt={notif.createdAt}
+          link={notif.link}
+        />
+      ))}
+      {/* <ReactionLectureModal 
+          suggestion={selectedReaction}
+          show={showReactionModal}
+          toggle={toggleReactionModal}
+          archive={this.archiveSuggestion}
+        /> */}
     </MainContainer>
   );
 };
