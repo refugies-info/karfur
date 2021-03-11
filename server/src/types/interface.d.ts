@@ -10,9 +10,20 @@ export interface RequestFromClient<Query> {
     locale?: string;
   };
   fromSite: boolean;
+  fromPostman: boolean;
   query?: Query;
   userId?: ObjectId;
   user?: UserDoc;
+}
+
+export interface RequestFromClientWithBody<Query> {
+  body: Query;
+  fromSite: boolean;
+  fromPostman: boolean;
+  query?: Query;
+  userId?: ObjectId;
+  user?: UserDoc;
+  roles: { nom: string; _id: ObjectId }[];
 }
 
 export interface AudienceAge {
@@ -109,4 +120,12 @@ export interface IStructure {
   description: string;
   hasResponsibleSeenNotification?: boolean;
   toJSON?: () => IStructure;
+}
+
+export interface IMailEvent {
+  username: string;
+  email: string;
+  templateName: string;
+  userId: ObjectId;
+  dispositifId?: ObjectId;
 }

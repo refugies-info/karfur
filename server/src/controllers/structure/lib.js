@@ -20,7 +20,7 @@ const logger = require("../../logger");
 //   }
 // };
 
-// TO BE REMOVED : CREATE FUNCTIONS LIKE IN MODELS/STRUCTURE
+// TO BE REMOVED : CREATE FUNCTIONS LIKE IN WORKFLOWS/STRUCTURE
 async function get_structure(req, res) {
   if (!req.body || !req.body.query) {
     return res.status(400).json({ text: "Requête invalide" });

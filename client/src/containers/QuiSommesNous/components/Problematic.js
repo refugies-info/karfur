@@ -1,9 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ReactComponent as StatusImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_réfugiés.svg";
-import InfoImage from "../../../assets/qui-sommes-nous/plein_dinfos.svg";
-
-import { ReactComponent as AccompagnementImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_accompagnement.svg";
+import { assetsOnServer } from "../../../assets/assetsOnServer";
 
 const ProblematicContentContainer = styled.div`
   display: flex;
@@ -50,7 +47,10 @@ export const Problematic = (props) => (
 
 const Statut = (props) => (
   <ProblematicDetailContainer>
-    <StatusImage />
+    <img
+      src={assetsOnServer.quiSommesNous.statutRefugie}
+      alt="statut-refugie"
+    />
     <TextContainer>
       <ProblematicDetailTitle>
         {props.t(
@@ -70,7 +70,7 @@ const Statut = (props) => (
 
 const Information = (props) => (
   <ProblematicDetailContainer>
-    <img src={InfoImage} />
+    <img src={assetsOnServer.quiSommesNous.information} alt="info" />
     <TextContainer>
       <ProblematicDetailTitle>
         {props.t(
@@ -90,7 +90,11 @@ const Information = (props) => (
 
 const Accompagnement = (props) => (
   <ProblematicDetailContainer>
-    <AccompagnementImage />
+    <img
+      src={assetsOnServer.quiSommesNous.accompagnement}
+      alt="accompagnement"
+    />
+
     <TextContainer>
       <ProblematicDetailTitle>
         {props.t(

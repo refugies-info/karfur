@@ -18,9 +18,8 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 import windowSize from "react-window-size";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
-import passwdCheck from "zxcvbn";
 import _ from "lodash";
-
+import { computePasswordStrengthScore } from "../../../lib/index";
 import marioProfile from "../../../assets/mario-profile.jpg";
 import API from "../../../utils/API";
 import {
@@ -359,7 +358,7 @@ export class UserProfile extends Component {
         timer: 1500,
       });
     }
-    if ((passwdCheck(newPassword) || {}).score < 1) {
+    if ((computePasswordStrengthScore(newPassword) || {}).score < 1) {
       return Swal.fire({
         title: "Oops...",
         text: "Le mot de passe est trop faible",
@@ -989,7 +988,7 @@ export class UserProfile extends Component {
 }
 
 export const PasswordModal = (props) => {
-  const password_check = passwdCheck(props.newPassword) || {};
+  const password_check = computePasswordStrengthScore(props.newPassword) || {};
   return (
     <FModal
       className="password-modal"

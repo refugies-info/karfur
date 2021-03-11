@@ -7,7 +7,6 @@ import DirectionProvider, {
 } from "react-with-direction/dist/DirectionProvider";
 // import { AppAside, AppFooter } from '@coreui/react';
 import { connect } from "react-redux";
-import Cookies from "js-cookie";
 
 import Toolbar from "../Toolbar/Toolbar";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
@@ -44,10 +43,10 @@ export class Layout extends Component {
     this.props.fetchUser();
     this.props.fetchDispositifs();
     this.props.fetchLangues();
-    let languei18nCode = Cookies.get("languei18nCode");
-    if (languei18nCode && languei18nCode !== "fr") {
-      this.changeLanguage(languei18nCode);
-    } else if (!languei18nCode) {
+    const storedLanguei18nCode = localStorage.getItem("languei18nCode");
+    if (storedLanguei18nCode && storedLanguei18nCode !== "fr") {
+      this.changeLanguage(storedLanguei18nCode);
+    } else if (!storedLanguei18nCode) {
       this.props.toggleLangueModal();
     }
 

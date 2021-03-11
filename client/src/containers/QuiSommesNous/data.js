@@ -1,58 +1,136 @@
-import Coallia from "../../assets/logosPartenaires/coallia.png";
-import Aurore from "../../assets/logosPartenaires/aurore.png";
-import AER from "../../assets/logosPartenaires/action_emploi_refugies.png";
-import Benenova from "../../assets/logosPartenaires/benenova.png";
-import CASP from "../../assets/logosPartenaires/casp.png";
-import Causons from "../../assets/logosPartenaires/causons.png";
-import CESAM from "../../assets/logosPartenaires/cesam.png";
-import Duo from "../../assets/logosPartenaires/duo_for_a_job.png";
-import COS from "../../assets/logosPartenaires/fondation_cos.png";
-import ForumRefugies from "../../assets/logosPartenaires/forum_refugies.png";
-import FranceHorizon from "../../assets/logosPartenaires/france_horizon.png";
-import FTDA from "../../assets/logosPartenaires/france_terre_asile.png";
-import SOS from "../../assets/logosPartenaires/groupe_sos.png";
-import Habitat from "../../assets/logosPartenaires/habitat_humanisme.png";
-import IFRI from "../../assets/logosPartenaires/ifri.png";
-import JRS from "../../assets/logosPartenaires/jrs_france.png";
-import Konexio from "../../assets/logosPartenaires/konexio.png";
-import Puy from "../../assets/logosPartenaires/puy_de_dome.png";
-import Simplon from "../../assets/logosPartenaires/simplon.png";
-import Singa from "../../assets/logosPartenaires/singa.png";
-import MissionLocale from "../../assets/logosPartenaires/unml.png";
-import WERO from "../../assets/logosPartenaires/wero.png";
-
-import CNAM from "../../assets/logosPartenaires/CNAM.png";
-import CRF from "../../assets/logosPartenaires/CRF.png";
-import EachOne from "../../assets/logosPartenaires/each_one.png";
-import INALCO from "../../assets/logosPartenaires/inalco.png";
+import { assetsOnServer } from "../../assets/assetsOnServer";
 
 export const partners = [
-  { name: "Coallia", date: new Date("09/27/2019"), logo: Coallia },
-  { name: "Konexio", date: new Date("10/03/2019"), logo: Konexio },
-  { name: "Simplon", date: new Date("10/07/2019"), logo: Simplon },
-  { name: "Causons", date: new Date("10/09/2019"), logo: Causons },
-  { name: "Aurore", date: new Date("10/14/2019"), logo: Aurore },
-  { name: "CASP", date: new Date("10/15/2019"), logo: CASP },
-  { name: "IFRI", date: new Date("10/16/2019"), logo: IFRI },
-  { name: "Puy de Dome", date: new Date("10/17/2019"), logo: Puy },
-  { name: "France Terre d'Asile", date: new Date("10/24/2019"), logo: FTDA },
-  { name: "Each One", date: new Date("10/25/2019"), logo: EachOne },
-  { name: "WERO", date: new Date("10/28/2019"), logo: WERO },
-  { name: "Habitat Humanisme", date: new Date("10/30/2019"), logo: Habitat },
-  { name: "JRS France", date: new Date("10/31/2019"), logo: JRS },
-  { name: "CESAM", date: new Date("11/03/2019"), logo: CESAM },
-  { name: "Singa", date: new Date("11/04/2019"), logo: Singa },
-  { name: "Fondation COS", date: new Date("11/14/2019"), logo: COS },
-  { name: "Groupe SOS", date: new Date("11/18/2019"), logo: SOS },
-  { name: "CNAM", date: new Date("11/20/2019"), logo: CNAM },
-  { name: "INALCO", date: new Date("11/22/2019"), logo: INALCO },
-  { name: "France Horizon", date: new Date("12/11/2019"), logo: FranceHorizon },
-  { name: "CroixRouge", date: new Date("01/23/2020"), logo: CRF },
-  { name: "Duo For a Job", date: new Date("01/25/2020"), logo: Duo },
-  { name: "Forum Refugiés", date: new Date("01/31/2020"), logo: ForumRefugies },
-  { name: "Benenova", date: new Date("02/06/2020"), logo: Benenova },
-  { name: "Action Emploi Réfugiés", date: new Date("02/26/2020"), logo: AER },
-  { name: "Mission Local", date: new Date("08/26/2020"), logo: MissionLocale },
+  {
+    name: "Coallia",
+    date: new Date("09/27/2019"),
+    logo: assetsOnServer.partners.Coallia,
+  },
+  {
+    name: "Konexio",
+    date: new Date("10/03/2019"),
+    logo: assetsOnServer.partners.Konexio,
+  },
+  {
+    name: "Simplon",
+    date: new Date("10/07/2019"),
+    logo: assetsOnServer.partners.Simplon,
+  },
+  {
+    name: "Causons",
+    date: new Date("10/09/2019"),
+    logo: assetsOnServer.partners.Causons,
+  },
+  {
+    name: "Aurore",
+    date: new Date("10/14/2019"),
+    logo: assetsOnServer.partners.Aurore,
+  },
+  {
+    name: "CASP",
+    date: new Date("10/15/2019"),
+    logo: assetsOnServer.partners.CASP,
+  },
+  {
+    name: "IFRI",
+    date: new Date("10/16/2019"),
+    logo: assetsOnServer.partners.IFRI,
+  },
+  {
+    name: "Puy de Dome",
+    date: new Date("10/17/2019"),
+    logo: assetsOnServer.partners.Puy,
+  },
+  {
+    name: "France Terre d'Asile",
+    date: new Date("10/24/2019"),
+    logo: assetsOnServer.partners.FTDA,
+  },
+  {
+    name: "Each One",
+    date: new Date("10/25/2019"),
+    logo: assetsOnServer.partners.EachOne,
+  },
+  {
+    name: "WERO",
+    date: new Date("10/28/2019"),
+    logo: assetsOnServer.partners.WERO,
+  },
+  {
+    name: "Habitat Humanisme",
+    date: new Date("10/30/2019"),
+    logo: assetsOnServer.partners.Habitat,
+  },
+  {
+    name: "JRS France",
+    date: new Date("10/31/2019"),
+    logo: assetsOnServer.partners.JRS,
+  },
+  {
+    name: "CESAM",
+    date: new Date("11/03/2019"),
+    logo: assetsOnServer.partners.CESAM,
+  },
+  {
+    name: "Singa",
+    date: new Date("11/04/2019"),
+    logo: assetsOnServer.partners.Singa,
+  },
+  {
+    name: "Fondation COS",
+    date: new Date("11/14/2019"),
+    logo: assetsOnServer.partners.COS,
+  },
+  {
+    name: "Groupe SOS",
+    date: new Date("11/18/2019"),
+    logo: assetsOnServer.partners.SOS,
+  },
+  {
+    name: "CNAM",
+    date: new Date("11/20/2019"),
+    logo: assetsOnServer.partners.CNAM,
+  },
+  {
+    name: "INALCO",
+    date: new Date("11/22/2019"),
+    logo: assetsOnServer.partners.INALCO,
+  },
+  {
+    name: "France Horizon",
+    date: new Date("12/11/2019"),
+    logo: assetsOnServer.partners.FranceHorizon,
+  },
+  {
+    name: "CroixRouge",
+    date: new Date("01/23/2020"),
+    logo: assetsOnServer.partners.CRF,
+  },
+  {
+    name: "Duo For a Job",
+    date: new Date("01/25/2020"),
+    logo: assetsOnServer.partners.Duo,
+  },
+  {
+    name: "Forum Refugiés",
+    date: new Date("01/31/2020"),
+    logo: assetsOnServer.partners.ForumRefugies,
+  },
+  {
+    name: "Benenova",
+    date: new Date("02/06/2020"),
+    logo: assetsOnServer.partners.Benenova,
+  },
+  {
+    name: "Action Emploi Réfugiés",
+    date: new Date("02/26/2020"),
+    logo: assetsOnServer.partners.AER,
+  },
+  {
+    name: "Mission Local",
+    date: new Date("08/26/2020"),
+    logo: assetsOnServer.partners.MissionLocale,
+  },
 ];
 
 export const membres = [

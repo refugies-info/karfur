@@ -1,5 +1,8 @@
 import { IDispositif, AudienceAge } from "../../types/interface";
-import { Dispositif } from "../../schema/schemaDispositif";
+import {
+  Dispositif,
+  DispositifPopulatedDoc,
+} from "../../schema/schemaDispositif";
 import { ObjectId } from "mongoose";
 
 export const getDispositifsFromDB = async (
@@ -20,6 +23,7 @@ export const getDispositifArray = async (query: any) => {
     avancement: 1,
     status: 1,
     nbMots: 1,
+    nbVues: 1,
   };
 
   return await Dispositif.find(query, neededFields).lean();
@@ -38,6 +42,8 @@ export const updateDispositifInDB = async (
       }
     | { audienceAge: AudienceAge[] }
     | { audienceAge: AudienceAge[]; contenu: any }
+    | { nbVues: number }
+    | { draftReminderMailSentDate: number }
 ) =>
   await Dispositif.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif);
 
@@ -66,3 +72,18 @@ export const removeAudienceAgeInDB = async (dispositifId: ObjectId) =>
 
 export const removeVariantesInDB = async (dispositifId: ObjectId) =>
   await Dispositif.update({ _id: dispositifId }, { $unset: { variantes: "" } });
+
+export const getDraftDispositifs = async (): Promise<
+  DispositifPopulatedDoc[]
+> =>
+  // @ts-ignore populate creatorId
+  await Dispositif.find(
+    { status: "Brouillon" },
+    {
+      draftReminderMailSentDate: 1,
+      creatorId: 1,
+      updatedAt: 1,
+      lastModificationDate: 1,
+      titreInformatif: 1,
+    }
+  ).populate("creatorId");

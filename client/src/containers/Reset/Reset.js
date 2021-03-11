@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 import _ from "lodash";
-import passwdCheck from "zxcvbn";
+import { computePasswordStrengthScore } from "../../lib/index";
 
 import API from "../../utils/API";
 import setAuthToken from "../../utils/setAuthToken";
@@ -19,7 +19,7 @@ import i18n from "../../i18n";
 import LanguageBtn from "../../components/FigmaUI/LanguageBtn/LanguageBtn";
 
 import "./Reset.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 import styled from "styled-components";
 import img from "../../assets/login_background.svg";
 import {
@@ -113,7 +113,9 @@ class Reset extends Component {
       });
     }
 
-    if ((passwdCheck(this.state.newPassword) || {}).score < 1) {
+    if (
+      (computePasswordStrengthScore(this.state.newPassword) || {}).score < 1
+    ) {
       return Swal.fire({
         title: "Oops...",
         text: "Le mot de passe est trop faible",
@@ -277,8 +279,7 @@ const getStrength = (score) => {
 };
 
 const PasswordField = (props) => {
-  // from 0 to 4, 4 is very strong
-  const passwordScore = passwdCheck(props.value).score;
+  const passwordScore = computePasswordStrengthScore(props.value).score;
   return (
     <>
       <div
