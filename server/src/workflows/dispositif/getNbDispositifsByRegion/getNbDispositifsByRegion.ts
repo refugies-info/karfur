@@ -1,5 +1,5 @@
 import logger = require("../../../logger");
-import { getActiveDispositifsFromDBWithoutPopulate } from "../../../controllers/dispositif/dispositif.repository";
+import { getActiveDispositifsFromDBWithoutPopulate } from "../../../modules/dispositif/dispositif.repository";
 import { Res } from "../../../types/interface";
 import {
   adaptDispositifDepartement,

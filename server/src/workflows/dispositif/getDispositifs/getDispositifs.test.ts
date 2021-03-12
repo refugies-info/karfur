@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { getDispositifs } from "./getDispositifs";
-import { getDispositifArray } from "../../../controllers/dispositif/dispositif.repository";
+import { getDispositifArray } from "../../../modules/dispositif/dispositif.repository";
 import {
   fakeContenuWithoutZoneDAction,
   fakeContenuWithZoneDAction,
@@ -10,7 +10,7 @@ import {
   turnJSONtoHTML,
 } from "../../../controllers/dispositif/functions";
 
-jest.mock("../../../controllers/dispositif/dispositif.repository", () => ({
+jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getDispositifArray: jest.fn(),
 }));
 

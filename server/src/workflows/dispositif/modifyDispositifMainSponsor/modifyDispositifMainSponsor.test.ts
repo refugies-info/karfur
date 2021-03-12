@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { modifyDispositifMainSponsor } from "./modifyDispositifMainSponsor";
-import { updateDispositifInDB } from "../../../controllers/dispositif/dispositif.repository";
+import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
 
 type MockResponse = { json: any; status: any };
@@ -14,7 +14,7 @@ const mockResponse = (): MockResponse => {
 jest.mock("../../../modules/structure/structure.repository", () => ({
   updateAssociatedDispositifsInStructure: jest.fn(),
 }));
-jest.mock("../../../controllers/dispositif/dispositif.repository", () => ({
+jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   updateDispositifInDB: jest.fn(),
 }));
 

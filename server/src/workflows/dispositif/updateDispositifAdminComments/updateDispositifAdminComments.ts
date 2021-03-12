@@ -1,7 +1,7 @@
 import { RequestFromClient, Res } from "../../../types/interface";
 import { ObjectId } from "mongoose";
 import logger = require("../../../logger");
-import { updateDispositifInDB } from "../../../controllers/dispositif/dispositif.repository";
+import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 
 interface QueryModifyAdmin {
   dispositifId: ObjectId;

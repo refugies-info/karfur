@@ -1,6 +1,6 @@
 import { RequestFromClient, Res, IDispositif } from "../../../types/interface";
 import logger = require("../../../logger");
-import { getDispositifArray } from "../../../controllers/dispositif/dispositif.repository";
+import { getDispositifArray } from "../../../modules/dispositif/dispositif.repository";
 import { removeUselessContent } from "../../../modules/dispositif/dispositif.adapter";
 import {
   turnToLocalized,

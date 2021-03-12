@@ -1,7 +1,7 @@
 import { ObjectId } from "mongoose";
 import { RequestFromClient, Res } from "../../../types/interface";
 import logger = require("../../../logger");
-import { updateDispositifInDB } from "../../../controllers/dispositif/dispositif.repository";
+import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
 
 interface QueryUpdate {

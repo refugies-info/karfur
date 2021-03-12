@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { getAllDispositifs } from "./getAllDispositifs";
-import { getDispositifsFromDB } from "../../../controllers/dispositif/dispositif.repository";
+import { getDispositifsFromDB } from "../../../modules/dispositif/dispositif.repository";
 import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
 
 type MockResponse = { json: any; status: any };
@@ -14,7 +14,7 @@ const mockResponse = (): MockResponse => {
 jest.mock("../../../modules/structure/structure.repository", () => ({
   updateAssociatedDispositifsInStructure: jest.fn(),
 }));
-jest.mock("../../../controllers/dispositif/dispositif.repository", () => ({
+jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getDispositifsFromDB: jest.fn(),
 }));
 jest.mock("../../../controllers/dispositif/functions", () => ({

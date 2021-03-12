@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { getNbDispositifsByRegion } from "./getNbDispositifsByRegion";
-import { getActiveDispositifsFromDBWithoutPopulate } from "../../../controllers/dispositif/dispositif.repository";
+import { getActiveDispositifsFromDBWithoutPopulate } from "../../../modules/dispositif/dispositif.repository";
 import {
   fakeContenuWithoutZoneDAction,
   fakeContenuWithZoneDAction,
@@ -15,7 +15,7 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-jest.mock("../../../controllers/dispositif/dispositif.repository", () => ({
+jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getActiveDispositifsFromDBWithoutPopulate: jest.fn(),
 }));
 

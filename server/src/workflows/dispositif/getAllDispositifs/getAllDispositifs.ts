@@ -1,6 +1,6 @@
 import logger = require("../../../logger");
 import { Res, IDispositif } from "../../../types/interface";
-import { getDispositifsFromDB } from "../../../controllers/dispositif/dispositif.repository";
+import { getDispositifsFromDB } from "../../../modules/dispositif/dispositif.repository";
 import { adaptDispositifMainSponsorAndCreatorId } from "../../../modules/dispositif/dispositif.adapter";
 import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
 

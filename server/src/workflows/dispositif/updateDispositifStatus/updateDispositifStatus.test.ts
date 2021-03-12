@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { updateDispositifStatus } from "./updateDispositifStatus";
-import { updateDispositifInDB } from "../../../controllers/dispositif/dispositif.repository";
+import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
 
 type MockResponse = { json: any; status: any };
@@ -15,7 +15,7 @@ jest.mock("../../../controllers/langues/langues.service", () => ({
   updateLanguagesAvancement: jest.fn(),
 }));
 
-jest.mock("../../../controllers/dispositif/dispositif.repository", () => ({
+jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   updateDispositifInDB: jest.fn(),
 }));
 

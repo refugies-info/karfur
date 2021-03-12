@@ -4,7 +4,7 @@ import {
   getAllContentsFromDB,
   updateDispositifInDB,
   removeVariantesInDB,
-} from "../../../controllers/dispositif/dispositif.repository";
+} from "../../../modules/dispositif/dispositif.repository";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { ObjectId } from "mongoose";
 
