@@ -1,10 +1,10 @@
-import logger from "../../logger";
-import { Res } from "../../types/interface";
-import { getActiveDispositifsFromDBWithoutPopulate } from "./dispositif.repository";
+import logger = require("../../../logger");
+import { getActiveDispositifsFromDBWithoutPopulate } from "../../../controllers/dispositif/dispositif.repository";
+import { Res } from "../../../types/interface";
 import {
   adaptDispositifDepartement,
   getRegionFigures,
-} from "./dispositif.adapter";
+} from "../../../controllers/dispositif/dispositif.adapter";
 
 export const getNbDispositifsByRegion = async (req: {}, res: Res) => {
   try {

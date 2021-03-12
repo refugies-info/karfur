@@ -1,6 +1,5 @@
 const dispositif = require("./dispositif/lib.js");
 const checkToken = require("./account/checkToken");
-const { getNbDispositifsByRegion } = require("./dispositif/dispositif.service");
 
 import { updateNbVuesOnDispositif } from "../workflows/dispositif/updateNbVuesOnDispositif";
 import { populateNbVuesOnDispositifs } from "../workflows/dispositif/populateNbVuesOnDispositifs";
@@ -9,6 +8,7 @@ import { getAllDispositifs } from "../workflows/dispositif/getAllDispositifs";
 import { updateDispositifStatus } from "../workflows/dispositif/updateDispositifStatus";
 import { modifyDispositifMainSponsor } from "../workflows/dispositif/modifyDispositifMainSponsor";
 import { updateDispositifAdminComments } from "../workflows/dispositif/updateDispositifAdminComments";
+import { getNbDispositifsByRegion } from "../workflows/dispositif/getNbDispositifsByRegion";
 
 module.exports = function (app) {
   app.post("/add_dispositif", checkToken.check, dispositif.add_dispositif);

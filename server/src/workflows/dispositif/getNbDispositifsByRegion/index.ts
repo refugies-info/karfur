@@ -1,0 +1,1 @@
+export { getNbDispositifsByRegion } from "./getNbDispositifsByRegion";
