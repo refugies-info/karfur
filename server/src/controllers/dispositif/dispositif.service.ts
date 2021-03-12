@@ -1,77 +1,19 @@
-const logger = require("../../logger");
-import {
-  turnToLocalized,
-  turnJSONtoHTML,
-  turnToLocalizedTitles,
-} from "./functions";
+import logger from "../../logger";
+import { turnToLocalizedTitles } from "./functions";
 import { Res, RequestFromClient, IDispositif } from "../../types/interface";
 import {
   getDispositifsFromDB,
-  getDispositifArray,
   updateDispositifInDB,
   getActiveDispositifsFromDBWithoutPopulate,
 } from "./dispositif.repository";
 import { ObjectId } from "mongoose";
 import { updateAssociatedDispositifsInStructure } from "../../modules/structure/structure.repository";
 import {
-  removeUselessContent,
   adaptDispositifMainSponsorAndCreatorId,
   adaptDispositifDepartement,
   getRegionFigures,
 } from "./dispositif.adapter";
 import { updateLanguagesAvancement } from "../langues/langues.service";
-
-interface Query {}
-
-export const getDispositifs = async (
-  req: RequestFromClient<Query>,
-  res: Res
-) => {
-  try {
-    if (!req.body || !req.body.query) {
-      res.status(400).json({ text: "Requête invalide" });
-    } else {
-      logger.info("[getDispositifs] called");
-      let { query, locale } = req.body;
-      locale = locale || "fr";
-
-      const dispositifArray = await getDispositifArray(query);
-
-      // @ts-ignore
-      const adaptedDispositifArray = removeUselessContent(dispositifArray);
-      const array: string[] = [];
-      array.forEach.call(adaptedDispositifArray, (dispositif: IDispositif) => {
-        turnToLocalized(dispositif, locale);
-        turnJSONtoHTML(dispositif.contenu);
-      });
-
-      res.status(200).json({
-        text: "Succès",
-        data: adaptedDispositifArray,
-      });
-    }
-  } catch (error) {
-    logger.error("[getDispositifs] error while getting dispositifs", {
-      error: error.message,
-    });
-    switch (error) {
-      case 500:
-        res.status(500).json({
-          text: "Erreur interne",
-        });
-        break;
-      case 404:
-        res.status(404).json({
-          text: "Pas de résultat",
-        });
-        break;
-      default:
-        res.status(500).json({
-          text: "Erreur interne",
-        });
-    }
-  }
-};
 
 export const getAllDispositifs = async (req: {}, res: Res) => {
   try {
