@@ -1,5 +1,5 @@
 import { RequestFromClient, Res, IDispositif } from "../../../types/interface";
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import { getDispositifArray } from "../../../modules/dispositif/dispositif.repository";
 import { removeUselessContent } from "../../../modules/dispositif/dispositif.adapter";
 import {

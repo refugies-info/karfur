@@ -1,5 +1,5 @@
 import { Res, RequestFromClient } from "../../../types/interface";
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import Event from "../../../schema/schemaEvent";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { ObjectId } from "mongoose";

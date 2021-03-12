@@ -1,4 +1,4 @@
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import { User } from "../../../schema/schemaUser";
 import { Res } from "../../../types/interface";
 

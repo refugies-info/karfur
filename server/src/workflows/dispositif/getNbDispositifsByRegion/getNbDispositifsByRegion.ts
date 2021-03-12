@@ -1,4 +1,4 @@
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import { getActiveDispositifsFromDBWithoutPopulate } from "../../../modules/dispositif/dispositif.repository";
 import { Res } from "../../../types/interface";
 import {

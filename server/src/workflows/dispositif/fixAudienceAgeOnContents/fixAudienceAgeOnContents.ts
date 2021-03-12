@@ -1,4 +1,4 @@
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import { Res, AudienceAge, DispositifContent } from "../../../types/interface";
 import {
   getAllContentsFromDB,

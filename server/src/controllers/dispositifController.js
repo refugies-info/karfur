@@ -2,7 +2,6 @@ const dispositif = require("./dispositif/lib.js");
 const checkToken = require("./account/checkToken");
 
 import { updateNbVuesOnDispositif } from "../workflows/dispositif/updateNbVuesOnDispositif";
-import { populateNbVuesOnDispositifs } from "../workflows/dispositif/populateNbVuesOnDispositifs";
 import { getDispositifs } from "../workflows/dispositif/getDispositifs";
 import { getAllDispositifs } from "../workflows/dispositif/getAllDispositifs";
 import { updateDispositifStatus } from "../workflows/dispositif/updateDispositifStatus";
@@ -41,5 +40,4 @@ module.exports = function (app) {
   app.post("/updateDispositifAdminComments", updateDispositifAdminComments);
   app.get("/getNbDispositifsByRegion", getNbDispositifsByRegion);
   app.post("/updateNbVuesOnDispositif", updateNbVuesOnDispositif);
-  app.post("/populateNbVuesOnDispositifs", populateNbVuesOnDispositifs);
 };

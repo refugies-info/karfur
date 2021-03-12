@@ -1,6 +1,6 @@
 import { ObjectId } from "mongoose";
 import { RequestFromClient, Res } from "../../../types/interface";
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
 
