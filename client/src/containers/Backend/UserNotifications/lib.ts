@@ -42,5 +42,10 @@ export const formatNotifications = (
       });
     });
   });
+  result.sort((a, b) => {
+    if (!a.read) return -1;
+    if (!b.read) return 1;
+    return 1;
+  });
   return result;
 };

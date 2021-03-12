@@ -47,6 +47,7 @@ const DateContainer = styled.div`
   line-height: 20px;
   color: #f44336;
   margin-right: 8px;
+  margin-left: 8px;
 `;
 
 interface Props {
@@ -73,9 +74,6 @@ const getFormattedDate = (createdAt: Moment) => {
   return "Depuis " + nbDays + " jours";
 };
 export const Notification = (props: Props) => {
-  console.log("type", props.type);
-  console.log("cre", props.createdAt);
-  console.log("link", props.link);
   return (
     <Container read={props.read}>
       <RowContainer>
