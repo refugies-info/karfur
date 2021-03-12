@@ -1,75 +1,16 @@
 import logger from "../../logger";
-import { turnToLocalizedTitles } from "./functions";
-import { Res, RequestFromClient, IDispositif } from "../../types/interface";
+import { Res, RequestFromClient } from "../../types/interface";
 import {
-  getDispositifsFromDB,
   updateDispositifInDB,
   getActiveDispositifsFromDBWithoutPopulate,
 } from "./dispositif.repository";
 import { ObjectId } from "mongoose";
 import { updateAssociatedDispositifsInStructure } from "../../modules/structure/structure.repository";
 import {
-  adaptDispositifMainSponsorAndCreatorId,
   adaptDispositifDepartement,
   getRegionFigures,
 } from "./dispositif.adapter";
 import { updateLanguagesAvancement } from "../langues/langues.service";
-
-export const getAllDispositifs = async (req: {}, res: Res) => {
-  try {
-    logger.info("[getAllDispositifs] called");
-
-    const neededFields = {
-      titreInformatif: 1,
-      titreMarque: 1,
-      updatedAt: 1,
-      status: 1,
-      typeContenu: 1,
-      created_at: 1,
-      publishedAt: 1,
-      adminComments: 1,
-      adminProgressionStatus: 1,
-      adminPercentageProgressionStatus: 1,
-      lastAdminUpdate: 1,
-    };
-
-    const dispositifs = await getDispositifsFromDB(neededFields);
-    const adaptedDispositifs = adaptDispositifMainSponsorAndCreatorId(
-      dispositifs
-    );
-
-    const array: string[] = [];
-
-    array.forEach.call(adaptedDispositifs, (dispositif: IDispositif) => {
-      turnToLocalizedTitles(dispositif, "fr");
-    });
-
-    res.status(200).json({
-      text: "Succès",
-      data: adaptedDispositifs,
-    });
-  } catch (error) {
-    logger.error("[getAllDispositifs] error while getting dispositifs", {
-      error,
-    });
-    switch (error) {
-      case 500:
-        res.status(500).json({
-          text: "Erreur interne",
-        });
-        break;
-      case 404:
-        res.status(404).json({
-          text: "Pas de résultat",
-        });
-        break;
-      default:
-        res.status(500).json({
-          text: "Erreur interne",
-        });
-    }
-  }
-};
 
 interface QueryUpdate {
   dispositifId: ObjectId;
