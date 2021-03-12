@@ -4,7 +4,7 @@ import { Res } from "../../../types/interface";
 import {
   adaptDispositifDepartement,
   getRegionFigures,
-} from "../../../controllers/dispositif/dispositif.adapter";
+} from "../../../modules/dispositif/dispositif.adapter";
 
 export const getNbDispositifsByRegion = async (req: {}, res: Res) => {
   try {

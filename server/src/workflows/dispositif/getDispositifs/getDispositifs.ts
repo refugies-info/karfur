@@ -1,7 +1,7 @@
 import { RequestFromClient, Res, IDispositif } from "../../../types/interface";
 import logger = require("../../../logger");
 import { getDispositifArray } from "../../../controllers/dispositif/dispositif.repository";
-import { removeUselessContent } from "../../../controllers/dispositif/dispositif.adapter";
+import { removeUselessContent } from "../../../modules/dispositif/dispositif.adapter";
 import {
   turnToLocalized,
   turnJSONtoHTML,

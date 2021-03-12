@@ -1,7 +1,7 @@
 import logger = require("../../../logger");
 import { Res, IDispositif } from "../../../types/interface";
 import { getDispositifsFromDB } from "../../../controllers/dispositif/dispositif.repository";
-import { adaptDispositifMainSponsorAndCreatorId } from "../../../controllers/dispositif/dispositif.adapter";
+import { adaptDispositifMainSponsorAndCreatorId } from "../../../modules/dispositif/dispositif.adapter";
 import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
 
 export const getAllDispositifs = async (req: {}, res: Res) => {
