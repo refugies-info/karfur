@@ -45,7 +45,7 @@ const DateContainer = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #f44336;
+  color: ${(props) => (props.read ? "#f44336" : "#FFFFFF")};
   margin-right: 8px;
   margin-left: 8px;
 `;
@@ -56,6 +56,7 @@ interface Props {
   title: string | undefined;
   createdAt: Moment | undefined;
   link: string | undefined;
+  onClick: () => void;
 }
 const getText = (type: "reaction" | "annuaire" | "new content") => {
   if (type === "reaction") return "Nouvelle réaction sur la fiche :";
@@ -69,7 +70,7 @@ const getText = (type: "reaction" | "annuaire" | "new content") => {
 const getFormattedDate = (createdAt: Moment) => {
   const nbDays = -moment(createdAt).diff(moment(), "days");
   if (nbDays === 0) return "Aujourd'hui";
-  if (nbDays < 2) return "Depuis " + nbDays + " jour";
+  if (nbDays === 1) return "Hier";
 
   return "Depuis " + nbDays + " jours";
 };
@@ -88,7 +89,9 @@ export const Notification = (props: Props) => {
       </RowContainer>
       <RowContainer>
         {props.createdAt && (
-          <DateContainer>{getFormattedDate(props.createdAt)}</DateContainer>
+          <DateContainer read={props.read}>
+            {getFormattedDate(props.createdAt)}
+          </DateContainer>
         )}
         {props.type === "annuaire" && (
           <FButton
@@ -107,7 +110,7 @@ export const Notification = (props: Props) => {
           </FButton>
         )}
         {props.type === "reaction" && (
-          <FButton type="dark" name="eye">
+          <FButton type="dark" name="eye" onClick={props.onClick}>
             Voir la réaction
           </FButton>
         )}

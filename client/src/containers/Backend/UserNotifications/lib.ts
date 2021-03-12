@@ -1,16 +1,7 @@
 import { IDispositif } from "../../../types/interface";
-import { Moment } from "moment";
+import { FormattedNotification } from "./types";
+import API from "../../../utils/API";
 
-interface FormattedNotification {
-  type: "reaction" | "annuaire" | "new content";
-  read: boolean;
-  link?: string;
-  username?: string;
-  createdAt?: Moment;
-  suggestionId?: string;
-  text?: string;
-  title?: string;
-}
 export const formatNotifications = (
   dispositifs: IDispositif[],
   hasResponsibleSeenAnnuaireNotif: boolean
@@ -39,6 +30,7 @@ export const formatNotifications = (
         read: !!suggestion.read,
         text: suggestion.suggestion,
         title: dispo.titreInformatif,
+        dispositifId: dispo._id,
       });
     });
   });
@@ -48,4 +40,26 @@ export const formatNotifications = (
     return 1;
   });
   return result;
+};
+
+export const deleteNotification = async (
+  notification: FormattedNotification
+) => {
+  let dispositif = {
+    dispositifId: notification.dispositifId,
+    suggestionId: notification.suggestionId,
+    fieldName: "suggestions",
+    type: "pull",
+  };
+  return await API.update_dispositif(dispositif);
+};
+
+export const readNotification = async (notif: FormattedNotification) => {
+  const dispositif = {
+    dispositifId: notif.dispositifId,
+    suggestionId: notif.suggestionId,
+    fieldName: "suggestions.$.read",
+    type: "set",
+  };
+  API.update_dispositif(dispositif);
 };

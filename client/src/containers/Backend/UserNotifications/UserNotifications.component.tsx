@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars-experimental */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Props } from "./UserNotifications.container";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserStructureActionCreator } from "../../../services/UserStructure/userStructure.actions";
@@ -13,9 +13,12 @@ import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { Spinner } from "reactstrap";
 import styled from "styled-components";
-import { formatNotifications } from "./lib";
+import { formatNotifications, deleteNotification } from "./lib";
 import { Notification } from "./components/Notification";
 import { ReactionLectureModal } from "../../../components/Modals";
+import { FormattedNotification } from "./types";
+import API from "../../../utils/API";
+import _ from "lodash";
 
 const MainContainer = styled.div`
   background: #edebeb;
@@ -55,7 +58,13 @@ export interface PropsBeforeInjection {
   history: any;
 }
 export const UserNotificationsComponent = (props: Props) => {
-  // const selectedReaction
+  const [
+    selectedReaction,
+    setSelectedReaction,
+  ] = useState<FormattedNotification | null>(null);
+  const [showReactionModal, setShowReactionModal] = useState(false);
+
+  const toggleReactionModal = () => setShowReactionModal(!showReactionModal);
 
   const dispatch = useDispatch();
   const structureId = useSelector(userStructureIdSelector);
@@ -87,8 +96,26 @@ export const UserNotificationsComponent = (props: Props) => {
     dispositifsAssocies,
     hasResponsibleSeenAnnuaireNotif
   );
-  const nbNotifications = notifications.length;
+  const nbNewNotifications = notifications.filter((notif) => !notif.read)
+    .length;
 
+  const onNotificationClick = (notif: FormattedNotification) => {
+    if (notif.type === "reaction") {
+      setSelectedReaction(notif);
+      setShowReactionModal(true);
+      return;
+    }
+    return;
+  };
+
+  const deleteNotificationAndUpdate = (notif: FormattedNotification | null) => {
+    if (!notif) return;
+    deleteNotification(notif);
+    dispatch(
+      fetchUserStructureActionCreator({ structureId, shouldRedirect: true })
+    );
+    setShowReactionModal(false);
+  };
   console.log("notifications", notifications);
 
   if (isLoading) return <Spinner />;
@@ -97,8 +124,12 @@ export const UserNotificationsComponent = (props: Props) => {
     <MainContainer>
       <TitleContainer>
         <Title>Vous avez</Title>
-        <NumberContainer>{nbNotifications}</NumberContainer>
-        <Title>{nbNotifications < 2 ? "notification" : "notifications"}</Title>
+        <NumberContainer>{nbNewNotifications}</NumberContainer>
+        <Title>
+          {nbNewNotifications < 2
+            ? "nouvelle notification."
+            : "nouvelles notifications."}
+        </Title>
       </TitleContainer>
       {notifications.map((notif) => (
         <Notification
@@ -108,14 +139,15 @@ export const UserNotificationsComponent = (props: Props) => {
           title={notif.title}
           createdAt={notif.createdAt}
           link={notif.link}
+          onClick={() => onNotificationClick(notif)}
         />
       ))}
-      {/* <ReactionLectureModal 
-          suggestion={selectedReaction}
-          show={showReactionModal}
-          toggle={toggleReactionModal}
-          archive={this.archiveSuggestion}
-        /> */}
+      <ReactionLectureModal
+        suggestion={selectedReaction}
+        show={showReactionModal}
+        toggle={toggleReactionModal}
+        delete={() => deleteNotificationAndUpdate(selectedReaction)}
+      />
     </MainContainer>
   );
 };
