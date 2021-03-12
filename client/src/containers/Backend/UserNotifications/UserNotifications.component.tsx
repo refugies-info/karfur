@@ -13,7 +13,11 @@ import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { Spinner } from "reactstrap";
 import styled from "styled-components";
-import { formatNotifications, deleteNotification } from "./lib";
+import {
+  formatNotifications,
+  deleteNotification,
+  readNotification,
+} from "./lib";
 import { Notification } from "./components/Notification";
 import { ReactionLectureModal } from "../../../components/Modals";
 import { FormattedNotification } from "./types";
@@ -91,11 +95,13 @@ export const UserNotificationsComponent = (props: Props) => {
     };
     loadUserStructure();
   }, [dispatch, structureId]);
-
+  console.log("dispos", dispositifsAssocies);
   const notifications = formatNotifications(
     dispositifsAssocies,
     hasResponsibleSeenAnnuaireNotif
   );
+
+  console.log("notifications", notifications);
   const nbNewNotifications = notifications.filter((notif) => !notif.read)
     .length;
 
@@ -111,6 +117,15 @@ export const UserNotificationsComponent = (props: Props) => {
   const deleteNotificationAndUpdate = (notif: FormattedNotification | null) => {
     if (!notif) return;
     deleteNotification(notif);
+    dispatch(
+      fetchUserStructureActionCreator({ structureId, shouldRedirect: true })
+    );
+    setShowReactionModal(false);
+  };
+
+  const readNotificationAndUpdate = (notif: FormattedNotification | null) => {
+    if (!notif) return;
+    readNotification(notif);
     dispatch(
       fetchUserStructureActionCreator({ structureId, shouldRedirect: true })
     );
@@ -147,6 +162,7 @@ export const UserNotificationsComponent = (props: Props) => {
         show={showReactionModal}
         toggle={toggleReactionModal}
         delete={() => deleteNotificationAndUpdate(selectedReaction)}
+        read={() => readNotificationAndUpdate(selectedReaction)}
       />
     </MainContainer>
   );

@@ -42,7 +42,11 @@ const ReactionLectureModal = (props) => {
           >
             Supprimer
           </FButton>
-          <FButton type="validate" name="checkmark" onClick={props.toggle}>
+          <FButton
+            type="validate"
+            name="checkmark"
+            onClick={() => props.read(suggestion)}
+          >
             J'ai lu
           </FButton>
         </div>

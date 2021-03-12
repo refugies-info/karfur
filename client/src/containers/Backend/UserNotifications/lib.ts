@@ -49,9 +49,9 @@ export const deleteNotification = async (
     dispositifId: notification.dispositifId,
     suggestionId: notification.suggestionId,
     fieldName: "suggestions",
-    type: "pull",
+    type: "remove",
   };
-  return await API.update_dispositif(dispositif);
+  return await API.updateDispositifReactions(dispositif);
 };
 
 export const readNotification = async (notif: FormattedNotification) => {
@@ -59,7 +59,7 @@ export const readNotification = async (notif: FormattedNotification) => {
     dispositifId: notif.dispositifId,
     suggestionId: notif.suggestionId,
     fieldName: "suggestions.$.read",
-    type: "set",
+    type: "read",
   };
-  API.update_dispositif(dispositif);
+  API.updateDispositifReactions(dispositif);
 };

@@ -44,6 +44,7 @@ export const updateDispositifInDB = async (
     | { audienceAge: AudienceAge[]; contenu: any }
     | { nbVues: number }
     | { draftReminderMailSentDate: number }
+    | { $pull: { [x: string]: { suggestionId: string } } }
 ) =>
   await Dispositif.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif);
 
@@ -87,3 +88,13 @@ export const getDraftDispositifs = async (): Promise<
       titreInformatif: 1,
     }
   ).populate("creatorId");
+
+export const modifyReadSuggestionInDispositif = async (
+  dispositifId: ObjectId,
+  suggestionId: string
+) =>
+  await Dispositif.findOneAndUpdate(
+    { _id: dispositifId, "suggestions.suggestionId": suggestionId },
+    // @ts-ignore
+    { $set: { ["suggestions.$.read"]: true } }
+  );
