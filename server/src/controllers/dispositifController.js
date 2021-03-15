@@ -1,16 +1,14 @@
 const dispositif = require("./dispositif/lib.js");
 const checkToken = require("./account/checkToken");
-const {
-  getDispositifs,
-  getAllDispositifs,
-  updateDispositifStatus,
-  modifyDispositifMainSponsor,
-  updateDispositifAdminComments,
-  getNbDispositifsByRegion,
-} = require("./dispositif/dispositif.service");
 
 import { updateNbVuesOnDispositif } from "../workflows/dispositif/updateNbVuesOnDispositif";
-import { populateNbVuesOnDispositifs } from "../workflows/dispositif/populateNbVuesOnDispositifs";
+import { getDispositifs } from "../workflows/dispositif/getDispositifs";
+import { getAllDispositifs } from "../workflows/dispositif/getAllDispositifs";
+import { updateDispositifStatus } from "../workflows/dispositif/updateDispositifStatus";
+import { modifyDispositifMainSponsor } from "../workflows/dispositif/modifyDispositifMainSponsor";
+import { updateDispositifAdminComments } from "../workflows/dispositif/updateDispositifAdminComments";
+import { getNbDispositifsByRegion } from "../workflows/dispositif/getNbDispositifsByRegion";
+import { updateDispositifReactions } from "../workflows/dispositif/updateDispositifReactions";
 
 module.exports = function (app) {
   app.post("/add_dispositif", checkToken.check, dispositif.add_dispositif);
@@ -43,5 +41,9 @@ module.exports = function (app) {
   app.post("/updateDispositifAdminComments", updateDispositifAdminComments);
   app.get("/getNbDispositifsByRegion", getNbDispositifsByRegion);
   app.post("/updateNbVuesOnDispositif", updateNbVuesOnDispositif);
-  app.post("/populateNbVuesOnDispositifs", populateNbVuesOnDispositifs);
+  app.post(
+    "/updateDispositifReactions",
+    checkToken.getId,
+    updateDispositifReactions
+  );
 };

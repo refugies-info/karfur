@@ -4,7 +4,7 @@ import {
   getAllContentsFromDB,
   updateDispositifInDB,
   removeVariantesInDB,
-} from "../../../controllers/dispositif/dispositif.repository";
+} from "../../../modules/dispositif/dispositif.repository";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -176,7 +176,7 @@ const demarche5 = {
   ],
 };
 
-jest.mock("../../../controllers/dispositif/dispositif.repository", () => ({
+jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getAllContentsFromDB: jest.fn(),
   updateDispositifInDB: jest.fn(),
   removeVariantesInDB: jest.fn(),
