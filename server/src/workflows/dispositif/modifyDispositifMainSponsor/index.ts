@@ -1,0 +1,1 @@
+export { modifyDispositifMainSponsor } from "./modifyDispositifMainSponsor";

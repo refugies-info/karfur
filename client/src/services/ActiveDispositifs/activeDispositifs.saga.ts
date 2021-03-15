@@ -2,14 +2,21 @@ import { SagaIterator } from "redux-saga";
 import { takeLatest, put, call, select } from "redux-saga/effects";
 import { langueSelector } from "../Langue/langue.selectors";
 import API from "../../utils/API";
-import { FETCH_ACTIVE_DISPOSITIFS } from "./activeDispositifs.actionTypes";
-import { setActiveDispositifsActionsCreator } from "./activeDispositifs.actions";
+import {
+  FETCH_ACTIVE_DISPOSITIFS,
+  UPDATE_DISPOSITIF_REACTION,
+} from "./activeDispositifs.actionTypes";
+import {
+  setActiveDispositifsActionsCreator,
+  updateDispositifReactionActionCreator,
+} from "./activeDispositifs.actions";
 import { logger } from "../../logger";
 import {
   startLoading,
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
+import { fetchUserStructureActionCreator } from "../UserStructure/userStructure.actions";
 
 export function* fetchActiveDispositifs(): SagaIterator {
   try {
@@ -30,8 +37,38 @@ export function* fetchActiveDispositifs(): SagaIterator {
   }
 }
 
+export function* updateDispositifReaction(
+  action: ReturnType<typeof updateDispositifReactionActionCreator>
+): SagaIterator {
+  try {
+    const { dispositif, structureId } = action.payload;
+    logger.info("[updateDispositifReaction] updating dispositif reaction", {
+      dispositif,
+      structureId,
+    });
+    yield call(API.updateDispositifReactions, dispositif);
+    yield put(
+      fetchUserStructureActionCreator({
+        structureId,
+        shouldRedirect: true,
+      })
+    );
+    logger.info(
+      "[updateDispositifReaction] successfully updated user structure"
+    );
+  } catch (error) {
+    logger.error(
+      "[updateDispositifReaction] error while updating user structure",
+      {
+        error,
+      }
+    );
+  }
+}
+
 function* latestActionsSaga() {
   yield takeLatest(FETCH_ACTIVE_DISPOSITIFS, fetchActiveDispositifs);
+  yield takeLatest(UPDATE_DISPOSITIF_REACTION, updateDispositifReaction);
 }
 
 export default latestActionsSaga;

@@ -1349,11 +1349,11 @@ export class Dispositif extends Component {
       keyValue: this.state.tKeyValue,
       subkey: this.state.tSubkey,
       fieldName: fieldName,
-      type: "push",
+      type: "add",
       ...(this.state.suggestion && { suggestion: h2p(this.state.suggestion) }),
     };
 
-    API.update_dispositif(dispositif).then(() => {
+    API.updateDispositifReactions(dispositif).then(() => {
       if (this._isMounted) {
         Swal.fire({
           title: "Yay...",

@@ -30,7 +30,7 @@ import styled from "styled-components";
 import Streamline from "../../assets/streamline";
 
 import "./Toolbar.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 import { logger } from "../../logger";
 
 const InnerButton = styled.div`
@@ -129,16 +129,7 @@ export class Toolbar extends React.Component {
 
   render() {
     const path = this.props.location.pathname || "";
-    const {
-      user,
-      contributeur,
-      traducteur,
-      expertTrad,
-      admin,
-      membreStruct,
-      t,
-      windowWidth,
-    } = this.props;
+    const { user, admin, membreStruct, t, windowWidth } = this.props;
     const afficher_burger =
       false && admin && path.includes("/backend") && path.includes("/admin"); //Hugo demande de ne plus afficher le burger, temporairement désactivé donc
     const afficher_burger_droite = path.includes("/traduction");
@@ -166,11 +157,7 @@ export class Toolbar extends React.Component {
             path !== "/homepage" &&
             windowWidth >= breakpoints.phoneDown && (
               <NavLink to="/" className="home-btn">
-                <EVAIcon
-                  name="home"
-                  fill={colors.noir}
-                  className="mr-10 rsz"
-                />
+                <EVAIcon name="home" fill={colors.noir} className="mr-10 rsz" />
                 {windowWidth >= breakpoints.lgLimit && (
                   <b className="home-texte">
                     {t("Toolbar.Accueil", "Accueil")}
@@ -184,12 +171,12 @@ export class Toolbar extends React.Component {
           <AudioBtn />
           <LanguageBtn hideText={windowWidth < breakpoints.tabletUp} />
           {/* <NavigationItems /> */}
-            <AdvancedSearchBar
-              visible={this.state.visible}
-              scroll={this.state.scroll}
-              loupe
-              className="search-bar inner-addon right-addon mr-10 rsz"
-            />
+          <AdvancedSearchBar
+            visible={this.state.visible}
+            scroll={this.state.scroll}
+            loupe
+            className="search-bar inner-addon right-addon mr-10 rsz"
+          />
 
           <button
             onClick={() => {
@@ -250,22 +237,19 @@ export class Toolbar extends React.Component {
                 >
                   {t("Toolbar.Mon profil", "Mon profil")}
                 </DropdownItem>
-                {contributeur && (
-                  <DropdownItem
-                    onClick={() =>
-                      this.navigateTo("/backend/user-dash-contrib")
-                    }
-                  >
-                    {t("Toolbar.Mes fiches", "Mes fiches")}
-                  </DropdownItem>
-                )}
-                {(expertTrad || traducteur) && (
-                  <DropdownItem
-                    onClick={() => this.navigateTo("/backend/user-dashboard")}
-                  >
-                    {t("Toolbar.Mes traductions", "Mes traductions")}
-                  </DropdownItem>
-                )}
+
+                <DropdownItem
+                  onClick={() => this.navigateTo("/backend/user-dash-contrib")}
+                >
+                  {t("Toolbar.Mes fiches", "Mes fiches")}
+                </DropdownItem>
+
+                <DropdownItem
+                  onClick={() => this.navigateTo("/backend/user-dashboard")}
+                >
+                  {t("Toolbar.Mes traductions", "Mes traductions")}
+                </DropdownItem>
+
                 {membreStruct && (
                   <DropdownItem
                     onClick={() => {
@@ -273,6 +257,15 @@ export class Toolbar extends React.Component {
                     }}
                   >
                     {t("Toolbar.Ma structure", "Ma structure")}
+                  </DropdownItem>
+                )}
+                {membreStruct && (
+                  <DropdownItem
+                    onClick={() => {
+                      this.navigateTo("/backend/user-dash-notifications");
+                    }}
+                  >
+                    {t("Toolbar.Mes notifications", "Mes notifications")}
                   </DropdownItem>
                 )}
                 {admin && (

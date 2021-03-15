@@ -27,7 +27,7 @@ export function* fetchUserStructure(
     yield put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE));
     logger.info("[fetchUserStructure] fetching user structure");
     const { structureId, shouldRedirect } = action.payload;
-    const data = yield call(API.getStructureById, structureId, false, false);
+    const data = yield call(API.getStructureById, structureId, true, "fr");
     yield put(setUserStructureActionCreator(data.data.data));
 
     const user = yield select(userSelector);
@@ -66,8 +66,13 @@ export function* updateUserStructure(): SagaIterator {
       logger.info("[updateUserStructure] no structure to update");
       return;
     }
-    const data = yield call(API.updateStructure, { query: structure });
-    yield put(setUserStructureActionCreator(data.data.data));
+    yield call(API.updateStructure, { query: structure });
+    yield put(
+      fetchUserStructureActionCreator({
+        structureId: structure._id,
+        shouldRedirect: true,
+      })
+    );
     logger.info("[updateUserStructure] successfully updated user structure");
   } catch (error) {
     logger.error("[updateUserStructure] error while updating user structure", {

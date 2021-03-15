@@ -1,13 +1,12 @@
 import React from "react";
 import { Input, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import {colors} from "colors";
-
 import FButton from "../../FigmaUI/FButton/FButton";
 
 import "./ReactionLectureModal.scss";
 
 const ReactionLectureModal = (props) => {
   let suggestion = props.suggestion || {};
+
   const getUserName = () =>
     suggestion.username ? suggestion.username : "Utilisateur non connecté";
   return (
@@ -27,35 +26,27 @@ const ReactionLectureModal = (props) => {
           type="textarea"
           placeholder="Aa"
           rows={5}
-          value={suggestion.texte}
+          value={suggestion.text}
           id="suggestion"
         />
       </ModalBody>
       <ModalFooter>
-        <FButton
-          tag={"a"}
-          href="https://help.refugies.info/fr/"
-          target="_blank"
-          rel="noopener noreferrer"
-          type="help"
-          name="question-mark-circle-outline"
-          fill={colors.error}
-        >
-          Centre d'aide
-        </FButton>
         <div>
           <FButton
             type="outline-black"
             name="trash-2-outline"
             onClick={() => {
-              props.archive(suggestion);
-              props.toggle();
+              props.delete(suggestion);
             }}
             className="mr-16"
           >
             Supprimer
           </FButton>
-          <FButton type="validate" name="checkmark" onClick={props.toggle}>
+          <FButton
+            type="validate"
+            name="checkmark"
+            onClick={() => props.read(suggestion)}
+          >
             J'ai lu
           </FButton>
         </div>

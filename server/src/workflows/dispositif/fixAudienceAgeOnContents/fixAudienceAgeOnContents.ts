@@ -1,10 +1,10 @@
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import { Res, AudienceAge, DispositifContent } from "../../../types/interface";
 import {
   getAllContentsFromDB,
   updateDispositifInDB,
   removeVariantesInDB,
-} from "../../../controllers/dispositif/dispositif.repository";
+} from "../../../modules/dispositif/dispositif.repository";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { ObjectId } from "mongoose";
 
