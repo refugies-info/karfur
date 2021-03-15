@@ -1,1 +1,1 @@
-export { UserNotificationsContainer as UserNotifications } from "./UserNotifications.container";
+export { UserNotificationsComponent as UserNotifications } from "./UserNotifications.component";

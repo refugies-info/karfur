@@ -13,7 +13,6 @@ import {
 } from "../../../services/UserStructure/userStructure.selectors";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
-import { Spinner } from "reactstrap";
 import styled from "styled-components";
 import { formatNotifications } from "./lib";
 import { Notification } from "./components/Notification";
@@ -22,6 +21,8 @@ import { FormattedNotification } from "./types";
 import _ from "lodash";
 import Swal from "sweetalert2";
 import { updateDispositifReactionActionCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
+import Skeleton from "react-loading-skeleton";
+import { assetsOnServer } from "../../../assets/assetsOnServer";
 
 declare const window: Window;
 
@@ -56,6 +57,14 @@ const Title = styled.div`
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
+`;
+
+const CenterContainer = styled.div`
+  color: #5e5e5e;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export interface PropsBeforeInjection {
@@ -199,7 +208,32 @@ export const UserNotificationsComponent = () => {
     });
   };
 
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <MainContainer>
+        <TitleContainer>
+          <Title>Vous avez</Title>
+          <NumberContainer>...</NumberContainer>
+          <Title>nouvelle notification.</Title>
+        </TitleContainer>
+        <Skeleton count={3} height={50} />
+      </MainContainer>
+    );
+
+  if (nbNewNotifications === 0)
+    return (
+      <MainContainer>
+        <CenterContainer>
+          <Title>Aucune notification ! </Title>
+          <div style={{ marginTop: "32px", marginBottom: "20px" }}>
+            <img
+              src={assetsOnServer.middleOffice.noNotification}
+              alt="no-notification"
+            />
+          </div>
+        </CenterContainer>
+      </MainContainer>
+    );
 
   return (
     <MainContainer>
