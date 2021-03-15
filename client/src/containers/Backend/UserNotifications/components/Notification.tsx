@@ -108,7 +108,7 @@ export const Notification = (props: Props) => {
             </FButton>
             <FButton
               type="error"
-              name="trash-2-outline"
+              name="trash-2"
               onClick={props.onAnnuaireNotifDeleteClick}
               className="ml-8"
             />
@@ -126,7 +126,7 @@ export const Notification = (props: Props) => {
             </FButton>
             <FButton
               type="error"
-              name="trash-2-outline"
+              name="trash-2"
               onClick={props.onReactionDeleteClick}
               className="ml-8"
             />
