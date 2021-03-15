@@ -105,9 +105,13 @@ export const AnnuaireCreateComponent = (props: Props) => {
   const dispatch = useDispatch();
   const structureId = useSelector(userStructureIdSelector);
   const structure = useSelector(userStructureSelector);
-  const isLoading = useSelector(
+  const isLoadingFetch = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE)
   );
+  const isLoadingUpdate = useSelector(
+    isLoadingSelector(LoadingStatusKey.UPDATE_USER_STRUCTURE)
+  );
+  const isLoading = isLoadingUpdate || isLoadingFetch;
 
   const toggleTutorielModal = () => setShowTutoModal(!showTutoModal);
 

@@ -11,6 +11,7 @@ export enum LoadingStatusKey {
   FETCH_ALL_DISPOSITIFS = "FETCH_ALL_DISPOSITIFS",
   FETCH_ALL_STRUCTURES = "FETCH_ALL_STRUCTURES",
   FETCH_ALL_USERS = "FETCH_ALL_USERS",
+  UPDATE_USER_STRUCTURE = "UPDATE_USER_STRUCTURE",
 }
 
 export const startLoading = (key: LoadingStatusKey) =>

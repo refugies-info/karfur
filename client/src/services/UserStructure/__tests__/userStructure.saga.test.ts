@@ -12,9 +12,13 @@ import {
   finishLoading,
 } from "../../LoadingStatus/loadingStatus.actions";
 import { FETCH_USER_STRUCTURE } from "../userStructure.actionTypes";
-import { setUserStructureActionCreator } from "../userStructure.actions";
+import {
+  setUserStructureActionCreator,
+  fetchUserStructureActionCreator,
+} from "../userStructure.actions";
 import { userSelector } from "../../User/user.selectors";
 import { setUserRoleInStructureActionCreator } from "../../User/user.actions";
+import { userStructureSelector } from "../userStructure.selectors";
 
 describe("[Saga] Structures", () => {
   describe("pilot", () => {
@@ -242,6 +246,39 @@ describe("[Saga] Structures", () => {
         .put(setUserRoleInStructureActionCreator(["contributeur"]))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
+        .next()
+        .isDone();
+    });
+  });
+
+  describe("updateUserStructure", () => {
+    it("should call and dispatch correct actions if no structure", () => {
+      testSaga(updateUserStructure)
+        .next()
+        .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .select(userStructureSelector)
+        .next(null)
+        .isDone();
+    });
+
+    it("should call and dispatch correct actions if structure", () => {
+      testSaga(updateUserStructure)
+        .next()
+        .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .select(userStructureSelector)
+        .next({ _id: "structureId" })
+        .call(API.updateStructure, { query: { _id: "structureId" } })
+        .next()
+        .put(
+          fetchUserStructureActionCreator({
+            structureId: "structureId",
+            shouldRedirect: true,
+          })
+        )
+        .next()
+        .put(finishLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
         .next()
         .isDone();
     });
