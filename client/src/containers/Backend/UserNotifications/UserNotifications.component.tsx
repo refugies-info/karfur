@@ -1,13 +1,15 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React, { useEffect, useState } from "react";
-import { Props } from "./UserNotifications.container";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserStructureActionCreator } from "../../../services/UserStructure/userStructure.actions";
+import {
+  fetchUserStructureActionCreator,
+  setUserStructureActionCreator,
+  updateUserStructureActionCreator,
+} from "../../../services/UserStructure/userStructure.actions";
 import { userStructureIdSelector } from "../../../services/User/user.selectors";
 import {
   userStructureDisposAssocies,
   userStructureHasResponsibleSeenNotification,
+  userStructureSelector,
 } from "../../../services/UserStructure/userStructure.selectors";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
@@ -21,8 +23,10 @@ import {
 import { Notification } from "./components/Notification";
 import { ReactionLectureModal } from "../../../components/Modals";
 import { FormattedNotification } from "./types";
-import API from "../../../utils/API";
 import _ from "lodash";
+import Swal from "sweetalert2";
+
+declare const window: Window;
 
 const MainContainer = styled.div`
   background: #edebeb;
@@ -61,7 +65,7 @@ export interface PropsBeforeInjection {
   t: any;
   history: any;
 }
-export const UserNotificationsComponent = (props: Props) => {
+export const UserNotificationsComponent = () => {
   const [
     selectedReaction,
     setSelectedReaction,
@@ -75,16 +79,13 @@ export const UserNotificationsComponent = (props: Props) => {
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE)
   );
+  const userStructure = useSelector(userStructureSelector);
 
   const dispositifsAssocies = useSelector(userStructureDisposAssocies);
-  console.log("dispositifsAssocies", dispositifsAssocies);
   const hasResponsibleSeenAnnuaireNotif = useSelector(
     userStructureHasResponsibleSeenNotification
   );
-  console.log(
-    "hasResponsibleSeenAnnuaireNotif",
-    hasResponsibleSeenAnnuaireNotif
-  );
+
   useEffect(() => {
     const loadUserStructure = async () => {
       if (structureId) {
@@ -94,14 +95,14 @@ export const UserNotificationsComponent = (props: Props) => {
       }
     };
     loadUserStructure();
+    window.scrollTo(0, 0);
   }, [dispatch, structureId]);
-  console.log("dispos", dispositifsAssocies);
+
   const notifications = formatNotifications(
     dispositifsAssocies,
     hasResponsibleSeenAnnuaireNotif
   );
 
-  console.log("notifications", notifications);
   const nbNewNotifications = notifications.filter((notif) => !notif.read)
     .length;
 
@@ -114,24 +115,74 @@ export const UserNotificationsComponent = (props: Props) => {
     return;
   };
 
-  const deleteNotificationAndUpdate = (notif: FormattedNotification | null) => {
+  const deleteNotificationAndUpdate = async (
+    notif: FormattedNotification | null
+  ) => {
     if (!notif) return;
-    deleteNotification(notif);
+    try {
+      await deleteNotification(notif);
+      Swal.fire({
+        title: "Yay...",
+        text: "La réaction a bien été supprimée",
+        type: "success",
+        timer: 1500,
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Oops",
+        text: "Erreur lors de la suppression",
+        type: "error",
+        timer: 1500,
+      });
+    }
     dispatch(
       fetchUserStructureActionCreator({ structureId, shouldRedirect: true })
     );
     setShowReactionModal(false);
   };
 
-  const readNotificationAndUpdate = (notif: FormattedNotification | null) => {
+  const readNotificationAndUpdate = async (
+    notif: FormattedNotification | null
+  ) => {
     if (!notif) return;
-    readNotification(notif);
+    try {
+      await readNotification(notif);
+      Swal.fire({
+        title: "Yay...",
+        text: "La réaction a été marquée comme lue",
+        type: "success",
+        timer: 1500,
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Oops",
+        text: "Erreur lors de l'enregistrement",
+        type: "error",
+        timer: 1500,
+      });
+    }
     dispatch(
       fetchUserStructureActionCreator({ structureId, shouldRedirect: true })
     );
     setShowReactionModal(false);
   };
-  console.log("notifications", notifications);
+
+  const updateStructureWithNotificationSeen = () => {
+    dispatch(
+      // @ts-ignore
+      setUserStructureActionCreator({
+        ...userStructure,
+        hasResponsibleSeenNotification: true,
+      })
+    );
+    dispatch(updateUserStructureActionCreator());
+    Swal.fire({
+      title: "Yay...",
+      text: "La notification a été supprimée",
+      type: "success",
+      timer: 1500,
+    });
+  };
 
   if (isLoading) return <Spinner />;
 
@@ -155,6 +206,8 @@ export const UserNotificationsComponent = (props: Props) => {
           createdAt={notif.createdAt}
           link={notif.link}
           onClick={() => onNotificationClick(notif)}
+          onReactionDeleteClick={() => deleteNotificationAndUpdate(notif)}
+          onAnnuaireNotifDeleteClick={updateStructureWithNotificationSeen}
         />
       ))}
       <ReactionLectureModal

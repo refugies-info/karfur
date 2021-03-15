@@ -57,6 +57,8 @@ interface Props {
   createdAt: Moment | undefined;
   link: string | undefined;
   onClick: () => void;
+  onReactionDeleteClick: () => void;
+  onAnnuaireNotifDeleteClick: () => void;
 }
 const getText = (type: "reaction" | "annuaire" | "new content") => {
   if (type === "reaction") return "Nouvelle réaction sur la fiche :";
@@ -94,15 +96,23 @@ export const Notification = (props: Props) => {
           </DateContainer>
         )}
         {props.type === "annuaire" && (
-          <FButton
-            type="dark"
-            className="mr-8"
-            name="folder-add-outline"
-            tag={NavLink}
-            to="/annuaire-create"
-          >
-            Compléter la fiche annuaire
-          </FButton>
+          <>
+            <FButton
+              type="dark"
+              className="mr-8"
+              name="folder-add-outline"
+              tag={NavLink}
+              to="/annuaire-create"
+            >
+              Compléter la fiche annuaire
+            </FButton>
+            <FButton
+              type="error"
+              name="trash-2-outline"
+              onClick={props.onAnnuaireNotifDeleteClick}
+              className="ml-8"
+            />
+          </>
         )}
         {props.type === "new content" && props.link && (
           <FButton tag={NavLink} to={props.link} type="dark" name="eye">
@@ -110,9 +120,17 @@ export const Notification = (props: Props) => {
           </FButton>
         )}
         {props.type === "reaction" && (
-          <FButton type="dark" name="eye" onClick={props.onClick}>
-            Voir la réaction
-          </FButton>
+          <>
+            <FButton type="dark" name="eye" onClick={props.onClick}>
+              Voir la réaction
+            </FButton>
+            <FButton
+              type="error"
+              name="trash-2-outline"
+              onClick={props.onReactionDeleteClick}
+              className="ml-8"
+            />
+          </>
         )}
       </RowContainer>
     </Container>

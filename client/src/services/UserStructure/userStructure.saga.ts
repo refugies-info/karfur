@@ -66,8 +66,13 @@ export function* updateUserStructure(): SagaIterator {
       logger.info("[updateUserStructure] no structure to update");
       return;
     }
-    const data = yield call(API.updateStructure, { query: structure });
-    yield put(setUserStructureActionCreator(data.data.data));
+    yield call(API.updateStructure, { query: structure });
+    yield put(
+      fetchUserStructureActionCreator({
+        structureId: structure._id,
+        shouldRedirect: true,
+      })
+    );
     logger.info("[updateUserStructure] successfully updated user structure");
   } catch (error) {
     logger.error("[updateUserStructure] error while updating user structure", {
