@@ -35,6 +35,18 @@ export const formatNotifications = (
     });
   });
   result.sort((a, b) => {
+    if (a.read && !b.read) {
+      return 1;
+    }
+    if (!a.read && b.read) {
+      return -1;
+    }
+    if (a.type === "annuaire" || b.type === "annuaire") {
+      return 1;
+    }
+    if (a.type === "new content" || b.type === "new content") {
+      return 1;
+    }
     if (!a.read) return -1;
     if (!b.read) return 1;
     return 1;
@@ -61,5 +73,5 @@ export const readNotification = async (notif: FormattedNotification) => {
     fieldName: "suggestions.$.read",
     type: "read",
   };
-  API.updateDispositifReactions(dispositif);
+  return await API.updateDispositifReactions(dispositif);
 };
