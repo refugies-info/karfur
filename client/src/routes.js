@@ -18,6 +18,7 @@ import {
   AnnuaireLecture,
   AnnuaireDetail,
 } from "./containers/Annuaire/AnnuaireLecture";
+import { UserNotifications } from "./containers/Backend/UserNotifications";
 
 const routes = [
   {
@@ -244,6 +245,12 @@ const routes = [
     name: "Réfugiés.info - Mon profil",
     component: UserProfile,
     restriction: ["User", "Trad", "ExpertTrad", "Admin"],
+  },
+  {
+    path: "/backend/user-dash-notifications",
+    name: "Réfugiés.info - Mes notifications",
+    component: UserNotifications,
+    restriction: ["Admin", "hasStructure"],
   },
 ];
 

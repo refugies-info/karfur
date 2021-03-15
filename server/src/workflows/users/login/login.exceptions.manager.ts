@@ -1,4 +1,4 @@
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import { Res } from "../../../types/interface";
 
 export const loginExceptionsManager = (error: Error, res: Res) => {

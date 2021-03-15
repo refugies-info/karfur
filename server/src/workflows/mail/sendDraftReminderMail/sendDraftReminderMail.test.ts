@@ -4,7 +4,7 @@ import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
 import {
   getDraftDispositifs,
   updateDispositifInDB,
-} from "../../../controllers/dispositif/dispositif.repository";
+} from "../../../modules/dispositif/dispositif.repository";
 import {
   sendOneDraftReminderMailService,
   sendMultipleDraftsReminderMailService,
@@ -20,7 +20,7 @@ jest.mock("../../../libs/checkAuthorizations", () => ({
   checkCronAuthorization: jest.fn(),
 }));
 
-jest.mock("../../../controllers/dispositif/dispositif.repository", () => ({
+jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getDraftDispositifs: jest.fn(),
   updateDispositifInDB: jest.fn(),
 }));

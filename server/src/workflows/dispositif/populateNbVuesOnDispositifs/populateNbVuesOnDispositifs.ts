@@ -1,9 +1,9 @@
 import { Res, RequestFromClient } from "../../../types/interface";
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import Event from "../../../schema/schemaEvent";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { ObjectId } from "mongoose";
-import { updateDispositifInDB } from "../../../controllers/dispositif/dispositif.repository";
+import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { checkRequestIsFromPostman } from "../../../libs/checkAuthorizations";
 
 interface AggregateEvent {

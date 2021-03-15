@@ -1,8 +1,8 @@
 // @ts-nocheck
 import { updateNbVuesOnDispositif } from "./updateNbVuesOnDispositif";
-import { updateDispositifInDB } from "../../../controllers/dispositif/dispositif.repository";
+import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 
-jest.mock("../../../controllers/dispositif/dispositif.repository", () => ({
+jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   updateDispositifInDB: jest.fn(),
 }));
 

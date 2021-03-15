@@ -7,14 +7,14 @@ import {
   ADD_TAG,
 } from "./selectedDispositif.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { Dispositif } from "../../types/interface";
+import { IDispositif } from "../../types/interface";
 
 export const fetchSelectedDispositifActionCreator = (value: {
   selectedDispositifId: string;
   locale: string;
 }) => action(FETCH_SELECTED_DISPOSITIF, value);
 
-export const setSelectedDispositifActionCreator = (value: Dispositif) =>
+export const setSelectedDispositifActionCreator = (value: IDispositif) =>
   action(SET_SELECTED_DISPOSITIF, value);
 
 export const updateUiArrayActionCreator = (value: {
@@ -26,7 +26,7 @@ export const updateUiArrayActionCreator = (value: {
 }) => action(UPDATE_UI_ARRAY, value);
 
 export const updateSelectedDispositifActionCreator = (
-  value: Partial<Dispositif>
+  value: Partial<IDispositif>
 ) => action(UPDATE_SELECTED_DISPOSITIF, value);
 
 export const deleteTagActionCreator = (value: number) =>

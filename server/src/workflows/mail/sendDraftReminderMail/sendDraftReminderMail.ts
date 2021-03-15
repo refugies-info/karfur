@@ -3,7 +3,7 @@ import logger from "../../../logger";
 import {
   getDraftDispositifs,
   updateDispositifInDB,
-} from "../../../controllers/dispositif/dispositif.repository";
+} from "../../../modules/dispositif/dispositif.repository";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import {
   sendOneDraftReminderMailService,

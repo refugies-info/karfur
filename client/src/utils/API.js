@@ -191,6 +191,12 @@ export default {
       headers: headers,
     });
   },
+
+  updateDispositifReactions: (query) =>
+    axios.post(burl + "/dispositifs/updateDispositifReactions", query, {
+      headers,
+    }),
+
   get_dispo_progression: (query) => {
     return axios.post(burl + "/dispositifs/get_dispo_progression", query, {
       headers: headers,
