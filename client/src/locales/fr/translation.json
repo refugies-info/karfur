@@ -129,7 +129,10 @@
     "Modifier le mot de passe": "Modifier le mot de passe",
     "Merci de donner de votre temps": "Merci de donner de votre temps pour l’intégration des personnes réfugiées",
     "Grâce à vous": "Grâce à vous, les personnes réfugiées seront plus et mieux informées",
-    "Merci de participer": "Merci de participer à rendre accessible l’information au plus grand nombre"
+    "Merci de participer": "Merci de participer à rendre accessible l’information au plus grand nombre",
+    "Modifier ma photo": "Modifier ma photo",
+    "ErreurChargement": "Une erreur est survenue, veuillez recharger la page !",
+    "photoUsage": "Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer."
   },
   "QuiSommesNous": {
     "Qui sommes-nous": "Qui sommes-nous ?",
