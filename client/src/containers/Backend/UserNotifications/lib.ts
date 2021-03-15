@@ -1,6 +1,5 @@
 import { IDispositif } from "../../../types/interface";
 import { FormattedNotification } from "./types";
-import API from "../../../utils/API";
 
 export const formatNotifications = (
   dispositifs: IDispositif[],
@@ -62,26 +61,4 @@ export const formatNotifications = (
     return 1;
   });
   return result;
-};
-
-export const deleteNotification = async (
-  notification: FormattedNotification
-) => {
-  let dispositif = {
-    dispositifId: notification.dispositifId,
-    suggestionId: notification.suggestionId,
-    fieldName: "suggestions",
-    type: "remove",
-  };
-  return await API.updateDispositifReactions(dispositif);
-};
-
-export const readNotification = async (notif: FormattedNotification) => {
-  const dispositif = {
-    dispositifId: notif.dispositifId,
-    suggestionId: notif.suggestionId,
-    fieldName: "suggestions.$.read",
-    type: "read",
-  };
-  return await API.updateDispositifReactions(dispositif);
 };

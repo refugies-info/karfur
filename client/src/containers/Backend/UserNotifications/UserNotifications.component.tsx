@@ -15,16 +15,13 @@ import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { Spinner } from "reactstrap";
 import styled from "styled-components";
-import {
-  formatNotifications,
-  deleteNotification,
-  readNotification,
-} from "./lib";
+import { formatNotifications } from "./lib";
 import { Notification } from "./components/Notification";
 import { ReactionLectureModal } from "../../../components/Modals";
 import { FormattedNotification } from "./types";
 import _ from "lodash";
 import Swal from "sweetalert2";
+import { updateDispositifReactionActionCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
 
 declare const window: Window;
 
@@ -120,7 +117,18 @@ export const UserNotificationsComponent = () => {
   ) => {
     if (!notif) return;
     try {
-      await deleteNotification(notif);
+      if (!notif.dispositifId || !notif.suggestionId || !structureId) return;
+      dispatch(
+        updateDispositifReactionActionCreator({
+          dispositif: {
+            dispositifId: notif.dispositifId,
+            suggestionId: notif.suggestionId,
+            fieldName: "suggestions",
+            type: "remove",
+          },
+          structureId,
+        })
+      );
       Swal.fire({
         title: "Yay...",
         text: "La réaction a bien été supprimée",
@@ -135,9 +143,7 @@ export const UserNotificationsComponent = () => {
         timer: 1500,
       });
     }
-    dispatch(
-      fetchUserStructureActionCreator({ structureId, shouldRedirect: true })
-    );
+
     setShowReactionModal(false);
   };
 
@@ -146,7 +152,18 @@ export const UserNotificationsComponent = () => {
   ) => {
     if (!notif) return;
     try {
-      await readNotification(notif);
+      if (!notif.dispositifId || !notif.suggestionId || !structureId) return;
+      dispatch(
+        updateDispositifReactionActionCreator({
+          dispositif: {
+            dispositifId: notif.dispositifId,
+            suggestionId: notif.suggestionId,
+            fieldName: "suggestions.$.read",
+            type: "read",
+          },
+          structureId,
+        })
+      );
       Swal.fire({
         title: "Yay...",
         text: "La réaction a été marquée comme lue",
@@ -161,9 +178,7 @@ export const UserNotificationsComponent = () => {
         timer: 1500,
       });
     }
-    dispatch(
-      fetchUserStructureActionCreator({ structureId, shouldRedirect: true })
-    );
+
     setShowReactionModal(false);
   };
 
