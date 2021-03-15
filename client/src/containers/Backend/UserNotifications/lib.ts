@@ -41,14 +41,24 @@ export const formatNotifications = (
     if (!a.read && b.read) {
       return -1;
     }
-    if (a.type === "annuaire" || b.type === "annuaire") {
+    if (!a.read && !b.read) {
+      if (a.type === "annuaire") {
+        return -1;
+      }
+      if (b.type === "annuaire") {
+        return 1;
+      }
+      if (a.type === "new content") {
+        return -1;
+      }
+      if (b.type === "new content") {
+        return 1;
+      }
+
+      if (a.createdAt && b.createdAt && a.createdAt > b.createdAt) return -1;
       return 1;
     }
-    if (a.type === "new content" || b.type === "new content") {
-      return 1;
-    }
-    if (!a.read) return -1;
-    if (!b.read) return 1;
+    if (a.createdAt && b.createdAt && a.createdAt > b.createdAt) return -1;
     return 1;
   });
   return result;
