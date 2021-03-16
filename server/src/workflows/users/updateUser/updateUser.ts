@@ -1,4 +1,4 @@
-import { RequestFromClient, Res } from "../../../types/interface";
+import { RequestFromClient, Res, Picture } from "../../../types/interface";
 import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { getRoleByName } from "../../../controllers/role/role.repository";
@@ -11,21 +11,18 @@ import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 interface User {
   _id: ObjectId;
   roles: string[];
-  email: string;
+  email?: string;
+  username?: string;
+  picture?: Picture;
 }
 
 interface Data {
   user: User;
-  action:
-    | "modify-with-roles"
-    | "delete"
-    | "modify-my-email"
-    | "modify-my-picture";
+  action: "modify-with-roles" | "delete" | "modify-my-details";
 }
 export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
   try {
     checkRequestIsFromSite(req.fromSite);
-
     const { user, action } = req.body.query;
     if (!user || !user._id) {
       throw new Error("INVALID_REQUEST");
@@ -71,19 +68,22 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
       }
       await updateUserInDB(user._id, { status: "Exclu" });
     }
-    let userModified = null;
-    if (action === "modify-my-email") {
+    if (action === "modify-my-details") {
       if (user._id.toString() !== req.userId.toString()) {
-        throw new Error("INVALID_TOKEN");
+        throw new Error("USER_NOT_AUTHORIZED");
       }
-      userModified = await updateUserInDB(user._id, {
-        email: user.email,
-      });
+      try {
+        await updateUserInDB(user._id, user);
+      } catch (error) {
+        if (user.username !== req.user.username) {
+          throw new Error("PSEUDO_ALREADY_EXISTS");
+        }
+        throw error;
+      }
     }
 
     return res.status(200).json({
       text: "OK",
-      data: userModified,
     });
   } catch (error) {
     logger.error("[updateUser] error", {
@@ -96,6 +96,9 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
         return res.status(401).json({ text: "Token invalide" });
       case "NOT_FROM_SITE":
         return res.status(405).json({ text: "Requête bloquée par API" });
+      case "PSEUDO_ALREADY_EXISTS":
+        return res.status(401).json({ text: "Ce pseudo est déjà pris" });
+
       default:
         return res.status(500).json({ text: "Erreur interne" });
     }

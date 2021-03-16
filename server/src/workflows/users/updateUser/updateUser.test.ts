@@ -306,4 +306,87 @@ describe("updateUser", () => {
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });
+
+  it("should return 401 if not user himself and type modify-my-details", async () => {
+    await updateUser(
+      {
+        fromSite: true,
+        body: {
+          query: {
+            user: { _id: "id", email: "email", roles: ["ExpertTrad", "Admin"] },
+            action: "modify-my-details",
+          },
+        },
+        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        userId: "userId",
+      },
+      res
+    );
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res.json).toHaveBeenCalledWith({ text: "Token invalide" });
+  });
+
+  it("should return 200 if user himself and type modify-my-details", async () => {
+    await updateUser(
+      {
+        fromSite: true,
+        body: {
+          query: {
+            user: { _id: "userId", email: "email" },
+            action: "modify-my-details",
+          },
+        },
+        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        userId: "userId",
+      },
+      res
+    );
+    await updateUserInDB("userId", { _id: "userId", email: "email" });
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+
+  it("should return 401 if user himself but pseudo exists and type modify-my-details", async () => {
+    updateUserInDB.mockRejectedValueOnce(new Error("erreur"));
+    await updateUser(
+      {
+        fromSite: true,
+        body: {
+          query: {
+            user: { _id: "userId", username: "newPseudo" },
+            action: "modify-my-details",
+          },
+        },
+        user: { username: "pseudo", _id: "userId" },
+        userId: "userId",
+      },
+      res
+    );
+    await updateUserInDB("userId", { _id: "userId", email: "email" });
+
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res.json).toHaveBeenCalledWith({ text: "Ce pseudo est déjà pris" });
+  });
+
+  it("should return 500 if user himself but pseudo not modified and type modify-my-details", async () => {
+    updateUserInDB.mockRejectedValueOnce(new Error("erreur"));
+    await updateUser(
+      {
+        fromSite: true,
+        body: {
+          query: {
+            user: { _id: "userId", username: "newPseudo" },
+            action: "modify-my-details",
+          },
+        },
+        user: { username: "newPseudo", _id: "userId" },
+        userId: "userId",
+      },
+      res
+    );
+    await updateUserInDB("userId", { _id: "userId", email: "email" });
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
+  });
 });
