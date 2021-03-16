@@ -1,7 +1,8 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, createDispatchHook, useDispatch } from "react-redux";
 import { userDetailsSelector } from "../../../services/User/user.selectors";
 import { User, Event } from "../../../types/interface";
 import marioProfile from "../../../assets/mario-profile.jpg";
@@ -15,6 +16,9 @@ import API from "../../../utils/API";
 import Swal from "sweetalert2";
 import setAuthToken from "../../../utils/setAuthToken";
 import { Spinner } from "reactstrap";
+import { saveUserActionCreator } from "../../../services/User/user.actions";
+import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 
 const MainContainer = styled.div`
   display: flex;
@@ -77,6 +81,11 @@ const Title = styled.div`
 const FInputContainer = styled.div`
   width: 480px;
 `;
+
+const RowContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 export interface PropsBeforeInjection {
   t: any;
 }
@@ -97,8 +106,18 @@ export const UserProfileComponent = (props: Props) => {
     false
   );
   const [isChangePasswordLoading, setIsChangePasswordLoading] = useState(false);
-
   const [newPasswordScore, setNewPasswordScore] = useState(0);
+  const [isPseudoModifyDisabled, setIsPseudoModifyDisabled] = useState(true);
+  const [isEmailModifyDisabled, setIsEmailModifyDisabled] = useState(true);
+
+  const isLoadingSave = useSelector(
+    isLoadingSelector(LoadingStatusKey.SAVE_USER)
+  );
+  const isLoadingFetch = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_USER)
+  );
+
+  const isLoading = isLoadingSave || isLoadingFetch;
 
   const openModifyPassword = () => setIsModifyPasswordOpen(true);
   const toggleNewPasswordVisibility = () =>
@@ -108,14 +127,17 @@ export const UserProfileComponent = (props: Props) => {
     setIsCurrentPasswordVisible(!isCurrentPasswordVisible);
 
   const user = useSelector(userDetailsSelector);
+  const dispatch = useDispatch();
 
   const onChange = (e: Event) => {
     if (e.target.id === "username") {
       setUsername(e.target.value);
+      setIsPseudoModifyDisabled(false);
       return;
     }
     if (e.target.id === "email") {
       setEmail(e.target.value);
+      setIsEmailModifyDisabled(false);
       return;
     }
 
@@ -162,10 +184,28 @@ export const UserProfileComponent = (props: Props) => {
     }
   };
 
+  const onEmailModificationValidate = () => {
+    if (!user) return;
+    dispatch(
+      saveUserActionCreator({
+        user: { email, _id: user._id },
+        type: "modify-my-email",
+      })
+    );
+
+    Swal.fire({
+      title: "Yay...",
+      text: "Votre email a bien été modifié",
+      type: "success",
+      timer: 1500,
+    });
+  };
+
   useEffect(() => {
     setUsername(user ? user.username : "");
     setEmail(user ? user.email : "");
   }, [user]);
+  if (isLoading) return <div>Loadnig</div>;
 
   if (!user) {
     return (
@@ -197,17 +237,30 @@ export const UserProfileComponent = (props: Props) => {
       </ProfilePictureContainer>
       <ProfileContainer>
         <Title>{props.t("UserProfile.votre pseudo", "Votre pseudonyme")}</Title>
-        <FInputContainer>
-          <FInput
-            id="username"
-            value={username}
-            onChange={onChange}
-            newSize={true}
-            autoFocus={false}
-            prepend
-            prependName="person-outline"
-          />
-        </FInputContainer>
+        <RowContainer>
+          <FInputContainer>
+            <FInput
+              id="username"
+              value={username}
+              onChange={onChange}
+              newSize={true}
+              autoFocus={false}
+              prepend
+              prependName="person-outline"
+            />
+          </FInputContainer>
+          <div>
+            <FButton
+              disabled={isPseudoModifyDisabled}
+              type="validate-light"
+              name="checkmark-outline"
+              className="ml-8"
+              onClick={() => {}}
+            >
+              {props.t("UserProfile.Enregistrer", "Enregistrer")}
+            </FButton>
+          </div>
+        </RowContainer>
         <DescriptionText>
           {props.t(
             "UserProfile.pseudoExplication",
@@ -217,21 +270,34 @@ export const UserProfileComponent = (props: Props) => {
         <Title marginTop={"24px"}>
           {props.t("Register.Votre email", "Votre email")}
         </Title>
-        <FInputContainer>
-          <FInput
-            id="email"
-            value={email}
-            onChange={onChange}
-            newSize={true}
-            autoFocus={false}
-            prepend
-            prependName="email-outline"
-            placeholder={props.t(
-              "Register.Renseignez votre adresse email",
-              "Renseignez votre adresse email"
-            )}
-          />
-        </FInputContainer>
+        <RowContainer>
+          <FInputContainer>
+            <FInput
+              id="email"
+              value={email}
+              onChange={onChange}
+              newSize={true}
+              autoFocus={false}
+              prepend
+              prependName="email-outline"
+              placeholder={props.t(
+                "Register.Renseignez votre adresse email",
+                "Renseignez votre adresse email"
+              )}
+            />
+          </FInputContainer>
+          <div>
+            <FButton
+              disabled={isEmailModifyDisabled}
+              type="validate-light"
+              name="checkmark-outline"
+              className="ml-8"
+              onClick={onEmailModificationValidate}
+            >
+              {props.t("UserProfile.Enregistrer", "Enregistrer")}
+            </FButton>
+          </div>
+        </RowContainer>
         <DescriptionText>
           {props.t(
             "UserProfile.emailExplication",

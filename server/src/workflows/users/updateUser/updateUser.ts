@@ -16,7 +16,11 @@ interface User {
 
 interface Data {
   user: User;
-  action: "modify-with-roles" | "delete";
+  action:
+    | "modify-with-roles"
+    | "delete"
+    | "modify-my-email"
+    | "modify-my-picture";
 }
 export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
   try {
@@ -67,13 +71,23 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
       }
       await updateUserInDB(user._id, { status: "Exclu" });
     }
+    let userModified = null;
+    if (action === "modify-my-email") {
+      if (user._id.toString() !== req.userId.toString()) {
+        throw new Error("INVALID_TOKEN");
+      }
+      userModified = await updateUserInDB(user._id, {
+        email: user.email,
+      });
+    }
 
     return res.status(200).json({
       text: "OK",
+      data: userModified,
     });
   } catch (error) {
     logger.error("[updateUser] error", {
-      error,
+      error: error.message,
     });
     switch (error.message) {
       case "INVALID_REQUEST":
