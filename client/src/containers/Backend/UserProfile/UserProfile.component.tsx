@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
-// @ts-nocheck
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
@@ -16,7 +13,7 @@ import { computePasswordStrengthScore } from "../../../lib";
 import API from "../../../utils/API";
 import Swal from "sweetalert2";
 import setAuthToken from "../../../utils/setAuthToken";
-import { Spinner } from "reactstrap";
+import { Spinner, Input } from "reactstrap";
 import { saveUserActionCreator } from "../../../services/User/user.actions";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
@@ -111,6 +108,7 @@ export const UserProfileComponent = (props: Props) => {
   const [newPasswordScore, setNewPasswordScore] = useState(0);
   const [isPseudoModifyDisabled, setIsPseudoModifyDisabled] = useState(true);
   const [isEmailModifyDisabled, setIsEmailModifyDisabled] = useState(true);
+  const [isPictureUploading, setIsPictureUploading] = useState(false);
 
   const isLoadingSave = useSelector(
     isLoadingSelector(LoadingStatusKey.SAVE_USER)
@@ -185,13 +183,38 @@ export const UserProfileComponent = (props: Props) => {
       setIsChangePasswordLoading(false);
     }
   };
+  const handleFileInputChange = () => {
+    if (!user) return;
+    setIsPictureUploading(true);
+    const formData = new FormData();
+    // @ts-ignore
+    formData.append(0, event.target.files[0]);
+
+    API.set_image(formData).then((data_res: any) => {
+      const imgData = data_res.data.data;
+      dispatch(
+        saveUserActionCreator({
+          user: {
+            picture: {
+              secure_url: imgData.secure_url,
+              public_id: imgData.public_id,
+              imgId: imgData.imgId,
+            },
+            _id: user._id,
+          },
+          type: "modify-my-details",
+        })
+      );
+      setIsPictureUploading(false);
+    });
+  };
 
   const onEmailModificationValidate = () => {
     if (!user) return;
     dispatch(
       saveUserActionCreator({
         user: { email, _id: user._id },
-        type: "modify-my-email",
+        type: "modify-my-details",
       })
     );
 
@@ -228,8 +251,22 @@ export const UserProfileComponent = (props: Props) => {
       <ProfilePictureContainer>
         <img src={getUserImage(user)} alt="my-image" className="user-img" />
         <UserName>{user.username}</UserName>
-        <FButton type="dark" name="upload-outline" className="mb-16">
-          {props.t("UserProfile.Modifier ma photo", "Modifier ma photo")}
+        <FButton
+          type="dark"
+          name="upload-outline"
+          className="upload-button mb-16"
+        >
+          <Input
+            className="file-input"
+            type="file"
+            id="picture"
+            name="structure"
+            accept="image/*"
+            onChange={handleFileInputChange}
+          />
+          {isPictureUploading && <Spinner color="success" className="ml-10" />}
+          {!isPictureUploading &&
+            props.t("UserProfile.Modifier ma photo", "Modifier ma photo")}
         </FButton>
         <DescriptionText>
           {props.t(
