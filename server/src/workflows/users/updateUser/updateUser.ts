@@ -18,11 +18,7 @@ interface User {
 
 interface Data {
   user: User;
-  action:
-    | "modify-with-roles"
-    | "delete"
-    | "modify-my-email"
-    | "modify-my-details";
+  action: "modify-with-roles" | "delete" | "modify-my-details";
 }
 export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
   try {
@@ -74,12 +70,10 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
     }
     if (action === "modify-my-details") {
       if (user._id.toString() !== req.userId.toString()) {
-        throw new Error("INVALID_TOKEN");
+        throw new Error("USER_NOT_AUTHORIZED");
       }
       try {
-        await updateUserInDB(user._id, {
-          ...user,
-        });
+        await updateUserInDB(user._id, user);
       } catch (error) {
         if (user.username !== req.user.username) {
           throw new Error("PSEUDO_ALREADY_EXISTS");
