@@ -14,6 +14,7 @@ import { computePasswordStrengthScore } from "../../../lib";
 import API from "../../../utils/API";
 import Swal from "sweetalert2";
 import setAuthToken from "../../../utils/setAuthToken";
+import { Spinner } from "reactstrap";
 
 const MainContainer = styled.div`
   display: flex;
@@ -95,6 +96,8 @@ export const UserProfileComponent = (props: Props) => {
   const [isCurrentPasswordVisible, setIsCurrentPasswordVisible] = useState(
     false
   );
+  const [isChangePasswordLoading, setIsChangePasswordLoading] = useState(false);
+
   const [newPasswordScore, setNewPasswordScore] = useState(0);
 
   const openModifyPassword = () => setIsModifyPasswordOpen(true);
@@ -134,6 +137,7 @@ export const UserProfileComponent = (props: Props) => {
   const modifyPassword = async () => {
     try {
       if (!user) return;
+      setIsChangePasswordLoading(true);
       const data = await API.changePassword({
         userId: user._id,
         currentPassword,
@@ -152,7 +156,10 @@ export const UserProfileComponent = (props: Props) => {
       setNewPasswordScore(0);
       setNewPassword("");
       setIsModifyPasswordOpen(false);
-    } catch (error) {}
+      setIsChangePasswordLoading(false);
+    } catch (error) {
+      setIsChangePasswordLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -278,15 +285,27 @@ export const UserProfileComponent = (props: Props) => {
                 justifyContent: "flex-end",
               }}
             >
-              <FButton
-                disabled={newPasswordScore < 1}
-                type="validate-light"
-                name="checkmark-outline"
-                className="mt-8"
-                onClick={modifyPassword}
-              >
-                {props.t("UserProfile.Enregistrer", "Enregistrer")}
-              </FButton>
+              {isChangePasswordLoading ? (
+                <FButton
+                  disabled={true}
+                  type="validate-light"
+                  name="checkmark-outline"
+                  className="mt-8"
+                  onClick={modifyPassword}
+                >
+                  <Spinner />
+                </FButton>
+              ) : (
+                <FButton
+                  disabled={newPasswordScore < 1}
+                  type="validate-light"
+                  name="checkmark-outline"
+                  className="mt-8"
+                  onClick={modifyPassword}
+                >
+                  {props.t("UserProfile.Enregistrer", "Enregistrer")}
+                </FButton>
+              )}
             </div>
           </>
         )}
