@@ -60,6 +60,8 @@ export function* fetchUserStructure(
 
 export function* updateUserStructure(): SagaIterator {
   try {
+    yield put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE));
+
     logger.info("[updateUserStructure] updating user structure");
     const structure = yield select(userStructureSelector);
     if (!structure) {
@@ -74,6 +76,7 @@ export function* updateUserStructure(): SagaIterator {
       })
     );
     logger.info("[updateUserStructure] successfully updated user structure");
+    yield put(finishLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE));
   } catch (error) {
     logger.error("[updateUserStructure] error while updating user structure", {
       error,

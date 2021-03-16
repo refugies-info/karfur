@@ -1,6 +1,5 @@
 import logger from "../../logger";
 import { computePasswordStrengthScore } from "../../libs/computePasswordStrengthScore";
-// @ts-ignore
 import passwordHash from "password-hash";
 import { createUser } from "./users.repository";
 import { ObjectId } from "mongoose";

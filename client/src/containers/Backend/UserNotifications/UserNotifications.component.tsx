@@ -41,6 +41,7 @@ const TitleContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 32px;
+  align-items: flex-end;
 `;
 const NumberContainer = styled.div`
   background: #212121;
@@ -49,7 +50,7 @@ const NumberContainer = styled.div`
   font-size: 28px;
   line-height: 35px;
   color: #ffffff;
-  padding: 4px 12px 4px 12px;
+  padding: 8px 19px 8px 19px;
   margin: 0px 8px 0px 8px;
 `;
 
@@ -57,6 +58,7 @@ const Title = styled.div`
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
+  margin-bottom: 8px;
 `;
 
 const CenterContainer = styled.div`

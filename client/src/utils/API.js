@@ -93,11 +93,11 @@ export default {
       headers,
     }),
 
-  change_password: (query) => {
-    return axios.post(burl + "/user/change_password", query, {
-      headers: headers,
-    });
-  },
+  changePassword: (query) =>
+    axios.post(burl + "/user/changePassword", query, {
+      headers,
+    }),
+
   reset_password: (query) => {
     return axios.post(burl + "/user/reset_password", query, {
       headers: headers,
