@@ -52,7 +52,8 @@ describe("updateUser", () => {
   it("should return a 401 if  user not admin", async () => {
     const req = {
       fromSite: true,
-      body: { query: { user: { _id: "id" } } },
+
+      body: { query: { user: { _id: "id" }, action: "modify-with-roles" } },
       user: { roles: [{ nom: "ExpertTrad" }] },
     };
     await updateUser(req, res);
@@ -65,7 +66,7 @@ describe("updateUser", () => {
     body: {
       query: {
         user: { _id: "id", email: "email", roles: [] },
-        action: "modify",
+        action: "modify-with-roles",
       },
     },
     user: { roles: [{ nom: "Admin" }] },
@@ -110,7 +111,7 @@ describe("updateUser", () => {
     body: {
       query: {
         user: { _id: "id", email: "email", roles: ["Admin"] },
-        action: "modify",
+        action: "modify-with-roles",
       },
     },
     user: { roles: [{ nom: "Admin" }] },
@@ -159,7 +160,7 @@ describe("updateUser", () => {
     body: {
       query: {
         user: { _id: "id", email: "email", roles: ["ExpertTrad"] },
-        action: "modify",
+        action: "modify-with-roles",
       },
     },
     user: { roles: [{ nom: "Admin" }] },
@@ -208,7 +209,7 @@ describe("updateUser", () => {
     body: {
       query: {
         user: { _id: "id", email: "email", roles: ["ExpertTrad", "Admin"] },
-        action: "modify",
+        action: "modify-with-roles",
       },
     },
     user: { roles: [{ nom: "Admin" }] },

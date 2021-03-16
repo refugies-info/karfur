@@ -6,6 +6,7 @@ import {
   getUserById,
   updateUserInDB,
 } from "../../../modules/users/users.repository";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 
 interface User {
   _id: ObjectId;
@@ -15,13 +16,12 @@ interface User {
 
 interface Data {
   user: User;
-  action: "modify" | "delete";
+  action: "modify-with-roles" | "delete";
 }
 export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
   try {
-    if (!req.fromSite) {
-      throw new Error("NOT_FROM_SITE");
-    }
+    checkRequestIsFromSite(req.fromSite);
+
     const { user, action } = req.body.query;
     if (!user || !user._id) {
       throw new Error("INVALID_REQUEST");
@@ -29,13 +29,12 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
 
     logger.info("[updateUser] call received", { user, action });
 
-    // @ts-ignore
-    const isRequestorAdmin = req.user.roles.find((x) => x.nom === "Admin");
-    if (!isRequestorAdmin) {
-      throw new Error("USER_NOT_AUTHORIZED");
-    }
-
-    if (action === "modify") {
+    if (action === "modify-with-roles") {
+      // @ts-ignore
+      const isRequestorAdmin = req.user.roles.find((x) => x.nom === "Admin");
+      if (!isRequestorAdmin) {
+        throw new Error("USER_NOT_AUTHORIZED");
+      }
       const expertRole = await getRoleByName("ExpertTrad");
       const adminRole = await getRoleByName("Admin");
       const userFromDB = await getUserById(user._id, { roles: 1 });
@@ -61,6 +60,11 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
     }
 
     if (action === "delete") {
+      // @ts-ignore
+      const isRequestorAdmin = req.user.roles.find((x) => x.nom === "Admin");
+      if (!isRequestorAdmin) {
+        throw new Error("USER_NOT_AUTHORIZED");
+      }
       await updateUserInDB(user._id, { status: "Exclu" });
     }
 
