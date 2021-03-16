@@ -1,4 +1,4 @@
-import { RequestFromClient, Res } from "../../../types/interface";
+import { RequestFromClient, Res, Picture } from "../../../types/interface";
 import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { getRoleByName } from "../../../controllers/role/role.repository";
@@ -11,7 +11,9 @@ import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 interface User {
   _id: ObjectId;
   roles: string[];
-  email: string;
+  email?: string;
+  username?: string;
+  picture?: Picture;
 }
 
 interface Data {
@@ -25,7 +27,6 @@ interface Data {
 export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
   try {
     checkRequestIsFromSite(req.fromSite);
-
     const { user, action } = req.body.query;
     if (!user || !user._id) {
       throw new Error("INVALID_REQUEST");
@@ -75,9 +76,16 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
       if (user._id.toString() !== req.userId.toString()) {
         throw new Error("INVALID_TOKEN");
       }
-      await updateUserInDB(user._id, {
-        ...user,
-      });
+      try {
+        await updateUserInDB(user._id, {
+          ...user,
+        });
+      } catch (error) {
+        if (user.username !== req.user.username) {
+          throw new Error("PSEUDO_ALREADY_EXISTS");
+        }
+        throw error;
+      }
     }
 
     return res.status(200).json({
@@ -94,6 +102,9 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
         return res.status(401).json({ text: "Token invalide" });
       case "NOT_FROM_SITE":
         return res.status(405).json({ text: "Requête bloquée par API" });
+      case "PSEUDO_ALREADY_EXISTS":
+        return res.status(401).json({ text: "Ce pseudo est déjà pris" });
+
       default:
         return res.status(500).json({ text: "Erreur interne" });
     }

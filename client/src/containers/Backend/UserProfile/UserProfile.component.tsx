@@ -14,7 +14,10 @@ import API from "../../../utils/API";
 import Swal from "sweetalert2";
 import setAuthToken from "../../../utils/setAuthToken";
 import { Spinner, Input } from "reactstrap";
-import { saveUserActionCreator } from "../../../services/User/user.actions";
+import {
+  saveUserActionCreator,
+  fetchUserActionCreator,
+} from "../../../services/User/user.actions";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { UserProfileLoading } from "./components/UserProfileLoading";
@@ -227,6 +230,36 @@ export const UserProfileComponent = (props: Props) => {
     setIsEmailModifyDisabled(true);
   };
 
+  const onPseudoModificationValidate = async () => {
+    if (!user) return;
+    try {
+      // update user here and not in redux to get error if pseudo already exists
+      await API.updateUser({
+        query: {
+          user: { username, _id: user._id },
+          action: "modify-my-details",
+        },
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Oh non!",
+        text: "Ce pseudo est déjà pris ",
+        type: "error",
+        timer: 1500,
+      });
+      return;
+    }
+    dispatch(fetchUserActionCreator());
+
+    Swal.fire({
+      title: "Yay...",
+      text: "Votre pseudo a bien été modifié",
+      type: "success",
+      timer: 1500,
+    });
+    setIsPseudoModifyDisabled(true);
+  };
+
   useEffect(() => {
     setUsername(user ? user.username : "");
     setEmail(user ? user.email : "");
@@ -295,7 +328,7 @@ export const UserProfileComponent = (props: Props) => {
               type="validate-light"
               name="checkmark-outline"
               className="ml-8"
-              onClick={() => {}}
+              onClick={onPseudoModificationValidate}
             >
               {props.t("UserProfile.Enregistrer", "Enregistrer")}
             </FButton>
