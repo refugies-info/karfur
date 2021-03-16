@@ -162,7 +162,7 @@ export const UserProfileComponent = (props: Props) => {
         </DescriptionText>
       </ProfilePictureContainer>
       <ProfileContainer>
-        <Title>Votre pseudonyme</Title>
+        <Title>{props.t("UserProfile.votre pseudo", "Votre pseudonyme")}</Title>
         <FInputContainer>
           <FInput
             id="username"
@@ -175,10 +175,14 @@ export const UserProfileComponent = (props: Props) => {
           />
         </FInputContainer>
         <DescriptionText>
-          Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous
-          allez contribuer.
+          {props.t(
+            "UserProfile.pseudoExplication",
+            "Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer."
+          )}
         </DescriptionText>
-        <Title marginTop={"24px"}>Votre email</Title>
+        <Title marginTop={"24px"}>
+          {props.t("Register.Votre email", "Votre email")}
+        </Title>
         <FInputContainer>
           <FInput
             id="email"
@@ -191,14 +195,17 @@ export const UserProfileComponent = (props: Props) => {
           />
         </FInputContainer>
         <DescriptionText>
-          Votre email sera utilisé seulement en cas de réinitialisation de votre
-          mot de passe et pour des notifications liées à votre activité sur le
-          site.
+          {props.t(
+            "UserProfile.emailExplication",
+            "Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site."
+          )}
         </DescriptionText>
-        <Title marginTop={"24px"}>Votre mot de passe</Title>
+        <Title marginTop={"24px"}>
+          {props.t("UserProfile.Votre mot de passe", "Votre mot de passe")}
+        </Title>
         {!isModifyPasswordOpen && (
           <FButton type="dark" name="edit-outline" onClick={openModifyPassword}>
-            Modifier mon mot de passe
+            {props.t("UserProfile.modifyPassword", "Modifier mon mot de passe")}
           </FButton>
         )}
         {isModifyPasswordOpen && (
@@ -246,7 +253,7 @@ export const UserProfileComponent = (props: Props) => {
                 name="checkmark-outline"
                 className="mt-8"
               >
-                Enregistrer
+                {props.t("UserProfile.Enregistrer", "Enregistrer")}
               </FButton>
             </div>
           </>

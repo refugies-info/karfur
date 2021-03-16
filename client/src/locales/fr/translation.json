@@ -133,7 +133,14 @@
     "Modifier ma photo": "Modifier ma photo",
     "ErreurChargement": "Une erreur est survenue, veuillez recharger la page !",
     "photoUsage": "Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.",
-    "Votre nouveau mot de passe": "Votre nouveau mot de passe"
+    "Votre nouveau mot de passe": "Votre nouveau mot de passe",
+    "votre pseudo": "Votre pseudonyme",
+    "pseudoExplication": "Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.",
+    "votre email": "Votre email",
+    "emailExplication": "Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.",
+    "Votre mot de passe": "Votre mot de passe",
+    "modifyPassword": "Modifier mon mot de passe",
+    "Enregistrer": "Enregistrer"
   },
   "QuiSommesNous": {
     "Qui sommes-nous": "Qui sommes-nous ?",
