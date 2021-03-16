@@ -4,7 +4,8 @@ import { ObjectId } from "mongoose";
 type NeededFields =
   | { username: number; picture: number }
   | { roles: 1; structures: 1 }
-  | { roles: 1 };
+  | { roles: 1 }
+  | {};
 
 export const getUserById = async (id: ObjectId, neededFields: NeededFields) =>
   await User.findOne({ _id: id }, neededFields);
