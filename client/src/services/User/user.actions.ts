@@ -19,11 +19,7 @@ export const updateUserActionCreator = (value: User) =>
 
 export const saveUserActionCreator = (value: {
   user: Partial<User>;
-  type:
-    | "modify-with-roles"
-    | "delete"
-    | "modify-my-email"
-    | "modify-my-picture";
+  type: "modify-with-roles" | "delete" | "modify-my-details";
 }) => action(SAVE_USER, value);
 
 export const fetchUserActionCreator = (value?: {
