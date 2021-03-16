@@ -11,6 +11,9 @@ import { Props } from "./UserProfile.container";
 import FInput from "../../../components/FigmaUI/FInput/FInput";
 import { PasswordField } from "./components/PasswordField";
 import { computePasswordStrengthScore } from "../../../lib";
+import API from "../../../utils/API";
+import Swal from "sweetalert2";
+import setAuthToken from "../../../utils/setAuthToken";
 
 const MainContainer = styled.div`
   display: flex;
@@ -128,6 +131,30 @@ export const UserProfileComponent = (props: Props) => {
     return;
   };
 
+  const modifyPassword = async () => {
+    try {
+      if (!user) return;
+      const data = await API.changePassword({
+        userId: user._id,
+        currentPassword,
+        newPassword,
+      });
+      Swal.fire({
+        title: "Yay...",
+        text: "Votre mot de passe a bien été modifié",
+        type: "success",
+        timer: 1500,
+      });
+      // @ts-ignore
+      localStorage.setItem("token", data.data.token);
+      setAuthToken(data.data.token);
+      setCurrentPassword("");
+      setNewPasswordScore(0);
+      setNewPassword("");
+      setIsModifyPasswordOpen(false);
+    } catch (error) {}
+  };
+
   useEffect(() => {
     setUsername(user ? user.username : "");
     setEmail(user ? user.email : "");
@@ -192,6 +219,10 @@ export const UserProfileComponent = (props: Props) => {
             autoFocus={false}
             prepend
             prependName="email-outline"
+            placeholder={props.t(
+              "Register.Renseignez votre adresse email",
+              "Renseignez votre adresse email"
+            )}
           />
         </FInputContainer>
         <DescriptionText>
@@ -252,6 +283,7 @@ export const UserProfileComponent = (props: Props) => {
                 type="validate-light"
                 name="checkmark-outline"
                 className="mt-8"
+                onClick={modifyPassword}
               >
                 {props.t("UserProfile.Enregistrer", "Enregistrer")}
               </FButton>
