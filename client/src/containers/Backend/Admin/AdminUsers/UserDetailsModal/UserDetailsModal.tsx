@@ -129,7 +129,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         await API.updateUser({
           query: {
             user: { _id: userFromStore._id, roles, email },
-            action: "modify",
+            action: "modify-with-roles",
           },
         });
         Swal.fire({

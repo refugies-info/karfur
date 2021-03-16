@@ -1,8 +1,12 @@
 import { SagaIterator } from "redux-saga";
 import { takeLatest, put, call } from "redux-saga/effects";
-import { FETCH_USER } from "./user.actionTypes";
+import { FETCH_USER, SAVE_USER } from "./user.actionTypes";
 import API from "../../utils/API";
-import { setUserActionCreator, fetchUserActionCreator } from "./user.actions";
+import {
+  setUserActionCreator,
+  fetchUserActionCreator,
+  saveUserActionCreator,
+} from "./user.actions";
 import { push } from "connected-react-router";
 import { logger } from "../../logger";
 import {
@@ -16,7 +20,7 @@ export function* fetchUser(
   action: ReturnType<typeof fetchUserActionCreator>
 ): SagaIterator {
   try {
-    logger.info("fetchUser saga");
+    logger.info("[fetchUser] saga");
     yield put(startLoading(LoadingStatusKey.FETCH_USER));
     const isAuth = yield call(API.isAuth);
     if (isAuth) {
@@ -35,7 +39,7 @@ export function* fetchUser(
       yield put(setUserActionCreator(null));
     }
     yield put(finishLoading(LoadingStatusKey.FETCH_USER));
-    logger.info("fetchUser saga finish");
+    logger.info("[fetchUser] saga finish");
 
     if (action.payload && action.payload.shouldRedirect) {
       yield put(
@@ -51,8 +55,26 @@ export function* fetchUser(
   }
 }
 
+export function* saveUser(
+  action: ReturnType<typeof saveUserActionCreator>
+): SagaIterator {
+  try {
+    logger.info("[saveUser] saga", { payload: action.payload });
+    yield put(startLoading(LoadingStatusKey.SAVE_USER));
+    const { user, type } = action.payload;
+    yield call(API.updateUser, { query: { user, action: type } });
+    yield put(fetchUserActionCreator());
+    yield put(finishLoading(LoadingStatusKey.SAVE_USER));
+  } catch (error) {
+    logger.error("[saveUser] saga error", { error });
+    yield put(setUserActionCreator(null));
+    yield put(finishLoading(LoadingStatusKey.SAVE_USER));
+  }
+}
+
 function* latestActionsSaga() {
   yield takeLatest(FETCH_USER, fetchUser);
+  yield takeLatest(SAVE_USER, saveUser);
 }
 
 export default latestActionsSaga;

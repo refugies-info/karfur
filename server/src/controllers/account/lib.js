@@ -152,49 +152,6 @@ function set_user_info(req, res) {
   }
 }
 
-function change_password(req, res) {
-  const { query, newUser } = req.body;
-  if (
-    !query._id ||
-    !query.username ||
-    !newUser.password ||
-    !newUser.newPassword
-  ) {
-    res.status(400).json({ text: "Requête invalide" });
-  } else {
-    if (query._id.toString() !== req.user._id.toString()) {
-      return res.status(401).json({ text: "Token invalide" });
-    }
-    if (newUser.newPassword !== newUser.cpassword) {
-      return res
-        .status(400)
-        .json({ text: "Les mots de passe ne correspondent pas" });
-    }
-
-    User.findOne(query, (err, user) => {
-      if (err) {
-        return res.status(500).json({ text: "Erreur interne" });
-      } else if (!user) {
-        return res.status(404).json({ text: "L'utilisateur n'existe pas" });
-      } else if (!user.authenticate(newUser.password)) {
-        return res.status(401).json({ text: "Echec d'authentification" });
-      } else if (
-        (computePasswordStrengthScore(newUser.newPassword) || {}).score < 1
-      ) {
-        return res
-          .status(402)
-          .json({ text: "Le mot de passe est trop faible" });
-      }
-      user.password = passwordHash.generate(newUser.newPassword);
-      user.save();
-      res.status(200).json({
-        token: user.getToken(),
-        text: "Authentification réussi",
-      });
-    });
-  }
-}
-
 function reset_password(req, res) {
   logger.info("Reset password");
   const { username } = req.body;
@@ -561,7 +518,6 @@ function signup(req, res) {
 exports.signup = signup;
 exports.checkUserExists = checkUserExists;
 exports.set_user_info = set_user_info;
-exports.change_password = change_password;
 exports.get_users = get_users;
 exports.get_user_info = get_user_info;
 exports.reset_password = reset_password;

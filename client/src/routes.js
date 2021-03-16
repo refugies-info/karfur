@@ -4,7 +4,7 @@ import { Admin } from "./containers/Backend/Admin/Admin";
 import UserDash from "./containers/Backend/UserDash/UserDash";
 import UserDashContrib from "./containers/Backend/UserDashContrib/UserDashContrib";
 import UserDashStruct from "./containers/Backend/UserDashStruct/UserDashStruct";
-import UserProfile from "./containers/Backend/UserProfile/UserProfile";
+import { UserProfile } from "./containers/Backend/UserProfile";
 import Dispositif from "./containers/Dispositif/Dispositif";
 import Avancement from "./containers/Avancement/Avancement";
 import Translation from "./containers/Translation/Translation";
