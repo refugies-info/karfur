@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars-experimental */
+// @ts-nocheck
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useSelector, createDispatchHook, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { userDetailsSelector } from "../../../services/User/user.selectors";
 import { User, Event } from "../../../types/interface";
 import marioProfile from "../../../assets/mario-profile.jpg";
@@ -19,8 +20,9 @@ import { Spinner } from "reactstrap";
 import { saveUserActionCreator } from "../../../services/User/user.actions";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
+import { UserProfileLoading } from "./components/UserProfileLoading";
 
-const MainContainer = styled.div`
+export const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -30,7 +32,7 @@ const MainContainer = styled.div`
   margin-bottom: 42px;
 `;
 
-const ProfileContainer = styled.div`
+export const ProfileContainer = styled.div`
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -40,7 +42,7 @@ const ProfileContainer = styled.div`
   width: 560px;
 `;
 
-const ProfilePictureContainer = styled.div`
+export const ProfilePictureContainer = styled.div`
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -58,7 +60,7 @@ const ErrorContainer = styled.div`
   color: red;
 `;
 
-const UserName = styled.div`
+export const UserName = styled.div`
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -70,7 +72,7 @@ const DescriptionText = styled.div`
   word-wrap: break-word;
 `;
 
-const Title = styled.div`
+export const Title = styled.div`
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -199,13 +201,14 @@ export const UserProfileComponent = (props: Props) => {
       type: "success",
       timer: 1500,
     });
+    setIsEmailModifyDisabled(true);
   };
 
   useEffect(() => {
     setUsername(user ? user.username : "");
     setEmail(user ? user.email : "");
   }, [user]);
-  if (isLoading) return <div>Loadnig</div>;
+  if (isLoading) return <UserProfileLoading t={props.t} />;
 
   if (!user) {
     return (
