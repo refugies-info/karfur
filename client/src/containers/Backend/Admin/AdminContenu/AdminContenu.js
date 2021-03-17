@@ -361,8 +361,10 @@ export const AdminContenu = () => {
           </thead>
           <tbody>
             {dispositifsToDisplay.map((element, key) => {
-              const nbDays =
-                -moment(element.updatedAt).diff(moment(), "days") + " jours";
+              const nbDays = element.lastModificationDate
+                ? -moment(element.lastModificationDate).diff(moment(), "days") +
+                  " jours"
+                : "ND";
               const burl =
                 "/" + (element.typeContenu || "dispositif") + "/" + element._id;
               const validationDisabled =
