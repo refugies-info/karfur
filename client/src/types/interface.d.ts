@@ -56,6 +56,7 @@ export interface SimplifiedDispositif {
   adminPercentageProgressionStatus?: string;
   lastAdminUpdate?: Moment;
   draftReminderMailSentDate?: Moment;
+  lastModificationDate?: Moment;
 }
 export interface Picture {
   imgId: ObjectId;
