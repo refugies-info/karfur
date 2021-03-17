@@ -20,6 +20,7 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
       adminProgressionStatus: 1,
       adminPercentageProgressionStatus: 1,
       lastAdminUpdate: 1,
+      draftReminderMailSentDate: 1,
     };
 
     const dispositifs = await getDispositifsFromDB(neededFields);
