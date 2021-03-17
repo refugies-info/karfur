@@ -34,7 +34,12 @@ describe("updateDispositifStatus", () => {
     });
     expect(Dispositif.findOneAndUpdate).toHaveBeenCalledWith(
       { _id: "id1" },
-      { status: "Actif", publishedAt: "01/01/01" }
+      { status: "Actif", publishedAt: "01/01/01" },
+      {
+        upsert: true,
+        // @ts-ignore
+        new: true,
+      }
     );
     expect(res).toEqual({ id: "id1" });
   });
@@ -111,6 +116,11 @@ describe("updateDispositifInDB", () => {
       {
         mainSponsor: "sponsorId",
         status: "Actif",
+      },
+      {
+        upsert: true,
+        // @ts-ignore
+        new: true,
       }
     );
   });

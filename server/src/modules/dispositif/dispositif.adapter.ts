@@ -123,6 +123,7 @@ export const adaptDispositifMainSponsorAndCreatorId = (
             username: jsonDispositif.creatorId.username,
             picture: jsonDispositif.creatorId.picture,
             _id: jsonDispositif.creatorId._id,
+            email: jsonDispositif.creatorId.email,
           }
         : null,
     };

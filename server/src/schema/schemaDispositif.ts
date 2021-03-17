@@ -224,6 +224,7 @@ export interface DispositifDoc extends mongoose.Document {
   lastModificationDate?: number;
   updatedAt: number;
   draftReminderMailSentDate?: number;
+  status: string;
 }
 
 export interface DispositifNotPopulateDoc extends DispositifDoc {

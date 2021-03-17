@@ -292,9 +292,20 @@ export const DetailsModal = (props: Props) => {
                   className="creator-img"
                   src={getCreatorImage(dispositif)}
                 />
-
                 {dispositif.creatorId && dispositif.creatorId.username}
               </CreatorContainer>
+              {dispositif.status === "Brouillon" && (
+                <>
+                  <Title>Envoi relance brouillon</Title>
+                  {dispositif.draftReminderMailSentDate
+                    ? `Envoyé le : ${moment(
+                        dispositif.draftReminderMailSentDate
+                      ).format("LLL")}`
+                    : !dispositif.creatorId || !dispositif.creatorId.email
+                    ? "Non envoyé (pas de mail renseigné)"
+                    : "Non envoyé"}
+                </>
+              )}
             </LeftPart>
             <RightPart>
               <Title>Progression</Title>

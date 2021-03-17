@@ -222,7 +222,7 @@ export const UserNotificationsComponent = () => {
       </MainContainer>
     );
 
-  if (nbNewNotifications === 0)
+  if (notifications.length === 0)
     return (
       <MainContainer>
         <CenterContainer>

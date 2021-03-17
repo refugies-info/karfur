@@ -2,6 +2,7 @@
 import { updateDispositifStatus } from "./updateDispositifStatus";
 import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
+import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -17,6 +18,10 @@ jest.mock("../../../controllers/langues/langues.service", () => ({
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   updateDispositifInDB: jest.fn(),
+}));
+
+jest.mock("../../../controllers/miscellaneous/airtable", () => ({
+  addOrUpdateDispositifInContenusAirtable: jest.fn(),
 }));
 
 describe("updateDispositifStatus", () => {
@@ -78,7 +83,31 @@ describe("updateDispositifStatus", () => {
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
   });
 
-  it("should return a 200 when new status is actif", async () => {
+  it("should return a 200 when new status is actif and not a dispositif", async () => {
+    updateDispositifInDB.mockResolvedValueOnce({ typeContenu: "demarche" });
+    const date = 148707670800;
+    Date.now = jest.fn(() => date);
+
+    const req = {
+      fromSite: true,
+      body: { query: { dispositifId: "id", status: "Actif" } },
+    };
+    const res = mockResponse();
+    await updateDispositifStatus(req, res);
+
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
+      status: "Actif",
+      publishedAt: date,
+    });
+    expect(updateLanguagesAvancement).toHaveBeenCalledWith();
+    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+
+  it("should return a 200 when new status is actif and updateLanguagesAvancement throws", async () => {
+    updateLanguagesAvancement.mockRejectedValueOnce(new Error("erreur"));
+    updateDispositifInDB.mockResolvedValueOnce({ typeContenu: "demarche" });
     const date = 148707670800;
     Date.now = jest.fn(() => date);
 
@@ -98,8 +127,14 @@ describe("updateDispositifStatus", () => {
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });
 
-  it("should return a 200 when new status is actif and updateLanguagesAvancement throws", async () => {
-    updateLanguagesAvancement.mockRejectedValueOnce(new Error("erreur"));
+  it("should return a 200 when new status is actif and a dispositif", async () => {
+    updateDispositifInDB.mockResolvedValueOnce({
+      typeContenu: "dispositif",
+      titreInformatif: "ti",
+      titreMarque: "tm",
+      _id: "id",
+      tags: [],
+    });
     const date = 148707670800;
     Date.now = jest.fn(() => date);
 
@@ -115,6 +150,13 @@ describe("updateDispositifStatus", () => {
       publishedAt: date,
     });
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
+    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
+      "ti",
+      "tm",
+      "id",
+      [],
+      null
+    );
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });
