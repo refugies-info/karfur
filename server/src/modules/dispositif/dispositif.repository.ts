@@ -46,7 +46,11 @@ export const updateDispositifInDB = async (
     | { draftReminderMailSentDate: number }
     | { $pull: { [x: string]: { suggestionId: string } } }
 ) =>
-  await Dispositif.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif);
+  await Dispositif.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
+    upsert: true,
+    // @ts-ignore
+    new: true,
+  });
 
 export const getActiveDispositifsFromDBWithoutPopulate = async (
   needFields: Object
