@@ -39,6 +39,7 @@ describe("getAllispositifs", () => {
     adminPercentageProgressionStatus: 1,
     lastAdminUpdate: 1,
     draftReminderMailSentDate: 1,
+    lastModificationDate: 1,
   };
 
   const dispositifsToJson = [
