@@ -3,6 +3,7 @@ import { RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
 import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
+import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 
 interface QueryUpdate {
   dispositifId: ObjectId;
@@ -24,12 +25,7 @@ export const updateDispositifStatus = async (
     let newDispositif;
     if (status === "Actif") {
       newDispositif = { status, publishedAt: Date.now() };
-    } else {
-      newDispositif = { status };
-    }
-    await updateDispositifInDB(dispositifId, newDispositif);
-
-    if (status === "Actif") {
+      const newDispo = await updateDispositifInDB(dispositifId, newDispositif);
       try {
         await updateLanguagesAvancement();
       } catch (error) {
@@ -38,8 +34,28 @@ export const updateDispositifStatus = async (
           { error }
         );
       }
+      if (newDispo.typeContenu === "dispositif") {
+        try {
+          await addOrUpdateDispositifInContenusAirtable(
+            newDispo.titreInformatif,
+            newDispo.titreMarque,
+            newDispo._id,
+            newDispo.tags,
+            null
+          );
+        } catch (error) {
+          logger.error(
+            "[add_dispositif] error while updating contenu in airtable",
+            { error }
+          );
+        }
+      }
+      return res.status(200).json({ text: "OK" });
     }
-    res.status(200).json({ text: "OK" });
+
+    newDispositif = { status };
+    await updateDispositifInDB(dispositifId, newDispositif);
+    return res.status(200).json({ text: "OK" });
   } catch (error) {
     logger.error("[updateDispositifStatus] error", { error: error.message });
     return res.status(500).json({ text: "Erreur interne" });
