@@ -14,11 +14,12 @@ const addDispositifInContenusAirtable = (title, link, tagsList) => {
     [
       {
         fields: {
-          Titre: title,
-          Thèmes: tagsList,
-          "Réfugiés.info": link,
-          "À traduire ?": true,
-          "Statut trad": ["À traduire"],
+          "! Titre": title,
+          "! Thèmes": tagsList,
+          "! Réfugiés.info": link,
+          "! À traduire ?": true,
+          "! Priorité": ["Normale"],
+          "! Type de contenus": ["Dispositif"],
         },
       },
     ],
@@ -42,7 +43,7 @@ const removeTraductionDispositifInContenusAirtable = (recordId, title) => {
     }
   );
   base("CONTENUS").update([
-    { id: recordId, fields: { Titre: title, "Traduits ?": [] } },
+    { id: recordId, fields: { "! Titre": title, "! Traduits ?": [] } },
   ]);
 };
 
@@ -72,7 +73,7 @@ const addTraductionDispositifInContenusAirtable = ({ id, trad }, locale) => {
   base("CONTENUS").update([
     {
       id,
-      fields: { "Traduits ?": trad || [formattedLocale] },
+      fields: { "! Traduits ?": trad || [formattedLocale] },
     },
   ]);
 };
@@ -87,7 +88,10 @@ const addOrUpdateDispositifInContenusAirtable = async (
   if (process.env.NODE_ENV !== "production") {
     logger.info(
       "[addOrUpdateDispositifInContenusAirtable] env is not production, do not send content to airtable",
-      { env: process.env.NODE_ENV }
+      {
+        env: process.env.NODE_ENV,
+        data: { titleInformatif, titreMarque, id, tags, locale },
+      }
     );
 
     return;
@@ -98,10 +102,11 @@ const addOrUpdateDispositifInContenusAirtable = async (
     title,
   });
   const link = "https://www.refugies.info/dispositif/" + id;
+
   const tagsList = tags
     ? tags.filter((tag) => !!tag).map((tag) => tag.short)
     : [];
-  const formula = "({Réfugiés.info} ='" + link + "')";
+  const formula = "({! Réfugiés.info} ='" + link + "')";
   const recordsList = [];
   base("CONTENUS")
     .select({
@@ -118,9 +123,9 @@ const addOrUpdateDispositifInContenusAirtable = async (
       records.forEach(function (record) {
         logger.info(
           "[addOrUpdateDispositifInContenusAirtable] retrieved dispositif",
-          { recordId: record.id, title: record.get("Title") }
+          { recordId: record.id, title: record.get("! Titre") }
         );
-        recordsList.push({ id: record.id, trad: record.get("Traduits ?") });
+        recordsList.push({ id: record.id, trad: record.get("! Traduits ?") });
       });
       if (recordsList.length === 0) {
         logger.info(
