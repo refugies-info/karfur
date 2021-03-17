@@ -49,11 +49,13 @@ export interface SimplifiedDispositif {
     username: string;
     picture: Picture | undefined;
     _id: ObjectId;
+    email: string | undefined;
   } | null;
   adminComments?: string;
   adminProgressionStatus?: string;
   adminPercentageProgressionStatus?: string;
   lastAdminUpdate?: Moment;
+  draftReminderMailSentDate?: Moment;
 }
 export interface Picture {
   imgId: ObjectId;
