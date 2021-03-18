@@ -49,7 +49,7 @@ export const getUserFavoritesInLocale = async (
         : [];
 
     if (favorites.length === 0) {
-      res.status(200).json({ data: [] });
+      return res.status(200).json({ data: [] });
     }
     const neededFields = {
       titreInformatif: 1,
@@ -69,6 +69,7 @@ export const getUserFavoritesInLocale = async (
     await asyncForEach(favorites, async (favorite) => {
       const dispositif = await getDispositifById(favorite._id, neededFields);
       turnToLocalized(dispositif, locale);
+
       // @ts-ignore
       const formattedDispositif = formatDispositif(dispositif);
       result.push(formattedDispositif);
@@ -77,6 +78,13 @@ export const getUserFavoritesInLocale = async (
     res.status(200).json({ data: result });
   } catch (error) {
     logger.error("[getUserFavoritesInLocale] error", { error: error.message });
-    res.status(500).json({ text: "Erreur interne" });
+    switch (error.message) {
+      case "NOT_FROM_SITE":
+        return res.status(405).json({ text: "Requête bloquée par API" });
+      case "INVALID_REQUEST":
+        return res.status(400).json({ text: "Requête invalide" });
+      default:
+        return res.status(500).json({ text: "Erreur interne" });
+    }
   }
 };
