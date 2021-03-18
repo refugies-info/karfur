@@ -29,11 +29,16 @@ interface Props {
   amount: number;
   textSingular: string;
   textPlural: string;
+  isLoading?: boolean;
 }
 export const TitleWithNumber = (props: Props) => (
   <TitleContainer>
     <Title>Vous avez</Title>
-    <NumberContainer>{props.amount}</NumberContainer>
-    <Title>{props.amount < 2 ? props.textSingular : props.textPlural}</Title>
+    <NumberContainer>{props.isLoading ? "..." : props.amount}</NumberContainer>
+    <Title>
+      {props.isLoading || props.amount < 2
+        ? props.textSingular
+        : props.textPlural}
+    </Title>
   </TitleContainer>
 );

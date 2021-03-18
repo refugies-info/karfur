@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -23,6 +21,7 @@ import { FrameModal } from "../../../components/Modals";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
 import { IUserFavorite } from "../../../types/interface";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
+import { FavoritesLoading } from "./components/FavoritesLoading";
 
 export interface PropsBeforeInjection {
   t: any;
@@ -66,7 +65,12 @@ export const UserFavoritesComponent = (props: Props) => {
 
   const favorites = useSelector(userFavoritesSelector);
 
-  if (isLoading) return <div>loading </div>;
+  if (isLoading)
+    return (
+      <MainContainer>
+        <FavoritesLoading t={props.t} />
+      </MainContainer>
+    );
 
   const pinnedList = favorites.map((favorite) => favorite._id);
   const removePinnedDispositif = (e: any, dispositif: IUserFavorite) => {
