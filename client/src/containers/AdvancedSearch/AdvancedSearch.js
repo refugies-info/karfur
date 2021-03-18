@@ -651,12 +651,6 @@ export class AdvancedSearch extends Component {
   };
 
   retrieveCookies = () => {
-    // Cookies.set('data', 'ici un test');
-    // let dataC=Cookies.getJSON('data');
-    // if(dataC){ this.setState({data:data.map((x,key)=> {return {...x, value:dataC[key] || x.value}})})}
-    // let pinnedC=Cookies.getJSON('pinnedC');
-    // if(pinnedC){ this.setState({pinned:pinnedC})}
-    //data à changer en recherche après
     if (API.isAuth()) {
       API.get_user_info().then((data_res) => {
         let u = data_res.data.data;
