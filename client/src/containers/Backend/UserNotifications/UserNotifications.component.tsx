@@ -38,23 +38,6 @@ const MainContainer = styled.div`
   height: fit-content;
 `;
 
-const TitleContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 32px;
-  align-items: flex-end;
-`;
-const NumberContainer = styled.div`
-  background: #212121;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  color: #ffffff;
-  padding: 8px 19px 8px 19px;
-  margin: 0px 8px 0px 8px;
-`;
-
 const Title = styled.div`
   font-weight: bold;
   font-size: 28px;
@@ -214,11 +197,12 @@ export const UserNotificationsComponent = () => {
   if (isLoading)
     return (
       <MainContainer>
-        <TitleContainer>
-          <Title>Vous avez</Title>
-          <NumberContainer>...</NumberContainer>
-          <Title>nouvelle notification.</Title>
-        </TitleContainer>
+        <TitleWithNumber
+          amount={nbNewNotifications}
+          textSingular={"nouvelle notification."}
+          textPlural={"nouvelles notifications."}
+          isLoading={true}
+        />
         <Skeleton count={3} height={50} />
       </MainContainer>
     );
