@@ -1,5 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
-import { fetchUserFavoritesActionCreator } from "./UserFavoritesInLocale.actions";
+import {
+  fetchUserFavoritesActionCreator,
+  setUserFavoritesActionCreator,
+} from "./UserFavoritesInLocale.actions";
 import { SagaIterator } from "redux-saga";
 import { logger } from "../../logger";
 import { put, call, takeLatest } from "redux-saga/effects";
@@ -9,7 +11,6 @@ import {
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
 import API from "../../utils/API";
-import { setUserActionCreator } from "../User/user.actions";
 import { FETCH_USER_FAVORITES } from "./UserFavoritesInLocale.actionTypes";
 
 export function* fetchUserFavorites(
@@ -18,10 +19,8 @@ export function* fetchUserFavorites(
   try {
     logger.info("[fetchUserFavorites] saga");
     yield put(startLoading(LoadingStatusKey.FETCH_USER_FAVORITES));
-    const favorites = yield call(API.getUserFavoritesInLocale, action.payload);
-    // eslint-disable-next-line no-console
-    // console.log("favorites", favorites);
-    // yield put(fetchUserActionCreator());
+    const data = yield call(API.getUserFavoritesInLocale, action.payload);
+    yield put(setUserFavoritesActionCreator(data.data.data));
     yield put(finishLoading(LoadingStatusKey.FETCH_USER_FAVORITES));
   } catch (error) {
     logger.error("[fetchUserFavorites] saga error", { error });

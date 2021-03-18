@@ -102,3 +102,8 @@ export const modifyReadSuggestionInDispositif = async (
     // @ts-ignore
     { $set: { ["suggestions.$.read"]: true } }
   );
+
+export const getDispositifById = async (
+  id: ObjectId,
+  neededFields: Record<string, number>
+) => await Dispositif.findOne({ _id: id }, neededFields);
