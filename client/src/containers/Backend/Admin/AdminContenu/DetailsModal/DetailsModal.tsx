@@ -273,9 +273,11 @@ export const DetailsModal = (props: Props) => {
                 })}
               </RowContainer>
               <Title>Dernière mise à jour</Title>
-              {`${moment(dispositif.updatedAt).format("LLL")} soit ${moment(
-                dispositif.updatedAt
-              ).fromNow()}`}
+              {dispositif.lastModificationDate
+                ? `${moment(dispositif.lastModificationDate).format(
+                    "LLL"
+                  )} soit ${moment(dispositif.lastModificationDate).fromNow()}`
+                : "Non disponible"}
               <Title>Date de publication</Title>
               {dispositif.publishedAt && dispositif.status === "Actif"
                 ? `${moment(dispositif.publishedAt).format(

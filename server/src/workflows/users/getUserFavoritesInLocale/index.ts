@@ -1,0 +1,1 @@
+export { getUserFavoritesInLocale } from "./getUserFavoritesInLocale";
