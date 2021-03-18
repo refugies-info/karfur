@@ -1,13 +1,8 @@
-import { FavoritesContainer } from "./SubComponents";
+import { FavoritesContainer, CardsContainer } from "./SubComponents";
 import React from "react";
 import { TitleWithNumber } from "../../middleOfficeSharedComponents";
 import styled from "styled-components";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
-
-const CardsContainer = styled.div`
-  display: felx;
-  flex-direction: row;
-`;
 
 const HelpCard = styled.div`
   background: #ffffff;
@@ -89,20 +84,21 @@ const EmptyCard = () => (
     </div>
   </EmptyCardContainer>
 );
-// eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
 export const NoFavorites = (props: { t: any; toggleTutoModal: () => void }) => (
   <FavoritesContainer>
-    <TitleWithNumber
-      amount={0}
-      textSingular={props.t(
-        "UserFavorites.fiches sauvegardée",
-        "fiches sauvegardée"
-      )}
-      textPlural={props.t(
-        "UserFavorites.fiches sauvegardées",
-        "fiches sauvegardées"
-      )}
-    />
+    <div style={{ marginRight: "40px", marginLeft: "40px" }}>
+      <TitleWithNumber
+        amount={0}
+        textSingular={props.t(
+          "UserFavorites.fiches sauvegardée",
+          "fiches sauvegardée"
+        )}
+        textPlural={props.t(
+          "UserFavorites.fiches sauvegardées",
+          "fiches sauvegardées"
+        )}
+      />
+    </div>
     <CardsContainer>
       <HelpCard>
         {props.t(

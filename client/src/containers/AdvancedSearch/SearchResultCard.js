@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React from "react";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
@@ -82,7 +83,7 @@ const SearchResultCard = ({
                 name="bookmark"
                 size="xlarge"
                 onClick={(e) => pin(e, dispositif)}
-                fill={pinned ? colors.noir : colors.noirCD}
+                fill={pinned ? colors.validationHover : colors.noirCD}
                 className={"bookmark-icon" + (pinned ? " pinned" : "")}
               />
             )}

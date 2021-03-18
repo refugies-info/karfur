@@ -10,8 +10,13 @@ import styled from "styled-components";
 import SearchResultCard from "../../AdvancedSearch/SearchResultCard";
 import { Props } from "../UserProfile/UserProfile.container";
 import { NoFavorites } from "./components/NoFavorites.component";
-import { CardContainer } from "./components/SubComponents";
+import {
+  CardContainer,
+  FavoritesContainer,
+  CardsContainer,
+} from "./components/SubComponents";
 import { FrameModal } from "../../../components/Modals";
+import { TitleWithNumber } from "../middleOfficeSharedComponents";
 
 export interface PropsBeforeInjection {
   t: any;
@@ -42,8 +47,7 @@ export const UserFavoritesComponent = (props: Props) => {
   );
 
   const favorites = useSelector(userFavoritesSelector);
-  // eslint-disable-next-line no-console
-  console.log("favorites", favorites);
+
   if (isLoading) return <div>loading </div>;
 
   const pinnedList = favorites.map((favorite) => favorite._id);
@@ -52,7 +56,6 @@ export const UserFavoritesComponent = (props: Props) => {
     return (
       <MainContainer>
         <NoFavorites t={props.t} toggleTutoModal={toggleTutoModal} />
-
         {showTutoModal && (
           <FrameModal
             show={showTutoModal}
@@ -63,20 +66,36 @@ export const UserFavoritesComponent = (props: Props) => {
       </MainContainer>
     );
   return (
-    <div>
-      Favoris
-      {favorites.map((fav) => (
-        <CardContainer key={fav._id}>
-          <SearchResultCard
-            // @ts-ignore
-            pin={() => {}}
-            pinnedList={pinnedList}
-            dispositif={fav}
-            themeList={null}
-            showPinned={true}
+    <MainContainer>
+      <FavoritesContainer>
+        <div style={{ marginRight: "40px", marginLeft: "40px" }}>
+          <TitleWithNumber
+            amount={favorites.length}
+            textSingular={props.t(
+              "UserFavorites.fiches sauvegardée",
+              "fiches sauvegardée"
+            )}
+            textPlural={props.t(
+              "UserFavorites.fiches sauvegardées",
+              "fiches sauvegardées"
+            )}
           />
-        </CardContainer>
-      ))}
-    </div>
+        </div>
+        <CardsContainer>
+          {favorites.map((fav) => (
+            <CardContainer key={fav._id}>
+              <SearchResultCard
+                // @ts-ignore
+                pin={() => {}}
+                pinnedList={pinnedList}
+                dispositif={fav}
+                themeList={null}
+                showPinned={true}
+              />
+            </CardContainer>
+          ))}
+        </CardsContainer>
+      </FavoritesContainer>
+    </MainContainer>
   );
 };
