@@ -22,6 +22,7 @@ import {
 import { FrameModal } from "../../../components/Modals";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
 import { IUserFavorite } from "../../../types/interface";
+import FButton from "../../../components/FigmaUI/FButton/FButton";
 
 export interface PropsBeforeInjection {
   t: any;
@@ -35,6 +36,14 @@ export const MainContainer = styled.div`
   margin-top: 42px;
   height: fit-content;
   margin-bottom: 42px;
+`;
+
+const TitleContainer = styled.div`
+  margin-right: 40px;
+  margin-left: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 export const UserFavoritesComponent = (props: Props) => {
   const [showTutoModal, setShowTutoModal] = useState(false);
@@ -72,6 +81,15 @@ export const UserFavoritesComponent = (props: Props) => {
     );
   };
 
+  const removeAllFavorites = () => {
+    dispatch(
+      updateUserFavoritesActionCreator({
+        type: "remove-all",
+        locale,
+      })
+    );
+  };
+
   if (favorites.length === 0)
     return (
       <MainContainer>
@@ -88,7 +106,7 @@ export const UserFavoritesComponent = (props: Props) => {
   return (
     <MainContainer>
       <FavoritesContainer>
-        <div style={{ marginRight: "40px", marginLeft: "40px" }}>
+        <TitleContainer>
           <TitleWithNumber
             amount={favorites.length}
             textSingular={props.t(
@@ -100,7 +118,17 @@ export const UserFavoritesComponent = (props: Props) => {
               "fiches sauvegardées"
             )}
           />
-        </div>
+          <div>
+            <FButton
+              type="outline-black"
+              name="trash-outline"
+              onClick={removeAllFavorites}
+            >
+              {props.t("UserFavorites.Tout supprimer", "Tout supprimer")}
+            </FButton>
+          </div>
+        </TitleContainer>
+
         <CardsContainer>
           {favorites.map((fav) => (
             <CardContainer key={fav._id}>
