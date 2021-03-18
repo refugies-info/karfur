@@ -1,6 +1,7 @@
 import {
   fetchUserFavoritesActionCreator,
   setUserFavoritesActionCreator,
+  updateUserFavoritesActionCreator,
 } from "./UserFavoritesInLocale.actions";
 import { SagaIterator } from "redux-saga";
 import { logger } from "../../logger";
@@ -11,7 +12,10 @@ import {
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
 import API from "../../utils/API";
-import { FETCH_USER_FAVORITES } from "./UserFavoritesInLocale.actionTypes";
+import {
+  FETCH_USER_FAVORITES,
+  UPDATE_USER_FAVORITES,
+} from "./UserFavoritesInLocale.actionTypes";
 
 export function* fetchUserFavorites(
   action: ReturnType<typeof fetchUserFavoritesActionCreator>
@@ -28,8 +32,27 @@ export function* fetchUserFavorites(
   }
 }
 
+export function* updateUserFavorites(
+  action: ReturnType<typeof updateUserFavoritesActionCreator>
+): SagaIterator {
+  try {
+    logger.info("[updateUserFavorites] saga", { data: action.payload });
+    yield put(startLoading(LoadingStatusKey.UPDATE_USER_FAVORITES));
+    yield call(API.updateUserFavorites, {
+      dispositifId: action.payload.dispositifId,
+      type: action.payload.type,
+    });
+    yield put(fetchUserFavoritesActionCreator(action.payload.locale));
+    yield put(finishLoading(LoadingStatusKey.UPDATE_USER_FAVORITES));
+  } catch (error) {
+    logger.error("[updateUserFavorites] saga error", { error });
+    yield put(finishLoading(LoadingStatusKey.UPDATE_USER_FAVORITES));
+  }
+}
+
 function* latestActionsSaga() {
   yield takeLatest(FETCH_USER_FAVORITES, fetchUserFavorites);
+  yield takeLatest(UPDATE_USER_FAVORITES, updateUserFavorites);
 }
 
 export default latestActionsSaga;

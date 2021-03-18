@@ -75,7 +75,7 @@ export const getUserFavoritesInLocale = async (
       result.push(formattedDispositif);
     });
 
-    res.status(200).json({ data: result });
+    return res.status(200).json({ data: result });
   } catch (error) {
     logger.error("[getUserFavoritesInLocale] error", { error: error.message });
     switch (error.message) {

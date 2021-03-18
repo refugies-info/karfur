@@ -1,7 +1,11 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserFavoritesActionCreator } from "../../../services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
+import {
+  fetchUserFavoritesActionCreator,
+  updateUserFavoritesActionCreator,
+} from "../../../services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import i18n from "../../../i18n";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
@@ -17,6 +21,7 @@ import {
 } from "./components/SubComponents";
 import { FrameModal } from "../../../components/Modals";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
+import { IUserFavorite } from "../../../types/interface";
 
 export interface PropsBeforeInjection {
   t: any;
@@ -42,15 +47,30 @@ export const UserFavoritesComponent = (props: Props) => {
     dispatch(fetchUserFavoritesActionCreator(locale));
   }, [locale]);
 
-  const isLoading = useSelector(
+  const isLoadingFetch = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_USER_FAVORITES)
   );
+  const isLoadingUpdate = useSelector(
+    isLoadingSelector(LoadingStatusKey.UPDATE_USER_FAVORITES)
+  );
+  const isLoading = isLoadingFetch || isLoadingUpdate;
 
   const favorites = useSelector(userFavoritesSelector);
 
   if (isLoading) return <div>loading </div>;
 
   const pinnedList = favorites.map((favorite) => favorite._id);
+  const removePinnedDispositif = (e: any, dispositif: IUserFavorite) => {
+    e.stopPropagation();
+    e.preventDefault();
+    dispatch(
+      updateUserFavoritesActionCreator({
+        type: "remove",
+        dispositifId: dispositif._id,
+        locale,
+      })
+    );
+  };
 
   if (favorites.length === 0)
     return (
@@ -85,8 +105,8 @@ export const UserFavoritesComponent = (props: Props) => {
           {favorites.map((fav) => (
             <CardContainer key={fav._id}>
               <SearchResultCard
-                // @ts-ignore
-                pin={() => {}}
+                //@ts-ignore
+                pin={removePinnedDispositif}
                 pinnedList={pinnedList}
                 dispositif={fav}
                 themeList={null}

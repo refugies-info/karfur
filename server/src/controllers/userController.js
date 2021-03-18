@@ -7,6 +7,7 @@ import { exportUsers } from "../workflows/users/exportUsers";
 import { login } from "../workflows/users/login";
 import { changePassword } from "../workflows/users/changePassword";
 import { getUserFavoritesInLocale } from "../workflows/users/getUserFavoritesInLocale";
+import { updateUserFavorites } from "../workflows/users/updateUserFavorites";
 
 module.exports = function (app) {
   app.post("/login", checkToken.getId, checkToken.getRoles, login);
@@ -33,4 +34,5 @@ module.exports = function (app) {
     checkToken.check,
     getUserFavoritesInLocale
   );
+  app.post("/updateUserFavorites", checkToken.check, updateUserFavorites);
 };

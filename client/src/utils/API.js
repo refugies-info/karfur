@@ -255,6 +255,9 @@ export default {
       { headers }
     ),
 
+  updateUserFavorites: (query) =>
+    axios.post(burl + "/user/updateUserFavorites", query, { headers }),
+
   getNbDispositifsByRegion: () =>
     axios.get(burl + "/dispositifs/getNbDispositifsByRegion"),
 

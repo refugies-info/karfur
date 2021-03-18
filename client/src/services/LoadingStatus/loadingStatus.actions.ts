@@ -14,6 +14,7 @@ export enum LoadingStatusKey {
   UPDATE_USER_STRUCTURE = "UPDATE_USER_STRUCTURE",
   SAVE_USER = "SAVE_USER",
   FETCH_USER_FAVORITES = "FETCH_USER_FAVORITES",
+  UPDATE_USER_FAVORITES = "UPDATE_USER_FAVORITES",
 }
 
 export const startLoading = (key: LoadingStatusKey) =>
