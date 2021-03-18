@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import {
@@ -651,12 +652,6 @@ export class AdvancedSearch extends Component {
   };
 
   retrieveCookies = () => {
-    // Cookies.set('data', 'ici un test');
-    // let dataC=Cookies.getJSON('data');
-    // if(dataC){ this.setState({data:data.map((x,key)=> {return {...x, value:dataC[key] || x.value}})})}
-    // let pinnedC=Cookies.getJSON('pinnedC');
-    // if(pinnedC){ this.setState({pinned:pinnedC})}
-    //data à changer en recherche après
     if (API.isAuth()) {
       API.get_user_info().then((data_res) => {
         let u = data_res.data.data;
@@ -665,27 +660,6 @@ export class AdvancedSearch extends Component {
           pinned: user.cookies.dispositifsPinned
             ? user.cookies.dispositifsPinned.map((x) => x._id)
             : [],
-          dispositifs: [...this.state.dispositifs].filter(
-            (x) =>
-              !(user.cookies.parkourPinned || []).find(
-                (y) => y._id === x._id || y === x._id
-              )
-          ),
-          ...(user.cookies.parkourData &&
-            user.cookies.parkourData.length > 0 && {
-              data: this.state.data.map((x, key) => {
-                return {
-                  ...x,
-                  value: user.cookies.parkourData[key] || x.value,
-                  query: (
-                    x.children.find(
-                      (y) =>
-                        y.name === (user.cookies.parkourData[key] || x.value)
-                    ) || {}
-                  ).query,
-                };
-              }),
-            }),
         });
       });
     }
@@ -737,24 +711,23 @@ export class AdvancedSearch extends Component {
             !isDispositifPinned && !prevState.showBookmarkModal,
         },
         () => {
-          user.cookies.parkourPinned = [
+          const dispositifsPinnedArray = [
             ...new Set(this.state.pinned.map((x) => (x && x._id) || x)),
           ];
-          user.cookies.dispositifsPinned = user.cookies.parkourPinned.map(
-            (parkourId) => {
-              if (
-                user.cookies.dispositifsPinned &&
-                user.cookies.dispositifsPinned.find(
-                  (dispPinned) => parkourId === dispPinned._id
-                )
-              ) {
-                return user.cookies.dispositifsPinned.find(
-                  (dispPinned) => parkourId === dispPinned._id
-                );
-              }
-              return { _id: parkourId, datePin: new Date() };
+
+          user.cookies.dispositifsPinned = dispositifsPinnedArray.map((id) => {
+            if (
+              user.cookies.dispositifsPinned &&
+              user.cookies.dispositifsPinned.find(
+                (dispPinned) => id === dispPinned._id
+              )
+            ) {
+              return user.cookies.dispositifsPinned.find(
+                (dispPinned) => id === dispPinned._id
+              );
             }
-          );
+            return { _id: id, datePin: new Date() };
+          });
           API.set_user_info(user).then(() => {
             this.props.fetchUser();
           });

@@ -1881,7 +1881,7 @@ export class Dispositif extends Component {
                 className="pt-40 col-middle"
                 id={"pageContent"}
               >
-                {disableEdit && (
+                {disableEdit && this.state.dispositif.lastModificationDate && (
                   // Part about last update
                   <Row className="fiabilite-row">
                     <Col
@@ -1898,7 +1898,11 @@ export class Dispositif extends Component {
                       :&nbsp;
                       <span className="date-maj">
                         {moment(
-                          _.get(this.state, "dispositif.updatedAt", 0)
+                          _.get(
+                            this.state,
+                            "dispositif.lastModificationDate",
+                            0
+                          )
                         ).format("ll")}
                       </span>
                     </Col>

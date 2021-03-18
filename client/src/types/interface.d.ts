@@ -1,4 +1,4 @@
-import { ObjectId } from "mongodb";
+import { ObjectId, ObjectID } from "mongodb";
 import { Moment } from "moment";
 
 export interface RequestReturn<Y> {
@@ -56,6 +56,7 @@ export interface SimplifiedDispositif {
   adminPercentageProgressionStatus?: string;
   lastAdminUpdate?: Moment;
   draftReminderMailSentDate?: Moment;
+  lastModificationDate?: Moment;
 }
 export interface Picture {
   imgId: ObjectId;
@@ -293,4 +294,13 @@ export interface SimplifiedStructureForAdmin {
   responsable: null | Responsable;
   membres: Membre[];
   nbFiches: number;
+}
+
+export interface IUserFavorite {
+  _id: ObjectId;
+  typeContenu: "dispositif" | "demarche";
+  titreInformatif: string;
+  titreMarque: string;
+  abstract: string;
+  tags: Tag[];
 }
