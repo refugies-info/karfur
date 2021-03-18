@@ -23,6 +23,7 @@ import Swal from "sweetalert2";
 import { updateDispositifReactionActionCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
 import Skeleton from "react-loading-skeleton";
 import { assetsOnServer } from "../../../assets/assetsOnServer";
+import { TitleWithNumber } from "../middleOfficeSharedComponents";
 
 declare const window: Window;
 
@@ -239,15 +240,12 @@ export const UserNotificationsComponent = () => {
 
   return (
     <MainContainer>
-      <TitleContainer>
-        <Title>Vous avez</Title>
-        <NumberContainer>{nbNewNotifications}</NumberContainer>
-        <Title>
-          {nbNewNotifications < 2
-            ? "nouvelle notification."
-            : "nouvelles notifications."}
-        </Title>
-      </TitleContainer>
+      <TitleWithNumber
+        amount={nbNewNotifications}
+        textSingular={"nouvelle notification."}
+        textPlural={"nouvelles notifications."}
+      />
+
       {notifications.map((notif) => (
         <Notification
           type={notif.type}
