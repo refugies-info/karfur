@@ -1,5 +1,5 @@
 import { RequestFromClient, Res } from "../../../types/interface";
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";

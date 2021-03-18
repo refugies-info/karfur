@@ -1,5 +1,5 @@
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { ObjectId } from "mongoose";
 import { updateUserInDB } from "../../../modules/users/users.repository";
