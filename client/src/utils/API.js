@@ -248,6 +248,13 @@ export default {
       params: { id, withDisposAssocies, localeOfLocalizedDispositifsAssocies },
     }),
 
+  getUserFavoritesInLocale: (locale) =>
+    axios.post(
+      burl + "/user/getUserFavoritesInLocale",
+      { locale },
+      { headers }
+    ),
+
   getNbDispositifsByRegion: () =>
     axios.get(burl + "/dispositifs/getNbDispositifsByRegion"),
 

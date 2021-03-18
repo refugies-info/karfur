@@ -5,7 +5,7 @@ import {
 import { ActionType, action } from "typesafe-actions";
 import { IUserFavorite } from "../../types/interface";
 
-export const fetchUserFavoritesActionCreator = (value: { locale: string }) =>
+export const fetchUserFavoritesActionCreator = (value: string) =>
   action(FETCH_USER_FAVORITES, value);
 
 export const setUserFavoritesActionCreator = (value: IUserFavorite[]) =>
