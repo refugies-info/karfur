@@ -19,6 +19,7 @@ import {
   AnnuaireDetail,
 } from "./containers/Annuaire/AnnuaireLecture";
 import { UserNotifications } from "./containers/Backend/UserNotifications";
+import { UserFavorites } from "./containers/Backend/UserFavorites";
 
 const routes = [
   {
@@ -226,7 +227,7 @@ const routes = [
     path: "/backend/user-dash-contrib",
     name: "Réfugiés.info - Espace rédaction",
     component: UserDashContrib,
-    restriction: ["Contrib", "Admin"],
+    restriction: ["User", "Contrib", "Admin"],
   },
   {
     path: "/backend/user-dash-structure",
@@ -251,6 +252,12 @@ const routes = [
     name: "Réfugiés.info - Mes notifications",
     component: UserNotifications,
     restriction: ["Admin", "hasStructure"],
+  },
+  {
+    path: "/backend/user-favorites",
+    name: "Réfugiés.info - Mes favoris",
+    component: UserFavorites,
+    restriction: ["User", "Trad", "ExpertTrad", "Admin"],
   },
 ];
 

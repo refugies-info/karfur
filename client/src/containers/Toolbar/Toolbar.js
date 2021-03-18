@@ -237,6 +237,11 @@ export class Toolbar extends React.Component {
                 >
                   {t("Toolbar.Mon profil", "Mon profil")}
                 </DropdownItem>
+                <DropdownItem
+                  onClick={() => this.navigateTo("/backend/user-favorites")}
+                >
+                  {t("Dispositif.Mes favoris", "Mes favoris")}
+                </DropdownItem>
 
                 <DropdownItem
                   onClick={() => this.navigateTo("/backend/user-dash-contrib")}

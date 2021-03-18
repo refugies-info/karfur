@@ -9,7 +9,7 @@ import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import { fakeFavori } from "../../../../containers/Backend/UserProfile/data";
 
-import {colors} from "colors";
+import { colors } from "colors";
 
 moment.locale("fr");
 
@@ -46,11 +46,7 @@ const favoriTable = (props) => {
           return (
             <tr key={key}>
               <td className="align-middle">
-                <EVAIcon
-                  name="bookmark"
-                  fill={colors.noir}
-                  id="bookmarkBtn"
-                />
+                <EVAIcon name="bookmark" fill={colors.noir} id="bookmarkBtn" />
               </td>
               <td
                 className="align-middle pointer"

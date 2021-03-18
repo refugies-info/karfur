@@ -1,0 +1,117 @@
+// @ts-nocheck
+import { getUserFavoritesInLocale } from "./getUserFavoritesInLocale";
+import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
+import { turnToLocalized } from "../../../controllers/dispositif/functions";
+
+type MockResponse = { json: any; status: any };
+const mockResponse = (): MockResponse => {
+  const res: MockResponse = {};
+  res.status = jest.fn().mockReturnValue(res);
+  res.json = jest.fn().mockReturnValue(res);
+  return res;
+};
+
+jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
+  getDispositifById: jest.fn(),
+}));
+
+jest.mock("../../../controllers/dispositif/functions");
+
+describe("getUserFavoritesInLocale", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  const res = mockResponse();
+
+  it("should throw 405 if not from site ", async () => {
+    const req = { fromSite: false };
+    await getUserFavoritesInLocale(req, res);
+    expect(res.status).toHaveBeenCalledWith(405);
+  });
+
+  it("should throw 400 if no locale ", async () => {
+    const req = { fromSite: true, body: { noLocale: true } };
+    await getUserFavoritesInLocale(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+  });
+
+  it("should return 200 and [] if no dispo pinned", async () => {
+    const req = {
+      fromSite: true,
+      body: { locale: "fr" },
+      user: { _id: "userId" },
+    };
+    await getUserFavoritesInLocale(req, res);
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ data: [] });
+  });
+
+  it("should return 200 and [] if no dispo pinned", async () => {
+    const req = {
+      fromSite: true,
+      body: { locale: "fr" },
+      user: { _id: "userId", cookies: { parkourPinned: {} } },
+    };
+    await getUserFavoritesInLocale(req, res);
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ data: [] });
+  });
+
+  it("should return 200 and [] if no dispo pinned", async () => {
+    const req = {
+      fromSite: true,
+      body: { locale: "fr" },
+      user: { _id: "userId", cookies: { dispositifPinned: [] } },
+    };
+    await getUserFavoritesInLocale(req, res);
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ data: [] });
+  });
+  const neededFields = {
+    titreInformatif: 1,
+    titreMarque: 1,
+    _id: 1,
+    tags: 1,
+    abstract: 1,
+    status: 1,
+    typeContenu: 1,
+    contenu: 1,
+  };
+
+  it("should return 200 and get dispo if dispo pinned", async () => {
+    const functionToJSON = () => ({
+      titreInformatif: "TI",
+      contenu: "contenu",
+    });
+    const dispo = {
+      titreInformatif: "TI",
+      contenu: "contenu",
+      toJSON: functionToJSON,
+    };
+    getDispositifById.mockResolvedValue(dispo);
+    const req = {
+      fromSite: true,
+      body: { locale: "fr" },
+      user: {
+        _id: "userId",
+        cookies: { dispositifsPinned: [{ _id: "id1" }, { _id: "id2" }] },
+      },
+    };
+    await getUserFavoritesInLocale(req, res);
+
+    expect(getDispositifById).toHaveBeenCalledWith("id1", neededFields);
+    expect(getDispositifById).toHaveBeenCalledWith("id2", neededFields);
+    expect(turnToLocalized).toHaveBeenCalledWith(dispo, "fr");
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      data: [
+        {
+          titreInformatif: "TI",
+        },
+        {
+          titreInformatif: "TI",
+        },
+      ],
+    });
+  });
+});

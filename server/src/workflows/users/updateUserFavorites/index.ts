@@ -1,0 +1,1 @@
+export { updateUserFavorites } from "./updateUserFavorites";

@@ -54,4 +54,9 @@ export const sectionUrlCorrespondencies = [
     tutoUrl:
       "https://help.refugies.info/fr/article/en-cours-j2x61c/?1602575683601",
   },
+  {
+    section: "Mes favoris",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/sauvegarder-des-fiches-en-favoris-feiq6c",
+  },
 ];
