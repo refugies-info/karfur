@@ -28,6 +28,7 @@ export function* fetchUserFavorites(
     yield put(finishLoading(LoadingStatusKey.FETCH_USER_FAVORITES));
   } catch (error) {
     logger.error("[fetchUserFavorites] saga error", { error });
+    yield put(setUserFavoritesActionCreator([]));
     yield put(finishLoading(LoadingStatusKey.FETCH_USER_FAVORITES));
   }
 }
