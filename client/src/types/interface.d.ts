@@ -185,6 +185,8 @@ export interface IDispositif {
   traductions: ObjectId[];
   typeContenu: "dispositif" | "demarche";
   updatedAt: Moment;
+  nbVues: number;
+  nbMercis: number;
 }
 
 export interface DetailedOpeningHours {
