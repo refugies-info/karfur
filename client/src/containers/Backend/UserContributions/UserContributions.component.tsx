@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars-experimental */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserContributionsActionCreator } from "../../../services/UserContributions/userContributions.actions";
 import { userContributionsSelector } from "../../../services/UserContributions/userContributions.selectors";
@@ -10,8 +10,24 @@ import {
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { formatContributions } from "./functions";
+import styled from "styled-components";
+import { NoContribution } from "./components/NoContribution";
+import { FrameModal } from "../../../components/Modals";
+
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex: 1;
+  margin-top: 42px;
+  height: fit-content;
+  margin-bottom: 42px;
+`;
 
 export const UserContributionsComponent = () => {
+  const [showTutoModal, setShowTutoModal] = useState(false);
+  const toggleTutoModal = () => setShowTutoModal(!showTutoModal);
+
   const dispatch = useDispatch();
 
   const userContributions = useSelector(userContributionsSelector);
@@ -40,6 +56,20 @@ export const UserContributionsComponent = () => {
   if (isLoading) {
     return <div>Loading</div>;
   }
+
+  if (contributions.length === 0)
+    return (
+      <MainContainer>
+        <NoContribution toggleTutoModal={toggleTutoModal} />
+        {showTutoModal && (
+          <FrameModal
+            show={showTutoModal}
+            toggle={toggleTutoModal}
+            section={"Mes fiches"}
+          />
+        )}
+      </MainContainer>
+    );
   return (
     <div>
       Hello

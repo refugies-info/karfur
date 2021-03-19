@@ -59,4 +59,9 @@ export const sectionUrlCorrespondencies = [
     tutoUrl:
       "https://help.refugies.info/fr/article/sauvegarder-des-fiches-en-favoris-feiq6c",
   },
+  {
+    section: "Mes fiches",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/sauvegarder-des-fiches-en-favoris-feiq6c",
+  },
 ];
