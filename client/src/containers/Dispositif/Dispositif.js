@@ -78,6 +78,7 @@ import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFoo
 import { initGA, Event } from "../../tracking/dispatch";
 import { fetchActiveStructuresActionCreator } from "../../services/ActiveStructures/activeStructures.actions";
 import { logger } from "../../logger";
+import { isMobile } from "react-device-detect";
 
 moment.locale("fr");
 
@@ -1800,47 +1801,50 @@ export class Dispositif extends Component {
               </Col>
             </section>
 
-            <Row className="tags-row backgroundColor-darkColor">
-              <Col
-                style={{ display: "flex", alignItems: "center" }}
-                lg="8"
-                md="8"
-                sm="8"
-                xs="8"
-                className="col right-bar"
-              >
-                {
-                  // display En bref banner if content is a dispositif or if content is a demarch but not in edition mode
-                  (disableEdit || typeContenu !== "demarche") && (
-                    // TO DO : connect component to store when store updated after changing infocards
-                    <EnBrefBanner menu={this.state.menu} isRTL={isRTL} />
-                  )
-                }
-              </Col>
-              <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
-                {
-                  // Tags on the right of a dispositif or a demarche
-                  <Tags
-                    tags={this.state.tags}
-                    disableEdit={this.state.disableEdit}
-                    changeTag={this.changeTag}
-                    addTag={this.addTag}
-                    openTag={this.openTag}
-                    deleteTag={this.deleteTag}
-                    history={this.props.history}
-                    toggleTutorielModal={this.toggleTutorielModal}
-                    displayTuto={this.state.displayTuto}
-                    updateUIArray={this.updateUIArray}
-                    isRTL={isRTL}
-                    t={t}
-                    typeContenu={typeContenu}
-                  />
-                }
-              </Col>
-            </Row>
+            {!isMobile && (
+              <Row className="tags-row backgroundColor-darkColor">
+                <Col
+                  style={{ display: "flex", alignItems: "center" }}
+                  lg="8"
+                  md="8"
+                  sm="8"
+                  xs="8"
+                  className="col right-bar"
+                >
+                  {
+                    // display En bref banner if content is a dispositif or if content is a demarch but not in edition mode
+                    (disableEdit || typeContenu !== "demarche") && (
+                      // TO DO : connect component to store when store updated after changing infocards
+                      <EnBrefBanner menu={this.state.menu} isRTL={isRTL} />
+                    )
+                  }
+                </Col>
+
+                <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
+                  {
+                    // Tags on the right of a dispositif or a demarche
+                    <Tags
+                      tags={this.state.tags}
+                      disableEdit={this.state.disableEdit}
+                      changeTag={this.changeTag}
+                      addTag={this.addTag}
+                      openTag={this.openTag}
+                      deleteTag={this.deleteTag}
+                      history={this.props.history}
+                      toggleTutorielModal={this.toggleTutorielModal}
+                      displayTuto={this.state.displayTuto}
+                      updateUIArray={this.updateUIArray}
+                      isRTL={isRTL}
+                      t={t}
+                      typeContenu={typeContenu}
+                    />
+                  }
+                </Col>
+              </Row>
+            )}
 
             <Row className="no-margin-right">
-              {!translating && !printing && (
+              {!translating && !printing && !isMobile && (
                 <Col
                   xl="3"
                   lg="3"
@@ -1947,7 +1951,7 @@ export class Dispositif extends Component {
                   {...this.state}
                 />
 
-                {this.state.disableEdit && (
+                {this.state.disableEdit && !isMobile && (
                   <>
                     {!printing && (
                       <FeedbackFooter
@@ -1997,16 +2001,18 @@ export class Dispositif extends Component {
 
                 {false && <Commentaires />}
               </Col>
-              <Col
-                xl="2"
-                lg="2"
-                md="2"
-                sm="2"
-                xs="2"
-                className={
-                  "aside-right pt-40" + (translating ? " sideView" : "")
-                }
-              />
+              {!isMobile && (
+                <Col
+                  xl="2"
+                  lg="2"
+                  md="2"
+                  sm="2"
+                  xs="2"
+                  className={
+                    "aside-right pt-40" + (translating ? " sideView" : "")
+                  }
+                />
+              )}
             </Row>
 
             <ReactionModal

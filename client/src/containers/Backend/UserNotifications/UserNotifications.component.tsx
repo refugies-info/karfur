@@ -57,7 +57,7 @@ export interface PropsBeforeInjection {
   t: any;
   history: any;
 }
-export const UserNotificationsComponent = () => {
+export const UserNotificationsComponent = (props: PropsBeforeInjection) => {
   const [
     selectedReaction,
     setSelectedReaction,
@@ -241,6 +241,7 @@ export const UserNotificationsComponent = () => {
           onClick={() => onNotificationClick(notif)}
           onReactionDeleteClick={() => deleteNotificationAndUpdate(notif)}
           onAnnuaireNotifDeleteClick={updateStructureWithNotificationSeen}
+          history={props.history}
         />
       ))}
       <ReactionLectureModal
