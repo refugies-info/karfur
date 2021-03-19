@@ -21,6 +21,7 @@ const formattedUserContrib1 = {
   nbVues: 0,
   status: "Brouillon",
   responsabilite: "Moi",
+  isAuthorizedToDelete: true,
 };
 const userContrib2 = {
   _id: "id2",
@@ -40,6 +41,7 @@ const formattedUserContrib2 = {
   nbVues: 0,
   status: "Actif",
   responsabilite: "sponsor2",
+  isAuthorizedToDelete: false,
 };
 
 const userContrib3 = {
@@ -62,6 +64,7 @@ const formattedUserContrib3 = {
   nbVues: 0,
   status: "En attente",
   responsabilite: "Moi",
+  isAuthorizedToDelete: true,
 };
 const userContribs = [userContrib1, userContrib2, userContrib3];
 
@@ -118,6 +121,7 @@ const formattedUserContrib4 = {
   nbVues: 0,
   status: "Actif",
   responsabilite: "structure",
+  isAuthorizedToDelete: true,
 };
 
 const userStructureContrib5 = {
