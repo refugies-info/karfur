@@ -7,8 +7,15 @@ import {
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
 import API from "../../utils/API";
-import { FETCH_USER_CONTRIBUTIONS } from "./userContributions.actionTypes";
-import { setUserContributionsActionCreator } from "./userContributions.actions";
+import {
+  FETCH_USER_CONTRIBUTIONS,
+  DELETE_DISPOSITIF,
+} from "./userContributions.actionTypes";
+import {
+  setUserContributionsActionCreator,
+  deleteDispositifActionCreator,
+  fetchUserContributionsActionCreator,
+} from "./userContributions.actions";
 
 export function* fetchUserContributions(): SagaIterator {
   try {
@@ -24,27 +31,29 @@ export function* fetchUserContributions(): SagaIterator {
   }
 }
 
-//   export function* updateUserFavorites(
-//     action: ReturnType<typeof updateUserFavoritesActionCreator>
-//   ): SagaIterator {
-//     try {
-//       logger.info("[updateUserFavorites] saga", { data: action.payload });
-//       yield put(startLoading(LoadingStatusKey.UPDATE_USER_CONTRIBUTIONS));
-//       yield call(API.updateUserFavorites, {
-//         dispositifId: action.payload.dispositifId,
-//         type: action.payload.type,
-//       });
-//       yield put(fetchUserContributionsActionCreator(action.payload.locale));
-//       yield put(finishLoading(LoadingStatusKey.UPDATE_USER_CONTRIBUTIONS));
-//     } catch (error) {
-//       logger.error("[updateUserFavorites] saga error", { error });
-//       yield put(finishLoading(LoadingStatusKey.UPDATE_USER_CONTRIBUTIONS));
-//     }
-//   }
+export function* deleteContributionAndUpdate(
+  action: ReturnType<typeof deleteDispositifActionCreator>
+): SagaIterator {
+  try {
+    logger.info("[deleteContributionAndUpdate] saga", { data: action.payload });
+    yield put(startLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));
+    yield call(API.updateDispositifStatus, {
+      query: {
+        dispositifId: action.payload,
+        status: "Supprimé",
+      },
+    });
+    yield put(fetchUserContributionsActionCreator());
+    yield put(finishLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));
+  } catch (error) {
+    logger.error("[deleteContributionAndUpdate] saga error", { error });
+    yield put(finishLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));
+  }
+}
 
 function* latestActionsSaga() {
   yield takeLatest(FETCH_USER_CONTRIBUTIONS, fetchUserContributions);
-  // yield takeLatest(UPDATE_USER_CONTRIBUTIONS, updateUserFavorites);
+  yield takeLatest(DELETE_DISPOSITIF, deleteContributionAndUpdate);
 }
 
 export default latestActionsSaga;

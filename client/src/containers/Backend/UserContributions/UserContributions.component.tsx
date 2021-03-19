@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserContributionsActionCreator } from "../../../services/UserContributions/userContributions.actions";
+import {
+  fetchUserContributionsActionCreator,
+  deleteDispositifActionCreator,
+} from "../../../services/UserContributions/userContributions.actions";
 import { userContributionsSelector } from "../../../services/UserContributions/userContributions.selectors";
 import {
   userStructureDisposAssociesSelector,
@@ -17,6 +20,9 @@ import { TitleWithNumber } from "../middleOfficeSharedComponents";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { NavHashLink } from "react-router-hash-link";
 import { UserContribTable } from "./components/UserContribTable";
+import { ObjectId } from "mongodb";
+import { colors } from "../../../colors";
+import Swal from "sweetalert2";
 
 const MainContainer = styled.div`
   display: flex;
@@ -74,6 +80,39 @@ export const UserContributionsComponent = (props: Props) => {
   );
 
   const onContributionRowClick = (burl: string) => props.history.push(burl);
+
+  const deleteDispositif = (
+    event: any,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
+    dispositifId: ObjectId,
+    isAuthorizedToDelete: boolean
+  ) => {
+    event.stopPropagation();
+    if (!isAuthorizedToDelete) {
+      return;
+    }
+
+    Swal.fire({
+      title: "Êtes-vous sûr ?",
+      text: "La suppression d'un dispositif est irréversible",
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: colors.rouge,
+      cancelButtonColor: colors.vert,
+      confirmButtonText: "Oui, le supprimer",
+      cancelButtonText: "Annuler",
+    }).then((result) => {
+      if (result.value) {
+        dispatch(deleteDispositifActionCreator(dispositifId));
+        Swal.fire({
+          title: "Yay...",
+          text: "Le dispositif a été supprimé",
+          type: "success",
+          timer: 1500,
+        });
+      }
+    });
+  };
 
   if (isLoading) {
     return <div>Loading</div>;
@@ -133,6 +172,7 @@ export const UserContributionsComponent = (props: Props) => {
             toggleTutoModal={toggleTutoModal}
             setTutoModalDisplayed={setTutoModalDisplayed}
             onContributionRowClick={onContributionRowClick}
+            deleteDispositif={deleteDispositif}
           />
         </WhiteContainer>
       </ContribContainer>

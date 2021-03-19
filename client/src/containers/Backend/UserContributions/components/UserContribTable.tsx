@@ -13,21 +13,15 @@ import {
   SeeButtonWithoutNavigation,
 } from "../../Admin/sharedComponents/SubComponents";
 import "./UserContribTable.scss";
+import { ObjectId } from "mongodb";
 
-const headers = [
-  "Type",
-  "Titre",
-  "Responsabilité",
-  "Statut",
-  "Merci",
-  "Vues",
-  "Actions",
-];
+const headers = ["Type", "Titre", "Responsabilité", "Statut", "Merci", "Vues"];
 interface Props {
   contributions: FormattedUserContribution[];
   toggleTutoModal: () => void;
   setTutoModalDisplayed: (arg: string) => void;
   onContributionRowClick: (arg: string) => void;
+  deleteDispositif: (arg1: any, arg: ObjectId, arg2: boolean) => void;
 }
 export const UserContribTable = (props: Props) => (
   <Table responsive borderless>
@@ -62,20 +56,20 @@ export const UserContribTable = (props: Props) => (
             onClick={() => props.onContributionRowClick(burl)}
             className="line"
           >
-            <td className="first">
+            <td className="first align-middle">
               <TypeContenu
                 type={element.typeContenu || "dispositif"}
                 isDetailedVue={false}
               />
             </td>
-            <td>
+            <td className="align-middle">
               <Title
                 titreInformatif={element.titreInformatif}
                 titreMarque={element.titreMarque || null}
               />
             </td>
 
-            <td>
+            <td className="align-middle">
               <Responsabilite responsable={element.responsabilite} />
             </td>
 
@@ -84,11 +78,12 @@ export const UserContribTable = (props: Props) => (
                 props.setTutoModalDisplayed("Statut-" + element.status);
                 props.toggleTutoModal();
               }}
+              className="align-middle"
             >
               <ContribStyledStatus text={element.status} />
             </td>
 
-            <td>
+            <td className="align-middle">
               {element.status === "Actif" ? (
                 <div>
                   {element.nbMercis + " "}
@@ -102,7 +97,7 @@ export const UserContribTable = (props: Props) => (
                 </span>
               )}
             </td>
-            <td>
+            <td className="align-middle">
               {element.status === "Actif" ? (
                 <div>
                   {element.nbVues + " "}
@@ -117,10 +112,19 @@ export const UserContribTable = (props: Props) => (
               )}
             </td>
 
-            <td className="last">
+            <td className="last align-middle">
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <SeeButtonWithoutNavigation />
-                <DeleteButton onClick={() => {}} disabled={false} />
+                <DeleteButton
+                  onClick={(event: any) =>
+                    props.deleteDispositif(
+                      event,
+                      element._id,
+                      element.isAuthorizedToDelete
+                    )
+                  }
+                  disabled={!element.isAuthorizedToDelete}
+                />
               </div>
             </td>
           </tr>

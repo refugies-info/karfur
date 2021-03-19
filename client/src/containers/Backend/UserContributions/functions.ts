@@ -10,11 +10,16 @@ export const formatContributions = (
 
   userContributions.forEach((dispositif) => {
     if (["Brouillon", "En attente"].includes(dispositif.status)) {
-      return formattedContribs.push({ ...dispositif, responsabilite: "Moi" });
+      return formattedContribs.push({
+        ...dispositif,
+        responsabilite: "Moi",
+        isAuthorizedToDelete: true,
+      });
     }
     return formattedContribs.push({
       ...dispositif,
       responsabilite: dispositif.mainSponsor,
+      isAuthorizedToDelete: false,
     });
   });
 
@@ -46,6 +51,7 @@ export const formatContributions = (
         _id: dispositif._id,
         status: dispositif.status,
         responsabilite: userStructureName,
+        isAuthorizedToDelete: true,
       });
     });
 

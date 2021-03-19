@@ -48,7 +48,7 @@ const RowContainer = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  cursor: ${(props) => (props.pointer ? "pointer" : "default")};
+  cursor: pointer;
 `;
 
 export const Responsabilite = (props: { responsable: string | null }) => {
@@ -110,7 +110,7 @@ export const ContribStyledStatus = (props: { text: string }) => {
 
 export const StatutHeader = (props: { onClick: () => void }) => {
   return (
-    <RowContainer onClick={props.onClick} pointer={true}>
+    <RowContainer onClick={props.onClick}>
       Statut
       <EVAIcon
         name={"question-mark-circle-outline"}

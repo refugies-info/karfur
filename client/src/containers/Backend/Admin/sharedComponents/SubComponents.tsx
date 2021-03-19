@@ -243,7 +243,7 @@ export const SeeButtonWithoutNavigation = () => (
 );
 
 export const DeleteButton = (props: {
-  onClick: () => void;
+  onClick: (event: any) => void;
   disabled: boolean;
 }) => (
   <ButtonContainer

@@ -10,4 +10,5 @@ export interface FormattedUserContribution {
   _id: ObjectId;
   status: string;
   mainSponsor?: string | null;
+  isAuthorizedToDelete: boolean;
 }
