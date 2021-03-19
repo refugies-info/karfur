@@ -20,7 +20,12 @@ export const formatContributions = (
 
   userStructureContributions
     .filter((dispositif) => {
-      if (["Brouillon", "Supprimé"].includes(dispositif.status)) return false;
+      if (
+        ["Brouillon", "Supprimé", "Rejeté structure"].includes(
+          dispositif.status
+        )
+      )
+        return false;
 
       if (dispositif.status === "En attente") {
         const isDispositifInUserContributions =
