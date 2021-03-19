@@ -23,6 +23,7 @@ import { UserContribTable } from "./components/UserContribTable";
 import { ObjectId } from "mongodb";
 import { colors } from "../../../colors";
 import Swal from "sweetalert2";
+import Skeleton from "react-loading-skeleton";
 
 const MainContainer = styled.div`
   display: flex;
@@ -115,7 +116,20 @@ export const UserContributionsComponent = (props: Props) => {
   };
 
   if (isLoading) {
-    return <div>Loading</div>;
+    return (
+      <MainContainer>
+        <ContribContainer>
+          <TitleWithNumber
+            amount={0}
+            textPlural="fiches."
+            textSingular="fiche."
+            isLoading={true}
+            textBefore="Vous avez rédigé"
+          />
+          <Skeleton count={3} height={50} />
+        </ContribContainer>
+      </MainContainer>
+    );
   }
 
   if (contributions.length === 0)
