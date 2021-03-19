@@ -304,3 +304,14 @@ export interface IUserFavorite {
   abstract: string;
   tags: Tag[];
 }
+
+export interface IUserContribution {
+  _id: ObjectId;
+  typeContenu: "dispositif" | "demarche";
+  titreInformatif: string;
+  titreMarque: string;
+  mainSponsor: string | null;
+  nbMercis: number;
+  nbVues: number;
+  status: string;
+}
