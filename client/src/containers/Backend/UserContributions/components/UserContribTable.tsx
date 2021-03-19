@@ -9,9 +9,10 @@ import {
 } from "./SubComponents";
 import {
   Title,
-  SeeButton,
   DeleteButton,
+  SeeButtonWithoutNavigation,
 } from "../../Admin/sharedComponents/SubComponents";
+import "./UserContribTable.scss";
 
 const headers = [
   "Type",
@@ -26,6 +27,7 @@ interface Props {
   contributions: FormattedUserContribution[];
   toggleTutoModal: () => void;
   setTutoModalDisplayed: (arg: string) => void;
+  onContributionRowClick: (arg: string) => void;
 }
 export const UserContribTable = (props: Props) => (
   <Table responsive borderless>
@@ -55,26 +57,29 @@ export const UserContribTable = (props: Props) => (
           "/" + (element.typeContenu || "dispositif") + "/" + element._id;
 
         return (
-          <tr key={key}>
-            <td className="align-middle">
+          <tr
+            key={key}
+            onClick={() => props.onContributionRowClick(burl)}
+            className="line"
+          >
+            <td className="first">
               <TypeContenu
                 type={element.typeContenu || "dispositif"}
                 isDetailedVue={false}
               />
             </td>
-            <td className="align-middle">
+            <td>
               <Title
                 titreInformatif={element.titreInformatif}
                 titreMarque={element.titreMarque || null}
               />
             </td>
 
-            <td className="align-middle cursor-pointer">
+            <td>
               <Responsabilite responsable={element.responsabilite} />
             </td>
 
             <td
-              className={"align-middle "}
               onClick={() => {
                 props.setTutoModalDisplayed("Statut-" + element.status);
                 props.toggleTutoModal();
@@ -83,7 +88,7 @@ export const UserContribTable = (props: Props) => (
               <ContribStyledStatus text={element.status} />
             </td>
 
-            <td className="align-middle">
+            <td>
               {element.status === "Actif" ? (
                 <div>
                   {element.nbMercis + " "}
@@ -97,7 +102,7 @@ export const UserContribTable = (props: Props) => (
                 </span>
               )}
             </td>
-            <td className="align-middle">
+            <td>
               {element.status === "Actif" ? (
                 <div>
                   {element.nbVues + " "}
@@ -112,9 +117,9 @@ export const UserContribTable = (props: Props) => (
               )}
             </td>
 
-            <td className="align-middle">
+            <td className="last">
               <div style={{ display: "flex", flexDirection: "row" }}>
-                <SeeButton burl={burl} />
+                <SeeButtonWithoutNavigation />
                 <DeleteButton onClick={() => {}} disabled={false} />
               </div>
             </td>

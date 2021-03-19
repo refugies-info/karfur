@@ -40,8 +40,10 @@ const WhiteContainer = styled.div`
   width: 100%;
   padding: 32px;
 `;
-
-export const UserContributionsComponent = () => {
+interface Props {
+  history: any;
+}
+export const UserContributionsComponent = (props: Props) => {
   const [showTutoModal, setShowTutoModal] = useState(false);
   const [tutoModalDisplayed, setTutoModalDisplayed] = useState("");
   const toggleTutoModal = () => setShowTutoModal(!showTutoModal);
@@ -70,6 +72,8 @@ export const UserContributionsComponent = () => {
     userStructureContributions,
     userStructureName
   );
+
+  const onContributionRowClick = (burl: string) => props.history.push(burl);
 
   if (isLoading) {
     return <div>Loading</div>;
@@ -128,6 +132,7 @@ export const UserContributionsComponent = () => {
             contributions={contributions}
             toggleTutoModal={toggleTutoModal}
             setTutoModalDisplayed={setTutoModalDisplayed}
+            onContributionRowClick={onContributionRowClick}
           />
         </WhiteContainer>
       </ContribContainer>

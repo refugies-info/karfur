@@ -234,6 +234,14 @@ export const SeeButton = (props: { burl: string }) => (
   </ButtonContainer>
 );
 
+export const SeeButtonWithoutNavigation = () => (
+  <ButtonContainer hoverColor={colors.darkColor}>
+    <div style={{ marginBottom: "4px" }}>
+      <EVAIcon name="eye" fill={colors.blancSimple} size="20" />
+    </div>
+  </ButtonContainer>
+);
+
 export const DeleteButton = (props: {
   onClick: () => void;
   disabled: boolean;
