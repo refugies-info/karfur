@@ -116,3 +116,9 @@ export const getDispositifsWithCreatorId = async (
     { creatorId, status: { $ne: "Supprimé" } },
     neededFields
   ).populate("mainSponsor");
+
+export const getDispositifByIdWithMainSponsor = async (
+  id: ObjectId,
+  neededFields: Record<string, number>
+) =>
+  await Dispositif.findOne({ _id: id }, neededFields).populate("mainSponsor");

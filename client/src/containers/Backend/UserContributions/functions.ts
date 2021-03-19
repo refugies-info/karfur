@@ -9,7 +9,14 @@ export const formatContributions = (
   let formattedContribs: FormattedUserContribution[] = [];
 
   userContributions.forEach((dispositif) => {
-    if (["Brouillon", "En attente"].includes(dispositif.status)) {
+    if (
+      [
+        "Brouillon",
+        "En attente",
+        "Rejeté structure",
+        "En attente non prioritaire",
+      ].includes(dispositif.status)
+    ) {
       return formattedContribs.push({
         ...dispositif,
         responsabilite: "Moi",

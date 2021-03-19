@@ -11,6 +11,7 @@ const userContrib1 = {
   nbVues: 0,
   status: "Brouillon",
 };
+
 const formattedUserContrib1 = {
   _id: "id1",
   typeContenu: "dispositif",
@@ -23,6 +24,7 @@ const formattedUserContrib1 = {
   responsabilite: "Moi",
   isAuthorizedToDelete: true,
 };
+
 const userContrib2 = {
   _id: "id2",
   typeContenu: "demarche",
@@ -66,7 +68,60 @@ const formattedUserContrib3 = {
   responsabilite: "Moi",
   isAuthorizedToDelete: true,
 };
-const userContribs = [userContrib1, userContrib2, userContrib3];
+
+const userContrib4 = {
+  _id: "id4",
+  typeContenu: "dispositif",
+  titreInformatif: "ti4",
+  titreMarque: "tm4",
+  mainSponsor: "structure",
+  nbMercis: 0,
+  nbVues: 0,
+  status: "Rejeté structure",
+};
+const formattedUserContrib4 = {
+  _id: "id4",
+  typeContenu: "dispositif",
+  titreInformatif: "ti4",
+  titreMarque: "tm4",
+  mainSponsor: "structure",
+  nbMercis: 0,
+  nbVues: 0,
+  status: "Rejeté structure",
+  responsabilite: "Moi",
+  isAuthorizedToDelete: true,
+};
+
+const userContrib5 = {
+  _id: "id5",
+  typeContenu: "dispositif",
+  titreInformatif: "ti5",
+  titreMarque: "tm5",
+  mainSponsor: "structure",
+  nbMercis: 0,
+  nbVues: 0,
+  status: "En attente non prioritaire",
+};
+const formattedUserContrib5 = {
+  _id: "id5",
+  typeContenu: "dispositif",
+  titreInformatif: "ti5",
+  titreMarque: "tm5",
+  mainSponsor: "structure",
+  nbMercis: 0,
+  nbVues: 0,
+  status: "En attente non prioritaire",
+  responsabilite: "Moi",
+  isAuthorizedToDelete: true,
+};
+
+const userContribs = [
+  userContrib1,
+  userContrib2,
+  userContrib3,
+  userContrib4,
+  userContrib5,
+];
 
 const userStructureContrib1 = {
   _id: "id1s",
@@ -112,7 +167,7 @@ const userStructureContrib4 = {
   status: "Actif",
 };
 
-const formattedUserContrib4 = {
+const formattedUserStructureContrib4 = {
   _id: "id4s",
   typeContenu: "dispositif",
   titreInformatif: "ti4s",
@@ -154,6 +209,8 @@ describe("formatContributions", () => {
       formattedUserContrib2,
       formattedUserContrib3,
       formattedUserContrib4,
+      formattedUserContrib5,
+      formattedUserStructureContrib4,
     ]);
   });
 });
