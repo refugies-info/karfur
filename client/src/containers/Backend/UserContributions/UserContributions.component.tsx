@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserContributionsActionCreator } from "../../../services/UserContributions/userContributions.actions";
@@ -13,6 +12,11 @@ import { formatContributions } from "./functions";
 import styled from "styled-components";
 import { NoContribution } from "./components/NoContribution";
 import { FrameModal } from "../../../components/Modals";
+import { ContribContainer } from "./components/SubComponents";
+import { TitleWithNumber } from "../middleOfficeSharedComponents";
+import FButton from "../../../components/FigmaUI/FButton/FButton";
+import { NavHashLink } from "react-router-hash-link";
+import { UserContribTable } from "./components/UserContribTable";
 
 const MainContainer = styled.div`
   display: flex;
@@ -22,6 +26,23 @@ const MainContainer = styled.div`
   margin-top: 42px;
   height: fit-content;
   margin-bottom: 42px;
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const WhiteContainer = styled.div`
+  background: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  padding: 32px;
+  // height: 300px;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
 `;
 
 export const UserContributionsComponent = () => {
@@ -71,16 +92,38 @@ export const UserContributionsComponent = () => {
       </MainContainer>
     );
   return (
-    <div>
-      Hello
-      {contributions.map((contrib, index) => (
-        <div key={index} style={{ display: "flex", flexDirection: "row" }}>
-          <div>{"titre info : " + contrib.titreInformatif}</div>
-          <div>{" titre marque : " + contrib.titreMarque}</div>
-          <div>{" respo : " + contrib.responsabilite}</div>
-          <div>{" status : " + contrib.status}</div>
-        </div>
-      ))}
-    </div>
+    <MainContainer>
+      <ContribContainer>
+        <TitleContainer>
+          <TitleWithNumber
+            amount={contributions.length}
+            textPlural="fiches."
+            textSingular="fiche."
+            textBefore="Vous avez rédigé"
+          />
+          <div>
+            <FButton
+              type="tuto"
+              name="video-outline"
+              className="mr-8"
+              onClick={toggleTutoModal}
+            >
+              Explications
+            </FButton>
+            <FButton
+              tag={NavHashLink}
+              to="/comment-contribuer#ecrire"
+              type="dark"
+              name="file-add-outline"
+            >
+              Créer une nouvelle fiche
+            </FButton>
+          </div>
+        </TitleContainer>
+        <WhiteContainer>
+          <UserContribTable contributions={contributions} />
+        </WhiteContainer>
+      </ContribContainer>
+    </MainContainer>
   );
 };

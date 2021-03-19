@@ -227,7 +227,7 @@ export const SeeButton = (props: { burl: string }) => (
   <ButtonContainer hoverColor={colors.darkColor}>
     <a href={props.burl} target="_blank" rel="noopener noreferrer">
       <div style={{ marginBottom: "4px" }}>
-        <EVAIcon name="eye-outline" fill={colors.blancSimple} size="20" />
+        <EVAIcon name="eye" fill={colors.blancSimple} size="20" />
       </div>
     </a>
   </ButtonContainer>
@@ -244,7 +244,7 @@ export const DeleteButton = (props: {
     testID="delete-button"
   >
     <div style={{ marginBottom: "4px" }}>
-      <EVAIcon name="trash-outline" fill={colors.blancSimple} size="20" />
+      <EVAIcon name="trash" fill={colors.blancSimple} size="20" />
     </div>
   </ButtonContainer>
 );
