@@ -62,6 +62,6 @@ export const sectionUrlCorrespondencies = [
   {
     section: "Mes fiches",
     tutoUrl:
-      "https://help.refugies.info/fr/article/sauvegarder-des-fiches-en-favoris-feiq6c",
+      "https://help.refugies.info/fr/article/comprendre-le-processus-de-publication-des-fiches-1alq0ht/?bust=1615543703922",
   },
 ];
