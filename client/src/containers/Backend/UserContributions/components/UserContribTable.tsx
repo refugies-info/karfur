@@ -84,10 +84,32 @@ export const UserContribTable = (props: Props) => (
             </td>
 
             <td className="align-middle">
-              {element.status === "Actif" ? element.nbMercis : "ND"}
+              {element.status === "Actif" ? (
+                <div>
+                  {element.nbMercis + " "}
+                  <span role="img" aria-label="thanks">
+                    🙏
+                  </span>
+                </div>
+              ) : (
+                <span role="img" aria-label="locked">
+                  🔒
+                </span>
+              )}
             </td>
             <td className="align-middle">
-              {element.status === "Actif" ? element.nbVues : "ND"}
+              {element.status === "Actif" ? (
+                <div>
+                  {element.nbVues + " "}
+                  <span role="img" aria-label="nbVues">
+                    📈
+                  </span>
+                </div>
+              ) : (
+                <span role="img" aria-label="locked">
+                  🔒
+                </span>
+              )}
             </td>
 
             <td className="align-middle">
