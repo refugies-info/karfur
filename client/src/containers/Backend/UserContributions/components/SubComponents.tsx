@@ -1,15 +1,16 @@
 import styled from "styled-components";
 import { colors } from "../../../../colors";
-import React from "react";
+import React, { useState } from "react";
 import { limitNbCaracters } from "../../../../lib";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
+import { getColorAndStatus } from "../../Admin/sharedComponents/SubComponents";
 
 export const ContribContainer = styled.div`
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
-  margin-left: 156px;
-  margin-right: 156px;
+  margin-left: 100px;
+  margin-right: 100px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -44,6 +45,10 @@ const RowContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: ${(props) => (props.pointer ? "pointer" : "default")};
 `;
 
 export const Responsabilite = (props: { responsable: string | null }) => {
@@ -60,6 +65,59 @@ export const Responsabilite = (props: { responsable: string | null }) => {
         />
       </div>
       {limitNbCaracters(props.responsable, 30)}
+    </RowContainer>
+  );
+};
+
+const ContribStyledStatusContainer = styled.div`
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: ${(props) => props.color};
+  width: fit-content;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  color: ${(props) => (props.textColor ? props.textColor : colors.blancSimple)};
+`;
+
+export const ContribStyledStatus = (props: { text: string }) => {
+  const [onMouseHover, setOnMouseHover] = useState(false);
+
+  const { status, color, textColor } = getColorAndStatus(props.text);
+  return (
+    <div style={{ width: "120px" }}>
+      <ContribStyledStatusContainer
+        color={color}
+        textColor={textColor}
+        onMouseEnter={() => setOnMouseHover(true)}
+        onMouseLeave={() => setOnMouseHover(false)}
+      >
+        {status}
+        {onMouseHover && (
+          <EVAIcon
+            name={"question-mark-circle"}
+            size="20"
+            fill={textColor}
+            className="ml-8"
+          />
+        )}
+      </ContribStyledStatusContainer>
+    </div>
+  );
+};
+
+export const StatutHeader = (props: { onClick: () => void }) => {
+  return (
+    <RowContainer onClick={props.onClick} pointer={true}>
+      Statut
+      <EVAIcon
+        name={"question-mark-circle-outline"}
+        size="20"
+        fill={colors.noir}
+        className="ml-8"
+      />
     </RowContainer>
   );
 };

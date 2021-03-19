@@ -45,7 +45,10 @@ const RowContainer = styled.div`
   margin-top: 40px;
 `;
 
-export const NoContribution = (props: { toggleTutoModal: () => void }) => (
+export const NoContribution = (props: {
+  toggleTutoModal: () => void;
+  setTutoModalDisplayed: (arg: string) => void;
+}) => (
   <ContribContainer>
     <Header>Vous n'avez pas encore rédigé de fiche.</Header>
     <WhiteContainer>
@@ -68,7 +71,10 @@ export const NoContribution = (props: { toggleTutoModal: () => void }) => (
           type="tuto"
           name="video-outline"
           className="ml-10"
-          onClick={props.toggleTutoModal}
+          onClick={() => {
+            props.setTutoModalDisplayed("Mes fiches");
+            props.toggleTutoModal();
+          }}
         >
           Explications
         </FButton>

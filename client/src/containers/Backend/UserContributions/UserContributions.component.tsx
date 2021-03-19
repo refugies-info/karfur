@@ -39,14 +39,11 @@ const WhiteContainer = styled.div`
   border-radius: 12px;
   width: 100%;
   padding: 32px;
-  // height: 300px;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
 `;
 
 export const UserContributionsComponent = () => {
   const [showTutoModal, setShowTutoModal] = useState(false);
+  const [tutoModalDisplayed, setTutoModalDisplayed] = useState("");
   const toggleTutoModal = () => setShowTutoModal(!showTutoModal);
 
   const dispatch = useDispatch();
@@ -81,7 +78,10 @@ export const UserContributionsComponent = () => {
   if (contributions.length === 0)
     return (
       <MainContainer>
-        <NoContribution toggleTutoModal={toggleTutoModal} />
+        <NoContribution
+          toggleTutoModal={toggleTutoModal}
+          setTutoModalDisplayed={setTutoModalDisplayed}
+        />
         {showTutoModal && (
           <FrameModal
             show={showTutoModal}
@@ -106,7 +106,10 @@ export const UserContributionsComponent = () => {
               type="tuto"
               name="video-outline"
               className="mr-8"
-              onClick={toggleTutoModal}
+              onClick={() => {
+                setTutoModalDisplayed("Mes fiches");
+                toggleTutoModal();
+              }}
             >
               Explications
             </FButton>
@@ -121,9 +124,20 @@ export const UserContributionsComponent = () => {
           </div>
         </TitleContainer>
         <WhiteContainer>
-          <UserContribTable contributions={contributions} />
+          <UserContribTable
+            contributions={contributions}
+            toggleTutoModal={toggleTutoModal}
+            setTutoModalDisplayed={setTutoModalDisplayed}
+          />
         </WhiteContainer>
       </ContribContainer>
+      {showTutoModal && (
+        <FrameModal
+          show={showTutoModal}
+          toggle={toggleTutoModal}
+          section={tutoModalDisplayed}
+        />
+      )}
     </MainContainer>
   );
 };

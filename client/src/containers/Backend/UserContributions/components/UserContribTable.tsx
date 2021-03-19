@@ -1,8 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React from "react";
 import { Table } from "reactstrap";
 import { FormattedUserContribution } from "../types";
-import { TypeContenu, Responsabilite } from "./SubComponents";
+import {
+  TypeContenu,
+  Responsabilite,
+  ContribStyledStatus,
+  StatutHeader,
+} from "./SubComponents";
 import {
   Title,
   SeeButton,
@@ -20,14 +24,29 @@ const headers = [
 ];
 interface Props {
   contributions: FormattedUserContribution[];
+  toggleTutoModal: () => void;
+  setTutoModalDisplayed: (arg: string) => void;
 }
 export const UserContribTable = (props: Props) => (
   <Table responsive borderless>
     <thead>
       <tr>
-        {headers.map((element, key) => (
-          <th key={key}>{element}</th>
-        ))}
+        {headers.map((element, key) => {
+          if (element === "Statut") {
+            return (
+              <th key={key}>
+                <StatutHeader
+                  onClick={() => {
+                    props.setTutoModalDisplayed("Statut");
+                    props.toggleTutoModal();
+                  }}
+                />
+              </th>
+            );
+          }
+
+          return <th key={key}>{element}</th>;
+        })}
       </tr>
     </thead>
     <tbody>
@@ -54,7 +73,15 @@ export const UserContribTable = (props: Props) => (
               <Responsabilite responsable={element.responsabilite} />
             </td>
 
-            <td className={"align-middle "}>{element.status}</td>
+            <td
+              className={"align-middle "}
+              onClick={() => {
+                props.setTutoModalDisplayed("Statut-" + element.status);
+                props.toggleTutoModal();
+              }}
+            >
+              <ContribStyledStatus text={element.status} />
+            </td>
 
             <td className="align-middle">
               {element.status === "Actif" ? element.nbMercis : "ND"}

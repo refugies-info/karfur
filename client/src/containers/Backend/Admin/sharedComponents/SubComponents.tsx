@@ -127,7 +127,7 @@ export const StyledStatusContainer = styled.div`
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   color: ${(props) => (props.textColor ? props.textColor : colors.blancSimple)};
 `;
-const getColorAndStatus = (text: string) => {
+export const getColorAndStatus = (text: string) => {
   const correspondingStatusElement = correspondingStatus.filter(
     (element) => element.storedStatus === text
   );
@@ -154,6 +154,7 @@ const getColorAndStatus = (text: string) => {
     textColor: colors.bleuCharte,
   };
 };
+
 export const StyledStatus = (props: {
   text: string;
   overrideColor?: boolean;
