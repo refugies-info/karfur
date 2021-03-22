@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`userContributions should render correctly when 0 contributions 1`] = `
+<div
+  className="sc-fBuWsC gtEXvd"
+>
+  <div
+    className="sc-dnqmqq kCBvsT"
+  >
+    <div
+      className="sc-VigVT iceOHV"
+    >
+      Vous n'avez pas encore rédigé de fiche.
+    </div>
+    <div
+      className="sc-jTzLTM Xbnql"
+    >
+      <div
+        className="sc-fjdhpX cxxdfG"
+      >
+        C'est parti ?
+      </div>
+      <div
+        className="sc-jzJRlG jmjfTH"
+      >
+        Chacun peut apporter sa contribution pour enrichir le site.
+      </div>
+      <div
+        className="sc-jzJRlG jmjfTH"
+      >
+        Lancez-vous !
+      </div>
+      <div
+        className="sc-cSHVUG iOhvjj"
+      >
+        <a
+          aria-current={null}
+          className="figma-btn dark mr-10"
+          href="/comment-contribuer#ecrire"
+          onClick={[Function]}
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+          Créer une nouvelle fiche
+        </a>
+        <button
+          className="figma-btn tuto ml-10"
+          onClick={[Function]}
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="video-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+          Explications
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`userContributions should render correctly when loading 1`] = `
+<div
+  className="sc-fBuWsC gtEXvd"
+>
+  <div
+    className="sc-dnqmqq kCBvsT"
+  >
+    <div
+      className="sc-bRBYWo gykBnX"
+    >
+      <div
+        className="sc-jhAzac BLwFE"
+      >
+        Vous avez rédigé
+      </div>
+      <div
+        className="sc-hzDkRC foJWvd"
+      >
+        ...
+      </div>
+      <div
+        className="sc-jhAzac BLwFE"
+      >
+        fiche.
+      </div>
+    </div>
+    <span>
+      <span
+        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+        style={
+          Object {
+            "height": 50,
+          }
+        }
+      >
+        ‌
+      </span>
+      <span
+        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+        style={
+          Object {
+            "height": 50,
+          }
+        }
+      >
+        ‌
+      </span>
+      <span
+        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+        style={
+          Object {
+            "height": 50,
+          }
+        }
+      >
+        ‌
+      </span>
+    </span>
+  </div>
+</div>
+`;
