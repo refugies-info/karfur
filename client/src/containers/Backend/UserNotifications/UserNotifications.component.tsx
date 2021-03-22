@@ -7,7 +7,7 @@ import {
 } from "../../../services/UserStructure/userStructure.actions";
 import { userStructureIdSelector } from "../../../services/User/user.selectors";
 import {
-  userStructureDisposAssocies,
+  userStructureDisposAssociesSelector,
   userStructureHasResponsibleSeenNotification,
   userStructureSelector,
 } from "../../../services/UserStructure/userStructure.selectors";
@@ -57,7 +57,7 @@ export interface PropsBeforeInjection {
   t: any;
   history: any;
 }
-export const UserNotificationsComponent = () => {
+export const UserNotificationsComponent = (props: PropsBeforeInjection) => {
   const [
     selectedReaction,
     setSelectedReaction,
@@ -73,7 +73,7 @@ export const UserNotificationsComponent = () => {
   );
   const userStructure = useSelector(userStructureSelector);
 
-  const dispositifsAssocies = useSelector(userStructureDisposAssocies);
+  const dispositifsAssocies = useSelector(userStructureDisposAssociesSelector);
   const hasResponsibleSeenAnnuaireNotif = useSelector(
     userStructureHasResponsibleSeenNotification
   );
@@ -241,6 +241,7 @@ export const UserNotificationsComponent = () => {
           onClick={() => onNotificationClick(notif)}
           onReactionDeleteClick={() => deleteNotificationAndUpdate(notif)}
           onAnnuaireNotifDeleteClick={updateStructureWithNotificationSeen}
+          history={props.history}
         />
       ))}
       <ReactionLectureModal

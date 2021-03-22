@@ -22,6 +22,8 @@ const { updateLanguagesAvancement } = require("../langues/langues.service");
 const {
   updateAssociatedDispositifsInStructure,
 } = require("../../modules/structure/structure.repository");
+import { getDispositifByIdWithMainSponsor } from "../../modules/dispositif/dispositif.repository";
+import { checkUserIsAuthorizedToModifyDispositif } from "../../libs/checkAuthorizations";
 
 // const gmail_auth = require('./gmail_auth');
 
@@ -170,6 +172,23 @@ async function add_dispositif(req, res) {
     }
     //Si le dispositif existe déjà on fait juste un update
     if (dispositif.dispositifId) {
+      const neededFields = {
+        creatorId: 1,
+        mainSponsor: 1,
+        status: 1,
+      };
+
+      const dispositifInDB = await getDispositifByIdWithMainSponsor(
+        dispositif.dispositifId,
+        neededFields
+      );
+      checkUserIsAuthorizedToModifyDispositif(
+        dispositifInDB,
+        req.userId,
+        // @ts-ignore : populate roles
+        req.user.roles
+      );
+
       logger.info("[add_dispositif] updating a dispositif", {
         dispositifId: dispositif.dispositifId,
       });
@@ -182,9 +201,7 @@ async function add_dispositif(req, res) {
         });
         const originalTrads = {};
         // We fetch the French key to know the original text, turnToLocalized takes a dispositif with multiple translated language keys and returns one specified language
-        // eslint-disable-next-line no-undef
-        dispositifFr = await turnToLocalizedNew(originalDis, "fr");
-
+        const dispositifFr = await turnToLocalizedNew(originalDis, "fr");
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         for (let [key, value] of Object.entries(originalDis.avancement)) {
           if (key !== "fr") {
@@ -200,7 +217,6 @@ async function add_dispositif(req, res) {
             );
             for (let tradExpert of originalTrads[key]) {
               logger.info("[add_dispositif] before markTradModifications", {
-                // eslint-disable-next-line no-undef
                 id: dispositifFr._id,
               });
               /*   now we compare the old french version of the dispositif with new updated one,
@@ -208,7 +224,6 @@ async function add_dispositif(req, res) {
               try {
                 tradExpert = markTradModifications(
                   dispositif,
-                  // eslint-disable-next-line no-undef
                   dispositifFr,
                   tradExpert,
                   req.userId
@@ -345,7 +360,10 @@ async function add_dispositif(req, res) {
     }) */
     // }
   } catch (err) {
-    logger.error("[add_dispositif] error", { error: err });
+    logger.error("[add_dispositif] error", { error: err.message });
+    if (err.message === "NOT_AUTHORIZED") {
+      return res.status(404).json({ text: "Non authorisé" });
+    }
     return res.status(500).json({ text: "Erreur interne", data: err });
   }
 }

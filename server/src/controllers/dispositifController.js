@@ -9,6 +9,7 @@ import { modifyDispositifMainSponsor } from "../workflows/dispositif/modifyDispo
 import { updateDispositifAdminComments } from "../workflows/dispositif/updateDispositifAdminComments";
 import { getNbDispositifsByRegion } from "../workflows/dispositif/getNbDispositifsByRegion";
 import { updateDispositifReactions } from "../workflows/dispositif/updateDispositifReactions";
+import { getUserContributions } from "../workflows/dispositif/getUserContributions";
 
 module.exports = function (app) {
   app.post("/add_dispositif", checkToken.check, dispositif.add_dispositif);
@@ -36,7 +37,7 @@ module.exports = function (app) {
   );
   app.post("/getDispositifs", getDispositifs);
   app.get("/getAllDispositifs", getAllDispositifs);
-  app.post("/updateDispositifStatus", updateDispositifStatus);
+  app.post("/updateDispositifStatus", checkToken.check, updateDispositifStatus);
   app.post("/modifyDispositifMainSponsor", modifyDispositifMainSponsor);
   app.post("/updateDispositifAdminComments", updateDispositifAdminComments);
   app.get("/getNbDispositifsByRegion", getNbDispositifsByRegion);
@@ -46,4 +47,5 @@ module.exports = function (app) {
     checkToken.getId,
     updateDispositifReactions
   );
+  app.post("/getUserContributions", checkToken.check, getUserContributions);
 };

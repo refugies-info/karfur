@@ -22,6 +22,8 @@ import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { UserProfileLoading } from "./components/UserProfileLoading";
 
+declare const window: Window;
+
 export const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -263,6 +265,7 @@ export const UserProfileComponent = (props: Props) => {
   useEffect(() => {
     setUsername(user ? user.username : "");
     setEmail(user ? user.email : "");
+    window.scrollTo(0, 0);
   }, [user]);
   if (isLoading) return <UserProfileLoading t={props.t} />;
 

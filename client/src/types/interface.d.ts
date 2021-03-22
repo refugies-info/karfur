@@ -185,6 +185,8 @@ export interface IDispositif {
   traductions: ObjectId[];
   typeContenu: "dispositif" | "demarche";
   updatedAt: Moment;
+  nbVues: number;
+  nbMercis: number;
 }
 
 export interface DetailedOpeningHours {
@@ -303,4 +305,15 @@ export interface IUserFavorite {
   titreMarque: string;
   abstract: string;
   tags: Tag[];
+}
+
+export interface IUserContribution {
+  _id: ObjectId;
+  typeContenu: "dispositif" | "demarche";
+  titreInformatif: string;
+  titreMarque: string;
+  mainSponsor: string | null;
+  nbMercis: number;
+  nbVues: number;
+  status: string;
 }

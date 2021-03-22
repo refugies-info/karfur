@@ -5,7 +5,7 @@ import { areDispositifsAssociesPopulate } from "../../types/typeGuards";
 export const userStructureSelector = (state: RootState): Structure | null =>
   state.userStructure;
 
-export const userStructureDisposAssocies = (
+export const userStructureDisposAssociesSelector = (
   state: RootState
 ): IDispositif[] => {
   if (!state.userStructure) return [];
@@ -21,3 +21,6 @@ export const userStructureHasResponsibleSeenNotification = (
   state.userStructure
     ? !!state.userStructure.hasResponsibleSeenNotification
     : false;
+
+export const userStructureNameSelector = (state: RootState): string | null =>
+  state.userStructure ? state.userStructure.nom : null;

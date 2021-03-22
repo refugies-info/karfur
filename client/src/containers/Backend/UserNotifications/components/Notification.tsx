@@ -1,11 +1,8 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React from "react";
 import styled from "styled-components";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 import moment, { Moment } from "moment";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import { NavLink } from "react-router-dom";
 
 const Container = styled.div`
   background: ${(props) => (props.read ? "#FFFFFF" : "#2D9CDB")};
@@ -16,6 +13,10 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
+  &:hover {
+    border: 2px solid #212121;
+  }
 `;
 const RowContainer = styled.div`
   display: flex;
@@ -59,6 +60,7 @@ interface Props {
   onClick: () => void;
   onReactionDeleteClick: () => void;
   onAnnuaireNotifDeleteClick: () => void;
+  history: any;
 }
 const getText = (type: "reaction" | "annuaire" | "new content") => {
   if (type === "reaction") return "Nouvelle réaction sur la fiche :";
@@ -77,8 +79,34 @@ const getFormattedDate = (createdAt: Moment) => {
   return "Depuis " + nbDays + " jours";
 };
 export const Notification = (props: Props) => {
+  const onNotifClick = (event: any) => {
+    event.stopPropagation();
+    if (props.type === "reaction") {
+      props.onClick();
+      return;
+    }
+
+    if (props.type === "annuaire") {
+      return props.history.push("/annuaire-create");
+    }
+
+    if (props.type === "new content") {
+      return props.history.push(props.link);
+    }
+  };
+
+  const onReactionDeleteClick = (event: any) => {
+    event.stopPropagation();
+    props.onReactionDeleteClick();
+  };
+
+  const onAnnuaireNotifDeleteClick = (event: any) => {
+    event.stopPropagation();
+    props.onAnnuaireNotifDeleteClick();
+  };
+
   return (
-    <Container read={props.read}>
+    <Container read={props.read} onClick={(event: any) => onNotifClick(event)}>
       <RowContainer>
         <EVAIcon
           name={props.read ? "bell-outline" : "bell"}
@@ -97,37 +125,31 @@ export const Notification = (props: Props) => {
         )}
         {props.type === "annuaire" && (
           <>
-            <FButton
-              type="dark"
-              className="mr-8"
-              name="folder-add-outline"
-              tag={NavLink}
-              to="/annuaire-create"
-            >
+            <FButton type="dark" className="mr-8" name="folder-add-outline">
               Compléter la fiche annuaire
             </FButton>
             <FButton
               type="error"
               name="trash-2"
-              onClick={props.onAnnuaireNotifDeleteClick}
+              onClick={onAnnuaireNotifDeleteClick}
               className="ml-8"
             />
           </>
         )}
         {props.type === "new content" && props.link && (
-          <FButton tag={NavLink} to={props.link} type="dark" name="eye">
+          <FButton type="dark" name="eye">
             Voir la fiche
           </FButton>
         )}
         {props.type === "reaction" && (
           <>
-            <FButton type="dark" name="eye" onClick={props.onClick}>
+            <FButton type="dark" name="eye">
               Voir la réaction
             </FButton>
             <FButton
               type="error"
               name="trash-2"
-              onClick={props.onReactionDeleteClick}
+              onClick={onReactionDeleteClick}
               className="ml-8"
             />
           </>

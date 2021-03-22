@@ -22,6 +22,8 @@ const adaptDispositifsAssocies = (dispositifs: IDispositif[]) =>
     suggestions: dispositif.suggestions,
     typeContenu: dispositif.typeContenu,
     created_at: dispositif.created_at,
+    nbVues: dispositif.nbVues || 0,
+    nbMercis: dispositif.merci ? dispositif.merci.length : 0,
   }));
 
 export const getStructureById = async (
