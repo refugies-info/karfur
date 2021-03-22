@@ -39,18 +39,29 @@ const isUserAuthorizedToModifyDispositif = (
   if (isAdmin) {
     return true;
   }
+
+  const authorCanModifyStatusList = [
+    "Brouillon",
+    "En attente",
+    "Rejeté structure",
+    "En attente non prioritaire",
+  ];
   if (
-    ["Brouillon", "En attente"].includes(dispositif.status) &&
+    authorCanModifyStatusList.includes(dispositif.status) &&
     dispositif.creatorId.toString() === userId.toString()
   ) {
     return true;
+  }
+
+  if (authorCanModifyStatusList.includes(dispositif.status)) {
+    return false;
   }
 
   // @ts-ignore
   const sponsor: StructureDoc = dispositif.mainSponsor;
 
   const isUserMembre =
-    sponsor.membres.map(
+    sponsor.membres.filter(
       (membre) =>
         membre.userId && membre.userId.toString() === userId.toString()
     ).length > 0;
@@ -69,5 +80,5 @@ export const checkUserIsAuthorizedToModifyDispositif = (
   ) {
     throw new Error("NOT_AUTHORIZED");
   }
-  return;
+  return true;
 };
