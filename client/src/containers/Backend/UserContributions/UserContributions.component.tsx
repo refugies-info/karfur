@@ -105,7 +105,6 @@ export const UserContributionsComponent = (props: Props) => {
     if (!isAuthorizedToDelete) {
       return;
     }
-
     Swal.fire({
       title: "Êtes-vous sûr ?",
       text: "La suppression d'un dispositif est irréversible",
