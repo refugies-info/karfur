@@ -41,7 +41,7 @@ exports[`should render DeleteButton disabled 1`] = `
   >
     <span>
       <i
-        data-eva="trash-outline"
+        data-eva="trash"
         data-eva-fill="#ffffff"
         data-eva-height="20px"
         data-eva-width="20px"
@@ -92,7 +92,7 @@ exports[`should render DeleteButton not disabled 1`] = `
   >
     <span>
       <i
-        data-eva="trash-outline"
+        data-eva="trash"
         data-eva-fill="#ffffff"
         data-eva-height="20px"
         data-eva-width="20px"
@@ -200,7 +200,7 @@ exports[`should render SeeButton 1`] = `
     >
       <span>
         <i
-          data-eva="eye-outline"
+          data-eva="eye"
           data-eva-fill="#ffffff"
           data-eva-height="20px"
           data-eva-width="20px"

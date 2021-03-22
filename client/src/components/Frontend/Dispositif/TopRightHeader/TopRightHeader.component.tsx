@@ -3,6 +3,7 @@ import { Col, Card, CardBody, CardFooter, Spinner } from "reactstrap";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import { Props } from "./TopRightHeader.container";
+import { isUserAllowedToModify } from "./functions";
 
 export interface PropsBeforeInjection {
   disableEdit: boolean;
@@ -51,16 +52,6 @@ export class TopRightHeader extends React.Component<Props> {
           (this.props.selectedDispositif.creatorId || {})._id
         : false;
 
-    const dispositifIsPublishedOrEnAttenteAdminOrAccepted =
-      this.props.selectedDispositif &&
-      (this.props.selectedDispositif.status === "Actif" ||
-        this.props.selectedDispositif.status === "En attente admin" ||
-        this.props.selectedDispositif.status === "Accepté structure");
-
-    // if user is author and dispo is not en attente admin or published, user can modify it
-    const userIsAuthorAndCanModify =
-      isAuthor && !dispositifIsPublishedOrEnAttenteAdminOrAccepted;
-
     // there are 3 roles in a structure : admin = responsable, contributeur : can modify dispositifs of the structure, membre : cannot modify
     const userIsSponsor =
       this.props.user && this.props.selectedDispositif
@@ -72,6 +63,15 @@ export class TopRightHeader extends React.Component<Props> {
             ).roles || []
           ).some((y) => y === "administrateur" || y === "contributeur")
         : false;
+
+    const isUserAllowedToModifyDispositif = isUserAllowedToModify(
+      props.admin,
+      userIsSponsor,
+      isAuthor,
+      this.props.selectedDispositif
+        ? this.props.selectedDispositif.status
+        : null
+    );
 
     // user can validate a dispositif if he is admin or contributor of the mainsponsor of the dispositif
     if (props.status === "En attente" && (userIsSponsor || props.admin)) {
@@ -133,7 +133,7 @@ export class TopRightHeader extends React.Component<Props> {
         <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right-edition">
           {!props.translating &&
             props.langue === "fr" &&
-            (userIsAuthorAndCanModify || props.admin || userIsSponsor) && (
+            isUserAllowedToModifyDispositif && (
               <FButton
                 className="dark"
                 name="edit-outline"

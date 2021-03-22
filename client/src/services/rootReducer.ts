@@ -44,6 +44,10 @@ import {
   UserFavoritesState,
   userFavoritesReducer,
 } from "./UserFavoritesInLocale/UserFavoritesInLocale.reducer";
+import {
+  UserContributionsState,
+  userContributionsReducer,
+} from "./UserContributions/userContributions.reducer";
 
 export interface RootState {
   user: UserState;
@@ -60,6 +64,7 @@ export interface RootState {
   allStructures: AllStructuresState;
   users: AllUsersState;
   userFavorites: UserFavoritesState;
+  userContributions: UserContributionsState;
 }
 export const appReducer = (history: any) =>
   combineReducers({
@@ -78,4 +83,5 @@ export const appReducer = (history: any) =>
     allStructures: allStructuresReducer,
     users: allUsersReducer,
     userFavorites: userFavoritesReducer,
+    userContributions: userContributionsReducer,
   });

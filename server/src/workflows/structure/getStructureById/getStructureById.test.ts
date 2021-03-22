@@ -41,6 +41,8 @@ const simplifiedDispo1 = {
   tags: [],
   titreInformatif: "titre",
   titreMarque: "titreMarque",
+  nbVues: 0,
+  nbMercis: 0,
 };
 
 const simplifiedDispo2 = {
@@ -50,6 +52,8 @@ const simplifiedDispo2 = {
   tags: [],
   titreInformatif: "titre",
   titreMarque: "titreMarque",
+  nbVues: 0,
+  nbMercis: 0,
 };
 
 const dispositif2 = {

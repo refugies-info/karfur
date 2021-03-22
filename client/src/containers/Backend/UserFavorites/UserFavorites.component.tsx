@@ -22,6 +22,7 @@ import { TitleWithNumber } from "../middleOfficeSharedComponents";
 import { IUserFavorite } from "../../../types/interface";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { FavoritesLoading } from "./components/FavoritesLoading";
+declare const window: Window;
 
 export interface PropsBeforeInjection {
   t: any;
@@ -53,6 +54,7 @@ export const UserFavoritesComponent = (props: Props) => {
 
   useEffect(() => {
     dispatch(fetchUserFavoritesActionCreator(locale));
+    window.scrollTo(0, 0);
   }, [locale]);
 
   const isLoadingFetch = useSelector(
