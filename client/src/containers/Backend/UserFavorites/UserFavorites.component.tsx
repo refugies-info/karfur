@@ -129,6 +129,7 @@ export const UserFavoritesComponent = (props: Props) => {
               type="outline-black"
               name="trash-outline"
               onClick={removeAllFavorites}
+              testID="test-delete-button"
             >
               {props.t("UserFavorites.Tout supprimer", "Tout supprimer")}
             </FButton>

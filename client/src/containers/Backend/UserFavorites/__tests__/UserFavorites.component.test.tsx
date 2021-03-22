@@ -4,6 +4,34 @@ import { initialMockStore } from "../../../../__fixtures__/reduxStore";
 import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProvidersAndRender";
 import Swal from "sweetalert2";
 import { colors } from "../../../../colors";
+import {
+  updateUserFavoritesActionCreator,
+  fetchUserFavoritesActionCreator,
+} from "../../../../services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
+import i18n from "../../../../i18n";
+
+jest.mock(
+  "../../../../services/UserFavoritesInLocale/UserFavoritesInLocale.actions",
+  () => {
+    const actions = jest.requireActual(
+      "../../../../services/UserFavoritesInLocale/UserFavoritesInLocale.actions"
+    );
+
+    return {
+      updateUserFavoritesActionCreator: jest.fn(
+        actions.updateUserFavoritesActionCreator
+      ),
+      fetchUserFavoritesActionCreator: jest.fn(
+        actions.fetchUserFavoritesActionCreator
+      ),
+    };
+  }
+);
+
+jest.mock("../../../../i18n", () => ({
+  __esModule: true, // this property makes it work
+  default: { language: "fr" },
+}));
 
 jest.mock("sweetalert2", () => ({
   __esModule: true, // this property makes it work
@@ -101,5 +129,58 @@ describe("UserFavorites", () => {
     });
 
     expect(component.toJSON()).toMatchSnapshot();
+  });
+
+  it("should dispatch updateUserFavoritesActionCreator when click on Tout supprimer", () => {
+    window.scrollTo = jest.fn();
+    const component = wrapWithProvidersAndRender({
+      Component: UserFavoritesComponent,
+      compProps: { t: (element: string, element2: string) => element2 },
+      reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
+    });
+    component.root
+      .findByProps({ testID: "test-delete-button" })
+      .props.onClick();
+
+    expect(updateUserFavoritesActionCreator).toHaveBeenCalledWith({
+      type: "remove-all",
+      locale: "fr",
+    });
+  });
+
+  it("should dispatch updateUserFavoritesActionCreator when click on Tout supprimer and language is en", () => {
+    i18n.language = "en";
+    window.scrollTo = jest.fn();
+    const component = wrapWithProvidersAndRender({
+      Component: UserFavoritesComponent,
+      compProps: { t: (_: string, element2: string) => element2 },
+      reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
+    });
+    component.root
+      .findByProps({ testID: "test-delete-button" })
+      .props.onClick();
+
+    expect(updateUserFavoritesActionCreator).toHaveBeenCalledWith({
+      type: "remove-all",
+      locale: "en",
+    });
+  });
+
+  it("should dispatch updateUserFavoritesActionCreator when click on one dispositif and language is en", () => {
+    i18n.language = "ps";
+    window.scrollTo = jest.fn();
+    const component = wrapWithProvidersAndRender({
+      Component: UserFavoritesComponent,
+      compProps: { t: (_: string, element2: string) => element2 },
+      reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
+    });
+    component.root
+      .findByProps({ testID: "test-toggle-pin-id1" })
+      .props.onClick({ preventDefault: jest.fn(), stopPropagation: jest.fn() });
+    expect(updateUserFavoritesActionCreator).toHaveBeenCalledWith({
+      dispositifId: "id1",
+      type: "remove",
+      locale: "ps",
+    });
   });
 });

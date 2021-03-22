@@ -85,6 +85,7 @@ const SearchResultCard = ({
                 onClick={(e) => pin(e, dispositif)}
                 fill={pinned ? colors.validationHover : colors.noirCD}
                 className={"bookmark-icon" + (pinned ? " pinned" : "")}
+                testID={"test-toggle-pin-" + dispositif._id}
               />
             )}
             <h5>{dispositif.titreInformatif}</h5>

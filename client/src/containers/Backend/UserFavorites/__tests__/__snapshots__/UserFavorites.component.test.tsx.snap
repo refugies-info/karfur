@@ -232,6 +232,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
         <button
           className="figma-btn outline-black "
           onClick={[Function]}
+          testID="test-delete-button"
         >
           <span
             className="mr-10"
@@ -266,6 +267,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               <span
                 className="bookmark-icon pinned"
                 onClick={[Function]}
+                testID="test-toggle-pin-id1"
               >
                 <i
                   data-eva="bookmark"
@@ -362,6 +364,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               <span
                 className="bookmark-icon pinned"
                 onClick={[Function]}
+                testID="test-toggle-pin-id2"
               >
                 <i
                   data-eva="bookmark"
@@ -452,6 +455,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               <span
                 className="bookmark-icon pinned"
                 onClick={[Function]}
+                testID="test-toggle-pin-id3"
               >
                 <i
                   data-eva="bookmark"
