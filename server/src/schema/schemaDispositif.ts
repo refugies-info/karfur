@@ -200,7 +200,7 @@ export interface DispositifDoc extends mongoose.Document {
   niveauFrancais?: Object;
   creatorId: ObjectId | UserDoc;
   nbMots?: number;
-  merci?: Object;
+  merci?: Object[];
   pasMerci?: Object;
   bravo?: Object;
   suggestions?: Object;

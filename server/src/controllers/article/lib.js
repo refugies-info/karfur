@@ -88,7 +88,7 @@ function get_article(req, res) {
         // eslint-disable-next-line no-use-before-define
         await asyncForEach(result, async (article, i) => {
           if (article.isStructure) {
-            // eslint-disable-next-line no-undef
+            // eslint-disable-next-line no-use-before-define
             structureArr = _createFromNested(
               article.body,
               locale,
@@ -211,8 +211,7 @@ function add_traduction(req, res) {
       Article.findOne({ _id: traductionItem.articleId }).exec((err, result) => {
         if (!err && result) {
           let succes = true;
-          // eslint-disable-next-line no-undef
-          avancement = { value: 1 };
+          let avancement = { value: 1 };
           if (
             result.title &&
             result.title.constructor === Object &&
@@ -243,7 +242,6 @@ function add_traduction(req, res) {
                 succes = false;
               }
             } else {
-              // eslint-disable-next-line no-undef
               avancement = {
                 value:
                   (result.avancement[locale] || 0) * (result.nombreMots || 0),
@@ -255,14 +253,11 @@ function add_traduction(req, res) {
                   traductionItem.translatedText.body,
                   locale,
                   traductionItem.jsonId,
-                  // eslint-disable-next-line no-undef
                   avancement
                 )
               ) {
                 result.markModified("body");
-                // eslint-disable-next-line no-undef
                 if (avancement.value && result.nombreMots > 0) {
-                  // eslint-disable-next-line no-undef
                   avancement.value = avancement.value / result.nombreMots;
                 }
               } else {
@@ -288,7 +283,6 @@ function add_traduction(req, res) {
           if (succes) {
             result.avancement = {
               ...result.avancement,
-              // eslint-disable-next-line no-undef
               [locale]: avancement.value,
             };
             result.markModified("avancement");
@@ -752,8 +746,7 @@ const _updateAvancement = (locale) => {
   });
 };
 
-// eslint-disable-next-line no-undef
-_createFromNested = (
+const _createFromNested = (
   structJson,
   locale,
   query = {},
@@ -794,7 +787,6 @@ _createFromNested = (
     } else if (structJson.constructor === Object) {
       path.push(key);
       // console.log(locale, query, status, created_at, articles, path)
-      // eslint-disable-next-line no-undef
       articles = _createFromNested(
         structJson[key],
         locale,

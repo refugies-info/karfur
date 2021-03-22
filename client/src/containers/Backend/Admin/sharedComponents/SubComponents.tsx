@@ -127,7 +127,7 @@ export const StyledStatusContainer = styled.div`
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   color: ${(props) => (props.textColor ? props.textColor : colors.blancSimple)};
 `;
-const getColorAndStatus = (text: string) => {
+export const getColorAndStatus = (text: string) => {
   const correspondingStatusElement = correspondingStatus.filter(
     (element) => element.storedStatus === text
   );
@@ -154,6 +154,7 @@ const getColorAndStatus = (text: string) => {
     textColor: colors.bleuCharte,
   };
 };
+
 export const StyledStatus = (props: {
   text: string;
   overrideColor?: boolean;
@@ -227,14 +228,22 @@ export const SeeButton = (props: { burl: string }) => (
   <ButtonContainer hoverColor={colors.darkColor}>
     <a href={props.burl} target="_blank" rel="noopener noreferrer">
       <div style={{ marginBottom: "4px" }}>
-        <EVAIcon name="eye-outline" fill={colors.blancSimple} size="20" />
+        <EVAIcon name="eye" fill={colors.blancSimple} size="20" />
       </div>
     </a>
   </ButtonContainer>
 );
 
+export const SeeButtonWithoutNavigation = () => (
+  <ButtonContainer hoverColor={colors.darkColor}>
+    <div style={{ marginBottom: "4px" }}>
+      <EVAIcon name="eye" fill={colors.blancSimple} size="20" />
+    </div>
+  </ButtonContainer>
+);
+
 export const DeleteButton = (props: {
-  onClick: () => void;
+  onClick: (event: any) => void;
   disabled: boolean;
 }) => (
   <ButtonContainer
@@ -244,7 +253,7 @@ export const DeleteButton = (props: {
     testID="delete-button"
   >
     <div style={{ marginBottom: "4px" }}>
-      <EVAIcon name="trash-outline" fill={colors.blancSimple} size="20" />
+      <EVAIcon name="trash" fill={colors.blancSimple} size="20" />
     </div>
   </ButtonContainer>
 );

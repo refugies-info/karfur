@@ -7,7 +7,7 @@ import {
 } from "../../../services/UserStructure/userStructure.actions";
 import { userStructureIdSelector } from "../../../services/User/user.selectors";
 import {
-  userStructureDisposAssocies,
+  userStructureDisposAssociesSelector,
   userStructureHasResponsibleSeenNotification,
   userStructureSelector,
 } from "../../../services/UserStructure/userStructure.selectors";
@@ -73,7 +73,7 @@ export const UserNotificationsComponent = (props: PropsBeforeInjection) => {
   );
   const userStructure = useSelector(userStructureSelector);
 
-  const dispositifsAssocies = useSelector(userStructureDisposAssocies);
+  const dispositifsAssocies = useSelector(userStructureDisposAssociesSelector);
   const hasResponsibleSeenAnnuaireNotif = useSelector(
     userStructureHasResponsibleSeenNotification
   );

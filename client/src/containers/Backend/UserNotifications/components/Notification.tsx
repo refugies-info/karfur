@@ -79,7 +79,8 @@ const getFormattedDate = (createdAt: Moment) => {
   return "Depuis " + nbDays + " jours";
 };
 export const Notification = (props: Props) => {
-  const onNotifClick = () => {
+  const onNotifClick = (event: any) => {
+    event.stopPropagation();
     if (props.type === "reaction") {
       props.onClick();
       return;
@@ -94,8 +95,18 @@ export const Notification = (props: Props) => {
     }
   };
 
+  const onReactionDeleteClick = (event: any) => {
+    event.stopPropagation();
+    props.onReactionDeleteClick();
+  };
+
+  const onAnnuaireNotifDeleteClick = (event: any) => {
+    event.stopPropagation();
+    props.onAnnuaireNotifDeleteClick();
+  };
+
   return (
-    <Container read={props.read} onClick={onNotifClick}>
+    <Container read={props.read} onClick={(event: any) => onNotifClick(event)}>
       <RowContainer>
         <EVAIcon
           name={props.read ? "bell-outline" : "bell"}
@@ -120,7 +131,7 @@ export const Notification = (props: Props) => {
             <FButton
               type="error"
               name="trash-2"
-              onClick={props.onAnnuaireNotifDeleteClick}
+              onClick={onAnnuaireNotifDeleteClick}
               className="ml-8"
             />
           </>
@@ -138,7 +149,7 @@ export const Notification = (props: Props) => {
             <FButton
               type="error"
               name="trash-2"
-              onClick={props.onReactionDeleteClick}
+              onClick={onReactionDeleteClick}
               className="ml-8"
             />
           </>

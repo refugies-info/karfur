@@ -2,7 +2,7 @@ import HomePage from "./containers/HomePage/HomePage";
 import Dashboard from "./containers/Backend/Dashboard/Dashboard";
 import { Admin } from "./containers/Backend/Admin/Admin";
 import UserDash from "./containers/Backend/UserDash/UserDash";
-import UserDashContrib from "./containers/Backend/UserDashContrib/UserDashContrib";
+import { UserContributions } from "./containers/Backend/UserContributions";
 import UserDashStruct from "./containers/Backend/UserDashStruct/UserDashStruct";
 import { UserProfile } from "./containers/Backend/UserProfile";
 import Dispositif from "./containers/Dispositif/Dispositif";
@@ -226,7 +226,7 @@ const routes = [
   {
     path: "/backend/user-dash-contrib",
     name: "Réfugiés.info - Espace rédaction",
-    component: UserDashContrib,
+    component: UserContributions,
     restriction: ["User", "Contrib", "Admin"],
   },
   {

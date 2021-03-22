@@ -250,8 +250,11 @@ export class Dispositif extends Component {
             dispositif.status !== "Actif" &&
             !this.props.admin &&
             !this.props.user.contributions.includes(dispositif._id) &&
-            !!dispositif.mainSponsor &&
-            !this.props.user.structures.includes(dispositif.mainSponsor._id)
+            (!dispositif.mainSponsor ||
+              (dispositif.mainSponsor &&
+                !this.props.user.structures.includes(
+                  dispositif.mainSponsor._id
+                )))
           ) {
             if (_.isEmpty(this.props.user)) {
               Swal.fire({
@@ -264,7 +267,7 @@ export class Dispositif extends Component {
             }
             Swal.fire({
               title: "Erreur",
-              text: "Accès non authorisé 1",
+              text: "Accès non authorisé",
               type: "error",
               timer: 1200,
             });
@@ -1372,7 +1375,7 @@ export class Dispositif extends Component {
       status: status,
       dispositifId: this.state._id,
     };
-    API.add_dispositif(dispositif).then(() => {
+    API.updateDispositifStatus({ query: dispositif }).then(() => {
       this.props.fetchDispositifs();
       this.props.fetchSelectedDispositif(this.state._id);
       this._isMounted &&
