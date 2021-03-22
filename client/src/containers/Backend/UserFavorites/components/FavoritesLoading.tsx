@@ -46,8 +46,8 @@ export const FavoritesLoading = (props: { t: any }) => (
       <TitleWithNumber
         amount={0}
         textSingular={props.t(
-          "UserFavorites.fiches sauvegardée",
-          "fiches sauvegardée"
+          "UserFavorites.fiche sauvegardée",
+          "fiche sauvegardée"
         )}
         textPlural={props.t(
           "UserFavorites.fiches sauvegardées",

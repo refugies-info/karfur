@@ -116,8 +116,8 @@ export const UserFavoritesComponent = (props: Props) => {
           <TitleWithNumber
             amount={favorites.length}
             textSingular={props.t(
-              "UserFavorites.fiches sauvegardée",
-              "fiches sauvegardée"
+              "UserFavorites.fiche sauvegardée",
+              "fiche sauvegardée"
             )}
             textPlural={props.t(
               "UserFavorites.fiches sauvegardées",
