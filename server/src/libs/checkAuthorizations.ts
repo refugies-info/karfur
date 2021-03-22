@@ -1,6 +1,7 @@
 import { DispositifDoc } from "../schema/schemaDispositif";
 import { ObjectId } from "mongoose";
 import { StructureDoc } from "../schema/schemaStructure";
+import logger from "../logger";
 
 export const checkIfUserIsAdmin = (requestUserRoles: { nom: string }[]) => {
   // user is admin for the platform
@@ -35,8 +36,10 @@ const isUserAuthorizedToModifyDispositif = (
   userId: ObjectId,
   requestUserRoles: { nom: string }[]
 ) => {
+  logger.info("[isUserAuthorizedToModifyDispositif] received");
   const isAdmin = (requestUserRoles || []).some((x) => x.nom === "Admin");
   if (isAdmin) {
+    logger.info("[isUserAuthorizedToModifyDispositif] user is admin");
     return true;
   }
 
@@ -50,10 +53,17 @@ const isUserAuthorizedToModifyDispositif = (
     authorCanModifyStatusList.includes(dispositif.status) &&
     dispositif.creatorId.toString() === userId.toString()
   ) {
+    logger.info(
+      `[isUserAuthorizedToModifyDispositif] status is ${dispositif.status} and user is author`
+    );
     return true;
   }
 
   if (authorCanModifyStatusList.includes(dispositif.status)) {
+    logger.info(
+      `[isUserAuthorizedToModifyDispositif] status is ${dispositif.status} but user is not author`
+    );
+
     return false;
   }
 
@@ -65,7 +75,15 @@ const isUserAuthorizedToModifyDispositif = (
       (membre) =>
         membre.userId && membre.userId.toString() === userId.toString()
     ).length > 0;
-  if (isUserMembre) return true;
+  if (isUserMembre) {
+    logger.info(
+      `[isUserAuthorizedToModifyDispositif] status is ${dispositif.status} and user is in structure`
+    );
+    return true;
+  }
+  logger.info(
+    `[isUserAuthorizedToModifyDispositif] status is ${dispositif.status} and user is not in structure`
+  );
 
   return false;
 };

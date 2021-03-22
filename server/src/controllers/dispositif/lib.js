@@ -22,6 +22,8 @@ const { updateLanguagesAvancement } = require("../langues/langues.service");
 const {
   updateAssociatedDispositifsInStructure,
 } = require("../../modules/structure/structure.repository");
+import { getDispositifByIdWithMainSponsor } from "../../modules/dispositif/dispositif.repository";
+import { checkUserIsAuthorizedToModifyDispositif } from "../../libs/checkAuthorizations";
 
 // const gmail_auth = require('./gmail_auth');
 
@@ -170,6 +172,23 @@ async function add_dispositif(req, res) {
     }
     //Si le dispositif existe déjà on fait juste un update
     if (dispositif.dispositifId) {
+      const neededFields = {
+        creatorId: 1,
+        mainSponsor: 1,
+        status: 1,
+      };
+
+      const dispositifInDB = await getDispositifByIdWithMainSponsor(
+        dispositif.dispositifId,
+        neededFields
+      );
+      checkUserIsAuthorizedToModifyDispositif(
+        dispositifInDB,
+        req.userId,
+        // @ts-ignore : populate roles
+        req.user.roles
+      );
+
       logger.info("[add_dispositif] updating a dispositif", {
         dispositifId: dispositif.dispositifId,
       });
@@ -345,7 +364,10 @@ async function add_dispositif(req, res) {
     }) */
     // }
   } catch (err) {
-    logger.error("[add_dispositif] error", { error: err });
+    logger.error("[add_dispositif] error", { error: err.message });
+    if (err.message === "NOT_AUTHORIZED") {
+      return res.status(404).json({ text: "Non authorisé" });
+    }
     return res.status(500).json({ text: "Erreur interne", data: err });
   }
 }

@@ -55,7 +55,7 @@ export const updateDispositifStatus = async (
           );
         } catch (error) {
           logger.error(
-            "[add_dispositif] error while updating contenu in airtable",
+            "[updateDispositifStatus] error while updating contenu in airtable",
             { error }
           );
         }
