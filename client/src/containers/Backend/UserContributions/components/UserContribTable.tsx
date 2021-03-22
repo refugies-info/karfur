@@ -101,7 +101,7 @@ export const UserContribTable = (props: Props) => (
             <td className="align-middle">
               {element.status === "Actif" ? (
                 <div>
-                  {element.nbVues + " "}
+                  {element.nbVues ? element.nbVues : 0 + " "}
                   <span role="img" aria-label="nbVues">
                     📈
                   </span>

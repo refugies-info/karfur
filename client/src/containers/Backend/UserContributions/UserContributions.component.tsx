@@ -8,6 +8,7 @@ import { userContributionsSelector } from "../../../services/UserContributions/u
 import {
   userStructureDisposAssociesSelector,
   userStructureNameSelector,
+  userStructureSelector,
 } from "../../../services/UserStructure/userStructure.selectors";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
@@ -24,6 +25,9 @@ import { ObjectId } from "mongodb";
 import { colors } from "../../../colors";
 import Swal from "sweetalert2";
 import Skeleton from "react-loading-skeleton";
+import { fetchUserStructureActionCreator } from "../../../services/UserStructure/userStructure.actions";
+
+declare const window: Window;
 
 const MainContainer = styled.div`
   display: flex;
@@ -69,9 +73,18 @@ export const UserContributionsComponent = (props: Props) => {
     isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE)
   );
   const isLoading = isLoadingUserContrib || isLoadingUserStructureContrib;
-
+  const userStructure = useSelector(userStructureSelector);
   useEffect(() => {
     dispatch(fetchUserContributionsActionCreator());
+    if (userStructure) {
+      dispatch(
+        fetchUserStructureActionCreator({
+          structureId: userStructure._id,
+          shouldRedirect: true,
+        })
+      );
+    }
+    window.scrollTo(0, 0);
   }, []);
 
   const contributions = formatContributions(

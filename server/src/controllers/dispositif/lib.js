@@ -201,9 +201,7 @@ async function add_dispositif(req, res) {
         });
         const originalTrads = {};
         // We fetch the French key to know the original text, turnToLocalized takes a dispositif with multiple translated language keys and returns one specified language
-        // eslint-disable-next-line no-undef
-        dispositifFr = await turnToLocalizedNew(originalDis, "fr");
-
+        const dispositifFr = await turnToLocalizedNew(originalDis, "fr");
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         for (let [key, value] of Object.entries(originalDis.avancement)) {
           if (key !== "fr") {
@@ -219,7 +217,6 @@ async function add_dispositif(req, res) {
             );
             for (let tradExpert of originalTrads[key]) {
               logger.info("[add_dispositif] before markTradModifications", {
-                // eslint-disable-next-line no-undef
                 id: dispositifFr._id,
               });
               /*   now we compare the old french version of the dispositif with new updated one,
@@ -227,7 +224,6 @@ async function add_dispositif(req, res) {
               try {
                 tradExpert = markTradModifications(
                   dispositif,
-                  // eslint-disable-next-line no-undef
                   dispositifFr,
                   tradExpert,
                   req.userId
