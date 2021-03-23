@@ -74,13 +74,14 @@ export const UserContributionsComponent = (props: Props) => {
   );
   const isLoading = isLoadingUserContrib || isLoadingUserStructureContrib;
   const userStructure = useSelector(userStructureSelector);
+
   useEffect(() => {
     dispatch(fetchUserContributionsActionCreator());
     if (userStructure) {
       dispatch(
         fetchUserStructureActionCreator({
           structureId: userStructure._id,
-          shouldRedirect: true,
+          shouldRedirect: false,
         })
       );
     }

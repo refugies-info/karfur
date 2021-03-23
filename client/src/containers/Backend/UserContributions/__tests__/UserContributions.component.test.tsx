@@ -4,33 +4,69 @@ import { initialMockStore } from "../../../../__fixtures__/reduxStore";
 import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProvidersAndRender";
 import Swal from "sweetalert2";
 import { colors } from "../../../../colors";
+import { act } from "react-test-renderer";
+import { fetchUserContributionsActionCreator } from "../../../../services/UserContributions/userContributions.actions";
+import { fetchUserStructureActionCreator } from "../../../../services/UserStructure/userStructure.actions";
 
 jest.mock("sweetalert2", () => ({
   __esModule: true, // this property makes it work
   default: { fire: jest.fn().mockResolvedValue("test") },
 }));
 
+jest.mock(
+  "../../../../services/UserContributions/userContributions.actions",
+  () => {
+    const actions = jest.requireActual(
+      "../../../../services/UserContributions/userContributions.actions"
+    );
+
+    return {
+      fetchUserContributionsActionCreator: jest.fn(
+        actions.fetchUserContributionsActionCreator
+      ),
+    };
+  }
+);
+
+jest.mock("../../../../services/UserStructure/userStructure.actions", () => {
+  const actions = jest.requireActual(
+    "../../../../services/UserStructure/userStructure.actions"
+  );
+  return {
+    fetchUserStructureActionCreator: jest.fn(
+      actions.fetchUserStructureActionCreator
+    ),
+  };
+});
+
 describe("userContributions", () => {
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
 
-    const component = wrapWithProvidersAndRender({
-      Component: UserContributionsComponent,
-      reduxState: {
-        ...initialMockStore,
-        loadingStatus: { FETCH_USER_CONTRIBUTIONS: { isLoading: true } },
-      },
+    let component;
+    act(() => {
+      component = wrapWithProvidersAndRender({
+        Component: UserContributionsComponent,
+        reduxState: {
+          ...initialMockStore,
+          loadingStatus: { FETCH_USER_CONTRIBUTIONS: { isLoading: true } },
+        },
+      });
     });
 
+    expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
     expect(component.toJSON()).toMatchSnapshot();
   });
 
   it("should render correctly when 0 contributions", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRender({
-      Component: UserContributionsComponent,
+    let component;
+    act(() => {
+      component = wrapWithProvidersAndRender({
+        Component: UserContributionsComponent,
+      });
     });
-
+    expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
     expect(component.toJSON()).toMatchSnapshot();
   });
 
@@ -88,6 +124,7 @@ describe("userContributions", () => {
 
   const userStructure = {
     nom: "main",
+    _id: "userStructureId",
     dispositifsAssocies: [
       {
         _id: "id7",
@@ -102,31 +139,45 @@ describe("userContributions", () => {
   };
   it("should render correctly when contributions", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRender({
-      Component: UserContributionsComponent,
-      reduxState: {
-        ...initialMockStore,
-        userContributions,
-        userStructure,
-      },
+    let component;
+    act(() => {
+      component = wrapWithProvidersAndRender({
+        Component: UserContributionsComponent,
+        reduxState: {
+          ...initialMockStore,
+          userContributions,
+          userStructure,
+        },
+      });
     });
-
+    expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
+      structureId: "userStructureId",
+      shouldRedirect: false,
+    });
+    expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
     expect(component.toJSON()).toMatchSnapshot();
   });
 
   it("should render correctly when clicks", () => {
     window.scrollTo = jest.fn();
     const push = jest.fn();
-    const component = wrapWithProvidersAndRender({
-      Component: UserContributionsComponent,
-      compProps: { history: { push } },
-      reduxState: {
-        ...initialMockStore,
-        userContributions,
-        userStructure,
-      },
+    let component;
+    act(() => {
+      component = wrapWithProvidersAndRender({
+        Component: UserContributionsComponent,
+        compProps: { history: { push } },
+        reduxState: {
+          ...initialMockStore,
+          userContributions,
+          userStructure,
+        },
+      });
     });
-
+    expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
+      structureId: "userStructureId",
+      shouldRedirect: false,
+    });
+    expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
     component.root.findByProps({ testID: "test_id1" }).props.onClick();
     expect(push).toHaveBeenCalledWith("/dispositif/id1");
     component.root.findByProps({ testID: "test_id2" }).props.onClick();
@@ -136,15 +187,22 @@ describe("userContributions", () => {
   it("should render correctly when click on delete", () => {
     window.scrollTo = jest.fn();
     const push = jest.fn();
-    const component = wrapWithProvidersAndRender({
-      Component: UserContributionsComponent,
-      compProps: { history: { push } },
-      reduxState: {
-        ...initialMockStore,
-        userContributions: [userContributions[0]],
-      },
+    let component;
+    act(() => {
+      component = wrapWithProvidersAndRender({
+        Component: UserContributionsComponent,
+        compProps: { history: { push } },
+        reduxState: {
+          ...initialMockStore,
+          userContributions: [userContributions[0]],
+        },
+      });
     });
-
+    expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
+      structureId: "userStructureId",
+      shouldRedirect: false,
+    });
+    expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
     component.root
       .findByProps({ testID: "test_delete_id1" })
       .props.onClick({ stopPropagation: () => {} });
