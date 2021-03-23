@@ -65,7 +65,6 @@ export const UserStructureComponent = () => {
   const isLoading = isLoadingFetch || isLoadingUpdate;
 
   const membres = useSelector(userStructureMembresSelector);
-  console.log("memebre", membres);
   if (isLoading) {
     return <UserStructureLoading />;
   }

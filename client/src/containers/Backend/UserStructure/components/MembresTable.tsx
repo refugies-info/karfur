@@ -10,7 +10,9 @@ import styled from "styled-components";
 import { colors } from "../../../../colors";
 import "./MembresTable.scss";
 import { ObjectId } from "mongodb";
+import moment from "moment/min/moment-with-locales";
 
+moment.locale("fr");
 const RowContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -18,6 +20,16 @@ const RowContainer = styled.div`
 `;
 
 const UserName = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: ${(props) => (props.isUser ? colors.bleuCharte : colors.noir)};
+`;
+
+const RoleContainer = styled.div`
+  background: ${colors.blancSimple};
+  border-radius: 8px;
+  padding: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
@@ -55,28 +67,29 @@ export const MembresTable = (props: Props) => (
             // @ts-ignore
             testID={`test_${element._id}`}
           >
-            <td className="first align-middle">
+            <td className="align-middle">
               <RowContainer>
                 <img className="user-img mr-8" src={secureUrl} />
                 <UserName isUser={isUser}>{element.username}</UserName>
               </RowContainer>
             </td>
-            <td className="align-middle">{element.mainRole}</td>
-
-            <td className="align-middle">{element.last_connected}</td>
-
-            <td
-              // onClick={(event: any) => {
-              //   event.stopPropagation();
-              //   props.setTutoModalDisplayed("Mes fiches");
-              //   props.toggleTutoModal();
-              // }}
-              className="align-middle"
-            >
-              {element.added_at}
+            <td className="align-middle">
+              <RoleContainer isUser={isUser}>{element.mainRole}</RoleContainer>
             </td>
 
-            <td className="last align-middle">
+            <td className="align-middle">
+              {moment(element.last_connected).calendar() +
+                " " +
+                moment(element.last_connected).fromNow()}
+            </td>
+
+            <td className="align-middle">
+              {element.added_at
+                ? moment(element.added_at).calendar()
+                : "Non disponible"}
+            </td>
+
+            <td className="align-middle">
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <SeeButtonWithoutNavigation />
                 <DeleteButton

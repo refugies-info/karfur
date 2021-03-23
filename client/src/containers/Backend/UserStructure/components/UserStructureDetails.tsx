@@ -72,7 +72,7 @@ export const UserStructureDetails = (props: Props) => {
           textBefore={"Membres"}
           textPlural=""
           textSingular=""
-          amount={props.membres.length}
+          amount={membres.length}
         />
         <MembresTable membres={membres} userId={props.userId} />
       </StructureContainer>
