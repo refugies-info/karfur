@@ -40,7 +40,7 @@ export function* fetchUserStructure(
     const userId = user.userId;
     const structureMembers = data.data.data ? data.data.data.membres : [];
     const userInStructure = structureMembers.filter(
-      (member: any) => member.userId === userId
+      (member: any) => member._id === userId
     );
 
     const userRoles =

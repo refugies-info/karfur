@@ -88,11 +88,11 @@ describe("[Saga] Structures", () => {
         .next()
         .call(API.getStructureById, "id", true, "fr", true)
         .next({
-          data: { data: { membres: [{ userId: "id", roles: ["membre"] }] } },
+          data: { data: { membres: [{ _id: "id", roles: ["membre"] }] } },
         })
         .put(
           setUserStructureActionCreator({
-            membres: [{ userId: "id", roles: ["membre"] }],
+            membres: [{ _id: "id", roles: ["membre"] }],
           })
         )
         .next()
@@ -117,11 +117,11 @@ describe("[Saga] Structures", () => {
         .next()
         .call(API.getStructureById, "id", true, "fr", true)
         .next({
-          data: { data: { membres: [{ userId: "id", roles: ["membre"] }] } },
+          data: { data: { membres: [{ _id: "id", roles: ["membre"] }] } },
         })
         .put(
           setUserStructureActionCreator({
-            membres: [{ userId: "id", roles: ["membre"] }],
+            membres: [{ _id: "id", roles: ["membre"] }],
           })
         )
         .next()
@@ -145,12 +145,12 @@ describe("[Saga] Structures", () => {
         .call(API.getStructureById, "id", true, "fr", true)
         .next({
           data: {
-            data: { membres: [{ userId: "id", roles: ["administrateur"] }] },
+            data: { membres: [{ _id: "id", roles: ["administrateur"] }] },
           },
         })
         .put(
           setUserStructureActionCreator({
-            membres: [{ userId: "id", roles: ["administrateur"] }],
+            membres: [{ _id: "id", roles: ["administrateur"] }],
           })
         )
         .next()
@@ -174,12 +174,12 @@ describe("[Saga] Structures", () => {
         .call(API.getStructureById, "id", true, "fr", true)
         .next({
           data: {
-            data: { membres: [{ userId: "id", roles: ["administrateur"] }] },
+            data: { membres: [{ _id: "id", roles: ["administrateur"] }] },
           },
         })
         .put(
           setUserStructureActionCreator({
-            membres: [{ userId: "id", roles: ["administrateur"] }],
+            membres: [{ _id: "id", roles: ["administrateur"] }],
           })
         )
         .next()
@@ -203,12 +203,12 @@ describe("[Saga] Structures", () => {
         .call(API.getStructureById, "id", true, "fr", true)
         .next({
           data: {
-            data: { membres: [{ userId: "id", roles: ["contributeur"] }] },
+            data: { membres: [{ _id: "id", roles: ["contributeur"] }] },
           },
         })
         .put(
           setUserStructureActionCreator({
-            membres: [{ userId: "id", roles: ["contributeur"] }],
+            membres: [{ _id: "id", roles: ["contributeur"] }],
           })
         )
         .next()
@@ -232,12 +232,12 @@ describe("[Saga] Structures", () => {
         .call(API.getStructureById, "id", true, "fr", true)
         .next({
           data: {
-            data: { membres: [{ userId: "id", roles: ["contributeur"] }] },
+            data: { membres: [{ _id: "id", roles: ["contributeur"] }] },
           },
         })
         .put(
           setUserStructureActionCreator({
-            membres: [{ userId: "id", roles: ["contributeur"] }],
+            membres: [{ _id: "id", roles: ["contributeur"] }],
           })
         )
         .next()
