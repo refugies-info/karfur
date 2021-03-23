@@ -10,6 +10,7 @@ jest.mock("../../../modules/structure/structure.repository", () => ({
   getStructureFromDB: jest.fn().mockResolvedValue({
     id: "id",
     membres: [{ _id: "id" }],
+    toJSON: () => ({ id: "id", membres: [{ _id: "id" }] }),
   }),
 }));
 

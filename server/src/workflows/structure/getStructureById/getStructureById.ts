@@ -11,6 +11,7 @@ import { getStructureFromDB } from "../../../modules/structure/structure.reposit
 import { turnToLocalized } from "../../../controllers/dispositif/functions";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { getUserById } from "../../../modules/users/users.repository";
+import { StructureDoc } from "../../../schema/schemaStructure";
 
 interface Query {
   id: ObjectId;
@@ -39,6 +40,60 @@ const adaptDispositifsAssocies = (dispositifs: IDispositif[]) =>
     nbVues: dispositif.nbVues || 0,
     nbMercis: dispositif.merci ? dispositif.merci.length : 0,
   }));
+
+const addDisposAssociesIfNeeded = (
+  withLocalizedDispositifsBoolean: boolean,
+  structure: StructureDoc,
+  localeOfLocalizedDispositifsAssocies: string
+) => {
+  if (withLocalizedDispositifsBoolean) {
+    const dispositifsAssocies = structure.toJSON().dispositifsAssocies;
+    const array: string[] = [];
+
+    array.forEach.call(dispositifsAssocies, (dispositif: any) => {
+      turnToLocalized(dispositif, localeOfLocalizedDispositifsAssocies);
+    });
+    const simplifiedDispositifsAssocies = adaptDispositifsAssocies(
+      dispositifsAssocies
+    );
+    return {
+      ...structure.toJSON(),
+      // @ts-ignore populate dispos associes
+      dispositifsAssocies: simplifiedDispositifsAssocies,
+    };
+  }
+  return { ...structure.toJSON() };
+};
+
+const addMembresIfNeeded = async (
+  withMembresBoolean: boolean,
+  structure: StructureDoc
+) => {
+  if (withMembresBoolean) {
+    let membresArray: Membre[] = [];
+    await asyncForEach(structure.membres, async (membre) => {
+      try {
+        if (!membre.userId) return;
+        const neededFields = { username: 1, picture: 1, last_connected: 1 };
+        const populateMembre = await getUserById(membre.userId, neededFields);
+        membresArray.push({
+          ...populateMembre.toJSON(),
+          roles: membre.roles,
+        });
+      } catch (error) {
+        logger.error("[getStructureById] error while getting user", {
+          userId: membre.userId,
+          error: error.message,
+        });
+      }
+    });
+
+    return { ...structure, membres: membresArray };
+  }
+  const newStructure = { ...structure };
+  delete newStructure.membres;
+  return newStructure;
+};
 
 export const getStructureById = async (
   req: RequestFromClient<Query>,
@@ -72,6 +127,7 @@ export const getStructureById = async (
       withDisposAssociesBoolean,
       withLocalizedDispositifsBoolean,
       localeOfLocalizedDispositifsAssocies,
+      withMembresBoolean,
     });
 
     const populateDisposAssocies = withLocalizedDispositifsBoolean
@@ -89,53 +145,22 @@ export const getStructureById = async (
     if (!structure) {
       throw new Error("No structure");
     }
-    let newStructure = structure;
 
-    if (withLocalizedDispositifsBoolean) {
-      const dispositifsAssocies = structure.toJSON().dispositifsAssocies;
-      const array: string[] = [];
+    const structureWithDisposAssocies = addDisposAssociesIfNeeded(
+      withLocalizedDispositifsBoolean,
+      structure,
+      localeOfLocalizedDispositifsAssocies
+    );
 
-      array.forEach.call(dispositifsAssocies, (dispositif: any) => {
-        turnToLocalized(dispositif, localeOfLocalizedDispositifsAssocies);
-      });
-      const simplifiedDispositifsAssocies = adaptDispositifsAssocies(
-        dispositifsAssocies
-      );
-      newStructure = {
-        ...structure.toJSON(),
-        // @ts-ignore populate dispos associes
-        dispositifsAssocies: simplifiedDispositifsAssocies,
-      };
-    }
-
-    if (withMembresBoolean) {
-      let membresArray: Membre[] = [];
-      await asyncForEach(newStructure.membres, async (membre) => {
-        try {
-          if (!membre.userId) return;
-          const neededFields = { username: 1, picture: 1, last_connected: 1 };
-          const populateMembre = await getUserById(membre.userId, neededFields);
-          membresArray.push({
-            ...populateMembre.toJSON(),
-            roles: membre.roles,
-          });
-        } catch (error) {
-          logger.error("[getStructureById] error while getting user", {
-            userId: membre.userId,
-            error: error.message,
-          });
-        }
-      });
-
-      // @ts-ignore add infos on membres
-      newStructure.membres = membresArray;
-    } else {
-      delete newStructure.membres;
-    }
+    const structureWithMembres = await addMembresIfNeeded(
+      withMembresBoolean,
+      // @ts-ignore
+      structureWithDisposAssocies
+    );
 
     return res.status(200).json({
       text: "Succès",
-      data: newStructure,
+      data: structureWithMembres,
     });
   } catch (error) {
     logger.error("[getStructureById] error while getting structure with id", {
