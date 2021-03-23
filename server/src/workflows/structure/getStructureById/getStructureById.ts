@@ -1,14 +1,28 @@
-import { RequestFromClient, Res, IDispositif } from "../../../types/interface";
+import {
+  RequestFromClient,
+  Res,
+  IDispositif,
+  Picture,
+} from "../../../types/interface";
 import { ObjectId } from "mongoose";
 import { castToBoolean } from "../../../libs/castToBoolean";
 import logger from "../../../logger";
 import { getStructureFromDB } from "../../../modules/structure/structure.repository";
 import { turnToLocalized } from "../../../controllers/dispositif/functions";
+import { asyncForEach } from "../../../libs/asyncForEach";
+import { getUserById } from "../../../modules/users/users.repository";
 
 interface Query {
   id: ObjectId;
   withDisposAssocies: string;
   localeOfLocalizedDispositifsAssocies: string;
+  withMembres: string;
+}
+interface Membre {
+  _id: ObjectId;
+  username: string;
+  roles: string[];
+  picture?: Picture;
 }
 
 const adaptDispositifsAssocies = (dispositifs: IDispositif[]) =>
@@ -38,8 +52,10 @@ export const getStructureById = async (
       id,
       withDisposAssocies,
       localeOfLocalizedDispositifsAssocies,
+      withMembres,
     } = req.query;
     const withDisposAssociesBoolean = castToBoolean(withDisposAssocies);
+    const withMembresBoolean = castToBoolean(withMembres);
 
     const withLocalizedDispositifsBoolean = [
       "fr",
@@ -73,6 +89,7 @@ export const getStructureById = async (
     if (!structure) {
       throw new Error("No structure");
     }
+    let newStructure = structure;
 
     if (withLocalizedDispositifsBoolean) {
       const dispositifsAssocies = structure.toJSON().dispositifsAssocies;
@@ -84,19 +101,41 @@ export const getStructureById = async (
       const simplifiedDispositifsAssocies = adaptDispositifsAssocies(
         dispositifsAssocies
       );
-      const newStructure = {
+      newStructure = {
         ...structure.toJSON(),
+        // @ts-ignore populate dispos associes
         dispositifsAssocies: simplifiedDispositifsAssocies,
       };
-      return res.status(200).json({
-        text: "Succès",
-        data: newStructure,
+    }
+
+    if (withMembresBoolean) {
+      let membresArray: Membre[] = [];
+      await asyncForEach(newStructure.membres, async (membre) => {
+        try {
+          if (!membre.userId) return;
+          const neededFields = { username: 1, picture: 1, last_connected: 1 };
+          const populateMembre = await getUserById(membre.userId, neededFields);
+          membresArray.push({
+            ...populateMembre.toJSON(),
+            roles: membre.roles,
+          });
+        } catch (error) {
+          logger.error("[getStructureById] error while getting user", {
+            userId: membre.userId,
+            error: error.message,
+          });
+        }
       });
+
+      // @ts-ignore add infos on membres
+      newStructure.membres = membresArray;
+    } else {
+      delete newStructure.membres;
     }
 
     return res.status(200).json({
       text: "Succès",
-      data: structure,
+      data: newStructure,
     });
   } catch (error) {
     logger.error("[getStructureById] error while getting structure with id", {
