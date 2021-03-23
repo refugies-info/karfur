@@ -2,14 +2,12 @@
 import { UserFavoritesComponent } from "../UserFavorites.component";
 import { initialMockStore } from "../../../../__fixtures__/reduxStore";
 import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProvidersAndRender";
-import Swal from "sweetalert2";
-import { colors } from "../../../../colors";
 import {
   updateUserFavoritesActionCreator,
   fetchUserFavoritesActionCreator,
 } from "../../../../services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import i18n from "../../../../i18n";
-
+import { act } from "react-test-renderer";
 jest.mock(
   "../../../../services/UserFavoritesInLocale/UserFavoritesInLocale.actions",
   () => {
@@ -33,33 +31,39 @@ jest.mock("../../../../i18n", () => ({
   default: { language: "fr" },
 }));
 
-jest.mock("sweetalert2", () => ({
-  __esModule: true, // this property makes it work
-  default: { fire: jest.fn().mockResolvedValue("test") },
-}));
-
 describe("UserFavorites", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
-
-    const component = wrapWithProvidersAndRender({
-      Component: UserFavoritesComponent,
-      reduxState: {
-        ...initialMockStore,
-        loadingStatus: { FETCH_USER_FAVORITES: { isLoading: true } },
-      },
-      compProps: { t: (element: string, element2: string) => element2 },
+    let component;
+    act(() => {
+      component = wrapWithProvidersAndRender({
+        Component: UserFavoritesComponent,
+        reduxState: {
+          ...initialMockStore,
+          loadingStatus: { FETCH_USER_FAVORITES: { isLoading: true } },
+        },
+        compProps: { t: (_: string, element2: string) => element2 },
+      });
     });
-
+    expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
     expect(component.toJSON()).toMatchSnapshot();
   });
 
   it("should render correctly when 0 favorites", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRender({
-      Component: UserFavoritesComponent,
-      compProps: { t: (element: string, element2: string) => element2 },
+
+    let component;
+    act(() => {
+      component = wrapWithProvidersAndRender({
+        Component: UserFavoritesComponent,
+        compProps: { t: (_: string, element2: string) => element2 },
+      });
     });
+
+    expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
 
     expect(component.toJSON()).toMatchSnapshot();
   });
@@ -122,22 +126,29 @@ describe("UserFavorites", () => {
   };
   it("should render correctly when 3 favorites", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRender({
-      Component: UserFavoritesComponent,
-      compProps: { t: (element: string, element2: string) => element2 },
-      reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
+    let component;
+    act(() => {
+      component = wrapWithProvidersAndRender({
+        Component: UserFavoritesComponent,
+        compProps: { t: (_: string, element2: string) => element2 },
+        reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
+      });
     });
-
+    expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
     expect(component.toJSON()).toMatchSnapshot();
   });
 
   it("should dispatch updateUserFavoritesActionCreator when click on Tout supprimer", () => {
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRender({
-      Component: UserFavoritesComponent,
-      compProps: { t: (element: string, element2: string) => element2 },
-      reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
+    let component;
+    act(() => {
+      component = wrapWithProvidersAndRender({
+        Component: UserFavoritesComponent,
+        compProps: { t: (_: string, element2: string) => element2 },
+        reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
+      });
     });
+    expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
     component.root
       .findByProps({ testID: "test-delete-button" })
       .props.onClick();
@@ -151,11 +162,17 @@ describe("UserFavorites", () => {
   it("should dispatch updateUserFavoritesActionCreator when click on Tout supprimer and language is en", () => {
     i18n.language = "en";
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRender({
-      Component: UserFavoritesComponent,
-      compProps: { t: (_: string, element2: string) => element2 },
-      reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
+
+    let component;
+    act(() => {
+      component = wrapWithProvidersAndRender({
+        Component: UserFavoritesComponent,
+        compProps: { t: (_: string, element2: string) => element2 },
+        reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
+      });
     });
+
+    expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("en");
     component.root
       .findByProps({ testID: "test-delete-button" })
       .props.onClick();
@@ -169,11 +186,17 @@ describe("UserFavorites", () => {
   it("should dispatch updateUserFavoritesActionCreator when click on one dispositif and language is en", () => {
     i18n.language = "ps";
     window.scrollTo = jest.fn();
-    const component = wrapWithProvidersAndRender({
-      Component: UserFavoritesComponent,
-      compProps: { t: (_: string, element2: string) => element2 },
-      reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
+
+    let component;
+    act(() => {
+      component = wrapWithProvidersAndRender({
+        Component: UserFavoritesComponent,
+        compProps: { t: (_: string, element2: string) => element2 },
+        reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
+      });
     });
+    expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("ps");
+
     component.root
       .findByProps({ testID: "test-toggle-pin-id1" })
       .props.onClick({ preventDefault: jest.fn(), stopPropagation: jest.fn() });
