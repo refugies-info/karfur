@@ -248,6 +248,8 @@ export interface UserStructureMembre {
   picture?: Picture;
   username: string;
   last_connected?: Moment;
+  added_at?: Moment;
+  mainRole?: string;
 }
 export interface UserStructure extends Structure {
   membres: UserStructureMembre[];

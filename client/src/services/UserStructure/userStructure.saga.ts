@@ -35,7 +35,6 @@ export function* fetchUserStructure(
       true
     );
     yield put(setUserStructureActionCreator(data.data.data));
-
     const user = yield select(userSelector);
     const userId = user.userId;
     const structureMembers = data.data.data ? data.data.data.membres : [];
@@ -45,7 +44,6 @@ export function* fetchUserStructure(
 
     const userRoles =
       userInStructure.length > 0 ? userInStructure[0].roles : [];
-
     const isUserContribOrAdmin =
       userRoles.includes("administrateur") ||
       userRoles.includes("contributeur");
@@ -70,6 +68,8 @@ export function* updateUserStructure(): SagaIterator {
 
     logger.info("[updateUserStructure] updating user structure");
     const structure = yield select(userStructureSelector);
+    // we don't want to update membres because they are formatted
+    delete structure.membres;
     if (!structure) {
       logger.info("[updateUserStructure] no structure to update");
       return;

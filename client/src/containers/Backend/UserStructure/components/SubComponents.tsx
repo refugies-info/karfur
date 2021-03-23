@@ -18,7 +18,6 @@ export const StructureContainer = styled.div`
   margin: 0px 20px 0px 20px;
   display: flex;
   flex-direction: column;
-  width: 560px;
 `;
 
 export const StructurePictureContainer = styled.div`

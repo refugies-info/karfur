@@ -12,6 +12,7 @@ import { turnToLocalized } from "../../../controllers/dispositif/functions";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { getUserById } from "../../../modules/users/users.repository";
 import { StructureDoc } from "../../../schema/schemaStructure";
+import { Moment } from "moment";
 
 interface Query {
   id: ObjectId;
@@ -24,6 +25,7 @@ interface Membre {
   username: string;
   roles: string[];
   picture?: Picture;
+  added_at?: Moment;
 }
 
 const adaptDispositifsAssocies = (dispositifs: IDispositif[]) =>
@@ -79,6 +81,7 @@ const addMembresIfNeeded = async (
         membresArray.push({
           ...populateMembre.toJSON(),
           roles: membre.roles,
+          added_at: membre.added_at,
         });
       } catch (error) {
         logger.error("[getStructureById] error while getting user", {
