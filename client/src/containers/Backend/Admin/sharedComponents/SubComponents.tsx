@@ -245,6 +245,7 @@ export const SeeButtonWithoutNavigation = () => (
 export const DeleteButton = (props: {
   onClick: (event: any) => void;
   disabled: boolean;
+  testID?: any;
 }) => (
   <ButtonContainer
     onClick={props.onClick}
