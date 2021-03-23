@@ -42,7 +42,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, "fr")
+        .call(API.getStructureById, "id", true, "fr", true)
         .next({ data: { data: null } })
         .put(setUserStructureActionCreator(null))
         .next()
@@ -65,7 +65,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, "fr")
+        .call(API.getStructureById, "id", true, "fr", true)
         .next({ data: { data: null } })
         .put(setUserStructureActionCreator(null))
         .next()
@@ -86,7 +86,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, "fr")
+        .call(API.getStructureById, "id", true, "fr", true)
         .next({
           data: { data: { membres: [{ userId: "id", roles: ["membre"] }] } },
         })
@@ -115,7 +115,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, "fr")
+        .call(API.getStructureById, "id", true, "fr", true)
         .next({
           data: { data: { membres: [{ userId: "id", roles: ["membre"] }] } },
         })
@@ -142,7 +142,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, "fr")
+        .call(API.getStructureById, "id", true, "fr", true)
         .next({
           data: {
             data: { membres: [{ userId: "id", roles: ["administrateur"] }] },
@@ -171,7 +171,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, "fr")
+        .call(API.getStructureById, "id", true, "fr", true)
         .next({
           data: {
             data: { membres: [{ userId: "id", roles: ["administrateur"] }] },
@@ -200,7 +200,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, "fr")
+        .call(API.getStructureById, "id", true, "fr", true)
         .next({
           data: {
             data: { membres: [{ userId: "id", roles: ["contributeur"] }] },
@@ -229,7 +229,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, "fr")
+        .call(API.getStructureById, "id", true, "fr", true)
         .next({
           data: {
             data: { membres: [{ userId: "id", roles: ["contributeur"] }] },
