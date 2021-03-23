@@ -29,4 +29,6 @@ export const colors = {
   standby: "#fdd497",
   bleuCharte: "#0421b1",
   lightGrey: "#edebeb",
+  grey: "#c6c6c6",
+  darkGrey: "#5e5e5e",
 };

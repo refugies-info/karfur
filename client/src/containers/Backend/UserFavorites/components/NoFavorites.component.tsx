@@ -3,9 +3,10 @@ import React from "react";
 import { TitleWithNumber } from "../../middleOfficeSharedComponents";
 import styled from "styled-components";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import { colors } from "../../../../colors";
 
 const HelpCard = styled.div`
-  background: #ffffff;
+  background: ${colors.blancSimple};
   border-radius: 12px;
   padding: 13px;
   width: 248px;
@@ -13,7 +14,7 @@ const HelpCard = styled.div`
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
-  color: #2d9cdb;
+  color: ${colors.focus};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -22,7 +23,7 @@ const HelpCard = styled.div`
 `;
 
 const EmptyCardContainer = styled.div`
-  background: #ffffff;
+  background: ${colors.blancSimple};
   border-radius: 12px;
   width: 248px;
   height: 248px;
@@ -34,7 +35,7 @@ const EmptyCardContainer = styled.div`
 `;
 
 const GrayLine = styled.div`
-  background: #c6c6c6;
+  background: ${colors.grey};
   border-radius: 8px;
   width: ${(props) => props.width};
   height: 28px;
@@ -42,7 +43,7 @@ const GrayLine = styled.div`
 `;
 
 const SmallGrayLine = styled.div`
-  background: #c6c6c6;
+  background: ${colors.grey};
   border-radius: 3px;
   width: ${(props) => props.width};
   height: 14px;
@@ -51,7 +52,7 @@ const SmallGrayLine = styled.div`
 `;
 
 const BottomContainer = styled.div`
-  background: #c6c6c6;
+  background: ${colors.grey};
   height: 50px;
   width: 100%;
   border-radius: 0px 0px 12px 12px;
@@ -61,7 +62,7 @@ const BottomContainer = styled.div`
 `;
 
 const WhiteContainer = styled.div`
-  background: #ffffff;
+  background: ${colors.blancSimple};
   border-radius: 3px;
   width: 180px;
   height: 14px;

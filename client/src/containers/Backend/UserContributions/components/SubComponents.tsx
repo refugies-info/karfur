@@ -6,7 +6,7 @@ import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 import { getColorAndStatus } from "../../Admin/sharedComponents/SubComponents";
 
 export const ContribContainer = styled.div`
-  background: #edebeb;
+  background: ${colors.lightGrey};
   border-radius: 12px;
   padding: 40px;
   margin-left: 100px;
@@ -28,7 +28,7 @@ const Container = styled.div`
   border-radius: 6px;
   width: fit-content;
   cursor: pointer;
-  border: 1px solid #212121;
+  border: 1px solid ${colors.noir};
 `;
 
 export const TypeContenu = (props: {

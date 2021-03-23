@@ -595,7 +595,7 @@ exports[`UserFavorites should render correctly when loading 1`] = `
             </span>
           </div>
           <div
-            className="sc-jlyJG kDnJmo"
+            className="sc-jlyJG ihFKGi"
           />
         </div>
       </div>
@@ -675,7 +675,7 @@ exports[`UserFavorites should render correctly when loading 1`] = `
             </span>
           </div>
           <div
-            className="sc-jlyJG kDnJmo"
+            className="sc-jlyJG ihFKGi"
           />
         </div>
       </div>
@@ -755,7 +755,7 @@ exports[`UserFavorites should render correctly when loading 1`] = `
             </span>
           </div>
           <div
-            className="sc-jlyJG kDnJmo"
+            className="sc-jlyJG ihFKGi"
           />
         </div>
       </div>

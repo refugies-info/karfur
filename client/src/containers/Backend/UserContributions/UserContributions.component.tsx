@@ -46,7 +46,7 @@ const TitleContainer = styled.div`
 `;
 
 const WhiteContainer = styled.div`
-  background: #ffffff;
+  background: ${colors.blancSimple};
   border-radius: 12px;
   width: 100%;
   padding: 32px;

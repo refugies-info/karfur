@@ -24,11 +24,12 @@ import { updateDispositifReactionActionCreator } from "../../../services/ActiveD
 import Skeleton from "react-loading-skeleton";
 import { assetsOnServer } from "../../../assets/assetsOnServer";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
+import { colors } from "../../../colors";
 
 declare const window: Window;
 
 const MainContainer = styled.div`
-  background: #edebeb;
+  background: ${colors.lightGrey}
   border-radius: 12px;
   padding: 40px;
   margin-top: 26px;
@@ -46,7 +47,7 @@ const Title = styled.div`
 `;
 
 const CenterContainer = styled.div`
-  color: #5e5e5e;
+  color: ${colors.darkGrey};
   margin-top: 20px;
   display: flex;
   flex-direction: column;
