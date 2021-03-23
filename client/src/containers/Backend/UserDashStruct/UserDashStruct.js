@@ -160,7 +160,7 @@ export class UserDashStruct extends Component {
         ? this.props.location.state.structure
         : user.structures[0];
  */
-    API.getStructureById(this.state.selectedStructure, true, false).then(
+    API.getStructureById(this.state.selectedStructure, true, false, false).then(
       (data) => {
         if (data.data.data) {
           this.setState({ structure: data.data.data, isMainLoading: false });

@@ -20,6 +20,7 @@ import {
 } from "./containers/Annuaire/AnnuaireLecture";
 import { UserNotifications } from "./containers/Backend/UserNotifications";
 import { UserFavorites } from "./containers/Backend/UserFavorites";
+import { UserStructure } from "./containers/Backend/UserStructure";
 
 const routes = [
   {
@@ -232,7 +233,7 @@ const routes = [
   {
     path: "/backend/user-dash-structure",
     name: "Réfugiés.info - Ma structure",
-    component: UserDashStruct,
+    component: UserStructure,
     restriction: ["Admin", "hasStructure"],
   },
   {
