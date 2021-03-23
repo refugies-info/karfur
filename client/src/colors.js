@@ -28,4 +28,5 @@ export const colors = {
   lightBlue: "#d2edfc",
   standby: "#fdd497",
   bleuCharte: "#0421b1",
+  lightGrey: "#edebeb",
 };

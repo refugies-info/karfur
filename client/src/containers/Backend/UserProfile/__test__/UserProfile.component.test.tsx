@@ -223,6 +223,7 @@ describe("UserProfile", () => {
       component.root.findByProps({ testID: "test-save-password" }).props
         .disabled
     ).toBe(true);
+    expect(component.toJSON()).toMatchSnapshot();
   });
 
   it("should change password", async () => {
