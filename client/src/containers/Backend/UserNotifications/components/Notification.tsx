@@ -14,8 +14,12 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  border-width: 2px;
+  border-style: solid;
+  border-color: ${(props) => (props.read ? "#FFFFFF" : "#2D9CDB")};
+
   &:hover {
-    border: 2px solid #212121;
+    border-color: #212121;
   }
 `;
 const RowContainer = styled.div`

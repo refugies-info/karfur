@@ -251,6 +251,7 @@ export const UserProfileComponent = (props: Props) => {
       });
       return;
     }
+
     dispatch(fetchUserActionCreator());
 
     Swal.fire({
@@ -332,6 +333,7 @@ export const UserProfileComponent = (props: Props) => {
               name="checkmark-outline"
               className="ml-8"
               onClick={onPseudoModificationValidate}
+              testID="test-save-pseudo"
             >
               {props.t("UserProfile.Enregistrer", "Enregistrer")}
             </FButton>
@@ -369,6 +371,7 @@ export const UserProfileComponent = (props: Props) => {
               name="checkmark-outline"
               className="ml-8"
               onClick={onEmailModificationValidate}
+              testID="test-save-email"
             >
               {props.t("UserProfile.Enregistrer", "Enregistrer")}
             </FButton>
@@ -384,7 +387,12 @@ export const UserProfileComponent = (props: Props) => {
           {props.t("UserProfile.Votre mot de passe", "Votre mot de passe")}
         </Title>
         {!isModifyPasswordOpen && (
-          <FButton type="dark" name="edit-outline" onClick={openModifyPassword}>
+          <FButton
+            type="dark"
+            name="edit-outline"
+            onClick={openModifyPassword}
+            testID="test-modify-password"
+          >
             {props.t("UserProfile.modifyPassword", "Modifier mon mot de passe")}
           </FButton>
         )}
@@ -439,11 +447,12 @@ export const UserProfileComponent = (props: Props) => {
                 </FButton>
               ) : (
                 <FButton
-                  disabled={newPasswordScore < 1}
+                  disabled={newPasswordScore < 1 || !currentPassword}
                   type="validate-light"
                   name="checkmark-outline"
                   className="mt-8"
                   onClick={modifyPassword}
+                  testID="test-save-password"
                 >
                   {props.t("UserProfile.Enregistrer", "Enregistrer")}
                 </FButton>

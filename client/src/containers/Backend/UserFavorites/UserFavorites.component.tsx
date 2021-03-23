@@ -116,8 +116,8 @@ export const UserFavoritesComponent = (props: Props) => {
           <TitleWithNumber
             amount={favorites.length}
             textSingular={props.t(
-              "UserFavorites.fiches sauvegardée",
-              "fiches sauvegardée"
+              "UserFavorites.fiche sauvegardée",
+              "fiche sauvegardée"
             )}
             textPlural={props.t(
               "UserFavorites.fiches sauvegardées",
@@ -129,6 +129,7 @@ export const UserFavoritesComponent = (props: Props) => {
               type="outline-black"
               name="trash-outline"
               onClick={removeAllFavorites}
+              testID="test-delete-button"
             >
               {props.t("UserFavorites.Tout supprimer", "Tout supprimer")}
             </FButton>
