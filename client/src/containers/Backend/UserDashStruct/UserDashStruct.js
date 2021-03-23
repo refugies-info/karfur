@@ -22,7 +22,7 @@ import {
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import {
-  AddMemberModal,
+  AddMemberModalOLD,
   EditMemberModal,
   ReactionLectureModal,
 } from "../../../components/Modals";
@@ -420,7 +420,7 @@ export class UserDashStruct extends Component {
           );
         })}
 
-        <AddMemberModal
+        <AddMemberModalOLD
           show={this.state.showModal.addMember}
           toggle={() => this.toggleModal("addMember")}
           users={this.state.users}

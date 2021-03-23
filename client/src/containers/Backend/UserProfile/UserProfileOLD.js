@@ -34,7 +34,7 @@ import {
   ReactionLectureModal,
   ObjectifsModal,
   TraducteurModal,
-  AddMemberModal,
+  AddMemberModalOLD,
   Modal as FModal,
 } from "../../../components/Modals";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
@@ -954,7 +954,7 @@ export class UserProfile extends Component {
           validateObjectifs={this.validateObjectifs}
         />
 
-        <AddMemberModal
+        <AddMemberModalOLD
           show={this.state.showModal.addMember}
           toggle={() => this.toggleModal("addMember")}
           users={this.state.users}
