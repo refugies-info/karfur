@@ -490,11 +490,12 @@ exports[`UserProfile should render correctly when changing password 1`] = `
           "display": "flex",
           "flexDirection": "row",
           "justifyContent": "flex-end",
+          "marginTop": "16px",
         }
       }
     >
       <button
-        className="figma-btn validate-light mt-8"
+        className="figma-btn validate-light "
         disabled={true}
         onClick={[Function]}
         testID="test-save-password"

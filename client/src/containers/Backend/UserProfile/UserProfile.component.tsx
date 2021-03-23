@@ -433,6 +433,7 @@ export const UserProfileComponent = (props: Props) => {
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "flex-end",
+                marginTop: "16px",
               }}
             >
               {isChangePasswordLoading ? (
@@ -450,7 +451,6 @@ export const UserProfileComponent = (props: Props) => {
                   disabled={newPasswordScore < 1 || !currentPassword}
                   type="validate-light"
                   name="checkmark-outline"
-                  className="mt-8"
                   onClick={modifyPassword}
                   testID="test-save-password"
                 >
