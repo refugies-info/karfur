@@ -36,7 +36,23 @@ interface Props {
   userId: ObjectId;
   structureId: ObjectId;
   addUserInStructure: (arg: ObjectId) => void;
+  isAdmin: boolean;
 }
+
+const checkIfUserIsAuthorizedToAddMembers = (
+  isAdmin: boolean,
+  userWithRole: UserStructureMembre[]
+) => {
+  if (isAdmin) return true;
+
+  if (
+    userWithRole.length > 0 &&
+    userWithRole[0].roles &&
+    userWithRole[0].roles.length > 0
+  )
+    return userWithRole[0].roles.includes("administrateur");
+  return false;
+};
 
 const formatRoles = (membres: UserStructureMembre[]) =>
   membres.map((membre) => {
@@ -55,6 +71,18 @@ export const UserStructureDetails = (props: Props) => {
 
     return placeholder;
   };
+
+  const userWithRole = props.membres.filter(
+    (membre) => membre._id === props.userId
+  );
+
+  const isUserAuthorizedToAddMembers = checkIfUserIsAuthorizedToAddMembers(
+    props.isAdmin,
+    userWithRole
+  );
+
+  // eslint-disable-next-line no-console
+  console.log("userRole", isUserAuthorizedToAddMembers);
 
   const formattedMembres = formatRoles(props.membres);
   const membres = formattedMembres.filter(
@@ -87,23 +115,31 @@ export const UserStructureDetails = (props: Props) => {
             textSingular=""
             amount={membres.length}
           />
-          <div>
-            <FButton
-              type="dark"
-              name="person-add-outline"
-              onClick={toggleAddMemberModal}
-            >
-              Ajouter un membre
-            </FButton>
-          </div>
+          {isUserAuthorizedToAddMembers && (
+            <div>
+              <FButton
+                type="dark"
+                name="person-add-outline"
+                onClick={toggleAddMemberModal}
+              >
+                Ajouter un membre
+              </FButton>
+            </div>
+          )}
         </TitleContainer>
-        <MembresTable membres={membres} userId={props.userId} />
+        <MembresTable
+          membres={membres}
+          userId={props.userId}
+          isUserAuthorizedToAddMembers={isUserAuthorizedToAddMembers}
+        />
       </StructureContainer>
-      <AddMemberModal
-        toggle={toggleAddMemberModal}
-        show={showAddMemberModal}
-        addUserInStructure={props.addUserInStructure}
-      />
+      {isUserAuthorizedToAddMembers && (
+        <AddMemberModal
+          toggle={toggleAddMemberModal}
+          show={showAddMemberModal}
+          addUserInStructure={props.addUserInStructure}
+        />
+      )}
     </MainContainer>
   );
 };

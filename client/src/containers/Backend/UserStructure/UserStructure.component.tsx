@@ -106,6 +106,7 @@ export const UserStructureComponent = () => {
       userId={user.userId}
       structureId={userStructure._id}
       addUserInStructure={addUserInStructure}
+      isAdmin={user.admin}
     />
   );
 };

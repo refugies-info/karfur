@@ -38,6 +38,7 @@ const RoleContainer = styled.div`
 interface Props {
   membres: UserStructureMembre[];
   userId: ObjectId;
+  isUserAuthorizedToAddMembers: boolean;
 }
 
 const headers = ["Nom", "Role", "Dernière connexion", "Ajouté le"];
@@ -91,24 +92,26 @@ export const MembresTable = (props: Props) => (
                 : "Non disponible"}
             </td>
 
-            <td className="align-middle">
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <SeeButtonWithoutNavigation />
-                <DeleteButton
-                  testID={"test_delete_" + element._id}
-                  onClick={() => {}}
-                  disabled={false}
-                  // onClick={(event: any) =>
-                  //   props.deleteDispositif(
-                  //     event,
-                  //     element._id,
-                  //     element.isAuthorizedToDelete
-                  //   )
-                  // }
-                  // disabled={!element.isAuthorizedToDelete}
-                />
-              </div>
-            </td>
+            {props.isUserAuthorizedToAddMembers && (
+              <td className="align-middle">
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                  <SeeButtonWithoutNavigation />
+                  <DeleteButton
+                    testID={"test_delete_" + element._id}
+                    onClick={() => {}}
+                    disabled={false}
+                    // onClick={(event: any) =>
+                    //   props.deleteDispositif(
+                    //     event,
+                    //     element._id,
+                    //     element.isAuthorizedToDelete
+                    //   )
+                    // }
+                    // disabled={!element.isAuthorizedToDelete}
+                  />
+                </div>
+              </td>
+            )}
           </tr>
         );
       })}
