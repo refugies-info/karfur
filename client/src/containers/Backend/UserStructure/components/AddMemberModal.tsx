@@ -99,7 +99,6 @@ export const AddMemberModal = (props: Props) => {
           placeholder="Rechercher un utilisateur"
           array={activeUsers}
           selectItem={onSelectItem}
-          // selectItem={() => {}}
         />
       )}
       {!isLoading && selectedUser && (
