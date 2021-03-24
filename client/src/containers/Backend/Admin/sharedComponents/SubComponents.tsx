@@ -234,8 +234,8 @@ export const SeeButton = (props: { burl: string }) => (
   </ButtonContainer>
 );
 
-export const SeeButtonWithoutNavigation = () => (
-  <ButtonContainer hoverColor={colors.darkColor}>
+export const SeeButtonWithoutNavigation = (props: { onClick?: () => void }) => (
+  <ButtonContainer hoverColor={colors.darkColor} onClick={props.onClick}>
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon name="eye" fill={colors.blancSimple} size="20" />
     </div>

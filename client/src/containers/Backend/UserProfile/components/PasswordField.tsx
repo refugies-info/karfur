@@ -4,6 +4,7 @@ import FInput from "../../../../components/FigmaUI/FInput/FInput";
 import { Progress } from "reactstrap";
 import { colorAvancement } from "../../../../components/Functions/ColorFunctions";
 import { Event } from "../../../../types/interface";
+import { colors } from "../../../../colors";
 
 const ProgressContainer = styled.div`
   width: 100%;
@@ -26,7 +27,7 @@ const getStrength = (score: number) => {
 };
 
 const ErrorMessageContainer = styled.div`
-  color: #e8140f;
+  color: ${colors.error};
   font-size: 16px;
   line-height: 20px;
   margin-top: 16px;

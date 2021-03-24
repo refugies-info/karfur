@@ -8,6 +8,7 @@ import {
 } from "../../../../services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import i18n from "../../../../i18n";
 import { act } from "react-test-renderer";
+import "jest-styled-components";
 
 jest.mock(
   "../../../../services/UserFavoritesInLocale/UserFavoritesInLocale.actions",

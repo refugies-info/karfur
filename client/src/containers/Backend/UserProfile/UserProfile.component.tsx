@@ -21,6 +21,7 @@ import {
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { UserProfileLoading } from "./components/UserProfileLoading";
+import { colors } from "../../../colors";
 
 declare const window: Window;
 
@@ -35,7 +36,7 @@ export const MainContainer = styled.div`
 `;
 
 export const ProfileContainer = styled.div`
-  background: #edebeb;
+  background: ${colors.lightGrey};
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -45,7 +46,7 @@ export const ProfileContainer = styled.div`
 `;
 
 export const ProfilePictureContainer = styled.div`
-  background: #edebeb;
+  background: ${colors.lightGrey};
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;

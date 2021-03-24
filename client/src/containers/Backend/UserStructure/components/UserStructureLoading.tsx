@@ -1,47 +1,45 @@
 import React from "react";
 import {
   MainContainer,
-  ProfilePictureContainer,
-  ProfileContainer,
-  Title,
-} from "../UserProfile.component";
+  StructurePictureContainer,
+  StructureContainer,
+} from "./SubComponents";
 import styled from "styled-components";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { colors } from "../../../../colors";
+import { TitleWithNumber } from "../../middleOfficeSharedComponents";
 
 const ImageContainer = styled.div`
   width: 160px;
   height: 160px;
-  border-radius: 50%;
   background-color: ${colors.blancSimple};
   margin-bottom: 8px;
 `;
-export const UserProfileLoading = (props: { t: any }) => (
+export const UserStructureLoading = () => (
   <MainContainer>
-    <ProfilePictureContainer>
+    <StructurePictureContainer>
       <ImageContainer />
       <SkeletonTheme color={colors.blancSimple}>
         <Skeleton count={1} height={20} width={160} />
       </SkeletonTheme>
-    </ProfilePictureContainer>
-    <ProfileContainer>
-      <Title>{props.t("UserProfile.votre pseudo", "Votre pseudonyme")}</Title>
+    </StructurePictureContainer>
+    <StructureContainer>
+      <TitleWithNumber
+        isLoading={true}
+        textBefore={"Membres"}
+        textPlural=""
+        textSingular=""
+        amount={0}
+      />
       <SkeletonTheme color={colors.blancSimple}>
-        <Skeleton count={1} height={50} />
+        <Skeleton count={1} height={50} width={700} />
       </SkeletonTheme>
-      <Title marginTop={"24px"}>
-        {props.t("Register.Votre email", "Votre email")}
-      </Title>
       <SkeletonTheme color={colors.blancSimple}>
-        <Skeleton count={1} height={50} />
+        <Skeleton count={1} height={50} width={700} />
       </SkeletonTheme>
-
-      <Title marginTop={"24px"}>
-        {props.t("UserProfile.Votre mot de passe", "Votre mot de passe")}
-      </Title>
       <SkeletonTheme color={colors.blancSimple}>
-        <Skeleton count={1} height={50} />
+        <Skeleton count={1} height={50} width={700} />
       </SkeletonTheme>
-    </ProfileContainer>
+    </StructureContainer>
   </MainContainer>
 );

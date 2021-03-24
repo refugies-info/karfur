@@ -12,7 +12,7 @@ import ContributeurModal from "./ContributeurModal/ContributeurModal";
 import TraducteurModal from "./TraducteurModal/TraducteurModal";
 import ResponsableModal from "./ResponsableModal/ResponsableModal";
 import RejectionModal from "./RejectionModal/RejectionModal";
-import AddMemberModal from "./AddMemberModal/AddMemberModal";
+import AddMemberModalOLD from "./AddMemberModal/AddMemberModal";
 import EditMemberModal from "./EditMemberModal/EditMemberModal";
 import RejectTradModal from "./RejectTradModal/RejectTradModal";
 import EtapeModal from "./EtapeModal/EtapeModal";
@@ -38,7 +38,7 @@ export {
   TraducteurModal,
   ResponsableModal,
   RejectionModal,
-  AddMemberModal,
+  AddMemberModalOLD,
   EditMemberModal,
   RejectTradModal,
   EtapeModal,
