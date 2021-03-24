@@ -3,7 +3,6 @@ import Dashboard from "./containers/Backend/Dashboard/Dashboard";
 import { Admin } from "./containers/Backend/Admin/Admin";
 import UserDash from "./containers/Backend/UserDash/UserDash";
 import { UserContributions } from "./containers/Backend/UserContributions";
-import UserDashStruct from "./containers/Backend/UserDashStruct/UserDashStruct";
 import { UserProfile } from "./containers/Backend/UserProfile";
 import Dispositif from "./containers/Dispositif/Dispositif";
 import Avancement from "./containers/Avancement/Avancement";
@@ -20,6 +19,10 @@ import {
 } from "./containers/Annuaire/AnnuaireLecture";
 import { UserNotifications } from "./containers/Backend/UserNotifications";
 import { UserFavorites } from "./containers/Backend/UserFavorites";
+import {
+  UserStructure,
+  UserAdminStructure,
+} from "./containers/Backend/UserStructure";
 
 const routes = [
   {
@@ -232,13 +235,13 @@ const routes = [
   {
     path: "/backend/user-dash-structure",
     name: "Réfugiés.info - Ma structure",
-    component: UserDashStruct,
+    component: UserStructure,
     restriction: ["Admin", "hasStructure"],
   },
   {
     path: "/backend/user-dash-structure-selected",
     name: "Réfugiés.info -  Structure",
-    component: UserDashStruct,
+    component: UserAdminStructure,
     restriction: ["Admin"],
   },
   {

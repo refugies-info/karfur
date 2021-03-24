@@ -242,10 +242,16 @@ export default {
   getStructureById: (
     id,
     withDisposAssocies,
-    localeOfLocalizedDispositifsAssocies
+    localeOfLocalizedDispositifsAssocies,
+    withMembres
   ) =>
     axios.get(burl + "/structures/getStructureById", {
-      params: { id, withDisposAssocies, localeOfLocalizedDispositifsAssocies },
+      params: {
+        id,
+        withDisposAssocies,
+        localeOfLocalizedDispositifsAssocies,
+        withMembres,
+      },
     }),
 
   getUserFavoritesInLocale: (locale) =>

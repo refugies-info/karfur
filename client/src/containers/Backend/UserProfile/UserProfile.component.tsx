@@ -21,6 +21,7 @@ import {
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { UserProfileLoading } from "./components/UserProfileLoading";
+import { colors } from "../../../colors";
 
 declare const window: Window;
 
@@ -35,7 +36,7 @@ export const MainContainer = styled.div`
 `;
 
 export const ProfileContainer = styled.div`
-  background: #edebeb;
+  background: ${colors.lightGrey};
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -45,7 +46,7 @@ export const ProfileContainer = styled.div`
 `;
 
 export const ProfilePictureContainer = styled.div`
-  background: #edebeb;
+  background: ${colors.lightGrey};
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -251,6 +252,7 @@ export const UserProfileComponent = (props: Props) => {
       });
       return;
     }
+
     dispatch(fetchUserActionCreator());
 
     Swal.fire({
@@ -332,6 +334,7 @@ export const UserProfileComponent = (props: Props) => {
               name="checkmark-outline"
               className="ml-8"
               onClick={onPseudoModificationValidate}
+              testID="test-save-pseudo"
             >
               {props.t("UserProfile.Enregistrer", "Enregistrer")}
             </FButton>
@@ -369,6 +372,7 @@ export const UserProfileComponent = (props: Props) => {
               name="checkmark-outline"
               className="ml-8"
               onClick={onEmailModificationValidate}
+              testID="test-save-email"
             >
               {props.t("UserProfile.Enregistrer", "Enregistrer")}
             </FButton>
@@ -384,7 +388,12 @@ export const UserProfileComponent = (props: Props) => {
           {props.t("UserProfile.Votre mot de passe", "Votre mot de passe")}
         </Title>
         {!isModifyPasswordOpen && (
-          <FButton type="dark" name="edit-outline" onClick={openModifyPassword}>
+          <FButton
+            type="dark"
+            name="edit-outline"
+            onClick={openModifyPassword}
+            testID="test-modify-password"
+          >
             {props.t("UserProfile.modifyPassword", "Modifier mon mot de passe")}
           </FButton>
         )}
@@ -425,6 +434,7 @@ export const UserProfileComponent = (props: Props) => {
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "flex-end",
+                marginTop: "16px",
               }}
             >
               {isChangePasswordLoading ? (
@@ -439,11 +449,11 @@ export const UserProfileComponent = (props: Props) => {
                 </FButton>
               ) : (
                 <FButton
-                  disabled={newPasswordScore < 1}
+                  disabled={newPasswordScore < 1 || !currentPassword}
                   type="validate-light"
                   name="checkmark-outline"
-                  className="mt-8"
                   onClick={modifyPassword}
+                  testID="test-save-password"
                 >
                   {props.t("UserProfile.Enregistrer", "Enregistrer")}
                 </FButton>

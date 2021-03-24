@@ -46,10 +46,10 @@ const TitleContainer = styled.div`
 `;
 
 const WhiteContainer = styled.div`
-  background: #ffffff;
+  background: ${colors.blancSimple};
   border-radius: 12px;
   width: 100%;
-  padding: 32px;
+  padding: 20px;
 `;
 interface Props {
   history: any;
@@ -74,13 +74,14 @@ export const UserContributionsComponent = (props: Props) => {
   );
   const isLoading = isLoadingUserContrib || isLoadingUserStructureContrib;
   const userStructure = useSelector(userStructureSelector);
+
   useEffect(() => {
     dispatch(fetchUserContributionsActionCreator());
     if (userStructure) {
       dispatch(
         fetchUserStructureActionCreator({
           structureId: userStructure._id,
-          shouldRedirect: true,
+          shouldRedirect: false,
         })
       );
     }
@@ -105,7 +106,6 @@ export const UserContributionsComponent = (props: Props) => {
     if (!isAuthorizedToDelete) {
       return;
     }
-
     Swal.fire({
       title: "Êtes-vous sûr ?",
       text: "La suppression d'un dispositif est irréversible",

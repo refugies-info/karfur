@@ -1,0 +1,2266 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`userContributions should render correctly when 0 contributions 1`] = `
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin-left: 100px;
+  margin-right: 100px;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  color: #212121;
+  margin-bottom: 40px;
+}
+
+.c3 {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  height: 300px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c4 {
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 40px;
+  color: #5e5e5e;
+  margin-top: 52px;
+  margin-bottom: 20px;
+}
+
+.c5 {
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 23px;
+  color: #5e5e5e;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-top: 40px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 42px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      Vous n'avez pas encore rédigé de fiche.
+    </div>
+    <div
+      className="c3"
+    >
+      <div
+        className="c4"
+      >
+        C'est parti ?
+      </div>
+      <div
+        className="c5"
+      >
+        Chacun peut apporter sa contribution pour enrichir le site.
+      </div>
+      <div
+        className="c5"
+      >
+        Lancez-vous !
+      </div>
+      <div
+        className="c6"
+      >
+        <a
+          aria-current={null}
+          className="figma-btn dark mr-10"
+          href="/comment-contribuer#ecrire"
+          onClick={[Function]}
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+          Créer une nouvelle fiche
+        </a>
+        <button
+          className="figma-btn tuto ml-10"
+          onClick={[Function]}
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="video-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+          Explications
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`userContributions should render correctly when click on delete 1`] = `
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+  max-width: 370px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  cursor: pointer;
+}
+
+.c11 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c11:hover {
+  background-color: #212121;
+}
+
+.c12 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c12:hover {
+  background-color: #f44336;
+}
+
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin-left: 100px;
+  margin-right: 100px;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c8 {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  background-color: #212121;
+  padding: 8px;
+  border-radius: 6px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+  border: 1px solid #212121;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.c10 {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #FFEB3B;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  color: #212121;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c5 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c4 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 42px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c6 {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  padding: 20px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          Vous avez rédigé
+        </div>
+        <div
+          className="c5"
+        >
+          1
+        </div>
+        <div
+          className="c4"
+        >
+          fiche.
+        </div>
+      </div>
+      <div>
+        <button
+          className="figma-btn tuto mr-8"
+          onClick={[Function]}
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="video-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+          Explications
+        </button>
+        <a
+          aria-current={null}
+          className="figma-btn dark "
+          href="/comment-contribuer#ecrire"
+          onClick={[Function]}
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+          Créer une nouvelle fiche
+        </a>
+      </div>
+    </div>
+    <div
+      className="c6"
+    >
+      <div
+        className="table-responsive"
+      >
+        <table
+          className="table table-borderless"
+        >
+          <thead>
+            <tr>
+              <th>
+                Type
+              </th>
+              <th>
+                Titre
+              </th>
+              <th>
+                Responsabilité
+              </th>
+              <th>
+                <div
+                  className="c7"
+                  onClick={[Function]}
+                >
+                  Statut
+                  <span
+                    className="ml-8"
+                  >
+                    <i
+                      data-eva="question-mark-circle-outline"
+                      data-eva-fill="#212121"
+                      data-eva-height="20px"
+                      data-eva-width="20px"
+                    />
+                  </span>
+                </div>
+              </th>
+              <th>
+                Merci
+              </th>
+              <th>
+                Vues
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              className="line"
+              onClick={[Function]}
+              testID="test_id1"
+            >
+              <td
+                className="first align-middle"
+              >
+                <div
+                  className="c8"
+                >
+                  Dispositif
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c9"
+                >
+                  <b>
+                    titre info1
+                  </b>
+                  <span>
+                    avec titreMarque1
+                  </span>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c7"
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                        "marginRight": "8px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="person-outline"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                  Moi
+                </div>
+              </td>
+              <td
+                className="align-middle"
+                onClick={[Function]}
+              >
+                <div
+                  style={
+                    Object {
+                      "width": "120px",
+                    }
+                  }
+                >
+                  <div
+                    className="c10"
+                    color="#FFEB3B"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                  >
+                    Brouillon
+                  </div>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <span
+                  aria-label="locked"
+                  role="img"
+                >
+                  🔒
+                </span>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <span
+                  aria-label="locked"
+                  role="img"
+                >
+                  🔒
+                </span>
+              </td>
+              <td
+                className="last align-middle"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "flex",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <div
+                    className="c11"
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          data-eva="eye"
+                          data-eva-fill="#ffffff"
+                          data-eva-height="20px"
+                          data-eva-width="20px"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="c12"
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          data-eva="trash"
+                          data-eva-fill="#ffffff"
+                          data-eva-height="20px"
+                          data-eva-width="20px"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`userContributions should render correctly when contributions 1`] = `
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+  max-width: 370px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  cursor: pointer;
+}
+
+.c11 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c11:hover {
+  background-color: #212121;
+}
+
+.c12 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c12:hover {
+  background-color: #f44336;
+}
+
+.c16 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: not-allowed;
+}
+
+.c16:hover {
+  background-color: #828282;
+}
+
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin-left: 100px;
+  margin-right: 100px;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c8 {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  background-color: #212121;
+  padding: 8px;
+  border-radius: 6px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+  border: 1px solid #212121;
+}
+
+.c13 {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #212121;
+  background-color: #ffffff;
+  padding: 8px;
+  border-radius: 6px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+  border: 1px solid #212121;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.c10 {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #FFEB3B;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  color: #212121;
+}
+
+.c14 {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #FF9800;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.c15 {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #8BC34A;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.c17 {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #F44336;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.c18 {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #4CAF50;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c5 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c4 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 42px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c6 {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  padding: 20px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          Vous avez rédigé
+        </div>
+        <div
+          className="c5"
+        >
+          7
+        </div>
+        <div
+          className="c4"
+        >
+          fiches.
+        </div>
+      </div>
+      <div>
+        <button
+          className="figma-btn tuto mr-8"
+          onClick={[Function]}
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="video-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+          Explications
+        </button>
+        <a
+          aria-current={null}
+          className="figma-btn dark "
+          href="/comment-contribuer#ecrire"
+          onClick={[Function]}
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+          Créer une nouvelle fiche
+        </a>
+      </div>
+    </div>
+    <div
+      className="c6"
+    >
+      <div
+        className="table-responsive"
+      >
+        <table
+          className="table table-borderless"
+        >
+          <thead>
+            <tr>
+              <th>
+                Type
+              </th>
+              <th>
+                Titre
+              </th>
+              <th>
+                Responsabilité
+              </th>
+              <th>
+                <div
+                  className="c7"
+                  onClick={[Function]}
+                >
+                  Statut
+                  <span
+                    className="ml-8"
+                  >
+                    <i
+                      data-eva="question-mark-circle-outline"
+                      data-eva-fill="#212121"
+                      data-eva-height="20px"
+                      data-eva-width="20px"
+                    />
+                  </span>
+                </div>
+              </th>
+              <th>
+                Merci
+              </th>
+              <th>
+                Vues
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              className="line"
+              onClick={[Function]}
+              testID="test_id1"
+            >
+              <td
+                className="first align-middle"
+              >
+                <div
+                  className="c8"
+                >
+                  Dispositif
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c9"
+                >
+                  <b>
+                    titre info1
+                  </b>
+                  <span>
+                    avec titreMarque1
+                  </span>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c7"
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                        "marginRight": "8px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="person-outline"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                  Moi
+                </div>
+              </td>
+              <td
+                className="align-middle"
+                onClick={[Function]}
+              >
+                <div
+                  style={
+                    Object {
+                      "width": "120px",
+                    }
+                  }
+                >
+                  <div
+                    className="c10"
+                    color="#FFEB3B"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                  >
+                    Brouillon
+                  </div>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <span
+                  aria-label="locked"
+                  role="img"
+                >
+                  🔒
+                </span>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <span
+                  aria-label="locked"
+                  role="img"
+                >
+                  🔒
+                </span>
+              </td>
+              <td
+                className="last align-middle"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "flex",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <div
+                    className="c11"
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          data-eva="eye"
+                          data-eva-fill="#ffffff"
+                          data-eva-height="20px"
+                          data-eva-width="20px"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="c12"
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          data-eva="trash"
+                          data-eva-fill="#ffffff"
+                          data-eva-height="20px"
+                          data-eva-width="20px"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr
+              className="line"
+              onClick={[Function]}
+              testID="test_id2"
+            >
+              <td
+                className="first align-middle"
+              >
+                <div
+                  className="c13"
+                >
+                  Démarche
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c9"
+                >
+                  <b>
+                    titre info2
+                  </b>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c7"
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                        "marginRight": "8px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="person-outline"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                  Moi
+                </div>
+              </td>
+              <td
+                className="align-middle"
+                onClick={[Function]}
+              >
+                <div
+                  style={
+                    Object {
+                      "width": "120px",
+                    }
+                  }
+                >
+                  <div
+                    className="c14"
+                    color="#FF9800"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                  >
+                    En attente
+                  </div>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <span
+                  aria-label="locked"
+                  role="img"
+                >
+                  🔒
+                </span>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <span
+                  aria-label="locked"
+                  role="img"
+                >
+                  🔒
+                </span>
+              </td>
+              <td
+                className="last align-middle"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "flex",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <div
+                    className="c11"
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          data-eva="eye"
+                          data-eva-fill="#ffffff"
+                          data-eva-height="20px"
+                          data-eva-width="20px"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="c12"
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          data-eva="trash"
+                          data-eva-fill="#ffffff"
+                          data-eva-height="20px"
+                          data-eva-width="20px"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr
+              className="line"
+              onClick={[Function]}
+              testID="test_id3"
+            >
+              <td
+                className="first align-middle"
+              >
+                <div
+                  className="c13"
+                >
+                  Démarche
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c9"
+                >
+                  <b>
+                    titre info3
+                  </b>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c7"
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                        "marginRight": "8px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="briefcase-outline"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                  sponsor
+                </div>
+              </td>
+              <td
+                className="align-middle"
+                onClick={[Function]}
+              >
+                <div
+                  style={
+                    Object {
+                      "width": "120px",
+                    }
+                  }
+                >
+                  <div
+                    className="c15"
+                    color="#8BC34A"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                  >
+                    À valider
+                  </div>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <span
+                  aria-label="locked"
+                  role="img"
+                >
+                  🔒
+                </span>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <span
+                  aria-label="locked"
+                  role="img"
+                >
+                  🔒
+                </span>
+              </td>
+              <td
+                className="last align-middle"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "flex",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <div
+                    className="c11"
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          data-eva="eye"
+                          data-eva-fill="#ffffff"
+                          data-eva-height="20px"
+                          data-eva-width="20px"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="c16"
+                    disabled={true}
+                    onClick={[Function]}
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          data-eva="trash"
+                          data-eva-fill="#ffffff"
+                          data-eva-height="20px"
+                          data-eva-width="20px"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr
+              className="line"
+              onClick={[Function]}
+              testID="test_id4"
+            >
+              <td
+                className="first align-middle"
+              >
+                <div
+                  className="c13"
+                >
+                  Démarche
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c9"
+                >
+                  <b>
+                    titre info4
+                  </b>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c7"
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                        "marginRight": "8px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="briefcase-outline"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                  sponsor
+                </div>
+              </td>
+              <td
+                className="align-middle"
+                onClick={[Function]}
+              >
+                <div
+                  style={
+                    Object {
+                      "width": "120px",
+                    }
+                  }
+                >
+                  <div
+                    className="c14"
+                    color="#FF9800"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                  >
+                    Accepté
+                  </div>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <span
+                  aria-label="locked"
+                  role="img"
+                >
+                  🔒
+                </span>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <span
+                  aria-label="locked"
+                  role="img"
+                >
+                  🔒
+                </span>
+              </td>
+              <td
+                className="last align-middle"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "flex",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <div
+                    className="c11"
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          data-eva="eye"
+                          data-eva-fill="#ffffff"
+                          data-eva-height="20px"
+                          data-eva-width="20px"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="c16"
+                    disabled={true}
+                    onClick={[Function]}
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          data-eva="trash"
+                          data-eva-fill="#ffffff"
+                          data-eva-height="20px"
+                          data-eva-width="20px"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr
+              className="line"
+              onClick={[Function]}
+              testID="test_id5"
+            >
+              <td
+                className="first align-middle"
+              >
+                <div
+                  className="c13"
+                >
+                  Démarche
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c9"
+                >
+                  <b>
+                    titre info5
+                  </b>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c7"
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                        "marginRight": "8px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="person-outline"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                  Moi
+                </div>
+              </td>
+              <td
+                className="align-middle"
+                onClick={[Function]}
+              >
+                <div
+                  style={
+                    Object {
+                      "width": "120px",
+                    }
+                  }
+                >
+                  <div
+                    className="c17"
+                    color="#F44336"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                  >
+                    Rejeté
+                  </div>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <span
+                  aria-label="locked"
+                  role="img"
+                >
+                  🔒
+                </span>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <span
+                  aria-label="locked"
+                  role="img"
+                >
+                  🔒
+                </span>
+              </td>
+              <td
+                className="last align-middle"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "flex",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <div
+                    className="c11"
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          data-eva="eye"
+                          data-eva-fill="#ffffff"
+                          data-eva-height="20px"
+                          data-eva-width="20px"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="c12"
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          data-eva="trash"
+                          data-eva-fill="#ffffff"
+                          data-eva-height="20px"
+                          data-eva-width="20px"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr
+              className="line"
+              onClick={[Function]}
+              testID="test_id6"
+            >
+              <td
+                className="first align-middle"
+              >
+                <div
+                  className="c13"
+                >
+                  Démarche
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c9"
+                >
+                  <b>
+                    titre info6
+                  </b>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c7"
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                        "marginRight": "8px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="briefcase-outline"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                  sponsor
+                </div>
+              </td>
+              <td
+                className="align-middle"
+                onClick={[Function]}
+              >
+                <div
+                  style={
+                    Object {
+                      "width": "120px",
+                    }
+                  }
+                >
+                  <div
+                    className="c18"
+                    color="#4CAF50"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                  >
+                    Publié
+                  </div>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div>
+                  0 
+                  <span
+                    aria-label="thanks"
+                    role="img"
+                  >
+                    🙏
+                  </span>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div>
+                  10
+                  <span
+                    aria-label="nbVues"
+                    role="img"
+                  >
+                    📈
+                  </span>
+                </div>
+              </td>
+              <td
+                className="last align-middle"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "flex",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <div
+                    className="c11"
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          data-eva="eye"
+                          data-eva-fill="#ffffff"
+                          data-eva-height="20px"
+                          data-eva-width="20px"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="c16"
+                    disabled={true}
+                    onClick={[Function]}
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          data-eva="trash"
+                          data-eva-fill="#ffffff"
+                          data-eva-height="20px"
+                          data-eva-width="20px"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr
+              className="line"
+              onClick={[Function]}
+              testID="test_id7"
+            >
+              <td
+                className="first align-middle"
+              >
+                <div
+                  className="c13"
+                >
+                  Démarche
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c9"
+                >
+                  <b>
+                    titre info7
+                  </b>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c7"
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                        "marginRight": "8px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="briefcase-outline"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                  main
+                </div>
+              </td>
+              <td
+                className="align-middle"
+                onClick={[Function]}
+              >
+                <div
+                  style={
+                    Object {
+                      "width": "120px",
+                    }
+                  }
+                >
+                  <div
+                    className="c18"
+                    color="#4CAF50"
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
+                  >
+                    Publié
+                  </div>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div>
+                  0 
+                  <span
+                    aria-label="thanks"
+                    role="img"
+                  >
+                    🙏
+                  </span>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div>
+                  10
+                  <span
+                    aria-label="nbVues"
+                    role="img"
+                  >
+                    📈
+                  </span>
+                </div>
+              </td>
+              <td
+                className="last align-middle"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "flex",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <div
+                    className="c11"
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          data-eva="eye"
+                          data-eva-fill="#ffffff"
+                          data-eva-height="20px"
+                          data-eva-width="20px"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="c12"
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          data-eva="trash"
+                          data-eva-fill="#ffffff"
+                          data-eva-height="20px"
+                          data-eva-width="20px"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`userContributions should render correctly when loading 1`] = `
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin-left: 100px;
+  margin-right: 100px;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c4 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c3 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 42px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        Vous avez rédigé
+      </div>
+      <div
+        className="c4"
+      >
+        ...
+      </div>
+      <div
+        className="c3"
+      >
+        fiche.
+      </div>
+    </div>
+    <span>
+      <span
+        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+        style={
+          Object {
+            "height": 50,
+          }
+        }
+      >
+        ‌
+      </span>
+      <span
+        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+        style={
+          Object {
+            "height": 50,
+          }
+        }
+      >
+        ‌
+      </span>
+      <span
+        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+        style={
+          Object {
+            "height": 50,
+          }
+        }
+      >
+        ‌
+      </span>
+    </span>
+  </div>
+</div>
+`;

@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { colors } from "../../../../colors";
 
 export const FavoritesContainer = styled.div`
-  background: #edebeb;
+  background: ${colors.lightGrey};
   border-radius: 12px;
   margin-top: 30px;
   padding-top: 40px;

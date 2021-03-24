@@ -79,37 +79,54 @@ describe("getUserFavoritesInLocale", () => {
   };
 
   it("should return 200 and get dispo if dispo pinned", async () => {
-    const functionToJSON = () => ({
-      titreInformatif: "TI",
+    const functionToJSON = (element: any) => element;
+    const dispo1 = {
+      titreInformatif: "TI1",
       contenu: "contenu",
-    });
-    const dispo = {
-      titreInformatif: "TI",
+      toJSON: () => ({ titreInformatif: "TI1" }),
+      status: "Actif",
+    };
+    const dispo2 = {
+      titreInformatif: "TI2",
       contenu: "contenu",
       toJSON: functionToJSON,
+      status: "En attente",
     };
-    getDispositifById.mockResolvedValue(dispo);
+    const dispo3 = {
+      titreInformatif: "TI3",
+      contenu: "contenu",
+      toJSON: () => ({ titreInformatif: "TI3" }),
+      status: "Actif",
+    };
+    getDispositifById.mockResolvedValueOnce(dispo1);
+    getDispositifById.mockResolvedValueOnce(dispo2);
+    getDispositifById.mockResolvedValueOnce(dispo3);
+
     const req = {
       fromSite: true,
       body: { locale: "fr" },
       user: {
         _id: "userId",
-        cookies: { dispositifsPinned: [{ _id: "id1" }, { _id: "id2" }] },
+        cookies: {
+          dispositifsPinned: [{ _id: "id1" }, { _id: "id2" }, { _id: "id3" }],
+        },
       },
     };
     await getUserFavoritesInLocale(req, res);
 
     expect(getDispositifById).toHaveBeenCalledWith("id1", neededFields);
     expect(getDispositifById).toHaveBeenCalledWith("id2", neededFields);
-    expect(turnToLocalized).toHaveBeenCalledWith(dispo, "fr");
+    expect(turnToLocalized).toHaveBeenCalledWith(dispo1, "fr");
+    expect(turnToLocalized).toHaveBeenCalledWith(dispo3, "fr");
+
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       data: [
         {
-          titreInformatif: "TI",
+          titreInformatif: "TI1",
         },
         {
-          titreInformatif: "TI",
+          titreInformatif: "TI3",
         },
       ],
     });

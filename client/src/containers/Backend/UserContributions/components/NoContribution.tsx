@@ -3,18 +3,19 @@ import React from "react";
 import styled from "styled-components";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { NavHashLink } from "react-router-hash-link";
+import { colors } from "../../../../colors";
 
 const Header = styled.div`
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   align-self: center;
-  color: #212121;
+  color: ${colors.noir};
   margin-bottom: 40px;
 `;
 
 const WhiteContainer = styled.div`
-  background: #ffffff;
+  background: ${colors.blancSimple};
   border-radius: 12px;
   width: 100%;
   height: 300px;
@@ -27,7 +28,7 @@ const Title = styled.div`
   font-weight: normal;
   font-size: 32px;
   line-height: 40px;
-  color: #5e5e5e;
+  color: ${colors.darkGrey};
   margin-top: 52px;
   margin-bottom: 20px;
 `;
@@ -36,7 +37,7 @@ const SubTitle = styled.div`
   font-weight: normal;
   font-size: 18px;
   line-height: 23px;
-  color: #5e5e5e;
+  color: ${colors.darkGrey};
 `;
 
 const RowContainer = styled.div`

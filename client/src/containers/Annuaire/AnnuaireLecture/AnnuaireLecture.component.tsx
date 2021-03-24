@@ -99,9 +99,9 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const loadStructures = async () => {
-      await dispatch(setSelectedStructureActionCreator(null));
-      await dispatch(fetchActiveStructuresActionCreator());
+    const loadStructures = () => {
+      dispatch(setSelectedStructureActionCreator(null));
+      dispatch(fetchActiveStructuresActionCreator());
     };
 
     loadStructures();

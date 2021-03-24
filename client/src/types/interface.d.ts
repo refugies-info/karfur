@@ -242,6 +242,19 @@ export interface Structure {
   mailsPublic?: string[];
 }
 
+export interface UserStructureMembre {
+  _id: ObjectId;
+  roles: string[];
+  picture?: Picture;
+  username: string;
+  last_connected?: Moment;
+  added_at?: Moment;
+  mainRole?: string;
+}
+export interface UserStructure extends Structure {
+  membres: UserStructureMembre[];
+}
+
 export interface SimplifiedStructure {
   _id: ObjectId;
   acronyme: string;

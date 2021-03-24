@@ -126,7 +126,7 @@
     "jest-styled-components": "^6.3.4",
     "papaparse": "^5.3.0",
     "react-test-renderer": "^16.7.0",
-    "redux-mock-store": "^1.5.3",
+    "redux-mock-store": "^1.5.4",
     "redux-saga-test-plan": "^4.0.0-rc.3",
     "ts-jest": "26.3.0",
     "typescript": "^3.9.2"

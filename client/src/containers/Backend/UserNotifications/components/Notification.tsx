@@ -3,9 +3,10 @@ import styled from "styled-components";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 import moment, { Moment } from "moment";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import { colors } from "../../../../colors";
 
 const Container = styled.div`
-  background: ${(props) => (props.read ? "#FFFFFF" : "#2D9CDB")};
+  background: ${(props) => (props.read ? colors.blancSimple : colors.focus)};
   border-radius: 12px;
   padding: 8px 8px 8px 20px;
   margin: 8px 0px 0px 0px;
@@ -14,8 +15,12 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  border-width: 2px;
+  border-style: solid;
+  border-color: ${(props) => (props.read ? colors.blancSimple : colors.focus)};
+
   &:hover {
-    border: 2px solid #212121;
+    border-color: ${colors.noir};
   }
 `;
 const RowContainer = styled.div`
@@ -28,12 +33,12 @@ const TextContainer = styled.div`
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
-  color: ${(props) => (props.read ? "#212121" : "#FFFFFF")};
+  color: ${(props) => (props.read ? colors.noir : colors.blancSimple)};
   margin-left: 20px;
 `;
 
 const DispositifTitle = styled.div`
-  background: #edebeb;
+  background: ${colors.lightGrey};
   border-radius: 8px;
   padding: 8px;
   font-weight: bold;
@@ -46,7 +51,7 @@ const DateContainer = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props) => (props.read ? "#f44336" : "#FFFFFF")};
+  color: ${(props) => (props.read ? colors.error : colors.blancSimple)};
   margin-right: 8px;
   margin-left: 8px;
 `;
@@ -110,7 +115,7 @@ export const Notification = (props: Props) => {
       <RowContainer>
         <EVAIcon
           name={props.read ? "bell-outline" : "bell"}
-          fill={props.read ? "#212121" : "#FFFFFF"}
+          fill={props.read ? colors.noir : colors.blancSimple}
         />
         <TextContainer read={props.read}>{getText(props.type)}</TextContainer>
         {props.type === "reaction" && props.title && (
