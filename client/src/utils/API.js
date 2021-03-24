@@ -262,7 +262,7 @@ export default {
     ),
 
   getUserContributions: () =>
-    axios.post(burl + "/user/getUserContributions", {}, { headers }),
+    axios.get(burl + "/user/getUserContributions", { headers }),
 
   updateUserFavorites: (query) =>
     axios.post(burl + "/user/updateUserFavorites", query, { headers }),
