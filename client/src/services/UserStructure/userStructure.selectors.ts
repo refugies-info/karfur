@@ -1,8 +1,12 @@
 import { RootState } from "../rootReducer";
-import { Structure, IDispositif } from "../../types/interface";
+import {
+  UserStructure,
+  IDispositif,
+  UserStructureMembre,
+} from "../../types/interface";
 import { areDispositifsAssociesPopulate } from "../../types/typeGuards";
 
-export const userStructureSelector = (state: RootState): Structure | null =>
+export const userStructureSelector = (state: RootState): UserStructure | null =>
   state.userStructure;
 
 export const userStructureDisposAssociesSelector = (
@@ -24,3 +28,8 @@ export const userStructureHasResponsibleSeenNotification = (
 
 export const userStructureNameSelector = (state: RootState): string | null =>
   state.userStructure ? state.userStructure.nom : null;
+
+export const userStructureMembresSelector = (
+  state: RootState
+): UserStructureMembre[] =>
+  state.userStructure ? state.userStructure.membres : [];

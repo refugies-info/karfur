@@ -55,14 +55,14 @@ export const Admin = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const loadDispositifs = async () => {
-      await dispatch(fetchAllDispositifsActionsCreator());
+    const loadDispositifs = () => {
+      dispatch(fetchAllDispositifsActionsCreator());
     };
-    const loadStructures = async () => {
-      await dispatch(fetchAllStructuresActionsCreator());
+    const loadStructures = () => {
+      dispatch(fetchAllStructuresActionsCreator());
     };
-    const loadUsers = async () => {
-      await dispatch(fetchAllUsersActionsCreator());
+    const loadUsers = () => {
+      dispatch(fetchAllUsersActionsCreator());
     };
 
     loadUsers();

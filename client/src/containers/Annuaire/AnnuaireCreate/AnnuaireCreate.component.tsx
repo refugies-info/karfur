@@ -22,7 +22,7 @@ import { userStructureIdSelector } from "../../../services/User/user.selectors";
 import { userStructureSelector } from "../../../services/UserStructure/userStructure.selectors";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
-import { Structure } from "../../../types/interface";
+import { UserStructure } from "../../../types/interface";
 
 declare const window: Window;
 interface Props {
@@ -125,10 +125,10 @@ export const AnnuaireCreateComponent = (props: Props) => {
   };
 
   const updateStructure = () => {
-    dispatch(updateUserStructureActionCreator());
+    dispatch(updateUserStructureActionCreator({ modifyMembres: false }));
   };
 
-  const setStructure = (structure: Structure) => {
+  const setStructure = (structure: UserStructure) => {
     dispatch(setUserStructureActionCreator(structure));
   };
 

@@ -22,7 +22,7 @@ import {
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import {
-  AddMemberModal,
+  AddMemberModalOLD,
   EditMemberModal,
   ReactionLectureModal,
 } from "../../../components/Modals";
@@ -160,7 +160,7 @@ export class UserDashStruct extends Component {
         ? this.props.location.state.structure
         : user.structures[0];
  */
-    API.getStructureById(this.state.selectedStructure, true, false).then(
+    API.getStructureById(this.state.selectedStructure, true, false, false).then(
       (data) => {
         if (data.data.data) {
           this.setState({ structure: data.data.data, isMainLoading: false });
@@ -420,7 +420,7 @@ export class UserDashStruct extends Component {
           );
         })}
 
-        <AddMemberModal
+        <AddMemberModalOLD
           show={this.state.showModal.addMember}
           toggle={() => this.toggleModal("addMember")}
           users={this.state.users}

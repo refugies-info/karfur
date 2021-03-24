@@ -3,9 +3,10 @@ import { FavoritesContainer, CardsContainer } from "./SubComponents";
 import { TitleWithNumber } from "../../middleOfficeSharedComponents";
 import styled from "styled-components";
 import Skeleton from "react-loading-skeleton";
+import { colors } from "../../../../colors";
 
 const LoadingCardContainer = styled.div`
-  background: #ffffff;
+  background: ${colors.blancSimple};
   border-radius: 12px;
   width: 248px;
   height: 248px;
@@ -17,7 +18,7 @@ const LoadingCardContainer = styled.div`
 `;
 
 const BottomContainer = styled.div`
-  background: #c6c6c6;
+  background:${colors.grey}
   height: 50px;
   width: 100%;
   border-radius: 0px 0px 12px 12px;

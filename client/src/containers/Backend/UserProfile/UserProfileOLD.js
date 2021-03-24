@@ -34,7 +34,7 @@ import {
   ReactionLectureModal,
   ObjectifsModal,
   TraducteurModal,
-  AddMemberModal,
+  AddMemberModalOLD,
   Modal as FModal,
 } from "../../../components/Modals";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
@@ -240,9 +240,11 @@ export class UserProfile extends Component {
 
   initializeStructure = () => {
     const user = this.props.user;
-    API.getStructureById(user.structures[0], true, false).then((data) => {
-      this._isMounted && this.setState({ structure: data.data.data });
-    });
+    API.getStructureById(user.structures[0], true, false, false).then(
+      (data) => {
+        this._isMounted && this.setState({ structure: data.data.data });
+      }
+    );
   };
 
   toggleModal = (modal) => {
@@ -952,7 +954,7 @@ export class UserProfile extends Component {
           validateObjectifs={this.validateObjectifs}
         />
 
-        <AddMemberModal
+        <AddMemberModalOLD
           show={this.state.showModal.addMember}
           toggle={() => this.toggleModal("addMember")}
           users={this.state.users}
