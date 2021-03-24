@@ -1,11 +1,130 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UserProfile should disable save when new password too weak 1`] = `
+.c9 {
+  width: 100%;
+  margin-right: 16px;
+}
+
+.c10 {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.c11 {
+  color: #f44336;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 16px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 42px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c4 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 560px;
+}
+
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 280px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.c3 {
+  word-wrap: break-word;
+}
+
+.c5 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 8px;
+  margin-top: 0px;
+}
+
+.c8 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 8px;
+  margin-top: 24px;
+}
+
+.c7 {
+  width: 480px;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
 <div
-  className="sc-ifAKCX fCOKVk user-profile"
+  className="c0 user-profile"
 >
   <div
-    className="sc-bZQynM IPjfS"
+    className="c1"
   >
     <img
       alt="my-image"
@@ -13,7 +132,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
       src={Object {}}
     />
     <div
-      className="sc-htoDjs coVPzq"
+      className="c2"
     >
       username
     </div>
@@ -41,24 +160,24 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
       Modifier ma photo
     </button>
     <div
-      className="sc-dnqmqq fpPJtu"
+      className="c3"
     >
       Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.
     </div>
   </div>
   <div
-    className="sc-EHOje cAROQj"
+    className="c4"
   >
     <div
-      className="sc-iwsKbI KxuZj"
+      className="c5"
     >
       Votre pseudonyme
     </div>
     <div
-      className="sc-gqjmRU etyENR"
+      className="c6"
     >
       <div
-        className="sc-gZMcBi brnAdC"
+        className="c7"
       >
         <div
           className="mb-10 figma-input-group input-group"
@@ -107,20 +226,20 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
       </div>
     </div>
     <div
-      className="sc-dnqmqq fpPJtu"
+      className="c3"
     >
       Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
     </div>
     <div
-      className="sc-iwsKbI fugsZw"
+      className="c8"
     >
       Votre email
     </div>
     <div
-      className="sc-gqjmRU etyENR"
+      className="c6"
     >
       <div
-        className="sc-gZMcBi brnAdC"
+        className="c7"
       >
         <div
           className="mb-10 figma-input-group input-group"
@@ -170,17 +289,17 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
       </div>
     </div>
     <div
-      className="sc-dnqmqq fpPJtu"
+      className="c3"
     >
       Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
     </div>
     <div
-      className="sc-iwsKbI fugsZw"
+      className="c8"
     >
       Votre mot de passe
     </div>
     <div
-      className="sc-gZMcBi brnAdC"
+      className="c7"
     >
       <div
         className="mb-10 figma-input-group input-group"
@@ -222,7 +341,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
       </div>
     </div>
     <div
-      className="sc-gZMcBi brnAdC"
+      className="c7"
     >
       <div
         style={
@@ -292,7 +411,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
         }
       >
         <div
-          className="sc-bdVaJa dyQWYo"
+          className="c9"
         >
           <div
             className="progress"
@@ -312,13 +431,13 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
           </div>
         </div>
         <div
-          className="sc-bwzfXH bwTkKQ"
+          className="c10"
         >
           Faible
         </div>
       </div>
       <div
-        className="sc-htpNat gmAzTJ"
+        className="c11"
       >
         <b>
           Oups, votre mot de passe est trop faible.
@@ -359,11 +478,112 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
 `;
 
 exports[`UserProfile should render correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 42px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c4 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 560px;
+}
+
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 280px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.c3 {
+  word-wrap: break-word;
+}
+
+.c5 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 8px;
+  margin-top: 0px;
+}
+
+.c8 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 8px;
+  margin-top: 24px;
+}
+
+.c7 {
+  width: 480px;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
 <div
-  className="sc-ifAKCX fCOKVk user-profile"
+  className="c0 user-profile"
 >
   <div
-    className="sc-bZQynM IPjfS"
+    className="c1"
   >
     <img
       alt="my-image"
@@ -371,7 +591,7 @@ exports[`UserProfile should render correctly 1`] = `
       src={Object {}}
     />
     <div
-      className="sc-htoDjs coVPzq"
+      className="c2"
     >
       username
     </div>
@@ -399,24 +619,24 @@ exports[`UserProfile should render correctly 1`] = `
       Modifier ma photo
     </button>
     <div
-      className="sc-dnqmqq fpPJtu"
+      className="c3"
     >
       Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.
     </div>
   </div>
   <div
-    className="sc-EHOje cAROQj"
+    className="c4"
   >
     <div
-      className="sc-iwsKbI KxuZj"
+      className="c5"
     >
       Votre pseudonyme
     </div>
     <div
-      className="sc-gqjmRU etyENR"
+      className="c6"
     >
       <div
-        className="sc-gZMcBi brnAdC"
+        className="c7"
       >
         <div
           className="mb-10 figma-input-group input-group"
@@ -465,20 +685,20 @@ exports[`UserProfile should render correctly 1`] = `
       </div>
     </div>
     <div
-      className="sc-dnqmqq fpPJtu"
+      className="c3"
     >
       Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
     </div>
     <div
-      className="sc-iwsKbI fugsZw"
+      className="c8"
     >
       Votre email
     </div>
     <div
-      className="sc-gqjmRU etyENR"
+      className="c6"
     >
       <div
-        className="sc-gZMcBi brnAdC"
+        className="c7"
       >
         <div
           className="mb-10 figma-input-group input-group"
@@ -528,12 +748,12 @@ exports[`UserProfile should render correctly 1`] = `
       </div>
     </div>
     <div
-      className="sc-dnqmqq fpPJtu"
+      className="c3"
     >
       Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
     </div>
     <div
-      className="sc-iwsKbI fugsZw"
+      className="c8"
     >
       Votre mot de passe
     </div>
@@ -559,11 +779,112 @@ exports[`UserProfile should render correctly 1`] = `
 `;
 
 exports[`UserProfile should render correctly when changing password 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 42px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c4 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 560px;
+}
+
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 280px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.c3 {
+  word-wrap: break-word;
+}
+
+.c5 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 8px;
+  margin-top: 0px;
+}
+
+.c8 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 8px;
+  margin-top: 24px;
+}
+
+.c7 {
+  width: 480px;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
 <div
-  className="sc-ifAKCX fCOKVk user-profile"
+  className="c0 user-profile"
 >
   <div
-    className="sc-bZQynM IPjfS"
+    className="c1"
   >
     <img
       alt="my-image"
@@ -571,7 +892,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
       src={Object {}}
     />
     <div
-      className="sc-htoDjs coVPzq"
+      className="c2"
     >
       username
     </div>
@@ -599,24 +920,24 @@ exports[`UserProfile should render correctly when changing password 1`] = `
       Modifier ma photo
     </button>
     <div
-      className="sc-dnqmqq fpPJtu"
+      className="c3"
     >
       Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.
     </div>
   </div>
   <div
-    className="sc-EHOje cAROQj"
+    className="c4"
   >
     <div
-      className="sc-iwsKbI KxuZj"
+      className="c5"
     >
       Votre pseudonyme
     </div>
     <div
-      className="sc-gqjmRU etyENR"
+      className="c6"
     >
       <div
-        className="sc-gZMcBi brnAdC"
+        className="c7"
       >
         <div
           className="mb-10 figma-input-group input-group"
@@ -665,20 +986,20 @@ exports[`UserProfile should render correctly when changing password 1`] = `
       </div>
     </div>
     <div
-      className="sc-dnqmqq fpPJtu"
+      className="c3"
     >
       Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
     </div>
     <div
-      className="sc-iwsKbI fugsZw"
+      className="c8"
     >
       Votre email
     </div>
     <div
-      className="sc-gqjmRU etyENR"
+      className="c6"
     >
       <div
-        className="sc-gZMcBi brnAdC"
+        className="c7"
       >
         <div
           className="mb-10 figma-input-group input-group"
@@ -728,17 +1049,17 @@ exports[`UserProfile should render correctly when changing password 1`] = `
       </div>
     </div>
     <div
-      className="sc-dnqmqq fpPJtu"
+      className="c3"
     >
       Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
     </div>
     <div
-      className="sc-iwsKbI fugsZw"
+      className="c8"
     >
       Votre mot de passe
     </div>
     <div
-      className="sc-gZMcBi brnAdC"
+      className="c7"
     >
       <div
         className="mb-10 figma-input-group input-group"
@@ -780,7 +1101,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
       </div>
     </div>
     <div
-      className="sc-gZMcBi brnAdC"
+      className="c7"
     >
       <div
         style={
@@ -876,14 +1197,97 @@ exports[`UserProfile should render correctly when changing password 1`] = `
 `;
 
 exports[`UserProfile should render correctly when loading 1`] = `
+.c2 {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 42px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c3 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 560px;
+}
+
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 280px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c4 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 8px;
+  margin-top: 0px;
+}
+
+.c5 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 8px;
+  margin-top: 24px;
+}
+
 <div
-  className="sc-ifAKCX fCOKVk"
+  className="c0"
 >
   <div
-    className="sc-bZQynM IPjfS"
+    className="c1"
   >
     <div
-      className="sc-bxivhb qoQiV"
+      className="c2"
     />
     <div
       className="css-nitgap-SkeletonTheme"
@@ -904,10 +1308,10 @@ exports[`UserProfile should render correctly when loading 1`] = `
     </div>
   </div>
   <div
-    className="sc-EHOje cAROQj"
+    className="c3"
   >
     <div
-      className="sc-iwsKbI KxuZj"
+      className="c4"
     >
       Votre pseudonyme
     </div>
@@ -928,7 +1332,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
       </span>
     </div>
     <div
-      className="sc-iwsKbI fugsZw"
+      className="c5"
     >
       Votre email
     </div>
@@ -949,7 +1353,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
       </span>
     </div>
     <div
-      className="sc-iwsKbI fugsZw"
+      className="c5"
     >
       Votre mot de passe
     </div>

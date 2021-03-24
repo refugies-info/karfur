@@ -1,11 +1,199 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UserFavorites should render correctly when 0 favorites 1`] = `
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  margin-top: 30px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 1120px;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  margin-right: 32px;
+  margin-left: 32px;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c4 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c3 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c6 {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 13px;
+  width: 248px;
+  height: 248px;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  color: #2d9cdb;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.c7 {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 248px;
+  height: 248px;
+  margin-right: 8px;
+  margin-left: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c8 {
+  background: #c6c6c6;
+  border-radius: 8px;
+  width: 221px;
+  height: 28px;
+  margin-bottom: 8px;
+}
+
+.c9 {
+  background: #c6c6c6;
+  border-radius: 8px;
+  width: 130px;
+  height: 28px;
+  margin-bottom: 8px;
+}
+
+.c10 {
+  background: #c6c6c6;
+  border-radius: 3px;
+  width: 221px;
+  height: 14px;
+  margin-bottom: 5px;
+  margin-left: 13px;
+}
+
+.c11 {
+  background: #c6c6c6;
+  border-radius: 3px;
+  width: 200px;
+  height: 14px;
+  margin-bottom: 5px;
+  margin-left: 13px;
+}
+
+.c12 {
+  background: #c6c6c6;
+  border-radius: 3px;
+  width: 180px;
+  height: 14px;
+  margin-bottom: 5px;
+  margin-left: 13px;
+}
+
+.c13 {
+  background: #c6c6c6;
+  height: 50px;
+  width: 100%;
+  border-radius: 0px 0px 12px 12px;
+  margin-top: 16px;
+  padding-top: 18px;
+  padding-left: 50px;
+}
+
+.c14 {
+  background: #ffffff;
+  border-radius: 3px;
+  width: 180px;
+  height: 14px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 42px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
 <div
-  className="sc-gipzik hSsfAU"
+  className="c0"
 >
   <div
-    className="sc-bwzfXH jMmZSF"
+    className="c1"
   >
     <div
       style={
@@ -16,30 +204,30 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
       }
     >
       <div
-        className="sc-ifAKCX gCxZgu"
+        className="c2"
       >
         <div
-          className="sc-bZQynM lfrHtS"
+          className="c3"
         >
           Vous avez
         </div>
         <div
-          className="sc-EHOje ljAJqG"
+          className="c4"
         >
           0
         </div>
         <div
-          className="sc-bZQynM lfrHtS"
+          className="c3"
         >
           fiches sauvegardée
         </div>
       </div>
     </div>
     <div
-      className="sc-bxivhb bEiLRC"
+      className="c5"
     >
       <div
-        className="sc-gzVnrw hBwgYv"
+        className="c6"
       >
         Comment ajouter des fiches en favoris ?
         <button
@@ -60,7 +248,7 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
         </button>
       </div>
       <div
-        className="sc-htoDjs eSoYTw"
+        className="c7"
       >
         <div
           style={
@@ -70,42 +258,42 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
           }
         >
           <div
-            className="sc-dnqmqq blzWLd"
+            className="c8"
             width="221px"
           />
           <div
-            className="sc-dnqmqq gHiilh"
+            className="c9"
             width="130px"
           />
         </div>
         <div>
           <div
-            className="sc-iwsKbI fbrEYi"
+            className="c10"
             width="221px"
           />
           <div
-            className="sc-iwsKbI bwgcSu"
+            className="c11"
             width="200px"
           />
           <div
-            className="sc-iwsKbI fbrEYi"
+            className="c10"
             width="221px"
           />
           <div
-            className="sc-iwsKbI NHZkj"
+            className="c12"
             width="180px"
           />
           <div
-            className="sc-gZMcBi gdEjsx"
+            className="c13"
           >
             <div
-              className="sc-gqjmRU zRbZW"
+              className="c14"
             />
           </div>
         </div>
       </div>
       <div
-        className="sc-htoDjs eSoYTw"
+        className="c7"
       >
         <div
           style={
@@ -115,42 +303,42 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
           }
         >
           <div
-            className="sc-dnqmqq blzWLd"
+            className="c8"
             width="221px"
           />
           <div
-            className="sc-dnqmqq gHiilh"
+            className="c9"
             width="130px"
           />
         </div>
         <div>
           <div
-            className="sc-iwsKbI fbrEYi"
+            className="c10"
             width="221px"
           />
           <div
-            className="sc-iwsKbI bwgcSu"
+            className="c11"
             width="200px"
           />
           <div
-            className="sc-iwsKbI fbrEYi"
+            className="c10"
             width="221px"
           />
           <div
-            className="sc-iwsKbI NHZkj"
+            className="c12"
             width="180px"
           />
           <div
-            className="sc-gZMcBi gdEjsx"
+            className="c13"
           >
             <div
-              className="sc-gqjmRU zRbZW"
+              className="c14"
             />
           </div>
         </div>
       </div>
       <div
-        className="sc-htoDjs eSoYTw"
+        className="c7"
       >
         <div
           style={
@@ -160,36 +348,36 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
           }
         >
           <div
-            className="sc-dnqmqq blzWLd"
+            className="c8"
             width="221px"
           />
           <div
-            className="sc-dnqmqq gHiilh"
+            className="c9"
             width="130px"
           />
         </div>
         <div>
           <div
-            className="sc-iwsKbI fbrEYi"
+            className="c10"
             width="221px"
           />
           <div
-            className="sc-iwsKbI bwgcSu"
+            className="c11"
             width="200px"
           />
           <div
-            className="sc-iwsKbI fbrEYi"
+            className="c10"
             width="221px"
           />
           <div
-            className="sc-iwsKbI NHZkj"
+            className="c12"
             width="180px"
           />
           <div
-            className="sc-gZMcBi gdEjsx"
+            className="c13"
           >
             <div
-              className="sc-gqjmRU zRbZW"
+              className="c14"
             />
           </div>
         </div>
@@ -200,30 +388,143 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
 `;
 
 exports[`UserFavorites should render correctly when 3 favorites 1`] = `
+.c8 {
+  font-weight: 14px;
+}
+
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  margin-top: 30px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 1120px;
+}
+
+.c7 {
+  width: 248px;
+  height: 248px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  margin-left: 8px;
+  z-index: 0;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  margin-right: 32px;
+  margin-left: 32px;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c5 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c4 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 42px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c2 {
+  margin-right: 40px;
+  margin-left: 40px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
 <div
-  className="sc-gipzik hSsfAU"
+  className="c0"
 >
   <div
-    className="sc-bwzfXH jMmZSF"
+    className="c1"
   >
     <div
-      className="sc-csuQGl hilWlW"
+      className="c2"
     >
       <div
-        className="sc-ifAKCX gCxZgu"
+        className="c3"
       >
         <div
-          className="sc-bZQynM lfrHtS"
+          className="c4"
         >
           Vous avez
         </div>
         <div
-          className="sc-EHOje ljAJqG"
+          className="c5"
         >
           3
         </div>
         <div
-          className="sc-bZQynM lfrHtS"
+          className="c4"
         >
           fiches sauvegardées
         </div>
@@ -249,10 +550,10 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
       </div>
     </div>
     <div
-      className="sc-bxivhb bEiLRC"
+      className="c6"
     >
       <div
-        className="sc-htpNat dWyVmD"
+        className="c7"
       >
         <div
           className="card-col puff-in-center dispositif"
@@ -280,7 +581,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 tinfo1
               </h5>
               <p
-                className="sc-bdVaJa fsYbGv"
+                className="c8"
               >
                 abstract1
               </p>
@@ -349,7 +650,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
         </div>
       </div>
       <div
-        className="sc-htpNat dWyVmD"
+        className="c7"
       >
         <div
           className="card-col puff-in-center dispositif"
@@ -377,7 +678,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 tinfo2
               </h5>
               <p
-                className="sc-bdVaJa fsYbGv"
+                className="c8"
               >
                 abstract2
               </p>
@@ -440,7 +741,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
         </div>
       </div>
       <div
-        className="sc-htpNat dWyVmD"
+        className="c7"
       >
         <div
           className="card-col puff-in-center demarche"
@@ -468,7 +769,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 tinfo3
               </h5>
               <p
-                className="sc-bdVaJa fsYbGv"
+                className="c8"
               >
                 abstract3
               </p>
@@ -482,11 +783,124 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
 `;
 
 exports[`UserFavorites should render correctly when loading 1`] = `
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  margin-top: 30px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 1120px;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  margin-right: 32px;
+  margin-left: 32px;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c4 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c3 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c6 {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 248px;
+  height: 248px;
+  margin-right: 8px;
+  margin-left: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c7 {
+  background: #c6c6c6;
+  height: 50px;
+  width: 100%;
+  border-radius: 0px 0px 12px 12px;
+  margin-top: 16px;
+  padding-top: 18px;
+  padding-left: 50px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 42px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
 <div
-  className="sc-gipzik hSsfAU"
+  className="c0"
 >
   <div
-    className="sc-bwzfXH jMmZSF"
+    className="c1"
   >
     <div
       style={
@@ -497,30 +911,30 @@ exports[`UserFavorites should render correctly when loading 1`] = `
       }
     >
       <div
-        className="sc-ifAKCX gCxZgu"
+        className="c2"
       >
         <div
-          className="sc-bZQynM lfrHtS"
+          className="c3"
         >
           Vous avez
         </div>
         <div
-          className="sc-EHOje ljAJqG"
+          className="c4"
         >
           ...
         </div>
         <div
-          className="sc-bZQynM lfrHtS"
+          className="c3"
         >
           fiche sauvegardée
         </div>
       </div>
     </div>
     <div
-      className="sc-bxivhb bEiLRC"
+      className="c5"
     >
       <div
-        className="sc-iRbamj hoxUPz"
+        className="c6"
       >
         <div
           style={
@@ -595,12 +1009,12 @@ exports[`UserFavorites should render correctly when loading 1`] = `
             </span>
           </div>
           <div
-            className="sc-jlyJG ihFKGi"
+            className="c7"
           />
         </div>
       </div>
       <div
-        className="sc-iRbamj hoxUPz"
+        className="c6"
       >
         <div
           style={
@@ -675,12 +1089,12 @@ exports[`UserFavorites should render correctly when loading 1`] = `
             </span>
           </div>
           <div
-            className="sc-jlyJG ihFKGi"
+            className="c7"
           />
         </div>
       </div>
       <div
-        className="sc-iRbamj hoxUPz"
+        className="c6"
       >
         <div
           style={
@@ -755,7 +1169,7 @@ exports[`UserFavorites should render correctly when loading 1`] = `
             </span>
           </div>
           <div
-            className="sc-jlyJG ihFKGi"
+            className="c7"
           />
         </div>
       </div>

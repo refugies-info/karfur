@@ -6,6 +6,7 @@ import { initialMockStore } from "../../../../__fixtures__/reduxStore";
 import API from "../../../../utils/API";
 import { saveUserActionCreator } from "../../../../services/User/user.actions";
 import Swal from "sweetalert2";
+import "jest-styled-components";
 
 jest.mock("../../../../utils/API", () => ({
   __esModule: true, // this property makes it work
