@@ -14,6 +14,7 @@ import { NavLink } from "react-router-dom";
 import { MembresTable } from "./MembresTable";
 import { ObjectId } from "mongodb";
 import { AddMemberModal } from "./AddMemberModal";
+import { EditMemberModal } from "./EditMemberModal";
 
 const StructureName = styled.div`
   font-weight: bold;
@@ -37,6 +38,7 @@ interface Props {
   structureId: ObjectId;
   addUserInStructure: (arg: ObjectId) => void;
   isAdmin: boolean;
+  modifyRole: (arg: ObjectId, role: "contributeur" | "administrateur") => void;
 }
 
 const checkIfUserIsAuthorizedToAddMembers = (
@@ -66,6 +68,14 @@ export const UserStructureDetails = (props: Props) => {
   const [showAddMemberModal, setShowAddMemberModal] = useState(false);
   const toggleAddMemberModal = () => setShowAddMemberModal(!showAddMemberModal);
 
+  const [showEditMemberModal, setShowEditMemberModal] = useState(false);
+  const toggleEditMemberModal = () =>
+    setShowEditMemberModal(!showEditMemberModal);
+
+  const [selectedUser, setSelectedUser] = useState<null | UserStructureMembre>(
+    null
+  );
+
   const getSecureUrl = (picture: Picture | null) => {
     if (picture && picture.secure_url) return picture.secure_url;
 
@@ -80,9 +90,6 @@ export const UserStructureDetails = (props: Props) => {
     props.isAdmin,
     userWithRole
   );
-
-  // eslint-disable-next-line no-console
-  console.log("userRole", isUserAuthorizedToAddMembers);
 
   const formattedMembres = formatRoles(props.membres);
   const membres = formattedMembres.filter(
@@ -131,6 +138,8 @@ export const UserStructureDetails = (props: Props) => {
           membres={membres}
           userId={props.userId}
           isUserAuthorizedToAddMembers={isUserAuthorizedToAddMembers}
+          toggleEditMemberModal={toggleEditMemberModal}
+          setSelectedUser={setSelectedUser}
         />
       </StructureContainer>
       {isUserAuthorizedToAddMembers && (
@@ -138,6 +147,14 @@ export const UserStructureDetails = (props: Props) => {
           toggle={toggleAddMemberModal}
           show={showAddMemberModal}
           addUserInStructure={props.addUserInStructure}
+        />
+      )}
+      {isUserAuthorizedToAddMembers && (
+        <EditMemberModal
+          toggle={toggleEditMemberModal}
+          show={showEditMemberModal}
+          modifyRole={props.modifyRole}
+          selectedUser={selectedUser}
         />
       )}
     </MainContainer>

@@ -1,9 +1,7 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React, { useEffect, useState } from "react";
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Modal } from "reactstrap";
 
-import "./AddMemberModal.scss";
+import "./MemberModal.scss";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
@@ -80,8 +78,6 @@ export const AddMemberModal = (props: Props) => {
     if (!selectedUser) return;
     props.addUserInStructure(selectedUser._id);
   };
-
-  console.log("user", selectedUser);
 
   return (
     <Modal isOpen={props.show} toggle={props.toggle} className="member-modal">

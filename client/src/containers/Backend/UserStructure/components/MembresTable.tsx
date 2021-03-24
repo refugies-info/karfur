@@ -34,11 +34,18 @@ const RoleContainer = styled.div`
   font-size: 16px;
   line-height: 20px;
   color: ${(props) => (props.isUser ? colors.bleuCharte : colors.noir)};
+  width: fit-content;
+`;
+
+const DateContainer = styled.span`
+  color: ${(props) => (props.isUser ? colors.bleuCharte : colors.noir)};
 `;
 interface Props {
   membres: UserStructureMembre[];
   userId: ObjectId;
   isUserAuthorizedToAddMembers: boolean;
+  toggleEditMemberModal: () => void;
+  setSelectedUser: (user: null | UserStructureMembre) => void;
 }
 
 const headers = ["Nom", "Role", "Dernière connexion", "Ajouté le"];
@@ -79,23 +86,32 @@ export const MembresTable = (props: Props) => (
             </td>
 
             <td className="align-middle">
-              {element.last_connected
-                ? moment(element.last_connected).calendar() +
-                  " " +
-                  moment(element.last_connected).fromNow()
-                : "Non disponible"}
+              <DateContainer isUser={isUser}>
+                {element.last_connected
+                  ? moment(element.last_connected).calendar() +
+                    " " +
+                    moment(element.last_connected).fromNow()
+                  : "Non disponible"}
+              </DateContainer>
             </td>
 
             <td className="align-middle">
-              {element.added_at
-                ? moment(element.added_at).calendar()
-                : "Non disponible"}
+              <DateContainer isUser={isUser}>
+                {element.added_at
+                  ? moment(element.added_at).calendar()
+                  : "Non disponible"}
+              </DateContainer>
             </td>
 
             {props.isUserAuthorizedToAddMembers && (
               <td className="align-middle">
                 <div style={{ display: "flex", flexDirection: "row" }}>
-                  <SeeButtonWithoutNavigation />
+                  <SeeButtonWithoutNavigation
+                    onClick={() => {
+                      props.setSelectedUser(element);
+                      props.toggleEditMemberModal();
+                    }}
+                  />
                   <DeleteButton
                     testID={"test_delete_" + element._id}
                     onClick={() => {}}

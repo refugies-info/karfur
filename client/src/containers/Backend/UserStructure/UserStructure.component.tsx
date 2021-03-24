@@ -75,7 +75,26 @@ export const UserStructureComponent = () => {
     dispatch(
       updateUserStructureActionCreator({
         modifyMembres: true,
-        data: { structureId: userStructure._id, userId },
+        data: { structureId: userStructure._id, userId, type: "create" },
+      })
+    );
+  };
+
+  const modifyRole = (
+    userId: ObjectId,
+    role: "contributeur" | "administrateur"
+  ) => {
+    if (!userStructure) return;
+
+    dispatch(
+      updateUserStructureActionCreator({
+        modifyMembres: true,
+        data: {
+          structureId: userStructure._id,
+          userId,
+          newRole: role,
+          type: "modify",
+        },
       })
     );
   };
@@ -107,6 +126,7 @@ export const UserStructureComponent = () => {
       structureId={userStructure._id}
       addUserInStructure={addUserInStructure}
       isAdmin={user.admin}
+      modifyRole={modifyRole}
     />
   );
 };
