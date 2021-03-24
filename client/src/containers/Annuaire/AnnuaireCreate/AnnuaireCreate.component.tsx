@@ -125,7 +125,7 @@ export const AnnuaireCreateComponent = (props: Props) => {
   };
 
   const updateStructure = () => {
-    dispatch(updateUserStructureActionCreator());
+    dispatch(updateUserStructureActionCreator({ modifyMembres: false }));
   };
 
   const setStructure = (structure: UserStructure) => {

@@ -8,6 +8,7 @@ import {
 import {
   fetchUserStructureActionCreator,
   setUserStructureActionCreator,
+  updateUserStructureActionCreator,
 } from "./userStructure.actions";
 import { logger } from "../../logger";
 import {
@@ -62,22 +63,43 @@ export function* fetchUserStructure(
   }
 }
 
-export function* updateUserStructure(): SagaIterator {
+export function* updateUserStructure(
+  action: ReturnType<typeof updateUserStructureActionCreator>
+): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE));
+    logger.info("[updateUserStructure] updating user structure", {
+      payload: action.payload,
+    });
+    const { modifyMembres, data } = action.payload;
+    let structureId;
+    if (!modifyMembres) {
+      const structure = yield select(userStructureSelector);
+      structureId = structure._id;
+      // we don't want to update membres because they are formatted
+      delete structure.membres;
+      if (!structure) {
+        logger.info("[updateUserStructure] no structure to update");
+        return;
+      }
+      yield call(API.updateStructure, { query: structure });
+    } else if (data) {
+      structureId = data.structureId;
 
-    logger.info("[updateUserStructure] updating user structure");
-    const structure = yield select(userStructureSelector);
-    // we don't want to update membres because they are formatted
-    delete structure.membres;
-    if (!structure) {
-      logger.info("[updateUserStructure] no structure to update");
-      return;
+      yield call(API.modifyUserRoleInStructure, {
+        query: {
+          membreId: data.userId,
+          structureId: data.structureId,
+          action: "create",
+          role: "contributeur",
+        },
+      });
+    } else {
+      throw new Error("NO_DATA");
     }
-    yield call(API.updateStructure, { query: structure });
     yield put(
       fetchUserStructureActionCreator({
-        structureId: structure._id,
+        structureId: structureId,
         shouldRedirect: true,
       })
     );

@@ -186,7 +186,7 @@ export const UserNotificationsComponent = (props: PropsBeforeInjection) => {
         hasResponsibleSeenNotification: true,
       })
     );
-    dispatch(updateUserStructureActionCreator());
+    dispatch(updateUserStructureActionCreator({ modifyMembres: false }));
     Swal.fire({
       title: "Yay...",
       text: "La notification a été supprimée",

@@ -32,14 +32,13 @@ export const UserStructureLoading = () => (
         amount={0}
       />
       <SkeletonTheme color={colors.blancSimple}>
-        <Skeleton count={1} height={50} />
+        <Skeleton count={1} height={50} width={700} />
       </SkeletonTheme>
       <SkeletonTheme color={colors.blancSimple}>
-        <Skeleton count={1} height={50} />
+        <Skeleton count={1} height={50} width={700} />
       </SkeletonTheme>
-
       <SkeletonTheme color={colors.blancSimple}>
-        <Skeleton count={1} height={50} />
+        <Skeleton count={1} height={50} width={700} />
       </SkeletonTheme>
     </StructureContainer>
   </MainContainer>

@@ -34,6 +34,8 @@ interface Props {
   name: string;
   membres: UserStructureMembre[];
   userId: ObjectId;
+  structureId: ObjectId;
+  addUserInStructure: (arg: ObjectId) => void;
 }
 
 const formatRoles = (membres: UserStructureMembre[]) =>
@@ -97,7 +99,11 @@ export const UserStructureDetails = (props: Props) => {
         </TitleContainer>
         <MembresTable membres={membres} userId={props.userId} />
       </StructureContainer>
-      <AddMemberModal toggle={toggleAddMemberModal} show={showAddMemberModal} />
+      <AddMemberModal
+        toggle={toggleAddMemberModal}
+        show={showAddMemberModal}
+        addUserInStructure={props.addUserInStructure}
+      />
     </MainContainer>
   );
 };

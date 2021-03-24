@@ -78,9 +78,11 @@ export const MembresTable = (props: Props) => (
             </td>
 
             <td className="align-middle">
-              {moment(element.last_connected).calendar() +
-                " " +
-                moment(element.last_connected).fromNow()}
+              {element.last_connected
+                ? moment(element.last_connected).calendar() +
+                  " " +
+                  moment(element.last_connected).fromNow()
+                : "Non disponible"}
             </td>
 
             <td className="align-middle">

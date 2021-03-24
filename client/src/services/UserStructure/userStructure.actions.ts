@@ -15,8 +15,10 @@ export const fetchUserStructureActionCreator = (value: {
   shouldRedirect: boolean;
 }) => action(FETCH_USER_STRUCTURE, value);
 
-export const updateUserStructureActionCreator = () =>
-  action(UPDATE_USER_STRUCTURE);
+export const updateUserStructureActionCreator = (value: {
+  modifyMembres: boolean;
+  data?: { userId: ObjectId; structureId: ObjectId };
+}) => action(UPDATE_USER_STRUCTURE, value);
 
 const actions = {
   setUserStructureActionCreator,

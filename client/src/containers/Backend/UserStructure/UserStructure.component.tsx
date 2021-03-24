@@ -2,7 +2,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserStructureActionCreator } from "../../../services/UserStructure/userStructure.actions";
+import {
+  fetchUserStructureActionCreator,
+  updateUserStructureActionCreator,
+} from "../../../services/UserStructure/userStructure.actions";
 import {
   userStructureSelector,
   userStructureMembresSelector,
@@ -20,6 +23,7 @@ import { UserStructureDetails } from "./components/UserStructureDetails";
 import styled from "styled-components";
 import { colors } from "../../../colors";
 import { userSelector } from "../../../services/User/user.selectors";
+import { ObjectId } from "mongodb";
 
 const ErrorContainer = styled.div`
   margin-top: 60px;
@@ -65,6 +69,17 @@ export const UserStructureComponent = () => {
   const isLoading = isLoadingFetch || isLoadingUpdate;
 
   const membres = useSelector(userStructureMembresSelector);
+
+  const addUserInStructure = (userId: ObjectId) => {
+    if (!userStructure) return;
+    dispatch(
+      updateUserStructureActionCreator({
+        modifyMembres: true,
+        data: { structureId: userStructure._id, userId },
+      })
+    );
+  };
+
   if (isLoading) {
     return <UserStructureLoading />;
   }
@@ -89,6 +104,8 @@ export const UserStructureComponent = () => {
       membres={membres}
       // @ts-ignore
       userId={user.userId}
+      structureId={userStructure._id}
+      addUserInStructure={addUserInStructure}
     />
   );
 };
