@@ -84,15 +84,34 @@ export function* updateUserStructure(
       }
       yield call(API.updateStructure, { query: structure });
     } else if (data) {
-      structureId = data.structureId;
-
-      yield call(API.modifyUserRoleInStructure, {
-        query: {
+      let query;
+      if (data.type === "create") {
+        query = {
           membreId: data.userId,
           structureId: data.structureId,
           action: "create",
           role: "contributeur",
-        },
+        };
+      } else if (data.type === "modify" && data.newRole) {
+        query = {
+          membreId: data.userId,
+          structureId: data.structureId,
+          action: "modify",
+          role: data.newRole,
+        };
+      } else if (data.type === "delete") {
+        query = {
+          membreId: data.userId,
+          structureId: data.structureId,
+          action: "delete",
+        };
+      } else {
+        throw new Error("ERROR_IN_DATA");
+      }
+      structureId = data.structureId;
+
+      yield call(API.modifyUserRoleInStructure, {
+        query,
       });
     } else {
       throw new Error("NO_DATA");

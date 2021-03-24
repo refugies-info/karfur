@@ -17,7 +17,12 @@ export const fetchUserStructureActionCreator = (value: {
 
 export const updateUserStructureActionCreator = (value: {
   modifyMembres: boolean;
-  data?: { userId: ObjectId; structureId: ObjectId };
+  data?: {
+    type: "modify" | "delete" | "create";
+    userId: ObjectId;
+    structureId: ObjectId;
+    newRole?: "contributeur" | "administrateur";
+  };
 }) => action(UPDATE_USER_STRUCTURE, value);
 
 const actions = {

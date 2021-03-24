@@ -292,12 +292,16 @@ describe("[Saga] Structures", () => {
         .isDone();
     });
 
-    it("should call and dispatch correct actions with modifyMembres true", () => {
+    it("should call and dispatch correct actions with modifyMembres true action create", () => {
       testSaga(updateUserStructure, {
         type: UPDATE_USER_STRUCTURE,
         payload: {
           modifyMembres: true,
-          data: { structureId: "structureId", userId: "userId" },
+          data: {
+            structureId: "structureId",
+            userId: "userId",
+            type: "create",
+          },
         },
       })
         .next()
@@ -323,19 +327,110 @@ describe("[Saga] Structures", () => {
         .next()
         .isDone();
     });
-  });
 
-  it("should call and dispatch correct actions with modifyMembres true but no data", () => {
-    testSaga(updateUserStructure, {
-      type: UPDATE_USER_STRUCTURE,
-      payload: {
-        modifyMembres: true,
-      },
-    })
-      .next()
-      .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
-      .next()
+    it("should call and dispatch correct actions with modifyMembres true but no data action create", () => {
+      testSaga(updateUserStructure, {
+        type: UPDATE_USER_STRUCTURE,
+        payload: {
+          modifyMembres: true,
+          type: "create",
+        },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
 
-      .isDone();
+        .isDone();
+    });
+
+    it("should call and dispatch correct actions with modifyMembres true action modify", () => {
+      testSaga(updateUserStructure, {
+        type: UPDATE_USER_STRUCTURE,
+        payload: {
+          modifyMembres: true,
+          data: {
+            structureId: "structureId",
+            userId: "userId",
+            type: "modify",
+            newRole: "administrateur",
+          },
+        },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .call(API.modifyUserRoleInStructure, {
+          query: {
+            membreId: "userId",
+            structureId: "structureId",
+            action: "modify",
+            role: "administrateur",
+          },
+        })
+        .next()
+        .put(
+          fetchUserStructureActionCreator({
+            structureId: "structureId",
+            shouldRedirect: true,
+          })
+        )
+        .next()
+        .put(finishLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .isDone();
+    });
+
+    it("should call and dispatch correct actions with modifyMembres true action modify without newRole", () => {
+      testSaga(updateUserStructure, {
+        type: UPDATE_USER_STRUCTURE,
+        payload: {
+          modifyMembres: true,
+          data: {
+            structureId: "structureId",
+            userId: "userId",
+            type: "modify",
+          },
+        },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .isDone();
+    });
+
+    it("should call and dispatch correct actions with modifyMembres true action delet", () => {
+      testSaga(updateUserStructure, {
+        type: UPDATE_USER_STRUCTURE,
+        payload: {
+          modifyMembres: true,
+          data: {
+            structureId: "structureId",
+            userId: "userId",
+            type: "delete",
+          },
+        },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .call(API.modifyUserRoleInStructure, {
+          query: {
+            membreId: "userId",
+            structureId: "structureId",
+            action: "delete",
+          },
+        })
+        .next()
+        .put(
+          fetchUserStructureActionCreator({
+            structureId: "structureId",
+            shouldRedirect: true,
+          })
+        )
+        .next()
+        .put(finishLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .isDone();
+    });
   });
 });
