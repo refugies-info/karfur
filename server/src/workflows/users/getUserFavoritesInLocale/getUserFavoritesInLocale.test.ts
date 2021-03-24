@@ -30,7 +30,7 @@ describe("getUserFavoritesInLocale", () => {
   });
 
   it("should throw 400 if no locale ", async () => {
-    const req = { fromSite: true, body: { noLocale: true } };
+    const req = { fromSite: true, query: { noLocale: true } };
     await getUserFavoritesInLocale(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
   });
@@ -38,7 +38,7 @@ describe("getUserFavoritesInLocale", () => {
   it("should return 200 and [] if no dispo pinned", async () => {
     const req = {
       fromSite: true,
-      body: { locale: "fr" },
+      query: { locale: "fr" },
       user: { _id: "userId" },
     };
     await getUserFavoritesInLocale(req, res);
@@ -49,7 +49,7 @@ describe("getUserFavoritesInLocale", () => {
   it("should return 200 and [] if no dispo pinned", async () => {
     const req = {
       fromSite: true,
-      body: { locale: "fr" },
+      query: { locale: "fr" },
       user: { _id: "userId", cookies: { parkourPinned: {} } },
     };
     await getUserFavoritesInLocale(req, res);
@@ -60,7 +60,7 @@ describe("getUserFavoritesInLocale", () => {
   it("should return 200 and [] if no dispo pinned", async () => {
     const req = {
       fromSite: true,
-      body: { locale: "fr" },
+      query: { locale: "fr" },
       user: { _id: "userId", cookies: { dispositifPinned: [] } },
     };
     await getUserFavoritesInLocale(req, res);
@@ -104,7 +104,7 @@ describe("getUserFavoritesInLocale", () => {
 
     const req = {
       fromSite: true,
-      body: { locale: "fr" },
+      query: { locale: "fr" },
       user: {
         _id: "userId",
         cookies: {
