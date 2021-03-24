@@ -115,6 +115,7 @@ export const EditMemberModal = (props: Props) => {
           disabled={
             !selectedRole || selectedRole === props.selectedUser.mainRole
           }
+          testID="test-validate-edit"
         >
           Valider
         </FButton>

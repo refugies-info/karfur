@@ -73,8 +73,6 @@ export const MembresTable = (props: Props) => (
             key={key}
             // onClick={() => props.onContributionRowClick(burl)}
             className="membres-table"
-            // @ts-ignore
-            testID={`test_${element._id}`}
           >
             <td className="align-middle">
               <RowContainer>
@@ -108,6 +106,8 @@ export const MembresTable = (props: Props) => (
               <td className="align-middle">
                 <div style={{ display: "flex", flexDirection: "row" }}>
                   <SeeButtonWithoutNavigation
+                    // @ts-ignore
+                    testID={"test_see_" + element._id}
                     onClick={() => {
                       props.setSelectedUser(element);
                       props.toggleEditMemberModal();
