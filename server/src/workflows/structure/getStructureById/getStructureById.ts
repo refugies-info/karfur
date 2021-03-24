@@ -154,7 +154,6 @@ export const getStructureById = async (
       structure,
       localeOfLocalizedDispositifsAssocies
     );
-
     const structureWithMembres = await addMembresIfNeeded(
       withMembresBoolean,
       // @ts-ignore
@@ -167,7 +166,7 @@ export const getStructureById = async (
     });
   } catch (error) {
     logger.error("[getStructureById] error while getting structure with id", {
-      error,
+      error: error.message,
     });
     if (error.message === "No structure") {
       res.status(404).json({
