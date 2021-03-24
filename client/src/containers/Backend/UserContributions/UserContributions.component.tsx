@@ -49,7 +49,7 @@ const WhiteContainer = styled.div`
   background: ${colors.blancSimple};
   border-radius: 12px;
   width: 100%;
-  padding: 32px;
+  padding: 20px;
 `;
 interface Props {
   history: any;
