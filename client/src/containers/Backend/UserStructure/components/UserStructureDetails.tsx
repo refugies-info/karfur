@@ -39,6 +39,7 @@ interface Props {
   addUserInStructure: (arg: ObjectId) => void;
   isAdmin: boolean;
   modifyRole: (arg: ObjectId, role: "contributeur" | "administrateur") => void;
+  deleteUserFromStructure: (arg: ObjectId) => void;
 }
 
 const checkIfUserIsAuthorizedToAddMembers = (
@@ -140,6 +141,7 @@ export const UserStructureDetails = (props: Props) => {
           isUserAuthorizedToAddMembers={isUserAuthorizedToAddMembers}
           toggleEditMemberModal={toggleEditMemberModal}
           setSelectedUser={setSelectedUser}
+          deleteUserFromStructure={props.deleteUserFromStructure}
         />
       </StructureContainer>
       {isUserAuthorizedToAddMembers && (

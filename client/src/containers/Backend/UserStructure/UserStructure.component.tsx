@@ -99,6 +99,21 @@ export const UserStructureComponent = () => {
     );
   };
 
+  const deleteUserFromStructure = (userId: ObjectId) => {
+    if (!userStructure) return;
+
+    dispatch(
+      updateUserStructureActionCreator({
+        modifyMembres: true,
+        data: {
+          structureId: userStructure._id,
+          userId,
+          type: "delete",
+        },
+      })
+    );
+  };
+
   if (isLoading) {
     return <UserStructureLoading />;
   }
@@ -127,6 +142,7 @@ export const UserStructureComponent = () => {
       addUserInStructure={addUserInStructure}
       isAdmin={user.admin}
       modifyRole={modifyRole}
+      deleteUserFromStructure={deleteUserFromStructure}
     />
   );
 };

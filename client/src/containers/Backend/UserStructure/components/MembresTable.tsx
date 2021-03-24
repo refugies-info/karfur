@@ -46,6 +46,7 @@ interface Props {
   isUserAuthorizedToAddMembers: boolean;
   toggleEditMemberModal: () => void;
   setSelectedUser: (user: null | UserStructureMembre) => void;
+  deleteUserFromStructure: (arg: ObjectId) => void;
 }
 
 const headers = ["Nom", "Role", "Dernière connexion", "Ajouté le"];
@@ -114,16 +115,8 @@ export const MembresTable = (props: Props) => (
                   />
                   <DeleteButton
                     testID={"test_delete_" + element._id}
-                    onClick={() => {}}
                     disabled={false}
-                    // onClick={(event: any) =>
-                    //   props.deleteDispositif(
-                    //     event,
-                    //     element._id,
-                    //     element.isAuthorizedToDelete
-                    //   )
-                    // }
-                    // disabled={!element.isAuthorizedToDelete}
+                    onClick={() => props.deleteUserFromStructure(element._id)}
                   />
                 </div>
               </td>
