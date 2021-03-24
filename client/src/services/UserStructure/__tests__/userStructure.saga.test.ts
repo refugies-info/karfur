@@ -11,7 +11,10 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../../LoadingStatus/loadingStatus.actions";
-import { FETCH_USER_STRUCTURE } from "../userStructure.actionTypes";
+import {
+  FETCH_USER_STRUCTURE,
+  UPDATE_USER_STRUCTURE,
+} from "../userStructure.actionTypes";
 import {
   setUserStructureActionCreator,
   fetchUserStructureActionCreator,
@@ -252,8 +255,11 @@ describe("[Saga] Structures", () => {
   });
 
   describe("updateUserStructure", () => {
-    it("should call and dispatch correct actions if no structure", () => {
-      testSaga(updateUserStructure)
+    it("should call and dispatch correct actions if no structure and modifyMembres false", () => {
+      testSaga(updateUserStructure, {
+        type: UPDATE_USER_STRUCTURE,
+        payload: { modifyMembres: false },
+      })
         .next()
         .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
         .next()
@@ -262,13 +268,16 @@ describe("[Saga] Structures", () => {
         .isDone();
     });
 
-    it("should call and dispatch correct actions if structure", () => {
-      testSaga(updateUserStructure)
+    it("should call and dispatch correct actions if structure and modifyMembres false", () => {
+      testSaga(updateUserStructure, {
+        type: UPDATE_USER_STRUCTURE,
+        payload: { modifyMembres: false },
+      })
         .next()
         .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
         .next()
         .select(userStructureSelector)
-        .next({ _id: "structureId" })
+        .next({ _id: "structureId", membres: "membres" })
         .call(API.updateStructure, { query: { _id: "structureId" } })
         .next()
         .put(
@@ -282,5 +291,51 @@ describe("[Saga] Structures", () => {
         .next()
         .isDone();
     });
+
+    it("should call and dispatch correct actions with modifyMembres true", () => {
+      testSaga(updateUserStructure, {
+        type: UPDATE_USER_STRUCTURE,
+        payload: {
+          modifyMembres: true,
+          data: { structureId: "structureId", userId: "userId" },
+        },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .call(API.modifyUserRoleInStructure, {
+          query: {
+            membreId: "userId",
+            structureId: "structureId",
+            action: "create",
+            role: "contributeur",
+          },
+        })
+        .next()
+        .put(
+          fetchUserStructureActionCreator({
+            structureId: "structureId",
+            shouldRedirect: true,
+          })
+        )
+        .next()
+        .put(finishLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .isDone();
+    });
+  });
+
+  it("should call and dispatch correct actions with modifyMembres true but no data", () => {
+    testSaga(updateUserStructure, {
+      type: UPDATE_USER_STRUCTURE,
+      payload: {
+        modifyMembres: true,
+      },
+    })
+      .next()
+      .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+      .next()
+
+      .isDone();
   });
 });
