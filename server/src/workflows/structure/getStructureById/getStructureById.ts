@@ -72,8 +72,9 @@ const addMembresIfNeeded = async (
   structure: StructureDoc
 ) => {
   if (withMembresBoolean) {
+    const structureMembres = structure.membres || [];
     let membresArray: Membre[] = [];
-    await asyncForEach(structure.membres, async (membre) => {
+    await asyncForEach(structureMembres, async (membre) => {
       try {
         if (!membre.userId) return;
         const neededFields = { username: 1, picture: 1, last_connected: 1 };
