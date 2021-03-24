@@ -47,5 +47,5 @@ module.exports = function (app) {
     checkToken.getId,
     updateDispositifReactions
   );
-  app.post("/getUserContributions", checkToken.check, getUserContributions);
+  app.get("/getUserContributions", checkToken.check, getUserContributions);
 };
