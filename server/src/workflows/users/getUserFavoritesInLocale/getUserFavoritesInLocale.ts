@@ -34,7 +34,7 @@ export const getUserFavoritesInLocale = async (
 ) => {
   try {
     checkRequestIsFromSite(req.fromSite);
-    if (!req.body.locale) {
+    if (!req.query.locale) {
       throw new Error("INVALID_REQUEST");
     }
 
@@ -62,7 +62,7 @@ export const getUserFavoritesInLocale = async (
       contenu: 1,
     };
 
-    const locale = req.body.locale;
+    const locale = req.query.locale;
 
     const result: any = [];
 

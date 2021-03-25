@@ -29,7 +29,7 @@ module.exports = function (app) {
   app.get("/getAllUsers", getAllUsers);
   app.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser);
   app.post("/exportUsers", checkToken.check, checkToken.getRoles, exportUsers);
-  app.post(
+  app.get(
     "/getUserFavoritesInLocale",
     checkToken.check,
     getUserFavoritesInLocale

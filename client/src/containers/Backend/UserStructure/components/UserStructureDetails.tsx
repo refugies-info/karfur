@@ -129,6 +129,7 @@ export const UserStructureDetails = (props: Props) => {
                 type="dark"
                 name="person-add-outline"
                 onClick={toggleAddMemberModal}
+                testID="test-add-member"
               >
                 Ajouter un membre
               </FButton>
