@@ -2,7 +2,7 @@ import { Table } from "reactstrap";
 import React from "react";
 import { UserStructureMembre } from "../../../../types/interface";
 import {
-  SeeButtonWithoutNavigation,
+  EditButtonWithoutNavigation,
   DeleteButton,
 } from "../../Admin/sharedComponents/SubComponents";
 import marioProfile from "assets/mario-profile.jpg";
@@ -105,7 +105,7 @@ export const MembresTable = (props: Props) => (
             {props.isUserAuthorizedToAddMembers && (
               <td className="align-middle">
                 <div style={{ display: "flex", flexDirection: "row" }}>
-                  <SeeButtonWithoutNavigation
+                  <EditButtonWithoutNavigation
                     // @ts-ignore
                     testID={"test_see_" + element._id}
                     onClick={() => {

@@ -17,6 +17,7 @@ import styled from "styled-components";
 import { colors } from "../../../colors";
 import { userSelector } from "../../../services/User/user.selectors";
 import { ObjectId } from "mongodb";
+import Swal from "sweetalert2";
 
 const ErrorContainer = styled.div`
   margin-top: 60px;
@@ -95,16 +96,29 @@ export const UserStructureComponent = () => {
   const deleteUserFromStructure = (userId: ObjectId) => {
     if (!userStructure) return;
 
-    dispatch(
-      updateUserStructureActionCreator({
-        modifyMembres: true,
-        data: {
-          structureId: userStructure._id,
-          userId,
-          type: "delete",
-        },
-      })
-    );
+    Swal.fire({
+      title: "Êtes-vous sûr ?",
+      text: "Vous êtes sur le point d'enlever un membre de votre structure.",
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: colors.rouge,
+      cancelButtonColor: colors.vert,
+      confirmButtonText: "Oui, l'enlever",
+      cancelButtonText: "Annuler",
+    }).then((result) => {
+      if (result.value) {
+        dispatch(
+          updateUserStructureActionCreator({
+            modifyMembres: true,
+            data: {
+              structureId: userStructure._id,
+              userId,
+              type: "delete",
+            },
+          })
+        );
+      }
+    });
   };
 
   if (isLoading) {

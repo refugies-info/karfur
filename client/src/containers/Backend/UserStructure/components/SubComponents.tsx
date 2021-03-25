@@ -28,7 +28,7 @@ export const StructurePictureContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 280px;
+  width: 315px;
   height: fit-content;
 `;
 

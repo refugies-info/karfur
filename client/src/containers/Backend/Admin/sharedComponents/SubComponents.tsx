@@ -234,10 +234,18 @@ export const SeeButton = (props: { burl: string }) => (
   </ButtonContainer>
 );
 
-export const SeeButtonWithoutNavigation = (props: { onClick?: () => void }) => (
-  <ButtonContainer hoverColor={colors.darkColor} onClick={props.onClick}>
+export const SeeButtonWithoutNavigation = () => (
+  <ButtonContainer hoverColor={colors.darkColor}>
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon name="eye" fill={colors.blancSimple} size="20" />
+    </div>
+  </ButtonContainer>
+);
+
+export const EditButtonWithoutNavigation = (props: { onClick: () => void }) => (
+  <ButtonContainer hoverColor={colors.darkColor} onClick={props.onClick}>
+    <div style={{ marginBottom: "4px" }}>
+      <EVAIcon name="edit" fill={colors.blancSimple} size="20" />
     </div>
   </ButtonContainer>
 );
