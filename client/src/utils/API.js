@@ -255,14 +255,12 @@ export default {
     }),
 
   getUserFavoritesInLocale: (locale) =>
-    axios.post(
-      burl + "/user/getUserFavoritesInLocale",
-      { locale },
-      { headers }
-    ),
+    axios.get(burl + `/user/getUserFavoritesInLocale?locale=${locale}`, {
+      headers,
+    }),
 
   getUserContributions: () =>
-    axios.post(burl + "/user/getUserContributions", {}, { headers }),
+    axios.get(burl + "/user/getUserContributions", { headers }),
 
   updateUserFavorites: (query) =>
     axios.post(burl + "/user/updateUserFavorites", query, { headers }),

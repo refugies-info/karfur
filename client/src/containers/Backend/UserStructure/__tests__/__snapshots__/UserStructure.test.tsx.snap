@@ -1,0 +1,3355 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserStructure should render correctly when add member modal is open 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 42px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c3 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 280px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c7 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c6 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c12 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c12:hover {
+  background-color: #212121;
+}
+
+.c13 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c13:hover {
+  background-color: #f44336;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c9 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c14 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+}
+
+.c10 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c15 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c11 {
+  color: #212121;
+}
+
+.c16 {
+  color: #0421b1;
+}
+
+.c17 {
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+.c19 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.c18 {
+  background: #2d9cdb;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 15px;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+<div
+  className="c0 structure-detail"
+>
+  <div
+    className="c1"
+  >
+    <img
+      alt="ACRO"
+      className="sponsor-img"
+      src={Object {}}
+    />
+    <div
+      className="c2"
+    >
+      structureTest
+    </div>
+    <a
+      aria-current={null}
+      className="figma-btn dark "
+      href="/annuaire-create"
+      onClick={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="book-outline"
+          data-eva-fill="#fff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Modifier dans l'annuaire
+    </a>
+  </div>
+  <div
+    className="c3"
+  >
+    <div
+      className="c4"
+    >
+      <div
+        className="c5"
+      >
+        <div
+          className="c6"
+        >
+          Membres
+        </div>
+        <div
+          className="c7"
+        >
+          2
+        </div>
+        <div
+          className="c6"
+        >
+          
+        </div>
+      </div>
+      <div>
+        <button
+          className="figma-btn dark "
+          onClick={[Function]}
+          testID="test-add-member"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="person-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+          Ajouter un membre
+        </button>
+      </div>
+    </div>
+    <div
+      className="table-responsive"
+    >
+      <table
+        className="table table-borderless"
+      >
+        <thead>
+          <tr>
+            <th>
+              Nom
+            </th>
+            <th>
+              Role
+            </th>
+            <th>
+              Dernière connexion
+            </th>
+            <th>
+              Ajouté le
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            className="membres-table"
+          >
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c8"
+              >
+                <img
+                  className="user-img mr-8"
+                  src={Object {}}
+                />
+                <div
+                  className="c9"
+                >
+                  membre1
+                </div>
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c10"
+              >
+                Rédacteur
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c11"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c11"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <div
+                  className="c12"
+                  onClick={[Function]}
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="eye"
+                        data-eva-fill="#ffffff"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="c13"
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="trash"
+                        data-eva-fill="#ffffff"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr
+            className="membres-table"
+          >
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c8"
+              >
+                <img
+                  className="user-img mr-8"
+                  src={Object {}}
+                />
+                <div
+                  className="c14"
+                >
+                  membre2
+                </div>
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c15"
+              >
+                Responsable
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c16"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c16"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <div
+                  className="c12"
+                  onClick={[Function]}
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="eye"
+                        data-eva-fill="#ffffff"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="c13"
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="trash"
+                        data-eva-fill="#ffffff"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div>
+    <div
+      className="c17"
+    >
+      Ajouter un membre
+    </div>
+    <div
+      className="c18"
+    >
+      <b>
+        Attention :
+      </b>
+       assurez-vous que la personne que vous souhaitez ajouter a déjà créé un compte sur réfugiés.info.
+    </div>
+    <div
+      className="md-form form-sm form-2 pl-0 search-bar inner-addon right-addon isArray"
+    >
+      <div
+        aria-expanded={false}
+        aria-haspopup="listbox"
+        aria-owns="react-autowhatever-1"
+        className="react-autosuggest__container"
+        role="combobox"
+      >
+        <input
+          aria-activedescendant={null}
+          aria-autocomplete="list"
+          aria-controls="react-autowhatever-1"
+          autoComplete="off"
+          className="react-autosuggest__input"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
+        <div
+          className="react-autosuggest__suggestions-container"
+          id="react-autowhatever-1"
+          role="listbox"
+        />
+      </div>
+    </div>
+    <div
+      className="c19"
+    >
+      <button
+        className="figma-btn outline-black mr-8"
+        onClick={[Function]}
+      >
+        <span
+          className="mr-10"
+        >
+          <i
+            data-eva="close-outline"
+            data-eva-fill="#fff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+        Annuler
+      </button>
+      <button
+        className="figma-btn validate "
+        disabled={true}
+        onClick={[Function]}
+      >
+        <span
+          className="mr-10"
+        >
+          <i
+            data-eva="checkmark-outline"
+            data-eva-fill="#fff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+        Ajouter
+      </button>
+    </div>
+  </div>
+  <div />
+</div>
+`;
+
+exports[`UserStructure should render correctly when edit member modal is open, select respo and validate 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 42px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c3 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 280px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c7 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c6 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c12 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c12:hover {
+  background-color: #212121;
+}
+
+.c13 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c13:hover {
+  background-color: #f44336;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c9 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c14 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+}
+
+.c10 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c15 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c11 {
+  color: #212121;
+}
+
+.c16 {
+  color: #0421b1;
+}
+
+.c20 {
+  background: #E0E0E0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #212121;
+  box-sizing: border-box;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 4px 0px 4px 0px;
+  cursor: pointer;
+  color: #212121;
+}
+
+.c23 {
+  background: #ffffff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #212121;
+  box-sizing: border-box;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 4px 0px 4px 0px;
+  cursor: pointer;
+  color: #212121;
+}
+
+.c22 {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin-bottom: 10px;
+}
+
+.c21 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c18 {
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 40px;
+  margin-right: 15px;
+}
+
+.c24 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.c17 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.c19 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+<div
+  className="c0 structure-detail"
+>
+  <div
+    className="c1"
+  >
+    <img
+      alt="ACRO"
+      className="sponsor-img"
+      src={Object {}}
+    />
+    <div
+      className="c2"
+    >
+      structureTest
+    </div>
+    <a
+      aria-current={null}
+      className="figma-btn dark "
+      href="/annuaire-create"
+      onClick={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="book-outline"
+          data-eva-fill="#fff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Modifier dans l'annuaire
+    </a>
+  </div>
+  <div
+    className="c3"
+  >
+    <div
+      className="c4"
+    >
+      <div
+        className="c5"
+      >
+        <div
+          className="c6"
+        >
+          Membres
+        </div>
+        <div
+          className="c7"
+        >
+          2
+        </div>
+        <div
+          className="c6"
+        >
+          
+        </div>
+      </div>
+      <div>
+        <button
+          className="figma-btn dark "
+          onClick={[Function]}
+          testID="test-add-member"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="person-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+          Ajouter un membre
+        </button>
+      </div>
+    </div>
+    <div
+      className="table-responsive"
+    >
+      <table
+        className="table table-borderless"
+      >
+        <thead>
+          <tr>
+            <th>
+              Nom
+            </th>
+            <th>
+              Role
+            </th>
+            <th>
+              Dernière connexion
+            </th>
+            <th>
+              Ajouté le
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            className="membres-table"
+          >
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c8"
+              >
+                <img
+                  className="user-img mr-8"
+                  src={Object {}}
+                />
+                <div
+                  className="c9"
+                >
+                  membre1
+                </div>
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c10"
+              >
+                Rédacteur
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c11"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c11"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <div
+                  className="c12"
+                  onClick={[Function]}
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="eye"
+                        data-eva-fill="#ffffff"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="c13"
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="trash"
+                        data-eva-fill="#ffffff"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr
+            className="membres-table"
+          >
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c8"
+              >
+                <img
+                  className="user-img mr-8"
+                  src={Object {}}
+                />
+                <div
+                  className="c14"
+                >
+                  membre2
+                </div>
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c15"
+              >
+                Responsable
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c16"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c16"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <div
+                  className="c12"
+                  onClick={[Function]}
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="eye"
+                        data-eva-fill="#ffffff"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="c13"
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="trash"
+                        data-eva-fill="#ffffff"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div />
+  <div>
+    <div
+      className="c17"
+    >
+      <div
+        className="c18"
+      >
+        Modifier le rôle de
+      </div>
+      <img
+        className="user-img mr-8"
+        src={Object {}}
+      />
+      <div
+        className="c19"
+      >
+        membre1
+      </div>
+    </div>
+    <div
+      className="c20"
+      onClick={[Function]}
+    >
+      <div
+        className="c21"
+      >
+        <div
+          className="c22"
+        >
+          Nommer « rédacteur » 
+        </div>
+        <span>
+          <i
+            data-eva="radio-button-on"
+            data-eva-fill="#212121"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+      </div>
+      Éditer et valider les fiches 
+      <br />
+      Accepter les fiches proposées à ma structure 
+      <br />
+      Voir les réactions aux fiches de ma structure 
+      <br />
+      Compléter la fiche annuaire de ma structure 
+      <br />
+    </div>
+    <div
+      className="c23"
+      onClick={[Function]}
+    >
+      <div
+        className="c21"
+      >
+        <div
+          className="c22"
+        >
+          Nommer « responsable »
+        </div>
+        <span>
+          <i
+            data-eva="radio-button-off"
+            data-eva-fill="#212121"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+      </div>
+      Éditer et valider les fiches 
+      <br />
+      Accepter les fiches proposées à ma structure 
+      <br />
+      Voir les réactions aux fiches de ma structure 
+      <br />
+      Compléter la fiche annuaire de ma structure 
+      <br />
+      <span>
+        + Ajouter ou supprimer d'autres membres
+        <br />
+      </span>
+      <span>
+        + Nommer d'autres responsables
+        <br />
+      </span>
+    </div>
+    <div
+      className="c24"
+    >
+      <button
+        className="figma-btn outline-black mr-8"
+        onClick={[Function]}
+      >
+        <span
+          className="mr-10"
+        >
+          <i
+            data-eva="close-outline"
+            data-eva-fill="#fff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+        Annuler
+      </button>
+      <button
+        className="figma-btn validate "
+        disabled={true}
+        onClick={[Function]}
+        testID="test-validate-edit"
+      >
+        <span
+          className="mr-10"
+        >
+          <i
+            data-eva="checkmark-outline"
+            data-eva-fill="#fff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+        Valider
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`UserStructure should render correctly when edit member modal is open, select respo and validate 2`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 42px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c3 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 280px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c7 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c6 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c12 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c12:hover {
+  background-color: #212121;
+}
+
+.c13 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c13:hover {
+  background-color: #f44336;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c9 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c14 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+}
+
+.c10 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c15 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c11 {
+  color: #212121;
+}
+
+.c16 {
+  color: #0421b1;
+}
+
+.c20 {
+  background: #ffffff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #212121;
+  box-sizing: border-box;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 4px 0px 4px 0px;
+  cursor: pointer;
+  color: #212121;
+}
+
+.c23 {
+  background: #2d9cdb;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #2d9cdb;
+  box-sizing: border-box;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 4px 0px 4px 0px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.c22 {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin-bottom: 10px;
+}
+
+.c21 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c18 {
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 40px;
+  margin-right: 15px;
+}
+
+.c24 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.c17 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.c19 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+<div
+  className="c0 structure-detail"
+>
+  <div
+    className="c1"
+  >
+    <img
+      alt="ACRO"
+      className="sponsor-img"
+      src={Object {}}
+    />
+    <div
+      className="c2"
+    >
+      structureTest
+    </div>
+    <a
+      aria-current={null}
+      className="figma-btn dark "
+      href="/annuaire-create"
+      onClick={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="book-outline"
+          data-eva-fill="#fff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Modifier dans l'annuaire
+    </a>
+  </div>
+  <div
+    className="c3"
+  >
+    <div
+      className="c4"
+    >
+      <div
+        className="c5"
+      >
+        <div
+          className="c6"
+        >
+          Membres
+        </div>
+        <div
+          className="c7"
+        >
+          2
+        </div>
+        <div
+          className="c6"
+        >
+          
+        </div>
+      </div>
+      <div>
+        <button
+          className="figma-btn dark "
+          onClick={[Function]}
+          testID="test-add-member"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="person-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+          Ajouter un membre
+        </button>
+      </div>
+    </div>
+    <div
+      className="table-responsive"
+    >
+      <table
+        className="table table-borderless"
+      >
+        <thead>
+          <tr>
+            <th>
+              Nom
+            </th>
+            <th>
+              Role
+            </th>
+            <th>
+              Dernière connexion
+            </th>
+            <th>
+              Ajouté le
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            className="membres-table"
+          >
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c8"
+              >
+                <img
+                  className="user-img mr-8"
+                  src={Object {}}
+                />
+                <div
+                  className="c9"
+                >
+                  membre1
+                </div>
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c10"
+              >
+                Rédacteur
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c11"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c11"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <div
+                  className="c12"
+                  onClick={[Function]}
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="eye"
+                        data-eva-fill="#ffffff"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="c13"
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="trash"
+                        data-eva-fill="#ffffff"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr
+            className="membres-table"
+          >
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c8"
+              >
+                <img
+                  className="user-img mr-8"
+                  src={Object {}}
+                />
+                <div
+                  className="c14"
+                >
+                  membre2
+                </div>
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c15"
+              >
+                Responsable
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c16"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c16"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <div
+                  className="c12"
+                  onClick={[Function]}
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="eye"
+                        data-eva-fill="#ffffff"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="c13"
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="trash"
+                        data-eva-fill="#ffffff"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div />
+  <div>
+    <div
+      className="c17"
+    >
+      <div
+        className="c18"
+      >
+        Modifier le rôle de
+      </div>
+      <img
+        className="user-img mr-8"
+        src={Object {}}
+      />
+      <div
+        className="c19"
+      >
+        membre1
+      </div>
+    </div>
+    <div
+      className="c20"
+      onClick={[Function]}
+    >
+      <div
+        className="c21"
+      >
+        <div
+          className="c22"
+        >
+          Nommer « rédacteur » 
+        </div>
+        <span>
+          <i
+            data-eva="radio-button-off"
+            data-eva-fill="#212121"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+      </div>
+      Éditer et valider les fiches 
+      <br />
+      Accepter les fiches proposées à ma structure 
+      <br />
+      Voir les réactions aux fiches de ma structure 
+      <br />
+      Compléter la fiche annuaire de ma structure 
+      <br />
+    </div>
+    <div
+      className="c23"
+      onClick={[Function]}
+    >
+      <div
+        className="c21"
+      >
+        <div
+          className="c22"
+        >
+          Nommer « responsable »
+        </div>
+        <span>
+          <i
+            data-eva="radio-button-on"
+            data-eva-fill="#ffffff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+      </div>
+      Éditer et valider les fiches 
+      <br />
+      Accepter les fiches proposées à ma structure 
+      <br />
+      Voir les réactions aux fiches de ma structure 
+      <br />
+      Compléter la fiche annuaire de ma structure 
+      <br />
+      <span>
+        + Ajouter ou supprimer d'autres membres
+        <br />
+      </span>
+      <span>
+        + Nommer d'autres responsables
+        <br />
+      </span>
+    </div>
+    <div
+      className="c24"
+    >
+      <button
+        className="figma-btn outline-black mr-8"
+        onClick={[Function]}
+      >
+        <span
+          className="mr-10"
+        >
+          <i
+            data-eva="close-outline"
+            data-eva-fill="#fff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+        Annuler
+      </button>
+      <button
+        className="figma-btn validate "
+        disabled={false}
+        onClick={[Function]}
+        testID="test-validate-edit"
+      >
+        <span
+          className="mr-10"
+        >
+          <i
+            data-eva="checkmark-outline"
+            data-eva-fill="#fff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+        Valider
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`UserStructure should render correctly when loading 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 42px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c3 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 280px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c6 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c5 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c2 {
+  width: 160px;
+  height: 160px;
+  background-color: #ffffff;
+  margin-bottom: 8px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    />
+    <div
+      className="css-nitgap-SkeletonTheme"
+    >
+      <span>
+        <span
+          className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+          style={
+            Object {
+              "height": 20,
+              "width": 160,
+            }
+          }
+        >
+          ‌
+        </span>
+      </span>
+    </div>
+  </div>
+  <div
+    className="c3"
+  >
+    <div
+      className="c4"
+    >
+      <div
+        className="c5"
+      >
+        Membres
+      </div>
+      <div
+        className="c6"
+      >
+        ...
+      </div>
+      <div
+        className="c5"
+      >
+        
+      </div>
+    </div>
+    <div
+      className="css-nitgap-SkeletonTheme"
+    >
+      <span>
+        <span
+          className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+          style={
+            Object {
+              "height": 50,
+              "width": 700,
+            }
+          }
+        >
+          ‌
+        </span>
+      </span>
+    </div>
+    <div
+      className="css-nitgap-SkeletonTheme"
+    >
+      <span>
+        <span
+          className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+          style={
+            Object {
+              "height": 50,
+              "width": 700,
+            }
+          }
+        >
+          ‌
+        </span>
+      </span>
+    </div>
+    <div
+      className="css-nitgap-SkeletonTheme"
+    >
+      <span>
+        <span
+          className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+          style={
+            Object {
+              "height": 50,
+              "width": 700,
+            }
+          }
+        >
+          ‌
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`UserStructure should render correctly when no structure 1`] = `
+<div>
+  No structure
+</div>
+`;
+
+exports[`UserStructure should render correctly when structure en attente 1`] = `
+.c0 {
+  margin-top: 60px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.c1 {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  color: #f44336;
+  margin-top: 60px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    Votre structure n'a pas été validée. Veuillez contacter l'équipe de réfugiés.info via le live chat en bas à droite de votre écran.
+  </div>
+</div>
+`;
+
+exports[`UserStructure should render correctly when structure with membres when user is redacteur 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 42px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c3 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 280px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c7 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c6 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c12 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c9 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+}
+
+.c13 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c10 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c14 {
+  color: #212121;
+}
+
+.c11 {
+  color: #0421b1;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+<div
+  className="c0 structure-detail"
+>
+  <div
+    className="c1"
+  >
+    <img
+      alt="ACRO"
+      className="sponsor-img"
+      src={Object {}}
+    />
+    <div
+      className="c2"
+    >
+      structureTest
+    </div>
+    <a
+      aria-current={null}
+      className="figma-btn dark "
+      href="/annuaire-create"
+      onClick={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="book-outline"
+          data-eva-fill="#fff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Modifier dans l'annuaire
+    </a>
+  </div>
+  <div
+    className="c3"
+  >
+    <div
+      className="c4"
+    >
+      <div
+        className="c5"
+      >
+        <div
+          className="c6"
+        >
+          Membres
+        </div>
+        <div
+          className="c7"
+        >
+          2
+        </div>
+        <div
+          className="c6"
+        >
+          
+        </div>
+      </div>
+    </div>
+    <div
+      className="table-responsive"
+    >
+      <table
+        className="table table-borderless"
+      >
+        <thead>
+          <tr>
+            <th>
+              Nom
+            </th>
+            <th>
+              Role
+            </th>
+            <th>
+              Dernière connexion
+            </th>
+            <th>
+              Ajouté le
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            className="membres-table"
+          >
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c8"
+              >
+                <img
+                  className="user-img mr-8"
+                  src={Object {}}
+                />
+                <div
+                  className="c9"
+                >
+                  membre1
+                </div>
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c10"
+              >
+                Rédacteur
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c11"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c11"
+              >
+                Non disponible
+              </span>
+            </td>
+          </tr>
+          <tr
+            className="membres-table"
+          >
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c8"
+              >
+                <img
+                  className="user-img mr-8"
+                  src={Object {}}
+                />
+                <div
+                  className="c12"
+                >
+                  membre2
+                </div>
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c13"
+              >
+                Responsable
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c14"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c14"
+              >
+                Non disponible
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`UserStructure should render correctly when structure with membres when user is respo 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 42px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c3 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 280px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c7 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c6 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c12 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c12:hover {
+  background-color: #212121;
+}
+
+.c13 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c13:hover {
+  background-color: #f44336;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c9 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c14 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+}
+
+.c10 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c15 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c11 {
+  color: #212121;
+}
+
+.c16 {
+  color: #0421b1;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+<div
+  className="c0 structure-detail"
+>
+  <div
+    className="c1"
+  >
+    <img
+      alt="ACRO"
+      className="sponsor-img"
+      src={Object {}}
+    />
+    <div
+      className="c2"
+    >
+      structureTest
+    </div>
+    <a
+      aria-current={null}
+      className="figma-btn dark "
+      href="/annuaire-create"
+      onClick={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="book-outline"
+          data-eva-fill="#fff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Modifier dans l'annuaire
+    </a>
+  </div>
+  <div
+    className="c3"
+  >
+    <div
+      className="c4"
+    >
+      <div
+        className="c5"
+      >
+        <div
+          className="c6"
+        >
+          Membres
+        </div>
+        <div
+          className="c7"
+        >
+          2
+        </div>
+        <div
+          className="c6"
+        >
+          
+        </div>
+      </div>
+      <div>
+        <button
+          className="figma-btn dark "
+          onClick={[Function]}
+          testID="test-add-member"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="person-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+          Ajouter un membre
+        </button>
+      </div>
+    </div>
+    <div
+      className="table-responsive"
+    >
+      <table
+        className="table table-borderless"
+      >
+        <thead>
+          <tr>
+            <th>
+              Nom
+            </th>
+            <th>
+              Role
+            </th>
+            <th>
+              Dernière connexion
+            </th>
+            <th>
+              Ajouté le
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            className="membres-table"
+          >
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c8"
+              >
+                <img
+                  className="user-img mr-8"
+                  src={Object {}}
+                />
+                <div
+                  className="c9"
+                >
+                  membre1
+                </div>
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c10"
+              >
+                Rédacteur
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c11"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c11"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <div
+                  className="c12"
+                  onClick={[Function]}
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="eye"
+                        data-eva-fill="#ffffff"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="c13"
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="trash"
+                        data-eva-fill="#ffffff"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr
+            className="membres-table"
+          >
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c8"
+              >
+                <img
+                  className="user-img mr-8"
+                  src={Object {}}
+                />
+                <div
+                  className="c14"
+                >
+                  membre2
+                </div>
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                className="c15"
+              >
+                Responsable
+              </div>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c16"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <span
+                className="c16"
+              >
+                Non disponible
+              </span>
+            </td>
+            <td
+              className="align-middle"
+            >
+              <div
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                  }
+                }
+              >
+                <div
+                  className="c12"
+                  onClick={[Function]}
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="eye"
+                        data-eva-fill="#ffffff"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="c13"
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <div
+                    style={
+                      Object {
+                        "marginBottom": "4px",
+                      }
+                    }
+                  >
+                    <span>
+                      <i
+                        data-eva="trash"
+                        data-eva-fill="#ffffff"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div />
+  <div />
+</div>
+`;

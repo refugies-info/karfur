@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,12 +11,7 @@ import {
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { UserStructureLoading } from "./components/UserStructureLoading";
-import {
-  MainContainer,
-  StructurePictureContainer,
-  StructureContainer,
-} from "./components/SubComponents";
-import { TitleWithNumber } from "../middleOfficeSharedComponents";
+
 import { UserStructureDetails } from "./components/UserStructureDetails";
 import styled from "styled-components";
 import { colors } from "../../../colors";
