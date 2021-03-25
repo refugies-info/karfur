@@ -53,7 +53,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 280px;
+  width: 315px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -715,7 +715,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 280px;
+  width: 315px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -1482,7 +1482,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 280px;
+  width: 315px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -2249,7 +2249,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 280px;
+  width: 315px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -2496,7 +2496,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 280px;
+  width: 315px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -2859,7 +2859,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 280px;
+  width: 315px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
