@@ -8,7 +8,13 @@ import {
   fetchUserStructureActionCreator,
   updateUserStructureActionCreator,
 } from "../../../../services/UserStructure/userStructure.actions";
+import Swal from "sweetalert2";
+import { colors } from "../../../../colors";
 
+jest.mock("sweetalert2", () => ({
+  __esModule: true, // this property makes it work
+  default: { fire: jest.fn().mockResolvedValue("test") },
+}));
 // need to mock react strap because issue with modal
 jest.mock("reactstrap", () => {
   const { Table } = jest.requireActual("reactstrap");
@@ -197,7 +203,11 @@ describe("UserStructure", () => {
     });
   });
 
-  it("should delete user ", () => {
+  it("should delete user ", async () => {
+    const promise = Promise.resolve();
+
+    Swal.fire.mockResolvedValueOnce({ value: true });
+
     window.scrollTo = jest.fn();
     let component;
 
@@ -215,14 +225,16 @@ describe("UserStructure", () => {
     act(() => {
       component.root.findByProps({ testID: "test_delete_id1" }).props.onClick();
     });
-
-    expect(updateUserStructureActionCreator).toHaveBeenCalledWith({
-      modifyMembres: true,
-      data: {
-        structureId: "structureId",
-        userId: "id1",
-        type: "delete",
-      },
+    expect(Swal.fire).toHaveBeenCalledWith({
+      title: "Êtes-vous sûr ?",
+      text: "Vous êtes sur le point d'enlever un membre de votre structure.",
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: colors.rouge,
+      cancelButtonColor: colors.vert,
+      confirmButtonText: "Oui, l'enlever",
+      cancelButtonText: "Annuler",
     });
+    await act(() => promise);
   });
 });
