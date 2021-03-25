@@ -7,6 +7,7 @@ import { getActiveStructures } from "../workflows/structure/getActiveStructures"
 import { createStructure } from "../workflows/structure/createStructure";
 import { updateStructure } from "../workflows/structure/updateStructure";
 import { modifyUserRoleInStructure } from "../workflows/structure/modifyUserRoleInStructure";
+import { modifyMembreRoleInStructures } from "../workflows/structure/modifyMembreRoleInStructures";
 
 module.exports = function (app) {
   app.post("/get_structure", structure.get_structure);
@@ -24,4 +25,5 @@ module.exports = function (app) {
     checkToken.check,
     modifyUserRoleInStructure
   );
+  app.post("/modifyMembreRoleInStructures", modifyMembreRoleInStructures);
 };
