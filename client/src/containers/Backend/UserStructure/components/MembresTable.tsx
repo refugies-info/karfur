@@ -37,8 +37,9 @@ const RoleContainer = styled.div`
   width: fit-content;
 `;
 
-const DateContainer = styled.span`
+const DateContainer = styled.div`
   color: ${(props) => (props.isUser ? colors.bleuCharte : colors.noir)};
+  max-width: 190px;
 `;
 interface Props {
   membres: UserStructureMembre[];
