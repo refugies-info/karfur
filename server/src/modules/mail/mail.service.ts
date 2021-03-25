@@ -128,3 +128,33 @@ export const sendPublishedFicheMail = () => {
     });
   }
 };
+
+export const sendReviewFicheMail = () => {
+  try {
+    logger.info("[sendReviewFicheMail] received");
+
+    const dynamicData = {
+      to: "agkieny@gmail.com",
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        pseudo: "agathe",
+        titreInformatif: "titre",
+        lien: "http://localhost:3000/dispositif/5f918fbafc486c0047ef548d",
+        rubrique: { quoi: true, qui: false },
+      },
+    };
+    const templateName = "reviewFiche";
+    // @ts-ignore
+    sendMail(templateName, dynamicData);
+    // await addMailEvent({ templateName, username, email, userId });
+    return;
+  } catch (error) {
+    logger.error("[sendReviewFicheMail] error", {
+      error: error.message,
+    });
+  }
+};
