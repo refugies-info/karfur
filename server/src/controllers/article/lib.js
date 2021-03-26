@@ -54,103 +54,6 @@ function add_article(req, res) {
   });
 }
 
-function get_article(req, res) {
-  if (!req.body || !req.body.query) {
-    res.status(400).json({
-      text: "Requête invalide",
-    });
-  } else {
-    let { query, locale, sort, populate, limit, random } = req.body;
-    locale = locale || "fr";
-    if (!req.fromSite) {
-      //On n'autorise pas les populate en API externe
-      populate = "";
-    }
-    let isStructure = false,
-      structId = null;
-    if (query._id && query._id.includes("struct_")) {
-      isStructure = true;
-      structId = query._id;
-      query = { isStructure: true };
-    }
-    let promise = null;
-    if (random) {
-      promise = Article.aggregate([
-        { $match: query },
-        { $sample: { size: 1 } },
-      ]);
-    } else {
-      promise = Article.find(query).sort(sort).populate(populate).limit(limit);
-    }
-    promise
-      .then(async (result) => {
-        let structureArr = [];
-        // eslint-disable-next-line no-use-before-define
-        await asyncForEach(result, async (article, i) => {
-          if (article.isStructure) {
-            // eslint-disable-next-line no-use-before-define
-            structureArr = _createFromNested(
-              article.body,
-              locale,
-              query,
-              article.status,
-              result[0].created_at,
-              result[0].updatedAt
-            );
-            if (isStructure) {
-              structureArr = structureArr
-                .filter((x) => x._id === structId)
-                .map((x) => {
-                  return { ...x, articleId: result[0]._id };
-                });
-            }
-            if (random && structureArr.length > 1) {
-              //Je vais chercher tous les strings que cet utilisateur a déjà traduit pour ne pas lui reproposer
-              const traductions = await Traduction.find({
-                userId: req.userId,
-                type: "string",
-                langueCible: locale,
-                avancement: 1,
-                articleId: article._id,
-              });
-              structureArr =
-                traductions && traductions.length > 0
-                  ? structureArr.filter(
-                      (x) => !traductions.some((y) => x._id === y.jsonId)
-                    )
-                  : structureArr;
-              structureArr =
-                structureArr.length > 1
-                  ? [
-                      structureArr[
-                        Math.floor(Math.random() * structureArr.length)
-                      ],
-                    ]
-                  : structureArr;
-            }
-            result.splice(i, 1);
-          } else {
-            // eslint-disable-next-line no-use-before-define
-            returnLocalizedContent(article.body, locale);
-            article.title = article.title[locale] || article.title.fr;
-            article.avancement =
-              article.avancement[locale] || article.avancement.fr;
-          }
-        });
-        res.status(200).json({
-          text: "Succès",
-          data: [...structureArr, ...result],
-        });
-      })
-      .catch((err) => {
-        res.status(500).json({
-          text: "Erreur interne",
-          error: err,
-        });
-      });
-  }
-}
-
 function add_traduction(req, res) {
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
@@ -811,7 +714,6 @@ async function asyncForEach(array, callback) {
 
 //On exporte notre fonction
 exports.add_article = add_article;
-exports.get_article = get_article;
 exports.add_traduction = add_traduction;
 exports.remove_traduction = remove_traduction;
 

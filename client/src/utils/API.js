@@ -113,12 +113,6 @@ export default {
     return axios.post(burl + "/events/get_event", params, { headers: headers });
   },
 
-  getArticle: (params = {}) => {
-    return axios.post(burl + "/article/get_article", params, {
-      headers: headers,
-    });
-  },
-
   add_traduction: (query) => {
     return axios.post(burl + "/article/add_traduction", query, {
       headers: headers,
@@ -143,27 +137,6 @@ export default {
     return axios.post(burl + "/article/add_article", query, {
       headers: headers,
     });
-  },
-  get_article: (
-    query,
-    locale,
-    sort = {},
-    populate = "",
-    limit = null,
-    random = false
-  ) => {
-    return axios.post(
-      burl + "/article/get_article",
-      {
-        query: query,
-        locale: locale,
-        sort: sort,
-        populate: populate,
-        limit: limit,
-        random: random,
-      },
-      { headers: headers }
-    );
   },
 
   add_dispositif: (query) => {

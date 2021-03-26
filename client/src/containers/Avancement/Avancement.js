@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { Col, Row, Progress, Table } from "reactstrap";
@@ -17,7 +18,7 @@ import Skeleton from "react-loading-skeleton";
 import produce from "immer";
 
 import "./Avancement.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 import _ from "lodash";
 
 moment.locale("fr");
@@ -122,7 +123,6 @@ export class Avancement extends Component {
     } else if (isExpert) {
       i18nCode = await this._loadLangue(itemId, isExpert);
     }
-    this._loadArticles(itemId, i18nCode);
     this.setState({ loader: true });
     API.get_tradForReview({
       query: { langueCible: i18nCode },
@@ -135,20 +135,6 @@ export class Avancement extends Component {
     this.setState({ itemId, isExpert, isLangue });
     window.scrollTo(0, 0);
   }
-
-  _loadArticles = (itemId, i18nCode = null) => {
-    if (itemId) {
-      let query = {};
-      if (i18nCode) {
-        let nom = "avancement." + i18nCode;
-        query = { $or: [{ [nom]: { $lt: 1 } }, { [nom]: null }] };
-      }
-      API.get_article(query, i18nCode).then((data_res) => {
-        const articles = data_res.data.data;
-        this.setState({ data: articles });
-      });
-    }
-  };
 
   _loadLangue = async (itemId, isExpert) => {
     if (itemId) {
@@ -764,10 +750,7 @@ export class Avancement extends Component {
                     className={"text-" + colorAvancement(element.avancement)}
                   >
                     {element.avancement === 1 ? (
-                      <EVAIcon
-                        name="checkmark-circle-2"
-                        fill={colors.vert}
-                      />
+                      <EVAIcon name="checkmark-circle-2" fill={colors.vert} />
                     ) : (
                       <span>
                         {Math.round((element.avancement || 0) * 100)} %
@@ -993,14 +976,6 @@ export class Avancement extends Component {
           />
         </Row>
 
-        {/*<Row className="avancement-header">
-          <Col className="tableau-header">
-            <div className="float-right">
-              Plus que <b className="big-number">{(this.state.data || []).length}</b> éléments à traduire, on lâche rien !
-            </div>
-          </Col>
-    </Row>*/}
-
         <div className="tableau">
           <Table
             responsive
@@ -1076,14 +1051,6 @@ export class Avancement extends Component {
             </tbody>
           </Table>
         </div>
-
-        {/* <AvancementLangue 
-          mainView={this.state.mainView}
-          title={this.state.title}
-          headers={this.state.headers}
-          data={this.state.data}
-          switchView={this.switchView}
-        /> */}
       </div>
     );
   }
