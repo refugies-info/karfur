@@ -181,74 +181,6 @@ function add_traduction(req, res) {
   }
 }
 
-function remove_traduction(req, res) {
-  if (!req.fromSite) {
-    return res.status(405).json({ text: "Requête bloquée par API" });
-  } else if (!req.body || !req.body.query) {
-    return res.status(400).json({ text: "Requête invalide" });
-  }
-  const { query, locale } = req.body;
-  if (locale === "fr") {
-    res.status(401).json({ text: "Suppression impossible" });
-    return false;
-  }
-  var find = new Promise(function (resolve, reject) {
-    Article.find(query).exec(function (err, result) {
-      if (err) {
-        reject(500);
-      } else {
-        if (result) {
-          resolve(result);
-        } else {
-          reject(404);
-        }
-      }
-    });
-  });
-
-  find.then(
-    function (result) {
-      delete result[0].title[locale];
-      result[0].markModified("title");
-      delete result[0].avancement[locale];
-      result[0].markModified("avancement");
-      // eslint-disable-next-line no-use-before-define
-      _removeLocale({ children: result[0] }, locale);
-      result[0].markModified("body");
-      result[0].save((err, article_saved) => {
-        if (err) {
-          res.status(500).json({ text: "Erreur interne" });
-        } else {
-          // eslint-disable-next-line no-console
-          console.log("suppression de la traduction réussi");
-          res.status(200).json({
-            text: "Succès",
-            data: article_saved,
-          });
-        }
-      });
-    },
-    function (error) {
-      switch (error) {
-        case 500:
-          res.status(500).json({
-            text: "Erreur interne",
-          });
-          break;
-        case 404:
-          res.status(404).json({
-            text: "Pas de résultat",
-          });
-          break;
-        default:
-          res.status(500).json({
-            text: "Erreur interne",
-          });
-      }
-    }
-  );
-}
-
 const make_nodes_unique_and_local = (object, uid) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   [].forEach.call(object, (el, i) => {
@@ -668,7 +600,6 @@ const _createFromNested = (
 
 //On exporte notre fonction
 exports.add_traduction = add_traduction;
-exports.remove_traduction = remove_traduction;
 
 //Utilisés dans d'autres controllers
 exports.addTranslationRestructure = addTranslationRestructure;

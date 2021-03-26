@@ -127,12 +127,6 @@ export default {
     );
   },
 
-  remove_traduction: (query) => {
-    return axios.post(burl + "/article/remove_traduction", query, {
-      headers: headers,
-    });
-  },
-
   add_dispositif: (query) => {
     return axios.post(burl + "/dispositifs/add_dispositif", query, {
       headers: headers,
