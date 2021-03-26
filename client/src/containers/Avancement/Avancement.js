@@ -65,13 +65,10 @@ export class Avancement extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mainView: true,
       title: diffData.all.title,
       headers: diffData.all.headers,
       loader: false,
       langue: {},
-      data: [],
-      themes: [],
       itemId: null,
       isLangue: false,
       isExpert: props.isExpert,
@@ -145,7 +142,6 @@ export class Avancement extends Component {
       );
       if (data_res && data_res.data && data_res.data.data) {
         let langue = data_res.data.data[0];
-        this._loadTraductions(langue);
         this.setState({
           langue: langue,
           title: diffData.traducteur.title + " : " + langue.langueFr,
@@ -155,42 +151,6 @@ export class Avancement extends Component {
       }
     }
     return false;
-  };
-
-  _loadTraductions = () => {
-    // if(langue.i18nCode){
-    //   API.get_tradForReview({query: {'langueCible':langue.i18nCode, 'status' : 'En attente'},populate: 'articleId userId'}).then(data_res => {
-    //     let articles=data_res.data.data;
-    //     articles=articles.map(x => {return {_id:x._id,title:x.initialText.title,nombreMots:x.nbMots,avancement:{[langue.i18nCode]:1}, status:x.status, articleId:(x.articleId || {})._id, created_at:x.created_at, user:x.userId, type: "string"}});
-    //     this.setState({data:articles});
-    //   })
-    // }
-  };
-
-  onExiting = () => {
-    this.animating = true;
-  };
-
-  onExited = () => {
-    this.animating = false;
-  };
-
-  next = () => {
-    if (this.animating) return;
-    const nextIndex =
-      this.state.activeIndex === this.state.themes.length - 1
-        ? 0
-        : this.state.activeIndex + 1;
-    this.setState({ activeIndex: nextIndex });
-  };
-
-  previous = () => {
-    if (this.animating) return;
-    const nextIndex =
-      this.state.activeIndex === 0
-        ? this.state.themes.length - 1
-        : this.state.activeIndex - 1;
-    this.setState({ activeIndex: nextIndex });
   };
 
   goToTraduction = (element) => {
@@ -204,14 +164,6 @@ export class Avancement extends Component {
       search: "?id=" + this.state.langue._id,
     });
   };
-
-  upcoming = () =>
-    Swal.fire({
-      title: "Oh non!",
-      text: "Cette fonctionnalité n'est pas encore activée",
-      type: "error",
-      timer: 1500,
-    });
 
   reorderOnTopPubblish = () => {
     this.setState(
@@ -387,11 +339,10 @@ export class Avancement extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    const { isExpert, data } = this.state;
+    const { isExpert } = this.state;
     let traductions = [];
     if (
       prevState.traductionsFaites !== this.state.traductionsFaites ||
-      prevState.data !== this.state.data ||
       (!_.isEmpty(this.props.dispositifs) &&
         this.props.dispositifs !== prevProps.dispositifs)
     ) {
@@ -459,13 +410,6 @@ export class Avancement extends Component {
             (this.state.traductionsFaites || [])
               .filter((y) => {
                 return y.articleId === x._id;
-                /*      if (y.articleId === x._id && y.status === "Validée" && x.avancement === 1) {
-                  return "À revoir"
-                } else if (y.articleId === x._id && y.status === "Validée" && x.avancement !== 1)  {
-                  return "Publiées"
-                } else if(y.articleId === x._id && y.status === "En attente") {
-                return "En attente";
-                } */
               })
               .map((z) => {
                 if (z.status === "À revoir") {
@@ -484,67 +428,11 @@ export class Avancement extends Component {
             ? this.state.traductionsFaites.find((y) => y.articleId === x._id)
                 .updatedAt
             : false,
-          users: [
-            ...new Set(
-              (this.state.traductionsFaites || [])
-                .filter((y) => y.articleId === x._id)
-                .map((z) => (z.userId || {})._id) || []
-            ),
-          ].map((id) => ({
-            _id: id,
-            picture:
-              (
-                (
-                  (this.state.traductionsFaites || []).find(
-                    (t) => (t.userId || {})._id === id
-                  ) || {}
-                ).userId || {}
-              ).picture || {},
-          })),
+
           typeContenu: x.typeContenu || "dispositif",
         })),
-        ...data.map((x) => {
-          return {
-            ...x,
-            avancement:
-              Math.max(
-                0,
-                ...((this.state.traductionsFaites || [])
-                  .filter((y) => y.jsonId === x._id)
-                  .map((z) => z.avancement || -1) || [])
-              ) || 0,
-            users: [
-              ...new Set(
-                (this.state.traductionsFaites || [])
-                  .filter((y) => y.jsonId === x._id)
-                  .map((z) => (z.userId || {})._id) || []
-              ),
-            ].map((id) => ({
-              _id: id,
-              picture:
-                (
-                  (
-                    (this.state.traductionsFaites || []).find(
-                      (t) => (t.userId || {})._id === id
-                    ) || {}
-                  ).userId || {}
-                ).picture || {},
-            })),
-            typeContenu: "string",
-            _id: isExpert
-              ? (
-                  (this.state.traductionsFaites || []).find(
-                    (y) => y.jsonId === x._id && y.avancement === 1
-                  ) || {}
-                )._id
-              : x._id,
-          };
-        }),
-        //...this.props.dispositifs.filter(x => x.status === "Actif" && (x.avancement || {})[this.state.langue.i18nCode] !== 1).map(x => ( {
       ];
-      /*     traductions = traductions.filter(x =>
-        isExpert ? x.avancement >= 1 : x.avancement < 1
-      ); */
+
       this.setState({
         traductions,
         unfiltered: traductions,
@@ -554,18 +442,7 @@ export class Avancement extends Component {
         toTranslateCount: this.countfilter(traductions, "À traduire"),
         dispositifCount: this.countType(traductions, "dispositif"),
         demarcheCount: this.countType(traductions, "demarche"),
-        stringCount: this.countType(traductions, "string"),
       });
-      /*   if (
-        this.countfilter(traductions, "À revoir") === 0 &&
-        this.countfilter(traductions, "À traduire") > 0
-      ) {
-        console.log(this.countfilter(traductions, "À traduire"), this.countfilter(traductions, "À revoir"), traductions)
-        this.setState({
-          toTranslate: true,
-          review: false,
-        });
-      } */
     }
     if (
       prevState.waiting !== this.state.waiting ||
@@ -584,7 +461,6 @@ export class Avancement extends Component {
         ),
         dispositifCount: this.countType(this.state.traductions, "dispositif"),
         demarcheCount: this.countType(this.state.traductions, "demarche"),
-        stringCount: this.countType(this.state.traductions, "string"),
       });
       if (
         this.countfilter(traductions, "À revoir") === 0 &&
@@ -595,12 +471,6 @@ export class Avancement extends Component {
           review: false,
         });
       }
-      /*       if (this.countfilter(traductions, "À revoir") == 0) {
-        this.setState({
-          toTranslate: true,
-          review: false,
-        });
-      } */
     }
   }
 
@@ -640,6 +510,7 @@ export class Avancement extends Component {
 
   render() {
     const { langue, isExpert, data, traductions } = this.state;
+    console.log("traductions", traductions);
 
     const displayedText =
       (data || []).length === 0 || (this.props.dispositifs || []).length === 0
@@ -662,9 +533,7 @@ export class Avancement extends Component {
               (element.statusTrad === "À traduire" &&
                 !this.state.toTranslate) ||
               (element.typeContenu === "demarche" && !this.state.demarche) ||
-              (element.typeContenu === "dispositif" &&
-                !this.state.dispositif) ||
-              (element.typeContenu === "string" && !this.state.string))
+              (element.typeContenu === "dispositif" && !this.state.dispositif))
           ) {
             return;
           }
@@ -676,9 +545,7 @@ export class Avancement extends Component {
               (element.statusTrad === "À traduire" &&
                 !this.state.toTranslate) ||
               (element.typeContenu === "demarche" && !this.state.demarche) ||
-              (element.typeContenu === "dispositif" &&
-                !this.state.dispositif) ||
-              (element.typeContenu === "string" && !this.state.string))
+              (element.typeContenu === "dispositif" && !this.state.dispositif))
           ) {
             return;
           }
@@ -782,14 +649,11 @@ export class Avancement extends Component {
               <td className="align-middle">
                 {element.statusTrad ? element.statusTrad : ""}
               </td>
-              <td className="align-middle">
-                {element.isStructure ? "Site" : jsUcfirst(element.typeContenu)}
-              </td>
+              <td className="align-middle">{jsUcfirst(element.typeContenu)}</td>
               <td className="align-middle fit-content">
                 {element.updatedAt
                   ? moment(element.updatedAt).format("YYYY/MM/DD H:mm")
                   : "Pas encore traduite"}
-                {/* <FButton type="light-action" name="bookmark-outline" fill={colors.noir} onClick={e => {e.stopPropagation();this.upcoming();}}/> */}
               </td>
               <td className="align-middle fit-content elevated-button">
                 {this.props.isAdmin ? (
@@ -869,20 +733,6 @@ export class Avancement extends Component {
               / {langue.langueFr}
             </h2>
           </Col>
-          <Col className="avancement-header-right tableau-header align-right">
-            <FButton
-              type="outline-black"
-              name="info-outline"
-              fill={colors.noir}
-              className="mr-10"
-              onClick={this.upcoming}
-            >
-              Aide
-            </FButton>
-            <FButton type="dark" name="flip-2-outline" onClick={this.upcoming}>
-              Sélection aléatoire
-            </FButton>
-          </Col>
         </Row>
         <Row>
           <StyledStatus
@@ -957,16 +807,7 @@ export class Avancement extends Component {
                 ? " (" + this.state.dispositifCount + ")"
                 : "")}
           </StyledStatus>
-          <StyledStatus
-            onClick={() => this.reorderOnTopType("string")}
-            className={
-              "status-pill bg-" +
-              (this.state.string ? "black text-white" : "white")
-            }
-          >
-            {"Interface" +
-              (!this.state.loader ? " (" + this.state.stringCount + ")" : "")}
-          </StyledStatus>
+
           <StyledInput
             type="text"
             name="search"
