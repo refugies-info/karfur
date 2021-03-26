@@ -22,7 +22,7 @@ import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { UserProfileLoading } from "./components/UserProfileLoading";
 import { colors } from "../../../colors";
-
+import { Navigation } from "../Navigation";
 declare const window: Window;
 
 export const MainContainer = styled.div`
@@ -285,183 +285,195 @@ export const UserProfileComponent = (props: Props) => {
   }
 
   return (
-    <MainContainer className="user-profile">
-      <ProfilePictureContainer>
-        <img src={getUserImage(user)} alt="my-image" className="user-img" />
-        <UserName>{user.username}</UserName>
-        <FButton
-          type="dark"
-          name="upload-outline"
-          className="upload-button mb-16"
-        >
-          <Input
-            className="file-input"
-            type="file"
-            id="picture"
-            name="structure"
-            accept="image/*"
-            onChange={handleFileInputChange}
-          />
-          {isPictureUploading && <Spinner color="success" className="ml-10" />}
-          {!isPictureUploading &&
-            props.t("UserProfile.Modifier ma photo", "Modifier ma photo")}
-        </FButton>
-        <DescriptionText>
-          {props.t(
-            "UserProfile.photoUsage",
-            "Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer."
-          )}
-        </DescriptionText>
-      </ProfilePictureContainer>
-      <ProfileContainer>
-        <Title>{props.t("UserProfile.votre pseudo", "Votre pseudonyme")}</Title>
-        <RowContainer>
-          <FInputContainer>
-            <FInput
-              id="username"
-              value={username}
-              onChange={onChange}
-              newSize={true}
-              autoFocus={false}
-              prepend
-              prependName="person-outline"
-            />
-          </FInputContainer>
-          <div>
-            <FButton
-              disabled={isPseudoModifyDisabled}
-              type="validate-light"
-              name="checkmark-outline"
-              className="ml-8"
-              onClick={onPseudoModificationValidate}
-              testID="test-save-pseudo"
-            >
-              {props.t("UserProfile.Enregistrer", "Enregistrer")}
-            </FButton>
-          </div>
-        </RowContainer>
-        <DescriptionText>
-          {props.t(
-            "UserProfile.pseudoExplication",
-            "Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer."
-          )}
-        </DescriptionText>
-        <Title marginTop={"24px"}>
-          {props.t("Register.Votre email", "Votre email")}
-        </Title>
-        <RowContainer>
-          <FInputContainer>
-            <FInput
-              id="email"
-              value={email}
-              onChange={onChange}
-              newSize={true}
-              autoFocus={false}
-              prepend
-              prependName="email-outline"
-              placeholder={props.t(
-                "Register.Renseignez votre adresse email",
-                "Renseignez votre adresse email"
-              )}
-            />
-          </FInputContainer>
-          <div>
-            <FButton
-              disabled={isEmailModifyDisabled}
-              type="validate-light"
-              name="checkmark-outline"
-              className="ml-8"
-              onClick={onEmailModificationValidate}
-              testID="test-save-email"
-            >
-              {props.t("UserProfile.Enregistrer", "Enregistrer")}
-            </FButton>
-          </div>
-        </RowContainer>
-        <DescriptionText>
-          {props.t(
-            "UserProfile.emailExplication",
-            "Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site."
-          )}
-        </DescriptionText>
-        <Title marginTop={"24px"}>
-          {props.t("UserProfile.Votre mot de passe", "Votre mot de passe")}
-        </Title>
-        {!isModifyPasswordOpen && (
+    <>
+      <Navigation />
+      <MainContainer className="user-profile">
+        <ProfilePictureContainer>
+          <img src={getUserImage(user)} alt="my-image" className="user-img" />
+          <UserName>{user.username}</UserName>
           <FButton
             type="dark"
-            name="edit-outline"
-            onClick={openModifyPassword}
-            testID="test-modify-password"
+            name="upload-outline"
+            className="upload-button mb-16"
           >
-            {props.t("UserProfile.modifyPassword", "Modifier mon mot de passe")}
+            <Input
+              className="file-input"
+              type="file"
+              id="picture"
+              name="structure"
+              accept="image/*"
+              onChange={handleFileInputChange}
+            />
+            {isPictureUploading && (
+              <Spinner color="success" className="ml-10" />
+            )}
+            {!isPictureUploading &&
+              props.t("UserProfile.Modifier ma photo", "Modifier ma photo")}
           </FButton>
-        )}
-        {isModifyPasswordOpen && (
-          <>
+          <DescriptionText>
+            {props.t(
+              "UserProfile.photoUsage",
+              "Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer."
+            )}
+          </DescriptionText>
+        </ProfilePictureContainer>
+        <ProfileContainer>
+          <Title>
+            {props.t("UserProfile.votre pseudo", "Votre pseudonyme")}
+          </Title>
+          <RowContainer>
             <FInputContainer>
               <FInput
-                id="current-password"
-                value={currentPassword}
+                id="username"
+                value={username}
                 onChange={onChange}
                 newSize={true}
-                autoFocus={true}
+                autoFocus={false}
                 prepend
-                prependName="lock-outline"
-                placeholder="Votre mot de passe actuel"
-                append
-                appendName={
-                  isCurrentPasswordVisible ? "eye-off-2-outline" : "eye-outline"
-                }
-                inputClassName="password-input"
-                onAppendClick={toggleCurrentPasswordVisibility}
-                type={isCurrentPasswordVisible ? "text" : "password"}
+                prependName="person-outline"
               />
             </FInputContainer>
-            <FInputContainer>
-              <PasswordField
-                id="new-password"
-                value={newPassword}
-                onChange={onChange}
-                passwordVisible={isNewPasswordVisible}
-                onClick={toggleNewPasswordVisibility}
-                t={props.t}
-                passwordScore={newPasswordScore}
-              />
-            </FInputContainer>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "flex-end",
-                marginTop: "16px",
-              }}
-            >
-              {isChangePasswordLoading ? (
-                <FButton
-                  disabled={true}
-                  type="validate-light"
-                  name="checkmark-outline"
-                  className="mt-8"
-                  onClick={modifyPassword}
-                >
-                  <Spinner />
-                </FButton>
-              ) : (
-                <FButton
-                  disabled={newPasswordScore < 1 || !currentPassword}
-                  type="validate-light"
-                  name="checkmark-outline"
-                  onClick={modifyPassword}
-                  testID="test-save-password"
-                >
-                  {props.t("UserProfile.Enregistrer", "Enregistrer")}
-                </FButton>
-              )}
+            <div>
+              <FButton
+                disabled={isPseudoModifyDisabled}
+                type="validate-light"
+                name="checkmark-outline"
+                className="ml-8"
+                onClick={onPseudoModificationValidate}
+                testID="test-save-pseudo"
+              >
+                {props.t("UserProfile.Enregistrer", "Enregistrer")}
+              </FButton>
             </div>
-          </>
-        )}
-      </ProfileContainer>
-    </MainContainer>
+          </RowContainer>
+          <DescriptionText>
+            {props.t(
+              "UserProfile.pseudoExplication",
+              "Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer."
+            )}
+          </DescriptionText>
+          <Title marginTop={"24px"}>
+            {props.t("Register.Votre email", "Votre email")}
+          </Title>
+          <RowContainer>
+            <FInputContainer>
+              <FInput
+                id="email"
+                value={email}
+                onChange={onChange}
+                newSize={true}
+                autoFocus={false}
+                prepend
+                prependName="email-outline"
+                placeholder={props.t(
+                  "Register.Renseignez votre adresse email",
+                  "Renseignez votre adresse email"
+                )}
+              />
+            </FInputContainer>
+            <div>
+              <FButton
+                disabled={isEmailModifyDisabled}
+                type="validate-light"
+                name="checkmark-outline"
+                className="ml-8"
+                onClick={onEmailModificationValidate}
+                testID="test-save-email"
+              >
+                {props.t("UserProfile.Enregistrer", "Enregistrer")}
+              </FButton>
+            </div>
+          </RowContainer>
+          <DescriptionText>
+            {props.t(
+              "UserProfile.emailExplication",
+              "Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site."
+            )}
+          </DescriptionText>
+          <Title marginTop={"24px"}>
+            {props.t("UserProfile.Votre mot de passe", "Votre mot de passe")}
+          </Title>
+          {!isModifyPasswordOpen && (
+            <FButton
+              type="dark"
+              name="edit-outline"
+              onClick={openModifyPassword}
+              testID="test-modify-password"
+            >
+              {props.t(
+                "UserProfile.modifyPassword",
+                "Modifier mon mot de passe"
+              )}
+            </FButton>
+          )}
+          {isModifyPasswordOpen && (
+            <>
+              <FInputContainer>
+                <FInput
+                  id="current-password"
+                  value={currentPassword}
+                  onChange={onChange}
+                  newSize={true}
+                  autoFocus={true}
+                  prepend
+                  prependName="lock-outline"
+                  placeholder="Votre mot de passe actuel"
+                  append
+                  appendName={
+                    isCurrentPasswordVisible
+                      ? "eye-off-2-outline"
+                      : "eye-outline"
+                  }
+                  inputClassName="password-input"
+                  onAppendClick={toggleCurrentPasswordVisibility}
+                  type={isCurrentPasswordVisible ? "text" : "password"}
+                />
+              </FInputContainer>
+              <FInputContainer>
+                <PasswordField
+                  id="new-password"
+                  value={newPassword}
+                  onChange={onChange}
+                  passwordVisible={isNewPasswordVisible}
+                  onClick={toggleNewPasswordVisibility}
+                  t={props.t}
+                  passwordScore={newPasswordScore}
+                />
+              </FInputContainer>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "flex-end",
+                  marginTop: "16px",
+                }}
+              >
+                {isChangePasswordLoading ? (
+                  <FButton
+                    disabled={true}
+                    type="validate-light"
+                    name="checkmark-outline"
+                    className="mt-8"
+                    onClick={modifyPassword}
+                  >
+                    <Spinner />
+                  </FButton>
+                ) : (
+                  <FButton
+                    disabled={newPasswordScore < 1 || !currentPassword}
+                    type="validate-light"
+                    name="checkmark-outline"
+                    onClick={modifyPassword}
+                    testID="test-save-password"
+                  >
+                    {props.t("UserProfile.Enregistrer", "Enregistrer")}
+                  </FButton>
+                )}
+              </div>
+            </>
+          )}
+        </ProfileContainer>
+      </MainContainer>
+    </>
   );
 };
