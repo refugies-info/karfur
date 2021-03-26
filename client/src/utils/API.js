@@ -214,6 +214,14 @@ export default {
       headers,
     }),
 
+  getDispositifsWithTranslationAvancement: (locale) =>
+    axios.get(
+      burl + `/user/getDispositifsWithTranslationAvancement?locale=${locale}`,
+      {
+        headers,
+      }
+    ),
+
   getUserContributions: () =>
     axios.get(burl + "/user/getUserContributions", { headers }),
 

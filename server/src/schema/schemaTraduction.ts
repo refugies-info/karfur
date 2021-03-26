@@ -108,7 +108,8 @@ export interface TraductionDoc extends mongoose.Document {
   title: string;
   score: number;
   isExpert: boolean;
-  created_at: Moment;
+  created_at: number;
+  updatedAt: number;
 }
 
 // @ts-ignore
