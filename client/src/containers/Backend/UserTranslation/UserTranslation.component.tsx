@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { userFirstSelectedLanguageSelector } from "../../../services/User/user.selectors";
 import { Props } from "./UserTranslation.container";
+import API from "../../../utils/API";
 
 export interface PropsBeforeInjection {
   match: any;
@@ -18,6 +19,7 @@ export const UserTranslationComponent = (props: Props) => {
     console.log("use effect");
     if (userTradLanguage && !param) {
       console.log("userTradLanguage reidrect", userTradLanguage);
+      API.getDispositifsWithTranslationAvancement(userTradLanguage);
       return props.history.push(
         "/backend/user-translation/" + userTradLanguage
       );

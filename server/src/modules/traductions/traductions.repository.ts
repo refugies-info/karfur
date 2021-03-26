@@ -5,7 +5,7 @@ export const getTraductionsByLanguage = async (
   isExpert: boolean,
   neededFields: Record<string, number>
 ) => {
-  let query: any = { langue };
+  let query: any = { langueCible: langue };
   if (!isExpert) {
     query = {
       $or: [
@@ -16,7 +16,7 @@ export const getTraductionsByLanguage = async (
           status: "Validée",
         },
       ],
-      langue,
+      langueCible: langue,
     };
   }
   return await Traduction.find(query, neededFields);

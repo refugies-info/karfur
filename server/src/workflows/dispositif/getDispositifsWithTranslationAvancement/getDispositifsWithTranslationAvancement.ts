@@ -43,7 +43,7 @@ export const getDispositifsWithTranslationAvancement = async (
 
     // @ts-ignore populate user.roles
     const isExpert = (req.user.roles || []).some((x) => x.nom === "ExpertTrad");
-
+    console.log("isExpert", isExpert);
     const neededFields = {
       titreInformatif: 1,
       titreMarque: 1,
@@ -66,13 +66,15 @@ export const getDispositifsWithTranslationAvancement = async (
       isExpert,
       traductionFields
     );
-
-    let results: Result[];
+    console.log("traductions", traductions.length);
+    let results: Result[] = [];
 
     activeDispositifs.forEach((dispositif) => {
+      console.log("dispositif", dispositif._id);
       const correspondingTrads = traductions.filter(
         (trad) => trad.articleId.toString() === dispositif._id.toString()
       );
+      console.log("correspondingTrads", correspondingTrads);
       turnToLocalizedTitles(dispositif, "fr");
       const dispositifData = {
         _id: dispositif._id,
@@ -90,7 +92,7 @@ export const getDispositifsWithTranslationAvancement = async (
           lastTradUpdatedAt: null,
           avancementTrad: 0,
           avancementExpert: 0,
-          tradStatus: "A traduire",
+          tradStatus: "À traduire",
         });
       }
       const lastTradUpdatedAt = Math.max(
@@ -110,6 +112,7 @@ export const getDispositifsWithTranslationAvancement = async (
           })
           .map((z) => z.avancement || -1)
       );
+
       // @ts-ignore : titreInformatif and titreMarque are string after turnToLocalized
       return results.push({
         ...dispositifData,
@@ -119,6 +122,31 @@ export const getDispositifsWithTranslationAvancement = async (
         tradStatus: correspondingTrads[0].status,
       });
     });
+
+    console.log(
+      "reqults a revoir",
+      results.filter((res) => res.tradStatus === "À revoir").length
+    );
+    console.log(
+      "reqults a trad",
+      results.filter((res) => res.tradStatus === "À traduire").length
+    );
+    results
+      .filter((res) => res.tradStatus === "À traduire")
+      .map((data) => {
+        console.log("a trad", data.titreInformatif, data._id);
+        return data;
+      });
+
+    console.log(
+      "reqults publiee",
+      results.filter((res) => res.tradStatus === "Validée").length
+    );
+
+    console.log(
+      "reqults a valider",
+      results.filter((res) => res.tradStatus === "En attente").length
+    );
 
     res.status(200).json({ data: results });
   } catch (error) {
