@@ -1,4 +1,4 @@
-const Traduction = require("../../schema/schemaTraduction.js");
+const { Traduction } = require("../../schema/schemaTraduction");
 const Article = require("../../schema/schemaArticle.js");
 const Indicator = require("../../schema/schemaIndicators");
 const { Dispositif } = require("../../schema/schemaDispositif");
@@ -413,7 +413,7 @@ function get_tradForReview(req, res) {
   } else {
     populate = "";
   }
-
+  console.log("get_tradForReview query", query);
   if (
     query.articleId &&
     typeof query.articleId === "string" &&
