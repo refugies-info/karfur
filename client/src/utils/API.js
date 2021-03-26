@@ -133,12 +133,6 @@ export default {
     });
   },
 
-  add_article: (query) => {
-    return axios.post(burl + "/article/add_article", query, {
-      headers: headers,
-    });
-  },
-
   add_dispositif: (query) => {
     return axios.post(burl + "/dispositifs/add_dispositif", query, {
       headers: headers,

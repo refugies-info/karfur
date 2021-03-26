@@ -14,46 +14,6 @@ const { sanitizeOptions } = require("./data");
 let elementId = Math.floor(Math.random() * Math.floor(9999999));
 let nombreMots = 0;
 
-function add_article(req, res) {
-  if (!req.fromSite) {
-    return res.status(405).json({ text: "Requête bloquée par API" });
-  } else if (!req.body || !req.body.title || !req.body.body) {
-    return res.status(400).json({ text: "Requête invalide" });
-  }
-
-  //On transforme le html en JSON après l'avoir nettoyé
-  let draft = req.body.body;
-  let html = draft.blocks ? draftToHtml(draft) : draft;
-  let safeHTML = sanitizeHtml(html, sanitizeOptions);
-  let jsonBody = himalaya.parse(safeHTML, {
-    ...himalaya.parseDefaults,
-    includePositions: false,
-  });
-
-  // eslint-disable-next-line no-use-before-define
-  make_nodes_unique_and_local(jsonBody, uniqid("initial_"));
-
-  var article = {
-    title: { fr: sanitizeHtml(req.body.title, sanitizeOptions) },
-    body: jsonBody,
-    nombreMots: nombreMots,
-    avancement: { fr: 1 },
-    status: "Actif",
-  };
-  //On l'insère
-  var _u = new Article(article);
-  _u.save((err, article_saved) => {
-    if (err) {
-      res.status(500).json({ text: "Erreur interne" });
-    } else {
-      res.status(200).json({
-        text: "Succès",
-        article: article_saved,
-      });
-    }
-  });
-}
-
 function add_traduction(req, res) {
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
@@ -707,7 +667,6 @@ const _createFromNested = (
 };
 
 //On exporte notre fonction
-exports.add_article = add_article;
 exports.add_traduction = add_traduction;
 exports.remove_traduction = remove_traduction;
 
