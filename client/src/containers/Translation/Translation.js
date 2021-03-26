@@ -415,7 +415,6 @@ export class TranslationHOC extends Component {
     }
     traduction = { ...traduction, ...tradData };
 
-    //const data = await API.add_traduction(traduction);
     //sent to the backend to save the trad
     await this.props.addTranslation(traduction);
     //traduction._id = (data.data.data || {})._id;

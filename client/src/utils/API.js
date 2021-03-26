@@ -113,12 +113,6 @@ export default {
     return axios.post(burl + "/events/get_event", params, { headers: headers });
   },
 
-  add_traduction: (query) => {
-    return axios.post(burl + "/article/add_traduction", query, {
-      headers: headers,
-    });
-  },
-
   get_traduction: (query, sort, populate) => {
     return axios.post(
       burl + "/article/get_traduction",
