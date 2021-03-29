@@ -37,8 +37,9 @@ const RoleContainer = styled.div`
   width: fit-content;
 `;
 
-const DateContainer = styled.span`
+const DateContainer = styled.div`
   color: ${(props) => (props.isUser ? colors.bleuCharte : colors.noir)};
+  max-width: 190px;
 `;
 interface Props {
   membres: UserStructureMembre[];
@@ -69,11 +70,7 @@ export const MembresTable = (props: Props) => (
 
         const isUser = props.userId.toString() === element._id.toString();
         return (
-          <tr
-            key={key}
-            // onClick={() => props.onContributionRowClick(burl)}
-            className="membres-table"
-          >
+          <tr key={key} className="membres-table">
             <td className="align-middle">
               <RowContainer>
                 <img className="user-img mr-8" src={secureUrl} />

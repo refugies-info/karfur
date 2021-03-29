@@ -415,7 +415,6 @@ export class TranslationHOC extends Component {
     }
     traduction = { ...traduction, ...tradData };
 
-    //const data = await API.add_traduction(traduction);
     //sent to the backend to save the trad
     await this.props.addTranslation(traduction);
     //traduction._id = (data.data.data || {})._id;
@@ -441,10 +440,7 @@ export class TranslationHOC extends Component {
       { isExpert, type, langue } = this.state;
     const nom = "avancement." + i18nCode;
     if (!isExpert) {
-      this.props.history.push({
-        pathname: "/avancement/langue/" + langue._id,
-        state: { langue: langue },
-      });
+      this.props.history.push("/backend/user-translation/" + langue.i18nCode);
       return;
     }
 
@@ -461,26 +457,11 @@ export class TranslationHOC extends Component {
     ]({ query: query, locale: i18nCode, random: true, isExpert })
       .then((data_res) => {
         let results = data_res.data.data;
-        /*  if (!isExpert) {
-          this.props.history.push({
-            pathname: "/avancement/traductions/" + langue._id,
-          }); 
-        } */
+
         if (results.length === 0) {
-          this.props.history.push({
-            pathname: "/avancement/traductions/" + langue._id,
-          });
-          /* if (isExpert) {
-            
-          } else {
-            Swal.fire({
-              title: "Oh non",
-              text:
-                "Aucun résultat n'a été retourné. 2 possibilités : vous avez traduit tout le contenu disponible, ou une erreur s'est produite",
-              type: "error",
-              timer: 1500,
-            });
-          } */
+          this.props.history.push(
+            "/backend/user-translation/" + langue.i18nCode
+          );
         } else {
           clearInterval(this.timer);
           this.props.history.push({

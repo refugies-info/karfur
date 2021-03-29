@@ -200,10 +200,12 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
 
 .c11 {
   color: #212121;
+  max-width: 190px;
 }
 
 .c16 {
   color: #0421b1;
+  max-width: 190px;
 }
 
 .c17 {
@@ -396,20 +398,20 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c11"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c11"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"
@@ -500,20 +502,20 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c16"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c16"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"
@@ -862,10 +864,12 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 
 .c11 {
   color: #212121;
+  max-width: 190px;
 }
 
 .c16 {
   color: #0421b1;
+  max-width: 190px;
 }
 
 .c20 {
@@ -1119,20 +1123,20 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c11"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c11"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"
@@ -1223,20 +1227,20 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c16"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c16"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"
@@ -1629,10 +1633,12 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 
 .c11 {
   color: #212121;
+  max-width: 190px;
 }
 
 .c16 {
   color: #0421b1;
+  max-width: 190px;
 }
 
 .c20 {
@@ -1886,20 +1892,20 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c11"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c11"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"
@@ -1990,20 +1996,20 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c16"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c16"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"
@@ -2591,10 +2597,12 @@ exports[`UserStructure should render correctly when structure with membres when 
 
 .c14 {
   color: #212121;
+  max-width: 190px;
 }
 
 .c11 {
   color: #0421b1;
+  max-width: 190px;
 }
 
 .c2 {
@@ -2735,20 +2743,20 @@ exports[`UserStructure should render correctly when structure with membres when 
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c11"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c11"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
           </tr>
           <tr
@@ -2783,20 +2791,20 @@ exports[`UserStructure should render correctly when structure with membres when 
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c14"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c14"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
           </tr>
         </tbody>
@@ -3006,10 +3014,12 @@ exports[`UserStructure should render correctly when structure with membres when 
 
 .c11 {
   color: #212121;
+  max-width: 190px;
 }
 
 .c16 {
   color: #0421b1;
+  max-width: 190px;
 }
 
 .c2 {
@@ -3169,20 +3179,20 @@ exports[`UserStructure should render correctly when structure with membres when 
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c11"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c11"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"
@@ -3273,20 +3283,20 @@ exports[`UserStructure should render correctly when structure with membres when 
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c16"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"
             >
-              <span
+              <div
                 className="c16"
               >
                 Non disponible
-              </span>
+              </div>
             </td>
             <td
               className="align-middle"

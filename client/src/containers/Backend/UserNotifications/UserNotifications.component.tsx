@@ -82,7 +82,7 @@ export const UserNotificationsComponent = (props: PropsBeforeInjection) => {
   useEffect(() => {
     const loadUserStructure = async () => {
       if (structureId) {
-        await dispatch(
+        dispatch(
           fetchUserStructureActionCreator({ structureId, shouldRedirect: true })
         );
       }
