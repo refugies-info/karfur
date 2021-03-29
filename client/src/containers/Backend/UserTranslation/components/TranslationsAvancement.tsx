@@ -1,19 +1,22 @@
 /* eslint-disable no-console */
 import React from "react";
-import { Language } from "../../../../types/interface";
+import { Language, IDispositifTranslation } from "../../../../types/interface";
 import styled from "styled-components";
 import { LanguageTitle } from "./SubComponents";
+import { TranslationAvancementTable } from "./TranslationAvancementTable";
 
 interface Props {
   userTradLanguages: Language[];
   history: any;
   actualLanguage: string;
+  isExpert: boolean;
+  data: IDispositifTranslation[];
 }
 
 const RowContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  //   justify-content: space-between;
   align-items: center;
 `;
 
@@ -44,7 +47,7 @@ export const TranslationsAvancement = (props: Props) => {
           </div>
         ))}
       </RowContainer>
-      TranslationsAvancement
+      <TranslationAvancementTable isExpert={props.isExpert} data={props.data} />
     </MainContainer>
   );
 };

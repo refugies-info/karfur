@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { Language } from "../../../../types/interface";
+import { Language, TranslationStatus } from "../../../../types/interface";
 import "./SubComponents.scss";
+import { colorAvancement } from "../../../../components/Functions/ColorFunctions";
+import { Progress } from "reactstrap";
+import { colors } from "../../../../colors";
 
 interface Props {
   language: Language;
@@ -53,3 +56,78 @@ export const LanguageTitle = (props: Props) => (
     </Title>
   </MainContainer>
 );
+
+interface ProgressProps {
+  avancementTrad: number;
+}
+
+const ProgressContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 150px;
+  align-items: center;
+`;
+
+const TextProgress = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  width: 100%;
+  margin-left: 8px;
+`;
+
+const getAvancement = (avancementTrad: number) => {
+  if (avancementTrad > 1) return 100;
+  return Math.round((avancementTrad || 0) * 100);
+};
+export const ProgressWithValue = (props: ProgressProps) => {
+  const color = colorAvancement(props.avancementTrad);
+  return (
+    <ProgressContainer>
+      <div style={{ width: "100%" }}>
+        <Progress color={color} value={props.avancementTrad * 100} />
+      </div>
+      <TextProgress>
+        <div className={"text-" + color}>
+          {getAvancement(props.avancementTrad)} %
+        </div>
+      </TextProgress>
+    </ProgressContainer>
+  );
+};
+
+interface TradStatusProps {
+  status: TranslationStatus;
+}
+
+const TradStatusContainer = styled.div`
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  color: ${colors.blancSimple};
+  padding: 8px;
+  background-color: ${(props) => props.backgroundColor};
+  border-radius: 8px;
+  width: fit-content;
+`;
+
+const getStatus = (status: TranslationStatus) => {
+  if (status === "En attente")
+    return { formattedStatus: "À valider", color: colors.orangeDark };
+  if (status === "À revoir")
+    return { formattedStatus: "À revoir", color: colors.redDark };
+  if (status === "Validée")
+    return { formattedStatus: "Publiée", color: colors.green };
+  if (status === "À traduire")
+    return { formattedStatus: "À traduire", color: colors.blue };
+  return { formattedStatus: "No status", color: colors.erreur };
+};
+
+export const TradStatus = (props: TradStatusProps) => {
+  const { formattedStatus, color } = getStatus(props.status);
+  return (
+    <TradStatusContainer backgroundColor={color}>
+      {formattedStatus}
+    </TradStatusContainer>
+  );
+};

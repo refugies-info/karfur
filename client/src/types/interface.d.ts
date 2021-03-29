@@ -331,6 +331,11 @@ export interface IUserContribution {
   status: string;
 }
 
+export type TranslationStatus =
+  | "À traduire"
+  | "En attente"
+  | "Validée"
+  | "À revoir";
 export interface IDispositifTranslation {
   _id: ObjectId;
   titreInformatif: string;
@@ -341,5 +346,5 @@ export interface IDispositifTranslation {
   lastTradUpdatedAt: number | null;
   avancementTrad: number;
   avancementExpert: number;
-  tradStatus: string;
+  tradStatus: TranslationStatus;
 }
