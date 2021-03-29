@@ -110,7 +110,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
     window.scrollTo(0, 0);
 
     initGA();
-    Event("ANNUAIRE_VIEW", "", "");
+    Event("ANNUAIRE_VIEW", "VIEW", "label");
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };

@@ -1,4 +1,4 @@
-const Traduction = require("../../schema/schemaTraduction.js");
+const { Traduction } = require("../../schema/schemaTraduction");
 const Article = require("../../schema/schemaArticle.js");
 const Indicator = require("../../schema/schemaIndicators");
 const { Dispositif } = require("../../schema/schemaDispositif");
@@ -8,7 +8,7 @@ var sanitizeHtml = require("sanitize-html");
 var himalaya = require("himalaya");
 var h2p = require("html2plaintext");
 const axios = require("axios");
-const sanitizeOptions = require("../article/lib.js").sanitizeOptions;
+const sanitizeOptions = require("../../libs/data");
 const _ = require("lodash");
 const { turnHTMLtoJSON, turnJSONtoHTML } = require("../dispositif/functions");
 const mongoose = require("mongoose");
@@ -413,7 +413,7 @@ function get_tradForReview(req, res) {
   } else {
     populate = "";
   }
-
+  console.log("get_tradForReview query", query);
   if (
     query.articleId &&
     typeof query.articleId === "string" &&

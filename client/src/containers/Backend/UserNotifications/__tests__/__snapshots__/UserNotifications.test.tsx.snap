@@ -1,0 +1,597 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserNotifications should render correctly when 0 notif 1`] = `
+.c0 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin-top: 26px;
+  margin-right: 120px;
+  margin-left: 120px;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c1 {
+  color: #5e5e5e;
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      Aucune notification ! 
+    </div>
+    <div
+      style={
+        Object {
+          "marginBottom": "20px",
+          "marginTop": "32px",
+        }
+      }
+    >
+      <img
+        alt="no-notification"
+        src="https://storage.googleapis.com/refugies-info-assets/middle-office/aucune_notification.svg"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`UserNotifications should render correctly when loading 1`] = `
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c3 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c0 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin-top: 26px;
+  margin-right: 120px;
+  margin-left: 120px;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      Vous avez
+    </div>
+    <div
+      className="c3"
+    >
+      ...
+    </div>
+    <div
+      className="c2"
+    >
+      nouvelle notification.
+    </div>
+  </div>
+  <span>
+    <span
+      className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+      style={
+        Object {
+          "height": 50,
+        }
+      }
+    >
+      ‌
+    </span>
+    <span
+      className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+      style={
+        Object {
+          "height": 50,
+        }
+      }
+    >
+      ‌
+    </span>
+    <span
+      className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+      style={
+        Object {
+          "height": 50,
+        }
+      }
+    >
+      ‌
+    </span>
+  </span>
+</div>
+`;
+
+exports[`UserNotifications should render correctly when notif not read annuaire, not read reaction, not read new content, read reaction  1`] = `
+.c4 {
+  background: #2d9cdb;
+  border-radius: 12px;
+  padding: 8px 8px 8px 20px;
+  margin: 8px 0px 0px 0px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  cursor: pointer;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #2d9cdb;
+}
+
+.c4:hover {
+  border-color: #212121;
+}
+
+.c9 {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 8px 8px 8px 20px;
+  margin: 8px 0px 0px 0px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  cursor: pointer;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #ffffff;
+}
+
+.c9:hover {
+  border-color: #212121;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c6 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  color: #ffffff;
+  margin-left: 20px;
+}
+
+.c10 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  color: #212121;
+  margin-left: 20px;
+}
+
+.c8 {
+  background: #edebeb;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-left: 8px;
+}
+
+.c7 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.c11 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #f44336;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c3 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c0 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin-top: 26px;
+  margin-right: 120px;
+  margin-left: 120px;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      Vous avez
+    </div>
+    <div
+      className="c3"
+    >
+      3
+    </div>
+    <div
+      className="c2"
+    >
+      nouvelles notifications.
+    </div>
+  </div>
+  <div
+    className="c4"
+    onClick={[Function]}
+  >
+    <div
+      className="c5"
+    >
+      <span>
+        <i
+          data-eva="bell"
+          data-eva-fill="#ffffff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      <div
+        className="c6"
+      >
+        Recensez votre structure dans l'annuaire de l'intégration
+      </div>
+    </div>
+    <div
+      className="c5"
+    >
+      <button
+        className="figma-btn dark mr-8"
+      >
+        <span
+          className="mr-10"
+        >
+          <i
+            data-eva="folder-add-outline"
+            data-eva-fill="#fff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+        Compléter la fiche annuaire
+      </button>
+      <button
+        className="figma-btn error ml-8"
+        onClick={[Function]}
+        testID="test-delete-annuaire"
+      >
+        <span
+          className=""
+        >
+          <i
+            data-eva="trash-2"
+            data-eva-fill="#fff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+      </button>
+    </div>
+  </div>
+  <div
+    className="c4"
+    onClick={[Function]}
+  >
+    <div
+      className="c5"
+    >
+      <span>
+        <i
+          data-eva="bell"
+          data-eva-fill="#ffffff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      <div
+        className="c6"
+      >
+        Un nouveau contenu a été attribué à votre structure !
+      </div>
+    </div>
+    <div
+      className="c5"
+    >
+      <div
+        className="c7"
+      >
+        Depuis 83 jours
+      </div>
+      <button
+        className="figma-btn dark "
+      >
+        <span
+          className="mr-10"
+        >
+          <i
+            data-eva="eye"
+            data-eva-fill="#fff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+        Voir la fiche
+      </button>
+    </div>
+  </div>
+  <div
+    className="c4"
+    onClick={[Function]}
+  >
+    <div
+      className="c5"
+    >
+      <span>
+        <i
+          data-eva="bell"
+          data-eva-fill="#ffffff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      <div
+        className="c6"
+      >
+        Nouvelle réaction sur la fiche :
+      </div>
+      <div
+        className="c8"
+      >
+        titre info
+      </div>
+    </div>
+    <div
+      className="c5"
+    >
+      <div
+        className="c7"
+      >
+        Depuis 52 jours
+      </div>
+      <button
+        className="figma-btn dark "
+      >
+        <span
+          className="mr-10"
+        >
+          <i
+            data-eva="eye"
+            data-eva-fill="#fff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+        Voir la réaction
+      </button>
+      <button
+        className="figma-btn error ml-8"
+        onClick={[Function]}
+        testID="test-delete-reaction"
+      >
+        <span
+          className=""
+        >
+          <i
+            data-eva="trash-2"
+            data-eva-fill="#fff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+      </button>
+    </div>
+  </div>
+  <div
+    className="c9"
+    onClick={[Function]}
+  >
+    <div
+      className="c5"
+    >
+      <span>
+        <i
+          data-eva="bell-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      <div
+        className="c10"
+      >
+        Nouvelle réaction sur la fiche :
+      </div>
+      <div
+        className="c8"
+      >
+        titre info2
+      </div>
+    </div>
+    <div
+      className="c5"
+    >
+      <div
+        className="c11"
+      >
+        Depuis -313 jours
+      </div>
+      <button
+        className="figma-btn dark "
+      >
+        <span
+          className="mr-10"
+        >
+          <i
+            data-eva="eye"
+            data-eva-fill="#fff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+        Voir la réaction
+      </button>
+      <button
+        className="figma-btn error ml-8"
+        onClick={[Function]}
+        testID="test-delete-reaction"
+      >
+        <span
+          className=""
+        >
+          <i
+            data-eva="trash-2"
+            data-eva-fill="#fff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;

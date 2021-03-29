@@ -1,6 +1,6 @@
 import { Langue, LangueDoc } from "../../schema/schemaLangue";
 import { RequestFromClient, Res } from "../../types/interface";
-import Traduction from "../../schema/schemaTraduction.js";
+import { Traduction } from "../../schema/schemaTraduction";
 import { Dispositif } from "../../schema/schemaDispositif";
 
 // TO DO type correctly Query

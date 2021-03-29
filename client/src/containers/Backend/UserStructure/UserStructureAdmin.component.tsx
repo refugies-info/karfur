@@ -8,6 +8,7 @@ import { userSelector } from "../../../services/User/user.selectors";
 import { ObjectId } from "mongodb";
 import API from "../../../utils/API";
 import { UserStructure } from "../../../types/interface";
+import Swal from "sweetalert2";
 
 const ErrorContainer = styled.div`
   margin-top: 60px;
@@ -88,15 +89,29 @@ export const UserStructureAdminComponent = (props: Props) => {
 
   const deleteUserFromStructure = async (userId: ObjectId) => {
     if (!structure) return;
-    const query = {
-      membreId: userId,
-      structureId: structure._id,
-      action: "delete",
-    };
-    setIsLoading(true);
-    await API.modifyUserRoleInStructure({ query });
-    setIsLoading(false);
-    toggleReload();
+
+    Swal.fire({
+      title: "Êtes-vous sûr ?",
+      text: "Vous êtes sur le point d'enlever un membre de votre structure.",
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: colors.rouge,
+      cancelButtonColor: colors.vert,
+      confirmButtonText: "Oui, l'enlever",
+      cancelButtonText: "Annuler",
+    }).then(async (result) => {
+      if (result.value) {
+        const query = {
+          membreId: userId,
+          structureId: structure._id,
+          action: "delete",
+        };
+        setIsLoading(true);
+        await API.modifyUserRoleInStructure({ query });
+        setIsLoading(false);
+        toggleReload();
+      }
+    });
   };
 
   if (isLoading) {

@@ -13,6 +13,7 @@ import translationsSaga from "./Translation/translation.saga";
 import allUsersSaga from "./AllUsers/allUsers.saga";
 import userFavoritesSaga from "./UserFavoritesInLocale/UserFavoritesInLocale.saga";
 import userContributionsSaga from "./UserContributions/userContributions.saga";
+import dispositifsWithTranslationsStatus from "./DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.saga";
 
 export function* rootSaga(): SagaIterator {
   yield fork(userSaga);
@@ -28,4 +29,5 @@ export function* rootSaga(): SagaIterator {
   yield fork(allUsersSaga);
   yield fork(userFavoritesSaga);
   yield fork(userContributionsSaga);
+  yield fork(dispositifsWithTranslationsStatus);
 }

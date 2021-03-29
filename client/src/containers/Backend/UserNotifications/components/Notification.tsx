@@ -111,7 +111,11 @@ export const Notification = (props: Props) => {
   };
 
   return (
-    <Container read={props.read} onClick={(event: any) => onNotifClick(event)}>
+    <Container
+      read={props.read}
+      onClick={(event: any) => onNotifClick(event)}
+      testID={"test-notif-" + props.type}
+    >
       <RowContainer>
         <EVAIcon
           name={props.read ? "bell-outline" : "bell"}
@@ -138,6 +142,7 @@ export const Notification = (props: Props) => {
               name="trash-2"
               onClick={onAnnuaireNotifDeleteClick}
               className="ml-8"
+              testID="test-delete-annuaire"
             />
           </>
         )}
@@ -156,6 +161,7 @@ export const Notification = (props: Props) => {
               name="trash-2"
               onClick={onReactionDeleteClick}
               className="ml-8"
+              testID="test-delete-reaction"
             />
           </>
         )}
