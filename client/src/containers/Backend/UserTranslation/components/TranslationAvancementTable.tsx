@@ -7,6 +7,11 @@ import { TypeContenu } from "../../UserContributions/components/SubComponents";
 import { Title } from "../../Admin/sharedComponents/SubComponents";
 import { ProgressWithValue, TradStatus } from "./SubComponents";
 import moment from "moment/min/moment-with-locales";
+import Swal from "sweetalert2";
+import API from "../../../../utils/API";
+import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import { fetchDispositifsWithTranslationsStatusActionCreator } from "../../../../services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
+import { useDispatch } from "react-redux";
 
 moment.locale("fr");
 
@@ -15,6 +20,8 @@ interface Props {
   data: IDispositifTranslation[];
   history: any;
   langueId: string;
+  isAdmin: boolean;
+  languei18nCode: string;
 }
 
 const TableContainer = styled.div`
@@ -56,6 +63,49 @@ export const TranslationAvancementTable = (props: Props) => {
         "/" +
         element._id,
       search: "?id=" + props.langueId,
+    });
+  };
+
+  const dispatch = useDispatch();
+  const deleteTrad = (e: any, element: IDispositifTranslation) => {
+    e.stopPropagation();
+    Swal.fire({
+      title: "Êtes-vous sûr ?",
+      text: "La suppression des traductions est irréversible",
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: colors.rouge,
+      cancelButtonColor: colors.vert,
+      confirmButtonText: "Oui, les supprimer",
+      cancelButtonText: "Annuler",
+    }).then((result: any) => {
+      if (result.value) {
+        API.delete_trads({
+          articleId: element._id,
+          langueCible: props.languei18nCode,
+        })
+          .then(() => {
+            dispatch(
+              fetchDispositifsWithTranslationsStatusActionCreator(
+                props.languei18nCode
+              )
+            );
+            Swal.fire({
+              title: "Yay...",
+              text: "Suppression effectuée",
+              type: "success",
+              timer: 1500,
+            });
+          })
+          .catch(() => {
+            Swal.fire({
+              title: "Oh non!",
+              text: "Something went wrong",
+              type: "error",
+              timer: 1500,
+            });
+          });
+      }
     });
   };
   return (
@@ -127,6 +177,15 @@ export const TranslationAvancementTable = (props: Props) => {
                     ? moment(element.lastTradUpdatedAt).format("L")
                     : "Non disponible"}
                 </td>
+                {props.isAdmin && (
+                  <td className="align-middle">
+                    <FButton
+                      type="error"
+                      name="trash-2"
+                      onClick={(event: any) => deleteTrad(event, element)}
+                    />
+                  </td>
+                )}
               </tr>
             );
           })}

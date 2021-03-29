@@ -15,6 +15,7 @@ interface Props {
   actualLanguage: string;
   isExpert: boolean;
   data: IDispositifTranslation[];
+  isAdmin: boolean;
 }
 
 const RowContainer = styled.div`
@@ -25,7 +26,7 @@ const RowContainer = styled.div`
 `;
 
 const MainContainer = styled.div`
-  margin: 30px 100px 30px 100px;
+  margin: 30px 80px 30px 80px;
 `;
 
 const FilterBarContainer = styled.div`
@@ -33,6 +34,7 @@ const FilterBarContainer = styled.div`
   flex-direction: row;
   margin-bottom: 10px;
 `;
+
 export const TranslationsAvancement = (props: Props) => {
   const [statusFilter, setStatusFilter] = useState<TranslationStatus | "all">(
     "all"
@@ -116,6 +118,8 @@ export const TranslationsAvancement = (props: Props) => {
         data={dataToDisplay}
         history={props.history}
         langueId={getLangueId()}
+        isAdmin={props.isAdmin}
+        languei18nCode={props.actualLanguage}
       />
     </MainContainer>
   );

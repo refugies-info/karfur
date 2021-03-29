@@ -105,6 +105,7 @@ export const UserTranslationComponent = (props: Props) => {
         history={props.history}
         actualLanguage={langueInUrl}
         isExpert={user.expertTrad}
+        isAdmin={user.admin}
         data={dispositifsWithTranslations}
       />
     </MainContainer>
