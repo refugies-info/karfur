@@ -93,7 +93,7 @@ export const UserTranslationComponent = (props: Props) => {
   ) {
     return (
       <MainContainer>
-        <StartTranslating />
+        <StartTranslating user={user} />
       </MainContainer>
     );
   }
