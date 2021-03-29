@@ -2,57 +2,73 @@
 /* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { userFirstSelectedLanguageSelector } from "../../../services/User/user.selectors";
+import { userSelectedLanguageSelector } from "../../../services/User/user.selectors";
 import { Props } from "./UserTranslation.container";
-import API from "../../../utils/API";
 import { fetchDispositifsWithTranslationsStatusActionCreator } from "../../../services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { dispositifsWithTranslationsStatusSelector } from "../../../services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.selectors";
+import { LoadingDispositifsWithTranlastionsStatus } from "./components/LoadingDispositifsWithTranlastionsStatus";
+import { StartTranslating } from "./components/StartTranslating";
+import { TranslationsAvancement } from "./components/TranslationsAvancement";
 
 export interface PropsBeforeInjection {
   match: any;
   history: any;
 }
 export const UserTranslationComponent = (props: Props) => {
-  const param = props.match.params.id;
-  console.log("param", param);
+  const langueInUrl = props.match.params.id;
+  console.log("param", langueInUrl);
 
-  const userTradLanguage = useSelector(userFirstSelectedLanguageSelector);
+  const userTradLanguages = useSelector(userSelectedLanguageSelector);
+  const userFirstTradLanguage =
+    userTradLanguages.length > 0 ? userTradLanguages[0].i18nCode : null;
+  console.log("userTradLanguages", userTradLanguages);
   const dispatch = useDispatch();
 
-  const isLoading = useSelector(
+  const isLoadingDispositifs = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS)
   );
+
+  const isLoadingUser = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_USER)
+  );
+
+  const isLoading = isLoadingDispositifs || isLoadingUser;
+
   const dispositifsWithTranslations = useSelector(
     dispositifsWithTranslationsStatusSelector
   );
 
   useEffect(() => {
-    console.log("use effect");
-    if (userTradLanguage && !param) {
-      console.log("userTradLanguage reidrect", userTradLanguage);
+    if (isLoadingUser) return;
 
+    if (userFirstTradLanguage && !langueInUrl) {
       return props.history.push(
-        "/backend/user-translation/" + userTradLanguage
+        "/backend/user-translation/" + userFirstTradLanguage
       );
     }
 
-    if (param && !userTradLanguage) {
+    if (langueInUrl && !userFirstTradLanguage) {
       return props.history.push("/backend/user-translation");
     }
 
-    if (userTradLanguage) {
+    if (userFirstTradLanguage) {
       dispatch(
-        fetchDispositifsWithTranslationsStatusActionCreator(userTradLanguage)
+        fetchDispositifsWithTranslationsStatusActionCreator(
+          userFirstTradLanguage
+        )
       );
     }
-  }, [param, userTradLanguage]);
+  }, [langueInUrl, userFirstTradLanguage, isLoadingUser]);
 
-  if (isLoading) return <div>Loading</div>;
+  if (isLoading) return <LoadingDispositifsWithTranlastionsStatus />;
 
-  if (dispositifsWithTranslations.length === 0) {
-    return <div>no translations</div>;
+  if (
+    dispositifsWithTranslations.length === 0 ||
+    userTradLanguages.length === 0
+  ) {
+    return <StartTranslating />;
   }
 
   const nbAtrad = dispositifsWithTranslations.filter(
@@ -64,10 +80,10 @@ export const UserTranslationComponent = (props: Props) => {
   ).length;
 
   return (
-    <div>
-      {"Hello " + (param || "no param")}
-      <span>{"nb a traduire " + nbAtrad}</span>
-      <span>{"nb validee " + nbPubliées}</span>
-    </div>
+    <TranslationsAvancement
+      userTradLanguages={userTradLanguages}
+      history={props.history}
+      actualLanguage={langueInUrl}
+    />
   );
 };
