@@ -31,16 +31,31 @@ const headers = [
   "Dernière trad",
 ];
 
+const headersExpert = [
+  "Type",
+  "Titre",
+  "Progression",
+  "Prog. expert",
+  "Mots",
+  "Depuis",
+  "Statut",
+  "Dernière trad",
+];
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
 export const TranslationAvancementTable = (props: Props) => {
   return (
     <TableContainer>
-      <Table responsive borderless>
+      <Table responsive borderless className="avancement-table">
         <thead>
-          <tr>
-            {headers.map((element, key) => {
-              return <th key={key}>{element}</th>;
-            })}
+          <tr className="tr-test">
+            {props.isExpert
+              ? headersExpert.map((element, key) => {
+                  return <th key={key}>{element}</th>;
+                })
+              : headers.map((element, key) => {
+                  return <th key={key}>{element}</th>;
+                })}
           </tr>
         </thead>
         <tbody>
@@ -52,7 +67,6 @@ export const TranslationAvancementTable = (props: Props) => {
               <tr
                 key={key}
                 // onClick={() => props.onContributionRowClick(burl)}
-                className="membres-table"
               >
                 <td className="align-middle">
                   <TypeContenu
@@ -61,15 +75,28 @@ export const TranslationAvancementTable = (props: Props) => {
                   />
                 </td>
                 <td className="align-middle">
-                  <Title
-                    titreInformatif={element.titreInformatif}
-                    titreMarque={element.titreMarque || null}
-                  />
+                  <div style={{ maxWidth: "350px" }}>
+                    <Title
+                      titreInformatif={element.titreInformatif}
+                      titreMarque={element.titreMarque || null}
+                    />
+                  </div>
                 </td>
 
                 <td className="align-middle">
-                  <ProgressWithValue avancementTrad={element.avancementTrad} />
+                  {(!props.isExpert || element.tradStatus === "À traduire") && (
+                    <ProgressWithValue
+                      avancementTrad={element.avancementTrad}
+                    />
+                  )}
                 </td>
+                {props.isExpert && (
+                  <td className="align-middle">
+                    <ProgressWithValue
+                      avancementTrad={element.avancementExpert}
+                    />
+                  </td>
+                )}
 
                 <td className="align-middle">
                   {Math.round(

@@ -64,7 +64,7 @@ interface ProgressProps {
 const ProgressContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 150px;
+  width: 100px;
   align-items: center;
 `;
 
@@ -129,5 +129,38 @@ export const TradStatus = (props: TradStatusProps) => {
     <TradStatusContainer backgroundColor={color}>
       {formattedStatus}
     </TradStatusContainer>
+  );
+};
+
+const FilterButtonContainer = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: ${(props) => (props.isSelected ? colors.blancSimple : props.color)};
+  padding: 15px;
+  background-color: ${(props) =>
+    props.isSelected ? props.color : colors.blancSimple};
+  border-radius: 8px;
+  width: fit-content;
+  margin-right: 10px;
+  cursor: pointer;
+`;
+
+interface FilterButtonProps {
+  status: TranslationStatus;
+  isSelected: boolean;
+  nbContent: number;
+  onClick: () => void;
+}
+export const FilterButton = (props: FilterButtonProps) => {
+  const { formattedStatus, color } = getStatus(props.status);
+  return (
+    <FilterButtonContainer
+      color={color}
+      isSelected={props.isSelected}
+      onClick={props.onClick}
+    >
+      {formattedStatus + " (" + props.nbContent + ")"}
+    </FilterButtonContainer>
   );
 };

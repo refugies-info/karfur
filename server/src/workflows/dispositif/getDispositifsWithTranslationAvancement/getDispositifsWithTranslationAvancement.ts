@@ -102,7 +102,7 @@ export const getDispositifsWithTranslationAvancement = async (
         0,
         ...correspondingTrads
           .filter((y) => {
-            return y.userId === req.userId;
+            return y.userId.toString() === req.userId.toString();
           })
           .map((z) => z.avancement || -1)
       );

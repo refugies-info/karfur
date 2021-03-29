@@ -68,11 +68,9 @@ export const UserTranslationComponent = (props: Props) => {
       return props.history.push("/backend/user-translation");
     }
 
-    if (userFirstTradLanguage) {
+    if (langueInUrl) {
       dispatch(
-        fetchDispositifsWithTranslationsStatusActionCreator(
-          userFirstTradLanguage
-        )
+        fetchDispositifsWithTranslationsStatusActionCreator(langueInUrl)
       );
     }
   }, [langueInUrl, userFirstTradLanguage, isLoadingUser]);
