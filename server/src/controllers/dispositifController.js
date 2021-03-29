@@ -10,6 +10,7 @@ import { updateDispositifAdminComments } from "../workflows/dispositif/updateDis
 import { getNbDispositifsByRegion } from "../workflows/dispositif/getNbDispositifsByRegion";
 import { updateDispositifReactions } from "../workflows/dispositif/updateDispositifReactions";
 import { getUserContributions } from "../workflows/dispositif/getUserContributions";
+import { getDispositifsWithTranslationAvancement } from "../workflows/dispositif/getDispositifsWithTranslationAvancement";
 
 module.exports = function (app) {
   app.post("/add_dispositif", checkToken.check, dispositif.add_dispositif);
@@ -48,4 +49,9 @@ module.exports = function (app) {
     updateDispositifReactions
   );
   app.get("/getUserContributions", checkToken.check, getUserContributions);
+  app.get(
+    "/getDispositifsWithTranslationAvancement",
+    checkToken.check,
+    getDispositifsWithTranslationAvancement
+  );
 };

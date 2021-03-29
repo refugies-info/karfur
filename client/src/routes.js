@@ -23,6 +23,7 @@ import {
   UserStructure,
   UserAdminStructure,
 } from "./containers/Backend/UserStructure";
+import { UserTranslation } from "./containers/Backend/UserTranslation";
 
 const routes = [
   {
@@ -260,6 +261,19 @@ const routes = [
     path: "/backend/user-favorites",
     name: "Réfugiés.info - Mes favoris",
     component: UserFavorites,
+    restriction: ["User", "Trad", "ExpertTrad", "Admin"],
+  },
+  {
+    path: "/backend/user-translation",
+    name: "Réfugiés.info - Mes traductions",
+    exact: true,
+    component: UserTranslation,
+    restriction: ["User", "Trad", "ExpertTrad", "Admin"],
+  },
+  {
+    path: "/backend/user-translation/:id",
+    name: "Réfugiés.info - Mes traductions",
+    component: UserTranslation,
     restriction: ["User", "Trad", "ExpertTrad", "Admin"],
   },
 ];

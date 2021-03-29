@@ -1,6 +1,6 @@
 const himalaya = require("himalaya");
 const sanitizeHtml = require("sanitize-html");
-const { sanitizeOptions } = require("../article/data");
+const { sanitizeOptions } = require("../../libs/data");
 const _ = require("lodash");
 const Error = require("../../schema/schemaError");
 const logger = require("../../logger");

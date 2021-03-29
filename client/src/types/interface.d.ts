@@ -330,3 +330,21 @@ export interface IUserContribution {
   nbVues: number;
   status: string;
 }
+
+export type TranslationStatus =
+  | "À traduire"
+  | "En attente"
+  | "Validée"
+  | "À revoir";
+export interface IDispositifTranslation {
+  _id: ObjectId;
+  titreInformatif: string;
+  titreMarque: string;
+  nbMots: number;
+  created_at: number;
+  typeContenu: "dispositif" | "demarche";
+  lastTradUpdatedAt: number | null;
+  avancementTrad: number;
+  avancementExpert: number;
+  tradStatus: TranslationStatus;
+}

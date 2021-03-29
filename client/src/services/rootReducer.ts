@@ -48,6 +48,10 @@ import {
   UserContributionsState,
   userContributionsReducer,
 } from "./UserContributions/userContributions.reducer";
+import {
+  DispositifsWithTranslationsStatusState,
+  dispositifsWithTranslationsStatusReducer,
+} from "./DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.reducer";
 
 export interface RootState {
   user: UserState;
@@ -65,6 +69,7 @@ export interface RootState {
   users: AllUsersState;
   userFavorites: UserFavoritesState;
   userContributions: UserContributionsState;
+  dispositifsWithTranslations: DispositifsWithTranslationsStatusState;
 }
 export const appReducer = (history: any) =>
   combineReducers({
@@ -84,4 +89,5 @@ export const appReducer = (history: any) =>
     users: allUsersReducer,
     userFavorites: userFavoritesReducer,
     userContributions: userContributionsReducer,
+    dispositifsWithTranslations: dispositifsWithTranslationsStatusReducer,
   });

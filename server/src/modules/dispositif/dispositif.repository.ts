@@ -122,3 +122,6 @@ export const getDispositifByIdWithMainSponsor = async (
   neededFields: Record<string, number>
 ) =>
   await Dispositif.findOne({ _id: id }, neededFields).populate("mainSponsor");
+
+export const getActiveContents = async (neededFields: Record<string, number>) =>
+  await Dispositif.find({ status: "Actif" }, neededFields);
