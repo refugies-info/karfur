@@ -51,7 +51,6 @@ module.exports = function (app) {
   app.get("/getUserContributions", checkToken.check, getUserContributions);
   app.get(
     "/getDispositifsWithTranslationAvancement",
-    checkToken.check,
     getDispositifsWithTranslationAvancement
   );
 };
