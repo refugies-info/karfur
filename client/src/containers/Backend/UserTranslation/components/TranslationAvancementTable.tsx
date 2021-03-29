@@ -13,6 +13,8 @@ moment.locale("fr");
 interface Props {
   isExpert: boolean;
   data: IDispositifTranslation[];
+  history: any;
+  langueId: string;
 }
 
 const TableContainer = styled.div`
@@ -44,6 +46,18 @@ const headersExpert = [
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
 export const TranslationAvancementTable = (props: Props) => {
+  const goToTraduction = (element: IDispositifTranslation) => {
+    if (!props.isExpert && element.tradStatus === "Validée") return;
+    return props.history.push({
+      pathname:
+        (props.isExpert ? "/validation" : "/traduction") +
+        "/" +
+        (element.typeContenu || "dispositif") +
+        "/" +
+        element._id,
+      search: "?id=" + props.langueId,
+    });
+  };
   return (
     <TableContainer>
       <Table responsive borderless className="avancement-table">
@@ -64,10 +78,7 @@ export const TranslationAvancementTable = (props: Props) => {
               ? -moment(element.created_at).diff(moment(), "days") + " jours"
               : "ND";
             return (
-              <tr
-                key={key}
-                // onClick={() => props.onContributionRowClick(burl)}
-              >
+              <tr key={key} onClick={() => goToTraduction(element)}>
                 <td className="align-middle">
                   <TypeContenu
                     type={element.typeContenu || "dispositif"}

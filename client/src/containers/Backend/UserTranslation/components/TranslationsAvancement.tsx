@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState } from "react";
 import {
   Language,
@@ -49,6 +48,16 @@ export const TranslationsAvancement = (props: Props) => {
     props.data
   );
 
+  const getLangueId = () => {
+    if (!props.userTradLanguages || props.userTradLanguages.length === 0)
+      return null;
+    const langueArray = props.userTradLanguages.filter(
+      (langue) => langue.i18nCode === props.actualLanguage
+    );
+    // @ts-ignore
+    if (langueArray.length > 0) return langueArray[0]._id;
+    return null;
+  };
   const onFilterClick = (status: TranslationStatus | "all") => {
     if (status === statusFilter) return setStatusFilter("all");
     return setStatusFilter(status);
@@ -105,6 +114,8 @@ export const TranslationsAvancement = (props: Props) => {
       <TranslationAvancementTable
         isExpert={props.isExpert}
         data={dataToDisplay}
+        history={props.history}
+        langueId={getLangueId()}
       />
     </MainContainer>
   );

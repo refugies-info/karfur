@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -17,6 +15,7 @@ import { TranslationsAvancement } from "./components/TranslationsAvancement";
 import styled from "styled-components";
 import { colors } from "../../../colors";
 
+declare const window: Window;
 export interface PropsBeforeInjection {
   match: any;
   history: any;
@@ -29,14 +28,15 @@ const MainContainer = styled.div`
   margin-top: -100px;
   padding-top: 100px;
 `;
+
+const availableLanguages = ["fa", "en", "ru", "ps", "ar", "ti-ER"];
+
 export const UserTranslationComponent = (props: Props) => {
   const langueInUrl = props.match.params.id;
-  console.log("param", langueInUrl);
 
   const userTradLanguages = useSelector(userSelectedLanguageSelector);
   const userFirstTradLanguage =
     userTradLanguages.length > 0 ? userTradLanguages[0].i18nCode : null;
-  console.log("userTradLanguages", userTradLanguages);
   const dispatch = useDispatch();
 
   const isLoadingDispositifs = useSelector(
@@ -56,6 +56,7 @@ export const UserTranslationComponent = (props: Props) => {
   );
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (isLoadingUser) return;
 
     if (userFirstTradLanguage && !langueInUrl) {
@@ -65,6 +66,10 @@ export const UserTranslationComponent = (props: Props) => {
     }
 
     if (langueInUrl && !userFirstTradLanguage) {
+      return props.history.push("/backend/user-translation");
+    }
+
+    if (!availableLanguages.includes(langueInUrl)) {
       return props.history.push("/backend/user-translation");
     }
 
