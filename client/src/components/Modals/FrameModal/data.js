@@ -62,6 +62,11 @@ export const sectionUrlCorrespondencies = [
   {
     section: "Mes fiches",
     tutoUrl:
+      "https://help.refugies.info/fr/article/quel-est-mon-impact-en-tant-que-contributeur-1p0suam",
+  },
+  {
+    section: "Statut des fiches",
+    tutoUrl:
       "https://help.refugies.info/fr/article/comprendre-le-processus-de-publication-des-fiches-1alq0ht",
   },
 ];
