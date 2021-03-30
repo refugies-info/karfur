@@ -3,11 +3,16 @@ import {
   UserLanguage,
   IDispositifTranslation,
   TranslationStatus,
+  ITypeContenu,
 } from "../../../../types/interface";
 import styled from "styled-components";
-import { LanguageTitle, FilterButton } from "./SubComponents";
+import {
+  LanguageTitle,
+  FilterButton,
+  TypeContenuFilterButton,
+} from "./SubComponents";
 import { TranslationAvancementTable } from "./TranslationAvancementTable";
-import { filterData, getTradAmount } from "./functions";
+import { filterData } from "./functions";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { colors } from "../../../../colors";
 
@@ -61,6 +66,9 @@ export const TranslationsAvancement = (props: Props) => {
   const [statusFilter, setStatusFilter] = useState<TranslationStatus | "all">(
     "all"
   );
+  const [typeContenuFilter, setTypeContenuFilter] = useState<
+    ITypeContenu | "all"
+  >("dispositif");
 
   const navigateToLanguage = (langue: string) => {
     if (props.actualLanguage !== langue) {
@@ -68,10 +76,6 @@ export const TranslationsAvancement = (props: Props) => {
     }
     return;
   };
-  const { nbARevoir, nbATraduire, nbAValider, nbPubliees } = getTradAmount(
-    props.data
-  );
-
   const getLangueId = () => {
     if (!props.userTradLanguages || props.userTradLanguages.length === 0)
       return null;
@@ -87,7 +91,20 @@ export const TranslationsAvancement = (props: Props) => {
     return setStatusFilter(status);
   };
 
-  const dataToDisplay = filterData(props.data, statusFilter, props.isExpert);
+  const onTypeContenuFilterClick = (status: ITypeContenu | "all") => {
+    if (status === typeContenuFilter) return setTypeContenuFilter("all");
+    return setTypeContenuFilter(status);
+  };
+
+  const {
+    dataToDisplay,
+    nbARevoir,
+    nbATraduire,
+    nbAValider,
+    nbPubliees,
+    nbDispositifs,
+    nbDemarches,
+  } = filterData(props.data, statusFilter, props.isExpert, typeContenuFilter);
 
   return (
     <MainContainer>
@@ -155,6 +172,18 @@ export const TranslationsAvancement = (props: Props) => {
           isSelected={statusFilter === "Validée"}
           nbContent={nbPubliees}
           onClick={() => onFilterClick("Validée")}
+        />
+        <TypeContenuFilterButton
+          isSelected={typeContenuFilter === "dispositif"}
+          name="Dispositifs"
+          onClick={() => onTypeContenuFilterClick("dispositif")}
+          nbContent={nbDispositifs}
+        />
+        <TypeContenuFilterButton
+          isSelected={typeContenuFilter === "demarche"}
+          name="Démarches"
+          onClick={() => onTypeContenuFilterClick("demarche")}
+          nbContent={nbDemarches}
         />
       </FilterBarContainer>
       <TranslationAvancementTable

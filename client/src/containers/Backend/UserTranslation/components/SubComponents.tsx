@@ -5,6 +5,7 @@ import "./SubComponents.scss";
 import { colorAvancement } from "../../../../components/Functions/ColorFunctions";
 import { Progress } from "reactstrap";
 import { colors } from "../../../../colors";
+import FSwitch from "../../../../components/FigmaUI/FSwitch/FSwitch";
 
 interface Props {
   language: UserLanguage;
@@ -142,10 +143,13 @@ const FilterButtonContainer = styled.div`
   padding: 15px;
   background-color: ${(props) =>
     props.isSelected ? props.color : colors.blancSimple};
-  border-radius: 8px;
+  border-radius: 12px;
   width: fit-content;
   margin-right: 10px;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 interface FilterButtonProps {
@@ -166,3 +170,37 @@ export const FilterButton = (props: FilterButtonProps) => {
     </FilterButtonContainer>
   );
 };
+
+interface TypeContenuFilterButtonProps {
+  isSelected: boolean;
+  name: "Dispositifs" | "Démarches";
+  onClick: () => void;
+  nbContent: number;
+}
+
+const TypeContenuFilterButtonContainer = styled.div`
+  padding: 15px;
+  background-color: ${(props) =>
+    props.isSelected ? colors.noir : colors.blancSimple};
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: ${(props) => (props.isSelected ? colors.blancSimple : colors.noir)};
+  cursor: pointer;
+  border-radius: 12px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+export const TypeContenuFilterButton = (
+  props: TypeContenuFilterButtonProps
+) => (
+  <TypeContenuFilterButtonContainer
+    isSelected={props.isSelected}
+    onClick={props.onClick}
+  >
+    {props.name + " (" + props.nbContent + ")"}
+    <FSwitch className="card-custom-title ml-8" checked={props.isSelected} />
+  </TypeContenuFilterButtonContainer>
+);

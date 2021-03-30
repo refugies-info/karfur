@@ -358,3 +358,5 @@ export type Indicators = {
   twelveMonthsIndicator?: Indicator[];
   totalIndicator?: Indicator[];
 };
+
+export type ITypeContenu = "dispositif" | "demarche";
