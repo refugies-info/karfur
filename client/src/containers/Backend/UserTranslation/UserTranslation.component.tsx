@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -9,7 +10,7 @@ import { fetchDispositifsWithTranslationsStatusActionCreator } from "../../../se
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { dispositifsWithTranslationsStatusSelector } from "../../../services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.selectors";
-import { LoadingDispositifsWithTranlastionsStatus } from "./components/LoadingDispositifsWithTranlastionsStatus";
+import { LoadingDispositifsWithTranslationsStatus } from "./components/LoadingDispositifsWithTranslationsStatus";
 import { StartTranslating } from "./components/StartTranslating";
 import { TranslationsAvancement } from "./components/TranslationsAvancement";
 import styled from "styled-components";
@@ -60,7 +61,8 @@ export const UserTranslationComponent = (props: Props) => {
   const isLoadingUser = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_USER)
   );
-
+  console.log("isLoadingDispositifs", isLoadingDispositifs);
+  console.log("isLoadingUser", isLoadingUser);
   const isLoading = isLoadingDispositifs || isLoadingUser;
 
   const dispositifsWithTranslations = useSelector(
@@ -69,7 +71,6 @@ export const UserTranslationComponent = (props: Props) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (isLoadingUser) return;
 
     if (userFirstTradLanguage && !langueInUrl) {
       return props.history.push(
@@ -117,10 +118,12 @@ export const UserTranslationComponent = (props: Props) => {
       ? Math.floor(indicators.totalIndicator[0].timeSpent / 1000 / 60)
       : 0;
 
-  if (isLoading || !user)
+  if (isLoading)
     return (
       <MainContainer>
-        <LoadingDispositifsWithTranlastionsStatus />
+        <LoadingDispositifsWithTranslationsStatus
+          toggleTutoModal={toggleTutoModal}
+        />
       </MainContainer>
     );
 

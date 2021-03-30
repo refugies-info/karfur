@@ -108,6 +108,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
         type: "modify-my-details",
       })
     );
+
     props.toggle();
     return props.history.push(
       "/backend/user-translation/" + selectedLangues[0].i18nCode

@@ -119,7 +119,7 @@ const getStatus = (status: TranslationStatus) => {
   if (status === "À revoir")
     return { formattedStatus: "À revoir", color: colors.redDark };
   if (status === "Validée")
-    return { formattedStatus: "Publiée", color: colors.green };
+    return { formattedStatus: "Publiées", color: colors.green };
   if (status === "À traduire")
     return { formattedStatus: "À traduire", color: colors.blue };
   return { formattedStatus: "No status", color: colors.erreur };
@@ -151,7 +151,7 @@ const FilterButtonContainer = styled.div`
 interface FilterButtonProps {
   status: TranslationStatus;
   isSelected: boolean;
-  nbContent: number;
+  nbContent: number | string;
   onClick: () => void;
 }
 export const FilterButton = (props: FilterButtonProps) => {
