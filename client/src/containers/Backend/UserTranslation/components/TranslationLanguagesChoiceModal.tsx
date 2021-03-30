@@ -18,13 +18,14 @@ import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStat
 import { Language, UserLanguage } from "../../../../types/interface";
 import "./TranslationLanguagesChoiceModal.scss";
 import { saveUserActionCreator } from "../../../../services/User/user.actions";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 
-interface Props {
+interface Props extends RouteComponentProps {
   show: boolean;
   toggle: () => void;
 }
 
-export const TranslationLanguagesChoiceModal = (props: Props) => {
+const TranslationLanguagesChoiceModalComponent = (props: Props) => {
   const [selectedLangues, setSelectedLangues] = useState<UserLanguage[]>([]);
 
   const langues = useSelector(allLanguesSelector);
@@ -99,7 +100,10 @@ export const TranslationLanguagesChoiceModal = (props: Props) => {
         type: "modify-my-details",
       })
     );
-    return;
+    props.toggle();
+    return props.history.push(
+      "/backend/user-translation/" + selectedLangues[0].i18nCode
+    );
   };
   return (
     <Modal
@@ -158,3 +162,7 @@ export const TranslationLanguagesChoiceModal = (props: Props) => {
     </Modal>
   );
 };
+
+export const TranslationLanguagesChoiceModal = withRouter(
+  TranslationLanguagesChoiceModalComponent
+);

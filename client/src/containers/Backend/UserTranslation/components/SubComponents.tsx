@@ -16,7 +16,6 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-right: 16px;
-  margin-bottom: 20px;
   align-items: center;
   cursor: ${(props) => (props.hasMultipleLanguages ? "pointer" : "default")};
 `;

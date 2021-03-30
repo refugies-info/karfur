@@ -84,7 +84,7 @@ export const UserTranslationComponent = (props: Props) => {
         fetchDispositifsWithTranslationsStatusActionCreator(langueInUrl)
       );
     }
-  }, [langueInUrl, userFirstTradLanguage, isLoadingUser]);
+  }, [langueInUrl, userFirstTradLanguage, isLoadingUser, user]);
 
   if (isLoading || !user)
     return (
@@ -117,6 +117,7 @@ export const UserTranslationComponent = (props: Props) => {
         isExpert={user.expertTrad}
         isAdmin={user.admin}
         data={dispositifsWithTranslations}
+        toggleTraducteurModal={toggleTraducteurModal}
       />
       <TranslationLanguagesChoiceModal
         show={showTraducteurModal}

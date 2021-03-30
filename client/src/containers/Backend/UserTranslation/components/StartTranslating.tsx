@@ -66,6 +66,7 @@ export const StartTranslating = (props: Props) => {
             type="dark"
             className="mr-10"
             onClick={props.toggleTraducteurModal}
+            name="play-circle"
           >
             Commencer à traduire
           </FButton>

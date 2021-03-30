@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { LanguageTitle, FilterButton } from "./SubComponents";
 import { TranslationAvancementTable } from "./TranslationAvancementTable";
 import { filterData, getTradAmount } from "./functions";
+import FButton from "../../../../components/FigmaUI/FButton/FButton";
 
 interface Props {
   userTradLanguages: UserLanguage[];
@@ -16,12 +17,20 @@ interface Props {
   isExpert: boolean;
   data: IDispositifTranslation[];
   isAdmin: boolean;
+  toggleTraducteurModal: () => void;
 }
 
 const RowContainer = styled.div`
   display: flex;
   flex-direction: row;
-  //   justify-content: space-between;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
   align-items: center;
 `;
 
@@ -70,18 +79,28 @@ export const TranslationsAvancement = (props: Props) => {
   return (
     <MainContainer>
       <RowContainer>
-        {props.userTradLanguages.map((langue) => (
-          <div
-            key={langue.i18nCode}
-            onClick={() => navigateToLanguage(langue.i18nCode)}
-          >
-            <LanguageTitle
-              language={langue}
-              isSelected={langue.i18nCode === props.actualLanguage}
-              hasMultipleLanguages={props.userTradLanguages.length > 1}
-            />
-          </div>
-        ))}
+        <Row>
+          {props.userTradLanguages.map((langue) => (
+            <div
+              key={langue.i18nCode}
+              onClick={() => navigateToLanguage(langue.i18nCode)}
+            >
+              <LanguageTitle
+                language={langue}
+                isSelected={langue.i18nCode === props.actualLanguage}
+                hasMultipleLanguages={props.userTradLanguages.length > 1}
+              />
+            </div>
+          ))}
+        </Row>
+        <FButton
+          type="dark"
+          className="mr-10"
+          onClick={props.toggleTraducteurModal}
+          name="settings-2-outline"
+        >
+          Mes langues
+        </FButton>
       </RowContainer>
       <FilterBarContainer>
         {props.isExpert && (
