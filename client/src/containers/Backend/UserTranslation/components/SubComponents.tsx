@@ -59,6 +59,7 @@ export const LanguageTitle = (props: Props) => (
 
 interface ProgressProps {
   avancementTrad: number;
+  isExpert: boolean;
 }
 
 const ProgressContainer = styled.div`
@@ -84,9 +85,11 @@ export const ProgressWithValue = (props: ProgressProps) => {
   const color = colorAvancement(props.avancementTrad);
   return (
     <ProgressContainer>
-      <div style={{ width: "100%" }}>
-        <Progress color={color} value={props.avancementTrad * 100} />
-      </div>
+      {!props.isExpert && (
+        <div style={{ width: "100%" }}>
+          <Progress color={color} value={props.avancementTrad * 100} />
+        </div>
+      )}
       <TextProgress>
         <div className={"text-" + color}>
           {getAvancement(props.avancementTrad)} %

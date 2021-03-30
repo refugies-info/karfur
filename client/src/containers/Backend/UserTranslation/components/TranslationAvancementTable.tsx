@@ -44,7 +44,7 @@ const headersExpert = [
   "Type",
   "Titre",
   "Progression",
-  "Prog. expert",
+  "Validation",
   "Mots",
   "Depuis",
   "Statut",
@@ -148,6 +148,7 @@ export const TranslationAvancementTable = (props: Props) => {
                   {(!props.isExpert || element.tradStatus === "À traduire") && (
                     <ProgressWithValue
                       avancementTrad={element.avancementTrad}
+                      isExpert={props.isExpert}
                     />
                   )}
                 </td>
@@ -155,6 +156,7 @@ export const TranslationAvancementTable = (props: Props) => {
                   <td className="align-middle">
                     <ProgressWithValue
                       avancementTrad={element.avancementExpert}
+                      isExpert={props.isExpert}
                     />
                   </td>
                 )}
