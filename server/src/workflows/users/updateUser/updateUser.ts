@@ -1,4 +1,9 @@
-import { RequestFromClient, Res, Picture } from "../../../types/interface";
+import {
+  RequestFromClient,
+  Res,
+  Picture,
+  SelectedLanguage,
+} from "../../../types/interface";
 import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { getRoleByName } from "../../../controllers/role/role.repository";
@@ -14,7 +19,7 @@ interface User {
   email?: string;
   username?: string;
   picture?: Picture;
-  traducteur?: boolean;
+  selectedLanguages?: SelectedLanguage[];
 }
 
 interface Data {
@@ -74,8 +79,7 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
         throw new Error("USER_NOT_AUTHORIZED");
       }
       try {
-        if (user.traducteur) {
-          delete user.traducteur;
+        if (user.selectedLanguages) {
           const traducteurRole = await getRoleByName("Trad");
           const userFromDB = await getUserById(user._id, { roles: 1 });
           const actualRoles = userFromDB.roles;

@@ -130,3 +130,11 @@ export interface IMailEvent {
   userId: ObjectId;
   dispositifId?: ObjectId;
 }
+
+export interface SelectedLanguage {
+  langueFr: string;
+  langueLoc: string;
+  langueCode: string;
+  i18nCode: string;
+  _id: ObjectId;
+}
