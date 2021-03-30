@@ -18,6 +18,7 @@ interface Props {
   data: IDispositifTranslation[];
   isAdmin: boolean;
   toggleTraducteurModal: () => void;
+  toggleTutoModal: () => void;
 }
 
 const RowContainer = styled.div`
@@ -93,14 +94,24 @@ export const TranslationsAvancement = (props: Props) => {
             </div>
           ))}
         </Row>
-        <FButton
-          type="dark"
-          className="mr-10"
-          onClick={props.toggleTraducteurModal}
-          name="settings-2-outline"
-        >
-          Mes langues
-        </FButton>
+        <Row>
+          <FButton
+            type="tuto"
+            onClick={props.toggleTutoModal}
+            name="video-outline"
+            className="mr-8"
+          >
+            Explications
+          </FButton>
+
+          <FButton
+            type="dark"
+            onClick={props.toggleTraducteurModal}
+            name="settings-2-outline"
+          >
+            Mes langues
+          </FButton>
+        </Row>
       </RowContainer>
       <FilterBarContainer>
         {props.isExpert && (

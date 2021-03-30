@@ -49,6 +49,7 @@ const RowContainer = styled.div`
 
 interface Props {
   toggleTraducteurModal: () => void;
+  toggleTutoModal: () => void;
 }
 export const StartTranslating = (props: Props) => {
   return (
@@ -70,7 +71,12 @@ export const StartTranslating = (props: Props) => {
           >
             Commencer à traduire
           </FButton>
-          <FButton type="tuto" className="ml-10">
+          <FButton
+            type="tuto"
+            className="ml-10"
+            name="video-outline"
+            onClick={props.toggleTutoModal}
+          >
             Explications
           </FButton>
         </RowContainer>

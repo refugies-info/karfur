@@ -69,4 +69,9 @@ export const sectionUrlCorrespondencies = [
     tutoUrl:
       "https://help.refugies.info/fr/article/comprendre-le-processus-de-publication-des-fiches-1alq0ht",
   },
+  {
+    section: "Traduction",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/comment-traduire-une-page-sur-refugiesinfo-1nnffof",
+  },
 ];
