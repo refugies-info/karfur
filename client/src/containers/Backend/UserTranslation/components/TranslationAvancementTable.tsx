@@ -13,6 +13,7 @@ import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { fetchDispositifsWithTranslationsStatusActionCreator } from "../../../../services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
 import { useDispatch } from "react-redux";
 import { ObjectId } from "mongodb";
+import "./TranslationAvancementTable.scss";
 
 moment.locale("fr");
 
@@ -129,8 +130,12 @@ export const TranslationAvancementTable = (props: Props) => {
               ? -moment(element.created_at).diff(moment(), "days") + " jours"
               : "ND";
             return (
-              <tr key={key} onClick={() => goToTraduction(element)}>
-                <td className="align-middle">
+              <tr
+                key={key}
+                onClick={() => goToTraduction(element)}
+                className="line"
+              >
+                <td className="align-middle first">
                   <TypeContenu
                     type={element.typeContenu || "dispositif"}
                     isDetailedVue={false}
@@ -175,13 +180,17 @@ export const TranslationAvancementTable = (props: Props) => {
                 <td className="align-middle">
                   <TradStatus status={element.tradStatus} />
                 </td>
-                <td className="align-middle">
+                <td
+                  className={
+                    props.isAdmin ? "align-middle " : "align-middle last"
+                  }
+                >
                   {element.lastTradUpdatedAt
                     ? moment(element.lastTradUpdatedAt).format("L")
                     : "Non disponible"}
                 </td>
                 {props.isAdmin && (
-                  <td className="align-middle">
+                  <td className="align-middle last">
                     <FButton
                       type="error"
                       name="trash-2"
