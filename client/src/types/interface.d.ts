@@ -351,3 +351,10 @@ export interface IDispositifTranslation {
   avancementExpert: number;
   tradStatus: TranslationStatus;
 }
+
+export type Indicators = {
+  threeMonthsIndicator?: Indicator[];
+  sixMonthsIndicator?: Indicator[];
+  twelveMonthsIndicator?: Indicator[];
+  totalIndicator?: Indicator[];
+};

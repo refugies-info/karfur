@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -17,6 +16,8 @@ import styled from "styled-components";
 import { colors } from "../../../colors";
 import { TranslationLanguagesChoiceModal } from "./components/TranslationLanguagesChoiceModal";
 import { FrameModal } from "../../../components/Modals";
+import API from "../../../utils/API";
+import { Indicators } from "../../../types/interface";
 
 declare const window: Window;
 export interface PropsBeforeInjection {
@@ -40,6 +41,8 @@ export const UserTranslationComponent = (props: Props) => {
     setShowTraducteurModal(!showTraducteurModal);
   const [showTutoModal, setShowTutoModal] = useState(false);
   const toggleTutoModal = () => setShowTutoModal(!showTutoModal);
+
+  const [indicators, setIndicators] = useState<null | Indicators>(null);
 
   const langueInUrl = props.match.params.id;
 
@@ -81,13 +84,38 @@ export const UserTranslationComponent = (props: Props) => {
     if (!availableLanguages.includes(langueInUrl)) {
       return props.history.push("/backend/user-translation");
     }
+    const loadIndicators = async () => {
+      if (user && user.user) {
+        const data = await API.get_progression({
+          userId: user.user._id,
+        });
+        setIndicators(data.data);
+      }
+    };
 
     if (langueInUrl) {
       dispatch(
         fetchDispositifsWithTranslationsStatusActionCreator(langueInUrl)
       );
+      loadIndicators();
     }
   }, [langueInUrl, userFirstTradLanguage, isLoadingUser, user]);
+
+  const nbWords =
+    indicators &&
+    indicators.totalIndicator &&
+    indicators.totalIndicator[0] &&
+    indicators.totalIndicator[0].wordsCount
+      ? indicators.totalIndicator[0].wordsCount
+      : 0;
+
+  const timeSpent =
+    indicators &&
+    indicators.totalIndicator &&
+    indicators.totalIndicator[0] &&
+    indicators.totalIndicator[0].timeSpent
+      ? Math.floor(indicators.totalIndicator[0].timeSpent / 1000 / 60)
+      : 0;
 
   if (isLoading || !user)
     return (
@@ -134,6 +162,8 @@ export const UserTranslationComponent = (props: Props) => {
         data={dispositifsWithTranslations}
         toggleTraducteurModal={toggleTraducteurModal}
         toggleTutoModal={toggleTutoModal}
+        nbWords={nbWords}
+        timeSpent={timeSpent}
       />
       {showTraducteurModal && (
         <TranslationLanguagesChoiceModal

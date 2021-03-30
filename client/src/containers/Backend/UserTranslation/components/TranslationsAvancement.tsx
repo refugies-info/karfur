@@ -9,6 +9,7 @@ import { LanguageTitle, FilterButton } from "./SubComponents";
 import { TranslationAvancementTable } from "./TranslationAvancementTable";
 import { filterData, getTradAmount } from "./functions";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import { colors } from "../../../../colors";
 
 interface Props {
   userTradLanguages: UserLanguage[];
@@ -19,6 +20,8 @@ interface Props {
   isAdmin: boolean;
   toggleTraducteurModal: () => void;
   toggleTutoModal: () => void;
+  nbWords: number;
+  timeSpent: number;
 }
 
 const RowContainer = styled.div`
@@ -43,6 +46,14 @@ const FilterBarContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
+`;
+
+const IndicatorText = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: ${colors.darkGrey};
+  margin-right: 8px;
 `;
 
 export const TranslationsAvancement = (props: Props) => {
@@ -95,6 +106,9 @@ export const TranslationsAvancement = (props: Props) => {
           ))}
         </Row>
         <Row>
+          <IndicatorText>
+            {`Vous avez traduit ${props.nbWords} mots pendant ${props.timeSpent} minutes.`}
+          </IndicatorText>
           <FButton
             type="tuto"
             onClick={props.toggleTutoModal}
@@ -103,7 +117,6 @@ export const TranslationsAvancement = (props: Props) => {
           >
             Explications
           </FButton>
-
           <FButton
             type="dark"
             onClick={props.toggleTraducteurModal}
