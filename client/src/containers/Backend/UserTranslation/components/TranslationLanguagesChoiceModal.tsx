@@ -19,6 +19,7 @@ import { Language, UserLanguage } from "../../../../types/interface";
 import "./TranslationLanguagesChoiceModal.scss";
 import { saveUserActionCreator } from "../../../../services/User/user.actions";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
 
 interface Props extends RouteComponentProps {
   show: boolean;
@@ -57,7 +58,16 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
         toggle={props.toggle}
         className="modal-traducteur"
       >
-        loading
+        <ModalHeader toggle={props.toggle}>C'est parti !</ModalHeader>
+        <ModalBody>
+          <h5>Quelles sont vos langues de travail ?</h5>
+          <Skeleton count={3} />
+        </ModalBody>
+        <ModalFooter>
+          <FButton type="validate" name="checkmark-outline" disabled={true}>
+            Valider
+          </FButton>
+        </ModalFooter>
       </Modal>
     );
   const handleCheck = (langue: Language) => {
@@ -94,8 +104,6 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
         user: {
           selectedLanguages: selectedLangues,
           _id: user.user._id,
-          // @ts-ignore
-          traducteur: true,
         },
         type: "modify-my-details",
       })

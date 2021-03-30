@@ -60,7 +60,7 @@ export const StartTranslating = (props: Props) => {
           Vous parlez une autre langue ?
         </WhiteContainerTitle>
         <WhiteContainerSubTitle>
-          Vous parlez une autre langue ?
+          Aidez à traduire les contenus à votre rythme.
         </WhiteContainerSubTitle>
         <RowContainer>
           <FButton
