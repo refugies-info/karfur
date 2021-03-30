@@ -12,6 +12,7 @@ import API from "../../../../utils/API";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { fetchDispositifsWithTranslationsStatusActionCreator } from "../../../../services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
 import { useDispatch } from "react-redux";
+import { ObjectId } from "mongodb";
 
 moment.locale("fr");
 
@@ -19,7 +20,7 @@ interface Props {
   isExpert: boolean;
   data: IDispositifTranslation[];
   history: any;
-  langueId: string;
+  langueId: ObjectId | null;
   isAdmin: boolean;
   languei18nCode: string;
 }
@@ -51,9 +52,9 @@ const headersExpert = [
   "Dernière trad",
 ];
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
 export const TranslationAvancementTable = (props: Props) => {
   const goToTraduction = (element: IDispositifTranslation) => {
+    if (!props.langueId) return;
     if (!props.isExpert && element.tradStatus === "Validée") return;
     return props.history.push({
       pathname:

@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import { TraducteurModal } from "../../../../components/Modals";
-import { UserState } from "../../../../services/User/user.reducer";
 
 const Title = styled.div`
   font-weight: bold;
@@ -50,12 +48,9 @@ const RowContainer = styled.div`
 `;
 
 interface Props {
-  user: UserState;
+  toggleTraducteurModal: () => void;
 }
 export const StartTranslating = (props: Props) => {
-  const [showTraducteurModal, setShowTraducteurModal] = useState(false);
-  const toggleTraducteurModal = () =>
-    setShowTraducteurModal(!showTraducteurModal);
   return (
     <MainContainer>
       <Title>Vous n'avez pas traduit de fiches pour le moment.</Title>
@@ -70,7 +65,7 @@ export const StartTranslating = (props: Props) => {
           <FButton
             type="dark"
             className="mr-10"
-            onClick={toggleTraducteurModal}
+            onClick={props.toggleTraducteurModal}
           >
             Commencer à traduire
           </FButton>
@@ -79,13 +74,6 @@ export const StartTranslating = (props: Props) => {
           </FButton>
         </RowContainer>
       </WhiteContainer>
-      <TraducteurModal
-        // @ts-ignore
-        user={props.user}
-        show={showTraducteurModal}
-        setUser={() => {}}
-        toggle={toggleTraducteurModal}
-      />
     </MainContainer>
   );
 };

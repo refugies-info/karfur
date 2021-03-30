@@ -14,6 +14,7 @@ export interface RequestFromClient<Query> {
   query?: Query;
   userId?: ObjectId;
   user?: UserDoc;
+  roles?: { nom: string; _id: ObjectId }[];
 }
 
 export interface RequestFromClientWithBody<Query> {

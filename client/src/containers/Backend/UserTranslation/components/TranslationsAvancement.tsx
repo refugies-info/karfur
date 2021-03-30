@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  Language,
+  UserLanguage,
   IDispositifTranslation,
   TranslationStatus,
 } from "../../../../types/interface";
@@ -10,7 +10,7 @@ import { TranslationAvancementTable } from "./TranslationAvancementTable";
 import { filterData, getTradAmount } from "./functions";
 
 interface Props {
-  userTradLanguages: Language[];
+  userTradLanguages: UserLanguage[];
   history: any;
   actualLanguage: string;
   isExpert: boolean;

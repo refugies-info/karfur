@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+/* eslint-disable no-console */
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   userSelectedLanguageSelector,
@@ -14,6 +15,7 @@ import { StartTranslating } from "./components/StartTranslating";
 import { TranslationsAvancement } from "./components/TranslationsAvancement";
 import styled from "styled-components";
 import { colors } from "../../../colors";
+import { TranslationLanguagesChoiceModal } from "./components/TranslationLanguagesChoiceModal";
 
 declare const window: Window;
 export interface PropsBeforeInjection {
@@ -32,6 +34,10 @@ const MainContainer = styled.div`
 const availableLanguages = ["fa", "en", "ru", "ps", "ar", "ti-ER"];
 
 export const UserTranslationComponent = (props: Props) => {
+  const [showTraducteurModal, setShowTraducteurModal] = useState(false);
+  const toggleTraducteurModal = () =>
+    setShowTraducteurModal(!showTraducteurModal);
+
   const langueInUrl = props.match.params.id;
 
   const userTradLanguages = useSelector(userSelectedLanguageSelector);
@@ -93,7 +99,11 @@ export const UserTranslationComponent = (props: Props) => {
   ) {
     return (
       <MainContainer>
-        <StartTranslating user={user} />
+        <StartTranslating toggleTraducteurModal={toggleTraducteurModal} />
+        <TranslationLanguagesChoiceModal
+          show={showTraducteurModal}
+          toggle={toggleTraducteurModal}
+        />
       </MainContainer>
     );
   }
@@ -107,6 +117,10 @@ export const UserTranslationComponent = (props: Props) => {
         isExpert={user.expertTrad}
         isAdmin={user.admin}
         data={dispositifsWithTranslations}
+      />
+      <TranslationLanguagesChoiceModal
+        show={showTraducteurModal}
+        toggle={toggleTraducteurModal}
       />
     </MainContainer>
   );

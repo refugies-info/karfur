@@ -72,16 +72,19 @@ export interface Role {
 
 export interface Language {
   langueFr: string;
-  langueLoc?: string;
-  langueCode?: string;
-  langueIsDialect?: boolean;
-  langueBackupId: ObjectId;
-  status?: string;
+  langueLoc: string;
+  langueCode: string;
   i18nCode: string;
-  avancement?: number;
-  participants: ObjectId[];
-  created_at: Moment;
-  updatedAt: Moment;
+  _id: ObjectId;
+  avancement: number;
+}
+
+export interface UserLanguage {
+  langueFr: string;
+  langueLoc: string;
+  langueCode: string;
+  i18nCode: string;
+  _id: ObjectId;
 }
 
 export interface User {
@@ -93,7 +96,7 @@ export interface User {
   objectifMots?: number;
   picture?: Picture;
   roles?: Role[];
-  selectedLanguages?: Language[];
+  selectedLanguages?: UserLanguage[];
   notifyObjectifs?: boolean;
   objectifTempsContrib?: number;
   objectifMotsContrib?: number;
