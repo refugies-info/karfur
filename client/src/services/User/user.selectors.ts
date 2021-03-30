@@ -1,7 +1,7 @@
 import { RootState } from "../rootReducer";
 import { UserState } from "./user.reducer";
 import { ObjectId } from "mongodb";
-import { User, Language } from "../../types/interface";
+import { User, UserLanguage } from "../../types/interface";
 
 export const userSelector = (state: RootState): UserState => state.user;
 
@@ -15,7 +15,7 @@ export const userDetailsSelector = (state: RootState): User | null =>
 
 export const userSelectedLanguageSelector = (
   state: RootState
-): Language[] | [] =>
+): UserLanguage[] | [] =>
   state.user.user && state.user.user.selectedLanguages
     ? state.user.user.selectedLanguages
     : [];

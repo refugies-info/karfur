@@ -11,7 +11,7 @@ import {
   finishLoading,
 } from "../../LoadingStatus/loadingStatus.actions";
 import { setActiveDispositifsActionsCreator } from "../activeDispositifs.actions";
-import { langueSelector } from "../../Langue/langue.selectors";
+import { languei18nSelector } from "../../Langue/langue.selectors";
 import { UPDATE_DISPOSITIF_REACTION } from "../activeDispositifs.actionTypes";
 import { fetchUserStructureActionCreator } from "../../UserStructure/userStructure.actions";
 
@@ -34,7 +34,7 @@ describe("[Saga] Active dispositifs", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS))
         .next()
-        .select(langueSelector)
+        .select(languei18nSelector)
         .next("langue")
         .call(API.getDispositifs, {
           query: { status: "Actif" },
@@ -53,7 +53,7 @@ describe("[Saga] Active dispositifs", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS))
         .next()
-        .select(langueSelector)
+        .select(languei18nSelector)
         .next("langue")
         .call(API.getDispositifs, {
           query: { status: "Actif" },
