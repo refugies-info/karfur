@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
-import { LanguageTitle, FilterButton } from "./SubComponents";
+import { FilterButton } from "./SubComponents";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { Table } from "reactstrap";
@@ -31,14 +30,6 @@ const FilterBarContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
-`;
-
-const IndicatorText = styled.div`
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: ${colors.darkGrey};
-  margin-right: 8px;
 `;
 
 const TableContainer = styled.div`

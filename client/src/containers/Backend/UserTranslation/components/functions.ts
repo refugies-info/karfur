@@ -5,9 +5,17 @@ import {
 
 export const filterData = (
   data: IDispositifTranslation[],
-  filterStatus: TranslationStatus | "all"
+  filterStatus: TranslationStatus | "all",
+  isExpert: boolean
 ) => {
-  if (filterStatus === "all") return data;
+  if (filterStatus === "all") {
+    if (isExpert) {
+      return data;
+    }
+    return data.filter((trad) =>
+      ["À traduire", "Validée"].includes(trad.tradStatus)
+    );
+  }
 
   return data.filter((trad) => trad.tradStatus === filterStatus);
 };

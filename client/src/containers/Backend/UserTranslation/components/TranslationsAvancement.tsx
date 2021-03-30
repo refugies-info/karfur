@@ -40,7 +40,6 @@ const Row = styled.div`
 
 const MainContainer = styled.div`
   margin: 30px 80px 30px 80px;
-  // width: 100%;
   align-self: center;
 `;
 
@@ -88,7 +87,7 @@ export const TranslationsAvancement = (props: Props) => {
     return setStatusFilter(status);
   };
 
-  const dataToDisplay = filterData(props.data, statusFilter);
+  const dataToDisplay = filterData(props.data, statusFilter, props.isExpert);
 
   return (
     <MainContainer>
