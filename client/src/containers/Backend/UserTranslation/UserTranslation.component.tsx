@@ -32,6 +32,7 @@ const MainContainer = styled.div`
   flex: 1;
   margin-top: -100px;
   padding-top: 100px;
+  flex-direction: column;
 `;
 
 const availableLanguages = ["fa", "en", "ru", "ps", "ar", "ti-ER"];
@@ -61,8 +62,6 @@ export const UserTranslationComponent = (props: Props) => {
   const isLoadingUser = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_USER)
   );
-  console.log("isLoadingDispositifs", isLoadingDispositifs);
-  console.log("isLoadingUser", isLoadingUser);
   const isLoading = isLoadingDispositifs || isLoadingUser;
 
   const dispositifsWithTranslations = useSelector(

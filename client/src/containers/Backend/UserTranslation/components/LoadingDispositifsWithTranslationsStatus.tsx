@@ -23,7 +23,8 @@ const Row = styled.div`
 
 const MainContainer = styled.div`
   margin: 30px 80px 30px 80px;
-  width: 100%;
+  width: fit-content;
+  align-self: center;
 `;
 
 const FilterBarContainer = styled.div`
