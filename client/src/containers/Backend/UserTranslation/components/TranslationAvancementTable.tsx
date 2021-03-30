@@ -7,6 +7,13 @@ import { TypeContenu } from "../../UserContributions/components/SubComponents";
 import { Title } from "../../Admin/sharedComponents/SubComponents";
 import { ProgressWithValue, TradStatus } from "./SubComponents";
 import moment from "moment/min/moment-with-locales";
+import Swal from "sweetalert2";
+import API from "../../../../utils/API";
+import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import { fetchDispositifsWithTranslationsStatusActionCreator } from "../../../../services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
+import { useDispatch } from "react-redux";
+import { ObjectId } from "mongodb";
+import "./TranslationAvancementTable.scss";
 
 moment.locale("fr");
 
@@ -14,7 +21,9 @@ interface Props {
   isExpert: boolean;
   data: IDispositifTranslation[];
   history: any;
-  langueId: string;
+  langueId: ObjectId | null;
+  isAdmin: boolean;
+  languei18nCode: string;
 }
 
 const TableContainer = styled.div`
@@ -37,16 +46,16 @@ const headersExpert = [
   "Type",
   "Titre",
   "Progression",
-  "Prog. expert",
+  "Validation",
   "Mots",
   "Depuis",
   "Statut",
   "Dernière trad",
 ];
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
 export const TranslationAvancementTable = (props: Props) => {
   const goToTraduction = (element: IDispositifTranslation) => {
+    if (!props.langueId) return;
     if (!props.isExpert && element.tradStatus === "Validée") return;
     return props.history.push({
       pathname:
@@ -56,6 +65,49 @@ export const TranslationAvancementTable = (props: Props) => {
         "/" +
         element._id,
       search: "?id=" + props.langueId,
+    });
+  };
+
+  const dispatch = useDispatch();
+  const deleteTrad = (e: any, element: IDispositifTranslation) => {
+    e.stopPropagation();
+    Swal.fire({
+      title: "Êtes-vous sûr ?",
+      text: "La suppression des traductions est irréversible",
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: colors.rouge,
+      cancelButtonColor: colors.vert,
+      confirmButtonText: "Oui, les supprimer",
+      cancelButtonText: "Annuler",
+    }).then((result: any) => {
+      if (result.value) {
+        API.delete_trads({
+          articleId: element._id,
+          langueCible: props.languei18nCode,
+        })
+          .then(() => {
+            dispatch(
+              fetchDispositifsWithTranslationsStatusActionCreator(
+                props.languei18nCode
+              )
+            );
+            Swal.fire({
+              title: "Yay...",
+              text: "Suppression effectuée",
+              type: "success",
+              timer: 1500,
+            });
+          })
+          .catch(() => {
+            Swal.fire({
+              title: "Oh non!",
+              text: "Something went wrong",
+              type: "error",
+              timer: 1500,
+            });
+          });
+      }
     });
   };
   return (
@@ -78,8 +130,12 @@ export const TranslationAvancementTable = (props: Props) => {
               ? -moment(element.created_at).diff(moment(), "days") + " jours"
               : "ND";
             return (
-              <tr key={key} onClick={() => goToTraduction(element)}>
-                <td className="align-middle">
+              <tr
+                key={key}
+                onClick={() => goToTraduction(element)}
+                className="line"
+              >
+                <td className="align-middle first">
                   <TypeContenu
                     type={element.typeContenu || "dispositif"}
                     isDetailedVue={false}
@@ -98,6 +154,7 @@ export const TranslationAvancementTable = (props: Props) => {
                   {(!props.isExpert || element.tradStatus === "À traduire") && (
                     <ProgressWithValue
                       avancementTrad={element.avancementTrad}
+                      isExpert={props.isExpert}
                     />
                   )}
                 </td>
@@ -105,6 +162,7 @@ export const TranslationAvancementTable = (props: Props) => {
                   <td className="align-middle">
                     <ProgressWithValue
                       avancementTrad={element.avancementExpert}
+                      isExpert={props.isExpert}
                     />
                   </td>
                 )}
@@ -122,11 +180,24 @@ export const TranslationAvancementTable = (props: Props) => {
                 <td className="align-middle">
                   <TradStatus status={element.tradStatus} />
                 </td>
-                <td className="align-middle">
+                <td
+                  className={
+                    props.isAdmin ? "align-middle " : "align-middle last"
+                  }
+                >
                   {element.lastTradUpdatedAt
                     ? moment(element.lastTradUpdatedAt).format("L")
                     : "Non disponible"}
                 </td>
+                {props.isAdmin && (
+                  <td className="align-middle last">
+                    <FButton
+                      type="error"
+                      name="trash-2"
+                      onClick={(event: any) => deleteTrad(event, element)}
+                    />
+                  </td>
+                )}
               </tr>
             );
           })}
