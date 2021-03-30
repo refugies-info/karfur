@@ -92,7 +92,6 @@ class TraducteurModal extends Component {
   };
 
   render() {
-    const _test = 3;
     const { show, toggle } = this.props;
     const { langues } = this.state;
     return (

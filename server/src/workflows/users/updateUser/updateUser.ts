@@ -1,4 +1,9 @@
-import { RequestFromClient, Res, Picture } from "../../../types/interface";
+import {
+  RequestFromClient,
+  Res,
+  Picture,
+  SelectedLanguage,
+} from "../../../types/interface";
 import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { getRoleByName } from "../../../controllers/role/role.repository";
@@ -14,6 +19,7 @@ interface User {
   email?: string;
   username?: string;
   picture?: Picture;
+  selectedLanguages?: SelectedLanguage[];
 }
 
 interface Data {
@@ -73,7 +79,22 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
         throw new Error("USER_NOT_AUTHORIZED");
       }
       try {
-        await updateUserInDB(user._id, user);
+        if (user.selectedLanguages) {
+          const traducteurRole = await getRoleByName("Trad");
+          const userFromDB = await getUserById(user._id, { roles: 1 });
+          const actualRoles = userFromDB.roles;
+          const hasAlreadyRoleTrad = !!actualRoles.find(
+            (role) => role && role.toString() === traducteurRole._id.toString()
+          );
+          if (hasAlreadyRoleTrad) {
+            await updateUserInDB(user._id, user);
+          } else {
+            const newRoles = actualRoles.concat(traducteurRole._id);
+            await updateUserInDB(user._id, { ...user, roles: newRoles });
+          }
+        } else {
+          await updateUserInDB(user._id, user);
+        }
       } catch (error) {
         if (user.username !== req.user.username) {
           throw new Error("PSEUDO_ALREADY_EXISTS");

@@ -1,31 +1,51 @@
 import React, { useState } from "react";
 import {
-  Language,
+  UserLanguage,
   IDispositifTranslation,
   TranslationStatus,
+  ITypeContenu,
 } from "../../../../types/interface";
 import styled from "styled-components";
-import { LanguageTitle, FilterButton } from "./SubComponents";
+import {
+  LanguageTitle,
+  FilterButton,
+  TypeContenuFilterButton,
+} from "./SubComponents";
 import { TranslationAvancementTable } from "./TranslationAvancementTable";
-import { filterData, getTradAmount } from "./functions";
+import { filterData } from "./functions";
+import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import { colors } from "../../../../colors";
 
 interface Props {
-  userTradLanguages: Language[];
+  userTradLanguages: UserLanguage[];
   history: any;
   actualLanguage: string;
   isExpert: boolean;
   data: IDispositifTranslation[];
+  isAdmin: boolean;
+  toggleTraducteurModal: () => void;
+  toggleTutoModal: () => void;
+  nbWords: number;
+  timeSpent: number;
 }
 
 const RowContainer = styled.div`
   display: flex;
   flex-direction: row;
-  //   justify-content: space-between;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
   align-items: center;
 `;
 
 const MainContainer = styled.div`
-  margin: 30px 100px 30px 100px;
+  margin: 30px 80px 30px 80px;
+  align-self: center;
 `;
 
 const FilterBarContainer = styled.div`
@@ -33,10 +53,22 @@ const FilterBarContainer = styled.div`
   flex-direction: row;
   margin-bottom: 10px;
 `;
+
+const IndicatorText = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: ${colors.darkGrey};
+  margin-right: 8px;
+`;
+
 export const TranslationsAvancement = (props: Props) => {
   const [statusFilter, setStatusFilter] = useState<TranslationStatus | "all">(
     "all"
   );
+  const [typeContenuFilter, setTypeContenuFilter] = useState<
+    ITypeContenu | "all"
+  >("dispositif");
 
   const navigateToLanguage = (langue: string) => {
     if (props.actualLanguage !== langue) {
@@ -44,10 +76,6 @@ export const TranslationsAvancement = (props: Props) => {
     }
     return;
   };
-  const { nbARevoir, nbATraduire, nbAValider, nbPubliees } = getTradAmount(
-    props.data
-  );
-
   const getLangueId = () => {
     if (!props.userTradLanguages || props.userTradLanguages.length === 0)
       return null;
@@ -63,23 +91,58 @@ export const TranslationsAvancement = (props: Props) => {
     return setStatusFilter(status);
   };
 
-  const dataToDisplay = filterData(props.data, statusFilter);
+  const onTypeContenuFilterClick = (status: ITypeContenu | "all") => {
+    if (status === typeContenuFilter) return setTypeContenuFilter("all");
+    return setTypeContenuFilter(status);
+  };
+
+  const {
+    dataToDisplay,
+    nbARevoir,
+    nbATraduire,
+    nbAValider,
+    nbPubliees,
+    nbDispositifs,
+    nbDemarches,
+  } = filterData(props.data, statusFilter, props.isExpert, typeContenuFilter);
 
   return (
     <MainContainer>
       <RowContainer>
-        {props.userTradLanguages.map((langue) => (
-          <div
-            key={langue.i18nCode}
-            onClick={() => navigateToLanguage(langue.i18nCode)}
+        <Row>
+          {props.userTradLanguages.map((langue) => (
+            <div
+              key={langue.i18nCode}
+              onClick={() => navigateToLanguage(langue.i18nCode)}
+            >
+              <LanguageTitle
+                language={langue}
+                isSelected={langue.i18nCode === props.actualLanguage}
+                hasMultipleLanguages={props.userTradLanguages.length > 1}
+              />
+            </div>
+          ))}
+        </Row>
+        <Row>
+          <IndicatorText>
+            {`Vous avez traduit ${props.nbWords} mots pendant ${props.timeSpent} minutes.`}
+          </IndicatorText>
+          <FButton
+            type="tuto"
+            onClick={props.toggleTutoModal}
+            name="video-outline"
+            className="mr-8"
           >
-            <LanguageTitle
-              language={langue}
-              isSelected={langue.i18nCode === props.actualLanguage}
-              hasMultipleLanguages={props.userTradLanguages.length > 1}
-            />
-          </div>
-        ))}
+            Explications
+          </FButton>
+          <FButton
+            type="dark"
+            onClick={props.toggleTraducteurModal}
+            name="settings-2-outline"
+          >
+            Mes langues
+          </FButton>
+        </Row>
       </RowContainer>
       <FilterBarContainer>
         {props.isExpert && (
@@ -110,12 +173,26 @@ export const TranslationsAvancement = (props: Props) => {
           nbContent={nbPubliees}
           onClick={() => onFilterClick("Validée")}
         />
+        <TypeContenuFilterButton
+          isSelected={typeContenuFilter === "dispositif"}
+          name="Dispositifs"
+          onClick={() => onTypeContenuFilterClick("dispositif")}
+          nbContent={nbDispositifs}
+        />
+        <TypeContenuFilterButton
+          isSelected={typeContenuFilter === "demarche"}
+          name="Démarches"
+          onClick={() => onTypeContenuFilterClick("demarche")}
+          nbContent={nbDemarches}
+        />
       </FilterBarContainer>
       <TranslationAvancementTable
         isExpert={props.isExpert}
         data={dataToDisplay}
         history={props.history}
         langueId={getLangueId()}
+        isAdmin={props.isAdmin}
+        languei18nCode={props.actualLanguage}
       />
     </MainContainer>
   );

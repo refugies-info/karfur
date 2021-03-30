@@ -33,7 +33,7 @@ export const UserContribTable = (props: Props) => (
               <th key={key}>
                 <StatutHeader
                   onClick={() => {
-                    props.setTutoModalDisplayed("Mes fiches");
+                    props.setTutoModalDisplayed("Statut des fiches");
                     props.toggleTutoModal();
                   }}
                 />
@@ -78,7 +78,7 @@ export const UserContribTable = (props: Props) => (
             <td
               onClick={(event: any) => {
                 event.stopPropagation();
-                props.setTutoModalDisplayed("Mes fiches");
+                props.setTutoModalDisplayed("Statut des fiches");
                 props.toggleTutoModal();
               }}
               className="align-middle"

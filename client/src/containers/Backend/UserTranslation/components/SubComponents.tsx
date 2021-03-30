@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { Language, TranslationStatus } from "../../../../types/interface";
+import { UserLanguage, TranslationStatus } from "../../../../types/interface";
 import "./SubComponents.scss";
 import { colorAvancement } from "../../../../components/Functions/ColorFunctions";
 import { Progress } from "reactstrap";
 import { colors } from "../../../../colors";
+import FSwitch from "../../../../components/FigmaUI/FSwitch/FSwitch";
 
 interface Props {
-  language: Language;
+  language: UserLanguage;
   isSelected: boolean;
   hasMultipleLanguages: boolean;
 }
@@ -16,7 +17,6 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-right: 16px;
-  margin-bottom: 20px;
   align-items: center;
   cursor: ${(props) => (props.hasMultipleLanguages ? "pointer" : "default")};
 `;
@@ -59,6 +59,7 @@ export const LanguageTitle = (props: Props) => (
 
 interface ProgressProps {
   avancementTrad: number;
+  isExpert: boolean;
 }
 
 const ProgressContainer = styled.div`
@@ -84,9 +85,11 @@ export const ProgressWithValue = (props: ProgressProps) => {
   const color = colorAvancement(props.avancementTrad);
   return (
     <ProgressContainer>
-      <div style={{ width: "100%" }}>
-        <Progress color={color} value={props.avancementTrad * 100} />
-      </div>
+      {!props.isExpert && (
+        <div style={{ width: "100%" }}>
+          <Progress color={color} value={props.avancementTrad * 100} />
+        </div>
+      )}
       <TextProgress>
         <div className={"text-" + color}>
           {getAvancement(props.avancementTrad)} %
@@ -117,7 +120,7 @@ const getStatus = (status: TranslationStatus) => {
   if (status === "À revoir")
     return { formattedStatus: "À revoir", color: colors.redDark };
   if (status === "Validée")
-    return { formattedStatus: "Publiée", color: colors.green };
+    return { formattedStatus: "Publiées", color: colors.green };
   if (status === "À traduire")
     return { formattedStatus: "À traduire", color: colors.blue };
   return { formattedStatus: "No status", color: colors.erreur };
@@ -140,16 +143,19 @@ const FilterButtonContainer = styled.div`
   padding: 15px;
   background-color: ${(props) =>
     props.isSelected ? props.color : colors.blancSimple};
-  border-radius: 8px;
+  border-radius: 12px;
   width: fit-content;
   margin-right: 10px;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 interface FilterButtonProps {
   status: TranslationStatus;
   isSelected: boolean;
-  nbContent: number;
+  nbContent: number | string;
   onClick: () => void;
 }
 export const FilterButton = (props: FilterButtonProps) => {
@@ -164,3 +170,37 @@ export const FilterButton = (props: FilterButtonProps) => {
     </FilterButtonContainer>
   );
 };
+
+interface TypeContenuFilterButtonProps {
+  isSelected: boolean;
+  name: "Dispositifs" | "Démarches";
+  onClick: () => void;
+  nbContent: number;
+}
+
+const TypeContenuFilterButtonContainer = styled.div`
+  padding: 15px;
+  background-color: ${(props) =>
+    props.isSelected ? colors.noir : colors.blancSimple};
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: ${(props) => (props.isSelected ? colors.blancSimple : colors.noir)};
+  cursor: pointer;
+  border-radius: 12px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+export const TypeContenuFilterButton = (
+  props: TypeContenuFilterButtonProps
+) => (
+  <TypeContenuFilterButtonContainer
+    isSelected={props.isSelected}
+    onClick={props.onClick}
+  >
+    {props.name + " (" + props.nbContent + ")"}
+    <FSwitch className="card-custom-title ml-8" checked={props.isSelected} />
+  </TypeContenuFilterButtonContainer>
+);

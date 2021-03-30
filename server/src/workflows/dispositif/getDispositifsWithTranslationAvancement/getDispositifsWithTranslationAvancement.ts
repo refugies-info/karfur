@@ -63,11 +63,15 @@ export const getDispositifsWithTranslationAvancement = async (
       locale,
       traductionFields
     );
+
     let results: Result[] = [];
 
     activeDispositifs.forEach((dispositif) => {
       const correspondingTrads = traductions.filter(
-        (trad) => trad.articleId.toString() === dispositif._id.toString()
+        (trad) =>
+          trad.articleId &&
+          dispositif._id &&
+          trad.articleId.toString() === dispositif._id.toString()
       );
       turnToLocalizedTitles(dispositif, "fr");
       const dispositifData = {
@@ -118,35 +122,6 @@ export const getDispositifsWithTranslationAvancement = async (
         tradStatus,
       });
     });
-
-    console.log(
-      "reqults a revoir",
-      results.filter((res) => res.tradStatus === "À revoir").length
-    );
-    console.log(
-      "reqults a trad",
-      results.filter((res) => res.tradStatus === "À traduire").length
-    );
-
-    console.log(
-      "reqults publiee",
-      results.filter((res) => res.tradStatus === "Validée").length
-    );
-
-    console.log(
-      "reqults a valider",
-      results.filter((res) => res.tradStatus === "En attente").length
-    );
-
-    console.log(
-      "reqults dispo",
-      results.filter((res) => res.typeContenu === "dispositif").length
-    );
-
-    console.log(
-      "reqults demacrhe",
-      results.filter((res) => res.typeContenu === "demarche").length
-    );
 
     res.status(200).json({ data: results });
   } catch (error) {
