@@ -440,7 +440,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
       <div
         className="c7"
       >
-        Depuis 83 jours
+        Depuis 5 jours
       </div>
       <button
         className="figma-btn dark "
@@ -491,7 +491,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
       <div
         className="c7"
       >
-        Depuis 52 jours
+        Depuis 5 jours
       </div>
       <button
         className="figma-btn dark "
@@ -558,7 +558,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
       <div
         className="c11"
       >
-        Depuis -313 jours
+        Depuis 5 jours
       </div>
       <button
         className="figma-btn dark "
