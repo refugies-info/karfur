@@ -45,7 +45,7 @@ const Row = styled.div`
 `;
 
 const MainContainer = styled.div`
-  margin: 30px 80px 30px 80px;
+  margin: 30px 75px 30px 75px;
   align-self: center;
 `;
 
