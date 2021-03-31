@@ -60,18 +60,44 @@ const filterDataOnTypeContenu = (
   return data.filter((trad) => trad.typeContenu === typeContenuFilter);
 };
 
+const filterDataBySearch = (data: IDispositifTranslation[], search: string) => {
+  if (!search) {
+    return data;
+  }
+  return data.filter(
+    (dispo) =>
+      (dispo.titreInformatif &&
+        dispo.titreInformatif
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .includes(search.toLowerCase())) ||
+      (dispo.titreMarque &&
+        dispo.titreMarque
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .includes(search.toLowerCase()))
+  );
+};
+
 export const filterData = (
   data: IDispositifTranslation[],
   filterStatus: TranslationStatus | "all",
   isExpert: boolean,
-  typeContenuFilter: "dispositif" | "demarche" | "all"
+  typeContenuFilter: "dispositif" | "demarche" | "all",
+  search: string
 ) => {
   const dataFilteredExpert = filterDataExpert(data, isExpert);
+
+  const dataFilteredBySearch = filterDataBySearch(dataFilteredExpert, search);
+
   const { nbARevoir, nbATraduire, nbAValider, nbPubliees } = getTradAmount(
-    dataFilteredExpert
+    dataFilteredBySearch
   );
+
   const dataFilteredStatus = filterDataOnStatus(
-    dataFilteredExpert,
+    dataFilteredBySearch,
     filterStatus
   );
 

@@ -143,7 +143,7 @@ const FilterButtonContainer = styled.div`
   font-size: 16px;
   line-height: 20px;
   color: ${(props) => (props.isSelected ? colors.blancSimple : props.color)};
-  padding: 15px;
+  padding: 17px;
   background-color: ${(props) =>
     props.isSelected ? props.color : colors.blancSimple};
   border-radius: 12px;

@@ -15,6 +15,7 @@ import { TranslationAvancementTable } from "./TranslationAvancementTable";
 import { filterData } from "./functions";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { colors } from "../../../../colors";
+import { CustomSearchBar } from "../../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 
 interface Props {
   userTradLanguages: UserLanguage[];
@@ -52,6 +53,7 @@ const FilterBarContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
+  align-items: center;
 `;
 
 const IndicatorText = styled.div`
@@ -63,6 +65,8 @@ const IndicatorText = styled.div`
 `;
 
 export const TranslationsAvancement = (props: Props) => {
+  const [search, setSearch] = useState("");
+
   const [statusFilter, setStatusFilter] = useState<TranslationStatus | "all">(
     "all"
   );
@@ -95,6 +99,7 @@ export const TranslationsAvancement = (props: Props) => {
     if (status === typeContenuFilter) return setTypeContenuFilter("all");
     return setTypeContenuFilter(status);
   };
+  const handleChange = (e: any) => setSearch(e.target.value);
 
   const {
     dataToDisplay,
@@ -104,7 +109,13 @@ export const TranslationsAvancement = (props: Props) => {
     nbPubliees,
     nbDispositifs,
     nbDemarches,
-  } = filterData(props.data, statusFilter, props.isExpert, typeContenuFilter);
+  } = filterData(
+    props.data,
+    statusFilter,
+    props.isExpert,
+    typeContenuFilter,
+    search
+  );
 
   return (
     <MainContainer>
@@ -184,6 +195,12 @@ export const TranslationsAvancement = (props: Props) => {
           name="Démarches"
           onClick={() => onTypeContenuFilterClick("demarche")}
           nbContent={nbDemarches}
+        />
+        <CustomSearchBar
+          value={search}
+          // @ts-ignore
+          onChange={handleChange}
+          placeholder="Rechercher..."
         />
       </FilterBarContainer>
       <TranslationAvancementTable
