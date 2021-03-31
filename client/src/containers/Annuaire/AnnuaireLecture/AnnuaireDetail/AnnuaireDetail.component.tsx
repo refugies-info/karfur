@@ -71,12 +71,12 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
   const leftPartHeight = height - 150;
   useEffect(() => {
     const loadStructure = async () => {
-      await dispatch(
+      dispatch(
         fetchSelectedStructureActionCreator({ id: structureId, locale })
       );
     };
     const loadStructures = async () => {
-      await dispatch(fetchActiveStructuresActionCreator());
+      dispatch(fetchActiveStructuresActionCreator());
     };
 
     if (!structures || structures.length === 0) {

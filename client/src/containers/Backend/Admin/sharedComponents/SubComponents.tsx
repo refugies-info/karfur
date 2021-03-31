@@ -299,7 +299,8 @@ export const FilterButton = (props: {
 const StyledTabHeader = styled.div`
   display: flex;
   flex-direction: row;
-  font-weight: ${(props) => (props.isSortedHeader ? "bold" : "normal")};
+  font-weight: "bold";
+
   cursor: ${(props) => props.order && "pointer"};
 `;
 

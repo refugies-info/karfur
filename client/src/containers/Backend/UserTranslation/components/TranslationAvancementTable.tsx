@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { IDispositifTranslation } from "../../../../types/interface";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
 import { Table } from "reactstrap";
 import { TypeContenu } from "../../UserContributions/components/SubComponents";
-import { Title } from "../../Admin/sharedComponents/SubComponents";
+import { Title, TabHeader } from "../../Admin/sharedComponents/SubComponents";
 import { ProgressWithValue, TradStatus } from "./SubComponents";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
@@ -14,6 +14,7 @@ import { fetchDispositifsWithTranslationsStatusActionCreator } from "../../../..
 import { useDispatch } from "react-redux";
 import { ObjectId } from "mongodb";
 import "./TranslationAvancementTable.scss";
+import { sortData } from "./functions";
 
 moment.locale("fr");
 
@@ -33,27 +34,33 @@ const TableContainer = styled.div`
 `;
 
 const headers = [
-  "Type",
-  "Titre",
-  "Progression",
-  "Mots",
-  "Depuis",
-  "Statut",
-  "Dernière trad",
+  { name: "Type", order: "typeContenu" },
+  { name: "Titre", order: "titreInformatif" },
+  { name: "Progression", order: "avancementTrad" },
+  { name: "Mots", order: "nbMots" },
+  { name: "Depuis", order: "created_at" },
+  { name: "Statut", order: "tradStatus" },
+  { name: "Dernière trad", order: "lastTradUpdatedAt" },
 ];
 
 const headersExpert = [
-  "Type",
-  "Titre",
-  "Progression",
-  "Validation",
-  "Mots",
-  "Depuis",
-  "Statut",
-  "Dernière trad",
+  { name: "Type", order: "typeContenu" },
+  { name: "Titre", order: "titreInformatif" },
+  { name: "Progression", order: "avancementTrad" },
+  { name: "Validation", order: "avancementExpert" },
+  { name: "Mots", order: "nbMots" },
+  { name: "Depuis", order: "created_at" },
+  { name: "Statut", order: "tradStatus" },
+  { name: "Dernière trad", order: "lastTradUpdatedAt" },
 ];
-
+const defaultSortedHeader = {
+  name: "none",
+  sens: "none",
+  order: "none",
+};
 export const TranslationAvancementTable = (props: Props) => {
+  const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
+
   const goToTraduction = (element: IDispositifTranslation) => {
     if (!props.langueId) return;
     if (!props.isExpert && element.tradStatus === "Validée") return;
@@ -66,6 +73,19 @@ export const TranslationAvancementTable = (props: Props) => {
         element._id,
       search: "?id=" + props.langueId,
     });
+  };
+
+  const reorder = (element: { name: string; order: string }) => {
+    if (sortedHeader.name === element.name) {
+      const sens = sortedHeader.sens === "up" ? "down" : "up";
+      setSortedHeader({ name: element.name, sens, order: element.order });
+    } else {
+      setSortedHeader({
+        name: element.name,
+        sens: "up",
+        order: element.order,
+      });
+    }
   };
 
   const dispatch = useDispatch();
@@ -110,6 +130,8 @@ export const TranslationAvancementTable = (props: Props) => {
       }
     });
   };
+
+  const sortedData = sortData(props.data, sortedHeader);
   return (
     <TableContainer>
       <Table responsive borderless className="avancement-table">
@@ -117,15 +139,41 @@ export const TranslationAvancementTable = (props: Props) => {
           <tr className="tr-test">
             {props.isExpert
               ? headersExpert.map((element, key) => {
-                  return <th key={key}>{element}</th>;
+                  return (
+                    <th key={key} onClick={() => reorder(element)}>
+                      <TabHeader
+                        name={element.name}
+                        order={element.order}
+                        isSortedHeader={sortedHeader.name === element.name}
+                        sens={
+                          sortedHeader.name === element.name
+                            ? sortedHeader.sens
+                            : "down"
+                        }
+                      />
+                    </th>
+                  );
                 })
               : headers.map((element, key) => {
-                  return <th key={key}>{element}</th>;
+                  return (
+                    <th key={key} onClick={() => reorder(element)}>
+                      <TabHeader
+                        name={element.name}
+                        order={element.order}
+                        isSortedHeader={sortedHeader.name === element.name}
+                        sens={
+                          sortedHeader.name === element.name
+                            ? sortedHeader.sens
+                            : "down"
+                        }
+                      />
+                    </th>
+                  );
                 })}
           </tr>
         </thead>
         <tbody>
-          {props.data.map((element, key) => {
+          {sortedData.map((element, key) => {
             const nbDays = element.created_at
               ? -moment(element.created_at).diff(moment(), "days") + " jours"
               : "ND";
@@ -186,7 +234,7 @@ export const TranslationAvancementTable = (props: Props) => {
                   }
                 >
                   {element.lastTradUpdatedAt
-                    ? moment(element.lastTradUpdatedAt).format("L")
+                    ? moment(element.lastTradUpdatedAt).format("DD/MM/YY H:mm")
                     : "Non disponible"}
                 </td>
                 {props.isAdmin && (

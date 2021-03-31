@@ -92,7 +92,7 @@ export const NoFavorites = (props: { t: any; toggleTutoModal: () => void }) => (
         amount={0}
         textSingular={props.t(
           "UserFavorites.fiches sauvegardée",
-          "fiches sauvegardée"
+          "fiche sauvegardée"
         )}
         textPlural={props.t(
           "UserFavorites.fiches sauvegardées",
