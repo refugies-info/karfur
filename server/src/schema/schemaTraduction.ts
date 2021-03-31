@@ -1,5 +1,4 @@
 import mongoose, { ObjectId } from "mongoose";
-import { Moment } from "moment";
 
 var traductionSchema = new mongoose.Schema(
   {
