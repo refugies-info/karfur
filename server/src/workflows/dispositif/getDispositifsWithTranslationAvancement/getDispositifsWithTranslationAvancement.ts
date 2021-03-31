@@ -32,7 +32,11 @@ export const getDispositifsWithTranslationAvancement = async (
   try {
     checkRequestIsFromSite(req.fromSite);
 
-    if (!req.query.locale || !availableLanguages.includes(req.query.locale)) {
+    if (
+      !req.query ||
+      !req.query.locale ||
+      !availableLanguages.includes(req.query.locale)
+    ) {
       throw new Error("INVALID_REQUEST");
     }
 
