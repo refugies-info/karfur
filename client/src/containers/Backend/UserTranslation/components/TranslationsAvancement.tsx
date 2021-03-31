@@ -15,6 +15,7 @@ import { TranslationAvancementTable } from "./TranslationAvancementTable";
 import { filterData } from "./functions";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { colors } from "../../../../colors";
+import { CustomSearchBar } from "../../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 
 interface Props {
   userTradLanguages: UserLanguage[];
@@ -44,7 +45,7 @@ const Row = styled.div`
 `;
 
 const MainContainer = styled.div`
-  margin: 30px 80px 30px 80px;
+  margin: 30px 75px 30px 75px;
   align-self: center;
 `;
 
@@ -52,6 +53,8 @@ const FilterBarContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const IndicatorText = styled.div`
@@ -62,9 +65,24 @@ const IndicatorText = styled.div`
   margin-right: 8px;
 `;
 
+const getInitialFilterStatus = (
+  isExpert: boolean,
+  data: IDispositifTranslation[]
+) => {
+  if (!isExpert) return "À traduire";
+  const nbARevoir = data.filter((trad) => trad.tradStatus === "À revoir")
+    .length;
+  if (nbARevoir > 0) return "À revoir";
+  return "En attente";
+};
 export const TranslationsAvancement = (props: Props) => {
+  const [search, setSearch] = useState("");
+  const initialStatusFilter = getInitialFilterStatus(
+    props.isExpert,
+    props.data
+  );
   const [statusFilter, setStatusFilter] = useState<TranslationStatus | "all">(
-    "all"
+    initialStatusFilter
   );
   const [typeContenuFilter, setTypeContenuFilter] = useState<
     ITypeContenu | "all"
@@ -95,6 +113,7 @@ export const TranslationsAvancement = (props: Props) => {
     if (status === typeContenuFilter) return setTypeContenuFilter("all");
     return setTypeContenuFilter(status);
   };
+  const handleChange = (e: any) => setSearch(e.target.value);
 
   const {
     dataToDisplay,
@@ -104,7 +123,13 @@ export const TranslationsAvancement = (props: Props) => {
     nbPubliees,
     nbDispositifs,
     nbDemarches,
-  } = filterData(props.data, statusFilter, props.isExpert, typeContenuFilter);
+  } = filterData(
+    props.data,
+    statusFilter,
+    props.isExpert,
+    typeContenuFilter,
+    search
+  );
 
   return (
     <MainContainer>
@@ -145,45 +170,54 @@ export const TranslationsAvancement = (props: Props) => {
         </Row>
       </RowContainer>
       <FilterBarContainer>
-        {props.isExpert && (
+        <Row>
+          {props.isExpert && (
+            <FilterButton
+              status="À revoir"
+              isSelected={statusFilter === "À revoir"}
+              nbContent={nbARevoir}
+              onClick={() => onFilterClick("À revoir")}
+            />
+          )}
           <FilterButton
-            status="À revoir"
-            isSelected={statusFilter === "À revoir"}
-            nbContent={nbARevoir}
-            onClick={() => onFilterClick("À revoir")}
+            status="À traduire"
+            isSelected={statusFilter === "À traduire"}
+            nbContent={nbATraduire}
+            onClick={() => onFilterClick("À traduire")}
           />
-        )}
-        <FilterButton
-          status="À traduire"
-          isSelected={statusFilter === "À traduire"}
-          nbContent={nbATraduire}
-          onClick={() => onFilterClick("À traduire")}
-        />
-        {props.isExpert && (
+          {props.isExpert && (
+            <FilterButton
+              status="En attente"
+              isSelected={statusFilter === "En attente"}
+              nbContent={nbAValider}
+              onClick={() => onFilterClick("En attente")}
+            />
+          )}
           <FilterButton
-            status="En attente"
-            isSelected={statusFilter === "En attente"}
-            nbContent={nbAValider}
-            onClick={() => onFilterClick("En attente")}
+            status="Validée"
+            isSelected={statusFilter === "Validée"}
+            nbContent={nbPubliees}
+            onClick={() => onFilterClick("Validée")}
           />
-        )}
-        <FilterButton
-          status="Validée"
-          isSelected={statusFilter === "Validée"}
-          nbContent={nbPubliees}
-          onClick={() => onFilterClick("Validée")}
-        />
-        <TypeContenuFilterButton
-          isSelected={typeContenuFilter === "dispositif"}
-          name="Dispositifs"
-          onClick={() => onTypeContenuFilterClick("dispositif")}
-          nbContent={nbDispositifs}
-        />
-        <TypeContenuFilterButton
-          isSelected={typeContenuFilter === "demarche"}
-          name="Démarches"
-          onClick={() => onTypeContenuFilterClick("demarche")}
-          nbContent={nbDemarches}
+          <TypeContenuFilterButton
+            isSelected={typeContenuFilter === "dispositif"}
+            name="Dispositifs"
+            onClick={() => onTypeContenuFilterClick("dispositif")}
+            nbContent={nbDispositifs}
+          />
+          <TypeContenuFilterButton
+            isSelected={typeContenuFilter === "demarche"}
+            name="Démarches"
+            onClick={() => onTypeContenuFilterClick("demarche")}
+            nbContent={nbDemarches}
+          />
+        </Row>
+
+        <CustomSearchBar
+          value={search}
+          // @ts-ignore
+          onChange={handleChange}
+          placeholder="Rechercher..."
         />
       </FilterBarContainer>
       <TranslationAvancementTable

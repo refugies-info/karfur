@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
-import { FilterButton } from "./SubComponents";
+import { FilterButton, TypeContenuFilterButton } from "./SubComponents";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { Table } from "reactstrap";
+import { CustomSearchBar } from "../../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 
 const RowContainer = styled.div`
   display: flex;
@@ -30,6 +31,7 @@ const FilterBarContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
+  align-items: center;
 `;
 
 const TableContainer = styled.div`
@@ -82,18 +84,39 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
         </Row>
       </RowContainer>
       <FilterBarContainer>
-        <FilterButton
-          status="À traduire"
-          isSelected={false}
-          nbContent={"..."}
-          onClick={() => {}}
-        />
+        <Row>
+          <FilterButton
+            status="À traduire"
+            isSelected={false}
+            nbContent={"..."}
+            onClick={() => {}}
+          />
 
-        <FilterButton
-          status="Validée"
-          isSelected={false}
-          nbContent={"..."}
-          onClick={() => {}}
+          <FilterButton
+            status="Validée"
+            isSelected={false}
+            nbContent={"..."}
+            onClick={() => {}}
+          />
+          <TypeContenuFilterButton
+            isSelected={true}
+            name="Dispositifs"
+            onClick={() => {}}
+            nbContent={"..."}
+          />
+          <TypeContenuFilterButton
+            isSelected={false}
+            name="Démarches"
+            onClick={() => {}}
+            nbContent={"..."}
+          />
+        </Row>
+
+        <CustomSearchBar
+          value={""}
+          // @ts-ignore
+          onChange={() => {}}
+          placeholder="Rechercher..."
         />
       </FilterBarContainer>
       <TableContainer>

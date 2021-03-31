@@ -117,6 +117,69 @@ describe("updateUser", () => {
     user: { roles: [{ nom: "Admin" }] },
   };
 
+  it("should return 200 if user himself and type modify-my-details with selectedLanguages and user not trad", async () => {
+    getRoleByName.mockResolvedValueOnce({ _id: "tradId" });
+    getUserById.mockResolvedValueOnce({ roles: ["adminId"] });
+    await updateUser(
+      {
+        fromSite: true,
+        body: {
+          query: {
+            user: {
+              _id: "userId",
+              selectedLanguages: [{ _id: "langueId", i18nCode: "en" }],
+            },
+            action: "modify-my-details",
+          },
+        },
+        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        userId: "userId",
+      },
+      res
+    );
+
+    expect(getRoleByName).toHaveBeenCalledWith("Trad");
+    expect(getUserById).toHaveBeenCalledWith("userId", { roles: 1 });
+    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
+      _id: "userId",
+      selectedLanguages: [{ _id: "langueId", i18nCode: "en" }],
+      roles: ["adminId", "tradId"],
+    });
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+
+  it("should return 200 if user himself and type modify-my-details with selectedLanguages and user trad", async () => {
+    getRoleByName.mockResolvedValueOnce({ _id: "tradId" });
+    getUserById.mockResolvedValueOnce({ roles: ["tradId"] });
+    await updateUser(
+      {
+        fromSite: true,
+        body: {
+          query: {
+            user: {
+              _id: "userId",
+              selectedLanguages: [{ _id: "langueId", i18nCode: "en" }],
+            },
+            action: "modify-my-details",
+          },
+        },
+        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        userId: "userId",
+      },
+      res
+    );
+
+    expect(getRoleByName).toHaveBeenCalledWith("Trad");
+    expect(getUserById).toHaveBeenCalledWith("userId", { roles: 1 });
+    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
+      _id: "userId",
+      selectedLanguages: [{ _id: "langueId", i18nCode: "en" }],
+    });
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+
   it("should return 200 when modify, case new roles admin, actual role Expert admin autre null", async () => {
     getRoleByName.mockResolvedValueOnce({ _id: "expertRoleId" });
     getRoleByName.mockResolvedValueOnce({ _id: "adminRoleId" });
@@ -341,7 +404,10 @@ describe("updateUser", () => {
       },
       res
     );
-    await updateUserInDB("userId", { _id: "userId", email: "email" });
+    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
+      _id: "userId",
+      email: "email",
+    });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });
@@ -362,8 +428,10 @@ describe("updateUser", () => {
       },
       res
     );
-    await updateUserInDB("userId", { _id: "userId", email: "email" });
-
+    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
+      _id: "userId",
+      username: "newPseudo",
+    });
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({ text: "Ce pseudo est déjà pris" });
   });
@@ -384,7 +452,10 @@ describe("updateUser", () => {
       },
       res
     );
-    await updateUserInDB("userId", { _id: "userId", email: "email" });
+    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
+      _id: "userId",
+      username: "newPseudo",
+    });
 
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });

@@ -42,6 +42,23 @@ jest.mock(
   }
 );
 
+jest.mock("moment", () => {
+  // Here we are able to mock chain builder pattern
+  const mMoment = {
+    format: jest.fn(() => "12/07/1998"),
+    startOf: jest.fn().mockReturnThis(),
+    isValid: jest.fn().mockReturnValue(true),
+    diff: jest.fn().mockReturnValue(-5),
+  };
+  // Here we are able to mock the constructor and to modify instance methods
+  const fn = jest.fn((newMoment) => {
+    mMoment.format = jest.fn(() => newMoment);
+    return mMoment;
+  });
+
+  return fn;
+});
+
 describe("UserNotifications", () => {
   beforeEach(() => {
     jest.clearAllMocks();

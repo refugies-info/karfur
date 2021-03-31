@@ -413,7 +413,6 @@ function get_tradForReview(req, res) {
   } else {
     populate = "";
   }
-  console.log("get_tradForReview query", query);
   if (
     query.articleId &&
     typeof query.articleId === "string" &&
