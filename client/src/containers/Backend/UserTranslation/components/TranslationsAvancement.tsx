@@ -64,11 +64,24 @@ const IndicatorText = styled.div`
   margin-right: 8px;
 `;
 
+const getInitialFilterStatus = (
+  isExpert: boolean,
+  data: IDispositifTranslation[]
+) => {
+  if (!isExpert) return "À traduire";
+  const nbARevoir = data.filter((trad) => trad.tradStatus === "À revoir")
+    .length;
+  if (nbARevoir > 0) return "À revoir";
+  return "En attente";
+};
 export const TranslationsAvancement = (props: Props) => {
   const [search, setSearch] = useState("");
-
+  const initialStatusFilter = getInitialFilterStatus(
+    props.isExpert,
+    props.data
+  );
   const [statusFilter, setStatusFilter] = useState<TranslationStatus | "all">(
-    "all"
+    initialStatusFilter
   );
   const [typeContenuFilter, setTypeContenuFilter] = useState<
     ITypeContenu | "all"
