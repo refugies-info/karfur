@@ -178,7 +178,7 @@ interface TypeContenuFilterButtonProps {
   isSelected: boolean;
   name: "Dispositifs" | "Démarches";
   onClick: () => void;
-  nbContent: number;
+  nbContent: number | string;
 }
 
 const TypeContenuFilterButtonContainer = styled.div`
