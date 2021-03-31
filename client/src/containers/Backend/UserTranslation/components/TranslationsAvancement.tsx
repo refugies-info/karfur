@@ -54,6 +54,7 @@ const FilterBarContainer = styled.div`
   flex-direction: row;
   margin-bottom: 10px;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const IndicatorText = styled.div`
@@ -169,46 +170,49 @@ export const TranslationsAvancement = (props: Props) => {
         </Row>
       </RowContainer>
       <FilterBarContainer>
-        {props.isExpert && (
+        <Row>
+          {props.isExpert && (
+            <FilterButton
+              status="À revoir"
+              isSelected={statusFilter === "À revoir"}
+              nbContent={nbARevoir}
+              onClick={() => onFilterClick("À revoir")}
+            />
+          )}
           <FilterButton
-            status="À revoir"
-            isSelected={statusFilter === "À revoir"}
-            nbContent={nbARevoir}
-            onClick={() => onFilterClick("À revoir")}
+            status="À traduire"
+            isSelected={statusFilter === "À traduire"}
+            nbContent={nbATraduire}
+            onClick={() => onFilterClick("À traduire")}
           />
-        )}
-        <FilterButton
-          status="À traduire"
-          isSelected={statusFilter === "À traduire"}
-          nbContent={nbATraduire}
-          onClick={() => onFilterClick("À traduire")}
-        />
-        {props.isExpert && (
+          {props.isExpert && (
+            <FilterButton
+              status="En attente"
+              isSelected={statusFilter === "En attente"}
+              nbContent={nbAValider}
+              onClick={() => onFilterClick("En attente")}
+            />
+          )}
           <FilterButton
-            status="En attente"
-            isSelected={statusFilter === "En attente"}
-            nbContent={nbAValider}
-            onClick={() => onFilterClick("En attente")}
+            status="Validée"
+            isSelected={statusFilter === "Validée"}
+            nbContent={nbPubliees}
+            onClick={() => onFilterClick("Validée")}
           />
-        )}
-        <FilterButton
-          status="Validée"
-          isSelected={statusFilter === "Validée"}
-          nbContent={nbPubliees}
-          onClick={() => onFilterClick("Validée")}
-        />
-        <TypeContenuFilterButton
-          isSelected={typeContenuFilter === "dispositif"}
-          name="Dispositifs"
-          onClick={() => onTypeContenuFilterClick("dispositif")}
-          nbContent={nbDispositifs}
-        />
-        <TypeContenuFilterButton
-          isSelected={typeContenuFilter === "demarche"}
-          name="Démarches"
-          onClick={() => onTypeContenuFilterClick("demarche")}
-          nbContent={nbDemarches}
-        />
+          <TypeContenuFilterButton
+            isSelected={typeContenuFilter === "dispositif"}
+            name="Dispositifs"
+            onClick={() => onTypeContenuFilterClick("dispositif")}
+            nbContent={nbDispositifs}
+          />
+          <TypeContenuFilterButton
+            isSelected={typeContenuFilter === "demarche"}
+            name="Démarches"
+            onClick={() => onTypeContenuFilterClick("demarche")}
+            nbContent={nbDemarches}
+          />
+        </Row>
+
         <CustomSearchBar
           value={search}
           // @ts-ignore

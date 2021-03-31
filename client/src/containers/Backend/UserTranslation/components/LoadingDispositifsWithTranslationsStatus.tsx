@@ -84,31 +84,34 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
         </Row>
       </RowContainer>
       <FilterBarContainer>
-        <FilterButton
-          status="À traduire"
-          isSelected={false}
-          nbContent={"..."}
-          onClick={() => {}}
-        />
+        <Row>
+          <FilterButton
+            status="À traduire"
+            isSelected={false}
+            nbContent={"..."}
+            onClick={() => {}}
+          />
 
-        <FilterButton
-          status="Validée"
-          isSelected={false}
-          nbContent={"..."}
-          onClick={() => {}}
-        />
-        <TypeContenuFilterButton
-          isSelected={true}
-          name="Dispositifs"
-          onClick={() => {}}
-          nbContent={"..."}
-        />
-        <TypeContenuFilterButton
-          isSelected={false}
-          name="Démarches"
-          onClick={() => {}}
-          nbContent={"..."}
-        />
+          <FilterButton
+            status="Validée"
+            isSelected={false}
+            nbContent={"..."}
+            onClick={() => {}}
+          />
+          <TypeContenuFilterButton
+            isSelected={true}
+            name="Dispositifs"
+            onClick={() => {}}
+            nbContent={"..."}
+          />
+          <TypeContenuFilterButton
+            isSelected={false}
+            name="Démarches"
+            onClick={() => {}}
+            nbContent={"..."}
+          />
+        </Row>
+
         <CustomSearchBar
           value={""}
           // @ts-ignore
