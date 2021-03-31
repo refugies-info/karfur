@@ -67,16 +67,15 @@ export const filterData = (
   typeContenuFilter: "dispositif" | "demarche" | "all"
 ) => {
   const dataFilteredExpert = filterDataExpert(data, isExpert);
-
+  const { nbARevoir, nbATraduire, nbAValider, nbPubliees } = getTradAmount(
+    dataFilteredExpert
+  );
   const dataFilteredStatus = filterDataOnStatus(
     dataFilteredExpert,
     filterStatus
   );
 
   const { nbDemarches, nbDispositifs } = getNbTradByTypeContenu(
-    dataFilteredStatus
-  );
-  const { nbARevoir, nbATraduire, nbAValider, nbPubliees } = getTradAmount(
     dataFilteredStatus
   );
 
