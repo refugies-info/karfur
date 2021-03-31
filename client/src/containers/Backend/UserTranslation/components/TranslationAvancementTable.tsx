@@ -155,7 +155,20 @@ export const TranslationAvancementTable = (props: Props) => {
                   );
                 })
               : headers.map((element, key) => {
-                  return <th key={key}>{element.name}</th>;
+                  return (
+                    <th key={key} onClick={() => reorder(element)}>
+                      <TabHeader
+                        name={element.name}
+                        order={element.order}
+                        isSortedHeader={sortedHeader.name === element.name}
+                        sens={
+                          sortedHeader.name === element.name
+                            ? sortedHeader.sens
+                            : "down"
+                        }
+                      />
+                    </th>
+                  );
                 })}
           </tr>
         </thead>
@@ -221,7 +234,7 @@ export const TranslationAvancementTable = (props: Props) => {
                   }
                 >
                   {element.lastTradUpdatedAt
-                    ? moment(element.lastTradUpdatedAt).format("L")
+                    ? moment(element.lastTradUpdatedAt).format("DD/MM/YY H:mm")
                     : "Non disponible"}
                 </td>
                 {props.isAdmin && (
