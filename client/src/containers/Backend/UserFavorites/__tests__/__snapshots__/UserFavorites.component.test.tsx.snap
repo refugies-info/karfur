@@ -219,7 +219,7 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
         <div
           className="c3"
         >
-          fiches sauvegardée
+          fiche sauvegardée
         </div>
       </div>
     </div>
