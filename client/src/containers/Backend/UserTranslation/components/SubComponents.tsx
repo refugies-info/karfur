@@ -114,20 +114,23 @@ const TradStatusContainer = styled.div`
   width: fit-content;
 `;
 
-const getStatus = (status: TranslationStatus) => {
+const getStatus = (status: TranslationStatus, isSingular: boolean) => {
   if (status === "En attente")
     return { formattedStatus: "À valider", color: colors.orangeDark };
   if (status === "À revoir")
     return { formattedStatus: "À revoir", color: colors.redDark };
   if (status === "Validée")
-    return { formattedStatus: "Publiées", color: colors.green };
+    return {
+      formattedStatus: isSingular ? "Publiée" : "Publiées",
+      color: colors.green,
+    };
   if (status === "À traduire")
     return { formattedStatus: "À traduire", color: colors.blue };
   return { formattedStatus: "No status", color: colors.erreur };
 };
 
 export const TradStatus = (props: TradStatusProps) => {
-  const { formattedStatus, color } = getStatus(props.status);
+  const { formattedStatus, color } = getStatus(props.status, true);
   return (
     <TradStatusContainer backgroundColor={color}>
       {formattedStatus}
@@ -159,7 +162,7 @@ interface FilterButtonProps {
   onClick: () => void;
 }
 export const FilterButton = (props: FilterButtonProps) => {
-  const { formattedStatus, color } = getStatus(props.status);
+  const { formattedStatus, color } = getStatus(props.status, false);
   return (
     <FilterButtonContainer
       color={color}
