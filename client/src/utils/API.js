@@ -109,10 +109,6 @@ export default {
     });
   },
 
-  get_event: (params) => {
-    return axios.post(burl + "/events/get_event", params, { headers: headers });
-  },
-
   get_traduction: (query, sort, populate) => {
     return axios.post(
       burl + "/article/get_traduction",
