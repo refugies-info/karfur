@@ -4,10 +4,10 @@ import { colors } from "../../../../colors";
 export const FavoritesContainer = styled.div`
   background: ${colors.lightGrey};
   border-radius: 12px;
-  margin-top: 30px;
   padding-top: 40px;
   padding-bottom: 40px;
   width: 1120px;
+  height: fit-content;
 `;
 
 export const CardContainer = styled.div`

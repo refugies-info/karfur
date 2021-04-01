@@ -74,7 +74,6 @@ export const TranslationAvancementTable = (props: Props) => {
       search: "?id=" + props.langueId,
     });
   };
-
   const reorder = (element: { name: string; order: string }) => {
     if (sortedHeader.name === element.name) {
       const sens = sortedHeader.sens === "up" ? "down" : "up";
@@ -136,7 +135,7 @@ export const TranslationAvancementTable = (props: Props) => {
     <TableContainer>
       <Table responsive borderless className="avancement-table">
         <thead>
-          <tr className="tr-test">
+          <tr>
             {props.isExpert
               ? headersExpert.map((element, key) => {
                   return (
@@ -182,6 +181,8 @@ export const TranslationAvancementTable = (props: Props) => {
                 key={key}
                 onClick={() => goToTraduction(element)}
                 className="line"
+                // @ts-ignore
+                testID={`test-line-${element._id}`}
               >
                 <td className="align-middle first">
                   <TypeContenu
@@ -243,6 +244,7 @@ export const TranslationAvancementTable = (props: Props) => {
                       type="error"
                       name="trash-2"
                       onClick={(event: any) => deleteTrad(event, element)}
+                      testID="test-trash"
                     />
                   </td>
                 )}

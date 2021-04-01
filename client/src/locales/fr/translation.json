@@ -538,7 +538,9 @@
     "Se déconnecter": "Se déconnecter",
     "Connexion": "Connexion",
     "Inscription": "Inscription",
-    "Mes notifications": "Mes notifications"
+    "Mes notifications": "Mes notifications",
+    "Mes favoris": "Mes favoris",
+    "Déconnexion": "Déconnexion"
   },
   "Footer": {
     "Je m'abonne à la newsletter": "S'inscrire à la lettre d'information",
