@@ -232,11 +232,20 @@ export class Toolbar extends React.Component {
                 pathname: pathName,
               }}
             >
-              <img src={userImg} className="user-picture" alt="user" />
               {membreStruct &&
-                nbNewNotifications > 0 &&
-                this.props.userStructure &&
-                nbNewNotifications}
+              nbNewNotifications > 0 &&
+              this.props.userStructure ? (
+                <div className="overlay">
+                  <img
+                    src={userImg}
+                    className="user-picture-with-overlay"
+                    alt="user"
+                  />
+                  <div class="middle">{nbNewNotifications}</div>
+                </div>
+              ) : (
+                <img src={userImg} className="user-picture" alt="user" />
+              )}
             </NavLink>
           ) : (
             <>
