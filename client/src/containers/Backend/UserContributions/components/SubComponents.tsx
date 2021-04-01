@@ -14,6 +14,7 @@ export const ContribContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  height: fit-content;
 `;
 
 const Container = styled.div`

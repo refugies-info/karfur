@@ -1,12 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { withTranslation } from "react-i18next";
-import {
-  ButtonDropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-} from "reactstrap";
 import i18n from "../../i18n";
 import { AppAsideToggler } from "@coreui/react";
 import { NavLink } from "react-router-dom";
@@ -14,7 +8,6 @@ import { connect } from "react-redux";
 import windowSize from "react-window-size";
 
 import { toggleLangueModalActionCreator } from "../../services/Langue/langue.actions";
-// import NavigationItems from '../../components/Navigation/NavigationItems/NavigationItems';
 import DrawerToggle from "../../components/Navigation/SideDrawer/DrawerToggle/DrawerToggle";
 import API from "../../utils/API";
 import AudioBtn from "../UI/AudioBtn/AudioBtn";
@@ -28,11 +21,15 @@ import { fetchUserActionCreator } from "../../services/User/user.actions";
 import { breakpoints } from "utils/breakpoints.js";
 import styled from "styled-components";
 import Streamline from "../../assets/streamline";
-
+import {
+  userStructureHasResponsibleSeenNotification,
+  userStructureDisposAssociesSelector,
+  userStructureSelector,
+} from "../../services/UserStructure/userStructure.selectors";
 import "./Toolbar.scss";
 import { colors } from "colors";
 import { logger } from "../../logger";
-
+import { getNbNewNotifications } from "../Backend/UserNotifications/lib";
 const InnerButton = styled.div`
   display: flex;
   justify-content: space-between;
@@ -136,7 +133,14 @@ export class Toolbar extends React.Component {
     const userImg =
       user && user.picture ? user.picture.secure_url : marioProfile;
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+    const pathName = membreStruct
+      ? "/backend/user-dash-notifications"
+      : "/backend/user-favorites";
 
+    const nbNewNotifications = getNbNewNotifications(
+      this.props.dispositifsAssocies,
+      this.props.hasResponsibleSeenNotification
+    );
     return (
       <header
         className={
@@ -222,72 +226,27 @@ export class Toolbar extends React.Component {
           </button>
 
           {API.isAuth() ? (
-            <ButtonDropdown
-              className="user-dropdown"
-              isOpen={this.state.dropdownOpen}
-              toggle={this.toggle}
+            <NavLink
+              className="user-picture-link"
+              to={{
+                pathname: pathName,
+              }}
             >
-              <DropdownToggle color="transparent">
+              {membreStruct &&
+              nbNewNotifications > 0 &&
+              this.props.userStructure ? (
+                <div className="overlay">
+                  <img
+                    src={userImg}
+                    className="user-picture-with-overlay"
+                    alt="user"
+                  />
+                  <div class="middle">{nbNewNotifications}</div>
+                </div>
+              ) : (
                 <img src={userImg} className="user-picture" alt="user" />
-                <div className="user-badge" />
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem
-                  onClick={() => this.navigateTo("/backend/user-profile")}
-                >
-                  {t("Toolbar.Mon profil", "Mon profil")}
-                </DropdownItem>
-                <DropdownItem
-                  onClick={() => this.navigateTo("/backend/user-favorites")}
-                >
-                  {t("Dispositif.Mes favoris", "Mes favoris")}
-                </DropdownItem>
-
-                <DropdownItem
-                  onClick={() => this.navigateTo("/backend/user-dash-contrib")}
-                >
-                  {t("Toolbar.Mes fiches", "Mes fiches")}
-                </DropdownItem>
-
-                <DropdownItem
-                  onClick={() => this.navigateTo("/backend/user-dashboard")}
-                >
-                  {t("Toolbar.Mes traductions", "Mes traductions")}
-                </DropdownItem>
-
-                {membreStruct && (
-                  <DropdownItem
-                    onClick={() => {
-                      this.navigateTo("/backend/user-dash-structure");
-                    }}
-                  >
-                    {t("Toolbar.Ma structure", "Ma structure")}
-                  </DropdownItem>
-                )}
-                {membreStruct && (
-                  <DropdownItem
-                    onClick={() => {
-                      this.navigateTo("/backend/user-dash-notifications");
-                    }}
-                  >
-                    {t("Toolbar.Mes notifications", "Mes notifications")}
-                  </DropdownItem>
-                )}
-                {admin && (
-                  <DropdownItem
-                    onClick={() => this.navigateTo("/backend/admin")}
-                  >
-                    {t("Toolbar.Administration", "Administration")}
-                  </DropdownItem>
-                )}
-                <DropdownItem divider />
-                <NavLink to="/" onClick={this.disconnect}>
-                  <DropdownItem className="text-danger">
-                    {t("Toolbar.Se déconnecter", "Se déconnecter")}
-                  </DropdownItem>
-                </NavLink>
-              </DropdownMenu>
-            </ButtonDropdown>
+              )}
+            </NavLink>
           ) : (
             <>
               <NavLink
@@ -337,6 +296,11 @@ const mapStateToProps = (state) => {
     contributeur: state.user.contributeur,
     admin: state.user.admin,
     membreStruct: state.user.membreStruct,
+    dispositifsAssocies: userStructureDisposAssociesSelector(state),
+    hasResponsibleSeenNotification: userStructureHasResponsibleSeenNotification(
+      state
+    ),
+    userStructure: userStructureSelector(state),
   };
 };
 

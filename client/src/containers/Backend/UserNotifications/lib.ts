@@ -62,3 +62,14 @@ export const formatNotifications = (
   });
   return result;
 };
+
+export const getNbNewNotifications = (
+  dispositifs: IDispositif[],
+  hasResponsibleSeenAnnuaireNotif: boolean
+) => {
+  const formattedNotifications = formatNotifications(
+    dispositifs,
+    hasResponsibleSeenAnnuaireNotif
+  );
+  return formattedNotifications.filter((notif) => !notif.read).length;
+};

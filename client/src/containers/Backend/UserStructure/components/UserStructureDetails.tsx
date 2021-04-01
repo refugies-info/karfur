@@ -79,7 +79,6 @@ export const UserStructureDetails = (props: Props) => {
 
   const getSecureUrl = (picture: Picture | null) => {
     if (picture && picture.secure_url) return picture.secure_url;
-
     return placeholder;
   };
 

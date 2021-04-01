@@ -22,7 +22,7 @@ const Row = styled.div`
 `;
 
 const MainContainer = styled.div`
-  margin: 30px 80px 30px 80px;
+  margin: 26px 80px 30px 80px;
   width: fit-content;
   align-self: center;
 `;

@@ -51,7 +51,7 @@ describe("UserStructure", () => {
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: true } },
-          userStructure: { _id: "structureId" },
+          userStructure: { _id: "structureId", dispositifsAssocies: [] },
         },
       });
     });
@@ -88,7 +88,11 @@ describe("UserStructure", () => {
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          userStructure: { status: "En attente", _id: "structureId" },
+          userStructure: {
+            status: "En attente",
+            _id: "structureId",
+            dispositifsAssocies: [],
+          },
         },
       });
     });
@@ -103,6 +107,7 @@ describe("UserStructure", () => {
       { _id: "id1", roles: ["contributeur"], username: "membre1" },
       { _id: "id2", roles: ["administrateur"], username: "membre2" },
     ],
+    dispositifsAssocies: [],
   };
   it("should render correctly when structure with membres when user is respo", () => {
     window.scrollTo = jest.fn();

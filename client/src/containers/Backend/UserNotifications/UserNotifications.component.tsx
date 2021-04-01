@@ -25,6 +25,7 @@ import Skeleton from "react-loading-skeleton";
 import { assetsOnServer } from "../../../assets/assetsOnServer";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
 import { colors } from "../../../colors";
+import { Navigation } from "../Navigation";
 
 declare const window: Window;
 
@@ -35,7 +36,6 @@ const MainContainer = styled.div`
   margin-top: 26px;
   margin-right: 120px;
   margin-left: 120px;
-  width: 100%;
   height: fit-content;
 `;
 
@@ -197,61 +197,70 @@ export const UserNotificationsComponent = (props: PropsBeforeInjection) => {
 
   if (isLoading)
     return (
+      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        <Navigation selected="notifications" />
+        <MainContainer>
+          <TitleWithNumber
+            amount={nbNewNotifications}
+            textSingular={"nouvelle notification."}
+            textPlural={"nouvelles notifications."}
+            isLoading={true}
+          />
+          <Skeleton count={3} height={50} />
+        </MainContainer>
+      </div>
+    );
+
+  if (notifications.length === 0)
+    return (
+      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        <Navigation selected="notifications" />
+        <MainContainer>
+          <CenterContainer>
+            <Title>Aucune notification ! </Title>
+            <div style={{ marginTop: "32px", marginBottom: "20px" }}>
+              <img
+                src={assetsOnServer.middleOffice.noNotification}
+                alt="no-notification"
+              />
+            </div>
+          </CenterContainer>
+        </MainContainer>
+      </div>
+    );
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+      <Navigation selected="notifications" />
       <MainContainer>
         <TitleWithNumber
           amount={nbNewNotifications}
           textSingular={"nouvelle notification."}
           textPlural={"nouvelles notifications."}
-          isLoading={true}
         />
-        <Skeleton count={3} height={50} />
-      </MainContainer>
-    );
 
-  if (notifications.length === 0)
-    return (
-      <MainContainer>
-        <CenterContainer>
-          <Title>Aucune notification ! </Title>
-          <div style={{ marginTop: "32px", marginBottom: "20px" }}>
-            <img
-              src={assetsOnServer.middleOffice.noNotification}
-              alt="no-notification"
-            />
-          </div>
-        </CenterContainer>
-      </MainContainer>
-    );
-
-  return (
-    <MainContainer>
-      <TitleWithNumber
-        amount={nbNewNotifications}
-        textSingular={"nouvelle notification."}
-        textPlural={"nouvelles notifications."}
-      />
-
-      {notifications.map((notif) => (
-        <Notification
-          type={notif.type}
-          read={notif.read}
-          key={notif.suggestionId || notif.type}
-          title={notif.title}
-          createdAt={notif.createdAt}
-          link={notif.link}
-          onClick={() => onNotificationClick(notif)}
-          onReactionDeleteClick={() => deleteNotificationAndUpdate(notif)}
-          onAnnuaireNotifDeleteClick={updateStructureWithNotificationSeen}
-          history={props.history}
+        {notifications.map((notif) => (
+          <Notification
+            type={notif.type}
+            read={notif.read}
+            key={notif.suggestionId || notif.type}
+            title={notif.title}
+            createdAt={notif.createdAt}
+            link={notif.link}
+            onClick={() => onNotificationClick(notif)}
+            onReactionDeleteClick={() => deleteNotificationAndUpdate(notif)}
+            onAnnuaireNotifDeleteClick={updateStructureWithNotificationSeen}
+            history={props.history}
+          />
+        ))}
+        <ReactionLectureModal
+          suggestion={selectedReaction}
+          show={showReactionModal}
+          toggle={toggleReactionModal}
+          delete={() => deleteNotificationAndUpdate(selectedReaction)}
+          read={() => readNotificationAndUpdate(selectedReaction)}
         />
-      ))}
-      <ReactionLectureModal
-        suggestion={selectedReaction}
-        show={showReactionModal}
-        toggle={toggleReactionModal}
-        delete={() => deleteNotificationAndUpdate(selectedReaction)}
-        read={() => readNotificationAndUpdate(selectedReaction)}
-      />
-    </MainContainer>
+      </MainContainer>
+    </div>
   );
 };
