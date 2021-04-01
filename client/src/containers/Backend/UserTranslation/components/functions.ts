@@ -14,7 +14,7 @@ const filterDataExpert = (
   );
 };
 
-export const getTradAmount = (data: IDispositifTranslation[]) => {
+const getTradAmount = (data: IDispositifTranslation[]) => {
   const nbARevoir = data.filter((trad) => trad.tradStatus === "À revoir")
     .length;
   const nbATraduire = data.filter((trad) => trad.tradStatus === "À traduire")
@@ -32,7 +32,7 @@ export const getTradAmount = (data: IDispositifTranslation[]) => {
   };
 };
 
-export const getNbTradByTypeContenu = (data: IDispositifTranslation[]) => {
+const getNbTradByTypeContenu = (data: IDispositifTranslation[]) => {
   const nbDispositifs = data.filter((trad) => trad.typeContenu === "dispositif")
     .length;
   const nbDemarches = data.filter((trad) => trad.typeContenu === "demarche")
@@ -64,6 +64,11 @@ const filterDataBySearch = (data: IDispositifTranslation[], search: string) => {
   if (!search) {
     return data;
   }
+  const text = search
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim()
+    .toLowerCase();
   return data.filter(
     (dispo) =>
       (dispo.titreInformatif &&
@@ -71,13 +76,13 @@ const filterDataBySearch = (data: IDispositifTranslation[], search: string) => {
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
           .toLowerCase()
-          .includes(search.toLowerCase())) ||
+          .includes(text.toLowerCase())) ||
       (dispo.titreMarque &&
         dispo.titreMarque
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
           .toLowerCase()
-          .includes(search.toLowerCase()))
+          .includes(text.toLowerCase()))
   );
 };
 
