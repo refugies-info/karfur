@@ -285,8 +285,8 @@ export const UserProfileComponent = (props: Props) => {
   }
 
   return (
-    <>
-      <Navigation />
+    <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+      <Navigation selected="profil" />
       <MainContainer className="user-profile">
         <ProfilePictureContainer>
           <img src={getUserImage(user)} alt="my-image" className="user-img" />
@@ -474,6 +474,6 @@ export const UserProfileComponent = (props: Props) => {
           )}
         </ProfileContainer>
       </MainContainer>
-    </>
+    </div>
   );
 };
