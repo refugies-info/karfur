@@ -26,6 +26,7 @@ import { colors } from "../../../colors";
 import Swal from "sweetalert2";
 import Skeleton from "react-loading-skeleton";
 import { fetchUserStructureActionCreator } from "../../../services/UserStructure/userStructure.actions";
+import { Navigation } from "../Navigation";
 
 declare const window: Window;
 
@@ -34,7 +35,7 @@ const MainContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   flex: 1;
-  margin-top: 42px;
+  margin-top: 26px;
   height: fit-content;
   margin-bottom: 42px;
 `;
@@ -130,86 +131,95 @@ export const UserContributionsComponent = (props: Props) => {
 
   if (isLoading) {
     return (
-      <MainContainer>
-        <ContribContainer>
-          <TitleWithNumber
-            amount={0}
-            textPlural="fiches."
-            textSingular="fiche."
-            isLoading={true}
-            textBefore="Vous avez rédigé"
-          />
-          <Skeleton count={3} height={50} />
-        </ContribContainer>
-      </MainContainer>
+      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        <Navigation selected="contributions" />
+        <MainContainer>
+          <ContribContainer>
+            <TitleWithNumber
+              amount={0}
+              textPlural="fiches."
+              textSingular="fiche."
+              isLoading={true}
+              textBefore="Vous avez rédigé"
+            />
+            <Skeleton count={3} height={50} />
+          </ContribContainer>
+        </MainContainer>
+      </div>
     );
   }
 
   if (contributions.length === 0)
     return (
+      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        <Navigation selected="contributions" />
+        <MainContainer>
+          <NoContribution
+            toggleTutoModal={toggleTutoModal}
+            setTutoModalDisplayed={setTutoModalDisplayed}
+          />
+          {showTutoModal && (
+            <FrameModal
+              show={showTutoModal}
+              toggle={toggleTutoModal}
+              section={"Mes fiches"}
+            />
+          )}
+        </MainContainer>
+      </div>
+    );
+  return (
+    <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+      <Navigation selected="contributions" />
       <MainContainer>
-        <NoContribution
-          toggleTutoModal={toggleTutoModal}
-          setTutoModalDisplayed={setTutoModalDisplayed}
-        />
+        <ContribContainer>
+          <TitleContainer>
+            <TitleWithNumber
+              amount={contributions.length}
+              textPlural="fiches."
+              textSingular="fiche."
+              textBefore="Vous avez rédigé"
+            />
+            <div>
+              <FButton
+                type="tuto"
+                name="video-outline"
+                className="mr-8"
+                onClick={() => {
+                  setTutoModalDisplayed("Mes fiches");
+                  toggleTutoModal();
+                }}
+              >
+                Explications
+              </FButton>
+              <FButton
+                tag={NavHashLink}
+                to="/comment-contribuer#ecrire"
+                type="dark"
+                name="file-add-outline"
+              >
+                Créer une nouvelle fiche
+              </FButton>
+            </div>
+          </TitleContainer>
+          <WhiteContainer>
+            <UserContribTable
+              contributions={contributions}
+              toggleTutoModal={toggleTutoModal}
+              setTutoModalDisplayed={setTutoModalDisplayed}
+              onContributionRowClick={onContributionRowClick}
+              deleteDispositif={deleteDispositif}
+            />
+          </WhiteContainer>
+        </ContribContainer>
         {showTutoModal && (
           <FrameModal
             show={showTutoModal}
             toggle={toggleTutoModal}
-            section={"Mes fiches"}
+            section={tutoModalDisplayed}
           />
         )}
       </MainContainer>
-    );
-  return (
-    <MainContainer>
-      <ContribContainer>
-        <TitleContainer>
-          <TitleWithNumber
-            amount={contributions.length}
-            textPlural="fiches."
-            textSingular="fiche."
-            textBefore="Vous avez rédigé"
-          />
-          <div>
-            <FButton
-              type="tuto"
-              name="video-outline"
-              className="mr-8"
-              onClick={() => {
-                setTutoModalDisplayed("Mes fiches");
-                toggleTutoModal();
-              }}
-            >
-              Explications
-            </FButton>
-            <FButton
-              tag={NavHashLink}
-              to="/comment-contribuer#ecrire"
-              type="dark"
-              name="file-add-outline"
-            >
-              Créer une nouvelle fiche
-            </FButton>
-          </div>
-        </TitleContainer>
-        <WhiteContainer>
-          <UserContribTable
-            contributions={contributions}
-            toggleTutoModal={toggleTutoModal}
-            setTutoModalDisplayed={setTutoModalDisplayed}
-            onContributionRowClick={onContributionRowClick}
-            deleteDispositif={deleteDispositif}
-          />
-        </WhiteContainer>
-      </ContribContainer>
-      {showTutoModal && (
-        <FrameModal
-          show={showTutoModal}
-          toggle={toggleTutoModal}
-          section={tutoModalDisplayed}
-        />
-      )}
-    </MainContainer>
+    </div>
   );
 };

@@ -7,7 +7,7 @@ import { UserStructure } from "../../types/interface";
 import { action, ActionType } from "typesafe-actions";
 import { ObjectId } from "mongodb";
 
-export const setUserStructureActionCreator = (value: UserStructure) =>
+export const setUserStructureActionCreator = (value: UserStructure | null) =>
   action(SET_USER_STRUCTURE, value);
 
 export const fetchUserStructureActionCreator = (value: {

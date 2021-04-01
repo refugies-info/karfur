@@ -22,6 +22,7 @@ import { TitleWithNumber } from "../middleOfficeSharedComponents";
 import { IUserFavorite } from "../../../types/interface";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { FavoritesLoading } from "./components/FavoritesLoading";
+import { Navigation } from "../Navigation";
 declare const window: Window;
 
 export interface PropsBeforeInjection {
@@ -33,7 +34,7 @@ export const MainContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   flex: 1;
-  margin-top: 42px;
+  margin-top: 26px;
   height: fit-content;
   margin-bottom: 42px;
 `;
@@ -69,9 +70,12 @@ export const UserFavoritesComponent = (props: Props) => {
 
   if (isLoading)
     return (
-      <MainContainer>
-        <FavoritesLoading t={props.t} />
-      </MainContainer>
+      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        <Navigation selected="favoris" />
+        <MainContainer>
+          <FavoritesLoading t={props.t} />
+        </MainContainer>
+      </div>
     );
 
   const pinnedList = favorites.map((favorite) => favorite._id);
@@ -98,59 +102,65 @@ export const UserFavoritesComponent = (props: Props) => {
 
   if (favorites.length === 0)
     return (
-      <MainContainer>
-        <NoFavorites t={props.t} toggleTutoModal={toggleTutoModal} />
-        {showTutoModal && (
-          <FrameModal
-            show={showTutoModal}
-            toggle={toggleTutoModal}
-            section={"Mes favoris"}
-          />
-        )}
-      </MainContainer>
+      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        <Navigation selected="favoris" />
+        <MainContainer>
+          <NoFavorites t={props.t} toggleTutoModal={toggleTutoModal} />
+          {showTutoModal && (
+            <FrameModal
+              show={showTutoModal}
+              toggle={toggleTutoModal}
+              section={"Mes favoris"}
+            />
+          )}
+        </MainContainer>
+      </div>
     );
   return (
-    <MainContainer>
-      <FavoritesContainer>
-        <TitleContainer>
-          <TitleWithNumber
-            amount={favorites.length}
-            textSingular={props.t(
-              "UserFavorites.fiche sauvegardée",
-              "fiche sauvegardée"
-            )}
-            textPlural={props.t(
-              "UserFavorites.fiches sauvegardées",
-              "fiches sauvegardées"
-            )}
-          />
-          <div>
-            <FButton
-              type="outline-black"
-              name="trash-outline"
-              onClick={removeAllFavorites}
-              testID="test-delete-button"
-            >
-              {props.t("UserFavorites.Tout supprimer", "Tout supprimer")}
-            </FButton>
-          </div>
-        </TitleContainer>
+    <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+      <Navigation selected="favoris" />
+      <MainContainer>
+        <FavoritesContainer>
+          <TitleContainer>
+            <TitleWithNumber
+              amount={favorites.length}
+              textSingular={props.t(
+                "UserFavorites.fiche sauvegardée",
+                "fiche sauvegardée"
+              )}
+              textPlural={props.t(
+                "UserFavorites.fiches sauvegardées",
+                "fiches sauvegardées"
+              )}
+            />
+            <div>
+              <FButton
+                type="outline-black"
+                name="trash-outline"
+                onClick={removeAllFavorites}
+                testID="test-delete-button"
+              >
+                {props.t("UserFavorites.Tout supprimer", "Tout supprimer")}
+              </FButton>
+            </div>
+          </TitleContainer>
 
-        <CardsContainer>
-          {favorites.map((fav) => (
-            <CardContainer key={fav._id}>
-              <SearchResultCard
-                //@ts-ignore
-                pin={removePinnedDispositif}
-                pinnedList={pinnedList}
-                dispositif={fav}
-                themeList={null}
-                showPinned={true}
-              />
-            </CardContainer>
-          ))}
-        </CardsContainer>
-      </FavoritesContainer>
-    </MainContainer>
+          <CardsContainer>
+            {favorites.map((fav) => (
+              <CardContainer key={fav._id}>
+                <SearchResultCard
+                  //@ts-ignore
+                  pin={removePinnedDispositif}
+                  pinnedList={pinnedList}
+                  dispositif={fav}
+                  themeList={null}
+                  showPinned={true}
+                />
+              </CardContainer>
+            ))}
+          </CardsContainer>
+        </FavoritesContainer>
+      </MainContainer>
+    </div>
   );
 };

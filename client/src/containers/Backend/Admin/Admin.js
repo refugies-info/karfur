@@ -20,7 +20,7 @@ import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import "./Admin.scss";
 import { colors } from "colors";
 import styled from "styled-components";
-
+import { Navigation } from "../Navigation";
 const OngletText = styled.span`
   color: ${(props) => (props.isActive ? colors.bleuCharte : colors.darkColor)};
   font-weight: ${(props) => (props.isActive ? "bold" : "normal")};
@@ -81,6 +81,7 @@ export const Admin = () => {
 
   return (
     <div className="animated fadeIn admin">
+      <Navigation selected="admin" />
       <Nav>
         <NavItem>
           <NavLink
