@@ -4,9 +4,10 @@ import { navigationData } from "./data";
 import { NavButton } from "./components/NavButton";
 import { Props } from "./Navigation.container";
 import API from "../../../utils/API";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUserStructureActionCreator } from "../../../services/UserStructure/userStructure.actions";
 import { fetchUserActionCreator } from "../../../services/User/user.actions";
+import { userSelector } from "../../../services/User/user.selectors";
 
 export type SelectedPage =
   | "notifications"
@@ -30,6 +31,10 @@ const NavigationContainer = styled.div`
 export const NavigationComponent: React.FunctionComponent<Props> = (
   props: Props
 ) => {
+  const user = useSelector(userSelector);
+  const isAdmin = user && user.admin;
+  const hasStructure = user && user.membreStruct;
+
   const dispatch = useDispatch();
   const disconnect = () => {
     API.logout();
@@ -67,6 +72,8 @@ export const NavigationComponent: React.FunctionComponent<Props> = (
   return (
     <NavigationContainer>
       {navigationData.map((data) => {
+        if (data.access === "admin" && !isAdmin) return;
+        if (data.access === "hasStructure" && !isAdmin && !hasStructure) return;
         return (
           <NavButton
             title={data.title}
