@@ -6,7 +6,7 @@ export const MainContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   flex: 1;
-  margin-top: 42px;
+  margin-top: 26px;
   height: fit-content;
   margin-bottom: 42px;
 `;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -18,6 +19,7 @@ import { colors } from "../../../colors";
 import { userSelector } from "../../../services/User/user.selectors";
 import { ObjectId } from "mongodb";
 import Swal from "sweetalert2";
+import { Navigation } from "../Navigation";
 
 const ErrorContainer = styled.div`
   margin-top: 60px;
@@ -122,34 +124,57 @@ export const UserStructureComponent = () => {
   };
 
   if (isLoading) {
-    return <UserStructureLoading />;
+    return (
+      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        <Navigation selected="structure" />
+        <UserStructureLoading />
+      </div>
+    );
   }
 
-  if (!userStructure) return <div>No structure</div>;
+  if (!userStructure)
+    return (
+      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        <Navigation selected="structure" />
+        <ErrorContainer>
+          <ErrorText>
+            Une erreur est survenue. Veuillez recharger la page ou contacter
+            l'équipe de réfugiés.info via le live chat en bas à droite de votre
+            écran.
+          </ErrorText>
+        </ErrorContainer>
+      </div>
+    );
 
   if (userStructure.status === "En attente")
     return (
-      <ErrorContainer>
-        <ErrorText>
-          Votre structure n'a pas été validée. Veuillez contacter l'équipe de
-          réfugiés.info via le live chat en bas à droite de votre écran.
-        </ErrorText>
-      </ErrorContainer>
+      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        <Navigation selected="structure" />
+        <ErrorContainer>
+          <ErrorText>
+            Votre structure n'a pas été validée. Veuillez contacter l'équipe de
+            réfugiés.info via le live chat en bas à droite de votre écran.
+          </ErrorText>
+        </ErrorContainer>
+      </div>
     );
 
   return (
-    <UserStructureDetails
-      picture={userStructure.picture}
-      name={userStructure.nom}
-      acronyme={userStructure.acronyme}
-      membres={membres}
-      // @ts-ignore
-      userId={user.userId}
-      structureId={userStructure._id}
-      addUserInStructure={addUserInStructure}
-      isAdmin={user.admin}
-      modifyRole={modifyRole}
-      deleteUserFromStructure={deleteUserFromStructure}
-    />
+    <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+      <Navigation selected="structure" />
+      <UserStructureDetails
+        picture={userStructure.picture}
+        name={userStructure.nom}
+        acronyme={userStructure.acronyme}
+        membres={membres}
+        // @ts-ignore
+        userId={user.userId}
+        structureId={userStructure._id}
+        addUserInStructure={addUserInStructure}
+        isAdmin={user.admin}
+        modifyRole={modifyRole}
+        deleteUserFromStructure={deleteUserFromStructure}
+      />
+    </div>
   );
 };
