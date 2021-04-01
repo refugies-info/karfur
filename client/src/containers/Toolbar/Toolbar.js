@@ -21,11 +21,15 @@ import { fetchUserActionCreator } from "../../services/User/user.actions";
 import { breakpoints } from "utils/breakpoints.js";
 import styled from "styled-components";
 import Streamline from "../../assets/streamline";
-
+import {
+  userStructureHasResponsibleSeenNotification,
+  userStructureDisposAssociesSelector,
+  userStructureSelector,
+} from "../../services/UserStructure/userStructure.selectors";
 import "./Toolbar.scss";
 import { colors } from "colors";
 import { logger } from "../../logger";
-
+import { getNbNewNotifications } from "../Backend/UserNotifications/lib";
 const InnerButton = styled.div`
   display: flex;
   justify-content: space-between;
@@ -132,6 +136,11 @@ export class Toolbar extends React.Component {
     const pathName = membreStruct
       ? "/backend/user-dash-notifications"
       : "/backend/user-favorites";
+
+    const nbNotifications = getNbNewNotifications(
+      this.props.dispositifsAssocies,
+      this.props.hasResponsibleSeenNotification
+    );
     return (
       <header
         className={
@@ -224,6 +233,10 @@ export class Toolbar extends React.Component {
               }}
             >
               <img src={userImg} className="user-picture" alt="user" />
+              {membreStruct &&
+                nbNotifications > 0 &&
+                this.props.userStructure &&
+                nbNotifications}
             </NavLink>
           ) : (
             <>
@@ -274,6 +287,11 @@ const mapStateToProps = (state) => {
     contributeur: state.user.contributeur,
     admin: state.user.admin,
     membreStruct: state.user.membreStruct,
+    dispositifsAssocies: userStructureDisposAssociesSelector(state),
+    hasResponsibleSeenNotification: userStructureHasResponsibleSeenNotification(
+      state
+    ),
+    userStructure: userStructureSelector(state),
   };
 };
 
