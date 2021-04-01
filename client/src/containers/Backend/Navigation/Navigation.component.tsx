@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { navigationData } from "./data";
 import { NavButton } from "./components/NavButton";
 import { Props } from "./Navigation.container";
+import API from "../../../utils/API";
+import { useDispatch } from "react-redux";
+import { setUserStructureActionCreator } from "../../../services/UserStructure/userStructure.actions";
+import { fetchUserActionCreator } from "../../../services/User/user.actions";
 
 export type SelectedPage =
   | "notifications"
@@ -26,8 +30,39 @@ const NavigationContainer = styled.div`
 export const NavigationComponent: React.FunctionComponent<Props> = (
   props: Props
 ) => {
-  const onNavigateToTraductions = () => {
-    props.history.push("/backend/user-translation");
+  const dispatch = useDispatch();
+  const disconnect = () => {
+    API.logout();
+    dispatch(fetchUserActionCreator());
+    dispatch(setUserStructureActionCreator(null));
+    return props.history.push("/");
+  };
+  const onButtonClick = (type: SelectedPage) => {
+    if (type === "traductions") {
+      return props.history.push("/backend/user-translation");
+    }
+    if (type === "notifications") {
+      return props.history.push("/backend/user-dash-notifications");
+    }
+    if (type === "favoris") {
+      return props.history.push("/backend/user-favorites");
+    }
+    if (type === "contributions") {
+      return props.history.push("/backend/user-dash-contrib");
+    }
+    if (type === "structure") {
+      return props.history.push("/backend/user-dash-structure");
+    }
+    if (type === "profil") {
+      return props.history.push("/backend/user-profile");
+    }
+    if (type === "admin") {
+      return props.history.push("/backend/admin");
+    }
+    if (type === "logout") {
+      return disconnect();
+    }
+    return;
   };
   return (
     <NavigationContainer>
@@ -39,7 +74,7 @@ export const NavigationComponent: React.FunctionComponent<Props> = (
             iconName={data.iconName}
             isSelected={props.selected === data.type}
             type={data.type}
-            onClick={onNavigateToTraductions}
+            onClick={() => onButtonClick(data.type)}
             // @ts-ignore
             t={props.t}
           />
