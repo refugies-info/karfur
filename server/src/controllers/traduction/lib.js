@@ -18,12 +18,6 @@ const {
 const logger = require("../../logger");
 const { updateLanguagesAvancement } = require("../langues/langues.service");
 
-const headers = {
-  "Content-Type": "application/json",
-};
-
-let burl = "https://laser-agir.herokuapp.com";
-// if(process.env.NODE_ENV === 'dev'){burl = 'http://localhost:5001' }
 const pointeurs = ["titreInformatif", "titreMarque", "abstract"];
 
 const instance = axios.create();
@@ -32,21 +26,6 @@ instance.defaults.timeout = 12000000;
 // we have to convert objectId to string to compare it with other strings
 const deduplicateArrayOfObjectIds = (arrayOfObjectIds) =>
   _.uniq(arrayOfObjectIds.map((x) => x.toString()));
-
-/* const recalculate_all = () => {
-  Traduction.find({}).exec(function (err, result) {
-    if (!err && result) {
-      result.forEach((x) => {
-        let traductionInitiale = { ...x.translatedText };
-        traductionInitiale.contenu = turnJSONtoHTML(
-          traductionInitiale.contenu || traductionInitiale.body
-        );
-        calculateScores(x, traductionInitiale);
-      });
-    }
-  });
-}; */
-// recalculate_all();
 
 const _errorHandler = (error, res) => {
   switch (error) {

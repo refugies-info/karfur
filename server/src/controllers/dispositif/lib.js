@@ -25,25 +25,6 @@ const {
 import { getDispositifByIdWithMainSponsor } from "../../modules/dispositif/dispositif.repository";
 import { checkUserIsAuthorizedToModifyDispositif } from "../../libs/checkAuthorizations";
 
-// const gmail_auth = require('./gmail_auth');
-
-// const transporter = nodemailer.createTransport({
-//   // service: 'gmail',
-//   host: 'smtp.gmail.com',
-//   port: 465,
-//   secure: true,
-//   auth: {
-//     user: 'diairagir@gmail.com',
-//     pass: process.env.GMAIL_PASS
-//   },
-// });
-const url =
-  process.env.NODE_ENV === "dev"
-    ? "http://localhost:3000/"
-    : process.env.NODE_ENV === "staging"
-    ? "https://staging.refugies.info/"
-    : "https://www.refugies.info/";
-
 //Function to patch dispositifs that had EditorState object saved in DB causing great size problem
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function patch_dispositifs(req, res) {
