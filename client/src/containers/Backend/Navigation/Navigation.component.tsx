@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
-import FButton from "../../../components/FigmaUI/FButton/FButton";
 import React from "react";
-import { withRouter, RouteComponentProps } from "react-router-dom";
 import styled from "styled-components";
 import { navigationData } from "./data";
-import { colors } from "../../../colors";
 import { NavButton } from "./components/NavButton";
+import { Props } from "./Navigation.container";
 
 export type SelectedPage =
   | "notifications"
@@ -16,7 +13,7 @@ export type SelectedPage =
   | "structure"
   | "admin"
   | "logout";
-interface Props extends RouteComponentProps {
+export interface PropsBeforeInjection {
   selected: SelectedPage;
 }
 
@@ -26,7 +23,9 @@ const NavigationContainer = styled.div`
   align-self: center;
 `;
 
-const NavigationComponent: React.FunctionComponent<Props> = (props: Props) => {
+export const NavigationComponent: React.FunctionComponent<Props> = (
+  props: Props
+) => {
   const onNavigateToTraductions = () => {
     props.history.push("/backend/user-translation");
   };
@@ -41,11 +40,11 @@ const NavigationComponent: React.FunctionComponent<Props> = (props: Props) => {
             isSelected={props.selected === data.type}
             type={data.type}
             onClick={onNavigateToTraductions}
+            // @ts-ignore
+            t={props.t}
           />
         );
       })}
     </NavigationContainer>
   );
 };
-
-export const Navigation = withRouter(NavigationComponent);

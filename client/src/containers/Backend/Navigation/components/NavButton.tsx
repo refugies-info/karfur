@@ -25,6 +25,7 @@ interface NavButtonProps {
   isSelected: boolean;
   type: SelectedPage;
   onClick: () => void;
+  t: any;
 }
 const baseWhite = {
   textColor: colors.noir,
@@ -128,7 +129,9 @@ export const NavButton = (props: NavButtonProps) => {
     >
       <EVAIcon name={name} fill={textColor} className={"mr-10"} />
 
-      {props.title}
+      {props.type !== "admin"
+        ? props.t("Toolbar." + props.title, props.title)
+        : props.title}
     </NavButtonContainer>
   );
 };
