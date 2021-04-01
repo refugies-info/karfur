@@ -76,41 +76,6 @@ async function patch_dispositifs(req, res) {
   }
 }
 
-async function create_csv_dispositifs_length(req, res) {
-  if (!req.user.roles.some((x) => x.nom === "Admin")) {
-    //logger.error("The user is not an admin", { error: e });
-    return res.status(500).json("KO");
-  }
-  logger.info("Find dispositifs with long titles");
-  try {
-    let all = await Dispositif.find().lean();
-    let i;
-    let csvList = [];
-    for (i = 0; i < all.length; i++) {
-      if (
-        (all[i].titreInformatif && all[i].titreInformatif.length > 40) ||
-        (all[i].titreMarque && all[i].titreMarque.length > 27) ||
-        (all[i].abstract && all[i].abstract.length > 110)
-      ) {
-        csvList.push({
-          titreInformatif: all[i].titreInformatif || "",
-          titreMarque: all[i].titreMarque || "",
-          abstract: all[i].abstract || "",
-          url: `${url}dispositif/${all[i]._id.toString()}` || "",
-        });
-      }
-    }
-    logger.info(`finish patching ${all.length} dispositifs`);
-    return res.status(200).json({
-      text: "Succès",
-      data: csvList,
-    });
-  } catch (e) {
-    logger.error("Error while finding long dispositifs", { error: e });
-    return res.status(500).json("KO");
-  }
-}
-
 async function add_dispositif_infocards(req, res) {
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
@@ -582,4 +547,3 @@ exports.get_dispositif = get_dispositif;
 exports.count_dispositifs = count_dispositifs;
 exports.update_dispositif = update_dispositif;
 exports.get_dispo_progression = get_dispo_progression;
-exports.create_csv_dispositifs_length = create_csv_dispositifs_length;
