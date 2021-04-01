@@ -97,51 +97,12 @@
     display: inline-flex;
   }
 
-  .user-dropdown {
-    .btn {
-      padding: 0;
-      border-radius: 50% !important;
-      &:focus {
-        outline: none !important;
-      }
-      .user-picture {
-        height: 52px;
-        width: 52px;
-        border-radius: 50%;
-      }
-      /*.user-badge{
-        background: #B71540;
-        position: absolute;
-        width:11px;
-        height:11px;
-        right: 0;
-        top: 0;
-        border-radius: 50%;
-      }*/
-    }
-
-    .dropdown-menu.show {
-      border: none;
-      background-color: $gris;
-    }
-    .dropdown-divider {
-      display: none;
-    }
-    .dropdown-item {
-      outline: none;
-      a {
-        text-decoration: none;
-        outline: none;
-      }
-      &:hover {
-        background-color: $blanc;
-      }
-      &:active {
-        background-color: $noir;
-      }
-      &:last-child {
-        outline: none;
-      }
+  .user-picture-link {
+    cursor: pointer;
+    .user-picture {
+      height: 52px;
+      width: 52px;
+      border-radius: 50%;
     }
   }
 

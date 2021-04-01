@@ -1,12 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { withTranslation } from "react-i18next";
-import {
-  ButtonDropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-} from "reactstrap";
 import i18n from "../../i18n";
 import { AppAsideToggler } from "@coreui/react";
 import { NavLink } from "react-router-dom";
@@ -14,7 +8,6 @@ import { connect } from "react-redux";
 import windowSize from "react-window-size";
 
 import { toggleLangueModalActionCreator } from "../../services/Langue/langue.actions";
-// import NavigationItems from '../../components/Navigation/NavigationItems/NavigationItems';
 import DrawerToggle from "../../components/Navigation/SideDrawer/DrawerToggle/DrawerToggle";
 import API from "../../utils/API";
 import AudioBtn from "../UI/AudioBtn/AudioBtn";
@@ -136,7 +129,9 @@ export class Toolbar extends React.Component {
     const userImg =
       user && user.picture ? user.picture.secure_url : marioProfile;
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
-
+    const pathName = membreStruct
+      ? "/backend/user-dash-notifications"
+      : "/backend/user-favorites";
     return (
       <header
         className={
@@ -222,72 +217,14 @@ export class Toolbar extends React.Component {
           </button>
 
           {API.isAuth() ? (
-            <ButtonDropdown
-              className="user-dropdown"
-              isOpen={this.state.dropdownOpen}
-              toggle={this.toggle}
+            <NavLink
+              className="user-picture-link"
+              to={{
+                pathname: pathName,
+              }}
             >
-              <DropdownToggle color="transparent">
-                <img src={userImg} className="user-picture" alt="user" />
-                <div className="user-badge" />
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem
-                  onClick={() => this.navigateTo("/backend/user-profile")}
-                >
-                  {t("Toolbar.Mon profil", "Mon profil")}
-                </DropdownItem>
-                <DropdownItem
-                  onClick={() => this.navigateTo("/backend/user-favorites")}
-                >
-                  {t("Dispositif.Mes favoris", "Mes favoris")}
-                </DropdownItem>
-
-                <DropdownItem
-                  onClick={() => this.navigateTo("/backend/user-dash-contrib")}
-                >
-                  {t("Toolbar.Mes fiches", "Mes fiches")}
-                </DropdownItem>
-
-                <DropdownItem
-                  onClick={() => this.navigateTo("/backend/user-dashboard")}
-                >
-                  {t("Toolbar.Mes traductions", "Mes traductions")}
-                </DropdownItem>
-
-                {membreStruct && (
-                  <DropdownItem
-                    onClick={() => {
-                      this.navigateTo("/backend/user-dash-structure");
-                    }}
-                  >
-                    {t("Toolbar.Ma structure", "Ma structure")}
-                  </DropdownItem>
-                )}
-                {membreStruct && (
-                  <DropdownItem
-                    onClick={() => {
-                      this.navigateTo("/backend/user-dash-notifications");
-                    }}
-                  >
-                    {t("Toolbar.Mes notifications", "Mes notifications")}
-                  </DropdownItem>
-                )}
-                {admin && (
-                  <DropdownItem
-                    onClick={() => this.navigateTo("/backend/admin")}
-                  >
-                    {t("Toolbar.Administration", "Administration")}
-                  </DropdownItem>
-                )}
-                <DropdownItem divider />
-                <NavLink to="/" onClick={this.disconnect}>
-                  <DropdownItem className="text-danger">
-                    {t("Toolbar.Se déconnecter", "Se déconnecter")}
-                  </DropdownItem>
-                </NavLink>
-              </DropdownMenu>
-            </ButtonDropdown>
+              <img src={userImg} className="user-picture" alt="user" />
+            </NavLink>
           ) : (
             <>
               <NavLink
