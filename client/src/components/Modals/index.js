@@ -1,18 +1,12 @@
 import BookmarkedModal from "./BookmarkedModal/BookmarkedModal";
 import DemarcheCreateModal from "./DemarcheCreateModal/DemarcheCreateModal";
 import DispositifValidateModal from "./DispositifValidateModal/DispositifValidateModal";
-import EnConstructionModal from "./EnConstructionModal/EnConstructionModal";
 import LanguageModal from "./LanguageModal/LanguageModal";
 import ReactionModal from "./ReactionModal/ReactionModal";
 import ThanksModal from "./ThanksModal/ThanksModal";
-import TranslationModal from "./TranslationModal/TranslationModal";
 import ReactionLectureModal from "./ReactionLectureModal/ReactionLectureModal";
-import ObjectifsModal from "./ObjectifsModal/ObjectifsModal";
-import ContributeurModal from "./ContributeurModal/ContributeurModal";
-import TraducteurModal from "./TraducteurModal/TraducteurModal";
 import ResponsableModal from "./ResponsableModal/ResponsableModal";
 import RejectionModal from "./RejectionModal/RejectionModal";
-import AddMemberModalOLD from "./AddMemberModal/AddMemberModal";
 import EditMemberModal from "./EditMemberModal/EditMemberModal";
 import RejectTradModal from "./RejectTradModal/RejectTradModal";
 import EtapeModal from "./EtapeModal/EtapeModal";
@@ -27,18 +21,12 @@ export {
   DemarcheCreateModal,
   DispositifCreateModal,
   DispositifValidateModal,
-  EnConstructionModal,
   LanguageModal,
   ReactionModal,
   ThanksModal,
-  TranslationModal,
   ReactionLectureModal,
-  ObjectifsModal,
-  ContributeurModal,
-  TraducteurModal,
   ResponsableModal,
   RejectionModal,
-  AddMemberModalOLD,
   EditMemberModal,
   RejectTradModal,
   EtapeModal,

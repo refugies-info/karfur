@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Swal from "sweetalert2";
 import querySearch from "stringquery";
 import h2p from "html2plaintext";
-import debounce from "lodash.debounce";
 import { EditorState, ContentState } from "draft-js";
 import htmlToDraft from "html-to-draftjs";
 import { connect } from "react-redux";
@@ -259,7 +258,7 @@ export class TranslationHOC extends Component {
                 ...this.state.translated,
                 [item]: value,
               },
-            }); //, () => this.get_xlm([[h2p(this.state.translated.body), this.state.locale], [this.state.francais.body, 'fr']]) );
+            });
         }
       })
       .catch((err) => {
@@ -288,21 +287,6 @@ export class TranslationHOC extends Component {
       });
   };
 
-  get_xlm = debounce((sentence) => {
-    API.get_laser({ sentences: sentence }).then((data) => {
-      try {
-        let result = JSON.parse(data.data.data) || {};
-        if (result && result.cosine && result.cosine.length > 0) {
-          this._isMounted && this.setState({ score: result.cosine[0] });
-        } else {
-        }
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.log(e);
-      }
-    });
-  }, 500);
-
   handleChange = (ev) => {
     var targetNode = ev.currentTarget;
     let target = targetNode.className.includes("title") ? "title" : "body";
@@ -314,7 +298,6 @@ export class TranslationHOC extends Component {
       },
       autosuggest: false,
     });
-    // this.get_xlm([[h2p(value), this.state.locale], [this.state.francais.body, 'fr']])
   };
 
   onEditorStateChange = (editorState, target = "body") => {
