@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import styled from "styled-components";
 import React, { useState } from "react";
 import { colors } from "../../../../colors";
@@ -17,9 +16,7 @@ const NavButtonContainer = styled.div`
   cursor: pointer;
   color: ${(props) => props.textColor};
   padding: 16px;
-  &:hover {
-    background: ${(props) => props.textColor};
-    color: ${(props) => props.backgroundColor};
+
   }
 `;
 interface NavButtonProps {
@@ -28,16 +25,98 @@ interface NavButtonProps {
   isSelected: boolean;
   type: SelectedPage;
 }
+const baseWhite = {
+  textColor: colors.noir,
+  backgroundColor: colors.blancSimple,
+};
+const selectedWhite = {
+  textColor: colors.blancSimple,
+  backgroundColor: colors.noir,
+};
+
+const baseBlue = {
+  textColor: colors.bleuCharte,
+  backgroundColor: colors.blancSimple,
+};
+const selectedBlue = {
+  textColor: colors.blancSimple,
+  backgroundColor: colors.bleuCharte,
+};
+
+const baseRed = {
+  textColor: colors.rouge,
+  backgroundColor: colors.blancSimple,
+};
+const selectedRed = {
+  textColor: colors.blancSimple,
+  backgroundColor: colors.rouge,
+};
+
+const notWhiteTypes = ["admin", "logout"];
+const getColors = (
+  type: SelectedPage,
+  isSelected: boolean,
+  hoverType: SelectedPage | "none"
+) => {
+  if (!notWhiteTypes.includes(type)) {
+    if (isSelected) {
+      return selectedWhite;
+    }
+    if (type === hoverType) {
+      return selectedWhite;
+    }
+    return baseWhite;
+  }
+
+  if (type === "admin") {
+    if (isSelected) {
+      return selectedBlue;
+    }
+    if (type === hoverType) {
+      return selectedBlue;
+    }
+    return baseBlue;
+  }
+
+  if (isSelected) {
+    return selectedRed;
+  }
+  if (type === hoverType) {
+    return selectedRed;
+  }
+  return baseRed;
+};
+
+const getIconName = (
+  iconName: string,
+  isSelected: boolean,
+  hoverType: SelectedPage | "none",
+  type: SelectedPage
+) => {
+  if (isSelected) return iconName;
+  if (hoverType === type) return iconName;
+  return iconName + "-outline";
+};
 export const NavButton = (props: NavButtonProps) => {
-  const [hoverType, setHoverType] = useState("none");
+  const [hoverType, setHoverType] = useState<SelectedPage | "none">("none");
 
   const onMouseEnter = (type: SelectedPage) => setHoverType(type);
-  const onMouseLeave = () => setHoverType("none");
-  console.log("hover", hoverType);
 
-  const name = props.isSelected ? props.iconName : props.iconName + "-outline";
-  const backgroundColor = props.isSelected ? colors.noir : colors.blancSimple;
-  const textColor = props.isSelected ? colors.blancSimple : colors.noir;
+  const onMouseLeave = () => setHoverType("none");
+
+  const { textColor, backgroundColor } = getColors(
+    props.type,
+    props.isSelected,
+    hoverType
+  );
+
+  const name = getIconName(
+    props.iconName,
+    props.isSelected,
+    hoverType,
+    props.type
+  );
+
   return (
     <NavButtonContainer
       backgroundColor={backgroundColor}
@@ -46,6 +125,7 @@ export const NavButton = (props: NavButtonProps) => {
       onMouseLeave={onMouseLeave}
     >
       <EVAIcon name={name} fill={textColor} className={"mr-10"} />
+
       {props.title}
     </NavButtonContainer>
   );
