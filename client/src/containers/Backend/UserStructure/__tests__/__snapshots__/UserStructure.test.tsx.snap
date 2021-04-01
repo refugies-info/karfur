@@ -162,14 +162,14 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: #0421b1;
 }
 
 .c17 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: #212121;
 }
 
 .c13 {
@@ -179,7 +179,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: #0421b1;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -192,19 +192,19 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: #212121;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
 
 .c14 {
-  color: #212121;
+  color: #0421b1;
   max-width: 190px;
 }
 
 .c19 {
-  color: #0421b1;
+  color: #212121;
   max-width: 190px;
 }
 
@@ -536,7 +536,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                   <div
                     className="c12"
                   >
-                    membre1
+                    membre2
                   </div>
                 </div>
               </td>
@@ -546,7 +546,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 <div
                   className="c13"
                 >
-                  Rédacteur
+                  Responsable
                 </div>
               </td>
               <td
@@ -640,7 +640,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                   <div
                     className="c17"
                   >
-                    membre2
+                    membre1
                   </div>
                 </div>
               </td>
@@ -650,7 +650,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 <div
                   className="c18"
                 >
-                  Responsable
+                  Rédacteur
                 </div>
               </td>
               <td
@@ -981,14 +981,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: #0421b1;
 }
 
 .c17 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: #212121;
 }
 
 .c13 {
@@ -998,7 +998,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: #0421b1;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -1011,19 +1011,19 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: #212121;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
 
 .c14 {
-  color: #212121;
+  color: #0421b1;
   max-width: 190px;
 }
 
 .c19 {
-  color: #0421b1;
+  color: #212121;
   max-width: 190px;
 }
 
@@ -1416,7 +1416,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   <div
                     className="c12"
                   >
-                    membre1
+                    membre2
                   </div>
                 </div>
               </td>
@@ -1426,7 +1426,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 <div
                   className="c13"
                 >
-                  Rédacteur
+                  Responsable
                 </div>
               </td>
               <td
@@ -1520,7 +1520,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   <div
                     className="c17"
                   >
-                    membre2
+                    membre1
                   </div>
                 </div>
               </td>
@@ -1530,7 +1530,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 <div
                   className="c18"
                 >
-                  Responsable
+                  Rédacteur
                 </div>
               </td>
               <td
@@ -1905,14 +1905,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: #0421b1;
 }
 
 .c17 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: #212121;
 }
 
 .c13 {
@@ -1922,7 +1922,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: #0421b1;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -1935,19 +1935,19 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: #212121;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
 
 .c14 {
-  color: #212121;
+  color: #0421b1;
   max-width: 190px;
 }
 
 .c19 {
-  color: #0421b1;
+  color: #212121;
   max-width: 190px;
 }
 
@@ -2340,7 +2340,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   <div
                     className="c12"
                   >
-                    membre1
+                    membre2
                   </div>
                 </div>
               </td>
@@ -2350,7 +2350,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 <div
                   className="c13"
                 >
-                  Rédacteur
+                  Responsable
                 </div>
               </td>
               <td
@@ -2444,7 +2444,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   <div
                     className="c17"
                   >
-                    membre2
+                    membre1
                   </div>
                 </div>
               </td>
@@ -2454,7 +2454,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 <div
                   className="c18"
                 >
-                  Responsable
+                  Rédacteur
                 </div>
               </td>
               <td
@@ -3517,13 +3517,6 @@ exports[`UserStructure should render correctly when structure with membres when 
   align-items: center;
 }
 
-.c15 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-}
-
 .c12 {
   font-weight: bold;
   font-size: 16px;
@@ -3531,17 +3524,11 @@ exports[`UserStructure should render correctly when structure with membres when 
   color: #0421b1;
 }
 
-.c16 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
+.c15 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #212121;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
 }
 
 .c13 {
@@ -3557,13 +3544,26 @@ exports[`UserStructure should render correctly when structure with membres when 
   width: fit-content;
 }
 
-.c17 {
+.c16 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
   color: #212121;
-  max-width: 190px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .c14 {
   color: #0421b1;
+  max-width: 190px;
+}
+
+.c17 {
+  color: #212121;
   max-width: 190px;
 }
 
@@ -4093,14 +4093,14 @@ exports[`UserStructure should render correctly when structure with membres when 
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: #0421b1;
 }
 
 .c17 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: #212121;
 }
 
 .c13 {
@@ -4110,7 +4110,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #212121;
+  color: #0421b1;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -4123,19 +4123,19 @@ exports[`UserStructure should render correctly when structure with membres when 
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: #212121;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
 
 .c14 {
-  color: #212121;
+  color: #0421b1;
   max-width: 190px;
 }
 
 .c19 {
-  color: #0421b1;
+  color: #212121;
   max-width: 190px;
 }
 
@@ -4434,7 +4434,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                   <div
                     className="c12"
                   >
-                    membre1
+                    membre2
                   </div>
                 </div>
               </td>
@@ -4444,7 +4444,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 <div
                   className="c13"
                 >
-                  Rédacteur
+                  Responsable
                 </div>
               </td>
               <td
@@ -4538,7 +4538,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                   <div
                     className="c17"
                   >
-                    membre2
+                    membre1
                   </div>
                 </div>
               </td>
@@ -4548,7 +4548,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 <div
                   className="c18"
                 >
-                  Responsable
+                  Rédacteur
                 </div>
               </td>
               <td
