@@ -31,7 +31,6 @@ import {
   DispositifCreateModal,
   DispositifValidateModal,
   ReactionModal,
-  EnConstructionModal,
   ResponsableModal,
   RejectionModal,
   TagsModal,
@@ -2026,11 +2025,6 @@ export class Dispositif extends Component {
               onValidate={this.pushReaction}
             />
 
-            <EnConstructionModal
-              name="construction"
-              show={showModals.construction}
-              toggleModal={this.toggleModal}
-            />
             <ResponsableModal
               name="responsable"
               show={showModals.responsable}

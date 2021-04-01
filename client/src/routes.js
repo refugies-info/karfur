@@ -1,7 +1,6 @@
 import HomePage from "./containers/HomePage/HomePage";
 import Dashboard from "./containers/Backend/Dashboard/Dashboard";
 import { Admin } from "./containers/Backend/Admin/Admin";
-import UserDash from "./containers/Backend/UserDash/UserDash";
 import { UserContributions } from "./containers/Backend/UserContributions";
 import { UserProfile } from "./containers/Backend/UserProfile";
 import Dispositif from "./containers/Dispositif/Dispositif";
@@ -221,12 +220,6 @@ const routes = [
     restriction: ["Admin"],
   },
 
-  {
-    path: "/backend/user-dashboard",
-    name: "Réfugiés.info - Espace traduction",
-    component: UserDash,
-    restriction: ["User", "Trad", "ExpertTrad", "Admin"],
-  },
   {
     path: "/backend/user-dash-contrib",
     name: "Réfugiés.info - Espace rédaction",

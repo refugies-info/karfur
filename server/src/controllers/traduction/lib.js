@@ -18,12 +18,6 @@ const {
 const logger = require("../../logger");
 const { updateLanguagesAvancement } = require("../langues/langues.service");
 
-const headers = {
-  "Content-Type": "application/json",
-};
-
-let burl = "https://laser-agir.herokuapp.com";
-// if(process.env.NODE_ENV === 'dev'){burl = 'http://localhost:5001' }
 const pointeurs = ["titreInformatif", "titreMarque", "abstract"];
 
 const instance = axios.create();
@@ -32,21 +26,6 @@ instance.defaults.timeout = 12000000;
 // we have to convert objectId to string to compare it with other strings
 const deduplicateArrayOfObjectIds = (arrayOfObjectIds) =>
   _.uniq(arrayOfObjectIds.map((x) => x.toString()));
-
-/* const recalculate_all = () => {
-  Traduction.find({}).exec(function (err, result) {
-    if (!err && result) {
-      result.forEach((x) => {
-        let traductionInitiale = { ...x.translatedText };
-        traductionInitiale.contenu = turnJSONtoHTML(
-          traductionInitiale.contenu || traductionInitiale.body
-        );
-        calculateScores(x, traductionInitiale);
-      });
-    }
-  });
-}; */
-// recalculate_all();
 
 const _errorHandler = (error, res) => {
   switch (error) {
@@ -588,142 +567,6 @@ async function validate_tradForReview(req, res) {
   }
 }
 
-/* async function calculateScores(data, traductionInitiale) {
-  let newTrad = {
-    _id: data._id,
-    initialText: data.initialText,
-    translatedText: { ...data.translatedText },
-  };
-  if (!data || !data.initialText) {
-    return false;
-  }
-  if (!traductionInitiale) {
-    return false;
-  }
-
-  if (data.type === "string") {
-    const sentences = [
-      [h2p(traductionInitiale.body), data.langueCible],
-      [h2p(data.initialText.body), "fr"],
-    ];
-    newTrad.translatedText.scoreBody = await getScore(sentences);
-  } else {
-    const pointeurs = ["titreInformatif", "titreMarque", "abstract"];
-    newTrad.translatedText.scoreHeaders = {};
-    await asyncForEach(pointeurs, async (x) => {
-      if (traductionInitiale[x]) {
-        const sentences = [
-          [h2p(traductionInitiale[x]), data.langueCible],
-          [h2p(data.initialText[x]), "fr"],
-        ];
-        newTrad.translatedText.scoreHeaders[x] = await getScore(sentences);
-      }
-    });
-    await asyncForEach(traductionInitiale.contenu, async (x, i) => {
-      if (x) {
-        if (x.content && x.content !== "") {
-          const sentences = [
-            [h2p(x.content), data.langueCible],
-            [h2p(data.initialText.contenu[i].content), "fr"],
-          ];
-          newTrad.translatedText.contenu[i].scoreContent = await getScore(
-            sentences
-          );
-        }
-        await asyncForEach(x.children, async (y, j) => {
-          if (y) {
-            if (y.content && y.content !== "") {
-              const sentences = [
-                [h2p(y.content), data.langueCible],
-                [h2p(data.initialText.contenu[i].children[j].content), "fr"],
-              ];
-              newTrad.translatedText.contenu[i].children[
-                j
-              ].scoreContent = await getScore(sentences);
-            }
-            if (y.title && y.title !== "") {
-              const sentences = [
-                [h2p(y.title), data.langueCible],
-                [h2p(data.initialText.contenu[i].children[j].title), "fr"],
-              ];
-              newTrad.translatedText.contenu[i].children[
-                j
-              ].scoreTitle = await getScore(sentences);
-            }
-          }
-        });
-      }
-    });
-  }
-  return Traduction.findOneAndUpdate({ _id: newTrad._id }, newTrad, {
-    upsert: true,
-    new: true,
-  })
-  // eslint-disable-next-line
-    .then((d) => console.log("succes : ", d._id))
-    // eslint-disable-next-line
-    .catch((e) => console.log(e));
-} */
-
-/* function getScore(sentences) {
-  return instance
-    .post(burl + "/laser", { sentences: sentences }, { headers: headers })
-    .then((data) => {
-      return JSON.parse(data.data);
-    })
-    .catch((e) =>
-    // eslint-disable-next-line
-      console.log(
-        (e.config || {}).data,
-        (e.response || {}).status,
-        (e.response || {}).statusText,
-        !e.response && e
-      )
-    );
-} */
-
-/* async function asyncForEach(array, callback) {
-  for (let index = 0; index < (array || []).length; index++) {
-    await callback(array[index], index, array);
-  }
-} */
-
-function get_laser(req, res) {
-  if (!req.body || !req.body.sentences) {
-    res.status(400).json({ text: "Requête invalide" });
-  } else {
-    let sentences = req.body.sentences;
-    axios
-      .post(burl + "/laser", { sentences: sentences }, { headers: headers })
-      .then((data) => {
-        res.status(200).json({
-          text: "Succès",
-          data: data.data,
-        });
-      });
-  }
-}
-
-function get_xlm(req, res) {
-  if (!req.body || !req.body.sentences) {
-    res.status(400).json({ text: "Requête invalide" });
-  } else {
-    burl = "https://xlm-agir.herokuapp.com";
-    if (process.env.NODE_ENV === "dev") {
-      burl = "http://localhost:5002";
-    }
-    let sentences = req.body.sentences;
-    axios
-      .post(burl + "/xlm", { sentences: sentences }, { headers: headers })
-      .then((data) => {
-        res.status(200).json({
-          text: "Succès",
-          data: data.data,
-        });
-      });
-  }
-}
-
 //We update the trad for the expert in case it already exists
 function update_tradForReview(req, res) {
   if (!req.fromSite) {
@@ -863,40 +706,6 @@ async function get_progression(req, res) {
   }
 }
 
-/* const updateRoles = () => {
-  Langue.find().exec(function (err, result) {
-    if (err) {
-      // eslint-disable-next-line
-      console.log(err);
-    } else {
-      if (result) {
-        Role.findOne({ nom: "Trad" }).exec((err_role, result_role) => {
-          if (!err_role && result_role) {
-            result.forEach((x) => {
-              const traducteurs = x.participants;
-              traducteurs.forEach((y) => {
-                User.findByIdAndUpdate(
-                  { _id: y },
-                  { $addToSet: { roles: result_role._id } },
-                  { new: true },
-                  (e) => {
-                    if (e) {
-                      // eslint-disable-next-line
-                      console.log(e);
-                    }
-                  }
-                );
-              });
-            });
-          }
-        });
-      } else {
-        console.log(204);
-      }
-    }
-  });
-}; */
-
 //call to delete the trads for a specific dispositif and language, only available for admin
 async function delete_trads(req, res) {
   try {
@@ -928,6 +737,4 @@ exports.get_tradForReview = get_tradForReview;
 exports.validate_tradForReview = validate_tradForReview;
 exports.update_tradForReview = update_tradForReview;
 exports.get_progression = get_progression;
-exports.get_xlm = get_xlm;
-exports.get_laser = get_laser;
 exports.delete_trads = delete_trads;

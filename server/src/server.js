@@ -75,7 +75,6 @@ app.use(function (req, _, next) {
 var router = express.Router();
 app.enable("strict routing");
 app.use("/user", router);
-app.use("/events", router);
 app.use("/translate", router);
 app.use("/langues", router);
 app.use("/roles", router);
@@ -88,7 +87,6 @@ app.use("/miscellaneous", router);
 app.use("/indicator", router);
 app.use("/mail", router);
 require(__dirname + "/controllers/userController")(router);
-require(__dirname + "/controllers/eventsController")(router);
 require(__dirname + "/controllers/translateController")(router);
 require(__dirname + "/controllers/languesController")(router);
 require(__dirname + "/controllers/roleController")(router);
