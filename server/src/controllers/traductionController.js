@@ -24,7 +24,5 @@ module.exports = function (app) {
     traduction.update_tradForReview
   );
   app.post("/get_progression", checkToken.check, traduction.get_progression);
-  app.post("/get_xlm", traduction.get_xlm);
-  app.post("/get_laser", traduction.get_laser);
   app.post("/delete_trads", checkToken.check, traduction.delete_trads);
 };

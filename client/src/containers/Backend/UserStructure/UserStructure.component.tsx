@@ -159,6 +159,12 @@ export const UserStructureComponent = () => {
       </div>
     );
 
+  const membresToDisplay = membres.sort((a, b) => {
+    if (a._id === user.userId) return -1;
+    if (b._id === user.userId) return 1;
+    return -1;
+  });
+
   return (
     <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
       <Navigation selected="structure" />
@@ -166,7 +172,7 @@ export const UserStructureComponent = () => {
         picture={userStructure.picture}
         name={userStructure.nom}
         acronyme={userStructure.acronyme}
-        membres={membres}
+        membres={membresToDisplay}
         // @ts-ignore
         userId={user.userId}
         structureId={userStructure._id}

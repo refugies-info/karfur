@@ -74,11 +74,7 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
           >
             Explications
           </FButton>
-          <FButton
-            type="dark"
-            // onClick={props.toggleTraducteurModal}
-            name="settings-2-outline"
-          >
+          <FButton type="dark" name="settings-2-outline">
             Mes langues
           </FButton>
         </Row>
