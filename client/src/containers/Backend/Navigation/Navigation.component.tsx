@@ -40,6 +40,7 @@ const NavigationComponent: React.FunctionComponent<Props> = (props: Props) => {
             iconName={data.iconName}
             isSelected={props.selected === data.type}
             type={data.type}
+            onClick={onNavigateToTraductions}
           />
         );
       })}

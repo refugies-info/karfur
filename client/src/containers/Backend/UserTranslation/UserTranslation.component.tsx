@@ -18,6 +18,7 @@ import { TranslationLanguagesChoiceModal } from "./components/TranslationLanguag
 import { FrameModal } from "../../../components/Modals";
 import API from "../../../utils/API";
 import { Indicators } from "../../../types/interface";
+import { Navigation } from "../Navigation";
 
 declare const window: Window;
 export interface PropsBeforeInjection {
@@ -26,11 +27,8 @@ export interface PropsBeforeInjection {
 }
 
 const MainContainer = styled.div`
-  background-color: ${colors.gris};
   display: flex;
   flex: 1;
-  margin-top: -100px;
-  padding-top: 100px;
   flex-direction: column;
 `;
 
@@ -118,11 +116,23 @@ export const UserTranslationComponent = (props: Props) => {
 
   if (isLoading)
     return (
-      <MainContainer>
-        <LoadingDispositifsWithTranslationsStatus
-          toggleTutoModal={toggleTutoModal}
-        />
-      </MainContainer>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          flex: 1,
+          backgroundColor: colors.gris,
+          marginTop: "-95px",
+          paddingTop: "100px",
+        }}
+      >
+        <Navigation selected="traductions" />
+        <MainContainer>
+          <LoadingDispositifsWithTranslationsStatus
+            toggleTutoModal={toggleTutoModal}
+          />
+        </MainContainer>
+      </div>
     );
 
   if (
@@ -130,10 +140,64 @@ export const UserTranslationComponent = (props: Props) => {
     userTradLanguages.length === 0
   ) {
     return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          flex: 1,
+          backgroundColor: colors.gris,
+          marginTop: "-95px",
+          paddingTop: "100px",
+        }}
+      >
+        <Navigation selected="traductions" />
+        <MainContainer>
+          <StartTranslating
+            toggleTraducteurModal={toggleTraducteurModal}
+            toggleTutoModal={toggleTutoModal}
+          />
+          {showTraducteurModal && (
+            <TranslationLanguagesChoiceModal
+              show={showTraducteurModal}
+              toggle={toggleTraducteurModal}
+            />
+          )}
+          {showTutoModal && (
+            <FrameModal
+              show={showTutoModal}
+              toggle={toggleTutoModal}
+              section={"Traduction"}
+            />
+          )}
+        </MainContainer>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        flex: 1,
+        backgroundColor: colors.gris,
+        marginTop: "-95px",
+        paddingTop: "100px",
+      }}
+    >
+      <Navigation selected="traductions" />
       <MainContainer>
-        <StartTranslating
+        <TranslationsAvancement
+          userTradLanguages={userTradLanguages}
+          history={props.history}
+          actualLanguage={langueInUrl}
+          isExpert={user.expertTrad}
+          isAdmin={user.admin}
+          data={dispositifsWithTranslations}
           toggleTraducteurModal={toggleTraducteurModal}
           toggleTutoModal={toggleTutoModal}
+          nbWords={nbWords}
+          timeSpent={timeSpent}
         />
         {showTraducteurModal && (
           <TranslationLanguagesChoiceModal
@@ -149,36 +213,6 @@ export const UserTranslationComponent = (props: Props) => {
           />
         )}
       </MainContainer>
-    );
-  }
-
-  return (
-    <MainContainer>
-      <TranslationsAvancement
-        userTradLanguages={userTradLanguages}
-        history={props.history}
-        actualLanguage={langueInUrl}
-        isExpert={user.expertTrad}
-        isAdmin={user.admin}
-        data={dispositifsWithTranslations}
-        toggleTraducteurModal={toggleTraducteurModal}
-        toggleTutoModal={toggleTutoModal}
-        nbWords={nbWords}
-        timeSpent={timeSpent}
-      />
-      {showTraducteurModal && (
-        <TranslationLanguagesChoiceModal
-          show={showTraducteurModal}
-          toggle={toggleTraducteurModal}
-        />
-      )}
-      {showTutoModal && (
-        <FrameModal
-          show={showTutoModal}
-          toggle={toggleTutoModal}
-          section={"Traduction"}
-        />
-      )}
-    </MainContainer>
+    </div>
   );
 };

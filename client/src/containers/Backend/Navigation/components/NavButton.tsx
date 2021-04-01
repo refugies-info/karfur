@@ -24,6 +24,7 @@ interface NavButtonProps {
   iconName: string;
   isSelected: boolean;
   type: SelectedPage;
+  onClick: () => void;
 }
 const baseWhite = {
   textColor: colors.noir,
@@ -123,6 +124,7 @@ export const NavButton = (props: NavButtonProps) => {
       textColor={textColor}
       onMouseEnter={() => onMouseEnter(props.type)}
       onMouseLeave={onMouseLeave}
+      onClick={props.onClick}
     >
       <EVAIcon name={name} fill={textColor} className={"mr-10"} />
 
