@@ -30,7 +30,7 @@ export const MainContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   flex: 1;
-  margin-top: 42px;
+  margin-top: 26px;
   height: fit-content;
   margin-bottom: 42px;
 `;
@@ -269,18 +269,27 @@ export const UserProfileComponent = (props: Props) => {
     setEmail(user ? user.email : "");
     window.scrollTo(0, 0);
   }, [user]);
-  if (isLoading) return <UserProfileLoading t={props.t} />;
+  if (isLoading)
+    return (
+      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        <Navigation selected="profil" />
+        <UserProfileLoading t={props.t} />
+      </div>
+    );
 
   if (!user) {
     return (
-      <MainContainer>
-        <ErrorContainer>
-          {props.t(
-            "UserProfile.ErreurChargement",
-            "Une erreur est survenue, veuillez recharger la page !"
-          )}
-        </ErrorContainer>
-      </MainContainer>
+      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        <Navigation selected="profil" />
+        <MainContainer>
+          <ErrorContainer>
+            {props.t(
+              "UserProfile.ErreurChargement",
+              "Une erreur est survenue, veuillez recharger la page !"
+            )}
+          </ErrorContainer>
+        </MainContainer>
+      </div>
     );
   }
 
