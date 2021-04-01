@@ -8,6 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUserStructureActionCreator } from "../../../services/UserStructure/userStructure.actions";
 import { fetchUserActionCreator } from "../../../services/User/user.actions";
 import { userSelector } from "../../../services/User/user.selectors";
+import {
+  userStructureDisposAssociesSelector,
+  userStructureHasResponsibleSeenNotification,
+} from "../../../services/UserStructure/userStructure.selectors";
+import { getNbNewNotifications } from "../UserNotifications/lib";
 
 export type SelectedPage =
   | "notifications"
@@ -34,6 +39,16 @@ export const NavigationComponent: React.FunctionComponent<Props> = (
   const user = useSelector(userSelector);
   const isAdmin = user && user.admin;
   const hasStructure = user && user.membreStruct;
+
+  const dispositifsAssocies = useSelector(userStructureDisposAssociesSelector);
+  const hasResponsibleSeenNotification = useSelector(
+    userStructureHasResponsibleSeenNotification
+  );
+
+  const nbNewNotifications = getNbNewNotifications(
+    dispositifsAssocies,
+    hasResponsibleSeenNotification
+  );
 
   const dispatch = useDispatch();
   const disconnect = () => {
@@ -84,6 +99,7 @@ export const NavigationComponent: React.FunctionComponent<Props> = (
             onClick={() => onButtonClick(data.type)}
             // @ts-ignore
             t={props.t}
+            nbNewNotifications={nbNewNotifications}
           />
         );
       })}

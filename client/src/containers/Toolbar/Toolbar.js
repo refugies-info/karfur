@@ -137,7 +137,7 @@ export class Toolbar extends React.Component {
       ? "/backend/user-dash-notifications"
       : "/backend/user-favorites";
 
-    const nbNotifications = getNbNewNotifications(
+    const nbNewNotifications = getNbNewNotifications(
       this.props.dispositifsAssocies,
       this.props.hasResponsibleSeenNotification
     );
@@ -234,9 +234,9 @@ export class Toolbar extends React.Component {
             >
               <img src={userImg} className="user-picture" alt="user" />
               {membreStruct &&
-                nbNotifications > 0 &&
+                nbNewNotifications > 0 &&
                 this.props.userStructure &&
-                nbNotifications}
+                nbNewNotifications}
             </NavLink>
           ) : (
             <>

@@ -26,6 +26,7 @@ interface NavButtonProps {
   type: SelectedPage;
   onClick: () => void;
   t: any;
+  nbNewNotifications: number;
 }
 const baseWhite = {
   textColor: colors.noir,
@@ -103,8 +104,23 @@ export const NavButton = (props: NavButtonProps) => {
   const [hoverType, setHoverType] = useState<SelectedPage | "none">("none");
 
   const onMouseEnter = (type: SelectedPage) => setHoverType(type);
-
   const onMouseLeave = () => setHoverType("none");
+
+  const getTitle = (
+    type: SelectedPage,
+    title: string,
+    nbNewNotifications: number
+  ) => {
+    if (type === "admin") return title;
+    if (type === "notifications")
+      return (
+        props.t("Toolbar." + props.title, props.title) +
+        " (" +
+        nbNewNotifications +
+        ")"
+      );
+    return props.t("Toolbar." + props.title, props.title);
+  };
 
   const { textColor, backgroundColor } = getColors(
     props.type,
@@ -128,10 +144,7 @@ export const NavButton = (props: NavButtonProps) => {
       onClick={props.onClick}
     >
       <EVAIcon name={name} fill={textColor} className={"mr-10"} />
-
-      {props.type !== "admin"
-        ? props.t("Toolbar." + props.title, props.title)
-        : props.title}
+      {getTitle(props.type, props.title, props.nbNewNotifications)}
     </NavButtonContainer>
   );
 };
