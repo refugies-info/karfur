@@ -8,6 +8,7 @@ import { login } from "../workflows/users/login";
 import { changePassword } from "../workflows/users/changePassword";
 import { getUserFavoritesInLocale } from "../workflows/users/getUserFavoritesInLocale";
 import { updateUserFavorites } from "../workflows/users/updateUserFavorites";
+import { findBuggedUsers } from "../workflows/users/findBuggedUsers/findBuggedUsers";
 
 module.exports = function (app) {
   app.post("/login", checkToken.getId, checkToken.getRoles, login);
@@ -35,4 +36,5 @@ module.exports = function (app) {
     getUserFavoritesInLocale
   );
   app.post("/updateUserFavorites", checkToken.check, updateUserFavorites);
+  app.get("/findBuggedUsers", findBuggedUsers);
 };
