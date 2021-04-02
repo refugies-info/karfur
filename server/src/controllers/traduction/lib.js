@@ -491,7 +491,6 @@ async function validate_tradForReview(req, res) {
                     ) {
                       res.status(501).json({ text: "Erreur d'insertion" });
                     } else {
-                      //console.log(JSON.stringify(result.body));
                       result.markModified("body");
                       result.save((err, article_saved) => {
                         if (err) {
