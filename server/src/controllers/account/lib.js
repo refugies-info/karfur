@@ -70,11 +70,9 @@ const _checkAndNotifyAdmin = async function (
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
+        logger.error("error sending mail", { error: error.message });
       } else {
-        // eslint-disable-next-line no-console
-        console.log("Email sent: " + info.response);
+        logger.info("Email sent: " + info.response);
       }
     });
   }
@@ -218,15 +216,7 @@ function reset_password(req, res) {
           to: user.email,
         };
 
-        transporter.sendMail(mailOptions, (error, info) => {
-          if (error) {
-            // eslint-disable-next-line no-console
-            console.log(error);
-          } else {
-            // eslint-disable-next-line no-console
-            console.log("Email sent: " + info.response);
-          }
-        });
+        transporter.sendMail(mailOptions, () => {});
         return res.status(200).json({ text: "Envoi réussi", data: user.email });
       });
     }
@@ -386,9 +376,6 @@ const populateLanguages = (user) => {
             result.participants = [...result.participants, user._id];
             result.save();
           }
-        } else {
-          // eslint-disable-next-line no-console
-          console.log(err);
         }
       });
     });
@@ -406,18 +393,10 @@ const populateLanguages = (user) => {
               Langue.update(
                 { _id: result._id },
                 { $pull: { participants: user._id } }
-              ).exec((err) => {
-                if (err) {
-                  // eslint-disable-next-line no-console
-                  console.log(err);
-                }
-              });
+              );
             }
           }
         });
-      } else {
-        // eslint-disable-next-line no-console
-        console.log(err);
       }
     });
   }

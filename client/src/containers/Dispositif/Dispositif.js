@@ -417,12 +417,11 @@ export class Dispositif extends Component {
           }
           Swal.fire({
             title: "Erreur",
-            text: `Accès non authorisé 2, status : ${err.status}, message : ${err.message}`,
+            text: "Accès non authorisé",
             type: "error",
             timer: 1200,
           });
-          // eslint-disable-next-line no-console
-          console.log("Error: ", err.message);
+          logger.error("Error: ", { error: err.message });
           this._isMounted = false;
           return this.props.history.push("/");
         });
@@ -756,8 +755,7 @@ export class Dispositif extends Component {
         //   });
         // }
       } catch (e) {
-        // eslint-disable-next-line no-console
-        console.log(e);
+        logger.error("error", { error: e.message });
       }
       this.setState({
         inputBtnClicked: false,

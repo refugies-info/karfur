@@ -99,7 +99,6 @@ export const UserContributionsComponent = (props: Props) => {
 
   const deleteDispositif = (
     event: any,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
     dispositifId: ObjectId,
     isAuthorizedToDelete: boolean
   ) => {

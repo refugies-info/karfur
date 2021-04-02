@@ -1,12 +1,11 @@
 const csv = require("csvtojson");
 const fs = require("fs");
-
+import logger from "../../logger";
 const csvPath = "./csvAfterTrad/traductions";
 
 const convertCsvToJson = async (language) => {
   const jsonArray = await csv().fromFile(csvPath + language + ".csv");
-  // eslint-disable-next-line no-console
-  console.log(
+  logger.info(
     `Nombre de lignes pour la langue ${language} :`,
     jsonArray.length
   );

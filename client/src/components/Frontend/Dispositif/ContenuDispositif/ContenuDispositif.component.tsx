@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React from "react";
 import { Col, Row } from "reactstrap";
 import { Props } from "./ContenuDispositif.container";
