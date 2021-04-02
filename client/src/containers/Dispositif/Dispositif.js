@@ -1458,7 +1458,6 @@ export class Dispositif extends Component {
           type: x.type,
           ...(x.children && {
             children: x.children.map((y) => {
-              // eslint-disable-next-line
               const { editorState, ...noEditor } = y;
               const hasNewContent =
                 y.editable &&
