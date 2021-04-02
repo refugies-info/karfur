@@ -23,6 +23,7 @@ interface Props {
   onContributionRowClick: (arg: string) => void;
   deleteDispositif: (arg1: any, arg: ObjectId, arg2: boolean) => void;
 }
+
 export const UserContribTable = (props: Props) => (
   <Table responsive borderless>
     <thead>

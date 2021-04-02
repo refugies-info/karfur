@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
@@ -19,7 +18,7 @@ interface Props {
     arg2: boolean,
     arg3: boolean
   ) => void;
-  navigateToProfilePage: () => void;
+  navigateToMiddleOffice: () => void;
   status: "string";
 }
 
@@ -186,7 +185,7 @@ export const DraftModal = (props: Props) => (
               false
             );
             props.toggle();
-            props.navigateToProfilePage();
+            props.navigateToMiddleOffice();
           }}
         >
           Sauvegarder et quitter

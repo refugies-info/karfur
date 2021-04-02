@@ -139,7 +139,6 @@ export const DropDownContent = (props: DropDownContentProps) => (
       {props.cardTitle.options.map((option, key: number) => {
         return (
           //@ts-ignore
-          // eslint-disable-next-line react/jsx-no-undef
           <DropdownItem key={key} id={key}>
             {props.cardTitle
               ? jsUcfirstInfocards(option, props.cardTitle.title)

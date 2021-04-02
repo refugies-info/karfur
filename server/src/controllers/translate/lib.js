@@ -15,12 +15,8 @@ const translate = new Translate({
     auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
     client_x509_cert_url: process.env.GCLOUD_CLIENT_X509,
   },
-
-  // keyFilename: __dirname + "../../../config/Traduction-bd4ec8a5b32d-unharmed.json"
 });
 
-//A mettre en place d'abord:
-//export GOOGLE_APPLICATION_CREDENTIALS="/Users/tonyparker/Documents/github/karfur/config/Traduction-bd4ec8a5b32d-unharmed.json"
 function get_translation(req, res) {
   if (!req.body || !req.body.q) {
     res.status(400).json({ text: "Requête invalide" });
@@ -35,8 +31,6 @@ function get_translation(req, res) {
         res.send(translation);
       })
       .catch((err) => {
-        // eslint-disable-next-line no-console
-        console.error("erreur de traduction : " + err);
         res.status(500).json({ text: "Erreur interne", err: err });
       });
   }

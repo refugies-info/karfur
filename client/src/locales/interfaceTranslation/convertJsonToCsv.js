@@ -1,5 +1,6 @@
 const fs = require("fs");
 const Papa = require("papaparse");
+import logger from "../../logger";
 
 const convertJsonToCsv = (langue) => {
   // import french
@@ -10,9 +11,6 @@ const convertJsonToCsv = (langue) => {
     fs.readFileSync("../" + langue + "/translation.json").toString()
   );
   const titleArrayFrench = Object.keys(jsonFrench);
-  // console.log("Nombre de titres en francais", titleArrayFrench.length);
-  // const titleArrayLangue = Object.keys(jsonLangue);
-  // console.log(`Nombre de titres en ${langue}`, titleArrayLangue.length);
 
   const output = [];
   titleArrayFrench.forEach((title) => {
@@ -40,10 +38,8 @@ const convertJsonToCsv = (langue) => {
       });
     }
   });
-  // eslint-disable-next-line no-console
-  console.log("Nombre de traductions en francais", output.length);
-  // eslint-disable-next-line no-console
-  console.log(
+  logger.info("Nombre de traductions en francais", output.length);
+  logger.info(
     `Nombre de traductions en ${langue}`,
     output.filter((trad) => trad[langue]).length
   );

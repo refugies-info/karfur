@@ -24,6 +24,51 @@ const url =
     ? "https://staging.refugies.info/"
     : "https://www.refugies.info/";
 
+const populateLanguages = (user) => {
+  if (
+    user.selectedLanguages &&
+    user.selectedLanguages.constructor === Array &&
+    user.selectedLanguages.length > 0
+  ) {
+    user.selectedLanguages.forEach((langue) => {
+      Langue.findOne({ _id: langue._id }).exec((err, result) => {
+        if (!err) {
+          if (!result.participants) {
+            result.participants = [user._id];
+            result.save();
+          } else if (
+            !result.participants.some((participant) =>
+              participant.equals(user._id)
+            )
+          ) {
+            result.participants = [...result.participants, user._id];
+            result.save();
+          }
+        }
+      });
+    });
+
+    //Je vérifie maintenant s'il n'était pas inscrit dans d'autres langues à tort:
+    Langue.find({ participants: user._id }).exec((err, results) => {
+      if (!err) {
+        results.forEach((result) => {
+          if (
+            result.participants.some((participant) =>
+              participant.equals(user._id)
+            )
+          ) {
+            if (!user.selectedLanguages.some((x) => x._id === result._id)) {
+              Langue.update(
+                { _id: result._id },
+                { $pull: { participants: user._id } }
+              );
+            }
+          }
+        });
+      }
+    });
+  }
+};
 const _checkAndNotifyAdmin = async function (
   user,
   roles,
@@ -70,11 +115,9 @@ const _checkAndNotifyAdmin = async function (
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
+        logger.error("error sending mail", { error: error.message });
       } else {
-        // eslint-disable-next-line no-console
-        console.log("Email sent: " + info.response);
+        logger.info("Email sent: " + info.response);
       }
     });
   }
@@ -140,7 +183,6 @@ function set_user_info(req, res) {
         } else {
           //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
           //Je le fais en non bloquant, il faut pas que ça renvoie une erreur à l'enregistrement
-          // eslint-disable-next-line no-use-before-define
           populateLanguages(user);
           res.status(200).json({
             data: result,
@@ -218,15 +260,7 @@ function reset_password(req, res) {
           to: user.email,
         };
 
-        transporter.sendMail(mailOptions, (error, info) => {
-          if (error) {
-            // eslint-disable-next-line no-console
-            console.log(error);
-          } else {
-            // eslint-disable-next-line no-console
-            console.log("Email sent: " + info.response);
-          }
-        });
+        transporter.sendMail(mailOptions, () => {});
         return res.status(200).json({ text: "Envoi réussi", data: user.email });
       });
     }
@@ -365,63 +399,6 @@ function get_user_info(req, res) {
     data: req.user,
   });
 }
-
-const populateLanguages = (user) => {
-  if (
-    user.selectedLanguages &&
-    user.selectedLanguages.constructor === Array &&
-    user.selectedLanguages.length > 0
-  ) {
-    user.selectedLanguages.forEach((langue) => {
-      Langue.findOne({ _id: langue._id }).exec((err, result) => {
-        if (!err) {
-          if (!result.participants) {
-            result.participants = [user._id];
-            result.save();
-          } else if (
-            !result.participants.some((participant) =>
-              participant.equals(user._id)
-            )
-          ) {
-            result.participants = [...result.participants, user._id];
-            result.save();
-          }
-        } else {
-          // eslint-disable-next-line no-console
-          console.log(err);
-        }
-      });
-    });
-
-    //Je vérifie maintenant s'il n'était pas inscrit dans d'autres langues à tort:
-    Langue.find({ participants: user._id }).exec((err, results) => {
-      if (!err) {
-        results.forEach((result) => {
-          if (
-            result.participants.some((participant) =>
-              participant.equals(user._id)
-            )
-          ) {
-            if (!user.selectedLanguages.some((x) => x._id === result._id)) {
-              Langue.update(
-                { _id: result._id },
-                { $pull: { participants: user._id } }
-              ).exec((err) => {
-                if (err) {
-                  // eslint-disable-next-line no-console
-                  console.log(err);
-                }
-              });
-            }
-          }
-        });
-      } else {
-        // eslint-disable-next-line no-console
-        console.log(err);
-      }
-    });
-  }
-};
 
 //Cette fonction semble inutilisée maintenant, à vérifier
 function signup(req, res) {
