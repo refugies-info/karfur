@@ -2,6 +2,7 @@ import axios from "axios";
 
 import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
+import { logger } from "../logger";
 
 const socket = null;
 export { socket };
@@ -50,8 +51,7 @@ axios.interceptors.response.use(
         });
       }
     } else if (axios.isCancel(error)) {
-      // eslint-disable-next-line no-console
-      console.log("Error: ", error.message);
+      logger.error("Error: ", { error: error.message });
     }
     return Promise.reject(error);
   }

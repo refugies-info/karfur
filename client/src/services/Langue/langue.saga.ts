@@ -9,6 +9,7 @@ import {
   LoadingStatusKey,
 } from "../LoadingStatus/loadingStatus.actions";
 import { fetchActiveDispositifsActionsCreator } from "../ActiveDispositifs/activeDispositifs.actions";
+import { logger } from "../../logger";
 
 export function* fetchLangues(): SagaIterator {
   try {
@@ -17,8 +18,7 @@ export function* fetchLangues(): SagaIterator {
     yield put(setLanguesActionCreator(data.data.data));
     yield put(finishLoading(LoadingStatusKey.FETCH_LANGUES));
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log("Error while fetching langues", { error });
+    logger.error("Error while fetching langues", { error: error.message });
     yield put(setLanguesActionCreator([]));
   }
 }
@@ -27,8 +27,7 @@ export function* toggleLangue(): SagaIterator {
   try {
     yield put(fetchActiveDispositifsActionsCreator());
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log("Error while setting dispositifs", { error });
+    logger.error("Error while setting dispositifs", { error: error.message });
   }
 }
 

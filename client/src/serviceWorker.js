@@ -35,11 +35,6 @@ function registerValidSW(swUrl, config) {
               // At this point, the updated precached content has been fetched,
               // but the previous service worker will still serve the older
               // content until all client tabs are closed.
-              // eslint-disable-next-line no-console
-              console.log(
-                "New content is available and will be used when all " +
-                  "tabs for this page are closed. See http://bit.ly/CRA-PWA."
-              );
 
               // Execute callback
               if (config && config.onUpdate) {
@@ -49,8 +44,6 @@ function registerValidSW(swUrl, config) {
               // At this point, everything has been precached.
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
-              // eslint-disable-next-line no-console
-              console.log("Content is cached for offline use.");
 
               // Execute callback
               if (config && config.onSuccess) {

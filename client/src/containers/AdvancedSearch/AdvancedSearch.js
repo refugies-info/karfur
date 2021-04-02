@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import {
@@ -927,7 +926,6 @@ export class AdvancedSearch extends Component {
       selectedTag,
       filterLanguage,
     } = this.state;
-    // eslint-disable-next-line
     const {
       t,
       isDesktop,

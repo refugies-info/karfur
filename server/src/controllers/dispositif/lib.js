@@ -446,6 +446,25 @@ function update_dispositif(req, res) {
   }
 }
 
+const _errorHandler = (error, res) => {
+  switch (error) {
+    case 500:
+      res.status(500).json({
+        text: "Erreur interne",
+      });
+      break;
+    case 404:
+      res.status(404).json({
+        text: "Pas de résultats",
+      });
+      break;
+    default:
+      res.status(500).json({
+        text: "Erreur interne",
+      });
+  }
+};
+
 function get_dispo_progression(req, res) {
   var start = new Date();
   start.setHours(0, 0, 0, 0);
@@ -487,7 +506,6 @@ function get_dispo_progression(req, res) {
         data: result,
       });
     },
-    // eslint-disable-next-line no-use-before-define
     (e) => _errorHandler(e, res)
   );
 }
@@ -501,25 +519,6 @@ function count_dispositifs(req, res) {
     }
   });
 }
-
-const _errorHandler = (error, res) => {
-  switch (error) {
-    case 500:
-      res.status(500).json({
-        text: "Erreur interne",
-      });
-      break;
-    case 404:
-      res.status(404).json({
-        text: "Pas de résultats",
-      });
-      break;
-    default:
-      res.status(500).json({
-        text: "Erreur interne",
-      });
-  }
-};
 
 //On exporte notre fonction
 exports.add_dispositif = add_dispositif;
