@@ -447,7 +447,7 @@ async function validate_tradForReview(req, res) {
             { _id: traductionUser._id },
             { status: "Validée", validatorId: req.userId },
             { upsert: true, new: true }
-          );
+          ).then(() => {});
         } else {
           (traductionUser.traductions || [])
             .slice(0)
@@ -457,7 +457,7 @@ async function validate_tradForReview(req, res) {
                 { _id: x._id },
                 { status: "Validée", validatorId: req.userId },
                 { upsert: true, new: true }
-              );
+              ).then(() => {});
             });
         }
         // We delete all translations that are not from experts, since now we only need one official validated version
@@ -491,7 +491,6 @@ async function validate_tradForReview(req, res) {
                     ) {
                       res.status(501).json({ text: "Erreur d'insertion" });
                     } else {
-                      //console.log(JSON.stringify(result.body));
                       result.markModified("body");
                       result.save((err, article_saved) => {
                         if (err) {
@@ -522,6 +521,7 @@ async function validate_tradForReview(req, res) {
         );
       }
     } catch (err) {
+      logger.error("error validateTrad for review", { error: err.message });
       new Error({
         name: "validateTradModifications",
         userId: req.userId,
