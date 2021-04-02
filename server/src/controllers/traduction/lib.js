@@ -356,7 +356,7 @@ async function add_tradForReview(req, res) {
       });
       //calculateScores(data, traductionInitiale); //On recalcule les scores de la traduction
     })
-    .catch((err) => {
+    .catch(() => {
       res.status(500).json({ text: "Erreur interne" });
     });
 }
