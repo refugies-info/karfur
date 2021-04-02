@@ -11,6 +11,7 @@ import {
   setTranslationActionCreator,
   fetchTranslationsActionCreator,
 } from "./translation.actions";
+import { logger } from "../../logger";
 
 export function* fetchTranslations(action: any): SagaIterator {
   try {
@@ -26,8 +27,7 @@ export function* fetchTranslations(action: any): SagaIterator {
       yield put(setTranslationsActionCreator(data.data.data));
     }
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log("Error while fetching translation", { error });
+    logger.error("Error while fetching translation", { error: error.message });
   }
 }
 
@@ -42,8 +42,7 @@ export function* addTranslation(action: any): SagaIterator {
       )
     );
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log("Error while fetching translation", { error });
+    logger.error("Error while fetching translation", { error: error.message });
   }
 }
 
@@ -58,8 +57,7 @@ export function* updateTranslation(action: any): SagaIterator {
       )
     );
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log("Error while fetching translation", { error });
+    logger.error("Error while fetching translation", { error: error.message });
   }
 }
 

@@ -112,12 +112,13 @@ const StyledRightButtonGroup = styled.div`
 
 const GeolocModal = (props) => {
   const [departments, setDepartments] = useState([]);
-  const [isFranceSelected, setFranceSelected] = useState(false);
+  const [isFranceSelected, setFranceSelected] = useState(
+    props.departments && props.departments.includes("All")
+  );
   const [selectedDepartments, setSelectedDepartments] = useState(
     props.departments || []
   );
   const [departmentInput, setDepartmentInput] = useState("");
-
   const onDepartmentChange = (e) => {
     setDepartmentInput(e.target.value);
     if (e.target.value === "") {
@@ -178,9 +179,6 @@ const GeolocModal = (props) => {
     props.hideModal();
   };
 
-  /*  const isFranceSelected =
-    (selectedDepartments && selectedDepartments[0] === "All") || !(selectedDepartments && selectedDepartments.length > 0 && selectedDepartments[0] !== "All");
- */
   return (
     <Modal show={props.show} className="geoloc-modal">
       <IconContainer onClick={props.hideModal}>

@@ -65,10 +65,8 @@ const _findNodeAndReplace = (initial, translated, locale, id) => {
           node.children[0].content[locale] =
             translated[0].children[0].children[0].content;
           return true;
-          // eslint-disable-next-line
-        } else {
-          return false;
         }
+        return false;
       }
     }
     if ((node.children || []).length > 0) {
@@ -193,8 +191,6 @@ const insertInDispositif = (res, traduction, locale) => {
 
         return result.save((err, data) => {
           if (err) {
-            // eslint-disable-next-line
-            console.log(err);
             res.status(500).json({ text: "Erreur interne" });
           } else {
             res.status(200).json({
@@ -227,13 +223,9 @@ const insertInDispositif = (res, traduction, locale) => {
           }
           return res;
         });
-        // eslint-disable-next-line
-      } else {
-        // eslint-disable-next-line
-        console.log(err);
-        res.status(400).json({ text: "Erreur d'identification du dispositif" });
-        return res;
       }
+      res.status(400).json({ text: "Erreur d'identification du dispositif" });
+      return res;
     }
   );
 };
@@ -243,140 +235,130 @@ const insertInDispositif = (res, traduction, locale) => {
 async function add_tradForReview(req, res) {
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
-  } else if (!req.body || !req.body.langueCible || !req.body.translatedText) {
+  }
+  if (!req.body || !req.body.langueCible || !req.body.translatedText) {
     return res.status(400).json({ text: "Requête invalide" });
-    // eslint-disable-next-line
-  } else {
-    let traduction = req.body;
-    const { wordsCount, timeSpent, langueCible, articleId } = traduction;
-    //We save a new indicator document to know the number of words translated and the time spent, this is needed for stats in the front
-    new Indicator({
-      userId: req.userId,
-      dispositifId: articleId,
-      language: langueCible,
-      timeSpent,
-      wordsCount,
-    }).save();
+  }
+  let traduction = req.body;
+  const { wordsCount, timeSpent, langueCible, articleId } = traduction;
+  //We save a new indicator document to know the number of words translated and the time spent, this is needed for stats in the front
+  new Indicator({
+    userId: req.userId,
+    dispositifId: articleId,
+    language: langueCible,
+    timeSpent,
+    wordsCount,
+  }).save();
 
-    //we assign a status depending on wheter the translator is expert or not, and whether the translation has been completed at 100% or not
-    if (traduction.avancement >= 1 && traduction.status !== "À revoir") {
-      traduction.status = "En attente";
-      await Traduction.updateMany(
-        {
-          articleId: traduction.articleId,
-          langueCible: traduction.langueCible,
-        },
-        { status: "En attente" },
-        { upsert: false }
+  //we assign a status depending on wheter the translator is expert or not, and whether the translation has been completed at 100% or not
+  if (traduction.avancement >= 1 && traduction.status !== "À revoir") {
+    traduction.status = "En attente";
+    await Traduction.updateMany(
+      {
+        articleId: traduction.articleId,
+        langueCible: traduction.langueCible,
+      },
+      { status: "En attente" },
+      { upsert: false }
+    );
+  }
+  if (!traduction.isExpert) {
+    if (traduction.avancement < 1 && traduction.status !== "À revoir") {
+      traduction.status = "À traduire";
+    }
+  }
+  let nbMotsTitres = 0;
+  let nbMotsBody = 0;
+
+  JSON.parse(JSON.stringify(traduction.translatedText));
+  //On transforme le html en JSON après l'avoir nettoyé
+  if (traduction.translatedText.contenu) {
+    //le cas des dispositifs
+    traduction.nbMots = turnHTMLtoJSON(traduction.translatedText.contenu);
+  } else {
+    let html = traduction.translatedText.body || traduction.translatedText;
+    let safeHTML = sanitizeHtml(html, sanitizeOptions); //On nettoie le html
+    if (
+      traduction.initialText.body &&
+      traduction.initialText.body === h2p(traduction.initialText.body)
+    ) {
+      //Si le texte initial n'a pas de html, je force le texte traduit à ne pas en avoir non plus
+      safeHTML = h2p(html);
+    }
+
+    if (!traduction.isStructure) {
+      let jsonBody = himalaya.parse(safeHTML, {
+        ...himalaya.parseDefaults,
+        includePositions: true,
+      });
+      traduction.translatedText = traduction.translatedText.body
+        ? { ...traduction.translatedText, body: jsonBody }
+        : jsonBody;
+    } else {
+      traduction = {
+        ...traduction,
+        jsonId: traduction.articleId,
+        articleId: traduction.id,
+      };
+      delete traduction.id;
+    }
+    nbMotsBody = h2p(safeHTML).split(/\s+/).length || 0;
+
+    if (
+      traduction.initialText &&
+      traduction.initialText.body &&
+      !traduction.isStructure
+    ) {
+      traduction.initialText.body = himalaya.parse(
+        sanitizeHtml(traduction.initialText.body, sanitizeOptions),
+        { ...himalaya.parseDefaults, includePositions: true }
       );
     }
-    if (!traduction.isExpert) {
-      if (traduction.avancement < 1 && traduction.status !== "À revoir") {
-        traduction.status = "À traduire";
-      }
+    if (traduction.initialText && traduction.initialText.title) {
+      traduction.initialText.title = h2p(traduction.initialText.title);
     }
-    let nbMotsTitres = 0;
-    let nbMotsBody = 0;
+    if (traduction.translatedText.title) {
+      traduction.translatedText.title = h2p(traduction.translatedText.title);
+      nbMotsTitres = traduction.translatedText.title.split(/\s+/).length || 0;
+    }
+    traduction.nbMots = nbMotsBody + nbMotsTitres;
+  }
 
-    JSON.parse(JSON.stringify(traduction.translatedText));
-    //On transforme le html en JSON après l'avoir nettoyé
-    if (traduction.translatedText.contenu) {
-      //le cas des dispositifs
-      traduction.nbMots = turnHTMLtoJSON(traduction.translatedText.contenu);
-    } else {
-      let html = traduction.translatedText.body || traduction.translatedText;
-      let safeHTML = sanitizeHtml(html, sanitizeOptions); //On nettoie le html
-      if (
-        traduction.initialText.body &&
-        traduction.initialText.body === h2p(traduction.initialText.body)
-      ) {
-        //Si le texte initial n'a pas de html, je force le texte traduit à ne pas en avoir non plus
-        safeHTML = h2p(html);
-      }
-
-      if (!traduction.isStructure) {
-        let jsonBody = himalaya.parse(safeHTML, {
-          ...himalaya.parseDefaults,
-          includePositions: true,
-        });
-        traduction.translatedText = traduction.translatedText.body
-          ? { ...traduction.translatedText, body: jsonBody }
-          : jsonBody;
-      } else {
-        traduction = {
-          ...traduction,
-          jsonId: traduction.articleId,
-          articleId: traduction.id,
-        };
-        delete traduction.id;
-      }
-      nbMotsBody = h2p(safeHTML).split(/\s+/).length || 0;
-
-      if (
-        traduction.initialText &&
-        traduction.initialText.body &&
-        !traduction.isStructure
-      ) {
-        traduction.initialText.body = himalaya.parse(
-          sanitizeHtml(traduction.initialText.body, sanitizeOptions),
-          { ...himalaya.parseDefaults, includePositions: true }
+  traduction.userId = req.userId;
+  let promise;
+  // if the translation exists we update it, if not we create a new one and the we update the User document by adding the reference of the translation done
+  if (traduction._id) {
+    promise = Traduction.findOneAndUpdate({ _id: traduction._id }, traduction, {
+      upsert: true,
+      new: true,
+    });
+  } else {
+    promise = new Traduction(traduction).save();
+  }
+  promise
+    .then((data) => {
+      if (req.userId) {
+        User.findByIdAndUpdate(
+          { _id: req.userId },
+          {
+            $addToSet: {
+              traductionsFaites: data._id,
+              roles: ((req.roles || []).find((x) => x.nom === "Trad") || {})
+                ._id,
+            },
+          },
+          { new: true }
         );
       }
-      if (traduction.initialText && traduction.initialText.title) {
-        traduction.initialText.title = h2p(traduction.initialText.title);
-      }
-      if (traduction.translatedText.title) {
-        traduction.translatedText.title = h2p(traduction.translatedText.title);
-        nbMotsTitres = traduction.translatedText.title.split(/\s+/).length || 0;
-      }
-      traduction.nbMots = nbMotsBody + nbMotsTitres;
-    }
-
-    traduction.userId = req.userId;
-    let promise;
-    // if the translation exists we update it, if not we create a new one and the we update the User document by adding the reference of the translation done
-    if (traduction._id) {
-      promise = Traduction.findOneAndUpdate(
-        { _id: traduction._id },
-        traduction,
-        { upsert: true, new: true }
-      );
-    } else {
-      promise = new Traduction(traduction).save();
-    }
-    promise
-      .then((data) => {
-        if (req.userId) {
-          User.findByIdAndUpdate(
-            { _id: req.userId },
-            {
-              $addToSet: {
-                traductionsFaites: data._id,
-                roles: ((req.roles || []).find((x) => x.nom === "Trad") || {})
-                  ._id,
-              },
-            },
-            { new: true },
-            (e) => {
-              if (e) {
-                // eslint-disable-next-line
-                console.log(e);
-              }
-            }
-          );
-        }
-        res.status(200).json({
-          text: "Succès",
-          data: data,
-        });
-        //calculateScores(data, traductionInitiale); //On recalcule les scores de la traduction
-      })
-      .catch((err) => {
-        // eslint-disable-next-line
-        console.log(err);
-        res.status(500).json({ text: "Erreur interne" });
+      res.status(200).json({
+        text: "Succès",
+        data: data,
       });
-  }
+      //calculateScores(data, traductionInitiale); //On recalcule les scores de la traduction
+    })
+    .catch(() => {
+      res.status(500).json({ text: "Erreur interne" });
+    });
 }
 
 //We retrieve the list of translations
@@ -431,8 +413,6 @@ function get_tradForReview(req, res) {
       });
     })
     .catch((err) => {
-      // eslint-disable-next-line
-      console.log(err);
       res.status(500).json({
         text: "Erreur interne",
         error: err,
@@ -467,8 +447,7 @@ async function validate_tradForReview(req, res) {
             { _id: traductionUser._id },
             { status: "Validée", validatorId: req.userId },
             { upsert: true, new: true }
-            // eslint-disable-next-line
-          ).then(() => console.log("updated"));
+          );
         } else {
           (traductionUser.traductions || [])
             .slice(0)
@@ -478,8 +457,7 @@ async function validate_tradForReview(req, res) {
                 { _id: x._id },
                 { status: "Validée", validatorId: req.userId },
                 { upsert: true, new: true }
-                // eslint-disable-next-line
-              ).then(() => console.log("updated"));
+              );
             });
         }
         // We delete all translations that are not from experts, since now we only need one official validated version
@@ -517,8 +495,6 @@ async function validate_tradForReview(req, res) {
                       result.markModified("body");
                       result.save((err, article_saved) => {
                         if (err) {
-                          // eslint-disable-next-line
-                          console.log(err);
                           res.status(500).json({ text: "Erreur interne" });
                         } else {
                           res.status(200).json({
@@ -531,8 +507,6 @@ async function validate_tradForReview(req, res) {
                     }
                   }
                 } else {
-                  // eslint-disable-next-line
-                  console.log(err);
                   res
                     .status(400)
                     .json({ text: "Erreur d'identification de l'article" });
@@ -540,9 +514,7 @@ async function validate_tradForReview(req, res) {
               }
             );
           },
-          (err) => {
-            // eslint-disable-next-line
-            console.log(err);
+          () => {
             res.status(500).json({
               text: "Erreur interne",
             });
@@ -558,8 +530,7 @@ async function validate_tradForReview(req, res) {
         },
         error: err,
       }).save();
-      // eslint-disable-next-line
-      console.log(err);
+
       res.status(500).json({
         text: "Erreur interne",
       });
@@ -577,53 +548,51 @@ function update_tradForReview(req, res) {
     )
   ) {
     return res.status(400).json({ text: "Requête invalide" });
-    // eslint-disable-next-line
-  } else {
-    let translation = req.body;
-    translation.validatorId = req.userId;
-    if (translation.translatedText.contenu) {
-      //le cas des dispositifs
-      translation.nbMots = turnHTMLtoJSON(translation.translatedText.contenu);
-    }
-
-    const { wordsCount, timeSpent, language, articleId } = translation;
-
-    //We save a new indicator document to know the number of words translated and the time spent, this is needed for stats in the front
-    new Indicator({
-      userId: req.userId,
-      dispositifId: articleId,
-      language,
-      timeSpent,
-      wordsCount,
-    }).save();
-
-    const find = new Promise(function (resolve, reject) {
-      Traduction.findByIdAndUpdate({ _id: translation._id }, translation, {
-        new: true,
-        upsert: true,
-      }).exec(function (err, result) {
-        if (err) {
-          reject(500);
-        } else {
-          if (result) {
-            resolve(result);
-          } else {
-            reject(204);
-          }
-        }
-      });
-    });
-
-    find.then(
-      function (result) {
-        res.status(200).json({
-          text: "Succès",
-          data: result,
-        });
-      },
-      (e) => _errorHandler(e, res)
-    );
   }
+  let translation = req.body;
+  translation.validatorId = req.userId;
+  if (translation.translatedText.contenu) {
+    //le cas des dispositifs
+    translation.nbMots = turnHTMLtoJSON(translation.translatedText.contenu);
+  }
+
+  const { wordsCount, timeSpent, language, articleId } = translation;
+
+  //We save a new indicator document to know the number of words translated and the time spent, this is needed for stats in the front
+  new Indicator({
+    userId: req.userId,
+    dispositifId: articleId,
+    language,
+    timeSpent,
+    wordsCount,
+  }).save();
+
+  const find = new Promise(function (resolve, reject) {
+    Traduction.findByIdAndUpdate({ _id: translation._id }, translation, {
+      new: true,
+      upsert: true,
+    }).exec(function (err, result) {
+      if (err) {
+        reject(500);
+      } else {
+        if (result) {
+          resolve(result);
+        } else {
+          reject(204);
+        }
+      }
+    });
+  });
+
+  find.then(
+    function (result) {
+      res.status(200).json({
+        text: "Succès",
+        data: result,
+      });
+    },
+    (e) => _errorHandler(e, res)
+  );
 }
 
 export const computeIndicator = async (userId, start, end) =>
@@ -716,15 +685,13 @@ async function delete_trads(req, res) {
     } else if (!req.user.roles.some((x) => x.nom === "Admin")) {
       logger.info("[delete_trads] user in not admin", { user: req.user.roles });
       return res.status(400).json({ text: "Requête invalide" });
-      // eslint-disable-next-line
-    } else {
-      logger.info("[delete_trads] received", { data: req.body });
-      await Traduction.deleteMany({
-        articleId: req.body.articleId,
-        langueCible: req.body.langueCible,
-      });
-      res.status(200).json({ text: "OK" });
     }
+    logger.info("[delete_trads] received", { data: req.body });
+    await Traduction.deleteMany({
+      articleId: req.body.articleId,
+      langueCible: req.body.langueCible,
+    });
+    res.status(200).json({ text: "OK" });
   } catch (error) {
     logger.error("[delete_trads] error", { error: error.message });
     return res.status(400).json({ text: "Requête invalide" });
