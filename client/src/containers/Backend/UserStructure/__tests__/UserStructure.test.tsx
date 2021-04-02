@@ -11,10 +11,6 @@ import {
 import Swal from "sweetalert2";
 import { colors } from "../../../../colors";
 
-jest.mock("sweetalert2", () => ({
-  __esModule: true, // this property makes it work
-  default: { fire: jest.fn().mockResolvedValue("test") },
-}));
 // need to mock react strap because issue with modal
 jest.mock("reactstrap", () => {
   const { Table } = jest.requireActual("reactstrap");
