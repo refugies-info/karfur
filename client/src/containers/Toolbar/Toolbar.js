@@ -2,13 +2,10 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { withTranslation } from "react-i18next";
 import i18n from "../../i18n";
-import { AppAsideToggler } from "@coreui/react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import windowSize from "react-window-size";
-
 import { toggleLangueModalActionCreator } from "../../services/Langue/langue.actions";
-import DrawerToggle from "../../components/Navigation/SideDrawer/DrawerToggle/DrawerToggle";
 import API from "../../utils/API";
 import AudioBtn from "../UI/AudioBtn/AudioBtn";
 import marioProfile from "../../assets/mario-profile.jpg";
@@ -126,10 +123,7 @@ export class Toolbar extends React.Component {
 
   render() {
     const path = this.props.location.pathname || "";
-    const { user, admin, membreStruct, t, windowWidth } = this.props;
-    const afficher_burger =
-      false && admin && path.includes("/backend") && path.includes("/admin"); //Hugo demande de ne plus afficher le burger, temporairement désactivé donc
-    const afficher_burger_droite = path.includes("/traduction");
+    const { user, membreStruct, t, windowWidth } = this.props;
     const userImg =
       user && user.picture ? user.picture.secure_url : marioProfile;
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
@@ -150,12 +144,6 @@ export class Toolbar extends React.Component {
         }
       >
         <div className="left_buttons">
-          {afficher_burger && (
-            <DrawerToggle
-              forceShow={afficher_burger}
-              clicked={() => this.props.drawerToggleClicked("left")}
-            />
-          )}
           <Logo reduced={windowWidth < breakpoints.phoneDown} isRTL={isRTL} />
           {path !== "/" &&
             path !== "/homepage" &&
@@ -174,7 +162,6 @@ export class Toolbar extends React.Component {
         <div className="center-buttons">
           <AudioBtn />
           <LanguageBtn hideText={windowWidth < breakpoints.tabletUp} />
-          {/* <NavigationItems /> */}
           <AdvancedSearchBar
             visible={this.state.visible}
             scroll={this.state.scroll}
@@ -276,10 +263,6 @@ export class Toolbar extends React.Component {
             </>
           )}
         </div>
-
-        {false && afficher_burger_droite && (
-          <AppAsideToggler className="d-md-down-none" />
-        )}
       </header>
     );
   }
