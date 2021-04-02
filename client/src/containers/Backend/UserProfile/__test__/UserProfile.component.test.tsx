@@ -13,11 +13,6 @@ jest.mock("../../../../utils/API", () => ({
   default: { updateUser: jest.fn(), changePassword: jest.fn() },
 }));
 
-jest.mock("sweetalert2", () => ({
-  __esModule: true, // this property makes it work
-  default: { fire: jest.fn().mockResolvedValue("test") },
-}));
-
 jest.mock("../../../../services/User/user.actions", () => {
   const actions = jest.requireActual("../../../../services/User/user.actions");
   return {

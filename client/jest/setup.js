@@ -33,3 +33,8 @@ jest.mock("moment/min/moment-with-locales", () => {
 
   return fn;
 });
+
+jest.mock("sweetalert2", () => ({
+  __esModule: true, // this property makes it work
+  default: { fire: jest.fn().mockResolvedValue("test") },
+}));

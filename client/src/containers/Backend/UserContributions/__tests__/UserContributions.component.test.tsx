@@ -9,11 +9,6 @@ import { fetchUserContributionsActionCreator } from "../../../../services/UserCo
 import { fetchUserStructureActionCreator } from "../../../../services/UserStructure/userStructure.actions";
 import "jest-styled-components";
 
-jest.mock("sweetalert2", () => ({
-  __esModule: true, // this property makes it work
-  default: { fire: jest.fn().mockResolvedValue("test") },
-}));
-
 jest.mock(
   "../../../../services/UserContributions/userContributions.actions",
   () => {
