@@ -913,7 +913,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                 <td
                   className="align-middle"
                 >
-                  510 jours
+                  5 jours
                 </td>
                 <td
                   className="align-middle"
@@ -927,7 +927,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                 <td
                   className="align-middle "
                 >
-                  05/02/21 9:46
+                  1612514769665
                 </td>
                 <td
                   className="align-middle last"
@@ -1472,7 +1472,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                 <td
                   className="align-middle"
                 >
-                  510 jours
+                  5 jours
                 </td>
                 <td
                   className="align-middle"
@@ -1486,7 +1486,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                 <td
                   className="align-middle last"
                 >
-                  05/02/21 9:46
+                  1612514769665
                 </td>
               </tr>
             </tbody>
@@ -2000,7 +2000,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                 <td
                   className="align-middle"
                 >
-                  510 jours
+                  5 jours
                 </td>
                 <td
                   className="align-middle"
@@ -2014,7 +2014,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                 <td
                   className="align-middle last"
                 >
-                  05/02/21 9:46
+                  1612514769665
                 </td>
               </tr>
             </tbody>
