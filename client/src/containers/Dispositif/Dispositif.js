@@ -2107,8 +2107,8 @@ export class Dispositif extends Component {
               show={this.state.showDraftModal}
               toggle={this.toggleDraftModal}
               valider_dispositif={this.valider_dispositif}
-              navigateToProfilePage={() =>
-                this.props.history.push("/backend/user-profile")
+              navigateToMiddleOffice={() =>
+                this.props.history.push("/backend/user-dash-contrib")
               }
               status={this.state.status}
             />
