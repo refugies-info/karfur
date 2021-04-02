@@ -39,13 +39,11 @@ export const formatContributions = (
       )
         return false;
 
-      if (dispositif.status === "En attente") {
-        const isDispositifInUserContributions =
-          userContributions.filter(
-            (userDispo) => userDispo._id === dispositif._id
-          ).length > 0;
-        if (isDispositifInUserContributions) return false;
-      }
+      const isDispositifInUserContributions =
+        userContributions.filter(
+          (userDispo) => userDispo._id === dispositif._id
+        ).length > 0;
+      if (isDispositifInUserContributions) return false;
       return true;
     })
     .forEach((dispositif) => {
