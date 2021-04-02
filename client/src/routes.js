@@ -4,7 +4,6 @@ import { Admin } from "./containers/Backend/Admin/Admin";
 import { UserContributions } from "./containers/Backend/UserContributions";
 import { UserProfile } from "./containers/Backend/UserProfile";
 import Dispositif from "./containers/Dispositif/Dispositif";
-import Avancement from "./containers/Avancement/Avancement";
 import Translation from "./containers/Translation/Translation";
 import AdvancedSearch from "./containers/AdvancedSearch/AdvancedSearch";
 import QuiSommesNous from "./containers/QuiSommesNous/QuiSommesNous";
@@ -119,26 +118,6 @@ const routes = [
     restriction: [],
   },
 
-  {
-    path: "/avancement/traductions/:id",
-    exact: true,
-    name: "Réfugiés.info - Traduction",
-    component: Avancement,
-    restriction: ["ExpertTrad", "Admin"],
-  },
-  {
-    path: "/avancement/langue/:id",
-    exact: true,
-    name: "Réfugiés.info - Traduction",
-    component: Avancement,
-    restriction: ["Trad", "ExpertTrad", "Admin"],
-  },
-  {
-    path: "/avancement",
-    name: "Réfugiés.info - Traduction",
-    component: Avancement,
-    restriction: ["Trad", "ExpertTrad", "Admin"],
-  },
   {
     path: "/traduction",
     exact: true,
