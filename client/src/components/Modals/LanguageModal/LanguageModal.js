@@ -25,18 +25,20 @@ const languageModal = (props) => {
     unavailable: { unavailable: true },
   };
 
+  const getAvancement = (langue) => {
+    if (langue.length === 0 || !langue[0].avancementTrad) return 0;
+
+    if (langue[0].avancementTrad > 1) return 1;
+    return langue[0].avancementTrad;
+  };
+
   const getAvancementTrad = (element) => {
     if (languages[element].i18nCode === "fr") return 1;
     const correspondingLangue = props.langues.filter(
       (langue) => langue.i18nCode === languages[element].i18nCode
     );
 
-    const avancement =
-      correspondingLangue.length > 0 && correspondingLangue[0].avancementTrad
-        ? correspondingLangue[0].avancementTrad
-        : 0;
-
-    return avancement;
+    return getAvancement(correspondingLangue);
   };
 
   const { t } = props;
