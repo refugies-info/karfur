@@ -5,8 +5,7 @@ import {
   updateDispositifInDB,
   getDispositifByIdWithMainSponsor,
 } from "../../../modules/dispositif/dispositif.repository";
-import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
-import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
+import { publishDispositif } from "../../../modules/dispositif/dispositif.service";
 import {
   checkRequestIsFromSite,
   checkIfUserIsAdmin,
@@ -34,32 +33,8 @@ export const updateDispositifStatus = async (
     if (status === "Actif") {
       // @ts-ignore : populate roles
       checkIfUserIsAdmin(req.user.roles);
-      newDispositif = { status, publishedAt: Date.now() };
-      const newDispo = await updateDispositifInDB(dispositifId, newDispositif);
-      try {
-        await updateLanguagesAvancement();
-      } catch (error) {
-        logger.info(
-          "[updateDispositifStatus] error while updating languages avancement",
-          { error }
-        );
-      }
-      if (newDispo.typeContenu === "dispositif") {
-        try {
-          await addOrUpdateDispositifInContenusAirtable(
-            newDispo.titreInformatif,
-            newDispo.titreMarque,
-            newDispo._id,
-            newDispo.tags,
-            null
-          );
-        } catch (error) {
-          logger.error(
-            "[updateDispositifStatus] error while updating contenu in airtable",
-            { error }
-          );
-        }
-      }
+      await publishDispositif(dispositifId);
+
       return res.status(200).json({ text: "OK" });
     }
 
