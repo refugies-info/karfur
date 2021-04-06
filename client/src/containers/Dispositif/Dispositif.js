@@ -1880,7 +1880,7 @@ export class Dispositif extends Component {
                 lg={translating || printing ? "12" : "7"}
                 md={translating || printing ? "12" : "10"}
                 sm={translating || printing ? "12" : "10"}
-                xs={translating || printing ? "12" : "10"}
+                xs="12"
                 className="pt-40 col-middle"
                 id={"pageContent"}
               >

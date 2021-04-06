@@ -1,7 +1,6 @@
 import React from "react";
 import { Col, Row, Collapse } from "reactstrap";
 import ContentEditable from "react-contenteditable";
-
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
 import { QuickToolbar } from "../../../../containers/Dispositif/QuickToolbar";
 import {
@@ -23,9 +22,6 @@ import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { infocardsDemarcheTitles } from "../../../../containers/Dispositif/data";
 import { isMobile } from "react-device-detect";
-
-// eslint-disable-next-line no-console
-console.log("isMobile",isMobile);
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>
@@ -54,7 +50,7 @@ const StyledHeader = styled.div`
   display: flex;
   margin: auto;
   font-weight: bold;
-  font-size: ${isMobile?"18px":"22px"};
+  font-size: ${isMobile ? "18px" : "22px"};
   line-height: 28px;
   color: ${(props) => props.darkColor};
 `;
