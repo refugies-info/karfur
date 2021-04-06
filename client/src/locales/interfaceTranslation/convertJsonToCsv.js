@@ -1,6 +1,5 @@
 const fs = require("fs");
 const Papa = require("papaparse");
-import logger from "../../logger";
 
 const convertJsonToCsv = (langue) => {
   // import french
@@ -38,8 +37,10 @@ const convertJsonToCsv = (langue) => {
       });
     }
   });
-  logger.info("Nombre de traductions en francais", output.length);
-  logger.info(
+  // eslint-disable-next-line no-console
+  console.log("Nombre de traductions en francais", output.length);
+  // eslint-disable-next-line no-console
+  console.log(
     `Nombre de traductions en ${langue}`,
     output.filter((trad) => trad[langue]).length
   );
