@@ -109,16 +109,9 @@ $imgHeight: 350px;
       padding: 15px 20px;
       text-transform: initial;
       margin-bottom: 0;
-      @include media-max("phone-down") {
-        &.editable {
-          max-width: calc(100% - 200px);
-        }
-      }
       @include media-max("tablet-up") {
-        font-size: 46px;
-      }
-      @include media-max("phone-down") {
-        font-size: 32px;
+        font-size: 22px;
+        padding: 8px;
       }
     }
 
@@ -132,9 +125,6 @@ $imgHeight: 350px;
       padding: 15px 20px;
       padding-top: 0px;
       @include media-max("tablet-up") {
-        font-size: 24px;
-      }
-      @include media-max("phone-down") {
         font-size: 16px;
       }
     }
@@ -467,6 +457,9 @@ $imgHeight: 350px;
     line-height: normal;
     color: $darkColor;
     margin-bottom: 40px;
+    @include media-max("tablet-up") {
+      font-size: 28px;
+    }
   }
   .mt-20 {
     margin-top: 20px;
@@ -639,6 +632,7 @@ $imgHeight: 350px;
     margin-right: 40px;
     margin-bottom: 20px;
     padding: 0 40px;
+    
 
     .col {
       padding: 0;
@@ -652,6 +646,9 @@ $imgHeight: 350px;
       &.align-right {
         margin-right: 15px;
         padding: 0;
+      }
+      @include media-max("tablet-up") {
+        font-size: 18px;
       }
     }
     .date-maj {
