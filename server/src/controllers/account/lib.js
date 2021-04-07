@@ -394,9 +394,15 @@ function get_users(req, res) {
 }
 
 function get_user_info(req, res) {
+  const user = req.user;
+  const filteredLanguages = user.selectedLanguages
+    ? user.selectedLanguages.filter((langue) => langue.langueCode !== "fr")
+    : [];
+
+  user.selectedLanguages = filteredLanguages;
   res.status(200).json({
     text: "Succès",
-    data: req.user,
+    data: user,
   });
 }
 
