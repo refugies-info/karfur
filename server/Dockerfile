@@ -17,4 +17,4 @@ RUN npm run tsc
 # Install berglas
 COPY --from=us-docker.pkg.dev/berglas/berglas/berglas:latest /bin/berglas /bin/berglas
 
-ENTRYPOINT exec /bin/berglas exec -- npm  start
+ENTRYPOINT exec /bin/berglas exec -- npm run start
