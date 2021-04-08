@@ -3,6 +3,10 @@ import { updateDispositifInDB } from "../dispositif.repository";
 import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import { publishDispositif } from "../dispositif.service";
+import {
+  sendPublishedMailToCreator,
+  sendPublishedMailToStructureMembers,
+} from "../dispositif.mail.service";
 
 jest.mock("../../../controllers/langues/langues.service", () => ({
   updateLanguagesAvancement: jest.fn(),
@@ -14,6 +18,11 @@ jest.mock("../../../controllers/miscellaneous/airtable", () => ({
 
 jest.mock("../dispositif.repository", () => ({
   updateDispositifInDB: jest.fn(),
+}));
+
+jest.mock("../dispositif.mail.service", () => ({
+  sendPublishedMailToCreator: jest.fn(),
+  sendPublishedMailToStructureMembers: jest.fn(),
 }));
 
 describe("publish dispositif", () => {
@@ -42,6 +51,7 @@ describe("publish dispositif", () => {
     titreMarque: "tm",
     _id: "id",
     tags: [],
+    creatorId: "creatorId",
   };
 
   it("updateLanguagesAvancement throws", async () => {
@@ -83,5 +93,28 @@ describe("publish dispositif", () => {
       [],
       null
     );
+    expect(sendPublishedMailToCreator).toHaveBeenCalledWith(dispositif);
+    expect(sendPublishedMailToStructureMembers).toHaveBeenCalledWith(
+      dispositif
+    );
+  });
+
+  it("should return a 200 when new status is actif and a demarche ", async () => {
+    updateDispositifInDB.mockResolvedValueOnce({
+      ...dispositif,
+      typeContenu: "demarche",
+    });
+    const date = 148707670800;
+    Date.now = jest.fn(() => date);
+    await publishDispositif("id");
+
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
+      status: "Actif",
+      publishedAt: date,
+    });
+    expect(updateLanguagesAvancement).toHaveBeenCalledWith();
+    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+    expect(sendPublishedMailToCreator).not.toHaveBeenCalled();
+    expect(sendPublishedMailToStructureMembers).not.toHaveBeenCalled();
   });
 });
