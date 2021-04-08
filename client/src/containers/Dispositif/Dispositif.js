@@ -1884,6 +1884,19 @@ export class Dispositif extends Component {
                 className="pt-40 col-middle"
                 id={"pageContent"}
               >
+                {isMobile && (
+                  //On Mobile device only, button to show modal with sharing options.
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <FButton
+                      type="outline-black"
+                      name={"share-outline"}
+                      className="ml-10"
+                      onClick={() => this.toggleTutorielModal("Titre")}
+                    >
+                      Tutoriel
+                    </FButton>
+                  </div>
+                )}
                 {disableEdit && this.state.dispositif.lastModificationDate && (
                   // Part about last update
                   <Row className="fiabilite-row">
@@ -1911,6 +1924,7 @@ export class Dispositif extends Component {
                     </Col>
                   </Row>
                 )}
+
                 <ContenuDispositif
                   showMapButton={this.showMapButton}
                   updateUIArray={this.updateUIArray}
@@ -1974,6 +1988,19 @@ export class Dispositif extends Component {
                       </div>
                     )}
                   </>
+                )}
+                {isMobile && (
+                  //On Mobile device only, button to show modal with sharing options.
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <FButton
+                      type="outline-black"
+                      name={"share-outline"}
+                      className="ml-10"
+                      onClick={() => this.toggleTutorielModal("Titre")}
+                    >
+                      Tutoriel
+                    </FButton>
+                  </div>
                 )}
 
                 <Sponsors
