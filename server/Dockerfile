@@ -14,4 +14,4 @@ ADD . /usr/src/app
 # Build app
 RUN npm run tsc
 
-ENTRYPOINT exec -- npm run start
+CMD ["node","dist/server.js"]
