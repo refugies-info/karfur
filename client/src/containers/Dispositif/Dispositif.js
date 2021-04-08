@@ -1886,14 +1886,20 @@ export class Dispositif extends Component {
               >
                 {isMobile && (
                   //On Mobile device only, button to show modal with sharing options.
-                  <div style={{ display: "flex", justifyContent: "center" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      margin: 10,
+                    }}
+                  >
                     <FButton
                       type="outline-black"
                       name={"share-outline"}
                       className="ml-10"
                       onClick={() => this.toggleTutorielModal("Titre")}
                     >
-                      Tutoriel
+                      Partager la fiche
                     </FButton>
                   </div>
                 )}
@@ -1991,14 +1997,20 @@ export class Dispositif extends Component {
                 )}
                 {isMobile && (
                   //On Mobile device only, button to show modal with sharing options.
-                  <div style={{ display: "flex", justifyContent: "center" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      margin: 10,
+                    }}
+                  >
                     <FButton
                       type="outline-black"
                       name={"share-outline"}
                       className="ml-10"
                       onClick={() => this.toggleTutorielModal("Titre")}
                     >
-                      Tutoriel
+                      Partager la fiche
                     </FButton>
                   </div>
                 )}
