@@ -1,0 +1,31 @@
+@import "src/scss/colors.scss";
+@import "src/scss/global.scss";
+
+// Base de la structure des boutons du design system
+
+body .share-btn {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  border-radius: 12px;
+  min-height: 70px;
+  width: 100%;
+  padding: 15px;
+  cursor: pointer;
+  border: 0.5px solid transparent;
+  color: $noir;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  @include media-max("sm-limit") {
+    font-size: 16px;
+  }
+  background-color: white;
+
+  &.default svg {
+    fill: $noir;
+  }
+}

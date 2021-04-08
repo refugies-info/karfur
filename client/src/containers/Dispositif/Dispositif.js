@@ -2158,11 +2158,6 @@ export class Dispositif extends Component {
             <ShareContentOnMobileModal
               show={this.state.showShareContentOnMobileModal}
               toggle={this.toggleShareContentOnMobileModal}
-              // valider_dispositif={this.valider_dispositif}
-              // navigateToMiddleOffice={() =>
-              //   this.props.history.push("/backend/user-dash-contrib")
-              // }
-              // status={this.state.status}
             />
 
             <NotificationContainer />
