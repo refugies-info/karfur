@@ -36,6 +36,7 @@ import {
   TagsModal,
   FrameModal,
   DraftModal,
+  ShareContentOnMobileModal,
 } from "../../components/Modals/index";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Commentaires";
@@ -130,6 +131,7 @@ export class Dispositif extends Component {
     showTagsModal: false,
     showTutorielModal: false,
     showDraftModal: false,
+    showShareContentOnMobileModal: false,
     showSpinnerPrint: false,
     showSpinnerBookmark: false,
     suggestion: "",
@@ -995,6 +997,11 @@ export class Dispositif extends Component {
   toggleDraftModal = () =>
     this.setState((prevState) => ({
       showDraftModal: !prevState.showDraftModal,
+    }));
+
+  toggleShareContentOnMobileModal = () =>
+    this.setState((prevState) => ({
+      showShareContentOnMobileModal: !prevState.showShareContentOnMobileModal,
     }));
 
   toggleTutoriel = () =>
@@ -1897,7 +1904,7 @@ export class Dispositif extends Component {
                       type="outline-black"
                       name={"share-outline"}
                       className="ml-10"
-                      onClick={() => this.toggleTutorielModal("Titre")}
+                      onClick={() => this.toggleShareContentOnMobileModal()}
                     >
                       Partager la fiche
                     </FButton>
@@ -2008,7 +2015,7 @@ export class Dispositif extends Component {
                       type="outline-black"
                       name={"share-outline"}
                       className="ml-10"
-                      onClick={() => this.toggleTutorielModal("Titre")}
+                      onClick={() => this.toggleShareContentOnMobileModal()}
                     >
                       Partager la fiche
                     </FButton>
@@ -2147,6 +2154,15 @@ export class Dispositif extends Component {
                 this.props.history.push("/backend/user-dash-contrib")
               }
               status={this.state.status}
+            />
+            <ShareContentOnMobileModal
+              show={this.state.showShareContentOnMobileModal}
+              toggle={this.toggleShareContentOnMobileModal}
+              // valider_dispositif={this.valider_dispositif}
+              // navigateToMiddleOffice={() =>
+              //   this.props.history.push("/backend/user-dash-contrib")
+              // }
+              // status={this.state.status}
             />
 
             <NotificationContainer />
