@@ -39,7 +39,7 @@ export const sendOneDraftReminderMailService = async (
   dispositifId: ObjectId
 ) => {
   try {
-    logger.info("[sendOneDraftReminderMailService] received", {
+    logger.info("[sendOneDraftReminderMailService]  received", {
       email,
       dispositifId,
     });
