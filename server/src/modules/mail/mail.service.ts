@@ -101,26 +101,43 @@ export const sendMultipleDraftsReminderMailService = async (
   }
 };
 
-export const sendPublishedFicheMail = () => {
+interface PublishedFicheMailData {
+  pseudo: string;
+  titreInformatif: string;
+  titreMarque?: string;
+  lien: string;
+  email: string;
+  dispositifId: ObjectId;
+  userId: ObjectId;
+}
+
+export const sendPublishedFicheMail = async (data: PublishedFicheMailData) => {
   try {
     logger.info("[sendPublishedFicheMail] received ");
 
     const dynamicData = {
-      to: "agkieny@gmail.com",
+      to: data.email,
       from: {
         email: "contact@refugies.info",
         name: "L'équipe de Réfugiés.info",
       },
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
-        pseudo: "agathe",
-        titreInformatif: "titre",
-        lien: "http://localhost:3000/dispositif/5f918fbafc486c0047ef548d",
+        pseudo: data.pseudo,
+        titreInformatif: data.titreInformatif,
+        lien: data.lien,
+        titreMarque: data.titreMarque,
       },
     };
     const templateName = "publishedFiche";
     sendMail(templateName, dynamicData);
-    // await addMailEvent({ templateName, username, email, userId });
+    await addMailEvent({
+      templateName,
+      username: data.pseudo,
+      email: data.email,
+      userId: data.userId,
+      dispositifId: data.dispositifId,
+    });
     return;
   } catch (error) {
     logger.error("[sendPublishedFicheMail] error", {
