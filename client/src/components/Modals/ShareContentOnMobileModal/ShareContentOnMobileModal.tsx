@@ -5,17 +5,18 @@ import Icon from "react-eva-icons";
 import "./ShareContentOnMobileModal.scss";
 import ShareButton from "../../FigmaUI/ShareButton/ShareButton";
 
+declare const window: Window;
 interface Props {
   toggle: () => void;
   show: boolean;
-  valider_dispositif: (
-    arg: string,
-    arg1: boolean,
-    arg2: boolean,
-    arg3: boolean
-  ) => void;
-  navigateToMiddleOffice: () => void;
-  status: "string";
+  content: {
+    titreInformatif: string;
+    titreMarque: string;
+    abstract: string;
+    contact: string;
+    externalLink: string;
+  };
+  typeContenu: string;
 }
 
 const IconContainer = styled.div`
@@ -49,35 +50,53 @@ const ButtonsContainer = styled.div`
   flex-direction: column;
 `;
 
-export const ShareContentOnMobileModal = (props: Props) => (
-  <Modal isOpen={props.show} toggle={props.toggle} className="draft">
-    <MainContainer>
-      <IconContainer onClick={props.toggle}>
-        <Icon name="close-outline" fill="#FFFFFF" size="large" />
-      </IconContainer>
-      <Header>Partager la fiche</Header>
-      <ButtonsContainer>
-        <ShareButton name={"email-outline"} onClick={() => {}}>
-          Via email
-        </ShareButton>
-        <ShareButton name={"smartphone-outline"} onClick={() => {}}>
-          Via sms
-        </ShareButton>
-        <ShareButton
-          name={"download-outline"}
-          //className="ml-10"
-          onClick={() => {}}
-        >
-          Télécharger PDF
-        </ShareButton>
-        <ShareButton
-          name={"more-horizontal-outline"}
-          //className="ml-10"
-          onClick={() => {}}
-        >
-          Plus d'options
-        </ShareButton>
-      </ButtonsContainer>
-    </MainContainer>
-  </Modal>
-);
+export const ShareContentOnMobileModal = (props: Props) => {
+  const emailBody =
+    "Voici le lien vers " +
+    (props.typeContenu === "demarche" ? "la démarche" : "le dispositif") +
+    " ''" +
+    props.content.titreInformatif +
+    "' : " +
+    window.location.href;
+  return (
+    <Modal isOpen={props.show} toggle={props.toggle} className="draft">
+      <MainContainer>
+        <IconContainer onClick={props.toggle}>
+          <Icon name="close-outline" fill="#FFFFFF" size="large" />
+        </IconContainer>
+        <Header>Partager la fiche</Header>
+        <ButtonsContainer>
+          <ShareButton
+            name={"email-outline"}
+            href={
+              "mailto:mail@example.org?subject=Dispositif" +
+              (props.content && props.content.titreMarque
+                ? " - " + props.content.titreMarque
+                : "") +
+              `&body=${emailBody}`
+            }
+          >
+            Via email
+          </ShareButton>
+          <ShareButton name={"smartphone-outline"} onClick={() => {}}>
+            Via sms
+          </ShareButton>
+          <ShareButton
+            name={"download-outline"}
+            //className="ml-10"
+            onClick={() => {}}
+          >
+            Télécharger PDF
+          </ShareButton>
+          <ShareButton
+            name={"more-horizontal-outline"}
+            //className="ml-10"
+            onClick={() => {}}
+          >
+            Plus d'options
+          </ShareButton>
+        </ButtonsContainer>
+      </MainContainer>
+    </Modal>
+  );
+};

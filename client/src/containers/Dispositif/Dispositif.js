@@ -2158,6 +2158,8 @@ export class Dispositif extends Component {
             <ShareContentOnMobileModal
               show={this.state.showShareContentOnMobileModal}
               toggle={this.toggleShareContentOnMobileModal}
+              typeContenu={typeContenu}
+              content={this.state.content}
             />
 
             <NotificationContainer />
