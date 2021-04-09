@@ -6,6 +6,7 @@ import { fetchDispositifsWithTranslationsStatusActionCreator } from "../../../..
 import { act } from "react-test-renderer";
 import { dispositifsWithTranslations } from "../../../../__fixtures__/dispositifsWithTrad";
 import API from "../../../../utils/API";
+import "jest-styled-components";
 
 jest.mock(
   "../../../../services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions",

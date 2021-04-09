@@ -27,6 +27,7 @@ const MainContainer = styled.div`
   border: 0.5px solid transparent;
   margin-top: 10px;
   marfgin-bottom: 10px;
+  align-items: center;
 `;
 
 const TextContainer = styled.div`

@@ -134,6 +134,7 @@ class MapParagraphe extends PureComponent {
         id="map-paragraphe"
         onMouseEnter={() => this.props.updateUIArray(-5)}
       >
+        <div>SHARE BUTTON </div>
         <div className="where-header backgroundColor-darkColor">
           <div
             style={{
