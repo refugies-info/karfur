@@ -297,6 +297,7 @@ export const AdminContenu = () => {
           value={search}
           onChange={handleChange}
           placeholder="Rechercher un contenu..."
+          withMargin={true}
         />
         <FButton
           type="dark"

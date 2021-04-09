@@ -220,6 +220,7 @@ export const TranslationsAvancement = (props: Props) => {
           // @ts-ignore
           onChange={handleChange}
           placeholder="Rechercher..."
+          withMargin={false}
         />
       </FilterBarContainer>
       <TranslationAvancementTable

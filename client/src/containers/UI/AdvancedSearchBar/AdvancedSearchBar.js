@@ -203,7 +203,9 @@ const AdvancedSearchBar = (props) => {
         dispositifsMatchedArray.push(elem);
       }
     });
-    for (const [key, value] of Object.entries(themes[i18n.language === "ti-ER" ? "ti" : i18n.language])) {
+    for (const [key, value] of Object.entries(
+      themes[i18n.language === "ti-ER" ? "ti" : i18n.language]
+    )) {
       value.map((theme) => {
         if (
           theme
@@ -227,6 +229,7 @@ const AdvancedSearchBar = (props) => {
         value={searchText}
         placeholder="Rechercher..."
         onChange={onTextChange}
+        withMargin={true}
       />
       {isSearchModalVisible &&
         (searchThemes.length === 0 && searchDispositifs.length === 0 ? (
