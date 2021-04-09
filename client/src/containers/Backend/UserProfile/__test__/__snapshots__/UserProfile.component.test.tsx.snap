@@ -124,6 +124,9 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   width: 560px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .c5 {
@@ -757,6 +760,9 @@ exports[`UserProfile should render correctly 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   width: 560px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .c5 {
@@ -1232,6 +1238,9 @@ exports[`UserProfile should render correctly when changing password 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   width: 560px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .c5 {
@@ -1832,6 +1841,9 @@ exports[`UserProfile should render correctly when loading 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   width: 560px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .c5 {
