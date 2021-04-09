@@ -402,6 +402,14 @@ const contenuParagraphe = (props) => {
             typeContenu={props.typeContenu}
           />
         )}
+      {props.disableEdit &&
+        (item.title === "Comment je m'engage ?" ||
+          item.title === "Et après ?") &&
+        item.children &&
+        item.children[item.children.length - 1] &&
+        item.children[item.children.length - 1].type !== "map" && (
+          <div>SHARE BUTTON</div>
+        )}
     </div>
   );
 };
