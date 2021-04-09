@@ -98,6 +98,9 @@ $imgHeight: 350px;
       padding: 114px 0 0;
       display: flex;
       z-index: 2;
+      @include media-max("tablet-up") {
+        padding: 95px 0 0;
+      }
 
       .bloc-titre {
         @include media-max("tablet-up") {
@@ -506,6 +509,9 @@ $imgHeight: 350px;
   }
 
   .col-middle {
+    @include media-max("tablet-up") {
+      padding: 0;
+    }
     padding: 40px 0 0 0;
   }
 
