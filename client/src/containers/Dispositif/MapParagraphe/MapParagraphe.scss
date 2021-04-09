@@ -1,4 +1,5 @@
 @import "src/scss/colors.scss";
+@import "src/scss/global.scss";
 
 .map-paragraphe {
   margin-top: 40px;
@@ -55,6 +56,10 @@
       padding: 20px 40px;
       transform: width 0.45;
       overflow: scroll;
+      @include media-max("tablet-up") {
+        max-width: 300px;
+      }
+
       &.flip-out-ver-right {
         width: 0;
         padding: 0;
@@ -83,9 +88,9 @@
         &.isTitle {
           font-weight: bold;
           font-size: 24px;
-          // @include media-max("tablet-up") {
-          //   font-size: 18px;
-          // }
+          @include media-max("tablet-up") {
+            font-size: 18px;
+          }
         }
       }
       .validate-btn {
