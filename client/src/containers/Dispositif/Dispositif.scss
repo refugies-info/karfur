@@ -33,13 +33,21 @@ $imgHeight: 350px;
 
   .banniere-dispo {
     margin-top: -75px;
-    padding-top: 60px;
+
     background-size: cover;
     background-repeat: no-repeat;
     background: $blanc;
-    min-height: 500px;
-    background-position: 0;
+
+    background-position: bottom -50px left 100px;
     position: relative;
+
+    @include media-max("tablet-up") {
+      height: 270px;
+    }
+    @media screen and (min-width: 1279px) {
+      min-height: 500px;
+      padding-top: 60px;
+    }
 
     &.Logement {
       background-image: url(../../assets/figma/illustration_Logement.svg);
@@ -90,10 +98,19 @@ $imgHeight: 350px;
       padding: 114px 0 0;
       display: flex;
       z-index: 2;
+      @include media-max("tablet-up") {
+        padding: 95px 0 0;
+      }
 
       .bloc-titre {
-        padding-top: 155px;
-        margin: auto;
+        @include media-max("tablet-up") {
+          margin-left: 30px;
+          margin-right: 30px;
+        }
+        @media screen and (min-width: 1279px) {
+          padding-top: 155px;
+          margin: auto;
+        }
       }
       .bloc-subtitle {
         display: inline-flex;
@@ -106,19 +123,16 @@ $imgHeight: 350px;
       color: $noir;
       background-color: rgba(255, 255, 255, 0.95);
       line-height: 60px;
-      padding: 15px 20px;
+
       text-transform: initial;
       margin-bottom: 0;
-      @include media-max("phone-down") {
-        &.editable {
-          max-width: calc(100% - 200px);
-        }
-      }
       @include media-max("tablet-up") {
-        font-size: 46px;
+        font-size: 22px;
+        padding-left: 8px;
+        padding-right: 8px;
       }
-      @include media-max("phone-down") {
-        font-size: 32px;
+      @media screen and (min-width: 1279px) {
+        padding: 15px 20px;
       }
     }
 
@@ -129,13 +143,15 @@ $imgHeight: 350px;
       color: $noir;
       background-color: rgba(255, 255, 255, 0.95);
       line-height: 34px;
-      padding: 15px 20px;
       padding-top: 0px;
       @include media-max("tablet-up") {
-        font-size: 24px;
-      }
-      @include media-max("phone-down") {
         font-size: 16px;
+        padding-left: 8px;
+        padding-right: 8px;
+        margin-top: 10px;
+      }
+      @media screen and (min-width: 1279px) {
+        padding: 15px 20px;
       }
     }
 
@@ -467,6 +483,9 @@ $imgHeight: 350px;
     line-height: normal;
     color: $darkColor;
     margin-bottom: 40px;
+    @include media-max("tablet-up") {
+      font-size: 28px;
+    }
   }
   .mt-20 {
     margin-top: 20px;
@@ -490,6 +509,9 @@ $imgHeight: 350px;
   }
 
   .col-middle {
+    @include media-max("tablet-up") {
+      padding: 0;
+    }
     padding: 40px 0 0 0;
   }
 
@@ -639,6 +661,9 @@ $imgHeight: 350px;
     margin-right: 40px;
     margin-bottom: 20px;
     padding: 0 40px;
+    @include media-max("tablet-up") {
+      margin-bottom: 0px;
+    }
 
     .col {
       padding: 0;
@@ -652,6 +677,9 @@ $imgHeight: 350px;
       &.align-right {
         margin-right: 15px;
         padding: 0;
+      }
+      @include media-max("tablet-up") {
+        font-size: 18px;
       }
     }
     .date-maj {
@@ -1007,7 +1035,6 @@ $imgHeight: 350px;
     }
   }
 }
-
 .custom-tooltip {
   border-radius: 12px;
 

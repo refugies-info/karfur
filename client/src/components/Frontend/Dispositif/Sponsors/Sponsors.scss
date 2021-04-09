@@ -16,6 +16,9 @@ $tailleBig: 80px;
     margin-bottom: 20px;
     font-weight: 700;
     font-size: 40px;
+    @include media-max("tablet-up") {
+      font-size: 28px;
+    }
   }
 
   .col {

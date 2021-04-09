@@ -1,7 +1,6 @@
 import React from "react";
 import { Col, Row, Collapse } from "reactstrap";
 import ContentEditable from "react-contenteditable";
-
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
 import { QuickToolbar } from "../../../../containers/Dispositif/QuickToolbar";
 import {
@@ -22,6 +21,7 @@ import FButton from "../../../FigmaUI/FButton/FButton";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { infocardsDemarcheTitles } from "../../../../containers/Dispositif/data";
+import { isMobile } from "react-device-detect";
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>
@@ -50,7 +50,7 @@ const StyledHeader = styled.div`
   display: flex;
   margin: auto;
   font-weight: bold;
-  font-size: 22px;
+  font-size: ${isMobile ? "18px" : "22px"};
   line-height: 28px;
   color: ${(props) => props.darkColor};
 `;
@@ -401,6 +401,14 @@ const contenuParagraphe = (props) => {
             cards={cards}
             typeContenu={props.typeContenu}
           />
+        )}
+      {props.disableEdit &&
+        (item.title === "Comment je m'engage ?" ||
+          item.title === "Et après ?") &&
+        item.children &&
+        item.children[item.children.length - 1] &&
+        item.children[item.children.length - 1].type !== "map" && (
+          <div>SHARE BUTTON</div>
         )}
     </div>
   );
