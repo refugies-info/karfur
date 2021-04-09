@@ -1906,7 +1906,10 @@ export class Dispositif extends Component {
                       className="ml-10"
                       onClick={() => this.toggleShareContentOnMobileModal()}
                     >
-                      Partager la fiche
+                      {this.props.t(
+                        "Dispositif.Partager Fiche",
+                        "Partager la Fiche"
+                      )}
                     </FButton>
                   </div>
                 )}
@@ -2017,7 +2020,10 @@ export class Dispositif extends Component {
                       className="ml-10"
                       onClick={() => this.toggleShareContentOnMobileModal()}
                     >
-                      Partager la fiche
+                      {this.props.t(
+                        "Dispositif.Partager Fiche",
+                        "Partager la Fiche"
+                      )}
                     </FButton>
                   </div>
                 )}
@@ -2160,6 +2166,7 @@ export class Dispositif extends Component {
               toggle={this.toggleShareContentOnMobileModal}
               typeContenu={typeContenu}
               content={this.state.content}
+              t={this.props.t}
             />
 
             <NotificationContainer />
