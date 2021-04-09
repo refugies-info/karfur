@@ -6,6 +6,7 @@ import { QuickToolbar } from "../../../../containers/Dispositif/QuickToolbar";
 import ContenuParagraphe from "../ContenuParagraphe/ContenuParagraphe";
 import { DispositifContent } from "../../../../types/interface";
 import FButton from "../../../FigmaUI/FButton/FButton";
+import { isMobile } from "react-device-detect";
 
 interface UiObject {
   accordion: boolean;
@@ -80,9 +81,11 @@ export const contenuDispositif = (props: Props) => {
             }
             onMouseEnter={() => props.updateUIArray(key, null, "isHover")}
           >
-            <button className="anchor" id={"item-head-" + key}>
-              {item.title}
-            </button>
+            {!isMobile && (
+              <button className="anchor" id={"item-head-" + key}>
+                {item.title}
+              </button>
+            )}
             <div style={{ display: "flex", flexDirection: "row" }}>
               <h3
                 className={

@@ -36,6 +36,7 @@ import {
   TagsModal,
   FrameModal,
   DraftModal,
+  ShareContentOnMobileModal,
 } from "../../components/Modals/index";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Commentaires";
@@ -130,6 +131,7 @@ export class Dispositif extends Component {
     showTagsModal: false,
     showTutorielModal: false,
     showDraftModal: false,
+    showShareContentOnMobileModal: false,
     showSpinnerPrint: false,
     showSpinnerBookmark: false,
     suggestion: "",
@@ -995,6 +997,11 @@ export class Dispositif extends Component {
   toggleDraftModal = () =>
     this.setState((prevState) => ({
       showDraftModal: !prevState.showDraftModal,
+    }));
+
+  toggleShareContentOnMobileModal = () =>
+    this.setState((prevState) => ({
+      showShareContentOnMobileModal: !prevState.showShareContentOnMobileModal,
     }));
 
   toggleTutoriel = () =>
@@ -1880,10 +1887,32 @@ export class Dispositif extends Component {
                 lg={translating || printing ? "12" : "7"}
                 md={translating || printing ? "12" : "10"}
                 sm={translating || printing ? "12" : "10"}
-                xs={translating || printing ? "12" : "10"}
+                xs="12"
                 className="pt-40 col-middle"
                 id={"pageContent"}
               >
+                {isMobile && (
+                  //On Mobile device only, button to show modal with sharing options.
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      margin: 10,
+                    }}
+                  >
+                    <FButton
+                      type="outline-black"
+                      name={"share-outline"}
+                      className="ml-10"
+                      onClick={() => this.toggleShareContentOnMobileModal()}
+                    >
+                      {this.props.t(
+                        "Dispositif.Partager Fiche",
+                        "Partager la Fiche"
+                      )}
+                    </FButton>
+                  </div>
+                )}
                 {disableEdit && this.state.dispositif.lastModificationDate && (
                   // Part about last update
                   <Row className="fiabilite-row">
@@ -1911,6 +1940,7 @@ export class Dispositif extends Component {
                     </Col>
                   </Row>
                 )}
+
                 <ContenuDispositif
                   showMapButton={this.showMapButton}
                   updateUIArray={this.updateUIArray}
@@ -1974,6 +2004,28 @@ export class Dispositif extends Component {
                       </div>
                     )}
                   </>
+                )}
+                {isMobile && (
+                  //On Mobile device only, button to show modal with sharing options.
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      margin: 10,
+                    }}
+                  >
+                    <FButton
+                      type="outline-black"
+                      name={"share-outline"}
+                      className="ml-10"
+                      onClick={() => this.toggleShareContentOnMobileModal()}
+                    >
+                      {this.props.t(
+                        "Dispositif.Partager Fiche",
+                        "Partager la Fiche"
+                      )}
+                    </FButton>
+                  </div>
                 )}
 
                 <Sponsors
@@ -2108,6 +2160,13 @@ export class Dispositif extends Component {
                 this.props.history.push("/backend/user-dash-contrib")
               }
               status={this.state.status}
+            />
+            <ShareContentOnMobileModal
+              show={this.state.showShareContentOnMobileModal}
+              toggle={this.toggleShareContentOnMobileModal}
+              typeContenu={typeContenu}
+              content={this.state.content}
+              t={this.props.t}
             />
 
             <NotificationContainer />

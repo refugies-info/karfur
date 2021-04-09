@@ -83,6 +83,9 @@
         &.isTitle {
           font-weight: bold;
           font-size: 24px;
+          // @include media-max("tablet-up") {
+          //   font-size: 18px;
+          // }
         }
       }
       .validate-btn {

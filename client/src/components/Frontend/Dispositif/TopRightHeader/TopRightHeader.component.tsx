@@ -4,6 +4,7 @@ import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import { Props } from "./TopRightHeader.container";
 import { isUserAllowedToModify } from "./functions";
+import { isMobile } from "react-device-detect";
 
 export interface PropsBeforeInjection {
   disableEdit: boolean;
@@ -124,7 +125,7 @@ export class TopRightHeader extends React.Component<Props> {
           </Card>
         </Col>
       );
-    } else if (props.disableEdit) {
+    } else if (props.disableEdit && !isMobile) {
       // when props.disableEdit = true, favorite button and modify button (if user authorized)
       // user can modify a dispositif if he is admin or contributor of the mainsponsor of the dispositif OR if he is admin
       // 160920 : or autor but not when dispo if pubié, en attente admin or accepté structure
