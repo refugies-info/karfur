@@ -1149,7 +1149,8 @@ class SideTrad extends Component {
       traductions: this.props.traductionsFaites,
       isExpert: true,
     };
-    await API.validate_tradForReview(newTrad).then(() => {
+
+    await API.validateTranslations(newTrad).then(() => {
       Swal.fire({
         title: "Yay...",
         text:

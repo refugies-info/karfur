@@ -12,6 +12,18 @@ export const checkIfUserIsAdmin = (requestUserRoles: { nom: string }[]) => {
   return;
 };
 
+export const checkIfUserIsAdminOrExpert = (
+  requestUserRoles: { nom: string }[]
+) => {
+  // user is admin for the platform
+  const isAdmin = (requestUserRoles || []).some((x) => x.nom === "Admin");
+  const isExpert = (requestUserRoles || []).some((x) => x.nom === "ExpertTrad");
+
+  if (!isAdmin && !isExpert) throw new Error("NOT_AUTHORIZED");
+
+  return;
+};
+
 export const checkRequestIsFromSite = (fromSite: boolean) => {
   if (!fromSite) throw new Error("NOT_FROM_SITE");
 
