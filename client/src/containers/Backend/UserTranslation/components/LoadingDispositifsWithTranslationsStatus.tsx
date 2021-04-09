@@ -113,6 +113,7 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
           // @ts-ignore
           onChange={() => {}}
           placeholder="Rechercher..."
+          withMargin={false}
         />
       </FilterBarContainer>
       <TableContainer>
