@@ -11,13 +11,12 @@ import MapParagraphe from "../../../../containers/Dispositif/MapParagraphe/MapPa
 import MapParagraphePrint from "../../../../containers/Dispositif/MapParagraphe/MapParagraphePrint";
 import EtapeParagraphe from "../../../../containers/Dispositif/EtapeParagraphe/EtapeParagraphe";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
-
+import FButton from "../../../FigmaUI/FButton/FButton";
 import { colors } from "colors";
 import {
   cardTitlesDispositif,
   cardTitlesDemarche,
 } from "../../../../containers/Dispositif/data";
-import FButton from "../../../FigmaUI/FButton/FButton";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { infocardsDemarcheTitles } from "../../../../containers/Dispositif/data";
@@ -403,12 +402,28 @@ const contenuParagraphe = (props) => {
           />
         )}
       {props.disableEdit &&
+        isMobile &&
         (item.title === "Comment je m'engage ?" ||
           item.title === "Et après ?") &&
         item.children &&
         item.children[item.children.length - 1] &&
         item.children[item.children.length - 1].type !== "map" && (
-          <div>SHARE BUTTON</div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              margin: 10,
+            }}
+          >
+            <FButton
+              type="outline-black"
+              name={"share-outline"}
+              className="ml-10"
+              onClick={() => props.toggleShareContentOnMobileModal()}
+            >
+              {props.t("Dispositif.Partager Fiche", "Partager la Fiche")}
+            </FButton>
+          </div>
         )}
     </div>
   );

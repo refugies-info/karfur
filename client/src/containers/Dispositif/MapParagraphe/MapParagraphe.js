@@ -8,6 +8,7 @@ import MapComponent from "../../../components/Frontend/Dispositif/MapComponent/M
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import { markerInfo } from "./data";
+import { isMobile } from "react-device-detect";
 
 import "./MapParagraphe.scss";
 import { colors } from "colors";
@@ -134,7 +135,25 @@ class MapParagraphe extends PureComponent {
         id="map-paragraphe"
         onMouseEnter={() => this.props.updateUIArray(-5)}
       >
-        <div>SHARE BUTTON </div>
+        {isMobile && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: -30,
+              marginBottom: 20,
+            }}
+          >
+            <FButton
+              type="outline-black"
+              name={"share-outline"}
+              className="ml-10"
+              onClick={() => this.props.toggleShareContentOnMobileModal()}
+            >
+              {this.props.t("Dispositif.Partager Fiche", "Partager la Fiche")}
+            </FButton>
+          </div>
+        )}
         <div className="where-header backgroundColor-darkColor">
           <div
             style={{
