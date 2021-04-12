@@ -1,6 +1,6 @@
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { ObjectId } from "mongoose";
-import { TraductionDoc, Traduction } from "../../../schema/schemaTraduction";
+import { TraductionDoc } from "../../../schema/schemaTraduction";
 import logger = require("../../../logger");
 import ErrorDB from "../../../schema/schemaError";
 import {
@@ -11,7 +11,7 @@ import {
   validateTradInDB,
   deleteTradsInDB,
 } from "../../../modules/traductions/traductions.repository";
-import { insertInDispositif } from "../../../modules/traductions/insertInDispositif";
+import { insertInDispositif } from "../../../modules/dispositif/insertInDispositif";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
