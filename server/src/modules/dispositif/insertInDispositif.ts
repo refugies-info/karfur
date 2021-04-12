@@ -26,7 +26,6 @@ export const insertInDispositif = async (traduction: any, locale: string) => {
 
     // @ts-ignore
     result[x][locale] = traduction.translatedText[x];
-    result.markModified(x);
   });
 
   // @ts-ignore
@@ -94,7 +93,6 @@ export const insertInDispositif = async (traduction: any, locale: string) => {
     : [];
 
   const translations = (result.traductions || []).concat(translationsToAdd);
-
   const deduplicatedTranslations = deduplicateArrayOfObjectIds(translations);
 
   // @ts-ignore
