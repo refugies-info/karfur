@@ -12,6 +12,21 @@ import { isMobile } from "react-device-detect";
 
 import "./MapParagraphe.scss";
 import { colors } from "colors";
+import styled from "styled-components";
+
+const StyledButton = styled.div`
+  background-color: #8bc34a;
+  height: 50px;
+  display: flex;
+  margin-top: 25px;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 12px;
+  color: #ffffff;
+`;
 
 const refs = {};
 class MapParagraphe extends PureComponent {
@@ -299,6 +314,20 @@ class MapParagraphe extends PureComponent {
               >
                 {t("Valider", "Valider")}
               </FButton>
+            )}
+            {isMobile && (
+              <StyledButton onClick={this.onClose}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                  }}
+                >
+                  <EVAIcon name="checkmark" className="mr-10" />
+                  {t("Ok", "Oku")}
+                </div>
+              </StyledButton>
             )}
           </div>
         </div>

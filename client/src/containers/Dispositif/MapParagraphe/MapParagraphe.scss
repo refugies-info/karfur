@@ -56,6 +56,9 @@
       padding: 20px 40px;
       transform: width 0.45;
       overflow: scroll;
+      @include media-max("tablet-up") {
+        padding: 16px;
+      }
 
       &.flip-out-ver-right {
         width: 0;
