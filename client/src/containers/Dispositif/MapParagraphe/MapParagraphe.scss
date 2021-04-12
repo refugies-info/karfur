@@ -1,4 +1,5 @@
 @import "src/scss/colors.scss";
+@import "src/scss/global.scss";
 
 .map-paragraphe {
   margin-top: 40px;
@@ -55,6 +56,10 @@
       padding: 20px 40px;
       transform: width 0.45;
       overflow: scroll;
+      @include media-max("tablet-up") {
+        padding: 16px;
+      }
+
       &.flip-out-ver-right {
         width: 0;
         padding: 0;
@@ -76,6 +81,9 @@
       }
       .marker-input {
         font-size: 18px;
+        @include media-max("tablet-up") {
+          font-size: 16px;
+        }
         color: $darkColor;
         &.no-highlight {
           background: transparent;
@@ -83,9 +91,9 @@
         &.isTitle {
           font-weight: bold;
           font-size: 24px;
-          // @include media-max("tablet-up") {
-          //   font-size: 18px;
-          // }
+          @include media-max("tablet-up") {
+            font-size: 18px;
+          }
         }
       }
       .validate-btn {
@@ -143,6 +151,9 @@
     both;
   -ms-animation: slide-in-blurred-right 0.5s cubic-bezier(0.23, 1, 0.32, 1) both;
   animation: slide-in-blurred-right 0.5s cubic-bezier(0.23, 1, 0.32, 1) both;
+  @include media-max("tablet-up") {
+    min-width: 300px;
+  }
 }
 
 .flip-out-ver-right {

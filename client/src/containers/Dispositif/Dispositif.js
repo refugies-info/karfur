@@ -1978,6 +1978,9 @@ export class Dispositif extends Component {
                   admin={this.props.admin}
                   toggleGeolocModal={this.toggleGeolocModal}
                   showGeolocModal={this.state.showGeolocModal}
+                  toggleShareContentOnMobileModal={
+                    this.toggleShareContentOnMobileModal
+                  }
                   // TO DO : remove spread state
                   {...this.state}
                 />
@@ -2006,28 +2009,6 @@ export class Dispositif extends Component {
                       </div>
                     )}
                   </>
-                )}
-                {isMobile && (
-                  //On Mobile device only, button to show modal with sharing options.
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      margin: 10,
-                    }}
-                  >
-                    <FButton
-                      type="outline-black"
-                      name={"share-outline"}
-                      className="ml-10"
-                      onClick={() => this.toggleShareContentOnMobileModal()}
-                    >
-                      {this.props.t(
-                        "Dispositif.Partager Fiche",
-                        "Partager la Fiche"
-                      )}
-                    </FButton>
-                  </div>
                 )}
 
                 <Sponsors
