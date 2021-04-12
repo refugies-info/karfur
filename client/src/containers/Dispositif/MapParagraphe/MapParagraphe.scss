@@ -80,7 +80,10 @@
         margin-bottom: 0;
       }
       .marker-input {
-        font-size: 16px;
+        font-size: 18px;
+        @include media-max("tablet-up") {
+          font-size: 16px;
+        }
         color: $darkColor;
         &.no-highlight {
           background: transparent;
