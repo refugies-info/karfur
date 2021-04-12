@@ -4,6 +4,7 @@ declare type templateIds = {
   multipleDraftsReminder: string;
   publishedFiche: string;
   reviewFiche: string;
+  publishedTradForStructure: string;
 };
 
 export const templatesIds: templateIds = {
@@ -12,4 +13,5 @@ export const templatesIds: templateIds = {
   multipleDraftsReminder: "d-75223e09199a44c19742cf331be3a067",
   publishedFiche: "d-6221b1a19e62497dbb114bf40d2e08f3",
   reviewFiche: "d-8b2dd5dfdde04cd4b9bba84a5f903bde",
+  publishedTradForStructure: "d-0448ff3dfbf746158569ecd54eb7a7bd",
 };
