@@ -1631,19 +1631,6 @@ export class Dispositif extends Component {
       timer: 1500,
     });
 
-  handleOnClick = () => {
-    if (navigator.share) {
-      navigator
-        .share({
-          title: "test title",
-          text: "test text",
-          url: document.location.href,
-        })
-        .then(() => {})
-        .catch(() => {});
-    }
-  };
-
   render() {
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     const { t, translating, windowWidth } = this.props;
@@ -1861,7 +1848,7 @@ export class Dispositif extends Component {
                 </Col>
               </Row>
             )}
-            {isMobile && <div onClick={this.handleOnClick}>Test share </div>}
+
             <Row className="no-margin-right">
               {!translating && !printing && !isMobile && (
                 <Col
