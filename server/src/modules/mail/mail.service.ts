@@ -103,7 +103,7 @@ export const sendMultipleDraftsReminderMailService = async (
 
 export const sendPublishedFicheMail = () => {
   try {
-    logger.info("[sendPublishedFicheMail] received");
+    logger.info("[sendPublishedFicheMail] received ");
 
     const dynamicData = {
       to: "agkieny@gmail.com",
