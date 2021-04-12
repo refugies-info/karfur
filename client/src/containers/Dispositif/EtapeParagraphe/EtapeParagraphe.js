@@ -27,6 +27,7 @@ import "./EtapeParagraphe.scss";
 import { colors } from "colors";
 import { EtapeModal } from "../../../components/Modals";
 import styled from "styled-components";
+import { isMobile } from "react-device-detect";
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>
@@ -910,7 +911,7 @@ class EtapeParagraphe extends Component {
               </FButton>
             )}
           </Col>
-          {!sideView && disableEdit && (
+          {!sideView && disableEdit && !isMobile && (
             <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
               <QuickToolbar
                 show={safeUiArray(keyValue, subkey, "isHover")}

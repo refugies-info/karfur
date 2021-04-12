@@ -138,7 +138,7 @@ export const contenuDispositif = (props: Props) => {
               )
             }
           </Col>
-          {!props.sideView && props.uiArray[key].isHover && (
+          {!props.sideView && props.uiArray[key].isHover && !isMobile && (
             <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
               {
                 // on the right, contains reaction and reading

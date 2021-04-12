@@ -280,7 +280,7 @@ const contenuParagraphe = (props) => {
                         }
                       </Collapse>
                     </Col>
-                    {!props.sideView && disableEdit && (
+                    {!props.sideView && disableEdit && !isMobile && (
                       <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
                         <QuickToolbar
                           show={safeUiArray(props.keyValue, subkey, "isHover")}
@@ -343,7 +343,7 @@ const contenuParagraphe = (props) => {
                       />
                       <br />
                     </Col>
-                    {!props.sideView && disableEdit && (
+                    {!props.sideView && disableEdit && !isMobile && (
                       <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
                         <QuickToolbar
                           show={safeUiArray(props.keyValue, subkey, "isHover")}
