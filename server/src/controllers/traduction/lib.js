@@ -1,6 +1,5 @@
 const { Traduction } = require("../../schema/schemaTraduction");
 const Indicator = require("../../schema/schemaIndicators");
-const Error = require("../../schema/schemaError");
 const { User } = require("../../schema/schemaUser");
 var sanitizeHtml = require("sanitize-html");
 var himalaya = require("himalaya");
@@ -224,66 +223,6 @@ function get_tradForReview(req, res) {
     });
 }
 
-//This function validates the final translation and call a function to save the content in the dispositif
-async function validate_tradForReview(req, res) {
-  if (!req.fromSite) {
-    return res.status(405).json({ text: "Requête bloquée par API" });
-  } else if (!req.body || !req.body.articleId || !req.body.translatedText) {
-    res.status(400).json({ text: "Requête invalide" });
-  } else if (
-    !((req.user || {}).roles || {}).some(
-      (x) => x.nom === "ExpertTrad" || x.nom === "Admin"
-    )
-  ) {
-    res.status(401).json({ text: "Token invalide" });
-  } else {
-    try {
-      let traductionUser = req.body || {};
-
-      if (!traductionUser.traductions.length) {
-        Traduction.findOneAndUpdate(
-          { _id: traductionUser._id },
-          { status: "Validée", validatorId: req.userId },
-          { upsert: true, new: true }
-        ).then(() => {});
-      } else {
-        (traductionUser.traductions || [])
-          .slice(0)
-          .reverse()
-          .map((x) => {
-            Traduction.findOneAndUpdate(
-              { _id: x._id },
-              { status: "Validée", validatorId: req.userId },
-              { upsert: true, new: true }
-            ).then(() => {});
-          });
-      }
-      // We delete all translations that are not from experts, since now we only need one official validated version
-      await Traduction.deleteMany({
-        articleId: req.body.articleId,
-        langueCible: req.body.locale,
-        isExpert: { $ne: true },
-      });
-      // !IMPORTANT We insert the validated translation in the dispositif
-      insertInDispositif(res, traductionUser, traductionUser.locale);
-    } catch (err) {
-      logger.error("error validateTrad for review", { error: err.message });
-      new Error({
-        name: "validateTradModifications",
-        userId: req.userId,
-        dataObject: {
-          body: req.body,
-        },
-        error: err,
-      }).save();
-
-      res.status(500).json({
-        text: "Erreur interne",
-      });
-    }
-  }
-}
-
 //We update the trad for the expert in case it already exists
 function update_tradForReview(req, res) {
   if (!req.fromSite) {
@@ -447,7 +386,6 @@ async function delete_trads(req, res) {
 //On exporte notre fonction
 exports.add_tradForReview = add_tradForReview;
 exports.get_tradForReview = get_tradForReview;
-exports.validate_tradForReview = validate_tradForReview;
 exports.update_tradForReview = update_tradForReview;
 exports.get_progression = get_progression;
 exports.delete_trads = delete_trads;

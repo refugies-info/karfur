@@ -125,3 +125,6 @@ export const getDispositifByIdWithMainSponsor = async (
 
 export const getActiveContents = async (neededFields: Record<string, number>) =>
   await Dispositif.find({ status: "Actif" }, neededFields);
+
+export const getDispositifByIdWithAllFields = async (id: ObjectId) =>
+  await Dispositif.findOne({ _id: id });

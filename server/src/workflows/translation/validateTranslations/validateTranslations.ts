@@ -13,6 +13,8 @@ import {
 } from "../../../modules/traductions/traductions.repository";
 import { insertInDispositif } from "../../../modules/traductions/insertInDispositif";
 import { asyncForEach } from "../../../libs/asyncForEach";
+import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
+import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
 
 interface Query {
   articleId: ObjectId;
@@ -32,24 +34,66 @@ export const validateTranslations = async (
     }
     // @ts-ignore : populate roles
     checkIfUserIsAdminOrExpert(req.user.roles);
-    logger.info("[validateTranslations] received", { body: req.body });
-    try {
-      let traductionUser = req.body;
 
-      if (!traductionUser.traductions.length) {
-        await validateTradInDB(traductionUser._id, req.userId);
+    logger.info("[validateTranslations] received");
+    try {
+      let body = req.body;
+
+      if (!body.traductions.length) {
+        logger.info("[validateTranslations] validate the trad", {
+          _id: body._id,
+        });
+        await validateTradInDB(body._id, req.userId);
       } else {
-        await asyncForEach(traductionUser.traductions, async (trad) => {
+        await asyncForEach(body.traductions, async (trad) => {
+          logger.info("[validateTranslations] validate trad", {
+            _id: trad._id,
+          });
           await validateTradInDB(trad._id, req.userId);
         });
       }
       // We delete all translations that are not from experts, since now we only need one official validated version
-      await deleteTradsInDB(traductionUser.articleId, traductionUser.locale);
+      await deleteTradsInDB(body.articleId, body.locale);
 
       // !IMPORTANT We insert the validated translation in the dispositif
-      insertInDispositif(res, traductionUser, traductionUser.locale);
+      const insertedDispositif = await insertInDispositif(
+        res,
+        body,
+        body.locale
+      );
+
+      try {
+        if (insertedDispositif.typeContenu === "dispositif") {
+          addOrUpdateDispositifInContenusAirtable(
+            "",
+            "",
+            insertedDispositif.id,
+            [],
+            body.locale
+          );
+        }
+      } catch (error) {
+        logger.error("error while updating contenu in airtable", {
+          error,
+        });
+      }
+
+      try {
+        logger.info("[add_Trad] updating avancement");
+        updateLanguagesAvancement();
+      } catch (error) {
+        logger.error("[add_dispositif] error while updating avancement", {
+          error,
+        });
+      }
+      return res.status(200).json({
+        text: "Succès",
+      });
     } catch (err) {
-      logger.error("error validateTrad for review", { error: err.message });
+      logger.error(
+        "[validateTranslations] error in validating, saving error to db",
+        { error: err.message }
+      );
       new ErrorDB({
         name: "validateTradModifications",
         userId: req.userId,
@@ -59,9 +103,7 @@ export const validateTranslations = async (
         error: err,
       }).save();
 
-      res.status(500).json({
-        text: "Erreur interne",
-      });
+      throw err;
     }
   } catch (error) {
     logger.error("[validateTranslations] error", { error: error.message });
@@ -72,7 +114,6 @@ export const validateTranslations = async (
         return res.status(400).json({ text: "Requête invalide" });
       case "NOT_AUTHORIZED":
         return res.status(401).json({ text: "Token invalide" });
-
       default:
         return res.status(500).json({ text: "Erreur interne" });
     }
