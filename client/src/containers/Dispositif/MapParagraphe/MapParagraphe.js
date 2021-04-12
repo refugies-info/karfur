@@ -163,9 +163,9 @@ class MapParagraphe extends PureComponent {
               type="outline-black"
               name={"share-outline"}
               className="ml-10"
-              onClick={() => this.props.toggleShareContentOnMobileModal()}
+              onClick={this.props.toggleShareContentOnMobileModal}
             >
-              {this.props.t("Dispositif.Partager Fiche", "Partager la Fiche")}
+              {this.props.t("Dispositif.Partager Fiche", "Partager la fiche")}
             </FButton>
           </div>
         )}

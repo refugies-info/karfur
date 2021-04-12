@@ -419,9 +419,9 @@ const contenuParagraphe = (props) => {
               type="outline-black"
               name={"share-outline"}
               className="ml-10"
-              onClick={() => props.toggleShareContentOnMobileModal()}
+              onClick={props.toggleShareContentOnMobileModal}
             >
-              {props.t("Dispositif.Partager Fiche", "Partager la Fiche")}
+              {props.t("Dispositif.Partager Fiche", "Partager la fiche")}
             </FButton>
           </div>
         )}
