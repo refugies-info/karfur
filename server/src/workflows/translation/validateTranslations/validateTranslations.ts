@@ -15,6 +15,7 @@ import { insertInDispositif } from "../../../modules/dispositif/insertInDisposit
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
+import { getDispositifByIdWithAllFields } from "../../../modules/dispositif/dispositif.repository";
 
 interface Query {
   articleId: ObjectId;
@@ -55,8 +56,16 @@ export const validateTranslations = async (
       // We delete all translations that are not from experts, since now we only need one official validated version
       await deleteTradsInDB(body.articleId, body.locale);
 
+      const dispositifFromDB = await getDispositifByIdWithAllFields(
+        body.articleId
+      );
+
       // !IMPORTANT We insert the validated translation in the dispositif
-      const insertedDispositif = await insertInDispositif(body, body.locale);
+      const insertedDispositif = await insertInDispositif(
+        body,
+        body.locale,
+        dispositifFromDB
+      );
 
       try {
         if (insertedDispositif.typeContenu === "dispositif") {

@@ -7,6 +7,7 @@ import {
 } from "../../../modules/traductions/traductions.repository";
 import { insertInDispositif } from "../../../modules/dispositif/insertInDispositif";
 import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
+import { getDispositifByIdWithAllFields } from "../../../modules/dispositif/dispositif.repository";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -31,6 +32,10 @@ jest.mock("../../../modules/dispositif/insertInDispositif", () => ({
 
 jest.mock("../../../controllers/langues/langues.service", () => ({
   updateLanguagesAvancement: jest.fn(),
+}));
+
+jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
+  getDispositifByIdWithAllFields: jest.fn(),
 }));
 
 describe("validateTranslations", () => {
@@ -89,11 +94,17 @@ describe("validateTranslations", () => {
       typeContenu: "dispositif",
       id: "id_dispo",
     });
+    getDispositifByIdWithAllFields.mockResolvedValue("initialDispo");
 
     await validateTranslations(req, res);
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
-    expect(insertInDispositif).toHaveBeenCalledWith(req.body, "locale");
+    expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
+    expect(insertInDispositif).toHaveBeenCalledWith(
+      req.body,
+      "locale",
+      "initialDispo"
+    );
     expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
       "",
       "",
@@ -117,7 +128,12 @@ describe("validateTranslations", () => {
     );
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
-    expect(insertInDispositif).toHaveBeenCalledWith(req.body, "locale");
+    expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
+    expect(insertInDispositif).toHaveBeenCalledWith(
+      req.body,
+      "locale",
+      "initialDispo"
+    );
     expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
       "",
       "",
@@ -141,7 +157,12 @@ describe("validateTranslations", () => {
     );
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
-    expect(insertInDispositif).toHaveBeenCalledWith(req.body, "locale");
+    expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
+    expect(insertInDispositif).toHaveBeenCalledWith(
+      req.body,
+      "locale",
+      "initialDispo"
+    );
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(res.status).toHaveBeenCalledWith(200);
@@ -159,7 +180,12 @@ describe("validateTranslations", () => {
     );
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
-    expect(insertInDispositif).toHaveBeenCalledWith(req.body, "locale");
+    expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
+    expect(insertInDispositif).toHaveBeenCalledWith(
+      req.body,
+      "locale",
+      "initialDispo"
+    );
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(res.status).toHaveBeenCalledWith(200);
@@ -174,6 +200,7 @@ describe("validateTranslations", () => {
     );
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).not.toHaveBeenCalled();
+    expect(getDispositifByIdWithAllFields).not.toHaveBeenCalled();
     expect(insertInDispositif).not.toHaveBeenCalled();
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
@@ -188,6 +215,7 @@ describe("validateTranslations", () => {
     );
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
+    expect(getDispositifByIdWithAllFields).not.toHaveBeenCalled();
     expect(insertInDispositif).not.toHaveBeenCalled();
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
@@ -202,7 +230,12 @@ describe("validateTranslations", () => {
     );
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
-    expect(insertInDispositif).toHaveBeenCalledWith(req.body, "locale");
+    expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
+    expect(insertInDispositif).toHaveBeenCalledWith(
+      req.body,
+      "locale",
+      "initialDispo"
+    );
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
@@ -223,7 +256,12 @@ describe("validateTranslations", () => {
     );
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
-    expect(insertInDispositif).toHaveBeenCalledWith(req.body, "locale");
+    expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
+    expect(insertInDispositif).toHaveBeenCalledWith(
+      req.body,
+      "locale",
+      "initialDispo"
+    );
     expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
       "",
       "",
@@ -248,7 +286,12 @@ describe("validateTranslations", () => {
     );
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
     expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
-    expect(insertInDispositif).toHaveBeenCalledWith(req.body, "locale");
+    expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
+    expect(insertInDispositif).toHaveBeenCalledWith(
+      req.body,
+      "locale",
+      "initialDispo"
+    );
     expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
       "",
       "",
@@ -258,5 +301,25 @@ describe("validateTranslations", () => {
     );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(res.status).toHaveBeenCalledWith(200);
+  });
+
+  it("should return 500 if getDispositifByIdWithAllFields throws", async () => {
+    insertInDispositif.mockResolvedValueOnce({
+      typeContenu: "dispositif",
+      id: "id_dispo",
+    });
+    getDispositifByIdWithAllFields.mockRejectedValueOnce(new Error("erreur"));
+
+    await validateTranslations(
+      { ...req, user: { roles: [{ nom: "Admin" }] } },
+      res
+    );
+    expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
+    expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
+    expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
+    expect(insertInDispositif).not.toHaveBeenCalled();
+    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+    expect(updateLanguagesAvancement).not.toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(500);
   });
 });

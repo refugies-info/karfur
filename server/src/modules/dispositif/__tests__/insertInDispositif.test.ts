@@ -1,12 +1,8 @@
 // @ts-nocheck
 import { insertInDispositif } from "../insertInDispositif";
-import {
-  getDispositifByIdWithAllFields,
-  updateDispositifInDB,
-} from "../dispositif.repository";
+import { updateDispositifInDB } from "../dispositif.repository";
 
 jest.mock("../dispositif.repository", () => ({
-  getDispositifByIdWithAllFields: jest.fn(),
   updateDispositifInDB: jest.fn(),
 }));
 
@@ -20,7 +16,6 @@ describe("insertInDispositif", () => {
       traductions: ["trad2", "trad3"],
       participants: ["userId2", "userId3"],
     };
-    getDispositifByIdWithAllFields.mockResolvedValueOnce(dispo);
 
     const trad = {
       articleId: "articleId",
@@ -52,8 +47,7 @@ describe("insertInDispositif", () => {
       participants: ["userId2", "userId3", "userId1"],
       avancement: { en: 1 },
     };
-    await insertInDispositif(trad, "en");
-    expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
+    await insertInDispositif(trad, "en", dispo);
     expect(updateDispositifInDB).toHaveBeenCalledWith("id", result);
   });
 
@@ -73,7 +67,6 @@ describe("insertInDispositif", () => {
       participants: ["userId2", "userId3", "userId1"],
       avancement: { en: 1 },
     };
-    getDispositifByIdWithAllFields.mockResolvedValueOnce(dispo);
 
     const trad = {
       articleId: "articleId",
@@ -106,8 +99,7 @@ describe("insertInDispositif", () => {
       participants: ["userId2", "userId3", "userId1", "userId5"],
       avancement: { en: 1, ar: 1 },
     };
-    await insertInDispositif(trad, "ar");
-    expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
+    await insertInDispositif(trad, "ar", dispo);
     expect(updateDispositifInDB).toHaveBeenCalledWith("id", result);
   });
 });
