@@ -1,5 +1,5 @@
 import { RequestFromClient, Res } from "../../../types/interface";
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { getActiveContents } from "../../../modules/dispositif/dispositif.repository";
 import { getTraductionsByLanguage } from "../../../modules/traductions/traductions.repository";

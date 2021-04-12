@@ -1,7 +1,7 @@
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { ObjectId } from "mongoose";
 import { TraductionDoc } from "../../../schema/schemaTraduction";
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import ErrorDB from "../../../schema/schemaError";
 import {
   checkRequestIsFromSite,
