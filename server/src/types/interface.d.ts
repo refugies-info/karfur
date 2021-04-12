@@ -138,3 +138,9 @@ export interface SelectedLanguage {
   i18nCode: string;
   _id: ObjectId;
 }
+
+export interface UserForMailing {
+  username: string;
+  _id: ObjectId;
+  email: string;
+}

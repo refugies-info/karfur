@@ -1,6 +1,9 @@
 // @ts-nocheck
 import { getStructureFromDB } from "../structure.repository";
-import { checkIfUserIsAuthorizedToModifyStructure } from "../structure.service";
+import {
+  checkIfUserIsAuthorizedToModifyStructure,
+  getStructureMembers,
+} from "../structure.service";
 
 jest.mock("../structure.repository", () => ({
   getStructureFromDB: jest.fn(),
@@ -102,5 +105,44 @@ describe("updateStructure", () => {
     expect(getStructureFromDB).toHaveBeenCalledWith("id", false, {
       membres: 1,
     });
+  });
+});
+
+describe("getStructureMembers", () => {
+  it("should call getStructureFromDB and return [] if no structure", async () => {
+    getStructureFromDB.mockResolvedValueOnce(null);
+    const res = await getStructureMembers("structureId");
+    expect(getStructureFromDB).toHaveBeenCalledWith("structureId", false, {
+      membres: 1,
+    });
+    expect(res).toEqual([]);
+  });
+
+  it("should call getStructureFromDB and return [] if structure without membres", async () => {
+    getStructureFromDB.mockResolvedValueOnce({ _id: "id" });
+    const res = await getStructureMembers("structureId");
+    expect(getStructureFromDB).toHaveBeenCalledWith("structureId", false, {
+      membres: 1,
+    });
+    expect(res).toEqual([]);
+  });
+
+  it("should call getStructureFromDB and return [] if structure without membres", async () => {
+    getStructureFromDB.mockResolvedValueOnce({ _id: "id", membres: [] });
+    const res = await getStructureMembers("structureId");
+    expect(getStructureFromDB).toHaveBeenCalledWith("structureId", false, {
+      membres: 1,
+    });
+    expect(res).toEqual([]);
+  });
+
+  it("should call getStructureFromDB and return membres", async () => {
+    const membres = [{ _id: "membre1" }, { _id: "membre2" }];
+    getStructureFromDB.mockResolvedValueOnce({ _id: "id", membres });
+    const res = await getStructureMembers("structureId");
+    expect(getStructureFromDB).toHaveBeenCalledWith("structureId", false, {
+      membres: 1,
+    });
+    expect(res).toEqual(membres);
   });
 });

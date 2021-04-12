@@ -11,6 +11,8 @@ import {
 import { getStructureFromDB } from "../structure/structure.repository";
 import { asyncForEach } from "../../libs/asyncForEach";
 import { getTitreInfoOrMarque } from "./dispositif.adapter";
+import { getStructureMembers } from "../structure/structure.service";
+import { getUsersFromStructureMembres } from "../users/users.service";
 
 export const sendPublishedMailToCreator = async (
   newDispo: DispositifNotPopulateDoc
@@ -89,35 +91,21 @@ export const sendPublishedTradMailToStructureService = async (
   dispositif: DispositifDoc,
   locale: string
 ) => {
-  const userNeededFields = {
-    username: 1,
-    email: 1,
-    status: 1,
-  };
-  const structureNeededFields = { membres: 1 };
-  const structure = await getStructureFromDB(
-    dispositif.mainSponsor,
-    false,
-    structureNeededFields
+  const structureMembres = await getStructureMembers(dispositif.mainSponsor);
+
+  const membresToSendMail = await getUsersFromStructureMembres(
+    structureMembres
   );
 
-  if (!structure || !structure.membres || structure.membres.length === 0) {
-    return;
-  }
   const titreInformatif = getTitreInfoOrMarque(dispositif.titreInformatif);
   const titreMarque = getTitreInfoOrMarque(dispositif.titreMarque);
-  await asyncForEach(structure.membres, async (membre) => {
-    if (!membre.userId) return;
 
-    const membreFromDB = await getUserById(membre.userId, userNeededFields);
-    if (membreFromDB.status === "Exclu") return;
-    if (!membreFromDB.email) return;
-
+  await asyncForEach(membresToSendMail, async (membre) => {
     logger.info("[publish trad] send mail to membre", {
-      membreId: membreFromDB._id,
+      membreId: membre._id,
     });
     await sendPublishedTradMailToStructure({
-      pseudo: membreFromDB.username,
+      pseudo: membre.username,
       titreInformatif: titreInformatif,
       titreMarque: titreMarque,
       lien:
@@ -125,9 +113,9 @@ export const sendPublishedTradMailToStructureService = async (
         dispositif.typeContenu +
         "/" +
         dispositif._id,
-      email: membreFromDB.email,
+      email: membre.email,
       dispositifId: dispositif._id,
-      userId: membreFromDB._id,
+      userId: membre._id,
       langue: locale,
     });
   });
