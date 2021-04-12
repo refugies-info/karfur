@@ -172,7 +172,12 @@ export class FrenchLevelModalComponent extends Component<Props> {
 
   render() {
     return (
-      <Modal isOpen={this.props.show} className="modal-french-level" size="lg">
+      <Modal
+        isOpen={this.props.show}
+        className="modal-french-level"
+        size="lg"
+        toggle={this.props.hideModal}
+      >
         {" "}
         <IconContainer onClick={this.props.hideModal}>
           <Icon name="close-outline" fill="#3D3D3D" size="large" />
