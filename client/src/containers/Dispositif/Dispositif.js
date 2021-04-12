@@ -1652,6 +1652,8 @@ export class Dispositif extends Component {
           "animated fadeIn dispositif vue" +
           (!disableEdit
             ? " edition-mode"
+            : isMobile
+            ? ""
             : translating
             ? " side-view-mode"
             : printing && isRTL
