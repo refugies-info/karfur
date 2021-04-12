@@ -1,5 +1,5 @@
 import { deduplicateArrayOfObjectIds } from "../../libs/deduplicateArrayOfObjectIds";
-import logger = require("../../logger");
+import logger from "../../logger";
 import {
   updateDispositifInDB,
   getDispositifByIdWithAllFields,

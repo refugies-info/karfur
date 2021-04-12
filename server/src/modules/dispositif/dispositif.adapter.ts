@@ -1,5 +1,5 @@
 import { DispositifPopulatedDoc } from "../../schema/schemaDispositif";
-import logger = require("../../logger");
+import logger from "../../logger";
 import moment from "moment";
 import { ObjectId } from "mongoose";
 import { IDispositif } from "../../types/interface";
