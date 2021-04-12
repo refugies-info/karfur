@@ -325,7 +325,7 @@ class MapParagraphe extends PureComponent {
                   }}
                 >
                   <EVAIcon name="checkmark" className="mr-10" />
-                  {t("Ok", "Oku")}
+                  {t("Ok", "Ok")}
                 </div>
               </StyledButton>
             )}
