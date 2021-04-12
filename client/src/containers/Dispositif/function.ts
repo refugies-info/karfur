@@ -46,3 +46,21 @@ export const send_sms = (
       });
     }
   });
+
+export const sharingOptions = (
+  typeContenu: string,
+  titreInformatif: string
+) => {
+  // @ts-ignore
+  if (navigator.share) {
+    // @ts-ignore
+    navigator
+      .share({
+        title: titreInformatif,
+        text: typeContenu,
+        url: window.location.href,
+      })
+      .then(() => {})
+      .catch(() => {});
+  }
+};
