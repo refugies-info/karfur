@@ -56,11 +56,7 @@ export const validateTranslations = async (
       await deleteTradsInDB(body.articleId, body.locale);
 
       // !IMPORTANT We insert the validated translation in the dispositif
-      const insertedDispositif = await insertInDispositif(
-        res,
-        body,
-        body.locale
-      );
+      const insertedDispositif = await insertInDispositif(body, body.locale);
 
       try {
         if (insertedDispositif.typeContenu === "dispositif") {

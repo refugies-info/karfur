@@ -7,11 +7,7 @@ import {
 
 //We insert the information of the validated translation inside the dispositif document
 //The way it works is by creating a key for each translation in every part of the dispositif, so this is why we create a 'fr' key and move the original text of the dispositif to that.
-export const insertInDispositif = async (
-  res: any,
-  traduction: any,
-  locale: string
-) => {
+export const insertInDispositif = async (traduction: any, locale: string) => {
   logger.info("[insertInDispositif] received");
   const pointeurs = ["titreInformatif", "titreMarque", "abstract"];
 
