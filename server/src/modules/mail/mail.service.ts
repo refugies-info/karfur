@@ -131,7 +131,7 @@ export const sendPublishedFicheMail = () => {
 
 export const sendReviewFicheMail = () => {
   try {
-    logger.info("[sendReviewFicheMail] received");
+    logger.info("[sendReviewFicheMail] received ");
 
     const dynamicData = {
       to: "agkieny@gmail.com",
