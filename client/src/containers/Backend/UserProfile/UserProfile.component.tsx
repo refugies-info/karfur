@@ -43,6 +43,7 @@ export const ProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 560px;
+  height: fit-content;
 `;
 
 export const ProfilePictureContainer = styled.div`
