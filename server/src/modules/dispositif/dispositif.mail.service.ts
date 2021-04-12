@@ -1,7 +1,13 @@
-import { DispositifNotPopulateDoc } from "../../schema/schemaDispositif";
+import {
+  DispositifNotPopulateDoc,
+  DispositifDoc,
+} from "../../schema/schemaDispositif";
 import { getUserById } from "../users/users.repository";
 import logger from "../../logger";
-import { sendPublishedFicheMail } from "../mail/mail.service";
+import {
+  sendPublishedFicheMail,
+  sendPublishedTradMailToStructure,
+} from "../mail/mail.service";
 import { getStructureFromDB } from "../structure/structure.repository";
 import { asyncForEach } from "../../libs/asyncForEach";
 import { getTitreInfoOrMarque } from "./dispositif.adapter";
@@ -75,6 +81,54 @@ export const sendPublishedMailToStructureMembers = async (
       email: membreFromDB.email,
       dispositifId: newDispo._id,
       userId: membreFromDB._id,
+    });
+  });
+};
+
+export const sendPublishedTradMailToStructureService = async (
+  dispositif: DispositifDoc,
+  locale: string
+) => {
+  const userNeededFields = {
+    username: 1,
+    email: 1,
+    status: 1,
+  };
+  const structureNeededFields = { membres: 1 };
+  const structure = await getStructureFromDB(
+    dispositif.mainSponsor,
+    false,
+    structureNeededFields
+  );
+
+  if (!structure || !structure.membres || structure.membres.length === 0) {
+    return;
+  }
+  const titreInformatif = getTitreInfoOrMarque(dispositif.titreInformatif);
+  const titreMarque = getTitreInfoOrMarque(dispositif.titreMarque);
+  await asyncForEach(structure.membres, async (membre) => {
+    if (!membre.userId) return;
+
+    const membreFromDB = await getUserById(membre.userId, userNeededFields);
+    if (membreFromDB.status === "Exclu") return;
+    if (!membreFromDB.email) return;
+
+    logger.info("[publish trad] send mail to membre", {
+      membreId: membreFromDB._id,
+    });
+    await sendPublishedTradMailToStructure({
+      pseudo: membreFromDB.username,
+      titreInformatif: titreInformatif,
+      titreMarque: titreMarque,
+      lien:
+        "https://refugies.info/" +
+        dispositif.typeContenu +
+        "/" +
+        dispositif._id,
+      email: membreFromDB.email,
+      dispositifId: dispositif._id,
+      userId: membreFromDB._id,
+      langue: locale,
     });
   });
 };

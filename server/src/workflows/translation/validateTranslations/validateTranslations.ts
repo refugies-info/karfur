@@ -16,6 +16,7 @@ import { asyncForEach } from "../../../libs/asyncForEach";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
 import { getDispositifByIdWithAllFields } from "../../../modules/dispositif/dispositif.repository";
+import { sendPublishedTradMailToStructureService } from "../../../modules/dispositif/dispositif.mail.service";
 
 interface Query {
   articleId: ObjectId;
@@ -91,6 +92,12 @@ export const validateTranslations = async (
           error,
         });
       }
+
+      await sendPublishedTradMailToStructureService(
+        dispositifFromDB,
+        body.locale
+      );
+
       return res.status(200).json({
         text: "Succès",
       });
