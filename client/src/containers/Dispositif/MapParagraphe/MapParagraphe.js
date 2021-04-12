@@ -8,9 +8,25 @@ import MapComponent from "../../../components/Frontend/Dispositif/MapComponent/M
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import { markerInfo } from "./data";
+import { isMobile } from "react-device-detect";
 
 import "./MapParagraphe.scss";
 import { colors } from "colors";
+import styled from "styled-components";
+
+const StyledButton = styled.div`
+  background-color: #8bc34a;
+  height: 50px;
+  display: flex;
+  margin-top: 25px;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 12px;
+  color: #ffffff;
+`;
 
 const refs = {};
 class MapParagraphe extends PureComponent {
@@ -134,7 +150,25 @@ class MapParagraphe extends PureComponent {
         id="map-paragraphe"
         onMouseEnter={() => this.props.updateUIArray(-5)}
       >
-        <div>SHARE BUTTON </div>
+        {isMobile && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: -30,
+              marginBottom: 20,
+            }}
+          >
+            <FButton
+              type="outline-black"
+              name={"share-outline"}
+              className="ml-10"
+              onClick={this.props.toggleShareContentOnMobileModal}
+            >
+              {this.props.t("Dispositif.Partager Fiche", "Partager la fiche")}
+            </FButton>
+          </div>
+        )}
         <div className="where-header backgroundColor-darkColor">
           <div
             style={{
@@ -280,6 +314,20 @@ class MapParagraphe extends PureComponent {
               >
                 {t("Valider", "Valider")}
               </FButton>
+            )}
+            {isMobile && (
+              <StyledButton onClick={this.onClose}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                  }}
+                >
+                  <EVAIcon name="checkmark" className="mr-10" />
+                  {t("Ok", "Ok")}
+                </div>
+              </StyledButton>
             )}
           </div>
         </div>
