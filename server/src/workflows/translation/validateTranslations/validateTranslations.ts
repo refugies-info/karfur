@@ -79,21 +79,31 @@ export const validateTranslations = async (
           );
         }
       } catch (error) {
-        logger.error("error while updating contenu in airtable", {
+        logger.error(
+          "[validateTranslations] error while updating contenu in airtable",
+          {
+            error,
+          }
+        );
+      }
+
+      try {
+        logger.info("[validateTranslations] updating avancement");
+        updateLanguagesAvancement();
+      } catch (error) {
+        logger.error("[validateTranslations] error while updating avancement", {
           error,
         });
       }
 
-      try {
-        logger.info("[add_Trad] updating avancement");
-        updateLanguagesAvancement();
-      } catch (error) {
-        logger.error("[add_dispositif] error while updating avancement", {
-          error,
-        });
-      }
       if (insertedDispositif.typeContenu === "dispositif") {
-        await sendPublishedTradMailToStructure(dispositifFromDB, body.locale);
+        try {
+          await sendPublishedTradMailToStructure(dispositifFromDB, body.locale);
+        } catch (error) {
+          logger.error("[validateTranslations] error while sending mails", {
+            error,
+          });
+        }
       }
 
       return res.status(200).json({

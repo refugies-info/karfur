@@ -350,4 +350,38 @@ describe("validateTranslations", () => {
 
     expect(res.status).toHaveBeenCalledWith(500);
   });
+
+  it("should return 200 if sendPublishedTradMailToStructure throws", async () => {
+    insertInDispositif.mockResolvedValueOnce({
+      typeContenu: "dispositif",
+      id: "id_dispo",
+    });
+    sendPublishedTradMailToStructure.mockRejectedValueOnce(new Error("erreur"));
+
+    await validateTranslations(
+      { ...req, user: { roles: [{ nom: "Admin" }] } },
+      res
+    );
+    expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
+    expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
+    expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
+    expect(insertInDispositif).toHaveBeenCalledWith(
+      req.body,
+      "locale",
+      "initialDispo"
+    );
+    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
+      "",
+      "",
+      "id_dispo",
+      [],
+      "locale"
+    );
+    expect(updateLanguagesAvancement).toHaveBeenCalledWith();
+    expect(sendPublishedTradMailToStructure).toHaveBeenCalledWith(
+      "initialDispo",
+      "locale"
+    );
+    expect(res.status).toHaveBeenCalledWith(200);
+  });
 });
