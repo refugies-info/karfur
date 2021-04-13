@@ -13,6 +13,7 @@ import { asyncForEach } from "../../libs/asyncForEach";
 import { getTitreInfoOrMarque } from "./dispositif.adapter";
 import { getStructureMembers } from "../structure/structure.service";
 import { getUsersFromStructureMembres } from "../users/users.service";
+import { getFormattedLocale } from "../../libs/getFormattedLocale";
 
 export const sendPublishedMailToCreator = async (
   newDispo: DispositifNotPopulateDoc
@@ -92,18 +93,21 @@ export const sendPublishedTradMailToStructureService = async (
   locale: string
 ) => {
   const structureMembres = await getStructureMembers(dispositif.mainSponsor);
-
   const membresToSendMail = await getUsersFromStructureMembres(
     structureMembres
   );
 
   const titreInformatif = getTitreInfoOrMarque(dispositif.titreInformatif);
   const titreMarque = getTitreInfoOrMarque(dispositif.titreMarque);
+  const langue = getFormattedLocale(locale);
 
   await asyncForEach(membresToSendMail, async (membre) => {
-    logger.info("[publish trad] send mail to membre", {
-      membreId: membre._id,
-    });
+    logger.info(
+      "[sendPublishedTradMailToStructureService] send mail to membre",
+      {
+        membreId: membre._id,
+      }
+    );
     await sendPublishedTradMailToStructure({
       pseudo: membre.username,
       titreInformatif: titreInformatif,
@@ -116,7 +120,7 @@ export const sendPublishedTradMailToStructureService = async (
       email: membre.email,
       dispositifId: dispositif._id,
       userId: membre._id,
-      langue: locale,
+      langue,
     });
   });
 };
