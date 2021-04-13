@@ -442,10 +442,6 @@ class Sponsors extends Component {
       mainSponsor,
       deduplicatedSponsors
     );
-    // eslint-disable-next-line no-console
-    console.log("total sponsor", totalSponsor);
-    // // eslint-disable-next-line no-console
-    // console.log("props", this.props);
     return (
       <div
         className="sponsor-footer backgroundColor-darkColor"
