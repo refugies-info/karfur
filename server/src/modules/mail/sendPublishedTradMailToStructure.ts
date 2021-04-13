@@ -4,7 +4,7 @@ import { getUsersFromStructureMembres } from "../users/users.service";
 import { getTitreInfoOrMarque } from "../dispositif/dispositif.adapter";
 import { getFormattedLocale } from "../../libs/getFormattedLocale";
 import { asyncForEach } from "../../libs/asyncForEach";
-import logger = require("../../logger");
+import logger from "../../logger";
 import { sendPublishedTradMailToStructureService } from "./mail.service";
 
 export const sendPublishedTradMailToStructure = async (
