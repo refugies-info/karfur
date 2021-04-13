@@ -30,7 +30,7 @@ steps:
         "--image",
         "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
         "--command",
-        "["/bin/berglas", "exec","--","npm" ,"run","start"]",
+        "['/bin/berglas', 'exec','--','npm' ,'run','start']",
         "--memory",
         "1G",
         "--set-env-vars",
