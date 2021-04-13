@@ -13,7 +13,13 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
-
+import {
+  Carousel,
+  CarouselItem,
+  CarouselControl,
+  CarouselIndicators,
+  CarouselCaption,
+} from "reactstrap";
 import API from "utils/API.js";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
@@ -26,6 +32,7 @@ import _ from "lodash";
 import "./Sponsors.scss";
 import { colors } from "colors";
 import styled from "styled-components";
+import { isMobile } from "react-device-detect";
 
 const SponsorContainer = styled.div`
   padding: 0px 0px 0px 16px;
@@ -183,6 +190,31 @@ class Sponsors extends Component {
       phone_contact: "",
       authorBelongs: false,
     },
+    activeIndex: 0,
+    animating: false,
+  };
+
+  next = (totalSponsor) => {
+    if (this.state.animating) return;
+    const nextIndex =
+      this.state.activeIndex === totalSponsor.length - 1
+        ? 0
+        : this.state.activeIndex + 1;
+    this.setState({ activeIndex: nextIndex });
+  };
+
+  previous = (totalSponsor) => {
+    if (this.state.animating) return;
+    const nextIndex =
+      this.state.activeIndex === 0
+        ? totalSponsor.length - 1
+        : this.state.activeIndex - 1;
+    this.setState({ activeIndex: nextIndex });
+  };
+
+  goToIndex = (newIndex) => {
+    if (this.state.animating) return;
+    this.setState({ activeIndex: newIndex });
   };
 
   // eslint-disable-next-line react/no-deprecated
@@ -360,6 +392,14 @@ class Sponsors extends Component {
     this.props.editSponsor(key, sponsor);
   };
 
+  createCarouselObject = (mainSponsor, deduplicatedSponsors) => {
+    var allSponsor = [{ type: "mainSponsor", object: mainSponsor }];
+    deduplicatedSponsors.map((item) => {
+      allSponsor.push({ type: "deduplicatedSponsors", object: item });
+    });
+    return allSponsor;
+  };
+
   upcoming = () =>
     Swal.fire({
       title: "Oh non!",
@@ -398,6 +438,10 @@ class Sponsors extends Component {
     const structuresArray = this.props.structures
       ? this.props.structures.concat([{ createNew: true }])
       : [{ createNew: true }];
+    const totalSponsor = this.createCarouselObject(
+      mainSponsor,
+      deduplicatedSponsors
+    );
     return (
       <div
         className="sponsor-footer backgroundColor-darkColor"
@@ -424,60 +468,274 @@ class Sponsors extends Component {
               </FButton>
             )}
         </div>
-        <Row className="sponsor-images">
-          <SponsorContainer>
-            {deduplicatedSponsors.length !== 0 || !disableEdit ? (
-              <SectionTitle>Responsable</SectionTitle>
-            ) : null}
-            {mainSponsor._id ? (
-              <SponsorCard disableEdit={disableEdit}>
-                <ImageLink
-                  href={`${burl}annuaire/${mainSponsor._id}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    className="sponsor-img"
-                    src={(mainSponsor.picture || {}).secure_url}
-                    alt={mainSponsor.acronyme}
-                  />
-                </ImageLink>
-                <SponsorTitle>{mainSponsor.nom}</SponsorTitle>
-                {!disableEdit ? (
-                  <DeleteButtonFull onClick={() => deleteMainSponsor()}>
-                    <EVAIcon
-                      name="trash-2-outline"
-                      size="large"
-                      fill={colors.blanc}
+        {isMobile && totalSponsor.length > 1 && (
+          <div
+            style={{
+              textAlign: "center",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Carousel
+              activeIndex={this.state.activeIndex}
+              next={() => this.next(totalSponsor)}
+              previous={() => this.previous(totalSponsor)}
+            >
+              <CarouselIndicators
+                items={totalSponsor}
+                activeIndex={this.state.activeIndex}
+                onClickHandler={this.goToIndex}
+              />
+
+              {totalSponsor.map((sponsor) => {
+                return (
+                  <CarouselItem
+                    onExiting={() => this.setState({ animating: true })}
+                    onExited={() => this.setState({ animating: false })}
+                    key={sponsor}
+                  >
+                    {sponsor.type === "mainSponsor" ? (
+                      <>
+                        <SectionTitle>Responsable</SectionTitle>
+                        <SponsorCard disableEdit={disableEdit}>
+                          <ImageLink
+                            href={`${burl}annuaire/${sponsor.object._id}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <img
+                              className="sponsor-img"
+                              src={(sponsor.object.picture || {}).secure_url}
+                              alt={sponsor.object.acronyme}
+                            />
+                          </ImageLink>
+                          <SponsorTitle>{sponsor.object.nom}</SponsorTitle>
+                        </SponsorCard>
+                      </>
+                    ) : sponsor.type === "deduplicatedSponsors" ? (
+                      <>
+                        <SectionTitle>Partenaires</SectionTitle>
+                        <SponsorCard
+                          nolink={!sponsor.object.link}
+                          disableEdit={disableEdit}
+                          key={sponsor}
+                        >
+                          {sponsor.object.link &&
+                          sponsor.object.picture &&
+                          sponsor.object.picture.secure_url ? (
+                            <ImageLink
+                              href={
+                                ((sponsor.object.link || "").includes("http")
+                                  ? ""
+                                  : "http://") + sponsor.object.link
+                              }
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <img
+                                className="sponsor-img"
+                                src={sponsor.object.picture.secure_url}
+                                alt={sponsor.object.alt}
+                              />
+                            </ImageLink>
+                          ) : (
+                            <ImageLink>
+                              {sponsor.object.picture &&
+                                sponsor.object.picture.secure_url && (
+                                  <img
+                                    className="sponsor-img"
+                                    src={sponsor.object.picture.secure_url}
+                                    alt={sponsor.object.alt}
+                                  />
+                                )}
+                            </ImageLink>
+                          )}
+                          <SponsorTitle>{sponsor.object.nom}</SponsorTitle>
+                        </SponsorCard>
+                      </>
+                    ) : null}
+
+                    <CarouselCaption
+                      captionText={sponsor.caption}
+                      captionHeader={sponsor.caption}
                     />
-                    <DeleteButtonFullText>Supprimer</DeleteButtonFullText>
-                  </DeleteButtonFull>
-                ) : null}
-              </SponsorCard>
+                  </CarouselItem>
+                );
+              })}
+              <CarouselControl
+                direction="prev"
+                directionText="Previous"
+                onClickHandler={() => this.previous(totalSponsor)}
+              />
+              <CarouselControl
+                direction="next"
+                directionText="Next"
+                onClickHandler={() => this.next(totalSponsor)}
+              />
+            </Carousel>
+          </div>
+        )}
+        {(!isMobile || totalSponsor.length === 1) && (
+          <Row className="sponsor-images">
+            <SponsorContainer>
+              {deduplicatedSponsors.length !== 0 || !disableEdit ? (
+                <SectionTitle>Responsable</SectionTitle>
+              ) : null}
+              {mainSponsor._id ? (
+                <SponsorCard disableEdit={disableEdit}>
+                  <ImageLink
+                    href={`${burl}annuaire/${mainSponsor._id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      className="sponsor-img"
+                      src={(mainSponsor.picture || {}).secure_url}
+                      alt={mainSponsor.acronyme}
+                    />
+                  </ImageLink>
+                  <SponsorTitle>{mainSponsor.nom}</SponsorTitle>
+                  {!disableEdit ? (
+                    <DeleteButtonFull onClick={() => deleteMainSponsor()}>
+                      <EVAIcon
+                        name="trash-2-outline"
+                        size="large"
+                        fill={colors.blanc}
+                      />
+                      <DeleteButtonFullText>Supprimer</DeleteButtonFullText>
+                    </DeleteButtonFull>
+                  ) : null}
+                </SponsorCard>
+              ) : !disableEdit ? (
+                <SponsorCard
+                  onClick={() => {
+                    this.props.toggleFinalValidation();
+                    this.toggleModal("responsabilite");
+                  }}
+                  add
+                  disableEdit={disableEdit}
+                >
+                  <AddSponsorTitle>
+                    Choisir la structure responsable
+                  </AddSponsorTitle>
+                  <AddSponsorDescription>
+                    Pour assurer la mise à jour des informations, nous devons
+                    relier votre fiche à la structure responsable du dispositif.
+                  </AddSponsorDescription>
+                </SponsorCard>
+              ) : null}
+            </SponsorContainer>
+            {sponsors && deduplicatedSponsors.length > 0 ? (
+              <SponsorContainer left>
+                <SectionTitle>Partenaires</SectionTitle>
+                <SponsorListContainer>
+                  {deduplicatedSponsors.length === 1 && !disableEdit ? (
+                    <SponsorCard
+                      onClick={() => {
+                        this.props.toggleFinalValidation();
+                        this.toggleModal("img-modal");
+                        this.setState({
+                          picture: {},
+                          link: "",
+                          nom: "",
+                        });
+                      }}
+                      add
+                      disableEdit={disableEdit}
+                    >
+                      <AddSponsorTitle>
+                        Ajouter une structure partenaire
+                      </AddSponsorTitle>
+                      <AddSponsorDescription>
+                        Ces structures ne peuvent pas éditer la fiche mais sont
+                        ainsi visible dans le cas d’un partenariat ou d’une
+                        co-animation.
+                      </AddSponsorDescription>
+                    </SponsorCard>
+                  ) : null}
+                  {deduplicatedSponsors.map((sponsor, key) => {
+                    return (
+                      <SponsorCard
+                        nolink={!sponsor.link}
+                        disableEdit={disableEdit}
+                        key={key}
+                      >
+                        {sponsor.link &&
+                        sponsor.picture &&
+                        sponsor.picture.secure_url ? (
+                          <ImageLink
+                            href={
+                              ((sponsor.link || "").includes("http")
+                                ? ""
+                                : "http://") + sponsor.link
+                            }
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <img
+                              className="sponsor-img"
+                              src={sponsor.picture.secure_url}
+                              alt={sponsor.alt}
+                            />
+                          </ImageLink>
+                        ) : (
+                          <ImageLink>
+                            {sponsor.picture && sponsor.picture.secure_url && (
+                              <img
+                                className="sponsor-img"
+                                src={sponsor.picture.secure_url}
+                                alt={sponsor.alt}
+                              />
+                            )}
+                          </ImageLink>
+                        )}
+                        <SponsorTitle>{sponsor.nom}</SponsorTitle>
+                        {!disableEdit ? (
+                          <SponsorListContainer>
+                            <EditButton
+                              onClick={() => {
+                                this.setState(
+                                  {
+                                    imgData: sponsor.picture || {},
+                                    link: sponsor.link || "",
+                                    nom: sponsor.nom || "",
+                                    edit: true,
+                                    sponsorKey: key,
+                                  },
+                                  () => {
+                                    this.props.toggleFinalValidation();
+                                    this.toggleModal("img-modal");
+                                  }
+                                );
+                              }}
+                            >
+                              <EVAIcon
+                                name="edit-outline"
+                                size="large"
+                                fill={colors.noir}
+                              />
+                              <EditText>Editer</EditText>
+                            </EditButton>
+                            <DeleteButtonSmall
+                              onClick={() => deleteSponsor(key)}
+                            >
+                              <EVAIcon
+                                name="trash-2-outline"
+                                size="large"
+                                fill={colors.blanc}
+                              />
+                            </DeleteButtonSmall>
+                          </SponsorListContainer>
+                        ) : null}
+                      </SponsorCard>
+                    );
+                  })}
+                </SponsorListContainer>
+              </SponsorContainer>
             ) : !disableEdit ? (
-              <SponsorCard
-                onClick={() => {
-                  this.props.toggleFinalValidation();
-                  this.toggleModal("responsabilite");
-                }}
-                add
-                disableEdit={disableEdit}
-              >
-                <AddSponsorTitle>
-                  Choisir la structure responsable
-                </AddSponsorTitle>
-                <AddSponsorDescription>
-                  Pour assurer la mise à jour des informations, nous devons
-                  relier votre fiche à la structure responsable du dispositif.
-                </AddSponsorDescription>
-              </SponsorCard>
-            ) : null}
-          </SponsorContainer>
-          {sponsors && deduplicatedSponsors.length > 0 ? (
-            <SponsorContainer left>
-              <SectionTitle>Partenaires</SectionTitle>
-              <SponsorListContainer>
-                {deduplicatedSponsors.length === 1 && !disableEdit ? (
+              <SponsorContainer left>
+                <SectionTitle>Partenaires</SectionTitle>
+                <SponsorListContainer>
                   <SponsorCard
                     onClick={() => {
                       this.props.toggleFinalValidation();
@@ -500,193 +758,11 @@ class Sponsors extends Component {
                       co-animation.
                     </AddSponsorDescription>
                   </SponsorCard>
-                ) : null}
-                {deduplicatedSponsors.map((sponsor, key) => {
-                  return (
-                    <SponsorCard
-                      nolink={!sponsor.link}
-                      disableEdit={disableEdit}
-                      key={key}
-                    >
-                      {sponsor.link &&
-                      sponsor.picture &&
-                      sponsor.picture.secure_url ? (
-                        <ImageLink
-                          href={
-                            ((sponsor.link || "").includes("http")
-                              ? ""
-                              : "http://") + sponsor.link
-                          }
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <img
-                            className="sponsor-img"
-                            src={sponsor.picture.secure_url}
-                            alt={sponsor.alt}
-                          />
-                        </ImageLink>
-                      ) : (
-                        <ImageLink>
-                          {sponsor.picture && sponsor.picture.secure_url && (
-                            <img
-                              className="sponsor-img"
-                              src={sponsor.picture.secure_url}
-                              alt={sponsor.alt}
-                            />
-                          )}
-                        </ImageLink>
-                      )}
-                      <SponsorTitle>{sponsor.nom}</SponsorTitle>
-                      {!disableEdit ? (
-                        <SponsorListContainer>
-                          <EditButton
-                            onClick={() => {
-                              this.setState(
-                                {
-                                  imgData: sponsor.picture || {},
-                                  link: sponsor.link || "",
-                                  nom: sponsor.nom || "",
-                                  edit: true,
-                                  sponsorKey: key,
-                                },
-                                () => {
-                                  this.props.toggleFinalValidation();
-                                  this.toggleModal("img-modal");
-                                }
-                              );
-                            }}
-                          >
-                            <EVAIcon
-                              name="edit-outline"
-                              size="large"
-                              fill={colors.noir}
-                            />
-                            <EditText>Editer</EditText>
-                          </EditButton>
-                          <DeleteButtonSmall onClick={() => deleteSponsor(key)}>
-                            <EVAIcon
-                              name="trash-2-outline"
-                              size="large"
-                              fill={colors.blanc}
-                            />
-                          </DeleteButtonSmall>
-                        </SponsorListContainer>
-                      ) : null}
-                    </SponsorCard>
-                    /*                   <Col key={key} className="sponsor-col">
-                    <div className="image-wrapper">
-                      <a
-                        href={
-                          ((sponsor.link || "").includes("http")
-                            ? ""
-                            : "http://") + sponsor.link
-                        }
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {sponsor.picture && sponsor.picture.secure_url ? (
-                          <img
-                            className="sponsor-img"
-                            src={sponsor.picture.secure_url}
-                            alt={sponsor.alt}
-                          />
-                        ) : sponsor.type === "Not found" ? (
-                          <div className="not-found-wrapper">
-                            <EVAIcon
-                              name="question-mark-circle"
-                              className="not-found-icon"
-                              size="large"
-                            />
-                            <span>
-                              Structure responsable
-                              <br />
-                              non-identifiée
-                            </span>
-                          </div>
-                        ) : (
-                          <NoSponsorImage
-                            nom={sponsor.nom}
-                            acronyme={sponsor.acronyme}
-                            alt={sponsor.alt}
-                          />
-                        )}
-                      </a>
-                      {key === 0 && sponsor.type !== "Not found" && (
-                        <div className="owner-badge">
-                          <EVAIcon name="shield" className="mr-10" />
-                          Responsable
-                        </div>
-                      )}
-                      {!disableEdit && (
-                        <div
-                          className="delete-icon"
-                          onClick={() => deleteSponsor(key)}
-                        >
-                          <Icon
-                            name="minus-circle"
-                            fill={colors.darkColor}
-                            size="xlarge"
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </Col> */
-                  );
-                })}
-              </SponsorListContainer>
-            </SponsorContainer>
-          ) : !disableEdit ? (
-            <SponsorContainer left>
-              <SectionTitle>Partenaires</SectionTitle>
-              <SponsorListContainer>
-                <SponsorCard
-                  onClick={() => {
-                    this.props.toggleFinalValidation();
-                    this.toggleModal("img-modal");
-                    this.setState({
-                      picture: {},
-                      link: "",
-                      nom: "",
-                    });
-                  }}
-                  add
-                  disableEdit={disableEdit}
-                >
-                  <AddSponsorTitle>
-                    Ajouter une structure partenaire
-                  </AddSponsorTitle>
-                  <AddSponsorDescription>
-                    Ces structures ne peuvent pas éditer la fiche mais sont
-                    ainsi visible dans le cas d’un partenariat ou d’une
-                    co-animation.
-                  </AddSponsorDescription>
-                </SponsorCard>
-              </SponsorListContainer>
-            </SponsorContainer>
-          ) : null}
-          {/* {!disableEdit && (
-            <Col>
-              <div
-                className="add-sponsor"
-                onClick={() => {
-                  this.props.toggleFinalValidation();
-                  !sponsors || sponsors.length === 0
-                    ? this.toggleModal("responsabilite")
-                    : sponsors.length > 0 && this.toggleModal("img-modal");
-                }}
-              >
-                <EVAIcon
-                  className="add-sign backgroundColor-darkColor"
-                  name="plus-outline"
-                />
-                <span className="add-text color-darkColor">
-                  Ajouter une structure
-                </span>
-              </div>
-            </Col>
-          )} */}
-        </Row>
+                </SponsorListContainer>
+              </SponsorContainer>
+            ) : null}
+          </Row>
+        )}
 
         <CustomModal
           showModals={showModals}
