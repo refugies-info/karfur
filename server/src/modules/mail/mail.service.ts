@@ -186,7 +186,7 @@ interface PublishedTradMailToStructure {
   email: string;
   pseudo: string;
 }
-export const sendPublishedTradMailToStructure = async (
+export const sendPublishedTradMailToStructureService = async (
   data: PublishedTradMailToStructure
 ) => {
   try {

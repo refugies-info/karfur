@@ -1,19 +1,10 @@
-import {
-  DispositifNotPopulateDoc,
-  DispositifDoc,
-} from "../../schema/schemaDispositif";
+import { DispositifNotPopulateDoc } from "../../schema/schemaDispositif";
 import { getUserById } from "../users/users.repository";
 import logger from "../../logger";
-import {
-  sendPublishedFicheMail,
-  sendPublishedTradMailToStructure,
-} from "../mail/mail.service";
+import { sendPublishedFicheMail } from "../mail/mail.service";
 import { getStructureFromDB } from "../structure/structure.repository";
 import { asyncForEach } from "../../libs/asyncForEach";
 import { getTitreInfoOrMarque } from "./dispositif.adapter";
-import { getStructureMembers } from "../structure/structure.service";
-import { getUsersFromStructureMembres } from "../users/users.service";
-import { getFormattedLocale } from "../../libs/getFormattedLocale";
 
 export const sendPublishedMailToCreator = async (
   newDispo: DispositifNotPopulateDoc
@@ -84,43 +75,6 @@ export const sendPublishedMailToStructureMembers = async (
       email: membreFromDB.email,
       dispositifId: newDispo._id,
       userId: membreFromDB._id,
-    });
-  });
-};
-
-export const sendPublishedTradMailToStructureService = async (
-  dispositif: DispositifDoc,
-  locale: string
-) => {
-  const structureMembres = await getStructureMembers(dispositif.mainSponsor);
-  const membresToSendMail = await getUsersFromStructureMembres(
-    structureMembres
-  );
-
-  const titreInformatif = getTitreInfoOrMarque(dispositif.titreInformatif);
-  const titreMarque = getTitreInfoOrMarque(dispositif.titreMarque);
-  const langue = getFormattedLocale(locale);
-
-  await asyncForEach(membresToSendMail, async (membre) => {
-    logger.info(
-      "[sendPublishedTradMailToStructureService] send mail to membre",
-      {
-        membreId: membre._id,
-      }
-    );
-    await sendPublishedTradMailToStructure({
-      pseudo: membre.username,
-      titreInformatif: titreInformatif,
-      titreMarque: titreMarque,
-      lien:
-        "https://refugies.info/" +
-        dispositif.typeContenu +
-        "/" +
-        dispositif._id,
-      email: membre.email,
-      dispositifId: dispositif._id,
-      userId: membre._id,
-      langue,
     });
   });
 };
