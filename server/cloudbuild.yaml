@@ -14,7 +14,7 @@ steps:
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}"]
   # Deploy container image to Cloud Run
-  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk:333.0.0"
     entrypoint: gcloud
     args:
       [
