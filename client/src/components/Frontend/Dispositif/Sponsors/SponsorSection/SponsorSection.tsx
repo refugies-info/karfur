@@ -38,7 +38,7 @@ const SponsorCard = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 24px;
-  margin-right: 16px;
+  margin-right: 30px;
   width: 214px;
   height: 303px;
   background: #eaeaea;
@@ -52,11 +52,16 @@ const SponsorTitle = styled.p`
   text-align: center;
 `;
 
+const MainContainer = styled.p`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const SponsorSection = (props: Props) => {
   return (
     <>
       {props.sponsor.type === "mainSponsor" ? (
-        <>
+        <MainContainer>
           <SectionTitle>Responsable</SectionTitle>
           <SponsorCard>
             <ImageLink
@@ -72,9 +77,9 @@ export const SponsorSection = (props: Props) => {
             </ImageLink>
             <SponsorTitle>{props.sponsor.object.nom}</SponsorTitle>
           </SponsorCard>
-        </>
+        </MainContainer>
       ) : props.sponsor.type === "deduplicatedSponsors" ? (
-        <>
+        <MainContainer>
           <SectionTitle>Partenaires</SectionTitle>
           <SponsorCard>
             {props.sponsor.object.link &&
@@ -109,7 +114,7 @@ export const SponsorSection = (props: Props) => {
             )}
             <SponsorTitle>{props.sponsor.object.nom}</SponsorTitle>
           </SponsorCard>
-        </>
+        </MainContainer>
       ) : null}
     </>
   );

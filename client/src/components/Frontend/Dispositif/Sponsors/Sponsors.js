@@ -13,13 +13,13 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
-import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption,
-} from "reactstrap";
+// import {
+//   Carousel,
+//   CarouselItem,
+//   CarouselControl,
+//   CarouselIndicators,
+//   CarouselCaption,
+// } from "reactstrap";
 import { SponsorSection } from "./SponsorSection/SponsorSection";
 import API from "utils/API.js";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
@@ -476,46 +476,16 @@ class Sponsors extends Component {
               textAlign: "center",
               display: "flex",
               justifyContent: "center",
+              overflowX: "auto",
+              paddingLeft: "240px",
+              marginLeft: "-50px",
             }}
           >
-            <Carousel
-              activeIndex={this.state.activeIndex}
-              next={() => this.next(totalSponsor)}
-              previous={() => this.previous(totalSponsor)}
-            >
-              <CarouselIndicators
-                items={totalSponsor}
-                activeIndex={this.state.activeIndex}
-                onClickHandler={this.goToIndex}
-              />
-
-              {totalSponsor.map((sponsor) => {
-                return (
-                  <CarouselItem
-                    onExiting={() => this.setState({ animating: true })}
-                    onExited={() => this.setState({ animating: false })}
-                    key={sponsor}
-                  >
-                    <SponsorSection sponsor={sponsor} burl={burl} />
-
-                    <CarouselCaption
-                      captionText={sponsor.caption}
-                      captionHeader={sponsor.caption}
-                    />
-                  </CarouselItem>
-                );
-              })}
-              <CarouselControl
-                direction="prev"
-                directionText="Previous"
-                onClickHandler={() => this.previous(totalSponsor)}
-              />
-              <CarouselControl
-                direction="next"
-                directionText="Next"
-                onClickHandler={() => this.next(totalSponsor)}
-              />
-            </Carousel>
+            {totalSponsor.map((sponsor) => {
+              return (
+                <SponsorSection key={sponsor} sponsor={sponsor} burl={burl} />
+              );
+            })}
           </div>
         )}
         {(!isMobile || totalSponsor.length === 1) && (
