@@ -92,8 +92,9 @@ export const validateTranslations = async (
           error,
         });
       }
-
-      await sendPublishedTradMailToStructure(dispositifFromDB, body.locale);
+      if (insertedDispositif.typeContenu === "dispositif") {
+        await sendPublishedTradMailToStructure(dispositifFromDB, body.locale);
+      }
 
       return res.status(200).json({
         text: "Succès",

@@ -8,6 +8,7 @@ import {
 import { insertInDispositif } from "../../../modules/dispositif/insertInDispositif";
 import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
 import { getDispositifByIdWithAllFields } from "../../../modules/dispositif/dispositif.repository";
+import { sendPublishedTradMailToStructure } from "../../../modules/mail/sendPublishedTradMailToStructure";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -38,6 +39,10 @@ jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getDispositifByIdWithAllFields: jest.fn(),
 }));
 
+jest.mock("../../../modules/mail/sendPublishedTradMailToStructure", () => ({
+  sendPublishedTradMailToStructure: jest.fn(),
+}));
+
 describe("validateTranslations", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -47,24 +52,52 @@ describe("validateTranslations", () => {
   it("should return 405 if not from site", async () => {
     const req = {};
     await validateTranslations(req, res);
+    expect(validateTradInDB).not.toHaveBeenCalled();
+    expect(deleteTradsInDB).not.toHaveBeenCalled();
+    expect(getDispositifByIdWithAllFields).not.toHaveBeenCalled();
+    expect(insertInDispositif).not.toHaveBeenCalled();
+    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+    expect(updateLanguagesAvancement).not.toHaveBeenCalled();
+    expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(405);
   });
 
   it("should return 400 if invalid request", async () => {
     const req = { fromSite: true };
     await validateTranslations(req, res);
+    expect(validateTradInDB).not.toHaveBeenCalled();
+    expect(deleteTradsInDB).not.toHaveBeenCalled();
+    expect(getDispositifByIdWithAllFields).not.toHaveBeenCalled();
+    expect(insertInDispositif).not.toHaveBeenCalled();
+    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+    expect(updateLanguagesAvancement).not.toHaveBeenCalled();
+    expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(400);
   });
 
   it("should return 400 if invalid request", async () => {
     const req = { fromSite: true, body: { translatedText: "text" } };
     await validateTranslations(req, res);
+    expect(validateTradInDB).not.toHaveBeenCalled();
+    expect(deleteTradsInDB).not.toHaveBeenCalled();
+    expect(getDispositifByIdWithAllFields).not.toHaveBeenCalled();
+    expect(insertInDispositif).not.toHaveBeenCalled();
+    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+    expect(updateLanguagesAvancement).not.toHaveBeenCalled();
+    expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(400);
   });
 
   it("should return 400 if invalid request", async () => {
     const req = { fromSite: true, body: { articleId: "text" } };
     await validateTranslations(req, res);
+    expect(validateTradInDB).not.toHaveBeenCalled();
+    expect(deleteTradsInDB).not.toHaveBeenCalled();
+    expect(getDispositifByIdWithAllFields).not.toHaveBeenCalled();
+    expect(insertInDispositif).not.toHaveBeenCalled();
+    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+    expect(updateLanguagesAvancement).not.toHaveBeenCalled();
+    expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(400);
   });
 
@@ -75,6 +108,13 @@ describe("validateTranslations", () => {
       user: { roles: [] },
     };
     await validateTranslations(req, res);
+    expect(validateTradInDB).not.toHaveBeenCalled();
+    expect(deleteTradsInDB).not.toHaveBeenCalled();
+    expect(getDispositifByIdWithAllFields).not.toHaveBeenCalled();
+    expect(insertInDispositif).not.toHaveBeenCalled();
+    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+    expect(updateLanguagesAvancement).not.toHaveBeenCalled();
+    expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(401);
   });
   const req = {
@@ -113,6 +153,10 @@ describe("validateTranslations", () => {
       "locale"
     );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
+    expect(sendPublishedTradMailToStructure).toHaveBeenCalledWith(
+      "initialDispo",
+      "locale"
+    );
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
@@ -142,6 +186,10 @@ describe("validateTranslations", () => {
       "locale"
     );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
+    expect(sendPublishedTradMailToStructure).toHaveBeenCalledWith(
+      "initialDispo",
+      "locale"
+    );
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
@@ -165,6 +213,7 @@ describe("validateTranslations", () => {
     );
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
+    expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
@@ -188,6 +237,7 @@ describe("validateTranslations", () => {
     );
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
+    expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
@@ -204,6 +254,7 @@ describe("validateTranslations", () => {
     expect(insertInDispositif).not.toHaveBeenCalled();
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
+    expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
   });
 
@@ -219,6 +270,7 @@ describe("validateTranslations", () => {
     expect(insertInDispositif).not.toHaveBeenCalled();
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
+    expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
   });
 
@@ -238,39 +290,9 @@ describe("validateTranslations", () => {
     );
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
+    expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
+
     expect(res.status).toHaveBeenCalledWith(500);
-  });
-
-  it("should return 200 if addOrUpdateDispositifInContenusAirtable throws", async () => {
-    insertInDispositif.mockResolvedValueOnce({
-      typeContenu: "dispositif",
-      id: "id_dispo",
-    });
-    addOrUpdateDispositifInContenusAirtable.mockRejectedValueOnce(
-      new Error("erreur")
-    );
-
-    await validateTranslations(
-      { ...req, user: { roles: [{ nom: "Admin" }] } },
-      res
-    );
-    expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
-    expect(deleteTradsInDB).toHaveBeenCalledWith("articleId", "locale");
-    expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
-    expect(insertInDispositif).toHaveBeenCalledWith(
-      req.body,
-      "locale",
-      "initialDispo"
-    );
-    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
-      "",
-      "",
-      "id_dispo",
-      [],
-      "locale"
-    );
-    expect(updateLanguagesAvancement).toHaveBeenCalledWith();
-    expect(res.status).toHaveBeenCalledWith(200);
   });
 
   it("should return 200 if addOrUpdateDispositifInContenusAirtable throws", async () => {
@@ -300,6 +322,10 @@ describe("validateTranslations", () => {
       "locale"
     );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
+    expect(sendPublishedTradMailToStructure).toHaveBeenCalledWith(
+      "initialDispo",
+      "locale"
+    );
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
@@ -320,6 +346,8 @@ describe("validateTranslations", () => {
     expect(insertInDispositif).not.toHaveBeenCalled();
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
+    expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
+
     expect(res.status).toHaveBeenCalledWith(500);
   });
 });
