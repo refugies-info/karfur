@@ -20,6 +20,7 @@ import {
   CarouselIndicators,
   CarouselCaption,
 } from "reactstrap";
+import { SponsorSection } from "./SponsorSection/SponsorSection";
 import API from "utils/API.js";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
@@ -442,6 +443,7 @@ class Sponsors extends Component {
       mainSponsor,
       deduplicatedSponsors
     );
+
     return (
       <div
         className="sponsor-footer backgroundColor-darkColor"
@@ -494,66 +496,7 @@ class Sponsors extends Component {
                     onExited={() => this.setState({ animating: false })}
                     key={sponsor}
                   >
-                    {sponsor.type === "mainSponsor" ? (
-                      <>
-                        <SectionTitle>Responsable</SectionTitle>
-                        <SponsorCard disableEdit={disableEdit}>
-                          <ImageLink
-                            href={`${burl}annuaire/${sponsor.object._id}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <img
-                              className="sponsor-img"
-                              src={(sponsor.object.picture || {}).secure_url}
-                              alt={sponsor.object.acronyme}
-                            />
-                          </ImageLink>
-                          <SponsorTitle>{sponsor.object.nom}</SponsorTitle>
-                        </SponsorCard>
-                      </>
-                    ) : sponsor.type === "deduplicatedSponsors" ? (
-                      <>
-                        <SectionTitle>Partenaires</SectionTitle>
-                        <SponsorCard
-                          nolink={!sponsor.object.link}
-                          disableEdit={disableEdit}
-                          key={sponsor}
-                        >
-                          {sponsor.object.link &&
-                          sponsor.object.picture &&
-                          sponsor.object.picture.secure_url ? (
-                            <ImageLink
-                              href={
-                                ((sponsor.object.link || "").includes("http")
-                                  ? ""
-                                  : "http://") + sponsor.object.link
-                              }
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <img
-                                className="sponsor-img"
-                                src={sponsor.object.picture.secure_url}
-                                alt={sponsor.object.alt}
-                              />
-                            </ImageLink>
-                          ) : (
-                            <ImageLink>
-                              {sponsor.object.picture &&
-                                sponsor.object.picture.secure_url && (
-                                  <img
-                                    className="sponsor-img"
-                                    src={sponsor.object.picture.secure_url}
-                                    alt={sponsor.object.alt}
-                                  />
-                                )}
-                            </ImageLink>
-                          )}
-                          <SponsorTitle>{sponsor.object.nom}</SponsorTitle>
-                        </SponsorCard>
-                      </>
-                    ) : null}
+                    <SponsorSection sponsor={sponsor} burl={burl} />
 
                     <CarouselCaption
                       captionText={sponsor.caption}
