@@ -101,7 +101,7 @@ export const sendMultipleDraftsReminderMailService = async (
   }
 };
 
-interface PublishedFicheMailData {
+interface PublishedFicheMailToStructureMembersData {
   pseudo: string;
   titreInformatif: string;
   titreMarque?: string;
@@ -111,7 +111,9 @@ interface PublishedFicheMailData {
   userId: ObjectId;
 }
 
-export const sendPublishedFicheMail = async (data: PublishedFicheMailData) => {
+export const sendPublishedFicheMailToStructureMembersService = async (
+  data: PublishedFicheMailToStructureMembersData
+) => {
   try {
     logger.info("[sendPublishedFicheMail] received ");
 
@@ -129,7 +131,7 @@ export const sendPublishedFicheMail = async (data: PublishedFicheMailData) => {
         titreMarque: data.titreMarque,
       },
     };
-    const templateName = "publishedFiche";
+    const templateName = "publishedFicheToStructureMembers";
     sendMail(templateName, dynamicData);
     await addMailEvent({
       templateName,
@@ -141,6 +143,52 @@ export const sendPublishedFicheMail = async (data: PublishedFicheMailData) => {
     return;
   } catch (error) {
     logger.error("[sendPublishedFicheMail] error", {
+      error: error.message,
+    });
+  }
+};
+
+interface PublishedFicheMailToCreatorData {
+  pseudo: string;
+  titreInformatif: string;
+  titreMarque?: string;
+  lien: string;
+  email: string;
+  dispositifId: ObjectId;
+  userId: ObjectId;
+}
+export const sendPublishedFicheMailToCreatorService = async (
+  data: PublishedFicheMailToCreatorData
+) => {
+  try {
+    logger.info("[sendPublishedFicheMailToCreatorService] received ");
+
+    const dynamicData = {
+      to: data.email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        pseudo: data.pseudo,
+        titreInformatif: data.titreInformatif,
+        lien: data.lien,
+        titreMarque: data.titreMarque,
+      },
+    };
+    const templateName = "publishedFicheToCreator";
+    sendMail(templateName, dynamicData);
+    await addMailEvent({
+      templateName,
+      username: data.pseudo,
+      email: data.email,
+      userId: data.userId,
+      dispositifId: data.dispositifId,
+    });
+    return;
+  } catch (error) {
+    logger.error("[sendPublishedFicheMailToCreatorService] error", {
       error: error.message,
     });
   }
