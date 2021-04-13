@@ -4,7 +4,10 @@ import styled from "styled-components";
 import Icon from "react-eva-icons";
 import "./ShareContentOnMobileModal.scss";
 import { ShareButton } from "../../FigmaUI/ShareButton/ShareButton";
-import { send_sms } from "../../../containers/Dispositif/function";
+import {
+  send_sms,
+  sharingOptions,
+} from "../../../containers/Dispositif/function";
 
 declare const window: Window;
 interface Props {
@@ -83,24 +86,14 @@ export const ShareContentOnMobileModal = (props: Props) => {
             type="button"
           />
 
-          {/* <ShareButton
-            name={"download-outline"}
-            //className="ml-10"
-            onClick={() => {
-              natifSharing(props.typeContenu, props.content.titreInformatif);
-            }}
-          >
-            V Télécharger PDF
-          </ShareButton>
           <ShareButton
             name={"more-horizontal-outline"}
-            //className="ml-10"
             onClick={() => {
-              natifSharing(props.typeContenu, props.content.titreInformatif);
+              sharingOptions(props.typeContenu, props.content.titreInformatif);
             }}
-          >
-            Plus d'options
-          </ShareButton> */}
+            text={props.t("Dispositif.Plus options", "Plus d'options")}
+            type="button"
+          />
         </ButtonsContainer>
       </MainContainer>
     </Modal>
