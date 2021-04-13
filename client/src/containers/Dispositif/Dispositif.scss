@@ -123,16 +123,15 @@ $imgHeight: 350px;
       color: $noir;
       background-color: rgba(255, 255, 255, 0.95);
       line-height: 60px;
+      padding: 15px 20px;
 
       text-transform: initial;
       margin-bottom: 0;
       @include media-max("tablet-up") {
         font-size: 22px;
+        line-height: 30px;
         padding-left: 8px;
         padding-right: 8px;
-      }
-      @media screen and (min-width: 1279px) {
-        padding: 15px 20px;
       }
     }
 
@@ -661,9 +660,6 @@ $imgHeight: 350px;
     margin-right: 40px;
     margin-bottom: 20px;
     padding: 0 40px;
-    @include media-max("tablet-up") {
-      margin-bottom: 0px;
-    }
 
     .col {
       padding: 0;
