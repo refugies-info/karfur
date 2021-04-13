@@ -495,7 +495,9 @@ $imgHeight: 350px;
     padding: 0 40px 0 0;
     font-size: 18px;
     line-height: 27px;
-
+    @include media-max("tablet-up") {
+      padding: 0;
+    }
     .display-inline-block {
       display: inline-block;
     }
