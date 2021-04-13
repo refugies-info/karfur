@@ -484,6 +484,7 @@ $imgHeight: 350px;
     margin-bottom: 40px;
     @include media-max("tablet-up") {
       font-size: 28px;
+      margin-bottom: 16px;
     }
   }
   .mt-20 {
