@@ -5,7 +5,7 @@ import { getTitreInfoOrMarque } from "../dispositif/dispositif.adapter";
 import {
   sendPublishedMailToStructureMembers,
   sendPublishedMailToCreator,
-} from "../dispositif/dispositif.mail.service";
+} from "./mailFunctions";
 import logger from "../../logger";
 
 export const sendMailWhenDispositifPublished = async (

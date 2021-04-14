@@ -4,7 +4,7 @@ import logger from "../../logger";
 import {
   sendPublishedFicheMailToStructureMembersService,
   sendPublishedFicheMailToCreatorService,
-} from "../mail/mail.service";
+} from "./mail.service";
 import { asyncForEach } from "../../libs/asyncForEach";
 import { ObjectId } from "mongoose";
 
