@@ -6,10 +6,12 @@ import {
   sendPublishedMailToStructureMembers,
   sendPublishedMailToCreator,
 } from "../dispositif/dispositif.mail.service";
+import logger from "../../logger";
 
 export const sendMailWhenDispositifPublished = async (
   dispo: DispositifNotPopulateDoc
 ) => {
+  logger.info("[sendMailWhenDispositifPublished] received");
   const structureMembres = await getStructureMembers(dispo.mainSponsor);
   const membresToSendMail = await getUsersFromStructureMembres(
     structureMembres
@@ -25,11 +27,23 @@ export const sendMailWhenDispositifPublished = async (
     lien,
     dispo._id
   );
-  const isCreatorInStructure = structureMembres.filter(
-    (membre) => membre.userId.toString() === dispo.creatorId.toString()
-  );
+  const isCreatorInStructure =
+    structureMembres.filter(
+      (membre) => membre.userId.toString() === dispo.creatorId.toString()
+    ).length > 0;
 
   if (!isCreatorInStructure) {
-    await sendPublishedMailToCreator(dispo, titreInformatif, titreMarque, lien);
+    logger.info(
+      "[sendMailWhenDispositifPublished] creator is not in structure"
+    );
+    return await sendPublishedMailToCreator(
+      dispo,
+      titreInformatif,
+      titreMarque,
+      lien
+    );
   }
+  logger.info("[sendMailWhenDispositifPublished] creator is in structure");
+
+  return;
 };

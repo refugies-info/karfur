@@ -3,10 +3,7 @@ import { updateDispositifInDB } from "../dispositif.repository";
 import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import { publishDispositif } from "../dispositif.service";
-import {
-  sendPublishedMailToCreator,
-  sendPublishedMailToStructureMembers,
-} from "../dispositif.mail.service";
+import { sendMailWhenDispositifPublished } from "../../mail/sendMailWhenDispositifPublished";
 
 jest.mock("../../../controllers/langues/langues.service", () => ({
   updateLanguagesAvancement: jest.fn(),
@@ -20,9 +17,8 @@ jest.mock("../dispositif.repository", () => ({
   updateDispositifInDB: jest.fn(),
 }));
 
-jest.mock("../dispositif.mail.service", () => ({
-  sendPublishedMailToCreator: jest.fn(),
-  sendPublishedMailToStructureMembers: jest.fn(),
+jest.mock("../../mail/sendMailWhenDispositifPublished", () => ({
+  sendMailWhenDispositifPublished: jest.fn(),
 }));
 
 describe("publish dispositif", () => {
@@ -43,6 +39,7 @@ describe("publish dispositif", () => {
     });
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+    expect(sendMailWhenDispositifPublished).not.toHaveBeenCalled();
   });
 
   const dispositif = {
@@ -73,6 +70,7 @@ describe("publish dispositif", () => {
       [],
       null
     );
+    expect(sendMailWhenDispositifPublished).toHaveBeenCalledWith(dispositif);
   });
 
   it("should return a 200 when new status is actif and a dispositif ", async () => {
@@ -93,10 +91,7 @@ describe("publish dispositif", () => {
       [],
       null
     );
-    expect(sendPublishedMailToCreator).toHaveBeenCalledWith(dispositif);
-    expect(sendPublishedMailToStructureMembers).toHaveBeenCalledWith(
-      dispositif
-    );
+    expect(sendMailWhenDispositifPublished).toHaveBeenCalledWith(dispositif);
   });
 
   it("should return a 200 when new status is actif and a demarche ", async () => {
@@ -114,7 +109,6 @@ describe("publish dispositif", () => {
     });
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
-    expect(sendPublishedMailToCreator).not.toHaveBeenCalled();
-    expect(sendPublishedMailToStructureMembers).not.toHaveBeenCalled();
+    expect(sendMailWhenDispositifPublished).not.toHaveBeenCalled();
   });
 });
