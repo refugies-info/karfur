@@ -5,7 +5,7 @@ import { getUsersFromStructureMembres } from "../../users/users.service";
 import {
   sendPublishedMailToStructureMembers,
   sendPublishedMailToCreator,
-} from "../../dispositif/dispositif.mail.service";
+} from "../mailFunctions";
 
 jest.mock("../../structure/structure.service", () => ({
   getStructureMembers: jest.fn(),
@@ -15,7 +15,7 @@ jest.mock("../../users/users.service", () => ({
   getUsersFromStructureMembres: jest.fn(),
 }));
 
-jest.mock("../../dispositif/dispositif.mail.service", () => ({
+jest.mock("../mailFunctions", () => ({
   sendPublishedMailToStructureMembers: jest.fn(),
   sendPublishedMailToCreator: jest.fn(),
 }));
