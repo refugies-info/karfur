@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Row, Collapse } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
@@ -17,6 +17,13 @@ import {
   cardTitlesDispositif,
   cardTitlesDemarche,
 } from "../../../../containers/Dispositif/data";
+import {
+  Carousel,
+  CarouselItem,
+  CarouselControl,
+  CarouselIndicators,
+  CarouselCaption,
+} from "reactstrap";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { infocardsDemarcheTitles } from "../../../../containers/Dispositif/data";
@@ -55,6 +62,28 @@ const StyledHeader = styled.div`
 `;
 
 const contenuParagraphe = (props) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [animating, setAnimating] = useState(false);
+
+  const next = () => {
+    if (animating) return;
+    const nextIndex =
+      activeIndex === props.item.children.length - 1 ? 0 : activeIndex + 1;
+    setActiveIndex(nextIndex);
+  };
+
+  const previous = () => {
+    if (animating) return;
+    const nextIndex =
+      activeIndex === 0 ? props.item.length - 1 : activeIndex - 1;
+    setActiveIndex(nextIndex);
+  };
+
+  const goToIndex = (newIndex) => {
+    if (animating) return;
+    setActiveIndex(newIndex);
+  };
+
   const { disableEdit, ...bprops } = props;
   const item = props.item;
   const safeUiArray = (key, subkey, node) =>
@@ -79,6 +108,67 @@ const contenuParagraphe = (props) => {
 
   return (
     <div className={item.type === "cards" ? "row cards" : "sous-paragraphe"}>
+      {isMobile && item.type === "cards" && item.children.length > 1 && (
+        <div className={"sous-contenu-wrapper sous-contenu-cards"}>
+          <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+            <CarouselIndicators
+              items={item.children}
+              activeIndex={activeIndex}
+              onClickHandler={goToIndex}
+            />
+            {item.children &&
+              item.children.map((subitem, subkey) => {
+                return (
+                  <CarouselItem
+                    onExiting={() => setAnimating(true)}
+                    onExited={() => setAnimating(false)}
+                    key={item}
+                  >
+                    <CardParagraphe
+                      location={props.location}
+                      subkey={subkey}
+                      subitem={subitem}
+                      disableEdit={disableEdit}
+                      changeTitle={bprops.changeTitle}
+                      handleMenuChange={bprops.handleMenuChange}
+                      changeAge={bprops.changeAge}
+                      toggleFree={bprops.toggleFree}
+                      changePrice={bprops.changePrice}
+                      updateUIArray={bprops.updateUIArray}
+                      toggleNiveau={bprops.toggleNiveau}
+                      changeDepartements={bprops.changeDepartements}
+                      deleteCard={bprops.deleteCard}
+                      content={bprops.content}
+                      keyValue={bprops.keyValue}
+                      cards={cards}
+                      mainTag={bprops.mainTag}
+                      toggleTutorielModal={props.toggleTutorielModal}
+                      admin={props.admin}
+                      toggleGeolocModal={props.toggleGeolocModal}
+                      showGeolocModal={props.showGeolocModal}
+                      typeContenu={props.typeContenu}
+                    />
+
+                    <CarouselCaption
+                      captionText={item.caption}
+                      captionHeader={item.caption}
+                    />
+                  </CarouselItem>
+                );
+              })}
+            <CarouselControl
+              direction="prev"
+              directionText="Previous"
+              onClickHandler={previous}
+            />
+            <CarouselControl
+              direction="next"
+              directionText="Next"
+              onClickHandler={next}
+            />
+          </Carousel>
+        </div>
+      )}
       {item.children &&
         item.children.map((subitem, subkey) => {
           const childrenLength = item.children.length;
@@ -102,7 +192,8 @@ const contenuParagraphe = (props) => {
               }
               key={subkey}
             >
-              {subitem.type === "card" ? (
+              {subitem.type === "card" &&
+              (!isMobile || item.children.length === 1) ? (
                 <CardParagraphe
                   location={props.location}
                   subkey={subkey}
@@ -293,68 +384,83 @@ const contenuParagraphe = (props) => {
                   </Row>
                 </div>
               ) : (
-                <div
-                  key={subkey}
-                  className={
-                    "contenu paragraphe" +
-                    (safeUiArray(props.keyValue, subkey, "isHover")
-                      ? " isHovered"
-                      : "")
-                  }
-                  onMouseEnter={() =>
-                    props.updateUIArray(props.keyValue, subkey, "isHover")
-                  }
-                >
-                  <Row className="relative-position">
-                    <Col lg="12" md="12" sm="12" xs="12">
-                      <h4>
-                        <ContentEditable
-                          id={props.keyValue}
-                          data-subkey={subkey}
-                          data-target="title"
-                          className="display-inline-block"
-                          html={subitem.title || ""} // innerHTML of the editable div
-                          disabled={disableEdit} // use true to disable editing
-                          onChange={props.handleMenuChange} // handle innerHTML change
-                        />
-                        {!disableEdit && (
-                          <EVAIcon
-                            onClick={() =>
-                              props.removeItem(props.keyValue, subkey)
-                            }
-                            className="delete-icon ml-10 cursor-pointer"
-                            name="minus-circle-outline"
-                            fill={colors.noir}
+                <>
+                  {!isMobile && item.type !== "cards" && (
+                    <div
+                      key={subkey}
+                      className={
+                        "contenu paragraphe" +
+                        (safeUiArray(props.keyValue, subkey, "isHover")
+                          ? " isHovered"
+                          : "")
+                      }
+                      onMouseEnter={() =>
+                        props.updateUIArray(props.keyValue, subkey, "isHover")
+                      }
+                    >
+                      <Row className="relative-position">
+                        <Col lg="12" md="12" sm="12" xs="12">
+                          <h4>
+                            <ContentEditable
+                              id={props.keyValue}
+                              data-subkey={subkey}
+                              data-target="title"
+                              className="display-inline-block"
+                              html={subitem.title || ""} // innerHTML of the editable div
+                              disabled={disableEdit} // use true to disable editing
+                              onChange={props.handleMenuChange} // handle innerHTML change
+                            />
+                            {!disableEdit && (
+                              <EVAIcon
+                                onClick={() =>
+                                  props.removeItem(props.keyValue, subkey)
+                                }
+                                className="delete-icon ml-10 cursor-pointer"
+                                name="minus-circle-outline"
+                                fill={colors.noir}
+                              />
+                            )}
+                          </h4>
+                          <EditableParagraph
+                            keyValue={props.keyValue}
+                            subkey={subkey}
+                            target="content"
+                            handleMenuChange={props.handleMenuChange}
+                            onEditorStateChange={props.onEditorStateChange}
+                            handleContentClick={props.handleContentClick}
+                            disableEdit={disableEdit}
+                            tutoriel={item.tutoriel}
+                            addItem={props.addItem}
+                            {...subitem}
                           />
+                          <br />
+                        </Col>
+                        {!props.sideView && disableEdit && !isMobile && (
+                          <Col
+                            lg="2"
+                            md="2"
+                            sm="2"
+                            xs="2"
+                            className="toolbar-col"
+                          >
+                            <QuickToolbar
+                              show={safeUiArray(
+                                props.keyValue,
+                                subkey,
+                                "isHover"
+                              )}
+                              keyValue={props.keyValue}
+                              subkey={subkey}
+                              disableEdit={disableEdit}
+                              {...bprops}
+                            />
+                          </Col>
                         )}
-                      </h4>
-                      <EditableParagraph
-                        keyValue={props.keyValue}
-                        subkey={subkey}
-                        target="content"
-                        handleMenuChange={props.handleMenuChange}
-                        onEditorStateChange={props.onEditorStateChange}
-                        handleContentClick={props.handleContentClick}
-                        disableEdit={disableEdit}
-                        tutoriel={item.tutoriel}
-                        addItem={props.addItem}
-                        {...subitem}
-                      />
-                      <br />
-                    </Col>
-                    {!props.sideView && disableEdit && !isMobile && (
-                      <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
-                        <QuickToolbar
-                          show={safeUiArray(props.keyValue, subkey, "isHover")}
-                          keyValue={props.keyValue}
-                          subkey={subkey}
-                          disableEdit={disableEdit}
-                          {...bprops}
-                        />
-                      </Col>
-                    )}
-                  </Row>
-                </div>
+                      </Row>
+                    </div>
+                  )}
+                  <div></div>
+                </>
               )}
               {props.addMapBtn &&
               props.keyValue === 3 &&

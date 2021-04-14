@@ -1744,52 +1744,71 @@ export class Dispositif extends Component {
                       flexDirection: "row",
                     }}
                   >
-                    <div>
-                      <h1 className={disableEdit ? "" : "editable"}>
-                        {
-                          // Display and edition of titreInformatif
-                          <ContentEditable
-                            id="titreInformatif"
-                            html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
-                            disabled={disableEdit}
-                            onClick={(e) => {
-                              if (!disableEdit) {
-                                this.onInputClicked(e);
-                              }
-                            }}
-                            onChange={this.handleChange}
-                            onMouseEnter={(e) => {
-                              this.updateUIArray(-4);
-                              e.target.focus();
-                            }}
-                            onKeyPress={(e) => this.handleKeyPress(e, 0)}
-                          />
-                        }
-                      </h1>
-                      {typeContenu === "dispositif" && (
-                        <h2 className={"bloc-subtitle "}>
-                          <span>{t("Dispositif.avec", "avec")}&nbsp;</span>
+                    {isMobile && (
+                      <div>
+                        <div className="title-info-mobile">
+                          <div className="title-mobile-text">
+                            {this.state.content.titreInformatif || ""}
+                          </div>
+                        </div>
+                        {typeContenu === "dispositif" && (
+                          <div className="title-marque-mobile">
+                            <div className="title-mobile-text">
+                              <span>{t("Dispositif.avec", "avec")}&nbsp;</span>
+                              {this.state.content.titreMarque || ""}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    {!isMobile && (
+                      <div>
+                        <h1 className={disableEdit ? "" : "editable"}>
                           {
-                            // Display and edition of titreMarque
+                            // Display and edition of titreInformatif
                             <ContentEditable
-                              id="titreMarque"
-                              html={this.state.content.titreMarque || ""} // innerHTML of the editable div
-                              disabled={this.state.disableEdit}
+                              id="titreInformatif"
+                              html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
+                              disabled={disableEdit}
                               onClick={(e) => {
-                                this.onInputClicked(e);
+                                if (!disableEdit) {
+                                  this.onInputClicked(e);
+                                }
                               }}
                               onChange={this.handleChange}
-                              onKeyDown={this.onInputClicked}
                               onMouseEnter={(e) => {
-                                this.updateUIArray(-3);
+                                this.updateUIArray(-4);
                                 e.target.focus();
                               }}
-                              onKeyPress={(e) => this.handleKeyPress(e, 1)}
+                              onKeyPress={(e) => this.handleKeyPress(e, 0)}
                             />
                           }
-                        </h2>
-                      )}
-                    </div>
+                        </h1>
+                        {typeContenu === "dispositif" && (
+                          <h2 className={"bloc-subtitle "}>
+                            <span>{t("Dispositif.avec", "avec")}&nbsp;</span>
+                            {
+                              // Display and edition of titreMarque
+                              <ContentEditable
+                                id="titreMarque"
+                                html={this.state.content.titreMarque || ""} // innerHTML of the editable div
+                                disabled={this.state.disableEdit}
+                                onClick={(e) => {
+                                  this.onInputClicked(e);
+                                }}
+                                onChange={this.handleChange}
+                                onKeyDown={this.onInputClicked}
+                                onMouseEnter={(e) => {
+                                  this.updateUIArray(-3);
+                                  e.target.focus();
+                                }}
+                                onKeyPress={(e) => this.handleKeyPress(e, 1)}
+                              />
+                            }
+                          </h2>
+                        )}
+                      </div>
+                    )}
                     {!this.state.disableEdit &&
                       typeContenu === "dispositif" &&
                       this.state.displayTuto && (

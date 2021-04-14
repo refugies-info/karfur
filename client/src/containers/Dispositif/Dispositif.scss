@@ -123,17 +123,9 @@ $imgHeight: 350px;
       color: $noir;
       background-color: rgba(255, 255, 255, 0.95);
       line-height: 60px;
-
+      padding: 15px 20px;
       text-transform: initial;
       margin-bottom: 0;
-      @include media-max("tablet-up") {
-        font-size: 22px;
-        padding-left: 8px;
-        padding-right: 8px;
-      }
-      @media screen and (min-width: 1279px) {
-        padding: 15px 20px;
-      }
     }
 
     .post-title-block h2 {
@@ -144,15 +136,44 @@ $imgHeight: 350px;
       background-color: rgba(255, 255, 255, 0.95);
       line-height: 34px;
       padding-top: 0px;
-      @include media-max("tablet-up") {
-        font-size: 16px;
-        padding-left: 8px;
-        padding-right: 8px;
-        margin-top: 10px;
-      }
+
       @media screen and (min-width: 1279px) {
         padding: 15px 20px;
       }
+    }
+
+    .title-info-mobile {
+      font-style: normal;
+      font-weight: bold;
+      color: $noir;
+      text-transform: initial;
+      margin-bottom: 0;
+      font-size: 22px;
+      line-height: 30px;
+      padding-left: 8px;
+      padding-right: 8px;
+      margin-top: 15px;
+    }
+
+    /* class to have white box around text and following the text if it is on 2 lines*/
+    .title-mobile-text {
+      display: inline;
+      padding: 4px 0em;
+      background-color: #ffffff;
+      box-shadow: 8px 0 0 #ffffff, -8px 0 0 #ffffff;
+      box-decoration-break: clone;
+    }
+
+    .title-marque-mobile {
+      font-style: normal;
+      font-weight: normal;
+      color: $noir;
+      line-height: 34px;
+      padding-top: 0px;
+      font-size: 16px;
+      padding-left: 8px;
+      padding-right: 8px;
+      margin-top: 8px;
     }
 
     .header-row {
@@ -485,6 +506,7 @@ $imgHeight: 350px;
     margin-bottom: 40px;
     @include media-max("tablet-up") {
       font-size: 28px;
+      margin-bottom: 16px;
     }
   }
   .mt-20 {
@@ -495,7 +517,9 @@ $imgHeight: 350px;
     padding: 0 40px 0 0;
     font-size: 18px;
     line-height: 27px;
-
+    @include media-max("tablet-up") {
+      padding: 0;
+    }
     .display-inline-block {
       display: inline-block;
     }
@@ -661,9 +685,6 @@ $imgHeight: 350px;
     margin-right: 40px;
     margin-bottom: 20px;
     padding: 0 40px;
-    @include media-max("tablet-up") {
-      margin-bottom: 0px;
-    }
 
     .col {
       padding: 0;
