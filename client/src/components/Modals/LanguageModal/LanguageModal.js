@@ -18,6 +18,7 @@ import FButton from "../../FigmaUI/FButton/FButton";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import { Event, initGA } from "../../../tracking/dispatch";
 import { activatedLanguages } from "./data";
+import { isMobile } from "react-device-detect";
 
 const languageModal = (props) => {
   const languages = {
@@ -63,7 +64,7 @@ const languageModal = (props) => {
         <ModalBody>
           <ListGroup>
             {Object.keys(languages).map((element) => {
-              if (element === "unavailable") {
+              if (element === "unavailable" && !isMobile) {
                 return (
                   <ListGroupItem
                     action
@@ -103,90 +104,96 @@ const languageModal = (props) => {
                     </Row>
                   </ListGroupItem>
                 );
-              }
-              const isSelected =
-                languages[element].i18nCode === props.current_language;
-              return (
-                <ListGroupItem
-                  action
-                  key={languages[element]._id}
-                  disabled={!languages[element].avancement}
-                  onClick={() => {
-                    initGA();
-                    Event(
-                      "CHANGE_LANGUAGE",
-                      languages[element].i18nCode,
-                      "label"
-                    );
-                    props.changeLanguage(languages[element].i18nCode);
-                  }}
-                  className={isSelected ? "active" : ""}
-                >
-                  <Row>
-                    <Col xl="1" lg="1" md="1" sm="1" xs="1">
-                      <i
-                        className={
-                          "flag-icon flag-icon-" + languages[element].langueCode
-                        }
-                        title={languages[element].langueCode}
-                        id={languages[element].langueCode}
-                      ></i>
-                    </Col>
-                    <Col xl="5" lg="5" md="5" sm="5" xs="5">
-                      <span>
-                        <b>{languages[element].langueFr}</b> -{" "}
-                        {languages[element].langueLoc}
-                      </span>
-                    </Col>
-                    <Col
-                      xl="5"
-                      lg="5"
-                      md="5"
-                      sm="5"
-                      xs="5"
-                      className="progress-col"
-                    >
-                      {props.isLanguagesLoading === false && (
-                        <>
-                          <Progress
-                            color={colorAvancement(getAvancementTrad(element))}
-                            value={getAvancementTrad(element) * 100}
+              } else if (element !== "unavailable") {
+                const isSelected =
+                  languages[element].i18nCode === props.current_language;
+                return (
+                  <ListGroupItem
+                    action
+                    key={languages[element]._id}
+                    disabled={!languages[element].avancement}
+                    onClick={() => {
+                      initGA();
+                      Event(
+                        "CHANGE_LANGUAGE",
+                        languages[element].i18nCode,
+                        "label"
+                      );
+                      props.changeLanguage(languages[element].i18nCode);
+                    }}
+                    className={isSelected ? "active" : ""}
+                  >
+                    <Row>
+                      <Col xl="1" lg="1" md="1" sm="1" xs="1">
+                        <i
+                          className={
+                            "flag-icon flag-icon-" +
+                            languages[element].langueCode
+                          }
+                          title={languages[element].langueCode}
+                          id={languages[element].langueCode}
+                        ></i>
+                      </Col>
+                      <Col xl="5" lg="5" md="5" sm="5" xs="5">
+                        <span>
+                          <b>{languages[element].langueFr}</b> -{" "}
+                          {languages[element].langueLoc}
+                        </span>
+                      </Col>
+                      {!isMobile && (
+                        <Col
+                          xl="5"
+                          lg="5"
+                          md="5"
+                          sm="5"
+                          xs="5"
+                          className="progress-col"
+                        >
+                          {props.isLanguagesLoading === false && (
+                            <>
+                              <Progress
+                                color={colorAvancement(
+                                  getAvancementTrad(element)
+                                )}
+                                value={getAvancementTrad(element) * 100}
+                              />
+                              <span
+                                className={
+                                  "text-" +
+                                  colorAvancement(getAvancementTrad(element))
+                                }
+                              >
+                                <b>
+                                  {Math.round(
+                                    getAvancementTrad(element) * 100 || 0,
+                                    0
+                                  ) + " %"}
+                                </b>
+                              </span>
+                            </>
+                          )}
+                        </Col>
+                      )}
+                      <Col
+                        xl="1"
+                        lg="1"
+                        md="1"
+                        sm="1"
+                        xs="1"
+                        className="icon-col"
+                      >
+                        {isSelected && (
+                          <EVAIcon
+                            name="checkmark-circle-2"
+                            fill="#FFFFFF"
+                            size="large"
                           />
-                          <span
-                            className={
-                              "text-" +
-                              colorAvancement(getAvancementTrad(element))
-                            }
-                          >
-                            <b>
-                              {Math.round(
-                                getAvancementTrad(element) * 100 || 0,
-                                0
-                              ) + " %"}
-                            </b>
-                          </span>
-                        </>
-                      )}
-                    </Col>
-                    <Col
-                      xl="1"
-                      lg="1"
-                      md="1"
-                      sm="1"
-                      xs="1"
-                      className="icon-col"
-                    >
-                      {isSelected && (
-                        <EVAIcon
-                          name="checkmark-circle-2"
-                          fill="#FFFFFF"
-                          size="large"
-                        />
-                      )}
-                    </Col>
-                  </Row>
-                </ListGroupItem>
-              );
+                        )}
+                      </Col>
+                    </Row>
+                  </ListGroupItem>
+                );
+              }
             })}
           </ListGroup>
         </ModalBody>

@@ -1,7 +1,10 @@
 @import "src/scss/colors.scss";
+@import "src/scss/global.scss";
 
 .language-modal {
-  width: 500px;
+  @include media-min("tablet-up") {
+    width: 500px;
+  }
 
   .modal-content {
     background: #ffffff;
