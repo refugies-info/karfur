@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Col, Row, Collapse } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
@@ -17,13 +17,7 @@ import {
   cardTitlesDispositif,
   cardTitlesDemarche,
 } from "../../../../containers/Dispositif/data";
-import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption,
-} from "reactstrap";
+
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { infocardsDemarcheTitles } from "../../../../containers/Dispositif/data";
@@ -60,30 +54,13 @@ const StyledHeader = styled.div`
   line-height: 28px;
   color: ${(props) => props.darkColor};
 `;
+const MobileInfoCardsSection = styled.div`
+  display: flex;
+  text-align: center;
+  justify-content: center;
+`;
 
 const contenuParagraphe = (props) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [animating, setAnimating] = useState(false);
-
-  const next = () => {
-    if (animating) return;
-    const nextIndex =
-      activeIndex === props.item.children.length - 1 ? 0 : activeIndex + 1;
-    setActiveIndex(nextIndex);
-  };
-
-  const previous = () => {
-    if (animating) return;
-    const nextIndex =
-      activeIndex === 0 ? props.item.length - 1 : activeIndex - 1;
-    setActiveIndex(nextIndex);
-  };
-
-  const goToIndex = (newIndex) => {
-    if (animating) return;
-    setActiveIndex(newIndex);
-  };
-
   const { disableEdit, ...bprops } = props;
   const item = props.item;
   const safeUiArray = (key, subkey, node) =>
@@ -107,67 +84,43 @@ const contenuParagraphe = (props) => {
       : colors.lightColor;
 
   return (
-    <div className={item.type === "cards" ? "row cards" : "sous-paragraphe"}>
+    <div
+      className={item.type === "cards" ? "row cards" : "sous-paragraphe"}
+      style={isMobile ? { overflowX: "auto" } : {}}
+    >
       {isMobile && item.type === "cards" && item.children.length > 1 && (
-        <div className={"sous-contenu-wrapper sous-contenu-cards"}>
-          <Carousel activeIndex={activeIndex} next={next} previous={previous}>
-            <CarouselIndicators
-              items={item.children}
-              activeIndex={activeIndex}
-              onClickHandler={goToIndex}
-            />
-            {item.children &&
-              item.children.map((subitem, subkey) => {
-                return (
-                  <CarouselItem
-                    onExiting={() => setAnimating(true)}
-                    onExited={() => setAnimating(false)}
-                    key={item}
-                  >
-                    <CardParagraphe
-                      location={props.location}
-                      subkey={subkey}
-                      subitem={subitem}
-                      disableEdit={disableEdit}
-                      changeTitle={bprops.changeTitle}
-                      handleMenuChange={bprops.handleMenuChange}
-                      changeAge={bprops.changeAge}
-                      toggleFree={bprops.toggleFree}
-                      changePrice={bprops.changePrice}
-                      updateUIArray={bprops.updateUIArray}
-                      toggleNiveau={bprops.toggleNiveau}
-                      changeDepartements={bprops.changeDepartements}
-                      deleteCard={bprops.deleteCard}
-                      content={bprops.content}
-                      keyValue={bprops.keyValue}
-                      cards={cards}
-                      mainTag={bprops.mainTag}
-                      toggleTutorielModal={props.toggleTutorielModal}
-                      admin={props.admin}
-                      toggleGeolocModal={props.toggleGeolocModal}
-                      showGeolocModal={props.showGeolocModal}
-                      typeContenu={props.typeContenu}
-                    />
-
-                    <CarouselCaption
-                      captionText={item.caption}
-                      captionHeader={item.caption}
-                    />
-                  </CarouselItem>
-                );
-              })}
-            <CarouselControl
-              direction="prev"
-              directionText="Previous"
-              onClickHandler={previous}
-            />
-            <CarouselControl
-              direction="next"
-              directionText="Next"
-              onClickHandler={next}
-            />
-          </Carousel>
-        </div>
+        <MobileInfoCardsSection>
+          {item.children &&
+            item.children.map((subitem, subkey) => {
+              return (
+                <CardParagraphe
+                  key={subitem}
+                  location={props.location}
+                  subkey={subkey}
+                  subitem={subitem}
+                  disableEdit={disableEdit}
+                  changeTitle={bprops.changeTitle}
+                  handleMenuChange={bprops.handleMenuChange}
+                  changeAge={bprops.changeAge}
+                  toggleFree={bprops.toggleFree}
+                  changePrice={bprops.changePrice}
+                  updateUIArray={bprops.updateUIArray}
+                  toggleNiveau={bprops.toggleNiveau}
+                  changeDepartements={bprops.changeDepartements}
+                  deleteCard={bprops.deleteCard}
+                  content={bprops.content}
+                  keyValue={bprops.keyValue}
+                  cards={cards}
+                  mainTag={bprops.mainTag}
+                  toggleTutorielModal={props.toggleTutorielModal}
+                  admin={props.admin}
+                  toggleGeolocModal={props.toggleGeolocModal}
+                  showGeolocModal={props.showGeolocModal}
+                  typeContenu={props.typeContenu}
+                />
+              );
+            })}
+        </MobileInfoCardsSection>
       )}
       {item.children &&
         item.children.map((subitem, subkey) => {
