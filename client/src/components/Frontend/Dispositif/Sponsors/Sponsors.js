@@ -13,13 +13,6 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
-// import {
-//   Carousel,
-//   CarouselItem,
-//   CarouselControl,
-//   CarouselIndicators,
-//   CarouselCaption,
-// } from "reactstrap";
 import { SponsorSection } from "./SponsorSection/SponsorSection";
 import API from "utils/API.js";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
