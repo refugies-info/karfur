@@ -13,13 +13,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
-import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption,
-} from "reactstrap";
+import { SponsorSection } from "./SponsorSection/SponsorSection";
 import API from "utils/API.js";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
@@ -150,6 +144,14 @@ const SponsorCard = styled.div`
   &:hover {
     border: ${(props) => (props.add ? "2px solid #212121" : "none")};
   }
+`;
+const MobileSponsorSection = styled.div`
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  overflow-x: auto;
+  padding-left: 250px;
+  margin-left: -50px;
 `;
 
 const burl =
@@ -442,6 +444,7 @@ class Sponsors extends Component {
       mainSponsor,
       deduplicatedSponsors
     );
+
     return (
       <div
         className="sponsor-footer backgroundColor-darkColor"
@@ -469,111 +472,19 @@ class Sponsors extends Component {
             )}
         </div>
         {isMobile && totalSponsor.length > 1 && (
-          <div
-            style={{
-              textAlign: "center",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <Carousel
-              activeIndex={this.state.activeIndex}
-              next={() => this.next(totalSponsor)}
-              previous={() => this.previous(totalSponsor)}
-            >
-              <CarouselIndicators
-                items={totalSponsor}
-                activeIndex={this.state.activeIndex}
-                onClickHandler={this.goToIndex}
-              />
-
-              {totalSponsor.map((sponsor) => {
-                return (
-                  <CarouselItem
-                    onExiting={() => this.setState({ animating: true })}
-                    onExited={() => this.setState({ animating: false })}
-                    key={sponsor}
-                  >
-                    {sponsor.type === "mainSponsor" ? (
-                      <>
-                        <SectionTitle>Responsable</SectionTitle>
-                        <SponsorCard disableEdit={disableEdit}>
-                          <ImageLink
-                            href={`${burl}annuaire/${sponsor.object._id}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <img
-                              className="sponsor-img"
-                              src={(sponsor.object.picture || {}).secure_url}
-                              alt={sponsor.object.acronyme}
-                            />
-                          </ImageLink>
-                          <SponsorTitle>{sponsor.object.nom}</SponsorTitle>
-                        </SponsorCard>
-                      </>
-                    ) : sponsor.type === "deduplicatedSponsors" ? (
-                      <>
-                        <SectionTitle>Partenaires</SectionTitle>
-                        <SponsorCard
-                          nolink={!sponsor.object.link}
-                          disableEdit={disableEdit}
-                          key={sponsor}
-                        >
-                          {sponsor.object.link &&
-                          sponsor.object.picture &&
-                          sponsor.object.picture.secure_url ? (
-                            <ImageLink
-                              href={
-                                ((sponsor.object.link || "").includes("http")
-                                  ? ""
-                                  : "http://") + sponsor.object.link
-                              }
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <img
-                                className="sponsor-img"
-                                src={sponsor.object.picture.secure_url}
-                                alt={sponsor.object.alt}
-                              />
-                            </ImageLink>
-                          ) : (
-                            <ImageLink>
-                              {sponsor.object.picture &&
-                                sponsor.object.picture.secure_url && (
-                                  <img
-                                    className="sponsor-img"
-                                    src={sponsor.object.picture.secure_url}
-                                    alt={sponsor.object.alt}
-                                  />
-                                )}
-                            </ImageLink>
-                          )}
-                          <SponsorTitle>{sponsor.object.nom}</SponsorTitle>
-                        </SponsorCard>
-                      </>
-                    ) : null}
-
-                    <CarouselCaption
-                      captionText={sponsor.caption}
-                      captionHeader={sponsor.caption}
-                    />
-                  </CarouselItem>
-                );
-              })}
-              <CarouselControl
-                direction="prev"
-                directionText="Previous"
-                onClickHandler={() => this.previous(totalSponsor)}
-              />
-              <CarouselControl
-                direction="next"
-                directionText="Next"
-                onClickHandler={() => this.next(totalSponsor)}
-              />
-            </Carousel>
-          </div>
+          <MobileSponsorSection>
+            {totalSponsor.map((sponsor, index) => {
+              return (
+                <SponsorSection
+                  totalNumberOfSponsor={totalSponsor.length}
+                  index={index}
+                  key={sponsor}
+                  sponsor={sponsor}
+                  burl={burl}
+                />
+              );
+            })}
+          </MobileSponsorSection>
         )}
         {(!isMobile || totalSponsor.length === 1) && (
           <Row className="sponsor-images">
