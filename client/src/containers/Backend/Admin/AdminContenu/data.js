@@ -17,7 +17,7 @@ export const table_contenu = {
     },
     {
       name: "MAJ",
-      order: "updatedAt",
+      order: "lastModificationDate",
     },
     {
       name: "Progression",
