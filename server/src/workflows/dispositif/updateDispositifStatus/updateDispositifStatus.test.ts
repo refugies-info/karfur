@@ -5,12 +5,12 @@ import {
   getDispositifByIdWithMainSponsor,
 } from "../../../modules/dispositif/dispositif.repository";
 import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
-import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import {
   checkRequestIsFromSite,
   checkIfUserIsAdmin,
   checkUserIsAuthorizedToModifyDispositif,
 } from "../../../libs/checkAuthorizations";
+import { publishDispositif } from "../../../modules/dispositif/dispositif.service";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -20,6 +20,9 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
+jest.mock("../../../modules/dispositif/dispositif.service", () => ({
+  publishDispositif: jest.fn(),
+}));
 jest.mock("../../../controllers/langues/langues.service", () => ({
   updateLanguagesAvancement: jest.fn(),
 }));
@@ -27,10 +30,6 @@ jest.mock("../../../controllers/langues/langues.service", () => ({
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   updateDispositifInDB: jest.fn(),
   getDispositifByIdWithMainSponsor: jest.fn().mockResolvedValue({ _id: "id" }),
-}));
-
-jest.mock("../../../controllers/miscellaneous/airtable", () => ({
-  addOrUpdateDispositifInContenusAirtable: jest.fn(),
 }));
 
 jest.mock("../../../libs/checkAuthorizations", () => ({
@@ -101,11 +100,7 @@ describe("updateDispositifStatus", () => {
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
   });
 
-  it("should return a 200 when new status is actif and not a dispositif and user admin", async () => {
-    updateDispositifInDB.mockResolvedValueOnce({ typeContenu: "demarche" });
-    const date = 148707670800;
-    Date.now = jest.fn(() => date);
-
+  it("should return a 200 when new status is actif and user admin", async () => {
     const req = {
       fromSite: true,
       body: { query: { dispositifId: "id", status: "Actif" } },
@@ -113,71 +108,7 @@ describe("updateDispositifStatus", () => {
     };
     const res = mockResponse();
     await updateDispositifStatus(req, res);
-
-    expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
-      status: "Actif",
-      publishedAt: date,
-    });
-    expect(updateLanguagesAvancement).toHaveBeenCalledWith();
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
-  });
-
-  it("should return a 200 when new status is actif and updateLanguagesAvancement throws", async () => {
-    updateLanguagesAvancement.mockRejectedValueOnce(new Error("erreur"));
-    updateDispositifInDB.mockResolvedValueOnce({ typeContenu: "demarche" });
-    const date = 148707670800;
-    Date.now = jest.fn(() => date);
-
-    const req = {
-      fromSite: true,
-      body: { query: { dispositifId: "id", status: "Actif" } },
-      user: { roles: [] },
-    };
-    const res = mockResponse();
-    await updateDispositifStatus(req, res);
-
-    expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
-      status: "Actif",
-      publishedAt: date,
-    });
-    expect(updateLanguagesAvancement).toHaveBeenCalledWith();
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
-  });
-
-  it("should return a 200 when new status is actif and a dispositif and user admin", async () => {
-    updateDispositifInDB.mockResolvedValueOnce({
-      typeContenu: "dispositif",
-      titreInformatif: "ti",
-      titreMarque: "tm",
-      _id: "id",
-      tags: [],
-    });
-    const date = 148707670800;
-    Date.now = jest.fn(() => date);
-
-    const req = {
-      fromSite: true,
-      body: { query: { dispositifId: "id", status: "Actif" } },
-      user: { roles: [] },
-    };
-    const res = mockResponse();
-    await updateDispositifStatus(req, res);
-
-    expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
-      status: "Actif",
-      publishedAt: date,
-    });
-    expect(updateLanguagesAvancement).toHaveBeenCalledWith();
-    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
-      "ti",
-      "tm",
-      "id",
-      [],
-      null
-    );
+    expect(publishDispositif).toHaveBeenCalledWith("id");
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });
@@ -186,10 +117,6 @@ describe("updateDispositifStatus", () => {
     checkIfUserIsAdmin.mockImplementationOnce(() => {
       throw new Error("NOT_AUTHORIZED");
     });
-    updateLanguagesAvancement.mockRejectedValueOnce(new Error("erreur"));
-    updateDispositifInDB.mockResolvedValueOnce({ typeContenu: "demarche" });
-    const date = 148707670800;
-    Date.now = jest.fn(() => date);
 
     const req = {
       fromSite: true,
@@ -199,8 +126,7 @@ describe("updateDispositifStatus", () => {
     const res = mockResponse();
     await updateDispositifStatus(req, res);
 
-    expect(updateDispositifInDB).not.toHaveBeenCalled();
-    expect(updateLanguagesAvancement).not.toHaveBeenCalled();
+    expect(publishDispositif).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(404);
     expect(res.json).toHaveBeenCalledWith({ text: "Non authorisé" });
   });

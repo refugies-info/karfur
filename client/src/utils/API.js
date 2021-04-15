@@ -242,8 +242,8 @@ export default {
       headers: headers,
     });
   },
-  validate_tradForReview: (query) => {
-    return axios.post(burl + "/traduction/validate_tradForReview", query, {
+  validateTranslations: (query) => {
+    return axios.post(burl + "/traduction/validateTranslations", query, {
       headers: headers,
     });
   },

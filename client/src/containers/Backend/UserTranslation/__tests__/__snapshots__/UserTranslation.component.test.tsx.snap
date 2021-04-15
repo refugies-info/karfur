@@ -1152,24 +1152,6 @@ exports[`user translation should render correctly with expert, admin 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bell-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-      Toolbar.Mes notifications (1)
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className="mr-10"
-      >
-        <i
           data-eva="bookmark-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
@@ -1213,24 +1195,6 @@ exports[`user translation should render correctly with expert, admin 1`] = `
         />
       </span>
       Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="briefcase-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-      Toolbar.Ma structure
     </div>
     <div
       className="c1"
@@ -4272,7 +4236,7 @@ exports[`user translation should return loader langue in url = first selected la
                   Dernière trad
                 </th>
               </tr>
-            </thead>
+            </txz>
             <tbody>
               <tr
                 className="bg-blancSimple"

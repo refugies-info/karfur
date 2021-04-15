@@ -1,31 +1,18 @@
 const { Traduction } = require("../../schema/schemaTraduction");
-const Article = require("../../schema/schemaArticle.js");
 const Indicator = require("../../schema/schemaIndicators");
-const { Dispositif } = require("../../schema/schemaDispositif");
-const Error = require("../../schema/schemaError");
 const { User } = require("../../schema/schemaUser");
 var sanitizeHtml = require("sanitize-html");
 var himalaya = require("himalaya");
 var h2p = require("html2plaintext");
 const axios = require("axios");
 const sanitizeOptions = require("../../libs/data");
-const _ = require("lodash");
 const { turnHTMLtoJSON, turnJSONtoHTML } = require("../dispositif/functions");
 const mongoose = require("mongoose");
-const {
-  addOrUpdateDispositifInContenusAirtable,
-} = require("../miscellaneous/airtable");
-const logger = require("../../logger");
-const { updateLanguagesAvancement } = require("../langues/langues.service");
 
-const pointeurs = ["titreInformatif", "titreMarque", "abstract"];
+const logger = require("../../logger");
 
 const instance = axios.create();
 instance.defaults.timeout = 12000000;
-
-// we have to convert objectId to string to compare it with other strings
-const deduplicateArrayOfObjectIds = (arrayOfObjectIds) =>
-  _.uniq(arrayOfObjectIds.map((x) => x.toString()));
 
 const _errorHandler = (error, res) => {
   switch (error) {
@@ -44,190 +31,6 @@ const _errorHandler = (error, res) => {
         text: "Erreur interne",
       });
   }
-};
-
-const _findNodeAndReplace = (initial, translated, locale, id) => {
-  let children = initial.children || initial || [];
-  for (var i = 0; i < children.length; i++) {
-    let node = children[i];
-    let attributes = node.attributes || [];
-    for (var j = 0; j < attributes.length; j++) {
-      if (attributes[j].key === "id" && attributes[j].value === id) {
-        //On passe le correctif
-        if (
-          node.children.length === 1 &&
-          node.children[0].content &&
-          translated.length === 1 &&
-          translated[0].children.length === 1 &&
-          translated[0].children[0].children.length === 1 &&
-          translated[0].children[0].children[0].content
-        ) {
-          node.children[0].content[locale] =
-            translated[0].children[0].children[0].content;
-          return true;
-        }
-        return false;
-      }
-    }
-    if ((node.children || []).length > 0) {
-      if (!_findNodeAndReplace(node, translated, locale, id)) return false;
-    }
-  }
-  return true;
-};
-
-//We insert the information of the validated translation inside the dispositif document
-//The way it works is by creating a key for each translation in every part of the dispositif, so this is why we create a 'fr' key and move the original text of the dispositif to that.
-const insertInDispositif = (res, traduction, locale) => {
-  return Dispositif.findOne({ _id: traduction.articleId }).exec(
-    (err, result) => {
-      if (!err && result) {
-        pointeurs.forEach((x) => {
-          if (!result[x] || !traduction.translatedText[x]) {
-            return;
-          }
-          if (!result[x].fr) {
-            result[x] = { fr: result[x] };
-          }
-
-          result[x][locale] = traduction.translatedText[x];
-          result.markModified(x);
-        });
-
-        result.contenu.forEach((p, i) => {
-          if (p.title) {
-            if (!p.title.fr) {
-              p.title = { fr: p.title };
-            }
-            p.title[locale] = traduction.translatedText.contenu[i].title;
-          }
-          if (p.content) {
-            if (!p.content.fr) {
-              p.content = { fr: p.content };
-            }
-            p.content[locale] = traduction.translatedText.contenu[i].content;
-          }
-          if (p.children && p.children.length > 0) {
-            p.children.forEach((c, j) => {
-              if (
-                c.title &&
-                traduction.translatedText.contenu[i] &&
-                traduction.translatedText.contenu[i].children &&
-                traduction.translatedText.contenu[i].children[j] &&
-                traduction.translatedText.contenu[i].children[j].title
-              ) {
-                if (!c.title.fr) {
-                  c.title = { fr: c.title };
-                }
-                c.title[locale] =
-                  traduction.translatedText.contenu[i].children[j].title;
-              }
-              if (
-                c.content &&
-                traduction.translatedText.contenu[i] &&
-                traduction.translatedText.contenu[i].children &&
-                traduction.translatedText.contenu[i].children[j] &&
-                traduction.translatedText.contenu[i].children[j].content
-              ) {
-                if (!c.content.fr) {
-                  c.content = { fr: c.content };
-                }
-                c.content[locale] =
-                  traduction.translatedText.contenu[i].children[j].content;
-              }
-              if (
-                c.contentTitle &&
-                traduction.translatedText.contenu[i] &&
-                traduction.translatedText.contenu[i].children &&
-                traduction.translatedText.contenu[i].children[j] &&
-                traduction.translatedText.contenu[i].children[j].contentTitle
-              ) {
-                if (!c.contentTitle.fr) {
-                  c.contentTitle = { fr: c.contentTitle };
-                }
-                c.contentTitle[locale] =
-                  traduction.translatedText.contenu[i].children[j].contentTitle;
-              }
-            });
-          }
-        });
-        result.markModified("contenu");
-
-        const translationsToAdd = traduction.traductions
-          ? traduction.traductions.map((x) => x._id)
-          : [];
-
-        const translations = (result.traductions || []).concat(
-          translationsToAdd
-        );
-
-        const deduplicatedTranslations = deduplicateArrayOfObjectIds(
-          translations
-        );
-
-        result.traductions = deduplicatedTranslations;
-
-        const participantsToAdd = traduction.traductions
-          ? traduction.traductions.map((x) => (x.userId || {})._id)
-          : [];
-
-        const participants = (result.participants || []).concat(
-          participantsToAdd
-        );
-
-        const deduplicatedParticipants = deduplicateArrayOfObjectIds(
-          participants
-        );
-
-        result.participants = deduplicatedParticipants;
-
-        if (result.avancement === 1) {
-          result.avancement = { fr: 1 };
-        }
-        result.avancement = {
-          ...result.avancement,
-          [locale]: 1,
-        };
-
-        return result.save((err, data) => {
-          if (err) {
-            res.status(500).json({ text: "Erreur interne" });
-          } else {
-            res.status(200).json({
-              text: "Succès",
-              data: data,
-            });
-            try {
-              if (result.typeContenu === "dispositif") {
-                addOrUpdateDispositifInContenusAirtable(
-                  "",
-                  "",
-                  result.id,
-                  [],
-                  locale
-                );
-              }
-            } catch (error) {
-              logger.error("error while updating contenu in airtable", {
-                error,
-              });
-            }
-            try {
-              logger.info("[add_Trad] updating avancement");
-              updateLanguagesAvancement();
-            } catch (error) {
-              logger.error("[add_dispositif] error while updating avancement", {
-                error,
-              });
-            }
-          }
-          return res;
-        });
-      }
-      res.status(400).json({ text: "Erreur d'identification du dispositif" });
-      return res;
-    }
-  );
 };
 
 //we add a translation document, everytime a title or paragraph is translated
@@ -420,124 +223,6 @@ function get_tradForReview(req, res) {
     });
 }
 
-//This function validates the final translation and call a function to save the content in the dispositif
-async function validate_tradForReview(req, res) {
-  if (!req.fromSite) {
-    return res.status(405).json({ text: "Requête bloquée par API" });
-  } else if (!req.body || !req.body.articleId || !req.body.translatedText) {
-    res.status(400).json({ text: "Requête invalide" });
-  } else if (
-    !((req.user || {}).roles || {}).some(
-      (x) => x.nom === "ExpertTrad" || x.nom === "Admin"
-    )
-  ) {
-    res.status(401).json({ text: "Token invalide" });
-  } else {
-    try {
-      let traductionUser = req.body || {};
-      /*       if (traductionUser.translatedText.contenu) {
-        //le cas des dispositifs
-        traductionUser.nbMots = turnHTMLtoJSON(traductionUser.translatedText.contenu);
-      } */
-      //Ici il y en a plusieurs: à régler
-      // We update the translation for the expert, by changing the status to validated
-      if (traductionUser.type === "dispositif") {
-        if (!traductionUser.traductions.length) {
-          Traduction.findOneAndUpdate(
-            { _id: traductionUser._id },
-            { status: "Validée", validatorId: req.userId },
-            { upsert: true, new: true }
-          ).then(() => {});
-        } else {
-          (traductionUser.traductions || [])
-            .slice(0)
-            .reverse()
-            .map((x) => {
-              Traduction.findOneAndUpdate(
-                { _id: x._id },
-                { status: "Validée", validatorId: req.userId },
-                { upsert: true, new: true }
-              ).then(() => {});
-            });
-        }
-        // We delete all translations that are not from experts, since now we only need one official validated version
-        await Traduction.deleteMany({
-          articleId: req.body.articleId,
-          langueCible: req.body.locale,
-          isExpert: { $ne: true },
-        });
-        // !IMPORTANT We insert the validated translation in the dispositif
-        insertInDispositif(res, traductionUser, traductionUser.locale);
-      } else {
-        //Validating a translation in case it's an article
-        Traduction.findOneAndUpdate(
-          { _id: traductionUser._id },
-          { status: "Validée", validatorId: req.userId },
-          { upsert: true, new: true }
-        ).then(
-          (data_traduction) => {
-            let traduction = data_traduction;
-            Article.findOne({ _id: traduction.articleId }).exec(
-              (err, result) => {
-                if (!err) {
-                  if (result.body && result.body.constructor === Array) {
-                    if (
-                      !_findNodeAndReplace(
-                        result.body,
-                        traduction.translatedText,
-                        traduction.langueCible,
-                        traduction.rightId
-                      )
-                    ) {
-                      res.status(501).json({ text: "Erreur d'insertion" });
-                    } else {
-                      result.markModified("body");
-                      result.save((err, article_saved) => {
-                        if (err) {
-                          res.status(500).json({ text: "Erreur interne" });
-                        } else {
-                          res.status(200).json({
-                            text: "Succès",
-                            data: article_saved,
-                            data_traduction: data_traduction,
-                          });
-                        }
-                      });
-                    }
-                  }
-                } else {
-                  res
-                    .status(400)
-                    .json({ text: "Erreur d'identification de l'article" });
-                }
-              }
-            );
-          },
-          () => {
-            res.status(500).json({
-              text: "Erreur interne",
-            });
-          }
-        );
-      }
-    } catch (err) {
-      logger.error("error validateTrad for review", { error: err.message });
-      new Error({
-        name: "validateTradModifications",
-        userId: req.userId,
-        dataObject: {
-          body: req.body,
-        },
-        error: err,
-      }).save();
-
-      res.status(500).json({
-        text: "Erreur interne",
-      });
-    }
-  }
-}
-
 //We update the trad for the expert in case it already exists
 function update_tradForReview(req, res) {
   if (!req.fromSite) {
@@ -701,7 +386,6 @@ async function delete_trads(req, res) {
 //On exporte notre fonction
 exports.add_tradForReview = add_tradForReview;
 exports.get_tradForReview = get_tradForReview;
-exports.validate_tradForReview = validate_tradForReview;
 exports.update_tradForReview = update_tradForReview;
 exports.get_progression = get_progression;
 exports.delete_trads = delete_trads;

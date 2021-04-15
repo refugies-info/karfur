@@ -1,0 +1,1 @@
+export { validateTranslations } from "./validateTranslations";

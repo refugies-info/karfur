@@ -1,5 +1,5 @@
 import { RequestFromClient, Res } from "../../../types/interface";
-import logger = require("../../../logger");
+import logger from "../../../logger";
 
 export const testSendMail = (req: RequestFromClient<{}>, res: Res) => {
   try {

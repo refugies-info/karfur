@@ -88,7 +88,7 @@ export const NavigationComponent: React.FunctionComponent<Props> = (
     <NavigationContainer>
       {navigationData.map((data) => {
         if (data.access === "admin" && !isAdmin) return;
-        if (data.access === "hasStructure" && !isAdmin && !hasStructure) return;
+        if (data.access === "hasStructure" && !hasStructure) return;
         return (
           <NavButton
             title={data.title}
