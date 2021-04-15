@@ -459,7 +459,7 @@ class Sponsors extends Component {
             marginBottom: "25px",
             marginLeft:
               isMobile && totalSponsor.length === 2
-                ? "10px"
+                ? "25px"
                 : isMobile
                 ? "15px"
                 : "0px",

@@ -61,7 +61,7 @@ const MainContainer = styled.p`
   padding-top: ${(props) => (props.index > 1 ? "45px" : "0px")};
   padding-left: ${(props) =>
     props.index === 0 && props.totalNumberOfSponsor > 2
-      ? "260px"
+      ? "220px"
       : props.index === 1
       ? "16px"
       : "0px"};
