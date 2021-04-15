@@ -4236,7 +4236,7 @@ exports[`user translation should return loader langue in url = first selected la
                   Dernière trad
                 </th>
               </tr>
-            </txz>
+            </thead>
             <tbody>
               <tr
                 className="bg-blancSimple"
