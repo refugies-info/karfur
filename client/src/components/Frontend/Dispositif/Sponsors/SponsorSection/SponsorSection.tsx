@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 interface Props {
+  index: number;
+  totalNumberOfSponsor: number;
   sponsor: {
     type: string;
     object: {
@@ -17,6 +19,7 @@ interface Props {
 }
 
 const SectionTitle = styled.p`
+  text-align: left;
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -53,15 +56,26 @@ const SponsorTitle = styled.p`
 `;
 
 const MainContainer = styled.p`
+  padding-right: ${(props) =>
+    props.index === props.totalNumberOfSponsor - 1 ? "40px" : "0px"};
+  padding-top: ${(props) => (props.index > 1 ? "45px" : "0px")};
+  padding-left: ${(props) =>
+    props.index === 0 && props.totalNumberOfSponsor > 2 ? "260px" : "0px"};
   display: flex;
   flex-direction: column;
+  padding-left: ${(props) => (props.index === 1 ? "16px" : "")};
+  border-left: ${(props) =>
+    props.index === 1 ? "2px solid rgb(255, 255, 255)" : ""};
 `;
 
 export const SponsorSection = (props: Props) => {
   return (
     <>
       {props.sponsor.type === "mainSponsor" ? (
-        <MainContainer>
+        <MainContainer
+          index={props.index}
+          totalNumberOfSponsor={props.totalNumberOfSponsor}
+        >
           <SectionTitle>Responsable</SectionTitle>
           <SponsorCard>
             <ImageLink
@@ -79,8 +93,11 @@ export const SponsorSection = (props: Props) => {
           </SponsorCard>
         </MainContainer>
       ) : props.sponsor.type === "deduplicatedSponsors" ? (
-        <MainContainer>
-          <SectionTitle>Partenaires</SectionTitle>
+        <MainContainer
+          index={props.index}
+          totalNumberOfSponsor={props.totalNumberOfSponsor}
+        >
+          {props.index === 1 && <SectionTitle>Partenaires</SectionTitle>}
           <SponsorCard>
             {props.sponsor.object.link &&
             props.sponsor.object.picture &&

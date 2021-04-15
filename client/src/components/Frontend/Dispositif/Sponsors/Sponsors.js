@@ -152,6 +152,14 @@ const SponsorCard = styled.div`
     border: ${(props) => (props.add ? "2px solid #212121" : "none")};
   }
 `;
+const MobileSponsorSection = styled.div`
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  overflow-x: auto;
+  padding-left: 250px;
+  margin-left: -50px;
+`;
 
 const burl =
   process.env.REACT_APP_ENV === "development"
@@ -471,22 +479,19 @@ class Sponsors extends Component {
             )}
         </div>
         {isMobile && totalSponsor.length > 1 && (
-          <div
-            style={{
-              textAlign: "center",
-              display: "flex",
-              justifyContent: "center",
-              overflowX: "auto",
-              paddingLeft: "240px",
-              marginLeft: "-50px",
-            }}
-          >
-            {totalSponsor.map((sponsor) => {
+          <MobileSponsorSection>
+            {totalSponsor.map((sponsor, index) => {
               return (
-                <SponsorSection key={sponsor} sponsor={sponsor} burl={burl} />
+                <SponsorSection
+                  totalNumberOfSponsor={totalSponsor.length}
+                  index={index}
+                  key={sponsor}
+                  sponsor={sponsor}
+                  burl={burl}
+                />
               );
             })}
-          </div>
+          </MobileSponsorSection>
         )}
         {(!isMobile || totalSponsor.length === 1) && (
           <Row className="sponsor-images">
