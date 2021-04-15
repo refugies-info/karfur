@@ -457,7 +457,12 @@ class Sponsors extends Component {
             flexDirection: "row",
             justifyContent: "space-between",
             marginBottom: "25px",
-            marginLeft: isMobile ? "15px" : "0px",
+            marginLeft:
+              isMobile && totalSponsor.length === 2
+                ? "10px"
+                : isMobile
+                ? "15px"
+                : "0px",
           }}
         >
           <h5 className="">{"Proposé par"}</h5>

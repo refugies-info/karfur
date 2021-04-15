@@ -60,10 +60,14 @@ const MainContainer = styled.p`
     props.index === props.totalNumberOfSponsor - 1 ? "40px" : "0px"};
   padding-top: ${(props) => (props.index > 1 ? "45px" : "0px")};
   padding-left: ${(props) =>
-    props.index === 0 && props.totalNumberOfSponsor > 2 ? "260px" : "0px"};
+    props.index === 0 && props.totalNumberOfSponsor > 2
+      ? "260px"
+      : props.index === 1
+      ? "16px"
+      : "0px"};
   display: flex;
   flex-direction: column;
-  padding-left: ${(props) => (props.index === 1 ? "16px" : "")};
+
   border-left: ${(props) =>
     props.index === 1 ? "2px solid rgb(255, 255, 255)" : ""};
 `;
@@ -76,7 +80,12 @@ export const SponsorSection = (props: Props) => {
           index={props.index}
           totalNumberOfSponsor={props.totalNumberOfSponsor}
         >
-          <SectionTitle>Responsable</SectionTitle>
+          <SectionTitle
+            index={props.index}
+            totalNumberOfSponsor={props.totalNumberOfSponsor}
+          >
+            Responsable
+          </SectionTitle>
           <SponsorCard>
             <ImageLink
               href={`${props.burl}annuaire/${props.sponsor.object._id}`}
