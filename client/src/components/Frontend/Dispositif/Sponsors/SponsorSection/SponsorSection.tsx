@@ -41,7 +41,7 @@ const SponsorCard = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 24px;
-  margin-right: 30px;
+  margin-right: 16px;
   width: 214px;
   height: 303px;
   background: #eaeaea;
