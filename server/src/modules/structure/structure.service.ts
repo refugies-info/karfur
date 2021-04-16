@@ -59,3 +59,17 @@ export const checkIfUserIsAuthorizedToModifyStructure = async (
   }
   return true;
 };
+
+export const getStructureMembers = async (structureId: ObjectId) => {
+  const structureNeededFields = { membres: 1 };
+  const structure = await getStructureFromDB(
+    structureId,
+    false,
+    structureNeededFields
+  );
+
+  if (!structure || !structure.membres || structure.membres.length === 0) {
+    return [];
+  }
+  return structure.membres;
+};

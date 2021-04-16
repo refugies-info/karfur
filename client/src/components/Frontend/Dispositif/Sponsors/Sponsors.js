@@ -131,6 +131,7 @@ const SponsorCard = styled.div`
   align-items: center;
   padding: 24px;
   margin-right: 16px;
+  margin-left: ${(props) => (props.isMobile ? "15px" : "0px")};
 
   width: 214px;
   height: ${(props) => (props.disableEdit ? "303px" : "345px")};
@@ -150,7 +151,7 @@ const MobileSponsorSection = styled.div`
   text-align: center;
   justify-content: center;
   overflow-x: auto;
-  padding-left: 250px;
+  padding-left: 230px;
   margin-left: -50px;
 `;
 
@@ -456,6 +457,12 @@ class Sponsors extends Component {
             flexDirection: "row",
             justifyContent: "space-between",
             marginBottom: "25px",
+            marginLeft:
+              isMobile && totalSponsor.length === 2
+                ? "25px"
+                : isMobile
+                ? "15px"
+                : "0px",
           }}
         >
           <h5 className="">{"Proposé par"}</h5>
@@ -493,7 +500,7 @@ class Sponsors extends Component {
                 <SectionTitle>Responsable</SectionTitle>
               ) : null}
               {mainSponsor._id ? (
-                <SponsorCard disableEdit={disableEdit}>
+                <SponsorCard disableEdit={disableEdit} isMobile={isMobile}>
                   <ImageLink
                     href={`${burl}annuaire/${mainSponsor._id}`}
                     target="_blank"

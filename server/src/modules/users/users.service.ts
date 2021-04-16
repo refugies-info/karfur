@@ -7,6 +7,8 @@ import {
 import { ObjectId } from "mongoose";
 import { getRoleByName } from "../../controllers/role/role.repository";
 import { UserDoc } from "../../schema/schemaUser";
+import { asyncForEach } from "../../libs/asyncForEach";
+import { UserForMailing } from "../../types/interface";
 
 const getUserRoles = (roles: ObjectId[] | null, newRole: ObjectId) => {
   if (!roles) return [newRole];
@@ -61,4 +63,30 @@ export const removeRoleAndStructureOfUser = async (
 export const proceedWithLogin = async (user: UserDoc) => {
   const userToSave = { last_connected: new Date() };
   return await updateUserInDB(user._id, userToSave);
+};
+
+export const getUsersFromStructureMembres = async (
+  structureMembres: { userId: ObjectId }[]
+) => {
+  logger.info("[getUsersFromStructureMembres] received");
+  let result: UserForMailing[] = [];
+  const userNeededFields = {
+    username: 1,
+    email: 1,
+    status: 1,
+  };
+  await asyncForEach(structureMembres, async (membre) => {
+    if (!membre.userId) return;
+
+    const membreFromDB = await getUserById(membre.userId, userNeededFields);
+    if (membreFromDB.status === "Exclu") return;
+    if (!membreFromDB.email) return;
+    result.push({
+      username: membreFromDB.username,
+      _id: membreFromDB._id,
+      email: membreFromDB.email,
+    });
+  });
+
+  return result;
 };

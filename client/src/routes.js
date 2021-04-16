@@ -209,7 +209,7 @@ const routes = [
     path: "/backend/user-dash-structure",
     name: "Réfugiés.info - Ma structure",
     component: UserStructure,
-    restriction: ["Admin", "hasStructure"],
+    restriction: ["hasStructure"],
   },
   {
     path: "/backend/user-dash-structure-selected",
