@@ -239,7 +239,7 @@ export class Dispositif extends Component {
             this._isMounted = false;
             return this.props.history.push("/");
           }
-          if (dispositif.status === "Actif") {
+          if (dispositif.status === "Actif" && !props.translating) {
             const nbVues = dispositif.nbVues ? dispositif.nbVues + 1 : 1;
             API.updateNbVuesOnDispositif({
               query: { id: dispositif._id, nbVues },

@@ -1,10 +1,11 @@
 import { DispositifPopulatedDoc } from "../../schema/schemaDispositif";
-import logger = require("../../logger");
+import logger from "../../logger";
 import moment from "moment";
 import { ObjectId } from "mongoose";
 import { IDispositif } from "../../types/interface";
 import { departmentRegionCorrespondency } from "./data";
 import _ from "lodash";
+import { isTitreInformatifObject } from "../../types/typeguards";
 
 export const filterDispositifsForDraftReminders = (
   dispositifs: DispositifPopulatedDoc[],
@@ -208,4 +209,14 @@ export const getRegionFigures = (dispositifs: Result[]) => {
       nbDepartmentsWithDispo,
     };
   });
+};
+
+export const getTitreInfoOrMarque = (
+  titre: string | Record<string, string> | null
+): string => {
+  if (!titre) return "";
+  if (isTitreInformatifObject(titre)) {
+    return titre.fr;
+  }
+  return titre;
 };

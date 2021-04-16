@@ -57,7 +57,7 @@ export const sharingOptions = (
     navigator
       .share({
         title: titreInformatif,
-        text: typeContenu,
+        text: typeContenu + " " + titreInformatif,
         url: window.location.href,
       })
       .then(() => {})
