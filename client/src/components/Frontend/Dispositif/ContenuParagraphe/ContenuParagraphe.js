@@ -56,7 +56,6 @@ const StyledHeader = styled.div`
 `;
 const MobileInfoCardsSection = styled.div`
   display: flex;
-  text-align: center;
   justify-content: center;
 `;
 
