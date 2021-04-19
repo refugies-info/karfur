@@ -52,14 +52,18 @@ const languageModal = (props) => {
       >
         <ModalHeader toggle={props.toggle}>
           <span className="title">
-            {t("Homepage.Choisir une langue", "Choisir une langue")}
+            {!isMobile &&
+              t("Homepage.Choisir une langue", "Choisir une langue")}
+            {isMobile && t("Homepage.Je parle", "Je parle :")}
           </span>
-          <div className="sous-titre">
-            {t(
-              "Homepage.site dispo",
-              "Réfugiés.info est disponible dans les langues suivantes :"
-            )}
-          </div>
+          {!isMobile && (
+            <div className="sous-titre">
+              {t(
+                "Homepage.site dispo",
+                "Réfugiés.info est disponible dans les langues suivantes :"
+              )}
+            </div>
+          )}
         </ModalHeader>
         <ModalBody>
           <ListGroup>

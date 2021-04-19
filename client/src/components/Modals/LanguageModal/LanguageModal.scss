@@ -29,6 +29,10 @@
   .modal-title {
     width: 100%;
     cursor: default;
+    @include media-max("tablet-up") {
+      text-align: center;
+    }
+
     .title {
       font-style: normal;
       font-weight: bold;
