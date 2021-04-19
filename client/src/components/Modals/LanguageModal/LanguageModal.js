@@ -134,7 +134,14 @@ const languageModal = (props) => {
                           id={languages[element].langueCode}
                         ></i>
                       </Col>
-                      <Col xl="5" lg="5" md="5" sm="5" xs="5">
+                      <Col
+                        xl="5"
+                        lg="5"
+                        md="5"
+                        sm="5"
+                        xs="5"
+                        className="language-name"
+                      >
                         <span>
                           <b>{languages[element].langueFr}</b> -{" "}
                           {languages[element].langueLoc}
