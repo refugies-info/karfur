@@ -12,7 +12,6 @@ import {
 import { withTranslation } from "react-i18next";
 import { colorAvancement } from "../../Functions/ColorFunctions";
 import { NavHashLink } from "react-router-hash-link";
-
 import "./LanguageModal.scss";
 import FButton from "../../FigmaUI/FButton/FButton";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
@@ -54,7 +53,7 @@ const languageModal = (props) => {
           <span className="title">
             {!isMobile &&
               t("Homepage.Choisir une langue", "Choisir une langue")}
-            {isMobile && t("Homepage.Je parle", "Je parle :")}
+            {isMobile && t("Homepage.Ma langue", "Ma langue")}
           </span>
           {!isMobile && (
             <div className="sous-titre">

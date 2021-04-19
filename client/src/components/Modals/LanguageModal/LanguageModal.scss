@@ -24,14 +24,21 @@
       opacity: 1;
       top: 20px;
       right: 20px;
+      @include media-max("tablet-up") {
+        color: white;
+        background-color: black;
+        font-size: 20px;
+        border-radius: 100%;
+        width: 40px;
+        height: 40px;
+        top: 35px;
+        right: 35px;
+      }
     }
   }
   .modal-title {
     width: 100%;
     cursor: default;
-    @include media-max("tablet-up") {
-      text-align: center;
-    }
 
     .title {
       font-style: normal;
@@ -129,5 +136,8 @@
   }
   .close {
     outline: none;
+    @include media-max("tablet-up") {
+      padding: 0;
+    }
   }
 }
