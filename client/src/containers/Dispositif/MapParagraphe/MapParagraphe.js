@@ -179,7 +179,7 @@ class MapParagraphe extends PureComponent {
               alignItems: "center",
             }}
           >
-            <div style={{ marginLeft: 30 }}>
+            <div style={{ marginLeft: isMobile ? 6 : 30 }}>
               <EVAIcon name="pin-outline" className="mr-10" />
               <b>
                 {t(
