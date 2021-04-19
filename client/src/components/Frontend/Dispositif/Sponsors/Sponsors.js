@@ -131,13 +131,8 @@ const SponsorCard = styled.div`
   align-items: center;
   padding: 24px;
   margin-right: 16px;
-  margin-left: ${(props) => (props.isMobile ? "15px" : "0px")};
-
   width: 214px;
   height: ${(props) => (props.disableEdit ? "303px" : "345px")};
-
-  /* Noir/Blanc */
-
   background: ${(props) => (props.add ? "#F9EF99" : "#eaeaea")};
   border-radius: 12px;
   cursor: ${(props) =>
@@ -148,11 +143,7 @@ const SponsorCard = styled.div`
 `;
 const MobileSponsorSection = styled.div`
   display: flex;
-  text-align: center;
-  justify-content: center;
   overflow-x: auto;
-  padding-left: 230px;
-  margin-left: -50px;
 `;
 
 const burl =
@@ -448,7 +439,7 @@ class Sponsors extends Component {
 
     return (
       <div
-        className="sponsor-footer backgroundColor-darkColor"
+        className={"sponsor-footer backgroundColor-darkColor"}
         onMouseEnter={() => this.props.updateUIArray(-7)}
       >
         <div
@@ -456,13 +447,7 @@ class Sponsors extends Component {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
-            marginBottom: "25px",
-            marginLeft:
-              isMobile && totalSponsor.length === 2
-                ? "25px"
-                : isMobile
-                ? "15px"
-                : "0px",
+            marginBottom: "10px",
           }}
         >
           <h5 className="">{"Proposé par"}</h5>

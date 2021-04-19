@@ -2,7 +2,12 @@
 @import "src/scss/global.scss";
 
 .cards.row {
-  padding: 0 40px;
+  padding: 0 30px;
+  margin-left: 0px;
+  margin-right: 0px;
+  @include media-max("tablet-up") {
+    padding: 0 6px;
+  }
 
   .card-col {
     padding: 0 0 0 10px;
@@ -1365,7 +1370,7 @@
   }
   .card-col:last-child {
     @include media-max("tablet-up") {
-      padding: 0 40px 0 10px;
+      padding: 0 16px 0 10px;
     }
   }
 }
