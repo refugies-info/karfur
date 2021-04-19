@@ -960,8 +960,6 @@ export class AdvancedSearch extends Component {
       ) || {};
     const langueCode =
       this.props.langues.length > 0 && current ? current.langueCode : "fr";
-    // eslint-disable-next-line no-console
-    console.log("recherche", recherche);
     return (
       <div className="animated fadeIn advanced-search">
         <div>
