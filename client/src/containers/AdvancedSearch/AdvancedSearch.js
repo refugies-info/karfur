@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import {
@@ -327,8 +326,14 @@ export class AdvancedSearch extends Component {
             draft.recherche[2].active = true;
           }
           if (dep && city) {
-            // eslint-disable-next-line no-console
-            console.log("recherche", draft.recherche);
+            let locationQuery = [
+              { long_name: decodeURIComponent(city) },
+              { long_name: decodeURIComponent(dep) },
+            ];
+            draft.recherche[1].query = locationQuery;
+            draft.recherche[1].value = decodeURIComponent(city);
+            draft.recherche[1].active = true;
+            this.switchGeoSearch(true);
           }
           if (niveauFrancais) {
             draft.recherche[3].name = decodeURIComponent(niveauFrancais);
@@ -955,7 +960,8 @@ export class AdvancedSearch extends Component {
       ) || {};
     const langueCode =
       this.props.langues.length > 0 && current ? current.langueCode : "fr";
-
+    // eslint-disable-next-line no-console
+    console.log("recherche", recherche);
     return (
       <div className="animated fadeIn advanced-search">
         <div>

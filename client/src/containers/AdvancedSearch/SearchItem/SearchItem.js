@@ -32,6 +32,16 @@ export class SearchItem extends Component {
     if (this.props.geoSearch !== prevProps.geoSearch && !this.props.geoSearch) {
       this.setState({ ville: "", villeAuto: "" });
     }
+    if (
+      this.state.ville === "" &&
+      this.props.item.queryName === "localisation" &&
+      this.props.item.value
+    ) {
+      this.setState({
+        ville: this.props.item.value,
+        villeAuto: this.props.item.value,
+      });
+    }
   }
 
   onPlaceSelected = (place) => {
@@ -57,7 +67,10 @@ export class SearchItem extends Component {
     const { t, item, keyValue, isBigDesktop } = this.props;
     const { dropdownOpen, isMounted, ville, villeAuto } = this.state;
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
-
+    // // eslint-disable-next-line no-console
+    // console.log("props", this.props);
+    // eslint-disable-next-line no-console
+    console.log("rerender", this.props);
     return (
       <div className="search-col">
         <span
