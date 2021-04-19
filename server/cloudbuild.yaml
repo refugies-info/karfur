@@ -5,14 +5,14 @@ steps:
       [
         "build",
         "-t",
-        "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
+        "eu.gcr.io/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
         "-t",
-        "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:latest",
+        "eu.gcr.io/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:latest",
         "./server",
       ]
   # Push the container image to Container Registry
   - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}"]
+    args: ["push", "eu.gcr.io/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}"]
   # Deploy container image to Cloud Run
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     entrypoint: gcloud
@@ -28,7 +28,7 @@ steps:
         "--region",
         "${_REGION}",
         "--image",
-        "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
+        "eu.gcr.io/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
         "--memory",
         "1G",
         "--set-env-vars",
