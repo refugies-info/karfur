@@ -48,23 +48,18 @@ const SponsorCard = styled.div`
   border-radius: 12px;
 `;
 
-const SponsorTitle = styled.p`
+const SponsorTitle = styled.div`
   font-weight: bold;
   font-size: 18px;
   color: #212121;
   text-align: center;
 `;
 
-const MainContainer = styled.p`
+const MainContainer = styled.div`
   padding-right: ${(props) =>
-    props.index === props.totalNumberOfSponsor - 1 ? "40px" : "0px"};
+    props.index === props.totalNumberOfSponsor - 1 ? "16px" : "0px"};
   padding-top: ${(props) => (props.index > 1 ? "45px" : "0px")};
-  padding-left: ${(props) =>
-    props.index === 0 && props.totalNumberOfSponsor > 2
-      ? "220px"
-      : props.index === 1
-      ? "16px"
-      : "0px"};
+  padding-left: ${(props) => (props.index === 1 ? "16px" : "0px")};
   display: flex;
   flex-direction: column;
 

@@ -2,7 +2,6 @@ import React from "react";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 
 import { colors } from "colors";
-import { isMobile } from "react-device-detect";
 
 const { compose, withProps } = require("recompose");
 const {
@@ -22,15 +21,7 @@ const mapComponent = compose(
       "&v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: "100%" }} />,
     containerElement: <div style={{ height: "470px", width: "100%" }} />,
-    mapElement: (
-      <div
-        style={
-          isMobile
-            ? { height: "100%", width: "100%", left: "5px" }
-            : { height: "100%", width: "100%" }
-        }
-      />
-    ),
+    mapElement: <div style={{ height: "100%", width: "100%" }} />,
   }),
   withScriptjs,
   withGoogleMap
