@@ -19,4 +19,3 @@ COPY --from=us-docker.pkg.dev/berglas/berglas/berglas:latest /bin/berglas /bin/b
 
 ENTRYPOINT exec /bin/berglas exec -- npm run start
 
-
