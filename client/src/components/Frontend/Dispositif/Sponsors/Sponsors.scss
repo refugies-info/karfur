@@ -8,9 +8,6 @@ $tailleBig: 80px;
   color: white;
   background-color: $darkColor;
   padding: 32px;
-  @include media-max("lg-limit") {
-    width: 116%;
-  }
 
   h5 {
     margin-bottom: 20px;
