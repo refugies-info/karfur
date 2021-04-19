@@ -2,6 +2,7 @@ import { IDispositif, AudienceAge } from "../../types/interface";
 import {
   Dispositif,
   DispositifPopulatedDoc,
+  DispositifDoc,
 } from "../../schema/schemaDispositif";
 import { ObjectId } from "mongoose";
 
@@ -119,12 +120,20 @@ export const getDispositifsWithCreatorId = async (
 
 export const getDispositifByIdWithMainSponsor = async (
   id: ObjectId,
-  neededFields: Record<string, number>
-) =>
-  await Dispositif.findOne({ _id: id }, neededFields).populate("mainSponsor");
-
+  neededFields: Record<string, number> | "all"
+) => {
+  if (neededFields === "all") {
+    return await Dispositif.findOne({ _id: id }).populate("mainSponsor");
+  }
+  return await Dispositif.findOne({ _id: id }, neededFields).populate(
+    "mainSponsor"
+  );
+};
 export const getActiveContents = async (neededFields: Record<string, number>) =>
   await Dispositif.find({ status: "Actif" }, neededFields);
 
 export const getDispositifByIdWithAllFields = async (id: ObjectId) =>
   await Dispositif.findOne({ _id: id });
+
+export const createDispositifInDB = async (dispositif: DispositifDoc) =>
+  await new Dispositif(dispositif).save();

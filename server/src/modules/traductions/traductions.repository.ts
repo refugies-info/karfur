@@ -27,3 +27,35 @@ export const deleteTradsInDB = async (
     langueCible,
     isExpert: { $ne: true },
   });
+
+export const getExpertTraductionByLanguage = async (
+  articleId: ObjectId,
+  langueCible: string
+) =>
+  await Traduction.find(
+    {
+      articleId,
+      langueCible,
+      isExpert: true,
+    },
+    {},
+    { sort: { updatedAt: -1 } }
+  );
+
+export const updateTradsWithARevoir = async (
+  articleId: ObjectId,
+  langueCible: string,
+  avancement: number
+) =>
+  await Traduction.updateMany(
+    { articleId, langueCible },
+    { status: "À revoir", avancement },
+    { upsert: false }
+  );
+
+export const updateTradInDB = async (_id: ObjectId, trad: any) =>
+  await Traduction.findOneAndUpdate({ _id }, trad, {
+    upsert: true,
+    // @ts-ignore
+    new: true,
+  });
