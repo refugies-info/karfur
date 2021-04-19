@@ -143,11 +143,7 @@ const SponsorCard = styled.div`
 `;
 const MobileSponsorSection = styled.div`
   display: flex;
-  text-align: center;
-  justify-content: center;
   overflow-x: auto;
-  padding-left: 230px;
-  margin-left: -50px;
 `;
 
 const burl =
@@ -443,7 +439,7 @@ class Sponsors extends Component {
 
     return (
       <div
-        className="sponsor-footer backgroundColor-darkColor"
+        className={"sponsor-footer backgroundColor-darkColor"}
         onMouseEnter={() => this.props.updateUIArray(-7)}
       >
         <div
@@ -451,13 +447,7 @@ class Sponsors extends Component {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
-            marginBottom: "25px",
-            marginLeft:
-              isMobile && totalSponsor.length === 2
-                ? "25px"
-                : isMobile
-                ? "15px"
-                : "0px",
+            marginBottom: "10px",
           }}
         >
           <h5 className="">{"Proposé par"}</h5>
