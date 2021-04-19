@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import {
@@ -294,13 +295,15 @@ export class AdvancedSearch extends Component {
     this.retrieveCookies();
     let tag = querySearch(this.props.location.search).tag;
     let bottomValue = querySearch(this.props.location.search).bottomValue;
+    let dep = querySearch(this.props.location.search).dep;
+    let city = querySearch(this.props.location.search).city;
     let topValue = querySearch(this.props.location.search).topValue;
     let niveauFrancais = querySearch(this.props.location.search).niveauFrancais;
     let niveauFrancaisObj = this.state.recherche[3].children.find(
       (elem) => elem.name === decodeURIComponent(niveauFrancais)
     );
     let filter = querySearch(this.props.location.search).filter;
-    if (tag || bottomValue || topValue || niveauFrancais) {
+    if (tag || bottomValue || topValue || niveauFrancais || dep || city) {
       this.setState(
         produce((draft) => {
           if (tag) {
@@ -323,6 +326,10 @@ export class AdvancedSearch extends Component {
             draft.recherche[2].query = draft.recherche[2].value;
             draft.recherche[2].active = true;
           }
+          if (dep && city) {
+            // eslint-disable-next-line no-console
+            console.log("recherche", draft.recherche);
+          }
           if (niveauFrancais) {
             draft.recherche[3].name = decodeURIComponent(niveauFrancais);
             draft.recherche[3].value = decodeURIComponent(niveauFrancais);
@@ -340,6 +347,8 @@ export class AdvancedSearch extends Component {
             "audienceAge.topValue": bottomValue
               ? { $gte: parseInt(bottomValue, 10) }
               : "",
+            city: decodeURIComponent(city),
+            dep: decodeURIComponent(dep),
             niveauFrancais: niveauFrancaisObj ? niveauFrancaisObj.query : "",
           })
       );
@@ -442,6 +451,8 @@ export class AdvancedSearch extends Component {
         search: qs.stringify(newQueryParam),
       });
     }
+    delete query.dep;
+    delete query.city;
 
     API.getDispositifs({
       query: {
@@ -457,13 +468,6 @@ export class AdvancedSearch extends Component {
 
         if (query["tags.name"]) {
           //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier
-          /*           dispositifs = dispositifs.sort(
-            (a, b) =>
-              a.tags.findIndex((x) =>
-                x ? x.short === query["tags.name"] : 99
-              ) -
-              b.tags.findIndex((x) => (x ? x.short === query["tags.name"] : 99))
-          ); */
           dispositifs = dispositifs.sort((a, b) =>
             _.get(a, "tags.0.name", {}) === this.state.recherche[0].query
               ? -1
