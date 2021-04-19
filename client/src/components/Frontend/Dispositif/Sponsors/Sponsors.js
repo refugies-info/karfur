@@ -131,13 +131,8 @@ const SponsorCard = styled.div`
   align-items: center;
   padding: 24px;
   margin-right: 16px;
-  margin-left: ${(props) => (props.isMobile ? "15px" : "0px")};
-
   width: 214px;
   height: ${(props) => (props.disableEdit ? "303px" : "345px")};
-
-  /* Noir/Blanc */
-
   background: ${(props) => (props.add ? "#F9EF99" : "#eaeaea")};
   border-radius: 12px;
   cursor: ${(props) =>
