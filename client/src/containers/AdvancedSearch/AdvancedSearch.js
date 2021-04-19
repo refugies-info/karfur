@@ -395,12 +395,17 @@ export class AdvancedSearch extends Component {
     let query =
       Nquery ||
       this.state.recherche
-        .filter((x) => x.active && x.queryName !== "localisation")
+        .filter((x) => x.active)
         .map((x) =>
           x.queryName === "audienceAge"
             ? {
                 "audienceAge.bottomValue": { $lte: x.topValue },
                 "audienceAge.topValue": { $gte: x.bottomValue },
+              }
+            : x.queryName === "localisation"
+            ? {
+                city: x.query[0].long_name,
+                dep: x.query[1].long_name,
               }
             : { [x.queryName]: x.query }
         )
@@ -422,8 +427,13 @@ export class AdvancedSearch extends Component {
         niveauFrancais: query["niveauFrancais"]
           ? this.state.recherche[3].value
           : undefined,
+        city: query["city"]
+          ? this.state.recherche[1].query[0].long_name
+          : undefined,
+        dep: query["dep"]
+          ? this.state.recherche[1].query[1].long_name
+          : undefined,
       };
-
       Object.keys(newQueryParam).forEach((key) =>
         newQueryParam[key] === undefined ? delete newQueryParam[key] : {}
       );
@@ -941,16 +951,6 @@ export class AdvancedSearch extends Component {
       ) || {};
     const langueCode =
       this.props.langues.length > 0 && current ? current.langueCode : "fr";
-    /* 
-    if (recherche[0].active) {
-      dispositifs = dispositifs.sort((a, b) =>
-        _.get(a, "tags.0.name", {}) === recherche[0].query
-          ? -1
-          : _.get(b, "tags.0.name", {}) === recherche[0].query
-          ? 1
-          : 0
-      );
-    } */
 
     return (
       <div className="animated fadeIn advanced-search">
