@@ -162,7 +162,6 @@ class MapParagraphe extends PureComponent {
             <FButton
               type="outline-black"
               name={"share-outline"}
-              className="ml-10"
               onClick={this.props.toggleShareContentOnMobileModal}
             >
               {this.props.t("Dispositif.Partager Fiche", "Partager la fiche")}
@@ -179,7 +178,7 @@ class MapParagraphe extends PureComponent {
               alignItems: "center",
             }}
           >
-            <div style={{ marginLeft: 30 }}>
+            <div style={{ marginLeft: isMobile ? 6 : 30 }}>
               <EVAIcon name="pin-outline" className="mr-10" />
               <b>
                 {t(

@@ -1924,7 +1924,6 @@ export class Dispositif extends Component {
                     <FButton
                       type="outline-black"
                       name={"share-outline"}
-                      className="ml-10"
                       onClick={() => this.toggleShareContentOnMobileModal()}
                     >
                       {this.props.t(

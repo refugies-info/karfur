@@ -56,7 +56,6 @@ const StyledHeader = styled.div`
 `;
 const MobileInfoCardsSection = styled.div`
   display: flex;
-  justify-content: center;
 `;
 
 const contenuParagraphe = (props) => {
@@ -84,8 +83,8 @@ const contenuParagraphe = (props) => {
 
   return (
     <div
-      className={item.type === "cards" ? "row cards" : "sous-paragraphe"}
-      style={isMobile ? { overflowX: "auto" } : {}}
+      className={item.type === "cards" ? "row cards " : "sous-paragraphe"}
+      style={isMobile ? { overflowX: "auto", overflowY: "hidden" } : {}}
     >
       {isMobile && item.type === "cards" && item.children.length > 1 && (
         <MobileInfoCardsSection>
@@ -476,7 +475,6 @@ const contenuParagraphe = (props) => {
             <FButton
               type="outline-black"
               name={"share-outline"}
-              className="ml-10"
               onClick={props.toggleShareContentOnMobileModal}
             >
               {props.t("Dispositif.Partager Fiche", "Partager la fiche")}
