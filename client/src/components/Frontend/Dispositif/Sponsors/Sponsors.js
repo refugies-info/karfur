@@ -131,7 +131,6 @@ const SponsorCard = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 24px;
-  margin-right: 16px;
   width: 214px;
   height: ${(props) => (props.disableEdit ? "303px" : "345px")};
   background: ${(props) => (props.add ? "#F9EF99" : "#eaeaea")};
@@ -141,6 +140,8 @@ const SponsorCard = styled.div`
   &:hover {
     border: ${(props) => (props.add ? "2px solid #212121" : "none")};
   }
+  margin-left: ${(props) => (props.isMobile ? "32px" : "0px")};
+  margin-right: ${(props) => (props.isMobile ? "32px" : "16px")};
 `;
 const MobileSponsorSection = styled.div`
   display: flex;
