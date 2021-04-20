@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from "react";
 import styled from "styled-components";
 import Icon from "react-eva-icons";
@@ -58,10 +59,26 @@ const ButtonTitle = styled.div`
 `;
 
 export const MobileAdvancedSearch = (props: Props) => {
-  const [showModal, setShowModal] = useState(false);
+  const [showTagModal, setShowTagModal] = useState(false);
+  const [showAgeModal, setShowAgeModal] = useState(false);
+  const [showFrenchModal, setShowFrenchModal] = useState(false);
 
-  const toggleShowModal = () => setShowModal(!showModal);
-
+  const toggleShowModal = (modal: string) => {
+    switch (modal) {
+      case "thème":
+        setShowTagModal(!showTagModal);
+        break;
+      case "age":
+        setShowAgeModal(!showAgeModal);
+        break;
+      case "french":
+        setShowFrenchModal(!showFrenchModal);
+        break;
+      default:
+        break;
+    }
+  };
+  console.log("data", filtres);
   return (
     <MainContainer>
       <SearchBoutton>
@@ -69,7 +86,7 @@ export const MobileAdvancedSearch = (props: Props) => {
         <ButtonTitle> {props.t("Rechercher", "Rechercher")}</ButtonTitle>
       </SearchBoutton>
       <TextTitle> {props.t("Je cherche à", "Je cherche à")}</TextTitle>
-      <FilterButton onClick={toggleShowModal}>
+      <FilterButton onClick={() => toggleShowModal("thème")}>
         <ButtonTitle>
           {props.t("Tags.choisir un thème", "choisir un thème")}
         </ButtonTitle>
@@ -83,29 +100,56 @@ export const MobileAdvancedSearch = (props: Props) => {
         <Icon name="pin" fill="#212121" size="large" />
       </FilterButton>
       <TextTitle> {props.t("SearchItem.J'ai", "J'ai")}</TextTitle>
-      <FilterButton>
+      <FilterButton onClick={() => toggleShowModal("age")}>
         <ButtonTitle>
           {props.t("SearchItem.choisir mon âge", "choisir mon âge")}
         </ButtonTitle>
         <Icon name="chevron-down" fill="#212121" size="large" />
       </FilterButton>
       <TextTitle> {props.t("SearchItem.Je parle", "Je parle")}</TextTitle>
-      <FilterButton>
+      <FilterButton onClick={() => toggleShowModal("french")}>
         <ButtonTitle>
           {props.t("Tags.niveau de français", "niveau de français")}
         </ButtonTitle>
         <Icon name="chevron-down" fill="#212121" size="large" />
       </FilterButton>
-      {showModal && (
+      {showTagModal && (
         <MobileSearchFilterModal
           t={props.t}
+          type="thème"
           title="Tags.thème"
           defaultTitle="thème"
           sentence="Je cherche à"
           defaultSentence="Je cherche à"
-          toggle={toggleShowModal}
-          show={showModal}
+          toggle={() => toggleShowModal("thème")}
+          show={showTagModal}
           data={filtres.tags}
+        />
+      )}
+      {showAgeModal && (
+        <MobileSearchFilterModal
+          t={props.t}
+          type="age"
+          title="SearchItem.choisir mon âge"
+          defaultTitle="choisir mon âge"
+          sentence="SearchItem.J'ai"
+          defaultSentence="J'ai'"
+          toggle={() => toggleShowModal("age")}
+          show={showAgeModal}
+          data={filtres.audienceAge}
+        />
+      )}
+      {showFrenchModal && (
+        <MobileSearchFilterModal
+          t={props.t}
+          type="french"
+          title="SearchItem.le français"
+          defaultTitle="le français"
+          sentence="SearchItem.Je parle"
+          defaultSentence="Je parle"
+          toggle={() => toggleShowModal("french")}
+          show={showFrenchModal}
+          data={filtres.niveauFrancais}
         />
       )}
     </MainContainer>

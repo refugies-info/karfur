@@ -7,6 +7,7 @@ import Icon from "react-eva-icons";
 
 const TextTitle = styled.div`
   width: 100%;
+  margin-right: 10px;
   padding-top: 14px;
 `;
 const ButtonTitle = styled.div`
@@ -27,11 +28,13 @@ const TitleContainer = styled.div`
 `;
 
 const FilterButton = styled.div`
+  align-items: center;
   padding: 16px;
   height: 53px;
   width: 100%;
   background-color: ${(props) => props.color};
-  color: #ffffff;
+  color: ${(props) => props.textColor};
+  text-align: ${(props) => props.textAlign};
   font-weight: 700;
   border-color: #212121;
   border-radius: 12px;
@@ -43,6 +46,7 @@ const FilterButton = styled.div`
 
 interface Props {
   toggle: () => void;
+  type: string;
   show: boolean;
   title: string;
   defaultTitle: string;
@@ -54,6 +58,7 @@ interface Props {
 export const MobileSearchFilterModal = (props: Props) => {
   return (
     <Modal isOpen={props.show} toggle={props.toggle} className="draft">
+      {/* Display Modal title */}
       <TitleContainer>
         <TextTitle> {props.t(props.sentence, props.defaultSentence)}</TextTitle>
         <ButtonTitle onClick={props.toggle}>
@@ -61,20 +66,32 @@ export const MobileSearchFilterModal = (props: Props) => {
           <Icon name="close" fill="#FFFFFF" size="large" />
         </ButtonTitle>
       </TitleContainer>
-
-      {props.data.map((item: any, index: React.Key | null | undefined) => {
+      {/* Display list of possible values */}
+      {props.data.map((item: any, index: any) => {
         return (
-          <FilterButton key={index} color={item.darkColor}>
-            {item.name}
-            {item.icon ? (
-              <Streamline
-                name={item.icon}
-                stroke={"white"}
-                width={22}
-                height={22}
-              />
+          <div key={index}>
+            {props.type === "thème" ? (
+              <FilterButton
+                color={item.darkColor}
+                textColor="white"
+                textAlign="left"
+              >
+                {item.name}
+                {item.icon ? (
+                  <Streamline
+                    name={item.icon}
+                    stroke={"white"}
+                    width={22}
+                    height={22}
+                  />
+                ) : null}
+              </FilterButton>
+            ) : props.type === "age" || props.type === "french" ? (
+              <FilterButton color="white" textColor="black" textAlign="center">
+                {item}
+              </FilterButton>
             ) : null}
-          </FilterButton>
+          </div>
         );
       })}
     </Modal>
