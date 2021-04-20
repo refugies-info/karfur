@@ -49,3 +49,17 @@ export const createUser = async (user: {
   last_connected: Date;
   // @ts-ignore
 }) => await User.create(user);
+
+export const addRoleAndContribToUser = (
+  userId: ObjectId,
+  roleId: ObjectId,
+  contribId: ObjectId
+) =>
+  User.findByIdAndUpdate(
+    { _id: userId },
+    {
+      $addToSet: { roles: roleId, contributions: contribId },
+    },
+    // @ts-ignore
+    { new: true }
+  );

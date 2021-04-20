@@ -1579,7 +1579,7 @@ export class Dispositif extends Component {
     dispositif.lastModificationDate = Date.now();
 
     logger.info("[valider_dispositif] dispositif before call", { dispositif });
-    API.add_dispositif(dispositif).then((data) => {
+    API.addDispositif(dispositif).then((data) => {
       const newDispo = data.data.data;
       if (!auto && this._isMounted) {
         Swal.fire("Yay...", "Enregistrement réussi !", "success").then(() => {
