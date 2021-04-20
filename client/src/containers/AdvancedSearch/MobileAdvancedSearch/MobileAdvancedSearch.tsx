@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState } from "react";
 import styled from "styled-components";
 import Icon from "react-eva-icons";
@@ -78,7 +77,7 @@ export const MobileAdvancedSearch = (props: Props) => {
         break;
     }
   };
-  console.log("data", filtres);
+
   return (
     <MainContainer>
       <SearchBoutton>
