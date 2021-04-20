@@ -294,13 +294,15 @@ export class AdvancedSearch extends Component {
     this.retrieveCookies();
     let tag = querySearch(this.props.location.search).tag;
     let bottomValue = querySearch(this.props.location.search).bottomValue;
+    let dep = querySearch(this.props.location.search).dep;
+    let city = querySearch(this.props.location.search).city;
     let topValue = querySearch(this.props.location.search).topValue;
     let niveauFrancais = querySearch(this.props.location.search).niveauFrancais;
     let niveauFrancaisObj = this.state.recherche[3].children.find(
       (elem) => elem.name === decodeURIComponent(niveauFrancais)
     );
     let filter = querySearch(this.props.location.search).filter;
-    if (tag || bottomValue || topValue || niveauFrancais) {
+    if (tag || bottomValue || topValue || niveauFrancais || dep || city) {
       this.setState(
         produce((draft) => {
           if (tag) {
@@ -323,6 +325,16 @@ export class AdvancedSearch extends Component {
             draft.recherche[2].query = draft.recherche[2].value;
             draft.recherche[2].active = true;
           }
+          if (dep && city) {
+            let locationQuery = [
+              { long_name: decodeURIComponent(city) },
+              { long_name: decodeURIComponent(dep) },
+            ];
+            draft.recherche[1].query = locationQuery;
+            draft.recherche[1].value = decodeURIComponent(city);
+            draft.recherche[1].active = true;
+            this.switchGeoSearch(true);
+          }
           if (niveauFrancais) {
             draft.recherche[3].name = decodeURIComponent(niveauFrancais);
             draft.recherche[3].value = decodeURIComponent(niveauFrancais);
@@ -340,6 +352,8 @@ export class AdvancedSearch extends Component {
             "audienceAge.topValue": bottomValue
               ? { $gte: parseInt(bottomValue, 10) }
               : "",
+            city: decodeURIComponent(city),
+            dep: decodeURIComponent(dep),
             niveauFrancais: niveauFrancaisObj ? niveauFrancaisObj.query : "",
           })
       );
@@ -395,12 +409,17 @@ export class AdvancedSearch extends Component {
     let query =
       Nquery ||
       this.state.recherche
-        .filter((x) => x.active && x.queryName !== "localisation")
+        .filter((x) => x.active)
         .map((x) =>
           x.queryName === "audienceAge"
             ? {
                 "audienceAge.bottomValue": { $lte: x.topValue },
                 "audienceAge.topValue": { $gte: x.bottomValue },
+              }
+            : x.queryName === "localisation"
+            ? {
+                city: x.query[0].long_name,
+                dep: x.query[1].long_name,
               }
             : { [x.queryName]: x.query }
         )
@@ -422,8 +441,13 @@ export class AdvancedSearch extends Component {
         niveauFrancais: query["niveauFrancais"]
           ? this.state.recherche[3].value
           : undefined,
+        city: query["city"]
+          ? this.state.recherche[1].query[0].long_name
+          : undefined,
+        dep: query["dep"]
+          ? this.state.recherche[1].query[1].long_name
+          : undefined,
       };
-
       Object.keys(newQueryParam).forEach((key) =>
         newQueryParam[key] === undefined ? delete newQueryParam[key] : {}
       );
@@ -432,6 +456,8 @@ export class AdvancedSearch extends Component {
         search: qs.stringify(newQueryParam),
       });
     }
+    delete query.dep;
+    delete query.city;
 
     API.getDispositifs({
       query: {
@@ -447,13 +473,6 @@ export class AdvancedSearch extends Component {
 
         if (query["tags.name"]) {
           //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier
-          /*           dispositifs = dispositifs.sort(
-            (a, b) =>
-              a.tags.findIndex((x) =>
-                x ? x.short === query["tags.name"] : 99
-              ) -
-              b.tags.findIndex((x) => (x ? x.short === query["tags.name"] : 99))
-          ); */
           dispositifs = dispositifs.sort((a, b) =>
             _.get(a, "tags.0.name", {}) === this.state.recherche[0].query
               ? -1
@@ -941,17 +960,6 @@ export class AdvancedSearch extends Component {
       ) || {};
     const langueCode =
       this.props.langues.length > 0 && current ? current.langueCode : "fr";
-    /* 
-    if (recherche[0].active) {
-      dispositifs = dispositifs.sort((a, b) =>
-        _.get(a, "tags.0.name", {}) === recherche[0].query
-          ? -1
-          : _.get(b, "tags.0.name", {}) === recherche[0].query
-          ? 1
-          : 0
-      );
-    } */
-
     return (
       <div className="animated fadeIn advanced-search">
         <div>
