@@ -66,28 +66,28 @@ export const MobileAdvancedSearch = (props: Props) => {
       <TextTitle> {props.t("Je cherche à", "Je cherche à")}</TextTitle>
       <FilterButton>
         <ButtonTitle>
-          {props.t("choisir un thème", "choisir un thème")}
+          {props.t("Tags.choisir un thème", "choisir un thème")}
         </ButtonTitle>
         <Icon name="chevron-down" fill="#212121" size="large" />
       </FilterButton>
-      <TextTitle> {props.t("J'habite", "J'habite")}</TextTitle>
+      <TextTitle> {props.t("SearchItem.J'habite", "J'habite")}</TextTitle>
       <FilterButton>
         <ButtonTitle>
-          {props.t("choisir ma ville", "choisir ma ville")}
+          {props.t("SearchItem.choisir ma ville", "choisir ma ville")}
         </ButtonTitle>
         <Icon name="pin" fill="#212121" size="large" />
       </FilterButton>
-      <TextTitle> {props.t("J'ai", "J'ai")}</TextTitle>
+      <TextTitle> {props.t("SearchItem.J'ai", "J'ai")}</TextTitle>
       <FilterButton>
         <ButtonTitle>
-          {props.t("choisir mon âge", "choisir mon âge")}
+          {props.t("SearchItem.choisir mon âge", "choisir mon âge")}
         </ButtonTitle>
         <Icon name="chevron-down" fill="#212121" size="large" />
       </FilterButton>
-      <TextTitle> {props.t("Je parle", "Je parle")}</TextTitle>
+      <TextTitle> {props.t("SearchItem.Je parle", "Je parle")}</TextTitle>
       <FilterButton>
         <ButtonTitle>
-          {props.t("niveau de français", "niveau de français")}
+          {props.t("Tags.niveau de français", "niveau de français")}
         </ButtonTitle>
         <Icon name="chevron-down" fill="#212121" size="large" />
       </FilterButton>

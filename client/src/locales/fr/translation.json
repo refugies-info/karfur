@@ -31,6 +31,7 @@
     "Consulter l’annnuaire": "Consulter l’annuaire"
   },
   "AdvancedSearch": {
+    "Je cherche à": "Je cherche à",
     "A > Z": "A > Z",
     "Derniers ajouts": "Derniers ajouts",
     "Les plus visités": "Les plus visités",
@@ -277,6 +278,7 @@
     "Je cherche à": "Je cherche à",
     "choisir un thème": "choisir un thème",
     "J'habite à": "J'habite à",
+    "J'habite": "J'habite",
     "ma ville": "ma ville",
     "J'ai": "J'ai",
     "mon âge": "mon âge",
@@ -284,7 +286,9 @@
     "mon niveau": "mon niveau",
     "Je suis": "Je suis",
     "français": "français",
-    "bientot disponible": "Bientôt disponible"
+    "bientot disponible": "Bientôt disponible",
+    "choisir ma ville": "choisir ma ville",
+    "choisir mon âge": "choisir mon âge"
   },
   "Status": {
     "En attente": "En attente",
