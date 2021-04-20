@@ -36,8 +36,10 @@ workflows:
           filters:
             branches:
               ignore:
-                - master
-                - qa
+                - master-frontend
+                - master-backend
+                - staging-frontend
+                - staging-backend
                 - dev
       - test-code-quality:
           requires:

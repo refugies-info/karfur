@@ -133,7 +133,7 @@ describe("sendDraftReminderMail", () => {
       "id4"
     );
     expect(logger.info).toHaveBeenCalledWith(
-      "[sendDraftReminderMail] dispositif with id id2 has already received reminder "
+      "[sendDraftReminderMail] dispositif with id id2 has already received reminder"
     );
     expect(logger.info).toHaveBeenCalledWith(
       "[sendDraftReminderMail] dispositif with id id3 has been updated 1 ago"
@@ -189,7 +189,7 @@ describe("sendDraftReminderMail", () => {
     );
 
     expect(logger.info).toHaveBeenCalledWith(
-      "[sendDraftReminderMail] dispositif with id id2 has already received reminder "
+      "[sendDraftReminderMail] dispositif with id id2 has already received reminder"
     );
 
     expect(updateDispositifInDB).not.toHaveBeenCalledWith("id1", {
