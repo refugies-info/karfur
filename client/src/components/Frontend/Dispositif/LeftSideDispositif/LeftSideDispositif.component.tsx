@@ -61,13 +61,7 @@ export const LeftSideDispositif = (props: Props) => {
         )
     : props.toggleInputBtnClicked;
 
-  const emailBody =
-    "Voici le lien vers " +
-    (props.typeContenu === "demarche" ? "la démarche" : "le dispositif") +
-    " ''" +
-    props.content.titreInformatif +
-    "' : " +
-    window.location.href;
+  const emailBody = "Voici le lien vers cette fiche : " + window.location.href;
 
   const getTitle = (title: string) => {
     if (title === "La démarche par étapes")
@@ -75,6 +69,12 @@ export const LeftSideDispositif = (props: Props) => {
 
     return t("Dispositif." + title, title);
   };
+  const mailSubject = props.content
+    ? props.typeContenu === "dispositif"
+      ? `[${props.content.titreInformatif}] avec ${props.content.titreMarque}`
+      : `[${props.content.titreInformatif}]`
+    : "";
+
   return (
     // left part of a demarche or dispositif to navigate to sections
     <div className="sticky-affix">
@@ -189,13 +189,7 @@ export const LeftSideDispositif = (props: Props) => {
             />
             <FButton
               type="light-action"
-              href={
-                "mailto:mail@example.org?subject=Dispositif" +
-                (props.content && props.content.titreMarque
-                  ? " - " + props.content.titreMarque
-                  : "") +
-                `&body=${emailBody}`
-              }
+              href={`mailto:?subject=${mailSubject}&body=${emailBody}`}
               name="paper-plane-outline"
             >
               {t("Dispositif.Envoyer par mail", "Envoyer par mail")}
