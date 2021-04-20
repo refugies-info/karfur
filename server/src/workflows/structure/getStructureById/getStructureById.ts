@@ -26,6 +26,7 @@ interface Membre {
   roles: string[];
   picture?: Picture;
   added_at?: Moment;
+  userId: ObjectId;
 }
 
 const adaptDispositifsAssocies = (dispositifs: IDispositif[]) =>
@@ -83,6 +84,7 @@ const addMembresIfNeeded = async (
           ...populateMembre.toJSON(),
           roles: membre.roles,
           added_at: membre.added_at,
+          userId: membre.userId,
         });
       } catch (error) {
         logger.error("[getStructureById] error while getting user", {
