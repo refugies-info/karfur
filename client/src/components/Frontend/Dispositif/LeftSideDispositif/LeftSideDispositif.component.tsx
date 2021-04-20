@@ -71,8 +71,8 @@ export const LeftSideDispositif = (props: Props) => {
   };
   const mailSubject = props.content
     ? props.typeContenu === "dispositif"
-      ? `[${props.content.titreInformatif}] avec ${props.content.titreMarque}`
-      : `[${props.content.titreInformatif}]`
+      ? `${props.content.titreInformatif} avec ${props.content.titreMarque}`
+      : `${props.content.titreInformatif}`
     : "";
 
   return (

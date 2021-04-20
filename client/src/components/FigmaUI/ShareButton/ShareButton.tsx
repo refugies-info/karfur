@@ -38,8 +38,8 @@ export const ShareButton = (props: Props) => {
   const emailBody = "Voici le lien vers cette fiche : " + window.location.href;
   const mailSubject = props.content
     ? props.typeContenu === "dispositif"
-      ? `[${props.content.titreInformatif}] avec ${props.content.titreMarque}`
-      : `[${props.content.titreInformatif}]`
+      ? `${props.content.titreInformatif} avec ${props.content.titreMarque}`
+      : `${props.content.titreInformatif}`
     : "";
 
   return (

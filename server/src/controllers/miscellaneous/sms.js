@@ -12,7 +12,7 @@ function send_sms(req, res) {
   client.messages
     .create({
       from: "+33757902900",
-      body: `Bonjour\nVoici le lien vers la fiche [${title}] : ${url}`,
+      body: `Bonjour\nVoici le lien vers la fiche ${title} : ${url}`,
 
       to: number,
     })
