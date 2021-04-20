@@ -9,8 +9,10 @@ $tailleBig: 80px;
   background-color: $darkColor;
   padding: 32px;
 
-  padding-right: 0px;
-
+  @include media-max("tablet-up") {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
   h5 {
     margin-bottom: 20px;
     font-weight: 700;

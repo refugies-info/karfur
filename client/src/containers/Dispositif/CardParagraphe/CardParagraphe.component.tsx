@@ -211,7 +211,7 @@ export class CardParagraphe extends Component<Props> {
     return (
       <>
         <Col
-          className="card-col"
+          className={"card-col"}
           onMouseEnter={() =>
             this.props.updateUIArray(
               this.props.keyValue,

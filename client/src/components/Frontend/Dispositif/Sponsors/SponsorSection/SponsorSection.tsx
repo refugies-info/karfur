@@ -16,6 +16,7 @@ interface Props {
     };
   };
   burl: string;
+  isRTL: boolean;
 }
 
 const SectionTitle = styled.p`
@@ -64,7 +65,7 @@ const MainContainer = styled.div`
   flex-direction: column;
 
   border-left: ${(props) =>
-    props.index === 1 ? "2px solid rgb(255, 255, 255)" : ""};
+    props.index === 1 && !props.isRTL ? "2px solid rgb(255, 255, 255)" : null};
 `;
 
 export const SponsorSection = (props: Props) => {
@@ -74,6 +75,7 @@ export const SponsorSection = (props: Props) => {
         <MainContainer
           index={props.index}
           totalNumberOfSponsor={props.totalNumberOfSponsor}
+          isRTL={props.isRTL}
         >
           <SectionTitle
             index={props.index}
@@ -100,6 +102,7 @@ export const SponsorSection = (props: Props) => {
         <MainContainer
           index={props.index}
           totalNumberOfSponsor={props.totalNumberOfSponsor}
+          isRTL={props.isRTL}
         >
           {props.index === 1 && <SectionTitle>Partenaires</SectionTitle>}
           <SponsorCard>
