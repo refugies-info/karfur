@@ -27,10 +27,23 @@ import "./Toolbar.scss";
 import { colors } from "colors";
 import { logger } from "../../logger";
 import { getNbNewNotifications } from "../Backend/UserNotifications/lib";
+import { isMobile } from "react-device-detect";
+
 const InnerButton = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+const IconButton = styled.div`
+  background-color: #212121;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  height: 50px;
+  width: 50px;
 `;
 
 // top banner
@@ -162,55 +175,65 @@ export class Toolbar extends React.Component {
         <div className="center-buttons">
           <AudioBtn />
           <LanguageBtn hideText={windowWidth < breakpoints.tabletUp} />
-          <AdvancedSearchBar
-            visible={this.state.visible}
-            scroll={this.state.scroll}
-            loupe
-            className="search-bar inner-addon right-addon mr-10 rsz"
-          />
+          {isMobile ? (
+            <IconButton>
+              <NavLink to="/advanced-search">
+                <EVAIcon name="search" size="large" fill={colors.blanc} />
+              </NavLink>
+            </IconButton>
+          ) : (
+            <AdvancedSearchBar
+              visible={this.state.visible}
+              scroll={this.state.scroll}
+              loupe
+              className="search-bar inner-addon right-addon mr-10 rsz"
+            />
+          )}
 
-          <button
-            onClick={() => {
-              if (this.props.location.pathname === "/advanced-search") {
-                this.props.history.replace("/advanced-search");
-                window.location.reload();
-              } else {
-                this.props.history.push("/advanced-search");
+          {!isMobile && (
+            <button
+              onClick={() => {
+                if (this.props.location.pathname === "/advanced-search") {
+                  this.props.history.replace("/advanced-search");
+                  window.location.reload();
+                } else {
+                  this.props.history.push("/advanced-search");
+                }
+              }}
+              className={
+                isRTL
+                  ? "advanced-search-btn-menu-rtl"
+                  : "advanced-search-btn-menu"
               }
-            }}
-            className={
-              isRTL
-                ? "advanced-search-btn-menu-rtl"
-                : "advanced-search-btn-menu"
-            }
-          >
-            <InnerButton isRTL={isRTL}>
-              {!isRTL ? (
-                <div
-                  style={{
-                    display: "flex",
-                    marginRight: 10,
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Streamline name={"menu"} stroke={"white"} />
-                </div>
-              ) : (
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    marginLeft: 10,
-                  }}
-                >
-                  <Streamline name={"menu"} stroke={"white"} />
-                </div>
-              )}
-              {t("Toolbar.Tout voir", "Tout voir")}
-            </InnerButton>
-          </button>
+            >
+              <InnerButton isRTL={isRTL}>
+                {!isRTL ? (
+                  <div
+                    style={{
+                      display: "flex",
+                      marginRight: 10,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Streamline name={"menu"} stroke={"white"} />
+                  </div>
+                ) : (
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      marginLeft: 10,
+                    }}
+                  >
+                    <Streamline name={"menu"} stroke={"white"} />
+                  </div>
+                )}
+                {t("Toolbar.Tout voir", "Tout voir")}
+              </InnerButton>
+            </button>
+          )}
 
           {API.isAuth() ? (
             <NavLink

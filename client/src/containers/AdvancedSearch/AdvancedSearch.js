@@ -292,6 +292,7 @@ export class AdvancedSearch extends Component {
     window.addEventListener("scroll", this.handleScrolling);
     this._isMounted = true;
     this.retrieveCookies();
+    // Retrieve filters value from url parameters
     let tag = querySearch(this.props.location.search).tag;
     let bottomValue = querySearch(this.props.location.search).bottomValue;
     let dep = querySearch(this.props.location.search).dep;
@@ -302,6 +303,7 @@ export class AdvancedSearch extends Component {
       (elem) => elem.name === decodeURIComponent(niveauFrancais)
     );
     let filter = querySearch(this.props.location.search).filter;
+    // Reinject filters value in recherche
     if (tag || bottomValue || topValue || niveauFrancais || dep || city) {
       this.setState(
         produce((draft) => {
@@ -343,6 +345,7 @@ export class AdvancedSearch extends Component {
           }
           draft.activeTri = "";
         }),
+        //Launch filter query with value from the url
         () =>
           this.queryDispositifs({
             "tags.name": tag ? decodeURIComponent(tag) : "",
@@ -357,7 +360,6 @@ export class AdvancedSearch extends Component {
             niveauFrancais: niveauFrancaisObj ? niveauFrancaisObj.query : "",
           })
       );
-      //this.selectTag(decodeURIComponent(tag));
     } else if (filter) {
       this.filter_content(
         filter === "dispositif" ? filtres_contenu[0] : filtres_contenu[1]
@@ -373,7 +375,6 @@ export class AdvancedSearch extends Component {
     this._isMounted = false;
   }
 
-  // eslint-disable-next-line react/no-deprecated
   componentDidUpdate(prevProps) {
     if (prevProps.languei18nCode !== this.props.languei18nCode) {
       this.setState(
@@ -401,11 +402,13 @@ export class AdvancedSearch extends Component {
 
   queryDispositifs = (Nquery = null, props = this.props) => {
     this.setState({ showSpinner: true });
+    // if query from url parameters, delete all empty values
     if (Nquery) {
       Object.keys(Nquery).forEach((key) =>
         Nquery[key] === "" ? delete Nquery[key] : {}
       );
     }
+    // create query with values from Url or from values selected in search bar
     let query =
       Nquery ||
       this.state.recherche
@@ -424,9 +427,11 @@ export class AdvancedSearch extends Component {
             : { [x.queryName]: x.query }
         )
         .reduce((acc, curr) => ({ ...acc, ...curr }), {});
+    // create object with localisation filter only
     const localisationSearch = this.state.recherche.find(
       (x) => x.queryName === "localisation" && x.value
     );
+    // When no paramaters from the url
     if (!Nquery) {
       let newQueryParam = {
         tag: query["tags.name"]
@@ -448,17 +453,20 @@ export class AdvancedSearch extends Component {
           ? this.state.recherche[1].query[1].long_name
           : undefined,
       };
+      //delete empty value from the filters
       Object.keys(newQueryParam).forEach((key) =>
         newQueryParam[key] === undefined ? delete newQueryParam[key] : {}
       );
-
+      // inject parameters in the url
       this.props.history.push({
         search: qs.stringify(newQueryParam),
       });
     }
+    // delete localisation filter from the query before calling the back end
     delete query.dep;
     delete query.city;
 
+    // back end call
     API.getDispositifs({
       query: {
         ...query,
