@@ -10,7 +10,7 @@
   }
 
   .card-col {
-    padding: 0 0 0 10px;
+    padding: 0 5px 0 5px;
     margin-top: 40px;
 
     .card {
@@ -1370,7 +1370,13 @@
   }
   .card-col:last-child {
     @include media-max("tablet-up") {
-      padding: 0 16px 0 10px;
+      padding: 0 10px 0 5px;
+    }
+  }
+
+  .card-col:first-child {
+    @include media-max("tablet-up") {
+      padding: 0 5px 0 10px;
     }
   }
 }
