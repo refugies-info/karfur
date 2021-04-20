@@ -256,8 +256,8 @@ describe("getStructureById", () => {
     });
   });
   const neededFields = { username: 1, picture: 1, last_connected: 1 };
-  const user1 = { username: "username1", _id: "id1" };
-  const user2 = { username: "username2", _id: "id2" };
+  const user1 = { username: "username1", _id: "id1", userId: "userId1" };
+  const user2 = { username: "username2", _id: "id2", userId: "userId2" };
 
   it("should call turnToLocalized and getUserById when withDisposAssocies and withMembres ", async () => {
     getUserById.mockResolvedValueOnce({ toJSON: () => user1 });
