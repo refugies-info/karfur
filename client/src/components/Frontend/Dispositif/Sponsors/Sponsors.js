@@ -27,6 +27,7 @@ import "./Sponsors.scss";
 import { colors } from "colors";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
+import i18n from "../../../../i18n";
 
 const SponsorContainer = styled.div`
   padding: 0px 0px 0px 16px;
@@ -144,6 +145,8 @@ const SponsorCard = styled.div`
 const MobileSponsorSection = styled.div`
   display: flex;
   overflow-x: auto;
+  margin-left: ${(props) => !props.isRTL && "32px"};
+  margin-right: ${(props) => props.isRTL && "32px"};
 `;
 
 const burl =
@@ -437,6 +440,8 @@ class Sponsors extends Component {
       deduplicatedSponsors
     );
 
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+
     return (
       <div
         className={"sponsor-footer backgroundColor-darkColor"}
@@ -448,6 +453,8 @@ class Sponsors extends Component {
             flexDirection: "row",
             justifyContent: "space-between",
             marginBottom: "10px",
+            marginLeft: isMobile && !isRTL ? "32px" : "0px",
+            marginRight: isMobile && isRTL ? "32px" : "0px",
           }}
         >
           <h5 className="">{"Proposé par"}</h5>
@@ -464,7 +471,7 @@ class Sponsors extends Component {
             )}
         </div>
         {isMobile && totalSponsor.length > 1 && (
-          <MobileSponsorSection>
+          <MobileSponsorSection isRTL={isRTL}>
             {totalSponsor.map((sponsor, index) => {
               return (
                 <SponsorSection
@@ -473,6 +480,7 @@ class Sponsors extends Component {
                   key={sponsor}
                   sponsor={sponsor}
                   burl={burl}
+                  isRTL={isRTL}
                 />
               );
             })}

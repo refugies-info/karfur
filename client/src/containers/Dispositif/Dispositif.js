@@ -39,7 +39,6 @@ import {
   ShareContentOnMobileModal,
 } from "../../components/Modals/index";
 import FButton from "../../components/FigmaUI/FButton/FButton";
-import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Commentaires";
 import { Tags } from "./Tags";
 import { LeftSideDispositif } from "../../components/Frontend/Dispositif/LeftSideDispositif";
 import { BandeauEdition } from "../../components/Frontend/Dispositif/BandeauEdition";
@@ -2050,8 +2049,6 @@ export class Dispositif extends Component {
                   dispositif={this.state.dispositif}
                   typeContenu={typeContenu}
                 />
-
-                {false && <Commentaires />}
               </Col>
               {!isMobile && (
                 <Col
