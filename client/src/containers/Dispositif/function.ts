@@ -49,16 +49,23 @@ export const send_sms = (
 
 export const sharingOptions = (
   typeContenu: string,
-  titreInformatif: string
+  titreInformatif: string,
+  titreMarque?: string
 ) => {
   // @ts-ignore
   if (navigator.share) {
+    const title =
+      typeContenu === "dispositif"
+        ? `${titreInformatif} avec ${titreMarque}`
+        : `${titreInformatif}`;
+
+    const text = `Voici le lien vers la fiche ${titreInformatif} : ${window.location.href} `;
+
     // @ts-ignore
-    navigator
+    return navigator
       .share({
-        title: titreInformatif,
-        text: typeContenu + " " + titreInformatif,
-        url: window.location.href,
+        title,
+        text,
       })
       .then(() => {})
       .catch(() => {});

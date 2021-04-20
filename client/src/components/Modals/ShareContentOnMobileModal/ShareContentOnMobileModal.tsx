@@ -89,7 +89,11 @@ export const ShareContentOnMobileModal = (props: Props) => {
           <ShareButton
             name={"more-horizontal-outline"}
             onClick={() => {
-              sharingOptions(props.typeContenu, props.content.titreInformatif);
+              sharingOptions(
+                props.typeContenu,
+                props.content.titreInformatif,
+                props.content.titreMarque
+              );
             }}
             text={props.t("Dispositif.Plus options", "Plus d'options")}
             type="button"
