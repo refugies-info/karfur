@@ -8,7 +8,7 @@ interface Props {
 
 const MainContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding-top: 100px;
   padding-left: 24px;
   padding-right: 24px;
@@ -28,9 +28,31 @@ const SearchBoutton = styled.div`
   color: white;
   font-weight: 700;
   padding-top: 12px;
+  margin: 5px 0;
+`;
+const FilterButton = styled.div`
+  padding: 16px;
+  height: 53px;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid;
+  color: #212121;
+  font-weight: 700;
+  border-color: #212121;
+  border-radius: 12px;
+  padding-top: 12px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const TextTitle = styled.div`
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 5px;
+`;
+
+const ButtonTitle = styled.div`
   margin: 0 10px;
 `;
 
@@ -39,8 +61,36 @@ export const MobileAdvancedSearch = (props: Props) => {
     <MainContainer>
       <SearchBoutton>
         <Icon name="search" fill="#FFFFFF" size="large" />
-        <TextTitle> {props.t("Rechercher", "Rechercher")}</TextTitle>
+        <ButtonTitle> {props.t("Rechercher", "Rechercher")}</ButtonTitle>
       </SearchBoutton>
+      <TextTitle> {props.t("Je cherche à", "Je cherche à")}</TextTitle>
+      <FilterButton>
+        <ButtonTitle>
+          {props.t("choisir un thème", "choisir un thème")}
+        </ButtonTitle>
+        <Icon name="chevron-down" fill="#212121" size="large" />
+      </FilterButton>
+      <TextTitle> {props.t("J'habite", "J'habite")}</TextTitle>
+      <FilterButton>
+        <ButtonTitle>
+          {props.t("choisir ma ville", "choisir ma ville")}
+        </ButtonTitle>
+        <Icon name="pin" fill="#212121" size="large" />
+      </FilterButton>
+      <TextTitle> {props.t("J'ai", "J'ai")}</TextTitle>
+      <FilterButton>
+        <ButtonTitle>
+          {props.t("choisir mon âge", "choisir mon âge")}
+        </ButtonTitle>
+        <Icon name="chevron-down" fill="#212121" size="large" />
+      </FilterButton>
+      <TextTitle> {props.t("Je parle", "Je parle")}</TextTitle>
+      <FilterButton>
+        <ButtonTitle>
+          {props.t("niveau de français", "niveau de français")}
+        </ButtonTitle>
+        <Icon name="chevron-down" fill="#212121" size="large" />
+      </FilterButton>
     </MainContainer>
   );
 };
