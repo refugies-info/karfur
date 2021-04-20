@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Icon from "react-eva-icons";
-
+import { MobileSearchFilterModal } from "./MobileSearchFilterModal/MobileSearchFilterModal";
+import { filtres } from "../../Dispositif/data";
 interface Props {
   t: (a: string, b: string) => void;
 }
@@ -57,6 +58,10 @@ const ButtonTitle = styled.div`
 `;
 
 export const MobileAdvancedSearch = (props: Props) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleShowModal = () => setShowModal(!showModal);
+
   return (
     <MainContainer>
       <SearchBoutton>
@@ -64,7 +69,7 @@ export const MobileAdvancedSearch = (props: Props) => {
         <ButtonTitle> {props.t("Rechercher", "Rechercher")}</ButtonTitle>
       </SearchBoutton>
       <TextTitle> {props.t("Je cherche à", "Je cherche à")}</TextTitle>
-      <FilterButton>
+      <FilterButton onClick={toggleShowModal}>
         <ButtonTitle>
           {props.t("Tags.choisir un thème", "choisir un thème")}
         </ButtonTitle>
@@ -91,6 +96,18 @@ export const MobileAdvancedSearch = (props: Props) => {
         </ButtonTitle>
         <Icon name="chevron-down" fill="#212121" size="large" />
       </FilterButton>
+      {showModal && (
+        <MobileSearchFilterModal
+          t={props.t}
+          title="Tags.thème"
+          defaultTitle="thème"
+          sentence="Je cherche à"
+          defaultSentence="Je cherche à"
+          toggle={toggleShowModal}
+          show={showModal}
+          data={filtres.tags}
+        />
+      )}
     </MainContainer>
   );
 };
