@@ -7,7 +7,10 @@ import {
   updateDispositifInDB,
   createDispositifInDB,
 } from "../../../modules/dispositif/dispositif.repository";
-import { checkUserIsAuthorizedToModifyDispositif } from "../../../libs/checkAuthorizations";
+import {
+  checkUserIsAuthorizedToModifyDispositif,
+  checkRequestIsFromSite,
+} from "../../../libs/checkAuthorizations";
 import { updateTraductions } from "../../../modules/traductions/updateTraductions";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
@@ -24,12 +27,20 @@ interface Request {
   nbMots: number;
 }
 
+/**
+ * update or create a dispositif
+ * if update : updateTraductions, updateDispositif, updateContentInAirtable and updateLanguageAvancement
+ * if create : create dispo in db and add role and contrib to creato
+ * for both : update dispositif associes in structure
+ */
+
 export const addDispositif = async (
   req: RequestFromClientWithBody<Request>,
   res: Res
 ) => {
   try {
     logger.info("[addDispositif] received");
+    checkRequestIsFromSite(req.fromSite);
 
     if (!req.body || (!req.body.titreInformatif && !req.body.dispositifId)) {
       throw new Error("INVALID_REQUEST");
@@ -82,7 +93,6 @@ export const addDispositif = async (
         // @ts-ignore
         dispositif.publishedAt = Date.now();
       }
-
       //now I need to save the dispositif and the translation
       dispResult = await updateDispositifInDB(
         dispositif.dispositifId,
