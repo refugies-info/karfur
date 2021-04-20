@@ -5,20 +5,15 @@ function send_sms(req, res) {
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
   }
-  const { number, typeContenu, title, url } = req.body;
+  const { number, title, url } = req.body;
   if (!number || !url) {
     return res.status(400).json({ text: "Requête invalide" });
   }
   client.messages
     .create({
       from: "+33757902900",
-      body:
-        "Bonjour\nVoici le lien vers " +
-        (typeContenu === "demarche" ? "la démarche" : "le dispositif") +
-        " ''" +
-        title +
-        "' : " +
-        url,
+      body: `Bonjour\nVoici le lien vers la fiche ${title} : ${url}`,
+
       to: number,
     })
     .then((message) =>
