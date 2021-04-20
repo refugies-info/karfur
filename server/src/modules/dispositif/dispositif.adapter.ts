@@ -14,7 +14,7 @@ export const filterDispositifsForDraftReminders = (
   dispositifs.filter((dispositif) => {
     if (dispositif.draftReminderMailSentDate) {
       logger.info(
-        `[sendDraftReminderMail] dispositif with id ${dispositif._id} has already received reminder `
+        `[sendDraftReminderMail] dispositif with id ${dispositif._id} has already received reminder`
       );
       return false;
     }
