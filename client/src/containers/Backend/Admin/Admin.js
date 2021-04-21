@@ -20,7 +20,7 @@ import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import "./Admin.scss";
 import { colors } from "colors";
 import styled from "styled-components";
-
+import { Navigation } from "../Navigation";
 const OngletText = styled.span`
   color: ${(props) => (props.isActive ? colors.bleuCharte : colors.darkColor)};
   font-weight: ${(props) => (props.isActive ? "bold" : "normal")};
@@ -55,14 +55,14 @@ export const Admin = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const loadDispositifs = async () => {
-      await dispatch(fetchAllDispositifsActionsCreator());
+    const loadDispositifs = () => {
+      dispatch(fetchAllDispositifsActionsCreator());
     };
-    const loadStructures = async () => {
-      await dispatch(fetchAllStructuresActionsCreator());
+    const loadStructures = () => {
+      dispatch(fetchAllStructuresActionsCreator());
     };
-    const loadUsers = async () => {
-      await dispatch(fetchAllUsersActionsCreator());
+    const loadUsers = () => {
+      dispatch(fetchAllUsersActionsCreator());
     };
 
     loadUsers();
@@ -81,6 +81,7 @@ export const Admin = () => {
 
   return (
     <div className="animated fadeIn admin">
+      <Navigation selected="admin" />
       <Nav>
         <NavItem>
           <NavLink

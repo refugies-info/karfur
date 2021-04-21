@@ -2,6 +2,7 @@ import { DispositifContent } from "../../../../types/interface";
 import React from "react";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import styled from "styled-components";
+import { isMobile } from "react-device-detect";
 
 interface Props {
   subitem: DispositifContent;
@@ -19,7 +20,11 @@ const ButtonText = styled.p`
 
 export const CardFooterContent = (props: Props) => {
   // in lecture mode, display button with a link to evaluate french level in infocard Niveau de français
-  if (props.subitem.title === "Niveau de français" && props.disableEdit) {
+  if (
+    props.subitem.title === "Niveau de français" &&
+    props.disableEdit &&
+    !isMobile
+  ) {
     return (
       <FButton
         type="light-action"

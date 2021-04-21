@@ -145,10 +145,8 @@ export class Tags extends Component<Props> {
                 </TagButton>
               </div>
             );
-            // eslint-disable-next-line
-          } else {
-            return false;
           }
+          return false;
         })}
         {!this.props.disableEdit && (this.props.tags || []).length > 0 ? (
           <Button

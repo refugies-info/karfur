@@ -63,4 +63,74 @@ describe("[Reducer] user", () => {
       user: newUser,
     });
   });
+
+  it("should set user in store when action SET_USER is received with payload new user ", () => {
+    const newUser = {
+      ...testUserWithRoles,
+      _id: new ObjectId("55153a8014829a865bbf700d"),
+    };
+    expect(
+      userReducer(initialUserState, setUserActionCreator(newUser))
+    ).toEqual({
+      userId: newUser._id,
+      admin: true,
+      traducteur: true,
+      expertTrad: true,
+      contributeur: true,
+      membreStruct: true,
+      userFetched: true,
+      rolesInStructure: [],
+      user: newUser,
+    });
+  });
+
+  it("should set user in store when action SET_USER is received with payload new user ", () => {
+    const newUser = {
+      ...testUser,
+      _id: new ObjectId("55153a8014829a865bbf700d"),
+      roles: [
+        {
+          nom: "hasStructure",
+          _id: new ObjectId("testObjectId"),
+          nomPublique: "hasStructure",
+        },
+      ],
+    };
+    expect(
+      userReducer(initialUserState, setUserActionCreator(newUser))
+    ).toEqual({
+      userId: newUser._id,
+      admin: false,
+      traducteur: false,
+      expertTrad: false,
+      contributeur: false,
+      membreStruct: true,
+      userFetched: true,
+      rolesInStructure: [],
+      user: newUser,
+    });
+  });
+
+  it("should set user in store when action SET_USER is received with payload new user ", () => {
+    const newUser = {
+      ...testUser,
+      _id: new ObjectId("55153a8014829a865bbf700d"),
+      roles: [],
+      structures: ["id1"],
+    };
+    expect(
+      // @ts-ignore
+      userReducer(initialUserState, setUserActionCreator(newUser))
+    ).toEqual({
+      userId: newUser._id,
+      admin: false,
+      traducteur: false,
+      expertTrad: false,
+      contributeur: false,
+      membreStruct: true,
+      userFetched: true,
+      rolesInStructure: [],
+      user: newUser,
+    });
+  });
 });

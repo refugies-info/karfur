@@ -1,9 +1,9 @@
 //@ts-nocheck
 import { testSaga } from "redux-saga-test-plan";
-import latestActionsSaga, { fetchUser } from "../user.saga";
-import { FETCH_USER } from "../user.actionTypes";
+import latestActionsSaga, { fetchUser, saveUser } from "../user.saga";
+import { FETCH_USER, SAVE_USER } from "../user.actionTypes";
 import API from "../../../utils/API";
-import { setUserActionCreator } from "../user.actions";
+import { setUserActionCreator, fetchUserActionCreator } from "../user.actions";
 import { testUser } from "../../../__fixtures__/user";
 import { push } from "connected-react-router";
 import {
@@ -19,6 +19,8 @@ describe("[Saga] User", () => {
       testSaga(latestActionsSaga)
         .next()
         .takeLatest("FETCH_USER", fetchUser)
+        .next()
+        .takeLatest("SAVE_USER", saveUser)
         .next()
         .isDone();
     });
@@ -110,6 +112,46 @@ describe("[Saga] User", () => {
         .call(API.get_user_info)
         .throw(new Error("test"))
         .put(setUserActionCreator(null))
+        .next()
+        .isDone();
+    });
+  });
+
+  describe("save user saga", () => {
+    it("should call update user and fetch user", () => {
+      testSaga(saveUser, {
+        type: SAVE_USER,
+        payload: { user: { _id: "id" }, type: "type" },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.SAVE_USER))
+        .next()
+        .call(API.updateUser, {
+          query: { user: { _id: "id" }, action: "type" },
+        })
+        .next()
+        .put(fetchUserActionCreator())
+        .next()
+        .put(finishLoading(LoadingStatusKey.SAVE_USER))
+        .next()
+        .isDone();
+    });
+
+    it("should call update user and set user null if update user throws", () => {
+      testSaga(saveUser, {
+        type: SAVE_USER,
+        payload: { user: { _id: "id" }, type: "type" },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.SAVE_USER))
+        .next()
+        .call(API.updateUser, {
+          query: { user: { _id: "id" }, action: "type" },
+        })
+        .throw(new Error("test"))
+        .put(setUserActionCreator(null))
+        .next()
+        .put(finishLoading(LoadingStatusKey.SAVE_USER))
         .next()
         .isDone();
     });

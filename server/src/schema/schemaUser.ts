@@ -174,7 +174,10 @@ export interface UserDoc extends mongoose.Document {
   noteTraduction?: number;
 
   status?: string;
-  cookies?: Object;
+  cookies?: {
+    parkourPinned: Object;
+    dispositifsPinned: { _id: ObjectId; datePin: Date }[];
+  };
 
   structures?: ObjectId[];
   last_connected?: number;

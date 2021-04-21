@@ -1,7 +1,6 @@
 import React from "react";
 import { Col, Row, Collapse } from "reactstrap";
 import ContentEditable from "react-contenteditable";
-
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
 import { QuickToolbar } from "../../../../containers/Dispositif/QuickToolbar";
 import {
@@ -12,16 +11,17 @@ import MapParagraphe from "../../../../containers/Dispositif/MapParagraphe/MapPa
 import MapParagraphePrint from "../../../../containers/Dispositif/MapParagraphe/MapParagraphePrint";
 import EtapeParagraphe from "../../../../containers/Dispositif/EtapeParagraphe/EtapeParagraphe";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
-
+import FButton from "../../../FigmaUI/FButton/FButton";
 import { colors } from "colors";
 import {
   cardTitlesDispositif,
   cardTitlesDemarche,
 } from "../../../../containers/Dispositif/data";
-import FButton from "../../../FigmaUI/FButton/FButton";
+
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { infocardsDemarcheTitles } from "../../../../containers/Dispositif/data";
+import { isMobile } from "react-device-detect";
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>
@@ -50,9 +50,12 @@ const StyledHeader = styled.div`
   display: flex;
   margin: auto;
   font-weight: bold;
-  font-size: 22px;
+  font-size: ${isMobile ? "18px" : "22px"};
   line-height: 28px;
   color: ${(props) => props.darkColor};
+`;
+const MobileInfoCardsSection = styled.div`
+  display: flex;
 `;
 
 const contenuParagraphe = (props) => {
@@ -79,7 +82,44 @@ const contenuParagraphe = (props) => {
       : colors.lightColor;
 
   return (
-    <div className={item.type === "cards" ? "row cards" : "sous-paragraphe"}>
+    <div
+      className={item.type === "cards" ? "row cards " : "sous-paragraphe"}
+      style={isMobile ? { overflowX: "auto", overflowY: "hidden" } : {}}
+    >
+      {isMobile && item.type === "cards" && item.children.length > 1 && (
+        <MobileInfoCardsSection>
+          {item.children &&
+            item.children.map((subitem, subkey) => {
+              return (
+                <CardParagraphe
+                  key={subitem}
+                  location={props.location}
+                  subkey={subkey}
+                  subitem={subitem}
+                  disableEdit={disableEdit}
+                  changeTitle={bprops.changeTitle}
+                  handleMenuChange={bprops.handleMenuChange}
+                  changeAge={bprops.changeAge}
+                  toggleFree={bprops.toggleFree}
+                  changePrice={bprops.changePrice}
+                  updateUIArray={bprops.updateUIArray}
+                  toggleNiveau={bprops.toggleNiveau}
+                  changeDepartements={bprops.changeDepartements}
+                  deleteCard={bprops.deleteCard}
+                  content={bprops.content}
+                  keyValue={bprops.keyValue}
+                  cards={cards}
+                  mainTag={bprops.mainTag}
+                  toggleTutorielModal={props.toggleTutorielModal}
+                  admin={props.admin}
+                  toggleGeolocModal={props.toggleGeolocModal}
+                  showGeolocModal={props.showGeolocModal}
+                  typeContenu={props.typeContenu}
+                />
+              );
+            })}
+        </MobileInfoCardsSection>
+      )}
       {item.children &&
         item.children.map((subitem, subkey) => {
           const childrenLength = item.children.length;
@@ -103,7 +143,8 @@ const contenuParagraphe = (props) => {
               }
               key={subkey}
             >
-              {subitem.type === "card" ? (
+              {subitem.type === "card" &&
+              (!isMobile || item.children.length === 1) ? (
                 <CardParagraphe
                   location={props.location}
                   subkey={subkey}
@@ -280,7 +321,7 @@ const contenuParagraphe = (props) => {
                         }
                       </Collapse>
                     </Col>
-                    {!props.sideView && disableEdit && (
+                    {!props.sideView && disableEdit && !isMobile && (
                       <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
                         <QuickToolbar
                           show={safeUiArray(props.keyValue, subkey, "isHover")}
@@ -294,68 +335,83 @@ const contenuParagraphe = (props) => {
                   </Row>
                 </div>
               ) : (
-                <div
-                  key={subkey}
-                  className={
-                    "contenu paragraphe" +
-                    (safeUiArray(props.keyValue, subkey, "isHover")
-                      ? " isHovered"
-                      : "")
-                  }
-                  onMouseEnter={() =>
-                    props.updateUIArray(props.keyValue, subkey, "isHover")
-                  }
-                >
-                  <Row className="relative-position">
-                    <Col lg="12" md="12" sm="12" xs="12">
-                      <h4>
-                        <ContentEditable
-                          id={props.keyValue}
-                          data-subkey={subkey}
-                          data-target="title"
-                          className="display-inline-block"
-                          html={subitem.title || ""} // innerHTML of the editable div
-                          disabled={disableEdit} // use true to disable editing
-                          onChange={props.handleMenuChange} // handle innerHTML change
-                        />
-                        {!disableEdit && (
-                          <EVAIcon
-                            onClick={() =>
-                              props.removeItem(props.keyValue, subkey)
-                            }
-                            className="delete-icon ml-10 cursor-pointer"
-                            name="minus-circle-outline"
-                            fill={colors.noir}
+                <>
+                  {!isMobile && item.type !== "cards" && (
+                    <div
+                      key={subkey}
+                      className={
+                        "contenu paragraphe" +
+                        (safeUiArray(props.keyValue, subkey, "isHover")
+                          ? " isHovered"
+                          : "")
+                      }
+                      onMouseEnter={() =>
+                        props.updateUIArray(props.keyValue, subkey, "isHover")
+                      }
+                    >
+                      <Row className="relative-position">
+                        <Col lg="12" md="12" sm="12" xs="12">
+                          <h4>
+                            <ContentEditable
+                              id={props.keyValue}
+                              data-subkey={subkey}
+                              data-target="title"
+                              className="display-inline-block"
+                              html={subitem.title || ""} // innerHTML of the editable div
+                              disabled={disableEdit} // use true to disable editing
+                              onChange={props.handleMenuChange} // handle innerHTML change
+                            />
+                            {!disableEdit && (
+                              <EVAIcon
+                                onClick={() =>
+                                  props.removeItem(props.keyValue, subkey)
+                                }
+                                className="delete-icon ml-10 cursor-pointer"
+                                name="minus-circle-outline"
+                                fill={colors.noir}
+                              />
+                            )}
+                          </h4>
+                          <EditableParagraph
+                            keyValue={props.keyValue}
+                            subkey={subkey}
+                            target="content"
+                            handleMenuChange={props.handleMenuChange}
+                            onEditorStateChange={props.onEditorStateChange}
+                            handleContentClick={props.handleContentClick}
+                            disableEdit={disableEdit}
+                            tutoriel={item.tutoriel}
+                            addItem={props.addItem}
+                            {...subitem}
                           />
+                          <br />
+                        </Col>
+                        {!props.sideView && disableEdit && !isMobile && (
+                          <Col
+                            lg="2"
+                            md="2"
+                            sm="2"
+                            xs="2"
+                            className="toolbar-col"
+                          >
+                            <QuickToolbar
+                              show={safeUiArray(
+                                props.keyValue,
+                                subkey,
+                                "isHover"
+                              )}
+                              keyValue={props.keyValue}
+                              subkey={subkey}
+                              disableEdit={disableEdit}
+                              {...bprops}
+                            />
+                          </Col>
                         )}
-                      </h4>
-                      <EditableParagraph
-                        keyValue={props.keyValue}
-                        subkey={subkey}
-                        target="content"
-                        handleMenuChange={props.handleMenuChange}
-                        onEditorStateChange={props.onEditorStateChange}
-                        handleContentClick={props.handleContentClick}
-                        disableEdit={disableEdit}
-                        tutoriel={item.tutoriel}
-                        addItem={props.addItem}
-                        {...subitem}
-                      />
-                      <br />
-                    </Col>
-                    {!props.sideView && disableEdit && (
-                      <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
-                        <QuickToolbar
-                          show={safeUiArray(props.keyValue, subkey, "isHover")}
-                          keyValue={props.keyValue}
-                          subkey={subkey}
-                          disableEdit={disableEdit}
-                          {...bprops}
-                        />
-                      </Col>
-                    )}
-                  </Row>
-                </div>
+                      </Row>
+                    </div>
+                  )}
+                  <div></div>
+                </>
               )}
               {props.addMapBtn &&
               props.keyValue === 3 &&
@@ -401,6 +457,29 @@ const contenuParagraphe = (props) => {
             cards={cards}
             typeContenu={props.typeContenu}
           />
+        )}
+      {props.disableEdit &&
+        isMobile &&
+        (item.title === "Comment je m'engage ?" ||
+          item.title === "Et après ?") &&
+        item.children &&
+        item.children[item.children.length - 1] &&
+        item.children[item.children.length - 1].type !== "map" && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              margin: 10,
+            }}
+          >
+            <FButton
+              type="outline-black"
+              name={"share-outline"}
+              onClick={props.toggleShareContentOnMobileModal}
+            >
+              {props.t("Dispositif.Partager Fiche", "Partager la fiche")}
+            </FButton>
+          </div>
         )}
     </div>
   );

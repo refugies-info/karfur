@@ -8,6 +8,7 @@ import {
 import {
   fetchUserStructureActionCreator,
   setUserStructureActionCreator,
+  updateUserStructureActionCreator,
 } from "./userStructure.actions";
 import { logger } from "../../logger";
 import {
@@ -27,19 +28,23 @@ export function* fetchUserStructure(
     yield put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE));
     logger.info("[fetchUserStructure] fetching user structure");
     const { structureId, shouldRedirect } = action.payload;
-    const data = yield call(API.getStructureById, structureId, false, false);
+    const data = yield call(
+      API.getStructureById,
+      structureId,
+      true,
+      "fr",
+      true
+    );
     yield put(setUserStructureActionCreator(data.data.data));
-
     const user = yield select(userSelector);
     const userId = user.userId;
     const structureMembers = data.data.data ? data.data.data.membres : [];
     const userInStructure = structureMembers.filter(
-      (member: any) => member.userId === userId
+      (member: any) => member._id === userId
     );
 
     const userRoles =
       userInStructure.length > 0 ? userInStructure[0].roles : [];
-
     const isUserContribOrAdmin =
       userRoles.includes("administrateur") ||
       userRoles.includes("contributeur");
@@ -58,17 +63,67 @@ export function* fetchUserStructure(
   }
 }
 
-export function* updateUserStructure(): SagaIterator {
+export function* updateUserStructure(
+  action: ReturnType<typeof updateUserStructureActionCreator>
+): SagaIterator {
   try {
-    logger.info("[updateUserStructure] updating user structure");
-    const structure = yield select(userStructureSelector);
-    if (!structure) {
-      logger.info("[updateUserStructure] no structure to update");
-      return;
+    yield put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE));
+    logger.info("[updateUserStructure] updating user structure", {
+      payload: action.payload,
+    });
+    const { modifyMembres, data } = action.payload;
+    let structureId;
+    if (!modifyMembres) {
+      const structure = yield select(userStructureSelector);
+      structureId = structure._id;
+      // we don't want to update membres because they are formatted
+      delete structure.membres;
+      if (!structure) {
+        logger.info("[updateUserStructure] no structure to update");
+        return;
+      }
+      yield call(API.updateStructure, { query: structure });
+    } else if (data) {
+      let query;
+      if (data.type === "create") {
+        query = {
+          membreId: data.userId,
+          structureId: data.structureId,
+          action: "create",
+          role: "contributeur",
+        };
+      } else if (data.type === "modify" && data.newRole) {
+        query = {
+          membreId: data.userId,
+          structureId: data.structureId,
+          action: "modify",
+          role: data.newRole,
+        };
+      } else if (data.type === "delete") {
+        query = {
+          membreId: data.userId,
+          structureId: data.structureId,
+          action: "delete",
+        };
+      } else {
+        throw new Error("ERROR_IN_DATA");
+      }
+      structureId = data.structureId;
+
+      yield call(API.modifyUserRoleInStructure, {
+        query,
+      });
+    } else {
+      throw new Error("NO_DATA");
     }
-    const data = yield call(API.updateStructure, { query: structure });
-    yield put(setUserStructureActionCreator(data.data.data));
+    yield put(
+      fetchUserStructureActionCreator({
+        structureId: structureId,
+        shouldRedirect: true,
+      })
+    );
     logger.info("[updateUserStructure] successfully updated user structure");
+    yield put(finishLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE));
   } catch (error) {
     logger.error("[updateUserStructure] error while updating user structure", {
       error,

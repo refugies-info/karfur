@@ -185,7 +185,7 @@ var dispositifSchema = new mongoose.Schema(
 
 export interface DispositifDoc extends mongoose.Document {
   _id: ObjectId;
-  titreMarque?: Object;
+  titreMarque?: Record<string, string> | string;
   titreInformatif: Record<string, string> | string;
   abstract?: Object;
   contact?: string;
@@ -200,7 +200,7 @@ export interface DispositifDoc extends mongoose.Document {
   niveauFrancais?: Object;
   creatorId: ObjectId | UserDoc;
   nbMots?: number;
-  merci?: Object;
+  merci?: Object[];
   pasMerci?: Object;
   bravo?: Object;
   suggestions?: Object;
@@ -224,6 +224,7 @@ export interface DispositifDoc extends mongoose.Document {
   lastModificationDate?: number;
   updatedAt: number;
   draftReminderMailSentDate?: number;
+  status: string;
 }
 
 export interface DispositifNotPopulateDoc extends DispositifDoc {

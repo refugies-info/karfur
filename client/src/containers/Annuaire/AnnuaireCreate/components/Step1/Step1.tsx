@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import FInput from "../../../../../components/FigmaUI/FInput/FInput";
-import { Structure } from "../../../../../types/interface";
+import { UserStructure } from "../../../../../types/interface";
 import "./Step1.scss";
 import PlaceholderLogo from "../../../../../assets/Placeholder_logo.png";
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
@@ -42,7 +42,7 @@ const Text = styled.div`
   margin-top: 16px;
 `;
 interface Props {
-  structure: Structure | null;
+  structure: UserStructure | null;
   setStructure: (arg: any) => void;
   setHasModifications: (arg: boolean) => void;
 }

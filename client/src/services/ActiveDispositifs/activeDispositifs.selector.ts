@@ -1,5 +1,5 @@
 import { RootState } from "../rootReducer";
-import { Dispositif } from "../../types/interface";
+import { IDispositif } from "../../types/interface";
 
-export const activeDispositifsSelector = (state: RootState): Dispositif[] =>
+export const activeIDispositifsSelector = (state: RootState): IDispositif[] =>
   state.activeDispositifs;

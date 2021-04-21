@@ -3,6 +3,7 @@ const bucketUrlQSN = bucketUrl + "qui-sommes-nous/";
 const bucketUrlCC = bucketUrl + "comment-contribuer/";
 const bucketUrlAnnuaireActivites = bucketUrl + "annuaire/activit%C3%A9s/";
 const bucketUrlPartners = bucketUrl + "logosPartenaires/";
+const bucketUrlMiddleOffice = bucketUrl + "middle-office/";
 
 export const assetsOnServer = {
   quiSommesNous: {
@@ -170,5 +171,8 @@ export const assetsOnServer = {
     CRF: bucketUrlPartners + "CRF.png",
     EachOne: bucketUrlPartners + "each_one.png",
     INALCO: bucketUrlPartners + "inalco.png",
+  },
+  middleOffice: {
+    noNotification: bucketUrlMiddleOffice + "aucune_notification.svg",
   },
 };

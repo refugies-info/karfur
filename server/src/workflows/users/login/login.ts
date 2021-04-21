@@ -1,5 +1,5 @@
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import { getUserByUsernameFromDB } from "../../../modules/users/users.repository";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { getRoleByName } from "../../../controllers/role/role.repository";

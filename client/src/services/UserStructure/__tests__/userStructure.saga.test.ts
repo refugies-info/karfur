@@ -11,10 +11,17 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../../LoadingStatus/loadingStatus.actions";
-import { FETCH_USER_STRUCTURE } from "../userStructure.actionTypes";
-import { setUserStructureActionCreator } from "../userStructure.actions";
+import {
+  FETCH_USER_STRUCTURE,
+  UPDATE_USER_STRUCTURE,
+} from "../userStructure.actionTypes";
+import {
+  setUserStructureActionCreator,
+  fetchUserStructureActionCreator,
+} from "../userStructure.actions";
 import { userSelector } from "../../User/user.selectors";
 import { setUserRoleInStructureActionCreator } from "../../User/user.actions";
+import { userStructureSelector } from "../userStructure.selectors";
 
 describe("[Saga] Structures", () => {
   describe("pilot", () => {
@@ -38,7 +45,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", false, false)
+        .call(API.getStructureById, "id", true, "fr", true)
         .next({ data: { data: null } })
         .put(setUserStructureActionCreator(null))
         .next()
@@ -61,7 +68,7 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", false, false)
+        .call(API.getStructureById, "id", true, "fr", true)
         .next({ data: { data: null } })
         .put(setUserStructureActionCreator(null))
         .next()
@@ -82,13 +89,13 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", false, false)
+        .call(API.getStructureById, "id", true, "fr", true)
         .next({
-          data: { data: { membres: [{ userId: "id", roles: ["membre"] }] } },
+          data: { data: { membres: [{ _id: "id", roles: ["membre"] }] } },
         })
         .put(
           setUserStructureActionCreator({
-            membres: [{ userId: "id", roles: ["membre"] }],
+            membres: [{ _id: "id", roles: ["membre"] }],
           })
         )
         .next()
@@ -111,13 +118,13 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", false, false)
+        .call(API.getStructureById, "id", true, "fr", true)
         .next({
-          data: { data: { membres: [{ userId: "id", roles: ["membre"] }] } },
+          data: { data: { membres: [{ _id: "id", roles: ["membre"] }] } },
         })
         .put(
           setUserStructureActionCreator({
-            membres: [{ userId: "id", roles: ["membre"] }],
+            membres: [{ _id: "id", roles: ["membre"] }],
           })
         )
         .next()
@@ -138,15 +145,15 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", false, false)
+        .call(API.getStructureById, "id", true, "fr", true)
         .next({
           data: {
-            data: { membres: [{ userId: "id", roles: ["administrateur"] }] },
+            data: { membres: [{ _id: "id", roles: ["administrateur"] }] },
           },
         })
         .put(
           setUserStructureActionCreator({
-            membres: [{ userId: "id", roles: ["administrateur"] }],
+            membres: [{ _id: "id", roles: ["administrateur"] }],
           })
         )
         .next()
@@ -167,15 +174,15 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", false, false)
+        .call(API.getStructureById, "id", true, "fr", true)
         .next({
           data: {
-            data: { membres: [{ userId: "id", roles: ["administrateur"] }] },
+            data: { membres: [{ _id: "id", roles: ["administrateur"] }] },
           },
         })
         .put(
           setUserStructureActionCreator({
-            membres: [{ userId: "id", roles: ["administrateur"] }],
+            membres: [{ _id: "id", roles: ["administrateur"] }],
           })
         )
         .next()
@@ -196,15 +203,15 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", false, false)
+        .call(API.getStructureById, "id", true, "fr", true)
         .next({
           data: {
-            data: { membres: [{ userId: "id", roles: ["contributeur"] }] },
+            data: { membres: [{ _id: "id", roles: ["contributeur"] }] },
           },
         })
         .put(
           setUserStructureActionCreator({
-            membres: [{ userId: "id", roles: ["contributeur"] }],
+            membres: [{ _id: "id", roles: ["contributeur"] }],
           })
         )
         .next()
@@ -225,15 +232,15 @@ describe("[Saga] Structures", () => {
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", false, false)
+        .call(API.getStructureById, "id", true, "fr", true)
         .next({
           data: {
-            data: { membres: [{ userId: "id", roles: ["contributeur"] }] },
+            data: { membres: [{ _id: "id", roles: ["contributeur"] }] },
           },
         })
         .put(
           setUserStructureActionCreator({
-            membres: [{ userId: "id", roles: ["contributeur"] }],
+            membres: [{ _id: "id", roles: ["contributeur"] }],
           })
         )
         .next()
@@ -242,6 +249,186 @@ describe("[Saga] Structures", () => {
         .put(setUserRoleInStructureActionCreator(["contributeur"]))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
+        .next()
+        .isDone();
+    });
+  });
+
+  describe("updateUserStructure", () => {
+    it("should call and dispatch correct actions if no structure and modifyMembres false", () => {
+      testSaga(updateUserStructure, {
+        type: UPDATE_USER_STRUCTURE,
+        payload: { modifyMembres: false },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .select(userStructureSelector)
+        .next(null)
+        .isDone();
+    });
+
+    it("should call and dispatch correct actions if structure and modifyMembres false", () => {
+      testSaga(updateUserStructure, {
+        type: UPDATE_USER_STRUCTURE,
+        payload: { modifyMembres: false },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .select(userStructureSelector)
+        .next({ _id: "structureId", membres: "membres" })
+        .call(API.updateStructure, { query: { _id: "structureId" } })
+        .next()
+        .put(
+          fetchUserStructureActionCreator({
+            structureId: "structureId",
+            shouldRedirect: true,
+          })
+        )
+        .next()
+        .put(finishLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .isDone();
+    });
+
+    it("should call and dispatch correct actions with modifyMembres true action create", () => {
+      testSaga(updateUserStructure, {
+        type: UPDATE_USER_STRUCTURE,
+        payload: {
+          modifyMembres: true,
+          data: {
+            structureId: "structureId",
+            userId: "userId",
+            type: "create",
+          },
+        },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .call(API.modifyUserRoleInStructure, {
+          query: {
+            membreId: "userId",
+            structureId: "structureId",
+            action: "create",
+            role: "contributeur",
+          },
+        })
+        .next()
+        .put(
+          fetchUserStructureActionCreator({
+            structureId: "structureId",
+            shouldRedirect: true,
+          })
+        )
+        .next()
+        .put(finishLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .isDone();
+    });
+
+    it("should call and dispatch correct actions with modifyMembres true but no data action create", () => {
+      testSaga(updateUserStructure, {
+        type: UPDATE_USER_STRUCTURE,
+        payload: {
+          modifyMembres: true,
+          type: "create",
+        },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+
+        .isDone();
+    });
+
+    it("should call and dispatch correct actions with modifyMembres true action modify", () => {
+      testSaga(updateUserStructure, {
+        type: UPDATE_USER_STRUCTURE,
+        payload: {
+          modifyMembres: true,
+          data: {
+            structureId: "structureId",
+            userId: "userId",
+            type: "modify",
+            newRole: "administrateur",
+          },
+        },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .call(API.modifyUserRoleInStructure, {
+          query: {
+            membreId: "userId",
+            structureId: "structureId",
+            action: "modify",
+            role: "administrateur",
+          },
+        })
+        .next()
+        .put(
+          fetchUserStructureActionCreator({
+            structureId: "structureId",
+            shouldRedirect: true,
+          })
+        )
+        .next()
+        .put(finishLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .isDone();
+    });
+
+    it("should call and dispatch correct actions with modifyMembres true action modify without newRole", () => {
+      testSaga(updateUserStructure, {
+        type: UPDATE_USER_STRUCTURE,
+        payload: {
+          modifyMembres: true,
+          data: {
+            structureId: "structureId",
+            userId: "userId",
+            type: "modify",
+          },
+        },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .isDone();
+    });
+
+    it("should call and dispatch correct actions with modifyMembres true action delet", () => {
+      testSaga(updateUserStructure, {
+        type: UPDATE_USER_STRUCTURE,
+        payload: {
+          modifyMembres: true,
+          data: {
+            structureId: "structureId",
+            userId: "userId",
+            type: "delete",
+          },
+        },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
+        .next()
+        .call(API.modifyUserRoleInStructure, {
+          query: {
+            membreId: "userId",
+            structureId: "structureId",
+            action: "delete",
+          },
+        })
+        .next()
+        .put(
+          fetchUserStructureActionCreator({
+            structureId: "structureId",
+            shouldRedirect: true,
+          })
+        )
+        .next()
+        .put(finishLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE))
         .next()
         .isDone();
     });

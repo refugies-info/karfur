@@ -1,4 +1,9 @@
-import { RequestFromClient, Res } from "../../../types/interface";
+import {
+  RequestFromClient,
+  Res,
+  Picture,
+  SelectedLanguage,
+} from "../../../types/interface";
 import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { getRoleByName } from "../../../controllers/role/role.repository";
@@ -6,22 +11,24 @@ import {
   getUserById,
   updateUserInDB,
 } from "../../../modules/users/users.repository";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 
 interface User {
   _id: ObjectId;
   roles: string[];
-  email: string;
+  email?: string;
+  username?: string;
+  picture?: Picture;
+  selectedLanguages?: SelectedLanguage[];
 }
 
 interface Data {
   user: User;
-  action: "modify" | "delete";
+  action: "modify-with-roles" | "delete" | "modify-my-details";
 }
 export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
   try {
-    if (!req.fromSite) {
-      throw new Error("NOT_FROM_SITE");
-    }
+    checkRequestIsFromSite(req.fromSite);
     const { user, action } = req.body.query;
     if (!user || !user._id) {
       throw new Error("INVALID_REQUEST");
@@ -29,13 +36,12 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
 
     logger.info("[updateUser] call received", { user, action });
 
-    // @ts-ignore
-    const isRequestorAdmin = req.user.roles.find((x) => x.nom === "Admin");
-    if (!isRequestorAdmin) {
-      throw new Error("USER_NOT_AUTHORIZED");
-    }
-
-    if (action === "modify") {
+    if (action === "modify-with-roles") {
+      // @ts-ignore
+      const isRequestorAdmin = req.user.roles.find((x) => x.nom === "Admin");
+      if (!isRequestorAdmin) {
+        throw new Error("USER_NOT_AUTHORIZED");
+      }
       const expertRole = await getRoleByName("ExpertTrad");
       const adminRole = await getRoleByName("Admin");
       const userFromDB = await getUserById(user._id, { roles: 1 });
@@ -61,7 +67,40 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
     }
 
     if (action === "delete") {
+      // @ts-ignore
+      const isRequestorAdmin = req.user.roles.find((x) => x.nom === "Admin");
+      if (!isRequestorAdmin) {
+        throw new Error("USER_NOT_AUTHORIZED");
+      }
       await updateUserInDB(user._id, { status: "Exclu" });
+    }
+    if (action === "modify-my-details") {
+      if (user._id.toString() !== req.userId.toString()) {
+        throw new Error("USER_NOT_AUTHORIZED");
+      }
+      try {
+        if (user.selectedLanguages) {
+          const traducteurRole = await getRoleByName("Trad");
+          const userFromDB = await getUserById(user._id, { roles: 1 });
+          const actualRoles = userFromDB.roles;
+          const hasAlreadyRoleTrad = !!actualRoles.find(
+            (role) => role && role.toString() === traducteurRole._id.toString()
+          );
+          if (hasAlreadyRoleTrad) {
+            await updateUserInDB(user._id, user);
+          } else {
+            const newRoles = actualRoles.concat(traducteurRole._id);
+            await updateUserInDB(user._id, { ...user, roles: newRoles });
+          }
+        } else {
+          await updateUserInDB(user._id, user);
+        }
+      } catch (error) {
+        if (user.username !== req.user.username) {
+          throw new Error("PSEUDO_ALREADY_EXISTS");
+        }
+        throw error;
+      }
     }
 
     return res.status(200).json({
@@ -69,7 +108,7 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
     });
   } catch (error) {
     logger.error("[updateUser] error", {
-      error,
+      error: error.message,
     });
     switch (error.message) {
       case "INVALID_REQUEST":
@@ -78,6 +117,9 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
         return res.status(401).json({ text: "Token invalide" });
       case "NOT_FROM_SITE":
         return res.status(405).json({ text: "Requête bloquée par API" });
+      case "PSEUDO_ALREADY_EXISTS":
+        return res.status(401).json({ text: "Ce pseudo est déjà pris" });
+
       default:
         return res.status(500).json({ text: "Erreur interne" });
     }

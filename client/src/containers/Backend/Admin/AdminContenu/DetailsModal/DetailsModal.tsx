@@ -273,9 +273,11 @@ export const DetailsModal = (props: Props) => {
                 })}
               </RowContainer>
               <Title>Dernière mise à jour</Title>
-              {`${moment(dispositif.updatedAt).format("LLL")} soit ${moment(
-                dispositif.updatedAt
-              ).fromNow()}`}
+              {dispositif.lastModificationDate
+                ? `${moment(dispositif.lastModificationDate).format(
+                    "LLL"
+                  )} soit ${moment(dispositif.lastModificationDate).fromNow()}`
+                : "Non disponible"}
               <Title>Date de publication</Title>
               {dispositif.publishedAt && dispositif.status === "Actif"
                 ? `${moment(dispositif.publishedAt).format(
@@ -292,9 +294,20 @@ export const DetailsModal = (props: Props) => {
                   className="creator-img"
                   src={getCreatorImage(dispositif)}
                 />
-
                 {dispositif.creatorId && dispositif.creatorId.username}
               </CreatorContainer>
+              {dispositif.status === "Brouillon" && (
+                <>
+                  <Title>Envoi relance brouillon</Title>
+                  {dispositif.draftReminderMailSentDate
+                    ? `Envoyé le : ${moment(
+                        dispositif.draftReminderMailSentDate
+                      ).format("LLL")}`
+                    : !dispositif.creatorId || !dispositif.creatorId.email
+                    ? "Non envoyé (pas de mail renseigné)"
+                    : "Non envoyé"}
+                </>
+              )}
             </LeftPart>
             <RightPart>
               <Title>Progression</Title>

@@ -17,6 +17,7 @@ import { Props } from "./LeftSideDispositif.container";
 import { DispositifContent } from "../../../../types/interface";
 import API from "../../../../utils/API";
 import Swal from "sweetalert2";
+import { send_sms } from "../../../../containers/Dispositif/function";
 
 declare const window: Window;
 export interface PropsBeforeInjection {
@@ -43,46 +44,6 @@ export interface PropsBeforeInjection {
   displayTuto: boolean;
   updateUIArray: (arg: number) => void;
 }
-const send_sms = (typeContenu: string, titreInformatif: string) =>
-  Swal.fire({
-    title: "Veuillez renseigner votre numéro de téléphone",
-    input: "tel",
-    inputPlaceholder: "0633445566",
-    inputAttributes: {
-      autocomplete: "on",
-    },
-    showCancelButton: true,
-    confirmButtonText: "Envoyer",
-    cancelButtonText: "Annuler",
-    showLoaderOnConfirm: true,
-    preConfirm: (number: number) => {
-      return API.send_sms({
-        number,
-        typeContenu,
-        url: window.location.href,
-        title: titreInformatif,
-      })
-        .then((response: { status: number; statusText: string; data: any }) => {
-          if (response.status !== 200) {
-            throw new Error(response.statusText);
-          }
-          return response.data;
-        })
-        .catch((error: Error) => {
-          Swal.showValidationMessage(`Echec d'envoi: ${error}`);
-        });
-    },
-    allowOutsideClick: () => !Swal.isLoading(),
-  }).then((result) => {
-    if (result.value) {
-      Swal.fire({
-        title: "Yay...",
-        text: "Votre message a bien été envoyé, merci",
-        type: "success",
-        timer: 1500,
-      });
-    }
-  });
 
 export const LeftSideDispositif = (props: Props) => {
   const { t } = props;
@@ -100,13 +61,7 @@ export const LeftSideDispositif = (props: Props) => {
         )
     : props.toggleInputBtnClicked;
 
-  const emailBody =
-    "Voici le lien vers " +
-    (props.typeContenu === "demarche" ? "la démarche" : "le dispositif") +
-    " ''" +
-    props.content.titreInformatif +
-    "' : " +
-    window.location.href;
+  const emailBody = "Voici le lien vers cette fiche : " + window.location.href;
 
   const getTitle = (title: string) => {
     if (title === "La démarche par étapes")
@@ -114,6 +69,12 @@ export const LeftSideDispositif = (props: Props) => {
 
     return t("Dispositif." + title, title);
   };
+  const mailSubject = props.content
+    ? props.typeContenu === "dispositif"
+      ? `${props.content.titreInformatif} avec ${props.content.titreMarque}`
+      : `${props.content.titreInformatif}`
+    : "";
+
   return (
     // left part of a demarche or dispositif to navigate to sections
     <div className="sticky-affix">
@@ -228,13 +189,7 @@ export const LeftSideDispositif = (props: Props) => {
             />
             <FButton
               type="light-action"
-              href={
-                "mailto:mail@example.org?subject=Dispositif" +
-                (props.content && props.content.titreMarque
-                  ? " - " + props.content.titreMarque
-                  : "") +
-                `&body=${emailBody}`
-              }
+              href={`mailto:?subject=${mailSubject}&body=${emailBody}`}
               name="paper-plane-outline"
             >
               {t("Dispositif.Envoyer par mail", "Envoyer par mail")}
@@ -242,7 +197,11 @@ export const LeftSideDispositif = (props: Props) => {
             <FButton
               type="light-action"
               onClick={() =>
-                send_sms(props.typeContenu, props.content.titreInformatif)
+                send_sms(
+                  "Veuillez renseigner votre numéro de téléphone",
+                  props.typeContenu,
+                  props.content.titreInformatif
+                )
               }
               name="smartphone-outline"
             >

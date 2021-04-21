@@ -1,0 +1,5808 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`user translation should redirect if user has language but not langue in url + snap view without content 1`] = `
+.c6 {
+  font-weight: bold;
+  font-size: 27.7097px;
+  line-height: 35px;
+  margin-bottom: 40px;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-top: 40px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.c7 {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 1040px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c8 {
+  font-size: 32px;
+  line-height: 40px;
+  color: #5e5e5e;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.c9 {
+  font-size: 18px;
+  line-height: 23px;
+  color: #5e5e5e;
+  margin-bottom: 40px;
+}
+
+.c10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 60px;
+}
+
+.c1 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #212121;
+  padding: 16px;
+}
+
+.c2 {
+  background: #212121;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 16px;
+}
+
+.c3 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #e55039;
+  padding: 16px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+<div
+  style={
+    Object {
+      "backgroundColor": "#f2f2f2",
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "column",
+      "marginTop": "-95px",
+      "paddingTop": "100px",
+    }
+  }
+>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="bookmark-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes favoris
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="file-add-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes fiches
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="play-circle"
+          data-eva-fill="#ffffff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes traductions
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="person-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mon profil
+    </div>
+    <div
+      className="c3"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="log-out-outline"
+          data-eva-fill="#e55039"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Déconnexion
+    </div>
+  </div>
+  <div
+    className="c4"
+  >
+    <div
+      className="c5"
+    >
+      <div
+        className="c6"
+      >
+        Vous n'avez pas traduit de fiches pour le moment.
+      </div>
+      <div
+        className="c7"
+      >
+        <div
+          className="c8"
+        >
+          Vous parlez une autre langue ?
+        </div>
+        <div
+          className="c9"
+        >
+          Aidez à traduire les contenus à votre rythme.
+        </div>
+        <div
+          className="c10"
+        >
+          <button
+            className="figma-btn dark mr-10"
+            onClick={[Function]}
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="play-circle"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Commencer à traduire
+          </button>
+          <button
+            className="figma-btn tuto ml-10"
+            onClick={[Function]}
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="video-outline"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Explications
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`user translation should redirect if user has no language but langue in url + snap no langue 1`] = `
+.c6 {
+  font-weight: bold;
+  font-size: 27.7097px;
+  line-height: 35px;
+  margin-bottom: 40px;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-top: 40px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.c7 {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 1040px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c8 {
+  font-size: 32px;
+  line-height: 40px;
+  color: #5e5e5e;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.c9 {
+  font-size: 18px;
+  line-height: 23px;
+  color: #5e5e5e;
+  margin-bottom: 40px;
+}
+
+.c10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 60px;
+}
+
+.c1 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #212121;
+  padding: 16px;
+}
+
+.c2 {
+  background: #212121;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 16px;
+}
+
+.c3 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #e55039;
+  padding: 16px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+<div
+  style={
+    Object {
+      "backgroundColor": "#f2f2f2",
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "column",
+      "marginTop": "-95px",
+      "paddingTop": "100px",
+    }
+  }
+>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="bookmark-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes favoris
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="file-add-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes fiches
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="play-circle"
+          data-eva-fill="#ffffff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes traductions
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="person-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mon profil
+    </div>
+    <div
+      className="c3"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="log-out-outline"
+          data-eva-fill="#e55039"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Déconnexion
+    </div>
+  </div>
+  <div
+    className="c4"
+  >
+    <div
+      className="c5"
+    >
+      <div
+        className="c6"
+      >
+        Vous n'avez pas traduit de fiches pour le moment.
+      </div>
+      <div
+        className="c7"
+      >
+        <div
+          className="c8"
+        >
+          Vous parlez une autre langue ?
+        </div>
+        <div
+          className="c9"
+        >
+          Aidez à traduire les contenus à votre rythme.
+        </div>
+        <div
+          className="c10"
+        >
+          <button
+            className="figma-btn dark mr-10"
+            onClick={[Function]}
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="play-circle"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Commencer à traduire
+          </button>
+          <button
+            className="figma-btn tuto ml-10"
+            onClick={[Function]}
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="video-outline"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Explications
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`user translation should render correctly with expert, admin 1`] = `
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-right: 16px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: default;
+}
+
+.c10 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+.c25 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c26 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  width: 100%;
+  margin-left: 8px;
+}
+
+.c27 {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  padding: 8px;
+  background-color: #B50437;
+  border-radius: 8px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c14 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0A54BF;
+  padding: 17px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 10px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c16 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #137F3A;
+  padding: 17px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 10px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c13 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  padding: 17px;
+  background-color: #B50437;
+  border-radius: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 10px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c15 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #EA6206;
+  padding: 17px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 10px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c17 {
+  padding: 15px;
+  background-color: #212121;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 12px;
+  margin-right: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c18 {
+  padding: 15px;
+  background-color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  cursor: pointer;
+  border-radius: 12px;
+  margin-right: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c19 {
+  background: #ffffff;
+  border: 0.5px solid #ffffff;
+  border-radius: 12px;
+  padding-right: 12px;
+  padding-left: 15px;
+  margin-right: 0px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 280px;
+  height: 52px;
+  color: #000000;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c19:hover {
+  box-shadow: 0px 4px 7px rgba(0,0,0,0.1);
+}
+
+.c19:focus {
+  outline: none !important;
+}
+
+.c20 {
+  background: #ffffff;
+  border: 0.5px solid #ffffff;
+  border-radius: 12px;
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  color: #000000;
+}
+
+.c20:focus {
+  outline: none !important;
+}
+
+.c24 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+  max-width: 370px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  cursor: pointer;
+}
+
+.c22 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  font-weight: "bold";
+  cursor: pointer;
+}
+
+.c23 {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  background-color: #212121;
+  padding: 8px;
+  border-radius: 6px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+  border: 1px solid #212121;
+}
+
+.c21 {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c6 {
+  margin: 26px 75px 26px 75px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 10px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c11 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #5e5e5e;
+  margin-right: 8px;
+}
+
+.c1 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #212121;
+  padding: 16px;
+}
+
+.c2 {
+  background: #212121;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 16px;
+}
+
+.c4 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #e55039;
+  padding: 16px;
+}
+
+.c3 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #0421b1;
+  padding: 16px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+<div
+  style={
+    Object {
+      "backgroundColor": "#f2f2f2",
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "column",
+      "marginTop": "-95px",
+      "paddingTop": "100px",
+    }
+  }
+>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="bookmark-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes favoris
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="file-add-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes fiches
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="play-circle"
+          data-eva-fill="#ffffff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes traductions
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="person-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mon profil
+    </div>
+    <div
+      className="c3"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="shield-outline"
+          data-eva-fill="#0421b1"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Admin
+    </div>
+    <div
+      className="c4"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="log-out-outline"
+          data-eva-fill="#e55039"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Déconnexion
+    </div>
+  </div>
+  <div
+    className="c5"
+  >
+    <div
+      className="c6"
+    >
+      <div
+        className="c7"
+      >
+        <div
+          className="c8"
+        >
+          <div
+            onClick={[Function]}
+            testID="test-langue-undefined"
+          >
+            <div
+              className="c9 language-title"
+            >
+              <i
+                className="flag-icon flag-icon-undefined selected"
+              />
+              <div
+                className="c10"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="c8"
+        >
+          <div
+            className="c11"
+          >
+            Vous avez traduit 0 mots pendant 0 minutes.
+          </div>
+          <button
+            className="figma-btn tuto mr-8"
+            onClick={[Function]}
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="video-outline"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Explications
+          </button>
+          <button
+            className="figma-btn dark "
+            onClick={[Function]}
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="settings-2-outline"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Mes langues
+          </button>
+        </div>
+      </div>
+      <div
+        className="c12"
+      >
+        <div
+          className="c8"
+        >
+          <div
+            className="c13"
+            color="#B50437"
+            onClick={[Function]}
+          >
+            À revoir (2)
+          </div>
+          <div
+            className="c14"
+            color="#0A54BF"
+            onClick={[Function]}
+          >
+            À traduire (2)
+          </div>
+          <div
+            className="c15"
+            color="#EA6206"
+            onClick={[Function]}
+          >
+            À valider (1)
+          </div>
+          <div
+            className="c16"
+            color="#137F3A"
+            onClick={[Function]}
+          >
+            Publiées (1)
+          </div>
+          <div
+            className="c17"
+            onClick={[Function]}
+          >
+            Dispositifs (1)
+            <div
+              className="switch-wrapper card-custom-title ml-8"
+            >
+              <label
+                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+              >
+                <input
+                  aria-checked={true}
+                  checked={true}
+                  className="switch-input form-check-input"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <span
+                  className="switch-slider"
+                  data-checked="On"
+                  data-unchecked="Off"
+                />
+              </label>
+            </div>
+          </div>
+          <div
+            className="c18"
+            onClick={[Function]}
+          >
+            Démarches (1)
+            <div
+              className="switch-wrapper card-custom-title ml-8"
+            >
+              <label
+                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+              >
+                <input
+                  aria-checked={false}
+                  checked={false}
+                  className="switch-input form-check-input"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <span
+                  className="switch-slider"
+                  data-checked="On"
+                  data-unchecked="Off"
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c19"
+        >
+          <input
+            className="c20 form-control-plaintext"
+            onChange={[Function]}
+            placeholder="Rechercher..."
+            type="text"
+            value=""
+          />
+          <span
+            id="bookmarkBtn"
+          >
+            <i
+              data-eva="search-outline"
+              data-eva-fill="#212121"
+              data-eva-height="24px"
+              data-eva-width="24px"
+            />
+          </span>
+        </div>
+      </div>
+      <div
+        className="c21"
+      >
+        <div
+          className="table-responsive"
+        >
+          <table
+            className="avancement-table table table-borderless"
+          >
+            <thead>
+              <tr>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c22"
+                    order="typeContenu"
+                  >
+                    Type
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c22"
+                    order="titreInformatif"
+                  >
+                    Titre
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c22"
+                    order="avancementTrad"
+                  >
+                    Progression
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c22"
+                    order="avancementExpert"
+                  >
+                    Validation
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c22"
+                    order="nbMots"
+                  >
+                    Mots
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c22"
+                    order="created_at"
+                  >
+                    Depuis
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c22"
+                    order="tradStatus"
+                  >
+                    Statut
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c22"
+                    order="lastTradUpdatedAt"
+                  >
+                    Dernière trad
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                className="line"
+                onClick={[Function]}
+                testID="test-line-id6"
+              >
+                <td
+                  className="align-middle first"
+                >
+                  <div
+                    className="c23"
+                  >
+                    Dispositif
+                  </div>
+                </td>
+                <td
+                  className="align-middle"
+                >
+                  <div
+                    style={
+                      Object {
+                        "maxWidth": "350px",
+                      }
+                    }
+                  >
+                    <div
+                      className="c24"
+                    >
+                      <b>
+                        TI6
+                      </b>
+                      <span>
+                        avec TM6
+                      </span>
+                    </div>
+                  </div>
+                </td>
+                <td
+                  className="align-middle"
+                />
+                <td
+                  className="align-middle"
+                >
+                  <div
+                    className="c25"
+                  >
+                    <div
+                      className="c26"
+                    >
+                      <div
+                        className="text-danger"
+                      >
+                        0
+                         %
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td
+                  className="align-middle"
+                >
+                  595 / 812
+                </td>
+                <td
+                  className="align-middle"
+                >
+                  5 jours
+                </td>
+                <td
+                  className="align-middle"
+                >
+                  <div
+                    className="c27"
+                  >
+                    À revoir
+                  </div>
+                </td>
+                <td
+                  className="align-middle "
+                >
+                  1612514769665
+                </td>
+                <td
+                  className="align-middle last"
+                >
+                  <button
+                    className="figma-btn error "
+                    onClick={[Function]}
+                    testID="test-trash"
+                  >
+                    <span
+                      className=""
+                    >
+                      <i
+                        data-eva="trash-2"
+                        data-eva-fill="#fff"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`user translation should render correctly with expert, non admin 1`] = `
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-right: 16px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: default;
+}
+
+.c9 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+.c24 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c25 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  width: 100%;
+  margin-left: 8px;
+}
+
+.c26 {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  padding: 8px;
+  background-color: #B50437;
+  border-radius: 8px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c13 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0A54BF;
+  padding: 17px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 10px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c15 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #137F3A;
+  padding: 17px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 10px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c12 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  padding: 17px;
+  background-color: #B50437;
+  border-radius: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 10px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c14 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #EA6206;
+  padding: 17px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 10px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c16 {
+  padding: 15px;
+  background-color: #212121;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 12px;
+  margin-right: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c17 {
+  padding: 15px;
+  background-color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  cursor: pointer;
+  border-radius: 12px;
+  margin-right: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c18 {
+  background: #ffffff;
+  border: 0.5px solid #ffffff;
+  border-radius: 12px;
+  padding-right: 12px;
+  padding-left: 15px;
+  margin-right: 0px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 280px;
+  height: 52px;
+  color: #000000;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c18:hover {
+  box-shadow: 0px 4px 7px rgba(0,0,0,0.1);
+}
+
+.c18:focus {
+  outline: none !important;
+}
+
+.c19 {
+  background: #ffffff;
+  border: 0.5px solid #ffffff;
+  border-radius: 12px;
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  color: #000000;
+}
+
+.c19:focus {
+  outline: none !important;
+}
+
+.c23 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+  max-width: 370px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  cursor: pointer;
+}
+
+.c21 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  font-weight: "bold";
+  cursor: pointer;
+}
+
+.c22 {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  background-color: #212121;
+  padding: 8px;
+  border-radius: 6px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+  border: 1px solid #212121;
+}
+
+.c20 {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c5 {
+  margin: 26px 75px 26px 75px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 10px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c10 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #5e5e5e;
+  margin-right: 8px;
+}
+
+.c1 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #212121;
+  padding: 16px;
+}
+
+.c2 {
+  background: #212121;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 16px;
+}
+
+.c3 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #e55039;
+  padding: 16px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+<div
+  style={
+    Object {
+      "backgroundColor": "#f2f2f2",
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "column",
+      "marginTop": "-95px",
+      "paddingTop": "100px",
+    }
+  }
+>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="bookmark-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes favoris
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="file-add-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes fiches
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="play-circle"
+          data-eva-fill="#ffffff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes traductions
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="person-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mon profil
+    </div>
+    <div
+      className="c3"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="log-out-outline"
+          data-eva-fill="#e55039"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Déconnexion
+    </div>
+  </div>
+  <div
+    className="c4"
+  >
+    <div
+      className="c5"
+    >
+      <div
+        className="c6"
+      >
+        <div
+          className="c7"
+        >
+          <div
+            onClick={[Function]}
+            testID="test-langue-idEn"
+          >
+            <div
+              className="c8 language-title"
+            >
+              <i
+                className="flag-icon flag-icon-undefined selected"
+              />
+              <div
+                className="c9"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="c7"
+        >
+          <div
+            className="c10"
+          >
+            Vous avez traduit 0 mots pendant 0 minutes.
+          </div>
+          <button
+            className="figma-btn tuto mr-8"
+            onClick={[Function]}
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="video-outline"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Explications
+          </button>
+          <button
+            className="figma-btn dark "
+            onClick={[Function]}
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="settings-2-outline"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Mes langues
+          </button>
+        </div>
+      </div>
+      <div
+        className="c11"
+      >
+        <div
+          className="c7"
+        >
+          <div
+            className="c12"
+            color="#B50437"
+            onClick={[Function]}
+          >
+            À revoir (2)
+          </div>
+          <div
+            className="c13"
+            color="#0A54BF"
+            onClick={[Function]}
+          >
+            À traduire (2)
+          </div>
+          <div
+            className="c14"
+            color="#EA6206"
+            onClick={[Function]}
+          >
+            À valider (1)
+          </div>
+          <div
+            className="c15"
+            color="#137F3A"
+            onClick={[Function]}
+          >
+            Publiées (1)
+          </div>
+          <div
+            className="c16"
+            onClick={[Function]}
+          >
+            Dispositifs (1)
+            <div
+              className="switch-wrapper card-custom-title ml-8"
+            >
+              <label
+                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+              >
+                <input
+                  aria-checked={true}
+                  checked={true}
+                  className="switch-input form-check-input"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <span
+                  className="switch-slider"
+                  data-checked="On"
+                  data-unchecked="Off"
+                />
+              </label>
+            </div>
+          </div>
+          <div
+            className="c17"
+            onClick={[Function]}
+          >
+            Démarches (1)
+            <div
+              className="switch-wrapper card-custom-title ml-8"
+            >
+              <label
+                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+              >
+                <input
+                  aria-checked={false}
+                  checked={false}
+                  className="switch-input form-check-input"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <span
+                  className="switch-slider"
+                  data-checked="On"
+                  data-unchecked="Off"
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c18"
+        >
+          <input
+            className="c19 form-control-plaintext"
+            onChange={[Function]}
+            placeholder="Rechercher..."
+            type="text"
+            value=""
+          />
+          <span
+            id="bookmarkBtn"
+          >
+            <i
+              data-eva="search-outline"
+              data-eva-fill="#212121"
+              data-eva-height="24px"
+              data-eva-width="24px"
+            />
+          </span>
+        </div>
+      </div>
+      <div
+        className="c20"
+      >
+        <div
+          className="table-responsive"
+        >
+          <table
+            className="avancement-table table table-borderless"
+          >
+            <thead>
+              <tr>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c21"
+                    order="typeContenu"
+                  >
+                    Type
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c21"
+                    order="titreInformatif"
+                  >
+                    Titre
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c21"
+                    order="avancementTrad"
+                  >
+                    Progression
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c21"
+                    order="avancementExpert"
+                  >
+                    Validation
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c21"
+                    order="nbMots"
+                  >
+                    Mots
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c21"
+                    order="created_at"
+                  >
+                    Depuis
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c21"
+                    order="tradStatus"
+                  >
+                    Statut
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c21"
+                    order="lastTradUpdatedAt"
+                  >
+                    Dernière trad
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                className="line"
+                onClick={[Function]}
+                testID="test-line-id6"
+              >
+                <td
+                  className="align-middle first"
+                >
+                  <div
+                    className="c22"
+                  >
+                    Dispositif
+                  </div>
+                </td>
+                <td
+                  className="align-middle"
+                >
+                  <div
+                    style={
+                      Object {
+                        "maxWidth": "350px",
+                      }
+                    }
+                  >
+                    <div
+                      className="c23"
+                    >
+                      <b>
+                        TI6
+                      </b>
+                      <span>
+                        avec TM6
+                      </span>
+                    </div>
+                  </div>
+                </td>
+                <td
+                  className="align-middle"
+                />
+                <td
+                  className="align-middle"
+                >
+                  <div
+                    className="c24"
+                  >
+                    <div
+                      className="c25"
+                    >
+                      <div
+                        className="text-danger"
+                      >
+                        0
+                         %
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td
+                  className="align-middle"
+                >
+                  595 / 812
+                </td>
+                <td
+                  className="align-middle"
+                >
+                  5 jours
+                </td>
+                <td
+                  className="align-middle"
+                >
+                  <div
+                    className="c26"
+                  >
+                    À revoir
+                  </div>
+                </td>
+                <td
+                  className="align-middle last"
+                >
+                  1612514769665
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`user translation should render correctly with non expert, non admin 1`] = `
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-right: 16px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: default;
+}
+
+.c9 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+.c22 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c23 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  width: 100%;
+  margin-left: 8px;
+}
+
+.c24 {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  padding: 8px;
+  background-color: #0A54BF;
+  border-radius: 8px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c13 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #137F3A;
+  padding: 17px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 10px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c12 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  padding: 17px;
+  background-color: #0A54BF;
+  border-radius: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 10px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c14 {
+  padding: 15px;
+  background-color: #212121;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 12px;
+  margin-right: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c15 {
+  padding: 15px;
+  background-color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  cursor: pointer;
+  border-radius: 12px;
+  margin-right: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c16 {
+  background: #ffffff;
+  border: 0.5px solid #ffffff;
+  border-radius: 12px;
+  padding-right: 12px;
+  padding-left: 15px;
+  margin-right: 0px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 280px;
+  height: 52px;
+  color: #000000;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c16:hover {
+  box-shadow: 0px 4px 7px rgba(0,0,0,0.1);
+}
+
+.c16:focus {
+  outline: none !important;
+}
+
+.c17 {
+  background: #ffffff;
+  border: 0.5px solid #ffffff;
+  border-radius: 12px;
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  color: #000000;
+}
+
+.c17:focus {
+  outline: none !important;
+}
+
+.c21 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+  max-width: 370px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  cursor: pointer;
+}
+
+.c19 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  font-weight: "bold";
+  cursor: pointer;
+}
+
+.c20 {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  background-color: #212121;
+  padding: 8px;
+  border-radius: 6px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+  border: 1px solid #212121;
+}
+
+.c18 {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c5 {
+  margin: 26px 75px 26px 75px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 10px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c10 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #5e5e5e;
+  margin-right: 8px;
+}
+
+.c1 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #212121;
+  padding: 16px;
+}
+
+.c2 {
+  background: #212121;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 16px;
+}
+
+.c3 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #e55039;
+  padding: 16px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+<div
+  style={
+    Object {
+      "backgroundColor": "#f2f2f2",
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "column",
+      "marginTop": "-95px",
+      "paddingTop": "100px",
+    }
+  }
+>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="bookmark-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes favoris
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="file-add-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes fiches
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="play-circle"
+          data-eva-fill="#ffffff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes traductions
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="person-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mon profil
+    </div>
+    <div
+      className="c3"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="log-out-outline"
+          data-eva-fill="#e55039"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Déconnexion
+    </div>
+  </div>
+  <div
+    className="c4"
+  >
+    <div
+      className="c5"
+    >
+      <div
+        className="c6"
+      >
+        <div
+          className="c7"
+        >
+          <div
+            onClick={[Function]}
+            testID="test-langue-idEn"
+          >
+            <div
+              className="c8 language-title"
+            >
+              <i
+                className="flag-icon flag-icon-undefined selected"
+              />
+              <div
+                className="c9"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="c7"
+        >
+          <div
+            className="c10"
+          >
+            Vous avez traduit 0 mots pendant 0 minutes.
+          </div>
+          <button
+            className="figma-btn tuto mr-8"
+            onClick={[Function]}
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="video-outline"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Explications
+          </button>
+          <button
+            className="figma-btn dark "
+            onClick={[Function]}
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="settings-2-outline"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Mes langues
+          </button>
+        </div>
+      </div>
+      <div
+        className="c11"
+      >
+        <div
+          className="c7"
+        >
+          <div
+            className="c12"
+            color="#0A54BF"
+            onClick={[Function]}
+          >
+            À traduire (2)
+          </div>
+          <div
+            className="c13"
+            color="#137F3A"
+            onClick={[Function]}
+          >
+            Publiées (1)
+          </div>
+          <div
+            className="c14"
+            onClick={[Function]}
+          >
+            Dispositifs (1)
+            <div
+              className="switch-wrapper card-custom-title ml-8"
+            >
+              <label
+                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+              >
+                <input
+                  aria-checked={true}
+                  checked={true}
+                  className="switch-input form-check-input"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <span
+                  className="switch-slider"
+                  data-checked="On"
+                  data-unchecked="Off"
+                />
+              </label>
+            </div>
+          </div>
+          <div
+            className="c15"
+            onClick={[Function]}
+          >
+            Démarches (1)
+            <div
+              className="switch-wrapper card-custom-title ml-8"
+            >
+              <label
+                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+              >
+                <input
+                  aria-checked={false}
+                  checked={false}
+                  className="switch-input form-check-input"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <span
+                  className="switch-slider"
+                  data-checked="On"
+                  data-unchecked="Off"
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c16"
+        >
+          <input
+            className="c17 form-control-plaintext"
+            onChange={[Function]}
+            placeholder="Rechercher..."
+            type="text"
+            value=""
+          />
+          <span
+            id="bookmarkBtn"
+          >
+            <i
+              data-eva="search-outline"
+              data-eva-fill="#212121"
+              data-eva-height="24px"
+              data-eva-width="24px"
+            />
+          </span>
+        </div>
+      </div>
+      <div
+        className="c18"
+      >
+        <div
+          className="table-responsive"
+        >
+          <table
+            className="avancement-table table table-borderless"
+          >
+            <thead>
+              <tr>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c19"
+                    order="typeContenu"
+                  >
+                    Type
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c19"
+                    order="titreInformatif"
+                  >
+                    Titre
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c19"
+                    order="avancementTrad"
+                  >
+                    Progression
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c19"
+                    order="nbMots"
+                  >
+                    Mots
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c19"
+                    order="created_at"
+                  >
+                    Depuis
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c19"
+                    order="tradStatus"
+                  >
+                    Statut
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+                <th
+                  onClick={[Function]}
+                >
+                  <div
+                    className="c19"
+                    order="lastTradUpdatedAt"
+                  >
+                    Dernière trad
+                    <span>
+                      <i
+                        data-eva="chevron-down"
+                        data-eva-fill="#212121"
+                        data-eva-height="20px"
+                        data-eva-width="20px"
+                      />
+                    </span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                className="line"
+                onClick={[Function]}
+                testID="test-line-id3"
+              >
+                <td
+                  className="align-middle first"
+                >
+                  <div
+                    className="c20"
+                  >
+                    Dispositif
+                  </div>
+                </td>
+                <td
+                  className="align-middle"
+                >
+                  <div
+                    style={
+                      Object {
+                        "maxWidth": "350px",
+                      }
+                    }
+                  >
+                    <div
+                      className="c21"
+                    >
+                      <b>
+                        T3
+                      </b>
+                      <span>
+                        avec TM3
+                      </span>
+                    </div>
+                  </div>
+                </td>
+                <td
+                  className="align-middle"
+                >
+                  <div
+                    className="c22"
+                  >
+                    <div
+                      style={
+                        Object {
+                          "width": "100%",
+                        }
+                      }
+                    >
+                      <div
+                        className="progress"
+                      >
+                        <div
+                          aria-valuemax={100}
+                          aria-valuemin="0"
+                          aria-valuenow={0}
+                          className="progress-bar bg-danger"
+                          role="progressbar"
+                          style={
+                            Object {
+                              "width": "0%",
+                            }
+                          }
+                        />
+                      </div>
+                    </div>
+                    <div
+                      className="c23"
+                    >
+                      <div
+                        className="text-danger"
+                      >
+                        0
+                         %
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td
+                  className="align-middle"
+                >
+                  0 / 812
+                </td>
+                <td
+                  className="align-middle"
+                >
+                  5 jours
+                </td>
+                <td
+                  className="align-middle"
+                >
+                  <div
+                    className="c24"
+                  >
+                    À traduire
+                  </div>
+                </td>
+                <td
+                  className="align-middle last"
+                >
+                  1612514769665
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`user translation should return loader langue in url = first selected langue 1`] = `
+.c9 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0A54BF;
+  padding: 17px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 10px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c10 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #137F3A;
+  padding: 17px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 10px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c11 {
+  padding: 15px;
+  background-color: #212121;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 12px;
+  margin-right: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c12 {
+  padding: 15px;
+  background-color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  cursor: pointer;
+  border-radius: 12px;
+  margin-right: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c13 {
+  background: #ffffff;
+  border: 0.5px solid #ffffff;
+  border-radius: 12px;
+  padding-right: 12px;
+  padding-left: 15px;
+  margin-right: 0px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 280px;
+  height: 52px;
+  color: #000000;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c13:hover {
+  box-shadow: 0px 4px 7px rgba(0,0,0,0.1);
+}
+
+.c13:focus {
+  outline: none !important;
+}
+
+.c14 {
+  background: #ffffff;
+  border: 0.5px solid #ffffff;
+  border-radius: 12px;
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  color: #000000;
+}
+
+.c14:focus {
+  outline: none !important;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c5 {
+  margin: 26px 80px 30px 80px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 10px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c15 {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.c1 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #212121;
+  padding: 16px;
+}
+
+.c2 {
+  background: #212121;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 16px;
+}
+
+.c3 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #e55039;
+  padding: 16px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+<div
+  style={
+    Object {
+      "backgroundColor": "#f2f2f2",
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "column",
+      "marginTop": "-95px",
+      "paddingTop": "100px",
+    }
+  }
+>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="bookmark-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes favoris
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="file-add-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes fiches
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="play-circle"
+          data-eva-fill="#ffffff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes traductions
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="person-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mon profil
+    </div>
+    <div
+      className="c3"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="log-out-outline"
+          data-eva-fill="#e55039"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Déconnexion
+    </div>
+  </div>
+  <div
+    className="c4"
+  >
+    <div
+      className="c5"
+    >
+      <div
+        className="c6"
+      >
+        <div
+          className="c7"
+        >
+          <div
+            className="css-nitgap-SkeletonTheme"
+          >
+            <span>
+              <span
+                className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                style={
+                  Object {
+                    "height": 50,
+                    "width": 120,
+                  }
+                }
+              >
+                ‌
+              </span>
+            </span>
+          </div>
+        </div>
+        <div
+          className="c7"
+        >
+          <button
+            className="figma-btn tuto mr-8"
+            onClick={[Function]}
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="video-outline"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Explications
+          </button>
+          <button
+            className="figma-btn dark "
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="settings-2-outline"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Mes langues
+          </button>
+        </div>
+      </div>
+      <div
+        className="c8"
+      >
+        <div
+          className="c7"
+        >
+          <div
+            className="c9"
+            color="#0A54BF"
+            onClick={[Function]}
+          >
+            À traduire (...)
+          </div>
+          <div
+            className="c10"
+            color="#137F3A"
+            onClick={[Function]}
+          >
+            Publiées (...)
+          </div>
+          <div
+            className="c11"
+            onClick={[Function]}
+          >
+            Dispositifs (...)
+            <div
+              className="switch-wrapper card-custom-title ml-8"
+            >
+              <label
+                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+              >
+                <input
+                  aria-checked={true}
+                  checked={true}
+                  className="switch-input form-check-input"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <span
+                  className="switch-slider"
+                  data-checked="On"
+                  data-unchecked="Off"
+                />
+              </label>
+            </div>
+          </div>
+          <div
+            className="c12"
+            onClick={[Function]}
+          >
+            Démarches (...)
+            <div
+              className="switch-wrapper card-custom-title ml-8"
+            >
+              <label
+                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+              >
+                <input
+                  aria-checked={false}
+                  checked={false}
+                  className="switch-input form-check-input"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <span
+                  className="switch-slider"
+                  data-checked="On"
+                  data-unchecked="Off"
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c13"
+        >
+          <input
+            className="c14 form-control-plaintext"
+            onChange={[Function]}
+            placeholder="Rechercher..."
+            type="text"
+            value=""
+          />
+          <span
+            id="bookmarkBtn"
+          >
+            <i
+              data-eva="search-outline"
+              data-eva-fill="#212121"
+              data-eva-height="24px"
+              data-eva-width="24px"
+            />
+          </span>
+        </div>
+      </div>
+      <div
+        className="c15"
+      >
+        <div
+          className="table-responsive"
+        >
+          <table
+            className="avancement-table table table-borderless"
+          >
+            <thead>
+              <tr
+                className="tr-test"
+              >
+                <th>
+                  Type
+                </th>
+                <th>
+                  Titre
+                </th>
+                <th>
+                  Progression
+                </th>
+                <th>
+                  Mots
+                </th>
+                <th>
+                  Depuis
+                </th>
+                <th>
+                  Statut
+                </th>
+                <th>
+                  Dernière trad
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                className="bg-blancSimple"
+              >
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 50,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 270,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                className="bg-blancSimple"
+              >
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 50,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 270,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                className="bg-blancSimple"
+              >
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 50,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 270,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                className="bg-blancSimple"
+              >
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 50,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 270,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                className="bg-blancSimple"
+              >
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 50,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 270,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                className="bg-blancSimple"
+              >
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 50,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 270,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                className="bg-blancSimple"
+              >
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 50,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 270,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                className="bg-blancSimple"
+              >
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 50,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 270,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                className="bg-blancSimple"
+              >
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 50,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 270,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                className="bg-blancSimple"
+              >
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 50,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 270,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                className="bg-blancSimple"
+              >
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 50,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 270,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                className="bg-blancSimple"
+              >
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 50,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 270,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="css-1hlq30t-SkeletonTheme"
+                  >
+                    <span>
+                      <span
+                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                        style={
+                          Object {
+                            "width": 70,
+                          }
+                        }
+                      >
+                        ‌
+                      </span>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

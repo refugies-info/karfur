@@ -24,6 +24,51 @@ const url =
     ? "https://staging.refugies.info/"
     : "https://www.refugies.info/";
 
+const populateLanguages = (user) => {
+  if (
+    user.selectedLanguages &&
+    user.selectedLanguages.constructor === Array &&
+    user.selectedLanguages.length > 0
+  ) {
+    user.selectedLanguages.forEach((langue) => {
+      Langue.findOne({ _id: langue._id }).exec((err, result) => {
+        if (!err) {
+          if (!result.participants) {
+            result.participants = [user._id];
+            result.save();
+          } else if (
+            !result.participants.some((participant) =>
+              participant.equals(user._id)
+            )
+          ) {
+            result.participants = [...result.participants, user._id];
+            result.save();
+          }
+        }
+      });
+    });
+
+    //Je vérifie maintenant s'il n'était pas inscrit dans d'autres langues à tort:
+    Langue.find({ participants: user._id }).exec((err, results) => {
+      if (!err) {
+        results.forEach((result) => {
+          if (
+            result.participants.some((participant) =>
+              participant.equals(user._id)
+            )
+          ) {
+            if (!user.selectedLanguages.some((x) => x._id === result._id)) {
+              Langue.update(
+                { _id: result._id },
+                { $pull: { participants: user._id } }
+              );
+            }
+          }
+        });
+      }
+    });
+  }
+};
 const _checkAndNotifyAdmin = async function (
   user,
   roles,
@@ -70,11 +115,9 @@ const _checkAndNotifyAdmin = async function (
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
+        logger.error("error sending mail", { error: error.message });
       } else {
-        // eslint-disable-next-line no-console
-        console.log("Email sent: " + info.response);
+        logger.info("Email sent: " + info.response);
       }
     });
   }
@@ -140,7 +183,6 @@ function set_user_info(req, res) {
         } else {
           //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
           //Je le fais en non bloquant, il faut pas que ça renvoie une erreur à l'enregistrement
-          // eslint-disable-next-line no-use-before-define
           populateLanguages(user);
           res.status(200).json({
             data: result,
@@ -149,49 +191,6 @@ function set_user_info(req, res) {
         }
       }
     );
-  }
-}
-
-function change_password(req, res) {
-  const { query, newUser } = req.body;
-  if (
-    !query._id ||
-    !query.username ||
-    !newUser.password ||
-    !newUser.newPassword
-  ) {
-    res.status(400).json({ text: "Requête invalide" });
-  } else {
-    if (query._id.toString() !== req.user._id.toString()) {
-      return res.status(401).json({ text: "Token invalide" });
-    }
-    if (newUser.newPassword !== newUser.cpassword) {
-      return res
-        .status(400)
-        .json({ text: "Les mots de passe ne correspondent pas" });
-    }
-
-    User.findOne(query, (err, user) => {
-      if (err) {
-        return res.status(500).json({ text: "Erreur interne" });
-      } else if (!user) {
-        return res.status(404).json({ text: "L'utilisateur n'existe pas" });
-      } else if (!user.authenticate(newUser.password)) {
-        return res.status(401).json({ text: "Echec d'authentification" });
-      } else if (
-        (computePasswordStrengthScore(newUser.newPassword) || {}).score < 1
-      ) {
-        return res
-          .status(402)
-          .json({ text: "Le mot de passe est trop faible" });
-      }
-      user.password = passwordHash.generate(newUser.newPassword);
-      user.save();
-      res.status(200).json({
-        token: user.getToken(),
-        text: "Authentification réussi",
-      });
-    });
   }
 }
 
@@ -261,15 +260,7 @@ function reset_password(req, res) {
           to: user.email,
         };
 
-        transporter.sendMail(mailOptions, (error, info) => {
-          if (error) {
-            // eslint-disable-next-line no-console
-            console.log(error);
-          } else {
-            // eslint-disable-next-line no-console
-            console.log("Email sent: " + info.response);
-          }
-        });
+        transporter.sendMail(mailOptions, () => {});
         return res.status(200).json({ text: "Envoi réussi", data: user.email });
       });
     }
@@ -403,68 +394,17 @@ function get_users(req, res) {
 }
 
 function get_user_info(req, res) {
+  const user = req.user;
+  const filteredLanguages = user.selectedLanguages
+    ? user.selectedLanguages.filter((langue) => langue.langueCode !== "fr")
+    : [];
+
+  user.selectedLanguages = filteredLanguages;
   res.status(200).json({
     text: "Succès",
-    data: req.user,
+    data: user,
   });
 }
-
-const populateLanguages = (user) => {
-  if (
-    user.selectedLanguages &&
-    user.selectedLanguages.constructor === Array &&
-    user.selectedLanguages.length > 0
-  ) {
-    user.selectedLanguages.forEach((langue) => {
-      Langue.findOne({ _id: langue._id }).exec((err, result) => {
-        if (!err) {
-          if (!result.participants) {
-            result.participants = [user._id];
-            result.save();
-          } else if (
-            !result.participants.some((participant) =>
-              participant.equals(user._id)
-            )
-          ) {
-            result.participants = [...result.participants, user._id];
-            result.save();
-          }
-        } else {
-          // eslint-disable-next-line no-console
-          console.log(err);
-        }
-      });
-    });
-
-    //Je vérifie maintenant s'il n'était pas inscrit dans d'autres langues à tort:
-    Langue.find({ participants: user._id }).exec((err, results) => {
-      if (!err) {
-        results.forEach((result) => {
-          if (
-            result.participants.some((participant) =>
-              participant.equals(user._id)
-            )
-          ) {
-            if (!user.selectedLanguages.some((x) => x._id === result._id)) {
-              Langue.update(
-                { _id: result._id },
-                { $pull: { participants: user._id } }
-              ).exec((err) => {
-                if (err) {
-                  // eslint-disable-next-line no-console
-                  console.log(err);
-                }
-              });
-            }
-          }
-        });
-      } else {
-        // eslint-disable-next-line no-console
-        console.log(err);
-      }
-    });
-  }
-};
 
 //Cette fonction semble inutilisée maintenant, à vérifier
 function signup(req, res) {
@@ -561,7 +501,6 @@ function signup(req, res) {
 exports.signup = signup;
 exports.checkUserExists = checkUserExists;
 exports.set_user_info = set_user_info;
-exports.change_password = change_password;
 exports.get_users = get_users;
 exports.get_user_info = get_user_info;
 exports.reset_password = reset_password;

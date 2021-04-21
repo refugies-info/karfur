@@ -3,11 +3,11 @@ import {
   FETCH_USER_STRUCTURE,
   UPDATE_USER_STRUCTURE,
 } from "./userStructure.actionTypes";
-import { Structure } from "../../types/interface";
+import { UserStructure } from "../../types/interface";
 import { action, ActionType } from "typesafe-actions";
 import { ObjectId } from "mongodb";
 
-export const setUserStructureActionCreator = (value: Structure) =>
+export const setUserStructureActionCreator = (value: UserStructure | null) =>
   action(SET_USER_STRUCTURE, value);
 
 export const fetchUserStructureActionCreator = (value: {
@@ -15,8 +15,15 @@ export const fetchUserStructureActionCreator = (value: {
   shouldRedirect: boolean;
 }) => action(FETCH_USER_STRUCTURE, value);
 
-export const updateUserStructureActionCreator = () =>
-  action(UPDATE_USER_STRUCTURE);
+export const updateUserStructureActionCreator = (value: {
+  modifyMembres: boolean;
+  data?: {
+    type: "modify" | "delete" | "create";
+    userId: ObjectId;
+    structureId: ObjectId;
+    newRole?: "contributeur" | "administrateur";
+  };
+}) => action(UPDATE_USER_STRUCTURE, value);
 
 const actions = {
   setUserStructureActionCreator,

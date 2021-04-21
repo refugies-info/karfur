@@ -104,7 +104,7 @@ var structureSchema = new mongoose.Schema(
 
 export interface StructureDoc extends mongoose.Document {
   _id: ObjectId;
-  membres?: { userId: ObjectId; roles: string[] }[];
+  membres?: { userId: ObjectId; roles: string[]; added_at?: Moment }[];
   acronyme?: string;
   administrateur: ObjectId;
   adresse?: string;

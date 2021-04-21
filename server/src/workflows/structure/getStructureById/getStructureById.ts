@@ -1,14 +1,32 @@
-import { RequestFromClient, Res, IDispositif } from "../../../types/interface";
+import {
+  RequestFromClient,
+  Res,
+  IDispositif,
+  Picture,
+} from "../../../types/interface";
 import { ObjectId } from "mongoose";
 import { castToBoolean } from "../../../libs/castToBoolean";
 import logger from "../../../logger";
 import { getStructureFromDB } from "../../../modules/structure/structure.repository";
 import { turnToLocalized } from "../../../controllers/dispositif/functions";
+import { asyncForEach } from "../../../libs/asyncForEach";
+import { getUserById } from "../../../modules/users/users.repository";
+import { StructureDoc } from "../../../schema/schemaStructure";
+import { Moment } from "moment";
 
 interface Query {
   id: ObjectId;
   withDisposAssocies: string;
   localeOfLocalizedDispositifsAssocies: string;
+  withMembres: string;
+}
+interface Membre {
+  _id: ObjectId;
+  username: string;
+  roles: string[];
+  picture?: Picture;
+  added_at?: Moment;
+  userId: ObjectId;
 }
 
 const adaptDispositifsAssocies = (dispositifs: IDispositif[]) =>
@@ -19,7 +37,69 @@ const adaptDispositifsAssocies = (dispositifs: IDispositif[]) =>
     tags: dispositif.tags,
     abstract: dispositif.abstract,
     status: dispositif.status,
+    suggestions: dispositif.suggestions,
+    typeContenu: dispositif.typeContenu,
+    created_at: dispositif.created_at,
+    nbVues: dispositif.nbVues || 0,
+    nbMercis: dispositif.merci ? dispositif.merci.length : 0,
   }));
+
+const addDisposAssociesIfNeeded = (
+  withLocalizedDispositifsBoolean: boolean,
+  structure: StructureDoc,
+  localeOfLocalizedDispositifsAssocies: string
+) => {
+  if (withLocalizedDispositifsBoolean) {
+    const dispositifsAssocies = structure.toJSON().dispositifsAssocies;
+    const array: string[] = [];
+
+    array.forEach.call(dispositifsAssocies, (dispositif: any) => {
+      turnToLocalized(dispositif, localeOfLocalizedDispositifsAssocies);
+    });
+    const simplifiedDispositifsAssocies = adaptDispositifsAssocies(
+      dispositifsAssocies
+    );
+    return {
+      ...structure.toJSON(),
+      // @ts-ignore populate dispos associes
+      dispositifsAssocies: simplifiedDispositifsAssocies,
+    };
+  }
+  return { ...structure.toJSON() };
+};
+
+const addMembresIfNeeded = async (
+  withMembresBoolean: boolean,
+  structure: StructureDoc
+) => {
+  if (withMembresBoolean) {
+    const structureMembres = structure.membres || [];
+    let membresArray: Membre[] = [];
+    await asyncForEach(structureMembres, async (membre) => {
+      try {
+        if (!membre.userId) return;
+        const neededFields = { username: 1, picture: 1, last_connected: 1 };
+        const populateMembre = await getUserById(membre.userId, neededFields);
+        membresArray.push({
+          ...populateMembre.toJSON(),
+          roles: membre.roles,
+          added_at: membre.added_at,
+          userId: membre.userId,
+        });
+      } catch (error) {
+        logger.error("[getStructureById] error while getting user", {
+          userId: membre.userId,
+          error: error.message,
+        });
+      }
+    });
+
+    return { ...structure, membres: membresArray };
+  }
+  const newStructure = { ...structure };
+  delete newStructure.membres;
+  return newStructure;
+};
 
 export const getStructureById = async (
   req: RequestFromClient<Query>,
@@ -33,8 +113,10 @@ export const getStructureById = async (
       id,
       withDisposAssocies,
       localeOfLocalizedDispositifsAssocies,
+      withMembres,
     } = req.query;
     const withDisposAssociesBoolean = castToBoolean(withDisposAssocies);
+    const withMembresBoolean = castToBoolean(withMembres);
 
     const withLocalizedDispositifsBoolean = [
       "fr",
@@ -51,6 +133,7 @@ export const getStructureById = async (
       withDisposAssociesBoolean,
       withLocalizedDispositifsBoolean,
       localeOfLocalizedDispositifsAssocies,
+      withMembresBoolean,
     });
 
     const populateDisposAssocies = withLocalizedDispositifsBoolean
@@ -69,33 +152,24 @@ export const getStructureById = async (
       throw new Error("No structure");
     }
 
-    if (withLocalizedDispositifsBoolean) {
-      const dispositifsAssocies = structure.toJSON().dispositifsAssocies;
-      const array: string[] = [];
-
-      array.forEach.call(dispositifsAssocies, (dispositif: any) => {
-        turnToLocalized(dispositif, localeOfLocalizedDispositifsAssocies);
-      });
-      const simplifiedDispositifsAssocies = adaptDispositifsAssocies(
-        dispositifsAssocies
-      );
-      const newStructure = {
-        ...structure.toJSON(),
-        dispositifsAssocies: simplifiedDispositifsAssocies,
-      };
-      return res.status(200).json({
-        text: "Succès",
-        data: newStructure,
-      });
-    }
+    const structureWithDisposAssocies = addDisposAssociesIfNeeded(
+      withLocalizedDispositifsBoolean,
+      structure,
+      localeOfLocalizedDispositifsAssocies
+    );
+    const structureWithMembres = await addMembresIfNeeded(
+      withMembresBoolean,
+      // @ts-ignore
+      structureWithDisposAssocies
+    );
 
     return res.status(200).json({
       text: "Succès",
-      data: structure,
+      data: structureWithMembres,
     });
   } catch (error) {
     logger.error("[getStructureById] error while getting structure with id", {
-      error,
+      error: error.message,
     });
     if (error.message === "No structure") {
       res.status(404).json({

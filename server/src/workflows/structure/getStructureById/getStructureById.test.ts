@@ -2,17 +2,24 @@
 import { getStructureById } from "./getStructureById";
 import { getStructureFromDB } from "../../../modules/structure/structure.repository";
 import { turnToLocalized } from "../../../controllers/dispositif/functions";
+import { getUserById } from "../../../modules/users/users.repository";
 
 const structure = { id: "id" };
 
 jest.mock("../../../modules/structure/structure.repository", () => ({
   getStructureFromDB: jest.fn().mockResolvedValue({
     id: "id",
+    membres: [{ _id: "id" }],
+    toJSON: () => ({ id: "id", membres: [{ _id: "id" }] }),
   }),
 }));
 
 jest.mock("../../../controllers/dispositif/functions", () => ({
   turnToLocalized: jest.fn(),
+}));
+
+jest.mock("../../../modules/users/users.repository", () => ({
+  getUserById: jest.fn(),
 }));
 
 type MockResponse = { json: any; status: any };
@@ -41,6 +48,8 @@ const simplifiedDispo1 = {
   tags: [],
   titreInformatif: "titre",
   titreMarque: "titreMarque",
+  nbVues: 0,
+  nbMercis: 0,
 };
 
 const simplifiedDispo2 = {
@@ -50,6 +59,8 @@ const simplifiedDispo2 = {
   tags: [],
   titreInformatif: "titre",
   titreMarque: "titreMarque",
+  nbVues: 0,
+  nbMercis: 0,
 };
 
 const dispositif2 = {
@@ -80,6 +91,7 @@ describe("getStructureById", () => {
           id: "id",
           withDisposAssocies: "true",
           localeOfLocalizedDispositifsAssocies: "false",
+          withMembres: "false",
         },
       },
       res
@@ -97,6 +109,7 @@ describe("getStructureById", () => {
           id: "id",
           withDisposAssocies: "false",
           localeOfLocalizedDispositifsAssocies: "false",
+          withMembres: "false",
         },
       },
       res
@@ -114,6 +127,7 @@ describe("getStructureById", () => {
           id: "id",
           withDisposAssocies: "false",
           localeOfLocalizedDispositifsAssocies: "false",
+          withMembres: "false",
         },
       },
       res
@@ -140,6 +154,7 @@ describe("getStructureById", () => {
           id: "id",
           withDisposAssocies: "false",
           localeOfLocalizedDispositifsAssocies: "false",
+          withMembres: "false",
         },
       },
       res
@@ -158,6 +173,7 @@ describe("getStructureById", () => {
           id: "id",
           withDisposAssocies: "false",
           localeOfLocalizedDispositifsAssocies: "false",
+          withMembres: "false",
         },
       },
       res
@@ -175,6 +191,7 @@ describe("getStructureById", () => {
           id: "id",
           withDisposAssocies: "true",
           localeOfLocalizedDispositifsAssocies: "en",
+          withMembres: "false",
         },
       },
       res
@@ -198,6 +215,7 @@ describe("getStructureById", () => {
           id: "id",
           withDisposAssocies: "true",
           localeOfLocalizedDispositifsAssocies: "en",
+          withMembres: "false",
         },
       },
       res
@@ -207,7 +225,7 @@ describe("getStructureById", () => {
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
   });
 
-  it("should call turnToLocalized and turnJSONtoHTML ", async () => {
+  it("should call turnToLocalized when withDisposAssocies", async () => {
     getStructureFromDB.mockResolvedValueOnce({
       toJSON: () => structure1,
     });
@@ -219,6 +237,7 @@ describe("getStructureById", () => {
           id: "id",
           withDisposAssocies: "true",
           localeOfLocalizedDispositifsAssocies: "en",
+          withMembres: "false",
         },
       },
       res
@@ -233,6 +252,96 @@ describe("getStructureById", () => {
       data: {
         id: "id",
         dispositifsAssocies: [simplifiedDispo1, simplifiedDispo2],
+      },
+    });
+  });
+  const neededFields = { username: 1, picture: 1, last_connected: 1 };
+  const user1 = { username: "username1", _id: "id1", userId: "userId1" };
+  const user2 = { username: "username2", _id: "id2", userId: "userId2" };
+
+  it("should call turnToLocalized and getUserById when withDisposAssocies and withMembres ", async () => {
+    getUserById.mockResolvedValueOnce({ toJSON: () => user1 });
+    getUserById.mockResolvedValueOnce({ toJSON: () => user2 });
+
+    getStructureFromDB.mockResolvedValueOnce({
+      toJSON: () => ({
+        ...structure1,
+        membres: [
+          { roles: ["admin"] },
+          { userId: "userId1", roles: ["contributeur"] },
+          { userId: "userId2", roles: ["administrateur"] },
+        ],
+      }),
+    });
+
+    const res = mockResponse();
+    await getStructureById(
+      {
+        query: {
+          id: "id",
+          withDisposAssocies: "true",
+          localeOfLocalizedDispositifsAssocies: "en",
+          withMembres: "true",
+        },
+      },
+      res
+    );
+    expect(getStructureFromDB).toHaveBeenCalledWith("id", true, "all");
+    expect(turnToLocalized).toHaveBeenCalledWith(dispositif1, "en");
+    expect(turnToLocalized).toHaveBeenCalledWith(dispositif2, "en");
+    expect(getUserById).toHaveBeenCalledWith("userId1", neededFields);
+    expect(getUserById).toHaveBeenCalledWith("userId2", neededFields);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "Succès",
+      data: {
+        id: "id",
+        dispositifsAssocies: [simplifiedDispo1, simplifiedDispo2],
+        membres: [
+          { ...user1, roles: ["contributeur"] },
+          { ...user2, roles: ["administrateur"] },
+        ],
+      },
+    });
+  });
+
+  it("should return empty membre array when getUserById throws ", async () => {
+    getUserById.mockRejectedValueOnce(new Error("erreur"));
+
+    getStructureFromDB.mockResolvedValueOnce({
+      toJSON: () => ({
+        ...structure1,
+        membres: [
+          { roles: ["admin"] },
+          { userId: "userId1", roles: ["contributeur"] },
+        ],
+      }),
+    });
+
+    const res = mockResponse();
+    await getStructureById(
+      {
+        query: {
+          id: "id",
+          withDisposAssocies: "false",
+          localeOfLocalizedDispositifsAssocies: "en",
+          withMembres: "true",
+        },
+      },
+      res
+    );
+    expect(getStructureFromDB).toHaveBeenCalledWith("id", true, "all");
+
+    expect(getUserById).toHaveBeenCalledWith("userId1", neededFields);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "Succès",
+      data: {
+        id: "id",
+        dispositifsAssocies: [simplifiedDispo1, simplifiedDispo2],
+        membres: [],
       },
     });
   });

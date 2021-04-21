@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Event, Indicator } from "types/interface";
+import { Event, Indicators } from "types/interface";
 import { Modal, Spinner } from "reactstrap";
 import "./UserDetailsModal.scss";
 import moment from "moment/min/moment-with-locales";
@@ -66,19 +66,13 @@ interface Props {
   selectedUserId: ObjectId | null;
 }
 
-type Test = {
-  threeMonthsIndicator?: Indicator[];
-  sixMonthsIndicator?: Indicator[];
-  twelveMonthsIndicator?: Indicator[];
-  totalIndicator?: Indicator[];
-};
 export const UserDetailsModal: React.FunctionComponent<Props> = (
   props: Props
 ) => {
   // const [user, setUser] = useState<SimplifiedUser | null>(null);
   const [email, setEmail] = useState<string>("");
   const [roles, setRoles] = useState<string[]>([]);
-  const [indicators, setIndicators] = useState<null | Test>(null);
+  const [indicators, setIndicators] = useState<null | Indicators>(null);
 
   const userFromStore = useSelector(userSelector(props.selectedUserId));
   const dispatch = useDispatch();
@@ -129,7 +123,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         await API.updateUser({
           query: {
             user: { _id: userFromStore._id, roles, email },
-            action: "modify",
+            action: "modify-with-roles",
           },
         });
         Swal.fire({

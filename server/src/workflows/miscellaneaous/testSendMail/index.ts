@@ -1,0 +1,1 @@
+export { testSendMail } from "./testSendMail";

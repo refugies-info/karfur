@@ -20,6 +20,7 @@ import {
 import { CardBodyContent } from "./components/CardBodyContent";
 import { CardFooterContent } from "./components/CardFooterContent";
 import { CardHeaderContent } from "./components/CardHeaderContent";
+import { isMobile } from "react-device-detect";
 
 // difficult to type
 type Element = any;
@@ -210,7 +211,7 @@ export class CardParagraphe extends Component<Props> {
     return (
       <>
         <Col
-          className="card-col"
+          className={"card-col"}
           onMouseEnter={() =>
             this.props.updateUIArray(
               this.props.keyValue,
@@ -310,7 +311,7 @@ export class CardParagraphe extends Component<Props> {
             }
           </Card>
         </Col>
-        {
+        {!isMobile && (
           <FrenchLevelModal
             show={this.state.showFrenchLevelModal}
             disableEdit={this.props.disableEdit}
@@ -319,7 +320,7 @@ export class CardParagraphe extends Component<Props> {
             validateLevels={this.validateLevels}
             t={this.props.t}
           />
-        }
+        )}
         {subitem.title === "Zone d'action" ? (
           <GeolocModal
             validateDepartments={this.validateDepartments}

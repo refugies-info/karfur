@@ -1,21 +1,11 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { withTranslation } from "react-i18next";
-import {
-  ButtonDropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-} from "reactstrap";
 import i18n from "../../i18n";
-import { AppAsideToggler } from "@coreui/react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import windowSize from "react-window-size";
-
 import { toggleLangueModalActionCreator } from "../../services/Langue/langue.actions";
-// import NavigationItems from '../../components/Navigation/NavigationItems/NavigationItems';
-import DrawerToggle from "../../components/Navigation/SideDrawer/DrawerToggle/DrawerToggle";
 import API from "../../utils/API";
 import AudioBtn from "../UI/AudioBtn/AudioBtn";
 import marioProfile from "../../assets/mario-profile.jpg";
@@ -28,11 +18,15 @@ import { fetchUserActionCreator } from "../../services/User/user.actions";
 import { breakpoints } from "utils/breakpoints.js";
 import styled from "styled-components";
 import Streamline from "../../assets/streamline";
-
+import {
+  userStructureHasResponsibleSeenNotification,
+  userStructureDisposAssociesSelector,
+  userStructureSelector,
+} from "../../services/UserStructure/userStructure.selectors";
 import "./Toolbar.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 import { logger } from "../../logger";
-
+import { getNbNewNotifications } from "../Backend/UserNotifications/lib";
 const InnerButton = styled.div`
   display: flex;
   justify-content: space-between;
@@ -129,23 +123,18 @@ export class Toolbar extends React.Component {
 
   render() {
     const path = this.props.location.pathname || "";
-    const {
-      user,
-      contributeur,
-      traducteur,
-      expertTrad,
-      admin,
-      membreStruct,
-      t,
-      windowWidth,
-    } = this.props;
-    const afficher_burger =
-      false && admin && path.includes("/backend") && path.includes("/admin"); //Hugo demande de ne plus afficher le burger, temporairement désactivé donc
-    const afficher_burger_droite = path.includes("/traduction");
+    const { user, membreStruct, t, windowWidth } = this.props;
     const userImg =
       user && user.picture ? user.picture.secure_url : marioProfile;
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+    const pathName = membreStruct
+      ? "/backend/user-dash-notifications"
+      : "/backend/user-favorites";
 
+    const nbNewNotifications = getNbNewNotifications(
+      this.props.dispositifsAssocies,
+      this.props.hasResponsibleSeenNotification
+    );
     return (
       <header
         className={
@@ -155,22 +144,12 @@ export class Toolbar extends React.Component {
         }
       >
         <div className="left_buttons">
-          {afficher_burger && (
-            <DrawerToggle
-              forceShow={afficher_burger}
-              clicked={() => this.props.drawerToggleClicked("left")}
-            />
-          )}
           <Logo reduced={windowWidth < breakpoints.phoneDown} isRTL={isRTL} />
           {path !== "/" &&
             path !== "/homepage" &&
             windowWidth >= breakpoints.phoneDown && (
               <NavLink to="/" className="home-btn">
-                <EVAIcon
-                  name="home"
-                  fill={colors.noir}
-                  className="mr-10 rsz"
-                />
+                <EVAIcon name="home" fill={colors.noir} className="mr-10 rsz" />
                 {windowWidth >= breakpoints.lgLimit && (
                   <b className="home-texte">
                     {t("Toolbar.Accueil", "Accueil")}
@@ -183,13 +162,12 @@ export class Toolbar extends React.Component {
         <div className="center-buttons">
           <AudioBtn />
           <LanguageBtn hideText={windowWidth < breakpoints.tabletUp} />
-          {/* <NavigationItems /> */}
-            <AdvancedSearchBar
-              visible={this.state.visible}
-              scroll={this.state.scroll}
-              loupe
-              className="search-bar inner-addon right-addon mr-10 rsz"
-            />
+          <AdvancedSearchBar
+            visible={this.state.visible}
+            scroll={this.state.scroll}
+            loupe
+            className="search-bar inner-addon right-addon mr-10 rsz"
+          />
 
           <button
             onClick={() => {
@@ -235,61 +213,27 @@ export class Toolbar extends React.Component {
           </button>
 
           {API.isAuth() ? (
-            <ButtonDropdown
-              className="user-dropdown"
-              isOpen={this.state.dropdownOpen}
-              toggle={this.toggle}
+            <NavLink
+              className="user-picture-link"
+              to={{
+                pathname: pathName,
+              }}
             >
-              <DropdownToggle color="transparent">
+              {membreStruct &&
+              nbNewNotifications > 0 &&
+              this.props.userStructure ? (
+                <div className="overlay">
+                  <img
+                    src={userImg}
+                    className="user-picture-with-overlay"
+                    alt="user"
+                  />
+                  <div class="middle">{nbNewNotifications}</div>
+                </div>
+              ) : (
                 <img src={userImg} className="user-picture" alt="user" />
-                <div className="user-badge" />
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem
-                  onClick={() => this.navigateTo("/backend/user-profile")}
-                >
-                  {t("Toolbar.Mon profil", "Mon profil")}
-                </DropdownItem>
-                {contributeur && (
-                  <DropdownItem
-                    onClick={() =>
-                      this.navigateTo("/backend/user-dash-contrib")
-                    }
-                  >
-                    {t("Toolbar.Mes fiches", "Mes fiches")}
-                  </DropdownItem>
-                )}
-                {(expertTrad || traducteur) && (
-                  <DropdownItem
-                    onClick={() => this.navigateTo("/backend/user-dashboard")}
-                  >
-                    {t("Toolbar.Mes traductions", "Mes traductions")}
-                  </DropdownItem>
-                )}
-                {membreStruct && (
-                  <DropdownItem
-                    onClick={() => {
-                      this.navigateTo("/backend/user-dash-structure");
-                    }}
-                  >
-                    {t("Toolbar.Ma structure", "Ma structure")}
-                  </DropdownItem>
-                )}
-                {admin && (
-                  <DropdownItem
-                    onClick={() => this.navigateTo("/backend/admin")}
-                  >
-                    {t("Toolbar.Administration", "Administration")}
-                  </DropdownItem>
-                )}
-                <DropdownItem divider />
-                <NavLink to="/" onClick={this.disconnect}>
-                  <DropdownItem className="text-danger">
-                    {t("Toolbar.Se déconnecter", "Se déconnecter")}
-                  </DropdownItem>
-                </NavLink>
-              </DropdownMenu>
-            </ButtonDropdown>
+              )}
+            </NavLink>
           ) : (
             <>
               <NavLink
@@ -319,10 +263,6 @@ export class Toolbar extends React.Component {
             </>
           )}
         </div>
-
-        {false && afficher_burger_droite && (
-          <AppAsideToggler className="d-md-down-none" />
-        )}
       </header>
     );
   }
@@ -339,6 +279,11 @@ const mapStateToProps = (state) => {
     contributeur: state.user.contributeur,
     admin: state.user.admin,
     membreStruct: state.user.membreStruct,
+    dispositifsAssocies: userStructureDisposAssociesSelector(state),
+    hasResponsibleSeenNotification: userStructureHasResponsibleSeenNotification(
+      state
+    ),
+    userStructure: userStructureSelector(state),
   };
 };
 

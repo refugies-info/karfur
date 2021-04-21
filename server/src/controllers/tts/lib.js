@@ -75,8 +75,6 @@ async function get_tts(req, res) {
 
     rp(options, function (error, response, body) {
       if (error) {
-        // eslint-disable-next-line no-console
-        console.error("error:", error);
         return res.status(500).json({
           text: "Erreur interne",
           data: error,
@@ -87,9 +85,6 @@ async function get_tts(req, res) {
           text: "Succès",
           data: body,
         });
-      } else {
-        // eslint-disable-next-line no-console
-        console.log(response.statusCode);
       }
     });
   }

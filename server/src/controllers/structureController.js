@@ -1,4 +1,3 @@
-const structure = require("./structure/lib.js");
 const checkToken = require("./account/checkToken");
 import { getAllStructures } from "../workflows/structure/getAllStructures";
 import { targetErrosOnDispositifsAssociesInStructures } from "./structure/cleanStructure";
@@ -7,9 +6,9 @@ import { getActiveStructures } from "../workflows/structure/getActiveStructures"
 import { createStructure } from "../workflows/structure/createStructure";
 import { updateStructure } from "../workflows/structure/updateStructure";
 import { modifyUserRoleInStructure } from "../workflows/structure/modifyUserRoleInStructure";
+import { modifyMembreRoleInStructures } from "../workflows/structure/modifyMembreRoleInStructures";
 
 module.exports = function (app) {
-  app.post("/get_structure", structure.get_structure);
   app.get("/getStructureById", getStructureById);
   app.post(
     "/targetErrosOnDispositifsAssociesInStructures",
@@ -24,4 +23,5 @@ module.exports = function (app) {
     checkToken.check,
     modifyUserRoleInStructure
   );
+  app.post("/modifyMembreRoleInStructures", modifyMembreRoleInStructures);
 };

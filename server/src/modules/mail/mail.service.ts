@@ -39,7 +39,7 @@ export const sendOneDraftReminderMailService = async (
   dispositifId: ObjectId
 ) => {
   try {
-    logger.info("[sendOneDraftReminderMailService] received", {
+    logger.info("[sendOneDraftReminderMailService]  received", {
       email,
       dispositifId,
     });
@@ -96,6 +96,177 @@ export const sendMultipleDraftsReminderMailService = async (
   } catch (error) {
     logger.error("[sendMultipleDraftsReminderMailService] error", {
       email,
+      error: error.message,
+    });
+  }
+};
+
+interface PublishedFicheMailToStructureMembersData {
+  pseudo: string;
+  titreInformatif: string;
+  titreMarque?: string;
+  lien: string;
+  email: string;
+  dispositifId: ObjectId;
+  userId: ObjectId;
+}
+
+export const sendPublishedFicheMailToStructureMembersService = async (
+  data: PublishedFicheMailToStructureMembersData
+) => {
+  try {
+    logger.info("[sendPublishedFicheMail] received");
+
+    const dynamicData = {
+      to: data.email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        pseudo: data.pseudo,
+        titreInformatif: data.titreInformatif,
+        lien: data.lien,
+        titreMarque: data.titreMarque,
+      },
+    };
+    const templateName = "publishedFicheToStructureMembers";
+    sendMail(templateName, dynamicData);
+    await addMailEvent({
+      templateName,
+      username: data.pseudo,
+      email: data.email,
+      userId: data.userId,
+      dispositifId: data.dispositifId,
+    });
+    return;
+  } catch (error) {
+    logger.error("[sendPublishedFicheMail] error", {
+      error: error.message,
+    });
+  }
+};
+
+interface PublishedFicheMailToCreatorData {
+  pseudo: string;
+  titreInformatif: string;
+  titreMarque?: string;
+  lien: string;
+  email: string;
+  dispositifId: ObjectId;
+  userId: ObjectId;
+}
+export const sendPublishedFicheMailToCreatorService = async (
+  data: PublishedFicheMailToCreatorData
+) => {
+  try {
+    logger.info("[sendPublishedFicheMailToCreatorService] received ");
+
+    const dynamicData = {
+      to: data.email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        pseudo: data.pseudo,
+        titreInformatif: data.titreInformatif,
+        lien: data.lien,
+        titreMarque: data.titreMarque,
+      },
+    };
+    const templateName = "publishedFicheToCreator";
+    sendMail(templateName, dynamicData);
+    await addMailEvent({
+      templateName,
+      username: data.pseudo,
+      email: data.email,
+      userId: data.userId,
+      dispositifId: data.dispositifId,
+    });
+    return;
+  } catch (error) {
+    logger.error("[sendPublishedFicheMailToCreatorService] error", {
+      error: error.message,
+    });
+  }
+};
+
+export const sendReviewFicheMail = () => {
+  try {
+    logger.info("[sendReviewFicheMail] received");
+
+    const dynamicData = {
+      to: "agkieny@gmail.com",
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        pseudo: "agathe",
+        titreInformatif: "titre",
+        lien: "http://localhost:3000/dispositif/5f918fbafc486c0047ef548d",
+        rubrique: { quoi: true, qui: false },
+      },
+    };
+    const templateName = "reviewFiche";
+    // @ts-ignore
+    sendMail(templateName, dynamicData);
+    // await addMailEvent({ templateName, username, email, userId });
+    return;
+  } catch (error) {
+    logger.error("[sendReviewFicheMail] error", {
+      error: error.message,
+    });
+  }
+};
+
+interface PublishedTradMailToStructure {
+  dispositifId: ObjectId;
+  userId: ObjectId;
+  titreInformatif: string;
+  titreMarque: string;
+  langue: string;
+  lien: string;
+  email: string;
+  pseudo: string;
+}
+export const sendPublishedTradMailToStructureService = async (
+  data: PublishedTradMailToStructure
+) => {
+  try {
+    logger.info("[sendPublishedTradMailToStructure] received");
+
+    const dynamicData = {
+      to: data.email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        titreInformatif: data.titreInformatif,
+        titreMarque: data.titreMarque,
+        lien: data.lien,
+        langue: data.langue,
+      },
+    };
+    const templateName = "publishedTradForStructure";
+    // @ts-ignore
+    sendMail(templateName, dynamicData);
+    await addMailEvent({
+      templateName,
+      username: data.pseudo,
+      email: data.email,
+      userId: data.userId,
+      dispositifId: data.dispositifId,
+    });
+    return;
+  } catch (error) {
+    logger.error("[sendPublishedTradMailToStructure] error", {
       error: error.message,
     });
   }

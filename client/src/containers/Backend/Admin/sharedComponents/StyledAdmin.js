@@ -67,7 +67,7 @@ export const StyledInput = styled.input`
 
 export const SearchBarContainer = styled.div`
   position: absolute;
-  top: 90px;
+  top: 150px;
   right: 40px;
   display: flex;
   flexdirection: row;

@@ -1,6 +1,6 @@
 const himalaya = require("himalaya");
 const sanitizeHtml = require("sanitize-html");
-const { sanitizeOptions } = require("../article/data");
+const { sanitizeOptions } = require("../../libs/data");
 const _ = require("lodash");
 const Error = require("../../schema/schemaError");
 const logger = require("../../logger");
@@ -10,7 +10,6 @@ const pointeurs = ["titreInformatif", "titreMarque", "abstract"];
 /* We mark the changes with the new update dispositif,
 by comparing the old french text (oldD) with new one (newD) and then for validated translation (trad) we mark the modified section
 and if one of the sections is changed we change the status to "À revoir"*/
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const markTradModifications = (newD, oldD, trad, userId) => {
   logger.info("[markTradModifications] dispositif ", {
     id: oldD._id,

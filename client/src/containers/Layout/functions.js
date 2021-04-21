@@ -31,22 +31,16 @@ const readAudio = function (
         //On ne le joue que si l'audio est toujours activé
         if (this.props.ttsActive || inDispositif) {
           this.audio.load();
-          // eslint-disable-next-line no-console
-          this.audio.play().catch((e) => console.log(e));
+          this.audio.play().catch(() => {});
         }
         !inDispositif && this.props.toggleSpinner(false);
         return true;
       } catch (e) {
-        // eslint-disable-next-line no-console
-        console.log(e, audioData, url);
         !inDispositif && this.props.toggleSpinner(false);
         return false;
       }
     })
-    .catch((err) => {
-      // eslint-disable-next-line no-console
-      console.log("Error: ", err); // => prints: Api is being canceled
-    });
+    .catch(() => {});
 };
 
 export { readAudio };

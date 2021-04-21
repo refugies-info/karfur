@@ -233,6 +233,7 @@ export const AdminStructures = () => {
           // @ts-ignore
           onChange={handleChange}
           placeholder="Rechercher une structure..."
+          withMargin={true}
         />
         <FButton
           type="dark"

@@ -1,7 +1,10 @@
 @import "src/scss/colors.scss";
+@import "src/scss/global.scss";
 
 .language-modal {
-  width: 500px;
+  @include media-min("tablet-up") {
+    width: 500px;
+  }
 
   .modal-content {
     background: #ffffff;
@@ -21,11 +24,22 @@
       opacity: 1;
       top: 20px;
       right: 20px;
+      @include media-max("tablet-up") {
+        color: white;
+        background-color: black;
+        font-size: 20px;
+        border-radius: 100%;
+        width: 40px;
+        height: 40px;
+        top: 35px;
+        right: 35px;
+      }
     }
   }
   .modal-title {
     width: 100%;
     cursor: default;
+
     .title {
       font-style: normal;
       font-weight: bold;
@@ -89,7 +103,12 @@
           padding-left: 20px;
         }
       }
-
+      .language-name {
+        @include media-max("tablet-up") {
+          max-width: 70%;
+          flex: 0 0 80%;
+        }
+      }
       .progress-col {
         display: flex;
         align-items: center;
@@ -117,5 +136,8 @@
   }
   .close {
     outline: none;
+    @include media-max("tablet-up") {
+      padding: 0 !important;
+    }
   }
 }

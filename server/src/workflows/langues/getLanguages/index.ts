@@ -1,0 +1,1 @@
+export { getLanguages } from "./getLanguages";

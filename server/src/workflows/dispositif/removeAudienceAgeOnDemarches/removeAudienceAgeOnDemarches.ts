@@ -3,7 +3,7 @@ import logger from "../../../logger";
 import {
   getAllDemarchesFromDB,
   removeAudienceAgeInDB,
-} from "../../../controllers/dispositif/dispositif.repository";
+} from "../../../modules/dispositif/dispositif.repository";
 import { asyncForEach } from "../../../libs/asyncForEach";
 
 export const removeAudienceAgeOnDemarches = async (_: any, res: Res) => {

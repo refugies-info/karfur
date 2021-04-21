@@ -1,0 +1,1 @@
+export { getDispositifsWithTranslationAvancement } from "./getDispositifsWithTranslationAvancement";

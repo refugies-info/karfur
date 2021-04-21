@@ -54,4 +54,24 @@ export const sectionUrlCorrespondencies = [
     tutoUrl:
       "https://help.refugies.info/fr/article/en-cours-j2x61c/?1602575683601",
   },
+  {
+    section: "Mes favoris",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/sauvegarder-des-fiches-en-favoris-feiq6c",
+  },
+  {
+    section: "Mes fiches",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/quel-est-mon-impact-en-tant-que-contributeur-1p0suam",
+  },
+  {
+    section: "Statut des fiches",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/comprendre-le-processus-de-publication-des-fiches-1alq0ht",
+  },
+  {
+    section: "Traduction",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/comment-traduire-une-page-sur-refugiesinfo-1nnffof",
+  },
 ];

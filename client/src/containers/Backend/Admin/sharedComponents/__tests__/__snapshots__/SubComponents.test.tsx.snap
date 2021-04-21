@@ -41,7 +41,7 @@ exports[`should render DeleteButton disabled 1`] = `
   >
     <span>
       <i
-        data-eva="trash-outline"
+        data-eva="trash"
         data-eva-fill="#ffffff"
         data-eva-height="20px"
         data-eva-width="20px"
@@ -92,7 +92,7 @@ exports[`should render DeleteButton not disabled 1`] = `
   >
     <span>
       <i
-        data-eva="trash-outline"
+        data-eva="trash"
         data-eva-fill="#ffffff"
         data-eva-height="20px"
         data-eva-width="20px"
@@ -200,7 +200,7 @@ exports[`should render SeeButton 1`] = `
     >
       <span>
         <i
-          data-eva="eye-outline"
+          data-eva="eye"
           data-eva-fill="#ffffff"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -748,7 +748,7 @@ exports[`should render TabHeader down 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  font-weight: bold;
+  font-weight: "bold";
   cursor: pointer;
 }
 
@@ -777,7 +777,7 @@ exports[`should render TabHeader no order 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  font-weight: normal;
+  font-weight: "bold";
 }
 
 <div
@@ -797,7 +797,7 @@ exports[`should render TabHeader up 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  font-weight: bold;
+  font-weight: "bold";
   cursor: pointer;
 }
 

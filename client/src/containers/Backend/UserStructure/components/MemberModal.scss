@@ -1,0 +1,15 @@
+.member-modal .modal-content {
+  mix-blend-mode: normal; /* Shadow autour */
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  border: none;
+  background: #fbfbfb;
+  padding: 40px;
+  width: 600px;
+
+  .user-img {
+    max-width: 70px;
+    max-height: 40px;
+    border-radius: 50%;
+  }
+}

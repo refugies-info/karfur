@@ -2,7 +2,7 @@ import { createReducer } from "typesafe-actions";
 import { SelectedDispositifActions } from "./selectedDispositif.actions";
 import { updateObject } from "../utility";
 import _ from "lodash";
-import { DispositifContent, Dispositif } from "../../types/interface";
+import { DispositifContent, IDispositif } from "../../types/interface";
 
 interface UiElement {
   isHover: boolean;
@@ -13,7 +13,7 @@ interface UiElement {
   children?: UiElement[];
 }
 
-export type SelectedDispositifState = Dispositif & {
+export type SelectedDispositifState = IDispositif & {
   uiArray: UiElement[];
 };
 

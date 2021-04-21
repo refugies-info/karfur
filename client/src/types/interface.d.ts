@@ -1,4 +1,4 @@
-import { ObjectId } from "mongodb";
+import { ObjectId, ObjectID } from "mongodb";
 import { Moment } from "moment";
 
 export interface RequestReturn<Y> {
@@ -49,11 +49,14 @@ export interface SimplifiedDispositif {
     username: string;
     picture: Picture | undefined;
     _id: ObjectId;
+    email: string | undefined;
   } | null;
   adminComments?: string;
   adminProgressionStatus?: string;
   adminPercentageProgressionStatus?: string;
   lastAdminUpdate?: Moment;
+  draftReminderMailSentDate?: Moment;
+  lastModificationDate?: Moment;
 }
 export interface Picture {
   imgId: ObjectId;
@@ -69,16 +72,19 @@ export interface Role {
 
 export interface Language {
   langueFr: string;
-  langueLoc?: string;
-  langueCode?: string;
-  langueIsDialect?: boolean;
-  langueBackupId: ObjectId;
-  status?: string;
+  langueLoc: string;
+  langueCode: string;
   i18nCode: string;
-  avancement?: number;
-  participants: ObjectId[];
-  created_at: Moment;
-  updatedAt: Moment;
+  _id: ObjectId;
+  avancement: number;
+}
+
+export interface UserLanguage {
+  langueFr: string;
+  langueLoc: string;
+  langueCode: string;
+  i18nCode: string;
+  _id: ObjectId;
 }
 
 export interface User {
@@ -90,7 +96,7 @@ export interface User {
   objectifMots?: number;
   picture?: Picture;
   roles?: Role[];
-  selectedLanguages?: Language[];
+  selectedLanguages?: UserLanguage[];
   notifyObjectifs?: boolean;
   objectifTempsContrib?: number;
   objectifMotsContrib?: number;
@@ -149,7 +155,7 @@ export interface AudienceAge {
   bottomValue: number | string;
   topValue: number | string;
 }
-export interface Dispositif {
+export interface IDispositif {
   _id: ObjectId;
   abstract: string;
   audience: string[];
@@ -182,6 +188,8 @@ export interface Dispositif {
   traductions: ObjectId[];
   typeContenu: "dispositif" | "demarche";
   updatedAt: Moment;
+  nbVues: number;
+  nbMercis: number;
 }
 
 export interface DetailedOpeningHours {
@@ -235,6 +243,19 @@ export interface Structure {
   description?: string;
   hasResponsibleSeenNotification?: boolean;
   mailsPublic?: string[];
+}
+
+export interface UserStructureMembre {
+  _id: ObjectId;
+  roles: string[];
+  picture?: Picture;
+  username: string;
+  last_connected?: Moment;
+  added_at?: Moment;
+  mainRole?: string;
+}
+export interface UserStructure extends Structure {
+  membres: UserStructureMembre[];
 }
 
 export interface SimplifiedStructure {
@@ -292,3 +313,50 @@ export interface SimplifiedStructureForAdmin {
   membres: Membre[];
   nbFiches: number;
 }
+
+export interface IUserFavorite {
+  _id: ObjectId;
+  typeContenu: "dispositif" | "demarche";
+  titreInformatif: string;
+  titreMarque: string;
+  abstract: string;
+  tags: Tag[];
+}
+
+export interface IUserContribution {
+  _id: ObjectId;
+  typeContenu: "dispositif" | "demarche";
+  titreInformatif: string;
+  titreMarque: string;
+  mainSponsor: string | null;
+  nbMercis: number;
+  nbVues: number;
+  status: string;
+}
+
+export type TranslationStatus =
+  | "À traduire"
+  | "En attente"
+  | "Validée"
+  | "À revoir";
+export interface IDispositifTranslation {
+  _id: ObjectId;
+  titreInformatif: string;
+  titreMarque: string;
+  nbMots: number;
+  created_at: number;
+  typeContenu: "dispositif" | "demarche";
+  lastTradUpdatedAt: number | null;
+  avancementTrad: number;
+  avancementExpert: number;
+  tradStatus: TranslationStatus;
+}
+
+export type Indicators = {
+  threeMonthsIndicator?: Indicator[];
+  sixMonthsIndicator?: Indicator[];
+  twelveMonthsIndicator?: Indicator[];
+  totalIndicator?: Indicator[];
+};
+
+export type ITypeContenu = "dispositif" | "demarche";

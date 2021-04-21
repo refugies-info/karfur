@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { Editor } from "react-draft-wysiwyg";
 import h2p from "html2plaintext";
 import { EditorState, ContentState } from "draft-js";
-import { convertToHTML } from "draft-convert"
+import { convertToHTML } from "draft-convert";
 import htmlToDraft from "html-to-draftjs";
 import DirectionProvider, {
   DIRECTIONS,
@@ -27,10 +27,10 @@ import {
 import marioProfile from "../../../assets/mario-profile.jpg";
 import { RejectTradModal } from "../../../components/Modals";
 import { colorAvancement } from "../../../components/Functions/ColorFunctions";
-import {customConvertOption} from "../data";
+import { customConvertOption } from "../data";
 
 import "./SideTrad.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 import API from "../../../utils/API";
 import produce from "immer";
 import styled from "styled-components";
@@ -1008,7 +1008,8 @@ class SideTrad extends Component {
         nom === "francais"
           ? initialValue
           : convertToHTML(customConvertOption)(
-            initialValue.getCurrentContent());
+              initialValue.getCurrentContent()
+            );
       const value =
         pos > -1
           ? h2p(texte)
@@ -1148,7 +1149,8 @@ class SideTrad extends Component {
       traductions: this.props.traductionsFaites,
       isExpert: true,
     };
-    await API.validate_tradForReview(newTrad).then(() => {
+
+    await API.validateTranslations(newTrad).then(() => {
       Swal.fire({
         title: "Yay...",
         text:
