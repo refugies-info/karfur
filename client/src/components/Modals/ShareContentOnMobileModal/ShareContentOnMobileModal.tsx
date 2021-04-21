@@ -57,7 +57,7 @@ const ButtonsContainer = styled.div`
 
 export const ShareContentOnMobileModal = (props: Props) => {
   return (
-    <Modal isOpen={props.show} toggle={props.toggle} className="draft">
+    <Modal isOpen={props.show} toggle={props.toggle} className="share-content">
       <MainContainer>
         <IconContainer onClick={props.toggle}>
           <Icon name="close-outline" fill="#FFFFFF" size="large" />
