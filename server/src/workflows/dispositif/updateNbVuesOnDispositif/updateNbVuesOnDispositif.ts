@@ -2,7 +2,7 @@ import { RequestFromClient, Res } from "../../../types/interface";
 import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { updateDispositifInDB } from "../../../controllers/dispositif/dispositif.repository";
+import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 
 interface Query {
   id: ObjectId;

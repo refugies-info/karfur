@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React from "react";
 import { Col, Row } from "reactstrap";
 import { Props } from "./ContenuDispositif.container";
@@ -7,6 +6,7 @@ import { QuickToolbar } from "../../../../containers/Dispositif/QuickToolbar";
 import ContenuParagraphe from "../ContenuParagraphe/ContenuParagraphe";
 import { DispositifContent } from "../../../../types/interface";
 import FButton from "../../../FigmaUI/FButton/FButton";
+import { isMobile } from "react-device-detect";
 
 interface UiObject {
   accordion: boolean;
@@ -81,9 +81,11 @@ export const contenuDispositif = (props: Props) => {
             }
             onMouseEnter={() => props.updateUIArray(key, null, "isHover")}
           >
-            <button className="anchor" id={"item-head-" + key}>
-              {item.title}
-            </button>
+            {!isMobile && (
+              <button className="anchor" id={"item-head-" + key}>
+                {item.title}
+              </button>
+            )}
             <div style={{ display: "flex", flexDirection: "row" }}>
               <h3
                 className={
@@ -136,7 +138,7 @@ export const contenuDispositif = (props: Props) => {
               )
             }
           </Col>
-          {!props.sideView && props.uiArray[key].isHover && (
+          {!props.sideView && props.uiArray[key].isHover && !isMobile && (
             <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
               {
                 // on the right, contains reaction and reading

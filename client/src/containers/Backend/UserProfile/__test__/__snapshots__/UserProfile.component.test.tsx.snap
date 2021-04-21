@@ -1,0 +1,2086 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserProfile should disable save when new password too weak 1`] = `
+.c13 {
+  width: 100%;
+  margin-right: 16px;
+}
+
+.c14 {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.c15 {
+  color: #f44336;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 16px;
+}
+
+.c1 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #212121;
+  padding: 16px;
+}
+
+.c2 {
+  background: #212121;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 16px;
+}
+
+.c3 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #e55039;
+  padding: 16px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 26px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c8 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 560px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c5 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 280px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c6 {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.c7 {
+  word-wrap: break-word;
+}
+
+.c9 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 8px;
+  margin-top: 0px;
+}
+
+.c12 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 8px;
+  margin-top: 24px;
+}
+
+.c11 {
+  width: 480px;
+}
+
+.c10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="bookmark-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes favoris
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="file-add-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes fiches
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="play-circle-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes traductions
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="person"
+          data-eva-fill="#ffffff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mon profil
+    </div>
+    <div
+      className="c3"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="log-out-outline"
+          data-eva-fill="#e55039"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Déconnexion
+    </div>
+  </div>
+  <div
+    className="c4 user-profile"
+  >
+    <div
+      className="c5"
+    >
+      <img
+        alt="my-image"
+        className="user-img"
+        src={Object {}}
+      />
+      <div
+        className="c6"
+      >
+        username
+      </div>
+      <button
+        className="figma-btn dark upload-button mb-16"
+      >
+        <span
+          className="mr-10"
+        >
+          <i
+            data-eva="upload-outline"
+            data-eva-fill="#fff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+        <input
+          accept="image/*"
+          className="file-input form-control-file"
+          id="picture"
+          name="structure"
+          onChange={[Function]}
+          type="file"
+        />
+        Modifier ma photo
+      </button>
+      <div
+        className="c7"
+      >
+        Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.
+      </div>
+    </div>
+    <div
+      className="c8"
+    >
+      <div
+        className="c9"
+      >
+        Votre pseudonyme
+      </div>
+      <div
+        className="c10"
+      >
+        <div
+          className="c11"
+        >
+          <div
+            className="mb-10 figma-input-group input-group"
+          >
+            <div
+              className="icon-prepend input-group-prepend"
+            >
+              <span>
+                <i
+                  data-eva="person-outline"
+                  data-eva-fill="#212121"
+                  data-eva-height="20px"
+                  data-eva-width="20px"
+                />
+              </span>
+            </div>
+            <input
+              autoFocus={false}
+              className=" has-prepend new-size form-control"
+              id="username"
+              onChange={[Function]}
+              type="text"
+              value="username"
+            />
+          </div>
+        </div>
+        <div>
+          <button
+            className="figma-btn validate-light ml-8"
+            disabled={true}
+            onClick={[Function]}
+            testID="test-save-pseudo"
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="checkmark-outline"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Enregistrer
+          </button>
+        </div>
+      </div>
+      <div
+        className="c7"
+      >
+        Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
+      </div>
+      <div
+        className="c12"
+      >
+        Votre email
+      </div>
+      <div
+        className="c10"
+      >
+        <div
+          className="c11"
+        >
+          <div
+            className="mb-10 figma-input-group input-group"
+          >
+            <div
+              className="icon-prepend input-group-prepend"
+            >
+              <span>
+                <i
+                  data-eva="email-outline"
+                  data-eva-fill="#212121"
+                  data-eva-height="20px"
+                  data-eva-width="20px"
+                />
+              </span>
+            </div>
+            <input
+              autoFocus={false}
+              className=" has-prepend new-size form-control"
+              id="email"
+              onChange={[Function]}
+              placeholder="Renseignez votre adresse email"
+              type="text"
+              value="email@gmail.com"
+            />
+          </div>
+        </div>
+        <div>
+          <button
+            className="figma-btn validate-light ml-8"
+            disabled={true}
+            onClick={[Function]}
+            testID="test-save-email"
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="checkmark-outline"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Enregistrer
+          </button>
+        </div>
+      </div>
+      <div
+        className="c7"
+      >
+        Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
+      </div>
+      <div
+        className="c12"
+      >
+        Votre mot de passe
+      </div>
+      <div
+        className="c11"
+      >
+        <div
+          className="mb-10 figma-input-group input-group"
+        >
+          <div
+            className="icon-prepend input-group-prepend"
+          >
+            <span>
+              <i
+                data-eva="lock-outline"
+                data-eva-fill="#212121"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+          </div>
+          <input
+            autoFocus={true}
+            className="password-input has-prepend new-size form-control"
+            id="current-password"
+            onChange={[Function]}
+            placeholder="Votre mot de passe actuel"
+            type="password"
+            value="current"
+          />
+          <div
+            className="icon-append input-group-append"
+            onClick={[Function]}
+          >
+            <span>
+              <i
+                data-eva="eye-outline"
+                data-eva-fill="#212121"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c11"
+      >
+        <div
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <div
+            style={
+              Object {
+                "marginTop": "10px",
+                "width": "480px",
+              }
+            }
+          >
+            <div
+              className="mb-10 figma-input-group input-group"
+            >
+              <div
+                className="icon-prepend input-group-prepend"
+              >
+                <span>
+                  <i
+                    data-eva="lock-outline"
+                    data-eva-fill="#212121"
+                    data-eva-height="20px"
+                    data-eva-width="20px"
+                  />
+                </span>
+              </div>
+              <input
+                autoComplete="new-password"
+                autoFocus={false}
+                className="password-input has-prepend new-size form-control"
+                id="new-password"
+                onChange={[Function]}
+                placeholder="Votre nouveau mot de passe"
+                type="password"
+              />
+              <div
+                className="icon-append input-group-append"
+                onClick={[Function]}
+              >
+                <span>
+                  <i
+                    data-eva="eye-outline"
+                    data-eva-fill="#212121"
+                    data-eva-height="20px"
+                    data-eva-width="20px"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+              "marginTop": "16px",
+            }
+          }
+        >
+          <div
+            className="c13"
+          >
+            <div
+              className="progress"
+            >
+              <div
+                aria-valuemax={100}
+                aria-valuemin="0"
+                aria-valuenow={9.09090909090909}
+                className="progress-bar bg-danger"
+                role="progressbar"
+                style={
+                  Object {
+                    "width": "9.09090909090909%",
+                  }
+                }
+              />
+            </div>
+          </div>
+          <div
+            className="c14"
+          >
+            Faible
+          </div>
+        </div>
+        <div
+          className="c15"
+        >
+          <b>
+            Oups, votre mot de passe est trop faible.
+          </b>
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "display": "flex",
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+            "marginTop": "16px",
+          }
+        }
+      >
+        <button
+          className="figma-btn validate-light "
+          disabled={true}
+          onClick={[Function]}
+          testID="test-save-password"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="checkmark-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+          Enregistrer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`UserProfile should render correctly 1`] = `
+.c1 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #212121;
+  padding: 16px;
+}
+
+.c2 {
+  background: #212121;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 16px;
+}
+
+.c3 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #e55039;
+  padding: 16px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 26px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c8 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 560px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c5 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 280px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c6 {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.c7 {
+  word-wrap: break-word;
+}
+
+.c9 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 8px;
+  margin-top: 0px;
+}
+
+.c12 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 8px;
+  margin-top: 24px;
+}
+
+.c11 {
+  width: 480px;
+}
+
+.c10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="bookmark-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes favoris
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="file-add-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes fiches
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="play-circle-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes traductions
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="person"
+          data-eva-fill="#ffffff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mon profil
+    </div>
+    <div
+      className="c3"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="log-out-outline"
+          data-eva-fill="#e55039"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Déconnexion
+    </div>
+  </div>
+  <div
+    className="c4 user-profile"
+  >
+    <div
+      className="c5"
+    >
+      <img
+        alt="my-image"
+        className="user-img"
+        src={Object {}}
+      />
+      <div
+        className="c6"
+      >
+        username
+      </div>
+      <button
+        className="figma-btn dark upload-button mb-16"
+      >
+        <span
+          className="mr-10"
+        >
+          <i
+            data-eva="upload-outline"
+            data-eva-fill="#fff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+        <input
+          accept="image/*"
+          className="file-input form-control-file"
+          id="picture"
+          name="structure"
+          onChange={[Function]}
+          type="file"
+        />
+        Modifier ma photo
+      </button>
+      <div
+        className="c7"
+      >
+        Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.
+      </div>
+    </div>
+    <div
+      className="c8"
+    >
+      <div
+        className="c9"
+      >
+        Votre pseudonyme
+      </div>
+      <div
+        className="c10"
+      >
+        <div
+          className="c11"
+        >
+          <div
+            className="mb-10 figma-input-group input-group"
+          >
+            <div
+              className="icon-prepend input-group-prepend"
+            >
+              <span>
+                <i
+                  data-eva="person-outline"
+                  data-eva-fill="#212121"
+                  data-eva-height="20px"
+                  data-eva-width="20px"
+                />
+              </span>
+            </div>
+            <input
+              autoFocus={false}
+              className=" has-prepend new-size form-control"
+              id="username"
+              onChange={[Function]}
+              type="text"
+              value="username"
+            />
+          </div>
+        </div>
+        <div>
+          <button
+            className="figma-btn validate-light ml-8"
+            disabled={true}
+            onClick={[Function]}
+            testID="test-save-pseudo"
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="checkmark-outline"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Enregistrer
+          </button>
+        </div>
+      </div>
+      <div
+        className="c7"
+      >
+        Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
+      </div>
+      <div
+        className="c12"
+      >
+        Votre email
+      </div>
+      <div
+        className="c10"
+      >
+        <div
+          className="c11"
+        >
+          <div
+            className="mb-10 figma-input-group input-group"
+          >
+            <div
+              className="icon-prepend input-group-prepend"
+            >
+              <span>
+                <i
+                  data-eva="email-outline"
+                  data-eva-fill="#212121"
+                  data-eva-height="20px"
+                  data-eva-width="20px"
+                />
+              </span>
+            </div>
+            <input
+              autoFocus={false}
+              className=" has-prepend new-size form-control"
+              id="email"
+              onChange={[Function]}
+              placeholder="Renseignez votre adresse email"
+              type="text"
+              value="email@gmail.com"
+            />
+          </div>
+        </div>
+        <div>
+          <button
+            className="figma-btn validate-light ml-8"
+            disabled={true}
+            onClick={[Function]}
+            testID="test-save-email"
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="checkmark-outline"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Enregistrer
+          </button>
+        </div>
+      </div>
+      <div
+        className="c7"
+      >
+        Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
+      </div>
+      <div
+        className="c12"
+      >
+        Votre mot de passe
+      </div>
+      <button
+        className="figma-btn dark "
+        onClick={[Function]}
+        testID="test-modify-password"
+      >
+        <span
+          className="mr-10"
+        >
+          <i
+            data-eva="edit-outline"
+            data-eva-fill="#fff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+        Modifier mon mot de passe
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`UserProfile should render correctly when changing password 1`] = `
+.c1 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #212121;
+  padding: 16px;
+}
+
+.c2 {
+  background: #212121;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 16px;
+}
+
+.c3 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #e55039;
+  padding: 16px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 26px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c8 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 560px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c5 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 280px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c6 {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.c7 {
+  word-wrap: break-word;
+}
+
+.c9 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 8px;
+  margin-top: 0px;
+}
+
+.c12 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 8px;
+  margin-top: 24px;
+}
+
+.c11 {
+  width: 480px;
+}
+
+.c10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="bookmark-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes favoris
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="file-add-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes fiches
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="play-circle-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes traductions
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="person"
+          data-eva-fill="#ffffff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mon profil
+    </div>
+    <div
+      className="c3"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="log-out-outline"
+          data-eva-fill="#e55039"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Déconnexion
+    </div>
+  </div>
+  <div
+    className="c4 user-profile"
+  >
+    <div
+      className="c5"
+    >
+      <img
+        alt="my-image"
+        className="user-img"
+        src={Object {}}
+      />
+      <div
+        className="c6"
+      >
+        username
+      </div>
+      <button
+        className="figma-btn dark upload-button mb-16"
+      >
+        <span
+          className="mr-10"
+        >
+          <i
+            data-eva="upload-outline"
+            data-eva-fill="#fff"
+            data-eva-height="20px"
+            data-eva-width="20px"
+          />
+        </span>
+        <input
+          accept="image/*"
+          className="file-input form-control-file"
+          id="picture"
+          name="structure"
+          onChange={[Function]}
+          type="file"
+        />
+        Modifier ma photo
+      </button>
+      <div
+        className="c7"
+      >
+        Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.
+      </div>
+    </div>
+    <div
+      className="c8"
+    >
+      <div
+        className="c9"
+      >
+        Votre pseudonyme
+      </div>
+      <div
+        className="c10"
+      >
+        <div
+          className="c11"
+        >
+          <div
+            className="mb-10 figma-input-group input-group"
+          >
+            <div
+              className="icon-prepend input-group-prepend"
+            >
+              <span>
+                <i
+                  data-eva="person-outline"
+                  data-eva-fill="#212121"
+                  data-eva-height="20px"
+                  data-eva-width="20px"
+                />
+              </span>
+            </div>
+            <input
+              autoFocus={false}
+              className=" has-prepend new-size form-control"
+              id="username"
+              onChange={[Function]}
+              type="text"
+              value="username"
+            />
+          </div>
+        </div>
+        <div>
+          <button
+            className="figma-btn validate-light ml-8"
+            disabled={true}
+            onClick={[Function]}
+            testID="test-save-pseudo"
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="checkmark-outline"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Enregistrer
+          </button>
+        </div>
+      </div>
+      <div
+        className="c7"
+      >
+        Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
+      </div>
+      <div
+        className="c12"
+      >
+        Votre email
+      </div>
+      <div
+        className="c10"
+      >
+        <div
+          className="c11"
+        >
+          <div
+            className="mb-10 figma-input-group input-group"
+          >
+            <div
+              className="icon-prepend input-group-prepend"
+            >
+              <span>
+                <i
+                  data-eva="email-outline"
+                  data-eva-fill="#212121"
+                  data-eva-height="20px"
+                  data-eva-width="20px"
+                />
+              </span>
+            </div>
+            <input
+              autoFocus={false}
+              className=" has-prepend new-size form-control"
+              id="email"
+              onChange={[Function]}
+              placeholder="Renseignez votre adresse email"
+              type="text"
+              value="email@gmail.com"
+            />
+          </div>
+        </div>
+        <div>
+          <button
+            className="figma-btn validate-light ml-8"
+            disabled={true}
+            onClick={[Function]}
+            testID="test-save-email"
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="checkmark-outline"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Enregistrer
+          </button>
+        </div>
+      </div>
+      <div
+        className="c7"
+      >
+        Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
+      </div>
+      <div
+        className="c12"
+      >
+        Votre mot de passe
+      </div>
+      <div
+        className="c11"
+      >
+        <div
+          className="mb-10 figma-input-group input-group"
+        >
+          <div
+            className="icon-prepend input-group-prepend"
+          >
+            <span>
+              <i
+                data-eva="lock-outline"
+                data-eva-fill="#212121"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+          </div>
+          <input
+            autoFocus={true}
+            className="password-input has-prepend new-size form-control"
+            id="current-password"
+            onChange={[Function]}
+            placeholder="Votre mot de passe actuel"
+            type="password"
+            value=""
+          />
+          <div
+            className="icon-append input-group-append"
+            onClick={[Function]}
+          >
+            <span>
+              <i
+                data-eva="eye-outline"
+                data-eva-fill="#212121"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c11"
+      >
+        <div
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <div
+            style={
+              Object {
+                "marginTop": "10px",
+                "width": "480px",
+              }
+            }
+          >
+            <div
+              className="mb-10 figma-input-group input-group"
+            >
+              <div
+                className="icon-prepend input-group-prepend"
+              >
+                <span>
+                  <i
+                    data-eva="lock-outline"
+                    data-eva-fill="#212121"
+                    data-eva-height="20px"
+                    data-eva-width="20px"
+                  />
+                </span>
+              </div>
+              <input
+                autoComplete="new-password"
+                autoFocus={false}
+                className="password-input has-prepend new-size form-control"
+                id="new-password"
+                onChange={[Function]}
+                placeholder="Votre nouveau mot de passe"
+                type="password"
+              />
+              <div
+                className="icon-append input-group-append"
+                onClick={[Function]}
+              >
+                <span>
+                  <i
+                    data-eva="eye-outline"
+                    data-eva-fill="#212121"
+                    data-eva-height="20px"
+                    data-eva-width="20px"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+      <div
+        style={
+          Object {
+            "display": "flex",
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+            "marginTop": "16px",
+          }
+        }
+      >
+        <button
+          className="figma-btn validate-light "
+          disabled={true}
+          onClick={[Function]}
+          testID="test-save-password"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="checkmark-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+          Enregistrer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`UserProfile should render correctly when loading 1`] = `
+.c6 {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.c1 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #212121;
+  padding: 16px;
+}
+
+.c2 {
+  background: #212121;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 16px;
+}
+
+.c3 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #e55039;
+  padding: 16px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 26px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c7 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 560px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c5 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 280px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c8 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 8px;
+  margin-top: 0px;
+}
+
+.c9 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 8px;
+  margin-top: 24px;
+}
+
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="bookmark-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes favoris
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="file-add-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes fiches
+    </div>
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="play-circle-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes traductions
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="person"
+          data-eva-fill="#ffffff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mon profil
+    </div>
+    <div
+      className="c3"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="log-out-outline"
+          data-eva-fill="#e55039"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Déconnexion
+    </div>
+  </div>
+  <div
+    className="c4"
+  >
+    <div
+      className="c5"
+    >
+      <div
+        className="c6"
+      />
+      <div
+        className="css-nitgap-SkeletonTheme"
+      >
+        <span>
+          <span
+            className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+            style={
+              Object {
+                "height": 20,
+                "width": 160,
+              }
+            }
+          >
+            ‌
+          </span>
+        </span>
+      </div>
+    </div>
+    <div
+      className="c7"
+    >
+      <div
+        className="c8"
+      >
+        Votre pseudonyme
+      </div>
+      <div
+        className="css-nitgap-SkeletonTheme"
+      >
+        <span>
+          <span
+            className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+            style={
+              Object {
+                "height": 50,
+              }
+            }
+          >
+            ‌
+          </span>
+        </span>
+      </div>
+      <div
+        className="c9"
+      >
+        Votre email
+      </div>
+      <div
+        className="css-nitgap-SkeletonTheme"
+      >
+        <span>
+          <span
+            className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+            style={
+              Object {
+                "height": 50,
+              }
+            }
+          >
+            ‌
+          </span>
+        </span>
+      </div>
+      <div
+        className="c9"
+      >
+        Votre mot de passe
+      </div>
+      <div
+        className="css-nitgap-SkeletonTheme"
+      >
+        <span>
+          <span
+            className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+            style={
+              Object {
+                "height": 50,
+              }
+            }
+          >
+            ‌
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

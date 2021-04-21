@@ -19,7 +19,7 @@ body .figma-btn {
   display: inline-flex;
   align-items: center;
   @include media-max("sm-limit") {
-    font-size: 11px;
+    font-size: 16px;
   }
 
   &.filter-fbutton {

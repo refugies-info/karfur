@@ -8,14 +8,18 @@ $tailleBig: 80px;
   color: white;
   background-color: $darkColor;
   padding: 32px;
-  @include media-max("lg-limit") {
-    width: 116%;
-  }
 
+  @include media-max("tablet-up") {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
   h5 {
     margin-bottom: 20px;
     font-weight: 700;
     font-size: 40px;
+    @include media-max("tablet-up") {
+      font-size: 28px;
+    }
   }
 
   .col {
@@ -89,7 +93,9 @@ $tailleBig: 80px;
       font-size: 16px;
     }
   }
-
+  .carousel-control-next-icon {
+    right: -20px;
+  }
   .default-logo {
     font-family: monospace;
     font-size: 18px;

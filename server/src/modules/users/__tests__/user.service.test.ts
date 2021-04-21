@@ -2,6 +2,7 @@
 import {
   updateRoleAndStructureOfResponsable,
   proceedWithLogin,
+  getUsersFromStructureMembres,
 } from "../users.service";
 import { getUserById, updateUserInDB } from "../users.repository";
 import { getRoleByName } from "../../../controllers/role/role.repository";
@@ -140,5 +141,46 @@ describe("proceedWithLogin", () => {
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       last_connected: mockDate,
     });
+  });
+});
+
+describe("getUsersFromStructureMembres", () => {
+  const membres = [
+    { role: [] },
+    { userId: "userId1" },
+    { userId: "userId2" },
+    { userId: "userId3" },
+    { userId: "userId4" },
+  ];
+  const userNeededFields = {
+    username: 1,
+    email: 1,
+    status: 1,
+  };
+  it("should call getUserById", async () => {
+    getUserById.mockResolvedValueOnce({ _id: "userId1", status: "Exclu" });
+    getUserById.mockResolvedValueOnce({ _id: "userId2", status: "Actif" });
+    getUserById.mockResolvedValueOnce({
+      _id: "userId3",
+      status: "Actif",
+      email: "email3",
+      username: "pseudo3",
+    });
+    getUserById.mockResolvedValueOnce({
+      _id: "userId4",
+      status: "Actif",
+      email: "email4",
+      username: "pseudo4",
+    });
+
+    const res = await getUsersFromStructureMembres(membres);
+    expect(getUserById).toHaveBeenCalledWith("userId1", userNeededFields);
+    expect(getUserById).toHaveBeenCalledWith("userId2", userNeededFields);
+    expect(getUserById).toHaveBeenCalledWith("userId3", userNeededFields);
+    expect(getUserById).toHaveBeenCalledWith("userId4", userNeededFields);
+    expect(res).toEqual([
+      { username: "pseudo3", _id: "userId3", email: "email3" },
+      { username: "pseudo4", _id: "userId4", email: "email4" },
+    ]);
   });
 });

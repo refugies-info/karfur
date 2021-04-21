@@ -22,10 +22,7 @@ const LoadingCard = () => {
           <CardText>
             <Skeleton />
           </CardText>
-          <Skeleton count={3}/>
-{/*             <SeeMoreText>
-              <Skeleton count={3}/>
-            </SeeMoreText> */}
+          <Skeleton count={3} />
         </CardBody>
       </CustomCard>
     </div>

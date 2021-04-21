@@ -1,5 +1,6 @@
 const traduction = require("./traduction/lib.js");
 const checkToken = require("./account/checkToken");
+import { validateTranslations } from "../workflows/translation/validateTranslations";
 
 module.exports = function (app) {
   app.post(
@@ -13,18 +14,12 @@ module.exports = function (app) {
     checkToken.check,
     traduction.get_tradForReview
   );
-  app.post(
-    "/validate_tradForReview",
-    checkToken.check,
-    traduction.validate_tradForReview
-  );
+  app.post("/validateTranslations", checkToken.check, validateTranslations);
   app.post(
     "/update_tradForReview",
     checkToken.check,
     traduction.update_tradForReview
   );
   app.post("/get_progression", checkToken.check, traduction.get_progression);
-  app.post("/get_xlm", traduction.get_xlm);
-  app.post("/get_laser", traduction.get_laser);
   app.post("/delete_trads", checkToken.check, traduction.delete_trads);
 };

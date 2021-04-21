@@ -1,6 +1,7 @@
 const { User } = require("../../schema/schemaUser");
 const Role = require("../../schema/schemaRole.js");
 const jwt = require("jwt-simple");
+const logger = require("../../logger");
 let config = {};
 if (process.env.NODE_ENV === "dev") {
   config = require("../../config/config");
@@ -73,8 +74,9 @@ const getId = (req, res, next) => {
 
 const getRoles = (req, res, next) => {
   Role.find({}).exec(function (err, roles) {
-    // eslint-disable-next-line no-console
-    if (err) console.log(err);
+    if (err) {
+      logger.error("error in getRoles", { error: err.message });
+    }
     req.roles = roles;
     next();
   });

@@ -52,7 +52,8 @@ describe("updateUser", () => {
   it("should return a 401 if  user not admin", async () => {
     const req = {
       fromSite: true,
-      body: { query: { user: { _id: "id" } } },
+
+      body: { query: { user: { _id: "id" }, action: "modify-with-roles" } },
       user: { roles: [{ nom: "ExpertTrad" }] },
     };
     await updateUser(req, res);
@@ -65,7 +66,7 @@ describe("updateUser", () => {
     body: {
       query: {
         user: { _id: "id", email: "email", roles: [] },
-        action: "modify",
+        action: "modify-with-roles",
       },
     },
     user: { roles: [{ nom: "Admin" }] },
@@ -110,11 +111,74 @@ describe("updateUser", () => {
     body: {
       query: {
         user: { _id: "id", email: "email", roles: ["Admin"] },
-        action: "modify",
+        action: "modify-with-roles",
       },
     },
     user: { roles: [{ nom: "Admin" }] },
   };
+
+  it("should return 200 if user himself and type modify-my-details with selectedLanguages and user not trad", async () => {
+    getRoleByName.mockResolvedValueOnce({ _id: "tradId" });
+    getUserById.mockResolvedValueOnce({ roles: ["adminId"] });
+    await updateUser(
+      {
+        fromSite: true,
+        body: {
+          query: {
+            user: {
+              _id: "userId",
+              selectedLanguages: [{ _id: "langueId", i18nCode: "en" }],
+            },
+            action: "modify-my-details",
+          },
+        },
+        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        userId: "userId",
+      },
+      res
+    );
+
+    expect(getRoleByName).toHaveBeenCalledWith("Trad");
+    expect(getUserById).toHaveBeenCalledWith("userId", { roles: 1 });
+    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
+      _id: "userId",
+      selectedLanguages: [{ _id: "langueId", i18nCode: "en" }],
+      roles: ["adminId", "tradId"],
+    });
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+
+  it("should return 200 if user himself and type modify-my-details with selectedLanguages and user trad", async () => {
+    getRoleByName.mockResolvedValueOnce({ _id: "tradId" });
+    getUserById.mockResolvedValueOnce({ roles: ["tradId"] });
+    await updateUser(
+      {
+        fromSite: true,
+        body: {
+          query: {
+            user: {
+              _id: "userId",
+              selectedLanguages: [{ _id: "langueId", i18nCode: "en" }],
+            },
+            action: "modify-my-details",
+          },
+        },
+        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        userId: "userId",
+      },
+      res
+    );
+
+    expect(getRoleByName).toHaveBeenCalledWith("Trad");
+    expect(getUserById).toHaveBeenCalledWith("userId", { roles: 1 });
+    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
+      _id: "userId",
+      selectedLanguages: [{ _id: "langueId", i18nCode: "en" }],
+    });
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
 
   it("should return 200 when modify, case new roles admin, actual role Expert admin autre null", async () => {
     getRoleByName.mockResolvedValueOnce({ _id: "expertRoleId" });
@@ -159,7 +223,7 @@ describe("updateUser", () => {
     body: {
       query: {
         user: { _id: "id", email: "email", roles: ["ExpertTrad"] },
-        action: "modify",
+        action: "modify-with-roles",
       },
     },
     user: { roles: [{ nom: "Admin" }] },
@@ -208,7 +272,7 @@ describe("updateUser", () => {
     body: {
       query: {
         user: { _id: "id", email: "email", roles: ["ExpertTrad", "Admin"] },
-        action: "modify",
+        action: "modify-with-roles",
       },
     },
     user: { roles: [{ nom: "Admin" }] },
@@ -304,5 +368,96 @@ describe("updateUser", () => {
     });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+
+  it("should return 401 if not user himself and type modify-my-details", async () => {
+    await updateUser(
+      {
+        fromSite: true,
+        body: {
+          query: {
+            user: { _id: "id", email: "email", roles: ["ExpertTrad", "Admin"] },
+            action: "modify-my-details",
+          },
+        },
+        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        userId: "userId",
+      },
+      res
+    );
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res.json).toHaveBeenCalledWith({ text: "Token invalide" });
+  });
+
+  it("should return 200 if user himself and type modify-my-details", async () => {
+    await updateUser(
+      {
+        fromSite: true,
+        body: {
+          query: {
+            user: { _id: "userId", email: "email" },
+            action: "modify-my-details",
+          },
+        },
+        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        userId: "userId",
+      },
+      res
+    );
+    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
+      _id: "userId",
+      email: "email",
+    });
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+
+  it("should return 401 if user himself but pseudo exists and type modify-my-details", async () => {
+    updateUserInDB.mockRejectedValueOnce(new Error("erreur"));
+    await updateUser(
+      {
+        fromSite: true,
+        body: {
+          query: {
+            user: { _id: "userId", username: "newPseudo" },
+            action: "modify-my-details",
+          },
+        },
+        user: { username: "pseudo", _id: "userId" },
+        userId: "userId",
+      },
+      res
+    );
+    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
+      _id: "userId",
+      username: "newPseudo",
+    });
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res.json).toHaveBeenCalledWith({ text: "Ce pseudo est déjà pris" });
+  });
+
+  it("should return 500 if user himself but pseudo not modified and type modify-my-details", async () => {
+    updateUserInDB.mockRejectedValueOnce(new Error("erreur"));
+    await updateUser(
+      {
+        fromSite: true,
+        body: {
+          query: {
+            user: { _id: "userId", username: "newPseudo" },
+            action: "modify-my-details",
+          },
+        },
+        user: { username: "newPseudo", _id: "userId" },
+        userId: "userId",
+      },
+      res
+    );
+    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
+      _id: "userId",
+      username: "newPseudo",
+    });
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
   });
 });

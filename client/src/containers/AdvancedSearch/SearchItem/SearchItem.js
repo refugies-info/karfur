@@ -7,7 +7,7 @@ import Autocomplete from "react-google-autocomplete";
 import FSearchBtn from "../../../components/FigmaUI/FSearchBtn/FSearchBtn";
 import Streamline from "../../../assets/streamline";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import i18n from "../../../i18n"
+import i18n from "../../../i18n";
 
 import "./SearchItem.scss";
 // import variables from 'scss/colors.scss';
@@ -30,14 +30,24 @@ export class SearchItem extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.geoSearch !== prevProps.geoSearch && !this.props.geoSearch) {
-      this.setState({ville: "", villeAuto: ""});
+      this.setState({ ville: "", villeAuto: "" });
+    }
+    if (
+      this.state.ville === "" &&
+      this.props.item.queryName === "localisation" &&
+      this.props.item.value
+    ) {
+      this.setState({
+        ville: this.props.item.value,
+        villeAuto: this.props.item.value,
+      });
     }
   }
 
   onPlaceSelected = (place) => {
     if (place.formatted_address) {
-    this.setState({ ville: place.formatted_address });
-    this.props.selectParam(this.props.keyValue, place);
+      this.setState({ ville: place.formatted_address });
+      this.props.selectParam(this.props.keyValue, place);
     }
   };
 
@@ -48,7 +58,6 @@ export class SearchItem extends Component {
   handleChange = (e) => this.setState({ [e.currentTarget.id]: e.target.value });
   initializeVille = () => this.setState({ ville: "", villeAuto: "" });
 
-
   selectOption = (subi) => {
     this.props.selectParam(this.props.keyValue, subi);
     this.toggle();
@@ -57,8 +66,7 @@ export class SearchItem extends Component {
   render() {
     const { t, item, keyValue, isBigDesktop } = this.props;
     const { dropdownOpen, isMounted, ville, villeAuto } = this.state;
-    const isRTL = ["ar", "ps", "fa"].includes(i18n.language)
-
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
 
     return (
       <div className="search-col">
@@ -69,7 +77,9 @@ export class SearchItem extends Component {
         >
           {t("SearchItem." + item.title, item.title)}
         </span>
-        {item.queryName === "localisation" && ville !== "" && this.props.geoSearch ? (
+        {item.queryName === "localisation" &&
+        ville !== "" &&
+        this.props.geoSearch ? (
           <FSearchBtn
             className={
               "mr-10 in-header search-filter " +
@@ -77,7 +87,9 @@ export class SearchItem extends Component {
               (item.active ? "active " : "")
             }
           >
-            {ville ? ville.slice(0, 20) + (ville.length > 20 ? "..." : "") : null}
+            {ville
+              ? ville.slice(0, 20) + (ville.length > 20 ? "..." : "")
+              : null}
             {item.active && (
               <EVAIcon
                 name="close-outline"
@@ -104,22 +116,20 @@ export class SearchItem extends Component {
               ]}
             >
               <div className="position-relative">
-                {/*                 <div
-                  className={
-                    "search-filter disabled in-header search-autocomplete search-btn " +
-                    (item.active ? "active " : "") + (isBigDesktop ? "" : "search-btn-small")
-                  }
-                >
-                  {t("SearchItem.bientot disponible", "Bientôt disponible")}
-                </div> */}
                 <Autocomplete
-                  ref={input => {input && input.refs.input.focus()}}
+                  ref={(input) => {
+                    input && input.refs.input.focus();
+                  }}
                   className={
                     "search-btn in-header search-autocomplete " +
                     (item.active ? "active " : "") +
                     (isBigDesktop ? "" : "search-btn-small")
                   }
-                  onBlur={() => ville === "" && villeAuto === "" && this.props.switchGeoSearch(false)}
+                  onBlur={() =>
+                    ville === "" &&
+                    villeAuto === "" &&
+                    this.props.switchGeoSearch(false)
+                  }
                   placeholder={item.placeholder}
                   id="villeAuto"
                   value={villeAuto}
@@ -128,18 +138,6 @@ export class SearchItem extends Component {
                   types={["(regions)"]}
                   componentRestrictions={{ country: "fr" }}
                 />
-                {/*                 {item.active && (
-                  <EVAIcon
-                    name="close-circle"
-                    size="xlarge"
-                    className="close-icon"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      this.props.desactiver(keyValue);
-                      this.initializeVille();
-                    }}
-                  />
-                )} */}
                 {item.active && (
                   <EVAIcon
                     name="close-outline"
@@ -155,8 +153,7 @@ export class SearchItem extends Component {
               </div>
             </ReactDependentScript>
           )
-        ) : item.queryName === "localisation" &&
-          !this.props.geoSearch ? (
+        ) : item.queryName === "localisation" && !this.props.geoSearch ? (
           <FSearchBtn
             onClick={() => {
               this.props.switchGeoSearch(true);

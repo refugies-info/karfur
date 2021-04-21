@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import {
-  Structure,
+  UserStructure,
   DetailedOpeningHours,
 } from "../../../../../types/interface";
 import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
@@ -14,7 +14,7 @@ import { AddButton } from "../Step2/Step2";
 import { Input } from "reactstrap";
 
 interface Props {
-  structure: Structure | null;
+  structure: UserStructure | null;
   setStructure: (arg: any) => void;
   setHasModifications: (arg: boolean) => void;
 }

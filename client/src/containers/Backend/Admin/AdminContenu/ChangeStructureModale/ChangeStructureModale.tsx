@@ -72,8 +72,8 @@ export const ChangeStructureModal = (props: Props) => {
   ] = useState<SimplifiedStructure | null>(null);
   const dispatch = useDispatch();
   useEffect(() => {
-    const loadStructures = async () => {
-      await dispatch(fetchActiveStructuresActionCreator());
+    const loadStructures = () => {
+      dispatch(fetchActiveStructuresActionCreator());
     };
     loadStructures();
   }, [dispatch]);

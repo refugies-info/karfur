@@ -1,7 +1,7 @@
 const { Dispositif } = require("../../schema/schemaDispositif");
 const Role = require("../../schema/schemaRole.js");
 const { User } = require("../../schema/schemaUser");
-const Traduction = require("../../schema/schemaTraduction");
+const { Traduction } = require("../../schema/schemaTraduction");
 const Error = require("../../schema/schemaError");
 var uniqid = require("uniqid");
 const {
@@ -22,25 +22,8 @@ const { updateLanguagesAvancement } = require("../langues/langues.service");
 const {
   updateAssociatedDispositifsInStructure,
 } = require("../../modules/structure/structure.repository");
-
-// const gmail_auth = require('./gmail_auth');
-
-// const transporter = nodemailer.createTransport({
-//   // service: 'gmail',
-//   host: 'smtp.gmail.com',
-//   port: 465,
-//   secure: true,
-//   auth: {
-//     user: 'diairagir@gmail.com',
-//     pass: process.env.GMAIL_PASS
-//   },
-// });
-const url =
-  process.env.NODE_ENV === "dev"
-    ? "http://localhost:3000/"
-    : process.env.NODE_ENV === "staging"
-    ? "https://staging.refugies.info/"
-    : "https://www.refugies.info/";
+import { getDispositifByIdWithMainSponsor } from "../../modules/dispositif/dispositif.repository";
+import { checkUserIsAuthorizedToModifyDispositif } from "../../libs/checkAuthorizations";
 
 //Function to patch dispositifs that had EditorState object saved in DB causing great size problem
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -70,41 +53,6 @@ async function patch_dispositifs(req, res) {
     return res.status(200).json("OK");
   } catch (e) {
     logger.error("Error while patching dispositifs", { error: e });
-    return res.status(500).json("KO");
-  }
-}
-
-async function create_csv_dispositifs_length(req, res) {
-  if (!req.user.roles.some((x) => x.nom === "Admin")) {
-    //logger.error("The user is not an admin", { error: e });
-    return res.status(500).json("KO");
-  }
-  logger.info("Find dispositifs with long titles");
-  try {
-    let all = await Dispositif.find().lean();
-    let i;
-    let csvList = [];
-    for (i = 0; i < all.length; i++) {
-      if (
-        (all[i].titreInformatif && all[i].titreInformatif.length > 40) ||
-        (all[i].titreMarque && all[i].titreMarque.length > 27) ||
-        (all[i].abstract && all[i].abstract.length > 110)
-      ) {
-        csvList.push({
-          titreInformatif: all[i].titreInformatif || "",
-          titreMarque: all[i].titreMarque || "",
-          abstract: all[i].abstract || "",
-          url: `${url}dispositif/${all[i]._id.toString()}` || "",
-        });
-      }
-    }
-    logger.info(`finish patching ${all.length} dispositifs`);
-    return res.status(200).json({
-      text: "Succès",
-      data: csvList,
-    });
-  } catch (e) {
-    logger.error("Error while finding long dispositifs", { error: e });
     return res.status(500).json("KO");
   }
 }
@@ -170,6 +118,23 @@ async function add_dispositif(req, res) {
     }
     //Si le dispositif existe déjà on fait juste un update
     if (dispositif.dispositifId) {
+      const neededFields = {
+        creatorId: 1,
+        mainSponsor: 1,
+        status: 1,
+      };
+
+      const dispositifInDB = await getDispositifByIdWithMainSponsor(
+        dispositif.dispositifId,
+        neededFields
+      );
+      checkUserIsAuthorizedToModifyDispositif(
+        dispositifInDB,
+        req.userId,
+        // @ts-ignore : populate roles
+        req.user.roles
+      );
+
       logger.info("[add_dispositif] updating a dispositif", {
         dispositifId: dispositif.dispositifId,
       });
@@ -182,9 +147,7 @@ async function add_dispositif(req, res) {
         });
         const originalTrads = {};
         // We fetch the French key to know the original text, turnToLocalized takes a dispositif with multiple translated language keys and returns one specified language
-        // eslint-disable-next-line no-undef
-        dispositifFr = await turnToLocalizedNew(originalDis, "fr");
-
+        const dispositifFr = await turnToLocalizedNew(originalDis, "fr");
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         for (let [key, value] of Object.entries(originalDis.avancement)) {
           if (key !== "fr") {
@@ -200,7 +163,6 @@ async function add_dispositif(req, res) {
             );
             for (let tradExpert of originalTrads[key]) {
               logger.info("[add_dispositif] before markTradModifications", {
-                // eslint-disable-next-line no-undef
                 id: dispositifFr._id,
               });
               /*   now we compare the old french version of the dispositif with new updated one,
@@ -208,7 +170,6 @@ async function add_dispositif(req, res) {
               try {
                 tradExpert = markTradModifications(
                   dispositif,
-                  // eslint-disable-next-line no-undef
                   dispositifFr,
                   tradExpert,
                   req.userId
@@ -345,7 +306,10 @@ async function add_dispositif(req, res) {
     }) */
     // }
   } catch (err) {
-    logger.error("[add_dispositif] error", { error: err });
+    logger.error("[add_dispositif] error", { error: err.message });
+    if (err.message === "NOT_AUTHORIZED") {
+      return res.status(404).json({ text: "Non authorisé" });
+    }
     return res.status(500).json({ text: "Erreur interne", data: err });
   }
 }
@@ -482,6 +446,25 @@ function update_dispositif(req, res) {
   }
 }
 
+const _errorHandler = (error, res) => {
+  switch (error) {
+    case 500:
+      res.status(500).json({
+        text: "Erreur interne",
+      });
+      break;
+    case 404:
+      res.status(404).json({
+        text: "Pas de résultats",
+      });
+      break;
+    default:
+      res.status(500).json({
+        text: "Erreur interne",
+      });
+  }
+};
+
 function get_dispo_progression(req, res) {
   var start = new Date();
   start.setHours(0, 0, 0, 0);
@@ -523,7 +506,6 @@ function get_dispo_progression(req, res) {
         data: result,
       });
     },
-    // eslint-disable-next-line no-use-before-define
     (e) => _errorHandler(e, res)
   );
 }
@@ -538,25 +520,6 @@ function count_dispositifs(req, res) {
   });
 }
 
-const _errorHandler = (error, res) => {
-  switch (error) {
-    case 500:
-      res.status(500).json({
-        text: "Erreur interne",
-      });
-      break;
-    case 404:
-      res.status(404).json({
-        text: "Pas de résultats",
-      });
-      break;
-    default:
-      res.status(500).json({
-        text: "Erreur interne",
-      });
-  }
-};
-
 //On exporte notre fonction
 exports.add_dispositif = add_dispositif;
 exports.add_dispositif_infocards = add_dispositif_infocards;
@@ -564,4 +527,3 @@ exports.get_dispositif = get_dispositif;
 exports.count_dispositifs = count_dispositifs;
 exports.update_dispositif = update_dispositif;
 exports.get_dispo_progression = get_dispo_progression;
-exports.create_csv_dispositifs_length = create_csv_dispositifs_length;

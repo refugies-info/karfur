@@ -31,15 +31,14 @@ import {
   DispositifCreateModal,
   DispositifValidateModal,
   ReactionModal,
-  EnConstructionModal,
   ResponsableModal,
   RejectionModal,
   TagsModal,
   FrameModal,
   DraftModal,
+  ShareContentOnMobileModal,
 } from "../../components/Modals/index";
 import FButton from "../../components/FigmaUI/FButton/FButton";
-import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Commentaires";
 import { Tags } from "./Tags";
 import { LeftSideDispositif } from "../../components/Frontend/Dispositif/LeftSideDispositif";
 import { BandeauEdition } from "../../components/Frontend/Dispositif/BandeauEdition";
@@ -78,6 +77,7 @@ import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFoo
 import { initGA, Event } from "../../tracking/dispatch";
 import { fetchActiveStructuresActionCreator } from "../../services/ActiveStructures/activeStructures.actions";
 import { logger } from "../../logger";
+import { isMobile } from "react-device-detect";
 
 moment.locale("fr");
 
@@ -130,6 +130,7 @@ export class Dispositif extends Component {
     showTagsModal: false,
     showTutorielModal: false,
     showDraftModal: false,
+    showShareContentOnMobileModal: false,
     showSpinnerPrint: false,
     showSpinnerBookmark: false,
     suggestion: "",
@@ -237,7 +238,7 @@ export class Dispositif extends Component {
             this._isMounted = false;
             return this.props.history.push("/");
           }
-          if (dispositif.status === "Actif") {
+          if (dispositif.status === "Actif" && !props.translating) {
             const nbVues = dispositif.nbVues ? dispositif.nbVues + 1 : 1;
             API.updateNbVuesOnDispositif({
               query: { id: dispositif._id, nbVues },
@@ -249,8 +250,11 @@ export class Dispositif extends Component {
             dispositif.status !== "Actif" &&
             !this.props.admin &&
             !this.props.user.contributions.includes(dispositif._id) &&
-            !!dispositif.mainSponsor &&
-            !this.props.user.structures.includes(dispositif.mainSponsor._id)
+            (!dispositif.mainSponsor ||
+              (dispositif.mainSponsor &&
+                !this.props.user.structures.includes(
+                  dispositif.mainSponsor._id
+                )))
           ) {
             if (_.isEmpty(this.props.user)) {
               Swal.fire({
@@ -263,7 +267,7 @@ export class Dispositif extends Component {
             }
             Swal.fire({
               title: "Erreur",
-              text: "Accès non authorisé 1",
+              text: "Accès non authorisé",
               type: "error",
               timer: 1200,
             });
@@ -414,12 +418,11 @@ export class Dispositif extends Component {
           }
           Swal.fire({
             title: "Erreur",
-            text: `Accès non authorisé 2, status : ${err.status}, message : ${err.message}`,
+            text: "Accès non authorisé",
             type: "error",
             timer: 1200,
           });
-          // eslint-disable-next-line no-console
-          console.log("Error: ", err.message);
+          logger.error("Error: ", { error: err.message });
           this._isMounted = false;
           return this.props.history.push("/");
         });
@@ -508,13 +511,6 @@ export class Dispositif extends Component {
   handleChange = (ev) => {
     var value = ev.target.value;
 
-    const correctValue = value.replace(/&nbsp;/, " ");
-    if (ev.currentTarget.id === "titreInformatif") {
-      value = correctValue.substring(0, 40);
-    }
-    if (ev.currentTarget.id === "titreMarque") {
-      value = correctValue.substring(0, 20);
-    }
     // update selected dispositif in redux
     this.props.updateSelectedDispositif({
       [ev.currentTarget.id]: value,
@@ -760,8 +756,7 @@ export class Dispositif extends Component {
         //   });
         // }
       } catch (e) {
-        // eslint-disable-next-line no-console
-        console.log(e);
+        logger.error("error", { error: e.message });
       }
       this.setState({
         inputBtnClicked: false,
@@ -1001,6 +996,11 @@ export class Dispositif extends Component {
   toggleDraftModal = () =>
     this.setState((prevState) => ({
       showDraftModal: !prevState.showDraftModal,
+    }));
+
+  toggleShareContentOnMobileModal = () =>
+    this.setState((prevState) => ({
+      showShareContentOnMobileModal: !prevState.showShareContentOnMobileModal,
     }));
 
   toggleTutoriel = () =>
@@ -1356,11 +1356,11 @@ export class Dispositif extends Component {
       keyValue: this.state.tKeyValue,
       subkey: this.state.tSubkey,
       fieldName: fieldName,
-      type: "push",
+      type: "add",
       ...(this.state.suggestion && { suggestion: h2p(this.state.suggestion) }),
     };
 
-    API.update_dispositif(dispositif).then(() => {
+    API.updateDispositifReactions(dispositif).then(() => {
       if (this._isMounted) {
         Swal.fire({
           title: "Yay...",
@@ -1378,7 +1378,7 @@ export class Dispositif extends Component {
       status: status,
       dispositifId: this.state._id,
     };
-    API.add_dispositif(dispositif).then(() => {
+    API.updateDispositifStatus({ query: dispositif }).then(() => {
       this.props.fetchDispositifs();
       this.props.fetchSelectedDispositif(this.state._id);
       this._isMounted &&
@@ -1464,7 +1464,6 @@ export class Dispositif extends Component {
           type: x.type,
           ...(x.children && {
             children: x.children.map((y) => {
-              // eslint-disable-next-line
               const { editorState, ...noEditor } = y;
               const hasNewContent =
                 y.editable &&
@@ -1652,6 +1651,8 @@ export class Dispositif extends Component {
           "animated fadeIn dispositif vue" +
           (!disableEdit
             ? " edition-mode"
+            : isMobile
+            ? ""
             : translating
             ? " side-view-mode"
             : printing && isRTL
@@ -1742,52 +1743,71 @@ export class Dispositif extends Component {
                       flexDirection: "row",
                     }}
                   >
-                    <div>
-                      <h1 className={disableEdit ? "" : "editable"}>
-                        {
-                          // Display and edition of titreInformatif
-                          <ContentEditable
-                            id="titreInformatif"
-                            html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
-                            disabled={disableEdit}
-                            onClick={(e) => {
-                              if (!disableEdit) {
-                                this.onInputClicked(e);
-                              }
-                            }}
-                            onChange={this.handleChange}
-                            onMouseEnter={(e) => {
-                              this.updateUIArray(-4);
-                              e.target.focus();
-                            }}
-                            onKeyPress={(e) => this.handleKeyPress(e, 0)}
-                          />
-                        }
-                      </h1>
-                      {typeContenu === "dispositif" && (
-                        <h2 className={"bloc-subtitle "}>
-                          <span>{t("Dispositif.avec", "avec")}&nbsp;</span>
+                    {isMobile && (
+                      <div>
+                        <div className="title-info-mobile">
+                          <div className="title-mobile-text">
+                            {this.state.content.titreInformatif || ""}
+                          </div>
+                        </div>
+                        {typeContenu === "dispositif" && (
+                          <div className="title-marque-mobile">
+                            <div className="title-mobile-text">
+                              <span>{t("Dispositif.avec", "avec")}&nbsp;</span>
+                              {this.state.content.titreMarque || ""}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    {!isMobile && (
+                      <div>
+                        <h1 className={disableEdit ? "" : "editable"}>
                           {
-                            // Display and edition of titreMarque
+                            // Display and edition of titreInformatif
                             <ContentEditable
-                              id="titreMarque"
-                              html={this.state.content.titreMarque || ""} // innerHTML of the editable div
-                              disabled={this.state.disableEdit}
+                              id="titreInformatif"
+                              html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
+                              disabled={disableEdit}
                               onClick={(e) => {
-                                this.onInputClicked(e);
+                                if (!disableEdit) {
+                                  this.onInputClicked(e);
+                                }
                               }}
                               onChange={this.handleChange}
-                              onKeyDown={this.onInputClicked}
                               onMouseEnter={(e) => {
-                                this.updateUIArray(-3);
+                                this.updateUIArray(-4);
                                 e.target.focus();
                               }}
-                              onKeyPress={(e) => this.handleKeyPress(e, 1)}
+                              onKeyPress={(e) => this.handleKeyPress(e, 0)}
                             />
                           }
-                        </h2>
-                      )}
-                    </div>
+                        </h1>
+                        {typeContenu === "dispositif" && (
+                          <h2 className={"bloc-subtitle "}>
+                            <span>{t("Dispositif.avec", "avec")}&nbsp;</span>
+                            {
+                              // Display and edition of titreMarque
+                              <ContentEditable
+                                id="titreMarque"
+                                html={this.state.content.titreMarque || ""} // innerHTML of the editable div
+                                disabled={this.state.disableEdit}
+                                onClick={(e) => {
+                                  this.onInputClicked(e);
+                                }}
+                                onChange={this.handleChange}
+                                onKeyDown={this.onInputClicked}
+                                onMouseEnter={(e) => {
+                                  this.updateUIArray(-3);
+                                  e.target.focus();
+                                }}
+                                onKeyPress={(e) => this.handleKeyPress(e, 1)}
+                              />
+                            }
+                          </h2>
+                        )}
+                      </div>
+                    )}
                     {!this.state.disableEdit &&
                       typeContenu === "dispositif" &&
                       this.state.displayTuto && (
@@ -1807,47 +1827,50 @@ export class Dispositif extends Component {
               </Col>
             </section>
 
-            <Row className="tags-row backgroundColor-darkColor">
-              <Col
-                style={{ display: "flex", alignItems: "center" }}
-                lg="8"
-                md="8"
-                sm="8"
-                xs="8"
-                className="col right-bar"
-              >
-                {
-                  // display En bref banner if content is a dispositif or if content is a demarch but not in edition mode
-                  (disableEdit || typeContenu !== "demarche") && (
-                    // TO DO : connect component to store when store updated after changing infocards
-                    <EnBrefBanner menu={this.state.menu} isRTL={isRTL} />
-                  )
-                }
-              </Col>
-              <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
-                {
-                  // Tags on the right of a dispositif or a demarche
-                  <Tags
-                    tags={this.state.tags}
-                    disableEdit={this.state.disableEdit}
-                    changeTag={this.changeTag}
-                    addTag={this.addTag}
-                    openTag={this.openTag}
-                    deleteTag={this.deleteTag}
-                    history={this.props.history}
-                    toggleTutorielModal={this.toggleTutorielModal}
-                    displayTuto={this.state.displayTuto}
-                    updateUIArray={this.updateUIArray}
-                    isRTL={isRTL}
-                    t={t}
-                    typeContenu={typeContenu}
-                  />
-                }
-              </Col>
-            </Row>
+            {!isMobile && (
+              <Row className="tags-row backgroundColor-darkColor">
+                <Col
+                  style={{ display: "flex", alignItems: "center" }}
+                  lg="8"
+                  md="8"
+                  sm="8"
+                  xs="8"
+                  className="col right-bar"
+                >
+                  {
+                    // display En bref banner if content is a dispositif or if content is a demarch but not in edition mode
+                    (disableEdit || typeContenu !== "demarche") && (
+                      // TO DO : connect component to store when store updated after changing infocards
+                      <EnBrefBanner menu={this.state.menu} isRTL={isRTL} />
+                    )
+                  }
+                </Col>
+
+                <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
+                  {
+                    // Tags on the right of a dispositif or a demarche
+                    <Tags
+                      tags={this.state.tags}
+                      disableEdit={this.state.disableEdit}
+                      changeTag={this.changeTag}
+                      addTag={this.addTag}
+                      openTag={this.openTag}
+                      deleteTag={this.deleteTag}
+                      history={this.props.history}
+                      toggleTutorielModal={this.toggleTutorielModal}
+                      displayTuto={this.state.displayTuto}
+                      updateUIArray={this.updateUIArray}
+                      isRTL={isRTL}
+                      t={t}
+                      typeContenu={typeContenu}
+                    />
+                  }
+                </Col>
+              </Row>
+            )}
 
             <Row className="no-margin-right">
-              {!translating && !printing && (
+              {!translating && !printing && !isMobile && (
                 <Col
                   xl="3"
                   lg="3"
@@ -1884,11 +1907,32 @@ export class Dispositif extends Component {
                 lg={translating || printing ? "12" : "7"}
                 md={translating || printing ? "12" : "10"}
                 sm={translating || printing ? "12" : "10"}
-                xs={translating || printing ? "12" : "10"}
+                xs="12"
                 className="pt-40 col-middle"
                 id={"pageContent"}
               >
-                {disableEdit && (
+                {isMobile && (
+                  //On Mobile device only, button to show modal with sharing options.
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      margin: 10,
+                    }}
+                  >
+                    <FButton
+                      type="outline-black"
+                      name={"share-outline"}
+                      onClick={() => this.toggleShareContentOnMobileModal()}
+                    >
+                      {this.props.t(
+                        "Dispositif.Partager Fiche",
+                        "Partager la Fiche"
+                      )}
+                    </FButton>
+                  </div>
+                )}
+                {disableEdit && this.state.dispositif.lastModificationDate && (
                   // Part about last update
                   <Row className="fiabilite-row">
                     <Col
@@ -1905,12 +1949,17 @@ export class Dispositif extends Component {
                       :&nbsp;
                       <span className="date-maj">
                         {moment(
-                          _.get(this.state, "dispositif.updatedAt", 0)
+                          _.get(
+                            this.state,
+                            "dispositif.lastModificationDate",
+                            0
+                          )
                         ).format("ll")}
                       </span>
                     </Col>
                   </Row>
                 )}
+
                 <ContenuDispositif
                   showMapButton={this.showMapButton}
                   updateUIArray={this.updateUIArray}
@@ -1946,11 +1995,14 @@ export class Dispositif extends Component {
                   admin={this.props.admin}
                   toggleGeolocModal={this.toggleGeolocModal}
                   showGeolocModal={this.state.showGeolocModal}
+                  toggleShareContentOnMobileModal={
+                    this.toggleShareContentOnMobileModal
+                  }
                   // TO DO : remove spread state
                   {...this.state}
                 />
 
-                {this.state.disableEdit && (
+                {this.state.disableEdit && !isMobile && (
                   <>
                     {!printing && (
                       <FeedbackFooter
@@ -1997,19 +2049,19 @@ export class Dispositif extends Component {
                   dispositif={this.state.dispositif}
                   typeContenu={typeContenu}
                 />
-
-                {false && <Commentaires />}
               </Col>
-              <Col
-                xl="2"
-                lg="2"
-                md="2"
-                sm="2"
-                xs="2"
-                className={
-                  "aside-right pt-40" + (translating ? " sideView" : "")
-                }
-              />
+              {!isMobile && (
+                <Col
+                  xl="2"
+                  lg="2"
+                  md="2"
+                  sm="2"
+                  xs="2"
+                  className={
+                    "aside-right pt-40" + (translating ? " sideView" : "")
+                  }
+                />
+              )}
             </Row>
 
             <ReactionModal
@@ -2020,11 +2072,6 @@ export class Dispositif extends Component {
               onValidate={this.pushReaction}
             />
 
-            <EnConstructionModal
-              name="construction"
-              show={showModals.construction}
-              toggleModal={this.toggleModal}
-            />
             <ResponsableModal
               name="responsable"
               show={showModals.responsable}
@@ -2107,10 +2154,17 @@ export class Dispositif extends Component {
               show={this.state.showDraftModal}
               toggle={this.toggleDraftModal}
               valider_dispositif={this.valider_dispositif}
-              navigateToProfilePage={() =>
-                this.props.history.push("/backend/user-profile")
+              navigateToMiddleOffice={() =>
+                this.props.history.push("/backend/user-dash-contrib")
               }
               status={this.state.status}
+            />
+            <ShareContentOnMobileModal
+              show={this.state.showShareContentOnMobileModal}
+              toggle={this.toggleShareContentOnMobileModal}
+              typeContenu={typeContenu}
+              content={this.state.content}
+              t={this.props.t}
             />
 
             <NotificationContainer />

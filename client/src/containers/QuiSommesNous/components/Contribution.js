@@ -136,7 +136,7 @@ const ContributionEngagement = (props) => (
           "En donnant à chacun la possibilité d’être facilement acteur et contributeur de la plateforme, à l’instar de Wikipédia, Réfugiés.info favorise de nouvelles formes de micro-engagement permettant à de nouveaux publics de s’engager pour une cause de solidarité, en faveur des réfugiés"
         )}
       </ContributionDetailDescription>
-      <FButton type="fill-dark" tag={NavLink} to="/backend/user-profile">
+      <FButton type="fill-dark" tag={NavLink} to="/backend/user-dash-contrib">
         {props.t("Contribuer", "Contribuer")}
       </FButton>
     </TextContainer>

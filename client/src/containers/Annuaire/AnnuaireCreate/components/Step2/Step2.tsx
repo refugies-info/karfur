@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import FInput from "../../../../../components/FigmaUI/FInput/FInput";
-import { Structure } from "../../../../../types/interface";
+import { UserStructure } from "../../../../../types/interface";
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 import { StructureTypes } from "../../data";
 import { CustomDropDown } from "../../CustomDropdown/CustomDropdown";
@@ -47,7 +47,7 @@ const DeleteIconContainer = styled.div`
 `;
 
 interface Props {
-  structure: Structure | null;
+  structure: UserStructure | null;
   setStructure: (arg: any) => void;
   setHasModifications: (arg: boolean) => void;
 }

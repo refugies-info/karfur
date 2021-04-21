@@ -2,6 +2,7 @@ import axios from "axios";
 
 import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
+import { logger } from "../logger";
 
 const socket = null;
 export { socket };
@@ -50,8 +51,7 @@ axios.interceptors.response.use(
         });
       }
     } else if (axios.isCancel(error)) {
-      // eslint-disable-next-line no-console
-      console.log("Error: ", error.message);
+      logger.error("Error: ", { error: error.message });
     }
     return Promise.reject(error);
   }
@@ -93,11 +93,11 @@ export default {
       headers,
     }),
 
-  change_password: (query) => {
-    return axios.post(burl + "/user/change_password", query, {
-      headers: headers,
-    });
-  },
+  changePassword: (query) =>
+    axios.post(burl + "/user/changePassword", query, {
+      headers,
+    }),
+
   reset_password: (query) => {
     return axios.post(burl + "/user/reset_password", query, {
       headers: headers,
@@ -107,63 +107,6 @@ export default {
     return axios.post(burl + "/user/set_new_password", query, {
       headers: headers,
     });
-  },
-
-  get_event: (params) => {
-    return axios.post(burl + "/events/get_event", params, { headers: headers });
-  },
-
-  getArticle: (params = {}) => {
-    return axios.post(burl + "/article/get_article", params, {
-      headers: headers,
-    });
-  },
-
-  add_traduction: (query) => {
-    return axios.post(burl + "/article/add_traduction", query, {
-      headers: headers,
-    });
-  },
-
-  get_traduction: (query, sort, populate) => {
-    return axios.post(
-      burl + "/article/get_traduction",
-      { query: query, sort: sort, populate: populate },
-      { headers: headers }
-    );
-  },
-
-  remove_traduction: (query) => {
-    return axios.post(burl + "/article/remove_traduction", query, {
-      headers: headers,
-    });
-  },
-
-  add_article: (query) => {
-    return axios.post(burl + "/article/add_article", query, {
-      headers: headers,
-    });
-  },
-  get_article: (
-    query,
-    locale,
-    sort = {},
-    populate = "",
-    limit = null,
-    random = false
-  ) => {
-    return axios.post(
-      burl + "/article/get_article",
-      {
-        query: query,
-        locale: locale,
-        sort: sort,
-        populate: populate,
-        limit: limit,
-        random: random,
-      },
-      { headers: headers }
-    );
   },
 
   add_dispositif: (query) => {
@@ -191,6 +134,12 @@ export default {
       headers: headers,
     });
   },
+
+  updateDispositifReactions: (query) =>
+    axios.post(burl + "/dispositifs/updateDispositifReactions", query, {
+      headers,
+    }),
+
   get_dispo_progression: (query) => {
     return axios.post(burl + "/dispositifs/get_dispo_progression", query, {
       headers: headers,
@@ -225,22 +174,40 @@ export default {
     axios.post(burl + "/structures/modifyUserRoleInStructure", query, {
       headers,
     }),
-  get_structure: (query = {}, sort = {}, populate = "", limit = null) => {
-    return axios.post(
-      burl + "/structures/get_structure",
-      { query: query, sort: sort, populate: populate, limit: limit },
-      { headers: headers }
-    );
-  },
 
   getStructureById: (
     id,
     withDisposAssocies,
-    localeOfLocalizedDispositifsAssocies
+    localeOfLocalizedDispositifsAssocies,
+    withMembres
   ) =>
     axios.get(burl + "/structures/getStructureById", {
-      params: { id, withDisposAssocies, localeOfLocalizedDispositifsAssocies },
+      params: {
+        id,
+        withDisposAssocies,
+        localeOfLocalizedDispositifsAssocies,
+        withMembres,
+      },
     }),
+
+  getUserFavoritesInLocale: (locale) =>
+    axios.get(burl + `/user/getUserFavoritesInLocale?locale=${locale}`, {
+      headers,
+    }),
+
+  getDispositifsWithTranslationAvancement: (locale) =>
+    axios.get(
+      burl + `/user/getDispositifsWithTranslationAvancement?locale=${locale}`,
+      {
+        headers,
+      }
+    ),
+
+  getUserContributions: () =>
+    axios.get(burl + "/user/getUserContributions", { headers }),
+
+  updateUserFavorites: (query) =>
+    axios.post(burl + "/user/updateUserFavorites", query, { headers }),
 
   getNbDispositifsByRegion: () =>
     axios.get(burl + "/dispositifs/getNbDispositifsByRegion"),
@@ -275,8 +242,8 @@ export default {
       headers: headers,
     });
   },
-  validate_tradForReview: (query) => {
-    return axios.post(burl + "/traduction/validate_tradForReview", query, {
+  validateTranslations: (query) => {
+    return axios.post(burl + "/traduction/validateTranslations", query, {
       headers: headers,
     });
   },
@@ -290,16 +257,7 @@ export default {
       headers: headers,
     });
   },
-  get_xlm: (query) => {
-    return axios.post(burl + "/traduction/get_xlm", query, {
-      headers: headers,
-    });
-  },
-  get_laser: (query) => {
-    return axios.post(burl + "/traduction/get_laser", query, {
-      headers: headers,
-    });
-  },
+
   update_tradForReview: (query) => {
     return axios.post(burl + "/traduction/update_tradForReview", query, {
       headers: headers,
@@ -322,31 +280,8 @@ export default {
 
   getLanguages: () => axios.get(burl + "/langues/getLanguages"),
 
-  get_channel: (query, sort, populate) => {
-    return axios.post(
-      burl + "/channels/get_channel",
-      { query: query, sort: sort, populate: populate },
-      { headers: headers }
-    );
-  },
-
-  get_roles: (query, sort) => {
-    return axios.post(
-      burl + "/roles/get_role",
-      { query: query, sort: sort },
-      { headers: headers }
-    );
-  },
-
   set_image: (query) => {
     return axios.post(burl + "/images/set_image", query, { headers: headers });
-  },
-  get_image: (query, sort) => {
-    return axios.post(
-      burl + "/images/get_image",
-      { query: query, sort: sort },
-      { headers: headers }
-    );
   },
 
   set_mail: (query) => {
@@ -377,14 +312,5 @@ export default {
     setAuthToken(false);
     delete headers["x-access-token"];
     return localStorage.removeItem("token");
-  },
-  create_csv_dispositifs_length: (params = {}) => {
-    return axios.post(
-      burl + "/dispositifs/create_csv_dispositifs_length",
-      params,
-      {
-        headers: headers,
-      }
-    );
   },
 };

@@ -279,6 +279,7 @@ export const AdminUsers = () => {
           // @ts-ignore
           onChange={handleChange}
           placeholder="Rechercher un utilisateur..."
+          withMargin={true}
         />
       </SearchBarContainer>
       <StyledHeader>

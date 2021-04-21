@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Structure } from "../../../../../types/interface";
+import { UserStructure } from "../../../../../types/interface";
 import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
 import { Input } from "reactstrap";
 
 interface Props {
-  structure: Structure | null;
+  structure: UserStructure | null;
   setStructure: (arg: any) => void;
   setHasModifications: (arg: boolean) => void;
 }

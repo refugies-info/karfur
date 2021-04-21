@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Dispositif } from "../../../../../types/interface";
+import { IDispositif } from "../../../../../types/interface";
 import { ObjectId } from "mongodb";
 import SearchResultCard from "../../../../AdvancedSearch/SearchResultCard";
 import NoResultsBackgroundImage from "../../../../../assets/no_results.svg";
@@ -82,14 +82,14 @@ const NoDispositifText = styled.div`
 
 interface Props {
   leftPartHeight: number;
-  dispositifsAssocies: ObjectId[] | Dispositif[];
+  dispositifsAssocies: ObjectId[] | IDispositif[];
   history: any;
   t: any;
 }
 export const RightAnnuaireDetails = (props: Props) => {
   // @ts-ignore
   const activeDispositifsAssocies = props.dispositifsAssocies.filter(
-    (dispositif: Dispositif) => dispositif.status === "Actif"
+    (dispositif: IDispositif) => dispositif.status === "Actif"
   );
   const nbActiveDispositifs = activeDispositifsAssocies.length;
   return (
@@ -113,7 +113,7 @@ export const RightAnnuaireDetails = (props: Props) => {
           </>
         )}
         {nbActiveDispositifs > 0 &&
-          activeDispositifsAssocies.map((dispositif: Dispositif) => (
+          activeDispositifsAssocies.map((dispositif: IDispositif) => (
             <CardContainer key={dispositif._id}>
               <SearchResultCard
                 // @ts-ignore

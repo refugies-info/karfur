@@ -37,7 +37,8 @@ type NeededFields =
       mail_contact: number;
       membres: number;
       created_at: number;
-    };
+    }
+  | { membres: 1 };
 
 export const getStructuresFromDB = async (
   query: Query,

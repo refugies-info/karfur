@@ -40,6 +40,18 @@ import {
   allStructuresReducer,
 } from "./AllStructures/allStructures.reducer";
 import { AllUsersState, allUsersReducer } from "./AllUsers/allUsers.reducer";
+import {
+  UserFavoritesState,
+  userFavoritesReducer,
+} from "./UserFavoritesInLocale/UserFavoritesInLocale.reducer";
+import {
+  UserContributionsState,
+  userContributionsReducer,
+} from "./UserContributions/userContributions.reducer";
+import {
+  DispositifsWithTranslationsStatusState,
+  dispositifsWithTranslationsStatusReducer,
+} from "./DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.reducer";
 
 export interface RootState {
   user: UserState;
@@ -55,6 +67,9 @@ export interface RootState {
   allDispositifs: AllDispositifsState;
   allStructures: AllStructuresState;
   users: AllUsersState;
+  userFavorites: UserFavoritesState;
+  userContributions: UserContributionsState;
+  dispositifsWithTranslations: DispositifsWithTranslationsStatusState;
 }
 export const appReducer = (history: any) =>
   combineReducers({
@@ -72,4 +87,7 @@ export const appReducer = (history: any) =>
     allDispositifs: allDispositifsReducer,
     allStructures: allStructuresReducer,
     users: allUsersReducer,
+    userFavorites: userFavoritesReducer,
+    userContributions: userContributionsReducer,
+    dispositifsWithTranslations: dispositifsWithTranslationsStatusReducer,
   });

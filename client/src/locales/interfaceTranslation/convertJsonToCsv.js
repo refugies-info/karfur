@@ -10,9 +10,6 @@ const convertJsonToCsv = (langue) => {
     fs.readFileSync("../" + langue + "/translation.json").toString()
   );
   const titleArrayFrench = Object.keys(jsonFrench);
-  // console.log("Nombre de titres en francais", titleArrayFrench.length);
-  // const titleArrayLangue = Object.keys(jsonLangue);
-  // console.log(`Nombre de titres en ${langue}`, titleArrayLangue.length);
 
   const output = [];
   titleArrayFrench.forEach((title) => {

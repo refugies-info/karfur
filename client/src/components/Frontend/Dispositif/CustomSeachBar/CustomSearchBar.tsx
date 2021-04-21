@@ -10,7 +10,7 @@ export const SearchBarContainer = styled.div`
   border-radius: 12px;
   padding-right: 12px;
   padding-left: 15px;
-  margin-right: 10px;
+  margin-right: ${(props) => (props.withMargin ? "10px" : "0px")};
   font-size: 16px;
   font-weight: 400;
   width: 280px;
@@ -45,10 +45,11 @@ interface Props {
   placeholder: string;
   onChange: () => void;
   value: string;
+  withMargin?: boolean;
 }
 
 export const CustomSearchBar = (props: Props) => (
-  <SearchBarContainer>
+  <SearchBarContainer withMargin={props.withMargin}>
     <SearchBar
       onChange={props.onChange}
       type="text"

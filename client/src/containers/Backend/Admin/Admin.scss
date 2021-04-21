@@ -1,6 +1,10 @@
 .admin {
+  display: flex;
+  flex-direction: column;
   flex: 1;
   background: #f2f2f2;
+  margin-top: -95px;
+  padding-top: 100px;
   .no-padding {
     padding: 0;
   }

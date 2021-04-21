@@ -1,5 +1,8 @@
 // @ts-nocheck
-import { formatDispositifsByCreator } from "../dispositif.adapter";
+import {
+  formatDispositifsByCreator,
+  getTitreInfoOrMarque,
+} from "../dispositif.adapter";
 
 describe("formatDispositifsByCreator", () => {
   beforeEach(() => {
@@ -82,5 +85,22 @@ describe("formatDispositifsByCreator", () => {
     const res = formatDispositifsByCreator(dispositifs);
 
     expect(res).toEqual(expectedResult);
+  });
+});
+
+describe("getTitreInfoOrMarque", () => {
+  it("should return empty string if no title", () => {
+    const res = getTitreInfoOrMarque(undefined);
+    expect(res).toEqual("");
+  });
+
+  it("should return string if title string", () => {
+    const res = getTitreInfoOrMarque("titre");
+    expect(res).toEqual("titre");
+  });
+
+  it("should return string if title object", () => {
+    const res = getTitreInfoOrMarque({ fr: "titre object", en: "title" });
+    expect(res).toEqual("titre object");
   });
 });

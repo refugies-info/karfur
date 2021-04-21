@@ -8,8 +8,7 @@ import ReactGA from "react-ga";
 
 export const history = createBrowserHistory();
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
-history.listen((location, action) => {
+history.listen((location) => {
   ReactGA.pageview(location.pathname + location.search);
 });
 

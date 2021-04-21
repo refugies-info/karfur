@@ -1,0 +1,1 @@
+export { updateDispositifStatus } from "./updateDispositifStatus";

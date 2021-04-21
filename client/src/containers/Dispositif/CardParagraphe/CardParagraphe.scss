@@ -1,9 +1,16 @@
 @import "src/scss/colors.scss";
+@import "src/scss/global.scss";
 
 .cards.row {
-  padding: 0 40px;
+  padding: 0 30px;
+  margin-left: 0px;
+  margin-right: 0px;
+  @include media-max("tablet-up") {
+    padding: 0 6px;
+  }
+
   .card-col {
-    padding: 0 0 0 10px;
+    padding: 0 5px 0 5px;
     margin-top: 40px;
 
     .card {
@@ -13,6 +20,10 @@
       border: none;
       height: 300px;
       background-color: $noirCD;
+      @include media-max("tablet-up") {
+        height: 290px;
+        width: 250px;
+      }
 
       &.Public-visé-noImage {
         background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public.svg),
@@ -1355,6 +1366,17 @@
       &:hover .card-icons {
         display: inherit;
       }
+    }
+  }
+  .card-col:last-child {
+    @include media-max("tablet-up") {
+      padding: 0 10px 0 5px;
+    }
+  }
+
+  .card-col:first-child {
+    @include media-max("tablet-up") {
+      padding: 0 5px 0 10px;
     }
   }
 }

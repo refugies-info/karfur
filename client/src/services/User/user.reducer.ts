@@ -53,7 +53,11 @@ export const userReducer = createReducer<UserState, UserActions>(
             : false,
         membreStruct:
           action.payload && action.payload.roles
-            ? action.payload.roles.some((x: Role) => x.nom === "hasStructure")
+            ? action.payload.roles.some(
+                (x: Role) => x.nom === "hasStructure"
+              ) ||
+              (action.payload.structures &&
+                action.payload.structures.length > 0)
             : false,
       }),
     UPDATE_USER: (state, action) =>

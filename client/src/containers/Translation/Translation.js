@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Swal from "sweetalert2";
 import querySearch from "stringquery";
 import h2p from "html2plaintext";
-import debounce from "lodash.debounce";
 import { EditorState, ContentState } from "draft-js";
 import htmlToDraft from "html-to-draftjs";
 import { connect } from "react-redux";
@@ -144,10 +143,7 @@ export class TranslationHOC extends Component {
     let itemId = null;
     try {
       itemId = props.match.params.id;
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log(e);
-    }
+    } catch (e) {}
     const { locale, langueBackupId } = await this._setLangue(props);
     const isExpert = this.props.isExpert;
     const type =
@@ -165,46 +161,6 @@ export class TranslationHOC extends Component {
   get_trads = () => {
     const { itemId, locale } = this.state;
     this.props.fetchTranslations(itemId, locale);
-
-    /* return API.get_tradForReview({
-      query: { articleId: itemId, langueCible: locale },
-      sort: { updatedAt: -1 },
-      populate: "userId",
-    }).then((data_res) => {
-      if (
-        data_res.data.data &&
-        data_res.data.data.constructor === Array &&
-        data_res.data.data.length > 0
-      ) {
-        const traductions = data_res.data.data;
-        const traduction = traductions.find(
-          (trad) => trad.userId._id === trad.validatorId
-        );
-        this.setState({
-          traductionsFaites: traductions,
-          ...((isExpert || userId) && {
-            traduction: {
-              initialText: _.get(traductions, "0.initialText", {}),
-              translatedText:
-                isExpert &&
-                traductions.find(
-                  (trad) => trad.userId._id === this.props.userId
-                )
-                  ? _.get(
-                      traductions.find(
-                        (trad) => trad.userId._id === this.props.userId
-                      ),
-                      ["translatedText"]
-                    )
-                  : traduction
-                  ? traduction.translatedText
-                  : _.get(traductions, "0.translatedText", {}),
-            },
-            autosuggest: false,
-          }),
-        });
-      }
-    }); */
   };
 
   _setLangue = async (props) => {
@@ -217,10 +173,7 @@ export class TranslationHOC extends Component {
         langue = (
           await API.get_langues({ _id: params.id }, {}, "langueBackupId")
         ).data.data[0];
-      } catch (err) {
-        // eslint-disable-next-line no-console
-        console.log(err);
-      }
+      } catch (err) {}
     }
     this._isMounted && this.setState({ langue });
     return {
@@ -259,12 +212,10 @@ export class TranslationHOC extends Component {
                 ...this.state.translated,
                 [item]: value,
               },
-            }); //, () => this.get_xlm([[h2p(this.state.translated.body), this.state.locale], [this.state.francais.body, 'fr']]) );
+            });
         }
       })
-      .catch((err) => {
-        // eslint-disable-next-line no-console
-        console.log("error : ", err);
+      .catch(() => {
         if (
           !this.state.translated[item]
           //h2p(this.state.francais[item]) === h2p(text)
@@ -288,21 +239,6 @@ export class TranslationHOC extends Component {
       });
   };
 
-  get_xlm = debounce((sentence) => {
-    API.get_laser({ sentences: sentence }).then((data) => {
-      try {
-        let result = JSON.parse(data.data.data) || {};
-        if (result && result.cosine && result.cosine.length > 0) {
-          this._isMounted && this.setState({ score: result.cosine[0] });
-        } else {
-        }
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.log(e);
-      }
-    });
-  }, 500);
-
   handleChange = (ev) => {
     var targetNode = ev.currentTarget;
     let target = targetNode.className.includes("title") ? "title" : "body";
@@ -314,7 +250,6 @@ export class TranslationHOC extends Component {
       },
       autosuggest: false,
     });
-    // this.get_xlm([[h2p(value), this.state.locale], [this.state.francais.body, 'fr']])
   };
 
   onEditorStateChange = (editorState, target = "body") => {
@@ -341,10 +276,7 @@ export class TranslationHOC extends Component {
           .getElementById(last_target)
           .classList.add("temporarily_highlight");
       }
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log(e);
-    }
+    } catch (e) {}
   };
 
   handleChangeEnCours = (event) => {
@@ -415,7 +347,6 @@ export class TranslationHOC extends Component {
     }
     traduction = { ...traduction, ...tradData };
 
-    //const data = await API.add_traduction(traduction);
     //sent to the backend to save the trad
     await this.props.addTranslation(traduction);
     //traduction._id = (data.data.data || {})._id;
@@ -441,10 +372,7 @@ export class TranslationHOC extends Component {
       { isExpert, type, langue } = this.state;
     const nom = "avancement." + i18nCode;
     if (!isExpert) {
-      this.props.history.push({
-        pathname: "/avancement/langue/" + langue._id,
-        state: { langue: langue },
-      });
+      this.props.history.push("/backend/user-translation/" + langue.i18nCode);
       return;
     }
 
@@ -461,26 +389,11 @@ export class TranslationHOC extends Component {
     ]({ query: query, locale: i18nCode, random: true, isExpert })
       .then((data_res) => {
         let results = data_res.data.data;
-        /*  if (!isExpert) {
-          this.props.history.push({
-            pathname: "/avancement/traductions/" + langue._id,
-          }); 
-        } */
+
         if (results.length === 0) {
-          this.props.history.push({
-            pathname: "/avancement/traductions/" + langue._id,
-          });
-          /* if (isExpert) {
-            
-          } else {
-            Swal.fire({
-              title: "Oh non",
-              text:
-                "Aucun résultat n'a été retourné. 2 possibilités : vous avez traduit tout le contenu disponible, ou une erreur s'est produite",
-              type: "error",
-              timer: 1500,
-            });
-          } */
+          this.props.history.push(
+            "/backend/user-translation/" + langue.i18nCode
+          );
         } else {
           clearInterval(this.timer);
           this.props.history.push({

@@ -7,7 +7,7 @@ import { Editor } from "react-draft-wysiwyg";
 import h2p from "html2plaintext";
 import { EditorState, ContentState } from "draft-js";
 import htmlToDraft from "html-to-draftjs";
-import { convertToHTML } from "draft-convert"
+import { convertToHTML } from "draft-convert";
 import DirectionProvider, {
   DIRECTIONS,
 } from "react-with-direction/dist/DirectionProvider";
@@ -29,8 +29,8 @@ import moment from "moment";
 
 import "./SideTrad.scss";
 import { colorAvancement } from "../../../components/Functions/ColorFunctions";
-import {customConvertOption} from "../data";
-import {colors} from "colors";
+import { customConvertOption } from "../data";
+import { colors } from "colors";
 import produce from "immer";
 import styled from "styled-components";
 
@@ -100,16 +100,15 @@ class SideTrad extends Component {
     avancement: 0,
     startingTime: null,
     endingTime: null,
-    validerInit: false
+    validerInit: false,
   };
   initialState = this.state;
 
   componentDidMount() {
-    this.setState({startingTime: moment()});
+    this.setState({ startingTime: moment() });
+  }
 
-}
-
-/*   UNSAFE_componentWillReceiveProps(nextProps) {
+  /*   UNSAFE_componentWillReceiveProps(nextProps) {
     if (
       this.props.translations !== nextProps.translations &&
       nextProps.translations
@@ -157,8 +156,8 @@ class SideTrad extends Component {
       availableListTrad,
       listTrad,
     } = this.state;
-  //we highlight the new section and scroll
-      this._scrollAndHighlight(currIdx, currSubIdx, currSubName);
+    //we highlight the new section and scroll
+    this._scrollAndHighlight(currIdx, currSubIdx, currSubName);
     if (
       this.props.translations !== prevProps.translations &&
       this.props.translations
@@ -181,7 +180,12 @@ class SideTrad extends Component {
         }
       }
       this.props.fwdSetState({ disableBtn: false });
-      if ((this.state.initialize && currIdx !== "titreInformatif") || (this.state.initialize && currIdx === "titreInformatif" && this.state.validerInit)) {
+      if (
+        (this.state.initialize && currIdx !== "titreInformatif") ||
+        (this.state.initialize &&
+          currIdx === "titreInformatif" &&
+          this.state.validerInit)
+      ) {
         this.goChange();
       }
     }
@@ -205,7 +209,7 @@ class SideTrad extends Component {
     const userTrad = listTrad.length
       ? listTrad.find((trad) => trad.userId._id === this.props.user._id)
       : null;
-      //we update the highlight and modified fields to change the color styles to show if a field has been modified/translated
+    //we update the highlight and modified fields to change the color styles to show if a field has been modified/translated
     if (
       currIdx !== prevState.currIdx ||
       currSubIdx !== prevState.currSubIdx ||
@@ -391,7 +395,6 @@ class SideTrad extends Component {
 
   //Called everytime we change section to update the index and the content we are translating, at the end we call checlTranslate which takes care of sending the translation to google
   goChange = async (isNext = true, fromFn = true) => {
-    
     //await this.props.getTrads();
     if (isNext && fromFn) {
       this.setState({ hasBeenSkipped: true });
@@ -485,7 +488,10 @@ class SideTrad extends Component {
             this._endingFeedback();
             return;
           } else if (subidx > -1 && this.props.menu[idx].type === "cards") {
-            if (this.props.menu[idx].children[subidx].title === "Important !" || this.props.menu[idx].children[subidx].title === "Durée") {
+            if (
+              this.props.menu[idx].children[subidx].title === "Important !" ||
+              this.props.menu[idx].children[subidx].title === "Durée"
+            ) {
               subname = "contentTitle";
               value = this.props.menu[idx].children[subidx].contentTitle;
               this.setState({ currSubName: subname });
@@ -768,7 +774,7 @@ class SideTrad extends Component {
   //The validation function when we validate a section
   onValidate = async () => {
     if (this.state.currIdx === "titreInformatif") {
-      this.setState({validerInit: true})
+      this.setState({ validerInit: true });
     }
     if (!this.props.translated.body) {
       Swal.fire({
@@ -787,7 +793,7 @@ class SideTrad extends Component {
     let textString = this.props.translated.body
       .getCurrentContent()
       .getPlainText();
-      //calculating the words translated in a section
+    //calculating the words translated in a section
     let wordsCount = textString.split(" ").length;
     let {
       pointeurs,
@@ -842,7 +848,8 @@ class SideTrad extends Component {
         nom === "francais"
           ? initialValue
           : convertToHTML(customConvertOption)(
-            initialValue.getCurrentContent());
+              initialValue.getCurrentContent()
+            );
       const value =
         pos > -1
           ? h2p(texte)
@@ -909,7 +916,7 @@ class SideTrad extends Component {
         ? " - "
         : "") +
       (this.props.content.titreInformatif || "");
-      //we change the modified fields if we translated a section that was modified in french
+    //we change the modified fields if we translated a section that was modified in french
     if (traduction.status === "À revoir") {
       let newTranslatedText = produce(traduction.translatedText, (draft) => {
         //draft.status[currIdx] = "Acceptée";
@@ -962,7 +969,7 @@ class SideTrad extends Component {
       this.props.fwdSetState({ newTrad }, () => {});
       await this.props.valider(newTrad);
     } else {
-    //if the trad for the user doesn't exists we create a new one
+      //if the trad for the user doesn't exists we create a new one
       this.props.fwdSetState({ traduction }, () => {
         // eslint-disable-next-line
         console.log(traduction);
@@ -1155,7 +1162,11 @@ class SideTrad extends Component {
               placeholder="Renseignez votre traduction ici"
               onEditorStateChange={this.props.onEditorStateChange}
               editorState={(translated || {}).body}
-              toolbarHidden={pointeurs.includes(currIdx) || this.state.currSubName === "contentTitle" || this.state.currSubName === "title"}
+              toolbarHidden={
+                pointeurs.includes(currIdx) ||
+                this.state.currSubName === "contentTitle" ||
+                this.state.currSubName === "title"
+              }
               toolbar={{
                 options: ["inline", "list", "link"],
                 inline: {

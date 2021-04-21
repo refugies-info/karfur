@@ -1,0 +1,1707 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserFavorites should render correctly when 0 favorites 1`] = `
+.c5 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 1120px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  margin-right: 32px;
+  margin-left: 32px;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c8 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c7 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c10 {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 13px;
+  width: 248px;
+  height: 248px;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  color: #2d9cdb;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.c11 {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 248px;
+  height: 248px;
+  margin-right: 8px;
+  margin-left: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c12 {
+  background: #c6c6c6;
+  border-radius: 8px;
+  width: 221px;
+  height: 28px;
+  margin-bottom: 8px;
+}
+
+.c13 {
+  background: #c6c6c6;
+  border-radius: 8px;
+  width: 130px;
+  height: 28px;
+  margin-bottom: 8px;
+}
+
+.c14 {
+  background: #c6c6c6;
+  border-radius: 3px;
+  width: 221px;
+  height: 14px;
+  margin-bottom: 5px;
+  margin-left: 13px;
+}
+
+.c15 {
+  background: #c6c6c6;
+  border-radius: 3px;
+  width: 200px;
+  height: 14px;
+  margin-bottom: 5px;
+  margin-left: 13px;
+}
+
+.c16 {
+  background: #c6c6c6;
+  border-radius: 3px;
+  width: 180px;
+  height: 14px;
+  margin-bottom: 5px;
+  margin-left: 13px;
+}
+
+.c17 {
+  background: #c6c6c6;
+  height: 50px;
+  width: 100%;
+  border-radius: 0px 0px 12px 12px;
+  margin-top: 16px;
+  padding-top: 18px;
+  padding-left: 50px;
+}
+
+.c18 {
+  background: #ffffff;
+  border-radius: 3px;
+  width: 180px;
+  height: 14px;
+}
+
+.c1 {
+  background: #212121;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 16px;
+}
+
+.c2 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #212121;
+  padding: 16px;
+}
+
+.c3 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #e55039;
+  padding: 16px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 26px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="bookmark"
+          data-eva-fill="#ffffff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes favoris
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="file-add-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes fiches
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="play-circle-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes traductions
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="person-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mon profil
+    </div>
+    <div
+      className="c3"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="log-out-outline"
+          data-eva-fill="#e55039"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Déconnexion
+    </div>
+  </div>
+  <div
+    className="c4"
+  >
+    <div
+      className="c5"
+    >
+      <div
+        style={
+          Object {
+            "marginLeft": "40px",
+            "marginRight": "40px",
+          }
+        }
+      >
+        <div
+          className="c6"
+        >
+          <div
+            className="c7"
+          >
+            Vous avez
+          </div>
+          <div
+            className="c8"
+          >
+            0
+          </div>
+          <div
+            className="c7"
+          >
+            fiche sauvegardée
+          </div>
+        </div>
+      </div>
+      <div
+        className="c9"
+      >
+        <div
+          className="c10"
+        >
+          Comment ajouter des fiches en favoris ?
+          <button
+            className="figma-btn tuto mr-10"
+            onClick={[Function]}
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="video"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Voir la vidéo
+          </button>
+        </div>
+        <div
+          className="c11"
+        >
+          <div
+            style={
+              Object {
+                "padding": "13px",
+              }
+            }
+          >
+            <div
+              className="c12"
+              width="221px"
+            />
+            <div
+              className="c13"
+              width="130px"
+            />
+          </div>
+          <div>
+            <div
+              className="c14"
+              width="221px"
+            />
+            <div
+              className="c15"
+              width="200px"
+            />
+            <div
+              className="c14"
+              width="221px"
+            />
+            <div
+              className="c16"
+              width="180px"
+            />
+            <div
+              className="c17"
+            >
+              <div
+                className="c18"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="c11"
+        >
+          <div
+            style={
+              Object {
+                "padding": "13px",
+              }
+            }
+          >
+            <div
+              className="c12"
+              width="221px"
+            />
+            <div
+              className="c13"
+              width="130px"
+            />
+          </div>
+          <div>
+            <div
+              className="c14"
+              width="221px"
+            />
+            <div
+              className="c15"
+              width="200px"
+            />
+            <div
+              className="c14"
+              width="221px"
+            />
+            <div
+              className="c16"
+              width="180px"
+            />
+            <div
+              className="c17"
+            >
+              <div
+                className="c18"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="c11"
+        >
+          <div
+            style={
+              Object {
+                "padding": "13px",
+              }
+            }
+          >
+            <div
+              className="c12"
+              width="221px"
+            />
+            <div
+              className="c13"
+              width="130px"
+            />
+          </div>
+          <div>
+            <div
+              className="c14"
+              width="221px"
+            />
+            <div
+              className="c15"
+              width="200px"
+            />
+            <div
+              className="c14"
+              width="221px"
+            />
+            <div
+              className="c16"
+              width="180px"
+            />
+            <div
+              className="c17"
+            >
+              <div
+                className="c18"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`UserFavorites should render correctly when 3 favorites 1`] = `
+.c12 {
+  font-weight: 14px;
+}
+
+.c5 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 1120px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c11 {
+  width: 248px;
+  height: 248px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  margin-left: 8px;
+  z-index: 0;
+}
+
+.c10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  margin-right: 32px;
+  margin-left: 32px;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c9 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c8 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c1 {
+  background: #212121;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 16px;
+}
+
+.c2 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #212121;
+  padding: 16px;
+}
+
+.c3 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #e55039;
+  padding: 16px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 26px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c6 {
+  margin-right: 40px;
+  margin-left: 40px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="bookmark"
+          data-eva-fill="#ffffff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes favoris
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="file-add-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes fiches
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="play-circle-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes traductions
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="person-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mon profil
+    </div>
+    <div
+      className="c3"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="log-out-outline"
+          data-eva-fill="#e55039"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Déconnexion
+    </div>
+  </div>
+  <div
+    className="c4"
+  >
+    <div
+      className="c5"
+    >
+      <div
+        className="c6"
+      >
+        <div
+          className="c7"
+        >
+          <div
+            className="c8"
+          >
+            Vous avez
+          </div>
+          <div
+            className="c9"
+          >
+            3
+          </div>
+          <div
+            className="c8"
+          >
+            fiches sauvegardées
+          </div>
+        </div>
+        <div>
+          <button
+            className="figma-btn outline-black "
+            onClick={[Function]}
+            testID="test-delete-button"
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                data-eva="trash-outline"
+                data-eva-fill="#fff"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+            Tout supprimer
+          </button>
+        </div>
+      </div>
+      <div
+        className="c10"
+      >
+        <div
+          className="c11"
+        >
+          <div
+            className="card-col puff-in-center dispositif"
+          >
+            <div
+              className="custom-card border-none card"
+              onClick={[Function]}
+            >
+              <div
+                className="card-body"
+              >
+                <span
+                  className="bookmark-icon pinned"
+                  onClick={[Function]}
+                  testID="test-toggle-pin-id1"
+                >
+                  <i
+                    data-eva="bookmark"
+                    data-eva-fill="#4caf50"
+                    data-eva-height="30px"
+                    data-eva-width="30px"
+                  />
+                </span>
+                <h5>
+                  tinfo1
+                </h5>
+                <p
+                  className="c12"
+                >
+                  abstract1
+                </p>
+              </div>
+              <div
+                className="correct-radius align-right bg-Français card-footer"
+              >
+                <div
+                  style={
+                    Object {
+                      "alignItems": "flex-start",
+                      "display": "flex",
+                      "justifyContent": "flex-start",
+                      "width": 35,
+                    }
+                  }
+                >
+                  <svg
+                    height={20}
+                    version="1.1"
+                    viewBox="0 0 20 20"
+                    width={20}
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      transform="matrix(0.8333333333333334,0,0,0.8333333333333334,0,0)"
+                    >
+                      <path
+                        d="M20.25,5.251v9a1.5,1.5,0,0,1-1.5,1.5H5.25a1.5,1.5,0,0,1-1.5-1.5v-9"
+                        fill="none"
+                        stroke="white"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                      />
+                      <path
+                        d="M21.748,23.251H2.252A1.5,1.5,0,0,1,.91,21.081L2.746,17.41a3,3,0,0,1,2.683-1.659H18.571a3,3,0,0,1,2.683,1.659l1.836,3.671A1.5,1.5,0,0,1,21.748,23.251Z"
+                        fill="none"
+                        stroke="white"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                      />
+                      <path
+                        d="M10.5 20.251L13.5 20.251"
+                        fill="none"
+                        stroke="white"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                      />
+                      <path
+                        d="M12,2.412s.477-1.5,4.561-1.66a.635.635,0,0,1,.689.585V7.511a.634.634,0,0,1-.656.58C12.484,8.238,12,9.751,12,9.751V2.412S11.523.907,7.439.752a.635.635,0,0,0-.689.585V7.511a.634.634,0,0,0,.656.58C11.516,8.238,12,9.751,12,9.751"
+                        fill="none"
+                        stroke="white"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                      />
+                    </g>
+                  </svg>
+                </div>
+                titreMarque1
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c11"
+        >
+          <div
+            className="card-col puff-in-center dispositif"
+          >
+            <div
+              className="custom-card border-none card"
+              onClick={[Function]}
+            >
+              <div
+                className="card-body"
+              >
+                <span
+                  className="bookmark-icon pinned"
+                  onClick={[Function]}
+                  testID="test-toggle-pin-id2"
+                >
+                  <i
+                    data-eva="bookmark"
+                    data-eva-fill="#4caf50"
+                    data-eva-height="30px"
+                    data-eva-width="30px"
+                  />
+                </span>
+                <h5>
+                  tinfo2
+                </h5>
+                <p
+                  className="c12"
+                >
+                  abstract2
+                </p>
+              </div>
+              <div
+                className="correct-radius align-right bg-Administratif card-footer"
+              >
+                <div
+                  style={
+                    Object {
+                      "alignItems": "flex-start",
+                      "display": "flex",
+                      "justifyContent": "flex-start",
+                      "width": 35,
+                    }
+                  }
+                >
+                  <svg
+                    fill="none"
+                    height={20}
+                    viewBox="0 0 22 22"
+                    width={20}
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clipRule="evenodd"
+                      d="M20.4051 11.3607C20.4531 11.1165 20.3895 10.8636 20.2316 10.6712C20.0737 10.4788 19.8381 10.3671 19.5892 10.3665H9.73255C9.33712 10.3658 8.99664 10.0873 8.91755 9.69986L8.68672 8.54069C8.60763 8.15325 8.26715 7.87473 7.87172 7.87402H2.50005C2.25176 7.87556 2.01709 7.98774 1.85996 8.18C1.70284 8.37225 1.63963 8.62456 1.68755 8.86819L3.84839 19.7057C3.92747 20.0931 4.26796 20.3716 4.66339 20.3724H17.9276C18.323 20.3716 18.6635 20.0931 18.7426 19.7057C19.0834 17.9915 20.0001 13.3899 20.4051 11.3607Z"
+                      fillRule="evenodd"
+                      stroke="white"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                    />
+                    <path
+                      d="M4.79688 5.37305L4.81354 2.45638C4.81354 1.99614 5.18664 1.62305 5.64688 1.62305H16.4485C16.9088 1.62305 17.2819 1.99614 17.2819 2.45638L17.2994 7.87305"
+                      stroke="white"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                    />
+                    <path
+                      d="M7.30664 4.11621L14.1716 4.12288"
+                      stroke="white"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                    />
+                    <path
+                      d="M11.0469 6.62305H14.1719"
+                      stroke="white"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                    />
+                  </svg>
+                </div>
+                titreMarque2
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c11"
+        >
+          <div
+            className="card-col puff-in-center demarche"
+          >
+            <div
+              className="custom-card texte-Logement bg-light-Logement border-Logement card"
+              onClick={[Function]}
+            >
+              <div
+                className="card-body"
+              >
+                <span
+                  className="bookmark-icon pinned"
+                  onClick={[Function]}
+                  testID="test-toggle-pin-id3"
+                >
+                  <i
+                    data-eva="bookmark"
+                    data-eva-fill="#4caf50"
+                    data-eva-height="30px"
+                    data-eva-width="30px"
+                  />
+                </span>
+                <h5>
+                  tinfo3
+                </h5>
+                <p
+                  className="c12"
+                >
+                  abstract3
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`UserFavorites should render correctly when loading 1`] = `
+.c5 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 1120px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  margin-right: 32px;
+  margin-left: 32px;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c8 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c7 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+.c10 {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 248px;
+  height: 248px;
+  margin-right: 8px;
+  margin-left: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c11 {
+  background: #c6c6c6;
+  height: 50px;
+  width: 100%;
+  border-radius: 0px 0px 12px 12px;
+  margin-top: 16px;
+  padding-top: 18px;
+  padding-left: 50px;
+}
+
+.c1 {
+  background: #212121;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 16px;
+}
+
+.c2 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #212121;
+  padding: 16px;
+}
+
+.c3 {
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0px 5px 0px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  cursor: pointer;
+  color: #e55039;
+  padding: 16px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 26px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="bookmark"
+          data-eva-fill="#ffffff"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes favoris
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="file-add-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes fiches
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="play-circle-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mes traductions
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="person-outline"
+          data-eva-fill="#212121"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Mon profil
+    </div>
+    <div
+      className="c3"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <span
+        className="mr-10"
+      >
+        <i
+          data-eva="log-out-outline"
+          data-eva-fill="#e55039"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+      Toolbar.Déconnexion
+    </div>
+  </div>
+  <div
+    className="c4"
+  >
+    <div
+      className="c5"
+    >
+      <div
+        style={
+          Object {
+            "marginLeft": "40px",
+            "marginRight": "40px",
+          }
+        }
+      >
+        <div
+          className="c6"
+        >
+          <div
+            className="c7"
+          >
+            Vous avez
+          </div>
+          <div
+            className="c8"
+          >
+            ...
+          </div>
+          <div
+            className="c7"
+          >
+            fiche sauvegardée
+          </div>
+        </div>
+      </div>
+      <div
+        className="c9"
+      >
+        <div
+          className="c10"
+        >
+          <div
+            style={
+              Object {
+                "padding": "13px",
+              }
+            }
+          >
+            <span>
+              <span
+                className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                style={
+                  Object {
+                    "height": "28px",
+                  }
+                }
+              >
+                ‌
+              </span>
+              <span
+                className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                style={
+                  Object {
+                    "height": "28px",
+                  }
+                }
+              >
+                ‌
+              </span>
+            </span>
+          </div>
+          <div>
+            <div
+              style={
+                Object {
+                  "marginLeft": "13px",
+                  "marginRight": "13px",
+                }
+              }
+            >
+              <span>
+                <span
+                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  style={
+                    Object {
+                      "height": "14px",
+                    }
+                  }
+                >
+                  ‌
+                </span>
+                <span
+                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  style={
+                    Object {
+                      "height": "14px",
+                    }
+                  }
+                >
+                  ‌
+                </span>
+                <span
+                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  style={
+                    Object {
+                      "height": "14px",
+                    }
+                  }
+                >
+                  ‌
+                </span>
+              </span>
+            </div>
+            <div
+              className="c11"
+            />
+          </div>
+        </div>
+        <div
+          className="c10"
+        >
+          <div
+            style={
+              Object {
+                "padding": "13px",
+              }
+            }
+          >
+            <span>
+              <span
+                className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                style={
+                  Object {
+                    "height": "28px",
+                  }
+                }
+              >
+                ‌
+              </span>
+              <span
+                className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                style={
+                  Object {
+                    "height": "28px",
+                  }
+                }
+              >
+                ‌
+              </span>
+            </span>
+          </div>
+          <div>
+            <div
+              style={
+                Object {
+                  "marginLeft": "13px",
+                  "marginRight": "13px",
+                }
+              }
+            >
+              <span>
+                <span
+                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  style={
+                    Object {
+                      "height": "14px",
+                    }
+                  }
+                >
+                  ‌
+                </span>
+                <span
+                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  style={
+                    Object {
+                      "height": "14px",
+                    }
+                  }
+                >
+                  ‌
+                </span>
+                <span
+                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  style={
+                    Object {
+                      "height": "14px",
+                    }
+                  }
+                >
+                  ‌
+                </span>
+              </span>
+            </div>
+            <div
+              className="c11"
+            />
+          </div>
+        </div>
+        <div
+          className="c10"
+        >
+          <div
+            style={
+              Object {
+                "padding": "13px",
+              }
+            }
+          >
+            <span>
+              <span
+                className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                style={
+                  Object {
+                    "height": "28px",
+                  }
+                }
+              >
+                ‌
+              </span>
+              <span
+                className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                style={
+                  Object {
+                    "height": "28px",
+                  }
+                }
+              >
+                ‌
+              </span>
+            </span>
+          </div>
+          <div>
+            <div
+              style={
+                Object {
+                  "marginLeft": "13px",
+                  "marginRight": "13px",
+                }
+              }
+            >
+              <span>
+                <span
+                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  style={
+                    Object {
+                      "height": "14px",
+                    }
+                  }
+                >
+                  ‌
+                </span>
+                <span
+                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  style={
+                    Object {
+                      "height": "14px",
+                    }
+                  }
+                >
+                  ‌
+                </span>
+                <span
+                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  style={
+                    Object {
+                      "height": "14px",
+                    }
+                  }
+                >
+                  ‌
+                </span>
+              </span>
+            </div>
+            <div
+              className="c11"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

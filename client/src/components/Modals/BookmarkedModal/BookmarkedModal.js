@@ -31,7 +31,7 @@ const bookmarkedModal = (props) => {
               "Dispositif.favoriSaved",
               "Votre recherche est désormais disponible dans votre profil dans la rubrique"
             )}{" "}
-            <NavHashLink to="/backend/user-profile#mes-favoris">
+            <NavHashLink to="/backend/user-favorites">
               <b>{t("Dispositif.Mes favoris", "Mes favoris")}</b>
             </NavHashLink>
           </>

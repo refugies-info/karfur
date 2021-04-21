@@ -45,19 +45,27 @@ const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
             const roles = (user && user.roles) || [];
             const isAuthorized =
               roles.filter((x) => route.restriction.includes(x.nom)).length > 0;
-            if (isAuthorized) {
+            const hasRouteRestrictionHasStructure = route.restriction.includes(
+              "hasStructure"
+            );
+
+            const hasUserStructure =
+              user && user.structures && user.structures.length > 0
+                ? true
+                : false;
+            if (
+              isAuthorized ||
+              (hasUserStructure && hasRouteRestrictionHasStructure)
+            ) {
               return (
                 <Component {...props} socket={socket} socketFn={socketFn} />
               );
-            } 
-              return <UnauthorizedAccess />;
-            
-          } 
-            return <Component {...props} socket={socket} socketFn={socketFn} />;
-          
-        } 
+            }
+            return <UnauthorizedAccess />;
+          }
           return <Component {...props} socket={socket} socketFn={socketFn} />;
-        
+        }
+        return <Component {...props} socket={socket} socketFn={socketFn} />;
       }}
     />
   );

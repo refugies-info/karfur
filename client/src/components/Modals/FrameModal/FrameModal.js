@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Modal } from "reactstrap";
 import { withTranslation } from "react-i18next";
-import {colors} from "colors";
+import { colors } from "colors";
 import _ from "lodash";
 
 import FButton from "../../FigmaUI/FButton/FButton";

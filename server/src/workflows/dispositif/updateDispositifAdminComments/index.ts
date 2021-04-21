@@ -1,0 +1,1 @@
+export { updateDispositifAdminComments } from "./updateDispositifAdminComments";

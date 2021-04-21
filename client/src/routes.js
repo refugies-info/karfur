@@ -1,12 +1,9 @@
 import HomePage from "./containers/HomePage/HomePage";
 import Dashboard from "./containers/Backend/Dashboard/Dashboard";
 import { Admin } from "./containers/Backend/Admin/Admin";
-import UserDash from "./containers/Backend/UserDash/UserDash";
-import UserDashContrib from "./containers/Backend/UserDashContrib/UserDashContrib";
-import UserDashStruct from "./containers/Backend/UserDashStruct/UserDashStruct";
-import UserProfile from "./containers/Backend/UserProfile/UserProfile";
+import { UserContributions } from "./containers/Backend/UserContributions";
+import { UserProfile } from "./containers/Backend/UserProfile";
 import Dispositif from "./containers/Dispositif/Dispositif";
-import Avancement from "./containers/Avancement/Avancement";
 import Translation from "./containers/Translation/Translation";
 import AdvancedSearch from "./containers/AdvancedSearch/AdvancedSearch";
 import QuiSommesNous from "./containers/QuiSommesNous/QuiSommesNous";
@@ -18,6 +15,13 @@ import {
   AnnuaireLecture,
   AnnuaireDetail,
 } from "./containers/Annuaire/AnnuaireLecture";
+import { UserNotifications } from "./containers/Backend/UserNotifications";
+import { UserFavorites } from "./containers/Backend/UserFavorites";
+import {
+  UserStructure,
+  UserAdminStructure,
+} from "./containers/Backend/UserStructure";
+import { UserTranslation } from "./containers/Backend/UserTranslation";
 
 const routes = [
   {
@@ -115,26 +119,6 @@ const routes = [
   },
 
   {
-    path: "/avancement/traductions/:id",
-    exact: true,
-    name: "Réfugiés.info - Traduction",
-    component: Avancement,
-    restriction: ["ExpertTrad", "Admin"],
-  },
-  {
-    path: "/avancement/langue/:id",
-    exact: true,
-    name: "Réfugiés.info - Traduction",
-    component: Avancement,
-    restriction: ["Trad", "ExpertTrad", "Admin"],
-  },
-  {
-    path: "/avancement",
-    name: "Réfugiés.info - Traduction",
-    component: Avancement,
-    restriction: ["Trad", "ExpertTrad", "Admin"],
-  },
-  {
     path: "/traduction",
     exact: true,
     name: "Réfugiés.info - Traduction",
@@ -216,33 +200,52 @@ const routes = [
   },
 
   {
-    path: "/backend/user-dashboard",
-    name: "Réfugiés.info - Espace traduction",
-    component: UserDash,
-    restriction: ["User", "Trad", "ExpertTrad", "Admin"],
-  },
-  {
     path: "/backend/user-dash-contrib",
     name: "Réfugiés.info - Espace rédaction",
-    component: UserDashContrib,
-    restriction: ["Contrib", "Admin"],
+    component: UserContributions,
+    restriction: ["User", "Contrib", "Admin"],
   },
   {
     path: "/backend/user-dash-structure",
     name: "Réfugiés.info - Ma structure",
-    component: UserDashStruct,
-    restriction: ["Admin", "hasStructure"],
+    component: UserStructure,
+    restriction: ["hasStructure"],
   },
   {
     path: "/backend/user-dash-structure-selected",
     name: "Réfugiés.info -  Structure",
-    component: UserDashStruct,
+    component: UserAdminStructure,
     restriction: ["Admin"],
   },
   {
     path: "/backend/user-profile",
     name: "Réfugiés.info - Mon profil",
     component: UserProfile,
+    restriction: ["User", "Trad", "ExpertTrad", "Admin"],
+  },
+  {
+    path: "/backend/user-dash-notifications",
+    name: "Réfugiés.info - Mes notifications",
+    component: UserNotifications,
+    restriction: ["Admin", "hasStructure"],
+  },
+  {
+    path: "/backend/user-favorites",
+    name: "Réfugiés.info - Mes favoris",
+    component: UserFavorites,
+    restriction: ["User", "Trad", "ExpertTrad", "Admin"],
+  },
+  {
+    path: "/backend/user-translation",
+    name: "Réfugiés.info - Mes traductions",
+    exact: true,
+    component: UserTranslation,
+    restriction: ["User", "Trad", "ExpertTrad", "Admin"],
+  },
+  {
+    path: "/backend/user-translation/:id",
+    name: "Réfugiés.info - Mes traductions",
+    component: UserTranslation,
     restriction: ["User", "Trad", "ExpertTrad", "Admin"],
   },
 ];

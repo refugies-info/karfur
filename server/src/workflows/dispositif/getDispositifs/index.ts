@@ -1,0 +1,1 @@
+export { getDispositifs } from "./getDispositifs";
