@@ -7,6 +7,7 @@ import { initial_data } from "../data";
 import { colors } from "../../../colors";
 import Streamline from "../../../assets/streamline";
 import { LocalisationFilter } from "./LocalisationFilter/LocalisationFilter";
+import { Tag } from "../../../types/interface";
 
 interface Props {
   t: (a: string, b: string) => void;
@@ -81,11 +82,13 @@ const ButtonTitle = styled.div``;
 
 export const MobileAdvancedSearch = (props: Props) => {
   const [showTagModal, setShowTagModal] = useState(false);
-  const [tagSelected, setTagSelected] = useState(null);
+  const [tagSelected, setTagSelected] = useState<Tag | null>(null);
   const [showAgeModal, setShowAgeModal] = useState(false);
   const [ageSelected, setAgeSelected] = useState<{ name: string } | null>(null);
   const [showFrenchModal, setShowFrenchModal] = useState(false);
-  const [frenchSelected, setFrenchSelected] = useState(null);
+  const [frenchSelected, setFrenchSelected] = useState<{ name: string } | null>(
+    null
+  );
   const [ville, setVille] = useState("");
   const [geoSearch, setGeoSearch] = useState(false);
 
@@ -121,18 +124,14 @@ export const MobileAdvancedSearch = (props: Props) => {
       <TextTitle> {props.t("Je cherche à", "Je cherche à")}</TextTitle>
       {tagSelected ? (
         <SelectedFilter
-          // @ts-ignore: Object is possibly 'null'.
           color={tagSelected.darkColor}
           textColor="white"
           textAlign="left"
           onClick={() => toggleShowModal("thème")}
         >
-          {/* @ts-ignore: Object is possibly 'null'. */}
           {props.t("Tags." + tagSelected.name, tagSelected.name)}
-          {/* @ts-ignore: Object is possibly 'null'. */}
           {tagSelected.icon ? (
             <Streamline
-              // @ts-ignore: Object is possibly 'null'.
               name={tagSelected.icon}
               stroke={"white"}
               width={22}
@@ -202,13 +201,11 @@ export const MobileAdvancedSearch = (props: Props) => {
       <TextTitle> {props.t("SearchItem.Je parle", "Je parle")}</TextTitle>
       {frenchSelected ? (
         <SelectedFilter
-          // @ts-ignore: Object is possibly 'null'.
           color={colors.noir}
           textColor="white"
           textAlign="left"
           onClick={() => toggleShowModal("french")}
         >
-          {/* @ts-ignore: Object is possibly 'null'. */}
           {props.t("Tags." + frenchSelected.name, frenchSelected.name)}
           <div
             onClick={(e: any) => {
