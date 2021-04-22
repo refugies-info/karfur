@@ -60,7 +60,7 @@ const getNiveauFrancais = (infocards: any[]) => {
       : null;
   if (!niveauFrIC || !niveauFrIC.contentTitle) return "";
 
-  return niveauFrIC.contentTitle;
+  return niveauFrIC.contentTitle.fr || niveauFrIC.contentTitle;
 };
 
 const getDuree = (infocards: any[]) => {
