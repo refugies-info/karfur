@@ -7,6 +7,7 @@ import { filtres } from "../../Dispositif/data";
 import { initial_data } from "../data";
 import { colors } from "../../../colors";
 import Streamline from "../../../assets/streamline";
+import { LocalisationFilter } from "./LocalisationFilter/LocalisationFilter";
 
 interface Props {
   t: (a: string, b: string) => void;
@@ -87,6 +88,8 @@ export const MobileAdvancedSearch = (props: Props) => {
   const [ageSelected, setAgeSelected] = useState(null);
   const [showFrenchModal, setShowFrenchModal] = useState(false);
   const [frenchSelected, setFrenchSelected] = useState(null);
+  const [ville, setVille] = useState("");
+  const [geoSearch, setGeoSearch] = useState(false);
 
   const toggleShowModal = (modal: string) => {
     switch (modal) {
@@ -144,11 +147,16 @@ export const MobileAdvancedSearch = (props: Props) => {
       )}
 
       <TextTitle> {props.t("SearchItem.J'habite à", "J'habite à")}</TextTitle>
-      {tagSelected ? (
-        <SelectedFilter></SelectedFilter>
+      {geoSearch || ville !== "" ? (
+        <LocalisationFilter
+          setState={setVille}
+          ville={ville}
+          geoSearch={geoSearch}
+          setGeoSearch={setGeoSearch}
+        ></LocalisationFilter>
       ) : (
         <>
-          <FilterButton>
+          <FilterButton onClick={() => setGeoSearch(true)}>
             <ButtonTitle>
               {props.t("SearchItem.choisir ma ville", "choisir ma ville")}
             </ButtonTitle>
@@ -209,7 +217,7 @@ export const MobileAdvancedSearch = (props: Props) => {
         </>
       )}
 
-      {showTagModal && (
+      {showTagModal || (
         <MobileSearchFilterModal
           t={props.t}
           setSelectedItem={(item) => setTagSelected(item)}
@@ -223,7 +231,7 @@ export const MobileAdvancedSearch = (props: Props) => {
           data={filtres.tags}
         />
       )}
-      {showAgeModal && (
+      {showAgeModal || (
         <MobileSearchFilterModal
           t={props.t}
           setSelectedItem={(item) => setAgeSelected(item)}
@@ -239,7 +247,7 @@ export const MobileAdvancedSearch = (props: Props) => {
           }
         />
       )}
-      {showFrenchModal && (
+      {showFrenchModal || (
         <MobileSearchFilterModal
           t={props.t}
           setSelectedItem={(item) => setFrenchSelected(item)}
