@@ -1,64 +1,44 @@
-defaults: &defaults
-  working_directory: ~/refugies-info
-  docker:
-    - image: circleci/node:10-jessie-browsers
-  environment:
-    TZ: "Europe/Paris"
-
-version: 2
+version: 2.1
 jobs:
   install:
-    <<: *defaults
+    docker:
+      - image: circleci/node:10.13.0
     steps:
-      - restore_cache:
-          keys:
-            - source-v1-{{ .Branch }}-{{ .Revision }}
-            - source-v1-{{ .Branch }}-
-            - source-v1-
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - save_cache:
-          key: source-v1-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - ".git"
-      - run: npm run install:server && npm run install:client
-      - persist_to_workspace:
-          root: ~/refugies-info
-          paths:
-            - node_modules
-            - server/node_modules
-            - client/node_modules
-  full-unit-test-ada:
-    <<: *defaults
+      - node:
+          steps:
+            - run: npm run install:server
+            - run: npm run install:client
+            - persist_to_workspace:
+                root: ./
+                paths:
+                  - node_modules
+                  - server/node_modules
+                  - client/node_modules
+  test-code-quality:
+    executor:
+      name: node/default
+    environment:
+      NODE_OPTIONS: --max_old_space_size=8192
     steps:
-      - restore_cache:
-          keys:
-            - source-v1-{{ .Branch }}-{{ .Revision }}
-            - source-v1-{{ .Branch }}-
-            - source-v1-
       - checkout
-      - save_cache:
-          key: source-v1-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - ".git"
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - attach_workspace:
-          at: ./
-      - run: npm run test:unit
-
+      - node:
+          steps:
+            - attach_workspace:
+                at: ./
+            - run: npm run test:unit
 workflows:
-  version: 2
-  test:
+  build-and-test:
     jobs:
-      - install
-      - full-unit-test-ada:
-          requires:
-            - install
+      - install:
           filters:
             branches:
-              only:
-                - master
-                - release/backend
-                - /hotfix/backend.*/
+              ignore:
+                - master-frontend
+                - master-backend
+                - staging-frontend
+                - staging-backend
+                - dev
+      - test-code-quality:
+          requires:
+            - install
