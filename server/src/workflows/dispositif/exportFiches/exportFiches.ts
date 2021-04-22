@@ -1,7 +1,8 @@
 import logger from "../../../logger";
-import { Res } from "../../../types/interface";
+import { Res, RequestFromClientWithBody } from "../../../types/interface";
 import { getDispositifArray } from "../../../modules/dispositif/dispositif.repository";
 import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
+import { checkRequestIsFromPostman } from "../../../libs/checkAuthorizations";
 
 var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(
@@ -166,9 +167,13 @@ const formatFiche = (fiche: any) => {
 
   return { fields: formattedResult };
 };
-export const exportFiches = async (_: any, res: Res) => {
+export const exportFiches = async (
+  req: RequestFromClientWithBody<{}>,
+  res: Res
+) => {
   try {
     logger.info("[exportFiches] received");
+    checkRequestIsFromPostman(req.fromPostman);
 
     const fiches = await getDispositifArray({ status: "Actif" });
 
@@ -196,7 +201,7 @@ export const exportFiches = async (_: any, res: Res) => {
       exportFichesInAirtable(result);
     }
 
-    return res.status(200).json({ text: "OK", data: result.length });
+    return res.status(200).json({ text: "OK" });
   } catch (error) {
     logger.error("[exportFiches] error", { error: error.message });
   }
