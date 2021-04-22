@@ -1,44 +1,29 @@
-version: 2.1
+version: 2
 jobs:
-  install:
+  build:
+    working_directory: ~/refugies-info
     docker:
       - image: circleci/node:10.13.0
-    steps:
-      - checkout
-      - node:
-          steps:
-            - run: npm run install:server
-            - run: npm run install:client
-            - persist_to_workspace:
-                root: ./
-                paths:
-                  - node_modules
-                  - server/node_modules
-                  - client/node_modules
-  test-code-quality:
-    executor:
-      name: node/default
     environment:
-      NODE_OPTIONS: --max_old_space_size=8192
+      USER: circleci
+      TERM: someTerm
     steps:
       - checkout
-      - node:
-          steps:
-            - attach_workspace:
-                at: ./
-            - run: npm run test:unit
-workflows:
-  build-and-test:
-    jobs:
-      - install:
-          filters:
-            branches:
-              ignore:
-                - master-frontend
-                - master-backend
-                - staging-frontend
-                - staging-backend
-                - dev
-      - test-code-quality:
-          requires:
-            - install
+      - restore_cache:
+          keys:
+            - dependency-cache-{{ checksum "package-lock.lock" }}
+      - run:
+          name: Install Dependencies
+          command: npm run install:client
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.lock" }}
+          paths:
+            - ~/.yarn
+            - ~/.yarn-cache
+      - run:
+          name: Run tests
+          command: npm run test:unit
+      - store_artifacts:
+          name: upload-jest-coverage-files
+          path: coverage/lcov-report
+          destination: unit-coverage
