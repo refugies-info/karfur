@@ -84,7 +84,7 @@ export const MobileAdvancedSearch = (props: Props) => {
   const [showTagModal, setShowTagModal] = useState(false);
   const [tagSelected, setTagSelected] = useState(null);
   const [showAgeModal, setShowAgeModal] = useState(false);
-  const [AgeSelected, setAgeSelected] = useState(null);
+  const [ageSelected, setAgeSelected] = useState(null);
   const [showFrenchModal, setShowFrenchModal] = useState(false);
   const [frenchSelected, setFrenchSelected] = useState(null);
 
@@ -158,25 +158,53 @@ export const MobileAdvancedSearch = (props: Props) => {
       )}
 
       <TextTitle> {props.t("SearchItem.J'ai", "J'ai")}</TextTitle>
-      {AgeSelected ? null : (
+      {ageSelected ? (
+        <SelectedFilter
+          // @ts-ignore: Object is possibly 'null'.
+          color={colors.noir}
+          textColor="white"
+          textAlign="left"
+          onClick={() => toggleShowModal("age")}
+        >
+          {/* @ts-ignore: Object is possibly 'null'. */}
+          {props.t("Tags." + ageSelected.name, ageSelected.name)}
+          <div onClick={() => setAgeSelected(null)}>
+            <Icon name="close" fill={colors.blanc} size="large" />
+          </div>
+        </SelectedFilter>
+      ) : (
         <>
           <FilterButton onClick={() => toggleShowModal("age")}>
             <ButtonTitle>
               {props.t("SearchItem.choisir mon âge", "choisir mon âge")}
             </ButtonTitle>
-            <Icon name="chevron-down" fill="#212121" size="large" />
+            <Icon name="chevron-down" fill={colors.noir} size="large" />
           </FilterButton>
         </>
       )}
 
       <TextTitle> {props.t("SearchItem.Je parle", "Je parle")}</TextTitle>
-      {frenchSelected ? null : (
+      {frenchSelected ? (
+        <SelectedFilter
+          // @ts-ignore: Object is possibly 'null'.
+          color={colors.noir}
+          textColor="white"
+          textAlign="left"
+          onClick={() => toggleShowModal("french")}
+        >
+          {/* @ts-ignore: Object is possibly 'null'. */}
+          {props.t("Tags." + frenchSelected.name, frenchSelected.name)}
+          <div onClick={() => setFrenchSelected(null)}>
+            <Icon name="close" fill={colors.blanc} size="large" />
+          </div>
+        </SelectedFilter>
+      ) : (
         <>
           <FilterButton onClick={() => toggleShowModal("french")}>
             <ButtonTitle>
               {props.t("Tags.niveau de français", "niveau de français")}
             </ButtonTitle>
-            <Icon name="chevron-down" fill="#212121" size="large" />
+            <Icon name="chevron-down" fill={colors.noir} size="large" />
           </FilterButton>
         </>
       )}
@@ -198,7 +226,7 @@ export const MobileAdvancedSearch = (props: Props) => {
       {showAgeModal && (
         <MobileSearchFilterModal
           t={props.t}
-          setSelectedItem={() => setAgeSelected}
+          setSelectedItem={(item) => setAgeSelected(item)}
           type="age"
           title="SearchItem.choisir mon âge"
           defaultTitle="choisir mon âge"
@@ -214,7 +242,7 @@ export const MobileAdvancedSearch = (props: Props) => {
       {showFrenchModal && (
         <MobileSearchFilterModal
           t={props.t}
-          setSelectedItem={() => setFrenchSelected}
+          setSelectedItem={(item) => setFrenchSelected(item)}
           type="french"
           title="SearchItem.le français"
           defaultTitle="le français"
