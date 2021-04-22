@@ -9,17 +9,9 @@ jobs:
       TERM: someTerm
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - dependency-cache-{{ checksum "package-lock.lock" }}
       - run:
           name: Install Dependencies
           command: npm run install:client
-      - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.lock" }}
-          paths:
-            - ~/.yarn
-            - ~/.yarn-cache
       - run:
           name: Run tests
           command: npm run test:unit
