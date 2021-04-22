@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState } from "react";
 import styled from "styled-components";
 import Icon from "react-eva-icons";
@@ -217,7 +216,7 @@ export const MobileAdvancedSearch = (props: Props) => {
         </>
       )}
 
-      {showTagModal || (
+      {showTagModal && (
         <MobileSearchFilterModal
           t={props.t}
           setSelectedItem={(item) => setTagSelected(item)}
@@ -231,7 +230,7 @@ export const MobileAdvancedSearch = (props: Props) => {
           data={filtres.tags}
         />
       )}
-      {showAgeModal || (
+      {showAgeModal && (
         <MobileSearchFilterModal
           t={props.t}
           setSelectedItem={(item) => setAgeSelected(item)}
@@ -247,7 +246,7 @@ export const MobileAdvancedSearch = (props: Props) => {
           }
         />
       )}
-      {showFrenchModal || (
+      {showFrenchModal && (
         <MobileSearchFilterModal
           t={props.t}
           setSelectedItem={(item) => setFrenchSelected(item)}

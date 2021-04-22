@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
@@ -43,13 +42,12 @@ export const LocalisationFilter = (props) => {
   const onPlaceSelected = (place) => {
     if (place.formatted_address) {
       props.setState(place.formatted_address);
-      console.log("onPLaceSelected");
+
       props.setGeoSearch(false);
     }
   };
   const handleChange = (e) => props.setState(e.target.value);
-  // eslint-disable-next-line no-console
-  console.log("ville", props.ville);
+
   return (
     <>
       {props.geoSearch ? (
