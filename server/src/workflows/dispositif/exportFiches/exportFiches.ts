@@ -2,6 +2,7 @@ import logger = require("../../../logger");
 import { Res } from "../../../types/interface";
 import { getDispositifArray } from "../../../modules/dispositif/dispositif.repository";
 import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
+import { DispositifDoc } from "../../../schema/schemaDispositif";
 
 var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(
@@ -71,75 +72,134 @@ const getDuree = (infocards: any[]) => {
 
   return dureeIC.contentTitle.fr || dureeIC.contentTitle;
 };
+
+const getPrice = (infocards: any[]) => {
+  const priceIC =
+    infocards.filter((card) => card.title === "Combien ça coûte ?").length > 0
+      ? infocards.filter((card) => card.title === "Combien ça coûte ?")[0]
+      : null;
+
+  if (!priceIC) return "";
+
+  if (priceIC.free) return "Gratuit";
+  return "Payant";
+};
+
+const getZoneAction = (infocards: any[]) => {
+  const zoneIC =
+    infocards.filter((card) => card.title === "Zone d'action").length > 0
+      ? infocards.filter((card) => card.title === "Zone d'action")[0]
+      : null;
+  if (!zoneIC || !zoneIC.departments || zoneIC.departments.length === 0)
+    return "";
+  return zoneIC.departments.join(" / ");
+};
+
+const exportFichesInAirtable = (fiches: { fields: Result }[]) => {
+  logger.info(
+    `[exportFichesInAirtable] export ${fiches.length} fiches in airtable`
+  );
+  base("Fiches").create(fiches, function (err: Error) {
+    if (err) {
+      logger.error(
+        "[exportFichesInAirtable] error while exporting fiches to airtable",
+        {
+          fichesId: fiches.map((fiche) => fiche.fields.lien),
+          error: err,
+        }
+      );
+      return;
+    }
+
+    logger.info(
+      `[exportFichesInAirtable] successfully exported ${fiches.length}`
+    );
+  });
+};
+
+const formatFiche = (fiche: any) => {
+  turnToLocalizedTitles(fiche, "fr");
+
+  const tag1 =
+    fiche.tags && fiche.tags.length > 0 && fiche.tags[0] && fiche.tags[0].name
+      ? fiche.tags[0].name
+      : "";
+  const tag2 =
+    fiche.tags && fiche.tags.length > 0 && fiche.tags[1] && fiche.tags[1].name
+      ? fiche.tags[1].name
+      : "";
+  const tag3 =
+    fiche.tags && fiche.tags.length > 0 && fiche.tags[2] && fiche.tags[2].name
+      ? fiche.tags[2].name
+      : "";
+
+  const infocards =
+    fiche.contenu &&
+    fiche.contenu[1] &&
+    fiche.contenu[1].children &&
+    fiche.contenu[1].children.length > 0
+      ? fiche.contenu[1].children
+      : [];
+
+  const ageRequis = getAgeRequis(infocards);
+  const publicVise = getPublicVise(infocards);
+  const niveauFrancais = getNiveauFrancais(infocards);
+  const duree = getDuree(infocards);
+  const prix = getPrice(infocards);
+  const zoneAction = getZoneAction(infocards);
+
+  const formattedResult = {
+    titreInformatif: fiche.titreInformatif,
+    titreMarque: fiche.titreMarque,
+    typeContenu: fiche.typeContenu,
+    lien: "https://refugies.info/" + fiche.typeContenu + "/" + fiche._id,
+    tag1,
+    tag2,
+    tag3,
+    zoneAction,
+    ageRequis,
+    publicVise,
+    niveauFrancais,
+    prix,
+    duree,
+    nbVues: fiche.nbVues,
+  };
+
+  return { fields: formattedResult };
+};
 export const exportFiches = async (_: any, res: Res) => {
   try {
     logger.info("[exportFiches] received");
 
     const fiches = await getDispositifArray({ status: "Actif" });
 
-    let result: Result[] = [];
+    let result: { fields: Result }[] = [];
 
     // @ts-ignore
     fiches.forEach((fiche) => {
-      turnToLocalizedTitles(fiche, "fr");
-
-      const tag1 =
-        fiche.tags &&
-        fiche.tags.length > 0 &&
-        fiche.tags[0] &&
-        fiche.tags[0].name
-          ? fiche.tags[0].name
-          : "";
-      const tag2 =
-        fiche.tags &&
-        fiche.tags.length > 0 &&
-        fiche.tags[1] &&
-        fiche.tags[1].name
-          ? fiche.tags[1].name
-          : "";
-      const tag3 =
-        fiche.tags &&
-        fiche.tags.length > 0 &&
-        fiche.tags[2] &&
-        fiche.tags[2].name
-          ? fiche.tags[2].name
-          : "";
-
-      const infocards =
-        fiche.contenu &&
-        fiche.contenu[1] &&
-        fiche.contenu[1].children &&
-        fiche.contenu[1].children.length > 0
-          ? fiche.contenu[1].children
-          : [];
-
-      const ageRequis = getAgeRequis(infocards);
-      const publicVise = getPublicVise(infocards);
-      const niveauFrancais = getNiveauFrancais(infocards);
-      const duree = getDuree(infocards);
-
-      const formattedResult = {
-        titreInformatif: fiche.titreInformatif,
-        titreMarque: fiche.titreMarque,
-        typeContenu: fiche.typeContenu,
-        lien: "https://refugies.info/" + fiche.typeContenu + "/" + fiche._id,
-        tag1,
-        tag2,
-        tag3,
-        zoneAction: "test",
-        ageRequis,
-        publicVise,
-        niveauFrancais,
-        prix: "",
-        duree,
-        nbVues: fiche.nbVues,
-      };
-
-      console.log("formattedResult", formattedResult);
-      result.push(formattedResult);
+      try {
+        const formattedFiche = formatFiche(fiche);
+        result.push(formattedFiche);
+        if (result.length === 10) {
+          exportFichesInAirtable(result);
+          result = [];
+        }
+        return;
+      } catch (error) {
+        logger.error("error with fiche", {
+          _id: fiche._id,
+          error: error.message,
+        });
+      }
     });
 
-    return res.status(200).json({ text: "OK" });
+    if (result.length > 0) {
+      exportFichesInAirtable(result);
+    }
+
+    console.log("result", result);
+
+    return res.status(200).json({ text: "OK", data: result.length });
   } catch (error) {
     logger.error("[exportFiches] error", { error: error.message });
   }
