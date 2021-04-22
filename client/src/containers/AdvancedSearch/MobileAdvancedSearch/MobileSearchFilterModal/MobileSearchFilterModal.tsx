@@ -6,7 +6,7 @@ import Streamline from "../../../../assets/streamline";
 import Icon from "react-eva-icons";
 
 const TextTitle = styled.div`
-  width: 100%;
+  width: fit-content;
   margin-right: 10px;
   padding-right: 10px;
   padding-top: 14px;
@@ -16,13 +16,14 @@ const ButtonTitle = styled.div`
   background-color: black;
   display: flex;
   justify-content: space-between;
-  width: -webkit-fill-available;
+  width: fit-content;
   color: white;
   padding: 14px;
   border-radius: 12px;
 `;
 const TitleContainer = styled.div`
   display: flex;
+  justify-content: space-between;
   margin: 0;
   font-size: 18px;
   font-weight: 700;

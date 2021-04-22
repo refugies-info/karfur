@@ -25,7 +25,7 @@ const MainContainer = styled.div`
 const SearchBoutton = styled.div`
   height: 53px;
   width: 100%;
-  background-color: ${colors.grey};
+  background-color: ${(props) => props.color};
   border-radius: 12px;
   font-size: 18px;
   text-align: center;
@@ -62,6 +62,7 @@ const SelectedFilter = styled.div`
   color: ${(props) => props.textColor};
   text-align: ${(props) => props.textAlign};
   font-weight: 700;
+  align-items: center;
   border-color: #212121;
   border-radius: 12px;
   padding-top: 12px;
@@ -76,15 +77,13 @@ const TextTitle = styled.div`
   margin-top: 5px;
 `;
 
-const ButtonTitle = styled.div`
-  margin: 0 10px;
-`;
+const ButtonTitle = styled.div``;
 
 export const MobileAdvancedSearch = (props: Props) => {
   const [showTagModal, setShowTagModal] = useState(false);
   const [tagSelected, setTagSelected] = useState(null);
   const [showAgeModal, setShowAgeModal] = useState(false);
-  const [ageSelected, setAgeSelected] = useState(null);
+  const [ageSelected, setAgeSelected] = useState<{ name: string } | null>(null);
   const [showFrenchModal, setShowFrenchModal] = useState(false);
   const [frenchSelected, setFrenchSelected] = useState(null);
   const [ville, setVille] = useState("");
@@ -107,10 +106,17 @@ export const MobileAdvancedSearch = (props: Props) => {
   };
   return (
     <MainContainer>
-      <SearchBoutton>
-        <Icon name="search" fill="#FFFFFF" size="large" />
-        <ButtonTitle> {props.t("Rechercher", "Rechercher")}</ButtonTitle>
-      </SearchBoutton>
+      {tagSelected || frenchSelected || ageSelected || ville !== "" ? (
+        <SearchBoutton color={colors.vert}>
+          <Icon name="checkmark" fill="#FFFFFF" size="large" />
+          <ButtonTitle> {props.t("Rechercher", "Rechercher")}</ButtonTitle>
+        </SearchBoutton>
+      ) : (
+        <SearchBoutton color={colors.grey}>
+          <Icon name="search" fill="#FFFFFF" size="large" />
+          <ButtonTitle> {props.t("Rechercher", "Rechercher")}</ButtonTitle>
+        </SearchBoutton>
+      )}
 
       <TextTitle> {props.t("Je cherche à", "Je cherche à")}</TextTitle>
       {tagSelected ? (
@@ -167,15 +173,18 @@ export const MobileAdvancedSearch = (props: Props) => {
       <TextTitle> {props.t("SearchItem.J'ai", "J'ai")}</TextTitle>
       {ageSelected ? (
         <SelectedFilter
-          // @ts-ignore: Object is possibly 'null'.
           color={colors.noir}
           textColor="white"
           textAlign="left"
           onClick={() => toggleShowModal("age")}
         >
-          {/* @ts-ignore: Object is possibly 'null'. */}
           {props.t("Tags." + ageSelected.name, ageSelected.name)}
-          <div onClick={() => setAgeSelected(null)}>
+          <div
+            onClick={(e: any) => {
+              e.stopPropagation();
+              setAgeSelected(null);
+            }}
+          >
             <Icon name="close" fill={colors.blanc} size="large" />
           </div>
         </SelectedFilter>
@@ -201,7 +210,12 @@ export const MobileAdvancedSearch = (props: Props) => {
         >
           {/* @ts-ignore: Object is possibly 'null'. */}
           {props.t("Tags." + frenchSelected.name, frenchSelected.name)}
-          <div onClick={() => setFrenchSelected(null)}>
+          <div
+            onClick={(e: any) => {
+              e.stopPropagation();
+              setFrenchSelected(null);
+            }}
+          >
             <Icon name="close" fill={colors.blanc} size="large" />
           </div>
         </SelectedFilter>
