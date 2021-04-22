@@ -4,6 +4,8 @@ import styled from "styled-components";
 import "./MobileSearchFilterModal.scss";
 import Streamline from "../../../../assets/streamline";
 import Icon from "react-eva-icons";
+import { Tag } from "../../../../types/interface";
+//import colors from "../../../../colors";
 
 const TextTitle = styled.div`
   width: 100%;
@@ -53,47 +55,49 @@ interface Props {
   sentence: string;
   defaultSentence: string;
   t: (a: string, b: string) => void;
-  data: any;
+  data: Tag[] | string[];
 }
-export const MobileSearchFilterModal = (props: Props) => {
-  return (
-    <Modal isOpen={props.show} toggle={props.toggle} className="draft">
-      {/* Display Modal title */}
-      <TitleContainer>
-        <TextTitle> {props.t(props.sentence, props.defaultSentence)}</TextTitle>
-        <ButtonTitle onClick={props.toggle}>
-          {props.t(props.title, props.defaultTitle)}
-          <Icon name="close" fill="#FFFFFF" size="large" />
-        </ButtonTitle>
-      </TitleContainer>
-      {/* Display list of possible values */}
-      {props.data.map((item: any, index: any) => {
-        return (
-          <div key={index}>
-            {props.type === "thème" ? (
-              <FilterButton
-                color={item.darkColor}
-                textColor="white"
-                textAlign="left"
-              >
-                {item.name}
-                {item.icon ? (
-                  <Streamline
-                    name={item.icon}
-                    stroke={"white"}
-                    width={22}
-                    height={22}
-                  />
-                ) : null}
-              </FilterButton>
-            ) : props.type === "age" || props.type === "french" ? (
-              <FilterButton color="white" textColor="black" textAlign="center">
-                {item}
-              </FilterButton>
-            ) : null}
-          </div>
-        );
-      })}
-    </Modal>
-  );
-};
+export const MobileSearchFilterModal = (props: Props) => (
+  <Modal
+    isOpen={props.show}
+    toggle={props.toggle}
+    className="mobile-search-filter"
+  >
+    {/* Display Modal title */}
+    <TitleContainer>
+      <TextTitle> {props.t(props.sentence, props.defaultSentence)}</TextTitle>
+      <ButtonTitle onClick={props.toggle}>
+        {props.t(props.title, props.defaultTitle)}
+        <Icon name="close" fill="#FFFFFF" size="large" />
+      </ButtonTitle>
+    </TitleContainer>
+    {/* Display list of possible values */}
+    {props.data.map((item: any, index: any) => {
+      return (
+        <div key={index}>
+          {props.type === "thème" ? (
+            <FilterButton
+              color={item.darkColor}
+              textColor="white"
+              textAlign="left"
+            >
+              {props.t("Tags." + item.name, item.name)}
+              {item.icon ? (
+                <Streamline
+                  name={item.icon}
+                  stroke={"white"}
+                  width={22}
+                  height={22}
+                />
+              ) : null}
+            </FilterButton>
+          ) : props.type === "age" || props.type === "french" ? (
+            <FilterButton color="white" textColor="black" textAlign="center">
+              {props.t("Tags." + item, item)}
+            </FilterButton>
+          ) : null}
+        </div>
+      );
+    })}
+  </Modal>
+);

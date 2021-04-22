@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Icon from "react-eva-icons";
 import { MobileSearchFilterModal } from "./MobileSearchFilterModal/MobileSearchFilterModal";
 import { filtres } from "../../Dispositif/data";
+import { colors } from "../../../colors";
+
 interface Props {
   t: (a: string, b: string) => void;
 }
@@ -19,7 +21,7 @@ const MainContainer = styled.div`
 const SearchBoutton = styled.div`
   height: 53px;
   width: 100%;
-  background-color: #c6c6c6;
+  background-color: ${colors.grey};
   border-radius: 12px;
   font-size: 18px;
   text-align: center;
@@ -35,11 +37,11 @@ const FilterButton = styled.div`
   padding: 16px;
   height: 53px;
   width: 100%;
-  background-color: #ffffff;
+  background-color: ${colors.blancSimple};
   border: 1px solid;
-  color: #212121;
+  color: ${colors.noir};
   font-weight: 700;
-  border-color: #212121;
+  border-color: ${colors.noir};
   border-radius: 12px;
   padding-top: 12px;
   margin: 10px 0;
@@ -91,7 +93,7 @@ export const MobileAdvancedSearch = (props: Props) => {
         </ButtonTitle>
         <Icon name="chevron-down" fill="#212121" size="large" />
       </FilterButton>
-      <TextTitle> {props.t("SearchItem.J'habite", "J'habite")}</TextTitle>
+      <TextTitle> {props.t("SearchItem.J'habite à", "J'habite à")}</TextTitle>
       <FilterButton>
         <ButtonTitle>
           {props.t("SearchItem.choisir ma ville", "choisir ma ville")}
@@ -118,7 +120,7 @@ export const MobileAdvancedSearch = (props: Props) => {
           type="thème"
           title="Tags.thème"
           defaultTitle="thème"
-          sentence="Je cherche à"
+          sentence="SearchItem.Je cherche à"
           defaultSentence="Je cherche à"
           toggle={() => toggleShowModal("thème")}
           show={showTagModal}

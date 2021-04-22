@@ -36,7 +36,7 @@ const InnerButton = styled.div`
 `;
 
 const IconButton = styled.div`
-  background-color: #212121;
+  background-color: ${colors.noir};
   border-radius: 12px;
   display: flex;
   flex-direction: column;
