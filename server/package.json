@@ -13,7 +13,7 @@
     "test": "npm run test:unit && npm run test:lint && npm run test:types",
     "test:lint": "eslint . --ext ts,tsx,js --quiet --cache",
     "test:types": "tsc --noEmit",
-    "test:unit": "jest"
+    "test:unit": "jest --runInBand"
   },
   "dependencies": {
     "@google-cloud/translate": "^2.1.3",
