@@ -1,8 +1,7 @@
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import { Res } from "../../../types/interface";
 import { getDispositifArray } from "../../../modules/dispositif/dispositif.repository";
 import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
-import { DispositifDoc } from "../../../schema/schemaDispositif";
 
 var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(
@@ -10,20 +9,20 @@ var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(
 );
 
 interface Result {
-  titreInformatif: string;
-  titreMarque: string;
-  typeContenu: string;
-  lien: string;
-  tag1: string;
-  tag2: string | null;
-  tag3: string | null;
-  zoneAction: string;
-  ageRequis: string | null;
-  publicVise: string | null;
-  niveauFrancais: string | null;
-  prix: string | null;
-  duree: string | null;
-  nbVues: number;
+  "Titre informatif": string;
+  "Titre marque": string;
+  "Type de contenu": string[];
+  Lien: string;
+  "Thème principal": string;
+  "Thème secondaire 1": string | null;
+  "Thème secondaire 2": string | null;
+  "Zone d'action": string;
+  "Age requis": string | null;
+  "Public visé": string | null;
+  "Niveau de français": string | null;
+  "Combien ça coute": string | null;
+  Durée: string | null;
+  "Nombre de vues": number;
 }
 
 const getAgeRequis = (infocards: any[]) => {
@@ -104,7 +103,7 @@ const exportFichesInAirtable = (fiches: { fields: Result }[]) => {
       logger.error(
         "[exportFichesInAirtable] error while exporting fiches to airtable",
         {
-          fichesId: fiches.map((fiche) => fiche.fields.lien),
+          fichesId: fiches.map((fiche) => fiche.fields.Lien),
           error: err,
         }
       );
@@ -149,20 +148,20 @@ const formatFiche = (fiche: any) => {
   const zoneAction = getZoneAction(infocards);
 
   const formattedResult = {
-    titreInformatif: fiche.titreInformatif,
-    titreMarque: fiche.titreMarque,
-    typeContenu: fiche.typeContenu,
-    lien: "https://refugies.info/" + fiche.typeContenu + "/" + fiche._id,
-    tag1,
-    tag2,
-    tag3,
-    zoneAction,
-    ageRequis,
-    publicVise,
-    niveauFrancais,
-    prix,
-    duree,
-    nbVues: fiche.nbVues,
+    "Titre informatif": fiche.titreInformatif,
+    "Titre marque": fiche.titreMarque,
+    "Type de contenu": [fiche.typeContenu],
+    Lien: "https://refugies.info/" + fiche.typeContenu + "/" + fiche._id,
+    "Thème principal": tag1,
+    "Thème secondaire 1": tag2,
+    "Thème secondaire 2": tag3,
+    "Zone d'action": zoneAction,
+    "Age requis": ageRequis,
+    "Public visé": publicVise,
+    "Niveau de français": niveauFrancais,
+    "Combien ça coute": prix,
+    Durée: duree,
+    "Nombre de vues": fiche.nbVues || 0,
   };
 
   return { fields: formattedResult };
@@ -196,8 +195,6 @@ export const exportFiches = async (_: any, res: Res) => {
     if (result.length > 0) {
       exportFichesInAirtable(result);
     }
-
-    console.log("result", result);
 
     return res.status(200).json({ text: "OK", data: result.length });
   } catch (error) {
