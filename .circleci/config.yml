@@ -28,8 +28,6 @@ jobs:
           steps:
             - attach_workspace:
                 at: ./
-            - run: npm run test:types
-            - run: npm run test:lint
             - run: npm run test:unit
 workflows:
   build-and-test:
