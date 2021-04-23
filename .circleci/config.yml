@@ -1,6 +1,13 @@
 version: 2
 jobs:
   build:
+    branches:
+      ignore:
+        - master-frontend
+        - master-backend
+        - staging-frontend
+        - staging-backend
+        - dev
     working_directory: ~/refugies-info
     docker:
       - image: circleci/node:10.13.0
