@@ -1,5 +1,5 @@
 import { ObjectId } from "mongoose";
-import logger = require("../../logger");
+import logger from "../../logger";
 import { getStructureMembers } from "../structure/structure.service";
 import { getUsersFromStructureMembres } from "../users/users.service";
 import { getTitreInfoOrMarque } from "../dispositif/dispositif.adapter";

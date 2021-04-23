@@ -5,7 +5,7 @@ import {
   countContents,
   countValidated,
 } from "../../controllers/dispositif/functions";
-import logger = require("../../logger");
+import logger from "../../logger";
 import ErrorDB from "../../schema/schemaError";
 import {
   getExpertTraductionByLanguage,
