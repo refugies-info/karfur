@@ -15,12 +15,20 @@ import { updateLanguagesAvancement } from "../../../controllers/langues/langues.
 import { updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
+import { sendMailToStructureMembersWhenDispositifEnAttente } from "../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getDispositifByIdWithMainSponsor: jest.fn(),
   updateDispositifInDB: jest.fn(),
   createDispositifInDB: jest.fn(),
 }));
+
+jest.mock(
+  "../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente",
+  () => ({
+    sendMailToStructureMembersWhenDispositifEnAttente: jest.fn(),
+  })
+);
 
 jest.mock("../../../libs/checkAuthorizations", () => ({
   checkRequestIsFromSite: jest.fn().mockReturnValue(true),
@@ -114,6 +122,9 @@ describe("addDispositif", () => {
     expect(getDispositifByIdWithMainSponsor).not.toHaveBeenCalled();
 
     expect(updateAssociatedDispositifsInStructure).not.toHaveBeenCalled();
+    expect(
+      sendMailToStructureMembersWhenDispositifEnAttente
+    ).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
@@ -148,6 +159,53 @@ describe("addDispositif", () => {
       "dispoId",
       "mainSponsorId"
     );
+    expect(
+      sendMailToStructureMembersWhenDispositifEnAttente
+    ).not.toHaveBeenCalled();
+    expect(getDispositifByIdWithMainSponsor).not.toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(200);
+  });
+
+  it("should return 200 if new dispositif with mainSponsor and send mail if dispositif en attente", async () => {
+    getRoleByName.mockResolvedValueOnce({ _id: "idContrib" });
+    createDispositifInDB.mockResolvedValueOnce({
+      _id: "dispoId",
+      mainSponsor: "mainSponsorId",
+    });
+    const dispositif = {
+      titreInformatif: "TI",
+      status: "En attente",
+      mainSponsor: "sponsorId",
+      titreMarque: "TM",
+      typeContenu: "dispositif",
+    };
+    const req = {
+      fromSite: true,
+      body: dispositif,
+      userId: "userId",
+    };
+    await addDispositif(req, res);
+    expect(createDispositifInDB).toHaveBeenCalledWith({
+      titreInformatif: "TI",
+      status: "En attente",
+      mainSponsor: "sponsorId",
+      titreMarque: "TM",
+      typeContenu: "dispositif",
+      creatorId: "userId",
+    });
+    expect(getRoleByName).toHaveBeenCalledWith("Contrib");
+    expect(addRoleAndContribToUser).toHaveBeenCalledWith(
+      "userId",
+      "idContrib",
+      "dispoId"
+    );
+    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith(
+      "dispoId",
+      "mainSponsorId"
+    );
+    expect(
+      sendMailToStructureMembersWhenDispositifEnAttente
+    ).toHaveBeenCalledWith("sponsorId", "dispoId", "TI", "TM", "dispositif");
     expect(getDispositifByIdWithMainSponsor).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
   });
@@ -165,6 +223,7 @@ describe("addDispositif", () => {
       status: "Brouillon",
       dispositifId: "dispoId",
       contenu: "contenu",
+      typeContenu: "Brouillon",
     };
     const req = {
       fromSite: true,
@@ -190,6 +249,82 @@ describe("addDispositif", () => {
       "dispoId",
       "mainSponsorId"
     );
+    expect(
+      sendMailToStructureMembersWhenDispositifEnAttente
+    ).not.toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(200);
+  });
+
+  it("should return 200 if existing dispositif from Brouillon to en attente", async () => {
+    const originalDis = { avancement: 1, status: "Brouillon" };
+    getDispositifByIdWithMainSponsor.mockResolvedValueOnce(originalDis);
+    updateDispositifInDB.mockResolvedValueOnce({
+      _id: "dispoId",
+      mainSponsor: "mainSponsorId",
+    });
+
+    const dispositif = {
+      titreInformatif: "TI",
+      status: "En attente",
+      dispositifId: "dispoId",
+      contenu: "contenu",
+      typeContenu: "dispositif",
+      titreMarque: "TM",
+      mainSponsor: "sponsorId",
+    };
+    const req = {
+      fromSite: true,
+      body: dispositif,
+      userId: "userId",
+      user: { roles: [] },
+    };
+    await addDispositif(req, res);
+    expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith(
+      "dispoId",
+      "all"
+    );
+    expect(updateDispositifInDB).toHaveBeenCalledWith("dispoId", dispositif);
+    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+    expect(updateLanguagesAvancement).toHaveBeenCalledWith();
+    expect(createDispositifInDB).not.toHaveBeenCalled();
+    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith(
+      "dispoId",
+      "mainSponsorId"
+    );
+    expect(
+      sendMailToStructureMembersWhenDispositifEnAttente
+    ).toHaveBeenCalledWith("sponsorId", "dispoId", "TI", "TM", "dispositif");
+    expect(res.status).toHaveBeenCalledWith(200);
+  });
+
+  it("should return 200 if existing dispositif from en attente to en attente (not send mail)", async () => {
+    const originalDis = { avancement: 1, status: "En attente" };
+    getDispositifByIdWithMainSponsor.mockResolvedValueOnce(originalDis);
+    updateDispositifInDB.mockResolvedValueOnce({
+      _id: "dispoId",
+      mainSponsor: "mainSponsorId",
+    });
+
+    const dispositif = {
+      titreInformatif: "TI",
+      status: "En attente",
+      dispositifId: "dispoId",
+      contenu: "contenu",
+      typeContenu: "dispositif",
+      titreMarque: "TM",
+      mainSponsor: "sponsorId",
+    };
+    const req = {
+      fromSite: true,
+      body: dispositif,
+      userId: "userId",
+      user: { roles: [] },
+    };
+    await addDispositif(req, res);
+
+    expect(
+      sendMailToStructureMembersWhenDispositifEnAttente
+    ).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
@@ -213,6 +348,9 @@ describe("addDispositif", () => {
       "dispoId",
       "all"
     );
+    expect(
+      sendMailToStructureMembersWhenDispositifEnAttente
+    ).not.toHaveBeenCalled();
 
     expect(res.status).toHaveBeenCalledWith(500);
   });
