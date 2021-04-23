@@ -109,12 +109,6 @@ export default {
     });
   },
 
-  add_dispositif: (query) => {
-    return axios.post(burl + "/dispositifs/add_dispositif", query, {
-      headers,
-    });
-  },
-
   addDispositif: (query) => {
     return axios.post(burl + "/dispositifs/addDispositif", query, {
       headers,

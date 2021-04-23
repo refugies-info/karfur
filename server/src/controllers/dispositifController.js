@@ -15,7 +15,6 @@ import { exportFiches } from "../workflows/dispositif/exportFiches";
 import { addDispositif } from "../workflows/dispositif/addDispositif";
 
 module.exports = function (app) {
-  app.post("/add_dispositif", checkToken.check, dispositif.add_dispositif);
   app.post("/addDispositif", checkToken.check, addDispositif);
 
   app.post(

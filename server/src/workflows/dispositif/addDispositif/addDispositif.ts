@@ -104,7 +104,7 @@ export const addDispositif = async (
         dispResult.status === "Actif" &&
         dispResult.typeContenu === "dispositif"
       ) {
-        logger.info("[add_dispositif] dispositif is Actif", {
+        logger.info("[addDispositif] dispositif is Actif", {
           dispositifId: dispResult._id,
         });
         try {
@@ -117,16 +117,16 @@ export const addDispositif = async (
           );
         } catch (error) {
           logger.error(
-            "[add_dispositif] error while updating contenu in airtable",
+            "[addDispositif] error while updating contenu in airtable",
             { error }
           );
         }
       }
       try {
-        logger.info("[add_dispositif] updating avancement");
+        logger.info("[addDispositif] updating avancement");
         await updateLanguagesAvancement();
       } catch (error) {
-        logger.error("[add_dispositif] error while updating avancement", {
+        logger.error("[addDispositif] error while updating avancement", {
           error,
         });
       }
