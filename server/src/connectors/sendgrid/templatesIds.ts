@@ -6,6 +6,7 @@ declare type templateIds = {
   reviewFiche: string;
   publishedTradForStructure: string;
   publishedFicheToStructureMembers: string;
+  newFicheEnAttente: string;
 };
 
 export const templatesIds: templateIds = {
@@ -16,4 +17,5 @@ export const templatesIds: templateIds = {
   reviewFiche: "d-8b2dd5dfdde04cd4b9bba84a5f903bde",
   publishedTradForStructure: "d-0448ff3dfbf746158569ecd54eb7a7bd",
   publishedFicheToStructureMembers: "d-76ccff963fac444a91905615e2a244a2",
+  newFicheEnAttente: "d-37278a1325b24d62a7db743796b5f7f3",
 };

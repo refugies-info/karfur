@@ -18,6 +18,7 @@ import { updateAssociatedDispositifsInStructure } from "../../../modules/structu
 import { DispositifDoc } from "../../../schema/schemaDispositif";
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
+import { sendMailToStructureMembersWhenDispositifEnAttente } from "../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
 
 interface Request {
   titreInformatif: string;
@@ -25,6 +26,9 @@ interface Request {
   status: string;
   contenu: any;
   nbMots: number;
+  typeContenu: "dispositif" | "demarche";
+  mainSponsor: ObjectId;
+  titreMarque: string;
 }
 
 /**
@@ -118,7 +122,7 @@ export const addDispositif = async (
         } catch (error) {
           logger.error(
             "[addDispositif] error while updating contenu in airtable",
-            { error }
+            { error: error.message }
           );
         }
       }
@@ -127,8 +131,34 @@ export const addDispositif = async (
         await updateLanguagesAvancement();
       } catch (error) {
         logger.error("[addDispositif] error while updating avancement", {
-          error,
+          error: error.message,
         });
+      }
+
+      if (
+        dispositif.typeContenu === "dispositif" &&
+        originalDispositif.status !== "En attente" &&
+        dispositif.status === "En attente" &&
+        dispositif.mainSponsor
+      ) {
+        try {
+          logger.info(
+            "[addDispositif] send mail to structure member when new dispositif en attente"
+          );
+
+          await sendMailToStructureMembersWhenDispositifEnAttente(
+            dispositif.mainSponsor,
+            dispositif.dispositifId,
+            dispositif.titreInformatif,
+            dispositif.titreMarque,
+            dispositif.typeContenu
+          );
+        } catch (error) {
+          logger.error(
+            "[addDispositif] error while sending mail to structure when new fiche en attente",
+            { error: error.message }
+          );
+        }
       }
     } else {
       logger.info("[addDispositif] creating a new dispositif", {
@@ -145,6 +175,31 @@ export const addDispositif = async (
         contribRole._id,
         dispResult._id
       );
+      if (
+        dispositif.typeContenu === "dispositif" &&
+        dispositif.status === "En attente" &&
+        dispositif.mainSponsor
+      ) {
+        try {
+          logger.info(
+            "[addDispositif] send mail to structure member when new dispositif en attente"
+          );
+
+          await sendMailToStructureMembersWhenDispositifEnAttente(
+            dispositif.mainSponsor,
+            dispResult._id,
+            dispositif.titreInformatif,
+            dispositif.titreMarque,
+            dispositif.typeContenu
+          );
+          // send mail FicheEnAttenteTo
+        } catch (error) {
+          logger.error(
+            "[addDispositif] error while sending mail to structure when new fiche en attente",
+            { error: error.message }
+          );
+        }
+      }
     }
 
     //J'associe la structure principale à ce dispositif

@@ -271,3 +271,49 @@ export const sendPublishedTradMailToStructureService = async (
     });
   }
 };
+
+interface NewFicheEnAttenteMail {
+  dispositifId: ObjectId;
+  userId: ObjectId;
+  titreInformatif: string;
+  titreMarque: string;
+  lien: string;
+  email: string;
+  pseudo: string;
+}
+export const sendNewFicheEnAttenteMail = async (
+  data: NewFicheEnAttenteMail
+) => {
+  try {
+    logger.info("[sendNewFicheEnAttenteMail] received");
+
+    const dynamicData = {
+      to: data.email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        titreInformatif: data.titreInformatif,
+        titreMarque: data.titreMarque,
+        lien: data.lien,
+      },
+    };
+    const templateName = "newFicheEnAttente";
+    // @ts-ignore
+    sendMail(templateName, dynamicData);
+    await addMailEvent({
+      templateName,
+      username: data.pseudo,
+      email: data.email,
+      userId: data.userId,
+      dispositifId: data.dispositifId,
+    });
+    return;
+  } catch (error) {
+    logger.error("[sendNewFicheEnAttenteMail] error", {
+      error: error.message,
+    });
+  }
+};
