@@ -12,9 +12,10 @@ import { updateDispositifReactions } from "../workflows/dispositif/updateDisposi
 import { getUserContributions } from "../workflows/dispositif/getUserContributions";
 import { getDispositifsWithTranslationAvancement } from "../workflows/dispositif/getDispositifsWithTranslationAvancement";
 import { exportFiches } from "../workflows/dispositif/exportFiches";
+import { addDispositif } from "../workflows/dispositif/addDispositif";
 
 module.exports = function (app) {
-  app.post("/add_dispositif", checkToken.check, dispositif.add_dispositif);
+  app.post("/addDispositif", checkToken.check, addDispositif);
 
   app.post(
     "/add_dispositif_infocards",

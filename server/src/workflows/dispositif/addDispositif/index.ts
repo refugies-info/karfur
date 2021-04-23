@@ -1,0 +1,1 @@
+export { addDispositif } from "./addDispositif";

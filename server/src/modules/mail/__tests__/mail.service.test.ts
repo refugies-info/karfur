@@ -6,6 +6,7 @@ import {
   sendPublishedFicheMailToStructureMembersService,
   sendPublishedTradMailToStructureService,
   sendPublishedFicheMailToCreatorService,
+  sendNewFicheEnAttenteMail,
 } from "../mail.service";
 import { sendMail } from "../../../connectors/sendgrid/sendMail";
 import { addMailEvent } from "../mail.repository";
@@ -232,6 +233,48 @@ describe("sendPublishedTradMailToStructureService", () => {
         titreMarque: "TM",
         lien: "lien",
         langue: "anglais",
+      },
+    };
+
+    expect(sendMail).toHaveBeenCalledWith(templateName, dynamicData);
+    expect(addMailEvent).toHaveBeenCalledWith({
+      templateName,
+      username: "pseudo",
+      email: "email",
+      userId: "userId",
+      dispositifId: "dispositifId",
+    });
+  });
+});
+
+describe("sendNewFicheEnAttenteMail", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  it("should call send mail and add mail event", async () => {
+    const data = {
+      pseudo: "pseudo",
+      titreInformatif: "TI",
+      titreMarque: "TM",
+      lien: "lien",
+      email: "email",
+      dispositifId: "dispositifId",
+      userId: "userId",
+    };
+    await sendNewFicheEnAttenteMail(data);
+    const templateName = "newFicheEnAttente";
+    const dynamicData = {
+      to: "email",
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      // cc: "contact@refugies.info",
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        titreInformatif: "TI",
+        titreMarque: "TM",
+        lien: "lien",
       },
     };
 
