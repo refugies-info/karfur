@@ -109,9 +109,9 @@ export default {
     });
   },
 
-  add_dispositif: (query) => {
-    return axios.post(burl + "/dispositifs/add_dispositif", query, {
-      headers: headers,
+  addDispositif: (query) => {
+    return axios.post(burl + "/dispositifs/addDispositif", query, {
+      headers,
     });
   },
   add_dispositif_infocards: (query) => {

@@ -84,7 +84,7 @@
     "test": "npm run test:unit && npm run test:lint && npm run test:types",
     "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage",
     "test:types": "tsc --noEmit",
-    "test:unit": "jest",
+    "test:unit": "jest --runInBand",
     "test:lint": "eslint . --ext ts,tsx,js --quiet --cache",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
