@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Icon from "react-eva-icons";
 import { MobileSearchFilterModal } from "./MobileSearchFilterModal/MobileSearchFilterModal";
-import { filtres } from "../../Dispositif/data";
-import { initial_data } from "../data";
 import { colors } from "../../../colors";
 import { LocalisationFilter } from "./LocalisationFilter/LocalisationFilter";
 import { Tag } from "../../../types/interface";
@@ -161,7 +159,6 @@ export const MobileAdvancedSearch = (props: Props) => {
           defaultSentence="Je cherche à"
           toggle={() => toggleShowModal("thème")}
           show={showTagModal}
-          data={filtres.tags}
         />
       )}
       {showAgeModal && (
@@ -175,9 +172,6 @@ export const MobileAdvancedSearch = (props: Props) => {
           defaultSentence="J'ai'"
           toggle={() => toggleShowModal("age")}
           show={showAgeModal}
-          data={
-            initial_data.filter((item) => item.title === "J'ai")[0].children
-          }
         />
       )}
       {showFrenchModal && (
@@ -191,9 +185,6 @@ export const MobileAdvancedSearch = (props: Props) => {
           defaultSentence="Je parle"
           toggle={() => toggleShowModal("french")}
           show={showFrenchModal}
-          data={
-            initial_data.filter((item) => item.title === "Je parle")[0].children
-          }
         />
       )}
     </MainContainer>

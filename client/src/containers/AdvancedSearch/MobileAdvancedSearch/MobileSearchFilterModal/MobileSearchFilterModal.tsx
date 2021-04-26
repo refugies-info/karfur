@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
 import "./MobileSearchFilterModal.scss";
 import Streamline from "../../../../assets/streamline";
 import Icon from "react-eva-icons";
 import { colors } from "colors";
+import { filtres } from "../../../Dispositif/data";
+import { initial_data } from "../../data";
 
 const TextTitle = styled.div`
   width: fit-content;
@@ -61,14 +63,44 @@ interface Props {
   sentence: string;
   defaultSentence: string;
   t: (a: string, b: string) => void;
-  data: any;
 }
 
 export const MobileSearchFilterModal = (props: Props) => {
+  const [data, setData] = useState<any>([]);
   const selectOption = (item: any) => {
     props.setSelectedItem(item);
     props.toggle();
   };
+
+  const defineData = () => {
+    switch (props.type) {
+      case "thème":
+        setData(filtres.tags);
+        break;
+      case "age":
+        setData(
+          initial_data.filter(
+            (item: { title: string }) => item.title === "J'ai"
+          )[0].children
+        );
+        break;
+      case "french":
+        setData(
+          initial_data.filter(
+            (item: { title: string }) => item.title === "Je parle"
+          )[0].children
+        );
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  useEffect(() => {
+    defineData();
+  }, []);
+
   return (
     <Modal
       isOpen={props.show}
@@ -84,7 +116,7 @@ export const MobileSearchFilterModal = (props: Props) => {
         </ButtonTitle>
       </TitleContainer>
       {/* Display list of possible values */}
-      {props.data.map((item: any, index: number) => {
+      {data.map((item: any, index: number) => {
         return (
           <div key={index}>
             {props.type === "thème" ? (
