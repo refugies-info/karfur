@@ -24,14 +24,13 @@ export const SelectedFilter = (props: Props) => {
     padding: 16px;
     height: 53px;
     width: 100%;
+    align-items: center;
     background-color: ${(props) => props.color};
     color: ${(props) => props.textColor};
     text-align: ${(props) => props.textAlign};
     font-weight: 700;
-    align-items: center;
     border-color: #212121;
     border-radius: 12px;
-    padding-top: 12px;
     margin: 5px 0;
     display: flex;
     justify-content: space-between;
@@ -42,11 +41,11 @@ export const SelectedFilter = (props: Props) => {
     width: 100%;
     background-color: ${colors.blancSimple};
     border: 1px solid;
+    align-items: center;
     color: ${colors.noir};
     font-weight: 700;
     border-color: ${colors.noir};
     border-radius: 12px;
-    padding-top: 12px;
     margin: 10px 0;
     display: flex;
     justify-content: space-between;
