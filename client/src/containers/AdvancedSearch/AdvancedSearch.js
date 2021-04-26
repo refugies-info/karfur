@@ -973,7 +973,11 @@ export class AdvancedSearch extends Component {
     return (
       <div className="animated fadeIn advanced-search">
         {isMobile ? (
-          <MobileAdvancedSearch t={t} />
+          <MobileAdvancedSearch
+            t={t}
+            recherche={recherche}
+            selectParam={this.selectParam}
+          />
         ) : (
           <>
             <div>

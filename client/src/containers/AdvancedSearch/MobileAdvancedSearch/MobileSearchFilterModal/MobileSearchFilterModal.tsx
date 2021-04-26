@@ -63,11 +63,39 @@ interface Props {
   sentence: string;
   defaultSentence: string;
   t: (a: string, b: string) => void;
+  recherche: string[];
+  selectParam: (index: number, item: any) => void;
 }
 
 export const MobileSearchFilterModal = (props: Props) => {
   const [data, setData] = useState<any>([]);
-  const selectOption = (item: any) => {
+
+  const selectOption = (item: any, type: string) => {
+    let index = 0;
+    let el;
+    switch (type) {
+      case "thème":
+        el = props.recherche.filter(
+          (item: any) => item.queryName === "tags.name"
+        )[0];
+        index = props.recherche.indexOf(el);
+        break;
+      case "age":
+        el = props.recherche.filter(
+          (item: any) => item.queryName === "audienceAge"
+        )[0];
+        index = props.recherche.indexOf(el);
+        break;
+      case "french":
+        el = props.recherche.filter(
+          (item: any) => item.queryName === "niveauFrancais"
+        )[0];
+        index = props.recherche.indexOf(el);
+        break;
+      default:
+        break;
+    }
+    props.selectParam(index, item);
     props.setSelectedItem(item);
     props.toggle();
   };
@@ -100,7 +128,6 @@ export const MobileSearchFilterModal = (props: Props) => {
   useEffect(() => {
     defineData();
   }, []);
-
   return (
     <Modal
       isOpen={props.show}
@@ -124,7 +151,7 @@ export const MobileSearchFilterModal = (props: Props) => {
                 color={item.darkColor}
                 textColor="white"
                 textAlign="left"
-                onClick={() => selectOption(item)}
+                onClick={() => selectOption(item, props.type)}
               >
                 {props.t("Tags." + item.name, item.name)}
                 {item.icon ? (
@@ -141,7 +168,7 @@ export const MobileSearchFilterModal = (props: Props) => {
                 color="white"
                 textColor="black"
                 textAlign="center"
-                onClick={() => selectOption(item)}
+                onClick={() => selectOption(item, props.type)}
               >
                 <FilterText>
                   {props.t("Tags." + item.name, item.name)}

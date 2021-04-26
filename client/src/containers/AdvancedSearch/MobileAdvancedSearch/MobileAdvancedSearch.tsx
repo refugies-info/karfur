@@ -9,6 +9,8 @@ import { SelectedFilter } from "./SelectedFilter/SelectedFilter";
 
 interface Props {
   t: (a: string, b: string) => void;
+  recherche: string[];
+  selectParam: () => void;
 }
 
 const MainContainer = styled.div`
@@ -93,6 +95,7 @@ export const MobileAdvancedSearch = (props: Props) => {
       setIsSearchButtonDisabled(false);
     }
   }, [tagSelected, ageSelected, frenchSelected, ville]);
+
   return (
     <MainContainer>
       <SearchBoutton isDisabled={isSearchButtonDisabled} color={colors.grey}>
@@ -121,6 +124,8 @@ export const MobileAdvancedSearch = (props: Props) => {
           ville={ville}
           geoSearch={geoSearch}
           setGeoSearch={setGeoSearch}
+          recherche={props.recherche}
+          selectParam={props.selectParam}
         ></LocalisationFilter>
       ) : (
         <>
@@ -164,6 +169,8 @@ export const MobileAdvancedSearch = (props: Props) => {
           defaultSentence="Je cherche à"
           toggle={() => toggleShowModal("thème")}
           show={showTagModal}
+          recherche={props.recherche}
+          selectParam={props.selectParam}
         />
       )}
       {showAgeModal && (
@@ -177,6 +184,8 @@ export const MobileAdvancedSearch = (props: Props) => {
           defaultSentence="J'ai'"
           toggle={() => toggleShowModal("age")}
           show={showAgeModal}
+          recherche={props.recherche}
+          selectParam={props.selectParam}
         />
       )}
       {showFrenchModal && (
@@ -190,6 +199,8 @@ export const MobileAdvancedSearch = (props: Props) => {
           defaultSentence="Je parle"
           toggle={() => toggleShowModal("french")}
           show={showFrenchModal}
+          recherche={props.recherche}
+          selectParam={props.selectParam}
         />
       )}
     </MainContainer>
