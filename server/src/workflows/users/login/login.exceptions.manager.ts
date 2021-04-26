@@ -37,7 +37,10 @@ export const loginExceptionsManager = (error: Error, res: Res) => {
       });
     case "NO_CODE_SUPPLIED":
       return res.status(501).json({ text: "no code supplied" });
-
+    case "USER_DELETED":
+      return res.status(405).json({
+        text: "Utilisateur supprimé",
+      });
     default:
       res.status(500).json({
         text: "Erreur interne",

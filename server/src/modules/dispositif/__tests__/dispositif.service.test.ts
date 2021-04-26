@@ -1,11 +1,11 @@
 // @ts-nocheck
 import { updateDispositifInDB } from "../dispositif.repository";
-import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
+import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import { publishDispositif } from "../dispositif.service";
 import { sendMailWhenDispositifPublished } from "../../mail/sendMailWhenDispositifPublished";
 
-jest.mock("../../../controllers/langues/langues.service", () => ({
+jest.mock("../../../modules/langues/langues.service", () => ({
   updateLanguagesAvancement: jest.fn(),
 }));
 
