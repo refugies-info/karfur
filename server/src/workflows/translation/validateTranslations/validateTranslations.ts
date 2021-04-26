@@ -17,6 +17,7 @@ import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/mi
 import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
 import { getDispositifByIdWithAllFields } from "../../../modules/dispositif/dispositif.repository";
 import { sendPublishedTradMailToStructure } from "../../../modules/mail/sendPublishedTradMailToStructure";
+import { sendPublishedTradMailToTraductors } from "../../../modules/mail/sendPublishedTradMailToTraductors";
 
 interface Query {
   articleId: ObjectId;
@@ -62,7 +63,7 @@ export const validateTranslations = async (
       );
 
       // !IMPORTANT We insert the validated translation in the dispositif
-      const insertedDispositif = await insertInDispositif(
+      const { insertedDispositif, traductorIdsList } = await insertInDispositif(
         body,
         body.locale,
         dispositifFromDB
@@ -100,10 +101,37 @@ export const validateTranslations = async (
         try {
           await sendPublishedTradMailToStructure(dispositifFromDB, body.locale);
         } catch (error) {
-          logger.error("[validateTranslations] error while sending mails", {
-            error,
-          });
+          logger.error(
+            "[validateTranslations] error while sending mails to structure members",
+            {
+              error,
+            }
+          );
         }
+      }
+
+      try {
+        // we do not want to send a mail to the expert
+        const traductorNotExpertIdsList = traductorIdsList.filter(
+          (tradId: string) =>
+            tradId && tradId.toString() !== req.userId.toString()
+        );
+        await sendPublishedTradMailToTraductors(
+          traductorNotExpertIdsList,
+          body.locale,
+          dispositifFromDB.typeContenu,
+          dispositifFromDB.titreInformatif,
+          dispositifFromDB.titreMarque,
+          dispositifFromDB._id,
+          req.userId
+        );
+      } catch (error) {
+        logger.error(
+          "[validateTranslations] error while sending mails to traductors",
+          {
+            error,
+          }
+        );
       }
 
       return res.status(200).json({

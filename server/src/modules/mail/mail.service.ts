@@ -317,3 +317,54 @@ export const sendNewFicheEnAttenteMail = async (
     });
   }
 };
+
+interface PublishedTradMailToTraductors {
+  dispositifId: ObjectId;
+  userId: ObjectId;
+  titreInformatif: string;
+  titreMarque: string;
+  lien: string;
+  email: string;
+  pseudo: string;
+  langue: string;
+  isDispositif: boolean;
+}
+export const sendPublishedTradMailToTraductorsService = async (
+  data: PublishedTradMailToTraductors
+) => {
+  try {
+    logger.info("[sendPublishedTradMailToTraductorsService] received");
+
+    const dynamicData = {
+      to: data.email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        titreInformatif: data.titreInformatif,
+        titreMarque: data.titreMarque,
+        lien: data.lien,
+        isDispositif: data.isDispositif,
+        langue: data.langue,
+        pseudo: data.pseudo,
+      },
+    };
+    const templateName = "publishedTradForTraductors";
+    // @ts-ignore
+    sendMail(templateName, dynamicData);
+    await addMailEvent({
+      templateName,
+      username: data.pseudo,
+      email: data.email,
+      userId: data.userId,
+      dispositifId: data.dispositifId,
+    });
+    return;
+  } catch (error) {
+    logger.error("[sendPublishedTradMailToTraductorsService] error", {
+      error: error.message,
+    });
+  }
+};
