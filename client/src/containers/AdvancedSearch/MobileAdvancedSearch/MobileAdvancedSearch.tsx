@@ -5,9 +5,9 @@ import { MobileSearchFilterModal } from "./MobileSearchFilterModal/MobileSearchF
 import { filtres } from "../../Dispositif/data";
 import { initial_data } from "../data";
 import { colors } from "../../../colors";
-import Streamline from "../../../assets/streamline";
 import { LocalisationFilter } from "./LocalisationFilter/LocalisationFilter";
 import { Tag } from "../../../types/interface";
+import { SelectedFilter } from "./SelectedFilter/SelectedFilter";
 
 interface Props {
   t: (a: string, b: string) => void;
@@ -54,31 +54,11 @@ const FilterButton = styled.div`
   justify-content: space-between;
 `;
 
-const SelectedFilter = styled.div`
-  align-items: center;
-  padding: 16px;
-  height: 53px;
-  width: 100%;
-  background-color: ${(props) => props.color};
-  color: ${(props) => props.textColor};
-  text-align: ${(props) => props.textAlign};
-  font-weight: 700;
-  align-items: center;
-  border-color: #212121;
-  border-radius: 12px;
-  padding-top: 12px;
-  margin: 5px 0;
-  display: flex;
-  justify-content: space-between;
-`;
-
 const TextTitle = styled.div`
   font-weight: 700;
   font-size: 18px;
   margin-top: 5px;
 `;
-
-const ButtonTitle = styled.div``;
 
 export const MobileAdvancedSearch = (props: Props) => {
   const [showTagModal, setShowTagModal] = useState(false);
@@ -112,43 +92,24 @@ export const MobileAdvancedSearch = (props: Props) => {
       {tagSelected || frenchSelected || ageSelected || ville !== "" ? (
         <SearchBoutton color={colors.vert}>
           <Icon name="checkmark" fill="#FFFFFF" size="large" />
-          <ButtonTitle> {props.t("Rechercher", "Rechercher")}</ButtonTitle>
+          <div> {props.t("Rechercher", "Rechercher")}</div>
         </SearchBoutton>
       ) : (
         <SearchBoutton color={colors.grey}>
           <Icon name="search" fill="#FFFFFF" size="large" />
-          <ButtonTitle> {props.t("Rechercher", "Rechercher")}</ButtonTitle>
+          <div> {props.t("Rechercher", "Rechercher")}</div>
         </SearchBoutton>
       )}
 
       <TextTitle> {props.t("Je cherche à", "Je cherche à")}</TextTitle>
-      {tagSelected ? (
-        <SelectedFilter
-          color={tagSelected.darkColor}
-          textColor="white"
-          textAlign="left"
-          onClick={() => toggleShowModal("thème")}
-        >
-          {props.t("Tags." + tagSelected.name, tagSelected.name)}
-          {tagSelected.icon ? (
-            <Streamline
-              name={tagSelected.icon}
-              stroke={"white"}
-              width={22}
-              height={22}
-            />
-          ) : null}
-        </SelectedFilter>
-      ) : (
-        <>
-          <FilterButton onClick={() => toggleShowModal("thème")}>
-            <ButtonTitle>
-              {props.t("Tags.choisir un thème", "choisir un thème")}
-            </ButtonTitle>
-            <Icon name="chevron-down" fill="#212121" size="large" />
-          </FilterButton>
-        </>
-      )}
+      <SelectedFilter
+        toggleShowModal={toggleShowModal}
+        tagSelected={tagSelected}
+        type="thème"
+        t={props.t}
+        title={"Tags.choisir un thème"}
+        defaultTitle={"choisir un thème"}
+      />
 
       <TextTitle> {props.t("SearchItem.J'habite à", "J'habite à")}</TextTitle>
       {geoSearch || ville !== "" ? (
@@ -161,71 +122,33 @@ export const MobileAdvancedSearch = (props: Props) => {
       ) : (
         <>
           <FilterButton onClick={() => setGeoSearch(true)}>
-            <ButtonTitle>
-              {props.t("SearchItem.choisir ma ville", "choisir ma ville")}
-            </ButtonTitle>
+            {props.t("SearchItem.choisir ma ville", "choisir ma ville")}
             <Icon name="pin" fill="#212121" size="large" />
           </FilterButton>
         </>
       )}
 
       <TextTitle> {props.t("SearchItem.J'ai", "J'ai")}</TextTitle>
-      {ageSelected ? (
-        <SelectedFilter
-          color={colors.noir}
-          textColor="white"
-          textAlign="left"
-          onClick={() => toggleShowModal("age")}
-        >
-          {props.t("Tags." + ageSelected.name, ageSelected.name)}
-          <div
-            onClick={(e: any) => {
-              e.stopPropagation();
-              setAgeSelected(null);
-            }}
-          >
-            <Icon name="close" fill={colors.blanc} size="large" />
-          </div>
-        </SelectedFilter>
-      ) : (
-        <>
-          <FilterButton onClick={() => toggleShowModal("age")}>
-            <ButtonTitle>
-              {props.t("SearchItem.choisir mon âge", "choisir mon âge")}
-            </ButtonTitle>
-            <Icon name="chevron-down" fill={colors.noir} size="large" />
-          </FilterButton>
-        </>
-      )}
+      <SelectedFilter
+        toggleShowModal={toggleShowModal}
+        otherFilterSelected={ageSelected}
+        type="age"
+        t={props.t}
+        title={"SearchItem.choisir mon âge"}
+        defaultTitle={"choisir mon âge"}
+        setState={setAgeSelected}
+      />
 
       <TextTitle> {props.t("SearchItem.Je parle", "Je parle")}</TextTitle>
-      {frenchSelected ? (
-        <SelectedFilter
-          color={colors.noir}
-          textColor="white"
-          textAlign="left"
-          onClick={() => toggleShowModal("french")}
-        >
-          {props.t("Tags." + frenchSelected.name, frenchSelected.name)}
-          <div
-            onClick={(e: any) => {
-              e.stopPropagation();
-              setFrenchSelected(null);
-            }}
-          >
-            <Icon name="close" fill={colors.blanc} size="large" />
-          </div>
-        </SelectedFilter>
-      ) : (
-        <>
-          <FilterButton onClick={() => toggleShowModal("french")}>
-            <ButtonTitle>
-              {props.t("Tags.niveau de français", "niveau de français")}
-            </ButtonTitle>
-            <Icon name="chevron-down" fill={colors.noir} size="large" />
-          </FilterButton>
-        </>
-      )}
+      <SelectedFilter
+        toggleShowModal={toggleShowModal}
+        otherFilterSelected={frenchSelected}
+        type="french"
+        t={props.t}
+        title={"Tags.niveau de français"}
+        defaultTitle={"niveau de français"}
+        setState={setFrenchSelected}
+      />
 
       {showTagModal && (
         <MobileSearchFilterModal

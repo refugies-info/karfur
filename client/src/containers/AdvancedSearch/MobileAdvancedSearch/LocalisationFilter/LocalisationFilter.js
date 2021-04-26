@@ -65,12 +65,7 @@ export const LocalisationFilter = (props) => {
                 ref={(input) => {
                   input && input.refs.input.focus();
                 }}
-                onBlur={
-                  () => props.ville === ""
-
-                  //        this.props.switchGeoSearch(false)
-                }
-                //      placeholder={props.placeholder}
+                onBlur={() => props.ville === ""}
                 id="villeAuto"
                 value={props.ville}
                 onChange={handleChange}

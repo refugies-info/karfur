@@ -4,6 +4,7 @@ import styled from "styled-components";
 import "./MobileSearchFilterModal.scss";
 import Streamline from "../../../../assets/streamline";
 import Icon from "react-eva-icons";
+import { colors } from "colors";
 
 const TextTitle = styled.div`
   width: fit-content;
@@ -38,7 +39,7 @@ const FilterButton = styled.div`
   color: ${(props) => props.textColor};
   text-align: ${(props) => props.textAlign};
   font-weight: 700;
-  border-color: #212121;
+  border-color: ${colors.noir};
   border-radius: 12px;
   padding-top: 12px;
   margin: 5px 0;
@@ -83,7 +84,7 @@ export const MobileSearchFilterModal = (props: Props) => {
         </ButtonTitle>
       </TitleContainer>
       {/* Display list of possible values */}
-      {props.data.map((item: any, index: any) => {
+      {props.data.map((item: any, index: number) => {
         return (
           <div key={index}>
             {props.type === "thème" ? (
