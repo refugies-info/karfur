@@ -31,6 +31,7 @@
     "Consulter l’annnuaire": "Consulter l’annuaire"
   },
   "AdvancedSearch": {
+    "Je cherche à": "Je cherche à",
     "A > Z": "A > Z",
     "Derniers ajouts": "Derniers ajouts",
     "Les plus visités": "Les plus visités",
@@ -284,7 +285,10 @@
     "mon niveau": "mon niveau",
     "Je suis": "Je suis",
     "français": "français",
-    "bientot disponible": "Bientôt disponible"
+    "bientot disponible": "Bientôt disponible",
+    "choisir ma ville": "choisir ma ville",
+    "choisir mon âge": "choisir mon âge",
+    "le français": "le français"
   },
   "Status": {
     "En attente": "En attente",
