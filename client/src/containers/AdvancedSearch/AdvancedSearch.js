@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import {
@@ -881,7 +880,6 @@ export class AdvancedSearch extends Component {
       ...(subitem.topValue && { topValue: subitem.topValue }),
     };
     this.setState({ recherche: recherche });
-    console.log("AddparamsInRecherche");
   };
 
   selectParam = (key, subitem) => {
@@ -926,6 +924,17 @@ export class AdvancedSearch extends Component {
     );
   };
 
+  deleteItemInSearch = (key) => {
+    if (key === 1) {
+      this.setState({ filterVille: "" });
+    }
+    this.setState({
+      recherche: this.state.recherche.map((x, i) =>
+        i === key ? initial_data[i] : x
+      ),
+    });
+  };
+
   desactiver = (key) => {
     if (key === 1) {
       this.setState({ filterVille: "" });
@@ -964,7 +973,6 @@ export class AdvancedSearch extends Component {
   };
 
   render() {
-    console.log("recherche", this.state.recherche);
     let {
       recherche,
       dispositifs,
@@ -999,6 +1007,7 @@ export class AdvancedSearch extends Component {
             recherche={recherche}
             addParamasInRechercher={this.addParamasInRechercher}
             queryDispositifs={this.queryDispositifs}
+            desactiver={this.deleteItemInSearch}
           />
         ) : (
           <>

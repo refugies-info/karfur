@@ -14,6 +14,8 @@ interface Props {
   title: string;
   defaultTitle: string;
   setState?: any;
+  desactiver: (index: number) => void;
+  recherche: string[];
 }
 
 export const SelectedFilter = (props: Props) => {
@@ -49,6 +51,36 @@ export const SelectedFilter = (props: Props) => {
     display: flex;
     justify-content: space-between;
   `;
+
+  const defineIndex = () => {
+    let index = -1;
+    let el;
+    switch (props.type) {
+      case "thème":
+        el = props.recherche.filter(
+          (item: any) => item.queryName === "tags.name"
+        )[0];
+        index = props.recherche.indexOf(el);
+        break;
+      case "age":
+        el = props.recherche.filter(
+          (item: any) => item.queryName === "audienceAge"
+        )[0];
+        index = props.recherche.indexOf(el);
+        break;
+      case "french":
+        el = props.recherche.filter(
+          (item: any) => item.queryName === "niveauFrancais"
+        )[0];
+        index = props.recherche.indexOf(el);
+        break;
+      default:
+        break;
+    }
+    return index;
+  };
+  const index = defineIndex();
+
   return (
     <div>
       {props.type === "thème" ? (
@@ -99,6 +131,7 @@ export const SelectedFilter = (props: Props) => {
                 onClick={(e: any) => {
                   e.stopPropagation();
                   props.setState(null);
+                  props.desactiver(index);
                 }}
               >
                 <Icon name="close" fill={colors.blanc} size="large" />

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState } from "react";
 import styled from "styled-components";
 import Icon from "react-eva-icons";
@@ -13,6 +12,7 @@ interface Props {
   recherche: string[];
   addParamasInRechercher: () => void;
   queryDispositifs: () => void;
+  desactiver: (index: number) => void;
 }
 
 const MainContainer = styled.div`
@@ -119,6 +119,8 @@ export const MobileAdvancedSearch = (props: Props) => {
         t={props.t}
         title={"Tags.choisir un thème"}
         defaultTitle={"choisir un thème"}
+        desactiver={props.desactiver}
+        recherche={props.recherche}
       />
 
       <TextTitle> {props.t("SearchItem.J'habite à", "J'habite à")}</TextTitle>
@@ -149,6 +151,8 @@ export const MobileAdvancedSearch = (props: Props) => {
         title={"SearchItem.choisir mon âge"}
         defaultTitle={"choisir mon âge"}
         setState={setAgeSelected}
+        desactiver={props.desactiver}
+        recherche={props.recherche}
       />
 
       <TextTitle> {props.t("SearchItem.Je parle", "Je parle")}</TextTitle>
@@ -160,6 +164,8 @@ export const MobileAdvancedSearch = (props: Props) => {
         title={"Tags.niveau de français"}
         defaultTitle={"niveau de français"}
         setState={setFrenchSelected}
+        desactiver={props.desactiver}
+        recherche={props.recherche}
       />
 
       {showTagModal && (
