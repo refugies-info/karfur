@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Icon from "react-eva-icons";
 import { MobileSearchFilterModal } from "./MobileSearchFilterModal/MobileSearchFilterModal";
@@ -24,7 +24,8 @@ const MainContainer = styled.div`
 const SearchBoutton = styled.div`
   height: 53px;
   width: 100%;
-  background-color: ${(props) => props.color};
+  background-color: ${(props) =>
+    props.isDisabled ? colors.grey : colors.vert};
   border-radius: 12px;
   font-size: 18px;
   text-align: center;
@@ -69,6 +70,7 @@ export const MobileAdvancedSearch = (props: Props) => {
   );
   const [ville, setVille] = useState("");
   const [geoSearch, setGeoSearch] = useState(false);
+  const [isSearchButtonDisabled, setIsSearchButtonDisabled] = useState(true);
 
   const toggleShowModal = (modal: string) => {
     switch (modal) {
@@ -85,19 +87,22 @@ export const MobileAdvancedSearch = (props: Props) => {
         break;
     }
   };
+
+  useEffect(() => {
+    if (tagSelected || ageSelected || frenchSelected || ville !== "") {
+      setIsSearchButtonDisabled(false);
+    }
+  }, [tagSelected, ageSelected, frenchSelected, ville]);
   return (
     <MainContainer>
-      {tagSelected || frenchSelected || ageSelected || ville !== "" ? (
-        <SearchBoutton color={colors.vert}>
-          <Icon name="checkmark" fill="#FFFFFF" size="large" />
-          <div> {props.t("Rechercher", "Rechercher")}</div>
-        </SearchBoutton>
-      ) : (
-        <SearchBoutton color={colors.grey}>
+      <SearchBoutton isDisabled={isSearchButtonDisabled} color={colors.grey}>
+        {isSearchButtonDisabled ? (
           <Icon name="search" fill="#FFFFFF" size="large" />
-          <div> {props.t("Rechercher", "Rechercher")}</div>
-        </SearchBoutton>
-      )}
+        ) : (
+          <Icon name="checkmark" fill="#FFFFFF" size="large" />
+        )}
+        <div> {props.t("Rechercher", "Rechercher")}</div>
+      </SearchBoutton>
 
       <TextTitle> {props.t("Je cherche à", "Je cherche à")}</TextTitle>
       <SelectedFilter
