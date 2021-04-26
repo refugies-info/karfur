@@ -351,8 +351,8 @@
     "Entrez votre email": "Entrez votre email",
     "Entrez votre numéro": "Entrez votre numéro",
     "Pas email": "Il n'y a pas d'email associé à ce pseudonyme.",
-
-    "Choisissez un pseudonyme": "Choisissez un pseudonyme"
+    "Choisissez un pseudonyme": "Choisissez un pseudonyme",
+    "user supprimé": "Ce compte a été supprimé."
   },
   "Reset": {
     "Entrez votre nouveau mot de passe": "Entrez votre nouveau mot de passe",

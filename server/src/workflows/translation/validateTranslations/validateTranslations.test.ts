@@ -6,7 +6,7 @@ import {
   deleteTradsInDB,
 } from "../../../modules/traductions/traductions.repository";
 import { insertInDispositif } from "../../../modules/dispositif/insertInDispositif";
-import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
+import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
 import { getDispositifByIdWithAllFields } from "../../../modules/dispositif/dispositif.repository";
 import { sendPublishedTradMailToStructure } from "../../../modules/mail/sendPublishedTradMailToStructure";
 import { sendPublishedTradMailToTraductors } from "../../../modules/mail/sendPublishedTradMailToTraductors";
@@ -36,7 +36,7 @@ jest.mock("../../../modules/dispositif/insertInDispositif", () => ({
   insertInDispositif: jest.fn(),
 }));
 
-jest.mock("../../../controllers/langues/langues.service", () => ({
+jest.mock("../../../modules/langues/langues.service", () => ({
   updateLanguagesAvancement: jest.fn(),
 }));
 
