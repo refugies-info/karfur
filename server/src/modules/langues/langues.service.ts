@@ -23,7 +23,7 @@ export const updateLanguagesAvancement = async () => {
 
       const pubTradsCount = pubTrads.length;
       console.log(
-        `activeLanguages, nb trad publiées : ${pubTrads} , nb actives dispo : ${nbActivesDispositif}`
+        `activeLanguages ${langue}, nb trad publiées : ${pubTradsCount} , nb actives dispo : ${nbActivesDispositif}`
       );
       const tradRatio = pubTradsCount / nbActivesDispositif;
       await Langue.findByIdAndUpdate(
