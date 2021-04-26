@@ -20,7 +20,11 @@ export const updateLanguagesAvancement = async () => {
         langueCible: langue.i18nCode,
         status: "Validée",
       });
+
       const pubTradsCount = pubTrads.length;
+      console.log(
+        `activeLanguages, nb trad publiées : ${pubTrads} , nb actives dispo : ${nbActivesDispositif}`
+      );
       const tradRatio = pubTradsCount / nbActivesDispositif;
       await Langue.findByIdAndUpdate(
         { _id: langue._id },
