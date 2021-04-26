@@ -118,7 +118,6 @@ export const insertInDispositif = async (
   };
 
   const insertedDispositif = await updateDispositifInDB(result._id, result);
-
   return {
     insertedDispositif,
     traductorIdsList: deduplicateArrayOfObjectIds(participantsToAdd),
