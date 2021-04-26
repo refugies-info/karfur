@@ -12,8 +12,7 @@ export const sendPublishedTradMailToTraductors = async (
   typeContenu: "dispositif" | "demarche",
   titreInformatif: string | Record<string, string>,
   titreMarque: string | undefined | Record<string, string>,
-  dispositifId: ObjectId,
-  userId: ObjectId
+  dispositifId: ObjectId
 ) => {
   logger.info("[sendPublishedTradMailToTraductors] received for language", {
     locale,
@@ -24,27 +23,36 @@ export const sendPublishedTradMailToTraductors = async (
   const lien = "https://refugies.info/" + typeContenu + "/" + dispositifId;
 
   await asyncForEach(traductorIdsList, async (tradId) => {
-    const userNeededFields = {
-      username: 1,
-      email: 1,
-      status: 1,
-    };
+    try {
+      const userNeededFields = {
+        username: 1,
+        email: 1,
+        status: 1,
+      };
 
-    // @ts-ignore
-    const membreFromDB = await getUserById(tradId, userNeededFields);
-    if (membreFromDB.status === "Exclu") return;
-    if (!membreFromDB.email) return;
+      // @ts-ignore
+      const membreFromDB = await getUserById(tradId, userNeededFields);
+      if (membreFromDB.status === "Exclu") return;
+      if (!membreFromDB.email) return;
 
-    await sendPublishedTradMailToTraductorsService({
-      dispositifId,
-      userId,
-      titreInformatif: titreInformatifFormatted,
-      titreMarque: titreMarqueFormatted,
-      lien,
-      email: membreFromDB.email,
-      pseudo: membreFromDB.username,
-      langue,
-      isDispositif: typeContenu === "dispositif",
-    });
+      await sendPublishedTradMailToTraductorsService({
+        dispositifId,
+        userId: tradId,
+        titreInformatif: titreInformatifFormatted,
+        titreMarque: titreMarqueFormatted,
+        lien,
+        email: membreFromDB.email,
+        pseudo: membreFromDB.username,
+        langue,
+        isDispositif: typeContenu === "dispositif",
+      });
+    } catch (error) {
+      logger.info(
+        "[sendPublishedTradMailToTraductors] error while sending mail to user",
+        {
+          userId: tradId,
+        }
+      );
+    }
   });
 };

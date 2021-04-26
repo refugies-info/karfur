@@ -320,7 +320,7 @@ export const sendNewFicheEnAttenteMail = async (
 
 interface PublishedTradMailToTraductors {
   dispositifId: ObjectId;
-  userId: ObjectId;
+  userId: string;
   titreInformatif: string;
   titreMarque: string;
   lien: string;
@@ -358,6 +358,7 @@ export const sendPublishedTradMailToTraductorsService = async (
       templateName,
       username: data.pseudo,
       email: data.email,
+      // @ts-ignore
       userId: data.userId,
       dispositifId: data.dispositifId,
     });

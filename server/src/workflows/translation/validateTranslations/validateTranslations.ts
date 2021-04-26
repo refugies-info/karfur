@@ -122,8 +122,7 @@ export const validateTranslations = async (
           dispositifFromDB.typeContenu,
           dispositifFromDB.titreInformatif,
           dispositifFromDB.titreMarque,
-          dispositifFromDB._id,
-          req.userId
+          dispositifFromDB._id
         );
       } catch (error) {
         logger.error(
