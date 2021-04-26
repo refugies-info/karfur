@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
 import "./MobileSearchFilterModal.scss";
@@ -64,11 +64,22 @@ interface Props {
   defaultSentence: string;
   t: (a: string, b: string) => void;
   recherche: string[];
-  selectParam: (index: number, item: any) => void;
+  addParamasInRechercher: (index: number, item: any) => void;
 }
 
 export const MobileSearchFilterModal = (props: Props) => {
-  const [data, setData] = useState<any>([]);
+  const data: any =
+    props.type === "thème"
+      ? filtres.tags
+      : props.type === "age"
+      ? initial_data.filter(
+          (item: { title: string }) => item.title === "J'ai"
+        )[0].children
+      : props.type === "french"
+      ? initial_data.filter(
+          (item: { title: string }) => item.title === "Je parle"
+        )[0].children
+      : null;
 
   const selectOption = (item: any, type: string) => {
     let index = 0;
@@ -95,39 +106,11 @@ export const MobileSearchFilterModal = (props: Props) => {
       default:
         break;
     }
-    props.selectParam(index, item);
+    props.addParamasInRechercher(index, item);
     props.setSelectedItem(item);
     props.toggle();
   };
 
-  const defineData = () => {
-    switch (props.type) {
-      case "thème":
-        setData(filtres.tags);
-        break;
-      case "age":
-        setData(
-          initial_data.filter(
-            (item: { title: string }) => item.title === "J'ai"
-          )[0].children
-        );
-        break;
-      case "french":
-        setData(
-          initial_data.filter(
-            (item: { title: string }) => item.title === "Je parle"
-          )[0].children
-        );
-        break;
-
-      default:
-        break;
-    }
-  };
-
-  useEffect(() => {
-    defineData();
-  }, []);
   return (
     <Modal
       isOpen={props.show}
@@ -143,41 +126,42 @@ export const MobileSearchFilterModal = (props: Props) => {
         </ButtonTitle>
       </TitleContainer>
       {/* Display list of possible values */}
-      {data.map((item: any, index: number) => {
-        return (
-          <div key={index}>
-            {props.type === "thème" ? (
-              <FilterButton
-                color={item.darkColor}
-                textColor="white"
-                textAlign="left"
-                onClick={() => selectOption(item, props.type)}
-              >
-                {props.t("Tags." + item.name, item.name)}
-                {item.icon ? (
-                  <Streamline
-                    name={item.icon}
-                    stroke={"white"}
-                    width={22}
-                    height={22}
-                  />
-                ) : null}
-              </FilterButton>
-            ) : props.type === "age" || props.type === "french" ? (
-              <FilterButton
-                color="white"
-                textColor="black"
-                textAlign="center"
-                onClick={() => selectOption(item, props.type)}
-              >
-                <FilterText>
+      {data &&
+        data.map((item: any, index: number) => {
+          return (
+            <div key={index}>
+              {props.type === "thème" ? (
+                <FilterButton
+                  color={item.darkColor}
+                  textColor="white"
+                  textAlign="left"
+                  onClick={() => selectOption(item, props.type)}
+                >
                   {props.t("Tags." + item.name, item.name)}
-                </FilterText>
-              </FilterButton>
-            ) : null}
-          </div>
-        );
-      })}
+                  {item.icon ? (
+                    <Streamline
+                      name={item.icon}
+                      stroke={"white"}
+                      width={22}
+                      height={22}
+                    />
+                  ) : null}
+                </FilterButton>
+              ) : props.type === "age" || props.type === "french" ? (
+                <FilterButton
+                  color="white"
+                  textColor="black"
+                  textAlign="center"
+                  onClick={() => selectOption(item, props.type)}
+                >
+                  <FilterText>
+                    {props.t("Tags." + item.name, item.name)}
+                  </FilterText>
+                </FilterButton>
+              ) : null}
+            </div>
+          );
+        })}
     </Modal>
   );
 };

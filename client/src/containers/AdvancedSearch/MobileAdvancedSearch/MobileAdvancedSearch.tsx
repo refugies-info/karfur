@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable no-console */
+import React, { useState } from "react";
 import styled from "styled-components";
 import Icon from "react-eva-icons";
 import { MobileSearchFilterModal } from "./MobileSearchFilterModal/MobileSearchFilterModal";
@@ -10,7 +11,8 @@ import { SelectedFilter } from "./SelectedFilter/SelectedFilter";
 interface Props {
   t: (a: string, b: string) => void;
   recherche: string[];
-  selectParam: () => void;
+  addParamasInRechercher: () => void;
+  queryDispositifs: () => void;
 }
 
 const MainContainer = styled.div`
@@ -72,7 +74,9 @@ export const MobileAdvancedSearch = (props: Props) => {
   );
   const [ville, setVille] = useState("");
   const [geoSearch, setGeoSearch] = useState(false);
-  const [isSearchButtonDisabled, setIsSearchButtonDisabled] = useState(true);
+
+  const isSearchButtonDisabled =
+    !tagSelected && !ageSelected && !frenchSelected && ville === "";
 
   const toggleShowModal = (modal: string) => {
     switch (modal) {
@@ -90,15 +94,15 @@ export const MobileAdvancedSearch = (props: Props) => {
     }
   };
 
-  useEffect(() => {
-    if (tagSelected || ageSelected || frenchSelected || ville !== "") {
-      setIsSearchButtonDisabled(false);
-    }
-  }, [tagSelected, ageSelected, frenchSelected, ville]);
-
   return (
     <MainContainer>
-      <SearchBoutton isDisabled={isSearchButtonDisabled} color={colors.grey}>
+      <SearchBoutton
+        isDisabled={isSearchButtonDisabled}
+        color={colors.grey}
+        onClick={() => {
+          props.queryDispositifs();
+        }}
+      >
         {isSearchButtonDisabled ? (
           <Icon name="search" fill="#FFFFFF" size="large" />
         ) : (
@@ -124,8 +128,8 @@ export const MobileAdvancedSearch = (props: Props) => {
           ville={ville}
           geoSearch={geoSearch}
           setGeoSearch={setGeoSearch}
+          addParamasInRechercher={props.addParamasInRechercher}
           recherche={props.recherche}
-          selectParam={props.selectParam}
         ></LocalisationFilter>
       ) : (
         <>
@@ -169,8 +173,8 @@ export const MobileAdvancedSearch = (props: Props) => {
           defaultSentence="Je cherche à"
           toggle={() => toggleShowModal("thème")}
           show={showTagModal}
+          addParamasInRechercher={props.addParamasInRechercher}
           recherche={props.recherche}
-          selectParam={props.selectParam}
         />
       )}
       {showAgeModal && (
@@ -184,8 +188,8 @@ export const MobileAdvancedSearch = (props: Props) => {
           defaultSentence="J'ai'"
           toggle={() => toggleShowModal("age")}
           show={showAgeModal}
+          addParamasInRechercher={props.addParamasInRechercher}
           recherche={props.recherche}
-          selectParam={props.selectParam}
         />
       )}
       {showFrenchModal && (
@@ -199,8 +203,8 @@ export const MobileAdvancedSearch = (props: Props) => {
           defaultSentence="Je parle"
           toggle={() => toggleShowModal("french")}
           show={showFrenchModal}
+          addParamasInRechercher={props.addParamasInRechercher}
           recherche={props.recherche}
-          selectParam={props.selectParam}
         />
       )}
     </MainContainer>

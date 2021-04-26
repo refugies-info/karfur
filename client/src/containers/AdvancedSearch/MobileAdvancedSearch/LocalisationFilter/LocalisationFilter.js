@@ -40,13 +40,13 @@ const SelectedFilter = styled.div`
 
 export const LocalisationFilter = (props) => {
   const onPlaceSelected = (place) => {
-    let el = props.recherche.filter(
+    let localisationQuery = props.recherche.filter(
       (item) => item.queryName === "localisation"
     )[0];
-    let index = props.recherche.indexOf(el);
+    let index = props.recherche.indexOf(localisationQuery);
     if (place.formatted_address) {
       props.setState(place.formatted_address);
-      props.selectParam(index, place);
+      props.addParamasInRechercher(index, place);
       props.setGeoSearch(false);
     }
   };

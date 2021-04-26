@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import {
@@ -864,6 +865,25 @@ export class AdvancedSearch extends Component {
       timer: 1500,
     });
 
+  addParamasInRechercher = (key, subitem) => {
+    let recherche = [...this.state.recherche];
+    recherche[key] = {
+      ...recherche[key],
+      value: subitem.name || subitem.formatted_address,
+      icon: subitem.icon,
+      query:
+        subitem.query ||
+        subitem.address_components ||
+        (key !== 3 ? subitem.name : undefined),
+      active: true,
+      ...(subitem.short && { short: subitem.short }),
+      ...(subitem.bottomValue && { bottomValue: subitem.bottomValue }),
+      ...(subitem.topValue && { topValue: subitem.topValue }),
+    };
+    this.setState({ recherche: recherche });
+    console.log("AddparamsInRecherche");
+  };
+
   selectParam = (key, subitem) => {
     let recherche = [...this.state.recherche];
     recherche[key] = {
@@ -944,6 +964,7 @@ export class AdvancedSearch extends Component {
   };
 
   render() {
+    console.log("recherche", this.state.recherche);
     let {
       recherche,
       dispositifs,
@@ -976,7 +997,8 @@ export class AdvancedSearch extends Component {
           <MobileAdvancedSearch
             t={t}
             recherche={recherche}
-            selectParam={this.selectParam}
+            addParamasInRechercher={this.addParamasInRechercher}
+            queryDispositifs={this.queryDispositifs}
           />
         ) : (
           <>
