@@ -6,6 +6,7 @@ import { colors } from "../../../colors";
 import { LocalisationFilter } from "./LocalisationFilter/LocalisationFilter";
 import { Tag } from "../../../types/interface";
 import { SelectedFilter } from "./SelectedFilter/SelectedFilter";
+import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
 interface Props {
   t: (a: string, b: string) => void;
@@ -31,6 +32,7 @@ const SearchBoutton = styled.div`
   background-color: ${(props) =>
     props.isDisabled ? colors.grey : colors.vert};
   border-radius: 12px;
+  align-items: center;
   font-size: 18px;
   text-align: center;
   display: flex;
@@ -38,20 +40,19 @@ const SearchBoutton = styled.div`
   justify-content: center;
   color: white;
   font-weight: 700;
-  padding-top: 12px;
   margin: 5px 0;
 `;
 const FilterButton = styled.div`
   padding: 16px;
   height: 53px;
   width: 100%;
+  align-items: center;
   background-color: ${colors.blancSimple};
   border: 1px solid;
   color: ${colors.noir};
   font-weight: 700;
   border-color: ${colors.noir};
   border-radius: 12px;
-  padding-top: 12px;
   margin: 10px 0;
   display: flex;
   justify-content: space-between;
@@ -61,6 +62,9 @@ const TextTitle = styled.div`
   font-weight: 700;
   font-size: 18px;
   margin-top: 5px;
+`;
+const SearchTitle = styled.div`
+  margin-left: 10px;
 `;
 
 export const MobileAdvancedSearch = (props: Props) => {
@@ -103,12 +107,12 @@ export const MobileAdvancedSearch = (props: Props) => {
           props.queryDispositifs();
         }}
       >
-        {isSearchButtonDisabled ? (
-          <Icon name="search" fill="#FFFFFF" size="large" />
-        ) : (
-          <Icon name="checkmark" fill="#FFFFFF" size="large" />
-        )}
-        <div> {props.t("Rechercher", "Rechercher")}</div>
+        <EVAIcon
+          name={isSearchButtonDisabled ? "search" : "checkmark"}
+          fill="#FFFFFF"
+          size="large"
+        />
+        <SearchTitle> {props.t("Rechercher", "Rechercher")}</SearchTitle>
       </SearchBoutton>
 
       <TextTitle> {props.t("Je cherche à", "Je cherche à")}</TextTitle>
