@@ -6,6 +6,7 @@ import { colors } from "../../../colors";
 import { LocalisationFilter } from "./LocalisationFilter/LocalisationFilter";
 import { Tag } from "../../../types/interface";
 import { SelectedFilter } from "./SelectedFilter/SelectedFilter";
+import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
 interface Props {
   t: (a: string, b: string) => void;
@@ -106,11 +107,11 @@ export const MobileAdvancedSearch = (props: Props) => {
           props.queryDispositifs();
         }}
       >
-        {isSearchButtonDisabled ? (
-          <Icon name="search" fill="#FFFFFF" size="large" />
-        ) : (
-          <Icon name="checkmark" fill="#FFFFFF" size="large" />
-        )}
+        <EVAIcon
+          name={isSearchButtonDisabled ? "search" : "checkmark"}
+          fill="#FFFFFF"
+          size="large"
+        />
         <SearchTitle> {props.t("Rechercher", "Rechercher")}</SearchTitle>
       </SearchBoutton>
 
