@@ -59,3 +59,9 @@ export const updateTradInDB = async (_id: ObjectId, trad: any) =>
     // @ts-ignore
     new: true,
   });
+
+export const getPublishedTradIds = async (languei18nCode: string) =>
+  await Traduction.distinct("articleId", {
+    langueCible: languei18nCode,
+    status: "Validée",
+  });
