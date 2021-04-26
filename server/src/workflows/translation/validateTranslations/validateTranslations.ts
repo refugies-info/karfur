@@ -104,7 +104,7 @@ export const validateTranslations = async (
           logger.error(
             "[validateTranslations] error while sending mails to structure members",
             {
-              error,
+              error: error.message,
             }
           );
         }
@@ -129,7 +129,7 @@ export const validateTranslations = async (
         logger.error(
           "[validateTranslations] error while sending mails to traductors",
           {
-            error,
+            error: error.message,
           }
         );
       }
