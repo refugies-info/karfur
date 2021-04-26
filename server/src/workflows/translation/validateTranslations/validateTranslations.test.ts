@@ -179,8 +179,7 @@ describe("validateTranslations", () => {
       "dispositif",
       "TI",
       "TM",
-      "id",
-      "userId"
+      "id"
     );
     expect(res.status).toHaveBeenCalledWith(200);
   });
@@ -224,8 +223,7 @@ describe("validateTranslations", () => {
       "dispositif",
       "TI",
       "TM",
-      "id",
-      "userId"
+      "id"
     );
     expect(res.status).toHaveBeenCalledWith(200);
   });
@@ -260,8 +258,7 @@ describe("validateTranslations", () => {
       "dispositif",
       "TI",
       "TM",
-      "id",
-      "userId"
+      "id"
     );
     expect(res.status).toHaveBeenCalledWith(200);
   });
@@ -296,8 +293,7 @@ describe("validateTranslations", () => {
       "dispositif",
       "TI",
       "TM",
-      "id",
-      "userId"
+      "id"
     );
     expect(res.status).toHaveBeenCalledWith(200);
   });
@@ -399,8 +395,7 @@ describe("validateTranslations", () => {
       "dispositif",
       "TI",
       "TM",
-      "id",
-      "userId"
+      "id"
     );
     expect(res.status).toHaveBeenCalledWith(200);
   });
@@ -473,8 +468,7 @@ describe("validateTranslations", () => {
       "dispositif",
       "TI",
       "TM",
-      "id",
-      "userId"
+      "id"
     );
     expect(res.status).toHaveBeenCalledWith(200);
   });
