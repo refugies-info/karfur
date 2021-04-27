@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import {
@@ -1000,22 +999,6 @@ export class AdvancedSearch extends Component {
       ) || {};
     const langueCode =
       this.props.langues.length > 0 && current ? current.langueCode : "fr";
-    console.log("dispositifs", this.state.dispositifs);
-    console.log("dispositifsFullFrance", this.state.dispositifsFullFrance);
-
-    console.log("countTotal", this.state.countTotal);
-    console.log("countShow", this.state.countShow);
-    console.log("principalThemeList", this.state.principalThemeList);
-    console.log("secondaryThemeList", this.state.secondaryThemeList);
-    console.log(
-      "principalThemeListFullFrance",
-      this.state.principalThemeListFullFrance
-    );
-
-    console.log(
-      "secondaryThemeListFullFrance",
-      this.state.secondaryThemeListFullFrance
-    );
 
     return (
       <div className="animated fadeIn advanced-search">

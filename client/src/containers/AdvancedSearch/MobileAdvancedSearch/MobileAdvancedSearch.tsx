@@ -109,8 +109,6 @@ export const MobileAdvancedSearch = (props: Props) => {
         break;
     }
   };
-  // eslint-disable-next-line no-console
-  console.log("isUrlEmpty", isUrlEmpty);
 
   return (
     <MainContainer>

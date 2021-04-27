@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from "react";
 import { Tag } from "../../../../../types/interface";
 import styled from "styled-components";
@@ -52,14 +51,10 @@ const PictoCircle = styled.div`
 `;
 
 export const DispositifsItem = (props: Props) => {
-  console.log("item", props.item);
-  console.log("Tag", props.tagSelected);
-  console.log("filtre", filtres);
   const tagItem =
     props.type === "primary"
       ? props.tagSelected
       : filtres.tags.filter((el) => el.short === props.item.tags[0].short)[0];
-  console.log("tagItem", tagItem);
   return (
     <div>
       <Item color={tagItem?.darkColor} typeContenu={props.item.typeContenu}>

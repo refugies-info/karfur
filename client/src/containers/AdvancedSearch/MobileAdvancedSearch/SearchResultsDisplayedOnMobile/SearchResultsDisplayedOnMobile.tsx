@@ -3,6 +3,7 @@ import { Tag } from "../../../../types/interface";
 import styled from "styled-components";
 import { DispositifsItem } from "./DispositifsItem/DispositifsItem";
 import { colors } from "../../../../colors";
+import Streamline from "assets/streamline";
 
 interface Props {
   tagSelected: null | Tag;
@@ -33,6 +34,22 @@ const APropostitle = styled.p`
   text-align: center;
   color: ${colors.grisFonce};
   margin-top: 25px;
+`;
+
+const Title = styled.div`
+  margin-right: 10px;
+`;
+
+const TagSelected = styled.div`
+  height: 50px;
+  background-color: ${(props) => props.color};
+  color: white;
+  width: -webkit-fit-content;
+  padding: 13.5px;
+  border-radius: 12px;
+  margin: 13px auto;
+  display: flex;
+  justify-content: space-around;
 `;
 
 export const SearchResultsDisplayedOnMobile = (props: Props) => {
@@ -67,7 +84,33 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
             />
           );
         })}
-      <APropostitle>Fiches aussi à propos de</APropostitle>
+      <APropostitle>
+        {props.t(
+          "AdvancedSearch.Fiches aussi à propos de",
+          "Fiches aussi à propos de"
+        )}
+      </APropostitle>
+      <TagSelected color={props.tagSelected?.darkColor}>
+        {props.tagSelected && (
+          <>
+            <Title>
+              {props.t(
+                "Tags." + props.tagSelected.name,
+                props.tagSelected.name
+              )}
+            </Title>
+            {props.tagSelected.icon ? (
+              <Streamline
+                name={props.tagSelected.icon}
+                stroke={"white"}
+                width={22}
+                height={22}
+                marginLeft={10}
+              />
+            ) : null}
+          </>
+        )}
+      </TagSelected>
       {props.secondaryThemeList &&
         props.secondaryThemeList.map((item: any, index: number) => {
           return (
