@@ -1,8 +1,40 @@
 import logger from "../../../logger";
-import { Res, IDispositif } from "../../../types/interface";
+import { Res, IDispositif, Picture } from "../../../types/interface";
 import { getDispositifsFromDB } from "../../../modules/dispositif/dispositif.repository";
 import { adaptDispositifMainSponsorAndCreatorId } from "../../../modules/dispositif/dispositif.adapter";
 import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
+import { ObjectId } from "mongoose";
+
+interface SponsorMainInfo {
+  _id: ObjectId;
+  nom: string;
+  status: string;
+  picture: Picture;
+}
+
+interface CreatorMainInfo {
+  username: string;
+  picture: Picture;
+  _id: ObjectId;
+  email: string;
+}
+export interface DispositifMainInfo {
+  titreInformatif: string | Record<string, string>;
+  titreMarque?: string | Record<string, string>;
+  updatedAt: number;
+  status: string;
+  typeContenu: string;
+  created_at: number;
+  publishedAt?: number;
+  adminComments?: string;
+  adminProgressionStatus?: string;
+  adminPercentageProgressionStatus?: string;
+  lastAdminUpdate?: number;
+  draftReminderMailSentDate?: number;
+  lastModificationDate?: number;
+  mainSponsor?: SponsorMainInfo;
+  creatorId: CreatorMainInfo;
+}
 
 export const getAllDispositifs = async (req: {}, res: Res) => {
   try {
@@ -25,7 +57,9 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
     };
 
     const dispositifs = await getDispositifsFromDB(neededFields);
-    const adaptedDispositifs = adaptDispositifMainSponsorAndCreatorId(
+
+    // @ts-ignore
+    const adaptedDispositifs: DispositifMainInfo[] = adaptDispositifMainSponsorAndCreatorId(
       dispositifs
     );
 
