@@ -305,14 +305,24 @@ class MapParagraphe extends PureComponent {
               );
             })}
             {!disableEdit && (
-              <FButton
-                onClick={this.validateMarker}
-                type="theme"
-                name="checkmark-circle-2-outline"
-                className="validate-btn"
-              >
-                {t("Valider", "Valider")}
-              </FButton>
+              <>
+                <FButton
+                  onClick={() => {}}
+                  type="error"
+                  name="trash"
+                  className="delete-btn"
+                >
+                  Supprimer
+                </FButton>
+                <FButton
+                  onClick={this.validateMarker}
+                  type="theme"
+                  name="checkmark-circle-2-outline"
+                  className="validate-btn"
+                >
+                  {t("Valider", "Valider")}
+                </FButton>
+              </>
             )}
             {isMobile && (
               <StyledButton onClick={this.onClose}>
