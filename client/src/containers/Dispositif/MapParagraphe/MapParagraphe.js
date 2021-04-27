@@ -139,6 +139,17 @@ class MapParagraphe extends PureComponent {
     });
   };
 
+  deleteSelectedMarker = () => {
+    const newMarkers = this.props.subitem.markers.filter(
+      (marker) => marker.place_id !== this.state.selectedMarker.place_id
+    );
+    this.props.setMarkers(newMarkers, this.props.keyValue, this.props.subkey);
+    this.setState({
+      showSidebar: false,
+      selectedMarker: null,
+    });
+  };
+
   render() {
     const { t, disableEdit } = this.props;
     const markersToDisplay = this.state.selectedMarker
@@ -307,7 +318,7 @@ class MapParagraphe extends PureComponent {
             {!disableEdit && (
               <>
                 <FButton
-                  onClick={() => {}}
+                  onClick={this.deleteSelectedMarker}
                   type="error"
                   name="trash"
                   className="delete-btn"
