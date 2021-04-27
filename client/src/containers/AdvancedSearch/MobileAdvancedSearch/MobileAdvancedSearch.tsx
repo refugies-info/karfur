@@ -4,6 +4,7 @@ import Icon from "react-eva-icons";
 import { MobileSearchFilterModal } from "./MobileSearchFilterModal/MobileSearchFilterModal";
 import { colors } from "../../../colors";
 import { LocalisationFilter } from "./LocalisationFilter/LocalisationFilter";
+import { SearchResultsDisplayedOnMobile } from "./SearchResultsDisplayedOnMobile/SearchResultsDisplayedOnMobile";
 import { Tag } from "../../../types/interface";
 import { SelectedFilter } from "./SelectedFilter/SelectedFilter";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
@@ -14,6 +15,15 @@ interface Props {
   addParamasInRechercher: () => void;
   queryDispositifs: () => void;
   desactiver: (index: number) => void;
+  query: string;
+  principalThemeList: string[];
+  principalThemeListFullFrance: string[];
+  dispositifs: string[];
+  dispositifsFullFrance: string[];
+  secondaryThemeList: string[];
+  secondaryThemeListFullFrance: string[];
+  totalFicheCount: number;
+  countTotalResult: number;
 }
 
 const MainContainer = styled.div`
@@ -82,6 +92,8 @@ export const MobileAdvancedSearch = (props: Props) => {
   const isSearchButtonDisabled =
     !tagSelected && !ageSelected && !frenchSelected && ville === "";
 
+  const isUrlEmpty = Object.keys(props.query)[0] === "";
+
   const toggleShowModal = (modal: string) => {
     switch (modal) {
       case "thème":
@@ -97,6 +109,8 @@ export const MobileAdvancedSearch = (props: Props) => {
         break;
     }
   };
+  // eslint-disable-next-line no-console
+  console.log("isUrlEmpty", isUrlEmpty);
 
   return (
     <MainContainer>
@@ -114,107 +128,132 @@ export const MobileAdvancedSearch = (props: Props) => {
         />
         <SearchTitle> {props.t("Rechercher", "Rechercher")}</SearchTitle>
       </SearchBoutton>
-
-      <TextTitle> {props.t("Je cherche à", "Je cherche à")}</TextTitle>
-      <SelectedFilter
-        toggleShowModal={toggleShowModal}
-        tagSelected={tagSelected}
-        type="thème"
-        t={props.t}
-        title={"Tags.choisir un thème"}
-        defaultTitle={"choisir un thème"}
-        desactiver={props.desactiver}
-        recherche={props.recherche}
-      />
-
-      <TextTitle> {props.t("SearchItem.J'habite à", "J'habite à")}</TextTitle>
-      {geoSearch || ville !== "" ? (
-        <LocalisationFilter
-          setState={setVille}
-          ville={ville}
-          geoSearch={geoSearch}
-          setGeoSearch={setGeoSearch}
-          addParamasInRechercher={props.addParamasInRechercher}
-          recherche={props.recherche}
-        ></LocalisationFilter>
-      ) : (
+      {isUrlEmpty ? (
         <>
-          <FilterButton onClick={() => setGeoSearch(true)}>
-            {props.t("SearchItem.choisir ma ville", "choisir ma ville")}
-            <Icon name="pin" fill="#212121" size="large" />
-          </FilterButton>
+          <TextTitle>
+            {" "}
+            {props.t("SearchItem.Je cherche à", "Je cherche à")}
+          </TextTitle>
+          <SelectedFilter
+            toggleShowModal={toggleShowModal}
+            tagSelected={tagSelected}
+            type="thème"
+            t={props.t}
+            title={"Tags.choisir un thème"}
+            defaultTitle={"choisir un thème"}
+            desactiver={props.desactiver}
+            recherche={props.recherche}
+          />
+
+          <TextTitle>
+            {" "}
+            {props.t("SearchItem.J'habite à", "J'habite à")}
+          </TextTitle>
+          {geoSearch || ville !== "" ? (
+            <LocalisationFilter
+              setState={setVille}
+              ville={ville}
+              geoSearch={geoSearch}
+              setGeoSearch={setGeoSearch}
+              addParamasInRechercher={props.addParamasInRechercher}
+              recherche={props.recherche}
+            ></LocalisationFilter>
+          ) : (
+            <>
+              <FilterButton onClick={() => setGeoSearch(true)}>
+                {props.t("SearchItem.choisir ma ville", "choisir ma ville")}
+                <Icon name="pin" fill="#212121" size="large" />
+              </FilterButton>
+            </>
+          )}
+
+          <TextTitle> {props.t("SearchItem.J'ai", "J'ai")}</TextTitle>
+          <SelectedFilter
+            toggleShowModal={toggleShowModal}
+            otherFilterSelected={ageSelected}
+            type="age"
+            t={props.t}
+            title={"SearchItem.choisir mon âge"}
+            defaultTitle={"choisir mon âge"}
+            setState={setAgeSelected}
+            desactiver={props.desactiver}
+            recherche={props.recherche}
+          />
+
+          <TextTitle> {props.t("SearchItem.Je parle", "Je parle")}</TextTitle>
+          <SelectedFilter
+            toggleShowModal={toggleShowModal}
+            otherFilterSelected={frenchSelected}
+            type="french"
+            t={props.t}
+            title={"Tags.niveau de français"}
+            defaultTitle={"niveau de français"}
+            setState={setFrenchSelected}
+            desactiver={props.desactiver}
+            recherche={props.recherche}
+          />
+
+          {showTagModal && (
+            <MobileSearchFilterModal
+              t={props.t}
+              setSelectedItem={(item) => setTagSelected(item)}
+              type="thème"
+              title="Tags.thème"
+              defaultTitle="thème"
+              sentence="SearchItem.Je cherche à"
+              defaultSentence="Je cherche à"
+              toggle={() => toggleShowModal("thème")}
+              show={showTagModal}
+              addParamasInRechercher={props.addParamasInRechercher}
+              recherche={props.recherche}
+            />
+          )}
+          {showAgeModal && (
+            <MobileSearchFilterModal
+              t={props.t}
+              setSelectedItem={(item) => setAgeSelected(item)}
+              type="age"
+              title="SearchItem.choisir mon âge"
+              defaultTitle="choisir mon âge"
+              sentence="SearchItem.J'ai"
+              defaultSentence="J'ai'"
+              toggle={() => toggleShowModal("age")}
+              show={showAgeModal}
+              addParamasInRechercher={props.addParamasInRechercher}
+              recherche={props.recherche}
+            />
+          )}
+          {showFrenchModal && (
+            <MobileSearchFilterModal
+              t={props.t}
+              setSelectedItem={(item) => setFrenchSelected(item)}
+              type="french"
+              title="SearchItem.le français"
+              defaultTitle="le français"
+              sentence="SearchItem.Je parle"
+              defaultSentence="Je parle"
+              toggle={() => toggleShowModal("french")}
+              show={showFrenchModal}
+              addParamasInRechercher={props.addParamasInRechercher}
+              recherche={props.recherche}
+            />
+          )}
         </>
-      )}
-
-      <TextTitle> {props.t("SearchItem.J'ai", "J'ai")}</TextTitle>
-      <SelectedFilter
-        toggleShowModal={toggleShowModal}
-        otherFilterSelected={ageSelected}
-        type="age"
-        t={props.t}
-        title={"SearchItem.choisir mon âge"}
-        defaultTitle={"choisir mon âge"}
-        setState={setAgeSelected}
-        desactiver={props.desactiver}
-        recherche={props.recherche}
-      />
-
-      <TextTitle> {props.t("SearchItem.Je parle", "Je parle")}</TextTitle>
-      <SelectedFilter
-        toggleShowModal={toggleShowModal}
-        otherFilterSelected={frenchSelected}
-        type="french"
-        t={props.t}
-        title={"Tags.niveau de français"}
-        defaultTitle={"niveau de français"}
-        setState={setFrenchSelected}
-        desactiver={props.desactiver}
-        recherche={props.recherche}
-      />
-
-      {showTagModal && (
-        <MobileSearchFilterModal
+      ) : (
+        <SearchResultsDisplayedOnMobile
+          tagSelected={tagSelected}
+          ageSelected={ageSelected}
+          frenchSelected={frenchSelected}
+          ville={ville}
+          principalThemeList={props.principalThemeList}
+          principalThemeListFullFrance={props.principalThemeListFullFrance}
+          dispositifs={props.dispositifs}
+          dispositifsFullFrance={props.dispositifsFullFrance}
+          secondaryThemeList={props.secondaryThemeList}
+          secondaryThemeListFullFrance={props.secondaryThemeListFullFrance}
+          totalFicheCount={props.totalFicheCount}
           t={props.t}
-          setSelectedItem={(item) => setTagSelected(item)}
-          type="thème"
-          title="Tags.thème"
-          defaultTitle="thème"
-          sentence="SearchItem.Je cherche à"
-          defaultSentence="Je cherche à"
-          toggle={() => toggleShowModal("thème")}
-          show={showTagModal}
-          addParamasInRechercher={props.addParamasInRechercher}
-          recherche={props.recherche}
-        />
-      )}
-      {showAgeModal && (
-        <MobileSearchFilterModal
-          t={props.t}
-          setSelectedItem={(item) => setAgeSelected(item)}
-          type="age"
-          title="SearchItem.choisir mon âge"
-          defaultTitle="choisir mon âge"
-          sentence="SearchItem.J'ai"
-          defaultSentence="J'ai'"
-          toggle={() => toggleShowModal("age")}
-          show={showAgeModal}
-          addParamasInRechercher={props.addParamasInRechercher}
-          recherche={props.recherche}
-        />
-      )}
-      {showFrenchModal && (
-        <MobileSearchFilterModal
-          t={props.t}
-          setSelectedItem={(item) => setFrenchSelected(item)}
-          type="french"
-          title="SearchItem.le français"
-          defaultTitle="le français"
-          sentence="SearchItem.Je parle"
-          defaultSentence="Je parle"
-          toggle={() => toggleShowModal("french")}
-          show={showFrenchModal}
-          addParamasInRechercher={props.addParamasInRechercher}
-          recherche={props.recherche}
+          countTotalResult={props.countTotalResult}
         />
       )}
     </MainContainer>
