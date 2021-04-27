@@ -396,6 +396,16 @@ export const DetailsModal = (props: Props) => {
                   </LogoContainer>
                 </StructureContainer>
               )}
+              {["En attente admin", "En attente", "Accepté structure"].includes(
+                dispositif.status
+              ) && (
+                <>
+                  <Title>Mail d'amélioration</Title>
+                  <FButton type="dark" name="email-outline">
+                    Demander des changements
+                  </FButton>
+                </>
+              )}
             </RightPart>
           </RowContainer>
           <ButtonsContainer>
