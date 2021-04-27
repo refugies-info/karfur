@@ -52,9 +52,11 @@ const PictoCircle = styled.div`
 
 export const DispositifsItem = (props: Props) => {
   const tagItem =
-    props.type === "primary"
+    props.type === "primary" && props.tagSelected
       ? props.tagSelected
-      : filtres.tags.filter((el) => el.short === props.item.tags[0].short)[0];
+      : props.item.tags[0]
+      ? filtres.tags.filter((el) => el.short === props.item.tags[0].short)[0]
+      : null;
   return (
     <div>
       <Item color={tagItem?.darkColor} typeContenu={props.item.typeContenu}>
@@ -72,6 +74,15 @@ export const DispositifsItem = (props: Props) => {
           <PictoCircle color={props.tagSelected.darkColor}>
             <Streamline
               name={props.tagSelected.icon}
+              stroke={"white"}
+              width={22}
+              height={22}
+            />
+          </PictoCircle>
+        ) : tagItem ? (
+          <PictoCircle color={tagItem.darkColor}>
+            <Streamline
+              name={tagItem.icon}
               stroke={"white"}
               width={22}
               height={22}

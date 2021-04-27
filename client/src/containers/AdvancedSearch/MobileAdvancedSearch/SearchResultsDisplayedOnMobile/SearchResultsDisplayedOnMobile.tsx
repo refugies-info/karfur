@@ -221,7 +221,48 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
               );
             })}
         </>
-      ) : null}
+      ) : (
+        //All others filters selected but not Tag
+        <>
+          {props.ville !== "" && (
+            <APropostitle>
+              {props.t("AdvancedSearch.Fiches pour", "Fiches pour")}
+              <City>{" " + props.ville}</City>
+            </APropostitle>
+          )}
+
+          {props.dispositifs.map((item: any, index: number) => {
+            return (
+              //Display all dispositif about this location
+              <DispositifsItem
+                key={index}
+                item={item}
+                tagSelected={props.tagSelected}
+                t={props.t}
+                type="secondary"
+              />
+            );
+          })}
+          {props.ville !== "" && (
+            <APropostitle>
+              {props.t("AdvancedSearch.Fiches pour", "Fiches pour")}
+              <City>{" toute la France"}</City>
+            </APropostitle>
+          )}
+          {props.dispositifsFullFrance.map((item: any, index: number) => {
+            return (
+              //Display all dispositif with all France as location
+              <DispositifsItem
+                key={index}
+                item={item}
+                tagSelected={props.tagSelected}
+                t={props.t}
+                type="primary"
+              />
+            );
+          })}
+        </>
+      )}
     </div>
   );
 };

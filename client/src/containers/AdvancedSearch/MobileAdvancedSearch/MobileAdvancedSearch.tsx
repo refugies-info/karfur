@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable no-console */
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Icon from "react-eva-icons";
 import { MobileSearchFilterModal } from "./MobileSearchFilterModal/MobileSearchFilterModal";
@@ -88,11 +89,10 @@ export const MobileAdvancedSearch = (props: Props) => {
   );
   const [ville, setVille] = useState("");
   const [geoSearch, setGeoSearch] = useState(false);
+  const [isUrlEmpty, setIsUrlEmpty] = useState(true);
 
   const isSearchButtonDisabled =
     !tagSelected && !ageSelected && !frenchSelected && ville === "";
-
-  const isUrlEmpty = Object.keys(props.query)[0] === "";
 
   const toggleShowModal = (modal: string) => {
     switch (modal) {
@@ -110,21 +110,40 @@ export const MobileAdvancedSearch = (props: Props) => {
     }
   };
 
+  useEffect(() => {
+    console.log("useEfec");
+    setIsUrlEmpty(Object.keys(props.query)[0] === "");
+  }, [props.query]);
+  console.log("isUrlEmpty", isUrlEmpty);
   return (
     <MainContainer>
       <SearchBoutton
         isDisabled={isSearchButtonDisabled}
-        color={colors.grey}
+        color={isUrlEmpty ? colors.grey : colors.bleuCharte}
         onClick={() => {
           props.queryDispositifs();
         }}
       >
         <EVAIcon
-          name={isSearchButtonDisabled ? "search" : "checkmark"}
+          name={
+            isSearchButtonDisabled
+              ? "search"
+              : isUrlEmpty
+              ? "checkmark"
+              : "search"
+          }
           fill="#FFFFFF"
           size="large"
         />
-        <SearchTitle> {props.t("Rechercher", "Rechercher")}</SearchTitle>
+        <SearchTitle>
+          {" "}
+          {isUrlEmpty
+            ? props.t("Rechercher", "Rechercher")
+            : props.t(
+                "AdvancedSearch.Modifier ma recherche",
+                "Modifier ma recherche"
+              )}
+        </SearchTitle>
       </SearchBoutton>
       {isUrlEmpty ? (
         <>
