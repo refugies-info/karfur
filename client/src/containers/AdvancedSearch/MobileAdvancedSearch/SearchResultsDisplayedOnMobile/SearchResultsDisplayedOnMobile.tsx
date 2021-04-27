@@ -34,10 +34,11 @@ const APropostitle = styled.p`
   text-align: center;
   color: ${colors.grisFonce};
   margin-top: 25px;
- display:flex;
- justify-content:center;
-
-  text-align:center;:
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
 `;
 
 const Title = styled.div`
@@ -56,6 +57,7 @@ const TagSelected = styled.div`
   justify-content: space-around;
 `;
 const City = styled.div`
+  margin-left: 5px;
   color: ${colors.bleuCharte};
 `;
 
@@ -136,32 +138,29 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
           <APropostitle>
             {props.t("AdvancedSearch.Fiches pour", "Fiches pour")}
             <City>{" " + props.ville}</City>
-          </APropostitle>
-          <APropostitle>
             {props.t("AdvancedSearch.avec le thème", "avec le thème")}
+            <TagSelected color={props.tagSelected?.darkColor}>
+              {props.tagSelected && (
+                <>
+                  <Title>
+                    {props.t(
+                      "Tags." + props.tagSelected.name,
+                      props.tagSelected.name
+                    )}
+                  </Title>
+                  {props.tagSelected.icon ? (
+                    <Streamline
+                      name={props.tagSelected.icon}
+                      stroke={"white"}
+                      width={22}
+                      height={22}
+                      marginLeft={10}
+                    />
+                  ) : null}
+                </>
+              )}
+            </TagSelected>
           </APropostitle>
-
-          <TagSelected color={props.tagSelected?.darkColor}>
-            {props.tagSelected && (
-              <>
-                <Title>
-                  {props.t(
-                    "Tags." + props.tagSelected.name,
-                    props.tagSelected.name
-                  )}
-                </Title>
-                {props.tagSelected.icon ? (
-                  <Streamline
-                    name={props.tagSelected.icon}
-                    stroke={"white"}
-                    width={22}
-                    height={22}
-                    marginLeft={10}
-                  />
-                ) : null}
-              </>
-            )}
-          </TagSelected>
 
           {props.principalThemeList
             .concat(props.secondaryThemeList)

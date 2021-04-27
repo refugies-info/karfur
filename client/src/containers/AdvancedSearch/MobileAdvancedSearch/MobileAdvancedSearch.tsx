@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Icon from "react-eva-icons";
@@ -41,7 +40,11 @@ const SearchBoutton = styled.div`
   height: 53px;
   width: 100%;
   background-color: ${(props) =>
-    props.isDisabled ? colors.grey : colors.vert};
+    props.isDisabled
+      ? colors.grey
+      : props.isUrlEmpty
+      ? colors.vert
+      : colors.bleuCharte};
   border-radius: 12px;
   align-items: center;
   font-size: 18px;
@@ -111,15 +114,14 @@ export const MobileAdvancedSearch = (props: Props) => {
   };
 
   useEffect(() => {
-    console.log("useEfec");
     setIsUrlEmpty(Object.keys(props.query)[0] === "");
   }, [props.query]);
-  console.log("isUrlEmpty", isUrlEmpty);
+
   return (
     <MainContainer>
       <SearchBoutton
         isDisabled={isSearchButtonDisabled}
-        color={isUrlEmpty ? colors.grey : colors.bleuCharte}
+        isUrlEmpty={isUrlEmpty}
         onClick={() => {
           props.queryDispositifs();
         }}
@@ -130,7 +132,7 @@ export const MobileAdvancedSearch = (props: Props) => {
               ? "search"
               : isUrlEmpty
               ? "checkmark"
-              : "search"
+              : "options-2"
           }
           fill="#FFFFFF"
           size="large"

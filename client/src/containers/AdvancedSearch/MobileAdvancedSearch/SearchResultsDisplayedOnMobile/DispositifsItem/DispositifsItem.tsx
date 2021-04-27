@@ -17,7 +17,7 @@ const Item = styled.div`
   justify-content: space-between;
   border: ${(props) =>
     props.typeContenu === "demarche" ? `2px solid ${props.color}` : null};
-  height: 76px;
+  min-height: 76px;
   margin: 13px 0;
   background-color: ${(props) =>
     props.typeContenu === "dispositif" ? colors.blanc : null};
