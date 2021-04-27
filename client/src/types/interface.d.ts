@@ -30,6 +30,20 @@ export interface SimplifiedUser {
   twelveMonthsIndicator?: Indicator;
   totalIndicator?: Indicator;
 }
+
+export interface SimplifiedCreator {
+  username: string;
+  picture: Picture | undefined;
+  _id: ObjectId;
+  email: string | undefined;
+}
+
+export interface SimplifiedMainSponsor {
+  _id: ObjectId;
+  nom: string;
+  status: string;
+  picture: Picture | undefined;
+}
 export interface SimplifiedDispositif {
   titreInformatif: string;
   titreMarque?: string;
@@ -39,18 +53,8 @@ export interface SimplifiedDispositif {
   created_at: Moment;
   publishedAt?: Moment;
   _id: ObjectId;
-  mainSponsor: null | {
-    _id: ObjectId;
-    nom: string;
-    status: string;
-    picture: Picture | undefined;
-  };
-  creatorId: {
-    username: string;
-    picture: Picture | undefined;
-    _id: ObjectId;
-    email: string | undefined;
-  } | null;
+  mainSponsor: null | SimplifiedMainSponsor;
+  creatorId: SimplifiedCreator | null;
   adminComments?: string;
   adminProgressionStatus?: string;
   adminPercentageProgressionStatus?: string;
