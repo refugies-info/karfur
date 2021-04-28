@@ -17,6 +17,8 @@ import marioProfile from "../../../../../assets/mario-profile.jpg";
 import { colors } from "../../../../../colors";
 import { Category } from "./Components";
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
+import API from "../../../../../utils/API";
+import Swal from "sweetalert2";
 
 interface Props {
   show: boolean;
@@ -174,7 +176,7 @@ export const ImprovementsMailModal = (props: Props) => {
 
   const dispositifCategories = [
     "C'est quoi ?",
-    "C'est pour qui ? ",
+    "C'est pour qui ?",
     "Pourquoi c'est intéressant ?",
     "Comment je m'engage ?",
     "Carte interactive",
@@ -195,14 +197,39 @@ export const ImprovementsMailModal = (props: Props) => {
   };
 
   const sendMail = () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
     const data = {
       dispositifId: dispositif._id,
-      users: usersToDisplay.filter((user) => user.email),
+      users: usersToDisplay
+        .filter((user) => user.email)
+        .map((user) => ({
+          username: user.username,
+          _id: user._id,
+          email: user.email,
+        })),
       titreInformatif: dispositif.titreInformatif,
       titreMarque: dispositif.titreMarque,
       sections: selectedCategories,
     };
+
+    API.sendAdminImprovementsMail(data)
+      .then(() => {
+        Swal.fire({
+          title: "Yay...",
+          text: "Mail(s) envoyé(s)",
+          type: "success",
+          timer: 1500,
+        });
+        props.toggleModal();
+      })
+      .catch(() => {
+        Swal.fire({
+          title: "Oh non",
+          text: "Erreur lors de l'envoi",
+          type: "error",
+          timer: 1500,
+        });
+        props.toggleModal();
+      });
   };
 
   const nbUsersWithEmail = usersToDisplay.filter((user) => user.email).length;
