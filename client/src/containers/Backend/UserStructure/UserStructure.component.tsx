@@ -146,19 +146,6 @@ export const UserStructureComponent = () => {
       </div>
     );
 
-  if (userStructure.status === "En attente")
-    return (
-      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <Navigation selected="structure" />
-        <ErrorContainer>
-          <ErrorText>
-            Votre structure n'a pas été validée. Veuillez contacter l'équipe de
-            réfugiés.info via le live chat en bas à droite de votre écran.
-          </ErrorText>
-        </ErrorContainer>
-      </div>
-    );
-
   const membresToDisplay = membres.sort((a, b) => {
     if (a._id === user.userId) return -1;
     if (b._id === user.userId) return 1;
