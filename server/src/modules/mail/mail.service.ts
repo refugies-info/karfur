@@ -364,6 +364,7 @@ export const sendAdminImprovementsMailService = async (
         name: "L'équipe de Réfugiés.info",
       },
       reply_to: "contact@email.refugies.info",
+      cc: "alice@refugies.info",
       dynamicTemplateData: {
         titreInformatif: data.titreInformatif,
         titreMarque: data.titreMarque,
