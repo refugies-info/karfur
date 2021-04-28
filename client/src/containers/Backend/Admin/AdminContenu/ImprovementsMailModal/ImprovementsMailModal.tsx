@@ -1,6 +1,5 @@
-/* eslint-disable no-console */
 import { ObjectId } from "mongodb";
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Spinner } from "reactstrap";
 import "./ImprovementsMailModal.scss";
 import styled from "styled-components";
@@ -15,6 +14,9 @@ import { isLoadingSelector } from "../../../../../services/LoadingStatus/loading
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import { SimplifiedCreator } from "../../../../../types/interface";
 import marioProfile from "../../../../../assets/mario-profile.jpg";
+import { colors } from "../../../../../colors";
+import { Category } from "./Components";
+import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 
 interface Props {
   show: boolean;
@@ -26,7 +28,7 @@ const Header = styled.div`
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
-  margin: 12px 0px 12px 0px;
+  margin: 0px 0px 12px 0px;
 `;
 
 const Text = styled.div`
@@ -57,6 +59,29 @@ const UserContainer = styled.div`
   align-items: center;
 `;
 
+const EmailText = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: ${(props) => (props.hasEmail ? colors.darkColor : colors.error)};
+  margin-left: 5px;
+`;
+
+const CategoriesContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
+const RecapContainer = styled.div`
+  background: ${colors.erreur};
+  width: 100%;
+  padding: 8px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  margin-top: 12px;
+`;
+
 const getFormattedStatus = (dispoStatus: string) => {
   const corresStatus = correspondingStatus.filter(
     (status) => status.storedStatus === dispoStatus
@@ -75,6 +100,8 @@ const getTitle = (
 };
 
 export const ImprovementsMailModal = (props: Props) => {
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
   const dispositif = useSelector(
     dispositifSelector(props.selectedDispositifId)
   );
@@ -126,10 +153,8 @@ export const ImprovementsMailModal = (props: Props) => {
     users,
     structures
   );
-  console.log("usersToDisplay", usersToDisplay);
 
   const formattedStatus = getFormattedStatus(dispositif.status);
-  console.log("formattedStatus", formattedStatus);
 
   const title = getTitle(
     dispositif.titreInformatif,
@@ -147,11 +172,47 @@ export const ImprovementsMailModal = (props: Props) => {
       ? user.picture.secure_url
       : marioProfile;
 
+  const dispositifCategories = [
+    "C'est quoi ?",
+    "C'est pour qui ? ",
+    "Pourquoi c'est intéressant ?",
+    "Comment je m'engage ?",
+    "Carte interactive",
+  ];
+
+  const onClickCategory = (categorie: string) => {
+    const isCategorieSelected =
+      selectedCategories.filter((cat) => cat === categorie).length > 0;
+    if (isCategorieSelected) {
+      setSelectedCategories(
+        selectedCategories.filter((cat) => cat !== categorie)
+      );
+      return;
+    }
+    const newCategories = selectedCategories.concat([categorie]);
+    setSelectedCategories(newCategories);
+    return;
+  };
+
+  const sendMail = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
+    const data = {
+      dispositifId: dispositif._id,
+      users: usersToDisplay.filter((user) => user.email),
+      titreInformatif: dispositif.titreInformatif,
+      titreMarque: dispositif.titreMarque,
+      sections: selectedCategories,
+    };
+  };
+
+  const nbUsersWithEmail = usersToDisplay.filter((user) => user.email).length;
+
   return (
     <Modal
       isOpen={props.show}
       toggle={props.toggleModal}
       className="improvements-modal"
+      size="lg"
     >
       <Header>Demande d'informations complémentaires pour la fiche :</Header>
       <RowContainer>
@@ -173,14 +234,55 @@ export const ImprovementsMailModal = (props: Props) => {
       )}
 
       {usersToDisplay.map((user) => {
+        const hasEmail = !!user.email;
         const email = user.email || "pas d'email renseigné";
         return (
           <UserContainer key={user._id}>
             <img className="user-img" src={getUserImage(user)} />
-            {user.username + " - " + email}
+            {user.username + " - "}
+            <EmailText hasEmail={hasEmail}>{email}</EmailText>
           </UserContainer>
         );
       })}
+      <Title>{"Sections à revoir (" + selectedCategories.length + ")"} </Title>
+      <CategoriesContainer>
+        {dispositifCategories.map((categorie, index) => (
+          <Category
+            categorieName={categorie}
+            onClick={() => onClickCategory(categorie)}
+            key={index}
+            isSelected={selectedCategories.includes(categorie)}
+          />
+        ))}
+      </CategoriesContainer>
+      <RecapContainer>
+        Vous allez envoyer un mail à <b>{nbUsersWithEmail}</b> utilisateur(s)
+        avec <b>{selectedCategories.length}</b> section(s) à revoir.
+      </RecapContainer>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <FButton
+          className="mr-8"
+          type="white"
+          onClick={props.toggleModal}
+          name="close-outline"
+        >
+          Annuler
+        </FButton>
+        <FButton
+          type="validate"
+          name="checkmark-outline"
+          onClick={sendMail}
+          disabled={nbUsersWithEmail === 0 || selectedCategories.length === 0}
+        >
+          Envoyer
+        </FButton>
+      </div>
     </Modal>
   );
 };

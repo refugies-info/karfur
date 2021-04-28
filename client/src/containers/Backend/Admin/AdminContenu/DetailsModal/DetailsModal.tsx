@@ -399,18 +399,19 @@ export const DetailsModal = (props: Props) => {
               )}
               {["En attente admin", "En attente", "Accepté structure"].includes(
                 dispositif.status
-              ) && (
-                <>
-                  <Title>Mail d'amélioration</Title>
-                  <FButton
-                    type="dark"
-                    name="email-outline"
-                    onClick={props.toggleImprovementsMailModal}
-                  >
-                    Demander des changements
-                  </FButton>
-                </>
-              )}
+              ) &&
+                dispositif.typeContenu === "dispositif" && (
+                  <>
+                    <Title>Mail d'amélioration</Title>
+                    <FButton
+                      type="dark"
+                      name="email-outline"
+                      onClick={props.toggleImprovementsMailModal}
+                    >
+                      Demander des changements
+                    </FButton>
+                  </>
+                )}
             </RightPart>
           </RowContainer>
           <ButtonsContainer>
