@@ -1,5 +1,6 @@
 import mongoose, { ObjectId } from "mongoose";
 import { UserDoc } from "./schemaUser";
+import { StructureDoc } from "./schemaStructure";
 
 var dispositifSchema = new mongoose.Schema(
   {
@@ -192,7 +193,6 @@ export interface DispositifDoc extends mongoose.Document {
   externalLink?: string;
   contenu?: Object;
   sponsors?: Object;
-  mainSponsor?: ObjectId;
   audience?: Object;
   audienceAge?: Object;
   tags?: Object;
@@ -211,7 +211,7 @@ export interface DispositifDoc extends mongoose.Document {
   avancement?: Object;
   timeSpent?: number;
   variantes?: Object;
-  typeContenu?: "dispositif" | "demarche";
+  typeContenu: "dispositif" | "demarche";
   demarcheId?: ObjectId;
   autoSave?: boolean;
   publishedAt?: number;
@@ -229,9 +229,16 @@ export interface DispositifDoc extends mongoose.Document {
 
 export interface DispositifNotPopulateDoc extends DispositifDoc {
   creatorId: ObjectId;
+  mainSponsor: ObjectId;
 }
 
 export interface DispositifPopulatedDoc extends DispositifDoc {
+  creatorId: UserDoc;
+  mainSponsor: ObjectId;
+}
+
+export interface DispositifPopulatedMainSponsorDoc extends DispositifDoc {
+  mainSponsor: StructureDoc;
   creatorId: UserDoc;
 }
 

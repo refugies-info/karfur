@@ -1,10 +1,10 @@
 {
-  "short_name": "Agi'R",
-  "name": "Un projet de la DIAIR",
+  "short_name": "Réfugiés.info",
+  "name": "Réfugiés.info",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "src": "favicon-2.ico",
+      "sizes": "64x64",
       "type": "image/x-icon"
     }
   ],

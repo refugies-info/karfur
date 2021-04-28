@@ -7,7 +7,6 @@ import ThanksModal from "./ThanksModal/ThanksModal";
 import ReactionLectureModal from "./ReactionLectureModal/ReactionLectureModal";
 import ResponsableModal from "./ResponsableModal/ResponsableModal";
 import RejectionModal from "./RejectionModal/RejectionModal";
-import EditMemberModal from "./EditMemberModal/EditMemberModal";
 import RejectTradModal from "./RejectTradModal/RejectTradModal";
 import EtapeModal from "./EtapeModal/EtapeModal";
 import Modal from "./Modal";
@@ -28,7 +27,6 @@ export {
   ReactionLectureModal,
   ResponsableModal,
   RejectionModal,
-  EditMemberModal,
   RejectTradModal,
   EtapeModal,
   TagsModal,

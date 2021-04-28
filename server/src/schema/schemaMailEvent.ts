@@ -18,6 +18,11 @@ const mailEventSchema = new mongoose.Schema(
       unique: false,
       required: true,
     },
+    langue: {
+      type: String,
+      unique: false,
+      required: true,
+    },
     userId: { type: mongoose.Types.ObjectId, ref: "User" },
     dispositifId: { type: mongoose.Types.ObjectId, ref: "Dispositif" },
   },
@@ -31,5 +36,6 @@ export interface MailEventDoc extends mongoose.Document {
   email: string;
   username: string;
   created_at: Moment;
+  langue?: string;
 }
 export const MailEvent = mongoose.model<MailEventDoc>("Mail", mailEventSchema);

@@ -98,8 +98,14 @@
       }
       .validate-btn {
         position: sticky;
-        bottom: 20px;
+        bottom: 0px;
         left: 200px;
+      }
+
+      .delete-btn {
+        position: sticky;
+        bottom: 0px;
+        left: 0px;
       }
 
       [contenteditable="true"]:empty:before {
