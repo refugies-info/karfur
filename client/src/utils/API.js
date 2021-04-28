@@ -114,6 +114,12 @@ export default {
       headers,
     });
   },
+
+  sendAdminImprovementsMail: (query) => {
+    return axios.post(burl + "/mail/sendAdminImprovementsMail", query, {
+      headers,
+    });
+  },
   add_dispositif_infocards: (query) => {
     return axios.post(burl + "/dispositifs/add_dispositif_infocards", query, {
       headers: headers,

@@ -194,36 +194,6 @@ export const sendPublishedFicheMailToCreatorService = async (
   }
 };
 
-export const sendReviewFicheMail = () => {
-  try {
-    logger.info("[sendReviewFicheMail] received");
-
-    const dynamicData = {
-      to: "agkieny@gmail.com",
-      from: {
-        email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info",
-      },
-      reply_to: "contact@email.refugies.info",
-      dynamicTemplateData: {
-        pseudo: "agathe",
-        titreInformatif: "titre",
-        lien: "http://localhost:3000/dispositif/5f918fbafc486c0047ef548d",
-        rubrique: { quoi: true, qui: false },
-      },
-    };
-    const templateName = "reviewFiche";
-    // @ts-ignore
-    sendMail(templateName, dynamicData);
-    // await addMailEvent({ templateName, username, email, userId });
-    return;
-  } catch (error) {
-    logger.error("[sendReviewFicheMail] error", {
-      error: error.message,
-    });
-  }
-};
-
 interface PublishedTradMailToStructure {
   dispositifId: ObjectId;
   userId: ObjectId;
@@ -263,6 +233,7 @@ export const sendPublishedTradMailToStructureService = async (
       email: data.email,
       userId: data.userId,
       dispositifId: data.dispositifId,
+      langue: data.langue,
     });
     return;
   } catch (error) {
@@ -361,10 +332,63 @@ export const sendPublishedTradMailToTraductorsService = async (
       // @ts-ignore
       userId: data.userId,
       dispositifId: data.dispositifId,
+      langue: data.langue,
     });
     return;
   } catch (error) {
     logger.error("[sendPublishedTradMailToTraductorsService] error", {
+      error: error.message,
+    });
+  }
+};
+
+interface AdminImprovementsMail {
+  dispositifId: ObjectId;
+  userId: ObjectId;
+  titreInformatif: string;
+  titreMarque: string;
+  lien: string;
+  email: string;
+  pseudo: string;
+  sectionsToModify: Object;
+}
+
+export const sendAdminImprovementsMailService = async (
+  data: AdminImprovementsMail
+) => {
+  try {
+    logger.info("[sendAdminImprovementsMailService] received");
+
+    const dynamicData = {
+      to: data.email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+      cc: "alice@refugies.info",
+      dynamicTemplateData: {
+        titreInformatif: data.titreInformatif,
+        titreMarque: data.titreMarque,
+        lien: data.lien,
+        pseudo: data.pseudo,
+        sectionsToModify: data.sectionsToModify,
+      },
+    };
+    const templateName = "reviewFiche";
+    // @ts-ignore
+    sendMail(templateName, dynamicData);
+    await addMailEvent({
+      templateName,
+      username: data.pseudo,
+      email: data.email,
+      // @ts-ignore
+      userId: data.userId,
+      dispositifId: data.dispositifId,
+    });
+    return;
+  } catch (error) {
+    logger.error("[sendAdminImprovementsMailService] error", {
       error: error.message,
     });
   }
