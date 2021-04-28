@@ -129,6 +129,7 @@ export interface IMailEvent {
   templateName: string;
   userId: ObjectId;
   dispositifId?: ObjectId;
+  langue?: string;
 }
 
 export interface SelectedLanguage {

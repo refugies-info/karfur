@@ -245,6 +245,7 @@ describe("sendPublishedTradMailToStructureService", () => {
       email: "email",
       userId: "userId",
       dispositifId: "dispositifId",
+      langue: "anglais",
     });
   });
 });
@@ -334,6 +335,7 @@ describe("sendPublishedTradMailToTraductorsService", () => {
       email: "email",
       userId: "userId",
       dispositifId: "dispositifId",
+      langue: "pachto",
     });
   });
 });

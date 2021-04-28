@@ -233,6 +233,7 @@ export const sendPublishedTradMailToStructureService = async (
       email: data.email,
       userId: data.userId,
       dispositifId: data.dispositifId,
+      langue: data.langue,
     });
     return;
   } catch (error) {
@@ -331,6 +332,7 @@ export const sendPublishedTradMailToTraductorsService = async (
       // @ts-ignore
       userId: data.userId,
       dispositifId: data.dispositifId,
+      langue: data.langue,
     });
     return;
   } catch (error) {
