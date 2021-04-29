@@ -75,25 +75,6 @@ describe("UserStructure", () => {
     expect(component.toJSON()).toMatchSnapshot();
   });
 
-  it("should render correctly when structure en attente", () => {
-    window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserStructureComponent,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          userStructure: {
-            status: "En attente",
-            _id: "structureId",
-            dispositifsAssocies: [],
-          },
-        },
-      });
-    });
-    expect(component.toJSON()).toMatchSnapshot();
-  });
   const structure = {
     status: "Actif",
     _id: "structureId",

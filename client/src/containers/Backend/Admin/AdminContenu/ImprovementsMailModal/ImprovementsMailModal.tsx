@@ -141,6 +141,7 @@ export const ImprovementsMailModal = (props: Props) => {
         isOpen={props.show}
         toggle={props.toggleModal}
         className="improvements-modal"
+        size="lg"
       >
         <Header>Erreur</Header>
       </Modal>
