@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Icon from "react-eva-icons";
@@ -8,6 +9,9 @@ import { SearchResultsDisplayedOnMobile } from "./SearchResultsDisplayedOnMobile
 import { Tag, IDispositif } from "../../../types/interface";
 import { SelectedFilter } from "./SelectedFilter/SelectedFilter";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
+declare const window: Window;
+import { filtres } from "../../Dispositif/data";
+import { initial_data } from "../data";
 
 interface Props {
   nbFilteredResults: number;
@@ -16,7 +20,12 @@ interface Props {
   addParamasInRechercher: () => void;
   queryDispositifs: () => void;
   desactiver: (index: number) => void;
-  query: string;
+  query: {
+    city?: string;
+    tag?: string;
+    bottomValue?: string;
+    niveauFrancais?: string;
+  };
   principalThemeList: IDispositif[];
   principalThemeListFullFrance: IDispositif[];
   dispositifs: IDispositif[];
@@ -24,6 +33,7 @@ interface Props {
   secondaryThemeList: IDispositif[];
   secondaryThemeListFullFrance: IDispositif[];
   totalFicheCount: number;
+  history: any;
 }
 
 const MainContainer = styled.div`
@@ -95,8 +105,6 @@ export const MobileAdvancedSearch = (props: Props) => {
   const [ville, setVille] = useState("");
   const [geoSearch, setGeoSearch] = useState(false);
   const [isUrlEmpty, setIsUrlEmpty] = useState(true);
-  const [isUserModifyingSearch, setIsUserModifyingSearch] = useState(false);
-
   const isSearchButtonDisabled =
     !tagSelected && !ageSelected && !frenchSelected && ville === "";
 
@@ -118,29 +126,78 @@ export const MobileAdvancedSearch = (props: Props) => {
 
   useEffect(() => {
     setIsUrlEmpty(Object.keys(props.query)[0] === "");
-  }, [props.query]);
+    console.log("query", props.query);
+    console.log("recherche", props.recherche);
+    props.recherche.map((item: any) => {
+      if (item.value) {
+        switch (item.queryName) {
+          case "localisation":
+            setVille(item.value);
+            break;
+          case "tags.name":
+            setTagSelected(
+              filtres.tags.filter(
+                (filtre: any) => filtre.name === item.value
+              )[0]
+            );
+            break;
+          case "audienceAge":
+            let children = initial_data.filter(
+              (filtre: any) => filtre.queryName === "audienceAge"
+            )[0].children;
+            if (children) {
+              setAgeSelected(
+                // @ts-ignore
+                children.filter(
+                  // eslint-disable-next-line eqeqeq
+                  (filtre: any) => filtre.name == item.value
+                )[0]
+              );
+            }
+            break;
+          case "niveauFrancais":
+            let child = initial_data.filter(
+              (item: any) => item.queryName === "niveauFrancais"
+            )[0].children;
+            if (child) {
+              setFrenchSelected(
+                // @ts-ignore
+                child.filter(
+                  (filtre: any) =>
+                    // eslint-disable-next-line eqeqeq
+                    filtre.name == item.value
+                )[0]
+              );
+            }
+            break;
 
+          default:
+            break;
+        }
+      }
+    });
+  }, [props.query]);
+  console.log("tag", tagSelected);
+  console.log("age", ageSelected);
+  console.log("fr", frenchSelected);
+  console.log("ville", ville);
   return (
     <MainContainer>
       <SearchBoutton
         isDisabled={isSearchButtonDisabled}
         isUrlEmpty={isUrlEmpty}
-        isUserModifyingSearch={isUserModifyingSearch}
         tagSelected={tagSelected}
         onClick={() => {
           {
-            isUrlEmpty || isUserModifyingSearch
-              ? props.queryDispositifs()
-              : null;
+            isUrlEmpty ? props.queryDispositifs() : props.history.push();
           }
-          setIsUserModifyingSearch(!isUserModifyingSearch);
         }}
       >
         <EVAIcon
           name={
             isSearchButtonDisabled
               ? "search"
-              : isUrlEmpty || isUserModifyingSearch
+              : isUrlEmpty
               ? "checkmark"
               : "options-2"
           }
@@ -148,7 +205,7 @@ export const MobileAdvancedSearch = (props: Props) => {
           size="large"
         />
         <SearchTitle>
-          {isUrlEmpty || isUserModifyingSearch
+          {isUrlEmpty
             ? props.t("Rechercher", "Rechercher")
             : props.t(
                 "AdvancedSearch.Modifier ma recherche",
@@ -156,7 +213,7 @@ export const MobileAdvancedSearch = (props: Props) => {
               )}
         </SearchTitle>
       </SearchBoutton>
-      {isUrlEmpty || isUserModifyingSearch ? (
+      {isUrlEmpty ? (
         <>
           <TextTitle>
             {props.t("SearchItem.Je cherche à", "Je cherche à")}
@@ -183,6 +240,7 @@ export const MobileAdvancedSearch = (props: Props) => {
               setGeoSearch={setGeoSearch}
               addParamasInRechercher={props.addParamasInRechercher}
               recherche={props.recherche}
+              desactiver={props.desactiver}
             ></LocalisationFilter>
           ) : (
             <>

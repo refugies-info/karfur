@@ -139,7 +139,7 @@ export const SelectedFilter = (props: Props) => {
           ) : (
             <>
               <FilterButton onClick={() => props.toggleShowModal(props.type)}>
-                {props.t("SearchItem.choisir mon âge", "choisir mon âge")}
+                {props.t(props.title, props.defaultTitle)}
                 <Icon name="chevron-down" fill={colors.noir} size="large" />
               </FilterButton>
             </>

@@ -130,7 +130,9 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => (
       //Tag and location selected
       <>
         <AProposTitle>
-          {props.t("AdvancedSearch.Fiches pour", "Fiches pour")}
+          {props.nbFilteredResults > 0
+            ? props.t("AdvancedSearch.Fiches pour", "Fiches pour")
+            : props.t("AdvancedSearch.0 fiches pour", "0 fiches pour")}
           <City>{" " + props.ville}</City>
           {props.t("AdvancedSearch.avec le thème", "avec le thème")}
           <TagSelected color={props.tagSelected.darkColor}>

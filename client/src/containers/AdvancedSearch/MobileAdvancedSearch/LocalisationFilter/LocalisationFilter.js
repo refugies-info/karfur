@@ -39,11 +39,12 @@ const SelectedFilter = styled.div`
 `;
 
 export const LocalisationFilter = (props) => {
+  const localisationQuery = props.recherche.filter(
+    (item) => item.queryName === "localisation"
+  )[0];
+  const index = props.recherche.indexOf(localisationQuery);
+
   const onPlaceSelected = (place) => {
-    let localisationQuery = props.recherche.filter(
-      (item) => item.queryName === "localisation"
-    )[0];
-    let index = props.recherche.indexOf(localisationQuery);
     if (place.formatted_address) {
       props.setState(place.formatted_address);
       props.addParamasInRechercher(index, place);
@@ -83,7 +84,12 @@ export const LocalisationFilter = (props) => {
       ) : (
         <SelectedFilter>
           {props.ville}
-          <div onClick={() => props.setState("")}>
+          <div
+            onClick={() => {
+              props.setState("");
+              props.desactiver(index);
+            }}
+          >
             <Icon name="close" fill={colors.blanc} size="large" />
           </div>
         </SelectedFilter>

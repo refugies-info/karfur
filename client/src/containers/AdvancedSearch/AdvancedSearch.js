@@ -1022,6 +1022,7 @@ export class AdvancedSearch extends Component {
             }
             totalFicheCount={this.props.dispositifs.length}
             nbFilteredResults={this.state.countTotal}
+            history={this.props.history}
           />
         ) : (
           <>
