@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Icon from "react-eva-icons";
@@ -126,8 +125,6 @@ export const MobileAdvancedSearch = (props: Props) => {
 
   useEffect(() => {
     setIsUrlEmpty(Object.keys(props.query)[0] === "");
-    console.log("query", props.query);
-    console.log("recherche", props.recherche);
     props.recherche.map((item: any) => {
       if (item.value) {
         switch (item.queryName) {
@@ -177,10 +174,6 @@ export const MobileAdvancedSearch = (props: Props) => {
       }
     });
   }, [props.query]);
-  console.log("tag", tagSelected);
-  console.log("age", ageSelected);
-  console.log("fr", frenchSelected);
-  console.log("ville", ville);
   return (
     <MainContainer>
       <SearchBoutton
