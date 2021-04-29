@@ -45,6 +45,8 @@ const AProposTitle = styled.div`
 
 const Title = styled.div`
   margin-right: 10px;
+  font-size: 18px;
+  font-weight: 700;
 `;
 
 const TagSelected = styled.div`

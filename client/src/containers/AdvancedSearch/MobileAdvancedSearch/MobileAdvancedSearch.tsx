@@ -146,9 +146,7 @@ export const MobileAdvancedSearch = (props: Props) => {
               setAgeSelected(
                 // @ts-ignore
                 children.filter(
-                  //toString
-                  // eslint-disable-next-line eqeqeq
-                  (filtre: any) => filtre.name == item.value
+                  (filtre: any) => filtre.name === item.value.toString()
                 )[0]
               );
             }
@@ -161,9 +159,7 @@ export const MobileAdvancedSearch = (props: Props) => {
               setFrenchSelected(
                 // @ts-ignore
                 child.filter(
-                  (filtre: any) =>
-                    // eslint-disable-next-line eqeqeq
-                    filtre.name == item.value
+                  (filtre: any) => filtre.name === item.value.toString()
                 )[0]
               );
             }
