@@ -42,7 +42,7 @@ const SearchBoutton = styled.div`
   background-color: ${(props) =>
     props.isDisabled
       ? colors.grey
-      : props.isUrlEmpty
+      : props.isUrlEmpty || props.isUserModifyingSearch
       ? colors.vert
       : props.tagSelected
       ? props.tagSelected.darkColor
@@ -95,6 +95,7 @@ export const MobileAdvancedSearch = (props: Props) => {
   const [ville, setVille] = useState("");
   const [geoSearch, setGeoSearch] = useState(false);
   const [isUrlEmpty, setIsUrlEmpty] = useState(true);
+  const [isUserModifyingSearch, setIsUserModifyingSearch] = useState(false);
 
   const isSearchButtonDisabled =
     !tagSelected && !ageSelected && !frenchSelected && ville === "";
@@ -124,16 +125,22 @@ export const MobileAdvancedSearch = (props: Props) => {
       <SearchBoutton
         isDisabled={isSearchButtonDisabled}
         isUrlEmpty={isUrlEmpty}
+        isUserModifyingSearch={isUserModifyingSearch}
         tagSelected={tagSelected}
         onClick={() => {
-          props.queryDispositifs();
+          {
+            isUrlEmpty || isUserModifyingSearch
+              ? props.queryDispositifs()
+              : null;
+          }
+          setIsUserModifyingSearch(!isUserModifyingSearch);
         }}
       >
         <EVAIcon
           name={
             isSearchButtonDisabled
               ? "search"
-              : isUrlEmpty
+              : isUrlEmpty || isUserModifyingSearch
               ? "checkmark"
               : "options-2"
           }
@@ -141,7 +148,7 @@ export const MobileAdvancedSearch = (props: Props) => {
           size="large"
         />
         <SearchTitle>
-          {isUrlEmpty
+          {isUrlEmpty || isUserModifyingSearch
             ? props.t("Rechercher", "Rechercher")
             : props.t(
                 "AdvancedSearch.Modifier ma recherche",
@@ -149,7 +156,7 @@ export const MobileAdvancedSearch = (props: Props) => {
               )}
         </SearchTitle>
       </SearchBoutton>
-      {isUrlEmpty ? (
+      {isUrlEmpty || isUserModifyingSearch ? (
         <>
           <TextTitle>
             {props.t("SearchItem.Je cherche à", "Je cherche à")}
