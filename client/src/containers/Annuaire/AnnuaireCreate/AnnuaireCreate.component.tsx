@@ -133,14 +133,11 @@ export const AnnuaireCreateComponent = (props: Props) => {
   };
 
   useEffect(() => {
-    const loadUserStructure = async () => {
-      if (structureId) {
-        await dispatch(
-          fetchUserStructureActionCreator({ structureId, shouldRedirect: true })
-        );
-      }
-    };
-    loadUserStructure();
+    if (structureId) {
+      dispatch(
+        fetchUserStructureActionCreator({ structureId, shouldRedirect: true })
+      );
+    }
   }, [dispatch, structureId]);
 
   const onStepValidate = () => {
