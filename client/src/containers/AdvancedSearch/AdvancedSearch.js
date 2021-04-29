@@ -1021,7 +1021,7 @@ export class AdvancedSearch extends Component {
               this.state.secondaryThemeListFullFrance
             }
             totalFicheCount={this.props.dispositifs.length}
-            countTotalResult={this.state.countTotal}
+            nbFilteredResults={this.state.countTotal}
           />
         ) : (
           <>

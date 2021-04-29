@@ -1,7 +1,7 @@
 import React from "react";
-import { Tag } from "../../../../types/interface";
+import { Tag, IDispositif } from "../../../../types/interface";
 import styled from "styled-components";
-import { DispositifsItem } from "./DispositifsItem/DispositifsItem";
+import { FicheOnMobile } from "./FicheOnMobile/FicheOnMobile";
 import { colors } from "../../../../colors";
 import Streamline from "assets/streamline";
 
@@ -10,17 +10,17 @@ interface Props {
   ageSelected: { name: string } | null;
   frenchSelected: { name: string } | null;
   ville: string;
-  principalThemeList: string[];
-  principalThemeListFullFrance: any;
-  dispositifs: string[];
-  dispositifsFullFrance: string[];
-  secondaryThemeList: string[];
-  secondaryThemeListFullFrance: string[];
+  principalThemeList: IDispositif[];
+  principalThemeListFullFrance: IDispositif[];
+  dispositifs: IDispositif[];
+  dispositifsFullFrance: IDispositif[];
+  secondaryThemeList: IDispositif[];
+  secondaryThemeListFullFrance: IDispositif[];
   totalFicheCount: number;
   t: (a: string, b: string) => void;
-  countTotalResult: number;
+  nbFilteredResults: number;
 }
-const TotalCountTitle = styled.p`
+const TotalCountTitle = styled.div`
   font-weight: 700;
   font-size: 16px;
   text-align: center;
@@ -28,7 +28,7 @@ const TotalCountTitle = styled.p`
   color: ${colors.grisFonce};
 `;
 
-const APropostitle = styled.p`
+const AProposTitle = styled.div`
   font-size: 22px;
   font-weight: 700;
   text-align: center;
@@ -39,6 +39,7 @@ const APropostitle = styled.p`
   flex-wrap: wrap;
   text-align: center;
   align-items: center;
+  line-height: 35px;
 `;
 
 const Title = styled.div`
@@ -52,56 +53,47 @@ const TagSelected = styled.div`
   width: -webkit-fit-content;
   padding: 13.5px;
   border-radius: 12px;
-  margin: 13px auto;
+  margin: 13px 8px;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 `;
 const City = styled.div`
   margin-left: 5px;
+  margin-right: 5px;
   color: ${colors.bleuCharte};
 `;
 
-export const SearchResultsDisplayedOnMobile = (props: Props) => {
-  return (
-    <div>
-      <TotalCountTitle>
-        {" "}
-        {props.countTotalResult +
-          "/" +
-          props.totalFicheCount +
-          " " +
-          props.t("AdvancedSearch.résultats", "résultats")}
-      </TotalCountTitle>
-      {props.tagSelected && props.ville === "" ? (
-        //Tag selected and no location
-        <>
-          {props.principalThemeList
-            .concat(props.principalThemeListFullFrance)
-            .map((item: any, index: number) => {
-              //Display all dispositif about this tag as primary tag
-              return (
-                <DispositifsItem
-                  key={index}
-                  item={item}
-                  tagSelected={props.tagSelected}
-                  t={props.t}
-                  type="primary"
-                />
-              );
-            })}
-          <APropostitle>
-            {props.t(
-              "AdvancedSearch.Fiches aussi à propos de",
-              "Fiches aussi à propos de"
-            )}
-          </APropostitle>
-
-          <TagSelected color={props.tagSelected?.darkColor}>
+export const SearchResultsDisplayedOnMobile = (props: Props) => (
+  <div>
+    <TotalCountTitle>
+      {" "}
+      {props.nbFilteredResults +
+        " sur " +
+        props.totalFicheCount +
+        " " +
+        props.t("AdvancedSearch.résultats", "résultats")}
+    </TotalCountTitle>
+    {props.tagSelected && props.ville === "" ? (
+      //Tag selected and no location
+      <>
+        {props.principalThemeList
+          .concat(props.principalThemeListFullFrance)
+          .map((item: IDispositif, index: number) => {
+            //Display all dispositif about this tag as primary tag
+            return <FicheOnMobile key={index} item={item} t={props.t} />;
+          })}
+        <AProposTitle>
+          {props.t(
+            "AdvancedSearch.Fiches aussi à propos de",
+            "Fiches aussi à propos de"
+          )}
+          <TagSelected color={props.tagSelected.darkColor}>
             {props.tagSelected && (
               <>
                 <Title>
                   {props.t(
-                    "Tags." + props.tagSelected.name,
+                    "Tags." + props.tagSelected.short,
                     props.tagSelected.name
                   )}
                 </Title>
@@ -117,151 +109,121 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
               </>
             )}
           </TagSelected>
-          {props.secondaryThemeList
-            .concat(props.secondaryThemeListFullFrance)
-            .map((item: any, index: number) => {
-              //Display all dispositif about this tag as secondary tag
-              return (
-                <DispositifsItem
-                  key={index}
-                  item={item}
-                  tagSelected={props.tagSelected}
-                  t={props.t}
-                  type="secondary"
-                />
-              );
-            })}
-        </>
-      ) : props.tagSelected && props.ville !== "" ? (
-        //Tag and location selected
-        <>
-          <APropostitle>
+        </AProposTitle>
+        {props.secondaryThemeList
+          .concat(props.secondaryThemeListFullFrance)
+          .map((item: IDispositif, index: number) => {
+            //Display all dispositif about this tag as secondary tag
+            return <FicheOnMobile key={index} item={item} t={props.t} />;
+          })}
+      </>
+    ) : props.tagSelected && props.ville !== "" ? (
+      //Tag and location selected
+      <>
+        <AProposTitle>
+          {props.t("AdvancedSearch.Fiches pour", "Fiches pour")}
+          <City>{" " + props.ville}</City>
+          {props.t("AdvancedSearch.avec le thème", "avec le thème")}
+          <TagSelected color={props.tagSelected.darkColor}>
+            {props.tagSelected && (
+              <>
+                <Title>
+                  {props.t(
+                    "Tags." + props.tagSelected.short,
+                    props.tagSelected.name
+                  )}
+                </Title>
+                {props.tagSelected.icon ? (
+                  <Streamline
+                    name={props.tagSelected.icon}
+                    stroke={"white"}
+                    width={22}
+                    height={22}
+                    marginLeft={10}
+                  />
+                ) : null}
+              </>
+            )}
+          </TagSelected>
+        </AProposTitle>
+
+        {props.principalThemeList
+          .concat(props.secondaryThemeList)
+          .map((item: IDispositif, index: number) => {
+            return (
+              //Display all dispositif about this tag as primary or secondary tag and this location
+              <FicheOnMobile key={index} item={item} t={props.t} />
+            );
+          })}
+        <AProposTitle>
+          {props.t("AdvancedSearch.Fiches valables", "Fiches valables")}
+          <City>
+            {props.t("AdvancedSearch.partout en France", "partout en France")}
+          </City>
+          {props.t("AdvancedSearch.avec le thème", "avec le thème")}
+
+          <TagSelected color={props.tagSelected.darkColor}>
+            {props.tagSelected && (
+              <>
+                <Title>
+                  {props.t(
+                    "Tags." + props.tagSelected.short,
+                    props.tagSelected.name
+                  )}
+                </Title>
+                {props.tagSelected.icon ? (
+                  <Streamline
+                    name={props.tagSelected.icon}
+                    stroke={"white"}
+                    width={22}
+                    height={22}
+                    marginLeft={10}
+                  />
+                ) : null}
+              </>
+            )}
+          </TagSelected>
+        </AProposTitle>
+        {props.principalThemeListFullFrance
+          .concat(props.secondaryThemeListFullFrance)
+          .map((item: IDispositif, index: number) => {
+            return (
+              //Display all dispositif about this tag as primary or secondary tag and all France as location
+              <FicheOnMobile key={index} item={item} t={props.t} />
+            );
+          })}
+      </>
+    ) : (
+      //All others filters selected but not Tag
+      <>
+        {props.ville !== "" && (
+          <AProposTitle>
             {props.t("AdvancedSearch.Fiches pour", "Fiches pour")}
             <City>{" " + props.ville}</City>
-            {props.t("AdvancedSearch.avec le thème", "avec le thème")}
-            <TagSelected color={props.tagSelected?.darkColor}>
-              {props.tagSelected && (
-                <>
-                  <Title>
-                    {props.t(
-                      "Tags." + props.tagSelected.name,
-                      props.tagSelected.name
-                    )}
-                  </Title>
-                  {props.tagSelected.icon ? (
-                    <Streamline
-                      name={props.tagSelected.icon}
-                      stroke={"white"}
-                      width={22}
-                      height={22}
-                      marginLeft={10}
-                    />
-                  ) : null}
-                </>
-              )}
-            </TagSelected>
-          </APropostitle>
+          </AProposTitle>
+        )}
 
-          {props.principalThemeList
-            .concat(props.secondaryThemeList)
-            .map((item: any, index: number) => {
-              return (
-                //Display all dispositif about this tag as primary or secondary tag and this location
-                <DispositifsItem
-                  key={index}
-                  item={item}
-                  tagSelected={props.tagSelected}
-                  t={props.t}
-                  type="primary"
-                />
-              );
-            })}
-          <APropostitle>
-            {props.t("AdvancedSearch.Fiches pour", "Fiches pour")}
-            <City>{" toute la France"}</City>
-          </APropostitle>
-          <APropostitle>
-            {props.t("AdvancedSearch.avec le thème", "avec le thème")}
-          </APropostitle>
-
-          <TagSelected color={props.tagSelected?.darkColor}>
-            {props.tagSelected && (
-              <>
-                <Title>
-                  {props.t(
-                    "Tags." + props.tagSelected.name,
-                    props.tagSelected.name
-                  )}
-                </Title>
-                {props.tagSelected.icon ? (
-                  <Streamline
-                    name={props.tagSelected.icon}
-                    stroke={"white"}
-                    width={22}
-                    height={22}
-                    marginLeft={10}
-                  />
-                ) : null}
-              </>
-            )}
-          </TagSelected>
-          {props.principalThemeListFullFrance
-            .concat(props.secondaryThemeListFullFrance)
-            .map((item: any, index: number) => {
-              return (
-                //Display all dispositif about this tag as primary or secondary tag and all France as location
-                <DispositifsItem
-                  key={index}
-                  item={item}
-                  tagSelected={props.tagSelected}
-                  t={props.t}
-                  type="primary"
-                />
-              );
-            })}
-        </>
-      ) : (
-        //All others filters selected but not Tag
-        <>
-          {props.ville !== "" && (
-            <APropostitle>
-              {props.t("AdvancedSearch.Fiches pour", "Fiches pour")}
-              <City>{" " + props.ville}</City>
-            </APropostitle>
-          )}
-
-          {props.dispositifs.map((item: any, index: number) => {
-            return (
-              //Display all dispositif about this location
-              <DispositifsItem
-                key={index}
-                item={item}
-                tagSelected={props.tagSelected}
-                t={props.t}
-                type="secondary"
-              />
-            );
-          })}
-          {props.ville !== "" && (
-            <APropostitle>
-              {props.t("AdvancedSearch.Fiches pour", "Fiches pour")}
-              <City>{" toute la France"}</City>
-            </APropostitle>
-          )}
-          {props.dispositifsFullFrance.map((item: any, index: number) => {
-            return (
-              //Display all dispositif with all France as location
-              <DispositifsItem
-                key={index}
-                item={item}
-                tagSelected={props.tagSelected}
-                t={props.t}
-                type="primary"
-              />
-            );
-          })}
-        </>
-      )}
-    </div>
-  );
-};
+        {props.dispositifs.map((item: IDispositif, index: number) => {
+          return (
+            //Display all dispositif about this location
+            <FicheOnMobile key={index} item={item} t={props.t} />
+          );
+        })}
+        {props.ville !== "" && (
+          <AProposTitle>
+            {props.t("AdvancedSearch.Fiches valables", "Fiches valables")}
+            <City>
+              {props.t("AdvancedSearch.partout en France", "partout en France")}
+            </City>
+          </AProposTitle>
+        )}
+        {props.dispositifsFullFrance.map((item: IDispositif, index: number) => {
+          return (
+            //Display all dispositif with all France as location
+            <FicheOnMobile key={index} item={item} t={props.t} />
+          );
+        })}
+      </>
+    )}
+  </div>
+);

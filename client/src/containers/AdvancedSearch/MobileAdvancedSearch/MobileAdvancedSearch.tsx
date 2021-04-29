@@ -5,25 +5,25 @@ import { MobileSearchFilterModal } from "./MobileSearchFilterModal/MobileSearchF
 import { colors } from "../../../colors";
 import { LocalisationFilter } from "./LocalisationFilter/LocalisationFilter";
 import { SearchResultsDisplayedOnMobile } from "./SearchResultsDisplayedOnMobile/SearchResultsDisplayedOnMobile";
-import { Tag } from "../../../types/interface";
+import { Tag, IDispositif } from "../../../types/interface";
 import { SelectedFilter } from "./SelectedFilter/SelectedFilter";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
 interface Props {
+  nbFilteredResults: number;
   t: (a: string, b: string) => void;
   recherche: string[];
   addParamasInRechercher: () => void;
   queryDispositifs: () => void;
   desactiver: (index: number) => void;
   query: string;
-  principalThemeList: string[];
-  principalThemeListFullFrance: string[];
-  dispositifs: string[];
-  dispositifsFullFrance: string[];
-  secondaryThemeList: string[];
-  secondaryThemeListFullFrance: string[];
+  principalThemeList: IDispositif[];
+  principalThemeListFullFrance: IDispositif[];
+  dispositifs: IDispositif[];
+  dispositifsFullFrance: IDispositif[];
+  secondaryThemeList: IDispositif[];
+  secondaryThemeListFullFrance: IDispositif[];
   totalFicheCount: number;
-  countTotalResult: number;
 }
 
 const MainContainer = styled.div`
@@ -44,6 +44,8 @@ const SearchBoutton = styled.div`
       ? colors.grey
       : props.isUrlEmpty
       ? colors.vert
+      : props.tagSelected
+      ? props.tagSelected.darkColor
       : colors.bleuCharte};
   border-radius: 12px;
   align-items: center;
@@ -122,6 +124,7 @@ export const MobileAdvancedSearch = (props: Props) => {
       <SearchBoutton
         isDisabled={isSearchButtonDisabled}
         isUrlEmpty={isUrlEmpty}
+        tagSelected={tagSelected}
         onClick={() => {
           props.queryDispositifs();
         }}
@@ -138,7 +141,6 @@ export const MobileAdvancedSearch = (props: Props) => {
           size="large"
         />
         <SearchTitle>
-          {" "}
           {isUrlEmpty
             ? props.t("Rechercher", "Rechercher")
             : props.t(
@@ -150,7 +152,6 @@ export const MobileAdvancedSearch = (props: Props) => {
       {isUrlEmpty ? (
         <>
           <TextTitle>
-            {" "}
             {props.t("SearchItem.Je cherche à", "Je cherche à")}
           </TextTitle>
           <SelectedFilter
@@ -165,7 +166,6 @@ export const MobileAdvancedSearch = (props: Props) => {
           />
 
           <TextTitle>
-            {" "}
             {props.t("SearchItem.J'habite à", "J'habite à")}
           </TextTitle>
           {geoSearch || ville !== "" ? (
@@ -272,7 +272,7 @@ export const MobileAdvancedSearch = (props: Props) => {
           secondaryThemeListFullFrance={props.secondaryThemeListFullFrance}
           totalFicheCount={props.totalFicheCount}
           t={props.t}
-          countTotalResult={props.countTotalResult}
+          nbFilteredResults={props.nbFilteredResults}
         />
       )}
     </MainContainer>
