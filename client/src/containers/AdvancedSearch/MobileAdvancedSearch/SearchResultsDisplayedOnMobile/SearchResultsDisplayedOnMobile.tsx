@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { FicheOnMobile } from "./FicheOnMobile/FicheOnMobile";
 import { colors } from "../../../../colors";
 import Streamline from "assets/streamline";
+import { NavLink } from "react-router-dom";
 
 interface Props {
   tagSelected: null | Tag;
@@ -81,7 +82,11 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => (
           .concat(props.principalThemeListFullFrance)
           .map((item: IDispositif, index: number) => {
             //Display all dispositif about this tag as primary tag
-            return <FicheOnMobile key={index} item={item} t={props.t} />;
+            return (
+              <NavLink key={index} to={"/" + item.typeContenu + "/" + item._id}>
+                <FicheOnMobile item={item} t={props.t} />
+              </NavLink>
+            );
           })}
         <AProposTitle>
           {props.t(
@@ -114,7 +119,11 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => (
           .concat(props.secondaryThemeListFullFrance)
           .map((item: IDispositif, index: number) => {
             //Display all dispositif about this tag as secondary tag
-            return <FicheOnMobile key={index} item={item} t={props.t} />;
+            return (
+              <NavLink key={index} to={"/" + item.typeContenu + "/" + item._id}>
+                <FicheOnMobile item={item} t={props.t} />
+              </NavLink>
+            );
           })}
       </>
     ) : props.tagSelected && props.ville !== "" ? (
@@ -152,7 +161,9 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => (
           .map((item: IDispositif, index: number) => {
             return (
               //Display all dispositif about this tag as primary or secondary tag and this location
-              <FicheOnMobile key={index} item={item} t={props.t} />
+              <NavLink key={index} to={"/" + item.typeContenu + "/" + item._id}>
+                <FicheOnMobile item={item} t={props.t} />
+              </NavLink>
             );
           })}
         <AProposTitle>
@@ -189,7 +200,9 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => (
           .map((item: IDispositif, index: number) => {
             return (
               //Display all dispositif about this tag as primary or secondary tag and all France as location
-              <FicheOnMobile key={index} item={item} t={props.t} />
+              <NavLink key={index} to={"/" + item.typeContenu + "/" + item._id}>
+                <FicheOnMobile item={item} t={props.t} />
+              </NavLink>
             );
           })}
       </>
@@ -206,7 +219,9 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => (
         {props.dispositifs.map((item: IDispositif, index: number) => {
           return (
             //Display all dispositif about this location
-            <FicheOnMobile key={index} item={item} t={props.t} />
+            <NavLink key={index} to={"/" + item.typeContenu + "/" + item._id}>
+              <FicheOnMobile item={item} t={props.t} />
+            </NavLink>
           );
         })}
         {props.ville !== "" && (
@@ -220,7 +235,9 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => (
         {props.dispositifsFullFrance.map((item: IDispositif, index: number) => {
           return (
             //Display all dispositif with all France as location
-            <FicheOnMobile key={index} item={item} t={props.t} />
+            <NavLink key={index} to={"/" + item.typeContenu + "/" + item._id}>
+              <FicheOnMobile item={item} t={props.t} />
+            </NavLink>
           );
         })}
       </>

@@ -48,6 +48,7 @@ const PictoCircle = styled.div`
 `;
 
 export const FicheOnMobile = (props: Props) => {
+
   return (
     <div>
       {props.item.tags[0] && (
