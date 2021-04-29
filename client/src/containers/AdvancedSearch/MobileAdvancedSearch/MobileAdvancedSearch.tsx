@@ -146,6 +146,7 @@ export const MobileAdvancedSearch = (props: Props) => {
               setAgeSelected(
                 // @ts-ignore
                 children.filter(
+                  //toString
                   // eslint-disable-next-line eqeqeq
                   (filtre: any) => filtre.name == item.value
                 )[0]
