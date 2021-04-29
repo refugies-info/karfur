@@ -1,15 +1,19 @@
 {
-  "short_name": "Agi'R",
-  "name": "Un projet de la DIAIR",
+  "short_name": "Réfugiés.info",
+  "name": "Réfugiés.info",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "logo_icon_dark.svg",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo_icon_dark_512.svg",
+      "sizes": "512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "prefer_related_applications": true
 }
