@@ -482,7 +482,7 @@ export class AdvancedSearch extends Component {
         this.setState({ countTotal: dispositifs.length });
 
         if (query["tags.name"]) {
-          //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier
+          //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier, sinon trié par date de création
           dispositifs = dispositifs.sort((a, b) =>
             _.get(a, "tags.0.name", {}) === this.state.recherche[0].query
               ? -1
@@ -879,7 +879,7 @@ export class AdvancedSearch extends Component {
       ...(subitem.bottomValue && { bottomValue: subitem.bottomValue }),
       ...(subitem.topValue && { topValue: subitem.topValue }),
     };
-    this.setState({ recherche: recherche });
+    this.setState({ recherche });
   };
 
   selectParam = (key, subitem) => {
@@ -999,6 +999,7 @@ export class AdvancedSearch extends Component {
       ) || {};
     const langueCode =
       this.props.langues.length > 0 && current ? current.langueCode : "fr";
+
     return (
       <div className="animated fadeIn advanced-search">
         {isMobile ? (
@@ -1008,6 +1009,20 @@ export class AdvancedSearch extends Component {
             addParamasInRechercher={this.addParamasInRechercher}
             queryDispositifs={this.queryDispositifs}
             desactiver={this.deleteItemInSearch}
+            query={querySearch(this.props.location.search)}
+            dispositifs={this.state.dispositifs}
+            dispositifsFullFrance={this.state.dispositifsFullFrance}
+            principalThemeList={this.state.principalThemeList}
+            principalThemeListFullFrance={
+              this.state.principalThemeListFullFrance
+            }
+            secondaryThemeList={this.state.secondaryThemeList}
+            secondaryThemeListFullFrance={
+              this.state.secondaryThemeListFullFrance
+            }
+            totalFicheCount={this.props.dispositifs.length}
+            nbFilteredResults={this.state.countTotal}
+            history={this.props.history}
           />
         ) : (
           <>
