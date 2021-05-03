@@ -5,6 +5,7 @@ import { FicheOnMobile } from "./FicheOnMobile/FicheOnMobile";
 import { colors } from "../../../../colors";
 import Streamline from "assets/streamline";
 import { NavLink } from "react-router-dom";
+import NoResultPlaceholder from "../../NoResultPlaceholder";
 
 interface Props {
   tagSelected: null | Tag;
@@ -20,6 +21,7 @@ interface Props {
   totalFicheCount: number;
   t: (a: string, b: string) => void;
   nbFilteredResults: number;
+  history: any;
 }
 const TotalCountTitle = styled.div`
   font-weight: 700;
@@ -77,6 +79,10 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => (
         " " +
         props.t("AdvancedSearch.résultats", "résultats")}
     </TotalCountTitle>
+    {props.nbFilteredResults === 0 && props.ville === "" && (
+      //@ts-ignore
+      <NoResultPlaceholder restart={props.history.push} />
+    )}
     {props.tagSelected && props.ville === "" ? (
       //Tag selected and no location
       <>
