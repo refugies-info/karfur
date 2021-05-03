@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from "react";
 import { IDispositif } from "../../../../../types/interface";
 import styled from "styled-components";
@@ -50,7 +49,6 @@ const PictoCircle = styled.div`
 `;
 
 export const FicheOnMobile = (props: Props) => {
-  console.log("item");
   return (
     <div>
       {props.item.tags[0] && (
