@@ -1016,6 +1016,7 @@ export class AdvancedSearch extends Component {
             totalFicheCount={this.props.dispositifs.length}
             nbFilteredResults={this.state.countTotal}
             history={this.props.history}
+            isLoading={this.props.isLoading}
           />
         ) : (
           <>
@@ -1177,9 +1178,11 @@ export class AdvancedSearch extends Component {
                 ))}
                 <FilterTitle>
                   {" "}
-                  {this.state.countShow +
+                  {(this.props.isLoading ? ". " : this.state.countShow) +
                     "/" +
-                    this.props.dispositifs.length +
+                    (this.props.isLoading
+                      ? "."
+                      : this.props.dispositifs.length) +
                     " " +
                     t("AdvancedSearch.résultats", "résultats")}
                 </FilterTitle>
