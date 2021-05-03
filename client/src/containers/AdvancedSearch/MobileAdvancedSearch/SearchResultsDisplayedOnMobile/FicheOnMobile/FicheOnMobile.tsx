@@ -3,6 +3,7 @@ import { IDispositif } from "../../../../../types/interface";
 import styled from "styled-components";
 import { colors } from "../../../../../colors";
 import Streamline from "assets/streamline";
+import { filtres } from "../../../../Dispositif/data";
 
 interface Props {
   item: IDispositif;
@@ -48,7 +49,6 @@ const PictoCircle = styled.div`
 `;
 
 export const FicheOnMobile = (props: Props) => {
-
   return (
     <div>
       {props.item.tags[0] && (
@@ -69,7 +69,13 @@ export const FicheOnMobile = (props: Props) => {
 
           <PictoCircle color={props.item.tags[0].darkColor}>
             <Streamline
-              name={props.item.tags[0].icon}
+              name={
+                props.item.tags[0].icon
+                  ? props.item.tags[0].icon
+                  : filtres.tags.filter(
+                      (el) => el.short === props.item.tags[0].short
+                    )[0].icon
+              }
               stroke={"white"}
               width={22}
               height={22}
