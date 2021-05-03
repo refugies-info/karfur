@@ -33,6 +33,7 @@ interface Props {
   secondaryThemeListFullFrance: IDispositif[];
   totalFicheCount: number;
   history: any;
+  isLoading: boolean;
 }
 
 const MainContainer = styled.div`
@@ -328,6 +329,7 @@ export const MobileAdvancedSearch = (props: Props) => {
           totalFicheCount={props.totalFicheCount}
           t={props.t}
           nbFilteredResults={props.nbFilteredResults}
+          isLoading={props.isLoading}
         />
       )}
     </MainContainer>

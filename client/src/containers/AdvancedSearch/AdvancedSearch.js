@@ -35,6 +35,9 @@ import TagButton from "../../components/FigmaUI/TagButton/TagButton";
 import { BookmarkedModal } from "../../components/Modals/index";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import { isMobile } from "react-device-detect";
+import { filterContents } from "./filterContents";
+import { isLoadingSelector } from "../../services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "../../services/LoadingStatus/loadingStatus.actions";
 
 import "./AdvancedSearch.scss";
 import { colors } from "colors";
@@ -225,7 +228,6 @@ export class AdvancedSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showSpinner: false,
       recherche: initial_data.map((x) => ({ ...x, active: false })),
       dispositifs: [],
       pinned: [],
@@ -378,6 +380,10 @@ export class AdvancedSearch extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    if (prevProps.isLoading !== this.props.isLoading) {
+      this.queryDispositifs(null, this.props);
+    }
+
     if (prevProps.languei18nCode !== this.props.languei18nCode) {
       this.setState(
         {
@@ -403,7 +409,6 @@ export class AdvancedSearch extends Component {
   };
 
   queryDispositifs = (Nquery = null, props = this.props) => {
-    this.setState({ showSpinner: true });
     // if query from url parameters, delete all empty values
     if (Nquery) {
       Object.keys(Nquery).forEach((key) =>
@@ -468,141 +473,164 @@ export class AdvancedSearch extends Component {
     delete query.dep;
     delete query.city;
 
-    // back end call
-    API.getDispositifs({
-      query: {
-        ...query,
-        ...this.state.filter,
-        status: "Actif",
-      },
-      locale: props.languei18nCode,
-    })
-      .then((data_res) => {
-        let dispositifs = data_res.data.data;
-        this.setState({ countTotal: dispositifs.length });
+    const filteredDispositifs = filterContents(
+      this.props.dispositifs,
+      query,
+      this.state.filter
+    );
 
-        if (query["tags.name"]) {
-          //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier, sinon trié par date de création
-          dispositifs = dispositifs.sort((a, b) =>
-            _.get(a, "tags.0.name", {}) === this.state.recherche[0].query
-              ? -1
-              : _.get(b, "tags.0.name", {}) === this.state.recherche[0].query
-              ? 1
-              : 0
-          );
-        } else {
-          dispositifs = dispositifs.sort((a, b) => a.created_at - b.created_at);
-        }
+    let dispositifs = filteredDispositifs;
+    this.setState({ countTotal: dispositifs.length });
 
-        if (props.languei18nCode !== "fr" || this.state.filterLanguage !== "") {
-          var nonTranslated = dispositifs.filter((dispo) => {
-            if (
-              typeof dispo.avancement === "object" &&
-              dispo.avancement[
-                props.languei18nCode !== "fr"
-                  ? props.languei18nCode
-                  : this.state.filterLanguage.i18nCode
-              ]
-            ) {
-              return false;
-            }
-            return true;
-          });
-          this.setState({ nonTranslated });
-          dispositifs = dispositifs.filter((dispo) => {
-            if (
-              typeof dispo.avancement === "object" &&
-              dispo.avancement[
-                props.languei18nCode !== "fr"
-                  ? props.languei18nCode
-                  : this.state.filterLanguage.i18nCode
-              ]
-            ) {
-              return true;
-            }
-          });
-        }
-        let dispositifsFullFrance = [];
+    if (query["tags.name"]) {
+      //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier, sinon trié par date de création
+      dispositifs = dispositifs.sort((a, b) =>
+        _.get(a, "tags.0.name", {}) === this.state.recherche[0].query
+          ? -1
+          : _.get(b, "tags.0.name", {}) === this.state.recherche[0].query
+          ? 1
+          : 0
+      );
+    } else {
+      dispositifs = dispositifs.sort((a, b) => a.created_at - b.created_at);
+    }
+
+    if (props.languei18nCode !== "fr" || this.state.filterLanguage !== "") {
+      var nonTranslated = dispositifs.filter((dispo) => {
         if (
-          localisationSearch &&
-          localisationSearch.query[1] &&
-          localisationSearch.query[1].long_name
+          typeof dispo.avancement === "object" &&
+          dispo.avancement[
+            props.languei18nCode !== "fr"
+              ? props.languei18nCode
+              : this.state.filterLanguage.i18nCode
+          ]
         ) {
-          var index;
-          var i;
-          var dispositifsFrance = [];
-          var dispositifsVille = [];
-          var dispositifsEmpty = [];
-          this.setState({
-            filterVille: localisationSearch.query[0].long_name || "",
-          });
-          for (index = 0; index < dispositifs.length; index++) {
-            if (
-              dispositifs[index].contenu[1] &&
-              dispositifs[index].contenu[1].children &&
-              dispositifs[index].contenu[1].children.length > 0
-            ) {
-              var geolocInfocard = dispositifs[index].contenu[1].children.find(
-                (infocard) => infocard.title === "Zone d'action"
-              );
-              if (geolocInfocard && geolocInfocard.departments) {
-                for (i = 0; i < geolocInfocard.departments.length; i++) {
-                  if (
-                    geolocInfocard.departments[i] === "All" &&
-                    dispositifs[index].typeContenu === "dispositif"
-                  ) {
-                    dispositifsFrance.push(dispositifs[index]);
-                  } else if (
-                    geolocInfocard.departments[i].split(" - ")[1] ===
-                      localisationSearch.query[1].long_name ||
-                    geolocInfocard.departments[i].split(" - ")[1] ===
-                      localisationSearch.query[0].long_name ||
-                    dispositifs[index].typeContenu === "demarche"
-                  ) {
-                    dispositifsVille.push(dispositifs[index]);
-                  }
-                }
-              } else if (dispositifs[index].typeContenu === "dispositif") {
-                dispositifsEmpty.push(dispositifs[index]);
-              } else if (dispositifs[index].typeContenu === "demarche") {
+          return false;
+        }
+        return true;
+      });
+      this.setState({ nonTranslated });
+      dispositifs = dispositifs.filter((dispo) => {
+        if (
+          typeof dispo.avancement === "object" &&
+          dispo.avancement[
+            props.languei18nCode !== "fr"
+              ? props.languei18nCode
+              : this.state.filterLanguage.i18nCode
+          ]
+        ) {
+          return true;
+        }
+      });
+    }
+    let dispositifsFullFrance = [];
+    if (
+      localisationSearch &&
+      localisationSearch.query[1] &&
+      localisationSearch.query[1].long_name
+    ) {
+      var index;
+      var i;
+      var dispositifsFrance = [];
+      var dispositifsVille = [];
+      var dispositifsEmpty = [];
+      this.setState({
+        filterVille: localisationSearch.query[0].long_name || "",
+      });
+      for (index = 0; index < dispositifs.length; index++) {
+        if (
+          dispositifs[index].contenu[1] &&
+          dispositifs[index].contenu[1].children &&
+          dispositifs[index].contenu[1].children.length > 0
+        ) {
+          var geolocInfocard = dispositifs[index].contenu[1].children.find(
+            (infocard) => infocard.title === "Zone d'action"
+          );
+          if (geolocInfocard && geolocInfocard.departments) {
+            for (i = 0; i < geolocInfocard.departments.length; i++) {
+              if (
+                geolocInfocard.departments[i] === "All" &&
+                dispositifs[index].typeContenu === "dispositif"
+              ) {
+                dispositifsFrance.push(dispositifs[index]);
+              } else if (
+                geolocInfocard.departments[i].split(" - ")[1] ===
+                  localisationSearch.query[1].long_name ||
+                geolocInfocard.departments[i].split(" - ")[1] ===
+                  localisationSearch.query[0].long_name ||
+                dispositifs[index].typeContenu === "demarche"
+              ) {
                 dispositifsVille.push(dispositifs[index]);
               }
-            } else if (dispositifs[index].typeContenu === "dispositif") {
-              dispositifsEmpty.push(dispositifs[index]);
-            } else if (dispositifs[index].typeContenu === "demarche") {
-              dispositifsVille.push(dispositifs[index]);
             }
+          } else if (dispositifs[index].typeContenu === "dispositif") {
+            dispositifsEmpty.push(dispositifs[index]);
+          } else if (dispositifs[index].typeContenu === "demarche") {
+            dispositifsVille.push(dispositifs[index]);
           }
-          dispositifsFullFrance = dispositifsFrance.concat(dispositifsEmpty);
-
-          dispositifs = dispositifsVille;
-          this.setState({ dispositifsFullFrance });
+        } else if (dispositifs[index].typeContenu === "dispositif") {
+          dispositifsEmpty.push(dispositifs[index]);
+        } else if (dispositifs[index].typeContenu === "demarche") {
+          dispositifsVille.push(dispositifs[index]);
         }
-        dispositifs = dispositifs.map((x) => ({
-          ...x,
-          nbVues: x.nbVues || 0,
-        }));
+      }
+      dispositifsFullFrance = dispositifsFrance.concat(dispositifsEmpty);
 
-        if (this.state.activeTri === "Par thème") {
-          const themesObject = filtres.tags.map((tag) => {
-            return {
-              [tag.short]: dispositifs.filter((elem) => {
-                if (elem.tags[0]) {
-                  return elem.tags[0].short === tag.short;
-                }
-              }),
-            };
-          });
-          this.setState({ themesObject: themesObject });
+      dispositifs = dispositifsVille;
+      this.setState({ dispositifsFullFrance });
+    }
+    dispositifs = dispositifs.map((x) => ({
+      ...x,
+      nbVues: x.nbVues || 0,
+    }));
+
+    if (this.state.activeTri === "Par thème") {
+      const themesObject = filtres.tags.map((tag) => {
+        return {
+          [tag.short]: dispositifs.filter((elem) => {
+            if (elem.tags[0]) {
+              return elem.tags[0].short === tag.short;
+            }
+          }),
+        };
+      });
+      this.setState({ themesObject: themesObject });
+    }
+    if (this.state.recherche[0] && this.state.recherche[0].value) {
+      var principalThemeList = dispositifs.filter((elem) => {
+        if (elem.tags && elem.tags[0]) {
+          return elem.tags[0].short === this.state.recherche[0].short;
         }
-        if (this.state.recherche[0] && this.state.recherche[0].value) {
-          var principalThemeList = dispositifs.filter((elem) => {
+      });
+
+      var secondaryThemeList = dispositifs.filter((element) => {
+        if (element.tags && element.tags.length > 0) {
+          for (var index = 1; index < element.tags.length; index++) {
+            if (
+              index !== 0 &&
+              element.tags[index] &&
+              element.tags[index].short === this.state.recherche[0].short
+            )
+              return true;
+          }
+        }
+      });
+
+      this.setState({ principalThemeList, secondaryThemeList });
+      if (
+        localisationSearch &&
+        localisationSearch.query[1] &&
+        localisationSearch.query[1].long_name
+      ) {
+        var principalThemeListFullFrance = dispositifsFullFrance.filter(
+          (elem) => {
             if (elem.tags && elem.tags[0]) {
               return elem.tags[0].short === this.state.recherche[0].short;
             }
-          });
-
-          var secondaryThemeList = dispositifs.filter((element) => {
+          }
+        );
+        var secondaryThemeListFullFrance = dispositifsFullFrance.filter(
+          (element) => {
             if (element.tags && element.tags.length > 0) {
               for (var index = 1; index < element.tags.length; index++) {
                 if (
@@ -613,51 +641,18 @@ export class AdvancedSearch extends Component {
                   return true;
               }
             }
-          });
-
-          this.setState({ principalThemeList, secondaryThemeList });
-          if (
-            localisationSearch &&
-            localisationSearch.query[1] &&
-            localisationSearch.query[1].long_name
-          ) {
-            var principalThemeListFullFrance = dispositifsFullFrance.filter(
-              (elem) => {
-                if (elem.tags && elem.tags[0]) {
-                  return elem.tags[0].short === this.state.recherche[0].short;
-                }
-              }
-            );
-            var secondaryThemeListFullFrance = dispositifsFullFrance.filter(
-              (element) => {
-                if (element.tags && element.tags.length > 0) {
-                  for (var index = 1; index < element.tags.length; index++) {
-                    if (
-                      index !== 0 &&
-                      element.tags[index] &&
-                      element.tags[index].short ===
-                        this.state.recherche[0].short
-                    )
-                      return true;
-                  }
-                }
-              }
-            );
-            this.setState({
-              principalThemeListFullFrance,
-              secondaryThemeListFullFrance,
-            });
           }
-        }
+        );
         this.setState({
-          dispositifs: dispositifs,
-          showSpinner: false,
-          countShow: dispositifs.length,
+          principalThemeListFullFrance,
+          secondaryThemeListFullFrance,
         });
-      })
-      .catch(() => {
-        this.setState({ showSpinner: false });
-      });
+      }
+    }
+    this.setState({
+      dispositifs,
+      countShow: dispositifs.length,
+    });
   };
 
   selectTag = (tag = {}) => {
@@ -977,7 +972,6 @@ export class AdvancedSearch extends Component {
       recherche,
       dispositifs,
       pinned,
-      showSpinner,
       activeFiltre,
       activeTri,
       displayAll,
@@ -999,7 +993,6 @@ export class AdvancedSearch extends Component {
       ) || {};
     const langueCode =
       this.props.langues.length > 0 && current ? current.langueCode : "fr";
-
     return (
       <div className="animated fadeIn advanced-search">
         {isMobile ? (
@@ -1023,6 +1016,7 @@ export class AdvancedSearch extends Component {
             totalFicheCount={this.props.dispositifs.length}
             nbFilteredResults={this.state.countTotal}
             history={this.props.history}
+            isLoading={this.props.isLoading}
           />
         ) : (
           <>
@@ -1184,9 +1178,11 @@ export class AdvancedSearch extends Component {
                 ))}
                 <FilterTitle>
                   {" "}
-                  {this.state.countShow +
+                  {(this.props.isLoading ? ". " : this.state.countShow) +
                     "/" +
-                    this.props.dispositifs.length +
+                    (this.props.isLoading
+                      ? "."
+                      : this.props.dispositifs.length) +
                     " " +
                     t("AdvancedSearch.résultats", "résultats")}
                 </FilterTitle>
@@ -1201,7 +1197,7 @@ export class AdvancedSearch extends Component {
                 </FButton>
               </FilterBar>
             </div>
-            {!this.state.showSpinner ? (
+            {!this.props.isLoading ? (
               <div
                 className={
                   "search-wrapper " +
@@ -1911,7 +1907,7 @@ export class AdvancedSearch extends Component {
                               </div>
                             );
                           })}
-                          {!showSpinner &&
+                          {!this.props.isLoading &&
                             [...pinned, ...dispositifs].length === 0 && (
                               /*             <Col
                     xs="12"
@@ -2053,6 +2049,9 @@ const mapStateToProps = (state) => {
     languei18nCode: state.langue.languei18nCode,
     user: state.user.user,
     langues: state.langue.langues,
+    isLoading: isLoadingSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS)(
+      state
+    ),
   };
 };
 
