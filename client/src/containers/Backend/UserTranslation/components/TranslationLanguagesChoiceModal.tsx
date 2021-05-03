@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  FormGroup,
-  Col,
-  Input,
-  Label,
-  ModalFooter,
-} from "reactstrap";
+import { Modal } from "reactstrap";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { useSelector, useDispatch } from "react-redux";
 import { allLanguesSelector } from "../../../../services/Langue/langue.selectors";
@@ -20,11 +11,106 @@ import "./TranslationLanguagesChoiceModal.scss";
 import { saveUserActionCreator } from "../../../../services/User/user.actions";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
+import styled from "styled-components";
+import { colors } from "../../../../colors";
+import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 
+const Header = styled.div`
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 51px;
+  margin: 0px 50px 0px 50px;
+`;
+
+const SubTitle = styled.div`
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 45px 50px 15px 50px;
+`;
+
+const LangueItemContainer = styled.div`
+  background: ${(props) =>
+    props.isSelected ? colors.validation : colors.gris};
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  width: 180px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 20px;
+  margin: 5px;
+  justify-content: space-between;
+  cursor: pointer;
+  align-items: center;
+`;
+
+const LanguesContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0px 45px 0px 45px;
+`;
+
+const CheckBoxContainer = styled.div`
+  background: ${(props) =>
+    props.isSelected ? colors.validationDefault : colors.blancSimple};
+  border: ${(props) =>
+    props.isSelected
+      ? `1px solid ${colors.validationDefault}`
+      : `1px solid ${colors.noirCD}`};
+
+  box-sizing: border-box;
+  border-radius: 3px;
+  width: 20px;
+  height: 20px;
+  position: relative;
+`;
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0px 50px 0px 50px;
+  margin-top: 70px;
+`;
 interface Props extends RouteComponentProps {
   show: boolean;
   toggle: () => void;
 }
+
+const LangueItem = (props: {
+  langue: Language;
+  isSelected: boolean;
+  onClick: () => void;
+}) => (
+  <LangueItemContainer isSelected={props.isSelected} onClick={props.onClick}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+      }}
+    >
+      <div
+        style={{
+          marginRight: "10px",
+        }}
+      >
+        <i
+          title={props.langue.langueCode}
+          className={" flag-icon flag-icon-" + props.langue.langueCode}
+        />
+      </div>
+      {props.langue.langueFr}
+    </div>
+    <CheckBoxContainer isSelected={props.isSelected}>
+      <div style={{ position: "absolute", bottom: "-2px" }}>
+        <EVAIcon name="checkmark-outline" />
+      </div>
+    </CheckBoxContainer>
+  </LangueItemContainer>
+);
 
 const TranslationLanguagesChoiceModalComponent = (props: Props) => {
   const [selectedLangues, setSelectedLangues] = useState<UserLanguage[]>([]);
@@ -58,18 +144,38 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
         toggle={props.toggle}
         className="modal-traducteur"
       >
-        <ModalHeader toggle={props.toggle}>C'est parti !</ModalHeader>
-        <ModalBody>
-          <h5>Quelles sont vos langues de travail ?</h5>
+        <Header>Choix de vos langues</Header>
+        <SubTitle>Cochez les langues que vous souhaitez utiliser : </SubTitle>
+        <div style={{ marginRight: "50px", marginLeft: "50px" }}>
           <Skeleton count={3} />
-        </ModalBody>
-        <ModalFooter>
-          <FButton type="validate" name="checkmark-outline" disabled={true}>
-            Valider
+        </div>
+
+        <ButtonsContainer>
+          <FButton type="outline-black" name="refresh" disabled={true}>
+            Réinitialiser
           </FButton>
-        </ModalFooter>
+          <div>
+            <FButton
+              type="outline-black"
+              name="close-outline"
+              onClick={props.toggle}
+            >
+              Annuler
+            </FButton>
+            <FButton
+              type="validate"
+              name="checkmark-outline"
+              onClick={() => {}}
+              className="ml-10"
+              disabled={true}
+            >
+              Valider
+            </FButton>
+          </div>
+        </ButtonsContainer>
       </Modal>
     );
+
   const handleCheck = (langue: Language) => {
     const isLangueSelected = !!selectedLangues.find(
       (selectedLangue) => selectedLangue._id === langue._id
@@ -95,6 +201,8 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
     }
   };
 
+  const onReinitClick = () => setSelectedLangues([]);
+
   const dispatch = useDispatch();
 
   const onValidate = () => {
@@ -119,55 +227,54 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
       isOpen={props.show}
       toggle={props.toggle}
       className="modal-traducteur"
+      size="md"
     >
-      <ModalHeader toggle={props.toggle}>C'est parti !</ModalHeader>
-      <ModalBody>
-        <h5>Quelles sont vos langues de travail ?</h5>
-        <FormGroup row>
-          {(langues || [])
-            .filter(
-              // @ts-ignore
-              (langue) => langue.avancement > 0.8 && langue.i18nCode !== "fr"
-            )
-            .map((langue, key) => {
-              const isLangueChecked = !!selectedLangues.find(
+      <Header>Choix de vos langues</Header>
+      <SubTitle>Cochez les langues que vous souhaitez utiliser : </SubTitle>
+      <LanguesContainer>
+        {langues
+          .filter(
+            // @ts-ignore
+            (langue) => langue.avancement > 0.8 && langue.i18nCode !== "fr"
+          )
+          .map((langue) => {
+            const isLangueSelected =
+              selectedLangues.filter(
                 (selectedLangue) => selectedLangue._id === langue._id
-              );
-              return (
-                <Col lg="3" key={key}>
-                  <FormGroup check>
-                    <Input
-                      className="form-check-input langue"
-                      type="checkbox"
-                      // @ts-ignore
-                      id={langue._id}
-                      checked={isLangueChecked}
-                      onChange={() => handleCheck(langue)}
-                    />
-                    <Label
-                      check
-                      className="form-check-label"
-                      // @ts-ignore
-                      htmlFor={langue._id}
-                    >
-                      {langue.langueFr}
-                    </Label>
-                  </FormGroup>
-                </Col>
-              );
-            })}
-        </FormGroup>
-      </ModalBody>
-      <ModalFooter>
-        <FButton
-          type="validate"
-          name="checkmark-outline"
-          disabled={selectedLangues.length === 0}
-          onClick={onValidate}
-        >
-          Valider
+              ).length > 0;
+            return (
+              <LangueItem
+                langue={langue}
+                key={langue.i18nCode}
+                isSelected={isLangueSelected}
+                onClick={() => handleCheck(langue)}
+              />
+            );
+          })}
+      </LanguesContainer>
+      <ButtonsContainer>
+        <FButton type="outline-black" name="refresh" onClick={onReinitClick}>
+          Réinitialiser
         </FButton>
-      </ModalFooter>
+        <div>
+          <FButton
+            type="outline-black"
+            name="close-outline"
+            onClick={props.toggle}
+          >
+            Annuler
+          </FButton>
+          <FButton
+            type="validate"
+            name="checkmark-outline"
+            disabled={selectedLangues.length === 0}
+            onClick={onValidate}
+            className="ml-10"
+          >
+            Valider
+          </FButton>
+        </div>
+      </ButtonsContainer>
     </Modal>
   );
 };

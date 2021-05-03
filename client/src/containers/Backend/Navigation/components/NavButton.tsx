@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import { colors } from "../../../../colors";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 import { SelectedPage } from "../Navigation.component";
-
+import traductionIcon from "../../../../assets/icon_traduction.svg";
+import traductionIconBlanc from "../../../../assets/icon_traduction_blanc.svg";
+import "./NavButton.scss";
 const NavButtonContainer = styled.div`
   background: ${(props) => props.backgroundColor};
   border-radius: 12px;
@@ -16,8 +18,6 @@ const NavButtonContainer = styled.div`
   cursor: pointer;
   color: ${(props) => props.textColor};
   padding: 16px;
-
-  }
 `;
 interface NavButtonProps {
   title: string;
@@ -143,7 +143,22 @@ export const NavButton = (props: NavButtonProps) => {
       onMouseLeave={onMouseLeave}
       onClick={props.onClick}
     >
-      <EVAIcon name={name} fill={textColor} className={"mr-10"} />
+      {props.type !== "traductions" && (
+        <EVAIcon name={name} fill={textColor} className={"mr-10"} />
+      )}
+      {props.type === "traductions" &&
+        !props.isSelected &&
+        hoverType !== "traductions" && (
+          <img src={traductionIcon} alt="a" className={"icon-traduction"} />
+        )}
+      {props.type === "traductions" &&
+        (props.isSelected || hoverType === "traductions") && (
+          <img
+            src={traductionIconBlanc}
+            alt="a"
+            className={"icon-traduction"}
+          />
+        )}
       {getTitle(props.type, props.title, props.nbNewNotifications)}
     </NavButtonContainer>
   );
