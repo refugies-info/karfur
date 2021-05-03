@@ -59,6 +59,8 @@ describe("getDispositifArray", () => {
     status: 1,
     nbMots: 1,
     nbVues: 1,
+    audienceAge: 1,
+    niveauFrancais: 1,
   };
   it("should call Dispositif when query has no audience age", async () => {
     Dispositif.find = jest.fn().mockReturnValue({
