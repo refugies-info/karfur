@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import {
@@ -35,6 +37,9 @@ import TagButton from "../../components/FigmaUI/TagButton/TagButton";
 import { BookmarkedModal } from "../../components/Modals/index";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import { isMobile } from "react-device-detect";
+import { filterContents } from "./filterContents";
+import { isLoadingSelector } from "../../services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "../../services/LoadingStatus/loadingStatus.actions";
 
 import "./AdvancedSearch.scss";
 import { colors } from "colors";
@@ -467,6 +472,9 @@ export class AdvancedSearch extends Component {
     // delete localisation filter from the query before calling the back end
     delete query.dep;
     delete query.city;
+
+    const filteredDispositifs = filterContents(this.props.dispositifs, query);
+    console.log("AS filteredDispositifs", filteredDispositifs.length);
 
     // back end call
     API.getDispositifs({
@@ -999,7 +1007,6 @@ export class AdvancedSearch extends Component {
       ) || {};
     const langueCode =
       this.props.langues.length > 0 && current ? current.langueCode : "fr";
-
     return (
       <div className="animated fadeIn advanced-search">
         {isMobile ? (
@@ -2053,6 +2060,9 @@ const mapStateToProps = (state) => {
     languei18nCode: state.langue.languei18nCode,
     user: state.user.user,
     langues: state.langue.langues,
+    isLoading: isLoadingSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS)(
+      state
+    ),
   };
 };
 

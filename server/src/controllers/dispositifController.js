@@ -13,6 +13,7 @@ import { getUserContributions } from "../workflows/dispositif/getUserContributio
 import { getDispositifsWithTranslationAvancement } from "../workflows/dispositif/getDispositifsWithTranslationAvancement";
 import { exportFiches } from "../workflows/dispositif/exportFiches";
 import { addDispositif } from "../workflows/dispositif/addDispositif";
+// import { fixAudienceAgeOnContents } from "../workflows/dispositif/fixAudienceAgeOnContents";
 
 module.exports = function (app) {
   app.post("/addDispositif", checkToken.check, addDispositif);
@@ -53,4 +54,5 @@ module.exports = function (app) {
     getDispositifsWithTranslationAvancement
   );
   app.post("/exportFiches", exportFiches);
+  // app.post("/fixAudienceAgeOnContents", fixAudienceAgeOnContents);
 };
