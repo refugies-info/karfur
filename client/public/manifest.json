@@ -3,9 +3,14 @@
   "name": "Réfugiés.info",
   "icons": [
     {
-      "src": "favicon-2.ico",
-      "sizes": "64x64",
-      "type": "image/x-icon"
+      "src": "logo_icon_dark.svg",
+      "sizes": "192x192",
+      "type": "image/svg"
+    },
+    {
+      "src": "logo_icon_dark_512.svg",
+      "sizes": "512x512",
+      "type": "image/svg"
     }
   ],
   "start_url": ".",
