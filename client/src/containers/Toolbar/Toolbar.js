@@ -235,56 +235,58 @@ export class Toolbar extends React.Component {
             </button>
           )}
 
-          {API.isAuth() ? (
-            <NavLink
-              className="user-picture-link"
-              to={{
-                pathname: pathName,
-              }}
-            >
-              {membreStruct &&
-              nbNewNotifications > 0 &&
-              this.props.userStructure ? (
-                <div className="overlay">
-                  <img
-                    src={userImg}
-                    className="user-picture-with-overlay"
-                    alt="user"
-                  />
-                  <div class="middle">{nbNewNotifications}</div>
-                </div>
-              ) : (
-                <img src={userImg} className="user-picture" alt="user" />
-              )}
-            </NavLink>
-          ) : (
-            <>
+          {!isMobile ? (
+            API.isAuth() ? (
               <NavLink
+                className="user-picture-link"
                 to={{
-                  pathname: "/register",
+                  pathname: pathName,
                 }}
               >
-                <FButton
-                  type="signup"
-                  name={"person-add-outline"}
-                  className="mr-10"
-                  onClick={() => logger.info("Click on Inscription")}
+                {membreStruct &&
+                nbNewNotifications > 0 &&
+                this.props.userStructure ? (
+                  <div className="overlay">
+                    <img
+                      src={userImg}
+                      className="user-picture-with-overlay"
+                      alt="user"
+                    />
+                    <div class="middle">{nbNewNotifications}</div>
+                  </div>
+                ) : (
+                  <img src={userImg} className="user-picture" alt="user" />
+                )}
+              </NavLink>
+            ) : (
+              <>
+                <NavLink
+                  to={{
+                    pathname: "/register",
+                  }}
                 >
-                  {windowWidth >= breakpoints.tabletUp &&
-                    t("Toolbar.Inscription", "Inscription")}
-                </FButton>
-              </NavLink>
-              <NavLink
-                to={{
-                  pathname: "/login",
-                }}
-              >
-                <FButton type="login" name={"log-in-outline"}>
-                  {t("Toolbar.Connexion", "Connexion")}
-                </FButton>
-              </NavLink>
-            </>
-          )}
+                  <FButton
+                    type="signup"
+                    name={"person-add-outline"}
+                    className="mr-10"
+                    onClick={() => logger.info("Click on Inscription")}
+                  >
+                    {windowWidth >= breakpoints.tabletUp &&
+                      t("Toolbar.Inscription", "Inscription")}
+                  </FButton>
+                </NavLink>
+                <NavLink
+                  to={{
+                    pathname: "/login",
+                  }}
+                >
+                  <FButton type="login" name={"log-in-outline"}>
+                    {t("Toolbar.Connexion", "Connexion")}
+                  </FButton>
+                </NavLink>
+              </>
+            )
+          ) : null}
         </div>
       </header>
     );

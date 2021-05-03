@@ -10,6 +10,8 @@ import {
 } from "../../../services/Tts/tts.actions";
 import "./AudioBtn.scss";
 import { colors } from "colors";
+import { isMobile } from "react-device-detect";
+
 class AudioBtn extends Component {
   toggleAudio = () => {
     this.props.toggleAudio();
@@ -34,9 +36,11 @@ class AudioBtn extends Component {
               className="ml-15"
             />
           )}
-          <div className="ecouter-text">
-            {this.props.t("Écouter", "Écouter")}
-          </div>
+          {!isMobile && (
+            <div className="ecouter-text">
+              {this.props.t("Écouter", "Écouter")}
+            </div>
+          )}
         </div>
       );
     }

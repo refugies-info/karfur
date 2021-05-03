@@ -1,7 +1,8 @@
 import React from "react";
+import { isMobile } from "react-device-detect";
 import { NavLink } from "react-router-dom";
 
-import { logoRI, beta } from "../../assets/figma";
+import { logoRI, beta, logo_mobile } from "../../assets/figma";
 
 import "./Logo.scss";
 
@@ -14,6 +15,18 @@ const logo = (props) => {
       </NavLink>
     );
   }
+  if (isMobile) {
+    return (
+      <NavLink to="/" className="logo mr-10">
+        <img
+          src={logo_mobile}
+          className="logo_webmobile"
+          alt="logo refugies-info-mobile"
+        />
+      </NavLink>
+    );
+  }
+
   return (
     <NavLink to="/" className="logo mr-10">
       <img src={logoRI} className="logo-img" alt="logo refugies-info" />
