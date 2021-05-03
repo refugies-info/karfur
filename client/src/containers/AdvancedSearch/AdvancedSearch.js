@@ -473,7 +473,11 @@ export class AdvancedSearch extends Component {
     delete query.dep;
     delete query.city;
 
-    const filteredDispositifs = filterContents(this.props.dispositifs, query);
+    const filteredDispositifs = filterContents(
+      this.props.dispositifs,
+      query,
+      this.state.filter
+    );
     console.log("AS filteredDispositifs", filteredDispositifs.length);
 
     // back end call

@@ -1,3 +1,5 @@
+import { filtres_contenu } from "./data";
+
 const filterContentsByTheme = (contents, tagFilter) => {
   if (!tagFilter) {
     return contents;
@@ -53,7 +55,24 @@ const filterContentsByFrenchLevel = (contents, frenchLevelFilter) => {
     return true;
   });
 };
-export const filterContents = (contents, query) => {
+
+const filterContentsByType = (contents, typeContenuFilter) => {
+  if (!typeContenuFilter) return contents;
+
+  const isDemarcheSelected = typeContenuFilter === filtres_contenu[1].query;
+  const isDispositifSelected = typeContenuFilter === filtres_contenu[0].query;
+
+  if (isDemarcheSelected) {
+    return contents.filter((content) => content.typeContenu === "demarche");
+  }
+
+  if (isDispositifSelected) {
+    return contents.filter((content) => content.typeContenu === "dispositif");
+  }
+
+  return contents;
+};
+export const filterContents = (contents, query, filter) => {
   if (!query) return contents;
   const tagFilter = query["tags.name"];
   const contentsFilteredByTheme = filterContentsByTheme(contents, tagFilter);
@@ -77,5 +96,10 @@ export const filterContents = (contents, query) => {
     frenchLevelFilter
   );
 
-  return contentsFilteredByFrenchLevel;
+  const contentsFilterByType = filterContentsByType(
+    contentsFilteredByFrenchLevel,
+    filter
+  );
+
+  return contentsFilterByType;
 };
