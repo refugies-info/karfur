@@ -209,16 +209,11 @@ exports[`user translation should redirect if user has language but not langue in
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -289,16 +284,11 @@ exports[`user translation should redirect if user has language but not langue in
             className="figma-btn dark mr-10"
             onClick={[Function]}
           >
-            <span
-              className="mr-10"
-            >
-              <i
-                data-eva="play-circle"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
-              />
-            </span>
+            <img
+              alt="a"
+              className="icon-traduction"
+              src={Object {}}
+            />
             Commencer à traduire
           </button>
           <button
@@ -533,16 +523,11 @@ exports[`user translation should redirect if user has no language but langue in 
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -613,16 +598,11 @@ exports[`user translation should redirect if user has no language but langue in 
             className="figma-btn dark mr-10"
             onClick={[Function]}
           >
-            <span
-              className="mr-10"
-            >
-              <i
-                data-eva="play-circle"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
-              />
-            </span>
+            <img
+              alt="a"
+              className="icon-traduction"
+              src={Object {}}
+            />
             Commencer à traduire
           </button>
           <button
@@ -1184,16 +1164,11 @@ exports[`user translation should render correctly with expert, admin 1`] = `
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -2220,16 +2195,11 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -3166,16 +3136,11 @@ exports[`user translation should render correctly with non expert, non admin 1`]
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -3987,16 +3952,11 @@ exports[`user translation should return loader langue in url = first selected la
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div

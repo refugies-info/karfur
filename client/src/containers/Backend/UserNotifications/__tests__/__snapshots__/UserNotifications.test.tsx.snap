@@ -141,16 +141,11 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -370,16 +365,11 @@ exports[`UserNotifications should render correctly when loading 1`] = `
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -746,16 +736,11 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
