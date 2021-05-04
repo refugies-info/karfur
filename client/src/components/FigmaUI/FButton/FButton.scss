@@ -402,7 +402,7 @@ body .figma-btn {
     background: $erreur;
     color: $error;
     svg {
-      fill: $error;
+      fill: $blancSimple;
     }
     &:hover {
       background: $error;
@@ -413,6 +413,13 @@ body .figma-btn {
     }
     &:not(:disabled):not(.disabled):active {
       background: $erreur;
+    }
+    &.footer-btn {
+      background-color: #2d9cdb;
+      color: $blancSimple;
+      &:hover {
+        background-color: $error;
+      }
     }
   }
 

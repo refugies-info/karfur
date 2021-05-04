@@ -201,6 +201,7 @@
   },
   "CommentContribuer": {
     "Comment contribuer": "Comment contribuer ?",
+    "Participer / Contribuer": "Participer / Contribuer",
     "écrire": "écrire",
     "traduire": "traduire",
     "corriger": "corriger",
@@ -563,7 +564,7 @@
     "Le projet": "Le projet",
 
     "Vous cherchez ?": "Vous cherchez ?",
-    "Centre d'aide": "Support et centre d'aide"
+    "Centre d'aide": "Consulter le centre d'aide"
   },
   "Retour à la recherche": "Retour à la recherche",
   "ou": "ou",
@@ -606,7 +607,7 @@
   "Accessibilité": "Accessibilité",
   "Politique de confidentialité": "Politique de confidentialité",
   "Mentions légales": "Mentions légales",
-  "Dispositif d'accompagnement": "Rechercher de l'information",
+  "Dispositif d'accompagnement": "Chercher de l'information",
   "Démarche administrative": "Contacter l'équipe",
   "Parcours personnalisé": "Créer un parcours d'intégration",
   "Suivant": "Suivant",
