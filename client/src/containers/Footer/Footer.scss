@@ -1,36 +1,45 @@
-@import 'src/scss/colors.scss';
-@import 'src/scss/global.scss';
+@import "src/scss/colors.scss";
+@import "src/scss/global.scss";
 
-.footer{
+.footer {
   background: $noir;
-  padding: 60px 120px;
-  color: #FFFFFF;
-  @include media-max("tablet-up") { padding: 60px 60px; }
-  @include media-max("phone-down") { padding: 60px 30px; }
-  .footer-header{
+  padding: 60px 60px;
+  color: #ffffff;
+  @include media-max("tablet-up") {
+    padding: 60px 60px;
+  }
+  @include media-max("phone-down") {
+    padding: 30px 30px;
+  }
+  .presentation {
+    min-width: 390px;
+  }
+  .footer-header {
     line-height: 32px;
+    font-size: 22px;
   }
 
-  .ligne-footer{
+  .ligne-footer {
     margin-top: 20px;
   }
-  .lien-footer{
+  .lien-footer {
     margin-top: 25px;
-    &:first-child{
+    &:first-child {
       margin-top: 0px;
     }
-    &:hover{
+    &:hover {
       font-weight: bold;
+      cursor: pointer;
     }
   }
-  .lien-footer-disabled{
+  .lien-footer-disabled {
     margin-top: 25px;
     color: #828282;
-    &:first-child{
+    &:first-child {
       margin-top: 40px;
     }
   }
-  .form-group{
+  .form-group {
     margin: 10px 0 0 0;
   }
 
@@ -57,7 +66,7 @@
     color: $placeholderColor;
   }
 
-  .form-control{
+  .form-control {
     border-radius: 12px;
     border: none;
     color: $noir;
@@ -65,22 +74,33 @@
     height: 3.75em;
     padding-right: 35px;
 
-    .placeholder{
-      &:hover{background: $gris;}
-      &:focus::-webkit-input-placeholder {color:transparent;}
-      &:focus:-moz-placeholder {color:transparent;}
-      &:focus{box-shadow: none;}
+    .placeholder {
+      &:hover {
+        background: $gris;
+      }
+      &:focus::-webkit-input-placeholder {
+        color: transparent;
+      }
+      &:focus:-moz-placeholder {
+        color: transparent;
+      }
+      &:focus {
+        box-shadow: none;
+      }
     }
   }
-  .footer-btn{
+  .footer-btn {
     display: block;
     min-height: 60px;
     max-width: 100%;
     padding: 10px 20px;
     line-height: 38px;
     white-space: initial;
+    @include media-max("phone-down") {
+      width: auto;
+    }
   }
-  .icon-append{
+  .icon-append {
     position: absolute;
     z-index: 10;
     top: 50%;
@@ -89,24 +109,21 @@
     outline: none;
     cursor: pointer;
   }
-  .right-col{
-    display: flex; 
+  .right-col {
+    display: flex;
     flex-direction: column;
 
-    .social-custom-buttons-row{
+    .social-custom-buttons-row {
       margin-top: 40px;
     }
 
-    .main-row{
+    .main-row {
       flex: 1 1;
 
-    .footer-header h5{
-      margin-bottom: 1rem;
-      line-height: 50px !important;
+      .footer-header h5 {
+        margin-bottom: 1rem;
+        line-height: 50px !important;
+      }
     }
-    }
-  }
-  .negative-margin{
-    margin-top:-10px;
   }
 }
