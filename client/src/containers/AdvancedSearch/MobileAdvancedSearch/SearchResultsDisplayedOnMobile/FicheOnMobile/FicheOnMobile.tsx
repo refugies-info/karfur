@@ -8,6 +8,7 @@ import { filtres } from "../../../../Dispositif/data";
 interface Props {
   item: IDispositif;
   t: (a: string, b: string) => void;
+  history: any;
 }
 
 const ItemContainer = styled.div`
@@ -49,6 +50,15 @@ const PictoCircle = styled.div`
 `;
 
 export const FicheOnMobile = (props: Props) => {
+  const navigateToContent = () => {
+    return props.history.push({
+      pathname:
+        "/" +
+        (props.item.typeContenu || "dispositif") +
+        (props.item._id ? "/" + props.item._id : ""),
+      state: { previousRoute: "advanced-search" },
+    });
+  };
   return (
     <div>
       {props.item.tags[0] && (
@@ -56,6 +66,7 @@ export const FicheOnMobile = (props: Props) => {
           darkColor={props.item.tags[0].darkColor}
           typeContenu={props.item.typeContenu}
           lightColor={props.item.tags[0].lightColor}
+          onClick={navigateToContent}
         >
           <TitleText color={props.item.tags[0].darkColor}>
             {props.item.titreInformatif}
