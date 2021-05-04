@@ -741,35 +741,32 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
         </b>
          assurez-vous que la personne que vous souhaitez ajouter a déjà créé un compte sur réfugiés.info.
       </div>
-      <div
-        className="md-form form-sm form-2 pl-0 search-bar inner-addon right-addon isArray"
-      >
+      <div>
         <div
-          aria-expanded={false}
-          aria-haspopup="listbox"
-          aria-owns="react-autowhatever-1"
-          className="react-autosuggest__container"
-          role="combobox"
+          className="mb-10 figma-input-group input-group"
         >
           <input
-            aria-activedescendant={null}
-            aria-autocomplete="list"
-            aria-controls="react-autowhatever-1"
-            autoComplete="off"
-            className="react-autosuggest__input"
-            onBlur={[Function]}
+            autoFocus={true}
+            className="  new-size form-control"
+            id="value"
             onChange={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
             type="text"
             value=""
           />
           <div
-            className="react-autosuggest__suggestions-container"
-            id="react-autowhatever-1"
-            role="listbox"
-          />
+            className="icon-append input-group-append"
+          >
+            <span>
+              <i
+                data-eva="search-outline"
+                data-eva-fill="#212121"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+          </div>
         </div>
+        
       </div>
       <div
         className="c22"
