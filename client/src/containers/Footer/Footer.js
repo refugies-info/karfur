@@ -10,18 +10,18 @@ import { isMobile } from "react-device-detect";
 const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap: ${!isMobile ? "no-wrap" : "wrap"};
+  flex-wrap: ${isMobile ? "wrap" : "no-wrap"};
 `;
 
 const ColumnContainer = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap: ${!isMobile ? "no-wrap" : "wrap"};
+  flex-wrap: ${isMobile ? "wrap" : "no-wrap"};
 `;
 
 const TextContainer = styled.div`
   display: flex;
-  width: ${!isMobile ? "400px" : ""};
+  width: ${isMobile ? "" : "400px"};
   margin-right: 20px;
 `;
 
@@ -38,13 +38,12 @@ const LinkContainer = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: ${!isMobile ? "40px" : ""};
+  margin-left: ${isMobile ? "" : "40px"};
   margin-top: ${isMobile ? "30px" : ""};
 `;
 
 import "./Footer.scss";
 import { colors } from "colors";
-// //import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 
 export class Footer extends Component {
@@ -150,7 +149,11 @@ export class Footer extends Component {
                 </div>
               )}
               <div className="lien-footer">
-                <a href="https://avec.refugies.info/">
+                <a
+                  href="https://avec.refugies.info/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {t(
                     "QuiSommesNous.réseau",
                     "Rejoindre le réseau des contributeurs"
@@ -195,7 +198,7 @@ export class Footer extends Component {
                 rel="noopener noreferrer"
                 className="footer-btn"
                 type="light-action"
-                name="email"
+                name="email-outline"
                 fill={colors.noir}
               >
                 {t(

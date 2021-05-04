@@ -402,7 +402,7 @@ body .figma-btn {
     background: $erreur;
     color: $error;
     svg {
-      fill: $blancSimple;
+      fill: $error;
     }
     &:hover {
       background: $error;
@@ -415,6 +415,9 @@ body .figma-btn {
       background: $erreur;
     }
     &.footer-btn {
+      svg {
+        fill: $blancSimple;
+      }
       background-color: #2d9cdb;
       color: $blancSimple;
       &:hover {
