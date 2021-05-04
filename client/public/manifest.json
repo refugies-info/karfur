@@ -5,12 +5,13 @@
     {
       "src": "logo_icon_dark.svg",
       "sizes": "192x192",
-      "type": "image/svg"
+      "type": "image/svg",
+      "purpose": "any"
     },
     {
-      "src": "logo_icon_dark_512.svg",
+      "src": "logo_icon_dark_512.png",
       "sizes": "512x512",
-      "type": "image/svg"
+      "type": "image/png"
     }
   ],
   "start_url": ".",
