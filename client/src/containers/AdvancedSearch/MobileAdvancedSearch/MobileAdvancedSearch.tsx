@@ -330,6 +330,7 @@ export const MobileAdvancedSearch = (props: Props) => {
           t={props.t}
           nbFilteredResults={props.nbFilteredResults}
           isLoading={props.isLoading}
+          history={props.history}
         />
       )}
     </MainContainer>

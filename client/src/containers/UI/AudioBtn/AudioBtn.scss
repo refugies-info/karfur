@@ -14,12 +14,20 @@
   user-select: none;
   transition: all 0.2s ease;
   display: flex;
-  justify-content: center;
+  @include media-min("tablet-up") {
+    justify-content: center;
+  }
+
   align-items: center;
   margin-top: auto;
   margin-bottom: auto;
+  min-width: 50px;
   @include media-max("phone-down") {
     margin-right: 5px;
+  }
+  @include media-max("tablet-up") {
+    height: 50px;
+    margin-right: 8px;
   }
 
   .ecouter-text {

@@ -6,6 +6,7 @@ import { colors } from "../../../../colors";
 import Streamline from "assets/streamline";
 import { NavLink } from "react-router-dom";
 import { LoadingFicheOnMobile } from "./LoadingFicheOnMobile";
+import NoResultPlaceholder from "../../NoResultPlaceholder";
 
 interface Props {
   tagSelected: null | Tag;
@@ -22,6 +23,7 @@ interface Props {
   t: (a: string, b: string) => void;
   nbFilteredResults: number;
   isLoading: boolean;
+  history: any;
 }
 const TotalCountTitle = styled.div`
   font-weight: 700;
@@ -91,6 +93,11 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
           props.t("AdvancedSearch.résultats", "résultats")}
       </TotalCountTitle>
 
+      {props.nbFilteredResults === 0 && props.ville === "" && (
+        //@ts-ignore
+        <NoResultPlaceholder restart={props.history.push} />
+      )}
+
       {props.tagSelected && props.ville === "" ? (
         //Tag selected and no location
         <>
@@ -155,6 +162,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
             {props.nbFilteredResults > 0
               ? props.t("AdvancedSearch.Fiches pour", "Fiches pour")
               : props.t("AdvancedSearch.0 fiches pour", "0 fiches pour")}
+
             <City>{" " + props.ville}</City>
             {props.t("AdvancedSearch.avec le thème", "avec le thème")}
             <TagSelected color={props.tagSelected.darkColor}>
