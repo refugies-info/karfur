@@ -10,10 +10,10 @@ import { fetchAllUsersActionsCreator } from "../../../../services/AllUsers/allUs
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
 import { activeUsersSelector } from "../../../../services/AllUsers/allUsers.selector";
-import { SearchBar } from "containers/UI/SearchBar/SearchBar";
 import { SimplifiedUser } from "../../../../types/interface";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { ObjectId } from "mongodb";
+import { CustomUserSearchBar } from "../../../UI/CustomUserSearchBar/CustomUserSearchBar";
 
 const Title = styled.div`
   font-weight: normal;
@@ -41,17 +41,6 @@ const InformationContainer = styled.div`
   margin-bottom: 15px;
 `;
 
-const ModifyLink = styled.div`
-  font-weight: bold;
-  margin-top: 12px;
-  cursor: pointer;
-`;
-const SelectedUser = styled.div`
-  background: ${colors.blancSimple};
-  width: 100%;
-  padding: 8px;
-  border-radius: 12px;
-`;
 interface Props {
   show: boolean;
   toggle: () => void;
@@ -61,7 +50,7 @@ interface Props {
 export const AddMemberModal = (props: Props) => {
   const [selectedUser, setSelectedUser] = useState<SimplifiedUser | null>(null);
 
-  const onSelectItem = (data: SimplifiedUser) => setSelectedUser(data);
+  const onSelectItem = (data: SimplifiedUser | null) => setSelectedUser(data);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -91,24 +80,15 @@ export const AddMemberModal = (props: Props) => {
           <Skeleton count={1} height={50} />
         </SkeletonTheme>
       )}
-      {!isLoading && !selectedUser && (
-        <SearchBar
-          isArray
-          users
-          className="search-bar inner-addon right-addon"
-          placeholder="Rechercher un utilisateur"
-          array={activeUsers}
-          selectItem={onSelectItem}
+
+      {!isLoading && (
+        <CustomUserSearchBar
+          dataArray={activeUsers}
+          onSelectItem={onSelectItem}
+          selectedItemId={selectedUser ? selectedUser._id : null}
         />
       )}
-      {!isLoading && selectedUser && (
-        <div>
-          <SelectedUser>{selectedUser.username}</SelectedUser>
-          <ModifyLink onClick={() => setSelectedUser(null)}>
-            <u>Modifier</u>
-          </ModifyLink>
-        </div>
-      )}
+
       <RowContainer>
         <FButton
           type="outline-black"
