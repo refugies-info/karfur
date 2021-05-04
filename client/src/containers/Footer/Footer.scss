@@ -96,7 +96,9 @@
     padding: 10px 20px;
     line-height: 38px;
     white-space: initial;
-    width: auto;
+    @include media-max("phone-down") {
+      width: auto;
+    }
   }
   .icon-append {
     position: absolute;
