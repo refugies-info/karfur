@@ -203,7 +203,7 @@ export class Footer extends Component {
               >
                 {t(
                   "Footer.Je m'abonne à la newsletter",
-                  "S'inscrire à la lettre d'information"
+                  "S'inscrire à la newsletter"
                 )}
               </FButton>
             </div>
