@@ -414,6 +414,16 @@ body .figma-btn {
     &:not(:disabled):not(.disabled):active {
       background: $erreur;
     }
+    &.footer-btn {
+      svg {
+        fill: $blancSimple;
+      }
+      background-color: #2d9cdb;
+      color: $blancSimple;
+      &:hover {
+        background-color: $error;
+      }
+    }
   }
 
   // Ici on précise le comportement des icônes avec svg et fill
