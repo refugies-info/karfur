@@ -1,52 +1,12 @@
-.modal-traducteur .modal-content {
-  box-shadow: 0px 0px 40px #3c3434;
-  border: 1px solid #f2f2f2;
-  box-sizing: border-box;
-  border-radius: 8px;
-  background: #fbfbfb;
-  color: #3d3d3d;
-  border: none;
-
-  .modal-header {
-    padding: 40px 40px 20px 40px;
+.modal-traducteur {
+  .modal-content {
+    box-shadow: 0px 0px 40px #3c3434;
+    border: 1px solid #f2f2f2;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background: #fbfbfb;
+    color: #3d3d3d;
     border: none;
-    .modal-title {
-      font-size: 40px;
-      line-height: 51px;
-    }
-    .close {
-      outline: none;
-    }
-  }
-  .modal-body {
-    padding: 20px 40px;
-    .col-xl {
-      margin-bottom: 10px;
-    }
-
-    input {
-      border: 1px solid #ecebed;
-      border-radius: 12px;
-      padding: 20px;
-    }
-    .draggable-list {
-      max-width: 100%;
-      div {
-        max-width: 100%;
-        cursor: default;
-      }
-    }
-  }
-  .modal-footer {
-    border: none;
-    padding: 20px;
-
-    .btn {
-      background: #ffffff;
-      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
-      color: #3d3d3d;
-      padding: 20px;
-    }
+    padding: 50px 0px 50px 0px;
   }
 }

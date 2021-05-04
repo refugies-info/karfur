@@ -11,7 +11,7 @@ import {
 } from "../../../libs/checkAuthorizations";
 import { updateTraductions } from "../../../modules/traductions/updateTraductions";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
-import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
+import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
 import { updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
@@ -43,7 +43,7 @@ jest.mock("../../../controllers/miscellaneous/airtable", () => ({
   addOrUpdateDispositifInContenusAirtable: jest.fn(),
 }));
 
-jest.mock("../../../controllers/langues/langues.service", () => ({
+jest.mock("../../../modules/langues/langues.service", () => ({
   updateLanguagesAvancement: jest.fn(),
 }));
 

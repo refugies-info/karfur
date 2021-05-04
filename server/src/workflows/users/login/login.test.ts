@@ -171,4 +171,23 @@ describe("login", () => {
       text: "Authentification réussi",
     });
   });
+
+  it("should return 405 if user is Exclu", async () => {
+    const user = {
+      status: "Exclu",
+    };
+    getUserByUsernameFromDB.mockResolvedValueOnce(user);
+
+    await login({ ...req, roles: [{ nom: "Admin", _id: "id_admin" }] }, res);
+
+    expect(getUserByUsernameFromDB).toHaveBeenCalledWith("test");
+    expect(getRoleByName).not.toHaveBeenCalled();
+    expect(register).not.toHaveBeenCalled();
+    expect(adminLogin).not.toHaveBeenCalled();
+    expect(proceedWithLogin).not.toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(405);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "Utilisateur supprimé",
+    });
+  });
 });

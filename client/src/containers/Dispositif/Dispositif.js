@@ -950,9 +950,12 @@ export class Dispositif extends Component {
     prevState[key].children = prevState[key].children.filter(
       (_, index) => index !== subkey
     );
-    this.setState({
-      menu: prevState,
-    });
+    this.setState(
+      {
+        menu: prevState,
+      },
+      () => this.setColors()
+    );
   };
 
   toggleModal = (show, name) => {

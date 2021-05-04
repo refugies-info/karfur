@@ -1,0 +1,1 @@
+export { sendAdminImprovementsMail } from "./sendAdminImprovementsMail";

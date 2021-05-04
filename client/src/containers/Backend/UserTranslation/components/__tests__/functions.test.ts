@@ -177,21 +177,12 @@ describe("sortData", () => {
   });
 
   it("should sort data", () => {
-    const result = sortData(data, {
+    const result = sortData([data1, data4], {
       name: "typeContenu",
       order: "typeContenu",
       sens: "down",
     });
-    expect(result).toEqual([
-      data8,
-      data6,
-      data3,
-      data1,
-      data7,
-      data5,
-      data4,
-      data2,
-    ]);
+    expect(result).toEqual([data1, data4]);
   });
 
   it("should sort data", () => {

@@ -33,6 +33,7 @@ interface Props {
   secondaryThemeListFullFrance: IDispositif[];
   totalFicheCount: number;
   history: any;
+  isLoading: boolean;
 }
 
 const MainContainer = styled.div`

@@ -13,7 +13,7 @@ import {
 } from "../../../libs/checkAuthorizations";
 import { updateTraductions } from "../../../modules/traductions/updateTraductions";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
-import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
+import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
 import { updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
 import { DispositifDoc } from "../../../schema/schemaDispositif";
 import { getRoleByName } from "../../../controllers/role/role.repository";
@@ -203,10 +203,12 @@ export const addDispositif = async (
     }
 
     //J'associe la structure principale à ce dispositif
+    // @ts-ignore
     if (dispResult.mainSponsor) {
       try {
         await updateAssociatedDispositifsInStructure(
           dispResult._id,
+          // @ts-ignore
           dispResult.mainSponsor
         );
       } catch (error) {
@@ -214,6 +216,7 @@ export const addDispositif = async (
           "[updateAssociatedDispositifsInStructure] error whil updating structures",
           {
             dispositifId: dispResult._id,
+            // @ts-ignore
             sponsorId: dispResult.mainSponsor,
           }
         );

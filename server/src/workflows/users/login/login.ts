@@ -31,6 +31,10 @@ export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
 
     const user = await getUserByUsernameFromDB(req.body.username);
 
+    if (user && user.status === "Exclu") {
+      throw new Error("USER_DELETED");
+    }
+
     if (!user) {
       const userRole = await getRoleByName("User");
       const { user, token } = await register(req.body, userRole);

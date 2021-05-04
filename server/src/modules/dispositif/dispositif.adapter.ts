@@ -1,4 +1,7 @@
-import { DispositifPopulatedDoc } from "../../schema/schemaDispositif";
+import {
+  DispositifPopulatedDoc,
+  DispositifPopulatedMainSponsorDoc,
+} from "../../schema/schemaDispositif";
 import logger from "../../logger";
 import moment from "moment";
 import { ObjectId } from "mongoose";
@@ -104,7 +107,7 @@ export const removeUselessContent = (dispositifArray: IDispositif[]) =>
   });
 
 export const adaptDispositifMainSponsorAndCreatorId = (
-  dispositifs: IDispositif[]
+  dispositifs: DispositifPopulatedMainSponsorDoc[]
 ) =>
   dispositifs.map((dispositif) => {
     const jsonDispositif = dispositif.toJSON();

@@ -28,6 +28,7 @@ interface Props {
   selectedDispositifId: ObjectId | null;
   onDeleteClick: () => void;
   setShowChangeStructureModal: (arg: boolean) => void;
+  toggleImprovementsMailModal: () => void;
 }
 
 const LeftPart = styled.div`
@@ -396,6 +397,21 @@ export const DetailsModal = (props: Props) => {
                   </LogoContainer>
                 </StructureContainer>
               )}
+              {["En attente admin", "En attente", "Accepté structure"].includes(
+                dispositif.status
+              ) &&
+                dispositif.typeContenu === "dispositif" && (
+                  <>
+                    <Title>Mail d'amélioration</Title>
+                    <FButton
+                      type="dark"
+                      name="email-outline"
+                      onClick={props.toggleImprovementsMailModal}
+                    >
+                      Demander des changements
+                    </FButton>
+                  </>
+                )}
             </RightPart>
           </RowContainer>
           <ButtonsContainer>

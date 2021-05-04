@@ -14,10 +14,11 @@ import {
 import { insertInDispositif } from "../../../modules/dispositif/insertInDispositif";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
-import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
+import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
 import { getDispositifByIdWithAllFields } from "../../../modules/dispositif/dispositif.repository";
 import { sendPublishedTradMailToStructure } from "../../../modules/mail/sendPublishedTradMailToStructure";
 import { sendPublishedTradMailToTraductors } from "../../../modules/mail/sendPublishedTradMailToTraductors";
+import { DispositifNotPopulateDoc } from "../../../schema/schemaDispositif";
 
 interface Query {
   articleId: ObjectId;
@@ -58,7 +59,8 @@ export const validateTranslations = async (
       // We delete all translations that are not from experts, since now we only need one official validated version
       await deleteTradsInDB(body.articleId, body.locale);
 
-      const dispositifFromDB = await getDispositifByIdWithAllFields(
+      // @ts-ignore
+      const dispositifFromDB: DispositifNotPopulateDoc = await getDispositifByIdWithAllFields(
         body.articleId
       );
 
