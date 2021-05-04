@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { FicheOnMobile } from "./FicheOnMobile/FicheOnMobile";
 import { colors } from "../../../../colors";
 import Streamline from "assets/streamline";
-import { NavLink } from "react-router-dom";
 import { LoadingFicheOnMobile } from "./LoadingFicheOnMobile";
 import NoResultPlaceholder from "../../NoResultPlaceholder";
 
@@ -106,12 +105,12 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
             .map((item: IDispositif, index: number) => {
               //Display all dispositif about this tag as primary tag
               return (
-                <NavLink
+                <FicheOnMobile
                   key={index}
-                  to={"/" + item.typeContenu + "/" + item._id}
-                >
-                  <FicheOnMobile item={item} t={props.t} />
-                </NavLink>
+                  item={item}
+                  t={props.t}
+                  history={props.history}
+                />
               );
             })}
           <AProposTitle>
@@ -146,12 +145,12 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
             .map((item: IDispositif, index: number) => {
               //Display all dispositif about this tag as secondary tag
               return (
-                <NavLink
+                <FicheOnMobile
                   key={index}
-                  to={"/" + item.typeContenu + "/" + item._id}
-                >
-                  <FicheOnMobile item={item} t={props.t} />
-                </NavLink>
+                  item={item}
+                  t={props.t}
+                  history={props.history}
+                />
               );
             })}
         </>
@@ -193,12 +192,13 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
             .map((item: IDispositif, index: number) => {
               return (
                 //Display all dispositif about this tag as primary or secondary tag and this location
-                <NavLink
+
+                <FicheOnMobile
                   key={index}
-                  to={"/" + item.typeContenu + "/" + item._id}
-                >
-                  <FicheOnMobile item={item} t={props.t} />
-                </NavLink>
+                  item={item}
+                  t={props.t}
+                  history={props.history}
+                />
               );
             })}
           <AProposTitle>
@@ -235,12 +235,13 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
             .map((item: IDispositif, index: number) => {
               return (
                 //Display all dispositif about this tag as primary or secondary tag and all France as location
-                <NavLink
+
+                <FicheOnMobile
+                  item={item}
+                  t={props.t}
+                  history={props.history}
                   key={index}
-                  to={"/" + item.typeContenu + "/" + item._id}
-                >
-                  <FicheOnMobile item={item} t={props.t} />
-                </NavLink>
+                />
               );
             })}
         </>
@@ -257,9 +258,12 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
           {props.dispositifs.map((item: IDispositif, index: number) => {
             return (
               //Display all dispositif about this location
-              <NavLink key={index} to={"/" + item.typeContenu + "/" + item._id}>
-                <FicheOnMobile item={item} t={props.t} />
-              </NavLink>
+              <FicheOnMobile
+                key={index}
+                item={item}
+                t={props.t}
+                history={props.history}
+              />
             );
           })}
           {props.ville !== "" && (
@@ -277,12 +281,13 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
             (item: IDispositif, index: number) => {
               return (
                 //Display all dispositif with all France as location
-                <NavLink
+
+                <FicheOnMobile
                   key={index}
-                  to={"/" + item.typeContenu + "/" + item._id}
-                >
-                  <FicheOnMobile item={item} t={props.t} />
-                </NavLink>
+                  item={item}
+                  t={props.t}
+                  history={props.history}
+                />
               );
             }
           )}

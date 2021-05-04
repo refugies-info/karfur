@@ -10,9 +10,9 @@ import { initial_data } from "../../data";
 
 const TextTitle = styled.div`
   width: fit-content;
-  margin-right: 10px;
-  padding-right: 10px;
+  margin-right: 8px;
   padding-top: 14px;
+  white-space: nowrap;
 `;
 const ButtonTitle = styled.div`
   height: 55px;
@@ -23,6 +23,8 @@ const ButtonTitle = styled.div`
   color: white;
   padding: 14px;
   border-radius: 12px;
+  align-items: center;
+  width: 100%;
 `;
 const TitleContainer = styled.div`
   display: flex;

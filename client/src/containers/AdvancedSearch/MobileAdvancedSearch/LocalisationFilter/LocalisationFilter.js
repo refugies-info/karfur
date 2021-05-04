@@ -67,9 +67,6 @@ export const LocalisationFilter = (props) => {
           >
             <div className="position-relative">
               <Autocomplete
-                ref={(input) => {
-                  input && input.refs.input.focus();
-                }}
                 onBlur={() => props.ville === ""}
                 id="villeAuto"
                 value={props.ville}
