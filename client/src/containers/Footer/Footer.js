@@ -4,23 +4,24 @@ import { NavLink } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
 import Swal from "sweetalert2";
 import styled from "styled-components";
-
 import API from "../../utils/API";
+import { isMobile } from "react-device-detect";
 
 const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
-  wrap: no-wrap;
+  flex-wrap: ${!isMobile ? "no-wrap" : "wrap"};
 `;
 
 const ColumnContainer = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: ${!isMobile ? "no-wrap" : "wrap"};
 `;
 
 const TextContainer = styled.div`
   display: flex;
-  width: 400px;
+  width: ${!isMobile ? "400px" : ""};
   margin-right: 20px;
 `;
 
@@ -30,12 +31,15 @@ const LinkContainer = styled.div`
   margin-right: 20px;
   margin-left: 20x;
   padding: 0 10px;
+  margin-top: ${isMobile ? "25px" : ""};
+  font-size: ${isMobile ? "18px" : "16px"};
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 40px;
+  margin-left: ${!isMobile ? "40px" : ""};
+  margin-top: ${isMobile ? "30px" : ""};
 `;
 
 import "./Footer.scss";
@@ -117,14 +121,16 @@ export class Footer extends Component {
               </h5>
             </TextContainer>
             <LinkContainer>
-              <div className="lien-footer">
-                <NavHashLink to="/comment-contribuer">
-                  {t(
-                    "CommentContribuer.Participer / Contribuer",
-                    "Participer / Contribuer"
-                  )}
-                </NavHashLink>
-              </div>
+              {!isMobile && (
+                <div className="lien-footer">
+                  <NavHashLink to="/comment-contribuer">
+                    {t(
+                      "CommentContribuer.Participer / Contribuer",
+                      "Participer / Contribuer"
+                    )}
+                  </NavHashLink>
+                </div>
+              )}
               <div className="lien-footer">
                 <NavLink to="/advanced-search">
                   {t(
@@ -133,11 +139,16 @@ export class Footer extends Component {
                   )}
                 </NavLink>
               </div>
-              <div className="lien-footer">
-                <NavLink to="/annuaire">
-                  {t("Homepage.Consulter l’annnuaire", "Consulter l'annuaire")}
-                </NavLink>
-              </div>
+              {!isMobile && (
+                <div className="lien-footer">
+                  <NavLink to="/annuaire">
+                    {t(
+                      "Homepage.Consulter l’annnuaire",
+                      "Consulter l'annuaire"
+                    )}
+                  </NavLink>
+                </div>
+              )}
               <div className="lien-footer">
                 <a href="https://avec.refugies.info/">
                   {t(
@@ -148,11 +159,13 @@ export class Footer extends Component {
               </div>
             </LinkContainer>
             <LinkContainer>
-              <div className="lien-footer">
-                <NavHashLink to="/qui-sommes-nous">
-                  {t("Qui sommes-nous ?", "Qui sommes-nous ?")}
-                </NavHashLink>
-              </div>
+              {!isMobile && (
+                <div className="lien-footer">
+                  <NavHashLink to="/qui-sommes-nous">
+                    {t("Qui sommes-nous ?", "Qui sommes-nous ?")}
+                  </NavHashLink>
+                </div>
+              )}
               <div className="lien-footer">
                 <a onClick={() => window.$crisp.push(["do", "chat:open"])}>
                   {t("Démarche administrative", "Contacter l'èquipe")}

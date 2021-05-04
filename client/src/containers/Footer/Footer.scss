@@ -9,13 +9,14 @@
     padding: 60px 60px;
   }
   @include media-max("phone-down") {
-    padding: 60px 30px;
+    padding: 30px 30px;
   }
   .presentation {
     min-width: 390px;
   }
   .footer-header {
     line-height: 32px;
+    font-size: 22px;
   }
 
   .ligne-footer {
@@ -94,6 +95,7 @@
     padding: 10px 20px;
     line-height: 38px;
     white-space: initial;
+    width: auto;
   }
   .icon-append {
     position: absolute;
@@ -120,7 +122,5 @@
         line-height: 50px !important;
       }
     }
-  }
-  .negative-margin {
   }
 }
