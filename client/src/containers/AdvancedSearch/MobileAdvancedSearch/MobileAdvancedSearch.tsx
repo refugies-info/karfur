@@ -328,6 +328,7 @@ export const MobileAdvancedSearch = (props: Props) => {
           totalFicheCount={props.totalFicheCount}
           t={props.t}
           nbFilteredResults={props.nbFilteredResults}
+          isLoading={props.isLoading}
           history={props.history}
         />
       )}
