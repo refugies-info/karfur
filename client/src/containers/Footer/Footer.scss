@@ -3,13 +3,16 @@
 
 .footer {
   background: $noir;
-  padding: 60px 120px;
+  padding: 60px 60px;
   color: #ffffff;
   @include media-max("tablet-up") {
     padding: 60px 60px;
   }
   @include media-max("phone-down") {
     padding: 60px 30px;
+  }
+  .presentation {
+    min-width: 390px;
   }
   .footer-header {
     line-height: 32px;
@@ -119,6 +122,5 @@
     }
   }
   .negative-margin {
-    margin-top: -10px;
   }
 }
