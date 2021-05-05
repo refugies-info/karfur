@@ -32,7 +32,6 @@ const SelectedFilter = styled.div`
   font-weight: 700;
   border-color: #212121;
   border-radius: 12px;
-  padding-top: 12px;
   margin: 5px 0;
   display: flex;
   justify-content: space-between;
