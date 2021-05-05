@@ -45,7 +45,7 @@ $imgHeight: 350px;
     @include media-max("tablet-up") {
       height: 270px;
     }
-    @media screen and (min-width: 1279px) {
+    @media screen and (min-width: 500px) {
       min-height: 500px;
       padding-top: 60px;
     }
