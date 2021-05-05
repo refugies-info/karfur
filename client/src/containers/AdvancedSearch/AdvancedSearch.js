@@ -384,6 +384,15 @@ export class AdvancedSearch extends Component {
       this.queryDispositifs(null, this.props);
     }
 
+    if (
+      prevProps.location.state !== "clean-filters" &&
+      this.props.location.state === "clean-filters"
+    ) {
+      this.setState({
+        recherche: initial_data.map((x) => ({ ...x, active: false })),
+      });
+    }
+
     if (prevProps.languei18nCode !== this.props.languei18nCode) {
       this.setState(
         {

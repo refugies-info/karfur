@@ -208,10 +208,15 @@ export class Toolbar extends React.Component {
           <AudioBtn />
           <LanguageBtn hideText={windowWidth < breakpoints.tabletUp} />
           {isMobile ? (
-            <IconButton>
-              <NavLink to="/advanced-search">
-                <EVAIcon name="search" size="large" fill={colors.blanc} />
-              </NavLink>
+            <IconButton
+              onClick={() => {
+                this.props.history.push({
+                  pathname: "/advanced-search",
+                  state: "clean-filters",
+                });
+              }}
+            >
+              <EVAIcon name="search" size="large" fill={colors.blanc} />
             </IconButton>
           ) : (
             <AdvancedSearchBar

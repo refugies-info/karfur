@@ -171,7 +171,15 @@ export const MobileAdvancedSearch = (props: Props) => {
         }
       }
     });
+
+    return () => {
+      setTagSelected(null);
+      setAgeSelected(null);
+      setFrenchSelected(null);
+      setVille("");
+    };
   }, [props.query]);
+
   return (
     <MainContainer>
       <SearchBoutton
