@@ -63,7 +63,7 @@
     "Fiches aussi à propops de": "Fiches aussi à propos de",
     "Fiches valables": "Fiches valables",
     "Modifier ma recherche": "Modifier ma recherche",
-    "0 fiches pour": "0 fiches pour",
+    "0 fiche pour": "0 fiche pour",
     "partout en France": "partout en France"
   },
   "Tables": {
@@ -201,6 +201,7 @@
   },
   "CommentContribuer": {
     "Comment contribuer": "Comment contribuer ?",
+    "Participer / Contribuer": "Participer / Contribuer",
     "écrire": "écrire",
     "traduire": "traduire",
     "corriger": "corriger",
@@ -557,13 +558,13 @@
     "Déconnexion": "Déconnexion"
   },
   "Footer": {
-    "Je m'abonne à la newsletter": "S'inscrire à la lettre d'information",
+    "Je m'abonne à la newsletter": "S'inscrire à la newsletter",
     "Participer à l'évolution de réfugiés-info": "Participer à l'évolution de réfugiés.info",
     "Demander des fonctionnalités": "Demander des fonctionnalités",
     "Le projet": "Le projet",
 
     "Vous cherchez ?": "Vous cherchez ?",
-    "Centre d'aide": "Support et centre d'aide"
+    "Centre d'aide": "Consulter le centre d'aide"
   },
   "Retour à la recherche": "Retour à la recherche",
   "ou": "ou",
@@ -606,7 +607,7 @@
   "Accessibilité": "Accessibilité",
   "Politique de confidentialité": "Politique de confidentialité",
   "Mentions légales": "Mentions légales",
-  "Dispositif d'accompagnement": "Rechercher de l'information",
+  "Dispositif d'accompagnement": "Chercher de l'information",
   "Démarche administrative": "Contacter l'équipe",
   "Parcours personnalisé": "Créer un parcours d'intégration",
   "Suivant": "Suivant",

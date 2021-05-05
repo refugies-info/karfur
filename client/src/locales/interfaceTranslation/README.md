@@ -5,7 +5,7 @@
 
 It generates 6 csv files in the folder csvBeforeTrad
 
-## How to convert csv files to jon ?
+## How to convert csv files to json ?
 
 - in your terminal go to `client/src/locales/interfaceTranslation`
 - put csv files in the folder csvAfterTrad

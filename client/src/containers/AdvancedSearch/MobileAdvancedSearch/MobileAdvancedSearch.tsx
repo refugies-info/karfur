@@ -171,18 +171,27 @@ export const MobileAdvancedSearch = (props: Props) => {
         }
       }
     });
+
+    return () => {
+      setTagSelected(null);
+      setAgeSelected(null);
+      setFrenchSelected(null);
+      setVille("");
+    };
   }, [props.query]);
+
+  const onSearchClick = () => {
+    if (isSearchButtonDisabled) return;
+    if (isUrlEmpty) return props.queryDispositifs();
+    return props.history.push();
+  };
   return (
     <MainContainer>
       <SearchBoutton
         isDisabled={isSearchButtonDisabled}
         isUrlEmpty={isUrlEmpty}
         tagSelected={tagSelected}
-        onClick={() => {
-          {
-            isUrlEmpty ? props.queryDispositifs() : props.history.push();
-          }
-        }}
+        onClick={onSearchClick}
       >
         <EVAIcon
           name={
@@ -330,6 +339,7 @@ export const MobileAdvancedSearch = (props: Props) => {
           t={props.t}
           nbFilteredResults={props.nbFilteredResults}
           isLoading={props.isLoading}
+          history={props.history}
         />
       )}
     </MainContainer>

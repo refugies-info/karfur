@@ -13,10 +13,12 @@ import { colors } from "../../../../colors";
 
 // need to mock react strap because issue with modal
 jest.mock("reactstrap", () => {
-  const { Table } = jest.requireActual("reactstrap");
+  const { Table, Input, InputGroup, InputGroupAddon } = jest.requireActual(
+    "reactstrap"
+  );
   const { MockReactModal } = require("../../../../../jest/__mocks__/MockModal");
 
-  return { Modal: MockReactModal, Table };
+  return { Modal: MockReactModal, Table, Input, InputGroup, InputGroupAddon };
 });
 
 jest.mock("../../../../services/UserStructure/userStructure.actions", () => {
