@@ -12,12 +12,15 @@
     #ffffff 15.84%,
     rgba(255, 255, 255, 0) 37.34%
   );
+  @include media-max("tablet-up") {
+    background: none;
+  }
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 45px;
   box-sizing: border-box;
-  z-index: 2;
+  z-index: 90;
   color: $noir;
   transition: top 0.6s;
   @include media-max("desktop-up") {
