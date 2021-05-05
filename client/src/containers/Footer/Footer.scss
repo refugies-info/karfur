@@ -90,14 +90,8 @@
     }
   }
   .footer-btn {
-    display: block;
-    min-height: 60px;
-    max-width: 100%;
-    padding: 10px 20px;
-    line-height: 38px;
-    white-space: initial;
-    @include media-max("phone-down") {
-      width: auto;
+    @include media-max("tablet-up") {
+      width: 100%;
     }
   }
   .icon-append {

@@ -40,6 +40,7 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   margin-left: ${isMobile ? "" : "40px"};
   margin-top: ${isMobile ? "30px" : ""};
+  width: 100%;
 `;
 
 import "./Footer.scss";
@@ -197,7 +198,7 @@ export class Footer extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-btn"
-                type="light-action"
+                type="tuto"
                 name="email-outline"
                 fill={colors.noir}
               >
@@ -231,7 +232,7 @@ export class Footer extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-btn"
-                type="help"
+                type="tuto"
                 name="question-mark-circle-outline"
                 fill={colors.noir}
               >
