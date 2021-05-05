@@ -21,7 +21,7 @@ const ColumnContainer = styled.div`
 
 const TextContainer = styled.div`
   display: flex;
-  width: ${isMobile ? "" : "400px"};
+  max-width: ${isMobile ? "" : "400px"};
   margin-right: 20px;
 `;
 
@@ -29,10 +29,10 @@ const LinkContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 20px;
-  margin-left: 20x;
-  padding: 0 10px;
+  margin-left: ${isMobile ? "0px" : "20px"};
   margin-top: ${isMobile ? "25px" : ""};
   font-size: ${isMobile ? "18px" : "16px"};
+  white-space: ${isMobile ? "" : "nowrap"}; ;
 `;
 
 const ButtonContainer = styled.div`
@@ -40,7 +40,7 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   margin-left: ${isMobile ? "" : "40px"};
   margin-top: ${isMobile ? "30px" : ""};
-  width: 100%;
+  width: ${isMobile ? "100%" : "auto"};
 `;
 
 import "./Footer.scss";
@@ -191,7 +191,7 @@ export class Footer extends Component {
             </LinkContainer>
           </ColumnContainer>
           <ButtonContainer>
-            <div className="position-relative">
+            <div>
               <FButton
                 tag={"a"}
                 href=""
@@ -211,7 +211,7 @@ export class Footer extends Component {
             <div className="ligne-footer">
               <FButton
                 tag={"a"}
-                href="https://refugies.canny.io/"
+                href="https://help.refugies.info/fr/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-btn"
