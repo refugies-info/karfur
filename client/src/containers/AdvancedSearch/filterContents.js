@@ -42,7 +42,7 @@ const filterContentsByAge = (
 };
 
 const filterContentsByFrenchLevel = (contents, frenchLevelFilter) => {
-  if (!frenchLevelFilter) return contents;
+  if (!frenchLevelFilter || frenchLevelFilter === "bien") return contents;
   const levelsNotAccepted = frenchLevelFilter["$nin"];
 
   return contents.filter((content) => {

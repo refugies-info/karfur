@@ -180,17 +180,18 @@ export const MobileAdvancedSearch = (props: Props) => {
     };
   }, [props.query]);
 
+  const onSearchClick = () => {
+    if (isSearchButtonDisabled) return;
+    if (isUrlEmpty) return props.queryDispositifs();
+    return props.history.push();
+  };
   return (
     <MainContainer>
       <SearchBoutton
         isDisabled={isSearchButtonDisabled}
         isUrlEmpty={isUrlEmpty}
         tagSelected={tagSelected}
-        onClick={() => {
-          {
-            isUrlEmpty ? props.queryDispositifs() : props.history.push();
-          }
-        }}
+        onClick={onSearchClick}
       >
         <EVAIcon
           name={

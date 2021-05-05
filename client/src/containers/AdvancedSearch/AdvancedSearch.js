@@ -440,6 +440,10 @@ export class AdvancedSearch extends Component {
                 city: x.query[0].long_name,
                 dep: x.query[1].long_name,
               }
+            : x.queryName === "niveauFrancais"
+            ? {
+                niveauFrancais: x.value === "bien" ? "bien" : x.query,
+              }
             : { [x.queryName]: x.query }
         )
         .reduce((acc, curr) => ({ ...acc, ...curr }), {});
