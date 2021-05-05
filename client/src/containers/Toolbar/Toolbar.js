@@ -134,6 +134,18 @@ export class Toolbar extends React.Component {
     });
   };
 
+  goBack = () => {
+    if (
+      this.props.location.state &&
+      this.props.location.state.previousRoute &&
+      this.props.location.state.previousRoute === "advanced-search"
+    ) {
+      this.props.history.go(-1);
+    } else {
+      this.props.history.push({ pathname: "/advanced-search" });
+    }
+  };
+
   render() {
     const path = this.props.location.pathname || "";
     const { user, membreStruct, t, windowWidth } = this.props;
@@ -148,6 +160,10 @@ export class Toolbar extends React.Component {
       this.props.dispositifsAssocies,
       this.props.hasResponsibleSeenNotification
     );
+
+    const isUserOnContentPage =
+      window.location.href.includes("dispositif") ||
+      window.location.href.includes("demarche");
     return (
       <header
         className={
@@ -156,21 +172,37 @@ export class Toolbar extends React.Component {
           (isRTL ? " isRTL" : "")
         }
       >
-        <div className="left_buttons">
-          <Logo reduced={windowWidth < breakpoints.phoneDown} isRTL={isRTL} />
-          {path !== "/" &&
-            path !== "/homepage" &&
-            windowWidth >= breakpoints.phoneDown && (
-              <NavLink to="/" className="home-btn">
-                <EVAIcon name="home" fill={colors.noir} className="mr-10 rsz" />
-                {windowWidth >= breakpoints.lgLimit && (
-                  <b className="home-texte">
-                    {t("Toolbar.Accueil", "Accueil")}
-                  </b>
-                )}
-              </NavLink>
-            )}
-        </div>
+        {isUserOnContentPage && isMobile ? (
+          <div style={{ height: "50px" }}>
+            <FButton
+              type="light-action"
+              name="arrow-back"
+              onClick={this.goBack}
+            >
+              {this.props.t("Retour", "Retour")}
+            </FButton>
+          </div>
+        ) : (
+          <div className="left_buttons">
+            <Logo reduced={windowWidth < breakpoints.phoneDown} isRTL={isRTL} />
+            {path !== "/" &&
+              path !== "/homepage" &&
+              windowWidth >= breakpoints.phoneDown && (
+                <NavLink to="/" className="home-btn">
+                  <EVAIcon
+                    name="home"
+                    fill={colors.noir}
+                    className="mr-10 rsz"
+                  />
+                  {windowWidth >= breakpoints.lgLimit && (
+                    <b className="home-texte">
+                      {t("Toolbar.Accueil", "Accueil")}
+                    </b>
+                  )}
+                </NavLink>
+              )}
+          </div>
+        )}
 
         <div className="center-buttons">
           <AudioBtn />
