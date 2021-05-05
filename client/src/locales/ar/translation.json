@@ -21,6 +21,7 @@
     "Explique les mots difficiles": "يفسّر Réfugiés.info الكلمات الصعبة",
     "Trouver une démarche": "العثور على معاملة",
     "Choisir une langue": "اختر لغة",
+    "Ma langue": "لغتي",
     "site dispo": "Réfugiés.info متوفّر باللغات التالية :",
     "traduire": "ساعدوا على ترجمة المحتوى",
     "Covid alert": "Réfugiés.info يجيب على أسئلتكم حول الكوفيدـ19 عبر التواصل المباشر/لايف تشات (الأيقونة الزّرقاء في أسفل يمين الشاشة).",
@@ -30,6 +31,7 @@
     "Consulter l’annnuaire": "تصفح الجدول"
   },
   "AdvancedSearch": {
+    "Je cherche à": "أبحث عن",
     "A > Z": "من A إلى Z",
     "Derniers ajouts": "الإضافات الأخيرة",
     "Les plus visités": "الأكثر زيارة",
@@ -52,7 +54,12 @@
     "fiches avec le thème": "البطاقات مع الموضوع",
     "autres fiches avec le thème": "بطاقات معلومات أخرى مع الموضوع",
     "avec le thème": "مع الموضوع",
-    "Autres fiches traduites en": "بطاقات معلومات أخرى مترجمة ب :"
+    "Autres fiches traduites en": "بطاقات معلومات أخرى مترجمة ب :",
+    "Afficher aussi les autres fiches disponibles dans": "عرض نتائج البحث الأخرى في",
+    "toute la France": "في كل فرنسا",
+    "Masquer les autres fiches disponibles dans": "اخفاء نتائج البحث الأخرى المتوفرة في",
+    "Masquer les résultats disponibles dans": "اخفاء نتائج البحث المتوفرة في",
+    "Afficher aussi les résultats disponibles dans": "عرض النتائج المتوفرة أيضاً في"
   },
   "Tables": {
     "Propriétaire": "مالك",
@@ -124,7 +131,25 @@
     "Modifier le mot de passe": "تغيير كلمة المرور",
     "Merci de donner de votre temps": "شكرا لوقتك المعطى لاندامج اللاجئين",
     "Grâce à vous": "بفضلكم، سيزوّد اللاجئون بمعلومات أفضل وأكثر",
-    "Merci de participer": "شكراً لمشاركتك في إتاحة المعلومات لأكبر عدد ممكن من الأشخاص"
+    "Merci de participer": "شكراً لمشاركتك في إتاحة المعلومات لأكبر عدد ممكن من الأشخاص",
+    "Modifier ma photo": "تبديل الصورة",
+    "ErreurChargement": "حدث خطأ, أعد تحديث الصفحة من فضلك !",
+    "photoUsage": "صورتك الشخصية ستظهر في كل بطاقات المعلومات التي ستشارك في اغناء محتواها",
+    "Votre nouveau mot de passe": "كلمة المرور الجديدة",
+    "votre pseudo": "اسم المستخدم",
+    "pseudoExplication": "اسم المستخدم ظاهر للجميع. سيظهر في جميع بطاقات المعلومات التي ستشارك في اغناء محتواها",
+    "votre email": "ايميلك الالكتروني",
+    "emailExplication": "عنوان ايميلك الالكتروني سيظهر فقط عند اعادة تعيين كلمة السر و عند ورود تحديثات جديدة متعلقة بنشاطك على الموقع",
+    "Votre mot de passe": "كلمة المرور",
+    "modifyPassword": "تغيير كلمة المرور",
+    "Enregistrer": "حفظ"
+  },
+  "UserFavorites": {
+    "fiche sauvegardée": "تم حفظ معلومات بطاقة المعلومات",
+    "fiches sauvegardées": "بطاقات المعلومات المحفوظة",
+    "Comment ajouter": "كيف تضيف بطاقات المعلومات الى مجموعتك المفضلة ؟",
+    "Voir la vidéo": "شاهد الفيديو",
+    "Tout supprimer": "احذف كل شيء"
   },
   "QuiSommesNous": {
     "Qui sommes-nous": "من نحن ؟",
@@ -260,7 +285,10 @@
     "mon niveau": "مستواي",
     "Je suis": "أنا أكون",
     "français": "الفرنسية",
-    "bientot disponible": "متاحٌ قريباً"
+    "bientot disponible": "متاحٌ قريباً",
+    "choisir ma ville": "اختر المدينة",
+    "choisir mon âge": "اختر العمر",
+    "le français": "اللغة الفرنسية"
   },
   "Status": {
     "En attente": "في الانتظار",
@@ -323,7 +351,8 @@
     "Entrez votre email": "أدخل بريدك الالكتروني",
     "Entrez votre numéro": "أدخل رقم هاتفك",
     "Pas email": "لا يوجد بريد الكتروني مرتبط بهذا اسم المستخدم",
-    "Choisissez un pseudonyme": "اختر اسم المستخدم"
+    "Choisissez un pseudonyme": "اختر اسم المستخدم",
+    "user supprimé": "تم حذف الحساب"
   },
   "Reset": {
     "Entrez votre nouveau mot de passe": "أدخل كلمة مرور جديدة",
@@ -366,16 +395,21 @@
     "C'est pour qui ?": "من هو المَعني ؟",
     "Pourquoi c'est intéressant ?": "لماذا يكون مهماً ؟",
     "La démarche par étapes": "المعاملة خطوة خطوة",
+    "Comment faire ?": "كيف أقول بذلك ؟",
     "Et après ?": "و بعد ذلك ؟",
     "Comment je m'engage ?": "كيف يمكنني المشاركة ؟",
     "Voir le site": "انظر الموقع",
     "Télécharger en PDF": "تحميل بصيغة PDF",
     "Envoyer par mail": "إرسال عبر البريد الإلكتروني",
     "Envoyer par SMS": "أرسله عبر الرسائل النصية",
+    "Via sms": "عن طريق ارسال رسالة نصية على الهاتف",
+    "Via email": "عن طريق ارسال ايميل الى عنوانك الالكتروني",
+    "Plus options": "مزيد من الخيارات",
     "Imprimer": "طباعة",
     "Gratuit": "مجّاني",
     "Payant": "مدفوع",
     "Tranche d'âge": "الفئة العمرية",
+    "Partager Fiche": "مشاركة نشر بطاقة المعلومات",
     "De": "من",
     "à": "الى",
     "ans": "سنوات",
@@ -394,12 +428,18 @@
     "Durée": "مدّة",
     "Niveau de français": "مستوى الفرنسي",
     "Combien ça coûte ?": "كم يكلّف ؟",
+    "Zone d'action": "منطقة العمل",
+    "Départements": "المقاطعات",
+    "Acte de naissance OFPRA": "بيان ولادة من مؤسسة الأوفبرا",
+    "Département": "مقاطعة",
+    "France entière": "فرنسا بكاملها",
     "Justificatif demandé": "أوراق مطلوبة",
     "Important !": "مهم !",
     "En ligne": "على الانترنت",
     "En physique": "في مكان",
     "Par téléphone": "بالهاتف",
     "Par courrier": "عن طريق البريد",
+    "Impossible sans": "غير ممكن بدون",
     "Autre": "آخر",
     "Immédiate": "فوري",
     "jhabite": "أسكن في",
@@ -506,7 +546,10 @@
     "Administration": "إدارة",
     "Se déconnecter": "تسجيل الخروج",
     "Connexion": "تسجيل الدخول",
-    "Inscription": "اتصال"
+    "Inscription": "اتصال",
+    "Mes notifications": "اشاراتي",
+    "Mes favoris": "قائمة الملفات المفضلة",
+    "Déconnexion": "الخروج من حسابي الخاص"
   },
   "Footer": {
     "Je m'abonne à la newsletter": "أشتَركُ في الرسالة الإخبارية",
@@ -544,6 +587,7 @@
   "Printemps 2020": "ربيع 2020",
   "Non": "لا",
   "Oui": "نعم",
+  "Ok": "موافق",
   "Retour": "رجوع",
   "J'ai besoin d'aide": "أنا بحاجة للمساعدة",
   "Chercher": "ابحث",
@@ -600,8 +644,10 @@
     "Numéro de téléphone": "رقم الهاتف",
     "Adresse postale": "العنوان البريدي",
     "Horaires d'accueil": "ساعات الدوام",
+    "Départements d'action": "منطقة العمل",
     "rdv only": "نستقبلك حصراً بعد أن تأخذ موعد",
     "no public": "لا نستطيع استقبالك شخصيّاً في مكاتبنا",
+    "noDispositif": "عذراً ! لم تقم هذه المؤسسة بعد بملأ بطاقة المعلومات",
     "Lundi": "الأثنين",
     "Mardi": "الثلاثاء",
     "Mercredi": "الأربعاء",
@@ -611,7 +657,9 @@
     "Dimanche": "الأحد",
     "de": "من الساعة",
     "à": "و حتّى الساعة",
+    "et de": "و من",
     "fermé": "مُغلق",
+    "ouvert": "متاح",
     "a propos": "معلومات حول",
     "Activités et services": "النشاطات و الخدمات التي نقدّمها",
     "noemail": "لم تُضف عنوان البريد الالكتروني",
@@ -620,6 +668,7 @@
     "noOpeningHours": "مواعيد الدوام غير متوافرة",
     "noDescription": "لا معلومات اضافيّة حول الهيئة",
     "Bilan de santé": "فحص صحي كامل",
+    "noDepartement": "لم يتم ملأ خانة منطقة البحث",
     "Parcours de soin": "مسار زيارة الطبيب",
     "Accompagnement psychologique": "مرافقتك نفسيّاً",
     "Accompagnement juridique": "مرافقتك قضائيّاً",
@@ -660,6 +709,7 @@
     "Tournois sportifs": "المشاركة في مباريات رياضية",
     "Aides financières": "المساعدات المالية",
     "Cours de conduite": "دروس عملية في قيادة السيارة",
-    "Formation au code": "دروس في المنهاج النظري لفحص قيادة السيارة"
+    "Formation au code": "دروس في المنهاج النظري لفحص قيادة السيارة",
+    "Intermédiation locative": "وسيط عقاري"
   }
 }

@@ -384,6 +384,15 @@ export class AdvancedSearch extends Component {
       this.queryDispositifs(null, this.props);
     }
 
+    if (
+      prevProps.location.state !== "clean-filters" &&
+      this.props.location.state === "clean-filters"
+    ) {
+      this.setState({
+        recherche: initial_data.map((x) => ({ ...x, active: false })),
+      });
+    }
+
     if (prevProps.languei18nCode !== this.props.languei18nCode) {
       this.setState(
         {
@@ -430,6 +439,10 @@ export class AdvancedSearch extends Component {
             ? {
                 city: x.query[0].long_name,
                 dep: x.query[1].long_name,
+              }
+            : x.queryName === "niveauFrancais"
+            ? {
+                niveauFrancais: x.value === "bien" ? "bien" : x.query,
               }
             : { [x.queryName]: x.query }
         )
