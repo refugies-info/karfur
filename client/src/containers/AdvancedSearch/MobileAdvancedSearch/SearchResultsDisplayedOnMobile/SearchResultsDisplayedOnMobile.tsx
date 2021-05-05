@@ -160,7 +160,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
           <AProposTitle>
             {props.nbFilteredResults > 0
               ? props.t("AdvancedSearch.Fiches pour", "Fiches pour")
-              : props.t("AdvancedSearch.0 fiches pour", "0 fiches pour")}
+              : props.t("AdvancedSearch.0 fiche pour", "0 fiche pour")}
 
             <City>{" " + props.ville}</City>
             {props.t("AdvancedSearch.avec le thème", "avec le thème")}

@@ -1716,7 +1716,6 @@ export class Dispositif extends Component {
                 {windowWidth >= breakpoints.smLimit && (
                   <BackButton goBack={this.goBack} />
                 )}
-                {isMobile && <BackButton goBack={this.goBack} />}
 
                 <TopRightHeader
                   disableEdit={this.state.disableEdit}

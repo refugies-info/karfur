@@ -7,7 +7,7 @@ import { logoRI, beta, logo_mobile } from "../../assets/figma";
 import "./Logo.scss";
 
 const logo = (props) => {
-  if (props.isRTL) {
+  if (props.isRTL && !isMobile) {
     return (
       <NavLink to="/" className="logo mr-10">
         <img src={beta} alt="beta" className="logo-beta" />

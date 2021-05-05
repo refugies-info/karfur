@@ -21,6 +21,7 @@
     "Explique les mots difficiles": "Réfugiés.info объясняет сложные слова",
     "Trouver une démarche": "Найти процедуру",
     "Choisir une langue": "Выбрать язык",
+    "Ma langue": "Мой язык",
     "site dispo": "Réfugiés.info доступен на следующих языках:",
     "traduire": "Помогите нам с переводом!",
     "Covid alert": "Команда Réfugiés.info готова ответить на ваши вопросы о Covid-19 онлайн (синий значок в правом нижнем углу экрана).",
@@ -30,6 +31,7 @@
     "Consulter l’annnuaire": "Посмотреть каталог"
   },
   "AdvancedSearch": {
+    "Je cherche à": "Я хочу:",
     "A > Z": "А - Я",
     "Derniers ajouts": "Добавлены последними",
     "Les plus visités": "Популярное",
@@ -52,7 +54,12 @@
     "fiches avec le thème": "Страницы по теме",
     "autres fiches avec le thème": "Другие страницы по теме",
     "avec le thème": "по теме",
-    "Autres fiches traduites en": "Другие страницы переведенные на"
+    "Autres fiches traduites en": "Другие страницы переведенные на",
+    "Afficher aussi les autres fiches disponibles dans": "Показать остальную информацию по запросу",
+    "toute la France": "Вся Франция",
+    "Masquer les autres fiches disponibles dans": "Скрыть остальную информацию по запросу",
+    "Masquer les résultats disponibles dans": "Скрыть результаты доступные в",
+    "Afficher aussi les résultats disponibles dans": "Показать также результаты доступные в"
   },
   "Tables": {
     "Propriétaire": "Владелец",
@@ -124,7 +131,25 @@
     "Modifier le mot de passe": "Сменить пароль",
     "Merci de donner de votre temps": "Спасибо за ваш вклад в процесс интеграции беженцев",
     "Grâce à vous": "Благодаря вам беженцы получат доступ к необходимой информации и будут лучше осведомлены",
-    "Merci de participer": "Спасибо за то, что помогаете сделать информацию доступной для еще большего количества людей."
+    "Merci de participer": "Спасибо за то, что помогаете сделать информацию доступной для еще большего количества людей.",
+    "Modifier ma photo": "Изменить мое изображение",
+    "ErreurChargement": "Ошибка, пожалуйста, обновите страницу",
+    "photoUsage": "Ваше фото появится на страницах, в создании которых вы приняли участие",
+    "Votre nouveau mot de passe": "Ваш новый пароль",
+    "votre pseudo": "Ваше имя пользователя",
+    "pseudoExplication": "Данное имя отображается для всех. Оно будет отображено на страницах, в создании которых вы приняли участие.",
+    "votre email": "Ваша электронная почта",
+    "emailExplication": "Ваша электронная почта будет использована только для восстановления пароля и получения извещений о вашей активности на сайте.",
+    "Votre mot de passe": "Ваш пароль",
+    "modifyPassword": "Изменить мой пароль",
+    "Enregistrer": "Сохранить"
+  },
+  "UserFavorites": {
+    "fiche sauvegardée": "Страница сохранена",
+    "fiches sauvegardées": "Страницы сохранены",
+    "Comment ajouter": "Как добавить страницы в избранное?",
+    "Voir la vidéo": "Посмотреть видео",
+    "Tout supprimer": "Удалить все"
   },
   "QuiSommesNous": {
     "Qui sommes-nous": "Кто мы?",
@@ -260,7 +285,10 @@
     "mon niveau": "мой уровень",
     "Je suis": "Я",
     "français": "французский",
-    "bientot disponible": "Скоро появится"
+    "bientot disponible": "Скоро появится",
+    "choisir ma ville": "Выбрать мой город",
+    "choisir mon âge": "Выбрать мой возраст",
+    "le français": "французский"
   },
   "Status": {
     "En attente": "На проверке",
@@ -323,7 +351,8 @@
     "Entrez votre email": "Введите ваш email",
     "Entrez votre numéro": "Введите ваш номер",
     "Pas email": "К данному имени пользователя не привязан email",
-    "Choisissez un pseudonyme": "Выберите имя пользователя"
+    "Choisissez un pseudonyme": "Выберите имя пользователя",
+    "user supprimé": "Данная учетная запись удалена."
   },
   "Reset": {
     "Entrez votre nouveau mot de passe": "Введите новый пароль",
@@ -366,16 +395,21 @@
     "C'est pour qui ?": "Для кого?",
     "Pourquoi c'est intéressant ?": "Почему это интересно?",
     "La démarche par étapes": "Этапы процедуры",
+    "Comment faire ?": "Как?",
     "Et après ?": "Что дальше?",
     "Comment je m'engage ?": "Как принять участие?",
     "Voir le site": "Website",
     "Télécharger en PDF": "Скачать в формате PDF",
     "Envoyer par mail": "Отправить по почте",
     "Envoyer par SMS": "Отправить в SMS",
+    "Via sms": "По СМС",
+    "Via email": "По электронной почте",
+    "Plus options": "Больше инструментов",
     "Imprimer": "Распечатать",
     "Gratuit": "Бесплатно",
     "Payant": "Платная услуга",
     "Tranche d'âge": "Возраст",
+    "Partager Fiche": "Поделиться страницей",
     "De": "От",
     "à": "до",
     "ans": "лет",
@@ -394,12 +428,18 @@
     "Durée": "Продолжительность",
     "Niveau de français": "Уровень французского языка",
     "Combien ça coûte ?": "Сколько это стоит?",
+    "Zone d'action": "Зона действия",
+    "Départements": "Департаменты",
+    "Acte de naissance OFPRA": "Свидетельство о рождении OFPRA",
+    "Département": "Департамент",
+    "France entière": "Вся Франция",
     "Justificatif demandé": "Необходимый документ",
     "Important !": "Важно!",
     "En ligne": "Онлайн",
     "En physique": "Лично",
     "Par téléphone": "По телефону",
     "Par courrier": "По почте",
+    "Impossible sans": "Невозможно без",
     "Autre": "Другое",
     "Immédiate": "Немедленно",
     "jhabite": "Я живу в",
@@ -506,7 +546,10 @@
     "Administration": "Админ",
     "Se déconnecter": "Выйти",
     "Connexion": "Войти в систему",
-    "Inscription": "Подписаться"
+    "Inscription": "Подписаться",
+    "Mes notifications": "Мои оповещения",
+    "Mes favoris": "Мое избранное",
+    "Déconnexion": "Выйти"
   },
   "Footer": {
     "Je m'abonne à la newsletter": "Подписаться на рассылку",
@@ -544,6 +587,7 @@
   "Printemps 2020": "Весна 2020",
   "Non": "Нет",
   "Oui": "Да",
+  "Ok": "Ок",
   "Retour": "Назад",
   "J'ai besoin d'aide": "Мне нужна помощь",
   "Chercher": "Искать",
@@ -600,8 +644,10 @@
     "Numéro de téléphone": "Номер телефона",
     "Adresse postale": "Почтовый адрес",
     "Horaires d'accueil": "Приемные часы",
+    "Départements d'action": "Действует в департаментах",
     "rdv only": "Консультация исключительно по записи",
     "no public": "Мы не принимаем посетителей",
+    "noDispositif": "Упс! Страница данной структуры еще не подготовлена.",
     "Lundi": "Понедельник",
     "Mardi": "Вторник",
     "Mercredi": "Среда",
@@ -611,7 +657,9 @@
     "Dimanche": "Воскресенье",
     "de": "с",
     "à": "до",
+    "et de": "и",
     "fermé": "закрыто",
+    "ouvert": "открыто",
     "a propos": "Информация о",
     "Activités et services": "Деятельность и услуги",
     "noemail": "Адрес электронной почты не указан",
@@ -620,6 +668,7 @@
     "noOpeningHours": "Часы работы не указаны",
     "noDescription": "Описание учреждения отсутствует",
     "Bilan de santé": "Медицинский осмотр",
+    "noDepartement": "Департамент не указан",
     "Parcours de soin": "Курс лечения",
     "Accompagnement psychologique": "Психологическое сопровождение",
     "Accompagnement juridique": "Юридическое сопровождение",
@@ -660,6 +709,7 @@
     "Tournois sportifs": "Спортивные турниры",
     "Aides financières": "Материальная помощь",
     "Cours de conduite": "Курсы вождения",
-    "Formation au code": "Курс программирования"
+    "Formation au code": "Курс программирования",
+    "Intermédiation locative": "Посредничество в аренде"
   }
 }

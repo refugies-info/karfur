@@ -21,6 +21,7 @@
     "Explique les mots difficiles": "Réfugiés.info مشکلي کلمې او لغات تشریح کوي",
     "Trouver une démarche": "یو پروسیجر پیداکړئ",
     "Choisir une langue": "ژبه غوره کړئ",
+    "Ma langue": "زما ژبه",
     "site dispo": "Réfugiés.info په لاندې ژبو کې شتون لري:",
     "traduire": "له مونږ سره په ترجمه کې مرسته وکړئ !",
     "Covid alert": "ریفیوجزاینفوRéfugiés.info د کوویډ - 19 وبا  په اړه د لایف چاټ livetchat له لارې ستاسو پوښتنو ته ځواب وایی (د سکرین په ښي اړخ کې نیلي عکس).",
@@ -30,6 +31,7 @@
     "Consulter l’annnuaire": "لارښود وګورئ"
   },
   "AdvancedSearch": {
+    "Je cherche à": "لټون",
     "A > Z": "A &gt; Z له اې نه تر زید",
     "Derniers ajouts": "اخري اضافه",
     "Les plus visités": "ډیر لیدل شوی",
@@ -52,7 +54,12 @@
     "fiches avec le thème": "فایل له موضوع سره",
     "autres fiches avec le thème": "نور فایلونه له موضوع سره",
     "avec le thème": "له موضوع سره",
-    "Autres fiches traduites en": "نورژباړه شوي فایلونه په"
+    "Autres fiches traduites en": "نورژباړه شوي فایلونه په",
+    "Afficher aussi les autres fiches disponibles dans": "نوراضافې فایلونه او معلومات هم ښکاره کړئ",
+    "toute la France": "ټوله فرانسه",
+    "Masquer les autres fiches disponibles dans": "نور فایلونه او معلومات پټ کړئ",
+    "Masquer les résultats disponibles dans": "پایلي پټې کړئ",
+    "Afficher aussi les résultats disponibles dans": "شته ټولې پایلي راښکاره کړئ"
   },
   "Tables": {
     "Propriétaire": "خاوند",
@@ -124,7 +131,25 @@
     "Modifier le mot de passe": "رمز(پاس ورډ) بدل کړئ",
     "Merci de donner de votre temps": "ستاسو له وخت او همکاری نه مننه چی د کډوالو په ټولنه کې د ادغام کیدو لپاره مو ورکړی.",
     "Grâce à vous": "ستاسو د همکاري او مرستي په نتیجه کې به مهاجرین لا نور هم بهتره او ښو معلوماتوته لاس رسي پیدا کړي.",
-    "Merci de participer": "د لا زیاتو کسانو لپاره د معلوماتو په تهیه کولو او برخه اخستلو کې ستاسو نه مننه کوو."
+    "Merci de participer": "د لا زیاتو کسانو لپاره د معلوماتو په تهیه کولو او برخه اخستلو کې ستاسو نه مننه کوو.",
+    "Modifier ma photo": "خپل عکس تبدیل ول",
+    "ErreurChargement": "یوه تیروتنه وشوه، لطفا، صفحه دوباره تازه کړئ !",
+    "photoUsage": "ستاسو عکس په هغو فایلونو کې څرګند وي چې تاسوبه پرې کارکوئ",
+    "Votre nouveau mot de passe": "ستاسو نوی رمز (پاس ورډ)",
+    "votre pseudo": "ستاسو مستعار نوم (یوزرنیم)",
+    "pseudoExplication": "دا یو عمومي مستعار نوم دی. دا په هغو فایلونو کې ظاهریږي چې تاسو پرې کارکوئ",
+    "votre email": "ستاسو بریښنالیک",
+    "emailExplication": "ستاسو بریښنالیک یوازې د رمزکلمې (پاس ورډ) د بیرته ترلاسه کولو او په ویب سايټ کې ستاسو دفعالیتونو په اړه د معلوماتو د لیږلو لپاره کارول کیږي",
+    "Votre mot de passe": "ستاسو د ننوتلو رمز (پاس ورډ)",
+    "modifyPassword": "زه خپله د رمز کلمه تبدیله وم",
+    "Enregistrer": "حفظ ول"
+  },
+  "UserFavorites": {
+    "fiche sauvegardée": "زخیره شوی فایل",
+    "fiches sauvegardées": "زخیره شوې فایلونه",
+    "Comment ajouter": "په فورټ کې فایلونه څنګه اضافه کړو؟",
+    "Voir la vidéo": "ویډیو کتل",
+    "Tout supprimer": "ټول حزف کړئ"
   },
   "QuiSommesNous": {
     "Qui sommes-nous": "موږ څوک یو؟",
@@ -242,7 +267,10 @@
     "mon niveau": "زما سطح (سویه)",
     "Je suis": "زه یم",
     "français": "فرانسوې",
-    "bientot disponible": "ډیرژر به دلاس رسې وړ وي"
+    "bientot disponible": "ډیرژر به دلاس رسې وړ وي",
+    "choisir ma ville": "خپل ښار غوره کول",
+    "choisir mon âge": "خپل عمر ټاکل",
+    "le français": "فرانسوې"
   },
   "Status": {
     "En attente": "په حالت د انتظارکې",
@@ -305,7 +333,8 @@
     "Entrez votre email": "خپل بریښنالیک ولیکئ",
     "Entrez votre numéro": "خپله شمیره ورکړئ",
     "Pas email": "هیڅ کوم بریښنالیک له دی مستعار نوم سره تړاو نه لري",
-    "Choisissez un pseudonyme": "یو مستعار نوم انتخاب کړئ"
+    "Choisissez un pseudonyme": "یو مستعار نوم انتخاب کړئ",
+    "user supprimé": "دا حساب (اکونټ) حذف شوی دی."
   },
   "Reset": {
     "Entrez votre nouveau mot de passe": "خپل نوی پاس ورډ داخل کړئ",
@@ -348,16 +377,21 @@
     "C'est pour qui ?": "دا د چا لپاره دی؟",
     "Pourquoi c'est intéressant ?": "ولې دا په زړه پورې ده؟",
     "La démarche par étapes": "مرحله وارپروسیجر",
+    "Comment faire ?": "څنګه وکړو؟",
     "Et après ?": "او وروسته؟",
     "Comment je m'engage ?": "څنګه کولی شم سهیم شم او فعالیت وکړم ؟",
     "Voir le site": "ویب پاڼه وګورئ",
     "Télécharger en PDF": "د پی ډی ایف فایل ښکته (ډاونلوډ) کول",
     "Envoyer par mail": "د بریښنالیک له لارې لیږل",
     "Envoyer par SMS": "د sms له لاری لیږل",
+    "Via sms": "د ایس ایم ایس پیغام له لارې",
+    "Via email": "د ایمیل له لارې",
+    "Plus options": "نوراپشنونه",
     "Imprimer": "چاپ کول",
     "Gratuit": "وړيا",
     "Payant": "په پیسو",
     "Tranche d'âge": "د عمر لړی",
+    "Partager Fiche": "فایل شریکول",
     "De": "د",
     "à": "ته",
     "ans": "کاله",
@@ -376,12 +410,18 @@
     "Durée": "موده",
     "Niveau de français": "د فرانسوي ژبې سویه",
     "Combien ça coûte ?": "ددی قیمت څومره دی؟",
+    "Zone d'action": "د عمل ساحه",
+    "Départements": "منطقه یا څانګې (ډیپارټمنټس)",
+    "Acte de naissance OFPRA": "دافپرا لخوا دزیږون سند",
+    "Département": "منطقه یا څانګه (ډیپارټمنټ)",
+    "France entière": "ټوله فرانسه",
     "Justificatif demandé": "غوښتل شوی توجیه نامه او دلیل",
     "Important !": "مهم!",
     "En ligne": "آنلاین",
     "En physique": "په فزیک کې",
     "Par téléphone": "د تلیفون په واسطه",
     "Par courrier": "د پوست له لاری",
+    "Impossible sans": "پرته له دې ناممکن دی",
     "Autre": "نور",
     "Immédiate": "فوري",
     "jhabite": "زه ژوند کوم په",
@@ -488,7 +528,10 @@
     "Administration": "اداره",
     "Se déconnecter": "وتل (ډیسکونکټ کیدل)",
     "Connexion": "خپل حساب ته داخلیدل (کونیکشن)",
-    "Inscription": "ثبت نام"
+    "Inscription": "ثبت نام",
+    "Mes notifications": "خبرتیاوي",
+    "Mes favoris": "زما دخوښي (فورټ)",
+    "Déconnexion": "وتل (ډیسکونکټ کیدل)"
   },
   "Footer": {
     "Je m'abonne à la newsletter": "زه په خبر پاڼه (نیوزلیټر) کې ګډون کوم",
@@ -526,6 +569,7 @@
   "Printemps 2020": "پسرلی 2020",
   "Non": "نه",
   "Oui": "هو",
+  "Ok": "سمده (اوکې)",
   "Retour": "بیرته ګرځیدل",
   "J'ai besoin d'aide": "زه مرستې ته اړتیا لرم",
   "Chercher": "لټنه",
@@ -582,8 +626,10 @@
     "Numéro de téléphone": "د تلیفون شمیره",
     "Adresse postale": "پوستي پته",
     "Horaires d'accueil": "مونږ یواځی د ملاقات وخت په لرلو له تاسو سره ګورو",
+    "Départements d'action": "د عمل ساحه",
     "rdv only": "موږ عام",
     "no public": "مونږ مراجعین نه قبلوو",
+    "noDispositif": "اوه! دغه ادارې تراوسه خپل معلومات نه دې شریک کړي",
     "Lundi": "دوشنبه",
     "Mardi": "سیشنبه",
     "Mercredi": "چهارشنبه",
@@ -593,7 +639,9 @@
     "Dimanche": "یکشنبه",
     "de": "د",
     "à": "نه",
+    "et de": "او د",
     "fermé": "تړلی",
+    "ouvert": "خلاص",
     "a propos": "په اړه",
     "Activités et services": "فعالیتونه او خدمات",
     "noemail": "هیڅ کوم بریښنالیک نه ده ورکړشوی",
@@ -602,6 +650,7 @@
     "noOpeningHours": "وختونه نه دي ټاکل شوي",
     "noDescription": "د اداري هیڅ تفصیل نشته",
     "Bilan de santé": "صحې معاینات",
+    "noDepartement": "هیڅ ډیپارټمنت نده ذکرشوی",
     "Parcours de soin": "د درملنې سابقه",
     "Accompagnement psychologique": "رواني ملاتړ",
     "Accompagnement juridique": "قانوني ملاتړ",
@@ -639,9 +688,10 @@
     "Visite de la ville": "د ښار نه لیدنه",
     "Cours d'histoire de France": "د فرانسوي تاریخ کورس",
     "Activités manuelles": "لاسي فعالیتونه",
-    "Tournoi sportifs": "ورزشي ټورنمنټونه",
+    "Tournois sportifs": "د لوبو مسابقي",
     "Aides financières": "مالي مرسته",
     "Cours de conduite": "د موټر چلولو کورس",
-    "Formation au code": "د کوډ روزنه"
+    "Formation au code": "د کوډ روزنه",
+    "Intermédiation locative": "د کرایې منځګړیتوب"
   }
 }
