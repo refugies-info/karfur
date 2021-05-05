@@ -210,8 +210,7 @@ export class Footer extends Component {
             </div>
             <div className="ligne-footer">
               <FButton
-                tag={"a"}
-                href="https://help.refugies.info/fr/"
+                onClick={() => window.$crisp.push(["do", "chat:open"])}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-btn"
