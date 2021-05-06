@@ -13,6 +13,7 @@ import { getUserContributions } from "../workflows/dispositif/getUserContributio
 import { getDispositifsWithTranslationAvancement } from "../workflows/dispositif/getDispositifsWithTranslationAvancement";
 import { exportFiches } from "../workflows/dispositif/exportFiches";
 import { addDispositif } from "../workflows/dispositif/addDispositif";
+import { exportDispositifsGeolocalisation } from "../workflows/dispositif/exportDispositifsGeolocalisation";
 // import { fixAudienceAgeOnContents } from "../workflows/dispositif/fixAudienceAgeOnContents";
 
 module.exports = function (app) {
@@ -54,5 +55,9 @@ module.exports = function (app) {
     getDispositifsWithTranslationAvancement
   );
   app.post("/exportFiches", exportFiches);
+  app.post(
+    "/exportDispositifsGeolocalisation",
+    exportDispositifsGeolocalisation
+  );
   // app.post("/fixAudienceAgeOnContents", fixAudienceAgeOnContents);
 };
