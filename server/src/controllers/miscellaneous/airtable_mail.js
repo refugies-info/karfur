@@ -11,19 +11,19 @@ function set_mail(req, res) {
   }
 
   const mail = req.body.mail;
-  base("Mailing liste Agi'r").create([{ fields: { Mail: mail } }], function (
-    err,
-    records
-  ) {
-    if (err) {
-      res.status(500).json({ text: "Erreur interne" });
-      return;
+  base("Mailing liste Agi'r").create(
+    [{ fields: { Mail: mail } }],
+    function (err, records) {
+      if (err) {
+        res.status(500).json({ text: "Erreur interne" });
+        return;
+      }
+      res.status(200).json({
+        text: "Succès",
+        data: records,
+      });
     }
-    res.status(200).json({
-      text: "Succès",
-      data: records,
-    });
-  });
+  );
 }
 
 exports.set_mail = set_mail;
