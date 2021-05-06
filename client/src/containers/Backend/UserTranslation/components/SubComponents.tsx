@@ -204,6 +204,6 @@ export const TypeContenuFilterButton = (
     onClick={props.onClick}
   >
     {props.name + " (" + props.nbContent + ")"}
-    <FSwitch className="card-custom-title ml-8" checked={props.isSelected} />
+    <FSwitch className="ml-8" checked={props.isSelected} />
   </TypeContenuFilterButtonContainer>
 );
