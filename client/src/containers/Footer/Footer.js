@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
-import { NavHashLink } from "react-router-hash-link";
 import Swal from "sweetalert2";
 import styled from "styled-components";
 import API from "../../utils/API";
 import { isMobile } from "react-device-detect";
+import { withRouter } from "react-router-dom";
 
 const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: ${isMobile ? "wrap" : "no-wrap"};
+  justify-content: center;
 `;
 
 const ColumnContainer = styled.div`
@@ -21,7 +21,7 @@ const ColumnContainer = styled.div`
 
 const TextContainer = styled.div`
   display: flex;
-  width: ${isMobile ? "" : "400px"};
+  max-width: ${isMobile ? "" : "400px"};
   margin-right: 20px;
 `;
 
@@ -29,10 +29,10 @@ const LinkContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 20px;
-  margin-left: 20x;
-  padding: 0 10px;
+  margin-left: ${isMobile ? "0px" : "20px"};
   margin-top: ${isMobile ? "25px" : ""};
   font-size: ${isMobile ? "18px" : "16px"};
+  white-space: ${isMobile ? "" : "nowrap"}; ;
 `;
 
 const ButtonContainer = styled.div`
@@ -40,7 +40,7 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   margin-left: ${isMobile ? "" : "40px"};
   margin-top: ${isMobile ? "30px" : ""};
-  width: 100%;
+  width: ${isMobile ? "100%" : "auto"};
 `;
 
 import "./Footer.scss";
@@ -122,31 +122,37 @@ export class Footer extends Component {
             </TextContainer>
             <LinkContainer>
               {!isMobile && (
-                <div className="lien-footer">
-                  <NavHashLink to="/comment-contribuer">
-                    {t(
-                      "CommentContribuer.Participer / Contribuer",
-                      "Participer / Contribuer"
-                    )}
-                  </NavHashLink>
+                <div
+                  className="lien-footer"
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                    this.props.history.push("/comment-contribuer");
+                  }}
+                >
+                  {t(
+                    "CommentContribuer.Participer / Contribuer",
+                    "Participer / Contribuer"
+                  )}
                 </div>
               )}
-              <div className="lien-footer">
-                <NavLink to="/advanced-search">
-                  {t(
-                    "Dispositif d'accompagnement",
-                    "Chercher de l'information"
-                  )}
-                </NavLink>
+              <div
+                className="lien-footer"
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  this.props.history.push("/advanced-search");
+                }}
+              >
+                {t("Dispositif d'accompagnement", "Chercher de l'information")}
               </div>
               {!isMobile && (
-                <div className="lien-footer">
-                  <NavLink to="/annuaire">
-                    {t(
-                      "Homepage.Consulter l’annnuaire",
-                      "Consulter l'annuaire"
-                    )}
-                  </NavLink>
+                <div
+                  className="lien-footer"
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                    this.props.history.push("/annuaire");
+                  }}
+                >
+                  {t("Homepage.Consulter l’annnuaire", "Consulter l'annuaire")}
                 </div>
               )}
               <div className="lien-footer">
@@ -164,10 +170,14 @@ export class Footer extends Component {
             </LinkContainer>
             <LinkContainer>
               {!isMobile && (
-                <div className="lien-footer">
-                  <NavHashLink to="/qui-sommes-nous">
-                    {t("Qui sommes-nous ?", "Qui sommes-nous ?")}
-                  </NavHashLink>
+                <div
+                  className="lien-footer"
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                    this.props.history.push("/qui-sommes-nous");
+                  }}
+                >
+                  {t("Qui sommes-nous ?", "Qui sommes-nous ?")}
                 </div>
               )}
               <div className="lien-footer">
@@ -175,30 +185,38 @@ export class Footer extends Component {
                   {t("Démarche administrative", "Contacter l'èquipe")}
                 </a>
               </div>
-              <div className="lien-footer">
-                <NavLink to="/politique-de-confidentialite">
-                  {t(
-                    "Politique de confidentialité",
-                    "Politique de confidentialité"
-                  )}
-                </NavLink>
+              <div
+                className="lien-footer"
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  this.props.history.push("/politique-de-confidentialite");
+                }}
+              >
+                {t(
+                  "Politique de confidentialité",
+                  "Politique de confidentialité"
+                )}
               </div>
-              <div className="lien-footer">
-                <NavLink to="/mentions-legales">
-                  {t("Mentions légales", "Mentions légales")}
-                </NavLink>
+              <div
+                className="lien-footer"
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  this.props.history.push("/mentions-legales");
+                }}
+              >
+                {t("Mentions légales", "Mentions légales")}
               </div>
             </LinkContainer>
           </ColumnContainer>
           <ButtonContainer>
-            <div className="position-relative">
+            <div>
               <FButton
                 tag={"a"}
                 href=""
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-btn"
-                type="tuto"
+                type="light-action"
                 name="email-outline"
                 fill={colors.noir}
               >
@@ -210,8 +228,7 @@ export class Footer extends Component {
             </div>
             <div className="ligne-footer">
               <FButton
-                tag={"a"}
-                href="https://refugies.canny.io/"
+                onClick={() => window.$crisp.push(["do", "chat:open"])}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-btn"
@@ -246,4 +263,4 @@ export class Footer extends Component {
   }
 }
 
-export default withTranslation()(Footer);
+export default withRouter(withTranslation()(Footer));

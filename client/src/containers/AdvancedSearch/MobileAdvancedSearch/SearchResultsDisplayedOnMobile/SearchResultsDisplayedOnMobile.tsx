@@ -81,6 +81,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
       </div>
     );
   }
+
   return (
     <div>
       <TotalCountTitle>
@@ -100,19 +101,17 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
       {props.tagSelected && props.ville === "" ? (
         //Tag selected and no location
         <>
-          {props.principalThemeList
-            .concat(props.principalThemeListFullFrance)
-            .map((item: IDispositif, index: number) => {
-              //Display all dispositif about this tag as primary tag
-              return (
-                <FicheOnMobile
-                  key={index}
-                  item={item}
-                  t={props.t}
-                  history={props.history}
-                />
-              );
-            })}
+          {props.principalThemeList.map((item: IDispositif, index: number) => {
+            //Display all dispositif about this tag as primary tag
+            return (
+              <FicheOnMobile
+                key={index}
+                item={item}
+                t={props.t}
+                history={props.history}
+              />
+            );
+          })}
           <AProposTitle>
             {props.t(
               "AdvancedSearch.Fiches aussi à propos de",
