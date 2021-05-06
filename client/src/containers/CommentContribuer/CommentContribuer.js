@@ -790,7 +790,9 @@ const Langue = (props) => (
           className={" flag-icon flag-icon-" + props.langue.langueCode}
         />
       </div>
-      {props.langue.langueFr}
+      {props.langue.langueFr === "Persan"
+        ? "Persan/Dari"
+        : props.langue.langueFr}
       <ProgressContainer isRTL={props.isRTL}>
         <Progress
           color={colorAvancement(props.langue.avancementTrad)}

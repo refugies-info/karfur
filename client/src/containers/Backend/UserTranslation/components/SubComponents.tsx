@@ -52,7 +52,9 @@ export const LanguageTitle = (props: Props) => (
       isSelected={props.isSelected}
       hasMultipleLanguages={props.hasMultipleLanguages}
     >
-      {props.language.langueFr}
+      {props.language.langueFr === "Persan"
+        ? "Persan/Dari"
+        : props.language.langueFr}
     </Title>
   </MainContainer>
 );
