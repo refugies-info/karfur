@@ -57,6 +57,7 @@ const CancelButton = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
+  margin-top: 12px;
 `;
 
 const ErrorMessageContainer = styled.div`
@@ -172,7 +173,18 @@ export const SubscribeNewsletterModal = (props: Props) => {
           t={props.t}
           notEmailError={notEmailError}
         />
-
+        {notEmailError && (
+          <ErrorMessageContainer>
+            {props.t(
+              "Register.Ceci n'est pas un email,",
+              "Ceci n'est pas un email,"
+            )}{" "}
+            {props.t(
+              "Register.vérifiez l'orthographe.",
+              "vérifiez l'orthographe."
+            )}
+          </ErrorMessageContainer>
+        )}
         {isMobile ? (
           <FButtonMobile
             name="checkmark-outline"
@@ -186,7 +198,7 @@ export const SubscribeNewsletterModal = (props: Props) => {
           />
         ) : (
           <ButtonContainer>
-            <CancelButton>
+            <CancelButton onClick={props.toggle}>
               <Icon>
                 <EVAIcon name="close" fill="black" size={"large"} />
               </Icon>
@@ -201,19 +213,6 @@ export const SubscribeNewsletterModal = (props: Props) => {
               <div> {props.t("Envoyer", "Envoyer")}</div>
             </FButton>
           </ButtonContainer>
-        )}
-
-        {notEmailError && (
-          <ErrorMessageContainer>
-            {props.t(
-              "Register.Ceci n'est pas un email,",
-              "Ceci n'est pas un email,"
-            )}{" "}
-            {props.t(
-              "Register.vérifiez l'orthographe.",
-              "vérifiez l'orthographe."
-            )}
-          </ErrorMessageContainer>
         )}
       </MainContainer>
     </Modal>
