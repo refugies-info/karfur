@@ -7,6 +7,9 @@ import Swal from "sweetalert2";
 import API from "../../../utils/API";
 import { FButtonMobile } from "../../../components/FigmaUI/FButtonMobile/FButtonMobile";
 import { colors } from "colors";
+import { isMobile } from "react-device-detect";
+import FButton from "../../../components/FigmaUI/FButton/FButton";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 
 declare const window: Window;
 interface Props {
@@ -39,11 +42,31 @@ const TextContainer = styled.div`
   margin: 16px;
 `;
 
+const CancelButton = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+  height: 60px;
+  background-color: ${colors.blanc};
+  border-radius: 12px;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 700;
+`;
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
 const ErrorMessageContainer = styled.div`
   color: #e8140f;
   font-size: 16px;
   line-height: 20px;
   margin-top: 16px;
+`;
+
+const Icon = styled.div`
+  margin-right: 10px;
 `;
 
 const EmailField = (props: EmailProps) => {
@@ -110,7 +133,12 @@ export const SubscribeNewsletterModal = (props: Props) => {
       <MainContainer>
         <img src={newsletter} alt="image newsletter" />
         <TitleContainer>
-          {props.t("Footer.Newsletter", "Newsletter")}
+          {isMobile
+            ? props.t("Footer.Newsletter", "Newsletter")
+            : props.t(
+                "Footer.Inscription à la newsletter",
+                "Inscription à la newsletter"
+              )}
         </TitleContainer>
         <TextContainer>
           {props.t(
@@ -126,16 +154,35 @@ export const SubscribeNewsletterModal = (props: Props) => {
           notEmailError={notEmailError}
         />
 
-        <FButtonMobile
-          name="checkmark-outline"
-          disabled={!email}
-          fill="white"
-          color={colors.vert}
-          onClick={sendMail}
-          t={props.t}
-          title="Envoyer"
-          defaultTitle="Envoyer"
-        />
+        {isMobile ? (
+          <FButtonMobile
+            name="checkmark-outline"
+            disabled={!email}
+            fill="white"
+            color={colors.vert}
+            onClick={sendMail}
+            t={props.t}
+            title="Envoyer"
+            defaultTitle="Envoyer"
+          />
+        ) : (
+          <ButtonContainer>
+            <CancelButton>
+              <Icon>
+                <EVAIcon name="close" fill="black" size={"large"} />
+              </Icon>
+              <div> {props.t("Annuler", "Annuler")}</div>
+            </CancelButton>
+            <FButton
+              type="validate-light"
+              name="checkmark-outline"
+              disabled={!email}
+              onClick={sendMail}
+            >
+              <div> {props.t("Envoyer", "Envoyer")}</div>
+            </FButton>
+          </ButtonContainer>
+        )}
 
         {notEmailError && (
           <ErrorMessageContainer>

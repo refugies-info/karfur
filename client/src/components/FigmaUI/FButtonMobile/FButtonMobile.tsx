@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import { colors } from "../../../colors";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 
 interface Props {
@@ -24,7 +24,8 @@ display:flex;
   border-radius: 12px;
   margin: auto;
  align-items:center;
-  background-color: ${(props) => props.backgroundColor};
+  background-color: ${(props) =>
+    props.disabled ? colors.grey : props.backgroundColor};
   font-size:16px;
   color:${(props) => props.color};
   font-weight:700;
@@ -37,7 +38,8 @@ const Icon = styled.div`
 export const FButtonMobile = (props: Props) => {
   return (
     <ButtonContainer
-      onClick={props.onClick}
+      onClick={props.disabled ? null : props.onClick}
+      disabled={props.disabled}
       backgroundColor={props.color}
       color={props.fill}
     >
