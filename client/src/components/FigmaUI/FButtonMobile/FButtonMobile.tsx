@@ -10,44 +10,41 @@ interface Props {
   title: string;
   defaultTitle: string;
   color: string;
-  disabled: boolean;
+  isDisabled: boolean;
   onClick: (e: any) => void;
 }
 
 const ButtonContainer = styled.div`
-display:flex;
+  display:flex;
   width: 100%;
   justify-content:center;
-  padding:14px
+  padding:20px
   text-align: center;
-  height: 52px;
   border-radius: 12px;
   margin: auto;
- align-items:center;
+  align-items:center;
   background-color: ${(props) =>
-    props.disabled ? colors.grey : props.backgroundColor};
+    props.isDisabled ? colors.grey : props.backgroundColor};
   font-size:16px;
   color:${(props) => props.color};
   font-weight:700;
-
 `;
-const Icon = styled.div`
+
+const IconContainer = styled.div`
   margin-right: 10px;
 `;
 
-export const FButtonMobile = (props: Props) => {
-  return (
-    <ButtonContainer
-      onClick={props.disabled ? null : props.onClick}
-      disabled={props.disabled}
-      backgroundColor={props.color}
-      color={props.fill}
-    >
-      <Icon>
-        <EVAIcon name={props.name} fill={props.fill} size={"large"} />
-      </Icon>
+export const FButtonMobile = (props: Props) => (
+  <ButtonContainer
+    onClick={props.isDisabled ? null : props.onClick}
+    disabled={props.isDisabled}
+    backgroundColor={props.color}
+    color={props.fill}
+  >
+    <IconContainer>
+      <EVAIcon name={props.name} fill={props.fill} size={"large"} />
+    </IconContainer>
 
-      {props.t(props.title, props.defaultTitle)}
-    </ButtonContainer>
-  );
-};
+    {props.t(props.title, props.defaultTitle)}
+  </ButtonContainer>
+);

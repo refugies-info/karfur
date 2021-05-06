@@ -16,7 +16,6 @@ interface Props {
   toggle: () => void;
   show: boolean;
   t: (a: string, b: string) => void;
-  onChange: void;
 }
 
 interface EmailProps {
@@ -43,17 +42,6 @@ const TextContainer = styled.div`
   margin: 16px;
 `;
 
-const CancelButton = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 8px;
-  height: 60px;
-  background-color: ${colors.blanc};
-  border-radius: 12px;
-  padding: 20px;
-  font-size: 16px;
-  font-weight: 700;
-`;
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -61,16 +49,13 @@ const ButtonContainer = styled.div`
 `;
 
 const ErrorMessageContainer = styled.div`
-  color: #e8140f;
+  color: ${colors.error};
   font-size: 16px;
   line-height: 20px;
   margin-top: 16px;
 `;
 
-const Icon = styled.div`
-  margin-right: 10px;
-`;
-const CloseIcon = styled.div`
+const CloseIconContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,24 +68,22 @@ const CloseIcon = styled.div`
   top: 8px;
 `;
 
-const EmailField = (props: EmailProps) => {
-  return (
-    <>
-      <FInput
-        prepend
-        prependName="email-outline"
-        value={props.email}
-        {...props}
-        id="email"
-        type="email"
-        placeholder={props.t("Register.Votre email", "Votre email")}
-        error={props.notEmailError}
-        errorIcon="email-outline"
-        newSize
-      />
-    </>
-  );
-};
+const EmailField = (props: EmailProps) => (
+  <>
+    <FInput
+      prepend
+      prependName="email-outline"
+      value={props.email}
+      {...props}
+      id="email"
+      type="email"
+      placeholder={props.t("Register.Votre email", "Votre email")}
+      error={props.notEmailError}
+      errorIcon="email-outline"
+      newSize
+    />
+  </>
+);
 
 export const SubscribeNewsletterModal = (props: Props) => {
   const [email, setEmail] = useState("");
@@ -147,9 +130,9 @@ export const SubscribeNewsletterModal = (props: Props) => {
     <Modal isOpen={props.show} toggle={props.toggle} className="share-content">
       <MainContainer>
         {isMobile && (
-          <CloseIcon onClick={props.toggle}>
+          <CloseIconContainer onClick={props.toggle}>
             <EVAIcon name="close" fill="white" size={"large"} />
-          </CloseIcon>
+          </CloseIconContainer>
         )}
         <img src={newsletter} alt="image newsletter" />
         <TitleContainer>
@@ -188,7 +171,7 @@ export const SubscribeNewsletterModal = (props: Props) => {
         {isMobile ? (
           <FButtonMobile
             name="checkmark-outline"
-            disabled={!email}
+            isDisabled={!email}
             fill="white"
             color={colors.vert}
             onClick={sendMail}
@@ -198,17 +181,19 @@ export const SubscribeNewsletterModal = (props: Props) => {
           />
         ) : (
           <ButtonContainer>
-            <CancelButton onClick={props.toggle}>
-              <Icon>
-                <EVAIcon name="close" fill="black" size={"large"} />
-              </Icon>
-              <div> {props.t("Annuler", "Annuler")}</div>
-            </CancelButton>
+            <FButton
+              type="light-action"
+              name="close-outline"
+              onClick={props.toggle}
+            >
+              <div> {props.t("Retour", "Retour")}</div>
+            </FButton>
             <FButton
               type="validate-light"
               name="checkmark-outline"
               disabled={!email}
               onClick={sendMail}
+              className="ml-8"
             >
               <div> {props.t("Envoyer", "Envoyer")}</div>
             </FButton>
