@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
@@ -5,7 +6,8 @@ import { newsletter } from "../../../assets/figma";
 import FInput from "../../../components/FigmaUI/FInput/FInput";
 import Swal from "sweetalert2";
 import API from "../../../utils/API";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
+import { FButtonMobile } from "../../../components/FigmaUI/FButtonMobile/FButtonMobile";
+import { colors } from "colors";
 
 declare const window: Window;
 interface Props {
@@ -35,7 +37,7 @@ const MainContainer = styled.div`
 const TextContainer = styled.div`
   font-size: 18px;
   font-weight: 400;
-  margin: 8px;
+  margin: 16px;
 `;
 
 const ErrorMessageContainer = styled.div`
@@ -50,14 +52,14 @@ const EmailField = (props: EmailProps) => {
     <>
       <FInput
         prepend
-        prependName="at-outline"
+        prependName="email-outline"
         value={props.email}
         {...props}
         id="email"
         type="email"
         placeholder={props.t("Register.Votre email", "Votre email")}
         error={props.notEmailError}
-        errorIcon="at"
+        errorIcon="email-outline"
         newSize
       />
     </>
@@ -86,6 +88,7 @@ export const SubscribeNewsletterModal = (props: Props) => {
     const regex = /^\S+@\S+\.\S+$/;
     const isEmail = !!email.match(regex);
     if (isEmail) {
+      console.log("email", email);
       API.set_mail({ mail: email })
         .then(() => {
           Swal.fire({
@@ -124,16 +127,17 @@ export const SubscribeNewsletterModal = (props: Props) => {
           t={props.t}
           notEmailError={notEmailError}
         />
-        <div>
-          <FButton
-            type="validate-light"
-            name="checkmark-outline"
-            disabled={!email}
-            onClick={sendMail}
-          >
-            <div> {props.t("Valider", "Valider")}</div>
-          </FButton>
-        </div>
+
+        <FButtonMobile
+          name="checkmark-outline"
+          disabled={!email}
+          fill="white"
+          color={colors.vert}
+          onClick={sendMail}
+          t={props.t}
+          title="Envoyer"
+          defaultTitle="Envoyer"
+        />
 
         {notEmailError && (
           <ErrorMessageContainer>
