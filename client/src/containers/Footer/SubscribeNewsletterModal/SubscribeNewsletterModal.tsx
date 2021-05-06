@@ -34,6 +34,7 @@ const TitleContainer = styled.div`
 const MainContainer = styled.div`
   text-align: center;
   padding: 29px;
+  padding-top: 50px;
   margin: 8px;
 `;
 const TextContainer = styled.div`
@@ -69,7 +70,14 @@ const Icon = styled.div`
   margin-right: 10px;
 `;
 const CloseIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: black;
   right: 10px;
   top: 8px;
 `;
@@ -139,7 +147,7 @@ export const SubscribeNewsletterModal = (props: Props) => {
       <MainContainer>
         {isMobile && (
           <CloseIcon onClick={props.toggle}>
-            <EVAIcon name="close" fill="black" size={"large"} />
+            <EVAIcon name="close" fill="white" size={"large"} />
           </CloseIcon>
         )}
         <img src={newsletter} alt="image newsletter" />
