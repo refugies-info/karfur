@@ -11,6 +11,7 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: ${isMobile ? "wrap" : "no-wrap"};
+  justify-content: center;
 `;
 
 const ColumnContainer = styled.div`
