@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState } from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
@@ -88,7 +87,6 @@ export const SubscribeNewsletterModal = (props: Props) => {
     const regex = /^\S+@\S+\.\S+$/;
     const isEmail = !!email.match(regex);
     if (isEmail) {
-      console.log("email", email);
       API.set_mail({ mail: email })
         .then(() => {
           Swal.fire({
@@ -99,9 +97,9 @@ export const SubscribeNewsletterModal = (props: Props) => {
           });
           setEmail("");
         })
-        .catch(() =>
-          Swal.fire("Oh non...", "Une erreur s'est produite", "error")
-        );
+        .catch(() => {
+          Swal.fire("Oh non...", "Une erreur s'est produite", "error");
+        });
     } else {
       setNotEmailError(true);
     }
