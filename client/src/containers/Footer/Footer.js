@@ -198,7 +198,7 @@ export class Footer extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-btn"
-                type="tuto"
+                type="light-action"
                 name="email-outline"
                 fill={colors.noir}
               >
