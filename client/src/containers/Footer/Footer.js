@@ -11,6 +11,7 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: ${isMobile ? "wrap" : "no-wrap"};
+  justify-content: center;
 `;
 
 const ColumnContainer = styled.div`
@@ -198,7 +199,7 @@ export class Footer extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-btn"
-                type="tuto"
+                type="light-action"
                 name="email-outline"
                 fill={colors.noir}
               >
