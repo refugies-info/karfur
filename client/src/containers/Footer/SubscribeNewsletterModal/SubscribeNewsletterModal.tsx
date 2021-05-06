@@ -68,6 +68,11 @@ const ErrorMessageContainer = styled.div`
 const Icon = styled.div`
   margin-right: 10px;
 `;
+const CloseIcon = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 8px;
+`;
 
 const EmailField = (props: EmailProps) => {
   return (
@@ -119,6 +124,7 @@ export const SubscribeNewsletterModal = (props: Props) => {
             timer: 1500,
           });
           setEmail("");
+          props.toggle();
         })
         .catch(() => {
           Swal.fire("Oh non...", "Une erreur s'est produite", "error");
@@ -131,6 +137,11 @@ export const SubscribeNewsletterModal = (props: Props) => {
   return (
     <Modal isOpen={props.show} toggle={props.toggle} className="share-content">
       <MainContainer>
+        {isMobile && (
+          <CloseIcon onClick={props.toggle}>
+            <EVAIcon name="close" fill="black" size={"large"} />
+          </CloseIcon>
+        )}
         <img src={newsletter} alt="image newsletter" />
         <TitleContainer>
           {isMobile
