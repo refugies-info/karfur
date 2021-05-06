@@ -4,13 +4,15 @@ import { NavLink } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
 import Swal from "sweetalert2";
 import styled from "styled-components";
-import API from "../../utils/API";
+
 import { isMobile } from "react-device-detect";
+import { SubscribeNewsletterModal } from "./SubscribeNewsletterModal/SubscribeNewsletterModal";
 
 const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: ${isMobile ? "wrap" : "no-wrap"};
+  justify-content: center;
 `;
 
 const ColumnContainer = styled.div`
@@ -50,35 +52,15 @@ import FButton from "../../components/FigmaUI/FButton/FButton";
 export class Footer extends Component {
   state = {
     email: "",
+    showSubscribeNewsletterModal: false,
   };
 
   onChange = (e) => this.setState({ email: e.target.value });
 
-  sendMail = (e) => {
-    e.preventDefault();
-    if (!this.state.email) {
-      Swal.fire({
-        title: "Oops...",
-        text: "Aucun mail renseigné",
-        type: "error",
-        timer: 1500,
-      });
-      return;
-    }
-    API.set_mail({ mail: this.state.email })
-      .then(() => {
-        Swal.fire({
-          title: "Yay...",
-          text: "Mail correctement enregistré !",
-          type: "success",
-          timer: 1500,
-        });
-        this.setState({ email: "" });
-      })
-      .catch(() =>
-        Swal.fire("Oh non...", "Une erreur s'est produite", "error")
-      );
-  };
+  toggleSubscribreNewsletterModal = () =>
+    this.setState((prevState) => ({
+      showSubscribeNewsletterModal: !prevState.showSubscribeNewsletterModal,
+    }));
 
   upcoming = () =>
     Swal.fire({
@@ -193,12 +175,11 @@ export class Footer extends Component {
           <ButtonContainer>
             <div>
               <FButton
-                tag={"a"}
-                href=""
+                onClick={() => this.toggleSubscribreNewsletterModal()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-btn"
-                type="tuto"
+                type="light-action"
                 name="email-outline"
                 fill={colors.noir}
               >
@@ -240,6 +221,11 @@ export class Footer extends Component {
             </div>
           </ButtonContainer>
         </MainContainer>
+        <SubscribeNewsletterModal
+          show={this.state.showSubscribeNewsletterModal}
+          toggle={this.toggleSubscribreNewsletterModal}
+          t={this.props.t}
+        />
       </div>
     );
   }

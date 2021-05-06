@@ -18,6 +18,7 @@ import rejectionFiche from "./rejectionFiche.svg";
 import beta from "./beta.svg";
 import logoRI from "./logoRI.svg";
 import logo_mobile from "./logo_mobile.svg";
+import newsletter from "./newsletter.svg";
 
 export {
   boldBtn,
@@ -40,4 +41,5 @@ export {
   beta,
   logoRI,
   logo_mobile,
+  newsletter,
 };
