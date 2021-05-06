@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
-import { NavHashLink } from "react-router-hash-link";
 import Swal from "sweetalert2";
 import styled from "styled-components";
 import API from "../../utils/API";
 import { isMobile } from "react-device-detect";
+import { withRouter } from "react-router-dom";
 
 const MainContainer = styled.div`
   display: flex;
@@ -123,31 +122,37 @@ export class Footer extends Component {
             </TextContainer>
             <LinkContainer>
               {!isMobile && (
-                <div className="lien-footer">
-                  <NavHashLink to="/comment-contribuer">
-                    {t(
-                      "CommentContribuer.Participer / Contribuer",
-                      "Participer / Contribuer"
-                    )}
-                  </NavHashLink>
+                <div
+                  className="lien-footer"
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                    this.props.history.push("/comment-contribuer");
+                  }}
+                >
+                  {t(
+                    "CommentContribuer.Participer / Contribuer",
+                    "Participer / Contribuer"
+                  )}
                 </div>
               )}
-              <div className="lien-footer">
-                <NavLink to="/advanced-search">
-                  {t(
-                    "Dispositif d'accompagnement",
-                    "Chercher de l'information"
-                  )}
-                </NavLink>
+              <div
+                className="lien-footer"
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  this.props.history.push("/advanced-search");
+                }}
+              >
+                {t("Dispositif d'accompagnement", "Chercher de l'information")}
               </div>
               {!isMobile && (
-                <div className="lien-footer">
-                  <NavLink to="/annuaire">
-                    {t(
-                      "Homepage.Consulter l’annnuaire",
-                      "Consulter l'annuaire"
-                    )}
-                  </NavLink>
+                <div
+                  className="lien-footer"
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                    this.props.history.push("/annuaire");
+                  }}
+                >
+                  {t("Homepage.Consulter l’annnuaire", "Consulter l'annuaire")}
                 </div>
               )}
               <div className="lien-footer">
@@ -165,10 +170,14 @@ export class Footer extends Component {
             </LinkContainer>
             <LinkContainer>
               {!isMobile && (
-                <div className="lien-footer">
-                  <NavHashLink to="/qui-sommes-nous">
-                    {t("Qui sommes-nous ?", "Qui sommes-nous ?")}
-                  </NavHashLink>
+                <div
+                  className="lien-footer"
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                    this.props.history.push("/qui-sommes-nous");
+                  }}
+                >
+                  {t("Qui sommes-nous ?", "Qui sommes-nous ?")}
                 </div>
               )}
               <div className="lien-footer">
@@ -176,18 +185,26 @@ export class Footer extends Component {
                   {t("Démarche administrative", "Contacter l'èquipe")}
                 </a>
               </div>
-              <div className="lien-footer">
-                <NavLink to="/politique-de-confidentialite">
-                  {t(
-                    "Politique de confidentialité",
-                    "Politique de confidentialité"
-                  )}
-                </NavLink>
+              <div
+                className="lien-footer"
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  this.props.history.push("/politique-de-confidentialite");
+                }}
+              >
+                {t(
+                  "Politique de confidentialité",
+                  "Politique de confidentialité"
+                )}
               </div>
-              <div className="lien-footer">
-                <NavLink to="/mentions-legales">
-                  {t("Mentions légales", "Mentions légales")}
-                </NavLink>
+              <div
+                className="lien-footer"
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  this.props.history.push("/mentions-legales");
+                }}
+              >
+                {t("Mentions légales", "Mentions légales")}
               </div>
             </LinkContainer>
           </ColumnContainer>
@@ -246,4 +263,4 @@ export class Footer extends Component {
   }
 }
 
-export default withTranslation()(Footer);
+export default withRouter(withTranslation()(Footer));

@@ -35,7 +35,7 @@ const LangueItemContainer = styled.div`
   border-radius: 12px;
   display: flex;
   flex-direction: row;
-  width: 180px;
+  width: 185px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
@@ -102,7 +102,9 @@ const LangueItem = (props: {
           className={" flag-icon flag-icon-" + props.langue.langueCode}
         />
       </div>
-      {props.langue.langueFr}
+      {props.langue.langueFr === "Persan"
+        ? "Persan/Dari"
+        : props.langue.langueFr}
     </div>
     <CheckBoxContainer isSelected={props.isSelected}>
       <div style={{ position: "absolute", bottom: "-2px" }}>
