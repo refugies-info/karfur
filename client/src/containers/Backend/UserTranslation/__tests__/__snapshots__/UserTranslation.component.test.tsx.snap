@@ -972,7 +972,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
 }
 
 .c6 {
-  margin: 26px 75px 26px 75px;
+  margin: 26px 12px 26px 12px;
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -1336,10 +1336,10 @@ exports[`user translation should render correctly with expert, admin 1`] = `
           >
             Dispositifs (1)
             <div
-              className="switch-wrapper card-custom-title ml-8"
+              className="switch-wrapper ml-8"
             >
               <label
-                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                className="ml-8 switch switch-pill switch-outline-light form-check-label"
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
               >
@@ -1364,10 +1364,10 @@ exports[`user translation should render correctly with expert, admin 1`] = `
           >
             Démarches (1)
             <div
-              className="switch-wrapper card-custom-title ml-8"
+              className="switch-wrapper ml-8"
             >
               <label
-                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                className="ml-8 switch switch-pill switch-outline-light form-check-label"
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
               >
@@ -2022,7 +2022,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
 }
 
 .c5 {
-  margin: 26px 75px 26px 75px;
+  margin: 26px 12px 26px 12px;
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -2349,10 +2349,10 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
           >
             Dispositifs (1)
             <div
-              className="switch-wrapper card-custom-title ml-8"
+              className="switch-wrapper ml-8"
             >
               <label
-                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                className="ml-8 switch switch-pill switch-outline-light form-check-label"
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
               >
@@ -2377,10 +2377,10 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
           >
             Démarches (1)
             <div
-              className="switch-wrapper card-custom-title ml-8"
+              className="switch-wrapper ml-8"
             >
               <label
-                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                className="ml-8 switch switch-pill switch-outline-light form-check-label"
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
               >
@@ -2963,7 +2963,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
 }
 
 .c5 {
-  margin: 26px 75px 26px 75px;
+  margin: 26px 12px 26px 12px;
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -3276,10 +3276,10 @@ exports[`user translation should render correctly with non expert, non admin 1`]
           >
             Dispositifs (1)
             <div
-              className="switch-wrapper card-custom-title ml-8"
+              className="switch-wrapper ml-8"
             >
               <label
-                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                className="ml-8 switch switch-pill switch-outline-light form-check-label"
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
               >
@@ -3304,10 +3304,10 @@ exports[`user translation should render correctly with non expert, non admin 1`]
           >
             Démarches (1)
             <div
-              className="switch-wrapper card-custom-title ml-8"
+              className="switch-wrapper ml-8"
             >
               <label
-                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                className="ml-8 switch switch-pill switch-outline-light form-check-label"
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
               >
@@ -4088,10 +4088,10 @@ exports[`user translation should return loader langue in url = first selected la
           >
             Dispositifs (...)
             <div
-              className="switch-wrapper card-custom-title ml-8"
+              className="switch-wrapper ml-8"
             >
               <label
-                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                className="ml-8 switch switch-pill switch-outline-light form-check-label"
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
               >
@@ -4116,10 +4116,10 @@ exports[`user translation should return loader langue in url = first selected la
           >
             Démarches (...)
             <div
-              className="switch-wrapper card-custom-title ml-8"
+              className="switch-wrapper ml-8"
             >
               <label
-                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                className="ml-8 switch switch-pill switch-outline-light form-check-label"
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
               >
