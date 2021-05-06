@@ -70,8 +70,8 @@ const StyledStep = styled.div`
   background: ${(props) => props.darkColor};
   border-radius: 50%;
   color: white;
-  height: 34px;
-  width: 34px;
+  height: 36px;
+  min-width: 36px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -353,7 +353,7 @@ class EtapeParagraphe extends Component {
                       }
                       size="large"
                       fill={darkColor}
-                      className="ml-12"
+                      className="ml-8"
                     />
                   )}
                 </StyledHeader>

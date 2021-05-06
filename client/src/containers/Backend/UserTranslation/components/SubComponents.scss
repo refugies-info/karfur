@@ -10,3 +10,23 @@
     border-radius: 6px;
   }
 }
+
+.switch-wrapper .switch-slider {
+  background: #edebeb;
+  border-color: #edebeb;
+}
+
+.switch-wrapper .switch-slider:before {
+  background: #5e5e5e;
+  border-color: #5e5e5e;
+}
+
+.switch-wrapper .switch-input:checked + .switch-slider:before {
+  background: #ffffff;
+  border-color: #ffffff;
+}
+
+.switch-outline-light .switch-input:checked + .switch-slider {
+  background-color: #4caf50 !important;
+  border-color: #4caf50 !important;
+}

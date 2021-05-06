@@ -73,9 +73,15 @@ const getSelectedLanguages = (langues: LangueDoc[]) => {
 
   const languesFiltered = langues
     .filter((langue) =>
-      ["Anglais", "Russe", "Persan", "Pachto", "Arabe", "Tigrinya"].includes(
-        langue.langueFr
-      )
+      [
+        "Anglais",
+        "Russe",
+        "Persan",
+        "Pachto",
+        "Arabe",
+        "Tigrinya",
+        "Persan/Dari",
+      ].includes(langue.langueFr)
     )
     .map((langue) => ({
       langueCode: langue.langueCode,
