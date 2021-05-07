@@ -214,6 +214,27 @@ export const getRegionFigures = (dispositifs: Result[]) => {
   });
 };
 
+export const getDepartementsFigures = (dispositifs: Result[]) => {
+  const groupedDataByDepartment = _.groupBy(dispositifs, "department");
+  const departementArray = Object.keys(
+    _.groupBy(departmentRegionCorrespondency, "department")
+  );
+  return departementArray.map((dep) => {
+    const dataRegion = departmentRegionCorrespondency.filter(
+      (data) => data.department === dep
+    );
+
+    return {
+      departement: dep,
+      nbDispositifs: groupedDataByDepartment[dep]
+        ? groupedDataByDepartment[dep].length
+        : 0,
+      region:
+        dataRegion && dataRegion[0] ? dataRegion[0].region : "Pas de région",
+    };
+  });
+};
+
 export const getTitreInfoOrMarque = (
   titre: string | Record<string, string> | null
 ): string => {

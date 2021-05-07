@@ -7,6 +7,7 @@ import _ from "lodash";
 import { targetByTag } from "./data";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { NoGeolocModal } from "./NoGeolocModal";
+import Swal from "sweetalert2";
 
 moment.locale("fr");
 
@@ -22,6 +23,7 @@ class Dashboard extends Component {
     nbTraductors: 0,
     figuresByRegion: [],
     showNoGeolocModal: false,
+    isExportLoading: false,
   };
 
   componentDidMount() {
@@ -92,6 +94,28 @@ class Dashboard extends Component {
       showNoGeolocModal: !prevState.showNoGeolocModal,
     }));
 
+  exportToAirtable = async () => {
+    try {
+      this.setState({ isExportLoading: true });
+      await API.exportDispositifsGeolocalisation();
+      this.setState({ isExportLoading: false });
+
+      Swal.fire({
+        title: "Yay...",
+        text: "Export en cours",
+        type: "success",
+        timer: 1500,
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Oh non!",
+        text: "Something went wrong",
+        type: "error",
+        timer: 1500,
+      });
+    }
+  };
+
   render() {
     const {
       nbDispositifs,
@@ -159,6 +183,13 @@ class Dashboard extends Component {
               - nombre de départements avec au moins 1 dispositif/nombre de
               départements) :
             </b>
+            <FButton
+              type="dark"
+              className="ml-8"
+              onClick={this.exportToAirtable}
+            >
+              Export départements airtable
+            </FButton>
             {noGeolocFigures.length > 0 && (
               <li>
                 <div
