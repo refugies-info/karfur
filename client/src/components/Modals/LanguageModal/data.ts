@@ -25,7 +25,7 @@ export const activatedLanguages = {
   },
   3: {
     langueFr: "Persan/Dari",
-    langueLoc: "فارسی",
+    langueLoc: "فارسی دری",
     langueCode: "ir",
     i18nCode: "fa",
     avancement: 1,
