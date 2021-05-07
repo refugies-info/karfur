@@ -44,7 +44,7 @@ export function* fetchUser(
     if (action.payload && action.payload.shouldRedirect) {
       yield put(
         push({
-          pathname: "/backend/user-dashboard",
+          pathname: "/backend/user-translation",
           state: { user: action.payload.user },
         })
       );
