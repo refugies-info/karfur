@@ -3,7 +3,6 @@ import { withTranslation } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
 import { connect } from "react-redux";
-//import { Row, Col, Card, CardHeader, CardBody, CardFooter } from "reactstrap";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { toggleLangueModalActionCreator } from "../../services/Langue/langue.actions";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
@@ -23,7 +22,7 @@ import {
   illustration_homeCard_dispositif,
   illustration_homeCard_annuaire,
   illustration_homeCard_demarche,
-  //illustration_homeCard_lexique,
+  illustration_homeCard_lexique,
 } from "../../assets/figma";
 
 const CoronaAlert = styled.div`
@@ -266,7 +265,7 @@ export class HomePage extends Component {
                 });
               }}
             />
-            {/* <HomeCard
+            <HomeCard
               t={t}
               text="Trouver un programme"
               defaultText="Lire le lexique pour comprendre les mots difficiles"
@@ -277,7 +276,7 @@ export class HomePage extends Component {
               textColor={colors.bleuCharte}
               image={illustration_homeCard_lexique}
               isDisabled={true}
-            /> */}
+            />
           </CardContainer>
         </section>
 
