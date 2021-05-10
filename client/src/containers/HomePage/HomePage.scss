@@ -457,6 +457,9 @@
       svg {
         transition: all 0.5s ease;
         fill: $gris;
+        @include media-max("tablet-up") {
+          fill: $bleuCharte;
+        }
       }
     }
   }

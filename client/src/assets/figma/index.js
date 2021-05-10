@@ -19,6 +19,10 @@ import beta from "./beta.svg";
 import logoRI from "./logoRI.svg";
 import logo_mobile from "./logo_mobile.svg";
 import newsletter from "./newsletter.svg";
+import illustration_homeCard_dispositif from "./illustration_homeCard_dispositif.svg";
+import illustration_homeCard_annuaire from "./illustration_homeCard_annuaire.svg";
+import illustration_homeCard_demarche from "./illustration_homeCard_demarche.svg";
+import illustration_homeCard_lexique from "./illustration_homeCard_lexique.svg";
 
 export {
   boldBtn,
@@ -42,4 +46,8 @@ export {
   logoRI,
   logo_mobile,
   newsletter,
+  illustration_homeCard_dispositif,
+  illustration_homeCard_annuaire,
+  illustration_homeCard_demarche,
+  illustration_homeCard_lexique,
 };

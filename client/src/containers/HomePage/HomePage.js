@@ -3,7 +3,7 @@ import { withTranslation } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
 import { connect } from "react-redux";
-import { Row, Col, Card, CardHeader, CardBody, CardFooter } from "reactstrap";
+//import { Row, Col, Card, CardHeader, CardBody, CardFooter } from "reactstrap";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { toggleLangueModalActionCreator } from "../../services/Langue/langue.actions";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
@@ -17,6 +17,13 @@ import { initial_data } from "../AdvancedSearch/data";
 import HomeSearch from "./HomeSearch";
 import CatList from "./CatList";
 import { initGA, PageView } from "../../tracking/dispatch";
+import { HomeCard } from "./HomeCard";
+import {
+  illustration_homeCard_dispositif,
+  illustration_homeCard_annuaire,
+  illustration_homeCard_demarche,
+  illustration_homeCard_lexique,
+} from "../../assets/figma";
 
 const CoronaAlert = styled.div`
   display: flex;
@@ -47,6 +54,12 @@ const CloseCorona = styled.div`
   margin-right: 10px;
   margin-top: 10px;
   cursor: pointer;
+`;
+
+const CardContainer = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
 `;
 
 export class HomePage extends Component {
@@ -184,108 +197,50 @@ export class HomePage extends Component {
           </div>
         </section>
 
-        {!isMobile && (
-          <section id="plan" className="triptique">
-            <div className="section-container">
-              <h2>{t("Homepage.Vous cherchez ?", "Je cherche à ?")}</h2>
-
-              <Row className="card-row">
-                <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
-                  <NavLink
-                    to={{
-                      pathname: "/advanced-search",
-                      search: "?filter=" + "demarche",
-                    }}
-                    className="no-decoration demarche-link"
-                  >
-                    <Card className="demarche-card">
-                      <CardHeader>
-                        {t(
-                          "Homepage.À comprendre une démarche",
-                          "À comprendre une démarche"
-                        )}
-                      </CardHeader>
-                      <CardBody>
-                        {/* <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span> */}
-                      </CardBody>
-                      <CardFooter>
-                        <FButton
-                          type="homebtn"
-                          name="search-outline"
-                          fill={colors.noir}
-                          className="demarche-btn"
-                        >
-                          {t(
-                            "Homepage.Trouver une démarche",
-                            "Trouver une démarche"
-                          )}
-                        </FButton>
-                      </CardFooter>
-                    </Card>
-                  </NavLink>
-                </Col>
-                <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
-                  <NavLink
-                    to={{
-                      pathname: "/advanced-search",
-                      search: "?filter=" + "dispositif",
-                    }}
-                    className="no-decoration"
-                  >
-                    <Card className="dispo-card">
-                      <CardHeader>
-                        {t(
-                          "Homepage.A apprendre",
-                          "Rejoindre un dispositif d'accompagnement"
-                        )}
-                      </CardHeader>
-                      <CardBody>
-                        {/* <span>Je veux rejoindre un dispositif d’accompagnement ou une initiative</span> */}
-                      </CardBody>
-                      <CardFooter>
-                        <FButton
-                          type="homebtn"
-                          name="search-outline"
-                          fill={colors.noir}
-                        >
-                          {t(
-                            "Homepage.Trouver un dispositif",
-                            "Trouver un dispositif"
-                          )}
-                        </FButton>
-                      </CardFooter>
-                    </Card>
-                  </NavLink>
-                </Col>
-                <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
-                  <NavLink to={"/annuaire"} className="no-decoration">
-                    <Card className="parcours-card">
-                      <CardHeader>
-                        {t(
-                          "Homepage.Consulter l’annnuaire",
-                          "Consulter l’annnuaire"
-                        )}
-                      </CardHeader>
-                      <CardBody></CardBody>
-                      <CardFooter>
-                        <FButton
-                          type="homebtn"
-                          name="search-outline"
-                          fill={colors.noir}
-                        >
-                          {t(
-                            "Homepage.Trouver une organisation",
-                            "Trouver une organisation"
-                          )}
-                        </FButton>
-                      </CardFooter>
-                    </Card>
-                  </NavLink>
-                </Col>
-              </Row>
-            </div>
-          </section>
-        )}
+        <section id="plan" className="triptique">
+          <CardContainer>
+            <HomeCard
+              t={t}
+              text="Trouver un programme"
+              defaultText="Trouver un programme ou une formation"
+              buttonTitle="Je cherche"
+              defaultBoutonTitle="Je cherche"
+              iconName="search"
+              backgroundColor="#1E9ED1"
+              image={illustration_homeCard_dispositif}
+            />
+            <HomeCard
+              t={t}
+              text="Trouver un programme"
+              defaultText="Trouver un programme ou une formation"
+              buttonTitle="Je cherche"
+              defaultBoutonTitle="Je cherche"
+              iconName="search"
+              backgroundColor="#1E9ED1"
+              image={illustration_homeCard_demarche}
+            />
+            <HomeCard
+              t={t}
+              text="Trouver un programme"
+              defaultText="Trouver un programme ou une formation"
+              buttonTitle="Je cherche"
+              defaultBoutonTitle="Je cherche"
+              iconName="search"
+              backgroundColor="#1E9ED1"
+              image={illustration_homeCard_annuaire}
+            />
+            <HomeCard
+              t={t}
+              text="Trouver un programme"
+              defaultText="Trouver un programme ou une formation"
+              buttonTitle="Je cherche"
+              defaultBoutonTitle="Je cherche"
+              iconName="search"
+              backgroundColor="#1E9ED1"
+              image={illustration_homeCard_lexique}
+            />
+          </CardContainer>
+        </section>
 
         {!isMobile && (
           <section id="contribution" className="contrib">
