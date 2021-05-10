@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
-import {colors} from "colors";
+import { colors } from "colors";
 import Streamline from "../../assets/streamline";
 import Ripples from "react-ripples";
 import i18n from "../../i18n";
@@ -122,7 +122,7 @@ export class SearchItem extends Component {
 
     return (
       <button onClick={this.open} className={"search-col"}>
-        <span className="mr-10">
+        <span className="mr-10 mb-15">
           {t("SearchItem." + item.title, item.title)}
         </span>
         {this.state.flip ? (

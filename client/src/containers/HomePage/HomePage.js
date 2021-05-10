@@ -10,7 +10,7 @@ import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import API from "../../utils/API";
 import styled from "styled-components";
-
+import { isMobile } from "react-device-detect";
 import "./HomePage.scss";
 import { colors } from "colors";
 import { initial_data } from "../AdvancedSearch/data";
@@ -183,195 +183,207 @@ export class HomePage extends Component {
           </div>
         </section>
 
-        <section id="plan" className="triptique">
-          <div className="section-container">
-            <h2>{t("Homepage.Vous cherchez ?", "Je cherche à ?")}</h2>
+        {!isMobile && (
+          <section id="plan" className="triptique">
+            <div className="section-container">
+              <h2>{t("Homepage.Vous cherchez ?", "Je cherche à ?")}</h2>
 
-            <Row className="card-row">
-              <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
-                <NavLink
-                  to={{
-                    pathname: "/advanced-search",
-                    search: "?filter=" + "demarche",
-                  }}
-                  className="no-decoration demarche-link"
-                >
-                  <Card className="demarche-card">
-                    <CardHeader>
-                      {t(
-                        "Homepage.À comprendre une démarche",
-                        "À comprendre une démarche"
-                      )}
-                    </CardHeader>
-                    <CardBody>
-                      {/* <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span> */}
-                    </CardBody>
-                    <CardFooter>
-                      <FButton
-                        type="homebtn"
-                        name="search-outline"
-                        fill={colors.noir}
-                        className="demarche-btn"
-                      >
+              <Row className="card-row">
+                <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
+                  <NavLink
+                    to={{
+                      pathname: "/advanced-search",
+                      search: "?filter=" + "demarche",
+                    }}
+                    className="no-decoration demarche-link"
+                  >
+                    <Card className="demarche-card">
+                      <CardHeader>
                         {t(
-                          "Homepage.Trouver une démarche",
-                          "Trouver une démarche"
+                          "Homepage.À comprendre une démarche",
+                          "À comprendre une démarche"
                         )}
-                      </FButton>
-                    </CardFooter>
-                  </Card>
-                </NavLink>
-              </Col>
-              <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
-                <NavLink
-                  to={{
-                    pathname: "/advanced-search",
-                    search: "?filter=" + "dispositif",
-                  }}
-                  className="no-decoration"
-                >
-                  <Card className="dispo-card">
-                    <CardHeader>
-                      {t(
-                        "Homepage.A apprendre",
-                        "Rejoindre un dispositif d'accompagnement"
-                      )}
-                    </CardHeader>
-                    <CardBody>
-                      {/* <span>Je veux rejoindre un dispositif d’accompagnement ou une initiative</span> */}
-                    </CardBody>
-                    <CardFooter>
-                      <FButton
-                        type="homebtn"
-                        name="search-outline"
-                        fill={colors.noir}
-                      >
+                      </CardHeader>
+                      <CardBody>
+                        {/* <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span> */}
+                      </CardBody>
+                      <CardFooter>
+                        <FButton
+                          type="homebtn"
+                          name="search-outline"
+                          fill={colors.noir}
+                          className="demarche-btn"
+                        >
+                          {t(
+                            "Homepage.Trouver une démarche",
+                            "Trouver une démarche"
+                          )}
+                        </FButton>
+                      </CardFooter>
+                    </Card>
+                  </NavLink>
+                </Col>
+                <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
+                  <NavLink
+                    to={{
+                      pathname: "/advanced-search",
+                      search: "?filter=" + "dispositif",
+                    }}
+                    className="no-decoration"
+                  >
+                    <Card className="dispo-card">
+                      <CardHeader>
                         {t(
-                          "Homepage.Trouver un dispositif",
-                          "Trouver un dispositif"
+                          "Homepage.A apprendre",
+                          "Rejoindre un dispositif d'accompagnement"
                         )}
-                      </FButton>
-                    </CardFooter>
-                  </Card>
-                </NavLink>
-              </Col>
-              <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
-                <NavLink to={"/annuaire"} className="no-decoration">
-                  <Card className="parcours-card">
-                    <CardHeader>
-                      {t(
-                        "Homepage.Consulter l’annnuaire",
-                        "Consulter l’annnuaire"
-                      )}
-                    </CardHeader>
-                    <CardBody></CardBody>
-                    <CardFooter>
-                      <FButton
-                        type="homebtn"
-                        name="search-outline"
-                        fill={colors.noir}
-                      >
+                      </CardHeader>
+                      <CardBody>
+                        {/* <span>Je veux rejoindre un dispositif d’accompagnement ou une initiative</span> */}
+                      </CardBody>
+                      <CardFooter>
+                        <FButton
+                          type="homebtn"
+                          name="search-outline"
+                          fill={colors.noir}
+                        >
+                          {t(
+                            "Homepage.Trouver un dispositif",
+                            "Trouver un dispositif"
+                          )}
+                        </FButton>
+                      </CardFooter>
+                    </Card>
+                  </NavLink>
+                </Col>
+                <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
+                  <NavLink to={"/annuaire"} className="no-decoration">
+                    <Card className="parcours-card">
+                      <CardHeader>
                         {t(
-                          "Homepage.Trouver une organisation",
-                          "Trouver une organisation"
+                          "Homepage.Consulter l’annnuaire",
+                          "Consulter l’annnuaire"
                         )}
-                      </FButton>
-                    </CardFooter>
-                  </Card>
-                </NavLink>
-              </Col>
-            </Row>
-          </div>
-        </section>
+                      </CardHeader>
+                      <CardBody></CardBody>
+                      <CardFooter>
+                        <FButton
+                          type="homebtn"
+                          name="search-outline"
+                          fill={colors.noir}
+                        >
+                          {t(
+                            "Homepage.Trouver une organisation",
+                            "Trouver une organisation"
+                          )}
+                        </FButton>
+                      </CardFooter>
+                    </Card>
+                  </NavLink>
+                </Col>
+              </Row>
+            </div>
+          </section>
+        )}
 
-        <section id="contribution" className="contrib">
-          <div className="section-container half-width">
-            <div className="section-body">
-              <h2>{t("Homepage.contributive")}</h2>
-              <p className="texte-normal">
-                {t("Homepage.contributive subheader")}
-                <NavLink className="link ml-10" to="/qui-sommes-nous">
+        {!isMobile && (
+          <section id="contribution" className="contrib">
+            <div className="section-container half-width">
+              <div className="section-body">
+                <h2>{t("Homepage.contributive")}</h2>
+                <p className="texte-normal">
+                  {t("Homepage.contributive subheader")}
+                  <NavLink className="link ml-10" to="/qui-sommes-nous">
+                    {t("En savoir plus", "En savoir plus")}
+                  </NavLink>
+                </p>
+              </div>
+              <footer className="footer-section">
+                {t("Homepage.contributeurs mobilises", {
+                  nombre: nbContributors,
+                })}{" "}
+                <FButton
+                  tag={NavHashLink}
+                  to="/comment-contribuer#ecrire"
+                  type="dark"
+                >
+                  {t("Homepage.Je contribue", "Je contribue")}
+                </FButton>
+              </footer>
+            </div>
+          </section>
+        )}
+
+        {!isMobile && (
+          <section id="multilangues">
+            <div className="section-container half-width right-side">
+              <div className="section-body">
+                <h2>{t("Homepage.disponible langues")}</h2>
+                <p className="texte-normal">
+                  {t("Homepage.disponible langues subheader")}
+                </p>
+                {/*<LanguageBtn />*/}
+              </div>
+              <footer className="footer-section">
+                {t("Homepage.traducteurs mobilises", {
+                  nombre: nbTraductors,
+                })}{" "}
+                <FButton
+                  tag={NavHashLink}
+                  to={
+                    API.isAuth()
+                      ? "/backend/user-translation"
+                      : "/comment-contribuer#traduire"
+                  }
+                  type="dark"
+                >
+                  {t("Homepage.Je traduis", "Je traduis")}
+                </FButton>
+              </footer>
+            </div>
+          </section>
+        )}
+
+        {!isMobile && (
+          <section id="certifiee">
+            <div className="section-container half-width">
+              <div className="section-body">
+                <h2>{t("Homepage.information vérifiée")}</h2>
+                <p className="texte-normal">
+                  {t("Homepage.information vérifiée subheader")}
+                </p>
+              </div>
+              <footer>
+                <FButton
+                  tag={NavHashLink}
+                  to="/comment-contribuer#corriger"
+                  type="dark"
+                >
                   {t("En savoir plus", "En savoir plus")}
-                </NavLink>
-              </p>
+                </FButton>
+              </footer>
             </div>
-            <footer className="footer-section">
-              {t("Homepage.contributeurs mobilises", {
-                nombre: nbContributors,
-              })}{" "}
-              <FButton
-                tag={NavHashLink}
-                to="/comment-contribuer#ecrire"
-                type="dark"
-              >
-                {t("Homepage.Je contribue", "Je contribue")}
-              </FButton>
-            </footer>
-          </div>
-        </section>
+          </section>
+        )}
 
-        <section id="multilangues">
-          <div className="section-container half-width right-side">
-            <div className="section-body">
-              <h2>{t("Homepage.disponible langues")}</h2>
+        {!isMobile && (
+          <section id="explique">
+            <div className="section-container half-width right-side">
+              <h2>
+                {t(
+                  "Homepage.Explique les mots difficiles",
+                  "Explique les mots difficiles"
+                )}
+              </h2>
               <p className="texte-normal">
-                {t("Homepage.disponible langues subheader")}
+                {t("Homepage.explication lexique")}
               </p>
-              {/*<LanguageBtn />*/}
+              <span className="texte-normal">
+                {t("Bientôt disponible !", "Bientôt disponible !")}
+              </span>
             </div>
-            <footer className="footer-section">
-              {t("Homepage.traducteurs mobilises", {
-                nombre: nbTraductors,
-              })}{" "}
-              <FButton
-                tag={NavHashLink}
-                to={
-                  API.isAuth()
-                    ? "/backend/user-translation"
-                    : "/comment-contribuer#traduire"
-                }
-                type="dark"
-              >
-                {t("Homepage.Je traduis", "Je traduis")}
-              </FButton>
-            </footer>
-          </div>
-        </section>
-
-        <section id="certifiee">
-          <div className="section-container half-width">
-            <div className="section-body">
-              <h2>{t("Homepage.information vérifiée")}</h2>
-              <p className="texte-normal">
-                {t("Homepage.information vérifiée subheader")}
-              </p>
-            </div>
-            <footer>
-              <FButton
-                tag={NavHashLink}
-                to="/comment-contribuer#corriger"
-                type="dark"
-              >
-                {t("En savoir plus", "En savoir plus")}
-              </FButton>
-            </footer>
-          </div>
-        </section>
-
-        <section id="explique">
-          <div className="section-container half-width right-side">
-            <h2>
-              {t(
-                "Homepage.Explique les mots difficiles",
-                "Explique les mots difficiles"
-              )}
-            </h2>
-            <p className="texte-normal">{t("Homepage.explication lexique")}</p>
-            <span className="texte-normal">
-              {t("Bientôt disponible !", "Bientôt disponible !")}
-            </span>
-          </div>
-        </section>
+          </section>
+        )}
       </div>
     );
   }

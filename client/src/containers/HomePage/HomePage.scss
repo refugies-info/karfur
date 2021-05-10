@@ -134,6 +134,10 @@
       align-items: center;
       z-index: 4;
       background: #ffffff;
+      @include media-max("tablet-up") {
+        flex-direction: column;
+        padding: 20px;
+      }
       .mr-10 {
         padding-right: 10px;
         z-index: 4;
@@ -154,6 +158,10 @@
     h5 {
       margin-top: 10px;
       font-weight: normal;
+      @include media-max("tablet-up") {
+        font-size: 18px;
+        padding: 0 50px;
+      }
     }
 
     .search-row {
