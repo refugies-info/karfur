@@ -22,7 +22,7 @@ import {
   illustration_homeCard_dispositif,
   illustration_homeCard_annuaire,
   illustration_homeCard_demarche,
-  illustration_homeCard_lexique,
+  //illustration_homeCard_lexique,
 } from "../../assets/figma";
 
 const CoronaAlert = styled.div`
@@ -60,6 +60,8 @@ const CardContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
   overflow: auto;
+  justify-content: ${isMobile ? "" : "center"};
+  margin: 0 20px;
 `;
 
 const MainTitleContainer = styled.div`
@@ -67,7 +69,6 @@ const MainTitleContainer = styled.div`
   font-weight: 700;
   padding: 0 60px;
 `;
-
 export class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -212,44 +213,70 @@ export class HomePage extends Component {
               defaultText="Trouver un programme ou une formation"
               buttonTitle="Je cherche"
               defaultBoutonTitle="Je cherche"
-              iconName="search"
-              backgroundColor="#1E9ED1"
+              iconName="search-outline"
+              backgroundColor={colors.blueGreen}
               textColor={colors.blancSimple}
               image={illustration_homeCard_dispositif}
+              isDisabled={false}
+              onClick={() => {
+                this.props.history.push({
+                  pathname: "/advanced-search",
+                  state: "clean-filters",
+                });
+              }}
             />
             <HomeCard
               t={t}
-              text="Trouver un programme"
+              text="Comprendre les démarches administratives"
               defaultText="Comprendre les démarches administratives"
               buttonTitle="Je cherche"
               defaultBoutonTitle="Je cherche"
-              iconName="search"
-              backgroundColor="#3581EF"
+              iconName="search-outline"
+              backgroundColor={colors.lightBlue}
               textColor={colors.blancSimple}
               image={illustration_homeCard_demarche}
+              isDisabled={false}
+              onClick={() => {
+                this.props.history.push({
+                  pathname: "/advanced-search",
+                  state: "clean-filters",
+                });
+              }}
             />
             <HomeCard
               t={t}
-              text="Trouver un programme"
+              text="Consulter l'annuaire pour trouver une association"
               defaultText="Consulter l'annuaire pour trouver une association"
-              buttonTitle="Je cherche"
-              defaultBoutonTitle="Je cherche"
-              iconName="search"
-              backgroundColor="#705FA4"
+              buttonTitle={
+                isMobile ? "disponible sur ordinateur" : "voir l'annuaire"
+              }
+              defaultBoutonTitle={
+                isMobile ? "disponible sur ordinateur" : "voir l'annuaire"
+              }
+              iconName={isMobile ? "alert-circle" : "search-outline"}
+              backgroundColor={colors.purple}
               textColor={colors.blancSimple}
               image={illustration_homeCard_annuaire}
+              isDisabled={isMobile ? true : false}
+              onClick={() => {
+                this.props.history.push({
+                  pathname: "/advanced-search",
+                  state: "clean-filters",
+                });
+              }}
             />
-            <HomeCard
+            {/* <HomeCard
               t={t}
               text="Trouver un programme"
               defaultText="Lire le lexique pour comprendre les mots difficiles"
-              buttonTitle="Je cherche"
-              defaultBoutonTitle="Je cherche"
-              iconName="search"
-              backgroundColor="#EEF8FF"
-              textColor="06508C"
+              buttonTitle="bientôt disponible"
+              defaultBoutonTitle="bientôt disponible"
+              iconName="alert-circle"
+              backgroundColor={colors.whiteBlue}
+              textColor={colors.bleuCharte}
               image={illustration_homeCard_lexique}
-            />
+              isDisabled={true}
+            /> */}
           </CardContainer>
         </section>
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from "react";
 import styled from "styled-components";
 import { colors } from "../../../colors";
@@ -37,7 +38,7 @@ const IconContainer = styled.div`
 export const FButtonMobile = (props: Props) => (
   <ButtonContainer
     onClick={props.isDisabled ? null : props.onClick}
-    disabled={props.isDisabled}
+    isDisabled={props.isDisabled}
     backgroundColor={props.color}
     color={props.fill}
   >

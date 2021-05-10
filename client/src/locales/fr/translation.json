@@ -5,6 +5,8 @@
     "information vérifiée": "Réfugiés.info est transparent sur la qualité de l'information",
     "information vérifiée subheader": "Les contenus proposés sont relus et corrigés avant d’être publiés afin d’éviter les erreurs et les informations périmées. Une fois en ligne, vous pouvez facilement signaler une erreur.",
     "disponible langues": "Réfugiés.info est disponible en plusieurs langues",
+    "disponible sur ordinateur": "disponible sur ordinateur",
+    "bientôt disponible": "bientôt disponible",
     "disponible langues subheader": "Participez à la traduction pour rendre l’information toujours plus accessible pour les personnes réfugiées.",
     "traducteurs mobilises": "Déjà {{nombre}} traducteurs et traductrices mobilisés :",
     "contributeurs mobilises": "Déjà {{nombre}} contributeurs et contributrices engagés :",
@@ -12,8 +14,10 @@
     "contributive subheader": "Un peu comme Wikipédia, réfugiés.info est un outil simple pour réunir de l'information pratique. Participez à l'enrichissement du site en rédigeant vous-même de nouvelles fiches. Vous pouvez également suggérer des modifications sur les fiches existantes.",
     "Vous cherchez ?": "Je cherche à :",
     "À comprendre une démarche": "Comprendre une démarche administrative",
+    "Comprendre les démarches administratives": "Comprendre les démarches administratives",
     "A apprendre": "Rejoindre un dispositif d'accompagnement",
     "Trouver un dispositif": "Trouver un dispositif",
+    "Trouver un programme": "Trouver un programme ou une formation",
     "creer parcours": "Créer mon parcours personnalisé",
     "Je contribue": "Je contribue",
     "Je traduis": "Je traduis",
@@ -28,7 +32,8 @@
     "Covid link": "Des fiches dédiées sont aussi disponibles",
     "Annuaire": "Consulter l’annuaire des acteurs de l’intégration",
     "Trouver une organisation": "Trouver une organisation",
-    "Consulter l’annnuaire": "Consulter l’annuaire"
+    "Consulter l’annnuaire": "Consulter l’annuaire",
+    "Consulter l'annuaire pour trouver une association": "Consulter l'annuaire pour trouver une association"
   },
   "AdvancedSearch": {
     "Je cherche à": "Je cherche à",
