@@ -207,36 +207,40 @@ export class HomePage extends Component {
               defaultBoutonTitle="Je cherche"
               iconName="search"
               backgroundColor="#1E9ED1"
+              textColor={colors.blancSimple}
               image={illustration_homeCard_dispositif}
             />
             <HomeCard
               t={t}
               text="Trouver un programme"
-              defaultText="Trouver un programme ou une formation"
+              defaultText="Comprendre les démarches administratives"
               buttonTitle="Je cherche"
               defaultBoutonTitle="Je cherche"
               iconName="search"
-              backgroundColor="#1E9ED1"
+              backgroundColor="#3581EF"
+              textColor={colors.blancSimple}
               image={illustration_homeCard_demarche}
             />
             <HomeCard
               t={t}
               text="Trouver un programme"
-              defaultText="Trouver un programme ou une formation"
+              defaultText="Consulter l'annuaire pour trouver une association"
               buttonTitle="Je cherche"
               defaultBoutonTitle="Je cherche"
               iconName="search"
-              backgroundColor="#1E9ED1"
+              backgroundColor="#705FA4"
+              textColor={colors.blancSimple}
               image={illustration_homeCard_annuaire}
             />
             <HomeCard
               t={t}
               text="Trouver un programme"
-              defaultText="Trouver un programme ou une formation"
+              defaultText="Lire le lexique pour comprendre les mots difficiles"
               buttonTitle="Je cherche"
               defaultBoutonTitle="Je cherche"
               iconName="search"
-              backgroundColor="#1E9ED1"
+              backgroundColor="#EEF8FF"
+              textColor="06508C"
               image={illustration_homeCard_lexique}
             />
           </CardContainer>
