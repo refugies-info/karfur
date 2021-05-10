@@ -81,6 +81,7 @@ export class HomePage extends Component {
     corona: false,
     popup: false,
     overlay: false,
+    showGoToDesktopModal: false,
   };
   _isMounted = false;
 

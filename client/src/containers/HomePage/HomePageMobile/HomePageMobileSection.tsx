@@ -56,7 +56,7 @@ export const HomePageMobileSection = (props: Props) => (
       isDisabled={props.isDisabled}
       fill={props.buttonTextColor}
       color={props.buttonColor}
-      onClick={() => {}}
+      onClick={props.onClick}
       t={props.t}
       title={props.buttonTitle}
       defaultTitle={props.defaultBoutonTitle}
