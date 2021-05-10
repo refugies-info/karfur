@@ -62,6 +62,12 @@ const CardContainer = styled.div`
   overflow: auto;
 `;
 
+const MainTitleContainer = styled.div`
+  font-size: ${isMobile ? "28px" : "52px"};
+  font-weight: 700;
+  padding: 0 60px;
+`;
+
 export class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -120,6 +126,7 @@ export class HomePage extends Component {
     const { t } = this.props;
     const { nbContributors, nbTraductors } = this.state;
     const item = initial_data[0];
+    item.title = "J'ai besoin de";
     return (
       <div className="animated fadeIn homepage">
         {this.state.overlay ? <div className="overlay" /> : null}
@@ -149,12 +156,12 @@ export class HomePage extends Component {
                 </CloseCorona>
               </CoronaAlert>
             ) : null}
-            <h1>
+            <MainTitleContainer>
               {t(
                 "Homepage.Construis ta vie en France",
                 "Construire ma vie en France"
               )}
-            </h1>
+            </MainTitleContainer>
             <h5>{t("Homepage.subtitle")}</h5>
 
             <div className="search-row">
@@ -189,8 +196,8 @@ export class HomePage extends Component {
                 <EVAIcon
                   className="bottom-slider"
                   name="arrow-circle-down"
-                  size="hero"
-                  fill={isMobile ? colors.bleuCharte : colors.blancSimple}
+                  size="xhero"
+                  fill={colors.blancSimple}
                 />
               </div>
             </AnchorLink>

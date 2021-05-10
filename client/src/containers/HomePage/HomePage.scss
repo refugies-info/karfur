@@ -55,6 +55,9 @@
     justify-content: flex-start;
     align-items: center;
     padding-top: 150px;
+    @include media-max("tablet-up") {
+      padding-top: 116px;
+    }
     margin-top: -75px;
     height: 772px;
 
@@ -137,6 +140,17 @@
       @include media-max("tablet-up") {
         flex-direction: column;
         padding: 20px;
+      }
+      @include media-min("tablet-up") {
+        margin-bottom: 0;
+      }
+      .mb-15 {
+        @include media-min("tablet-up") {
+          margin-bottom: 0;
+        }
+        @include media-max("tablet-up") {
+          margin-bottom: 15px;
+        }
       }
       .mr-10 {
         padding-right: 10px;
@@ -450,15 +464,15 @@
     fill: $blancSimple;
     z-index: 10;
     svg {
-      margin-left: -6px;
-      margin-top: -6px;
+      margin-left: -15px;
+      margin-top: -10px;
     }
     &:hover {
       svg {
         transition: all 0.5s ease;
         fill: $gris;
         @include media-max("tablet-up") {
-          fill: $bleuCharte;
+          fill: $blancSimple;
         }
       }
     }

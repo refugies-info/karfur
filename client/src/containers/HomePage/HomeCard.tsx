@@ -19,11 +19,13 @@ interface Props {
 }
 
 const MainContainer = styled.div`
-  padding: 30px;
+  padding: 20px;
   border-radius: 12px;
   height: 440px;
+  width: 312px;
   background-color: ${(props) => props.backgroundColor};
   margin: 8px;
+  justify-content: center;
   text-align: center;
 `;
 
