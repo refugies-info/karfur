@@ -4,6 +4,8 @@ import styled from "styled-components";
 import {
   illustration_connaitre_initiative,
   illustration_aidez_traduire,
+  carte_france_web_mobile,
+  iphone,
 } from "../../../assets/figma";
 import { HomePageMobileSection } from "./HomePageMobileSection";
 
@@ -34,6 +36,8 @@ export const HomePageMobile = (props: Props) => (
       textColor={colors.noir}
       isDisabled={false}
       onClick={() => {}}
+      buttonColor={colors.noir}
+      buttonTextColor={colors.blanc}
     />
     <HomePageMobileSection
       image={illustration_aidez_traduire}
@@ -49,6 +53,42 @@ export const HomePageMobile = (props: Props) => (
       textColor={colors.noir}
       isDisabled={false}
       onClick={() => {}}
+      buttonColor={colors.noir}
+      buttonTextColor={colors.blanc}
+    />
+    <HomePageMobileSection
+      image={carte_france_web_mobile}
+      title="Bientôt disponible près de chez vous"
+      defaultTitle="Bientôt disponible près de chez vous"
+      text="Réfugiés.info se déploie "
+      defaultText="Réfugiés.info se déploie progressivement sur tout le territoire métropolitain. Deux départements sont déjà mobilisés à titre expérimental : la Côte d'Or (21) et l'Isère (38)."
+      iconName="monitor-outline"
+      buttonTitle="Je mobilise mon territoire"
+      defaultBoutonTitle="Je mobilise mon territoire"
+      t={props.t}
+      backgroundColor={colors.blanc}
+      textColor={colors.noir}
+      isDisabled={false}
+      onClick={() => {}}
+      buttonColor={colors.noir}
+      buttonTextColor={colors.blanc}
+    />
+    <HomePageMobileSection
+      image={iphone}
+      title="Bientôt dans votre smartphone"
+      defaultTitle="Bientôt dans votre smartphone"
+      text="Une application mobile adaptée "
+      defaultText="Une application mobile adaptée aux besoins des personnes réfugiées sera bientôt disponible."
+      iconName="email-outline"
+      buttonTitle="Je veux être informé"
+      defaultBoutonTitle="Je veux être informé"
+      t={props.t}
+      backgroundColor={colors.bleuCharte}
+      textColor={colors.blancSimple}
+      isDisabled={false}
+      onClick={() => {}}
+      buttonColor={colors.blanc}
+      buttonTextColor={colors.noir}
     />
   </MainContainer>
 );

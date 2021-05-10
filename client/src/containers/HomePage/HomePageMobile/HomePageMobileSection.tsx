@@ -1,5 +1,4 @@
 import React from "react";
-import { colors } from "../../../colors";
 import styled from "styled-components";
 import { FButtonMobile } from "../../../components/FigmaUI/FButtonMobile/FButtonMobile";
 
@@ -13,11 +12,12 @@ interface Props {
   iconName: string;
   buttonTitle: string;
   defaultBoutonTitle: string;
+  buttonColor: string;
+  buttonTextColor: string;
   t: (text: string, defaultText: string) => void;
   backgroundColor: string;
   textColor: string;
   onClick: (e: any) => void;
-
   isDisabled: boolean;
 }
 
@@ -33,23 +33,29 @@ const TitleContainer = styled.div`
   font-weight: 400;
   margin-top: 15px;
   margin-bottom: 24px;
+  color: ${(props) => props.textColor};
 `;
 
 const TextContainer = styled.div`
   font-size: 19px;
   margin-bottom: 24px;
+  color: ${(props) => props.textColor};
 `;
 
 export const HomePageMobileSection = (props: Props) => (
   <SectionContainer backgroundColor={props.backgroundColor}>
     <img src={props.image} />
-    <TitleContainer>{props.t(props.title, props.defaultTitle)}</TitleContainer>
-    <TextContainer>{props.t(props.text, props.defaultText)}</TextContainer>
+    <TitleContainer textColor={props.textColor}>
+      {props.t(props.title, props.defaultTitle)}
+    </TitleContainer>
+    <TextContainer textColor={props.textColor}>
+      {props.t(props.text, props.defaultText)}
+    </TextContainer>
     <FButtonMobile
       name={props.iconName}
       isDisabled={props.isDisabled}
-      fill={colors.blancSimple}
-      color={colors.noir}
+      fill={props.buttonTextColor}
+      color={props.buttonColor}
       onClick={() => {}}
       t={props.t}
       title={props.buttonTitle}
