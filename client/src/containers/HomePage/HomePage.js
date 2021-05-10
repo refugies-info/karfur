@@ -177,6 +177,7 @@ export class HomePage extends Component {
                   className="bottom-slider"
                   name="arrow-circle-down"
                   size="hero"
+                  fill={isMobile ? colors.bleuCharte : colors.blancSimple}
                 />
               </div>
             </AnchorLink>

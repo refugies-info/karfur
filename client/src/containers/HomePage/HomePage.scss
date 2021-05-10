@@ -432,6 +432,9 @@
     height: 48px;
     bottom: -30px;
     left: 50%;
+    @include media-max("tablet-up") {
+      left: 44%;
+    }
     background: $noir;
     border-radius: 50%;
     z-index: 1;
