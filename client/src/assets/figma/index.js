@@ -23,6 +23,8 @@ import illustration_homeCard_dispositif from "./illustration_homeCard_dispositif
 import illustration_homeCard_annuaire from "./illustration_homeCard_annuaire.svg";
 import illustration_homeCard_demarche from "./illustration_homeCard_demarche.svg";
 import illustration_homeCard_lexique from "./illustration_homeCard_lexique.svg";
+import illustration_connaitre_initiative from "./illustration_connaitre_initiative.svg";
+import illustration_aidez_traduire from "./illustration_aidez_traduire.svg";
 
 export {
   boldBtn,
@@ -50,4 +52,6 @@ export {
   illustration_homeCard_annuaire,
   illustration_homeCard_demarche,
   illustration_homeCard_lexique,
+  illustration_connaitre_initiative,
+  illustration_aidez_traduire,
 };

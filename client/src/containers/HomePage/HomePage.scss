@@ -4,7 +4,7 @@
 .homepage {
   flex: 1 1;
   color: $noir;
-  background: $gris;
+  background: $blancSimple;
   max-width: 100%;
   outline: none;
   z-index: 1;
@@ -42,6 +42,10 @@
     min-height: 750px;
     padding-top: 100px;
     padding-bottom: 93px;
+    @include media-max("tablet-up") {
+      min-height: 0px;
+      padding-bottom: 0px;
+    }
     position: relative;
     overflow: hidden;
   }
@@ -448,6 +452,7 @@
     left: 50%;
     @include media-max("tablet-up") {
       left: 44%;
+      bottom: 90px;
     }
     background: $noir;
     border-radius: 50%;

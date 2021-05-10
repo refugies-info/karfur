@@ -29,6 +29,7 @@ const ButtonContainer = styled.div`
   font-size:16px;
   color:${(props) => props.color};
   font-weight:700;
+  cursor:pointer;
 `;
 
 const IconContainer = styled.div`

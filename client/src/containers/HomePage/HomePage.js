@@ -18,6 +18,7 @@ import HomeSearch from "./HomeSearch";
 import CatList from "./CatList";
 import { initGA, PageView } from "../../tracking/dispatch";
 import { HomeCard } from "./HomeCard";
+import { HomePageMobile } from "./HomePageMobile/HomePageMobile";
 import {
   illustration_homeCard_dispositif,
   illustration_homeCard_annuaire,
@@ -260,8 +261,7 @@ export class HomePage extends Component {
               isDisabled={isMobile ? true : false}
               onClick={() => {
                 this.props.history.push({
-                  pathname: "/advanced-search",
-                  state: "clean-filters",
+                  pathname: "/annuaire",
                 });
               }}
             />
@@ -280,103 +280,101 @@ export class HomePage extends Component {
           </CardContainer>
         </section>
 
-        {!isMobile && (
-          <section id="contribution" className="contrib">
-            <div className="section-container half-width">
-              <div className="section-body">
-                <h2>{t("Homepage.contributive")}</h2>
-                <p className="texte-normal">
-                  {t("Homepage.contributive subheader")}
-                  <NavLink className="link ml-10" to="/qui-sommes-nous">
+        {isMobile ? (
+          <HomePageMobile t={t} />
+        ) : (
+          <>
+            <section id="contribution" className="contrib">
+              <div className="section-container half-width">
+                <div className="section-body">
+                  <h2>{t("Homepage.contributive")}</h2>
+                  <p className="texte-normal">
+                    {t("Homepage.contributive subheader")}
+                    <NavLink className="link ml-10" to="/qui-sommes-nous">
+                      {t("En savoir plus", "En savoir plus")}
+                    </NavLink>
+                  </p>
+                </div>
+                <footer className="footer-section">
+                  {t("Homepage.contributeurs mobilises", {
+                    nombre: nbContributors,
+                  })}{" "}
+                  <FButton
+                    tag={NavHashLink}
+                    to="/comment-contribuer#ecrire"
+                    type="dark"
+                  >
+                    {t("Homepage.Je contribue", "Je contribue")}
+                  </FButton>
+                </footer>
+              </div>
+            </section>
+
+            <section id="multilangues">
+              <div className="section-container half-width right-side">
+                <div className="section-body">
+                  <h2>{t("Homepage.disponible langues")}</h2>
+                  <p className="texte-normal">
+                    {t("Homepage.disponible langues subheader")}
+                  </p>
+                  {/*<LanguageBtn />*/}
+                </div>
+                <footer className="footer-section">
+                  {t("Homepage.traducteurs mobilises", {
+                    nombre: nbTraductors,
+                  })}{" "}
+                  <FButton
+                    tag={NavHashLink}
+                    to={
+                      API.isAuth()
+                        ? "/backend/user-translation"
+                        : "/comment-contribuer#traduire"
+                    }
+                    type="dark"
+                  >
+                    {t("Homepage.Je traduis", "Je traduis")}
+                  </FButton>
+                </footer>
+              </div>
+            </section>
+
+            <section id="certifiee">
+              <div className="section-container half-width">
+                <div className="section-body">
+                  <h2>{t("Homepage.information vérifiée")}</h2>
+                  <p className="texte-normal">
+                    {t("Homepage.information vérifiée subheader")}
+                  </p>
+                </div>
+                <footer>
+                  <FButton
+                    tag={NavHashLink}
+                    to="/comment-contribuer#corriger"
+                    type="dark"
+                  >
                     {t("En savoir plus", "En savoir plus")}
-                  </NavLink>
-                </p>
+                  </FButton>
+                </footer>
               </div>
-              <footer className="footer-section">
-                {t("Homepage.contributeurs mobilises", {
-                  nombre: nbContributors,
-                })}{" "}
-                <FButton
-                  tag={NavHashLink}
-                  to="/comment-contribuer#ecrire"
-                  type="dark"
-                >
-                  {t("Homepage.Je contribue", "Je contribue")}
-                </FButton>
-              </footer>
-            </div>
-          </section>
-        )}
+            </section>
 
-        {!isMobile && (
-          <section id="multilangues">
-            <div className="section-container half-width right-side">
-              <div className="section-body">
-                <h2>{t("Homepage.disponible langues")}</h2>
+            <section id="explique">
+              <div className="section-container half-width right-side">
+                <h2>
+                  {t(
+                    "Homepage.Explique les mots difficiles",
+                    "Explique les mots difficiles"
+                  )}
+                </h2>
                 <p className="texte-normal">
-                  {t("Homepage.disponible langues subheader")}
+                  {t("Homepage.explication lexique")}
                 </p>
-                {/*<LanguageBtn />*/}
+                <span className="texte-normal">
+                  {t("Bientôt disponible !", "Bientôt disponible !")}
+                </span>
               </div>
-              <footer className="footer-section">
-                {t("Homepage.traducteurs mobilises", {
-                  nombre: nbTraductors,
-                })}{" "}
-                <FButton
-                  tag={NavHashLink}
-                  to={
-                    API.isAuth()
-                      ? "/backend/user-translation"
-                      : "/comment-contribuer#traduire"
-                  }
-                  type="dark"
-                >
-                  {t("Homepage.Je traduis", "Je traduis")}
-                </FButton>
-              </footer>
-            </div>
-          </section>
-        )}
-
-        {!isMobile && (
-          <section id="certifiee">
-            <div className="section-container half-width">
-              <div className="section-body">
-                <h2>{t("Homepage.information vérifiée")}</h2>
-                <p className="texte-normal">
-                  {t("Homepage.information vérifiée subheader")}
-                </p>
-              </div>
-              <footer>
-                <FButton
-                  tag={NavHashLink}
-                  to="/comment-contribuer#corriger"
-                  type="dark"
-                >
-                  {t("En savoir plus", "En savoir plus")}
-                </FButton>
-              </footer>
-            </div>
-          </section>
-        )}
-
-        {!isMobile && (
-          <section id="explique">
-            <div className="section-container half-width right-side">
-              <h2>
-                {t(
-                  "Homepage.Explique les mots difficiles",
-                  "Explique les mots difficiles"
-                )}
-              </h2>
-              <p className="texte-normal">
-                {t("Homepage.explication lexique")}
-              </p>
-              <span className="texte-normal">
-                {t("Bientôt disponible !", "Bientôt disponible !")}
-              </span>
-            </div>
-          </section>
+            </section>
+          </>
         )}
       </div>
     );
