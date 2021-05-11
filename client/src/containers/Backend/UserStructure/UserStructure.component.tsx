@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -141,19 +140,6 @@ export const UserStructureComponent = () => {
             Une erreur est survenue. Veuillez recharger la page ou contacter
             l'équipe de réfugiés.info via le live chat en bas à droite de votre
             écran.
-          </ErrorText>
-        </ErrorContainer>
-      </div>
-    );
-
-  if (userStructure.status === "En attente")
-    return (
-      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <Navigation selected="structure" />
-        <ErrorContainer>
-          <ErrorText>
-            Votre structure n'a pas été validée. Veuillez contacter l'équipe de
-            réfugiés.info via le live chat en bas à droite de votre écran.
           </ErrorText>
         </ErrorContainer>
       </div>

@@ -10,9 +10,12 @@
   "scripts": {
     "postinstall": "cd server && npm install && npm run tsc && cd .. && cd client && npm install --only=dev && npm install && npm run build",
     "test": "cd client && npm run test && cd ../server && npm run test",
-    "test:lint": "cd client && npm run test:lint && cd ../server && npm run test:lint",
-    "test:types": "cd client && npm run test:types && cd ../server && npm run test:types",
-    "test:unit": "cd client && npm run test:unit && cd ../server && npm run test:unit",
+    "test:lint:client": "cd client && npm run test:lint",
+    "test:lint:server": "cd server &&npm run test:lint",
+    "test:types:client": "cd client && npm run test:types ",
+    "test:types:server": "cd server && npm run test:types ",
+    "test:unit:client": "cd client && npm run test:unit",
+    "test:unit:server": "cd server && npm run test:unit",
     "install:client": "cd client && npm install",
     "install:server": "cd server && npm install"
   },

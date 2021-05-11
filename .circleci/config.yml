@@ -1,46 +1,42 @@
-version: 2.1
-orbs:
-  node: circleci/node@1.1.6
+version: 2
 jobs:
-  install:
+  build:
+    branches:
+      ignore:
+        - master-frontend
+        - master-backend
+        - staging-frontend
+        - staging-backend
+        - dev
+    working_directory: ~/refugies-info
     docker:
-      - image: circleci/node:10-jessie-browsers
+      - image: circleci/node:10.13.0
+    environment:
+      USER: circleci
+      TERM: someTerm
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm run install:server
-            - run: npm run install:client
-            - persist_to_workspace:
-                root: ./
-                paths:
-                  - node_modules
-                  - server/node_modules
-                  - client/node_modules
-  test-code-quality:
-    executor:
-      name: node/default
-    steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - attach_workspace:
-                at: ./
-            - run: npm run test:types
-            - run: npm run test:lint
-            - run: npm run test:unit
-workflows:
-  build-and-test:
-    jobs:
-      - install:
-          filters:
-            branches:
-              ignore:
-                - master-frontend
-                - master-backend
-                - staging-frontend
-                - staging-backend
-                - dev
-      - test-code-quality:
-          requires:
-            - install
+      - run:
+          name: Install Dependencies front
+          command: npm run install:client
+      - run:
+          name: Run tests unit front
+          command: npm run test:unit:client
+      - run:
+          name: Run tests type front
+          command: npm run test:types:client
+      - run:
+          name: Run tests linter front
+          command: npm run test:lint:client
+      - run:
+          name: Install Dependencies server
+          command: npm run install:server
+      - run:
+          name: Run tests unit server
+          command: npm run test:unit:server
+      - run:
+          name: Run tests type server
+          command: npm run test:types:server
+      - run:
+          name: Run tests linter server
+          command: npm run test:lint:server

@@ -21,6 +21,7 @@
     "Explique les mots difficiles": "Réfugiés.info explains difficult words",
     "Trouver une démarche": "Find a process",
     "Choisir une langue": "Choose a language",
+    "Ma langue": "My language",
     "site dispo": "Réfugiés.info is available in the following languages:",
     "traduire": "Help us translate!",
     "Covid alert": "Refugies.info is all set to answer your questions about Covid-19 through a live chat (click on the blue icon on the bottom right hand of the screen).",
@@ -30,6 +31,7 @@
     "Consulter l’annnuaire": "Consult the directory of integration stakeholders"
   },
   "AdvancedSearch": {
+    "Je cherche à": "I'm looking to",
     "A > Z": "A > Z",
     "Derniers ajouts": "Recently added",
     "Les plus visités": "Most visited",
@@ -52,7 +54,12 @@
     "fiches avec le thème": "cards with the theme",
     "autres fiches avec le thème": "other cards with the theme",
     "avec le thème": "with the theme",
-    "Autres fiches traduites en": "Other cards translated into"
+    "Autres fiches traduites en": "Other cards translated into",
+    "Afficher aussi les autres fiches disponibles dans": "See also the other cards available in",
+    "toute la France": "all over France",
+    "Masquer les autres fiches disponibles dans": "Hide other cards available in",
+    "Masquer les résultats disponibles dans": "Hide available results in",
+    "Afficher aussi les résultats disponibles dans": "Also display the results available in"
   },
   "Tables": {
     "Propriétaire": "Owner",
@@ -124,7 +131,25 @@
     "Modifier le mot de passe": "change password",
     "Merci de donner de votre temps": "Thank you for giving your time to help refugee integration",
     "Grâce à vous": "Thanks to you, refugees will be better informed",
-    "Merci de participer": "Thanks for your help making information accessible to as many people as possible!"
+    "Merci de participer": "Thanks for your help making information accessible to as many people as possible!",
+    "Modifier ma photo": "Change my photo",
+    "ErreurChargement": "An error has occurred, please reload the page!",
+    "photoUsage": "Your photo will appear on the files to which you contribute.",
+    "Votre nouveau mot de passe": "Your new password",
+    "votre pseudo": "Your pseudonym",
+    "pseudoExplication": "This pseudonym is public. It will appear on the files to which you will contribute.",
+    "votre email": "Your email",
+    "emailExplication": "Your email address will only be used to reset your password and for notifications related to your activity on the site.",
+    "Votre mot de passe": "Your password",
+    "modifyPassword": "Change my password",
+    "Enregistrer": "Save"
+  },
+  "UserFavorites": {
+    "fiche sauvegardée": "Card saved",
+    "fiches sauvegardées": "Card saved",
+    "Comment ajouter": "How do I add card to my favourites?",
+    "Voir la vidéo": "Watch the video",
+    "Tout supprimer": "Delete all"
   },
   "QuiSommesNous": {
     "Qui sommes-nous": "Who are we?",
@@ -260,7 +285,10 @@
     "mon niveau": "my level",
     "Je suis": "I am",
     "français": "French",
-    "bientot disponible": "Available soon"
+    "bientot disponible": "Available soon",
+    "choisir ma ville": "choose my town",
+    "choisir mon âge": "choose my age",
+    "le français": "French"
   },
   "Status": {
     "En attente": "Pending",
@@ -323,7 +351,8 @@
     "Entrez votre email": "Enter your email",
     "Entrez votre numéro": "Enter your number",
     "Pas email": "There is no email associated with this pseudo.",
-    "Choisissez un pseudonyme": "Choose a pseudonym"
+    "Choisissez un pseudonyme": "Choose a pseudonym",
+    "user supprimé": "This account has been deleted."
   },
   "Reset": {
     "Entrez votre nouveau mot de passe": "Please enter your new password",
@@ -366,16 +395,21 @@
     "C'est pour qui ?": "Who is it for?",
     "Pourquoi c'est intéressant ?": "Why is it interesting?",
     "La démarche par étapes": "The step-by-step approach",
+    "Comment faire ?": "What to do?",
     "Et après ?": "And after?",
     "Comment je m'engage ?": "How do I get involved?",
     "Voir le site": "See the website",
     "Télécharger en PDF": "Download PDF",
     "Envoyer par mail": "Send by email",
     "Envoyer par SMS": "Send by SMS",
+    "Via sms": "By text message",
+    "Via email": "By email",
+    "Plus options": "More options",
     "Imprimer": "Print",
     "Gratuit": "Free",
     "Payant": "Fees",
     "Tranche d'âge": "Age group",
+    "Partager Fiche": "Share the card",
     "De": "From",
     "à": "at",
     "ans": "years",
@@ -394,12 +428,18 @@
     "Durée": "Duration",
     "Niveau de français": "French level",
     "Combien ça coûte ?": "How much does it cost?",
+    "Zone d'action": "Action zone",
+    "Départements": "Departments",
+    "Acte de naissance OFPRA": "OFPRA birth certificate",
+    "Département": "Departments",
+    "France entière": "France entière",
     "Justificatif demandé": "Supporting documents",
     "Important !": "Important!",
     "En ligne": "Online",
     "En physique": "In physics",
     "Par téléphone": "By telephone",
     "Par courrier": "By mail",
+    "Impossible sans": "Impossible without",
     "Autre": "Other",
     "Immédiate": "Immediate",
     "jhabite": "I live in",
@@ -506,7 +546,10 @@
     "Administration": "Administration",
     "Se déconnecter": "Sign out",
     "Connexion": "Sign in",
-    "Inscription": "Registration"
+    "Inscription": "Registration",
+    "Mes notifications": "My notifications",
+    "Mes favoris": "Mes favoris",
+    "Déconnexion": "Disconnect"
   },
   "Footer": {
     "Je m'abonne à la newsletter": "I'd like to subscribe to the newsletter",
@@ -544,6 +587,7 @@
   "Printemps 2020": "Spring 2020",
   "Non": "No",
   "Oui": "Yes",
+  "Ok": "Ok",
   "Retour": "Back",
   "J'ai besoin d'aide": "I need help",
   "Chercher": "Search",
@@ -600,8 +644,10 @@
     "Numéro de téléphone": "Phone number",
     "Adresse postale": "Postal address",
     "Horaires d'accueil": "Reception hours",
+    "Départements d'action": "Departments of action",
     "rdv only": "We receive by appointment only",
     "no public": "We do not receive the public",
+    "noDispositif": "Oops, this organisation has not yet written a card.",
     "Lundi": "Monday",
     "Mardi": "Tuesday",
     "Mercredi": "Wednesday",
@@ -611,7 +657,9 @@
     "Dimanche": "Sunday",
     "de": "from",
     "à": "to",
+    "et de": "and from",
     "fermé": "closed",
+    "ouvert": "open",
     "a propos": "About",
     "Activités et services": "Activities and services",
     "noemail": "No email address provided",
@@ -620,8 +668,7 @@
     "noOpeningHours": "No times provided",
     "noDescription": "No description of the structure available",
     "Bilan de santé": "Health check-up",
-    "ouvert": "open",
-    "et de": "and from",
+    "noDepartement": "No department listed",
     "Parcours de soin": "Course of treatment",
     "Accompagnement psychologique": "Psychological support",
     "Accompagnement juridique": "Legal support",
@@ -662,6 +709,7 @@
     "Tournois sportifs": "Sports tournaments",
     "Aides financières": "Financial aid",
     "Cours de conduite": "Driving courses",
-    "Formation au code": "Highway code training"
+    "Formation au code": "Highway code training",
+    "Intermédiation locative": "Rental intermediation"
   }
 }

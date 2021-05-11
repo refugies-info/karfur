@@ -14,9 +14,11 @@ import {
 import { insertInDispositif } from "../../../modules/dispositif/insertInDispositif";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
-import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
+import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
 import { getDispositifByIdWithAllFields } from "../../../modules/dispositif/dispositif.repository";
 import { sendPublishedTradMailToStructure } from "../../../modules/mail/sendPublishedTradMailToStructure";
+import { sendPublishedTradMailToTraductors } from "../../../modules/mail/sendPublishedTradMailToTraductors";
+import { DispositifNotPopulateDoc } from "../../../schema/schemaDispositif";
 
 interface Query {
   articleId: ObjectId;
@@ -57,12 +59,13 @@ export const validateTranslations = async (
       // We delete all translations that are not from experts, since now we only need one official validated version
       await deleteTradsInDB(body.articleId, body.locale);
 
-      const dispositifFromDB = await getDispositifByIdWithAllFields(
+      // @ts-ignore
+      const dispositifFromDB: DispositifNotPopulateDoc = await getDispositifByIdWithAllFields(
         body.articleId
       );
 
       // !IMPORTANT We insert the validated translation in the dispositif
-      const insertedDispositif = await insertInDispositif(
+      const { insertedDispositif, traductorIdsList } = await insertInDispositif(
         body,
         body.locale,
         dispositifFromDB
@@ -100,10 +103,36 @@ export const validateTranslations = async (
         try {
           await sendPublishedTradMailToStructure(dispositifFromDB, body.locale);
         } catch (error) {
-          logger.error("[validateTranslations] error while sending mails", {
-            error,
-          });
+          logger.error(
+            "[validateTranslations] error while sending mails to structure members",
+            {
+              error: error.message,
+            }
+          );
         }
+      }
+
+      try {
+        // we do not want to send a mail to the expert
+        const traductorNotExpertIdsList = traductorIdsList.filter(
+          (tradId: string) =>
+            tradId && tradId.toString() !== req.userId.toString()
+        );
+        await sendPublishedTradMailToTraductors(
+          traductorNotExpertIdsList,
+          body.locale,
+          dispositifFromDB.typeContenu,
+          dispositifFromDB.titreInformatif,
+          dispositifFromDB.titreMarque,
+          dispositifFromDB._id
+        );
+      } catch (error) {
+        logger.error(
+          "[validateTranslations] error while sending mails to traductors",
+          {
+            error: error.message,
+          }
+        );
       }
 
       return res.status(200).json({

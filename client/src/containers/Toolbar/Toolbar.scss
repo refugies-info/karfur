@@ -12,6 +12,9 @@
     #ffffff 15.84%,
     rgba(255, 255, 255, 0) 37.34%
   );
+  @include media-max("tablet-up") {
+    background: none;
+  }
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -169,6 +172,10 @@
     #ffffff 13.69%,
     rgba(255, 255, 255, 0) 31.19%
   );
+
+  @include media-max("tablet-up") {
+    background: none;
+  }
 }
 
 .Toolbar .dropdown-toggle.btn.btn-transparent:after {

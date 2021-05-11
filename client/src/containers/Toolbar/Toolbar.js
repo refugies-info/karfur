@@ -27,10 +27,23 @@ import "./Toolbar.scss";
 import { colors } from "colors";
 import { logger } from "../../logger";
 import { getNbNewNotifications } from "../Backend/UserNotifications/lib";
+import { isMobile } from "react-device-detect";
+
 const InnerButton = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+const IconButton = styled.div`
+  background-color: ${colors.noir};
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  height: 50px;
+  width: 50px;
 `;
 
 // top banner
@@ -121,6 +134,18 @@ export class Toolbar extends React.Component {
     });
   };
 
+  goBack = () => {
+    if (
+      this.props.location.state &&
+      this.props.location.state.previousRoute &&
+      this.props.location.state.previousRoute === "advanced-search"
+    ) {
+      this.props.history.go(-1);
+    } else {
+      this.props.history.push({ pathname: "/advanced-search" });
+    }
+  };
+
   render() {
     const path = this.props.location.pathname || "";
     const { user, membreStruct, t, windowWidth } = this.props;
@@ -135,6 +160,10 @@ export class Toolbar extends React.Component {
       this.props.dispositifsAssocies,
       this.props.hasResponsibleSeenNotification
     );
+
+    const isUserOnContentPage =
+      window.location.href.includes("dispositif") ||
+      window.location.href.includes("demarche");
     return (
       <header
         className={
@@ -143,125 +172,158 @@ export class Toolbar extends React.Component {
           (isRTL ? " isRTL" : "")
         }
       >
-        <div className="left_buttons">
-          <Logo reduced={windowWidth < breakpoints.phoneDown} isRTL={isRTL} />
-          {path !== "/" &&
-            path !== "/homepage" &&
-            windowWidth >= breakpoints.phoneDown && (
-              <NavLink to="/" className="home-btn">
-                <EVAIcon name="home" fill={colors.noir} className="mr-10 rsz" />
-                {windowWidth >= breakpoints.lgLimit && (
-                  <b className="home-texte">
-                    {t("Toolbar.Accueil", "Accueil")}
-                  </b>
-                )}
-              </NavLink>
-            )}
-        </div>
+        {isUserOnContentPage && isMobile ? (
+          <div style={{ height: "50px" }}>
+            <FButton
+              type="light-action"
+              name="arrow-back"
+              onClick={this.goBack}
+            >
+              {this.props.t("Retour", "Retour")}
+            </FButton>
+          </div>
+        ) : (
+          <div className="left_buttons">
+            <Logo reduced={windowWidth < breakpoints.phoneDown} isRTL={isRTL} />
+            {path !== "/" &&
+              path !== "/homepage" &&
+              windowWidth >= breakpoints.phoneDown && (
+                <NavLink to="/" className="home-btn">
+                  <EVAIcon
+                    name="home"
+                    fill={colors.noir}
+                    className="mr-10 rsz"
+                  />
+                  {windowWidth >= breakpoints.lgLimit && (
+                    <b className="home-texte">
+                      {t("Toolbar.Accueil", "Accueil")}
+                    </b>
+                  )}
+                </NavLink>
+              )}
+          </div>
+        )}
 
         <div className="center-buttons">
           <AudioBtn />
           <LanguageBtn hideText={windowWidth < breakpoints.tabletUp} />
-          <AdvancedSearchBar
-            visible={this.state.visible}
-            scroll={this.state.scroll}
-            loupe
-            className="search-bar inner-addon right-addon mr-10 rsz"
-          />
-
-          <button
-            onClick={() => {
-              if (this.props.location.pathname === "/advanced-search") {
-                this.props.history.replace("/advanced-search");
-                window.location.reload();
-              } else {
-                this.props.history.push("/advanced-search");
-              }
-            }}
-            className={
-              isRTL
-                ? "advanced-search-btn-menu-rtl"
-                : "advanced-search-btn-menu"
-            }
-          >
-            <InnerButton isRTL={isRTL}>
-              {!isRTL ? (
-                <div
-                  style={{
-                    display: "flex",
-                    marginRight: 10,
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Streamline name={"menu"} stroke={"white"} />
-                </div>
-              ) : (
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    marginLeft: 10,
-                  }}
-                >
-                  <Streamline name={"menu"} stroke={"white"} />
-                </div>
-              )}
-              {t("Toolbar.Tout voir", "Tout voir")}
-            </InnerButton>
-          </button>
-
-          {API.isAuth() ? (
-            <NavLink
-              className="user-picture-link"
-              to={{
-                pathname: pathName,
+          {isMobile ? (
+            <IconButton
+              onClick={() => {
+                this.props.history.push({
+                  pathname: "/advanced-search",
+                  state: "clean-filters",
+                });
               }}
             >
-              {membreStruct &&
-              nbNewNotifications > 0 &&
-              this.props.userStructure ? (
-                <div className="overlay">
-                  <img
-                    src={userImg}
-                    className="user-picture-with-overlay"
-                    alt="user"
-                  />
-                  <div class="middle">{nbNewNotifications}</div>
-                </div>
-              ) : (
-                <img src={userImg} className="user-picture" alt="user" />
-              )}
-            </NavLink>
+              <EVAIcon name="search" size="large" fill={colors.blanc} />
+            </IconButton>
           ) : (
-            <>
-              <NavLink
-                to={{
-                  pathname: "/register",
-                }}
-              >
-                <FButton
-                  type="signup"
-                  name={"person-add-outline"}
-                  className="mr-10"
-                  onClick={() => logger.info("Click on Inscription")}
-                >
-                  {windowWidth >= breakpoints.tabletUp &&
-                    t("Toolbar.Inscription", "Inscription")}
-                </FButton>
-              </NavLink>
-              <NavLink
-                to={{
-                  pathname: "/login",
-                }}
-              >
-                <FButton type="login" name={"log-in-outline"}>
-                  {t("Toolbar.Connexion", "Connexion")}
-                </FButton>
-              </NavLink>
-            </>
+            <AdvancedSearchBar
+              visible={this.state.visible}
+              scroll={this.state.scroll}
+              loupe
+              className="search-bar inner-addon right-addon mr-10 rsz"
+            />
           )}
+
+          {!isMobile && (
+            <button
+              onClick={() => {
+                if (this.props.location.pathname === "/advanced-search") {
+                  this.props.history.replace("/advanced-search");
+                  window.location.reload();
+                } else {
+                  this.props.history.push("/advanced-search");
+                }
+              }}
+              className={
+                isRTL
+                  ? "advanced-search-btn-menu-rtl"
+                  : "advanced-search-btn-menu"
+              }
+            >
+              <InnerButton isRTL={isRTL}>
+                {!isRTL ? (
+                  <div
+                    style={{
+                      display: "flex",
+                      marginRight: 10,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Streamline name={"menu"} stroke={"white"} />
+                  </div>
+                ) : (
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      marginLeft: 10,
+                    }}
+                  >
+                    <Streamline name={"menu"} stroke={"white"} />
+                  </div>
+                )}
+                {t("Toolbar.Tout voir", "Tout voir")}
+              </InnerButton>
+            </button>
+          )}
+
+          {!isMobile ? (
+            API.isAuth() ? (
+              <NavLink
+                className="user-picture-link"
+                to={{
+                  pathname: pathName,
+                }}
+              >
+                {membreStruct &&
+                nbNewNotifications > 0 &&
+                this.props.userStructure ? (
+                  <div className="overlay">
+                    <img
+                      src={userImg}
+                      className="user-picture-with-overlay"
+                      alt="user"
+                    />
+                    <div class="middle">{nbNewNotifications}</div>
+                  </div>
+                ) : (
+                  <img src={userImg} className="user-picture" alt="user" />
+                )}
+              </NavLink>
+            ) : (
+              <>
+                <NavLink
+                  to={{
+                    pathname: "/register",
+                  }}
+                >
+                  <FButton
+                    type="signup"
+                    name={"person-add-outline"}
+                    className="mr-10"
+                    onClick={() => logger.info("Click on Inscription")}
+                  >
+                    {windowWidth >= breakpoints.tabletUp &&
+                      t("Toolbar.Inscription", "Inscription")}
+                  </FButton>
+                </NavLink>
+                <NavLink
+                  to={{
+                    pathname: "/login",
+                  }}
+                >
+                  <FButton type="login" name={"log-in-outline"}>
+                    {t("Toolbar.Connexion", "Connexion")}
+                  </FButton>
+                </NavLink>
+              </>
+            )
+          ) : null}
         </div>
       </header>
     );

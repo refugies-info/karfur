@@ -13,10 +13,12 @@ import { colors } from "../../../../colors";
 
 // need to mock react strap because issue with modal
 jest.mock("reactstrap", () => {
-  const { Table } = jest.requireActual("reactstrap");
+  const { Table, Input, InputGroup, InputGroupAddon } = jest.requireActual(
+    "reactstrap"
+  );
   const { MockReactModal } = require("../../../../../jest/__mocks__/MockModal");
 
-  return { Modal: MockReactModal, Table };
+  return { Modal: MockReactModal, Table, Input, InputGroup, InputGroupAddon };
 });
 
 jest.mock("../../../../services/UserStructure/userStructure.actions", () => {
@@ -75,25 +77,6 @@ describe("UserStructure", () => {
     expect(component.toJSON()).toMatchSnapshot();
   });
 
-  it("should render correctly when structure en attente", () => {
-    window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserStructureComponent,
-        reduxState: {
-          ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-          userStructure: {
-            status: "En attente",
-            _id: "structureId",
-            dispositifsAssocies: [],
-          },
-        },
-      });
-    });
-    expect(component.toJSON()).toMatchSnapshot();
-  });
   const structure = {
     status: "Actif",
     _id: "structureId",

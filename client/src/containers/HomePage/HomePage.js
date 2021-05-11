@@ -327,7 +327,7 @@ export class HomePage extends Component {
                 tag={NavHashLink}
                 to={
                   API.isAuth()
-                    ? "/backend/user-dashboard"
+                    ? "/backend/user-translation"
                     : "/comment-contribuer#traduire"
                 }
                 type="dark"

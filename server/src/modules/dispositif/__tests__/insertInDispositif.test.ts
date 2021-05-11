@@ -3,7 +3,7 @@ import { insertInDispositif } from "../insertInDispositif";
 import { updateDispositifInDB } from "../dispositif.repository";
 
 jest.mock("../dispositif.repository", () => ({
-  updateDispositifInDB: jest.fn(),
+  updateDispositifInDB: jest.fn().mockResolvedValue("updatedDispo"),
 }));
 
 describe("insertInDispositif", () => {
@@ -47,8 +47,14 @@ describe("insertInDispositif", () => {
       participants: ["userId2", "userId3", "userId1"],
       avancement: { en: 1 },
     };
-    await insertInDispositif(trad, "en", dispo);
+    const { insertedDispositif, traductorIdsList } = await insertInDispositif(
+      trad,
+      "en",
+      dispo
+    );
     expect(updateDispositifInDB).toHaveBeenCalledWith("id", result);
+    expect(insertedDispositif).toEqual("updatedDispo");
+    expect(traductorIdsList).toEqual(["userId1", "userId2"]);
   });
 
   it("should call getDispositifByIdWithAllFields and update in db when new language", async () => {
@@ -77,7 +83,10 @@ describe("insertInDispositif", () => {
           { title: "C'est quoi ar", content: "content ar", children: [] },
         ],
       },
-      traductions: [{ _id: "trad5", userId: { _id: "userId5" } }],
+      traductions: [
+        { _id: "trad5", userId: { _id: "userId5" } },
+        { _id: "trad6", userId: { _id: "userId5" } },
+      ],
     };
 
     const result = {
@@ -95,11 +104,17 @@ describe("insertInDispositif", () => {
           children: [],
         },
       ],
-      traductions: ["trad2", "trad3", "trad1", "trad5"],
+      traductions: ["trad2", "trad3", "trad1", "trad5", "trad6"],
       participants: ["userId2", "userId3", "userId1", "userId5"],
       avancement: { en: 1, ar: 1 },
     };
-    await insertInDispositif(trad, "ar", dispo);
+    const { insertedDispositif, traductorIdsList } = await insertInDispositif(
+      trad,
+      "ar",
+      dispo
+    );
     expect(updateDispositifInDB).toHaveBeenCalledWith("id", result);
+    expect(insertedDispositif).toEqual("updatedDispo");
+    expect(traductorIdsList).toEqual(["userId5"]);
   });
 });

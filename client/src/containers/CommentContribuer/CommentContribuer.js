@@ -549,7 +549,7 @@ class CommentContribuer extends Component {
                 )}
               </TradHeaderContainer>
               <NumbersContainer>
-                <NavLink to="/backend/user-dashboard">
+                <NavLink to="/backend/user-translation">
                   <NumberTraduction
                     amount={this.state.nbTraductors}
                     text={t(
@@ -560,7 +560,7 @@ class CommentContribuer extends Component {
                     width={181}
                   />
                 </NavLink>
-                <NavLink to="/backend/user-dashboard">
+                <NavLink to="/backend/user-translation">
                   <NumberTraduction
                     amount={this.state.nbExperts}
                     text={t(
@@ -777,7 +777,7 @@ const AvancementContainer = styled.div`
   color: ${(props) => props.color};
 `;
 const Langue = (props) => (
-  <NavLink to="/backend/user-dashboard">
+  <NavLink to="/backend/user-translation">
     <LangueContainer>
       <div
         style={{
@@ -790,7 +790,9 @@ const Langue = (props) => (
           className={" flag-icon flag-icon-" + props.langue.langueCode}
         />
       </div>
-      {props.langue.langueFr}
+      {props.langue.langueFr === "Persan"
+        ? "Persan/Dari"
+        : props.langue.langueFr}
       <ProgressContainer isRTL={props.isRTL}>
         <Progress
           color={colorAvancement(props.langue.avancementTrad)}

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import traductionIconBlanc from "../../../../assets/icon_traduction_blanc.svg";
 
 const Title = styled.div`
   font-weight: bold;
@@ -67,8 +68,12 @@ export const StartTranslating = (props: Props) => {
             type="dark"
             className="mr-10"
             onClick={props.toggleTraducteurModal}
-            name="play-circle"
           >
+            <img
+              src={traductionIconBlanc}
+              alt="a"
+              className={"icon-traduction"}
+            />
             Commencer à traduire
           </FButton>
           <FButton

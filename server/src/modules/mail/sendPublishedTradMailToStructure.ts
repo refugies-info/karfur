@@ -1,4 +1,4 @@
-import { DispositifDoc } from "../../schema/schemaDispositif";
+import { DispositifNotPopulateDoc } from "../../schema/schemaDispositif";
 import { getStructureMembers } from "../structure/structure.service";
 import { getUsersFromStructureMembres } from "../users/users.service";
 import { getTitreInfoOrMarque } from "../dispositif/dispositif.adapter";
@@ -8,7 +8,7 @@ import logger from "../../logger";
 import { sendPublishedTradMailToStructureService } from "./mail.service";
 
 export const sendPublishedTradMailToStructure = async (
-  dispositif: DispositifDoc,
+  dispositif: DispositifNotPopulateDoc,
   locale: string
 ) => {
   const structureMembres = await getStructureMembers(dispositif.mainSponsor);

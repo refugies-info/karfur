@@ -128,6 +128,6 @@ export const LangueDetail = (props: LangueDetailProps) => (
         key={props.langue.langueCode}
       />
     </div>
-    {props.langue.langueFr}
+    {props.langue.langueFr === "Persan" ? "Persan/Dari" : props.langue.langueFr}
   </LangueContainer>
 );

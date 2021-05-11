@@ -6,9 +6,10 @@ import {
   deleteTradsInDB,
 } from "../../../modules/traductions/traductions.repository";
 import { insertInDispositif } from "../../../modules/dispositif/insertInDispositif";
-import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
+import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
 import { getDispositifByIdWithAllFields } from "../../../modules/dispositif/dispositif.repository";
 import { sendPublishedTradMailToStructure } from "../../../modules/mail/sendPublishedTradMailToStructure";
+import { sendPublishedTradMailToTraductors } from "../../../modules/mail/sendPublishedTradMailToTraductors";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -17,6 +18,10 @@ const mockResponse = (): MockResponse => {
   res.json = jest.fn().mockReturnValue(res);
   return res;
 };
+
+jest.mock("../../../modules/mail/sendPublishedTradMailToTraductors", () => ({
+  sendPublishedTradMailToTraductors: jest.fn(),
+}));
 
 jest.mock("../../../controllers/miscellaneous/airtable", () => ({
   addOrUpdateDispositifInContenusAirtable: jest.fn(),
@@ -31,7 +36,7 @@ jest.mock("../../../modules/dispositif/insertInDispositif", () => ({
   insertInDispositif: jest.fn(),
 }));
 
-jest.mock("../../../controllers/langues/langues.service", () => ({
+jest.mock("../../../modules/langues/langues.service", () => ({
   updateLanguagesAvancement: jest.fn(),
 }));
 
@@ -129,12 +134,23 @@ describe("validateTranslations", () => {
     user: { roles: [{ nom: "ExpertTrad" }] },
     userId: "userId",
   };
+
+  const dispoFromDB = {
+    typeContenu: "dispositif",
+    titreInformatif: "TI",
+    titreMarque: "TM",
+    _id: "id",
+  };
   it("should validate trad in db, delete trad, update content in AT and updateLanguages avancement if expert", async () => {
     insertInDispositif.mockResolvedValueOnce({
-      typeContenu: "dispositif",
-      id: "id_dispo",
+      insertedDispositif: {
+        typeContenu: "dispositif",
+        id: "id_dispo",
+      },
+      traductorIdsList: ["userId1", "userId2", "userId"],
     });
-    getDispositifByIdWithAllFields.mockResolvedValue("initialDispo");
+
+    getDispositifByIdWithAllFields.mockResolvedValue(dispoFromDB);
 
     await validateTranslations(req, res);
     expect(validateTradInDB).toHaveBeenCalledWith("id", "userId");
@@ -143,7 +159,7 @@ describe("validateTranslations", () => {
     expect(insertInDispositif).toHaveBeenCalledWith(
       req.body,
       "locale",
-      "initialDispo"
+      dispoFromDB
     );
     expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
       "",
@@ -154,16 +170,27 @@ describe("validateTranslations", () => {
     );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(sendPublishedTradMailToStructure).toHaveBeenCalledWith(
-      "initialDispo",
+      dispoFromDB,
       "locale"
+    );
+    expect(sendPublishedTradMailToTraductors).toHaveBeenCalledWith(
+      ["userId1", "userId2"],
+      "locale",
+      "dispositif",
+      "TI",
+      "TM",
+      "id"
     );
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
   it("should validate trad in db, delete trad, update content in AT and updateLanguages avancement if admin", async () => {
     insertInDispositif.mockResolvedValueOnce({
-      typeContenu: "dispositif",
-      id: "id_dispo",
+      insertedDispositif: {
+        typeContenu: "dispositif",
+        id: "id_dispo",
+      },
+      traductorIdsList: ["userId1", "userId2", "userId"],
     });
 
     await validateTranslations(
@@ -176,7 +203,7 @@ describe("validateTranslations", () => {
     expect(insertInDispositif).toHaveBeenCalledWith(
       req.body,
       "locale",
-      "initialDispo"
+      dispoFromDB
     );
     expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
       "",
@@ -187,16 +214,27 @@ describe("validateTranslations", () => {
     );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(sendPublishedTradMailToStructure).toHaveBeenCalledWith(
-      "initialDispo",
+      dispoFromDB,
       "locale"
+    );
+    expect(sendPublishedTradMailToTraductors).toHaveBeenCalledWith(
+      ["userId1", "userId2"],
+      "locale",
+      "dispositif",
+      "TI",
+      "TM",
+      "id"
     );
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
   it("should validate trad in db, delete trad, update content in AT and updateLanguages avancement if admin", async () => {
     insertInDispositif.mockResolvedValueOnce({
-      typeContenu: "demarche",
-      id: "id_demarche",
+      insertedDispositif: {
+        typeContenu: "demarche",
+        id: "id_demarche",
+      },
+      traductorIdsList: [],
     });
 
     await validateTranslations(
@@ -209,18 +247,29 @@ describe("validateTranslations", () => {
     expect(insertInDispositif).toHaveBeenCalledWith(
       req.body,
       "locale",
-      "initialDispo"
+      dispoFromDB
     );
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
+    expect(sendPublishedTradMailToTraductors).toHaveBeenCalledWith(
+      [],
+      "locale",
+      "dispositif",
+      "TI",
+      "TM",
+      "id"
+    );
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
   it("should validate trad in db, delete trad, update content in AT and updateLanguages avancement if expert", async () => {
     insertInDispositif.mockResolvedValueOnce({
-      typeContenu: "demarche",
-      id: "id_demarche",
+      insertedDispositif: {
+        typeContenu: "demarche",
+        id: "id_demarche",
+      },
+      traductorIdsList: [],
     });
 
     await validateTranslations(
@@ -233,11 +282,19 @@ describe("validateTranslations", () => {
     expect(insertInDispositif).toHaveBeenCalledWith(
       req.body,
       "locale",
-      "initialDispo"
+      dispoFromDB
     );
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
+    expect(sendPublishedTradMailToTraductors).toHaveBeenCalledWith(
+      [],
+      "locale",
+      "dispositif",
+      "TI",
+      "TM",
+      "id"
+    );
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
@@ -255,6 +312,7 @@ describe("validateTranslations", () => {
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
+    expect(sendPublishedTradMailToTraductors).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
   });
 
@@ -271,6 +329,8 @@ describe("validateTranslations", () => {
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
+    expect(sendPublishedTradMailToTraductors).not.toHaveBeenCalled();
+
     expect(res.status).toHaveBeenCalledWith(500);
   });
 
@@ -286,19 +346,22 @@ describe("validateTranslations", () => {
     expect(insertInDispositif).toHaveBeenCalledWith(
       req.body,
       "locale",
-      "initialDispo"
+      dispoFromDB
     );
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
-
+    expect(sendPublishedTradMailToTraductors).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
   });
 
   it("should return 200 if addOrUpdateDispositifInContenusAirtable throws", async () => {
     insertInDispositif.mockResolvedValueOnce({
-      typeContenu: "dispositif",
-      id: "id_dispo",
+      insertedDispositif: {
+        typeContenu: "dispositif",
+        id: "id_dispo",
+      },
+      traductorIdsList: [],
     });
     updateLanguagesAvancement.mockRejectedValueOnce(new Error("erreur"));
 
@@ -312,7 +375,7 @@ describe("validateTranslations", () => {
     expect(insertInDispositif).toHaveBeenCalledWith(
       req.body,
       "locale",
-      "initialDispo"
+      dispoFromDB
     );
     expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
       "",
@@ -323,16 +386,27 @@ describe("validateTranslations", () => {
     );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(sendPublishedTradMailToStructure).toHaveBeenCalledWith(
-      "initialDispo",
+      dispoFromDB,
       "locale"
+    );
+    expect(sendPublishedTradMailToTraductors).toHaveBeenCalledWith(
+      [],
+      "locale",
+      "dispositif",
+      "TI",
+      "TM",
+      "id"
     );
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
   it("should return 500 if getDispositifByIdWithAllFields throws", async () => {
     insertInDispositif.mockResolvedValueOnce({
-      typeContenu: "dispositif",
-      id: "id_dispo",
+      insertedDispositif: {
+        typeContenu: "dispositif",
+        id: "id_dispo",
+      },
+      traductorIdsList: [],
     });
     getDispositifByIdWithAllFields.mockRejectedValueOnce(new Error("erreur"));
 
@@ -347,16 +421,22 @@ describe("validateTranslations", () => {
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
-
+    expect(sendPublishedTradMailToTraductors).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
   });
 
   it("should return 200 if sendPublishedTradMailToStructure throws", async () => {
     insertInDispositif.mockResolvedValueOnce({
-      typeContenu: "dispositif",
-      id: "id_dispo",
+      insertedDispositif: {
+        typeContenu: "dispositif",
+        id: "id_dispo",
+      },
+      traductorIdsList: [],
     });
-    sendPublishedTradMailToStructure.mockRejectedValueOnce(new Error("erreur"));
+    sendPublishedTradMailToStructure.mockRejectedValueOnce(
+      new Error("erreur1")
+    );
+    getDispositifByIdWithAllFields.mockResolvedValueOnce(dispoFromDB);
 
     await validateTranslations(
       { ...req, user: { roles: [{ nom: "Admin" }] } },
@@ -368,7 +448,7 @@ describe("validateTranslations", () => {
     expect(insertInDispositif).toHaveBeenCalledWith(
       req.body,
       "locale",
-      "initialDispo"
+      dispoFromDB
     );
     expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
       "",
@@ -379,8 +459,16 @@ describe("validateTranslations", () => {
     );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(sendPublishedTradMailToStructure).toHaveBeenCalledWith(
-      "initialDispo",
+      dispoFromDB,
       "locale"
+    );
+    expect(sendPublishedTradMailToTraductors).toHaveBeenCalledWith(
+      [],
+      "locale",
+      "dispositif",
+      "TI",
+      "TM",
+      "id"
     );
     expect(res.status).toHaveBeenCalledWith(200);
   });
