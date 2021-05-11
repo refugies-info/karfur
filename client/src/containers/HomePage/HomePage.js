@@ -116,7 +116,7 @@ export class HomePage extends Component {
   selectOption = (item) => {
     this.props.history.push({
       pathname: "/advanced-search",
-      search: "?tag=" + item.name,
+      search: "?tag=" + item.name + "&isFromHome=true",
     });
   };
   togglePopup = () => {

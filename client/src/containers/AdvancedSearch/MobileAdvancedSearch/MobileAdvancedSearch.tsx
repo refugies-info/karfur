@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Icon from "react-eva-icons";
@@ -24,6 +25,7 @@ interface Props {
     tag?: string;
     bottomValue?: string;
     niveauFrancais?: string;
+    isFromHome?: string;
   };
   principalThemeList: IDispositif[];
   principalThemeListFullFrance: IDispositif[];
@@ -155,7 +157,10 @@ export const MobileAdvancedSearch = (props: Props) => {
   };
 
   useEffect(() => {
-    setIsUrlEmpty(Object.keys(props.query)[0] === "");
+    if (props.query.isFromHome) {
+      setIsUrlEmpty(true);
+    } else setIsUrlEmpty(Object.keys(props.query)[0] === "");
+
     props.recherche.map((item: any) => {
       if (item.value) {
         switch (item.queryName) {
@@ -215,6 +220,7 @@ export const MobileAdvancedSearch = (props: Props) => {
     if (isUrlEmpty) return props.queryDispositifs();
     return props.history.push();
   };
+
   return (
     <MainContainer>
       <SearchBoutton

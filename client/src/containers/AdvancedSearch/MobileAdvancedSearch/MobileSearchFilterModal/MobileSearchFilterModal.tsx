@@ -63,6 +63,7 @@ interface Props {
   defaultTitle: string;
   sentence: string;
   defaultSentence: string;
+
   t: (a: string, b: string) => void;
 }
 
