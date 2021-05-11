@@ -102,10 +102,7 @@ export class SearchItem extends Component {
   open = (e) => {
     e.preventDefault();
     if (isMobile) {
-      this.props.history.push({
-        pathname: "/advanced-search",
-        state: { showTagModal: true },
-      });
+      this.props.toggleModal();
     } else {
       if (this.state.flip) {
         this.setState({ flip: false });

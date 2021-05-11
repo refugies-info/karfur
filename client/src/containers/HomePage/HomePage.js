@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
@@ -18,6 +19,7 @@ import CatList from "./CatList";
 import { initGA, PageView } from "../../tracking/dispatch";
 import { HomeCard } from "./HomeCard";
 import { HomePageMobile } from "./HomePageMobile/HomePageMobile";
+import { MobileSearchFilterModal } from "../AdvancedSearch/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
 import {
   illustration_homeCard_dispositif,
   illustration_homeCard_annuaire,
@@ -81,6 +83,7 @@ export class HomePage extends Component {
     popup: false,
     overlay: false,
     showGoToDesktopModal: false,
+    showTagModal: false,
   };
   _isMounted = false;
 
@@ -111,9 +114,18 @@ export class HomePage extends Component {
       })
     );
   }
-
+  selectOption = (item) => {
+    console.log("item", item);
+    this.props.history.push({
+      pathname: "/advanced-search",
+      search: "?tag=" + item.name,
+    });
+  };
   togglePopup = () => {
     this.setState({ popup: !this.state.popup });
+  };
+  toggleShowTagModal = () => {
+    this.setState({ showTagModal: !this.state.showTagModal });
   };
 
   closeCorona = () => {
@@ -176,6 +188,7 @@ export class HomePage extends Component {
                 desactiver={() => {}}
                 toggleOverlay={this.toggleOverlay}
                 history={this.props.history}
+                toggleModal={this.toggleShowTagModal}
               />
             </div>
           </div>
@@ -377,6 +390,17 @@ export class HomePage extends Component {
             </section>
           </>
         )}
+        <MobileSearchFilterModal
+          t={t}
+          selectOption={this.selectOption}
+          type="thème"
+          title="Tags.thème"
+          defaultTitle="thème"
+          sentence="SearchItem.Je cherche à"
+          defaultSentence="Je cherche à"
+          toggle={this.toggleShowTagModal}
+          show={this.state.showTagModal}
+        />
       </div>
     );
   }
