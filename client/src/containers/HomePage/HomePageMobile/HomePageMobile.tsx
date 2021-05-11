@@ -9,6 +9,7 @@ import {
 } from "../../../assets/figma";
 import { HomePageMobileSection } from "./HomePageMobileSection";
 import { GoToDesktopModal } from "./GoToDesktopModal";
+import { SubscribeNewsletterModal } from "../../Footer/SubscribeNewsletterModal/SubscribeNewsletterModal";
 
 declare const window: Window;
 interface Props {
@@ -23,9 +24,13 @@ const MainContainer = styled.div`
 
 export const HomePageMobile = (props: Props) => {
   const [showGoToDesktopModal, setShowGoToDesktopModal] = useState(false);
+  const [showNewslettreModal, setShowNewsletterModal] = useState(false);
 
   const toggleGoToDesktopModal = () => {
     setShowGoToDesktopModal(!showGoToDesktopModal);
+  };
+  const toggleShowNewsletterModal = () => {
+    setShowNewsletterModal(!showNewslettreModal);
   };
 
   return (
@@ -94,13 +99,18 @@ export const HomePageMobile = (props: Props) => {
         backgroundColor={colors.bleuCharte}
         textColor={colors.blancSimple}
         isDisabled={false}
-        onClick={() => {}}
+        onClick={toggleShowNewsletterModal}
         buttonColor={colors.blanc}
         buttonTextColor={colors.noir}
       />
       <GoToDesktopModal
         toggle={toggleGoToDesktopModal}
         show={showGoToDesktopModal}
+        t={props.t}
+      />
+      <SubscribeNewsletterModal
+        toggle={toggleShowNewsletterModal}
+        show={showNewslettreModal}
         t={props.t}
       />
     </MainContainer>

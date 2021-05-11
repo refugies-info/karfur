@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Icon from "react-eva-icons";
