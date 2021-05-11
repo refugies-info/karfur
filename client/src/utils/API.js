@@ -109,17 +109,16 @@ export default {
     });
   },
 
-  addDispositif: (query) => {
-    return axios.post(burl + "/dispositifs/addDispositif", query, {
+  addDispositif: (query) =>
+    axios.post(burl + "/dispositifs/addDispositif", query, {
       headers,
-    });
-  },
+    }),
 
-  sendAdminImprovementsMail: (query) => {
-    return axios.post(burl + "/mail/sendAdminImprovementsMail", query, {
+  sendAdminImprovementsMail: (query) =>
+    axios.post(burl + "/mail/sendAdminImprovementsMail", query, {
       headers,
-    });
-  },
+    }),
+
   add_dispositif_infocards: (query) => {
     return axios.post(burl + "/dispositifs/add_dispositif_infocards", query, {
       headers: headers,
