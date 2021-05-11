@@ -209,16 +209,11 @@ exports[`user translation should redirect if user has language but not langue in
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -289,16 +284,11 @@ exports[`user translation should redirect if user has language but not langue in
             className="figma-btn dark mr-10"
             onClick={[Function]}
           >
-            <span
-              className="mr-10"
-            >
-              <i
-                data-eva="play-circle"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
-              />
-            </span>
+            <img
+              alt="a"
+              className="icon-traduction"
+              src={Object {}}
+            />
             Commencer à traduire
           </button>
           <button
@@ -533,16 +523,11 @@ exports[`user translation should redirect if user has no language but langue in 
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -613,16 +598,11 @@ exports[`user translation should redirect if user has no language but langue in 
             className="figma-btn dark mr-10"
             onClick={[Function]}
           >
-            <span
-              className="mr-10"
-            >
-              <i
-                data-eva="play-circle"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
-              />
-            </span>
+            <img
+              alt="a"
+              className="icon-traduction"
+              src={Object {}}
+            />
             Commencer à traduire
           </button>
           <button
@@ -992,7 +972,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
 }
 
 .c6 {
-  margin: 26px 75px 26px 75px;
+  margin: 26px 12px 26px 12px;
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -1184,16 +1164,11 @@ exports[`user translation should render correctly with expert, admin 1`] = `
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -1361,10 +1336,10 @@ exports[`user translation should render correctly with expert, admin 1`] = `
           >
             Dispositifs (1)
             <div
-              className="switch-wrapper card-custom-title ml-8"
+              className="switch-wrapper ml-8"
             >
               <label
-                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                className="ml-8 switch switch-pill switch-outline-light form-check-label"
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
               >
@@ -1389,10 +1364,10 @@ exports[`user translation should render correctly with expert, admin 1`] = `
           >
             Démarches (1)
             <div
-              className="switch-wrapper card-custom-title ml-8"
+              className="switch-wrapper ml-8"
             >
               <label
-                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                className="ml-8 switch switch-pill switch-outline-light form-check-label"
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
               >
@@ -2047,7 +2022,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
 }
 
 .c5 {
-  margin: 26px 75px 26px 75px;
+  margin: 26px 12px 26px 12px;
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -2220,16 +2195,11 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -2379,10 +2349,10 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
           >
             Dispositifs (1)
             <div
-              className="switch-wrapper card-custom-title ml-8"
+              className="switch-wrapper ml-8"
             >
               <label
-                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                className="ml-8 switch switch-pill switch-outline-light form-check-label"
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
               >
@@ -2407,10 +2377,10 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
           >
             Démarches (1)
             <div
-              className="switch-wrapper card-custom-title ml-8"
+              className="switch-wrapper ml-8"
             >
               <label
-                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                className="ml-8 switch switch-pill switch-outline-light form-check-label"
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
               >
@@ -2993,7 +2963,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
 }
 
 .c5 {
-  margin: 26px 75px 26px 75px;
+  margin: 26px 12px 26px 12px;
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -3166,16 +3136,11 @@ exports[`user translation should render correctly with non expert, non admin 1`]
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -3311,10 +3276,10 @@ exports[`user translation should render correctly with non expert, non admin 1`]
           >
             Dispositifs (1)
             <div
-              className="switch-wrapper card-custom-title ml-8"
+              className="switch-wrapper ml-8"
             >
               <label
-                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                className="ml-8 switch switch-pill switch-outline-light form-check-label"
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
               >
@@ -3339,10 +3304,10 @@ exports[`user translation should render correctly with non expert, non admin 1`]
           >
             Démarches (1)
             <div
-              className="switch-wrapper card-custom-title ml-8"
+              className="switch-wrapper ml-8"
             >
               <label
-                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                className="ml-8 switch switch-pill switch-outline-light form-check-label"
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
               >
@@ -3987,16 +3952,11 @@ exports[`user translation should return loader langue in url = first selected la
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -4128,10 +4088,10 @@ exports[`user translation should return loader langue in url = first selected la
           >
             Dispositifs (...)
             <div
-              className="switch-wrapper card-custom-title ml-8"
+              className="switch-wrapper ml-8"
             >
               <label
-                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                className="ml-8 switch switch-pill switch-outline-light form-check-label"
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
               >
@@ -4156,10 +4116,10 @@ exports[`user translation should return loader langue in url = first selected la
           >
             Démarches (...)
             <div
-              className="switch-wrapper card-custom-title ml-8"
+              className="switch-wrapper ml-8"
             >
               <label
-                className="card-custom-title ml-8 switch switch-pill switch-outline-light form-check-label"
+                className="ml-8 switch switch-pill switch-outline-light form-check-label"
                 onKeyDown={[Function]}
                 onKeyUp={[Function]}
               >

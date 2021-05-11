@@ -4,7 +4,7 @@ import {
   updateDispositifInDB,
   getDispositifByIdWithMainSponsor,
 } from "../../../modules/dispositif/dispositif.repository";
-import { updateLanguagesAvancement } from "../../../controllers/langues/langues.service";
+import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
 import {
   checkRequestIsFromSite,
   checkIfUserIsAdmin,
@@ -23,7 +23,7 @@ const mockResponse = (): MockResponse => {
 jest.mock("../../../modules/dispositif/dispositif.service", () => ({
   publishDispositif: jest.fn(),
 }));
-jest.mock("../../../controllers/langues/langues.service", () => ({
+jest.mock("../../../modules/langues/langues.service", () => ({
   updateLanguagesAvancement: jest.fn(),
 }));
 

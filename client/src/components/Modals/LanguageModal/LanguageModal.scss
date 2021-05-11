@@ -104,6 +104,7 @@
         }
       }
       .language-name {
+        white-space: nowrap;
         @include media-max("tablet-up") {
           max-width: 70%;
           flex: 0 0 80%;

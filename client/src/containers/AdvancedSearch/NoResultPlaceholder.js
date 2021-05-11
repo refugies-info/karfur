@@ -5,10 +5,12 @@ import { withTranslation } from "react-i18next";
 import "./AdvancedSearch.scss";
 import NoResultsBackgroundImage from "../../assets/no_results.svg";
 import FButton from "../../components/FigmaUI/FButton/FButton";
+import { isMobile } from "react-device-detect";
 
 const NoResultsContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: ${isMobile ? "column" : "row"};
+  text-align: ${isMobile ? "center" : ""};
 `;
 
 const NoResults = styled.div`
@@ -19,6 +21,7 @@ const NoResults = styled.div`
   min-width: 254px;
   height: 180px;
   margin-right: 75px;
+  margin: ${isMobile ? "auto" : ""};
 `;
 
 const NoResultsTextContainer = styled.div`
@@ -29,6 +32,7 @@ const NoResultsTextContainer = styled.div`
 const NoResultsButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: ${isMobile ? "center" : ""};
 `;
 
 const NoResultsTitle = styled.p`
@@ -69,13 +73,15 @@ const NoResultPlaceholder = ({ restart, writeNew, t }) => {
           >
             Recommencer
           </FButton>
-          <FButton
-            type="white-yellow-hover"
-            name="file-add-outline"
-            onClick={writeNew}
-          >
-            Rédiger une nouvelle fiche
-          </FButton>
+          {!isMobile && (
+            <FButton
+              type="white-yellow-hover"
+              name="file-add-outline"
+              onClick={writeNew}
+            >
+              Rédiger une nouvelle fiche
+            </FButton>
+          )}
         </NoResultsButtonsContainer>
       </NoResultsTextContainer>
     </NoResultsContainer>

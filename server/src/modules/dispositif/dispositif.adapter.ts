@@ -1,4 +1,7 @@
-import { DispositifPopulatedDoc } from "../../schema/schemaDispositif";
+import {
+  DispositifPopulatedDoc,
+  DispositifPopulatedMainSponsorDoc,
+} from "../../schema/schemaDispositif";
 import logger from "../../logger";
 import moment from "moment";
 import { ObjectId } from "mongoose";
@@ -104,7 +107,7 @@ export const removeUselessContent = (dispositifArray: IDispositif[]) =>
   });
 
 export const adaptDispositifMainSponsorAndCreatorId = (
-  dispositifs: IDispositif[]
+  dispositifs: DispositifPopulatedMainSponsorDoc[]
 ) =>
   dispositifs.map((dispositif) => {
     const jsonDispositif = dispositif.toJSON();
@@ -207,6 +210,27 @@ export const getRegionFigures = (dispositifs: Result[]) => {
         : 0,
       nbDepartments: correspondingData.length,
       nbDepartmentsWithDispo,
+    };
+  });
+};
+
+export const getDepartementsFigures = (dispositifs: Result[]) => {
+  const groupedDataByDepartment = _.groupBy(dispositifs, "department");
+  const departementArray = Object.keys(
+    _.groupBy(departmentRegionCorrespondency, "department")
+  );
+  return departementArray.map((dep) => {
+    const dataRegion = departmentRegionCorrespondency.filter(
+      (data) => data.department === dep
+    );
+
+    return {
+      departement: dep,
+      nbDispositifs: groupedDataByDepartment[dep]
+        ? groupedDataByDepartment[dep].length
+        : 0,
+      region:
+        dataRegion && dataRegion[0] ? dataRegion[0].region : "Pas de région",
     };
   });
 };

@@ -52,7 +52,9 @@ export const LanguageTitle = (props: Props) => (
       isSelected={props.isSelected}
       hasMultipleLanguages={props.hasMultipleLanguages}
     >
-      {props.language.langueFr}
+      {props.language.langueFr === "Persan"
+        ? "Persan/Dari"
+        : props.language.langueFr}
     </Title>
   </MainContainer>
 );
@@ -204,6 +206,6 @@ export const TypeContenuFilterButton = (
     onClick={props.onClick}
   >
     {props.name + " (" + props.nbContent + ")"}
-    <FSwitch className="card-custom-title ml-8" checked={props.isSelected} />
+    <FSwitch className="ml-8" checked={props.isSelected} />
   </TypeContenuFilterButtonContainer>
 );

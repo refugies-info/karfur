@@ -4,6 +4,6 @@ export const getFormattedLocale = (locale: string) => {
   if (locale === "ru") return "russe";
   if (locale === "ti-ER") return "tigrinya";
   if (locale === "ps") return "pachto";
-  if (locale === "fa") return "persan";
+  if (locale === "fa") return "persan/dari";
   return "locale not found";
 };

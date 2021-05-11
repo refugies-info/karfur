@@ -1,6 +1,6 @@
 import { ObjectId } from "mongoose";
 import { updateDispositifInDB } from "./dispositif.repository";
-import { updateLanguagesAvancement } from "../../controllers/langues/langues.service";
+import { updateLanguagesAvancement } from "../langues/langues.service";
 import logger from "../../logger";
 import { addOrUpdateDispositifInContenusAirtable } from "../../controllers/miscellaneous/airtable";
 

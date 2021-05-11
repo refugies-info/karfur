@@ -148,6 +148,7 @@ export class Login extends Component {
     wrongAdminCodeError: false,
     unexpectedError: false,
     newAdminWithoutPhoneOrEmail: false,
+    userDeletedError: false,
   };
 
   componentDidMount() {
@@ -244,6 +245,8 @@ export class Login extends Component {
           this.setState({ wrongAdminCodeError: true });
         } else if (e.response.status === 502) {
           this.setState({ newAdminWithoutPhoneOrEmail: true });
+        } else if (e.response.status === 405) {
+          this.setState({ userDeletedError: true });
         } else {
           this.setState({ unexpectedError: true });
         }
@@ -394,6 +397,7 @@ export class Login extends Component {
       wrongAdminCodeError,
       wrongPasswordError,
       unexpectedError,
+      userDeletedError,
     } = this.state;
     const { t } = this.props;
     return (
@@ -500,6 +504,7 @@ export class Login extends Component {
               login={this.login}
               unexpectedError={unexpectedError}
               newAdminWithoutPhoneOrEmail={newAdminWithoutPhoneOrEmail}
+              userDeletedError={userDeletedError}
             />
           </ContentContainer>
           <LanguageModal
@@ -545,6 +550,13 @@ const Footer = (props) => {
           "Login.Une erreur est survenue. Veuillez réessayer.",
           "Une erreur est survenue. Veuillez réessayer."
         )}
+      </ErrorMessageContainer>
+    );
+  }
+  if (props.userDeletedError) {
+    return (
+      <ErrorMessageContainer>
+        {props.t("Login.user supprimé", "Ce compte a été supprimé.")}
       </ErrorMessageContainer>
     );
   }

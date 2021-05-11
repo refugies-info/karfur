@@ -45,7 +45,7 @@ $imgHeight: 350px;
     @include media-max("tablet-up") {
       height: 270px;
     }
-    @media screen and (min-width: 1279px) {
+    @media screen and (min-width: 500px) {
       min-height: 500px;
       padding-top: 60px;
     }
@@ -78,14 +78,24 @@ $imgHeight: 350px;
     }
 
     &.Français {
-      background-image: url(../../assets/figma/illustration_Français.svg);
+      @include media-min("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Français.svg);
+      }
+      @include media-max("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Français_Mobile.svg);
+      }
     }
     &.Insertion-pro {
       background-image: url(../../assets/figma/illustration_Insertion-pro.svg);
     }
 
     &.Administratif {
-      background-image: url(../../assets/figma/illustration_Administratif.svg);
+      @include media-min("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Administratif.svg);
+      }
+      @include media-max("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Administratif_Mobile.svg);
+      }
     }
     &.Culture {
       background-image: url(../../assets/figma/illustration_Culture.svg);

@@ -368,16 +368,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -746,35 +741,32 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
         </b>
          assurez-vous que la personne que vous souhaitez ajouter a déjà créé un compte sur réfugiés.info.
       </div>
-      <div
-        className="md-form form-sm form-2 pl-0 search-bar inner-addon right-addon isArray"
-      >
+      <div>
         <div
-          aria-expanded={false}
-          aria-haspopup="listbox"
-          aria-owns="react-autowhatever-1"
-          className="react-autosuggest__container"
-          role="combobox"
+          className="mb-10 figma-input-group input-group"
         >
           <input
-            aria-activedescendant={null}
-            aria-autocomplete="list"
-            aria-controls="react-autowhatever-1"
-            autoComplete="off"
-            className="react-autosuggest__input"
-            onBlur={[Function]}
+            autoFocus={true}
+            className="  new-size form-control"
+            id="value"
             onChange={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
             type="text"
             value=""
           />
           <div
-            className="react-autosuggest__suggestions-container"
-            id="react-autowhatever-1"
-            role="listbox"
-          />
+            className="icon-append input-group-append"
+          >
+            <span>
+              <i
+                data-eva="search-outline"
+                data-eva-fill="#212121"
+                data-eva-height="20px"
+                data-eva-width="20px"
+              />
+            </span>
+          </div>
         </div>
+        
       </div>
       <div
         className="c22"
@@ -1248,16 +1240,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -2172,16 +2159,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -2871,16 +2853,11 @@ exports[`UserStructure should render correctly when loading 1`] = `
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -3157,16 +3134,11 @@ exports[`UserStructure should render correctly when no structure 1`] = `
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -3213,199 +3185,6 @@ exports[`UserStructure should render correctly when no structure 1`] = `
       className="c4"
     >
       Une erreur est survenue. Veuillez recharger la page ou contacter l'équipe de réfugiés.info via le live chat en bas à droite de votre écran.
-    </div>
-  </div>
-</div>
-`;
-
-exports[`UserStructure should render correctly when structure en attente 1`] = `
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
-}
-
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
-.c3 {
-  margin-top: 60px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-
-.c4 {
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  color: #f44336;
-  margin-top: 60px;
-}
-
-<div
-  style={
-    Object {
-      "display": "flex",
-      "flex": 1,
-      "flexDirection": "column",
-    }
-  }
->
-  <div
-    className="c0"
-  >
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="bookmark-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-      Toolbar.Mes favoris
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-      Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-      Toolbar.Mon profil
-    </div>
-    <div
-      className="c2"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-      Toolbar.Déconnexion
-    </div>
-  </div>
-  <div
-    className="c3"
-  >
-    <div
-      className="c4"
-    >
-      Votre structure n'a pas été validée. Veuillez contacter l'équipe de réfugiés.info via le live chat en bas à droite de votre écran.
     </div>
   </div>
 </div>
@@ -3694,16 +3473,11 @@ exports[`UserStructure should render correctly when structure with membres when 
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div
@@ -4266,16 +4040,11 @@ exports[`UserStructure should render correctly when structure with membres when 
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="play-circle-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
+      <img
+        alt="a"
+        className="icon-traduction"
+        src={Object {}}
+      />
       Toolbar.Mes traductions
     </div>
     <div

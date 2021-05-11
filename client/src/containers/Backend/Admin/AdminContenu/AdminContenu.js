@@ -38,6 +38,7 @@ import { DetailsModal } from "./DetailsModal/DetailsModal";
 import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
+import { ImprovementsMailModal } from "./ImprovementsMailModal/ImprovementsMailModal";
 
 moment.locale("fr");
 
@@ -58,6 +59,10 @@ export const AdminContenu = () => {
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
   const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showImprovementsMailModal, setShowImprovementsMailModal] = useState(
+    false
+  );
+
   const [selectedDispositif, setSelectedDispositif] = useState(null);
   const [showChangeStructureModal, setShowChangeStructureModal] = useState(
     false
@@ -77,6 +82,8 @@ export const AdminContenu = () => {
     setShowChangeStructureModal(!showChangeStructureModal);
 
   const toggleDetailsModal = () => setShowDetailsModal(!showDetailsModal);
+  const toggleImprovementsMailModal = () =>
+    setShowImprovementsMailModal(!showImprovementsMailModal);
 
   const setSelectedDispositifAndToggleModal = (element) => {
     setSelectedDispositif(element);
@@ -467,7 +474,17 @@ export const AdminContenu = () => {
         }
         onDeleteClick={() => prepareDeleteContrib(selectedDispositif)}
         setShowChangeStructureModal={setShowChangeStructureModal}
+        toggleImprovementsMailModal={toggleImprovementsMailModal}
       />
+      {showImprovementsMailModal && (
+        <ImprovementsMailModal
+          show={showImprovementsMailModal}
+          toggleModal={toggleImprovementsMailModal}
+          selectedDispositifId={
+            selectedDispositif ? selectedDispositif._id : null
+          }
+        />
+      )}
       <ChangeStructureModal
         show={showChangeStructureModal}
         toggle={toggleShowChangeStructureModal}

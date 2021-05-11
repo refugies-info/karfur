@@ -11,9 +11,13 @@ import { getNbDispositifsByRegion } from "../workflows/dispositif/getNbDispositi
 import { updateDispositifReactions } from "../workflows/dispositif/updateDispositifReactions";
 import { getUserContributions } from "../workflows/dispositif/getUserContributions";
 import { getDispositifsWithTranslationAvancement } from "../workflows/dispositif/getDispositifsWithTranslationAvancement";
+import { exportFiches } from "../workflows/dispositif/exportFiches";
+import { addDispositif } from "../workflows/dispositif/addDispositif";
+import { exportDispositifsGeolocalisation } from "../workflows/dispositif/exportDispositifsGeolocalisation";
+// import { fixAudienceAgeOnContents } from "../workflows/dispositif/fixAudienceAgeOnContents";
 
 module.exports = function (app) {
-  app.post("/add_dispositif", checkToken.check, dispositif.add_dispositif);
+  app.post("/addDispositif", checkToken.check, addDispositif);
 
   app.post(
     "/add_dispositif_infocards",
@@ -50,4 +54,10 @@ module.exports = function (app) {
     checkToken.check,
     getDispositifsWithTranslationAvancement
   );
+  app.post("/exportFiches", exportFiches);
+  app.post(
+    "/exportDispositifsGeolocalisation",
+    exportDispositifsGeolocalisation
+  );
+  // app.post("/fixAudienceAgeOnContents", fixAudienceAgeOnContents);
 };
