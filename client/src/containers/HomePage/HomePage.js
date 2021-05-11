@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
@@ -115,7 +114,6 @@ export class HomePage extends Component {
     );
   }
   selectOption = (item) => {
-    console.log("item", item);
     this.props.history.push({
       pathname: "/advanced-search",
       search: "?tag=" + item.name,
