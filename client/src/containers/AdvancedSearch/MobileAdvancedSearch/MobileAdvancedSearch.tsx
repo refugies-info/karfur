@@ -16,7 +16,7 @@ interface Props {
   nbFilteredResults: number;
   t: (a: string, b: string) => void;
   recherche: string[];
-  addParamasInRechercher: () => void;
+  addParamasInRechercher: (index: number, item: any) => void;
   queryDispositifs: () => void;
   desactiver: (index: number) => void;
   query: {
@@ -24,6 +24,7 @@ interface Props {
     tag?: string;
     bottomValue?: string;
     niveauFrancais?: string;
+    isFromHome?: string;
   };
   principalThemeList: IDispositif[];
   principalThemeListFullFrance: IDispositif[];
@@ -123,9 +124,42 @@ export const MobileAdvancedSearch = (props: Props) => {
         break;
     }
   };
+  const selectOption = (item: any, type: string) => {
+    let index = 0;
+    let el;
+    switch (type) {
+      case "thème":
+        el = props.recherche.filter(
+          (item: any) => item.queryName === "tags.name"
+        )[0];
+        index = props.recherche.indexOf(el);
+        setTagSelected(item);
+        break;
+      case "age":
+        el = props.recherche.filter(
+          (item: any) => item.queryName === "audienceAge"
+        )[0];
+        index = props.recherche.indexOf(el);
+        setAgeSelected(item);
+        break;
+      case "french":
+        el = props.recherche.filter(
+          (item: any) => item.queryName === "niveauFrancais"
+        )[0];
+        index = props.recherche.indexOf(el);
+        setFrenchSelected(item);
+        break;
+      default:
+        break;
+    }
+    props.addParamasInRechercher(index, item);
+  };
 
   useEffect(() => {
-    setIsUrlEmpty(Object.keys(props.query)[0] === "");
+    if (props.query.isFromHome) {
+      setIsUrlEmpty(true);
+    } else setIsUrlEmpty(Object.keys(props.query)[0] === "");
+
     props.recherche.map((item: any) => {
       if (item.value) {
         switch (item.queryName) {
@@ -185,6 +219,7 @@ export const MobileAdvancedSearch = (props: Props) => {
     if (isUrlEmpty) return props.queryDispositifs();
     return props.history.push();
   };
+
   return (
     <MainContainer>
       <SearchBoutton
@@ -280,7 +315,7 @@ export const MobileAdvancedSearch = (props: Props) => {
           {showTagModal && (
             <MobileSearchFilterModal
               t={props.t}
-              setSelectedItem={(item) => setTagSelected(item)}
+              selectOption={selectOption}
               type="thème"
               title="Tags.thème"
               defaultTitle="thème"
@@ -288,14 +323,12 @@ export const MobileAdvancedSearch = (props: Props) => {
               defaultSentence="Je cherche à"
               toggle={() => toggleShowModal("thème")}
               show={showTagModal}
-              addParamasInRechercher={props.addParamasInRechercher}
-              recherche={props.recherche}
             />
           )}
           {showAgeModal && (
             <MobileSearchFilterModal
               t={props.t}
-              setSelectedItem={(item) => setAgeSelected(item)}
+              selectOption={selectOption}
               type="age"
               title="SearchItem.choisir mon âge"
               defaultTitle="choisir mon âge"
@@ -303,14 +336,12 @@ export const MobileAdvancedSearch = (props: Props) => {
               defaultSentence="J'ai'"
               toggle={() => toggleShowModal("age")}
               show={showAgeModal}
-              addParamasInRechercher={props.addParamasInRechercher}
-              recherche={props.recherche}
             />
           )}
           {showFrenchModal && (
             <MobileSearchFilterModal
               t={props.t}
-              setSelectedItem={(item) => setFrenchSelected(item)}
+              selectOption={selectOption}
               type="french"
               title="SearchItem.le français"
               defaultTitle="le français"
@@ -318,8 +349,6 @@ export const MobileAdvancedSearch = (props: Props) => {
               defaultSentence="Je parle"
               toggle={() => toggleShowModal("french")}
               show={showFrenchModal}
-              addParamasInRechercher={props.addParamasInRechercher}
-              recherche={props.recherche}
             />
           )}
         </>

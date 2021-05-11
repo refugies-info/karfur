@@ -4,7 +4,7 @@
 .homepage {
   flex: 1 1;
   color: $noir;
-  background: $gris;
+  background: $blancSimple;
   max-width: 100%;
   outline: none;
   z-index: 1;
@@ -42,12 +42,21 @@
     min-height: 750px;
     padding-top: 100px;
     padding-bottom: 93px;
+    @include media-max("tablet-up") {
+      min-height: 0px;
+      padding-bottom: 0px;
+    }
     position: relative;
     overflow: hidden;
   }
 
   #hero {
-    background-image: url(../../assets/figma/integration_illu.svg);
+    @include media-min("tablet-up") {
+      background-image: url(../../assets/figma/integration_illu.svg);
+    }
+    @include media-max("tablet-up") {
+      background-image: url(../../assets/figma/home_mobile.svg);
+    }
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
@@ -55,17 +64,11 @@
     justify-content: flex-start;
     align-items: center;
     padding-top: 150px;
+    @include media-max("tablet-up") {
+      padding-top: 116px;
+    }
     margin-top: -75px;
     height: 772px;
-
-    /*     .search-row-pop{
-      margin: 15px;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255,255, .9);
-      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.25);
-      border-radius: 12px;
-      width: fit-content; */
 
     .options-wrapper {
       list-style-type: none;
@@ -134,6 +137,21 @@
       align-items: center;
       z-index: 4;
       background: #ffffff;
+      @include media-max("tablet-up") {
+        flex-direction: column;
+        padding: 20px;
+      }
+      @include media-min("tablet-up") {
+        margin-bottom: 0;
+      }
+      .mb-15 {
+        @include media-min("tablet-up") {
+          margin-bottom: 0;
+        }
+        @include media-max("tablet-up") {
+          margin-bottom: 15px;
+        }
+      }
       .mr-10 {
         padding-right: 10px;
         z-index: 4;
@@ -154,6 +172,10 @@
     h5 {
       margin-top: 10px;
       font-weight: normal;
+      @include media-max("tablet-up") {
+        font-size: 18px;
+        padding: 0 50px;
+      }
     }
 
     .search-row {
@@ -424,6 +446,10 @@
     height: 48px;
     bottom: -30px;
     left: 50%;
+    @include media-max("tablet-up") {
+      left: 44%;
+      bottom: 160px;
+    }
     background: $noir;
     border-radius: 50%;
     z-index: 1;
@@ -439,13 +465,16 @@
     fill: $blancSimple;
     z-index: 10;
     svg {
-      margin-left: -6px;
-      margin-top: -6px;
+      margin-left: -15px;
+      margin-top: -10px;
     }
     &:hover {
       svg {
         transition: all 0.5s ease;
         fill: $gris;
+        @include media-max("tablet-up") {
+          fill: $blancSimple;
+        }
       }
     }
   }

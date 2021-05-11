@@ -81,7 +81,6 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
       </div>
     );
   }
-
   return (
     <div>
       <TotalCountTitle>
