@@ -28,6 +28,7 @@ const ButtonContainer = styled.div`
   font-size:16px;
   color:${(props) => props.color};
   font-weight:700;
+  cursor:pointer;
 `;
 
 const IconContainer = styled.div`
@@ -37,7 +38,7 @@ const IconContainer = styled.div`
 export const FButtonMobile = (props: Props) => (
   <ButtonContainer
     onClick={props.isDisabled ? null : props.onClick}
-    disabled={props.isDisabled}
+    isDisabled={props.isDisabled}
     backgroundColor={props.color}
     color={props.fill}
   >

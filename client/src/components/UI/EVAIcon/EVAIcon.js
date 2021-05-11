@@ -8,6 +8,7 @@ const SIZE = {
   LARGE: "24px",
   XLARGE: "30px",
   HERO: "60px",
+  XHERO: "80px",
 };
 
 class EVAIcon extends Component {
@@ -45,6 +46,8 @@ class EVAIcon extends Component {
         return SIZE.XLARGE;
       case "hero":
         return SIZE.HERO;
+      case "xhero":
+        return SIZE.XHERO;
       default:
         return SIZE.MEDIUM;
     }

@@ -55,7 +55,7 @@ const FilterText = styled.div`
 `;
 
 interface Props {
-  setSelectedItem: (item: any) => void;
+  selectOption: (item: any, type: string) => void;
   toggle: () => void;
   type: string;
   show: boolean;
@@ -63,9 +63,8 @@ interface Props {
   defaultTitle: string;
   sentence: string;
   defaultSentence: string;
+
   t: (a: string, b: string) => void;
-  recherche: string[];
-  addParamasInRechercher: (index: number, item: any) => void;
 }
 
 export const MobileSearchFilterModal = (props: Props) => {
@@ -83,32 +82,7 @@ export const MobileSearchFilterModal = (props: Props) => {
       : null;
 
   const selectOption = (item: any, type: string) => {
-    let index = 0;
-    let el;
-    switch (type) {
-      case "thème":
-        el = props.recherche.filter(
-          (item: any) => item.queryName === "tags.name"
-        )[0];
-        index = props.recherche.indexOf(el);
-        break;
-      case "age":
-        el = props.recherche.filter(
-          (item: any) => item.queryName === "audienceAge"
-        )[0];
-        index = props.recherche.indexOf(el);
-        break;
-      case "french":
-        el = props.recherche.filter(
-          (item: any) => item.queryName === "niveauFrancais"
-        )[0];
-        index = props.recherche.indexOf(el);
-        break;
-      default:
-        break;
-    }
-    props.addParamasInRechercher(index, item);
-    props.setSelectedItem(item);
+    props.selectOption(item, type);
     props.toggle();
   };
 
