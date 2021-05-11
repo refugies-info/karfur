@@ -69,7 +69,7 @@ const IconContainer = styled.div`
 
 export const HomePageMobileSection = (props: Props) => (
   <SectionContainer backgroundColor={props.backgroundColor}>
-    <img src={props.image} />
+    <img alt="illustration section" src={props.image} />
     <TitleContainer textColor={props.textColor}>
       {props.t(props.title, props.defaultTitle)}
     </TitleContainer>

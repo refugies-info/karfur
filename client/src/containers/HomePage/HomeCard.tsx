@@ -46,7 +46,7 @@ const ButtonContainer = styled.div`
 
 export const HomeCard = (props: Props) => (
   <MainContainer backgroundColor={props.backgroundColor}>
-    <img src={props.image} />
+    <img alt="img-homecard" src={props.image} />
     <TextContainer textColor={props.textColor}>
       {props.t("Homepage" + props.text, props.defaultText)}
     </TextContainer>
