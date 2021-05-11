@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { FButtonMobile } from "../../../components/FigmaUI/FButtonMobile/FButtonMobile";
+import { colors } from "../../../colors";
+import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
+import traductionIconBlanc from "../../../assets/icon_traduction_blanc.svg";
+import icon_mobilisation from "../../../assets/icon_mobilisation.svg";
 
 declare const window: Window;
 interface Props {
@@ -10,6 +13,7 @@ interface Props {
   text: string;
   defaultText: string;
   iconName: string;
+  iconType: string;
   buttonTitle: string;
   defaultBoutonTitle: string;
   buttonColor: string;
@@ -42,6 +46,27 @@ const TextContainer = styled.div`
   color: ${(props) => props.textColor};
 `;
 
+const ButtonContainer = styled.div`
+  display:flex;
+  width: 100%;
+  justify-content:center;
+  padding:20px
+  text-align: center;
+  border-radius: 12px;
+  margin: auto;
+  align-items:center;
+  background-color: ${(props) =>
+    props.isDisabled ? colors.grey : props.backgroundColor};
+  font-size:16px;
+  color:${(props) => props.color};
+  font-weight:700;
+  cursor:pointer;
+`;
+
+const IconContainer = styled.div`
+  margin-right: 10px;
+`;
+
 export const HomePageMobileSection = (props: Props) => (
   <SectionContainer backgroundColor={props.backgroundColor}>
     <img src={props.image} />
@@ -51,15 +76,27 @@ export const HomePageMobileSection = (props: Props) => (
     <TextContainer textColor={props.textColor}>
       {props.t(props.text, props.defaultText)}
     </TextContainer>
-    <FButtonMobile
-      name={props.iconName}
+    <ButtonContainer
+      onClick={props.isDisabled ? null : props.onClick}
       isDisabled={props.isDisabled}
-      fill={props.buttonTextColor}
-      color={props.buttonColor}
-      onClick={props.onClick}
-      t={props.t}
-      title={props.buttonTitle}
-      defaultTitle={props.defaultBoutonTitle}
-    />
+      backgroundColor={props.buttonColor}
+      color={props.buttonTextColor}
+    >
+      <IconContainer>
+        {props.iconType === "eva" ? (
+          <EVAIcon
+            name={props.iconName}
+            fill={props.buttonTextColor}
+            size={"large"}
+          />
+        ) : props.iconType === "traduction" ? (
+          <img src={traductionIconBlanc} alt="picto-traduction" />
+        ) : props.iconType === "territoire" ? (
+          <img src={icon_mobilisation} alt="picto-mobilisation" />
+        ) : null}
+      </IconContainer>
+
+      {props.t(props.buttonTitle, props.defaultBoutonTitle)}
+    </ButtonContainer>
   </SectionContainer>
 );

@@ -49,6 +49,7 @@ export const HomePageMobile = (props: Props) => {
         text="Participer à l'enrichissement du site"
         defaultText="Participer à l'enrichissement du site en rédigeant vous-même de nouvelles fiches, comme sur Wikipedia."
         iconName="monitor-outline"
+        iconType="eva"
         buttonTitle="Je propose une fiche"
         defaultBoutonTitle="Je propose une fiche"
         t={props.t}
@@ -65,7 +66,8 @@ export const HomePageMobile = (props: Props) => {
         defaultTitle="Aidez à traduire les informations"
         text="Contribuer à la traduction "
         defaultText="Contribuer à la traduction des contenus avec notre interface facile à utiliser. Rejoignez une équipe de traducteurs bénévoles et participez à votre rythme."
-        iconName="monitor-outline"
+        iconName=""
+        iconType="traduction"
         buttonTitle="J'aide à traduire"
         defaultBoutonTitle="J'aide à traduire"
         t={props.t}
@@ -82,7 +84,8 @@ export const HomePageMobile = (props: Props) => {
         defaultTitle="Bientôt disponible près de chez vous"
         text="Réfugiés.info se déploie "
         defaultText="Réfugiés.info se déploie progressivement sur tout le territoire métropolitain. Deux départements sont déjà mobilisés à titre expérimental : la Côte d'Or (21) et l'Isère (38)."
-        iconName="monitor-outline"
+        iconType="territoire"
+        iconName=""
         buttonTitle="Je mobilise mon territoire"
         defaultBoutonTitle="Je mobilise mon territoire"
         t={props.t}
@@ -99,6 +102,7 @@ export const HomePageMobile = (props: Props) => {
         defaultTitle="Bientôt dans votre smartphone"
         text="Une application mobile adaptée "
         defaultText="Une application mobile adaptée aux besoins des personnes réfugiées sera bientôt disponible."
+        iconType="eva"
         iconName="email-outline"
         buttonTitle="Je veux être informé"
         defaultBoutonTitle="Je veux être informé"
