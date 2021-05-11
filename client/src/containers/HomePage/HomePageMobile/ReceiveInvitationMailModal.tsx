@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
 import Swal from "sweetalert2";
-import API from "../../../utils/API";
 import { FButtonMobile } from "../../../components/FigmaUI/FButtonMobile/FButtonMobile";
 import { colors } from "../../../colors";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
@@ -97,20 +96,6 @@ export const ReceiveInvitationMailModal = (props: Props) => {
     const regex = /^\S+@\S+\.\S+$/;
     const isEmail = !!email.match(regex);
     if (isEmail) {
-      API.set_mail({ mail: email })
-        .then(() => {
-          Swal.fire({
-            title: "Yay...",
-            text: "Mail correctement enregistré !",
-            type: "success",
-            timer: 1500,
-          });
-          setEmail("");
-          props.toggle();
-        })
-        .catch(() => {
-          Swal.fire("Oh non...", "Une erreur s'est produite", "error");
-        });
     } else {
       setNotEmailError(true);
     }
