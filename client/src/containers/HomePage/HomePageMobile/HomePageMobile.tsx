@@ -10,6 +10,7 @@ import {
 import { HomePageMobileSection } from "./HomePageMobileSection";
 import { GoToDesktopModal } from "./GoToDesktopModal";
 import { SubscribeNewsletterModal } from "../../Footer/SubscribeNewsletterModal/SubscribeNewsletterModal";
+import { ReceiveInvitationMailModal } from "./ReceiveInvitationMailModal";
 
 declare const window: Window;
 interface Props {
@@ -25,12 +26,18 @@ const MainContainer = styled.div`
 export const HomePageMobile = (props: Props) => {
   const [showGoToDesktopModal, setShowGoToDesktopModal] = useState(false);
   const [showNewslettreModal, setShowNewsletterModal] = useState(false);
+  const [showInvitationEmailModal, setShowInvitationEmailModal] = useState(
+    false
+  );
 
   const toggleGoToDesktopModal = () => {
     setShowGoToDesktopModal(!showGoToDesktopModal);
   };
   const toggleShowNewsletterModal = () => {
     setShowNewsletterModal(!showNewslettreModal);
+  };
+  const toggleShowInvitationEmailModal = () => {
+    setShowInvitationEmailModal(!showInvitationEmailModal);
   };
 
   return (
@@ -106,11 +113,17 @@ export const HomePageMobile = (props: Props) => {
       <GoToDesktopModal
         toggle={toggleGoToDesktopModal}
         show={showGoToDesktopModal}
+        toggleShowInvitationEmailModal={toggleShowInvitationEmailModal}
         t={props.t}
       />
       <SubscribeNewsletterModal
         toggle={toggleShowNewsletterModal}
         show={showNewslettreModal}
+        t={props.t}
+      />
+      <ReceiveInvitationMailModal
+        toggle={toggleShowInvitationEmailModal}
+        show={showInvitationEmailModal}
         t={props.t}
       />
     </MainContainer>

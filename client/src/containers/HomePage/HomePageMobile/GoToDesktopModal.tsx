@@ -10,6 +10,7 @@ interface Props {
   toggle: () => void;
   show: boolean;
   t: (a: string, b: string) => void;
+  toggleShowInvitationEmailModal: () => void;
 }
 
 const TitleContainer = styled.div`
@@ -55,7 +56,7 @@ export const GoToDesktopModal = (props: Props) => (
           isDisabled={false}
           fill="white"
           color={colors.noir}
-          onClick={() => {}}
+          onClick={props.toggleShowInvitationEmailModal}
           t={props.t}
           title="Me le rappeler par email"
           defaultTitle="Me le rappeler par email"
