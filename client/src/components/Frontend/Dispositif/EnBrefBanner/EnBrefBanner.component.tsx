@@ -106,7 +106,7 @@ export const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
           } else if (
             ["Acte de naissance OFPRA", "Titre de séjour"].includes(card.title)
           ) {
-            texte = card.title;
+            texte = props.t("Dispositif." + card.title, card.title);
           }
           return (
             <div className="tag-wrapper ml-15" key={key}>
