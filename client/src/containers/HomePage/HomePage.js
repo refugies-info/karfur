@@ -116,7 +116,7 @@ export class HomePage extends Component {
   selectOption = (item) => {
     this.props.history.push({
       pathname: "/advanced-search",
-      search: "?tag=" + item.name + "&isFromHome=true",
+      state: item.name,
     });
   };
   togglePopup = () => {
@@ -268,7 +268,7 @@ export class HomePage extends Component {
               defaultBoutonTitle={
                 isMobile ? "Disponible sur ordinateur" : "Consulter l’annnuaire"
               }
-              iconName={isMobile ? "alert-circle" : "search-outline"}
+              iconName={isMobile ? "alert-circle-outline" : "search-outline"}
               backgroundColor={colors.purple}
               textColor={colors.blancSimple}
               image={illustration_homeCard_annuaire}
@@ -285,7 +285,7 @@ export class HomePage extends Component {
               defaultText="Lire le lexique pour comprendre les mots difficiles"
               buttonTitle="Homepage.Bientôt disponible"
               defaultBoutonTitle="Bientôt disponible"
-              iconName="alert-circle"
+              iconName="alert-circle-outline"
               backgroundColor={colors.whiteBlue}
               textColor={colors.bleuCharte}
               image={illustration_homeCard_lexique}

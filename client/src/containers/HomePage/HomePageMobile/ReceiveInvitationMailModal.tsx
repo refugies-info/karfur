@@ -60,6 +60,7 @@ const ErrorMessageContainer = styled.div`
   font-size: 16px;
   line-height: 20px;
   margin-top: 16px;
+  margin-bottom: 10px;
 `;
 const CloseIconContainer = styled.div`
   display: flex;
@@ -69,7 +70,7 @@ const CloseIconContainer = styled.div`
   height: 40px;
   width: 40px;
   border-radius: 50%;
-  background-color: ;
+  background-color: ${colors.noir};
   right: 10px;
   top: 8px;
 `;
