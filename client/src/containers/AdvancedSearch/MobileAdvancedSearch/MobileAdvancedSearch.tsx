@@ -24,7 +24,6 @@ interface Props {
     tag?: string;
     bottomValue?: string;
     niveauFrancais?: string;
-    isFromHome?: string;
   };
   principalThemeList: IDispositif[];
   principalThemeListFullFrance: IDispositif[];
@@ -156,10 +155,7 @@ export const MobileAdvancedSearch = (props: Props) => {
   };
 
   useEffect(() => {
-    if (props.query.isFromHome) {
-      setIsUrlEmpty(true);
-    } else setIsUrlEmpty(Object.keys(props.query)[0] === "");
-
+    setIsUrlEmpty(Object.keys(props.query)[0] === "");
     props.recherche.map((item: any) => {
       if (item.value) {
         switch (item.queryName) {
