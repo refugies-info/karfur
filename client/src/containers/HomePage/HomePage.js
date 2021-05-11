@@ -175,6 +175,7 @@ export class HomePage extends Component {
                 selectParam={this.selectParam}
                 desactiver={() => {}}
                 toggleOverlay={this.toggleOverlay}
+                history={this.props.history}
               />
             </div>
           </div>
@@ -249,10 +250,10 @@ export class HomePage extends Component {
               text="Consulter l'annuaire pour trouver une association"
               defaultText="Consulter l'annuaire pour trouver une association"
               buttonTitle={
-                isMobile ? "disponible sur ordinateur" : "voir l'annuaire"
+                isMobile ? "Disponible sur ordinateur" : "Voir l'annuaire"
               }
               defaultBoutonTitle={
-                isMobile ? "disponible sur ordinateur" : "voir l'annuaire"
+                isMobile ? "Disponible sur ordinateur" : "Voir l'annuaire"
               }
               iconName={isMobile ? "alert-circle" : "search-outline"}
               backgroundColor={colors.purple}
@@ -269,8 +270,8 @@ export class HomePage extends Component {
               t={t}
               text="Trouver un programme"
               defaultText="Lire le lexique pour comprendre les mots difficiles"
-              buttonTitle="bientôt disponible"
-              defaultBoutonTitle="bientôt disponible"
+              buttonTitle="Bientôt disponible"
+              defaultBoutonTitle="Bientôt disponible"
               iconName="alert-circle"
               backgroundColor={colors.whiteBlue}
               textColor={colors.bleuCharte}

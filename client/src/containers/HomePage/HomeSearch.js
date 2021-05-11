@@ -6,6 +6,7 @@ import Streamline from "../../assets/streamline";
 import Ripples from "react-ripples";
 import i18n from "../../i18n";
 import styled from "styled-components";
+import { isMobile } from "react-device-detect";
 
 const IconContainer = styled.div`
   display: flex;
@@ -100,13 +101,20 @@ export class SearchItem extends Component {
 
   open = (e) => {
     e.preventDefault();
-    if (this.state.flip) {
-      this.setState({ flip: false });
+    if (isMobile) {
+      this.props.history.push({
+        pathname: "/advanced-search",
+        state: { showTagModal: true },
+      });
     } else {
-      this.setState({ flip: true });
+      if (this.state.flip) {
+        this.setState({ flip: false });
+      } else {
+        this.setState({ flip: true });
+      }
+      this.props.togglePopup();
+      this.props.toggleOverlay();
     }
-    this.props.togglePopup();
-    this.props.toggleOverlay();
   };
 
   close = (e) => {
@@ -253,34 +261,7 @@ export class SearchItem extends Component {
             </button>
           </Ripples>
         )}
-        {/*<Dropdown isOpen={dropdownOpen} toggle={this.toggle} className="display-inline-block">
-            <DropdownToggle
-              caret
-              tag="div"
-              data-toggle="dropdown"
-              aria-expanded={dropdownOpen}
-              className={"search-btn in-header " + (item.short && item.active ? ("bg-" + item.short.split(" ").join("-")) : "") + (!item.short && item.active ? "active" : "")}
-            >
-              {item.value ? t("Tags." + item.value, item.value) : t("Tags." + item.placeholder, item.placeholder)}
-              {item.active && 
-                <EVAIcon name="close-circle" size="xlarge" className="close-icon" onClick={e => {e.stopPropagation(); this.props.desactiver(keyValue)}} />}
-            </DropdownToggle>
-            <DropdownMenu>
-              <div className="options-wrapper">
-                {item.children.map((subi, idx) => {
-                  return(
-                  <FSearchBtn 
-                    key={idx} 
-                    onClick={()=> this.selectOption(subi)}
-                    className={"search-options color" + (subi.short ? "": " full")}
-                    color={(subi.short || '').replace(/ /g, "-")} 
-                  >
-                    {t("Tags." + subi.name, subi.name)}
-                  </FSearchBtn>
-                )})}
-              </div>
-            </DropdownMenu>
-          </Dropdown> */}
+
         {item.title2 && (
           <span className="ml-10">
             {t("SearchItem." + item.title2, item.title2)}
