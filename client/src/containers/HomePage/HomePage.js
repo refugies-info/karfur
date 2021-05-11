@@ -222,9 +222,9 @@ export class HomePage extends Component {
           <CardContainer>
             <HomeCard
               t={t}
-              text="Trouver un programme"
+              text="Homepage.Trouver un programme"
               defaultText="Trouver un programme ou une formation"
-              buttonTitle="Je cherche"
+              buttonTitle="Homepage.Je cherche"
               defaultBoutonTitle="Je cherche"
               iconName="search-outline"
               backgroundColor={colors.blueGreen}
@@ -240,9 +240,9 @@ export class HomePage extends Component {
             />
             <HomeCard
               t={t}
-              text="Comprendre les démarches administratives"
+              text="Homepage.Comprendre les démarches administratives"
               defaultText="Comprendre les démarches administratives"
-              buttonTitle="Je cherche"
+              buttonTitle="Homepage.Je cherche"
               defaultBoutonTitle="Je cherche"
               iconName="search-outline"
               backgroundColor={colors.lightBlue}
@@ -258,13 +258,15 @@ export class HomePage extends Component {
             />
             <HomeCard
               t={t}
-              text="Consulter l'annuaire pour trouver une association"
+              text="Homepage.Consulter l'annuaire pour trouver une association"
               defaultText="Consulter l'annuaire pour trouver une association"
               buttonTitle={
-                isMobile ? "Disponible sur ordinateur" : "Voir l'annuaire"
+                isMobile
+                  ? "Homepage.Disponible sur ordinateur"
+                  : "Homepage.Consulter l’annnuaire"
               }
               defaultBoutonTitle={
-                isMobile ? "Disponible sur ordinateur" : "Voir l'annuaire"
+                isMobile ? "Disponible sur ordinateur" : "Consulter l’annnuaire"
               }
               iconName={isMobile ? "alert-circle" : "search-outline"}
               backgroundColor={colors.purple}
@@ -279,9 +281,9 @@ export class HomePage extends Component {
             />
             <HomeCard
               t={t}
-              text="Trouver un programme"
+              text="Homepage.Lire le lexique"
               defaultText="Lire le lexique pour comprendre les mots difficiles"
-              buttonTitle="Bientôt disponible"
+              buttonTitle="Homepage.Bientôt disponible"
               defaultBoutonTitle="Bientôt disponible"
               iconName="alert-circle"
               backgroundColor={colors.whiteBlue}

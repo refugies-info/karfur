@@ -123,11 +123,14 @@ export const ReceiveInvitationMailModal = (props: Props) => {
           <EVAIcon name="close" fill={colors.blancSimple} size={"large"} />
         </CloseIconContainer>
         <TitleContainer>
-          {props.t("Recevoir une invitation", "Recevoir une invitation")}
+          {props.t(
+            "Register.Recevoir une invitation",
+            "Recevoir une invitation"
+          )}
         </TitleContainer>
         <TextContainer>
           {props.t(
-            "Nous vous enverrons un email d'invitation pour vous inscrire.",
+            "Register.Nous vous enverrons un email d'invitation pour vous inscrire.",
             "Nous vous enverrons un email d'invitation pour vous inscrire."
           )}
         </TextContainer>

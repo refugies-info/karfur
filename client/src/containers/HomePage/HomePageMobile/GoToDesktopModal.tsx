@@ -40,13 +40,13 @@ export const GoToDesktopModal = (props: Props) => (
       <img src={rendez_vous_ordinateur} alt="image newsletter" />
       <TitleContainer>
         {props.t(
-          "Rendez-vous sur votre ordinateur",
+          "Register.Rendez-vous sur votre ordinateur",
           "Rendez-vous sur votre ordinateur"
         )}
       </TitleContainer>
       <TextContainer>
         {props.t(
-          "Créez-vous un compte depuis votre ordinateur pour participer",
+          "Register.Créez-vous un compte depuis votre ordinateur pour participer",
           "Créez-vous un compte depuis votre ordinateur pour participer"
         )}
       </TextContainer>
@@ -58,7 +58,7 @@ export const GoToDesktopModal = (props: Props) => (
           color={colors.noir}
           onClick={props.toggleShowInvitationEmailModal}
           t={props.t}
-          title="Me le rappeler par email"
+          title="Register.Me le rappeler par email"
           defaultTitle="Me le rappeler par email"
         />
       </ButtonContainer>
@@ -70,7 +70,7 @@ export const GoToDesktopModal = (props: Props) => (
           color={colors.vert}
           onClick={props.toggle}
           t={props.t}
-          title="Ok, compris !"
+          title="Dispositif.compris"
           defaultTitle="Ok, compris !"
         />
       </ButtonContainer>

@@ -13,6 +13,8 @@
     "contributive": "Réfugiés.info est ouvert à la contribution",
     "contributive subheader": "Un peu comme Wikipédia, réfugiés.info est un outil simple pour réunir de l'information pratique. Participez à l'enrichissement du site en rédigeant vous-même de nouvelles fiches. Vous pouvez également suggérer des modifications sur les fiches existantes.",
     "Vous cherchez ?": "Je cherche à :",
+    "Participer à l'enrichissement du site": "Participer à l'enrichissement du site en rédigeant vous-même de nouvelles fiches, comme sur Wikipedia.",
+    "Je cherche": "Je cherche",
     "À comprendre une démarche": "Comprendre une démarche administrative",
     "Comprendre les démarches administratives": "Comprendre les démarches administratives",
     "A apprendre": "Rejoindre un dispositif d'accompagnement",
@@ -21,6 +23,7 @@
     "creer parcours": "Créer mon parcours personnalisé",
     "Je contribue": "Je contribue",
     "Je traduis": "Je traduis",
+    "Lire le lexique": "Lire le lexique pour comprendre les mots difficiles",
     "Construis ta vie en France": "Construire ma vie en France",
     "Explique les mots difficiles": "Réfugiés.info explique les mots difficiles",
     "Trouver une démarche": "Trouver une démarche",
@@ -33,7 +36,17 @@
     "Annuaire": "Consulter l’annuaire des acteurs de l’intégration",
     "Trouver une organisation": "Trouver une organisation",
     "Consulter l’annnuaire": "Consulter l’annuaire",
-    "Consulter l'annuaire pour trouver une association": "Consulter l'annuaire pour trouver une association"
+    "Consulter l'annuaire pour trouver une association": "Consulter l'annuaire pour trouver une association",
+    "Faites connaître votre initiative": "Faites connaître votre initiative",
+    "Je propose une fiche": "Je propose une fiche",
+    "Aidez à traduire les informations": "Aidez à traduire les informations",
+    "Contribuer à la traduction": "Contribuer à la traduction des contenus avec notre interface facile à utiliser. Rejoignez une équipe de traducteurs bénévoles et participez à votre rythme.",
+    "Bientôt disponible près de chez vous": "Bientôt disponible près de chez vous",
+    "Bientôt dans votre smartphone": "Bientôt dans votre smartphone",
+    "Je mobilise mon territoire": "Je mobilise mon territoire",
+    "Je veux être informé": "Je veux être informé",
+    "Une application mobile adaptée": "Une application mobile adaptée aux besoins des personnes réfugiées sera bientôt disponible.",
+    "Réfugiés.info se déploie": "Réfugiés.info se déploie progressivement sur tout le territoire métropolitain. Deux départements sont déjà mobilisés à titre expérimental : la Côte d'Or (21) et l'Isère (38)."
   },
   "AdvancedSearch": {
     "Je cherche à": "Je cherche à",
@@ -388,7 +401,12 @@
     "Mot de passe trop faible": "Oups, votre mot de passe est trop faible.",
     "Ceci n'est pas un email,": "Ceci n'est pas un email,",
     "vérifiez l'orthographe.": "vérifiez l'orthographe.",
-    "Créer un nouveau compte": "Créer un nouveau compte"
+    "Créer un nouveau compte": "Créer un nouveau compte",
+    "Rendez-vous sur votre ordinateur": "Rendez-vous sur votre ordinateur",
+    "Me le rappeler par email": "Me le rappeler par email",
+    "Recevoir une invitation": "Recevoir une invitation",
+    "Nous vous enverrons un email d'invitation pour vous inscrire": "Nous vous enverrons un email d'invitation pour vous inscrire",
+    "Créez-vous un compte depuis votre ordinateur pour participer": "Créez-vous un compte depuis votre ordinateur pour participer"
   },
   "UnauthorizedAccess": {
     "Accès refusé": "Accès refusé",
