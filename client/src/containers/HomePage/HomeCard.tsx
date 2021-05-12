@@ -34,7 +34,8 @@ const TextContainer = styled.div`
   color: ${(props) => props.textColor};
   font-size: 22px;
   font-weight: 700;
-  margin-top: 40px;
+  margin-top: ${(props) =>
+    props.text === "Homepage.Lire le lexique" ? "-5px" : "40px"};
   margin-bottom: 20px;
 `;
 
@@ -47,7 +48,7 @@ const ButtonContainer = styled.div`
 export const HomeCard = (props: Props) => (
   <MainContainer backgroundColor={props.backgroundColor}>
     <img alt="img-homecard" src={props.image} />
-    <TextContainer textColor={props.textColor}>
+    <TextContainer text={props.text} textColor={props.textColor}>
       {props.t("Homepage" + props.text, props.defaultText)}
     </TextContainer>
     <ButtonContainer>
