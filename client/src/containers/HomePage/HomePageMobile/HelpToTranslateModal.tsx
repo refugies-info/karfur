@@ -39,9 +39,9 @@ export const HelpToTranslateModal = (props: Props) => {
           style={{
             alignSelf: "center",
             width: "100%",
-            height: 500,
+            height: 900,
             border: "1px solid #FBFBFB",
-            borderRadius: "0px 0px 12px 12px",
+            borderRadius: "px 0px 12px 12px",
           }}
           allowFullScreen
           src="https://airtable.com/embed/shrNHudVX6lL4W52j?backgroundColor=yellow"
