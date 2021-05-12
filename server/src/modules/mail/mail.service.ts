@@ -43,7 +43,7 @@ export const sendSubscriptionReminderMailService = async (email: string) => {
       // cc: "contact@refugies.info",
       reply_to: "contact@email.refugies.info",
     };
-    const templateName = "ReminderMailService";
+    const templateName = "subscriptionReminderMail";
     // @ts-ignore
     sendMail(templateName, dynamicData);
     // @ts-ignore

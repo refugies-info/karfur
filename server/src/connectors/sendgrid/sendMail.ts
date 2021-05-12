@@ -9,10 +9,10 @@ export const sendMail = async (
   templateName: TemplateName,
   dynamicData: DynamicData
 ) => {
-  // if (process.env.NODE_ENV === "dev") {
-  //   logger.info("[sendMail] no mail sent in dev env");
-  //   return;
-  // }
+  if (process.env.NODE_ENV === "dev") {
+    logger.info("[sendMail] no mail sent in dev env");
+    return;
+  }
   if (!dynamicData.from.email) {
     logger.error("[sendMail] no email provided");
     throw new Error("NO_EMAIL_PROVIDED");
