@@ -6,6 +6,7 @@ import { FButtonMobile } from "../../../components/FigmaUI/FButtonMobile/FButton
 import { colors } from "../../../colors";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import FInput from "../../../components/FigmaUI/FInput/FInput";
+import API from "../../../utils/API";
 
 declare const window: Window;
 interface Props {
@@ -97,6 +98,25 @@ export const ReceiveInvitationMailModal = (props: Props) => {
     const regex = /^\S+@\S+\.\S+$/;
     const isEmail = !!email.match(regex);
     if (isEmail) {
+      API.sendSubscriptionReminderMail({ email })
+        .then(() => {
+          Swal.fire({
+            title: "Yay...",
+            text: "Mail(s) envoyé(s)",
+            type: "success",
+            timer: 1500,
+          });
+          props.toggle();
+        })
+        .catch(() => {
+          Swal.fire({
+            title: "Oh non",
+            text: "Erreur lors de l'envoi",
+            type: "error",
+            timer: 1500,
+          });
+          props.toggle();
+        });
     } else {
       setNotEmailError(true);
     }

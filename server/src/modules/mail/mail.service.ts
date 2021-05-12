@@ -31,6 +31,32 @@ export const sendWelcomeMail = async (
   }
 };
 
+export const sendSubscriptionReminderMailService = async (email: string) => {
+  try {
+    logger.info("[sendSubscriptionReminderMailService] received", { email });
+    const dynamicData = {
+      to: email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      // cc: "contact@refugies.info",
+      reply_to: "contact@email.refugies.info",
+    };
+    const templateName = "ReminderMailService";
+    // @ts-ignore
+    sendMail(templateName, dynamicData);
+    // @ts-ignore
+    await addMailEvent({ templateName, email });
+    return;
+  } catch (error) {
+    logger.error("[sendSubscriptionReminderMailService] error", {
+      email,
+      error: error.message,
+    });
+  }
+};
+
 export const sendOneDraftReminderMailService = async (
   email: string,
   username: string,
@@ -132,6 +158,7 @@ export const sendPublishedFicheMailToStructureMembersService = async (
       },
     };
     const templateName = "publishedFicheToStructureMembers";
+
     sendMail(templateName, dynamicData);
     await addMailEvent({
       templateName,

@@ -16,12 +16,12 @@ const mailEventSchema = new mongoose.Schema(
     username: {
       type: String,
       unique: false,
-      required: true,
+      required: false,
     },
     langue: {
       type: String,
       unique: false,
-      required: true,
+      required: false,
     },
     userId: { type: mongoose.Types.ObjectId, ref: "User" },
     dispositifId: { type: mongoose.Types.ObjectId, ref: "Dispositif" },
