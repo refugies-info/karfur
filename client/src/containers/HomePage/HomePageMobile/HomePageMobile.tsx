@@ -11,6 +11,7 @@ import { HomePageMobileSection } from "./HomePageMobileSection";
 import { GoToDesktopModal } from "./GoToDesktopModal";
 import { SubscribeNewsletterModal } from "../../Footer/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import { ReceiveInvitationMailModal } from "./ReceiveInvitationMailModal";
+import { HelpToTranslateModal } from "./HelpToTranslateModal";
 
 declare const window: Window;
 interface Props {
@@ -26,11 +27,17 @@ const MainContainer = styled.div`
 export const HomePageMobile = (props: Props) => {
   const [showGoToDesktopModal, setShowGoToDesktopModal] = useState(false);
   const [showNewslettreModal, setShowNewsletterModal] = useState(false);
+  const [showHelpToTranslateModal, setshowHelpToTranslateModal] =
+    useState(false);
   const [showInvitationEmailModal, setShowInvitationEmailModal] =
     useState(false);
 
   const toggleGoToDesktopModal = () => {
     setShowGoToDesktopModal(!showGoToDesktopModal);
+  };
+
+  const toggleShowHelpToTranslateModal = () => {
+    setshowHelpToTranslateModal(!showHelpToTranslateModal);
   };
   const toggleShowNewsletterModal = () => {
     setShowNewsletterModal(!showNewslettreModal);
@@ -73,7 +80,7 @@ export const HomePageMobile = (props: Props) => {
         backgroundColor={colors.lightGrey}
         textColor={colors.noir}
         isDisabled={false}
-        onClick={() => {}}
+        onClick={toggleShowHelpToTranslateModal}
         buttonColor={colors.noir}
         buttonTextColor={colors.blanc}
       />
@@ -128,6 +135,10 @@ export const HomePageMobile = (props: Props) => {
         toggle={toggleShowInvitationEmailModal}
         show={showInvitationEmailModal}
         t={props.t}
+      />
+      <HelpToTranslateModal
+        toggle={toggleShowHelpToTranslateModal}
+        show={showHelpToTranslateModal}
       />
     </MainContainer>
   );
