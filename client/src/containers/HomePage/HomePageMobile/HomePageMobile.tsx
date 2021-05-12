@@ -26,9 +26,8 @@ const MainContainer = styled.div`
 export const HomePageMobile = (props: Props) => {
   const [showGoToDesktopModal, setShowGoToDesktopModal] = useState(false);
   const [showNewslettreModal, setShowNewsletterModal] = useState(false);
-  const [showInvitationEmailModal, setShowInvitationEmailModal] = useState(
-    false
-  );
+  const [showInvitationEmailModal, setShowInvitationEmailModal] =
+    useState(false);
 
   const toggleGoToDesktopModal = () => {
     setShowGoToDesktopModal(!showGoToDesktopModal);
@@ -44,13 +43,13 @@ export const HomePageMobile = (props: Props) => {
     <MainContainer>
       <HomePageMobileSection
         image={illustration_connaitre_initiative}
-        title="HomePage.Faites connaître votre initiative"
+        title="Homepage.Faites connaître votre initiative"
         defaultTitle="Faites connaître votre initiative"
-        text="HomePage.Participer à l'enrichissement du site"
+        text="Homepage.Participer à l'enrichissement du site"
         defaultText="Participer à l'enrichissement du site en rédigeant vous-même de nouvelles fiches, comme sur Wikipedia."
         iconName="monitor-outline"
         iconType="eva"
-        buttonTitle="HomePage.Je propose une fiche"
+        buttonTitle="Homepage.Je propose une fiche"
         defaultBoutonTitle="Je propose une fiche"
         t={props.t}
         backgroundColor={colors.blanc}
@@ -62,13 +61,13 @@ export const HomePageMobile = (props: Props) => {
       />
       <HomePageMobileSection
         image={illustration_aidez_traduire}
-        title="HomePage.Aidez à traduire les informations"
+        title="Homepage.Aidez à traduire les informations"
         defaultTitle="Aidez à traduire les informations"
-        text="HomePage.Contribuer à la traduction"
+        text="Homepage.Contribuer à la traduction"
         defaultText="Contribuer à la traduction des contenus avec notre interface facile à utiliser. Rejoignez une équipe de traducteurs bénévoles et participez à votre rythme."
         iconName=""
         iconType="traduction"
-        buttonTitle="J'aide à traduire"
+        buttonTitle="Homepage.J'aide à traduire"
         defaultBoutonTitle="J'aide à traduire"
         t={props.t}
         backgroundColor={colors.lightGrey}
@@ -80,13 +79,13 @@ export const HomePageMobile = (props: Props) => {
       />
       <HomePageMobileSection
         image={carte_france_web_mobile}
-        title="HomePage.Bientôt disponible près de chez vous"
+        title="Homepage.Bientôt disponible près de chez vous"
         defaultTitle="Bientôt disponible près de chez vous"
-        text="HomePage.Réfugiés.info se déploie "
+        text="Homepage.Réfugiés se déploie"
         defaultText="Réfugiés.info se déploie progressivement sur tout le territoire métropolitain. Deux départements sont déjà mobilisés à titre expérimental : la Côte d'Or (21) et l'Isère (38)."
         iconType="territoire"
         iconName=""
-        buttonTitle="HomePage.Je mobilise mon territoire"
+        buttonTitle="Homepage.Je mobilise mon territoire"
         defaultBoutonTitle="Je mobilise mon territoire"
         t={props.t}
         backgroundColor={colors.blanc}
@@ -98,13 +97,13 @@ export const HomePageMobile = (props: Props) => {
       />
       <HomePageMobileSection
         image={iphone}
-        title="HomePage.Bientôt dans votre smartphone"
+        title="Homepage.Bientôt dans votre smartphone"
         defaultTitle="Bientôt dans votre smartphone"
-        text="HomePage.Une application mobile adaptée "
+        text="Homepage.Une application mobile adaptée"
         defaultText="Une application mobile adaptée aux besoins des personnes réfugiées sera bientôt disponible."
         iconType="eva"
         iconName="email-outline"
-        buttonTitle="HomePage.Je veux être informé"
+        buttonTitle="Homepage.Je veux être informé"
         defaultBoutonTitle="Je veux être informé"
         t={props.t}
         backgroundColor={colors.bleuCharte}

@@ -49,7 +49,7 @@ export const HomeCard = (props: Props) => (
   <MainContainer backgroundColor={props.backgroundColor}>
     <img alt="img-homecard" src={props.image} />
     <TextContainer text={props.text} textColor={props.textColor}>
-      {props.t("Homepage" + props.text, props.defaultText)}
+      {props.t(props.text, props.defaultText)}
     </TextContainer>
     <ButtonContainer>
       <FButtonMobile

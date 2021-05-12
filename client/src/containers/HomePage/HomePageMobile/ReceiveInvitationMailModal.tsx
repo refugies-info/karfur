@@ -116,7 +116,7 @@ export const ReceiveInvitationMailModal = (props: Props) => {
         </TitleContainer>
         <TextContainer>
           {props.t(
-            "Register.Nous vous enverrons un email d'invitation pour vous inscrire.",
+            "Register.Nous vous enverrons un email d'invitation pour vous inscrire",
             "Nous vous enverrons un email d'invitation pour vous inscrire."
           )}
         </TextContainer>
