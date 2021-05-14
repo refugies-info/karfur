@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 
 import { MonoText } from "./StyledText";
 import { Text, View } from "./Themed";
-import { REACT_NATIVE_TEST } from "@env";
 
 export default function EditScreenInfo({ path }: { path: string }) {
   return (
@@ -16,7 +15,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
         >
           Open up the code for this screen:
         </Text>
-        <Text>{"test env " + REACT_NATIVE_TEST}</Text>
+        <Text>{"test env " + process.env.REACT_NATIVE_TEST}</Text>
 
         <View
           style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
