@@ -12,6 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "owner": "refugies-info",
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -23,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.agathek.refugiesinfoapp"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
