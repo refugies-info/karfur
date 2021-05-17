@@ -258,7 +258,6 @@
     background-image: url(../../assets/figma/collaboratif_desktop.svg);
     background-size: 55%, cover;
     background-repeat: no-repeat;
-    //background-position: calc(100% + 20px) calc(100% - 160px), 0;
     background-position: left;
     margin-left: 50px;
     @include media-max("tablet-down") {
