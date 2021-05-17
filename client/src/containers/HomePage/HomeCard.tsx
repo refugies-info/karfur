@@ -34,8 +34,15 @@ const TextContainer = styled.div`
   color: ${(props) => props.textColor};
   font-size: 22px;
   font-weight: 700;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-top: ${(props) =>
-    props.text === "Homepage.Lire le lexique" ? "-5px" : "40px"};
+    props.text === "Homepage.Lire le lexique"
+      ? "-5px"
+      : props.text ===
+        "Homepage.Consulter l'annuaire pour trouver une association"
+      ? "10px"
+      : "40px"};
   margin-bottom: 20px;
 `;
 
