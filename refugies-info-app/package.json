@@ -25,6 +25,7 @@
     "expo-linking": "~2.2.3",
     "expo-splash-screen": "~0.10.2",
     "expo-status-bar": "~1.0.4",
+    "expo-updates": "~0.5.4",
     "expo-web-browser": "~9.1.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",

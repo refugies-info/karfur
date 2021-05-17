@@ -3,8 +3,10 @@ import { StyleSheet } from "react-native";
 
 import { MonoText } from "./StyledText";
 import { Text, View } from "./Themed";
+import { getEnvironment } from "../libs/getEnvironment";
 
 export default function EditScreenInfo({ path }: { path: string }) {
+  const envi = getEnvironment();
   return (
     <View>
       <View style={styles.getStartedContainer}>
@@ -17,6 +19,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
         </Text>
         <Text>{"test environment " + process.env.NODE_ENV}</Text>
         <Text>{"test url " + process.env.API_URL}</Text>
+        <Text>{"test channel " + envi.envName}</Text>
 
         <View
           style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
