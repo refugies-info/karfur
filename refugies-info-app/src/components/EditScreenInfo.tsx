@@ -17,7 +17,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
         >
           Open up the code for this screen:
         </Text>
-        <Text>{"test environment " + process.env.NODE_ENV}</Text>
+        <Text>{"test environment1 " + process.env.NODE_ENV}</Text>
         <Text>{"test url " + process.env.API_URL}</Text>
         <Text>{"test channel " + envi.envName}</Text>
 
