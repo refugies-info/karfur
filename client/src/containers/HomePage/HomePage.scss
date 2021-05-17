@@ -39,8 +39,7 @@
   }
 
   section {
-    min-height: 450px;
-    padding-top: 100px;
+    padding-top: 20px;
     padding-bottom: 93px;
     @include media-max("tablet-up") {
       min-height: 0px;
@@ -164,7 +163,7 @@
 
   .triptique {
     padding-top: 50px;
-    padding-bottom: 10px;
+    padding-bottom: 50px;
     min-height: 500px;
   }
 
@@ -293,6 +292,7 @@
   }
 
   #smartphone {
+    padding-top: 100px;
     background: linear-gradient(#0421b1, rgba(4, 33, 177, 0.6496));
     background-repeat: no-repeat;
     color: $blancSimple;
