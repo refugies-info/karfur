@@ -234,7 +234,7 @@ export class HomePage extends Component {
               onClick={() => {
                 this.props.history.push({
                   pathname: "/advanced-search",
-                  state: "clean-filters",
+                  state: "dispositifs",
                 });
               }}
             />
@@ -252,7 +252,7 @@ export class HomePage extends Component {
               onClick={() => {
                 this.props.history.push({
                   pathname: "/advanced-search",
-                  state: "clean-filters",
+                  state: "demarches",
                 });
               }}
             />
