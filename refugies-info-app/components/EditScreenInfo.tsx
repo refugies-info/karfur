@@ -15,7 +15,8 @@ export default function EditScreenInfo({ path }: { path: string }) {
         >
           Open up the code for this screen:
         </Text>
-        <Text>{"test env " + process.env.REACT_NATIVE_TEST}</Text>
+        <Text>{"test environment " + process.env.NODE_ENV}</Text>
+        <Text>{"test url " + process.env.API_URL}</Text>
 
         <View
           style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
