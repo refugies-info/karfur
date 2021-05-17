@@ -411,7 +411,7 @@ export class HomePage extends Component {
                   <FButton
                     name="eye-outline"
                     tag={NavHashLink}
-                    to={"https://airtable.com/shrnxkFB2Pa9Awzgs"}
+                    to={""}
                     onClick={() => this.toggleBecomeTesterModal()}
                     type="white"
                   >
