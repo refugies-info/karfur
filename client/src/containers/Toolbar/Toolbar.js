@@ -342,9 +342,8 @@ const mapStateToProps = (state) => {
     admin: state.user.admin,
     membreStruct: state.user.membreStruct,
     dispositifsAssocies: userStructureDisposAssociesSelector(state),
-    hasResponsibleSeenNotification: userStructureHasResponsibleSeenNotification(
-      state
-    ),
+    hasResponsibleSeenNotification:
+      userStructureHasResponsibleSeenNotification(state),
     userStructure: userStructureSelector(state),
   };
 };

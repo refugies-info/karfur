@@ -39,8 +39,7 @@
   }
 
   section {
-    min-height: 750px;
-    padding-top: 100px;
+    padding-top: 20px;
     padding-bottom: 93px;
     @include media-max("tablet-up") {
       min-height: 0px;
@@ -164,6 +163,8 @@
 
   .triptique {
     padding-top: 50px;
+    padding-bottom: 50px;
+    min-height: 500px;
   }
 
   .hero-container {
@@ -218,7 +219,8 @@
     }
 
     &.half-width {
-      width: 50%;
+      margin-top: 65px;
+      width: 47%;
       display: flex;
       flex-direction: column;
       @include media-max("tablet-down") {
@@ -226,10 +228,17 @@
       }
       h2 {
         margin-bottom: 40px;
+        margin-right: 160px;
+      }
+      p {
+        font-size: 22px;
       }
 
       &.right-side {
         margin-left: auto;
+      }
+      &.left-side {
+        margin-right: auto;
       }
     }
     .section-body {
@@ -246,29 +255,30 @@
   }
 
   #contribution {
-    background-image: url(../../assets/figma/contribution_illu.svg),
-      url(../../assets/figma/trame_home_bg.svg);
-    background-size: 65%, cover;
+    background-image: url(../../assets/figma/collaboratif_desktop.svg);
+    background-size: 55%, cover;
     background-repeat: no-repeat;
-    background-position: calc(100% + 20px) calc(100% - 160px), 0;
+    background-position: left;
+    margin-left: 50px;
     @include media-max("tablet-down") {
       background-position: calc(100% + 20px) calc(100% - 110px), 0;
     }
   }
 
-  #certifiee {
-    background-image: url(../../assets/figma/certifiee_illu.svg),
-      url(../../assets/figma/trame_home_bg.svg);
-    background-size: 65%, cover;
+  #ecrire {
+    background-image: url(../../assets/figma/rediger_desktop.svg);
+    background-size: 55%, cover;
     background-repeat: no-repeat, no-repeat;
-    background-position: calc(100% - 60px) calc(100% - 120px), 0;
+    background-position: right;
+    margin-right: 50px;
   }
 
   #multilangues {
-    background-image: url(../../assets/figma/illustration_Traduction.svg);
-    background-size: 70%;
+    background-image: url(../../assets/figma/traduire_desktop.svg);
+    background-size: 55%;
     background-repeat: no-repeat;
-    background-position: calc(100% - 350px);
+    background-position: left;
+    margin-left: 50px;
     @include media-max("desktop-down") {
       background-position: calc(100% - 300px) calc(100% - 60px);
     }
@@ -280,6 +290,23 @@
     }
     @include media-max("tablet-up") {
       background-position: calc(100% - 180px) calc(100% - 140px);
+    }
+  }
+
+  #smartphone {
+    padding-top: 100px;
+    background: linear-gradient(#0421b1, rgba(4, 33, 177, 0.6496));
+    background-repeat: no-repeat;
+    color: $blancSimple;
+    display: flex;
+    justify-content: center;
+    img {
+      width: 25%;
+      position: absolute;
+      left: 15%;
+    }
+    h2 {
+      margin-right: 0;
     }
   }
 
@@ -444,7 +471,8 @@
     position: absolute;
     width: 48px;
     height: 48px;
-    bottom: -30px;
+    bottom: 50px;
+
     left: 50%;
     @include media-max("tablet-up") {
       left: 44%;

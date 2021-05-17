@@ -298,9 +298,12 @@ export class AdvancedSearch extends Component {
     this.retrieveCookies();
     // Retrieve filters value from url parameters
     let tagFromNav =
-      this.props.location.state === "clean-filters"
+      this.props.location.state === "clean-filters" ||
+      this.props.location.state === "dispositifs" ||
+      this.props.location.state === "demarches"
         ? null
         : this.props.location.state;
+
     let tag = querySearch(this.props.location.search).tag || tagFromNav;
 
     let bottomValue = querySearch(this.props.location.search).bottomValue;
@@ -312,6 +315,11 @@ export class AdvancedSearch extends Component {
       (elem) => elem.name === decodeURIComponent(niveauFrancais)
     );
     let filter = querySearch(this.props.location.search).filter;
+    if (this.props.location.state === "dispositifs") {
+      this.filter_content(filtres_contenu[0]);
+    } else if (this.props.location.state === "demarches") {
+      this.filter_content(filtres_contenu[1]);
+    }
     // Reinject filters value in recherche
     if (tag || bottomValue || topValue || niveauFrancais || dep || city) {
       this.setState(
