@@ -15,7 +15,6 @@ import logo_header from "./logo_header.svg";
 import minInt from "./minInt.png";
 import responsableFiche from "./responsableFiche.svg";
 import rejectionFiche from "./rejectionFiche.svg";
-import beta from "./beta.svg";
 import logoRI from "./logoRI.svg";
 import logo_mobile from "./logo_mobile.svg";
 import newsletter from "./newsletter.svg";
@@ -48,7 +47,6 @@ export {
   minInt,
   rejectionFiche,
   responsableFiche,
-  beta,
   logoRI,
   logo_mobile,
   newsletter,

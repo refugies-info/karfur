@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
 import { connect } from "react-redux";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { toggleLangueModalActionCreator } from "../../services/Langue/langue.actions";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import FButton from "../../components/FigmaUI/FButton/FButton";
-import API from "../../utils/API";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import "./HomePage.scss";
@@ -16,8 +15,11 @@ import { initial_data } from "../AdvancedSearch/data";
 import HomeSearch from "./HomeSearch";
 import CatList from "./CatList";
 import { initGA, PageView } from "../../tracking/dispatch";
+import { iphone } from "../../assets/figma";
 import { HomeCard } from "./HomeCard";
 import { HomePageMobile } from "./HomePageMobile/HomePageMobile";
+import { SubscribeNewsletterModal } from "../Footer/SubscribeNewsletterModal/SubscribeNewsletterModal";
+import { BecomeTesterModal } from "./BecomeTesterModal";
 import { MobileSearchFilterModal } from "../AdvancedSearch/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
 import {
   illustration_homeCard_dispositif,
@@ -70,19 +72,25 @@ const MainTitleContainer = styled.div`
   font-weight: 700;
   padding: 0 60px;
 `;
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+`;
+
 export class HomePage extends Component {
   constructor(props) {
     super(props);
     this.selectParam = this.selectParam.bind(this); //Placé ici pour être reconnu par les tests unitaires
   }
   state = {
-    nbContributors: 0,
-    nbTraductors: 0,
     corona: false,
     popup: false,
     overlay: false,
     showGoToDesktopModal: false,
     showTagModal: false,
+    showNewslettreModal: false,
+    showBecomeTesterModal: false,
   };
   _isMounted = false;
 
@@ -91,13 +99,6 @@ export class HomePage extends Component {
     PageView();
     this._isMounted = true;
     window.scrollTo(0, 0);
-    return API.getFiguresOnUsers().then((data) => {
-      this._isMounted &&
-        this.setState({
-          nbContributors: data.data.data.nbContributors,
-          nbTraductors: data.data.data.nbTraductors,
-        });
-    });
   }
 
   componentWillUnmount() {
@@ -125,6 +126,13 @@ export class HomePage extends Component {
   toggleShowTagModal = () => {
     this.setState({ showTagModal: !this.state.showTagModal });
   };
+  toggleShowNewsletterModal = () => {
+    this.setState({ showNewslettreModal: !this.state.showNewslettreModal });
+  };
+
+  toggleBecomeTesterModal = () => {
+    this.setState({ showBecomeTesterModal: !this.state.showBecomeTesterModal });
+  };
 
   closeCorona = () => {
     this.setState({ corona: false });
@@ -136,7 +144,6 @@ export class HomePage extends Component {
 
   render() {
     const { t } = this.props;
-    const { nbContributors, nbTraductors } = this.state;
     const item = initial_data[0];
     item.title = "J'ai besoin de";
     return (
@@ -222,7 +229,7 @@ export class HomePage extends Component {
           <CardContainer>
             <HomeCard
               t={t}
-              text="Homepage.Trouver un programme"
+              text="Homepage.Trouver une initiative"
               defaultText="Trouver un programme ou une formation"
               buttonTitle="Homepage.Je cherche"
               defaultBoutonTitle="Je cherche"
@@ -234,7 +241,7 @@ export class HomePage extends Component {
               onClick={() => {
                 this.props.history.push({
                   pathname: "/advanced-search",
-                  state: "clean-filters",
+                  state: "dispositifs",
                 });
               }}
             />
@@ -252,7 +259,7 @@ export class HomePage extends Component {
               onClick={() => {
                 this.props.history.push({
                   pathname: "/advanced-search",
-                  state: "clean-filters",
+                  state: "demarches",
                 });
               }}
             />
@@ -299,23 +306,18 @@ export class HomePage extends Component {
         ) : (
           <>
             <section id="contribution" className="contrib">
-              <div className="section-container half-width">
+              <div className="section-container half-width right-side">
                 <div className="section-body">
-                  <h2>{t("Homepage.contributive")}</h2>
+                  <h2>{t("Homepage.contribution")}</h2>
                   <p className="texte-normal">
-                    {t("Homepage.contributive subheader")}
-                    <NavLink className="link ml-10" to="/qui-sommes-nous">
-                      {t("En savoir plus", "En savoir plus")}
-                    </NavLink>
+                    {t("Homepage.contribution subheader")}
                   </p>
                 </div>
                 <footer className="footer-section">
-                  {t("Homepage.contributeurs mobilises", {
-                    nombre: nbContributors,
-                  })}{" "}
                   <FButton
+                    name="file-add-outline"
                     tag={NavHashLink}
-                    to="/comment-contribuer#ecrire"
+                    to="/comment-contribuer"
                     type="dark"
                   >
                     {t("Homepage.Je contribue", "Je contribue")}
@@ -324,68 +326,91 @@ export class HomePage extends Component {
               </div>
             </section>
 
-            <section id="multilangues">
-              <div className="section-container half-width right-side">
+            <section id="ecrire">
+              <div className="section-container half-width left-side">
                 <div className="section-body">
-                  <h2>{t("Homepage.disponible langues")}</h2>
+                  <h2>{t("Homepage.Faites connaitre")}</h2>
                   <p className="texte-normal">
-                    {t("Homepage.disponible langues subheader")}
-                  </p>
-                  {/*<LanguageBtn />*/}
-                </div>
-                <footer className="footer-section">
-                  {t("Homepage.traducteurs mobilises", {
-                    nombre: nbTraductors,
-                  })}{" "}
-                  <FButton
-                    tag={NavHashLink}
-                    to={
-                      API.isAuth()
-                        ? "/backend/user-translation"
-                        : "/comment-contribuer#traduire"
-                    }
-                    type="dark"
-                  >
-                    {t("Homepage.Je traduis", "Je traduis")}
-                  </FButton>
-                </footer>
-              </div>
-            </section>
-
-            <section id="certifiee">
-              <div className="section-container half-width">
-                <div className="section-body">
-                  <h2>{t("Homepage.information vérifiée")}</h2>
-                  <p className="texte-normal">
-                    {t("Homepage.information vérifiée subheader")}
+                    {t("Homepage.Faites connaitre subheader")}
                   </p>
                 </div>
                 <footer>
                   <FButton
+                    name="file-add-outline"
                     tag={NavHashLink}
-                    to="/comment-contribuer#corriger"
+                    to="/comment-contribuer#ecrire"
                     type="dark"
                   >
-                    {t("En savoir plus", "En savoir plus")}
+                    {t("Homepage.Je propose une fiche", "Je propose une fiche")}
                   </FButton>
                 </footer>
               </div>
             </section>
 
-            <section id="explique">
+            <section id="multilangues">
               <div className="section-container half-width right-side">
-                <h2>
-                  {t(
-                    "Homepage.Explique les mots difficiles",
-                    "Explique les mots difficiles"
-                  )}
-                </h2>
-                <p className="texte-normal">
-                  {t("Homepage.explication lexique")}
-                </p>
-                <span className="texte-normal">
-                  {t("Bientôt disponible !", "Bientôt disponible !")}
-                </span>
+                <div className="section-body">
+                  <h2>{t("Homepage.aidez-nous à taduire")}</h2>
+                  <p className="texte-normal">
+                    {t("Homepage.aidez-nous à taduire subheader")}
+                  </p>
+                  {/*<LanguageBtn />*/}
+                </div>
+                <footer className="footer-section">
+                  <FButton
+                    name="file-add-outline"
+                    tag={NavHashLink}
+                    to={"/comment-contribuer#traduire"}
+                    type="dark"
+                  >
+                    {t("Homepage.J'aide à traduire", "J'aide à traduire")}
+                  </FButton>
+                </footer>
+              </div>
+            </section>
+            <section id="smartphone">
+              <img src={iphone} />
+              <div className="section-container half-width right-side">
+                <div className="section-body">
+                  <h2>
+                    {t(
+                      "Homepage.Bientôt sur smartphone",
+                      "Bientôt sur smartphone"
+                    )}
+                  </h2>
+                  <p className="texte-normal">
+                    {t("Homepage.Bientôt sur smartphone subheader")}
+                  </p>
+                  {/*<LanguageBtn />*/}
+                </div>
+                <ButtonContainer>
+                  <p>
+                    <FButton
+                      name="email-outline"
+                      tag={NavHashLink}
+                      to={"/"}
+                      onClick={() => this.toggleShowNewsletterModal()}
+                      type="white"
+                    >
+                      {t(
+                        "Homepage.informé du lancement",
+                        "Je veux être informé du lancement"
+                      )}
+                    </FButton>
+                  </p>
+                  <FButton
+                    name="eye-outline"
+                    tag={NavHashLink}
+                    to={""}
+                    onClick={() => this.toggleBecomeTesterModal()}
+                    type="white"
+                  >
+                    {t(
+                      "Homepage.Je veux tester l'application mobile",
+                      "Je veux tester l'application mobile"
+                    )}
+                  </FButton>
+                </ButtonContainer>
               </div>
             </section>
           </>
@@ -400,6 +425,15 @@ export class HomePage extends Component {
           defaultSentence="Je cherche à"
           toggle={this.toggleShowTagModal}
           show={this.state.showTagModal}
+        />
+        <SubscribeNewsletterModal
+          toggle={this.toggleShowNewsletterModal}
+          show={this.state.showNewslettreModal}
+          t={t}
+        />
+        <BecomeTesterModal
+          toggle={this.toggleBecomeTesterModal}
+          show={this.state.showBecomeTesterModal}
         />
       </div>
     );
