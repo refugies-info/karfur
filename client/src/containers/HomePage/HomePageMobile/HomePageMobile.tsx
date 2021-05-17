@@ -11,7 +11,7 @@ import { HomePageMobileSection } from "./HomePageMobileSection";
 import { GoToDesktopModal } from "./GoToDesktopModal";
 import { SubscribeNewsletterModal } from "../../Footer/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import { ReceiveInvitationMailModal } from "./ReceiveInvitationMailModal";
-import { HelpToTranslateModal } from "./HelpToTranslateModal";
+import { HelpToTranslateMobileModal } from "./HelpToTranslateMobileModal";
 
 declare const window: Window;
 interface Props {
@@ -134,9 +134,10 @@ export const HomePageMobile = (props: Props) => {
       <ReceiveInvitationMailModal
         toggle={toggleShowInvitationEmailModal}
         show={showInvitationEmailModal}
+        togglePreviousModal={toggleGoToDesktopModal}
         t={props.t}
       />
-      <HelpToTranslateModal
+      <HelpToTranslateMobileModal
         toggle={toggleShowHelpToTranslateModal}
         show={showHelpToTranslateModal}
       />

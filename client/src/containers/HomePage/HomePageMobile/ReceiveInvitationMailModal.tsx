@@ -11,6 +11,7 @@ import API from "../../../utils/API";
 declare const window: Window;
 interface Props {
   toggle: () => void;
+  togglePreviousModal: () => void;
   show: boolean;
   t: (a: string, b: string) => void;
 }
@@ -102,11 +103,12 @@ export const ReceiveInvitationMailModal = (props: Props) => {
         .then(() => {
           Swal.fire({
             title: "Yay...",
-            text: "Mail(s) envoyé(s)",
+            text: "Mail envoyé",
             type: "success",
             timer: 1500,
           });
           props.toggle();
+          props.togglePreviousModal();
         })
         .catch(() => {
           Swal.fire({
@@ -116,6 +118,7 @@ export const ReceiveInvitationMailModal = (props: Props) => {
             timer: 1500,
           });
           props.toggle();
+          props.togglePreviousModal();
         });
     } else {
       setNotEmailError(true);
