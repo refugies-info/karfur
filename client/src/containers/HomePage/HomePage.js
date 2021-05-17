@@ -19,6 +19,8 @@ import { initGA, PageView } from "../../tracking/dispatch";
 import { iphone } from "../../assets/figma";
 import { HomeCard } from "./HomeCard";
 import { HomePageMobile } from "./HomePageMobile/HomePageMobile";
+import { SubscribeNewsletterModal } from "../Footer/SubscribeNewsletterModal/SubscribeNewsletterModal";
+import { BecomeTesterModal } from "./BecomeTesterModal";
 import { MobileSearchFilterModal } from "../AdvancedSearch/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
 import {
   illustration_homeCard_dispositif,
@@ -90,6 +92,8 @@ export class HomePage extends Component {
     overlay: false,
     showGoToDesktopModal: false,
     showTagModal: false,
+    showNewslettreModal: false,
+    showBecomeTesterModal: false,
   };
   _isMounted = false;
 
@@ -131,6 +135,13 @@ export class HomePage extends Component {
   };
   toggleShowTagModal = () => {
     this.setState({ showTagModal: !this.state.showTagModal });
+  };
+  toggleShowNewsletterModal = () => {
+    this.setState({ showNewslettreModal: !this.state.showNewslettreModal });
+  };
+
+  toggleBecomeTesterModal = () => {
+    this.setState({ showBecomeTesterModal: !this.state.showBecomeTesterModal });
   };
 
   closeCorona = () => {
@@ -388,6 +399,7 @@ export class HomePage extends Component {
                       name="email-outline"
                       tag={NavHashLink}
                       to={"/"}
+                      onClick={() => this.toggleShowNewsletterModal()}
                       type="white"
                     >
                       {t(
@@ -399,7 +411,8 @@ export class HomePage extends Component {
                   <FButton
                     name="eye-outline"
                     tag={NavHashLink}
-                    to={"/"}
+                    to={"https://airtable.com/shrnxkFB2Pa9Awzgs"}
+                    onClick={() => this.toggleBecomeTesterModal()}
                     type="white"
                   >
                     {t(
@@ -422,6 +435,15 @@ export class HomePage extends Component {
           defaultSentence="Je cherche à"
           toggle={this.toggleShowTagModal}
           show={this.state.showTagModal}
+        />
+        <SubscribeNewsletterModal
+          toggle={this.toggleShowNewsletterModal}
+          show={this.state.showNewslettreModal}
+          t={t}
+        />
+        <BecomeTesterModal
+          toggle={this.toggleBecomeTesterModal}
+          show={this.state.showBecomeTesterModal}
         />
       </div>
     );

@@ -469,7 +469,8 @@
     position: absolute;
     width: 48px;
     height: 48px;
-    bottom: -30px;
+    bottom: 50px;
+
     left: 50%;
     @include media-max("tablet-up") {
       left: 44%;
