@@ -39,7 +39,7 @@
   }
 
   section {
-    min-height: 750px;
+    min-height: 450px;
     padding-top: 100px;
     padding-bottom: 93px;
     @include media-max("tablet-up") {
@@ -164,6 +164,8 @@
 
   .triptique {
     padding-top: 50px;
+    padding-bottom: 10px;
+    min-height: 500px;
   }
 
   .hero-container {
@@ -218,7 +220,8 @@
     }
 
     &.half-width {
-      width: 50%;
+      margin-top: 65px;
+      width: 47%;
       display: flex;
       flex-direction: column;
       @include media-max("tablet-down") {
@@ -226,6 +229,10 @@
       }
       h2 {
         margin-bottom: 40px;
+        margin-right: 160px;
+      }
+      p {
+        font-size: 22px;
       }
 
       &.right-side {
@@ -246,29 +253,31 @@
   }
 
   #contribution {
-    background-image: url(../../assets/figma/contribution_illu.svg),
-      url(../../assets/figma/trame_home_bg.svg);
-    background-size: 65%, cover;
+    background-image: url(../../assets/figma/collaboratif_desktop.svg);
+    background-size: 55%, cover;
     background-repeat: no-repeat;
-    background-position: calc(100% + 20px) calc(100% - 160px), 0;
+    //background-position: calc(100% + 20px) calc(100% - 160px), 0;
+    background-position: left;
+    margin-left: 50px;
     @include media-max("tablet-down") {
       background-position: calc(100% + 20px) calc(100% - 110px), 0;
     }
   }
 
-  #certifiee {
-    background-image: url(../../assets/figma/certifiee_illu.svg),
-      url(../../assets/figma/trame_home_bg.svg);
-    background-size: 65%, cover;
+  #ecrire {
+    background-image: url(../../assets/figma/rediger_desktop.svg);
+    background-size: 55%, cover;
     background-repeat: no-repeat, no-repeat;
-    background-position: calc(100% - 60px) calc(100% - 120px), 0;
+    background-position: right;
+    margin-right: 50px;
   }
 
   #multilangues {
-    background-image: url(../../assets/figma/illustration_Traduction.svg);
-    background-size: 70%;
+    background-image: url(../../assets/figma/traduire_desktop.svg);
+    background-size: 55%;
     background-repeat: no-repeat;
-    background-position: calc(100% - 350px);
+    background-position: left;
+    margin-left: 50px;
     @include media-max("desktop-down") {
       background-position: calc(100% - 300px) calc(100% - 60px);
     }

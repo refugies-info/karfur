@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
 import { connect } from "react-redux";
 import AnchorLink from "react-anchor-link-smooth-scroll";
@@ -136,7 +136,6 @@ export class HomePage extends Component {
 
   render() {
     const { t } = this.props;
-    const { nbContributors, nbTraductors } = this.state;
     const item = initial_data[0];
     item.title = "J'ai besoin de";
     return (
@@ -299,23 +298,18 @@ export class HomePage extends Component {
         ) : (
           <>
             <section id="contribution" className="contrib">
-              <div className="section-container half-width">
+              <div className="section-container half-width right-side">
                 <div className="section-body">
                   <h2>{t("Homepage.contributive")}</h2>
                   <p className="texte-normal">
                     {t("Homepage.contributive subheader")}
-                    <NavLink className="link ml-10" to="/qui-sommes-nous">
-                      {t("En savoir plus", "En savoir plus")}
-                    </NavLink>
                   </p>
                 </div>
                 <footer className="footer-section">
-                  {t("Homepage.contributeurs mobilises", {
-                    nombre: nbContributors,
-                  })}{" "}
                   <FButton
+                    name="file-add-outline"
                     tag={NavHashLink}
-                    to="/comment-contribuer#ecrire"
+                    to="/comment-contribuer"
                     type="dark"
                   >
                     {t("Homepage.Je contribue", "Je contribue")}
@@ -324,68 +318,46 @@ export class HomePage extends Component {
               </div>
             </section>
 
-            <section id="multilangues">
-              <div className="section-container half-width right-side">
-                <div className="section-body">
-                  <h2>{t("Homepage.disponible langues")}</h2>
-                  <p className="texte-normal">
-                    {t("Homepage.disponible langues subheader")}
-                  </p>
-                  {/*<LanguageBtn />*/}
-                </div>
-                <footer className="footer-section">
-                  {t("Homepage.traducteurs mobilises", {
-                    nombre: nbTraductors,
-                  })}{" "}
-                  <FButton
-                    tag={NavHashLink}
-                    to={
-                      API.isAuth()
-                        ? "/backend/user-translation"
-                        : "/comment-contribuer#traduire"
-                    }
-                    type="dark"
-                  >
-                    {t("Homepage.Je traduis", "Je traduis")}
-                  </FButton>
-                </footer>
-              </div>
-            </section>
-
-            <section id="certifiee">
+            <section id="ecrire">
               <div className="section-container half-width">
                 <div className="section-body">
-                  <h2>{t("Homepage.information vérifiée")}</h2>
+                  <h2>{t("Homepage.Faites connaitre")}</h2>
                   <p className="texte-normal">
-                    {t("Homepage.information vérifiée subheader")}
+                    {t("Homepage.Faites connaitre subheader")}
                   </p>
                 </div>
                 <footer>
                   <FButton
+                    name="file-add-outline"
                     tag={NavHashLink}
-                    to="/comment-contribuer#corriger"
+                    to="/comment-contribuer#ecrire"
                     type="dark"
                   >
-                    {t("En savoir plus", "En savoir plus")}
+                    {t("Homepage.Je propose une fiche", "Je propose une fiche")}
                   </FButton>
                 </footer>
               </div>
             </section>
 
-            <section id="explique">
+            <section id="multilangues">
               <div className="section-container half-width right-side">
-                <h2>
-                  {t(
-                    "Homepage.Explique les mots difficiles",
-                    "Explique les mots difficiles"
-                  )}
-                </h2>
-                <p className="texte-normal">
-                  {t("Homepage.explication lexique")}
-                </p>
-                <span className="texte-normal">
-                  {t("Bientôt disponible !", "Bientôt disponible !")}
-                </span>
+                <div className="section-body">
+                  <h2>{t("Homepage.aidez-nous à taduire")}</h2>
+                  <p className="texte-normal">
+                    {t("Homepage.aidez-nous à taduire subheader")}
+                  </p>
+                  {/*<LanguageBtn />*/}
+                </div>
+                <footer className="footer-section">
+                  <FButton
+                    name="file-add-outline"
+                    tag={NavHashLink}
+                    to={"/comment-contribuer#traduire"}
+                    type="dark"
+                  >
+                    {t("Homepage.Je traduis", "J'aide à traduire")}
+                  </FButton>
+                </footer>
               </div>
             </section>
           </>
