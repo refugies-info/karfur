@@ -237,6 +237,9 @@
       &.right-side {
         margin-left: auto;
       }
+      &.left-side {
+        margin-right: auto;
+      }
     }
     .section-body {
       flex: 1 1 auto;

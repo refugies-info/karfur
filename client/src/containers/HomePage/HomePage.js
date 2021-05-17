@@ -7,7 +7,6 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 import { toggleLangueModalActionCreator } from "../../services/Langue/langue.actions";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import FButton from "../../components/FigmaUI/FButton/FButton";
-import API from "../../utils/API";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import "./HomePage.scss";
@@ -85,8 +84,6 @@ export class HomePage extends Component {
     this.selectParam = this.selectParam.bind(this); //Placé ici pour être reconnu par les tests unitaires
   }
   state = {
-    nbContributors: 0,
-    nbTraductors: 0,
     corona: false,
     popup: false,
     overlay: false,
@@ -102,13 +99,6 @@ export class HomePage extends Component {
     PageView();
     this._isMounted = true;
     window.scrollTo(0, 0);
-    return API.getFiguresOnUsers().then((data) => {
-      this._isMounted &&
-        this.setState({
-          nbContributors: data.data.data.nbContributors,
-          nbTraductors: data.data.data.nbTraductors,
-        });
-    });
   }
 
   componentWillUnmount() {
@@ -239,7 +229,7 @@ export class HomePage extends Component {
           <CardContainer>
             <HomeCard
               t={t}
-              text="Homepage.Trouver un programme"
+              text="Homepage.Trouver une initiative"
               defaultText="Trouver un programme ou une formation"
               buttonTitle="Homepage.Je cherche"
               defaultBoutonTitle="Je cherche"
@@ -318,9 +308,9 @@ export class HomePage extends Component {
             <section id="contribution" className="contrib">
               <div className="section-container half-width right-side">
                 <div className="section-body">
-                  <h2>{t("Homepage.contributive")}</h2>
+                  <h2>{t("Homepage.contribution")}</h2>
                   <p className="texte-normal">
-                    {t("Homepage.contributive subheader")}
+                    {t("Homepage.contribution subheader")}
                   </p>
                 </div>
                 <footer className="footer-section">
@@ -337,7 +327,7 @@ export class HomePage extends Component {
             </section>
 
             <section id="ecrire">
-              <div className="section-container half-width">
+              <div className="section-container half-width left-side">
                 <div className="section-body">
                   <h2>{t("Homepage.Faites connaitre")}</h2>
                   <p className="texte-normal">
@@ -373,7 +363,7 @@ export class HomePage extends Component {
                     to={"/comment-contribuer#traduire"}
                     type="dark"
                   >
-                    {t("Homepage.Je traduis", "J'aide à traduire")}
+                    {t("Homepage.J'aide à traduire", "J'aide à traduire")}
                   </FButton>
                 </footer>
               </div>
