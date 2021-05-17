@@ -4,7 +4,6 @@ import styled from "styled-components";
 import {
   illustration_connaitre_initiative,
   illustration_aidez_traduire,
-  carte_france_web_mobile,
   iphone,
 } from "../../../assets/figma";
 import { HomePageMobileSection } from "./HomePageMobileSection";
@@ -84,24 +83,7 @@ export const HomePageMobile = (props: Props) => {
         buttonColor={colors.noir}
         buttonTextColor={colors.blanc}
       />
-      <HomePageMobileSection
-        image={carte_france_web_mobile}
-        title="Homepage.Bientôt disponible près de chez vous"
-        defaultTitle="Bientôt disponible près de chez vous"
-        text="Homepage.Réfugiés se déploie"
-        defaultText="Réfugiés.info se déploie progressivement sur tout le territoire métropolitain. Deux départements sont déjà mobilisés à titre expérimental : la Côte d'Or (21) et l'Isère (38)."
-        iconType="territoire"
-        iconName=""
-        buttonTitle="Homepage.Je mobilise mon territoire"
-        defaultBoutonTitle="Je mobilise mon territoire"
-        t={props.t}
-        backgroundColor={colors.blanc}
-        textColor={colors.noir}
-        isDisabled={false}
-        onClick={() => {}}
-        buttonColor={colors.noir}
-        buttonTextColor={colors.blanc}
-      />
+
       <HomePageMobileSection
         image={iphone}
         title="Homepage.Bientôt dans votre smartphone"
