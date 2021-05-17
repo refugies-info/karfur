@@ -44,9 +44,7 @@ export const sendSubscriptionReminderMailService = async (email: string) => {
       reply_to: "contact@email.refugies.info",
     };
     const templateName = "subscriptionReminderMail";
-    // @ts-ignore
     sendMail(templateName, dynamicData);
-    // @ts-ignore
     await addMailEvent({ templateName, email });
     return;
   } catch (error) {

@@ -1,36 +1,42 @@
-// // @ts-nocheck
-// import {
-//   sendSubscriptionReminderMailService,
-// } from "../../../modules/mail/mail.service";
-// import moment from "moment";
-// import mockdate from "mockdate";
-// import logger from "../../../logger";
+// @ts-nocheck
+import { sendSubscriptionReminderMailService } from "../../../modules/mail/mail.service";
+import { sendSubscriptionReminderMail } from "./sendSubscriptionReminderMail";
 
-// mockdate.set("2019-11-10T10:00:00.00Z");
+jest.mock("../../../modules/mail/mail.service", () => ({
+  sendSubscriptionReminderMailService: jest.fn(),
+}));
 
-// jest.mock("../../../logger");
-// jest.mock("../../../libs/checkAuthorizations", () => ({
-//   checkCronAuthorization: jest.fn(),
-// }));
+type MockResponse = { json: any; status: any };
+const mockResponse = (): MockResponse => {
+  const res: MockResponse = {};
+  res.status = jest.fn().mockReturnValue(res);
+  res.json = jest.fn().mockReturnValue(res);
+  return res;
+};
 
-// jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
-//   getDraftDispositifs: jest.fn(),
-//   updateDispositifInDB: jest.fn(),
-// }));
-
-// jest.mock("../../../modules/mail/mail.service", () => ({
-//   sendOneDraftReminderMailService: jest.fn(),
-//   sendMultipleDraftsReminderMailService: jest.fn(),
-// }));
-
-// type MockResponse = { json: any; status: any };
-// const mockResponse = (): MockResponse => {
-//   const res: MockResponse = {};
-//   res.status = jest.fn().mockReturnValue(res);
-//   res.json = jest.fn().mockReturnValue(res);
-//   return res;
-// };
-
-// describe("sendSubscriptionReminderMailService", () => {
-
-// });
+describe("sendSubscriptionReminderMailService", () => {
+  const res = mockResponse();
+  it("Should return 405 if request not from site", async () => {
+    await sendSubscriptionReminderMail({ fromSite: false }, res);
+    expect(res.status).toHaveBeenCalledWith(405);
+  });
+  it("Should call sendSubscriptionReminderMailService and return 200", async () => {
+    await sendSubscriptionReminderMail(
+      { fromSite: true, body: { email: "email" } },
+      res
+    );
+    expect(sendSubscriptionReminderMailService).toHaveBeenCalledWith("email");
+    expect(res.status).toHaveBeenCalledWith(200);
+  });
+  it("Should call sendSubscriptionReminderMailService and return 500 when it throws", async () => {
+    sendSubscriptionReminderMailService.mockRejectedValueOnce(
+      new Error("erreur")
+    );
+    await sendSubscriptionReminderMail(
+      { fromSite: true, body: { email: "email" } },
+      res
+    );
+    expect(sendSubscriptionReminderMailService).toHaveBeenCalledWith("email");
+    expect(res.status).toHaveBeenCalledWith(500);
+  });
+});

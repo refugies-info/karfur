@@ -3,7 +3,9 @@ import logger from "../../../logger";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { sendSubscriptionReminderMailService } from "../../../modules/mail/mail.service";
 
-interface Query {}
+interface Query {
+  email: string;
+}
 
 export const sendSubscriptionReminderMail = async (
   req: RequestFromClientWithBody<Query>,
@@ -15,7 +17,6 @@ export const sendSubscriptionReminderMail = async (
     });
 
     checkRequestIsFromSite(req.fromSite);
-    // @ts-ignore
     await sendSubscriptionReminderMailService(req.body.email);
 
     return res.status(200).json({ text: "OK" });

@@ -11,5 +11,5 @@ export interface DynamicData {
   to: string;
   cc?: string;
   reply_to?: string;
-  dynamicTemplateData: Record<string, string>;
+  dynamicTemplateData?: Record<string, string>;
 }
