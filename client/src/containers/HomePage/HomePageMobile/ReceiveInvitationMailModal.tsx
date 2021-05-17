@@ -6,10 +6,12 @@ import { FButtonMobile } from "../../../components/FigmaUI/FButtonMobile/FButton
 import { colors } from "../../../colors";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import FInput from "../../../components/FigmaUI/FInput/FInput";
+import API from "../../../utils/API";
 
 declare const window: Window;
 interface Props {
   toggle: () => void;
+  togglePreviousModal: () => void;
   show: boolean;
   t: (a: string, b: string) => void;
 }
@@ -97,6 +99,27 @@ export const ReceiveInvitationMailModal = (props: Props) => {
     const regex = /^\S+@\S+\.\S+$/;
     const isEmail = !!email.match(regex);
     if (isEmail) {
+      API.sendSubscriptionReminderMail({ email })
+        .then(() => {
+          Swal.fire({
+            title: "Yay...",
+            text: "Mail envoyé",
+            type: "success",
+            timer: 1500,
+          });
+          props.toggle();
+          props.togglePreviousModal();
+        })
+        .catch(() => {
+          Swal.fire({
+            title: "Oh non",
+            text: "Erreur lors de l'envoi",
+            type: "error",
+            timer: 1500,
+          });
+          props.toggle();
+          props.togglePreviousModal();
+        });
     } else {
       setNotEmailError(true);
     }
@@ -116,7 +139,7 @@ export const ReceiveInvitationMailModal = (props: Props) => {
         </TitleContainer>
         <TextContainer>
           {props.t(
-            "Register.Nous vous enverrons un email d'invitation pour vous inscrire.",
+            "Register.Nous vous enverrons un email d'invitation pour vous inscrire",
             "Nous vous enverrons un email d'invitation pour vous inscrire."
           )}
         </TextContainer>

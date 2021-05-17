@@ -124,10 +124,10 @@ export interface IStructure {
 }
 
 export interface IMailEvent {
-  username: string;
+  username?: string;
   email: string;
   templateName: string;
-  userId: ObjectId;
+  userId?: ObjectId;
   dispositifId?: ObjectId;
   langue?: string;
 }
