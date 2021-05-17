@@ -297,7 +297,12 @@ export class AdvancedSearch extends Component {
     this._isMounted = true;
     this.retrieveCookies();
     // Retrieve filters value from url parameters
-    let tag = querySearch(this.props.location.search).tag;
+    let tagFromNav =
+      this.props.location.state === "clean-filters"
+        ? null
+        : this.props.location.state;
+    let tag = querySearch(this.props.location.search).tag || tagFromNav;
+
     let bottomValue = querySearch(this.props.location.search).bottomValue;
     let dep = querySearch(this.props.location.search).dep;
     let city = querySearch(this.props.location.search).city;
