@@ -16,6 +16,7 @@ import { initial_data } from "../AdvancedSearch/data";
 import HomeSearch from "./HomeSearch";
 import CatList from "./CatList";
 import { initGA, PageView } from "../../tracking/dispatch";
+import { iphone } from "../../assets/figma";
 import { HomeCard } from "./HomeCard";
 import { HomePageMobile } from "./HomePageMobile/HomePageMobile";
 import { MobileSearchFilterModal } from "../AdvancedSearch/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
@@ -70,6 +71,12 @@ const MainTitleContainer = styled.div`
   font-weight: 700;
   padding: 0 60px;
 `;
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+`;
+
 export class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -358,6 +365,49 @@ export class HomePage extends Component {
                     {t("Homepage.Je traduis", "J'aide à traduire")}
                   </FButton>
                 </footer>
+              </div>
+            </section>
+            <section id="smartphone">
+              <img src={iphone} />
+              <div className="section-container half-width right-side">
+                <div className="section-body">
+                  <h2>
+                    {t(
+                      "Homepage.Bientôt sur smartphone",
+                      "Bientôt sur smartphone"
+                    )}
+                  </h2>
+                  <p className="texte-normal">
+                    {t("Homepage.Bientôt sur smartphone subheader")}
+                  </p>
+                  {/*<LanguageBtn />*/}
+                </div>
+                <ButtonContainer>
+                  <p>
+                    <FButton
+                      name="email-outline"
+                      tag={NavHashLink}
+                      to={"/"}
+                      type="white"
+                    >
+                      {t(
+                        "Homepage.informé du lancement",
+                        "Je veux être informé du lancement"
+                      )}
+                    </FButton>
+                  </p>
+                  <FButton
+                    name="eye-outline"
+                    tag={NavHashLink}
+                    to={"/"}
+                    type="white"
+                  >
+                    {t(
+                      "Homepage.Je veux tester l'application mobile",
+                      "Je veux tester l'application mobile"
+                    )}
+                  </FButton>
+                </ButtonContainer>
               </div>
             </section>
           </>

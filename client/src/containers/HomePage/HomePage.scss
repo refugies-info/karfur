@@ -292,6 +292,22 @@
     }
   }
 
+  #smartphone {
+    background: linear-gradient(#0421b1, rgba(4, 33, 177, 0.6496));
+    background-repeat: no-repeat;
+    color: $blancSimple;
+    display: flex;
+    justify-content: center;
+    img {
+      width: 25%;
+      position: absolute;
+      left: 15%;
+    }
+    h2 {
+      margin-right: 0;
+    }
+  }
+
   #explique {
     background-image: url(../../assets/figma/illustration_Lexique.svg);
     background-size: 70%;
