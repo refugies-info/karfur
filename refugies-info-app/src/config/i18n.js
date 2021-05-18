@@ -1,5 +1,10 @@
-export const fallback = "en";
+export const fallback = "fr";
 export const supportedLocales = {
+  fr: {
+    name: "Français",
+    translationFileLoader: () => require("../lang/fr.json"),
+    momentLocaleLoader: () => import("moment/locale/fr"),
+  },
   en: {
     name: "English",
     translationFileLoader: () => require("../lang/en.json"),
@@ -12,12 +17,3 @@ export const supportedLocales = {
     momentLocaleLoader: () => import("moment/locale/ar"),
   },
 };
-export const defaultNamespace = "common";
-export const namespaces = [
-  "common",
-  "lists",
-  "ListScreen",
-  "ListOfTodos",
-  "AddTodoScreen",
-  "DatePickerAndroid",
-];

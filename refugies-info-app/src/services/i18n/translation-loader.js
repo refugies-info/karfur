@@ -2,13 +2,11 @@ import * as config from "../../config/i18n";
 const translationLoader = {
   type: "backend",
   init: () => {},
-  read: function (language, namespace, callback) {
+  read: function (language, _, callback) {
     let resource,
       error = null;
     try {
-      resource = config.supportedLocales[language].translationFileLoader()[
-        namespace
-      ];
+      resource = config.supportedLocales[language].translationFileLoader();
     } catch (_error) {
       error = _error;
     }

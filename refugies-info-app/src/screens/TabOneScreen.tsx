@@ -12,6 +12,8 @@ export default function TabOneScreen() {
       <Text style={styles.title2}>Tab One circular</Text>
 
       <Text style={styles.title2}>{t("lists", "options")}</Text>
+      <Text style={styles.title2}>{t("homepage.test", "options")}</Text>
+
       <View
         style={styles.separator}
         lightColor="#eee"

@@ -16,8 +16,7 @@ const i18n = {
         .init(
           {
             fallbackLng: config.fallback,
-            ns: config.namespaces,
-            defaultNS: config.defaultNamespace,
+
             interpolation: {
               escapeValue: false,
               format(value, format) {
