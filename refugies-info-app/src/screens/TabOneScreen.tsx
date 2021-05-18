@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
+import { t } from "../services/i18n";
 
 export default function TabOneScreen() {
   return (
@@ -10,6 +11,7 @@ export default function TabOneScreen() {
       <Text style={styles.title}>Tab One mono</Text>
       <Text style={styles.title2}>Tab One circular</Text>
 
+      <Text style={styles.title2}>{t("lists", "options")}</Text>
       <View
         style={styles.separator}
         lightColor="#eee"

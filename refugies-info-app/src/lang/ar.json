@@ -1,0 +1,14 @@
+{
+  "common": {
+    "lists": "Lists"
+  },
+  "lists": {
+    "to-do": "To-do",
+    "groceries": "Groceries",
+    "learning": "Learning",
+    "reading": "Reading"
+  },
+  "ListScreen": {
+    "empty": "No to-dos in this list! Use the + button to add a to-do."
+  }
+}
