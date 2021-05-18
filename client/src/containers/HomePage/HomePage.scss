@@ -265,6 +265,17 @@
     }
   }
 
+  #deployer {
+    background-image: url(../../assets/figma/carte_deploiement.svg);
+    background-size: 50%, cover;
+    background-repeat: no-repeat;
+    background-position: right;
+    margin-right: 50px;
+    img {
+      margin-right: 8px;
+    }
+  }
+
   #ecrire {
     background-image: url(../../assets/figma/rediger_desktop.svg);
     background-size: 55%, cover;

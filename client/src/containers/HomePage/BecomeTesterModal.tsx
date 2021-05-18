@@ -25,6 +25,7 @@ const CloseIconContainer = styled.div`
   background-color: ${colors.noir};
   right: 10px;
   top: 8px;
+  cursor: pointer;
 `;
 
 export const BecomeTesterModal = (props: Props) => (
