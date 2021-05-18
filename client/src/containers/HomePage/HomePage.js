@@ -390,14 +390,13 @@ export class HomePage extends Component {
                   <p className="texte-normal">
                     {t("Homepage.Déployez subheader")}
                   </p>
-                  {/*<LanguageBtn />*/}
                 </div>
                 <footer className="footer-section">
                   <ButtonContainerRow>
                     <ButtonSeparator>
                       <FButton
                         tag={NavHashLink}
-                        to={"/comment-contribuer"}
+                        to={"/comment-contribuer#deployer-card"}
                         type="dark"
                       >
                         <img src={icon_mobilisation} alt="icon mobilisation" />
@@ -409,7 +408,7 @@ export class HomePage extends Component {
                     </ButtonSeparator>
                     <FButton
                       tag={NavHashLink}
-                      to={"/comment-contribuer"}
+                      to={"/comment-contribuer#deployer-card"}
                       type="outline-black"
                     >
                       {t(

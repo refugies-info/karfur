@@ -116,7 +116,7 @@ const HeaderCard = (props) => (
       {props.eva ? (
         <EVAIcon name={props.iconName} size="xlarge" fill="#212121" />
       ) : props.iconName === "icon_France" ? (
-        <img src={icon_France} />
+        <img src={icon_France} alt="icon_france" />
       ) : (
         <SVGIcon name="translate" fill="#212121" width="40px" height="40px" />
       )}
@@ -576,7 +576,7 @@ class CommentContribuer extends Component {
               </div>
             </AnchorLink>
             <div style={{ marginRight: isRTL ? "48px" : "0px" }}>
-              <AnchorLink offset="60" href="#déployer-card">
+              <AnchorLink offset="60" href="#deployer-card">
                 <HeaderCard
                   title={t("CommentContribuer.déployer", "déployer")}
                   iconName="icon_France"
@@ -688,7 +688,7 @@ class CommentContribuer extends Component {
             </LanguagesContainer>
           </TradContentContainer>
         </TraductionContainer>
-        <DeployonsContainer>
+        <DeployonsContainer id="deployer-card">
           <DeployonsHeader>
             {t(
               "CommentContribuer.Déployons ensemble",
