@@ -15,9 +15,9 @@ export default function App() {
   const [isI18nInitialized, setIsI18nInitialized] = useState(false);
 
   useEffect(() => {
-    i18n
-      .init()
-      .then(() => {
+    const setLanguage = async () => {
+      try {
+        await i18n.init();
         const RNDir = RNI18nManager.isRTL ? "RTL" : "LTR";
         // RN doesn't always correctly identify native
         // locale direction, so we force it here.
@@ -28,10 +28,14 @@ export default function App() {
           // don't restart the app's JavaScript.
           Updates.reloadFromCache();
         }
+
         setIsI18nInitialized(true);
-      })
-      .catch((error) => console.warn(error));
-  });
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+    setLanguage();
+  }, []);
 
   if (!isLoadingComplete || !isI18nInitialized) {
     return null;
