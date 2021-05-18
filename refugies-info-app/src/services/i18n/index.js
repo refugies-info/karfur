@@ -60,7 +60,7 @@ const i18n = {
    * @returns {boolean}
    */
   get isRTL() {
-    return RNI18nManager.isRTL;
+    return i18next.dir().toUpperCase() === "RTL";
   },
   /**
    * Similar to React Native's Platform.select(),

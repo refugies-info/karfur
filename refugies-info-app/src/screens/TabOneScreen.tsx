@@ -5,24 +5,17 @@ import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 import i18n, { t } from "../services/i18n";
 import { Button } from "react-native";
-import { I18nManager as RNI18nManager } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function TabOneScreen() {
   const [changeLang, setChangeLang] = React.useState(false);
-  // @ts-ignore
   const changeLanguage = (ln: string) => {
-    console.log("change language", ln);
     i18n.changeLanguage(ln);
     try {
       AsyncStorage.setItem("SELECTED_LANGUAGE", ln);
-    } catch (e) {
-      // saving error
-    }
+    } catch (e) {}
     setChangeLang(!changeLang);
   };
-  const RNDir = RNI18nManager.isRTL ? "RTL" : "LTR";
-  console.log("i18n.locale", i18n.locale, i18n.dir, i18n.isRTL);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab One mono</Text>
@@ -47,7 +40,6 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // alignItems: "center",
     justifyContent: "center",
   },
   title: {
