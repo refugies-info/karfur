@@ -18,6 +18,9 @@ export const assetsOnServer = {
     parcours: bucketUrlQSN + "QuiSommesNous_parcours.svg",
     terrain: bucketUrlQSN + "QuiSommesNous_terrain.svg",
   },
+  homepage: {
+    CarteDeploiement: bucketUrl + "home/Carte_deploiement.svg",
+  },
   commentContribuer: {
     traduction: bucketUrlCC + "CommentContribuer_imageTrad.svg",
     lexique: bucketUrlCC + "CommentContribuer-lexique.png",
