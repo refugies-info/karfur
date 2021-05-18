@@ -212,7 +212,7 @@ const dispositifValidateModal = (props) => {
               !props.abstract ||
               props.abstract === "" ||
               props.abstract.length > 110 ||
-              (!geoloc && props.typeContenu !== "demarche")||
+              (!geoloc && props.typeContenu !== "demarche") ||
               props.tags.length === 0
             }
           >
