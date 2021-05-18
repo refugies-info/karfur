@@ -27,6 +27,8 @@ import {
   illustration_homeCard_demarche,
   illustration_homeCard_lexique,
 } from "../../assets/figma";
+import icon_mobilisation from "../../assets/icon_mobilisation.svg";
+import { assetsOnServer } from "../../assets/assetsOnServer";
 
 const CoronaAlert = styled.div`
   display: flex;
@@ -76,6 +78,14 @@ const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 40px;
+`;
+const ButtonContainerRow = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const ButtonSeparator = styled.div`
+  margin: 0px 10px 0px 0px;
 `;
 
 export class HomePage extends Component {
@@ -365,6 +375,48 @@ export class HomePage extends Component {
                   >
                     {t("Homepage.J'aide à traduire", "J'aide à traduire")}
                   </FButton>
+                </footer>
+              </div>
+            </section>
+            <section
+              id="deployer"
+              style={{
+                backgroundImage: `url(${assetsOnServer.homepage.CarteDeploiement})`,
+              }}
+            >
+              <div className="section-container half-width left-side">
+                <div className="section-body">
+                  <h2>{t("Homepage.Déployez")}</h2>
+                  <p className="texte-normal">
+                    {t("Homepage.Déployez subheader")}
+                  </p>
+                </div>
+                <footer className="footer-section">
+                  <ButtonContainerRow>
+                    <ButtonSeparator>
+                      <FButton
+                        tag={NavHashLink}
+                        to={"/comment-contribuer#deployer-card"}
+                        type="dark"
+                      >
+                        <img src={icon_mobilisation} alt="icon mobilisation" />
+                        {t(
+                          "Homepage.Participe déploiement",
+                          "Je participe au déploiement"
+                        )}
+                      </FButton>
+                    </ButtonSeparator>
+                    <FButton
+                      tag={NavHashLink}
+                      to={"/comment-contribuer#deployer-card"}
+                      type="outline-black"
+                    >
+                      {t(
+                        "Homepage.Vous hésitez encore ?",
+                        "Vous hésitez encore ?"
+                      )}
+                    </FButton>
+                  </ButtonContainerRow>
                 </footer>
               </div>
             </section>
