@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { Progress } from "reactstrap";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { connect } from "react-redux";
-
+import { colors } from "../../colors";
 import API from "../../utils/API";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import SVGIcon from "../../components/UI/SVGIcon/SVGIcon";
@@ -23,6 +23,8 @@ import gif from "../../assets/comment-contribuer/GIF-corriger.gif";
 import i18n from "../../i18n";
 import "./CommentContribuer.scss";
 import { icon_France } from "../../assets/figma/index";
+import Nour from "../../assets/qui-sommes-nous/Nour.png";
+import FButton from "components/FigmaUI/FButton/FButton";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -281,6 +283,33 @@ const DeployonSectionTextContainer = styled.div`
   flex-direction: row;
   margin-top: 50px;
   margin-bottom: 20px;
+`;
+
+const RdvTextContainer = styled.div`
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  padding: 50px;
+`;
+
+const DeployonsRdvContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 60px;
+`;
+
+const RdvContactContainer = styled.div`
+  width: 458px;
+  height: 230px;
+  background-color: ${colors.bleuCharte};
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+`;
+
+const ContactInfoContainer = styled.div`
+  padding-left: 20px;
 `;
 
 const MainTextContainer = styled.div`
@@ -676,7 +705,7 @@ class CommentContribuer extends Component {
               </MainTextContainer>
               <SubTextContainer>
                 {t(
-                  "CommentContribuer.Grâce à nos fonctionnalités collaboratives",
+                  "CommentContribuer.fonctionnalités collaboratives",
                   "Grâce à nos fonctionnalités collaboratives, les acteurs recensent et valorisent leurs actions en autonomie. Notre équipe les accompagne en cas de besoin via notre livechat."
                 )}
               </SubTextContainer>
@@ -724,6 +753,47 @@ class CommentContribuer extends Component {
               </SubTextContainer>
             </DeployonsTextContainer>
           </DeployonSectionTextContainer>
+          <DeployonsRdvContainer>
+            <RdvTextContainer>
+              <p>{t("CommentContribuer.Convaincu ?", "Convaincu ?")}</p>
+              <p>
+                {t(
+                  "CommentContribuer.Prenons rendez-vous !",
+                  "Prenons rendez-vous !"
+                )}
+              </p>
+            </RdvTextContainer>
+            <RdvContactContainer>
+              <img src={Nour} alt="Photo Nour" />
+              <ContactInfoContainer>
+                <ContactInfoTextContainer type="main">
+                  Nour Allazkani
+                </ContactInfoTextContainer>
+                <ContactInfoTextContainer
+                  sytle={{ backgroundColor: colors.blancSimple }}
+                >
+                  {t("CommentContribuer.Ambassadeur", "Ambassadeur")}
+                </ContactInfoTextContainer>
+                <FButton
+                  name="calendar-outline"
+                  target="_blank"
+                  href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info?month=2021-05"
+                  type="validate"
+                >
+                  {t(
+                    "CommentContribuer.Prendre rendez-vous",
+                    "Prendre rendez-vous"
+                  )}
+                </FButton>
+                <DispoContainer>
+                  {t(
+                    "CommentContribuer.Selon vos disponibilités",
+                    "Selon vos disponibilités"
+                  )}
+                </DispoContainer>
+              </ContactInfoContainer>
+            </RdvContactContainer>
+          </DeployonsRdvContainer>
         </DeployonsContainer>
 
         <CorrectionContainer id="corriger">
@@ -843,6 +913,21 @@ const NumberTraductionContainer = styled.div`
   line-height: 28px;
   width: ${(props) => props.width};
   margin-right: 32px;
+`;
+
+const ContactInfoTextContainer = styled.p`
+  background-color: ${colors.blancSimple};
+  font-size: 18px;
+  width:fit-content;
+  font-weight: ${(props) => (props.type === "main" ? "700" : "400")};
+  padding : 5px; 10px;
+`;
+
+const DispoContainer = styled.p`
+  color: ${colors.blancSimple};
+  font-size: 16px;
+  padding : 12px; 10px;
+  font-weight: 700;
 `;
 
 const NumberContainer = styled.div`
