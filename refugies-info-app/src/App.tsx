@@ -6,7 +6,7 @@ import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
 import { Updates } from "expo";
-import { I18nManager as RNI18nManager } from "react-native";
+import { I18nManager as RNI18nManager, AsyncStorage } from "react-native";
 import i18n from "./services/i18n/index";
 
 export default function App() {
@@ -29,6 +29,16 @@ export default function App() {
           Updates.reloadFromCache();
         }
 
+        try {
+          const value = await AsyncStorage.getItem("SELECTED_LANGUAGE");
+          if (value) {
+            i18n.changeLanguage(value);
+
+            // value previously stored
+          }
+        } catch (e) {
+          // error reading value
+        }
         setIsI18nInitialized(true);
       } catch (error) {
         console.warn(error);

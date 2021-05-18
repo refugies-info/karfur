@@ -6,17 +6,22 @@ import { Text, View } from "../components/Themed";
 import i18n, { t } from "../services/i18n";
 import { Button } from "react-native";
 import { I18nManager as RNI18nManager } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function TabOneScreen() {
   const [changeLang, setChangeLang] = React.useState(false);
   // @ts-ignore
-  const changeLanguage = () => {
-    console.log("change language");
-    setChangeLang(true);
-    i18n.changeLanguage("ar");
+  const changeLanguage = (ln: string) => {
+    console.log("change language", ln);
+    i18n.changeLanguage(ln);
+    try {
+      AsyncStorage.setItem("SELECTED_LANGUAGE", ln);
+    } catch (e) {
+      // saving error
+    }
+    setChangeLang(!changeLang);
   };
   const RNDir = RNI18nManager.isRTL ? "RTL" : "LTR";
-  console.log("RNDir tab one", RNDir);
   console.log("i18n.locale", i18n.locale, i18n.dir, i18n.isRTL);
   return (
     <View style={styles.container}>
@@ -25,10 +30,9 @@ export default function TabOneScreen() {
 
       <Text style={styles.title2}>{t("lists", "options")}</Text>
       <Text style={styles.title2}>{t("homepage.test", "options")}</Text>
-      <View onPress={changeLanguage}>
-        <Text>{"Change language"}</Text>
-      </View>
-      <Button onPress={changeLanguage} title="button" />
+      <Button onPress={() => changeLanguage("ar")} title="button ar" />
+      <Button onPress={() => changeLanguage("en")} title="button en" />
+      <Button onPress={() => changeLanguage("fr")} title="button fr" />
 
       <View
         style={styles.separator}
