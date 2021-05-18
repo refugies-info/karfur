@@ -76,6 +76,8 @@ const i18n = {
     const key = this.isRTL ? "rtl" : "ltr";
     return map[key];
   },
+
+  changeLanguage: (ln) => i18next.changeLanguage(ln),
 };
 export const t = i18n.t;
 export default i18n;

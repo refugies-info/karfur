@@ -1,14 +1,6 @@
 {
-  "common": {
-    "lists": "Lists anglais"
+  "homepage": {
+    "test": "test anglais"
   },
-  "lists": {
-    "to-do": "To-do",
-    "groceries": "Groceries",
-    "learning": "Learning",
-    "reading": "Reading"
-  },
-  "ListScreen": {
-    "empty": "No to-dos in this list! Use the + button to add a to-do."
-  }
+  "lists": "Lists anglaus"
 }
