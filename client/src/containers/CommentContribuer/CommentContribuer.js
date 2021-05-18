@@ -22,6 +22,7 @@ import { ReactComponent as PapillonRose } from "../../assets/comment-contribuer/
 import gif from "../../assets/comment-contribuer/GIF-corriger.gif";
 import i18n from "../../i18n";
 import "./CommentContribuer.scss";
+import { icon_France } from "../../assets/figma/index";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -112,6 +113,8 @@ const HeaderCard = (props) => (
     <IconContainer>
       {props.eva ? (
         <EVAIcon name={props.iconName} size="xlarge" fill="#212121" />
+      ) : props.iconName === "icon_France" ? (
+        <img src={icon_France} />
       ) : (
         <SVGIcon name="translate" fill="#212121" width="40px" height="40px" />
       )}
@@ -257,6 +260,43 @@ const CorrectionContainer = styled.div`
   background: #ffffff;
   padding-top: 48px;
   position: relative;
+`;
+
+const DeployonsContainer = styled.div`
+  padding-left: 120px;
+  padding-right: 120px;
+  background: #ffffff;
+  padding-top: 48px;
+  position: relative;
+`;
+
+const DeployonsTextContainer = styled.div`
+  padding-left: 25px;
+  padding-right: 25px;
+  width: 25%;
+`;
+
+const DeployonSectionTextContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 50px;
+  margin-bottom: 20px;
+`;
+
+const MainTextContainer = styled.div`
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+`;
+
+const SubTextContainer = styled.div`
+  font-size: 18px;
+  font-weight: 400;
+`;
+const DeployonsHeader = styled.p`
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
 `;
 const CorrectionHeader = styled.div`
   font-weight: 500;
@@ -498,7 +538,7 @@ class CommentContribuer extends Component {
               </AnchorLink>
             </div>
             <AnchorLink offset="60" href="#corriger">
-              <div style={{ marginRight: isRTL ? "48px" : "0px" }}>
+              <div style={{ marginRight: "48px" }}>
                 <HeaderCard
                   title={t("CommentContribuer.corriger", "corriger")}
                   iconName="done-all-outline"
@@ -506,6 +546,14 @@ class CommentContribuer extends Component {
                 />
               </div>
             </AnchorLink>
+            <div style={{ marginRight: isRTL ? "48px" : "0px" }}>
+              <AnchorLink offset="60" href="#déployer-card">
+                <HeaderCard
+                  title={t("CommentContribuer.déployer", "déployer")}
+                  iconName="icon_France"
+                />
+              </AnchorLink>
+            </div>
           </HeaderCardsContainer>
           <EcrireAnchor id="ecrire" />
         </HeaderContainer>
@@ -611,6 +659,73 @@ class CommentContribuer extends Component {
             </LanguagesContainer>
           </TradContentContainer>
         </TraductionContainer>
+        <DeployonsContainer>
+          <DeployonsHeader>
+            {t(
+              "CommentContribuer.Déployons ensemble",
+              "Déployons ensemble la plateforme sur votre territoire"
+            )}
+          </DeployonsHeader>
+          <DeployonSectionTextContainer>
+            <DeployonsTextContainer>
+              <MainTextContainer>
+                {t(
+                  "CommentContribuer.obtenir une cartographie",
+                  "Réfugiés.info aide à obtenir une cartographie des dispositifs mise à jour par les acteurs."
+                )}
+              </MainTextContainer>
+              <SubTextContainer>
+                {t(
+                  "CommentContribuer.Grâce à nos fonctionnalités collaboratives",
+                  "Grâce à nos fonctionnalités collaboratives, les acteurs recensent et valorisent leurs actions en autonomie. Notre équipe les accompagne en cas de besoin via notre livechat."
+                )}
+              </SubTextContainer>
+            </DeployonsTextContainer>
+            <DeployonsTextContainer>
+              <MainTextContainer>
+                {t(
+                  "CommentContribuer.traduit les informations",
+                  "Réfugiés.info traduit les informations pour vous avec de vrais traducteurs humains."
+                )}
+              </MainTextContainer>
+              <SubTextContainer>
+                {t(
+                  "CommentContribuer.La plateforme s’appuie",
+                  "La plateforme s’appuie sur un réseau de bénévole et d’experts en traduction pour traduire et vulgariser l’information dans un langage adaptée aux personnes réfugiées."
+                )}
+              </SubTextContainer>
+            </DeployonsTextContainer>
+            <DeployonsTextContainer>
+              <MainTextContainer>
+                {t(
+                  "CommentContribuer.permet d’orienter vos bénéficiaires",
+                  "Réfugiés.info permet d’orienter vos bénéficiaires au sein de votre territoire et au-delà."
+                )}
+              </MainTextContainer>
+              <SubTextContainer>
+                {t(
+                  "CommentContribuer.Grâce à la couverture nationale",
+                  "Grâce à la couverture nationale de Réfugiés.info, les bénéficiaires trouvent plus d’information : à la fois des dispositifs près de chez eux et aussi des démarches et initiatives présentes dans toute la France. "
+                )}
+              </SubTextContainer>
+            </DeployonsTextContainer>
+            <DeployonsTextContainer>
+              <MainTextContainer>
+                {t(
+                  "CommentContribuer.propose un accompagnement",
+                  "L’équipe de Réfugiés.info vous propose un accompagnement sur-mesure."
+                )}
+              </MainTextContainer>
+              <SubTextContainer>
+                {t(
+                  "CommentContribuer.Nous définissons ensemble",
+                  "Nous définissons ensemble vos objectifs de déploiement en prenant en compte les moyens humains mobilisables sur votre territoire. Notre équipe se déplace au besoin pour former et outiller les ambassadeurs."
+                )}
+              </SubTextContainer>
+            </DeployonsTextContainer>
+          </DeployonSectionTextContainer>
+        </DeployonsContainer>
+
         <CorrectionContainer id="corriger">
           <CorrectionHeader>
             {t(

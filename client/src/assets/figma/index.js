@@ -27,6 +27,7 @@ import illustration_aidez_traduire from "./illustration_aidez_traduire.svg";
 import iphone from "./iphone.svg";
 import rendez_vous_ordinateur from "./rendez_vous_ordinateur.svg";
 import home_mobile from "./home_mobile.svg";
+import icon_France from "./icon_France.svg";
 
 export {
   boldBtn,
@@ -58,4 +59,5 @@ export {
   iphone,
   rendez_vous_ordinateur,
   home_mobile,
+  icon_France,
 };
