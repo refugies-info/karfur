@@ -85,8 +85,6 @@ const ButtonContainerRow = styled.div`
 
 const ButtonSeparator = styled.div`
   margin: 0px 10px 0px 0px;
-
-  width: ;
 `;
 
 export class HomePage extends Component {
