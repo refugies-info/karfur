@@ -28,6 +28,7 @@ import {
   illustration_homeCard_lexique,
 } from "../../assets/figma";
 import icon_mobilisation from "../../assets/icon_mobilisation.svg";
+import { assetsOnServer } from "../../assets/assetsOnServer";
 
 const CoronaAlert = styled.div`
   display: flex;
@@ -377,7 +378,12 @@ export class HomePage extends Component {
                 </footer>
               </div>
             </section>
-            <section id="deployer">
+            <section
+              id="deployer"
+              style={{
+                backgroundImage: `url(${assetsOnServer.homepage.CarteDeploiement})`,
+              }}
+            >
               <div className="section-container half-width left-side">
                 <div className="section-body">
                   <h2>{t("Homepage.Déployez")}</h2>
