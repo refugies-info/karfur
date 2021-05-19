@@ -6,6 +6,7 @@ import { Text, View } from "../components/Themed";
 import i18n, { t } from "../services/i18n";
 import { Button } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getEnvironment } from "../libs/getEnvironment";
 
 export default function TabOneScreen() {
   const [changeLang, setChangeLang] = React.useState(false);
@@ -16,6 +17,7 @@ export default function TabOneScreen() {
     } catch (e) {}
     setChangeLang(!changeLang);
   };
+  const dbURL = getEnvironment().dbUrl;
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab One mono</Text>
@@ -23,6 +25,8 @@ export default function TabOneScreen() {
 
       <Text style={styles.title2}>{t("lists", "options")}</Text>
       <Text style={styles.title2}>{t("homepage.test", "options")}</Text>
+      <Text style={styles.title2}>{dbURL}</Text>
+
       <Button onPress={() => changeLanguage("ar")} title="button ar" />
       <Button onPress={() => changeLanguage("en")} title="button en" />
       <Button onPress={() => changeLanguage("fr")} title="button fr" />

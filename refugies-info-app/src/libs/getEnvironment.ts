@@ -1,14 +1,13 @@
 import * as Updates from "expo-updates";
 
-export function getEnvironment() {
+export const getEnvironment = () => {
   if (Updates.releaseChannel.startsWith("prod")) {
     // matches prod-v1, prod-v2, prod-v3
-    return { envName: "PRODUCTION", dbUrl: "ccc", apiKey: "ddd" }; // prod env settings
+    return { envName: "PRODUCTION", dbUrl: "ccc" };
   } else if (Updates.releaseChannel.startsWith("staging")) {
     // matches staging-v1, staging-v2
-    return { envName: "STAGING", dbUrl: "eee", apiKey: "fff" }; // stage env settings
-  } else {
-    // assume any other release channel is development
-    return { envName: "DEVELOPMENT", dbUrl: "aaa", apiKey: "bbb" }; // dev env settings
+    return { envName: "STAGING", dbUrl: "https://api.staging.refugies.info" };
   }
-}
+  // assume any other release channel is development
+  return { envName: "DEVELOPMENT", dbUrl: "http://localhost:8000" };
+};
