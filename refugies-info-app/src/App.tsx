@@ -39,6 +39,7 @@ export default function App() {
   if (!isLoadingComplete || !isI18nInitialized) {
     return null;
   }
+
   return (
     <SafeAreaProvider>
       <Navigation colorScheme={colorScheme} />

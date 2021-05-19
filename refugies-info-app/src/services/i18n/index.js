@@ -1,6 +1,5 @@
 import i18next from "i18next";
 import * as config from "../../config/i18n";
-import date from "./date";
 import translationLoader from "./translation-loader";
 const i18n = {
   /**
@@ -14,21 +13,13 @@ const i18n = {
 
           interpolation: {
             escapeValue: false,
-            format(value, format) {
-              if (value instanceof Date) {
-                return date.format(value, format);
-              }
-            },
           },
         },
         (error) => {
           if (error) {
             return reject(error);
           }
-          date
-            .init(i18next.language)
-            .then(resolve)
-            .catch((error) => reject(error));
+          resolve();
         }
       );
     });
