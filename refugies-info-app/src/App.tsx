@@ -24,8 +24,6 @@ export default function App() {
           const value = await AsyncStorage.getItem("SELECTED_LANGUAGE");
           if (value) {
             i18n.changeLanguage(value);
-
-            // value previously stored
           }
         } catch (e) {
           // error reading value

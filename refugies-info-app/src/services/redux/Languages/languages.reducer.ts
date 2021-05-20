@@ -3,18 +3,21 @@ import { LanguagesActions } from "./languages.actions";
 import { createReducer } from "typesafe-actions";
 
 export interface LanguageState {
-  languages: Language[];
+  availableLanguages: Language[];
   selectedLanguagei18nCode: string;
 }
 
 const initialLanguageState = {
-  languages: [],
+  availableLanguages: [],
   selectedLanguagei18nCode: "fr",
 };
 
 export const languagesReducer = createReducer<LanguageState, LanguagesActions>(
   initialLanguageState,
   {
-    SET_LANGUAGES: (state, action) => ({ ...state, languages: action.payload }),
+    SET_LANGUAGES: (state, action) => ({
+      ...state,
+      availableLanguages: action.payload,
+    }),
   }
 );

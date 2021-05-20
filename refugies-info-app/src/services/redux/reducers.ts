@@ -4,10 +4,11 @@ import {
   LoadingStatusState,
   initialLoadingStateFactory,
 } from "./LoadingStatus/loadingStatus.reducer";
+import { languagesReducer } from "./Languages/languages.reducer";
 
 const appReducer = combineReducers({
   loadingStatus: loadingStatusReducer,
-  //   languages : languagesReducer
+  languages: languagesReducer,
 });
 
 export interface RootState {

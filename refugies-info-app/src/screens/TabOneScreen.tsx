@@ -7,9 +7,18 @@ import i18n, { t } from "../services/i18n";
 import { Button } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getEnvironment } from "../libs/getEnvironment";
+import { useDispatch } from "react-redux";
+import { fetchLanguagesActionCreator } from "../services/redux/Languages/languages.actions";
 
-export default function TabOneScreen() {
+export const TabOneScreen = () => {
   const [changeLang, setChangeLang] = React.useState(false);
+
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(fetchLanguagesActionCreator());
+  }, []);
+
   const changeLanguage = (ln: string) => {
     i18n.changeLanguage(ln);
     try {
@@ -39,7 +48,7 @@ export default function TabOneScreen() {
       <EditScreenInfo path="/screens/TabOneScreen.tsx" />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
