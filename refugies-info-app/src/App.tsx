@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
@@ -7,6 +6,9 @@ import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
 import { AsyncStorage } from "react-native";
 import i18n from "./services/i18n/index";
+import { Provider } from "react-redux";
+import { store } from "./services/redux/store";
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -22,8 +24,6 @@ export default function App() {
           const value = await AsyncStorage.getItem("SELECTED_LANGUAGE");
           if (value) {
             i18n.changeLanguage(value);
-
-            // value previously stored
           }
         } catch (e) {
           // error reading value
@@ -39,10 +39,13 @@ export default function App() {
   if (!isLoadingComplete || !isI18nInitialized) {
     return null;
   }
+
   return (
-    <SafeAreaProvider>
-      <Navigation colorScheme={colorScheme} />
-      <StatusBar />
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <Navigation colorScheme={colorScheme} />
+        <StatusBar />
+      </SafeAreaProvider>
+    </Provider>
   );
 }
