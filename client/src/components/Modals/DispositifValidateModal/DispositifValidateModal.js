@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Modal, ModalHeader, ModalFooter } from "reactstrap";
 import styled from "styled-components";
 import FButton from "../../FigmaUI/FButton/FButton";
 import FInput from "../../FigmaUI/FInput/FInput";
@@ -139,7 +139,7 @@ const dispositifValidateModal = (props) => {
       className="dispositif-validate-modal"
     >
       <ModalHeader toggle={props.toggle}>Vous y êtes presque !</ModalHeader>
-      <ModalBody>
+      <div>
         {props.typeContenu !== "demarche" ? (
           <Check
             geolocInfoCard={geolocInfoCard}
@@ -172,7 +172,7 @@ const dispositifValidateModal = (props) => {
           toggleTagsModal={props.toggleTagsModal}
           toggleSponsorModal={props.toggleSponsorModal}
         />
-      </ModalBody>
+      </div>
       <ModalFooter>
         <div>
           {/*           <FButton

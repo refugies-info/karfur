@@ -1,6 +1,6 @@
 {
   "Homepage": {
-    "subtitle": "Ici, je trouve et partage de l'information pour réussir mon projet de vie",
+    "title": "Ici, trouve et partage de l'information pour réussir ton projet de vie",
     "explication lexique": "Consultez le lexique collaboratif pour comprendre les mots que vous rencontrez dans votre navigation.",
     "information vérifiée": "Réfugiés.info est transparent sur la qualité de l'information",
     "information vérifiée subheader": "Les contenus proposés sont relus et corrigés avant d’être publiés afin d’éviter les erreurs et les informations périmées. Une fois en ligne, vous pouvez facilement signaler une erreur.",
@@ -32,7 +32,7 @@
     "Ma langue": "Ma langue",
     "site dispo": "Réfugiés.info est disponible dans les langues suivantes :",
     "aidez-nous à taduire": "Aidez-nous à traduire les informations",
-    "aidez-nous à taduire subheader": "Rejoignez une équipe de traducteurs bénévoles et participez à votre rythme. Proposez de l'informatio traduite en plusieurs langues facilite la compréhension des personnes réfugiées en France.",
+    "aidez-nous à taduire subheader": "Rejoignez une équipe de traducteurs bénévoles et participez à votre rythme. Proposer de l'information traduite en plusieurs langues facilite la compréhension des personnes réfugiées en France.",
     "traduire": "Aidez-nous à traduire !",
     "J'aide à traduire": "J'aide à traduire",
     "Covid alert": "Réfugiés.info se mobilise pour répondre à vos questions sur le Covid-19 par le livetchat (icône bleue en bas à droite de l’écran).",
@@ -266,7 +266,7 @@
     "propose un accompagnement": "L’équipe de Réfugiés.info vous propose un accompagnement sur-mesure.",
     "Grâce à la couverture nationale": "Grâce à la couverture nationale de Réfugiés.info, les bénéficiaires trouvent plus d’information : à la fois des dispositifs près de chez eux et aussi des démarches et initiatives présentes dans toute la France. ",
     "permet d’orienter vos bénéficiaires": "Réfugiés.info permet d’orienter vos bénéficiaires au sein de votre territoire et au-delà.",
-    "La plateforme s’appuie": "La plateforme s’appuie sur un réseau de bénévole et d’experts en traduction pour traduire et vulgariser l’information dans un langage adaptée aux personnes réfugiées.",
+    "La plateforme s’appuie": "La plateforme s’appuie sur un réseau de bénévoles et d’experts en traduction pour traduire et vulgariser l’information dans un langage adapté aux personnes réfugiées.",
     "Commentaires ciblés explications": "Un paragraphe est erroné ? Réagissez directement au niveau du paragraphe. Pas besoin de compte. Cherchez l’icône ci-dessus en passant votre souris sur le paragraphe à corriger.",
     "Suggestion": "Suggestion de modification (prochainement)",
     "Suggestion explications": "Proposez une nouvelle formulation d’un paragraphe pour faciliter la tâche des responsables de la fiche. Les fiches seront ainsi écrites à plusieurs mains !"

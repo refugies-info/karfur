@@ -67,7 +67,7 @@
       padding-top: 116px;
     }
     margin-top: -75px;
-    height: 772px;
+    height: 828px;
 
     .options-wrapper {
       list-style-type: none;
@@ -214,6 +214,7 @@
     width: 100%;
     padding: 0 100px;
     height: 100%;
+    min-height: 60vh;
     @include media-max("sm-limit") {
       padding: 0 20px;
     }
@@ -227,7 +228,7 @@
         width: 100%;
       }
       h2 {
-        margin-bottom: 40px;
+        margin-bottom: 50px;
         margin-right: 100px;
       }
       p {
@@ -242,7 +243,11 @@
       }
     }
     .section-body {
+      p {
+        line-height: 28px;
+      }
       flex: 1 1 auto;
+      margin-bottom: 40px;
     }
 
     .footer-section {
@@ -259,7 +264,7 @@
     background-size: 55%, cover;
     background-repeat: no-repeat;
     background-position: left;
-    margin-left: 50px;
+    margin-left: 100px;
     @include media-max("tablet-down") {
       background-position: calc(100% + 20px) calc(100% - 110px), 0;
     }
@@ -269,7 +274,7 @@
     background-size: 50%, cover;
     background-repeat: no-repeat;
     background-position: right;
-    margin-right: 50px;
+    margin-right: 100px;
     img {
       margin-right: 8px;
     }
@@ -280,7 +285,7 @@
     background-size: 55%, cover;
     background-repeat: no-repeat, no-repeat;
     background-position: right;
-    margin-right: 50px;
+    margin-right: 100px;
   }
 
   #multilangues {
@@ -288,7 +293,7 @@
     background-size: 55%;
     background-repeat: no-repeat;
     background-position: left;
-    margin-left: 50px;
+    margin-left: 100px;
     @include media-max("desktop-down") {
       background-position: calc(100% - 300px) calc(100% - 60px);
     }
@@ -481,12 +486,15 @@
     position: absolute;
     width: 48px;
     height: 48px;
-    bottom: 50px;
+    bottom: 80px;
 
     left: 50%;
     @include media-max("tablet-up") {
       left: 44%;
       bottom: 160px;
+    }
+    svg {
+      filter: drop-shadow(2px 4px 6px black);
     }
     background: $noir;
     border-radius: 50%;

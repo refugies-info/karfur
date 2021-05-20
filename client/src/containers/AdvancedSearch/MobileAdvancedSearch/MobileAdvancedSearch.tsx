@@ -99,9 +99,8 @@ export const MobileAdvancedSearch = (props: Props) => {
   const [showAgeModal, setShowAgeModal] = useState(false);
   const [ageSelected, setAgeSelected] = useState<{ name: string } | null>(null);
   const [showFrenchModal, setShowFrenchModal] = useState(false);
-  const [frenchSelected, setFrenchSelected] = useState<{ name: string } | null>(
-    null
-  );
+  const [frenchSelected, setFrenchSelected] =
+    useState<{ name: string } | null>(null);
   const [ville, setVille] = useState("");
   const [geoSearch, setGeoSearch] = useState(false);
   const [isUrlEmpty, setIsUrlEmpty] = useState(true);
@@ -247,7 +246,7 @@ export const MobileAdvancedSearch = (props: Props) => {
       {isUrlEmpty ? (
         <>
           <TextTitle>
-            {props.t("SearchItem.Je cherche à", "Je cherche à")}
+            {props.t("SearchItem.J'ai besoin de", "J'ai besoin de")}
           </TextTitle>
           <SelectedFilter
             toggleShowModal={toggleShowModal}
@@ -315,8 +314,8 @@ export const MobileAdvancedSearch = (props: Props) => {
               type="thème"
               title="Tags.thème"
               defaultTitle="thème"
-              sentence="SearchItem.Je cherche à"
-              defaultSentence="Je cherche à"
+              sentence="SearchItem.J'ai besoin de"
+              defaultSentence="J'ai besoin de"
               toggle={() => toggleShowModal("thème")}
               show={showTagModal}
             />

@@ -29,6 +29,7 @@ import {
 } from "../../assets/figma";
 import icon_mobilisation from "../../assets/icon_mobilisation.svg";
 import { assetsOnServer } from "../../assets/assetsOnServer";
+import i18n from "../../i18n";
 
 const CoronaAlert = styled.div`
   display: flex;
@@ -66,7 +67,7 @@ const CardContainer = styled.div`
   flex-wrap: nowrap;
   overflow: auto;
   justify-content: ${isMobile ? "" : "center"};
-  margin: 0 20px;
+  margin: ${(props) => (props.isRTL ? "0 0 0 20px" : "0 20px 0 0")};
 `;
 
 const MainTitleContainer = styled.div`
@@ -155,6 +156,7 @@ export class HomePage extends Component {
   render() {
     const { t } = this.props;
     const item = initial_data[0];
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     item.title = "J'ai besoin de";
     return (
       <div className="animated fadeIn homepage">
@@ -186,12 +188,9 @@ export class HomePage extends Component {
               </CoronaAlert>
             ) : null}
             <MainTitleContainer>
-              {t(
-                "Homepage.Construis ta vie en France",
-                "Construire ma vie en France"
-              )}
+              {t("Dispositifs.Header", "Construire sa vie en France")}
             </MainTitleContainer>
-            <h5>{t("Homepage.subtitle")}</h5>
+            <h5>{t("Homepage.title")}</h5>
 
             <div className="search-row">
               <HomeSearch
@@ -236,7 +235,7 @@ export class HomePage extends Component {
         </section>
 
         <section id="plan" className="triptique">
-          <CardContainer>
+          <CardContainer isRTL={isRTL}>
             <HomeCard
               t={t}
               text="Homepage.Trouver une initiative"
@@ -329,6 +328,7 @@ export class HomePage extends Component {
                     tag={NavHashLink}
                     to="/comment-contribuer"
                     type="dark"
+                    style={{ height: "60px" }}
                   >
                     {t("Homepage.Je contribue", "Je contribue")}
                   </FButton>
@@ -350,6 +350,7 @@ export class HomePage extends Component {
                     tag={NavHashLink}
                     to="/comment-contribuer#ecrire"
                     type="dark"
+                    style={{ height: "60px" }}
                   >
                     {t("Homepage.Je propose une fiche", "Je propose une fiche")}
                   </FButton>
@@ -372,6 +373,7 @@ export class HomePage extends Component {
                     tag={NavHashLink}
                     to={"/comment-contribuer#traduire"}
                     type="dark"
+                    style={{ height: "60px" }}
                   >
                     {t("Homepage.J'aide à traduire", "J'aide à traduire")}
                   </FButton>
@@ -398,6 +400,7 @@ export class HomePage extends Component {
                         tag={NavHashLink}
                         to={"/comment-contribuer#deployer-card"}
                         type="dark"
+                        style={{ height: "60px" }}
                       >
                         <img src={icon_mobilisation} alt="icon mobilisation" />
                         {t(
@@ -410,6 +413,7 @@ export class HomePage extends Component {
                       tag={NavHashLink}
                       to={"/comment-contribuer#deployer-card"}
                       type="outline-black"
+                      style={{ height: "60px" }}
                     >
                       {t(
                         "Homepage.Vous hésitez encore ?",

@@ -28,6 +28,7 @@ import iphone from "./iphone.svg";
 import rendez_vous_ordinateur from "./rendez_vous_ordinateur.svg";
 import home_mobile from "./home_mobile.svg";
 import icon_France from "./icon_France.svg";
+import structure_definie from "./structure_definie.svg";
 
 export {
   boldBtn,
@@ -60,4 +61,5 @@ export {
   rendez_vous_ordinateur,
   home_mobile,
   icon_France,
+  structure_definie,
 };
