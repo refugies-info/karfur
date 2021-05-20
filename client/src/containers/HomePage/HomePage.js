@@ -328,6 +328,7 @@ export class HomePage extends Component {
                     tag={NavHashLink}
                     to="/comment-contribuer"
                     type="dark"
+                    style={{ height: "60px" }}
                   >
                     {t("Homepage.Je contribue", "Je contribue")}
                   </FButton>
@@ -349,6 +350,7 @@ export class HomePage extends Component {
                     tag={NavHashLink}
                     to="/comment-contribuer#ecrire"
                     type="dark"
+                    style={{ height: "60px" }}
                   >
                     {t("Homepage.Je propose une fiche", "Je propose une fiche")}
                   </FButton>
@@ -371,6 +373,7 @@ export class HomePage extends Component {
                     tag={NavHashLink}
                     to={"/comment-contribuer#traduire"}
                     type="dark"
+                    style={{ height: "60px" }}
                   >
                     {t("Homepage.J'aide à traduire", "J'aide à traduire")}
                   </FButton>
@@ -397,6 +400,7 @@ export class HomePage extends Component {
                         tag={NavHashLink}
                         to={"/comment-contribuer#deployer-card"}
                         type="dark"
+                        style={{ height: "60px" }}
                       >
                         <img src={icon_mobilisation} alt="icon mobilisation" />
                         {t(
@@ -409,6 +413,7 @@ export class HomePage extends Component {
                       tag={NavHashLink}
                       to={"/comment-contribuer#deployer-card"}
                       type="outline-black"
+                      style={{ height: "60px" }}
                     >
                       {t(
                         "Homepage.Vous hésitez encore ?",
