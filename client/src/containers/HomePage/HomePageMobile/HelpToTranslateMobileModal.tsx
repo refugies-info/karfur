@@ -37,7 +37,7 @@ export const HelpToTranslateMobileModal = (props: Props) => (
         style={{
           alignSelf: "center",
           width: "100%",
-          height: 900,
+          height: "97vh",
           border: "1px solid #FBFBFB",
           borderRadius: "12px",
         }}

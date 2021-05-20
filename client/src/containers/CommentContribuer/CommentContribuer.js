@@ -428,7 +428,11 @@ const StructureCard = (props) => (
 
 const DemarcheCard = (props) => (
   <DemarcheCardContainer>
-    <img src={assetsOnServer.commentContribuer.demarche} alt="demarche" />
+    <img
+      src={assetsOnServer.commentContribuer.demarche}
+      height="162px"
+      alt="demarche"
+    />
     <div
       style={{
         display: "flex",

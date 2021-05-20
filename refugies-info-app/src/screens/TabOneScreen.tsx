@@ -3,12 +3,29 @@ import { StyleSheet } from "react-native";
 
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
+import i18n, { t } from "../services/i18n";
+import { Button } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function TabOneScreen() {
+  const [changeLang, setChangeLang] = React.useState(false);
+  const changeLanguage = (ln: string) => {
+    i18n.changeLanguage(ln);
+    try {
+      AsyncStorage.setItem("SELECTED_LANGUAGE", ln);
+    } catch (e) {}
+    setChangeLang(!changeLang);
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab One mono</Text>
       <Text style={styles.title2}>Tab One circular</Text>
+
+      <Text style={styles.title2}>{t("lists", "options")}</Text>
+      <Text style={styles.title2}>{t("homepage.test", "options")}</Text>
+      <Button onPress={() => changeLanguage("ar")} title="button ar" />
+      <Button onPress={() => changeLanguage("en")} title="button en" />
+      <Button onPress={() => changeLanguage("fr")} title="button fr" />
 
       <View
         style={styles.separator}
@@ -23,7 +40,6 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
   },
   title: {

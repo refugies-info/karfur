@@ -137,7 +137,7 @@ const contenuParagraphe = (props) => {
                   ? " sous-contenu-map"
                   : item.title === "Comment je m'engage ?" &&
                     childrenLength === subkey + 1
-                  ? " mb-15"
+                  ? " mb-15 last-item"
                   : "") +
                 (item.type === "cards" ? " sous-contenu-cards" : "")
               }
