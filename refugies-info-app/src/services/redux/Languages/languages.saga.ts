@@ -33,7 +33,7 @@ export function* fetchLanguages(): SagaIterator {
 }
 
 function* latestActionsSaga() {
-  yield all([takeLatest(FETCH_LANGUAGES, fetchLanguages)]);
+  yield takeLatest(FETCH_LANGUAGES, fetchLanguages);
 }
 
 export default latestActionsSaga;

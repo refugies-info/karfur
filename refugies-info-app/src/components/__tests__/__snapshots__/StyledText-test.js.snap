@@ -7,6 +7,7 @@ exports[`renders correctly 1`] = `
       Array [
         Object {
           "color": "#000",
+          "textAlign": "right",
         },
         Array [
           undefined,
@@ -21,6 +22,7 @@ exports[`renders correctly 1`] = `
       Array [
         Object {
           "color": "#000",
+          "textAlign": "right",
         },
         Array [
           undefined,
