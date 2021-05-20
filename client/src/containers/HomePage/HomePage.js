@@ -188,12 +188,9 @@ export class HomePage extends Component {
               </CoronaAlert>
             ) : null}
             <MainTitleContainer>
-              {t(
-                "Homepage.Construis ta vie en France",
-                "Construire ma vie en France"
-              )}
+              {t("Dispositifs.Header", "Construire sa vie en France")}
             </MainTitleContainer>
-            <h5>{t("Homepage.subtitle")}</h5>
+            <h5>{t("Homepage.title")}</h5>
 
             <div className="search-row">
               <HomeSearch
