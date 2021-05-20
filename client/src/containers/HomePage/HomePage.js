@@ -29,6 +29,7 @@ import {
 } from "../../assets/figma";
 import icon_mobilisation from "../../assets/icon_mobilisation.svg";
 import { assetsOnServer } from "../../assets/assetsOnServer";
+import i18n from "../../i18n";
 
 const CoronaAlert = styled.div`
   display: flex;
@@ -66,7 +67,7 @@ const CardContainer = styled.div`
   flex-wrap: nowrap;
   overflow: auto;
   justify-content: ${isMobile ? "" : "center"};
-  margin: 0 20px;
+  margin: ${(props) => (props.isRTL ? "0 0 0 20px" : "0 20px 0 0")};
 `;
 
 const MainTitleContainer = styled.div`
@@ -155,6 +156,7 @@ export class HomePage extends Component {
   render() {
     const { t } = this.props;
     const item = initial_data[0];
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     item.title = "J'ai besoin de";
     return (
       <div className="animated fadeIn homepage">
@@ -236,7 +238,7 @@ export class HomePage extends Component {
         </section>
 
         <section id="plan" className="triptique">
-          <CardContainer>
+          <CardContainer isRTL={isRTL}>
             <HomeCard
               t={t}
               text="Homepage.Trouver une initiative"
