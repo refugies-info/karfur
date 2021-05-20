@@ -19,10 +19,10 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "userInterfaceStyle": "Light"
+      "userInterfaceStyle": "light"
     },
     "android": {
-      "userInterfaceStyle": "Light",
+      "userInterfaceStyle": "light",
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
