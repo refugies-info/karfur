@@ -17,6 +17,4 @@ const actions = {
   setError,
 };
 
-export default actions;
-
 export type LoadingStatusActions = ActionType<typeof actions>;

@@ -1,32 +1,40 @@
 import * as React from "react";
 import { StyleSheet } from "react-native";
 
-import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 import i18n, { t } from "../services/i18n";
 import { Button } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getEnvironment } from "../libs/getEnvironment";
-import { useDispatch } from "react-redux";
-import { fetchLanguagesActionCreator } from "../services/redux/Languages/languages.actions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchLanguagesActionCreator,
+  saveSelectedLanguageActionCreator,
+} from "../services/redux/Languages/languages.actions";
+import { selectedI18nCodeSelector } from "../services/redux/Languages/languages.selectors";
+import { StackScreenProps } from "@react-navigation/stack";
+import { BottomTabParamList } from "../../types";
 
-export const TabOneScreen = () => {
-  const [changeLang, setChangeLang] = React.useState(false);
-
+export const TabOneScreen = ({
+  navigation,
+}: StackScreenProps<BottomTabParamList, "TabOne">) => {
   const dispatch = useDispatch();
+
+  const langue = useSelector(selectedI18nCodeSelector);
 
   React.useEffect(() => {
     dispatch(fetchLanguagesActionCreator());
-  }, []);
+  }, [langue]);
 
   const changeLanguage = (ln: string) => {
     i18n.changeLanguage(ln);
-    try {
-      AsyncStorage.setItem("SELECTED_LANGUAGE", ln);
-    } catch (e) {}
-    setChangeLang(!changeLang);
+    dispatch(saveSelectedLanguageActionCreator(ln));
   };
-  const dbURL = getEnvironment().dbUrl;
+
+  const cleanStorage = (value: string) => {
+    try {
+      AsyncStorage.removeItem(value);
+    } catch (e) {}
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab One mono</Text>
@@ -34,18 +42,25 @@ export const TabOneScreen = () => {
 
       <Text style={styles.title2}>{t("lists", "options")}</Text>
       <Text style={styles.title2}>{t("homepage.test", "options")}</Text>
-      <Text style={styles.title2}>{dbURL}</Text>
 
       <Button onPress={() => changeLanguage("ar")} title="button ar" />
       <Button onPress={() => changeLanguage("en")} title="button en" />
       <Button onPress={() => changeLanguage("fr")} title="button fr" />
-
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
+      <Button
+        onPress={() => cleanStorage("SELECTED_LANGUAGE")}
+        title="clean storage langue"
       />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+      <Button
+        onPress={() => cleanStorage("HAS_USER_SEEN_ONBOARDING")}
+        title="clean storage user"
+      />
+
+      <Button
+        onPress={() => {
+          navigation.navigate("NotFound");
+        }}
+        title="nav"
+      />
     </View>
   );
 };

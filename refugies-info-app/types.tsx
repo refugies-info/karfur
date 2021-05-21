@@ -3,9 +3,11 @@
  * https://reactnavigation.org/docs/typescript/
  */
 
+// undefined means that the route has no nav param
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
+  RootOnboarding: undefined;
 };
 
 export type BottomTabParamList = {
@@ -19,4 +21,8 @@ export type TabOneParamList = {
 
 export type TabTwoParamList = {
   TabTwoScreen: undefined;
+};
+
+export type OnboardingParamList = {
+  LanguageChoice: undefined;
 };
