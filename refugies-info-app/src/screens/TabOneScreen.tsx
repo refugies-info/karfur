@@ -11,8 +11,12 @@ import {
   saveSelectedLanguageActionCreator,
 } from "../services/redux/Languages/languages.actions";
 import { selectedI18nCodeSelector } from "../services/redux/Languages/languages.selectors";
+import { StackScreenProps } from "@react-navigation/stack";
+import { BottomTabParamList } from "../../types";
 
-export const TabOneScreen = () => {
+export const TabOneScreen = ({
+  navigation,
+}: StackScreenProps<BottomTabParamList, "TabOne">) => {
   const dispatch = useDispatch();
 
   const langue = useSelector(selectedI18nCodeSelector);
@@ -26,9 +30,9 @@ export const TabOneScreen = () => {
     dispatch(saveSelectedLanguageActionCreator(ln));
   };
 
-  const cleanStorage = () => {
+  const cleanStorage = (value: string) => {
     try {
-      AsyncStorage.removeItem("SELECTED_LANGUAGE");
+      AsyncStorage.removeItem(value);
     } catch (e) {}
   };
   return (
@@ -42,7 +46,21 @@ export const TabOneScreen = () => {
       <Button onPress={() => changeLanguage("ar")} title="button ar" />
       <Button onPress={() => changeLanguage("en")} title="button en" />
       <Button onPress={() => changeLanguage("fr")} title="button fr" />
-      <Button onPress={cleanStorage} title="clean storage" />
+      <Button
+        onPress={() => cleanStorage("SELECTED_LANGUAGE")}
+        title="clean storage langue"
+      />
+      <Button
+        onPress={() => cleanStorage("HAS_USER_SEEN_ONBOARDING")}
+        title="clean storage user"
+      />
+
+      <Button
+        onPress={() => {
+          navigation.navigate("NotFound");
+        }}
+        title="nav"
+      />
     </View>
   );
 };

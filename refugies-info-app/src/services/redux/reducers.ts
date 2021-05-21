@@ -9,15 +9,18 @@ import {
   LanguageState,
   initialLanguageState,
 } from "./Languages/languages.reducer";
+import { userReducer, UserState, initialUserState } from "./User/user.reducer";
 
 const appReducer = combineReducers({
   loadingStatus: loadingStatusReducer,
   languages: languagesReducer,
+  user: userReducer,
 });
 
 export interface RootState {
   loadingStatus: LoadingStatusState;
   languages: LanguageState;
+  user: UserState;
 }
 
 type RootReducer = ReturnType<typeof appReducer>;
@@ -25,6 +28,7 @@ type RootReducer = ReturnType<typeof appReducer>;
 export const initialRootStateFactory = (): RootState => ({
   loadingStatus: initialLoadingState,
   languages: initialLanguageState,
+  user: initialUserState,
 });
 
 export const rootReducer = (
