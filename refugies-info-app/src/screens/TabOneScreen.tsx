@@ -1,7 +1,6 @@
 import * as React from "react";
 import { StyleSheet } from "react-native";
 
-import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 import i18n, { t } from "../services/i18n";
 import { Button } from "react-native";
@@ -44,13 +43,6 @@ export const TabOneScreen = () => {
       <Button onPress={() => changeLanguage("en")} title="button en" />
       <Button onPress={() => changeLanguage("fr")} title="button fr" />
       <Button onPress={cleanStorage} title="clean storage" />
-
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
     </View>
   );
 };
