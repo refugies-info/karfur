@@ -2,9 +2,13 @@ import { Action, combineReducers } from "redux";
 import {
   loadingStatusReducer,
   LoadingStatusState,
-  initialLoadingStateFactory,
+  initialLoadingState,
 } from "./LoadingStatus/loadingStatus.reducer";
-import { languagesReducer } from "./Languages/languages.reducer";
+import {
+  languagesReducer,
+  LanguageState,
+  initialLanguageState,
+} from "./Languages/languages.reducer";
 
 const appReducer = combineReducers({
   loadingStatus: loadingStatusReducer,
@@ -13,12 +17,14 @@ const appReducer = combineReducers({
 
 export interface RootState {
   loadingStatus: LoadingStatusState;
+  languages: LanguageState;
 }
 
 type RootReducer = ReturnType<typeof appReducer>;
 
 export const initialRootStateFactory = (): RootState => ({
-  loadingStatus: initialLoadingStateFactory(),
+  loadingStatus: initialLoadingState,
+  languages: initialLanguageState,
 });
 
 export const rootReducer = (

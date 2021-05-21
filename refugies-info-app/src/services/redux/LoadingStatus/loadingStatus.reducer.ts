@@ -8,12 +8,12 @@ export interface LoadingStatusState {
   };
 }
 
-export const initialLoadingStateFactory = (): LoadingStatusState => ({});
+export const initialLoadingState = {};
 
 export const loadingStatusReducer = createReducer<
   LoadingStatusState,
   LoadingStatusActions
->(initialLoadingStateFactory(), {
+>(initialLoadingState, {
   LOADING_START: (state, action) => ({
     ...state,
     [action.payload.key]: {

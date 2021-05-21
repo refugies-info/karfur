@@ -7,8 +7,16 @@ import {
 } from "../LoadingStatus/loadingStatus.actions";
 import { getLanguages } from "../../../utils/API";
 import { logger } from "../../../logger";
-import { setLanguagesActionCreator } from "./languages.actions";
-import { FETCH_LANGUAGES } from "./languages.actionTypes";
+import {
+  setLanguagesActionCreator,
+  saveSelectedLanguageActionCreator,
+  setSelectedLanguageActionCreator,
+} from "./languages.actions";
+import {
+  FETCH_LANGUAGES,
+  SAVE_SELECTED_LANGUAGE,
+} from "./languages.actionTypes";
+import { saveSelectedLanguageInAsyncStorage } from "./functions";
 
 export function* fetchLanguages(): SagaIterator {
   try {
@@ -32,8 +40,23 @@ export function* fetchLanguages(): SagaIterator {
   }
 }
 
+export function* saveSelectedLanguage(
+  action: ReturnType<typeof saveSelectedLanguageActionCreator>
+): SagaIterator {
+  try {
+    const i18nCode = action.payload;
+    logger.info("[saveSelectedLanguage] saga", i18nCode);
+    yield call(saveSelectedLanguageInAsyncStorage, i18nCode);
+    yield put(setSelectedLanguageActionCreator(i18nCode));
+  } catch (error) {
+    logger.error("Error while saving langue", { error: error.message });
+    yield put(setSelectedLanguageActionCreator("fr"));
+  }
+}
+
 function* latestActionsSaga() {
   yield takeLatest(FETCH_LANGUAGES, fetchLanguages);
+  yield takeLatest(SAVE_SELECTED_LANGUAGE, saveSelectedLanguage);
 }
 
 export default latestActionsSaga;

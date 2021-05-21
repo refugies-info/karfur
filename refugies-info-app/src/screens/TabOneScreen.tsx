@@ -6,27 +6,32 @@ import { Text, View } from "../components/Themed";
 import i18n, { t } from "../services/i18n";
 import { Button } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getEnvironment } from "../libs/getEnvironment";
-import { useDispatch } from "react-redux";
-import { fetchLanguagesActionCreator } from "../services/redux/Languages/languages.actions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchLanguagesActionCreator,
+  saveSelectedLanguageActionCreator,
+} from "../services/redux/Languages/languages.actions";
+import { selectedI18nCodeSelector } from "../services/redux/Languages/languages.selectors";
 
 export const TabOneScreen = () => {
-  const [changeLang, setChangeLang] = React.useState(false);
-
   const dispatch = useDispatch();
+
+  const langue = useSelector(selectedI18nCodeSelector);
 
   React.useEffect(() => {
     dispatch(fetchLanguagesActionCreator());
-  }, []);
+  }, [langue]);
 
   const changeLanguage = (ln: string) => {
     i18n.changeLanguage(ln);
-    try {
-      AsyncStorage.setItem("SELECTED_LANGUAGE", ln);
-    } catch (e) {}
-    setChangeLang(!changeLang);
+    dispatch(saveSelectedLanguageActionCreator(ln));
   };
-  const dbURL = getEnvironment().dbUrl;
+
+  const cleanStorage = () => {
+    try {
+      AsyncStorage.removeItem("SELECTED_LANGUAGE");
+    } catch (e) {}
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab One mono</Text>
@@ -34,11 +39,11 @@ export const TabOneScreen = () => {
 
       <Text style={styles.title2}>{t("lists", "options")}</Text>
       <Text style={styles.title2}>{t("homepage.test", "options")}</Text>
-      <Text style={styles.title2}>{dbURL}</Text>
 
       <Button onPress={() => changeLanguage("ar")} title="button ar" />
       <Button onPress={() => changeLanguage("en")} title="button en" />
       <Button onPress={() => changeLanguage("fr")} title="button fr" />
+      <Button onPress={cleanStorage} title="clean storage" />
 
       <View
         style={styles.separator}
