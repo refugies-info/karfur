@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const saveSelectedLanguageInAsyncStorage = async (i18nCode: string) => {
-  return await AsyncStorage.setItem("SELECTED_LANGUAGE", i18nCode);
-};
+export const saveItemInAsyncStorage = async (
+  item: "SELECTED_LANGUAGE" | "HAS_USER_SEEN_ONBOARDING",
+  value: string
+) => await AsyncStorage.setItem(item, value);
