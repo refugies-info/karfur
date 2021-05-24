@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   title2: {
     fontSize: 20,
     fontWeight: "bold",
-    fontFamily: "circular",
+    fontFamily: "circularBook",
   },
   separator: {
     marginVertical: 30,

@@ -14,11 +14,6 @@ const images = {
 };
 
 const fonts = {
-  button: {
-    fontSize: 14,
-    fontFamily: "Roboto-Medium",
-    letterSpacing: 0.5,
-  },
   verySmall: {
     fontSize: 13,
     fontFamily: "circularBook",

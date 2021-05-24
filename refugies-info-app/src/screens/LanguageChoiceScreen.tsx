@@ -1,11 +1,21 @@
-import { View, Button } from "react-native";
+import { Button } from "react-native";
 import * as React from "react";
-import { Text } from "../components/Themed";
 import { useDispatch, useSelector } from "react-redux";
 import { saveSelectedLanguageActionCreator } from "../services/redux/User/user.actions";
 import i18n from "../services/i18n";
 import { fetchLanguagesActionCreator } from "../services/redux/Languages/languages.actions";
 import { selectedI18nCodeSelector } from "../services/redux/User/user.selectors";
+import { StyledTextNormal } from "../components/StyledText";
+import { theme } from "../theme";
+import styled from "styled-components/native";
+
+const Text2 = styled(StyledTextNormal)`
+  color: red;
+`;
+
+const MainContainer = styled.View`
+  padding: ${theme.margin * 2}px;
+`;
 
 export const LanguageChoiceScreen = () => {
   const dispatch = useDispatch();
@@ -21,11 +31,13 @@ export const LanguageChoiceScreen = () => {
     dispatch(saveSelectedLanguageActionCreator(ln));
   };
   return (
-    <View>
-      <Text>Text</Text>
+    <MainContainer>
+      <Text2>Text</Text2>
       <Button onPress={() => changeLanguage("ar")} title="button ar" />
       <Button onPress={() => changeLanguage("en")} title="button en" />
       <Button onPress={() => changeLanguage("fr")} title="button fr" />
-    </View>
+      <StyledTextNormal>Test</StyledTextNormal>
+      <Text2>Test1</Text2>
+    </MainContainer>
   );
 };

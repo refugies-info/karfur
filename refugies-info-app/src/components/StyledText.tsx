@@ -1,13 +1,15 @@
-import * as React from "react";
+import styled from "styled-components/native";
+import i18n from "../services/i18n";
+import { theme } from "../theme";
 
-import { Text, TextProps } from "./Themed";
-import { View } from "react-native";
+export const StyledTextNormal = styled.Text`
+  text-align: ${i18n.isRTL ? "right" : "left"};
+  font-size: ${theme.fonts.normal.fontSize}px;
+  font-family: ${theme.fonts.normal.fontFamily};
+`;
 
-export function MonoText(props: TextProps) {
-  return (
-    <View>
-      <Text {...props} style={[props.style]} />
-      <Text {...props} style={[props.style, { fontFamily: "circular" }]} />
-    </View>
-  );
-}
+export const StyledTextNormalBold = styled.Text`
+  text-align: ${i18n.isRTL ? "right" : "left"};
+  font-size: ${theme.fonts.normalBold.fontSize}px;
+  font-family: ${theme.fonts.normalBold.fontFamily};
+`;
