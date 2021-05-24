@@ -7,8 +7,8 @@
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
-  RootOnboarding: undefined;
-  LanguageChoice: undefined;
+  OnboardingNavigator: undefined;
+  LanguageChoiceNavigator: undefined;
 };
 
 export type BottomTabParamList = {
@@ -27,4 +27,8 @@ export type TabTwoParamList = {
 export type OnboardingParamList = {
   Onboarding1: undefined;
   Onboarding2: undefined;
+};
+
+export type LanguageChoiceParamList = {
+  LanguageChoice: undefined;
 };

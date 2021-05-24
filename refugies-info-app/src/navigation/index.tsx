@@ -21,7 +21,7 @@ import {
   selectedI18nCodeSelector,
 } from "../services/redux/User/user.selectors";
 import { setHasUserSeenOnboardingActionCreator } from "../services/redux/User/user.actions";
-import { LanguageChoiceScreen } from "../screens/LanguageChoiceScreen";
+import { LanguageChoiceStackNavigator } from "./LanguageChoiceNavigator";
 
 // A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal
@@ -87,13 +87,12 @@ export const RootNavigator = () => {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {!hasUserSelectedALanguage ? (
           <Stack.Screen
-            name="LanguageChoice"
-            component={LanguageChoiceScreen}
-            options={{ headerTitle: "Language choice" }}
+            name="LanguageChoiceNavigator"
+            component={LanguageChoiceStackNavigator}
           />
         ) : !hasUserSeenOnboarding ? (
           <Stack.Screen
-            name="RootOnboarding"
+            name="OnboardingNavigator"
             component={OnboardingStackNavigator}
           />
         ) : (
