@@ -1,7 +1,7 @@
 import { SagaIterator } from "redux-saga";
 import { fork } from "redux-saga/effects";
-import languagesSaga from "./Languages/languages.saga";
+import usersSaga from "./User/user.saga";
 
 export function* rootSaga(): SagaIterator {
-  yield fork(languagesSaga);
+  yield fork(usersSaga);
 }

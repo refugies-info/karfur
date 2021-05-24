@@ -6,13 +6,11 @@ import i18n, { t } from "../services/i18n";
 import { Button } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchLanguagesActionCreator,
-  saveSelectedLanguageActionCreator,
-} from "../services/redux/Languages/languages.actions";
-import { selectedI18nCodeSelector } from "../services/redux/Languages/languages.selectors";
+import { fetchLanguagesActionCreator } from "../services/redux/Languages/languages.actions";
 import { StackScreenProps } from "@react-navigation/stack";
 import { BottomTabParamList } from "../../types";
+import { saveSelectedLanguageActionCreator } from "../services/redux/User/user.actions";
+import { selectedI18nCodeSelector } from "../services/redux/User/user.selectors";
 
 export const TabOneScreen = ({
   navigation,
