@@ -36,7 +36,6 @@ export const RootNavigator = () => {
 
   const hasUserSeenOnboarding = useSelector(hasUserSeenOnboardingSelector);
   const hasUserSelectedALanguage = !!useSelector(selectedI18nCodeSelector);
-
   const dispatch = useDispatch();
   React.useEffect(() => {
     const setLanguage = async () => {
@@ -77,7 +76,7 @@ export const RootNavigator = () => {
     };
     checkIfUserHasAlreadySeenOnboarding();
     setLanguage();
-  }, [hasUserSeenOnboarding, hasUserSelectedALanguage]);
+  }, []);
 
   if (!isI18nInitialized || !isOnboardingValueInitialized) {
     return null;

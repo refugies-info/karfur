@@ -26,18 +26,11 @@ export const TabOneScreen = ({
 
       <Button
         onPress={() => cleanStorage("SELECTED_LANGUAGE")}
-        title="clean storage langue"
+        title="Reset langue"
       />
       <Button
         onPress={() => cleanStorage("HAS_USER_SEEN_ONBOARDING")}
-        title="clean storage user"
-      />
-
-      <Button
-        onPress={() => {
-          navigation.navigate("NotFound");
-        }}
-        title="nav"
+        title="Reset has seen onboarding"
       />
     </View>
   );
