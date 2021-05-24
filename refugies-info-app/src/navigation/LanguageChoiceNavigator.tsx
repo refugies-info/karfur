@@ -6,11 +6,14 @@ import { LanguageChoiceScreen } from "../screens/LanguageChoiceScreen";
 const LanguageChoiceNavigator = createStackNavigator<LanguageChoiceParamList>();
 
 export const LanguageChoiceStackNavigator = () => (
-  <LanguageChoiceNavigator.Navigator>
+  <LanguageChoiceNavigator.Navigator
+    screenOptions={{
+      headerShown: false,
+    }}
+  >
     <LanguageChoiceNavigator.Screen
       name="LanguageChoice"
       component={LanguageChoiceScreen}
-      options={{ headerTitle: "LanguageChoice" }}
     />
   </LanguageChoiceNavigator.Navigator>
 );
