@@ -5,12 +5,22 @@ import { filtres } from "../Dispositif/data";
 import CustomCard from "../../components/UI/CustomCard/CustomCard";
 import { CardBody, CardFooter } from "reactstrap";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
+//import Icon from "react-eva-icons";
 import { colors } from "colors";
 import Streamline from "../../assets/streamline";
 import "./AdvancedSearch.scss";
 
 const CardText = styled.p`
   font-weight: 14px;
+`;
+
+const BookmarkedContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
 `;
 
 const SearchResultCard = ({
@@ -78,14 +88,25 @@ const SearchResultCard = ({
         >
           <CardBody>
             {showPinned && (
-              <EVAIcon
-                name="bookmark"
-                size="xlarge"
-                onClick={(e) => pin(e, dispositif)}
-                fill={pinned ? colors.validationHover : colors.noirCD}
+              <BookmarkedContainer
                 className={"bookmark-icon" + (pinned ? " pinned" : "")}
-                testID={"test-toggle-pin-" + dispositif._id}
-              />
+                onClick={(e) => pin(e, dispositif)}
+              >
+                <EVAIcon
+                  name="star"
+                  fill={colors.blanc}
+                  size="medium"
+                  testID={"test-toggle-pin-" + dispositif._id}
+                />
+              </BookmarkedContainer>
+              // <EVAIcon
+              //   name="star"
+              //   size="MEDIUM"
+              //   onClick={(e) => pin(e, dispositif)}
+              //   fill={pinned ? colors.validationHover : "transparent"}
+              //   className={"bookmark-icon" + (pinned ? " pinned" : "")}
+              //   testID={"test-toggle-pin-" + dispositif._id}
+              // />
             )}
             <h5>{dispositif.titreInformatif}</h5>
             <CardText>{dispositif.abstract}</CardText>
