@@ -154,7 +154,7 @@ const DemarcheCardContainer = styled.div`
   border-radius: 12px;
   padding: 24px;
   padding-bottom: 12px;
-
+  padding-top: 0;
   border: 4px solid #ffffff;
   cursor: pointer;
   &:hover {
@@ -185,7 +185,7 @@ const LexiqueCardContainer = styled.div`
   border-radius: 12px;
   padding: 24px;
   padding-bottom: 12px;
-
+  padding-top: 10px;
   border: 4px solid #ffffff;
   cursor: not-allowed;
   position: relative;
@@ -430,7 +430,7 @@ const DemarcheCard = (props) => (
   <DemarcheCardContainer>
     <img
       src={assetsOnServer.commentContribuer.demarche}
-      height="162px"
+      height="190px"
       alt="demarche"
     />
     <div

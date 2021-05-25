@@ -1,8 +1,5 @@
 import i18next from "i18next";
-import { I18nManager as RNI18nManager } from "react-native";
 import * as config from "../../config/i18n";
-import date from "./date";
-import languageDetector from "./language-detector";
 import translationLoader from "./translation-loader";
 const i18n = {
   /**
@@ -10,32 +7,21 @@ const i18n = {
    */
   init: () => {
     return new Promise((resolve, reject) => {
-      i18next
-        .use(languageDetector)
-        .use(translationLoader)
-        .init(
-          {
-            fallbackLng: config.fallback,
+      i18next.use(translationLoader).init(
+        {
+          fallbackLng: config.fallback,
 
-            interpolation: {
-              escapeValue: false,
-              format(value, format) {
-                if (value instanceof Date) {
-                  return date.format(value, format);
-                }
-              },
-            },
+          interpolation: {
+            escapeValue: false,
           },
-          (error) => {
-            if (error) {
-              return reject(error);
-            }
-            date
-              .init(i18next.language)
-              .then(resolve)
-              .catch((error) => reject(error));
+        },
+        (error) => {
+          if (error) {
+            return reject(error);
           }
-        );
+          resolve();
+        }
+      );
     });
   },
   /**

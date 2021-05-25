@@ -241,6 +241,9 @@
       &.left-side {
         margin-right: auto;
       }
+      &.smartphone {
+        margin-top: 0px;
+      }
     }
     .section-body {
       p {
@@ -248,6 +251,10 @@
       }
       flex: 1 1 auto;
       margin-bottom: 40px;
+      &.smartphone {
+        margin-bottom: 20px;
+        flex: 0;
+      }
     }
 
     .footer-section {
@@ -310,6 +317,7 @@
 
   #smartphone {
     padding-top: 100px;
+    padding-bottom: 0;
     background: linear-gradient(#0421b1, rgba(4, 33, 177, 0.6496));
     background-repeat: no-repeat;
     color: $blancSimple;
@@ -494,7 +502,8 @@
       bottom: 160px;
     }
     svg {
-      filter: drop-shadow(2px 4px 6px black);
+      mix-blend-mode: normal;
+      filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.25));
     }
     background: $noir;
     border-radius: 50%;
