@@ -1,5 +1,5 @@
 import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call, all } from "redux-saga/effects";
+import { takeLatest, put, call } from "redux-saga/effects";
 import {
   startLoading,
   finishLoading,
