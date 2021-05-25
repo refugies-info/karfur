@@ -5,7 +5,6 @@ import { filtres } from "../Dispositif/data";
 import CustomCard from "../../components/UI/CustomCard/CustomCard";
 import { CardBody, CardFooter } from "reactstrap";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
-//import Icon from "react-eva-icons";
 import { colors } from "colors";
 import Streamline from "../../assets/streamline";
 import "./AdvancedSearch.scss";
