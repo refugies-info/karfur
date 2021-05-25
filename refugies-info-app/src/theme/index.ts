@@ -1,17 +1,13 @@
-import logo from "./images/logo.svg";
-
 const colors = {
   darkBlue: "#0421B1",
-  dark: "#212121",
+  black: "#212121",
   darkGrey: "#5E5E5E",
   grey: "#EDEBEB",
-  white: "#FFFFF",
+  white: "#FFFFFF",
   lightGrey: "#F6F6F6",
 };
 
-const images = {
-  logo,
-};
+const images = {};
 
 const fonts = {
   verySmall: {
@@ -45,4 +41,5 @@ export const theme = {
   images,
   margin: 8,
   fonts,
+  radius: 6,
 };
