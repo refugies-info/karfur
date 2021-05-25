@@ -477,8 +477,8 @@ export class HomePage extends Component {
           type="thème"
           title="Tags.thème"
           defaultTitle="thème"
-          sentence="SearchItem.Je cherche à"
-          defaultSentence="Je cherche à"
+          sentence="SearchItem.J'ai besoin de"
+          defaultSentence="J'ai besoin de'"
           toggle={this.toggleShowTagModal}
           show={this.state.showTagModal}
         />
