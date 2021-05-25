@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components/native";
 import { StyledTextNormalBold, StyledTextNormal } from "../StyledText";
 import { theme } from "../../theme";
+import { Flag } from "./Flag";
 
 const MainContainer = styled.View`
   background: ${theme.colors.white};
@@ -15,6 +16,7 @@ const MainContainer = styled.View`
 
 const StyledTextBold = styled(StyledTextNormalBold)`
   text-align: left;
+  margin-left: ${theme.margin}px;
 `;
 
 const StyledText = styled(StyledTextNormal)`
@@ -27,6 +29,7 @@ interface Props {
 }
 export const LanguageDetailsButton = (props: Props) => (
   <MainContainer>
+    <Flag langueFr={props.langueFr} />
     <StyledTextBold>{props.langueFr + " - "}</StyledTextBold>
     <StyledText>{props.langueLoc}</StyledText>
   </MainContainer>
