@@ -78,7 +78,7 @@ const MainTitleContainer = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 40px;
+  padding-top: 0px;
 `;
 const ButtonContainerRow = styled.div`
   display: flex;
@@ -426,8 +426,8 @@ export class HomePage extends Component {
             </section>
             <section id="smartphone">
               <img src={iphone} />
-              <div className="section-container half-width right-side">
-                <div className="section-body">
+              <div className="section-container half-width right-side smartphone">
+                <div className="section-body smartphone">
                   <h2>
                     {t(
                       "Homepage.Bientôt sur smartphone",
