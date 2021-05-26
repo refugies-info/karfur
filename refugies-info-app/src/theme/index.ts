@@ -10,29 +10,14 @@ const colors = {
 const images = {};
 
 const fonts = {
-  verySmall: {
-    fontSize: 13,
-    fontFamily: "circularBook",
+  sizes: {
+    verySmall: 13,
+    small: 16,
+    normal: 19,
   },
-  verySmallBold: {
-    fontSize: 13,
-    fontFamily: "circularBold",
-  },
-  small: {
-    fontSize: 16,
-    fontFamily: "circularBook",
-  },
-  smallBold: {
-    fontSize: 16,
-    fontFamily: "circularBold",
-  },
-  normal: {
-    fontSize: 19,
-    fontFamily: "circularBook",
-  },
-  normalBold: {
-    fontSize: 19,
-    fontFamily: "circularBold",
+  families: {
+    circularStandard: "circularBook",
+    circularBold: "circularBold",
   },
 };
 

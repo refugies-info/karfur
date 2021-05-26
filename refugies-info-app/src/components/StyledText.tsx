@@ -4,36 +4,36 @@ import { theme } from "../theme";
 
 export const StyledTextNormal = styled.Text`
   text-align: ${i18n.isRTL ? "right" : "left"};
-  font-size: ${theme.fonts.normal.fontSize}px;
-  font-family: ${theme.fonts.normal.fontFamily};
+  font-size: ${theme.fonts.sizes.normal}px;
+  font-family: ${theme.fonts.families.circularStandard};
 `;
 
 export const StyledTextNormalBold = styled.Text`
   text-align: ${i18n.isRTL ? "right" : "left"};
-  font-size: ${theme.fonts.normalBold.fontSize}px;
-  font-family: ${theme.fonts.normalBold.fontFamily};
+  font-size: ${theme.fonts.sizes.normal}px;
+  font-family: ${theme.fonts.families.circularBold};
 `;
 
 export const StyledTextSmall = styled.Text`
   text-align: ${i18n.isRTL ? "right" : "left"};
-  font-size: ${theme.fonts.small.fontSize}px;
-  font-family: ${theme.fonts.small.fontFamily};
+  font-size: ${theme.fonts.sizes.small}px;
+  font-family: ${theme.fonts.families.circularStandard};
 `;
 
 export const StyledTextSmallBold = styled.Text`
   text-align: ${i18n.isRTL ? "right" : "left"};
-  font-size: ${theme.fonts.smallBold.fontSize}px;
-  font-family: ${theme.fonts.smallBold.fontFamily};
+  font-size: ${theme.fonts.sizes.small}px;
+  font-family: ${theme.fonts.families.circularBold};
 `;
 
 export const StyledTextVerySmall = styled.Text`
   text-align: ${i18n.isRTL ? "right" : "left"};
-  font-size: ${theme.fonts.verySmall.fontSize}px;
-  font-family: ${theme.fonts.verySmall.fontFamily};
+  font-size: ${theme.fonts.sizes.verySmall}px;
+  font-family: ${theme.fonts.families.circularStandard};
 `;
 
 export const StyledTextVerySmallBold = styled.Text`
   text-align: ${i18n.isRTL ? "right" : "left"};
-  font-size: ${theme.fonts.verySmallBold.fontSize}px;
-  font-family: ${theme.fonts.verySmallBold.fontFamily};
+  font-size: ${theme.fonts.sizes.verySmall}px;
+  font-family: ${theme.fonts.families.circularBold};
 `;
