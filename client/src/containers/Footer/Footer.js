@@ -77,9 +77,10 @@ export class Footer extends Component {
           <ColumnContainer>
             <TextContainer>
               <h5 className="footer-header">
-                {
+                {t(
+                  "Footer.description",
                   "Réfugiés.info est un portail d’information collaboratif porté par la "
-                }
+                )}
                 <a
                   style={{ textDecoration: "underline" }}
                   target="_blank"
@@ -90,7 +91,7 @@ export class Footer extends Component {
                     "Délégation interministérielle à l’accueil et l’intégration des réfugiés"
                   }
                 </a>
-                {" et développé par la "}
+                {t("Footer.description_suite", " et développé par la ")}
                 <a
                   style={{ textDecoration: "underline" }}
                   target="_blank"

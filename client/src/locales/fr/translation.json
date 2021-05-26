@@ -614,7 +614,9 @@
     "Inscription à la newsletter": "Inscription à la newsletter",
     "Inscrivez-vous à notre lettre": "Inscrivez-vous à notre lettre d'information pour suivre l'évolution du projet Réfugiés.info",
     "Vous cherchez ?": "Vous cherchez ?",
-    "Centre d'aide": "Consulter le centre d'aide"
+    "Centre d'aide": "Consulter le centre d'aide",
+    "description": "Réfugiés.info est un portail d’information collaboratif porté par la ",
+    "description_suite": " et développé par la "
   },
   "Retour à la recherche": "Retour à la recherche",
   "ou": "ou",
@@ -652,6 +654,7 @@
   "Rechercher un utilisateur": "Rechercher un utilisateur",
   "CMU-C, demande de logement social, solidarité transport": "CMU-C, demande de logement social, solidarité transport",
   "Rechercher": "Rechercher",
+  "Rechercher...": "Rechercher...",
   "Qui sommes-nous ?": "Qui sommes-nous ?",
   "Comment contribuer ?": "Comment contribuer ?",
   "Accessibilité": "Accessibilité",
@@ -665,6 +668,7 @@
   "Envoyer": "Envoyer",
   "Lexique": "Consulter le lexique",
   "Changer": "Changer",
+  "Authentification réussie !": "Authentification réussie !",
   "ModaleNiveauDeFrançais": {
     "Niveau de langue": "Niveau de langue souhaité",
     "Faire le test": "Faire le test",
