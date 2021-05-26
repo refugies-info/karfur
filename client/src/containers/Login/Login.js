@@ -222,7 +222,10 @@ export class Login extends Component {
 
         Swal.fire({
           title: "Yay...",
-          text: "Authentification réussie !",
+          text: this.props.t(
+            "Authentification réussie !",
+            "Authentification réussie !"
+          ),
           type: "success",
           timer: 1500,
         }).then(() => {
