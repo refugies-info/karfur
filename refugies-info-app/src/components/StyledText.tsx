@@ -48,3 +48,10 @@ export const StyledTextVerySmallBold = styled.Text`
 export const TextNormal = (props: any) => (
   <StyledTextNormal isRTL={i18n.isRTL()} {...props} />
 );
+
+const Test = styled.View`
+  display: flex;
+  flex-direction: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? "row-reverse" : "row"};
+`;
+export const RTLView = (props: any) => <Test isRTL={i18n.isRTL()} {...props} />;

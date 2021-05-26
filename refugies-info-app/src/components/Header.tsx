@@ -5,15 +5,14 @@ import Logo from "../theme/images/logo.svg";
 import { SmallButton } from "./SmallButton";
 import { SafeAreaView } from "react-native-safe-area-context";
 import i18n from "../services/i18n";
+import { RTLView } from "./StyledText";
 
-const MainContainer = styled.View`
+const MainContainer = styled(RTLView)`
   padding-horizontal: ${theme.margin * 2}px;
   padding-vertical: ${theme.margin}px;
   align-items: center;
   justify-content: space-between;
   display: flex;
-  flex-direction: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "row-reverse" : "row"};
 `;
 
 const LOGO_WIDTH = 70;
