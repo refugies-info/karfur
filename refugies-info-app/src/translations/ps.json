@@ -4,5 +4,9 @@
   },
   "Onboarding2": {
     "welcome": "Bienvenue ps"
-  }
+  },
+  "homepage": {
+    "test": "test ps"
+  },
+  "lists": "Lists ps"
 }

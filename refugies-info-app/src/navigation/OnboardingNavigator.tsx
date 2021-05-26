@@ -7,7 +7,7 @@ import { Onboarding2 } from "../screens/Onboarding/Onboarding2";
 const OnBoardingNavigator = createStackNavigator<OnboardingParamList>();
 
 export const OnboardingStackNavigator = () => (
-  <OnBoardingNavigator.Navigator>
+  <OnBoardingNavigator.Navigator screenOptions={{ headerShown: false }}>
     <OnBoardingNavigator.Screen
       name="Onboarding1"
       component={Onboarding1}

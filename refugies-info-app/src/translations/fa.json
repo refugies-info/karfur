@@ -4,5 +4,9 @@
   },
   "Onboarding2": {
     "welcome": "Bienvenue fa"
-  }
+  },
+  "homepage": {
+    "test": "test fa"
+  },
+  "lists": "Lists fa"
 }

@@ -13,7 +13,6 @@ export const supportedLocales = {
     translationFileLoader: () => require("../translations/ti-ER.json"),
   },
   ru: {
-    name: "عربي",
     translationFileLoader: () => require("../translations/ru.json"),
   },
   ps: {
