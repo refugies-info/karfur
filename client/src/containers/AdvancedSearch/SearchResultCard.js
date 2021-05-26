@@ -90,22 +90,10 @@ const SearchResultCard = ({
               <BookmarkedContainer
                 className={"bookmark-icon" + (pinned ? " pinned" : "")}
                 onClick={(e) => pin(e, dispositif)}
+                testID={"test-toggle-pin-" + dispositif._id}
               >
-                <EVAIcon
-                  name="star"
-                  fill={colors.blanc}
-                  size="medium"
-                  testID={"test-toggle-pin-" + dispositif._id}
-                />
+                <EVAIcon name="star" fill={colors.blanc} size="medium" />
               </BookmarkedContainer>
-              // <EVAIcon
-              //   name="star"
-              //   size="MEDIUM"
-              //   onClick={(e) => pin(e, dispositif)}
-              //   fill={pinned ? colors.validationHover : "transparent"}
-              //   className={"bookmark-icon" + (pinned ? " pinned" : "")}
-              //   testID={"test-toggle-pin-" + dispositif._id}
-              // />
             )}
             <h5>{dispositif.titreInformatif}</h5>
             <CardText>{dispositif.abstract}</CardText>
