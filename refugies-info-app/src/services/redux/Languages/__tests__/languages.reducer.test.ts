@@ -1,8 +1,8 @@
 import { languagesReducer } from "../languages.reducer";
 import { setLanguagesActionCreator } from "../languages.actions";
 
-describe("[Reducer] LoadingStatus", () => {
-  it("sets the loading status to true to the store", () => {
+describe("[Reducer] languages", () => {
+  it("sets the available languages to the store", () => {
     const state = {};
     expect(
       languagesReducer(

@@ -2,5 +2,11 @@
   "homepage": {
     "test": "test anglais"
   },
-  "lists": "Lists anglaus"
+  "lists": "Lists anglais",
+  "Onboarding1": {
+    "welcome": "Bienvenue en"
+  },
+  "Onboarding2": {
+    "welcome": "Bienvenue en"
+  }
 }

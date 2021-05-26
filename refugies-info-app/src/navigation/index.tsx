@@ -13,11 +13,15 @@ import BottomTabNavigator from "./BottomTabNavigator";
 import i18n from "../services/i18n";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedLanguageActionCreator } from "../services/redux/Languages/languages.actions";
+import { setSelectedLanguageActionCreator } from "../services/redux/User/user.actions";
 import { logger } from "../logger";
 import { OnboardingStackNavigator } from "./OnboardingNavigator";
-import { hasUserSeenOnboardingSelector } from "../services/redux/User/user.selectors";
+import {
+  hasUserSeenOnboardingSelector,
+  selectedI18nCodeSelector,
+} from "../services/redux/User/user.selectors";
 import { setHasUserSeenOnboardingActionCreator } from "../services/redux/User/user.actions";
+import { LanguageChoiceStackNavigator } from "./LanguageChoiceNavigator";
 
 // A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal
@@ -31,7 +35,7 @@ export const RootNavigator = () => {
   ] = React.useState(false);
 
   const hasUserSeenOnboarding = useSelector(hasUserSeenOnboardingSelector);
-
+  const hasUserSelectedALanguage = !!useSelector(selectedI18nCodeSelector);
   const dispatch = useDispatch();
   React.useEffect(() => {
     const setLanguage = async () => {
@@ -72,7 +76,7 @@ export const RootNavigator = () => {
     };
     checkIfUserHasAlreadySeenOnboarding();
     setLanguage();
-  }, [hasUserSeenOnboarding]);
+  }, []);
 
   if (!isI18nInitialized || !isOnboardingValueInitialized) {
     return null;
@@ -81,9 +85,14 @@ export const RootNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {!hasUserSeenOnboarding ? (
+        {!hasUserSelectedALanguage ? (
           <Stack.Screen
-            name="RootOnboarding"
+            name="LanguageChoiceNavigator"
+            component={LanguageChoiceStackNavigator}
+          />
+        ) : !hasUserSeenOnboarding ? (
+          <Stack.Screen
+            name="OnboardingNavigator"
             component={OnboardingStackNavigator}
           />
         ) : (
