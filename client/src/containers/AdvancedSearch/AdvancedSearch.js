@@ -316,7 +316,6 @@ export class AdvancedSearch extends Component {
       (elem) => elem.name === decodeURIComponent(niveauFrancais)
     );
     let filter = querySearch(this.props.location.search).filter;
-
     if (filter) {
       this.filter_content(
         filter === "dispositif" ? filtres_contenu[0] : filtres_contenu[1]
@@ -330,7 +329,14 @@ export class AdvancedSearch extends Component {
       let LangueFromUrl = activatedLanguages[langueIndex];
       this.selectLanguage(LangueFromUrl);
     }
+    let tri = querySearch(this.props.location.search).tri;
+    if (tri) {
+      let triFromUrl = tris.filter(
+        (item) => item.value === decodeURIComponent(tri)
+      )[0];
 
+      this.reorder(triFromUrl);
+    }
     if (this.props.location.state === "dispositifs") {
       this.filter_content(filtres_contenu[0]);
     } else if (this.props.location.state === "demarches") {
@@ -507,6 +513,7 @@ export class AdvancedSearch extends Component {
           : this.state.filter.typeContenu
           ? this.state.filter.typeContenu
           : undefined,
+        tri: this.state.order,
         filterLanguage: this.state.filterLanguage.langueCode,
       };
       //delete empty value from the filters
@@ -836,6 +843,12 @@ export class AdvancedSearch extends Component {
   };
 
   reorder = (tri) => {
+    let paramsFromUrl = querySearch(this.props.location.search);
+    paramsFromUrl.tri = tri.value;
+    paramsFromUrl.tag = decodeURIComponent(paramsFromUrl.tag);
+    this.props.history.push({
+      search: qs.stringify(paramsFromUrl),
+    });
     if (tri.name === "Par thème") {
       this.setState(
         {
