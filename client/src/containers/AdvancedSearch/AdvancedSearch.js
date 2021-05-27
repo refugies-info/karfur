@@ -380,7 +380,7 @@ export class AdvancedSearch extends Component {
             draft.recherche[3].query = niveauFrancaisObj.query;
             draft.recherche[3].active = true;
           }
-          draft.activeTri = this.state.order;
+          draft.activeTri = "";
         }),
         //Launch filter query with value from the url
         () =>
@@ -1000,7 +1000,10 @@ export class AdvancedSearch extends Component {
     this.props.history.push({
       search: qs.stringify(query),
     });
-    this.setState({ activeTri: "" }, () => this.queryDispositifs());
+
+    this.setState({ activeTri: "", order: null }, () =>
+      this.queryDispositifs()
+    );
   };
 
   desactiverFiltre = () => {
