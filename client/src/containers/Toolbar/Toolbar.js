@@ -234,7 +234,10 @@ export class Toolbar extends React.Component {
                   this.props.history.replace("/advanced-search");
                   window.location.reload();
                 } else {
-                  this.props.history.push("/advanced-search");
+                  this.props.history.push({
+                    pathname: "/advanced-search",
+                    state: "theme",
+                  });
                 }
               }}
               className={

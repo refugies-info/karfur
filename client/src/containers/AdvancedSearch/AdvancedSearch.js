@@ -233,9 +233,9 @@ export class AdvancedSearch extends Component {
       dispositifs: [],
       pinned: [],
       activeFiltre: "",
-      activeTri: "Par thème",
+      activeTri: this.props.location.state === "theme" ? "Par thème" : null,
       data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
-      order: "theme",
+      order: this.props.location.state === "theme" ? "theme" : null,
       croissant: true,
       filter: {},
       displayAll: true,
@@ -301,7 +301,8 @@ export class AdvancedSearch extends Component {
     let tagFromNav =
       this.props.location.state === "clean-filters" ||
       this.props.location.state === "dispositifs" ||
-      this.props.location.state === "demarches"
+      this.props.location.state === "demarches" ||
+      this.props.location.state === "theme"
         ? null
         : this.props.location.state;
 
@@ -379,7 +380,7 @@ export class AdvancedSearch extends Component {
             draft.recherche[3].query = niveauFrancaisObj.query;
             draft.recherche[3].active = true;
           }
-          draft.activeTri = "";
+          draft.activeTri = this.state.order;
         }),
         //Launch filter query with value from the url
         () =>
@@ -512,7 +513,8 @@ export class AdvancedSearch extends Component {
           : this.state.filter.typeContenu
           ? this.state.filter.typeContenu
           : undefined,
-        tri: this.state.order,
+
+        tri: this.state.order ? this.state.order : undefined,
         filterLanguage: this.state.filterLanguage.langueCode,
       };
       //delete empty value from the filters
