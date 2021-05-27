@@ -27,6 +27,7 @@ import NoResultPlaceholder from "./NoResultPlaceholder";
 import { MobileAdvancedSearch } from "./MobileAdvancedSearch/MobileAdvancedSearch";
 import API from "../../utils/API";
 import { initial_data } from "./data";
+import { activatedLanguages } from "../../components/Modals/LanguageModal/data";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import { filtres } from "../Dispositif/data";
 import { filtres_contenu, tris } from "./data";
@@ -315,11 +316,21 @@ export class AdvancedSearch extends Component {
       (elem) => elem.name === decodeURIComponent(niveauFrancais)
     );
     let filter = querySearch(this.props.location.search).filter;
+
     if (filter) {
       this.filter_content(
         filter === "dispositif" ? filtres_contenu[0] : filtres_contenu[1]
       );
     }
+    let filterLanguage = querySearch(this.props.location.search).filterLanguage;
+    if (filterLanguage) {
+      let langueIndex = Object.keys(activatedLanguages).filter(
+        (item) => activatedLanguages[item].langueCode === filterLanguage
+      )[0];
+      let LangueFromUrl = activatedLanguages[langueIndex];
+      this.selectLanguage(LangueFromUrl);
+    }
+
     if (this.props.location.state === "dispositifs") {
       this.filter_content(filtres_contenu[0]);
     } else if (this.props.location.state === "demarches") {
@@ -496,6 +507,7 @@ export class AdvancedSearch extends Component {
           : this.state.filter.typeContenu
           ? this.state.filter.typeContenu
           : undefined,
+        filterLanguage: this.state.filterLanguage.langueCode,
       };
       //delete empty value from the filters
       Object.keys(newQueryParam).forEach((key) =>
@@ -1006,6 +1018,11 @@ export class AdvancedSearch extends Component {
   };
 
   selectLanguage = (language) => {
+    let filterFromUrl = querySearch(this.props.location.search);
+    filterFromUrl.filterLanguage = language.langueCode;
+    this.props.history.push({
+      search: qs.stringify(filterFromUrl),
+    });
     this.setState({ filterLanguage: language, languageDropdown: false }, () =>
       this.queryDispositifs()
     );
