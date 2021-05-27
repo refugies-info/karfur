@@ -713,15 +713,6 @@ export class AdvancedSearch extends Component {
       countShow: dispositifs.length,
     });
 
-    // if (
-    //   this.state.activeTri === "nbVues" ||
-    //   this.state.activeTri === "created_at"
-    // ) {
-    //   const tri = tris.filter(
-    //     (item) => item.value === decodeURIComponent(this.state.activeTri)
-    //   )[0];
-    //   this.reorder(tri);
-    // }
     let tri = querySearch(this.props.location.search).tri;
     if (tri === "nbVues" || tri === "created_at") {
       const triFromUrl = tris.filter(
@@ -862,15 +853,44 @@ export class AdvancedSearch extends Component {
     });
   };
 
-  reorder = (tri) => {
-    let paramsFromUrl = querySearch(this.props.location.search);
-    paramsFromUrl.tri = tri.value;
-    // if (paramsFromUrl.tag) {
-    //   paramsFromUrl.tag = decodeURIComponent(paramsFromUrl.tag);
-    // }
-    this.props.history.push({
-      search: qs.stringify(paramsFromUrl),
+  computeUrl = () => {
+    let newQueryParam = {};
+    this.state.recherche.map((item) => {
+      if (item.value) {
+        switch (item.title) {
+          case "Je cherche à":
+            newQueryParam.tag = item.value;
+            break;
+          case "J'habite à":
+            newQueryParam.city = item.query[0].short_name;
+            newQueryParam.dep = item.query[1].short_name;
+            break;
+          case "J'ai":
+            newQueryParam.bottomValue = item.bottomValue;
+            newQueryParam.topValue = item.topValue;
+            break;
+          case "Je parle":
+            newQueryParam.niveauFrancais = item.value;
+            break;
+          default:
+            break;
+        }
+      }
     });
+    if (this.state.order) {
+      newQueryParam.filtre = this.state.order;
+    }
+    if (this.state.filterLanguage) {
+      newQueryParam.filterLanguage = this.state.filterLanguage.langueCode;
+    }
+    if (this.state.activeTri) {
+      newQueryParam.tri = this.state.activeTri;
+    }
+    return newQueryParam;
+  };
+
+  reorder = (tri) => {
+    this.props.history.push(this.computeUrl());
     if (tri.name === "Par thème") {
       this.setState(
         {
@@ -910,13 +930,7 @@ export class AdvancedSearch extends Component {
     const filter = this.state.activeFiltre === filtre.name ? {} : filtre.query;
     const activeFiltre =
       this.state.activeFiltre === filtre.name ? "" : filtre.name;
-    let filterFromUrl = querySearch(this.props.location.search);
-    filterFromUrl.filter = filter.$or
-      ? filter.$or[1].typeContenu
-      : filter.typeContenu;
-    this.props.history.push({
-      search: qs.stringify(filterFromUrl),
-    });
+    this.props.history.push(this.computeUrl());
     this.setState(
       {
         filter,
