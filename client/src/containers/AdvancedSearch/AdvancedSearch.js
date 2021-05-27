@@ -330,6 +330,7 @@ export class AdvancedSearch extends Component {
         (item) => activatedLanguages[item].langueCode === filterLanguage
       )[0];
       const langueFromUrl = activatedLanguages[langueIndex];
+      this.setState({ activeFiltre: "traduction" });
       this.selectLanguage(langueFromUrl);
     }
     let tri = querySearch(this.props.location.search).tri;
@@ -878,25 +879,23 @@ export class AdvancedSearch extends Component {
       const order = tri.value;
       const croissant =
         order === this.state.order ? !this.state.croissant : false;
-      this.setState(
-        (pS) => ({
-          dispositifs: this.sortFunction(pS.dispositifs, order, croissant),
-          principalThemeList: this.sortFunction(
-            pS.principalThemeList,
-            order,
-            croissant
-          ),
-          secondaryThemeList: this.sortFunction(
-            pS.secondaryThemeList,
-            order,
-            croissant
-          ),
-          order: tri.value,
-          activeTri: tri.name,
-          croissant: croissant,
-        })
-        //() => this.queryDispositifs()
-      );
+
+      this.setState((pS) => ({
+        dispositifs: this.sortFunction(pS.dispositifs, order, croissant),
+        principalThemeList: this.sortFunction(
+          pS.principalThemeList,
+          order,
+          croissant
+        ),
+        secondaryThemeList: this.sortFunction(
+          pS.secondaryThemeList,
+          order,
+          croissant
+        ),
+        order: tri.value,
+        activeTri: tri.name,
+        croissant: croissant,
+      }));
     }
   };
 
