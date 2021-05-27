@@ -16,7 +16,7 @@ const bookmarkedModal = (props) => {
     <Modal isOpen={show} toggle={toggle} className="bookmark-modal">
       <ModalHeader toggle={toggle}>
         <div className={"bookmark-icon" + (success ? " success" : " oups")}>
-          <EVAIcon name={"bookmark"} fill={colors.blanc} />
+          <EVAIcon name={"star"} fill={colors.blanc} />
         </div>
         <div>
           {success

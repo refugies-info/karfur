@@ -2,5 +2,11 @@
   "homepage": {
     "test": " حياتك"
   },
-  "lists": " حياتك"
+  "lists": " حياتك",
+  "Onboarding1": {
+    "welcome": "Bienvenue ar"
+  },
+  "Onboarding2": {
+    "welcome": "Bienvenue ar"
+  }
 }

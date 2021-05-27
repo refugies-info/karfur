@@ -59,7 +59,7 @@ token.json
 
 /refugies-info-app/.expo/
 /refugies-info-app/.expo/packager-info.json
-/refugies-info-app/src/assets/fonts
+/refugies-info-app/src/theme/fonts
 /refugies-info-app/node_modules/
 /refugies-info-app/npm-debug.*
 *.jks

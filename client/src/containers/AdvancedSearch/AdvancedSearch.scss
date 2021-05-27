@@ -128,14 +128,8 @@
     top: -8px;
     right: 5px;
     &:active {
-      svg {
-        fill: $noir;
-      }
     }
     &:hover {
-      svg {
-        fill: $noir;
-      }
     }
     &:focus {
       svg {
@@ -146,9 +140,6 @@
 
   .pinned {
     opacity: 1;
-    svg {
-      fill: $validationHover;
-    }
   }
 
   p {
