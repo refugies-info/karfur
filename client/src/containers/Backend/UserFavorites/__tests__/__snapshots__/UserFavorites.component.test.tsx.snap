@@ -559,8 +559,26 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
 `;
 
 exports[`UserFavorites should render correctly when 3 favorites 1`] = `
-.c12 {
+.c13 {
   font-weight: 14px;
+}
+
+.c12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
 }
 
 .c5 {
@@ -906,23 +924,24 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               <div
                 className="card-body"
               >
-                <span
-                  className="bookmark-icon pinned"
+                <div
+                  className="c12 bookmark-icon pinned"
                   onClick={[Function]}
-                  testID="test-toggle-pin-id1"
                 >
-                  <i
-                    data-eva="bookmark"
-                    data-eva-fill="#4caf50"
-                    data-eva-height="30px"
-                    data-eva-width="30px"
-                  />
-                </span>
+                  <span>
+                    <i
+                      data-eva="star"
+                      data-eva-fill="#fbfbfb"
+                      data-eva-height="20px"
+                      data-eva-width="20px"
+                    />
+                  </span>
+                </div>
                 <h5>
                   tinfo1
                 </h5>
                 <p
-                  className="c12"
+                  className="c13"
                 >
                   abstract1
                 </p>
@@ -1003,23 +1022,24 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               <div
                 className="card-body"
               >
-                <span
-                  className="bookmark-icon pinned"
+                <div
+                  className="c12 bookmark-icon pinned"
                   onClick={[Function]}
-                  testID="test-toggle-pin-id2"
                 >
-                  <i
-                    data-eva="bookmark"
-                    data-eva-fill="#4caf50"
-                    data-eva-height="30px"
-                    data-eva-width="30px"
-                  />
-                </span>
+                  <span>
+                    <i
+                      data-eva="star"
+                      data-eva-fill="#fbfbfb"
+                      data-eva-height="20px"
+                      data-eva-width="20px"
+                    />
+                  </span>
+                </div>
                 <h5>
                   tinfo2
                 </h5>
                 <p
-                  className="c12"
+                  className="c13"
                 >
                   abstract2
                 </p>
@@ -1094,23 +1114,24 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               <div
                 className="card-body"
               >
-                <span
-                  className="bookmark-icon pinned"
+                <div
+                  className="c12 bookmark-icon pinned"
                   onClick={[Function]}
-                  testID="test-toggle-pin-id3"
                 >
-                  <i
-                    data-eva="bookmark"
-                    data-eva-fill="#4caf50"
-                    data-eva-height="30px"
-                    data-eva-width="30px"
-                  />
-                </span>
+                  <span>
+                    <i
+                      data-eva="star"
+                      data-eva-fill="#fbfbfb"
+                      data-eva-height="20px"
+                      data-eva-width="20px"
+                    />
+                  </span>
+                </div>
                 <h5>
                   tinfo3
                 </h5>
                 <p
-                  className="c12"
+                  className="c13"
                 >
                   abstract3
                 </p>
