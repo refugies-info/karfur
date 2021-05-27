@@ -19,6 +19,7 @@ const MainContainer = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 const StyledTextBold = styled(StyledTextNormalBold)`

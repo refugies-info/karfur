@@ -38,6 +38,7 @@ export const LanguageChoiceScreen = () => {
   const languagesWithAvancement = useSelector(availableLanguagesSelector);
 
   React.useEffect(() => {
+    console.log("use effetc");
     dispatch(fetchLanguagesActionCreator());
   }, []);
 
@@ -59,6 +60,7 @@ export const LanguageChoiceScreen = () => {
               languagesWithAvancement
             )}
             onPress={() => changeLanguage(language.i18nCode)}
+            testID={"test-language-button-" + language.i18nCode}
           />
         ))}
       </MainContainer>
