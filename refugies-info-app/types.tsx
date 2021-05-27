@@ -14,12 +14,7 @@ export type RootStackParamList = {
 export type BottomTabParamList = {
   Explorer: undefined;
   Favoris: undefined;
-  Profile: undefined;
-  TabOne: undefined;
-};
-
-export type TabOneParamList = {
-  TabOneScreen: undefined;
+  Profil: undefined;
 };
 
 export type ExplorerParamList = {
@@ -28,6 +23,10 @@ export type ExplorerParamList = {
 
 export type FavorisParamList = {
   FavorisScreen: undefined;
+};
+
+export type ProfilParamList = {
+  ProfilScreen: undefined;
 };
 
 export type OnboardingParamList = {

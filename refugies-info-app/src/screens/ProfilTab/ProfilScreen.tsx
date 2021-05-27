@@ -1,29 +1,23 @@
 import * as React from "react";
-import { View } from "../components/Themed";
-import { t } from "../services/i18n";
-import { Button } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { StackScreenProps } from "@react-navigation/stack";
-import { BottomTabParamList } from "../../types";
-import { Header } from "../components/Header";
-import { TextNormal } from "../components/StyledText";
+import { TextNormal } from "../../components/StyledText";
+import { View, Button, AsyncStorage } from "react-native";
+import { t } from "../../services/i18n";
+import { Header } from "../../components/Header";
 
-export const TabOneScreen = ({
-  navigation,
-}: StackScreenProps<BottomTabParamList, "TabOne">) => {
+export const ProfilScreen = () => {
   const cleanStorage = (value: string) => {
     try {
       AsyncStorage.removeItem(value);
     } catch (e) {}
   };
+
   return (
     <View>
       <Header />
-      <TextNormal>test rlt</TextNormal>
+      <TextNormal>Profil screen</TextNormal>
 
       <TextNormal>{t("lists", "options")}</TextNormal>
       <TextNormal>{t("homepage.test", "options")}</TextNormal>
-
       <Button
         onPress={() => cleanStorage("SELECTED_LANGUAGE")}
         title="Reset langue"
