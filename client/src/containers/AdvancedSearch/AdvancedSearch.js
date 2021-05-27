@@ -235,7 +235,7 @@ export class AdvancedSearch extends Component {
       activeFiltre: "",
       activeTri: "Par thème",
       data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
-      order: "created_at",
+      order: "theme",
       croissant: true,
       filter: {},
       displayAll: true,
@@ -315,28 +315,25 @@ export class AdvancedSearch extends Component {
     let niveauFrancaisObj = this.state.recherche[3].children.find(
       (elem) => elem.name === decodeURIComponent(niveauFrancais)
     );
-    let filter = querySearch(this.props.location.search).filter;
+    const filter = querySearch(this.props.location.search).filter;
     if (filter) {
       this.filter_content(
         filter === "dispositif" ? filtres_contenu[0] : filtres_contenu[1]
       );
     }
-    let filterLanguage = querySearch(this.props.location.search).filterLanguage;
+
+    const filterLanguage = querySearch(
+      this.props.location.search
+    ).filterLanguage;
     if (filterLanguage) {
-      let langueIndex = Object.keys(activatedLanguages).filter(
+      const langueIndex = Object.keys(activatedLanguages).filter(
         (item) => activatedLanguages[item].langueCode === filterLanguage
       )[0];
-      let LangueFromUrl = activatedLanguages[langueIndex];
-      this.selectLanguage(LangueFromUrl);
+      const langueFromUrl = activatedLanguages[langueIndex];
+      this.selectLanguage(langueFromUrl);
     }
     let tri = querySearch(this.props.location.search).tri;
-    if (tri) {
-      let triFromUrl = tris.filter(
-        (item) => item.value === decodeURIComponent(tri)
-      )[0];
 
-      this.reorder(triFromUrl);
-    }
     if (this.props.location.state === "dispositifs") {
       this.filter_content(filtres_contenu[0]);
     } else if (this.props.location.state === "demarches") {
@@ -397,12 +394,27 @@ export class AdvancedSearch extends Component {
             city: decodeURIComponent(city),
             dep: decodeURIComponent(dep),
             niveauFrancais: niveauFrancaisObj ? niveauFrancaisObj.query : "",
+            tri: tris.filter(
+              (item) => item.value === decodeURIComponent(tri)
+            )[0],
           })
       );
+      if (tri) {
+        const triFromUrl = tris.filter(
+          (item) => item.value === decodeURIComponent(tri)
+        )[0];
+
+        this.reorder(triFromUrl);
+      }
     } else if (filter) {
       this.filter_content(
         filter === "dispositif" ? filtres_contenu[0] : filtres_contenu[1]
       );
+    } else if (tri) {
+      const triFromUrl = tris.filter(
+        (item) => item.value === decodeURIComponent(tri)
+      )[0];
+      this.reorder(triFromUrl);
     } else {
       this.queryDispositifs();
     }
@@ -845,7 +857,9 @@ export class AdvancedSearch extends Component {
   reorder = (tri) => {
     let paramsFromUrl = querySearch(this.props.location.search);
     paramsFromUrl.tri = tri.value;
-    paramsFromUrl.tag = decodeURIComponent(paramsFromUrl.tag);
+    if (paramsFromUrl.tag) {
+      paramsFromUrl.tag = decodeURIComponent(paramsFromUrl.tag);
+    }
     this.props.history.push({
       search: qs.stringify(paramsFromUrl),
     });
@@ -1027,12 +1041,16 @@ export class AdvancedSearch extends Component {
   };
 
   openLDropdown = () => {
+    this.desactiverFiltre();
     this.setState({ activeFiltre: "traduction", languageDropdown: true });
   };
 
   selectLanguage = (language) => {
     let filterFromUrl = querySearch(this.props.location.search);
     filterFromUrl.filterLanguage = language.langueCode;
+
+    delete filterFromUrl.filter;
+
     this.props.history.push({
       search: qs.stringify(filterFromUrl),
     });
