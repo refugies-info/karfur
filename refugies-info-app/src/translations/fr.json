@@ -8,5 +8,10 @@
   },
   "Onboarding2": {
     "welcome": "Bienvenue fr"
+  },
+  "tabBar": {
+    "Explorer": "Explorer",
+    "Favoris": "Favoris",
+    "Profil": "Moi"
   }
 }

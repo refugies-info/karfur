@@ -12,16 +12,22 @@ export type RootStackParamList = {
 };
 
 export type BottomTabParamList = {
+  Explorer: undefined;
+  Favoris: undefined;
+  Profile: undefined;
   TabOne: undefined;
-  TabTwo: undefined;
 };
 
 export type TabOneParamList = {
   TabOneScreen: undefined;
 };
 
-export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+export type ExplorerParamList = {
+  ExplorerScreen: undefined;
+};
+
+export type FavorisParamList = {
+  FavorisScreen: undefined;
 };
 
 export type OnboardingParamList = {
