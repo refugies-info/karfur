@@ -12,6 +12,7 @@
   "tabBar": {
     "Explorer": "Explorer",
     "Favoris": "Favoris",
-    "Profil": "Moi"
+    "Profil": "Moi",
+    "Search": "Rechercher"
   }
 }

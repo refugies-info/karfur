@@ -15,6 +15,7 @@ export type BottomTabParamList = {
   Explorer: undefined;
   Favoris: undefined;
   Profil: undefined;
+  Search: undefined;
 };
 
 export type ExplorerParamList = {
@@ -27,6 +28,10 @@ export type FavorisParamList = {
 
 export type ProfilParamList = {
   ProfilScreen: undefined;
+};
+
+export type SearchParamList = {
+  SearchScreen: undefined;
 };
 
 export type OnboardingParamList = {

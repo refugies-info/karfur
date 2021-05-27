@@ -18,6 +18,7 @@ import {
 import styled from "styled-components/native";
 import { FavorisNavigator } from "./BottomTabBar/FavorisNavigator";
 import { ProfilNavigator } from "./BottomTabBar/ProfilNavigator";
+import { SearchNavigator } from "./BottomTabBar/SearchNavigator";
 
 const ICON_SIZE = 24;
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -101,6 +102,27 @@ export default function BottomTabNavigator() {
             focused: boolean;
           }) =>
             renderTabBarLabel(color, focused, t("tabBar.Favoris", "Favoris")),
+        }}
+      />
+      <BottomTab.Screen
+        name="Search"
+        component={SearchNavigator}
+        options={{
+          tabBarIcon: ({
+            color,
+            focused,
+          }: {
+            color: string;
+            focused: boolean;
+          }) => renderTabBarIcon(color, focused, "search"),
+          tabBarLabel: ({
+            color,
+            focused,
+          }: {
+            color: string;
+            focused: boolean;
+          }) =>
+            renderTabBarLabel(color, focused, t("tabBar.Search", "Rechercher")),
         }}
       />
       <BottomTab.Screen
