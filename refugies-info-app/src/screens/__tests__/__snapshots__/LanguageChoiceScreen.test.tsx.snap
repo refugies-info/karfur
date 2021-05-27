@@ -9,7 +9,6 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
   <View>
     <RNCSafeAreaView>
       <View
-        isRTL={false}
         style={
           Array [
             Object {
@@ -153,6 +152,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingTop": 16,
           }
         }
+        testID="test-language-button-Français"
       >
         <View
           style={
@@ -277,6 +277,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingTop": 16,
           }
         }
+        testID="test-language-button-Anglais"
       >
         <View
           style={
@@ -401,6 +402,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingTop": 16,
           }
         }
+        testID="test-language-button-Pachto"
       >
         <View
           style={
@@ -525,6 +527,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingTop": 16,
           }
         }
+        testID="test-language-button-Persan/Dari"
       >
         <View
           style={
@@ -649,6 +652,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingTop": 16,
           }
         }
+        testID="test-language-button-Tigrinya"
       >
         <View
           style={
@@ -773,6 +777,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingTop": 16,
           }
         }
+        testID="test-language-button-Russe"
       >
         <View
           style={
@@ -897,6 +902,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingTop": 16,
           }
         }
+        testID="test-language-button-Arabe"
       >
         <View
           style={

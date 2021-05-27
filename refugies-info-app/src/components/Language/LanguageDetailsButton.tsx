@@ -42,7 +42,10 @@ interface Props {
   onPress: () => void;
 }
 export const LanguageDetailsButton = (props: Props) => (
-  <MainContainer onPress={props.onPress}>
+  <MainContainer
+    onPress={props.onPress}
+    testID={"test-language-button-" + props.langueFr}
+  >
     <RowContainer>
       <Flag langueFr={props.langueFr} />
       <StyledTextBold>{props.langueFr + " - "}</StyledTextBold>
