@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import {
@@ -307,7 +306,7 @@ export class AdvancedSearch extends Component {
         : this.props.location.state;
 
     let tag = querySearch(this.props.location.search).tag || tagFromNav;
-    let tri = querySearch(this.props.location.search).tri;
+    //let tri = querySearch(this.props.location.search).tri;
     let bottomValue = querySearch(this.props.location.search).bottomValue;
     let dep = querySearch(this.props.location.search).dep;
     let city = querySearch(this.props.location.search).city;
@@ -380,7 +379,7 @@ export class AdvancedSearch extends Component {
             draft.recherche[3].query = niveauFrancaisObj.query;
             draft.recherche[3].active = true;
           }
-          draft.activeTri = tri;
+          draft.activeTri = "";
         }),
         //Launch filter query with value from the url
         () =>
@@ -402,6 +401,8 @@ export class AdvancedSearch extends Component {
         filter === "dispositif" ? filtres_contenu[0] : filtres_contenu[1]
       );
 
+      this.queryDispositifs();
+    } else {
       this.queryDispositifs();
     }
   }
@@ -710,22 +711,22 @@ export class AdvancedSearch extends Component {
       countShow: dispositifs.length,
     });
 
-    if (
-      this.state.activeTri === "nbVues" ||
-      this.state.activeTri === "created_at"
-    ) {
-      const tri = tris.filter(
-        (item) => item.value === decodeURIComponent(this.state.activeTri)
-      )[0];
-      this.reorder(tri);
-    }
-    // let tri = querySearch(this.props.location.search).tri;
-    // if(tri){
-    //   const triFromUrl = tris.filter(
+    // if (
+    //   this.state.activeTri === "nbVues" ||
+    //   this.state.activeTri === "created_at"
+    // ) {
+    //   const tri = tris.filter(
     //     (item) => item.value === decodeURIComponent(this.state.activeTri)
     //   )[0];
-    //   this.reorder(triFromUrl);
+    //   this.reorder(tri);
     // }
+    let tri = querySearch(this.props.location.search).tri;
+    if (tri === "nbVues" || tri === "created_at") {
+      const triFromUrl = tris.filter(
+        (item) => item.value === decodeURIComponent(tri)
+      )[0];
+      this.reorder(triFromUrl);
+    }
   };
 
   selectTag = (tag = {}) => {
@@ -862,9 +863,9 @@ export class AdvancedSearch extends Component {
   reorder = (tri) => {
     let paramsFromUrl = querySearch(this.props.location.search);
     paramsFromUrl.tri = tri.value;
-    if (paramsFromUrl.tag) {
-      paramsFromUrl.tag = decodeURIComponent(paramsFromUrl.tag);
-    }
+    // if (paramsFromUrl.tag) {
+    //   paramsFromUrl.tag = decodeURIComponent(paramsFromUrl.tag);
+    // }
     this.props.history.push({
       search: qs.stringify(paramsFromUrl),
     });
@@ -990,6 +991,13 @@ export class AdvancedSearch extends Component {
   };
 
   desactiverTri = () => {
+    let query = querySearch(this.props.location.search);
+    if (query.tri) {
+      delete query.tri;
+    }
+    this.props.history.push({
+      search: qs.stringify(query),
+    });
     this.setState({ activeTri: "" }, () => this.queryDispositifs());
   };
 
