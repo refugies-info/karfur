@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import {
@@ -306,7 +307,7 @@ export class AdvancedSearch extends Component {
         : this.props.location.state;
 
     let tag = querySearch(this.props.location.search).tag || tagFromNav;
-
+    let tri = querySearch(this.props.location.search).tri;
     let bottomValue = querySearch(this.props.location.search).bottomValue;
     let dep = querySearch(this.props.location.search).dep;
     let city = querySearch(this.props.location.search).city;
@@ -333,7 +334,6 @@ export class AdvancedSearch extends Component {
       this.setState({ activeFiltre: "traduction" });
       this.selectLanguage(langueFromUrl);
     }
-    let tri = querySearch(this.props.location.search).tri;
 
     if (this.props.location.state === "dispositifs") {
       this.filter_content(filtres_contenu[0]);
@@ -380,7 +380,7 @@ export class AdvancedSearch extends Component {
             draft.recherche[3].query = niveauFrancaisObj.query;
             draft.recherche[3].active = true;
           }
-          draft.activeTri = "";
+          draft.activeTri = tri;
         }),
         //Launch filter query with value from the url
         () =>
@@ -395,28 +395,13 @@ export class AdvancedSearch extends Component {
             city: decodeURIComponent(city),
             dep: decodeURIComponent(dep),
             niveauFrancais: niveauFrancaisObj ? niveauFrancaisObj.query : "",
-            tri: tris.filter(
-              (item) => item.value === decodeURIComponent(tri)
-            )[0],
           })
       );
-      if (tri) {
-        const triFromUrl = tris.filter(
-          (item) => item.value === decodeURIComponent(tri)
-        )[0];
-
-        this.reorder(triFromUrl);
-      }
     } else if (filter) {
       this.filter_content(
         filter === "dispositif" ? filtres_contenu[0] : filtres_contenu[1]
       );
-    } else if (tri) {
-      const triFromUrl = tris.filter(
-        (item) => item.value === decodeURIComponent(tri)
-      )[0];
-      this.reorder(triFromUrl);
-    } else {
+
       this.queryDispositifs();
     }
   }
@@ -665,6 +650,7 @@ export class AdvancedSearch extends Component {
       });
       this.setState({ themesObject: themesObject });
     }
+
     if (this.state.recherche[0] && this.state.recherche[0].value) {
       var principalThemeList = dispositifs.filter((elem) => {
         if (elem.tags && elem.tags[0]) {
@@ -718,10 +704,28 @@ export class AdvancedSearch extends Component {
         });
       }
     }
+
     this.setState({
       dispositifs,
       countShow: dispositifs.length,
     });
+
+    if (
+      this.state.activeTri === "nbVues" ||
+      this.state.activeTri === "created_at"
+    ) {
+      const tri = tris.filter(
+        (item) => item.value === decodeURIComponent(this.state.activeTri)
+      )[0];
+      this.reorder(tri);
+    }
+    // let tri = querySearch(this.props.location.search).tri;
+    // if(tri){
+    //   const triFromUrl = tris.filter(
+    //     (item) => item.value === decodeURIComponent(this.state.activeTri)
+    //   )[0];
+    //   this.reorder(triFromUrl);
+    // }
   };
 
   selectTag = (tag = {}) => {
