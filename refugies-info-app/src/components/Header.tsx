@@ -6,6 +6,8 @@ import { SmallButton } from "./SmallButton";
 import { SafeAreaView } from "react-native-safe-area-context";
 import i18n from "../services/i18n";
 import { RTLView } from "./StyledText";
+import { RowContainer } from "./BasicComponents";
+import { LanguageSwitch } from "./Language/LanguageSwitch";
 
 const MainContainer = styled(RTLView)`
   padding-horizontal: ${theme.margin * 2}px;
@@ -22,7 +24,10 @@ export const Header = () => (
   <SafeAreaView>
     <MainContainer isRTL={i18n.isRTL()}>
       <Logo width={LOGO_WIDTH} height={LOGO_HEIGHT} />
-      <SmallButton />
+      <RowContainer>
+        <LanguageSwitch />
+        <SmallButton />
+      </RowContainer>
     </MainContainer>
   </SafeAreaView>
 );
