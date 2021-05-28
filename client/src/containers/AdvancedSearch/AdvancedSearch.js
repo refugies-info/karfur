@@ -393,8 +393,8 @@ export class AdvancedSearch extends Component {
             "audienceAge.topValue": bottomValue
               ? { $gte: parseInt(bottomValue, 10) }
               : "",
-            city: decodeURIComponent(city),
-            dep: decodeURIComponent(dep),
+            city: city ? decodeURIComponent(city) : "",
+            dep: dep ? decodeURIComponent(dep) : "",
             niveauFrancais: niveauFrancaisObj ? niveauFrancaisObj.query : "",
           })
       );
@@ -523,6 +523,7 @@ export class AdvancedSearch extends Component {
       //   newQueryParam[key] === undefined ? delete newQueryParam[key] : {}
       // );
       // inject parameters in the url
+      console.log("newQueryParam queryDispo", newQueryParam);
       this.props.history.push({
         search: qs.stringify(newQueryParam),
       });
@@ -939,7 +940,6 @@ export class AdvancedSearch extends Component {
         : this.state.filter.typeContenu
         ? this.state.filter.typeContenu
         : undefined,
-
       tri: this.state.order ? this.state.order : undefined,
       filterLanguage: this.state.filterLanguage.langueCode,
     };
@@ -953,7 +953,7 @@ export class AdvancedSearch extends Component {
   reorder = (tri) => {
     const { _, newQueryParam } = this.computeQuery();
     console.log("newQueryParam", newQueryParam);
-    this.props.history.push(newQueryParam);
+    this.props.history.push({ search: qs.stringify(newQueryParam) });
     if (tri.name === "Par thème") {
       this.setState(
         {
@@ -994,7 +994,7 @@ export class AdvancedSearch extends Component {
     const activeFiltre =
       this.state.activeFiltre === filtre.name ? "" : filtre.name;
     const { _, newQueryParam } = this.computeQuery();
-    this.props.history.push(newQueryParam);
+    this.props.history.push({ search: qs.stringify(newQueryParam) });
     this.setState(
       {
         filter,
