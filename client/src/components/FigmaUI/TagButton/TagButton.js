@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from "react";
 
 import "./TagButton.scss";
@@ -20,7 +19,7 @@ const fSearchBtn = (props) => {
     e.stopPropagation();
     desactiver();
   };
-  console.log("bProps", bProps);
+
   return (
     <button
       className={
