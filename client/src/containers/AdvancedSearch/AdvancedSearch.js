@@ -384,7 +384,19 @@ export class AdvancedSearch extends Component {
             draft.filterLanguage = correspondingLangue;
           }
         }),
-        () => this.queryDispositifs()
+        () =>
+          this.queryDispositifs({
+            "tags.name": tag ? decodeURIComponent(tag) : "",
+            "audienceAge.bottomValue": topValue
+              ? { $lte: parseInt(topValue, 10) }
+              : "",
+            "audienceAge.topValue": bottomValue
+              ? { $gte: parseInt(bottomValue, 10) }
+              : "",
+            city: decodeURIComponent(city),
+            dep: decodeURIComponent(dep),
+            niveauFrancais: niveauFrancaisObj ? niveauFrancaisObj.query : "",
+          })
       );
     } else {
       this.queryDispositifs();
