@@ -31,7 +31,6 @@ import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import { filtres } from "../Dispositif/data";
 import { filtres_contenu, tris } from "./data";
 import FButton from "../../components/FigmaUI/FButton/FButton";
-//import FSearchBtn from "../../components/FigmaUI/FSearchBtn/FSearchBtn";
 import TagButton from "../../components/FigmaUI/TagButton/TagButton";
 import { BookmarkedModal } from "../../components/Modals/index";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
