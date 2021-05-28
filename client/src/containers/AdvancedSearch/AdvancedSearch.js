@@ -38,6 +38,7 @@ import { isMobile } from "react-device-detect";
 import { filterContents } from "./filterContents";
 import { isLoadingSelector } from "../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../services/LoadingStatus/loadingStatus.actions";
+import { activatedLanguages } from "../../components/Modals/LanguageModal/data";
 
 import "./AdvancedSearch.scss";
 import { colors } from "colors";
@@ -315,14 +316,24 @@ export class AdvancedSearch extends Component {
       (elem) => elem.name === decodeURIComponent(niveauFrancais)
     );
     let filter = querySearch(this.props.location.search).filter;
+    let langue = querySearch(this.props.location.search).langue;
 
-    if (this.props.location.state === "dispositifs") {
-      this.filter_content(filtres_contenu[0]);
-    } else if (this.props.location.state === "demarches") {
-      this.filter_content(filtres_contenu[1]);
-    }
     // Reinject filters value in recherche
-    if (tag || bottomValue || topValue || niveauFrancais || dep || city) {
+    if (
+      tag ||
+      bottomValue ||
+      topValue ||
+      niveauFrancais ||
+      dep ||
+      city ||
+      filter ||
+      langue
+    ) {
+      const correspondingFilter = this.getFilter(
+        decodeURIComponent(filter),
+        langue
+      );
+      const correspondingLangue = this.getLangue(filter, langue);
       this.setState(
         produce((draft) => {
           if (tag) {
@@ -337,6 +348,7 @@ export class AdvancedSearch extends Component {
               filtres.tags &&
               filtres.tags.find((x) => x.name === decodeURIComponent(tag))
                 .short;
+            draft.activeTri = "";
           }
           if (topValue && bottomValue) {
             draft.recherche[2].value = initial_data[2].children.find(
@@ -344,6 +356,7 @@ export class AdvancedSearch extends Component {
             ).name;
             draft.recherche[2].query = draft.recherche[2].value;
             draft.recherche[2].active = true;
+            draft.activeTri = "";
           }
           if (dep && city) {
             let locationQuery = [
@@ -354,16 +367,23 @@ export class AdvancedSearch extends Component {
             draft.recherche[1].value = decodeURIComponent(city);
             draft.recherche[1].active = true;
             this.switchGeoSearch(true);
+            draft.activeTri = "";
           }
           if (niveauFrancais) {
             draft.recherche[3].name = decodeURIComponent(niveauFrancais);
             draft.recherche[3].value = decodeURIComponent(niveauFrancais);
             draft.recherche[3].query = niveauFrancaisObj.query;
             draft.recherche[3].active = true;
+            draft.activeTri = "";
           }
-          draft.activeTri = "";
+          if (filter) {
+            draft.activeFiltre = decodeURIComponent(filter);
+            draft.filter = correspondingFilter;
+          }
+          if (langue) {
+            draft.filterLanguage = correspondingLangue;
+          }
         }),
-        //Launch filter query with value from the url
         () =>
           this.queryDispositifs({
             "tags.name": tag ? decodeURIComponent(tag) : "",
@@ -377,10 +397,6 @@ export class AdvancedSearch extends Component {
             dep: decodeURIComponent(dep),
             niveauFrancais: niveauFrancaisObj ? niveauFrancaisObj.query : "",
           })
-      );
-    } else if (filter) {
-      this.filter_content(
-        filter === "dispositif" ? filtres_contenu[0] : filtres_contenu[1]
       );
     } else {
       this.queryDispositifs();
@@ -421,6 +437,29 @@ export class AdvancedSearch extends Component {
     }
   }
 
+  getLangue = (filter, langue) => {
+    if (filter !== "traduction") return "";
+
+    const correspondingLangueIndex = Object.keys(activatedLanguages).filter(
+      (index) => activatedLanguages[index].i18nCode === langue
+    );
+
+    if (correspondingLangueIndex)
+      return activatedLanguages[correspondingLangueIndex];
+    return "";
+  };
+
+  getFilter = (filter) => {
+    if (["Dispositifs", "Démarches"].includes(filter)) {
+      const dataFiltered = filtres_contenu.filter(
+        (data) => data.name === filter
+      );
+
+      if (dataFiltered.length > 0) return dataFiltered[0].query;
+    }
+    return {};
+  };
+
   handleScrolling = () => {
     const currentScrollPos = window.pageYOffset;
     //const visible = prevScrollpos > currentScrollPos;
@@ -432,13 +471,11 @@ export class AdvancedSearch extends Component {
   };
 
   queryDispositifs = (Nquery = null, props = this.props) => {
-    // if query from url parameters, delete all empty values
     if (Nquery) {
       Object.keys(Nquery).forEach((key) =>
         Nquery[key] === "" ? delete Nquery[key] : {}
       );
     }
-    // create query with values from Url or from values selected in search bar
 
     let query =
       Nquery ||
@@ -462,11 +499,12 @@ export class AdvancedSearch extends Component {
             : { [x.queryName]: x.query }
         )
         .reduce((acc, curr) => ({ ...acc, ...curr }), {});
+
     // create object with localisation filter only
     const localisationSearch = this.state.recherche.find(
       (x) => x.queryName === "localisation" && x.value
     );
-    // When no paramaters from the url
+
     if (!Nquery) {
       let newQueryParam = {
         tag: query["tags.name"]
@@ -487,6 +525,10 @@ export class AdvancedSearch extends Component {
         dep: query["dep"]
           ? this.state.recherche[1].query[1].long_name
           : undefined,
+        filter: this.state.activeFiltre || undefined,
+        langue:
+          (this.state.filterLanguage && this.state.filterLanguage.i18nCode) ||
+          undefined,
       };
       //delete empty value from the filters
       Object.keys(newQueryParam).forEach((key) =>
