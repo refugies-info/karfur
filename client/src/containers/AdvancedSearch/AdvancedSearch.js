@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import {
@@ -950,7 +951,9 @@ export class AdvancedSearch extends Component {
   };
 
   reorder = (tri) => {
-    this.props.history.push(this.computeUrl());
+    const { _, newQueryParam } = this.computeQuery();
+    console.log("newQueryParam", newQueryParam);
+    this.props.history.push(newQueryParam);
     if (tri.name === "Par thème") {
       this.setState(
         {
@@ -990,7 +993,8 @@ export class AdvancedSearch extends Component {
     const filter = this.state.activeFiltre === filtre.name ? {} : filtre.query;
     const activeFiltre =
       this.state.activeFiltre === filtre.name ? "" : filtre.name;
-    this.props.history.push(this.computeUrl());
+    const { _, newQueryParam } = this.computeQuery();
+    this.props.history.push(newQueryParam);
     this.setState(
       {
         filter,
