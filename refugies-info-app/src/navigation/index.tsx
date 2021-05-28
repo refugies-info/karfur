@@ -13,7 +13,10 @@ import BottomTabNavigator from "./BottomTabNavigator";
 import i18n from "../services/i18n";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedLanguageActionCreator } from "../services/redux/User/user.actions";
+import {
+  setSelectedLanguageActionCreator,
+  setCurrentLanguageActionCreator,
+} from "../services/redux/User/user.actions";
 import { logger } from "../logger";
 import { OnboardingStackNavigator } from "./OnboardingNavigator";
 import {
@@ -46,6 +49,7 @@ export const RootNavigator = () => {
           if (value) {
             i18n.changeLanguage(value);
             dispatch(setSelectedLanguageActionCreator(value));
+            dispatch(setCurrentLanguageActionCreator(value));
           } else {
             i18n.changeLanguage("fr");
           }

@@ -10,9 +10,9 @@ import { LanguageSwitch } from "./Language/LanguageSwitch";
 
 const MainContainer = styled(RTLView)`
   padding-left: ${(props: { isRTL: any }) =>
-    props.isRTL ? theme.margin : theme.margin * 2}px;
+    props.isRTL ? theme.margin * 3 : theme.margin * 3}px;
   padding-right: ${(props: { isRTL: any }) =>
-    props.isRTL ? theme.margin * 2 : theme.margin}px;
+    props.isRTL ? theme.margin * 3 : theme.margin * 3}px;
 
   padding-vertical: ${theme.margin}px;
   align-items: center;

@@ -1,13 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { theme } from "../../theme";
 import styled from "styled-components/native";
 import { Flag } from "./Flag";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  selectedI18nCodeSelector,
-  currentI18nCodeSelector,
-} from "../../services/redux/User/user.selectors";
-import { Text, View } from "react-native";
+import { useDispatch } from "react-redux";
+import { View } from "react-native";
 import { activatedLanguages } from "../../data/languagesData";
 import i18n from "../../services/i18n";
 import { setCurrentLanguageActionCreator } from "../../services/redux/User/user.actions";
@@ -23,7 +19,10 @@ const ButtonContainerCommon = styled.View`
 `;
 
 const ButtonContainer = styled.TouchableOpacity`
-  margin-right: ${theme.margin}px;
+  margin-right: ${(props: { isRTL: any }) =>
+    props.isRTL ? 0 : theme.margin}px;
+  margin-left: ${(props: { isRTL: any }) => (props.isRTL ? theme.margin : 0)}px;
+
   background-color: ${theme.colors.white};
   border-radius: ${theme.radius * 2}px;
   height: 48px;
@@ -72,8 +71,6 @@ export const LanguageSwitch = ({
     isFrenchSelected: boolean,
     selectedLanguageI18nCode: string
   ) => {
-    console.log("isFrenchSelected", isFrenchSelected);
-    console.log("selectedLanguageI18nCode", selectedLanguageI18nCode);
     if (isFrenchSelected) {
       i18n.changeLanguage(selectedLanguageI18nCode);
       return dispatch(
@@ -93,6 +90,7 @@ export const LanguageSwitch = ({
   return (
     <ButtonContainer
       onPress={() => changeLanguage(isFrenchSelected, selectedLanguageI18nCode)}
+      isRTL={i18n.isRTL()}
     >
       <LanguageContainer
         backgroundColor={
