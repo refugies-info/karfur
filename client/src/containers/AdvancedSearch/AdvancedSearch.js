@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import {
@@ -523,7 +522,6 @@ export class AdvancedSearch extends Component {
       //   newQueryParam[key] === undefined ? delete newQueryParam[key] : {}
       // );
       // inject parameters in the url
-      console.log("newQueryParam queryDispo", newQueryParam);
       this.props.history.push({
         search: qs.stringify(newQueryParam),
       });
@@ -855,42 +853,6 @@ export class AdvancedSearch extends Component {
     });
   };
 
-  computeUrl = () => {
-    let newQueryParam = {};
-    this.state.recherche.map((item) => {
-      if (item.value) {
-        switch (item.title) {
-          case "Je cherche à":
-            newQueryParam.tag = item.value;
-            break;
-          case "J'habite à":
-            newQueryParam.city = item.query[0].short_name;
-            newQueryParam.dep = item.query[1].short_name;
-            break;
-          case "J'ai":
-            newQueryParam.bottomValue = item.bottomValue;
-            newQueryParam.topValue = item.topValue;
-            break;
-          case "Je parle":
-            newQueryParam.niveauFrancais = item.value;
-            break;
-          default:
-            break;
-        }
-      }
-    });
-    if (this.state.order) {
-      newQueryParam.filtre = this.state.order;
-    }
-    if (this.state.filterLanguage) {
-      newQueryParam.filterLanguage = this.state.filterLanguage.langueCode;
-    }
-    if (this.state.activeTri) {
-      newQueryParam.tri = this.state.activeTri;
-    }
-    return newQueryParam;
-  };
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
   computeQuery = (Nquery = null) => {
     let query =
@@ -952,7 +914,6 @@ export class AdvancedSearch extends Component {
 
   reorder = (tri) => {
     const { _, newQueryParam } = this.computeQuery();
-    console.log("newQueryParam", newQueryParam);
     this.props.history.push({ search: qs.stringify(newQueryParam) });
     if (tri.name === "Par thème") {
       this.setState(
