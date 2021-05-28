@@ -3,7 +3,7 @@ import { withTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
 import { connect } from "react-redux";
-//import AnchorLink from "react-anchor-link-smooth-scroll";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 import { toggleLangueModalActionCreator } from "../../services/Langue/langue.actions";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import FButton from "../../components/FigmaUI/FButton/FButton";
@@ -217,20 +217,20 @@ export class HomePage extends Component {
             />
           ) : null}
           <div className="chevron-wrapper">
-            {/* <AnchorLink
+            <AnchorLink
               offset="60"
               href="#plan"
               className="header-anchor d-inline-flex justify-content-center align-items-center"
-            > */}
-            <div className="slide-animation">
-              <EVAIcon
-                className="bottom-slider"
-                name="arrow-circle-down"
-                size="xhero"
-                fill={colors.blancSimple}
-              />
-            </div>
-            {/* </AnchorLink> */}
+            >
+              <div className="slide-animation">
+                <EVAIcon
+                  className="bottom-slider"
+                  name="arrow-circle-down"
+                  size="xhero"
+                  fill={colors.blancSimple}
+                />
+              </div>
+            </AnchorLink>
           </div>
         </section>
 
@@ -250,7 +250,7 @@ export class HomePage extends Component {
               onClick={() => {
                 this.props.history.push({
                   pathname: "/advanced-search",
-                  search: "?filter=Dispositifs",
+                  search: isMobile ? null : "?filter=Dispositifs",
                 });
               }}
             />
@@ -268,7 +268,7 @@ export class HomePage extends Component {
               onClick={() => {
                 this.props.history.push({
                   pathname: "/advanced-search",
-                  search: "?filter=Démarches",
+                  search: isMobile ? null : "?filter=Démarches",
                 });
               }}
             />
