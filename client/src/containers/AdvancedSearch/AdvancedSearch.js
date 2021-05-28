@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import {
@@ -323,9 +324,8 @@ export class AdvancedSearch extends Component {
       );
     }
 
-    const filterLanguage = querySearch(
-      this.props.location.search
-    ).filterLanguage;
+    const filterLanguage = querySearch(this.props.location.search)
+      .filterLanguage;
     if (filterLanguage) {
       const langueIndex = Object.keys(activatedLanguages).filter(
         (item) => activatedLanguages[item].langueCode === filterLanguage
@@ -342,6 +342,7 @@ export class AdvancedSearch extends Component {
     }
     // Reinject filters value in recherche
     if (tag || bottomValue || topValue || niveauFrancais || dep || city) {
+      console.log("newQueryP HERE query");
       this.setState(
         produce((draft) => {
           if (tag) {
@@ -459,8 +460,11 @@ export class AdvancedSearch extends Component {
         Nquery[key] === "" ? delete Nquery[key] : {}
       );
     }
+    console.log("newQueryP queryD Nquery", Nquery);
     // create query with values from Url or from values selected in search bar
     const { query, newQueryParam } = this.computeQuery(Nquery);
+    console.log("newQueryParam query", newQueryParam);
+
     // let query =
     //   Nquery ||
     //   this.state.recherche
@@ -489,6 +493,7 @@ export class AdvancedSearch extends Component {
     );
     // When no paramaters from the url
     if (!Nquery) {
+      console.log("HERE", newQueryParam);
       // let newQueryParam = {
       //   tag: query["tags.name"]
       //     ? decodeURIComponent(query["tags.name"])
@@ -714,11 +719,12 @@ export class AdvancedSearch extends Component {
     });
 
     let tri = querySearch(this.props.location.search).tri;
-    if (tri === "nbVues" || tri === "created_at") {
-      const triFromUrl = tris.filter(
-        (item) => item.value === decodeURIComponent(tri)
-      )[0];
-      this.reorder(triFromUrl);
+    console.log(" QDtri", tri, this.state.order);
+    if (this.state.order === "nbVues" || this.state.order === "created_at") {
+      // const triFromUrl = tris.filter(
+      //   (item) => item.value === decodeURIComponent(tri)
+      // )[0];
+      this.reorder({ value: this.state.order });
     }
   };
 
@@ -855,6 +861,7 @@ export class AdvancedSearch extends Component {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
   computeQuery = (Nquery = null) => {
+    console.log("newQueryP Nquery", Nquery);
     let query =
       Nquery ||
       this.state.recherche
@@ -878,6 +885,7 @@ export class AdvancedSearch extends Component {
         )
         .reduce((acc, curr) => ({ ...acc, ...curr }), {});
 
+    console.log("newQueryP this.state.order", this.state.order);
     let newQueryParam = {
       tag: query["tags.name"]
         ? decodeURIComponent(query["tags.name"])
@@ -909,12 +917,12 @@ export class AdvancedSearch extends Component {
     Object.keys(newQueryParam).forEach((key) =>
       newQueryParam[key] === undefined ? delete newQueryParam[key] : {}
     );
+    console.log("compute query", newQueryParam);
     return { query, newQueryParam };
   };
 
   reorder = (tri) => {
-    const { _, newQueryParam } = this.computeQuery();
-    this.props.history.push({ search: qs.stringify(newQueryParam) });
+    console.log("newQueryP tri", tri);
     if (tri.name === "Par thème") {
       this.setState(
         {
@@ -928,25 +936,34 @@ export class AdvancedSearch extends Component {
       );
     } else {
       const order = tri.value;
-      const croissant =
-        order === this.state.order ? !this.state.croissant : false;
+      // const croissant =
+      //   order === this.state.order ? !this.state.croissant : false;
 
-      this.setState((pS) => ({
-        dispositifs: this.sortFunction(pS.dispositifs, order, croissant),
-        principalThemeList: this.sortFunction(
-          pS.principalThemeList,
-          order,
-          croissant
-        ),
-        secondaryThemeList: this.sortFunction(
-          pS.secondaryThemeList,
-          order,
-          croissant
-        ),
-        order: tri.value,
-        activeTri: tri.name,
-        croissant: croissant,
-      }));
+      const croissant = false;
+      console.log("newQueryP tri?value", tri.value);
+      this.setState(
+        (pS) => ({
+          dispositifs: this.sortFunction(pS.dispositifs, order, croissant),
+          principalThemeList: this.sortFunction(
+            pS.principalThemeList,
+            order,
+            croissant
+          ),
+          secondaryThemeList: this.sortFunction(
+            pS.secondaryThemeList,
+            order,
+            croissant
+          ),
+          order: tri.value,
+          activeTri: tri.name,
+          croissant: croissant,
+        }),
+        () => {
+          const { _, newQueryParam } = this.computeQuery();
+          console.log("newQueryParam reorder", newQueryParam);
+          this.props.history.push({ search: qs.stringify(newQueryParam) });
+        }
+      );
     }
   };
 
@@ -955,6 +972,8 @@ export class AdvancedSearch extends Component {
     const activeFiltre =
       this.state.activeFiltre === filtre.name ? "" : filtre.name;
     const { _, newQueryParam } = this.computeQuery();
+    console.log("newQueryParam filter", newQueryParam);
+
     this.props.history.push({ search: qs.stringify(newQueryParam) });
     this.setState(
       {

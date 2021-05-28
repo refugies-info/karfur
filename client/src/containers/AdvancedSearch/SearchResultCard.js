@@ -64,6 +64,7 @@ const SearchResultCard = ({
         }
         key={dispositif._id}
       >
+        {dispositif.nbVues}
         <CustomCard
           onClick={() => {
             history.push({
