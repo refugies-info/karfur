@@ -5,3 +5,6 @@ export const hasUserSeenOnboardingSelector = (state: RootState) =>
 
 export const selectedI18nCodeSelector = (state: RootState) =>
   state.user.selectedLanguagei18nCode;
+
+export const currentI18nCodeSelector = (state: RootState) =>
+  state.user.currentLanguagei18nCode;
