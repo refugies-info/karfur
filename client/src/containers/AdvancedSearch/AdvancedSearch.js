@@ -460,67 +460,67 @@ export class AdvancedSearch extends Component {
       );
     }
     // create query with values from Url or from values selected in search bar
-
-    let query =
-      Nquery ||
-      this.state.recherche
-        .filter((x) => x.active)
-        .map((x) =>
-          x.queryName === "audienceAge"
-            ? {
-                "audienceAge.bottomValue": { $lte: x.topValue },
-                "audienceAge.topValue": { $gte: x.bottomValue },
-              }
-            : x.queryName === "localisation"
-            ? {
-                city: x.query[0].long_name,
-                dep: x.query[1].long_name,
-              }
-            : x.queryName === "niveauFrancais"
-            ? {
-                niveauFrancais: x.value === "bien" ? "bien" : x.query,
-              }
-            : { [x.queryName]: x.query }
-        )
-        .reduce((acc, curr) => ({ ...acc, ...curr }), {});
+    const { query, newQueryParam } = this.computeQuery(Nquery);
+    // let query =
+    //   Nquery ||
+    //   this.state.recherche
+    //     .filter((x) => x.active)
+    //     .map((x) =>
+    //       x.queryName === "audienceAge"
+    //         ? {
+    //             "audienceAge.bottomValue": { $lte: x.topValue },
+    //             "audienceAge.topValue": { $gte: x.bottomValue },
+    //           }
+    //         : x.queryName === "localisation"
+    //         ? {
+    //             city: x.query[0].long_name,
+    //             dep: x.query[1].long_name,
+    //           }
+    //         : x.queryName === "niveauFrancais"
+    //         ? {
+    //             niveauFrancais: x.value === "bien" ? "bien" : x.query,
+    //           }
+    //         : { [x.queryName]: x.query }
+    //     )
+    //     .reduce((acc, curr) => ({ ...acc, ...curr }), {});
     // create object with localisation filter only
     const localisationSearch = this.state.recherche.find(
       (x) => x.queryName === "localisation" && x.value
     );
     // When no paramaters from the url
     if (!Nquery) {
-      let newQueryParam = {
-        tag: query["tags.name"]
-          ? decodeURIComponent(query["tags.name"])
-          : undefined,
-        bottomValue: query["audienceAge.bottomValue"]
-          ? this.state.recherche[2].bottomValue
-          : undefined,
-        topValue: query["audienceAge.topValue"]
-          ? this.state.recherche[2].topValue
-          : undefined,
-        niveauFrancais: query["niveauFrancais"]
-          ? this.state.recherche[3].value
-          : undefined,
-        city: query["city"]
-          ? this.state.recherche[1].query[0].long_name
-          : undefined,
-        dep: query["dep"]
-          ? this.state.recherche[1].query[1].long_name
-          : undefined,
-        filter: this.state.filter.$or
-          ? this.state.filter.$or[1].typeContenu
-          : this.state.filter.typeContenu
-          ? this.state.filter.typeContenu
-          : undefined,
+      // let newQueryParam = {
+      //   tag: query["tags.name"]
+      //     ? decodeURIComponent(query["tags.name"])
+      //     : undefined,
+      //   bottomValue: query["audienceAge.bottomValue"]
+      //     ? this.state.recherche[2].bottomValue
+      //     : undefined,
+      //   topValue: query["audienceAge.topValue"]
+      //     ? this.state.recherche[2].topValue
+      //     : undefined,
+      //   niveauFrancais: query["niveauFrancais"]
+      //     ? this.state.recherche[3].value
+      //     : undefined,
+      //   city: query["city"]
+      //     ? this.state.recherche[1].query[0].long_name
+      //     : undefined,
+      //   dep: query["dep"]
+      //     ? this.state.recherche[1].query[1].long_name
+      //     : undefined,
+      //   filter: this.state.filter.$or
+      //     ? this.state.filter.$or[1].typeContenu
+      //     : this.state.filter.typeContenu
+      //     ? this.state.filter.typeContenu
+      //     : undefined,
 
-        tri: this.state.order ? this.state.order : undefined,
-        filterLanguage: this.state.filterLanguage.langueCode,
-      };
-      //delete empty value from the filters
-      Object.keys(newQueryParam).forEach((key) =>
-        newQueryParam[key] === undefined ? delete newQueryParam[key] : {}
-      );
+      //   tri: this.state.order ? this.state.order : undefined,
+      //   filterLanguage: this.state.filterLanguage.langueCode,
+      // };
+      // //delete empty value from the filters
+      // Object.keys(newQueryParam).forEach((key) =>
+      //   newQueryParam[key] === undefined ? delete newQueryParam[key] : {}
+      // );
       // inject parameters in the url
       this.props.history.push({
         search: qs.stringify(newQueryParam),
@@ -887,6 +887,66 @@ export class AdvancedSearch extends Component {
       newQueryParam.tri = this.state.activeTri;
     }
     return newQueryParam;
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
+  computeQuery = (Nquery = null) => {
+    let query =
+      Nquery ||
+      this.state.recherche
+        .filter((x) => x.active)
+        .map((x) =>
+          x.queryName === "audienceAge"
+            ? {
+                "audienceAge.bottomValue": { $lte: x.topValue },
+                "audienceAge.topValue": { $gte: x.bottomValue },
+              }
+            : x.queryName === "localisation"
+            ? {
+                city: x.query[0].long_name,
+                dep: x.query[1].long_name,
+              }
+            : x.queryName === "niveauFrancais"
+            ? {
+                niveauFrancais: x.value === "bien" ? "bien" : x.query,
+              }
+            : { [x.queryName]: x.query }
+        )
+        .reduce((acc, curr) => ({ ...acc, ...curr }), {});
+
+    let newQueryParam = {
+      tag: query["tags.name"]
+        ? decodeURIComponent(query["tags.name"])
+        : undefined,
+      bottomValue: query["audienceAge.bottomValue"]
+        ? this.state.recherche[2].bottomValue
+        : undefined,
+      topValue: query["audienceAge.topValue"]
+        ? this.state.recherche[2].topValue
+        : undefined,
+      niveauFrancais: query["niveauFrancais"]
+        ? this.state.recherche[3].value
+        : undefined,
+      city: query["city"]
+        ? this.state.recherche[1].query[0].long_name
+        : undefined,
+      dep: query["dep"]
+        ? this.state.recherche[1].query[1].long_name
+        : undefined,
+      filter: this.state.filter.$or
+        ? this.state.filter.$or[1].typeContenu
+        : this.state.filter.typeContenu
+        ? this.state.filter.typeContenu
+        : undefined,
+
+      tri: this.state.order ? this.state.order : undefined,
+      filterLanguage: this.state.filterLanguage.langueCode,
+    };
+    //delete empty value from the filters
+    Object.keys(newQueryParam).forEach((key) =>
+      newQueryParam[key] === undefined ? delete newQueryParam[key] : {}
+    );
+    return { query, newQueryParam };
   };
 
   reorder = (tri) => {
