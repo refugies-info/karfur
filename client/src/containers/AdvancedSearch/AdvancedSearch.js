@@ -38,6 +38,7 @@ import { isMobile } from "react-device-detect";
 import { filterContents } from "./filterContents";
 import { isLoadingSelector } from "../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../services/LoadingStatus/loadingStatus.actions";
+import { activatedLanguages } from "../../components/Modals/LanguageModal/data";
 
 import "./AdvancedSearch.scss";
 import { colors } from "colors";
@@ -315,6 +316,7 @@ export class AdvancedSearch extends Component {
       (elem) => elem.name === decodeURIComponent(niveauFrancais)
     );
     let filter = querySearch(this.props.location.search).filter;
+    let langue = querySearch(this.props.location.search).langue;
 
     // Reinject filters value in recherche
     if (
@@ -324,9 +326,14 @@ export class AdvancedSearch extends Component {
       niveauFrancais ||
       dep ||
       city ||
-      filter
+      filter ||
+      langue
     ) {
-      const correspondingFilter = this.getFilter(decodeURIComponent(filter));
+      const correspondingFilter = this.getFilter(
+        decodeURIComponent(filter),
+        langue
+      );
+      const correspondingLangue = this.getLangue(filter, langue);
       this.setState(
         produce((draft) => {
           if (tag) {
@@ -373,6 +380,9 @@ export class AdvancedSearch extends Component {
             draft.activeFiltre = decodeURIComponent(filter);
             draft.filter = correspondingFilter;
           }
+          if (langue) {
+            draft.filterLanguage = correspondingLangue;
+          }
         }),
         () => this.queryDispositifs()
       );
@@ -415,6 +425,18 @@ export class AdvancedSearch extends Component {
     }
   }
 
+  getLangue = (filter, langue) => {
+    if (filter !== "traduction") return "";
+
+    const correspondingLangueIndex = Object.keys(activatedLanguages).filter(
+      (index) => activatedLanguages[index].i18nCode === langue
+    );
+
+    if (correspondingLangueIndex)
+      return activatedLanguages[correspondingLangueIndex];
+    return "";
+  };
+
   getFilter = (filter) => {
     if (["Dispositifs", "Démarches"].includes(filter)) {
       const dataFiltered = filtres_contenu.filter(
@@ -437,13 +459,11 @@ export class AdvancedSearch extends Component {
   };
 
   queryDispositifs = (Nquery = null, props = this.props) => {
-    // if query from url parameters, delete all empty values
     if (Nquery) {
       Object.keys(Nquery).forEach((key) =>
         Nquery[key] === "" ? delete Nquery[key] : {}
       );
     }
-    // create query with values from Url or from values selected in search bar
 
     let query =
       Nquery ||
@@ -467,12 +487,12 @@ export class AdvancedSearch extends Component {
             : { [x.queryName]: x.query }
         )
         .reduce((acc, curr) => ({ ...acc, ...curr }), {});
+
     // create object with localisation filter only
     const localisationSearch = this.state.recherche.find(
       (x) => x.queryName === "localisation" && x.value
     );
 
-    // When no paramaters from the url
     if (!Nquery) {
       let newQueryParam = {
         tag: query["tags.name"]
@@ -494,6 +514,9 @@ export class AdvancedSearch extends Component {
           ? this.state.recherche[1].query[1].long_name
           : undefined,
         filter: this.state.activeFiltre || undefined,
+        langue:
+          (this.state.filterLanguage && this.state.filterLanguage.i18nCode) ||
+          undefined,
       };
       //delete empty value from the filters
       Object.keys(newQueryParam).forEach((key) =>
