@@ -25,7 +25,7 @@ const fSearchBtn = (props) => {
       className={
         (noHover ? "static-btn " : filter ? "filter-btn" : "search-btn ") +
         (className || "") +
-        //(active ? " active" : "") +
+        (active ? " active" : "") +
         (color ? " color bg-" + color : "") +
         (lighter ? " lighter" : "")
       }
