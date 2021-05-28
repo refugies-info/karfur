@@ -18,7 +18,6 @@ interface Props {
 }
 
 const MainContainer = styled.div`
-  margin: 8px;
   position: relative;
   color=${colors.noir};
 `;

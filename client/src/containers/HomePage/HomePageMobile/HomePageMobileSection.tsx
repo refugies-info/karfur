@@ -27,7 +27,6 @@ interface Props {
 
 const SectionContainer = styled.div`
   padding: 35px;
-  margin: -10px;
   text-align: left;
   background-color: ${(props) => props.backgroundColor};
 `;
