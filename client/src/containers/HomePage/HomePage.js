@@ -250,7 +250,7 @@ export class HomePage extends Component {
               onClick={() => {
                 this.props.history.push({
                   pathname: "/advanced-search",
-                  state: "dispositifs",
+                  search: "?filter=Dispositifs",
                 });
               }}
             />
@@ -268,7 +268,7 @@ export class HomePage extends Component {
               onClick={() => {
                 this.props.history.push({
                   pathname: "/advanced-search",
-                  state: "demarches",
+                  search: "?filter=Démarches",
                 });
               }}
             />

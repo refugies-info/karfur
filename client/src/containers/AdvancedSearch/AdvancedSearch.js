@@ -316,13 +316,17 @@ export class AdvancedSearch extends Component {
     );
     let filter = querySearch(this.props.location.search).filter;
 
-    if (this.props.location.state === "dispositifs") {
-      this.filter_content(filtres_contenu[0]);
-    } else if (this.props.location.state === "demarches") {
-      this.filter_content(filtres_contenu[1]);
-    }
     // Reinject filters value in recherche
-    if (tag || bottomValue || topValue || niveauFrancais || dep || city) {
+    if (
+      tag ||
+      bottomValue ||
+      topValue ||
+      niveauFrancais ||
+      dep ||
+      city ||
+      filter
+    ) {
+      const correspondingFilter = this.getFilter(decodeURIComponent(filter));
       this.setState(
         produce((draft) => {
           if (tag) {
@@ -337,6 +341,7 @@ export class AdvancedSearch extends Component {
               filtres.tags &&
               filtres.tags.find((x) => x.name === decodeURIComponent(tag))
                 .short;
+            draft.activeTri = "";
           }
           if (topValue && bottomValue) {
             draft.recherche[2].value = initial_data[2].children.find(
@@ -344,6 +349,7 @@ export class AdvancedSearch extends Component {
             ).name;
             draft.recherche[2].query = draft.recherche[2].value;
             draft.recherche[2].active = true;
+            draft.activeTri = "";
           }
           if (dep && city) {
             let locationQuery = [
@@ -354,33 +360,21 @@ export class AdvancedSearch extends Component {
             draft.recherche[1].value = decodeURIComponent(city);
             draft.recherche[1].active = true;
             this.switchGeoSearch(true);
+            draft.activeTri = "";
           }
           if (niveauFrancais) {
             draft.recherche[3].name = decodeURIComponent(niveauFrancais);
             draft.recherche[3].value = decodeURIComponent(niveauFrancais);
             draft.recherche[3].query = niveauFrancaisObj.query;
             draft.recherche[3].active = true;
+            draft.activeTri = "";
           }
-          draft.activeTri = "";
+          if (filter) {
+            draft.activeFiltre = decodeURIComponent(filter);
+            draft.filter = correspondingFilter;
+          }
         }),
-        //Launch filter query with value from the url
-        () =>
-          this.queryDispositifs({
-            "tags.name": tag ? decodeURIComponent(tag) : "",
-            "audienceAge.bottomValue": topValue
-              ? { $lte: parseInt(topValue, 10) }
-              : "",
-            "audienceAge.topValue": bottomValue
-              ? { $gte: parseInt(bottomValue, 10) }
-              : "",
-            city: decodeURIComponent(city),
-            dep: decodeURIComponent(dep),
-            niveauFrancais: niveauFrancaisObj ? niveauFrancaisObj.query : "",
-          })
-      );
-    } else if (filter) {
-      this.filter_content(
-        filter === "dispositif" ? filtres_contenu[0] : filtres_contenu[1]
+        () => this.queryDispositifs()
       );
     } else {
       this.queryDispositifs();
@@ -420,6 +414,17 @@ export class AdvancedSearch extends Component {
       );
     }
   }
+
+  getFilter = (filter) => {
+    if (["Dispositifs", "Démarches"].includes(filter)) {
+      const dataFiltered = filtres_contenu.filter(
+        (data) => data.name === filter
+      );
+
+      if (dataFiltered.length > 0) return dataFiltered[0].query;
+    }
+    return {};
+  };
 
   handleScrolling = () => {
     const currentScrollPos = window.pageYOffset;
@@ -466,6 +471,7 @@ export class AdvancedSearch extends Component {
     const localisationSearch = this.state.recherche.find(
       (x) => x.queryName === "localisation" && x.value
     );
+
     // When no paramaters from the url
     if (!Nquery) {
       let newQueryParam = {
@@ -487,6 +493,7 @@ export class AdvancedSearch extends Component {
         dep: query["dep"]
           ? this.state.recherche[1].query[1].long_name
           : undefined,
+        filter: this.state.activeFiltre || undefined,
       };
       //delete empty value from the filters
       Object.keys(newQueryParam).forEach((key) =>
