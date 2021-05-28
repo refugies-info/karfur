@@ -315,11 +315,7 @@ export class AdvancedSearch extends Component {
       (elem) => elem.name === decodeURIComponent(niveauFrancais)
     );
     let filter = querySearch(this.props.location.search).filter;
-    if (filter) {
-      this.filter_content(
-        filter === "dispositif" ? filtres_contenu[0] : filtres_contenu[1]
-      );
-    }
+
     if (this.props.location.state === "dispositifs") {
       this.filter_content(filtres_contenu[0]);
     } else if (this.props.location.state === "demarches") {
@@ -490,11 +486,6 @@ export class AdvancedSearch extends Component {
           : undefined,
         dep: query["dep"]
           ? this.state.recherche[1].query[1].long_name
-          : undefined,
-        filter: this.state.filter.$or
-          ? this.state.filter.$or[1].typeContenu
-          : this.state.filter.typeContenu
-          ? this.state.filter.typeContenu
           : undefined,
       };
       //delete empty value from the filters
@@ -865,13 +856,7 @@ export class AdvancedSearch extends Component {
     const filter = this.state.activeFiltre === filtre.name ? {} : filtre.query;
     const activeFiltre =
       this.state.activeFiltre === filtre.name ? "" : filtre.name;
-    let filterFromUrl = querySearch(this.props.location.search);
-    filterFromUrl.filter = filter.$or
-      ? filter.$or[1].typeContenu
-      : filter.typeContenu;
-    this.props.history.push({
-      search: qs.stringify(filterFromUrl),
-    });
+
     this.setState(
       {
         filter,
