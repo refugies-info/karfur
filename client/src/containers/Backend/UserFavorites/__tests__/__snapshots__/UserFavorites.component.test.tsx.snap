@@ -283,7 +283,7 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark"
+          data-eva="star"
           data-eva-fill="#ffffff"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -784,7 +784,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark"
+          data-eva="star"
           data-eva-fill="#ffffff"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -1353,7 +1353,7 @@ exports[`UserFavorites should render correctly when loading 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark"
+          data-eva="star"
           data-eva-fill="#ffffff"
           data-eva-height="20px"
           data-eva-width="20px"

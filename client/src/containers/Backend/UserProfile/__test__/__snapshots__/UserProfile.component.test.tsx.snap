@@ -215,7 +215,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -846,7 +846,7 @@ exports[`UserProfile should render correctly 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -1319,7 +1319,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -1891,7 +1891,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
