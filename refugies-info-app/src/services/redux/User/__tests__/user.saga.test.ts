@@ -7,6 +7,7 @@ import { saveItemInAsyncStorage } from "../functions";
 import {
   setSelectedLanguageActionCreator,
   setHasUserSeenOnboardingActionCreator,
+  setCurrentLanguageActionCreator,
 } from "../user.actions";
 
 describe("[Saga] user", () => {
@@ -33,6 +34,8 @@ describe("[Saga] user", () => {
         .next()
         .put(setSelectedLanguageActionCreator("en"))
         .next()
+        .put(setCurrentLanguageActionCreator("en"))
+        .next()
         .isDone();
     });
 
@@ -45,6 +48,8 @@ describe("[Saga] user", () => {
         .call(saveItemInAsyncStorage, "SELECTED_LANGUAGE", "en")
         .throw(new Error("error"))
         .put(setSelectedLanguageActionCreator("fr"))
+        .next()
+        .put(setCurrentLanguageActionCreator("fr"))
         .next()
         .isDone();
     });

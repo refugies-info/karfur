@@ -25,6 +25,7 @@ export function* saveSelectedLanguage(
   } catch (error) {
     logger.error("Error while saving langue", { error: error.message });
     yield put(setSelectedLanguageActionCreator("fr"));
+    yield put(setCurrentLanguageActionCreator("fr"));
   }
 }
 
