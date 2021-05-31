@@ -58,14 +58,13 @@ export default function BottomTabNavigator() {
       tabBarOptions={{
         activeTintColor: theme.colors.darkBlue,
         inactiveTintColor: theme.colors.darkGrey,
+        style: { borderTopWidth: 0, elevation: 0 },
       }}
     >
       <BottomTab.Screen
         name="Explorer"
         component={ExplorerNavigator}
         options={{
-          // tabBarIcon: ({ color }: { color: string }) =>
-          //   renderTabBarIcon(color, "compass"),
           tabBarIcon: ({
             color,
             focused,
