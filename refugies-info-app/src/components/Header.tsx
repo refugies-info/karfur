@@ -24,12 +24,14 @@ const LOGO_WIDTH = 70;
 const LOGO_HEIGHT = 48;
 
 interface Props {
-  selectedLanguageI18nCode: string | null;
-  currentLanguageI18nCode: string | null;
+  selectedLanguageI18nCode?: string | null;
+  currentLanguageI18nCode?: string | null;
+  onLongPressSwitchLanguage?: () => void;
 }
 export const Header = ({
   selectedLanguageI18nCode,
   currentLanguageI18nCode,
+  onLongPressSwitchLanguage,
 }: Props) => (
   <SafeAreaView>
     <MainContainer isRTL={i18n.isRTL()}>
@@ -38,6 +40,7 @@ export const Header = ({
         <LanguageSwitch
           currentLanguageI18nCode={currentLanguageI18nCode}
           selectedLanguageI18nCode={selectedLanguageI18nCode}
+          onLongPressSwitchLanguage={onLongPressSwitchLanguage}
         />
         <SmallButton />
       </RTLView>

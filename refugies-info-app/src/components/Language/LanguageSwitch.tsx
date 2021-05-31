@@ -4,9 +4,9 @@ import styled from "styled-components/native";
 import { Flag } from "./Flag";
 import { useDispatch } from "react-redux";
 import { View } from "react-native";
-import { activatedLanguages } from "../../data/languagesData";
 import i18n from "../../services/i18n";
 import { setCurrentLanguageActionCreator } from "../../services/redux/User/user.actions";
+import { getSelectedLanguageFromI18nCode } from "../../libs/language";
 
 const ButtonContainerCommon = styled.View`
   background-color: ${theme.colors.white};
@@ -51,26 +51,21 @@ const FlagBackground = styled.View`
   align-items: center;
   border-radius: 4px;
 `;
-const getSelectedLanguageLangueFrFromI18nCode = (i18nCode: string) => {
-  const languageData = activatedLanguages.filter(
-    (language) => language.i18nCode === i18nCode
-  );
-  if (languageData.length > 0) return languageData[0].langueFr;
-  return "Français";
-};
 
 interface Props {
-  selectedLanguageI18nCode: string | null;
-  currentLanguageI18nCode: string | null;
+  selectedLanguageI18nCode?: string | null;
+  currentLanguageI18nCode?: string | null;
+  onLongPressSwitchLanguage?: () => void;
 }
 
 export const LanguageSwitch = ({
   selectedLanguageI18nCode,
   currentLanguageI18nCode,
+  onLongPressSwitchLanguage,
 }: Props) => {
   if (!selectedLanguageI18nCode || !currentLanguageI18nCode) return <View />;
 
-  const selectedLanguageLangueFr = getSelectedLanguageLangueFrFromI18nCode(
+  const selectedLanguage = getSelectedLanguageFromI18nCode(
     selectedLanguageI18nCode
   );
   const isFrenchSelected = currentLanguageI18nCode === "fr";
@@ -101,6 +96,7 @@ export const LanguageSwitch = ({
     <ButtonContainer
       onPress={() => changeLanguage(isFrenchSelected, selectedLanguageI18nCode)}
       isRTL={i18n.isRTL()}
+      onLongPress={onLongPressSwitchLanguage}
     >
       <LanguageContainer
         backgroundColor={
@@ -117,7 +113,7 @@ export const LanguageSwitch = ({
         }
       >
         <FlagBackground>
-          <Flag langueFr={selectedLanguageLangueFr} />
+          <Flag langueFr={selectedLanguage.langueFr} />
         </FlagBackground>
       </LanguageContainer>
     </ButtonContainer>
