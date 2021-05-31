@@ -67,7 +67,7 @@ const SmallStyledTextBold = styled(StyledTextVerySmallBold)`
 const ModalView = styled.View`
   background-color: ${theme.colors.lightGrey};
   display: flex;
-  padding-top: ${theme.margin * 4}px;
+  padding-top: ${theme.margin}px;
   padding-left: ${theme.margin * 3}px;
   padding-right: ${theme.margin * 3}px;
 `;
@@ -102,9 +102,7 @@ export const LanguageChoiceModal = (props: Props) => {
   );
 
   const otherLanguages = activatedLanguages.filter(
-    (langue) =>
-      langue.i18nCode !== "fr" &&
-      langue.i18nCode !== props.selectedLanguageI18nCode
+    (langue) => langue.i18nCode !== props.selectedLanguageI18nCode
   );
 
   const changeLanguage = (ln: string) => {
@@ -115,8 +113,8 @@ export const LanguageChoiceModal = (props: Props) => {
   return (
     <Modal
       isVisible={props.isModalVisible}
-      //   isVisible={true}
       style={styles.view}
+      onBackdropPress={props.toggleModal}
     >
       <ModalView>
         <TitleContainer>
@@ -139,28 +137,26 @@ export const LanguageChoiceModal = (props: Props) => {
               languagesWithAvancement
             );
             return (
-              <>
-                <MainContainer
-                  onPress={() => changeLanguage(language.i18nCode)}
-                  //   testID={"test-language-button-" + props.langueFr}
-                  key={index}
-                >
+              <MainContainer
+                onPress={() => changeLanguage(language.i18nCode)}
+                //   testID={"test-language-button-" + props.langueFr}
+                key={index}
+              >
+                <RowContainer>
+                  <Flag langueFr={language.langueFr} />
+                  <StyledTextBold>{language.langueFr + " - "}</StyledTextBold>
+                  <StyledText>{language.langueLoc}</StyledText>
+                </RowContainer>
+                {avancementTrad && (
                   <RowContainer>
-                    <Flag langueFr={language.langueFr} />
-                    <StyledTextBold>{language.langueFr + " - "}</StyledTextBold>
-                    <StyledText>{language.langueLoc}</StyledText>
+                    <ProgressBar avancement={avancementTrad} />
+                    <SmallStyledTextBold>
+                      {avancementTrad + "%"}
+                    </SmallStyledTextBold>
                   </RowContainer>
-                  {avancementTrad && (
-                    <RowContainer>
-                      <ProgressBar avancement={avancementTrad} />
-                      <SmallStyledTextBold>
-                        {avancementTrad + "%"}
-                      </SmallStyledTextBold>
-                    </RowContainer>
-                  )}
-                </MainContainer>
+                )}
                 {index !== otherLanguages.length - 1 && <Separator />}
-              </>
+              </MainContainer>
             );
           })}
         </OtherLanguagesContainer>
