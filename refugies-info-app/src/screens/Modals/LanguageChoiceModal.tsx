@@ -49,19 +49,19 @@ const MainContainer = styled.TouchableOpacity`
 const StyledTextBold = styled(StyledTextNormalBold)`
   text-align: left;
   margin-left: ${theme.margin}px;
-  color: ${(props) =>
+  color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.white : theme.colors.black};
 `;
 
 const StyledText = styled(StyledTextNormal)`
   text-align: left;
-  color: ${(props) =>
+  color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.white : theme.colors.black};
 `;
 
 const SmallStyledTextBold = styled(StyledTextVerySmallBold)`
   text-align: left;
-  color: ${(props) =>
+  color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.white : theme.colors.black};
 `;
 const ModalView = styled.View`

@@ -11,7 +11,7 @@ import { ProgressBar } from "../ProgressBar";
 import { RowContainer } from "../BasicComponents";
 
 const MainContainer = styled.TouchableOpacity`
-  background: ${(props) =>
+  background: ${(props: { isSelected: any }) =>
     props.isSelected ? theme.colors.darkBlue : theme.colors.white};
   border-radius: ${theme.radius * 2}px;
   padding: ${theme.margin * 2}px;
@@ -26,19 +26,19 @@ const MainContainer = styled.TouchableOpacity`
 const StyledTextBold = styled(StyledTextNormalBold)`
   text-align: left;
   margin-left: ${theme.margin}px;
-  color: ${(props) =>
+  color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.white : theme.colors.black};
 `;
 
 const StyledText = styled(StyledTextNormal)`
   text-align: left;
-  color: ${(props) =>
+  color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.white : theme.colors.black};
 `;
 
 const SmallStyledTextBold = styled(StyledTextVerySmallBold)`
   text-align: left;
-  color: ${(props) =>
+  color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.white : theme.colors.black};
 `;
 

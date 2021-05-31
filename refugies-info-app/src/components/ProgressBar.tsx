@@ -11,7 +11,7 @@ const PROGRESS_BAR_WIDTH = 56;
 const PROGRESS_BAR_HEIGHT = 8;
 
 const StyledView = styled.View`
-  background-color: ${(props) =>
+  background-color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.darkBlue : theme.colors.grey};
   width: ${PROGRESS_BAR_WIDTH + 2}px;
   height: ${PROGRESS_BAR_HEIGHT + 2}px;
@@ -23,7 +23,7 @@ const StyledView = styled.View`
 `;
 
 const FilledView = styled.View`
-  background-color: ${(props) =>
+  background-color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.white : theme.colors.darkBlue};
 
   height: 8px;

@@ -6,7 +6,6 @@
 // undefined means that the route has no nav param
 export type RootStackParamList = {
   Root: undefined;
-  NotFound: undefined;
   OnboardingNavigator: undefined;
   LanguageChoiceNavigator: undefined;
 };
