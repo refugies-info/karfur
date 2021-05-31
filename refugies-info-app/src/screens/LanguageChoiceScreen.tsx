@@ -10,27 +10,12 @@ import { ScrollView } from "react-native-gesture-handler";
 import { LanguageDetailsButton } from "../components/Language/LanguageDetailsButton";
 import { activatedLanguages } from "../data/languagesData";
 import { availableLanguagesSelector } from "../services/redux/Languages/languages.selectors";
-import { Language } from "../types/interface";
+import { getAvancementTrad } from "../libs/language";
 
 const MainContainer = styled.View`
   padding-horizontal: ${theme.margin * 2}px;
   padding-vertical: ${theme.margin}px;
 `;
-
-const getAvancementTrad = (
-  langueFr: string,
-  languagesWithAvancement: Language[]
-): number | null => {
-  if (langueFr === "Français") return 100;
-  if (languagesWithAvancement.length === 0) {
-    return null;
-  }
-  const correspondingData = languagesWithAvancement.filter(
-    (langue) => langue.langueFr === langueFr
-  );
-  if (correspondingData.length === 0) return null;
-  return Math.round(correspondingData[0].avancementTrad * 100);
-};
 
 export const LanguageChoiceScreen = () => {
   const dispatch = useDispatch();

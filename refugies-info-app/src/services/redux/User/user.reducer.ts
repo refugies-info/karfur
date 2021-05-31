@@ -4,11 +4,13 @@ import { UserActions } from "./user.actions";
 export interface UserState {
   hasUserSeenOnboarding: boolean;
   selectedLanguagei18nCode: string | null;
+  currentLanguagei18nCode: string | null;
 }
 
 export const initialUserState = {
   hasUserSeenOnboarding: false,
   selectedLanguagei18nCode: null,
+  currentLanguagei18nCode: null,
 };
 
 export const userReducer = createReducer<UserState, UserActions>(
@@ -21,6 +23,10 @@ export const userReducer = createReducer<UserState, UserActions>(
     SET_SELECTED_LANGUAGE: (state, action) => ({
       ...state,
       selectedLanguagei18nCode: action.payload,
+    }),
+    SET_CURRENT_LANGUAGE: (state, action) => ({
+      ...state,
+      currentLanguagei18nCode: action.payload,
     }),
   }
 );

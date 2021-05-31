@@ -11,7 +11,8 @@ import { ProgressBar } from "../ProgressBar";
 import { RowContainer } from "../BasicComponents";
 
 const MainContainer = styled.TouchableOpacity`
-  background: ${theme.colors.white};
+  background: ${(props: { isSelected: any }) =>
+    props.isSelected ? theme.colors.darkBlue : theme.colors.white};
   border-radius: ${theme.radius * 2}px;
   padding: ${theme.margin * 2}px;
   margin-vertical: ${theme.margin}px;
@@ -19,19 +20,37 @@ const MainContainer = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 const StyledTextBold = styled(StyledTextNormalBold)`
   text-align: left;
   margin-left: ${theme.margin}px;
+  color: ${(props: { isSelected: boolean }) =>
+    props.isSelected ? theme.colors.white : theme.colors.black};
 `;
 
 const StyledText = styled(StyledTextNormal)`
   text-align: left;
+  color: ${(props: { isSelected: boolean }) =>
+    props.isSelected ? theme.colors.white : theme.colors.black};
 `;
 
 const SmallStyledTextBold = styled(StyledTextVerySmallBold)`
   text-align: left;
+  color: ${(props: { isSelected: boolean }) =>
+    props.isSelected ? theme.colors.white : theme.colors.black};
+`;
+
+const FlagBackground = styled.View`
+  margin: 4px;
+  background-color: ${theme.colors.white};
+  width: 22px;
+  height: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
 `;
 
 interface Props {
@@ -39,18 +58,32 @@ interface Props {
   langueLoc: string;
   avancementTrad: number | null;
   onPress: () => void;
+  isSelected?: boolean;
 }
 export const LanguageDetailsButton = (props: Props) => (
-  <MainContainer onPress={props.onPress}>
+  <MainContainer
+    onPress={props.onPress}
+    testID={"test-language-button-" + props.langueFr}
+    isSelected={props.isSelected}
+  >
     <RowContainer>
-      <Flag langueFr={props.langueFr} />
-      <StyledTextBold>{props.langueFr + " - "}</StyledTextBold>
-      <StyledText>{props.langueLoc}</StyledText>
+      <FlagBackground>
+        <Flag langueFr={props.langueFr} />
+      </FlagBackground>
+      <StyledTextBold isSelected={props.isSelected}>
+        {props.langueFr + " - "}
+      </StyledTextBold>
+      <StyledText isSelected={props.isSelected}>{props.langueLoc}</StyledText>
     </RowContainer>
     {props.avancementTrad && (
       <RowContainer>
-        <ProgressBar avancement={props.avancementTrad} />
-        <SmallStyledTextBold>{props.avancementTrad + "%"}</SmallStyledTextBold>
+        <ProgressBar
+          avancement={props.avancementTrad}
+          isSelected={props.isSelected}
+        />
+        <SmallStyledTextBold isSelected={props.isSelected}>
+          {props.avancementTrad + "%"}
+        </SmallStyledTextBold>
       </RowContainer>
     )}
   </MainContainer>

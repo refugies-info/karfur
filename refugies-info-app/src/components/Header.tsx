@@ -5,10 +5,15 @@ import Logo from "../theme/images/logo.svg";
 import { SmallButton } from "./SmallButton";
 import { SafeAreaView } from "react-native-safe-area-context";
 import i18n from "../services/i18n";
-import { RTLView } from "./StyledText";
+import { RTLView } from "./BasicComponents";
+import { LanguageSwitch } from "./Language/LanguageSwitch";
 
 const MainContainer = styled(RTLView)`
-  padding-horizontal: ${theme.margin * 2}px;
+  padding-left: ${(props: { isRTL: any }) =>
+    props.isRTL ? theme.margin * 3 : theme.margin * 3}px;
+  padding-right: ${(props: { isRTL: any }) =>
+    props.isRTL ? theme.margin * 3 : theme.margin * 3}px;
+
   padding-vertical: ${theme.margin}px;
   align-items: center;
   justify-content: space-between;
@@ -18,11 +23,27 @@ const MainContainer = styled(RTLView)`
 const LOGO_WIDTH = 70;
 const LOGO_HEIGHT = 48;
 
-export const Header = () => (
+interface Props {
+  selectedLanguageI18nCode?: string | null;
+  currentLanguageI18nCode?: string | null;
+  onLongPressSwitchLanguage?: () => void;
+}
+export const Header = ({
+  selectedLanguageI18nCode,
+  currentLanguageI18nCode,
+  onLongPressSwitchLanguage,
+}: Props) => (
   <SafeAreaView>
     <MainContainer isRTL={i18n.isRTL()}>
       <Logo width={LOGO_WIDTH} height={LOGO_HEIGHT} />
-      <SmallButton />
+      <RTLView>
+        <LanguageSwitch
+          currentLanguageI18nCode={currentLanguageI18nCode}
+          selectedLanguageI18nCode={selectedLanguageI18nCode}
+          onLongPressSwitchLanguage={onLongPressSwitchLanguage}
+        />
+        <SmallButton />
+      </RTLView>
     </MainContainer>
   </SafeAreaView>
 );

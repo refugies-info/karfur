@@ -8,5 +8,12 @@
   },
   "Onboarding2": {
     "welcome": "Bienvenue fr"
-  }
+  },
+  "tabBar": {
+    "Explorer": "Explorer",
+    "Favoris": "Favoris",
+    "Profil": "Moi",
+    "Search": "Rechercher"
+  },
+  "Langue app": "Langue de l'application"
 }

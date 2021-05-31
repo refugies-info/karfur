@@ -6,22 +6,31 @@
 // undefined means that the route has no nav param
 export type RootStackParamList = {
   Root: undefined;
-  NotFound: undefined;
   OnboardingNavigator: undefined;
   LanguageChoiceNavigator: undefined;
 };
 
 export type BottomTabParamList = {
-  TabOne: undefined;
-  TabTwo: undefined;
+  Explorer: undefined;
+  Favoris: undefined;
+  Profil: undefined;
+  Search: undefined;
 };
 
-export type TabOneParamList = {
-  TabOneScreen: undefined;
+export type ExplorerParamList = {
+  ExplorerScreen: undefined;
 };
 
-export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+export type FavorisParamList = {
+  FavorisScreen: undefined;
+};
+
+export type ProfilParamList = {
+  ProfilScreen: undefined;
+};
+
+export type SearchParamList = {
+  SearchScreen: undefined;
 };
 
 export type OnboardingParamList = {

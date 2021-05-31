@@ -5,6 +5,7 @@ import {
   saveSelectedLanguageActionCreator,
   setSelectedLanguageActionCreator,
   setHasUserSeenOnboardingActionCreator,
+  setCurrentLanguageActionCreator,
 } from "./user.actions";
 import {
   SAVE_SELECTED_LANGUAGE,
@@ -20,9 +21,11 @@ export function* saveSelectedLanguage(
     logger.info("[saveSelectedLanguage] saga", { langue: i18nCode });
     yield call(saveItemInAsyncStorage, "SELECTED_LANGUAGE", i18nCode);
     yield put(setSelectedLanguageActionCreator(i18nCode));
+    yield put(setCurrentLanguageActionCreator(i18nCode));
   } catch (error) {
     logger.error("Error while saving langue", { error: error.message });
     yield put(setSelectedLanguageActionCreator("fr"));
+    yield put(setCurrentLanguageActionCreator("fr"));
   }
 }
 
