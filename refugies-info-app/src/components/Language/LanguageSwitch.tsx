@@ -41,6 +41,16 @@ const LanguageContainer = styled(ButtonContainerFixedWidth)`
     props.backgroundColor};
 `;
 
+const FlagBackground = styled.View`
+  margin: 4px;
+  background-color: ${theme.colors.white};
+  width: 22px;
+  height: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+`;
 const getSelectedLanguageLangueFrFromI18nCode = (i18nCode: string) => {
   const languageData = activatedLanguages.filter(
     (language) => language.i18nCode === i18nCode
@@ -97,14 +107,18 @@ export const LanguageSwitch = ({
           isFrenchSelected ? theme.colors.darkBlue : theme.colors.white
         }
       >
-        <Flag langueFr={"Français"} />
+        <FlagBackground>
+          <Flag langueFr={"Français"} />
+        </FlagBackground>
       </LanguageContainer>
       <LanguageContainer
         backgroundColor={
           isFrenchSelected ? theme.colors.white : theme.colors.darkBlue
         }
       >
-        <Flag langueFr={selectedLanguageLangueFr} />
+        <FlagBackground>
+          <Flag langueFr={selectedLanguageLangueFr} />
+        </FlagBackground>
       </LanguageContainer>
     </ButtonContainer>
   );
