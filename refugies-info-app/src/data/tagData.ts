@@ -6,6 +6,9 @@ export const tags = [
     icon: "elearning",
     name: "apprendre le français",
     darkColor: theme.colors.français100,
+    lightColor: theme.colors.français80,
+    veryLightColor: theme.colors.français30,
+
     order: 2,
   },
   {
@@ -13,6 +16,9 @@ export const tags = [
     icon: "office",
     name: "gérer mes papiers",
     darkColor: theme.colors.admin100,
+    lightColor: theme.colors.admin80,
+    veryLightColor: theme.colors.admin30,
+
     order: 1,
   },
   {
@@ -20,6 +26,8 @@ export const tags = [
     icon: "house",
     name: "me loger",
     darkColor: theme.colors.logement100,
+    lightColor: theme.colors.logement80,
+    veryLightColor: theme.colors.logement30,
     order: 5,
   },
   {
@@ -27,6 +35,8 @@ export const tags = [
     icon: "bus",
     name: "me déplacer",
     darkColor: theme.colors.mobilite100,
+    lightColor: theme.colors.mobilite80,
+    veryLightColor: theme.colors.mobilite30,
     order: 7,
   },
   {
@@ -34,6 +44,8 @@ export const tags = [
     icon: "briefcase",
     name: "trouver un travail",
     darkColor: theme.colors.travail100,
+    lightColor: theme.colors.travail80,
+    veryLightColor: theme.colors.travail30,
     order: 3,
   },
   {
@@ -41,6 +53,8 @@ export const tags = [
     icon: "heartBeat",
     name: "me soigner",
     darkColor: theme.colors.sante100,
+    lightColor: theme.colors.sante80,
+    veryLightColor: theme.colors.sante30,
     order: 6,
   },
   {
@@ -48,6 +62,8 @@ export const tags = [
     icon: "measure",
     name: "apprendre un métier",
     darkColor: theme.colors.formation100,
+    lightColor: theme.colors.formation80,
+    veryLightColor: theme.colors.formation30,
     order: 4,
   },
   {
@@ -55,6 +71,8 @@ export const tags = [
     icon: "glasses",
     name: "faire des études",
     darkColor: theme.colors.etudes100,
+    lightColor: theme.colors.etudes80,
+    veryLightColor: theme.colors.etudes30,
     order: 9,
   },
   {
@@ -62,6 +80,8 @@ export const tags = [
     icon: "flag",
     name: "aider une association",
     darkColor: theme.colors.benevolat100,
+    lightColor: theme.colors.benevolat80,
+    veryLightColor: theme.colors.benevolat30,
     order: 10,
   },
   {
@@ -69,6 +89,8 @@ export const tags = [
     icon: "couple",
     name: "rencontrer des gens",
     darkColor: theme.colors.rencontre100,
+    lightColor: theme.colors.rencontre80,
+    veryLightColor: theme.colors.rencontre30,
     order: 8,
   },
   {
@@ -76,6 +98,8 @@ export const tags = [
     icon: "soccer",
     name: "occuper mon temps libre",
     darkColor: theme.colors.loisirs100,
+    lightColor: theme.colors.loisirs80,
+    veryLightColor: theme.colors.loisirs30,
     order: 11,
   },
   {
@@ -83,6 +107,8 @@ export const tags = [
     icon: "triumph",
     name: "découvrir la culture",
     darkColor: theme.colors.culture100,
+    lightColor: theme.colors.culture80,
+    veryLightColor: theme.colors.culture30,
     order: 12,
   },
 ];

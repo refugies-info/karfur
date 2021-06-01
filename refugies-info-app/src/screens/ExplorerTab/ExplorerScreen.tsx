@@ -12,6 +12,8 @@ import styled from "styled-components/native";
 import { ViewChoice } from "../../components/Explorer/ViewChoice";
 import { tags } from "../../data/tagData";
 import { TagButton } from "../../components/Explorer/TagButton";
+import { TagsCaroussel } from "../../components/Explorer/TagsCaroussel";
+
 import { sortByOrder } from "../../libs";
 
 const ViewChoiceContainer = styled(RTLView)`
@@ -24,6 +26,13 @@ const ViewChoiceContainer = styled(RTLView)`
 const TagListContainer = styled.ScrollView`
   margin-horizontal: ${theme.margin * 3}px;
   margin-bottom: ${theme.margin * 20}px;
+`;
+
+const CarousselContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: ${theme.margin * 5}px;
 `;
 export const ExplorerScreen = () => {
   const [tabSelected, setTabSelected] = React.useState("galery");
@@ -50,7 +59,7 @@ export const ExplorerScreen = () => {
           onPress={() => setTabSelected("list")}
         />
       </ViewChoiceContainer>
-      {tabSelected === "list" && (
+      {tabSelected === "list" ? (
         <TagListContainer>
           {tags.sort(sortByOrder).map((tag, index) => (
             <TagButton
@@ -61,6 +70,10 @@ export const ExplorerScreen = () => {
             />
           ))}
         </TagListContainer>
+      ) : (
+        <CarousselContainer>
+          <TagsCaroussel />
+        </CarousselContainer>
       )}
     </WrapperWithHeaderAndLanguageModal>
   );
