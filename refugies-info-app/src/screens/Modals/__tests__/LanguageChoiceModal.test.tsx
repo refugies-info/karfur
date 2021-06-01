@@ -1,28 +1,31 @@
-import { wrapWithProvidersAndRender } from "../../jest/wrapWithProvidersAndRender";
-import { LanguageChoiceScreen } from "../LanguageChoiceScreen";
-import { initialRootStateFactory } from "../../services/redux/reducers";
-import { fetchLanguagesActionCreator } from "../../services/redux/Languages/languages.actions";
+import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
+import { initialRootStateFactory } from "../../../services/redux/reducers";
+import { fetchLanguagesActionCreator } from "../../../services/redux/Languages/languages.actions";
 import { fireEvent, act } from "react-native-testing-library";
-import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
-import i18n from "../../services/i18n";
-import { mockedLanguageData } from "../../jest/__fixtures__/languages";
+import { saveSelectedLanguageActionCreator } from "../../../services/redux/User/user.actions";
+import i18n from "../../../services/i18n";
+import { mockedLanguageData } from "../../../jest/__fixtures__/languages";
+import { LanguageChoiceModal } from "../LanguageChoiceModal";
 
-jest.mock("../../services/redux/Languages/languages.actions", () => {
+jest.mock("../../../services/redux/Languages/languages.actions", () => {
   const actions = jest.requireActual(
-    "../../services/redux/Languages/languages.actions"
+    "../../../services/redux/Languages/languages.actions"
   );
   return {
     fetchLanguagesActionCreator: jest.fn(actions.fetchLanguagesActionCreator),
   };
 });
 
-jest.mock("../../services/i18n", () => ({
+jest.mock("../../../services/i18n", () => ({
   __esModule: true, // this property makes it work
   default: { changeLanguage: jest.fn(), isRTL: jest.fn() },
+  t: jest.fn(),
 }));
 
-jest.mock("../../services/redux/User/user.actions", () => {
-  const actions = jest.requireActual("../../services/redux/User/user.actions");
+jest.mock("../../../services/redux/User/user.actions", () => {
+  const actions = jest.requireActual(
+    "../../../services/redux/User/user.actions"
+  );
   return {
     saveSelectedLanguageActionCreator: jest.fn(
       actions.saveSelectedLanguageActionCreator
@@ -30,18 +33,20 @@ jest.mock("../../services/redux/User/user.actions", () => {
   };
 });
 
-describe("LanguageChoiceScreen", () => {
+describe("LanguageChoiceModal", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it("should render correctly", () => {
+    const toggleModal = jest.fn();
     const component = wrapWithProvidersAndRender({
-      Component: LanguageChoiceScreen,
+      Component: LanguageChoiceModal,
       reduxState: {
         ...initialRootStateFactory(),
         languages: { availableLanguages: mockedLanguageData },
       },
+      compProps: { toggleModal },
     });
     expect(fetchLanguagesActionCreator).toHaveBeenCalledWith();
     expect(component).toMatchSnapshot();
@@ -51,5 +56,6 @@ describe("LanguageChoiceScreen", () => {
     });
     expect(i18n.changeLanguage).toHaveBeenCalledWith("en");
     expect(saveSelectedLanguageActionCreator).toHaveBeenCalledWith("en");
+    expect(toggleModal).toHaveBeenCalledWith();
   });
 });

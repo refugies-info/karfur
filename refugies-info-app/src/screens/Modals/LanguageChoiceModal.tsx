@@ -140,7 +140,7 @@ export const LanguageChoiceModal = (props: Props) => {
               <View key={index}>
                 <MainContainer
                   onPress={() => changeLanguage(language.i18nCode)}
-                  //   testID={"test-language-button-" + props.langueFr}
+                  testID={"test-language-button-" + language.langueFr}
                   key={index}
                 >
                   <RowContainer>
