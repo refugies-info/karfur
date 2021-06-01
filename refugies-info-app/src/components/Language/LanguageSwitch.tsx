@@ -32,13 +32,22 @@ const ButtonContainer = styled.TouchableOpacity`
   justify-content: center;
 `;
 
-const ButtonContainerFixedWidth = styled(ButtonContainerCommon)`
+const ButtonContainerFixedWidth = styled.TouchableOpacity`
   width: 48px;
+  margin-right: ${theme.margin}px;
+  background-color: ${theme.colors.white};
+  border-radius: ${theme.radius * 2}px;
+  height: 48px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
 
-const LanguageContainer = styled(ButtonContainerFixedWidth)`
+const LanguageContainer = styled(ButtonContainerCommon)`
   background-color: ${(props: { backgroundColor: string }) =>
     props.backgroundColor};
+  width: 48px;
 `;
 
 const FlagBackground = styled.View`
@@ -88,7 +97,7 @@ export const LanguageSwitch = ({
 
   if (selectedLanguageI18nCode === "fr")
     return (
-      <ButtonContainerFixedWidth>
+      <ButtonContainerFixedWidth onLongPress={onLongPressSwitchLanguage}>
         <Flag langueFr={"Français"} />
       </ButtonContainerFixedWidth>
     );

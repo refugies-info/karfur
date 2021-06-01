@@ -73,7 +73,7 @@ const ModalView = styled.View`
 `;
 
 const TitleContainer = styled(StyledTextNormal)`
-  margin-bottom: ${theme.margin * 3}px;
+  margin-bottom: ${theme.margin}px;
 `;
 
 const OtherLanguagesContainer = styled.View`
