@@ -1,15 +1,26 @@
 import * as React from "react";
 import { TextNormal } from "../../components/StyledText";
-import { View } from "react-native";
 import { t } from "../../services/i18n";
-import { Header } from "../../components/Header";
+import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal";
+import { useSelector } from "react-redux";
+import {
+  currentI18nCodeSelector,
+  selectedI18nCodeSelector,
+} from "../../services/redux/User/user.selectors";
 
-export const SearchScreen = () => (
-  <View>
-    <Header />
-    <TextNormal>Search screen</TextNormal>
+export const SearchScreen = () => {
+  const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
+  const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
 
-    <TextNormal>{t("lists", "options")}</TextNormal>
-    <TextNormal>{t("homepage.test", "options")}</TextNormal>
-  </View>
-);
+  return (
+    <WrapperWithHeaderAndLanguageModal
+      currentLanguageI18nCode={currentLanguageI18nCode}
+      selectedLanguageI18nCode={selectedLanguageI18nCode}
+    >
+      <TextNormal>Search screen</TextNormal>
+
+      <TextNormal>{t("lists", "options")}</TextNormal>
+      <TextNormal>{t("homepage.test", "options")}</TextNormal>
+    </WrapperWithHeaderAndLanguageModal>
+  );
+};
