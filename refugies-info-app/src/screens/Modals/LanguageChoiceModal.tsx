@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Modal from "react-native-modal";
 import React from "react";
 import styled from "styled-components/native";
@@ -137,26 +137,28 @@ export const LanguageChoiceModal = (props: Props) => {
               languagesWithAvancement
             );
             return (
-              <MainContainer
-                onPress={() => changeLanguage(language.i18nCode)}
-                //   testID={"test-language-button-" + props.langueFr}
-                key={index}
-              >
-                <RowContainer>
-                  <Flag langueFr={language.langueFr} />
-                  <StyledTextBold>{language.langueFr + " - "}</StyledTextBold>
-                  <StyledText>{language.langueLoc}</StyledText>
-                </RowContainer>
-                {avancementTrad && (
+              <View key={index}>
+                <MainContainer
+                  onPress={() => changeLanguage(language.i18nCode)}
+                  //   testID={"test-language-button-" + props.langueFr}
+                  key={index}
+                >
                   <RowContainer>
-                    <ProgressBar avancement={avancementTrad} />
-                    <SmallStyledTextBold>
-                      {avancementTrad + "%"}
-                    </SmallStyledTextBold>
+                    <Flag langueFr={language.langueFr} />
+                    <StyledTextBold>{language.langueFr + " - "}</StyledTextBold>
+                    <StyledText>{language.langueLoc}</StyledText>
                   </RowContainer>
-                )}
+                  {avancementTrad && (
+                    <RowContainer>
+                      <ProgressBar avancement={avancementTrad} />
+                      <SmallStyledTextBold>
+                        {avancementTrad + "%"}
+                      </SmallStyledTextBold>
+                    </RowContainer>
+                  )}
+                </MainContainer>
                 {index !== otherLanguages.length - 1 && <Separator />}
-              </MainContainer>
+              </View>
             );
           })}
         </OtherLanguagesContainer>
