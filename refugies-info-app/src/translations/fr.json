@@ -15,5 +15,10 @@
     "Profil": "Moi",
     "Search": "Rechercher"
   },
-  "Langue app": "Langue de l'application"
+  "Langue app": "Langue de l'application",
+
+  "ExplorerScreen": {
+    "Liste": "Liste",
+    "Galerie": "Galerie"
+  }
 }
