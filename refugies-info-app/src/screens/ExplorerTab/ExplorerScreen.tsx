@@ -26,8 +26,7 @@ const TagListContainer = styled.ScrollView`
   margin-bottom: ${theme.margin * 20}px;
 `;
 export const ExplorerScreen = () => {
-  // const [tabSelected, setTabSelected] = React.useState("galery");
-  const [tabSelected, setTabSelected] = React.useState("list");
+  const [tabSelected, setTabSelected] = React.useState("galery");
 
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
