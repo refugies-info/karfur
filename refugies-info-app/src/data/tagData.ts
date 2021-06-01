@@ -1,0 +1,88 @@
+import { theme } from "../theme";
+
+export const tags = [
+  {
+    short: "Français",
+    icon: "elearning",
+    name: "apprendre le français",
+    darkColor: theme.colors.français100,
+    order: 2,
+  },
+  {
+    short: "Administratif",
+    icon: "office",
+    name: "gérer mes papiers",
+    darkColor: theme.colors.admin100,
+    order: 1,
+  },
+  {
+    short: "Logement",
+    icon: "house",
+    name: "me loger",
+    darkColor: theme.colors.logement100,
+    order: 5,
+  },
+  {
+    short: "Mobilité",
+    icon: "bus",
+    name: "me déplacer",
+    darkColor: theme.colors.mobilite100,
+    order: 7,
+  },
+  {
+    short: "Insertion pro",
+    icon: "briefcase",
+    name: "trouver un travail",
+    darkColor: theme.colors.travail100,
+    order: 3,
+  },
+  {
+    short: "Santé",
+    icon: "heartBeat",
+    name: "me soigner",
+    darkColor: theme.colors.sante100,
+    order: 6,
+  },
+  {
+    short: "Formation pro",
+    icon: "measure",
+    name: "apprendre un métier",
+    darkColor: theme.colors.formation100,
+    order: 4,
+  },
+  {
+    short: "Études",
+    icon: "glasses",
+    name: "faire des études",
+    darkColor: theme.colors.etudes100,
+    order: 9,
+  },
+  {
+    short: "Bénévolat",
+    icon: "flag",
+    name: "aider une association",
+    darkColor: theme.colors.benevolat100,
+    order: 10,
+  },
+  {
+    short: "Rencontre",
+    icon: "couple",
+    name: "rencontrer des gens",
+    darkColor: theme.colors.rencontre100,
+    order: 8,
+  },
+  {
+    short: "Loisir",
+    icon: "soccer",
+    name: "occuper mon temps libre",
+    darkColor: theme.colors.loisirs100,
+    order: 11,
+  },
+  {
+    short: "Culture",
+    icon: "triumph",
+    name: "découvrir la culture",
+    darkColor: theme.colors.culture100,
+    order: 12,
+  },
+];

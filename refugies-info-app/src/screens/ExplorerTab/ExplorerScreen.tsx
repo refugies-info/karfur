@@ -10,16 +10,25 @@ import { RTLView } from "../../components/BasicComponents";
 import { theme } from "../../theme";
 import styled from "styled-components/native";
 import { ViewChoice } from "../../components/Explorer/ViewChoice";
+import { tags } from "../../data/tagData";
+import { TagButton } from "../../components/Explorer/TagButton";
+import { sortByOrder } from "../../libs";
 
 const ViewChoiceContainer = styled(RTLView)`
   margin-top: ${theme.margin * 6}px;
-
   justify-content: center;
   align-items: center;
+  margin-bottom: ${theme.margin * 2}px;
 `;
 
+const TagListContainer = styled.ScrollView`
+  margin-horizontal: ${theme.margin * 3}px;
+  margin-bottom: ${theme.margin * 20}px;
+`;
 export const ExplorerScreen = () => {
-  const [tabSelected, setTabSelected] = React.useState("galery");
+  // const [tabSelected, setTabSelected] = React.useState("galery");
+  const [tabSelected, setTabSelected] = React.useState("list");
+
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
 
@@ -42,6 +51,18 @@ export const ExplorerScreen = () => {
           onPress={() => setTabSelected("list")}
         />
       </ViewChoiceContainer>
+      {tabSelected === "list" && (
+        <TagListContainer>
+          {tags.sort(sortByOrder).map((tag, index) => (
+            <TagButton
+              key={index}
+              tagName={tag.name}
+              backgroundColor={tag.darkColor}
+              iconName={tag.icon}
+            />
+          ))}
+        </TagListContainer>
+      )}
     </WrapperWithHeaderAndLanguageModal>
   );
 };
