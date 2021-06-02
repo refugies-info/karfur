@@ -5,6 +5,7 @@ import { tags } from "../../data/tagData";
 import { CarousselCard } from "./CarousselCard";
 import { sortByOrder } from "../../libs";
 import { theme } from "../../theme";
+import i18n from "../../services/i18n";
 
 export class TagsCaroussel extends React.Component {
   constructor(props) {
@@ -26,10 +27,15 @@ export class TagsCaroussel extends React.Component {
   }
   get pagination() {
     const { carouselItems, activeIndex } = this.state;
+    const isRTL = i18n.isRTL();
+    const activeDotIndex = isRTL
+      ? carouselItems.length - activeIndex - 1
+      : activeIndex;
+
     return (
       <Pagination
         dotsLength={carouselItems.length}
-        activeDotIndex={activeIndex}
+        activeDotIndex={activeDotIndex}
         dotStyle={{
           width: 8,
           height: 8,
@@ -45,6 +51,9 @@ export class TagsCaroussel extends React.Component {
     );
   }
   render() {
+    const isRTL = i18n.isRTL();
+    const { activeIndex } = this.state;
+
     return (
       <View>
         <Carousel
@@ -55,6 +64,8 @@ export class TagsCaroussel extends React.Component {
           itemWidth={230}
           renderItem={this._renderItem}
           onSnapToItem={(index) => this.setState({ activeIndex: index })}
+          currentIndex={activeIndex}
+          inverted={isRTL}
         />
         {this.pagination}
       </View>
