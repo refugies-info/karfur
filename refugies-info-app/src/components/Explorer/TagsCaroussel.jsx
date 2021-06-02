@@ -11,7 +11,7 @@ export class TagsCaroussel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeIndex: 0,
+      activeIndex: 1,
       carouselItems: tags.sort(sortByOrder),
     };
   }
@@ -66,6 +66,9 @@ export class TagsCaroussel extends React.Component {
           onSnapToItem={(index) => this.setState({ activeIndex: index })}
           currentIndex={activeIndex}
           inverted={isRTL}
+          firstItem={1}
+          initialNumToRender={12}
+          inactiveSlideScale={0.75}
         />
         {this.pagination}
       </View>
