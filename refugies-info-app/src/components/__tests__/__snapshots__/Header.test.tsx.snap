@@ -7,12 +7,9 @@ exports[`Header should render correctly with LTR 1`] = `
     style={
       Array [
         Object {
-          "display": "flex",
-          "flexDirection": "row",
-        },
-        Object {
           "alignItems": "center",
           "display": "flex",
+          "flexDirection": "row",
           "justifyContent": "space-between",
           "paddingLeft": 24,
           "paddingRight": 24,
@@ -29,6 +26,7 @@ exports[`Header should render correctly with LTR 1`] = `
       style={
         Array [
           Object {
+            "alignItems": "center",
             "display": "flex",
             "flexDirection": "row",
           },
@@ -128,16 +126,13 @@ exports[`Header should render correctly with LTR 1`] = `
 exports[`Header should render correctly with RTL 1`] = `
 <RNCSafeAreaView>
   <View
-    isRTL={true}
+    isRTL={false}
     style={
       Array [
         Object {
-          "display": "flex",
-          "flexDirection": "row-reverse",
-        },
-        Object {
           "alignItems": "center",
           "display": "flex",
+          "flexDirection": "row",
           "justifyContent": "space-between",
           "paddingLeft": 24,
           "paddingRight": 24,
@@ -154,6 +149,7 @@ exports[`Header should render correctly with RTL 1`] = `
       style={
         Array [
           Object {
+            "alignItems": "center",
             "display": "flex",
             "flexDirection": "row",
           },

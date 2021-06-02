@@ -8,5 +8,32 @@
   "homepage": {
     "test": "test ru"
   },
-  "lists": "Lists ru"
+  "lists": "Lists ru",
+  "Tags": {
+    "Français": "Французский",
+    "Logement": "Жилье",
+    "Insertion pro": "Работа",
+    "Formation pro": "Профессиональная подготовка",
+    "Études": "Учеба",
+    "Mobilité": "Мобильность",
+    "Bénévolat": "Волонтерство",
+    "Rencontre": "Общение",
+    "Loisir": "Досуг",
+    "Culture": "Культура",
+    "Santé": "Здоровье",
+    "Administratif": "Административное",
+    "Autre": "Другое",
+    "apprendre le français": "учить французский",
+    "me loger": "найти жилье",
+    "trouver un travail": "найти работу",
+    "apprendre un métier": "получить профессию",
+    "faire des études": "учиться",
+    "me déplacer": "перемещаться",
+    "aider une association": "стать волонтером",
+    "rencontrer des gens": "познакомиться с людьми",
+    "occuper mon temps libre": "занять свободное время",
+    "découvrir la culture": "узнать о культуре",
+    "me soigner": "получить медицинскую помощь",
+    "gérer mes papiers": "разобраться с документами"
+  }
 }

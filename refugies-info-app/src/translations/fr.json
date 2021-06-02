@@ -15,5 +15,37 @@
     "Profil": "Moi",
     "Search": "Rechercher"
   },
-  "Langue app": "Langue de l'application"
+  "Langue app": "Langue de l'application",
+
+  "ExplorerScreen": {
+    "Liste": "Liste",
+    "Galerie": "Galerie"
+  },
+  "Tags": {
+    "Français": "Français",
+    "Logement": "Logement",
+    "Insertion pro": "Insertion pro",
+    "Formation pro": "Formation pro",
+    "Études": "Études",
+    "Mobilité": "Mobilité",
+    "Bénévolat": "Bénévolat",
+    "Rencontre": "Rencontre",
+    "Loisir": "Loisir",
+    "Culture": "Culture",
+    "Santé": "Santé",
+    "Administratif": "Administratif",
+    "Autre": "Autre",
+    "apprendre le français": "apprendre le français",
+    "me loger": "me loger",
+    "trouver un travail": "trouver un travail",
+    "apprendre un métier": "apprendre un métier",
+    "faire des études": "faire des études",
+    "me déplacer": "me déplacer",
+    "aider une association": "aider une association",
+    "rencontrer des gens": "rencontrer des gens",
+    "occuper mon temps libre": "occuper mon temps libre",
+    "découvrir la culture": "découvrir la culture",
+    "me soigner": "me soigner",
+    "gérer mes papiers": "gérer mes papiers"
+  }
 }

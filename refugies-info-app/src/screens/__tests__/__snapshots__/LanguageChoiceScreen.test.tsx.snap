@@ -9,15 +9,13 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
   <View>
     <RNCSafeAreaView>
       <View
+        isRTL={false}
         style={
           Array [
             Object {
-              "display": "flex",
-              "flexDirection": "row",
-            },
-            Object {
               "alignItems": "center",
               "display": "flex",
+              "flexDirection": "row",
               "justifyContent": "space-between",
               "paddingLeft": 24,
               "paddingRight": 24,
@@ -34,6 +32,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
           style={
             Array [
               Object {
+                "alignItems": "center",
                 "display": "flex",
                 "flexDirection": "row",
               },
@@ -208,84 +207,14 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                 Object {
                   "color": "#212121",
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
+                  "fontSize": 16,
                   "marginLeft": 8,
                   "textAlign": "left",
                 },
               ]
             }
           >
-            Français - 
-          </Text>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 19,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
             Français
-          </Text>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#EDEBEB",
-                  "borderColor": "white",
-                  "borderRadius": 6,
-                  "borderStyle": "solid",
-                  "borderWidth": 1,
-                  "height": 10,
-                  "marginRight": 8,
-                  "width": 58,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#0421B1",
-                    "borderRadius": 6,
-                    "height": 8,
-                    "width": 56,
-                  },
-                ]
-              }
-              width={56}
-            />
-          </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 13,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            100%
           </Text>
         </View>
       </View>
@@ -359,85 +288,55 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                 Object {
                   "color": "#212121",
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
+                  "fontSize": 16,
                   "marginLeft": 8,
                   "textAlign": "left",
                 },
               ]
             }
           >
-            Anglais - 
+            Anglais
           </Text>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 19,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            English
-          </Text>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
           <View
             style={
               Array [
                 Object {
-                  "backgroundColor": "#EDEBEB",
-                  "borderColor": "white",
-                  "borderRadius": 6,
-                  "borderStyle": "solid",
-                  "borderWidth": 1,
-                  "height": 10,
-                  "marginRight": 8,
-                  "width": 58,
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
                 },
               ]
             }
           >
-            <View
+            <Text
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#0421B1",
-                    "borderRadius": 6,
-                    "height": 8,
-                    "width": 40,
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
                   },
                 ]
               }
-              width={40}
-            />
+            >
+               - 
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              English
+            </Text>
           </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 13,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            71%
-          </Text>
         </View>
       </View>
       <View
@@ -510,85 +409,55 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                 Object {
                   "color": "#212121",
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
+                  "fontSize": 16,
                   "marginLeft": 8,
                   "textAlign": "left",
                 },
               ]
             }
           >
-            Pachto - 
+            Pachto
           </Text>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 19,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            پښتو
-          </Text>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
           <View
             style={
               Array [
                 Object {
-                  "backgroundColor": "#EDEBEB",
-                  "borderColor": "white",
-                  "borderRadius": 6,
-                  "borderStyle": "solid",
-                  "borderWidth": 1,
-                  "height": 10,
-                  "marginRight": 8,
-                  "width": 58,
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
                 },
               ]
             }
           >
-            <View
+            <Text
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#0421B1",
-                    "borderRadius": 6,
-                    "height": 8,
-                    "width": 35,
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
                   },
                 ]
               }
-              width={35}
-            />
+            >
+               - 
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              پښتو
+            </Text>
           </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 13,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            63%
-          </Text>
         </View>
       </View>
       <View
@@ -661,85 +530,55 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                 Object {
                   "color": "#212121",
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
+                  "fontSize": 16,
                   "marginLeft": 8,
                   "textAlign": "left",
                 },
               ]
             }
           >
-            Persan/Dari - 
+            Persan/Dari
           </Text>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 19,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            فارسی/ دری
-          </Text>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
           <View
             style={
               Array [
                 Object {
-                  "backgroundColor": "#EDEBEB",
-                  "borderColor": "white",
-                  "borderRadius": 6,
-                  "borderStyle": "solid",
-                  "borderWidth": 1,
-                  "height": 10,
-                  "marginRight": 8,
-                  "width": 58,
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
                 },
               ]
             }
           >
-            <View
+            <Text
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#0421B1",
-                    "borderRadius": 6,
-                    "height": 8,
-                    "width": 29,
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
                   },
                 ]
               }
-              width={29}
-            />
+            >
+               - 
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              فارسی/ دری
+            </Text>
           </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 13,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            51%
-          </Text>
         </View>
       </View>
       <View
@@ -812,85 +651,55 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                 Object {
                   "color": "#212121",
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
+                  "fontSize": 16,
                   "marginLeft": 8,
                   "textAlign": "left",
                 },
               ]
             }
           >
-            Tigrinya - 
+            Tigrinya
           </Text>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 19,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            ትግርኛ
-          </Text>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
           <View
             style={
               Array [
                 Object {
-                  "backgroundColor": "#EDEBEB",
-                  "borderColor": "white",
-                  "borderRadius": 6,
-                  "borderStyle": "solid",
-                  "borderWidth": 1,
-                  "height": 10,
-                  "marginRight": 8,
-                  "width": 58,
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
                 },
               ]
             }
           >
-            <View
+            <Text
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#0421B1",
-                    "borderRadius": 6,
-                    "height": 8,
-                    "width": 26,
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
                   },
                 ]
               }
-              width={26}
-            />
+            >
+               - 
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              ትግርኛ
+            </Text>
           </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 13,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            46%
-          </Text>
         </View>
       </View>
       <View
@@ -963,85 +772,55 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                 Object {
                   "color": "#212121",
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
+                  "fontSize": 16,
                   "marginLeft": 8,
                   "textAlign": "left",
                 },
               ]
             }
           >
-            Russe - 
+            Russe
           </Text>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 19,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            Русский
-          </Text>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
           <View
             style={
               Array [
                 Object {
-                  "backgroundColor": "#EDEBEB",
-                  "borderColor": "white",
-                  "borderRadius": 6,
-                  "borderStyle": "solid",
-                  "borderWidth": 1,
-                  "height": 10,
-                  "marginRight": 8,
-                  "width": 58,
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
                 },
               ]
             }
           >
-            <View
+            <Text
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#0421B1",
-                    "borderRadius": 6,
-                    "height": 8,
-                    "width": 47,
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
                   },
                 ]
               }
-              width={47}
-            />
+            >
+               - 
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              Русский
+            </Text>
           </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 13,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            84%
-          </Text>
         </View>
       </View>
       <View
@@ -1114,85 +893,55 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                 Object {
                   "color": "#212121",
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
+                  "fontSize": 16,
                   "marginLeft": 8,
                   "textAlign": "left",
                 },
               ]
             }
           >
-            Arabe - 
+            Arabe
           </Text>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 19,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            العربية
-          </Text>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
           <View
             style={
               Array [
                 Object {
-                  "backgroundColor": "#EDEBEB",
-                  "borderColor": "white",
-                  "borderRadius": 6,
-                  "borderStyle": "solid",
-                  "borderWidth": 1,
-                  "height": 10,
-                  "marginRight": 8,
-                  "width": 58,
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
                 },
               ]
             }
           >
-            <View
+            <Text
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#0421B1",
-                    "borderRadius": 6,
-                    "height": 8,
-                    "width": 54,
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
                   },
                 ]
               }
-              width={54}
-            />
+            >
+               - 
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              العربية
+            </Text>
           </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 13,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            96%
-          </Text>
         </View>
       </View>
     </View>

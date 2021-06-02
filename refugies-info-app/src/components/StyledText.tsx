@@ -48,3 +48,15 @@ export const StyledTextVerySmallBold = styled.Text`
 export const TextNormal = (props: any) => (
   <StyledTextNormal isRTL={i18n.isRTL()} {...props} />
 );
+
+export const TextNormalBold = (props: any) => (
+  <StyledTextNormalBold isRTL={i18n.isRTL()} {...props} />
+);
+
+export const TextVerySmallNormal = (props: any) => (
+  <StyledTextVerySmall isRTL={i18n.isRTL()} {...props} />
+);
+
+export const TextVerySmallBold = (props: any) => (
+  <StyledTextVerySmallBold isRTL={i18n.isRTL()} {...props} />
+);

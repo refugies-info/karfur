@@ -8,6 +8,12 @@ export const RowContainer = styled.View`
   align-items: center;
 `;
 
+export const RowTouchableOpacity = styled.TouchableOpacity`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
 const RTLViewContainer = styled.View`
   display: flex;
   flex-direction: ${(props: { isRTL: boolean }) =>
@@ -15,4 +21,13 @@ const RTLViewContainer = styled.View`
 `;
 export const RTLView = (props: any) => (
   <RTLViewContainer isRTL={i18n.isRTL()} {...props} />
+);
+
+const RTLTouchableOpacityContainer = styled.TouchableOpacity`
+  display: flex;
+  flex-direction: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? "row-reverse" : "row"};
+`;
+export const RTLTouchableOpacity = (props: any) => (
+  <RTLTouchableOpacityContainer isRTL={i18n.isRTL()} {...props} />
 );

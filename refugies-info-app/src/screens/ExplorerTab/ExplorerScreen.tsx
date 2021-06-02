@@ -1,41 +1,86 @@
 import * as React from "react";
-import { TextNormal } from "../../components/StyledText";
-import { View } from "react-native";
 import { t } from "../../services/i18n";
-import { Header } from "../../components/Header";
 import { useSelector } from "react-redux";
 import {
   currentI18nCodeSelector,
   selectedI18nCodeSelector,
 } from "../../services/redux/User/user.selectors";
-import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
+import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal";
+import { RTLView } from "../../components/BasicComponents";
+import { theme } from "../../theme";
+import styled from "styled-components/native";
+import { ViewChoice } from "../../components/Explorer/ViewChoice";
+import { tags } from "../../data/tagData";
+import { TagButton } from "../../components/Explorer/TagButton";
+import { TagsCaroussel } from "../../components/Explorer/TagsCaroussel";
+import { sortByOrder } from "../../libs";
 
+const ViewChoiceContainer = styled(RTLView)`
+  margin-top: ${theme.margin * 6}px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: ${theme.margin * 2}px;
+`;
+
+const TagListContainer = styled.ScrollView`
+  margin-horizontal: ${theme.margin * 3}px;
+`;
+
+const CarousselContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+const CenteredView = styled.View`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+`;
 export const ExplorerScreen = () => {
-  const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
-    false
-  );
+  const [tabSelected, setTabSelected] = React.useState("galery");
 
-  const toggleLanguageModal = () =>
-    setLanguageModalVisible(!isLanguageModalVisible);
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
 
   return (
-    <View>
-      <Header
-        currentLanguageI18nCode={currentLanguageI18nCode}
-        selectedLanguageI18nCode={selectedLanguageI18nCode}
-        onLongPressSwitchLanguage={toggleLanguageModal}
-      />
-      <TextNormal>Explorer screen</TextNormal>
-
-      <TextNormal>{t("lists", "options")}</TextNormal>
-      <TextNormal>{t("homepage.test", "options")}</TextNormal>
-      <LanguageChoiceModal
-        isModalVisible={isLanguageModalVisible}
-        toggleModal={toggleLanguageModal}
-        selectedLanguageI18nCode={selectedLanguageI18nCode}
-      />
-    </View>
+    <WrapperWithHeaderAndLanguageModal
+      currentLanguageI18nCode={currentLanguageI18nCode}
+      selectedLanguageI18nCode={selectedLanguageI18nCode}
+    >
+      <ViewChoiceContainer>
+        <ViewChoice
+          text={t("ExplorerScreen.Galerie", "Galerie")}
+          isSelected={tabSelected === "galery"}
+          iconName={"galery"}
+          onPress={() => setTabSelected("galery")}
+        />
+        <ViewChoice
+          text={t("ExplorerScreen.Liste", "Liste")}
+          isSelected={tabSelected === "list"}
+          iconName={"list"}
+          onPress={() => setTabSelected("list")}
+        />
+      </ViewChoiceContainer>
+      {tabSelected === "list" ? (
+        <TagListContainer>
+          {tags.sort(sortByOrder).map((tag, index) => (
+            <TagButton
+              key={index}
+              tagName={tag.name}
+              backgroundColor={tag.darkColor}
+              iconName={tag.icon}
+            />
+          ))}
+        </TagListContainer>
+      ) : (
+        <CenteredView>
+          <CarousselContainer>
+            <TagsCaroussel />
+          </CarousselContainer>
+        </CenteredView>
+      )}
+    </WrapperWithHeaderAndLanguageModal>
   );
 };

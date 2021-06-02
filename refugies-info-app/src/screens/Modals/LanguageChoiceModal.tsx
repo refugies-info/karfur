@@ -1,27 +1,21 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Modal from "react-native-modal";
 import React from "react";
 import styled from "styled-components/native";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import i18n, { t } from "../../services/i18n";
 import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
 import { theme } from "../../theme";
 import {
   StyledTextNormal,
-  StyledTextNormalBold,
-  StyledTextVerySmallBold,
+  StyledTextSmallBold,
+  StyledTextSmall,
 } from "../../components/StyledText";
 import { LanguageDetailsButton } from "../../components/Language/LanguageDetailsButton";
-import {
-  getSelectedLanguageFromI18nCode,
-  getAvancementTrad,
-} from "../../libs/language";
-import { availableLanguagesSelector } from "../../services/redux/Languages/languages.selectors";
-import { fetchLanguagesActionCreator } from "../../services/redux/Languages/languages.actions";
+import { getSelectedLanguageFromI18nCode } from "../../libs/language";
 import { activatedLanguages } from "../../data/languagesData";
 import { RowContainer } from "../../components/BasicComponents";
 import { Flag } from "../../components/Language/Flag";
-import { ProgressBar } from "../../components/ProgressBar";
 
 interface Props {
   isModalVisible: boolean;
@@ -46,24 +40,19 @@ const MainContainer = styled.TouchableOpacity`
   flex-wrap: wrap;
 `;
 
-const StyledTextBold = styled(StyledTextNormalBold)`
+const StyledTextBold = styled(StyledTextSmallBold)`
   text-align: left;
   margin-left: ${theme.margin}px;
   color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.white : theme.colors.black};
 `;
 
-const StyledText = styled(StyledTextNormal)`
+const StyledText = styled(StyledTextSmall)`
   text-align: left;
   color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.white : theme.colors.black};
 `;
 
-const SmallStyledTextBold = styled(StyledTextVerySmallBold)`
-  text-align: left;
-  color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? theme.colors.white : theme.colors.black};
-`;
 const ModalView = styled.View`
   background-color: ${theme.colors.lightGrey};
   display: flex;
@@ -73,7 +62,7 @@ const ModalView = styled.View`
 `;
 
 const TitleContainer = styled(StyledTextNormal)`
-  margin-bottom: ${theme.margin * 3}px;
+  margin-bottom: ${theme.margin}px;
 `;
 
 const OtherLanguagesContainer = styled.View`
@@ -91,11 +80,6 @@ const Separator = styled.View`
 `;
 export const LanguageChoiceModal = (props: Props) => {
   const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(fetchLanguagesActionCreator());
-  }, []);
-
-  const languagesWithAvancement = useSelector(availableLanguagesSelector);
 
   const selectedLanguage = getSelectedLanguageFromI18nCode(
     props.selectedLanguageI18nCode
@@ -123,40 +107,31 @@ export const LanguageChoiceModal = (props: Props) => {
         <LanguageDetailsButton
           langueFr={selectedLanguage.langueFr}
           langueLoc={selectedLanguage.langueLoc}
-          avancementTrad={getAvancementTrad(
-            selectedLanguage.langueFr,
-            languagesWithAvancement
-          )}
           onPress={() => {}}
           isSelected={true}
         />
         <OtherLanguagesContainer>
           {otherLanguages.map((language, index) => {
-            const avancementTrad = getAvancementTrad(
-              language.langueFr,
-              languagesWithAvancement
-            );
             return (
-              <MainContainer
-                onPress={() => changeLanguage(language.i18nCode)}
-                //   testID={"test-language-button-" + props.langueFr}
-                key={index}
-              >
-                <RowContainer>
-                  <Flag langueFr={language.langueFr} />
-                  <StyledTextBold>{language.langueFr + " - "}</StyledTextBold>
-                  <StyledText>{language.langueLoc}</StyledText>
-                </RowContainer>
-                {avancementTrad && (
+              <View key={index}>
+                <MainContainer
+                  onPress={() => changeLanguage(language.i18nCode)}
+                  testID={"test-language-button-" + language.langueFr}
+                  key={index}
+                >
                   <RowContainer>
-                    <ProgressBar avancement={avancementTrad} />
-                    <SmallStyledTextBold>
-                      {avancementTrad + "%"}
-                    </SmallStyledTextBold>
+                    <Flag langueFr={language.langueFr} />
+                    <StyledTextBold>{language.langueFr}</StyledTextBold>
+                    {language.langueFr !== "Français" && (
+                      <RowContainer>
+                        <StyledTextSmallBold>{" - "}</StyledTextSmallBold>
+                        <StyledText>{language.langueLoc}</StyledText>
+                      </RowContainer>
+                    )}
                   </RowContainer>
-                )}
+                </MainContainer>
                 {index !== otherLanguages.length - 1 && <Separator />}
-              </MainContainer>
+              </View>
             );
           })}
         </OtherLanguagesContainer>
