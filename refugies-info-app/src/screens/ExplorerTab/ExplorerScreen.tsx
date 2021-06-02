@@ -13,7 +13,6 @@ import { ViewChoice } from "../../components/Explorer/ViewChoice";
 import { tags } from "../../data/tagData";
 import { TagButton } from "../../components/Explorer/TagButton";
 import { TagsCaroussel } from "../../components/Explorer/TagsCaroussel";
-
 import { sortByOrder } from "../../libs";
 
 const ViewChoiceContainer = styled(RTLView)`
@@ -31,7 +30,13 @@ const CarousselContainer = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: ${theme.margin * 5}px;
+`;
+
+const CenteredView = styled.View`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
 `;
 export const ExplorerScreen = () => {
   const [tabSelected, setTabSelected] = React.useState("galery");
@@ -70,9 +75,11 @@ export const ExplorerScreen = () => {
           ))}
         </TagListContainer>
       ) : (
-        <CarousselContainer>
-          <TagsCaroussel />
-        </CarousselContainer>
+        <CenteredView>
+          <CarousselContainer>
+            <TagsCaroussel />
+          </CarousselContainer>
+        </CenteredView>
       )}
     </WrapperWithHeaderAndLanguageModal>
   );
