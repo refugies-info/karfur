@@ -2,26 +2,19 @@ import { StyleSheet, View } from "react-native";
 import Modal from "react-native-modal";
 import React from "react";
 import styled from "styled-components/native";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import i18n, { t } from "../../services/i18n";
 import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
 import { theme } from "../../theme";
 import {
   StyledTextNormal,
   StyledTextNormalBold,
-  StyledTextVerySmallBold,
 } from "../../components/StyledText";
 import { LanguageDetailsButton } from "../../components/Language/LanguageDetailsButton";
-import {
-  getSelectedLanguageFromI18nCode,
-  getAvancementTrad,
-} from "../../libs/language";
-import { availableLanguagesSelector } from "../../services/redux/Languages/languages.selectors";
-import { fetchLanguagesActionCreator } from "../../services/redux/Languages/languages.actions";
+import { getSelectedLanguageFromI18nCode } from "../../libs/language";
 import { activatedLanguages } from "../../data/languagesData";
 import { RowContainer } from "../../components/BasicComponents";
 import { Flag } from "../../components/Language/Flag";
-import { ProgressBar } from "../../components/ProgressBar";
 
 interface Props {
   isModalVisible: boolean;
@@ -59,11 +52,6 @@ const StyledText = styled(StyledTextNormal)`
     props.isSelected ? theme.colors.white : theme.colors.black};
 `;
 
-const SmallStyledTextBold = styled(StyledTextVerySmallBold)`
-  text-align: left;
-  color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? theme.colors.white : theme.colors.black};
-`;
 const ModalView = styled.View`
   background-color: ${theme.colors.lightGrey};
   display: flex;
@@ -91,11 +79,6 @@ const Separator = styled.View`
 `;
 export const LanguageChoiceModal = (props: Props) => {
   const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(fetchLanguagesActionCreator());
-  }, []);
-
-  const languagesWithAvancement = useSelector(availableLanguagesSelector);
 
   const selectedLanguage = getSelectedLanguageFromI18nCode(
     props.selectedLanguageI18nCode
@@ -123,16 +106,11 @@ export const LanguageChoiceModal = (props: Props) => {
         <LanguageDetailsButton
           langueFr={selectedLanguage.langueFr}
           langueLoc={selectedLanguage.langueLoc}
-          avancementTrad={null}
           onPress={() => {}}
           isSelected={true}
         />
         <OtherLanguagesContainer>
           {otherLanguages.map((language, index) => {
-            const avancementTrad = getAvancementTrad(
-              language.langueFr,
-              languagesWithAvancement
-            );
             return (
               <View key={index}>
                 <MainContainer
