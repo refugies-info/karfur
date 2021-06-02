@@ -12,12 +12,9 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         style={
           Array [
             Object {
-              "display": "flex",
-              "flexDirection": "row",
-            },
-            Object {
               "alignItems": "center",
               "display": "flex",
+              "flexDirection": "row",
               "justifyContent": "space-between",
               "paddingLeft": 24,
               "paddingRight": 24,
@@ -34,6 +31,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
           style={
             Array [
               Object {
+                "alignItems": "center",
                 "display": "flex",
                 "flexDirection": "row",
               },
@@ -232,62 +230,6 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             Français
           </Text>
         </View>
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#EDEBEB",
-                  "borderColor": "white",
-                  "borderRadius": 6,
-                  "borderStyle": "solid",
-                  "borderWidth": 1,
-                  "height": 10,
-                  "marginRight": 8,
-                  "width": 58,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#0421B1",
-                    "borderRadius": 6,
-                    "height": 8,
-                    "width": 56,
-                  },
-                ]
-              }
-              width={56}
-            />
-          </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 13,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            100%
-          </Text>
-        </View>
       </View>
       <View
         accessible={true}
@@ -381,62 +323,6 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             }
           >
             English
-          </Text>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#EDEBEB",
-                  "borderColor": "white",
-                  "borderRadius": 6,
-                  "borderStyle": "solid",
-                  "borderWidth": 1,
-                  "height": 10,
-                  "marginRight": 8,
-                  "width": 58,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#0421B1",
-                    "borderRadius": 6,
-                    "height": 8,
-                    "width": 40,
-                  },
-                ]
-              }
-              width={40}
-            />
-          </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 13,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            71%
           </Text>
         </View>
       </View>
@@ -534,62 +420,6 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             پښتو
           </Text>
         </View>
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#EDEBEB",
-                  "borderColor": "white",
-                  "borderRadius": 6,
-                  "borderStyle": "solid",
-                  "borderWidth": 1,
-                  "height": 10,
-                  "marginRight": 8,
-                  "width": 58,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#0421B1",
-                    "borderRadius": 6,
-                    "height": 8,
-                    "width": 35,
-                  },
-                ]
-              }
-              width={35}
-            />
-          </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 13,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            63%
-          </Text>
-        </View>
       </View>
       <View
         accessible={true}
@@ -683,62 +513,6 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             }
           >
             فارسی/ دری
-          </Text>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#EDEBEB",
-                  "borderColor": "white",
-                  "borderRadius": 6,
-                  "borderStyle": "solid",
-                  "borderWidth": 1,
-                  "height": 10,
-                  "marginRight": 8,
-                  "width": 58,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#0421B1",
-                    "borderRadius": 6,
-                    "height": 8,
-                    "width": 29,
-                  },
-                ]
-              }
-              width={29}
-            />
-          </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 13,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            51%
           </Text>
         </View>
       </View>
@@ -836,62 +610,6 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             ትግርኛ
           </Text>
         </View>
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#EDEBEB",
-                  "borderColor": "white",
-                  "borderRadius": 6,
-                  "borderStyle": "solid",
-                  "borderWidth": 1,
-                  "height": 10,
-                  "marginRight": 8,
-                  "width": 58,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#0421B1",
-                    "borderRadius": 6,
-                    "height": 8,
-                    "width": 26,
-                  },
-                ]
-              }
-              width={26}
-            />
-          </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 13,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            46%
-          </Text>
-        </View>
       </View>
       <View
         accessible={true}
@@ -987,62 +705,6 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             Русский
           </Text>
         </View>
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#EDEBEB",
-                  "borderColor": "white",
-                  "borderRadius": 6,
-                  "borderStyle": "solid",
-                  "borderWidth": 1,
-                  "height": 10,
-                  "marginRight": 8,
-                  "width": 58,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#0421B1",
-                    "borderRadius": 6,
-                    "height": 8,
-                    "width": 47,
-                  },
-                ]
-              }
-              width={47}
-            />
-          </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 13,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            84%
-          </Text>
-        </View>
       </View>
       <View
         accessible={true}
@@ -1136,62 +798,6 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             }
           >
             العربية
-          </Text>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#EDEBEB",
-                  "borderColor": "white",
-                  "borderRadius": 6,
-                  "borderStyle": "solid",
-                  "borderWidth": 1,
-                  "height": 10,
-                  "marginRight": 8,
-                  "width": 58,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#0421B1",
-                    "borderRadius": 6,
-                    "height": 8,
-                    "width": 54,
-                  },
-                ]
-              }
-              width={54}
-            />
-          </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 13,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            96%
           </Text>
         </View>
       </View>

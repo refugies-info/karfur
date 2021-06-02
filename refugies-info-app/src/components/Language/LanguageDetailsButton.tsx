@@ -56,7 +56,6 @@ const FlagBackground = styled.View`
 interface Props {
   langueFr: string;
   langueLoc: string;
-  avancementTrad: number | null;
   onPress: () => void;
   isSelected?: boolean;
 }
@@ -75,16 +74,5 @@ export const LanguageDetailsButton = (props: Props) => (
       </StyledTextBold>
       <StyledText isSelected={props.isSelected}>{props.langueLoc}</StyledText>
     </RowContainer>
-    {props.avancementTrad && (
-      <RowContainer>
-        <ProgressBar
-          avancement={props.avancementTrad}
-          isSelected={props.isSelected}
-        />
-        <SmallStyledTextBold isSelected={props.isSelected}>
-          {props.avancementTrad + "%"}
-        </SmallStyledTextBold>
-      </RowContainer>
-    )}
   </MainContainer>
 );

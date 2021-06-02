@@ -123,10 +123,7 @@ export const LanguageChoiceModal = (props: Props) => {
         <LanguageDetailsButton
           langueFr={selectedLanguage.langueFr}
           langueLoc={selectedLanguage.langueLoc}
-          avancementTrad={getAvancementTrad(
-            selectedLanguage.langueFr,
-            languagesWithAvancement
-          )}
+          avancementTrad={null}
           onPress={() => {}}
           isSelected={true}
         />
@@ -148,14 +145,6 @@ export const LanguageChoiceModal = (props: Props) => {
                     <StyledTextBold>{language.langueFr + " - "}</StyledTextBold>
                     <StyledText>{language.langueLoc}</StyledText>
                   </RowContainer>
-                  {avancementTrad && (
-                    <RowContainer>
-                      <ProgressBar avancement={avancementTrad} />
-                      <SmallStyledTextBold>
-                        {avancementTrad + "%"}
-                      </SmallStyledTextBold>
-                    </RowContainer>
-                  )}
                 </MainContainer>
                 {index !== otherLanguages.length - 1 && <Separator />}
               </View>
