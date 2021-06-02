@@ -25,7 +25,6 @@ const ViewChoiceContainer = styled(RTLView)`
 
 const TagListContainer = styled.ScrollView`
   margin-horizontal: ${theme.margin * 3}px;
-  margin-bottom: ${theme.margin * 20}px;
 `;
 
 const CarousselContainer = styled.View`
