@@ -8,7 +8,8 @@ import { saveSelectedLanguageActionCreator } from "../../services/redux/User/use
 import { theme } from "../../theme";
 import {
   StyledTextNormal,
-  StyledTextNormalBold,
+  StyledTextSmallBold,
+  StyledTextSmall,
 } from "../../components/StyledText";
 import { LanguageDetailsButton } from "../../components/Language/LanguageDetailsButton";
 import { getSelectedLanguageFromI18nCode } from "../../libs/language";
@@ -39,14 +40,14 @@ const MainContainer = styled.TouchableOpacity`
   flex-wrap: wrap;
 `;
 
-const StyledTextBold = styled(StyledTextNormalBold)`
+const StyledTextBold = styled(StyledTextSmallBold)`
   text-align: left;
   margin-left: ${theme.margin}px;
   color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.white : theme.colors.black};
 `;
 
-const StyledText = styled(StyledTextNormal)`
+const StyledText = styled(StyledTextSmall)`
   text-align: left;
   color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.white : theme.colors.black};
@@ -120,8 +121,13 @@ export const LanguageChoiceModal = (props: Props) => {
                 >
                   <RowContainer>
                     <Flag langueFr={language.langueFr} />
-                    <StyledTextBold>{language.langueFr + " - "}</StyledTextBold>
-                    <StyledText>{language.langueLoc}</StyledText>
+                    <StyledTextBold>{language.langueFr}</StyledTextBold>
+                    {language.langueFr !== "Français" && (
+                      <RowContainer>
+                        <StyledTextSmallBold>{" - "}</StyledTextSmallBold>
+                        <StyledText>{language.langueLoc}</StyledText>
+                      </RowContainer>
+                    )}
                   </RowContainer>
                 </MainContainer>
                 {index !== otherLanguages.length - 1 && <Separator />}
