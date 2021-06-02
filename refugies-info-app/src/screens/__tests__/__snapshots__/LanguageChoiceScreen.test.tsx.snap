@@ -206,22 +206,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                 Object {
                   "color": "#212121",
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
+                  "fontSize": 16,
                   "marginLeft": 8,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            Français - 
-          </Text>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 19,
                   "textAlign": "left",
                 },
               ]
@@ -301,29 +287,55 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                 Object {
                   "color": "#212121",
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
+                  "fontSize": 16,
                   "marginLeft": 8,
                   "textAlign": "left",
                 },
               ]
             }
           >
-            Anglais - 
+            Anglais
           </Text>
-          <Text
+          <View
             style={
               Array [
                 Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 19,
-                  "textAlign": "left",
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
                 },
               ]
             }
           >
-            English
-          </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+               - 
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              English
+            </Text>
+          </View>
         </View>
       </View>
       <View
@@ -396,29 +408,55 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                 Object {
                   "color": "#212121",
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
+                  "fontSize": 16,
                   "marginLeft": 8,
                   "textAlign": "left",
                 },
               ]
             }
           >
-            Pachto - 
+            Pachto
           </Text>
-          <Text
+          <View
             style={
               Array [
                 Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 19,
-                  "textAlign": "left",
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
                 },
               ]
             }
           >
-            پښتو
-          </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+               - 
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              پښتو
+            </Text>
+          </View>
         </View>
       </View>
       <View
@@ -491,29 +529,55 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                 Object {
                   "color": "#212121",
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
+                  "fontSize": 16,
                   "marginLeft": 8,
                   "textAlign": "left",
                 },
               ]
             }
           >
-            Persan/Dari - 
+            Persan/Dari
           </Text>
-          <Text
+          <View
             style={
               Array [
                 Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 19,
-                  "textAlign": "left",
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
                 },
               ]
             }
           >
-            فارسی/ دری
-          </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+               - 
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              فارسی/ دری
+            </Text>
+          </View>
         </View>
       </View>
       <View
@@ -586,29 +650,55 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                 Object {
                   "color": "#212121",
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
+                  "fontSize": 16,
                   "marginLeft": 8,
                   "textAlign": "left",
                 },
               ]
             }
           >
-            Tigrinya - 
+            Tigrinya
           </Text>
-          <Text
+          <View
             style={
               Array [
                 Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 19,
-                  "textAlign": "left",
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
                 },
               ]
             }
           >
-            ትግርኛ
-          </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+               - 
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              ትግርኛ
+            </Text>
+          </View>
         </View>
       </View>
       <View
@@ -681,29 +771,55 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                 Object {
                   "color": "#212121",
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
+                  "fontSize": 16,
                   "marginLeft": 8,
                   "textAlign": "left",
                 },
               ]
             }
           >
-            Russe - 
+            Russe
           </Text>
-          <Text
+          <View
             style={
               Array [
                 Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 19,
-                  "textAlign": "left",
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
                 },
               ]
             }
           >
-            Русский
-          </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+               - 
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              Русский
+            </Text>
+          </View>
         </View>
       </View>
       <View
@@ -776,29 +892,55 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                 Object {
                   "color": "#212121",
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
+                  "fontSize": 16,
                   "marginLeft": 8,
                   "textAlign": "left",
                 },
               ]
             }
           >
-            Arabe - 
+            Arabe
           </Text>
-          <Text
+          <View
             style={
               Array [
                 Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 19,
-                  "textAlign": "left",
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
                 },
               ]
             }
           >
-            العربية
-          </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+               - 
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              العربية
+            </Text>
+          </View>
         </View>
       </View>
     </View>

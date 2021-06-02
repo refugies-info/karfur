@@ -50,6 +50,7 @@ const fonts = {
     verySmall: 13,
     small: 16,
     normal: 19,
+    big: 25,
   },
   families: {
     circularStandard: "circularBook",
