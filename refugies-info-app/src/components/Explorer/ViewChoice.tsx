@@ -1,9 +1,12 @@
 import { RTLTouchableOpacity } from "../BasicComponents";
-import { Icon } from "react-native-eva-icons";
 import { theme } from "../../theme";
 import React from "react";
 import styled from "styled-components/native";
 import { TextVerySmallBold, TextVerySmallNormal } from "../StyledText";
+import GalerieFill from "../../theme/images/streamlineIcons/galerie-fill.svg";
+import GalerieOutline from "../../theme/images/streamlineIcons/galerie-outline.svg";
+import ListFill from "../../theme/images/streamlineIcons/list-fill.svg";
+import ListOutline from "../../theme/images/streamlineIcons/list-outline.svg";
 
 const ICON_SIZE = 16;
 
@@ -28,14 +31,25 @@ interface Props {
   iconName: string;
   onPress: () => void;
 }
+
+const StreamlineIcon = ({
+  name,
+  isSelected,
+}: {
+  name: string;
+  isSelected: boolean;
+}) => {
+  if (name === "galery" && isSelected)
+    return <GalerieFill width={ICON_SIZE} height={ICON_SIZE} />;
+  if (name === "galery" && !isSelected)
+    return <GalerieOutline width={ICON_SIZE} height={ICON_SIZE} />;
+  if (name === "list" && isSelected)
+    return <ListFill width={ICON_SIZE} height={ICON_SIZE} />;
+  return <ListOutline width={ICON_SIZE} height={ICON_SIZE} />;
+};
 export const ViewChoice = (props: Props) => (
   <StyledButton onPress={props.onPress}>
-    <Icon
-      name={props.isSelected ? props.iconName : props.iconName + "-outline"}
-      width={ICON_SIZE}
-      height={ICON_SIZE}
-      fill={props.isSelected ? theme.colors.black : theme.colors.darkGrey}
-    />
+    <StreamlineIcon name={props.iconName} isSelected={props.isSelected} />
     {props.isSelected ? (
       <ChoiceTextBold>{props.text}</ChoiceTextBold>
     ) : (

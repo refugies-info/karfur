@@ -53,13 +53,13 @@ export const ExplorerScreen = () => {
         <ViewChoice
           text={t("ExplorerScreen.Galerie", "Galerie")}
           isSelected={tabSelected === "galery"}
-          iconName={"star"}
+          iconName={"galery"}
           onPress={() => setTabSelected("galery")}
         />
         <ViewChoice
           text={t("ExplorerScreen.Liste", "Liste")}
           isSelected={tabSelected === "list"}
-          iconName={"star"}
+          iconName={"list"}
           onPress={() => setTabSelected("list")}
         />
       </ViewChoiceContainer>
