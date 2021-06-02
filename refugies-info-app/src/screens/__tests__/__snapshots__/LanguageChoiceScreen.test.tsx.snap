@@ -9,6 +9,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
   <View>
     <RNCSafeAreaView>
       <View
+        isRTL={false}
         style={
           Array [
             Object {

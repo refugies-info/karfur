@@ -104,7 +104,7 @@ export const LanguageSwitch = ({
   return (
     <ButtonContainer
       onPress={() => changeLanguage(isFrenchSelected, selectedLanguageI18nCode)}
-      isRTL={i18n.isRTL()}
+      isRTL={false}
       onLongPress={onLongPressSwitchLanguage}
     >
       <LanguageContainer

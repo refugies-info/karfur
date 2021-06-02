@@ -4,7 +4,6 @@ import styled from "styled-components/native";
 import Logo from "../theme/images/logo.svg";
 import { SmallButton } from "./SmallButton";
 import { SafeAreaView } from "react-native-safe-area-context";
-import i18n from "../services/i18n";
 import { RowContainer } from "./BasicComponents";
 import { LanguageSwitch } from "./Language/LanguageSwitch";
 
@@ -34,7 +33,7 @@ export const Header = ({
   onLongPressSwitchLanguage,
 }: Props) => (
   <SafeAreaView>
-    <MainContainer isRTL={i18n.isRTL()}>
+    <MainContainer isRTL={false}>
       <Logo width={LOGO_WIDTH} height={LOGO_HEIGHT} />
       <RowContainer>
         <LanguageSwitch
