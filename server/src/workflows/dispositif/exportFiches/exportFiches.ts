@@ -2,7 +2,7 @@ import logger from "../../../logger";
 import { Res, RequestFromClientWithBody } from "../../../types/interface";
 import { getDispositifArray } from "../../../modules/dispositif/dispositif.repository";
 import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
-import { checkRequestIsFromPostman } from "../../../libs/checkAuthorizations";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 
 var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(
@@ -173,7 +173,8 @@ export const exportFiches = async (
 ) => {
   try {
     logger.info("[exportFiches] received");
-    checkRequestIsFromPostman(req.fromPostman);
+
+    checkRequestIsFromSite(req.fromSite);
 
     const fiches = await getDispositifArray({ status: "Actif" });
 
