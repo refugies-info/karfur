@@ -3,7 +3,6 @@ import Modal from "react-native-modal";
 import React from "react";
 import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
-import i18n from "../../services/i18n";
 import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
 import { theme } from "../../theme";
 import {
@@ -79,7 +78,7 @@ const Separator = styled.View`
   margin-right: ${theme.margin * 2}px;
 `;
 export const LanguageChoiceModal = (props: Props) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
   const dispatch = useDispatch();
 

@@ -4,9 +4,8 @@ import { RTLTouchableOpacity } from "../BasicComponents";
 import { StyledTextNormalBold } from "../StyledText";
 import { theme } from "../../theme";
 import { firstLetterUpperCase } from "../../libs";
-import i18n from "../../services/i18n";
 import { StreamlineIcon } from "../StreamlineIcon";
-import { useTranslation } from "react-i18next";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 interface Props {
   tagName: string;
@@ -33,11 +32,11 @@ const StyledText = styled(StyledTextNormalBold)`
   flex-wrap: wrap;
 `;
 export const TagButton = (props: Props) => {
-  const { t } = useTranslation();
+  const { t, isRTL } = useTranslationWithRTL();
 
   return (
     <StyledContainer backgroundColor={props.backgroundColor}>
-      <StyledText isRTL={i18n.isRTL()}>
+      <StyledText isRTL={isRTL}>
         {firstLetterUpperCase(t("Tags." + props.tagName, props.tagName))}
       </StyledText>
       <StreamlineIcon name={props.iconName} width={20} height={20} />

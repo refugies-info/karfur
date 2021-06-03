@@ -4,13 +4,13 @@ import styled from "styled-components/native";
 import { Flag } from "./Flag";
 import { useDispatch, useSelector } from "react-redux";
 import { View } from "react-native";
-import i18n from "../../services/i18n";
 import { setCurrentLanguageActionCreator } from "../../services/redux/User/user.actions";
 import { getSelectedLanguageFromI18nCode } from "../../libs/language";
 import {
   currentI18nCodeSelector,
   selectedI18nCodeSelector,
 } from "../../services/redux/User/user.selectors";
+import { useTranslation } from "react-i18next";
 
 const ButtonContainerCommon = styled.View`
   background-color: ${theme.colors.white};
@@ -72,6 +72,7 @@ interface Props {
 }
 
 export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
+  const { i18n } = useTranslation();
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
   if (!selectedLanguageI18nCode || !currentLanguageI18nCode) return <View />;
