@@ -7,6 +7,7 @@ import GalerieFill from "../../theme/images/streamlineIcons/galerie-fill.svg";
 import GalerieOutline from "../../theme/images/streamlineIcons/galerie-outline.svg";
 import ListFill from "../../theme/images/streamlineIcons/list-fill.svg";
 import ListOutline from "../../theme/images/streamlineIcons/list-outline.svg";
+import { useTranslation } from "react-i18next";
 
 const ICON_SIZE = 16;
 
@@ -47,13 +48,19 @@ const StreamlineIcon = ({
     return <ListFill width={ICON_SIZE} height={ICON_SIZE} />;
   return <ListOutline width={ICON_SIZE} height={ICON_SIZE} />;
 };
-export const ViewChoice = (props: Props) => (
-  <StyledButton onPress={props.onPress}>
-    <StreamlineIcon name={props.iconName} isSelected={props.isSelected} />
-    {props.isSelected ? (
-      <ChoiceTextBold>{props.text}</ChoiceTextBold>
-    ) : (
-      <ChoiceText>{props.text}</ChoiceText>
-    )}
-  </StyledButton>
-);
+export const ViewChoice = (props: Props) => {
+  const { t } = useTranslation();
+
+  return (
+    <StyledButton onPress={props.onPress}>
+      <StreamlineIcon name={props.iconName} isSelected={props.isSelected} />
+      {props.isSelected ? (
+        <ChoiceTextBold>
+          {t("ExplorerScreen." + props.text, props.text)}
+        </ChoiceTextBold>
+      ) : (
+        <ChoiceText>{t("ExplorerScreen." + props.text, props.text)}</ChoiceText>
+      )}
+    </StyledButton>
+  );
+};

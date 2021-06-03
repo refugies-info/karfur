@@ -4,8 +4,6 @@ import { Header } from "../components/Header";
 import styled from "styled-components/native";
 
 interface Props {
-  currentLanguageI18nCode: string | null;
-  selectedLanguageI18nCode: string | null;
   children: any;
 }
 
@@ -23,17 +21,12 @@ export const WrapperWithHeaderAndLanguageModal = (props: Props) => {
 
   return (
     <StyledView>
-      <Header
-        currentLanguageI18nCode={props.currentLanguageI18nCode}
-        selectedLanguageI18nCode={props.selectedLanguageI18nCode}
-        onLongPressSwitchLanguage={toggleLanguageModal}
-      />
+      <Header onLongPressSwitchLanguage={toggleLanguageModal} />
       {props.children}
 
       <LanguageChoiceModal
         isModalVisible={isLanguageModalVisible}
         toggleModal={toggleLanguageModal}
-        selectedLanguageI18nCode={props.selectedLanguageI18nCode}
       />
     </StyledView>
   );

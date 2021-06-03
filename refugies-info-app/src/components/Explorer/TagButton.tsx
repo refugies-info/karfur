@@ -4,8 +4,9 @@ import { RTLTouchableOpacity } from "../BasicComponents";
 import { StyledTextNormalBold } from "../StyledText";
 import { theme } from "../../theme";
 import { firstLetterUpperCase } from "../../libs";
-import i18n, { t } from "../../services/i18n";
+import i18n from "../../services/i18n";
 import { StreamlineIcon } from "../StreamlineIcon";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   tagName: string;
@@ -31,11 +32,15 @@ const StyledText = styled(StyledTextNormalBold)`
     props.isRTL ? 0 : theme.margin}px;
   flex-wrap: wrap;
 `;
-export const TagButton = (props: Props) => (
-  <StyledContainer backgroundColor={props.backgroundColor}>
-    <StyledText isRTL={i18n.isRTL()}>
-      {firstLetterUpperCase(t("Tags." + props.tagName, props.tagName))}
-    </StyledText>
-    <StreamlineIcon name={props.iconName} width={20} height={20} />
-  </StyledContainer>
-);
+export const TagButton = (props: Props) => {
+  const { t } = useTranslation();
+
+  return (
+    <StyledContainer backgroundColor={props.backgroundColor}>
+      <StyledText isRTL={i18n.isRTL()}>
+        {firstLetterUpperCase(t("Tags." + props.tagName, props.tagName))}
+      </StyledText>
+      <StreamlineIcon name={props.iconName} width={20} height={20} />
+    </StyledContainer>
+  );
+};
