@@ -261,7 +261,7 @@ export class HomePage extends Component {
               buttonTitle="Homepage.Je cherche"
               defaultBoutonTitle="Je cherche"
               iconName="search-outline"
-              backgroundColor={colors.lightBlue}
+              backgroundColor={colors.lightBlue2}
               textColor={colors.blancSimple}
               image={illustration_homeCard_demarche}
               isDisabled={false}
