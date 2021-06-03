@@ -27,7 +27,6 @@ interface Props {
 
 const SectionContainer = styled.div`
   padding: 35px;
-  margin: -10px;
   text-align: left;
   background-color: ${(props) => props.backgroundColor};
 `;
@@ -69,7 +68,17 @@ const IconContainer = styled.div`
 
 export const HomePageMobileSection = (props: Props) => (
   <SectionContainer backgroundColor={props.backgroundColor}>
-    <img alt="illustration section" src={props.image} />
+    <img
+      alt="illustration section"
+      style={
+        props.text === "Homepage.Contribuer à la traduction"
+          ? { marginLeft: "-15px" }
+          : props.text === "Homepage.Une application mobile adaptée"
+          ? { marginLeft: "40px" }
+          : undefined
+      }
+      src={props.image}
+    />
     <TitleContainer textColor={props.textColor}>
       {props.t(props.title, props.defaultTitle)}
     </TitleContainer>

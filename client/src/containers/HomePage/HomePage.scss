@@ -39,8 +39,7 @@
   }
 
   section {
-    min-height: 750px;
-    padding-top: 100px;
+    padding-top: 20px;
     padding-bottom: 93px;
     @include media-max("tablet-up") {
       min-height: 0px;
@@ -68,7 +67,7 @@
       padding-top: 116px;
     }
     margin-top: -75px;
-    height: 772px;
+    height: 828px;
 
     .options-wrapper {
       list-style-type: none;
@@ -164,6 +163,8 @@
 
   .triptique {
     padding-top: 50px;
+    padding-bottom: 50px;
+    min-height: 500px;
   }
 
   .hero-container {
@@ -213,27 +214,47 @@
     width: 100%;
     padding: 0 100px;
     height: 100%;
+    min-height: 60vh;
     @include media-max("sm-limit") {
       padding: 0 20px;
     }
 
     &.half-width {
-      width: 50%;
+      margin-top: 65px;
+      width: 47%;
       display: flex;
       flex-direction: column;
       @include media-max("tablet-down") {
         width: 100%;
       }
       h2 {
-        margin-bottom: 40px;
+        margin-bottom: 50px;
+        margin-right: 100px;
+      }
+      p {
+        font-size: 22px;
       }
 
       &.right-side {
         margin-left: auto;
       }
+      &.left-side {
+        margin-right: auto;
+      }
+      &.smartphone {
+        margin-top: 0px;
+      }
     }
     .section-body {
+      p {
+        line-height: 28px;
+      }
       flex: 1 1 auto;
+      margin-bottom: 40px;
+      &.smartphone {
+        margin-bottom: 20px;
+        flex: 0;
+      }
     }
 
     .footer-section {
@@ -246,29 +267,40 @@
   }
 
   #contribution {
-    background-image: url(../../assets/figma/contribution_illu.svg),
-      url(../../assets/figma/trame_home_bg.svg);
-    background-size: 65%, cover;
+    background-image: url(../../assets/figma/collaboratif_desktop.svg);
+    background-size: 55%, cover;
     background-repeat: no-repeat;
-    background-position: calc(100% + 20px) calc(100% - 160px), 0;
+    background-position: left;
+    margin-left: 100px;
     @include media-max("tablet-down") {
       background-position: calc(100% + 20px) calc(100% - 110px), 0;
     }
   }
 
-  #certifiee {
-    background-image: url(../../assets/figma/certifiee_illu.svg),
-      url(../../assets/figma/trame_home_bg.svg);
-    background-size: 65%, cover;
+  #deployer {
+    background-size: 50%, cover;
+    background-repeat: no-repeat;
+    background-position: right;
+    margin-right: 100px;
+    img {
+      margin-right: 8px;
+    }
+  }
+
+  #ecrire {
+    background-image: url(../../assets/figma/rediger_desktop.svg);
+    background-size: 55%, cover;
     background-repeat: no-repeat, no-repeat;
-    background-position: calc(100% - 60px) calc(100% - 120px), 0;
+    background-position: right;
+    margin-right: 100px;
   }
 
   #multilangues {
-    background-image: url(../../assets/figma/illustration_Traduction.svg);
-    background-size: 70%;
+    background-image: url(../../assets/figma/traduire_desktop.svg);
+    background-size: 55%;
     background-repeat: no-repeat;
-    background-position: calc(100% - 350px);
+    background-position: left;
+    margin-left: 100px;
     @include media-max("desktop-down") {
       background-position: calc(100% - 300px) calc(100% - 60px);
     }
@@ -280,6 +312,24 @@
     }
     @include media-max("tablet-up") {
       background-position: calc(100% - 180px) calc(100% - 140px);
+    }
+  }
+
+  #smartphone {
+    padding-top: 100px;
+    padding-bottom: 0;
+    background: linear-gradient(#0421b1, rgba(4, 33, 177, 0.6496));
+    background-repeat: no-repeat;
+    color: $blancSimple;
+    display: flex;
+    justify-content: center;
+    img {
+      width: 25%;
+      position: absolute;
+      left: 15%;
+    }
+    h2 {
+      margin-right: 0;
     }
   }
 
@@ -444,11 +494,16 @@
     position: absolute;
     width: 48px;
     height: 48px;
-    bottom: -30px;
+    bottom: 80px;
+
     left: 50%;
     @include media-max("tablet-up") {
       left: 44%;
       bottom: 160px;
+    }
+    svg {
+      mix-blend-mode: normal;
+      filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.25));
     }
     background: $noir;
     border-radius: 50%;

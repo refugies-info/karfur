@@ -19,7 +19,7 @@ import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import FInput from "../../../FigmaUI/FInput/FInput";
 import SearchBar from "../../../../containers/UI/SearchBar/SearchBar";
-import { sentIllu } from "../../../../assets/figma/index";
+import { sentIllu, structure_definie } from "../../../../assets/figma/index";
 import CreationContent from "../CreationContent/CreationContent";
 import { updateUserActionCreator } from "../../../../services/User/user.actions";
 import _ from "lodash";
@@ -415,13 +415,8 @@ class Sponsors extends Component {
       deleteMainSponsor,
       user,
     } = this.props;
-    const {
-      showModals,
-      selected,
-      authorBelongs,
-      checked,
-      mesStructures,
-    } = this.state;
+    const { showModals, selected, authorBelongs, checked, mesStructures } =
+      this.state;
 
     const sponsorsWithoutPicture = sponsors.filter(
       (sponsor) => !sponsor.picture && !sponsor._id
@@ -927,7 +922,15 @@ class Sponsors extends Component {
           }
         >
           <div className="envoye-content center-text">
-            <img src={sentIllu} className="illu" alt="illustration" />
+            {selected.nom ? (
+              <img src={sentIllu} className="illu" alt="illustration" />
+            ) : (
+              <img
+                src={structure_definie}
+                className="illu"
+                alt="illustration"
+              />
+            )}
             {selected.nom ? (
               authorBelongs ? (
                 <>
