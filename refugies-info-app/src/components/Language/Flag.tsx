@@ -1,11 +1,11 @@
 import * as React from "react";
-import FranceFlag from "../../theme/images/France.svg";
-import AfghanistanFlag from "../../theme/images/Afghanistan.svg";
-import ArabeFlag from "../../theme/images/Arabe.svg";
-import GBFlag from "../../theme/images/GB.svg";
-import PersanFlag from "../../theme/images/Persan.svg";
-import RussieFlag from "../../theme/images/Russie.svg";
-import ErythreeFlag from "../../theme/images/Erythree.svg";
+import FranceFlag from "../../theme/images/Flags/France.svg";
+import AfghanistanFlag from "../../theme/images/Flags/Afghanistan.svg";
+import ArabeFlag from "../../theme/images/Flags/Arabe.svg";
+import GBFlag from "../../theme/images/Flags/GB.svg";
+import PersanFlag from "../../theme/images/Flags/Persan.svg";
+import RussieFlag from "../../theme/images/Flags/Russie.svg";
+import ErythreeFlag from "../../theme/images/Flags/Erythree.svg";
 
 const FLAG_HEIGHT = 15;
 const FLAG_WIDTH = 20;
