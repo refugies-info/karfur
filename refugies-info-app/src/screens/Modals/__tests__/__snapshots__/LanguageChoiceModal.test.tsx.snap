@@ -111,7 +111,9 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
             },
           ]
         }
-      />
+      >
+        Langue app
+      </Text>
       <View
         accessible={true}
         focusable={true}

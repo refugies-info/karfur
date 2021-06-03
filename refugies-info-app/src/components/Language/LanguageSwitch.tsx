@@ -10,7 +10,7 @@ import {
   currentI18nCodeSelector,
   selectedI18nCodeSelector,
 } from "../../services/redux/User/user.selectors";
-import { useTranslation } from "react-i18next";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 const ButtonContainerCommon = styled.View`
   background-color: ${theme.colors.white};
@@ -72,7 +72,7 @@ interface Props {
 }
 
 export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
-  const { i18n } = useTranslation();
+  const { i18n } = useTranslationWithRTL();
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
 

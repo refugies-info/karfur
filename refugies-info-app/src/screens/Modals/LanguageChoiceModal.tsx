@@ -16,7 +16,7 @@ import { activatedLanguages } from "../../data/languagesData";
 import { RowContainer } from "../../components/BasicComponents";
 import { Flag } from "../../components/Language/Flag";
 import { selectedI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { useTranslation } from "react-i18next";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 interface Props {
   isModalVisible: boolean;
   toggleModal: () => void;
@@ -78,7 +78,7 @@ const Separator = styled.View`
   margin-right: ${theme.margin * 2}px;
 `;
 export const LanguageChoiceModal = (props: Props) => {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslationWithRTL();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
   const dispatch = useDispatch();
 
