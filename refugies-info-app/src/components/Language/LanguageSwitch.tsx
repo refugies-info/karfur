@@ -75,7 +75,6 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
   const { i18n } = useTranslation();
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
-  if (!selectedLanguageI18nCode || !currentLanguageI18nCode) return <View />;
 
   const selectedLanguage = getSelectedLanguageFromI18nCode(
     selectedLanguageI18nCode
@@ -97,6 +96,7 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
     i18n.changeLanguage("fr");
     return dispatch(setCurrentLanguageActionCreator("fr"));
   };
+  if (!selectedLanguageI18nCode || !currentLanguageI18nCode) return <View />;
 
   if (selectedLanguageI18nCode === "fr")
     return (

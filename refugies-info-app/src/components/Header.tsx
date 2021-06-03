@@ -24,13 +24,21 @@ const LOGO_HEIGHT = 48;
 
 interface Props {
   onLongPressSwitchLanguage?: () => void;
+  hideLanguageSwitch?: boolean;
 }
-export const Header = ({ onLongPressSwitchLanguage }: Props) => (
+export const Header = ({
+  onLongPressSwitchLanguage,
+  hideLanguageSwitch,
+}: Props) => (
   <SafeAreaView>
     <MainContainer isRTL={false}>
       <Logo width={LOGO_WIDTH} height={LOGO_HEIGHT} />
       <RowContainer>
-        <LanguageSwitch onLongPressSwitchLanguage={onLongPressSwitchLanguage} />
+        {!hideLanguageSwitch && (
+          <LanguageSwitch
+            onLongPressSwitchLanguage={onLongPressSwitchLanguage}
+          />
+        )}
         <SmallButton />
       </RowContainer>
     </MainContainer>
