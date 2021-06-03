@@ -30,7 +30,7 @@
       "package": "com.agathek.refugiesinfoapp"
     },
     "web": {
-      "favicon": "./src/theme/images/favicon.png"
+      "favicon": "./src/theme/images/icon-RI.png"
     },
     "description": ""
   }
