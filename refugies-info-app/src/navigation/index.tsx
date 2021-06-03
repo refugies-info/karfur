@@ -3,17 +3,19 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 
-import NotFoundScreen from "../screens/NotFoundScreen";
 import { RootStackParamList } from "../../types";
 import BottomTabNavigator from "./BottomTabNavigator";
 import i18n from "../services/i18n";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedLanguageActionCreator } from "../services/redux/User/user.actions";
+import {
+  setSelectedLanguageActionCreator,
+  setCurrentLanguageActionCreator,
+} from "../services/redux/User/user.actions";
 import { logger } from "../logger";
 import { OnboardingStackNavigator } from "./OnboardingNavigator";
 import {
@@ -22,6 +24,9 @@ import {
 } from "../services/redux/User/user.selectors";
 import { setHasUserSeenOnboardingActionCreator } from "../services/redux/User/user.actions";
 import { LanguageChoiceStackNavigator } from "./LanguageChoiceNavigator";
+import { theme } from "../theme";
+import "../services/i18n";
+import { initReactI18next } from "react-i18next";
 
 // A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal
@@ -40,12 +45,14 @@ export const RootNavigator = () => {
   React.useEffect(() => {
     const setLanguage = async () => {
       try {
+        i18n.use(initReactI18next);
         await i18n.init();
         try {
           const value = await AsyncStorage.getItem("SELECTED_LANGUAGE");
           if (value) {
             i18n.changeLanguage(value);
             dispatch(setSelectedLanguageActionCreator(value));
+            dispatch(setCurrentLanguageActionCreator(value));
           } else {
             i18n.changeLanguage("fr");
           }
@@ -82,8 +89,16 @@ export const RootNavigator = () => {
     return null;
   }
 
+  const MyTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: theme.colors.lightGrey,
+    },
+  };
+
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={MyTheme}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {!hasUserSelectedALanguage ? (
           <Stack.Screen
@@ -98,11 +113,6 @@ export const RootNavigator = () => {
         ) : (
           <>
             <Stack.Screen name="Root" component={BottomTabNavigator} />
-            <Stack.Screen
-              name="NotFound"
-              component={NotFoundScreen}
-              options={{ title: "Oops!" }}
-            />
           </>
         )}
       </Stack.Navigator>

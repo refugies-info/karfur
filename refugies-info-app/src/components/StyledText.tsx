@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
-import i18n from "../services/i18n";
 import { theme } from "../theme";
 import React from "react";
+import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 
 export const StyledTextNormal = styled.Text`
   font-size: ${theme.fonts.sizes.normal}px;
@@ -45,13 +45,25 @@ export const StyledTextVerySmallBold = styled.Text`
     props.isRTL ? "right" : "left"};
 `;
 
-export const TextNormal = (props: any) => (
-  <StyledTextNormal isRTL={i18n.isRTL()} {...props} />
-);
+export const TextNormal = (props: any) => {
+  const { isRTL } = useTranslationWithRTL();
+  return <StyledTextNormal isRTL={isRTL} {...props} />;
+};
 
-const Test = styled.View`
-  display: flex;
-  flex-direction: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "row-reverse" : "row"};
-`;
-export const RTLView = (props: any) => <Test isRTL={i18n.isRTL()} {...props} />;
+export const TextNormalBold = (props: any) => {
+  const { isRTL } = useTranslationWithRTL();
+
+  return <StyledTextNormalBold isRTL={isRTL} {...props} />;
+};
+
+export const TextVerySmallNormal = (props: any) => {
+  const { isRTL } = useTranslationWithRTL();
+
+  return <StyledTextVerySmall isRTL={isRTL} {...props} />;
+};
+
+export const TextVerySmallBold = (props: any) => {
+  const { isRTL } = useTranslationWithRTL();
+
+  return <StyledTextVerySmallBold isRTL={isRTL} {...props} />;
+};

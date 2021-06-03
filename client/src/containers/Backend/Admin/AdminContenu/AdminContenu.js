@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Table } from "reactstrap";
+import { Table, Spinner } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
@@ -62,6 +62,7 @@ export const AdminContenu = () => {
   const [showImprovementsMailModal, setShowImprovementsMailModal] = useState(
     false
   );
+  const [isExportLoading, setIsExportLoading] = useState(false);
 
   const [selectedDispositif, setSelectedDispositif] = useState(null);
   const [showChangeStructureModal, setShowChangeStructureModal] = useState(
@@ -188,6 +189,28 @@ export const AdminContenu = () => {
     }
   };
 
+  const exportToAirtable = async () => {
+    try {
+      setIsExportLoading(true);
+      await API.exportFiches();
+      setIsExportLoading(false);
+
+      Swal.fire({
+        title: "Yay...",
+        text: "Export en cours",
+        type: "success",
+        timer: 1500,
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Oh non!",
+        text: "Something went wrong",
+        type: "error",
+        timer: 1500,
+      });
+    }
+  };
+
   const dispatch = useDispatch();
 
   const prepareDeleteContrib = (dispositif) => {
@@ -300,6 +323,11 @@ export const AdminContenu = () => {
   return (
     <div>
       <SearchBarContainer>
+        {
+          <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
+            {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
+          </FButton>
+        }
         <CustomSearchBar
           value={search}
           onChange={handleChange}

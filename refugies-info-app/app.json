@@ -4,13 +4,13 @@
     "slug": "refugies-info-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/theme/images/icon.png",
+    "icon": "./src/theme/images/icon-RI.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./src/theme/images/splash.png",
+      "image": "./src/theme/images/splash-screen-RI.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#F6F6F6"
     },
     "owner": "refugies-info",
     "updates": {
@@ -24,13 +24,13 @@
     "android": {
       "userInterfaceStyle": "light",
       "adaptiveIcon": {
-        "foregroundImage": "./src/theme/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./src/theme/images/adaptive-icon-RI.png",
+        "backgroundColor": "#F6F6F6"
       },
       "package": "com.agathek.refugiesinfoapp"
     },
     "web": {
-      "favicon": "./src/theme/images/favicon.png"
+      "favicon": "./src/theme/images/icon-RI.png"
     },
     "description": ""
   }
