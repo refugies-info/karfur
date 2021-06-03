@@ -24,6 +24,7 @@ const i18n = {
       );
     });
   },
+  use: (elem) => i18next.use(elem),
   /**
    * @param {string} key
    * @param {Object} options
