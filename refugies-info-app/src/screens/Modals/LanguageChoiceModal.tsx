@@ -2,8 +2,7 @@ import { StyleSheet, View } from "react-native";
 import Modal from "react-native-modal";
 import React from "react";
 import styled from "styled-components/native";
-import { useDispatch } from "react-redux";
-import i18n, { t } from "../../services/i18n";
+import { useDispatch, useSelector } from "react-redux";
 import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
 import { theme } from "../../theme";
 import {
@@ -16,11 +15,11 @@ import { getSelectedLanguageFromI18nCode } from "../../libs/language";
 import { activatedLanguages } from "../../data/languagesData";
 import { RowContainer } from "../../components/BasicComponents";
 import { Flag } from "../../components/Language/Flag";
-
+import { selectedI18nCodeSelector } from "../../services/redux/User/user.selectors";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 interface Props {
   isModalVisible: boolean;
   toggleModal: () => void;
-  selectedLanguageI18nCode: string | null;
 }
 
 const styles = StyleSheet.create({
@@ -79,14 +78,16 @@ const Separator = styled.View`
   margin-right: ${theme.margin * 2}px;
 `;
 export const LanguageChoiceModal = (props: Props) => {
+  const { t, i18n } = useTranslationWithRTL();
+  const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
   const dispatch = useDispatch();
 
   const selectedLanguage = getSelectedLanguageFromI18nCode(
-    props.selectedLanguageI18nCode
+    selectedLanguageI18nCode
   );
 
   const otherLanguages = activatedLanguages.filter(
-    (langue) => langue.i18nCode !== props.selectedLanguageI18nCode
+    (langue) => langue.i18nCode !== selectedLanguageI18nCode
   );
 
   const changeLanguage = (ln: string) => {

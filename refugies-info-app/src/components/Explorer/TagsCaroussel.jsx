@@ -25,6 +25,7 @@ export class TagsCaroussel extends React.Component {
       />
     );
   }
+
   get pagination() {
     const { carouselItems, activeIndex } = this.state;
     const isRTL = i18n.isRTL();

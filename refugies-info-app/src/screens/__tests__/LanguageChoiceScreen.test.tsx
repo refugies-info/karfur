@@ -3,11 +3,12 @@ import { LanguageChoiceScreen } from "../LanguageChoiceScreen";
 import { initialRootStateFactory } from "../../services/redux/reducers";
 import { fireEvent, act } from "react-native-testing-library";
 import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
-import i18n from "../../services/i18n";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
-jest.mock("../../services/i18n", () => ({
-  __esModule: true, // this property makes it work
-  default: { changeLanguage: jest.fn(), isRTL: jest.fn() },
+jest.mock("../../hooks/useTranslationWithRTL", () => ({
+  useTranslationWithRTL: jest.fn().mockReturnValue({
+    i18n: { changeLanguage: jest.fn() },
+  }),
 }));
 
 jest.mock("../../services/redux/User/user.actions", () => {
@@ -25,6 +26,11 @@ describe("LanguageChoiceScreen", () => {
   });
 
   it("should render correctly", () => {
+    const changeLanguage = jest.fn();
+    (useTranslationWithRTL as jest.Mock).mockReturnValueOnce({
+      i18n: { changeLanguage },
+    });
+
     const component = wrapWithProvidersAndRender({
       Component: LanguageChoiceScreen,
       reduxState: {
@@ -36,7 +42,7 @@ describe("LanguageChoiceScreen", () => {
     act(() => {
       fireEvent.press(Button);
     });
-    expect(i18n.changeLanguage).toHaveBeenCalledWith("en");
+    expect(changeLanguage).toHaveBeenCalledWith("en");
     expect(saveSelectedLanguageActionCreator).toHaveBeenCalledWith("en");
   });
 });

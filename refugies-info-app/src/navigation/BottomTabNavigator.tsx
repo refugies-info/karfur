@@ -10,7 +10,7 @@ import { BottomTabParamList } from "../../types";
 import { ExplorerNavigator } from "./BottomTabBar/ExplorerNavigator";
 import { Icon } from "react-native-eva-icons";
 import { theme } from "../theme";
-import { t } from "../services/i18n";
+import { useTranslation } from "react-i18next";
 import {
   StyledTextVerySmallBold,
   StyledTextVerySmall,
@@ -52,6 +52,7 @@ const renderTabBarLabel = (color: string, focused: boolean, name: string) => {
   return <TabBarLabelText color={color}>{name}</TabBarLabelText>;
 };
 export default function BottomTabNavigator() {
+  const { t } = useTranslation();
   return (
     <BottomTab.Navigator
       initialRouteName="Explorer"

@@ -25,6 +25,8 @@ import {
 import { setHasUserSeenOnboardingActionCreator } from "../services/redux/User/user.actions";
 import { LanguageChoiceStackNavigator } from "./LanguageChoiceNavigator";
 import { theme } from "../theme";
+import "../services/i18n";
+import { initReactI18next } from "react-i18next";
 
 // A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal
@@ -43,6 +45,7 @@ export const RootNavigator = () => {
   React.useEffect(() => {
     const setLanguage = async () => {
       try {
+        i18n.use(initReactI18next);
         await i18n.init();
         try {
           const value = await AsyncStorage.getItem("SELECTED_LANGUAGE");

@@ -11,7 +11,7 @@ export const Onboarding1 = ({
 }: StackScreenProps<OnboardingParamList, "Onboarding1">) => {
   return (
     <View>
-      <Header />
+      <Header hideLanguageSwitch={true} />
       <TextNormal>
         {t("Onboarding1.welcome", "onboarding1 trad not loaded")}
       </TextNormal>
