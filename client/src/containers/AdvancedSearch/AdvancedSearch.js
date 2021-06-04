@@ -311,6 +311,9 @@ export class AdvancedSearch extends Component {
     let filter = querySearch(this.props.location.search).filter;
     let langue = querySearch(this.props.location.search).langue;
 
+    // tri is created_at or nbVues
+    const tri = querySearch(this.props.location.search).tri;
+
     // Reinject filters value in recherche
     if (
       tag ||
@@ -320,13 +323,15 @@ export class AdvancedSearch extends Component {
       dep ||
       city ||
       filter ||
-      langue
+      langue ||
+      tri
     ) {
       const correspondingFilter = this.getFilter(
         decodeURIComponent(filter),
         langue
       );
       const correspondingLangue = this.getLangue(filter, langue);
+      const activeTri = this.getActiveTri(tri);
       this.setState(
         produce((draft) => {
           if (tag) {
@@ -378,6 +383,10 @@ export class AdvancedSearch extends Component {
           }
           if (langue) {
             draft.filterLanguage = correspondingLangue;
+          }
+          if (tri) {
+            draft.activeTri = activeTri;
+            draft.order = tri;
           }
         }),
         () =>
@@ -432,6 +441,14 @@ export class AdvancedSearch extends Component {
       );
     }
   }
+
+  getActiveTri = (tri) => {
+    const correspondongTri = tris.filter((triData) => triData.value === tri);
+    if (correspondongTri.length > 0) {
+      return correspondongTri[0].name;
+    }
+    return "Par thème";
+  };
 
   getLangue = (filter, langue) => {
     if (filter !== "traduction") return "";
@@ -525,6 +542,10 @@ export class AdvancedSearch extends Component {
         langue:
           (this.state.filterLanguage && this.state.filterLanguage.i18nCode) ||
           undefined,
+        tri:
+          this.state.order && this.state.activeTri !== "Par thème"
+            ? this.state.order
+            : undefined,
       };
       //delete empty value from the filters
       Object.keys(newQueryParam).forEach((key) =>
@@ -729,7 +750,7 @@ export class AdvancedSearch extends Component {
           }
         );
         const secondaryThemeListFullFranceSorted = this.sortFunction(
-          principalThemeListFullFrance,
+          secondaryThemeListFullFrance,
           this.state.order
         );
 
@@ -881,8 +902,6 @@ export class AdvancedSearch extends Component {
         () => this.queryDispositifs()
       );
     } else {
-      const order = tri.value;
-
       this.setState(
         {
           order: tri.value,
