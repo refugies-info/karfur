@@ -238,7 +238,6 @@ export class AdvancedSearch extends Component {
       activeTri: "Par thème",
       data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
       order: "created_at",
-      croissant: true,
       filter: {},
       displayAll: true,
       dropdownOpenTri: false,
@@ -838,7 +837,7 @@ export class AdvancedSearch extends Component {
     }
   };
 
-  sortFunction = (dispositifs, order, croissant) => {
+  sortFunction = (dispositifs, order) => {
     return dispositifs.sort((a, b) => {
       var aValue = 0;
       var bValue = 0;
@@ -849,15 +848,7 @@ export class AdvancedSearch extends Component {
         aValue = _.get(a, order);
         bValue = _.get(b, order);
       }
-      return aValue > bValue
-        ? croissant
-          ? 1
-          : -1
-        : aValue < bValue
-        ? croissant
-          ? -1
-          : 1
-        : 0;
+      return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
     });
   };
 
@@ -875,24 +866,14 @@ export class AdvancedSearch extends Component {
       );
     } else {
       const order = tri.value;
-      const croissant =
-        order === this.state.order ? !this.state.croissant : false;
+
       this.setState(
         (pS) => ({
-          dispositifs: this.sortFunction(pS.dispositifs, order, croissant),
-          principalThemeList: this.sortFunction(
-            pS.principalThemeList,
-            order,
-            croissant
-          ),
-          secondaryThemeList: this.sortFunction(
-            pS.secondaryThemeList,
-            order,
-            croissant
-          ),
+          dispositifs: this.sortFunction(pS.dispositifs, order),
+          principalThemeList: this.sortFunction(pS.principalThemeList, order),
+          secondaryThemeList: this.sortFunction(pS.secondaryThemeList, order),
           order: tri.value,
           activeTri: tri.name,
-          croissant: croissant,
         })
         //() => this.queryDispositifs()
       );
@@ -1070,9 +1051,6 @@ export class AdvancedSearch extends Component {
       ) || {};
     const langueCode =
       this.props.langues.length > 0 && current ? current.langueCode : "fr";
-    console.log("activeFiltre", activeFiltre);
-    console.log("filter", this.state.filter);
-    console.log("filterLanguage", filterLanguage);
     return (
       <div className="animated fadeIn advanced-search">
         {isMobile ? (
