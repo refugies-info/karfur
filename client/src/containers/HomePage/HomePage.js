@@ -30,6 +30,7 @@ import {
 import icon_mobilisation from "../../assets/icon_mobilisation.svg";
 import { assetsOnServer } from "../../assets/assetsOnServer";
 import i18n from "../../i18n";
+import { ReactComponent as House2 } from "@streamlinehq/streamlinehq/img/streamline-regular/house-2-2aEyOK.svg";
 
 const CoronaAlert = styled.div`
   display: flex;
@@ -453,6 +454,7 @@ export class HomePage extends Component {
                         "Je veux être informé du lancement"
                       )}
                     </FButton>
+                    <House2 width={50} height={50} className="green" />
                   </p>
                   <FButton
                     name="eye-outline"
