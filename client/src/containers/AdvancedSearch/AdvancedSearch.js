@@ -544,8 +544,12 @@ export class AdvancedSearch extends Component {
       query,
       this.state.filter
     );
+    const sortedDispositifs = this.sortFunction(
+      filteredDispositifs,
+      this.state.order
+    );
 
-    let dispositifs = filteredDispositifs;
+    let dispositifs = sortedDispositifs;
     this.setState({ countTotal: dispositifs.length });
 
     if (query["tags.name"]) {
@@ -668,6 +672,10 @@ export class AdvancedSearch extends Component {
           return elem.tags[0].short === this.state.recherche[0].short;
         }
       });
+      const principalThemeListSorted = this.sortFunction(
+        principalThemeList,
+        this.state.order
+      );
 
       var secondaryThemeList = dispositifs.filter((element) => {
         if (element.tags && element.tags.length > 0) {
@@ -681,8 +689,15 @@ export class AdvancedSearch extends Component {
           }
         }
       });
+      const secondaryThemeListSorted = this.sortFunction(
+        secondaryThemeList,
+        this.state.order
+      );
 
-      this.setState({ principalThemeList, secondaryThemeList });
+      this.setState({
+        principalThemeList: principalThemeListSorted,
+        secondaryThemeList: secondaryThemeListSorted,
+      });
       if (
         localisationSearch &&
         localisationSearch.query[1] &&
@@ -694,6 +709,10 @@ export class AdvancedSearch extends Component {
               return elem.tags[0].short === this.state.recherche[0].short;
             }
           }
+        );
+        const principalThemeListFullFranceSorted = this.sortFunction(
+          principalThemeListFullFrance,
+          this.state.order
         );
         var secondaryThemeListFullFrance = dispositifsFullFrance.filter(
           (element) => {
@@ -709,9 +728,14 @@ export class AdvancedSearch extends Component {
             }
           }
         );
-        this.setState({
+        const secondaryThemeListFullFranceSorted = this.sortFunction(
           principalThemeListFullFrance,
-          secondaryThemeListFullFrance,
+          this.state.order
+        );
+
+        this.setState({
+          principalThemeListFullFrance: principalThemeListFullFranceSorted,
+          secondaryThemeListFullFrance: secondaryThemeListFullFranceSorted,
         });
       }
     }
@@ -852,7 +876,7 @@ export class AdvancedSearch extends Component {
           recherche: this.state.recherche.map((x, i) =>
             i === 0 ? initial_data[i] : x
           ),
-          order: "theme",
+          order: "created_at",
         },
         () => this.queryDispositifs()
       );
@@ -860,14 +884,11 @@ export class AdvancedSearch extends Component {
       const order = tri.value;
 
       this.setState(
-        (pS) => ({
-          dispositifs: this.sortFunction(pS.dispositifs, order),
-          principalThemeList: this.sortFunction(pS.principalThemeList, order),
-          secondaryThemeList: this.sortFunction(pS.secondaryThemeList, order),
+        {
           order: tri.value,
           activeTri: tri.name,
-        })
-        //() => this.queryDispositifs()
+        },
+        () => this.queryDispositifs()
       );
     }
   };
