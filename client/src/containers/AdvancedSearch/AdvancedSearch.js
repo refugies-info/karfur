@@ -543,7 +543,9 @@ export class AdvancedSearch extends Component {
           (this.state.filterLanguage && this.state.filterLanguage.i18nCode) ||
           undefined,
         tri:
-          this.state.order && this.state.activeTri !== "Par thème"
+          this.state.order &&
+          this.state.activeTri &&
+          this.state.activeTri !== "Par thème"
             ? this.state.order
             : undefined,
       };
@@ -890,6 +892,12 @@ export class AdvancedSearch extends Component {
   };
 
   reorder = (tri) => {
+    if (tri.name === this.state.activeTri) {
+      this.setState({ activeTri: "", order: "" }, () =>
+        this.queryDispositifs()
+      );
+      return;
+    }
     if (tri.name === "Par thème") {
       this.setState(
         {
