@@ -8,7 +8,6 @@
   max-width: 100%;
   outline: none;
   z-index: 1;
-  //overflow: scroll;
   .overlay {
     position: fixed;
     width: 100%;
@@ -586,4 +585,9 @@
     -webkit-transform: rotateX(180deg);
     transform: rotateX(180deg);
   }
+}
+
+.green path {
+  fill: green;
+  stroke: red;
 }
