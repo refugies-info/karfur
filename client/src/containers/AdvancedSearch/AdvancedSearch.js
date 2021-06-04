@@ -1,14 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import {
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Tooltip,
-} from "reactstrap";
+import { Tooltip } from "reactstrap";
 import Swal from "sweetalert2";
 import querySearch from "stringquery";
 import qs from "query-string";
@@ -1115,16 +1107,6 @@ export class AdvancedSearch extends Component {
                     />
                   )}
                 </SearchToggle>
-                <ResponsiveFooter
-                  {...this.state}
-                  show={false}
-                  toggleDropdownTri={this.toggleDropdownTri}
-                  toggleDropdownFiltre={this.toggleDropdownFiltre}
-                  reorder={this.reorder}
-                  filter_content={this.filter_content}
-                  toggleDisplayAll={this.toggleDisplayAll}
-                  t={t}
-                />
               </div>
               <FilterBar
                 visibleTop={this.state.visible}
@@ -2035,71 +2017,6 @@ export class AdvancedSearch extends Component {
     );
   }
 }
-
-export const ResponsiveFooter = (props) => {
-  const { activeFiltre, activeTri, displayAll, t, show } = props;
-  return (
-    show && (
-      <div className="responsive-footer">
-        <ButtonDropdown
-          className={"options-dropdown" + (activeTri ? " active" : "")}
-          isOpen={props.dropdownOpenTri}
-          toggle={props.toggleDropdownTri}
-        >
-          <DropdownToggle color="transparent">
-            <EVAIcon name="options-2-outline" />
-          </DropdownToggle>
-          <DropdownMenu>
-            {tris.map((tri, idx) => (
-              <DropdownItem
-                key={idx}
-                onClick={() => props.reorder(tri)}
-                className={
-                  "side-option" + (tri.name === activeTri ? " active" : "")
-                }
-              >
-                {t("AdvancedSearch." + tri.name, tri.name)}
-              </DropdownItem>
-            ))}
-          </DropdownMenu>
-        </ButtonDropdown>
-        <ButtonDropdown
-          className={"options-dropdown" + (activeFiltre ? " active" : "")}
-          isOpen={props.dropdownOpenFiltre}
-          toggle={props.toggleDropdownFiltre}
-        >
-          <DropdownToggle
-            color="transparent"
-            className={activeFiltre ? "active" : ""}
-          >
-            <EVAIcon name="funnel-outline" />
-          </DropdownToggle>
-          <DropdownMenu>
-            {filtres_contenu.map((filtre, idx) => (
-              <DropdownItem
-                key={idx}
-                onClick={() => props.filter_content(filtre)}
-                className={
-                  "side-option" +
-                  (filtre.name === activeFiltre ? " active" : "")
-                }
-              >
-                {filtre.name && t("AdvancedSearch." + filtre.name, filtre.name)}
-              </DropdownItem>
-            ))}
-          </DropdownMenu>
-        </ButtonDropdown>
-        <EVAIcon
-          name={"arrow-circle-" + (displayAll ? "up" : "down")}
-          size="xlarge"
-          onClick={props.toggleDisplayAll}
-          className="close-arrow"
-          fill={colors.grisFonce}
-        />
-      </div>
-    )
-  );
-};
 
 const mapStateToProps = (state) => {
   return {
