@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import {
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Tooltip,
-} from "reactstrap";
+import { Tooltip } from "reactstrap";
 import Swal from "sweetalert2";
 import querySearch from "stringquery";
 import qs from "query-string";
@@ -236,7 +230,6 @@ export class AdvancedSearch extends Component {
       activeTri: "Par thème",
       data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
       order: "created_at",
-      croissant: true,
       filter: {},
       displayAll: true,
       dropdownOpenTri: false,
@@ -318,6 +311,9 @@ export class AdvancedSearch extends Component {
     let filter = querySearch(this.props.location.search).filter;
     let langue = querySearch(this.props.location.search).langue;
 
+    // tri is created_at or nbVues
+    const tri = querySearch(this.props.location.search).tri;
+
     // Reinject filters value in recherche
     if (
       tag ||
@@ -327,13 +323,15 @@ export class AdvancedSearch extends Component {
       dep ||
       city ||
       filter ||
-      langue
+      langue ||
+      tri
     ) {
       const correspondingFilter = this.getFilter(
         decodeURIComponent(filter),
         langue
       );
       const correspondingLangue = this.getLangue(filter, langue);
+      const activeTri = this.getActiveTri(tri);
       this.setState(
         produce((draft) => {
           if (tag) {
@@ -385,6 +383,10 @@ export class AdvancedSearch extends Component {
           }
           if (langue) {
             draft.filterLanguage = correspondingLangue;
+          }
+          if (tri) {
+            draft.activeTri = activeTri;
+            draft.order = tri;
           }
         }),
         () =>
@@ -439,6 +441,14 @@ export class AdvancedSearch extends Component {
       );
     }
   }
+
+  getActiveTri = (tri) => {
+    const correspondongTri = tris.filter((triData) => triData.value === tri);
+    if (correspondongTri.length > 0) {
+      return correspondongTri[0].name;
+    }
+    return "Par thème";
+  };
 
   getLangue = (filter, langue) => {
     if (filter !== "traduction") return "";
@@ -532,6 +542,10 @@ export class AdvancedSearch extends Component {
         langue:
           (this.state.filterLanguage && this.state.filterLanguage.i18nCode) ||
           undefined,
+        tri:
+          this.state.order && this.state.activeTri !== "Par thème"
+            ? this.state.order
+            : undefined,
       };
       //delete empty value from the filters
       Object.keys(newQueryParam).forEach((key) =>
@@ -551,8 +565,12 @@ export class AdvancedSearch extends Component {
       query,
       this.state.filter
     );
+    const sortedDispositifs = this.sortFunction(
+      filteredDispositifs,
+      this.state.order
+    );
 
-    let dispositifs = filteredDispositifs;
+    let dispositifs = sortedDispositifs;
     this.setState({ countTotal: dispositifs.length });
 
     if (query["tags.name"]) {
@@ -675,6 +693,10 @@ export class AdvancedSearch extends Component {
           return elem.tags[0].short === this.state.recherche[0].short;
         }
       });
+      const principalThemeListSorted = this.sortFunction(
+        principalThemeList,
+        this.state.order
+      );
 
       var secondaryThemeList = dispositifs.filter((element) => {
         if (element.tags && element.tags.length > 0) {
@@ -688,8 +710,15 @@ export class AdvancedSearch extends Component {
           }
         }
       });
+      const secondaryThemeListSorted = this.sortFunction(
+        secondaryThemeList,
+        this.state.order
+      );
 
-      this.setState({ principalThemeList, secondaryThemeList });
+      this.setState({
+        principalThemeList: principalThemeListSorted,
+        secondaryThemeList: secondaryThemeListSorted,
+      });
       if (
         localisationSearch &&
         localisationSearch.query[1] &&
@@ -701,6 +730,10 @@ export class AdvancedSearch extends Component {
               return elem.tags[0].short === this.state.recherche[0].short;
             }
           }
+        );
+        const principalThemeListFullFranceSorted = this.sortFunction(
+          principalThemeListFullFrance,
+          this.state.order
         );
         var secondaryThemeListFullFrance = dispositifsFullFrance.filter(
           (element) => {
@@ -716,9 +749,14 @@ export class AdvancedSearch extends Component {
             }
           }
         );
-        this.setState({
-          principalThemeListFullFrance,
+        const secondaryThemeListFullFranceSorted = this.sortFunction(
           secondaryThemeListFullFrance,
+          this.state.order
+        );
+
+        this.setState({
+          principalThemeListFullFrance: principalThemeListFullFranceSorted,
+          secondaryThemeListFullFrance: secondaryThemeListFullFranceSorted,
         });
       }
     }
@@ -836,7 +874,7 @@ export class AdvancedSearch extends Component {
     }
   };
 
-  sortFunction = (dispositifs, order, croissant) => {
+  sortFunction = (dispositifs, order) => {
     return dispositifs.sort((a, b) => {
       var aValue = 0;
       var bValue = 0;
@@ -847,15 +885,7 @@ export class AdvancedSearch extends Component {
         aValue = _.get(a, order);
         bValue = _.get(b, order);
       }
-      return aValue > bValue
-        ? croissant
-          ? 1
-          : -1
-        : aValue < bValue
-        ? croissant
-          ? -1
-          : 1
-        : 0;
+      return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
     });
   };
 
@@ -867,32 +897,17 @@ export class AdvancedSearch extends Component {
           recherche: this.state.recherche.map((x, i) =>
             i === 0 ? initial_data[i] : x
           ),
-          order: "theme",
+          order: "created_at",
         },
         () => this.queryDispositifs()
       );
     } else {
-      const order = tri.value;
-      const croissant =
-        order === this.state.order ? !this.state.croissant : false;
       this.setState(
-        (pS) => ({
-          dispositifs: this.sortFunction(pS.dispositifs, order, croissant),
-          principalThemeList: this.sortFunction(
-            pS.principalThemeList,
-            order,
-            croissant
-          ),
-          secondaryThemeList: this.sortFunction(
-            pS.secondaryThemeList,
-            order,
-            croissant
-          ),
+        {
           order: tri.value,
           activeTri: tri.name,
-          croissant: croissant,
-        })
-        //() => this.queryDispositifs()
+        },
+        () => this.queryDispositifs()
       );
     }
   };
@@ -905,7 +920,7 @@ export class AdvancedSearch extends Component {
     this.setState(
       {
         filter,
-        activeFiltre /* activeTri: this.state.activeTri === "Par thème" ? "" : this.state.activeTri */,
+        activeFiltre,
         languageDropdown: false,
         filterLanguage: "",
       },
@@ -1036,8 +1051,9 @@ export class AdvancedSearch extends Component {
   };
 
   selectLanguage = (language) => {
-    this.setState({ filterLanguage: language, languageDropdown: false }, () =>
-      this.queryDispositifs()
+    this.setState(
+      { filterLanguage: language, languageDropdown: false, filter: "" },
+      () => this.queryDispositifs()
     );
   };
 
@@ -1067,7 +1083,6 @@ export class AdvancedSearch extends Component {
       ) || {};
     const langueCode =
       this.props.langues.length > 0 && current ? current.langueCode : "fr";
-
     return (
       <div className="animated fadeIn advanced-search">
         {isMobile ? (
@@ -1132,16 +1147,6 @@ export class AdvancedSearch extends Component {
                     />
                   )}
                 </SearchToggle>
-                <ResponsiveFooter
-                  {...this.state}
-                  show={false}
-                  toggleDropdownTri={this.toggleDropdownTri}
-                  toggleDropdownFiltre={this.toggleDropdownFiltre}
-                  reorder={this.reorder}
-                  filter_content={this.filter_content}
-                  toggleDisplayAll={this.toggleDisplayAll}
-                  t={t}
-                />
               </div>
               <FilterBar
                 visibleTop={this.state.visible}
@@ -2052,71 +2057,6 @@ export class AdvancedSearch extends Component {
     );
   }
 }
-
-export const ResponsiveFooter = (props) => {
-  const { activeFiltre, activeTri, displayAll, t, show } = props;
-  return (
-    show && (
-      <div className="responsive-footer">
-        <ButtonDropdown
-          className={"options-dropdown" + (activeTri ? " active" : "")}
-          isOpen={props.dropdownOpenTri}
-          toggle={props.toggleDropdownTri}
-        >
-          <DropdownToggle color="transparent">
-            <EVAIcon name="options-2-outline" />
-          </DropdownToggle>
-          <DropdownMenu>
-            {tris.map((tri, idx) => (
-              <DropdownItem
-                key={idx}
-                onClick={() => props.reorder(tri)}
-                className={
-                  "side-option" + (tri.name === activeTri ? " active" : "")
-                }
-              >
-                {t("AdvancedSearch." + tri.name, tri.name)}
-              </DropdownItem>
-            ))}
-          </DropdownMenu>
-        </ButtonDropdown>
-        <ButtonDropdown
-          className={"options-dropdown" + (activeFiltre ? " active" : "")}
-          isOpen={props.dropdownOpenFiltre}
-          toggle={props.toggleDropdownFiltre}
-        >
-          <DropdownToggle
-            color="transparent"
-            className={activeFiltre ? "active" : ""}
-          >
-            <EVAIcon name="funnel-outline" />
-          </DropdownToggle>
-          <DropdownMenu>
-            {filtres_contenu.map((filtre, idx) => (
-              <DropdownItem
-                key={idx}
-                onClick={() => props.filter_content(filtre)}
-                className={
-                  "side-option" +
-                  (filtre.name === activeFiltre ? " active" : "")
-                }
-              >
-                {filtre.name && t("AdvancedSearch." + filtre.name, filtre.name)}
-              </DropdownItem>
-            ))}
-          </DropdownMenu>
-        </ButtonDropdown>
-        <EVAIcon
-          name={"arrow-circle-" + (displayAll ? "up" : "down")}
-          size="xlarge"
-          onClick={props.toggleDisplayAll}
-          className="close-arrow"
-          fill={colors.grisFonce}
-        />
-      </div>
-    )
-  );
-};
 
 const mapStateToProps = (state) => {
   return {
