@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import {
@@ -905,7 +907,7 @@ export class AdvancedSearch extends Component {
     this.setState(
       {
         filter,
-        activeFiltre /* activeTri: this.state.activeTri === "Par thème" ? "" : this.state.activeTri */,
+        activeFiltre,
         languageDropdown: false,
         filterLanguage: "",
       },
@@ -1036,8 +1038,9 @@ export class AdvancedSearch extends Component {
   };
 
   selectLanguage = (language) => {
-    this.setState({ filterLanguage: language, languageDropdown: false }, () =>
-      this.queryDispositifs()
+    this.setState(
+      { filterLanguage: language, languageDropdown: false, filter: "" },
+      () => this.queryDispositifs()
     );
   };
 
@@ -1067,7 +1070,9 @@ export class AdvancedSearch extends Component {
       ) || {};
     const langueCode =
       this.props.langues.length > 0 && current ? current.langueCode : "fr";
-
+    console.log("activeFiltre", activeFiltre);
+    console.log("filter", this.state.filter);
+    console.log("filterLanguage", filterLanguage);
     return (
       <div className="animated fadeIn advanced-search">
         {isMobile ? (
