@@ -4,7 +4,16 @@ import "./TagButton.scss";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 
 const fSearchBtn = (props) => {
-  let { className, desactiver, active, color, lighter, noHover, filter, ...bProps } = props;
+  let {
+    className,
+    desactiver,
+    active,
+    color,
+    lighter,
+    noHover,
+    filter,
+    ...bProps
+  } = props;
 
   let onCrossClick = (e) => {
     e.stopPropagation();
