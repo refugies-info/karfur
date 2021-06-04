@@ -348,6 +348,9 @@ export class AdvancedSearch extends Component {
               filtres.tags &&
               filtres.tags.find((x) => x.name === decodeURIComponent(tag))
                 .short;
+            draft.recherche[0].icon =
+              filtres.tags &&
+              filtres.tags.find((x) => x.name === decodeURIComponent(tag)).icon;
             draft.activeTri = "";
           }
           if (topValue && bottomValue) {
