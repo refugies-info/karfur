@@ -85,14 +85,10 @@ const ReactionLectureModal = (props) => {
         </FButton>
 
         <FButton
+          href={"/" + suggestion.typeContenu + "/" + suggestion.dispositifId}
           type="dark"
           name="external-link-outline"
-          onClick={() => {
-            props.history.push({
-              pathname:
-                "/" + suggestion.typeContenu + "/" + suggestion.dispositifId,
-            });
-          }}
+          target="_blank"
           className="mr-16"
         >
           Voir la fiche
