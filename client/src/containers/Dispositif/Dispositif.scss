@@ -271,9 +271,10 @@ $imgHeight: 350px;
 
       .top-right-edition {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-end;
         font-weight: bold;
+        justify-content: flex-end;
         color: "red";
 
         .top-icon-wrapper {

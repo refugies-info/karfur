@@ -1195,9 +1195,7 @@ export class Dispositif extends Component {
     const prevState = [...this.state.menu];
     //var menuObj = [...menu[1].children]
     if (node === "title") {
-      prevState[key].children[
-        subkey
-      ] = this.state.initialMenu[1].children
+      prevState[key].children[subkey] = this.state.initialMenu[1].children
         .concat(importantCard)
         .find((x) => x.title === value);
     } else {
@@ -1746,6 +1744,7 @@ export class Dispositif extends Component {
                   toggleDispositifValidateModal={
                     this.toggleDispositifValidateModal
                   }
+                  toggleTutoModal={this.toggleTutorielModal}
                   editDispositif={this.editDispositif}
                   valider_dispositif={this.valider_dispositif}
                   toggleDispositifCreateModal={this.toggleDispositifCreateModal}

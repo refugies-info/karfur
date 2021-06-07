@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import styled from "styled-components";
 import { colors } from "../../../../colors";
 import React, { useState } from "react";
@@ -71,29 +72,35 @@ export const Responsabilite = (props: { responsable: string | null }) => {
 };
 
 const ContribStyledStatusContainer = styled.div`
+  display: flex;
+  align-items: center;
   font-weight: bold;
   border-radius: 6px;
-  padding: 8px;
+  padding: ${(props) => (props.size === "large" ? "15px" : "8px")};
   background-color: ${(props) => props.color};
-  width: fit-content;
+  width: ${(props) => (props.size === "large" ? "fit-content" : "fit-content")};
+  height: ${(props) => (props.size === "large" ? "54px" : "")};
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
+  margin-right: ${(props) => (props.size === "large" ? "11px" : "")};
   color: ${(props) => (props.textColor ? props.textColor : colors.blancSimple)};
 `;
 
-export const ContribStyledStatus = (props: { text: string }) => {
+export const ContribStyledStatus = (props: { text: string; size?: string }) => {
   const [onMouseHover, setOnMouseHover] = useState(false);
 
   const { status, color, textColor } = getColorAndStatus(props.text);
+  console.log(props.size);
   return (
-    <div style={{ width: "120px" }}>
+    <div style={{ width: props.size === "large" ? "" : "120px" }}>
       <ContribStyledStatusContainer
         color={color}
         textColor={textColor}
         onMouseEnter={() => setOnMouseHover(true)}
         onMouseLeave={() => setOnMouseHover(false)}
+        size={props.size}
       >
         {status}
         {onMouseHover && (

@@ -5,6 +5,7 @@ import FButton from "../../../FigmaUI/FButton/FButton";
 import { Props } from "./TopRightHeader.container";
 import { isUserAllowedToModify } from "./functions";
 import { isMobile } from "react-device-detect";
+import { ContribStyledStatus } from "../../../../containers/Backend/UserContributions/components/SubComponents";
 
 export interface PropsBeforeInjection {
   disableEdit: boolean;
@@ -18,6 +19,7 @@ export interface PropsBeforeInjection {
   editDispositif: () => void;
   valider_dispositif: (arg1: string) => void;
   toggleDispositifCreateModal: () => void;
+  toggleTutoModal: (section: string) => void;
   translating: boolean;
   status: string;
   typeContenu: "dispositif" | "demarche";
@@ -135,8 +137,28 @@ export class TopRightHeader extends React.Component<Props> {
           {!props.translating &&
             props.langue === "fr" &&
             isUserAllowedToModifyDispositif && (
+              <div
+                onClick={(event: any) => {
+                  event.stopPropagation();
+                  props.toggleTutoModal("Statut des fiches");
+                }}
+                className="align-middle"
+              >
+                <ContribStyledStatus size="large" text={props.status} />
+              </div>
+              // <FButton
+              //   className="dark mr-10"
+              //   name="edit-outline"
+              //   onClick={props.editDispositif}
+              // >
+              //   Modifier la fiche
+              // </FButton>
+            )}
+          {!props.translating &&
+            props.langue === "fr" &&
+            isUserAllowedToModifyDispositif && (
               <FButton
-                className="dark"
+                className="dark mr-10"
                 name="edit-outline"
                 onClick={props.editDispositif}
               >
