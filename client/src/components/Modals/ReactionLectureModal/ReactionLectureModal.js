@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Modal } from "reactstrap";
+import { Input, Modal, ModalHeader } from "reactstrap";
 import FButton from "../../FigmaUI/FButton/FButton";
 import styled from "styled-components";
 
@@ -26,6 +26,8 @@ const SendByContainer = styled.div`
   display: flex;
   align-items: center;
   font-size: 18px;
+  position: absolute;
+  right: 69px;
 `;
 
 const UserNameContainer = styled.div`
@@ -50,13 +52,20 @@ const ReactionLectureModal = (props) => {
       toggle={props.toggle}
       className="modal-suggestion"
     >
-      <ModalHeaderContainer toggle={props.toggle}>
-        Réaction{" "}
-        <SendByContainer>
-          Envoyée par
-          <UserNameContainer>{getUserName()}</UserNameContainer>
-        </SendByContainer>
-      </ModalHeaderContainer>
+      <ModalHeader toggle={props.toggle}>
+        <ModalHeaderContainer toggle={props.toggle}>
+          Réaction{" "}
+          <SendByContainer>
+            Envoyée par
+            <UserNameContainer>
+              {getUserName().length > 20
+                ? getUserName().substr(0, 19) + "..."
+                : getUserName()}
+            </UserNameContainer>
+          </SendByContainer>
+        </ModalHeaderContainer>
+      </ModalHeader>
+
       <ModalBodyContainer className="modal-body">
         <Input
           disabled
