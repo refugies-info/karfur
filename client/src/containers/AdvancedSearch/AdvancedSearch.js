@@ -245,7 +245,7 @@ export class AdvancedSearch extends Component {
       dropdownOpenTri: false,
       dropdownOpenFiltre: false,
       showBookmarkModal: false,
-      searchToggleVisible: true,
+      searchToggleVisible: false,
       visible: true,
       countTotal: 0,
       countShow: 0,
