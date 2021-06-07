@@ -29,6 +29,11 @@ const SendByContainer = styled.div`
   position: absolute;
   right: 69px;
 `;
+const AProposContainer = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+`;
 
 const UserNameContainer = styled.div`
   background-color: white;
@@ -75,10 +80,10 @@ const ReactionLectureModal = (props) => {
           value={suggestion.text}
           id="suggestion"
         />
-        <SendByContainer>
+        <AProposContainer>
           A propos de la fiche
           <UserNameContainer>{suggestion.title}</UserNameContainer>
-        </SendByContainer>
+        </AProposContainer>
       </ModalBodyContainer>
 
       <ButtonContainer>
