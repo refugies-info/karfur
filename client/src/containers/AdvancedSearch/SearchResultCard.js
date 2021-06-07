@@ -64,10 +64,6 @@ const SearchResultCard = ({
         }
         key={dispositif._id}
       >
-        {"nb vues : " +
-          dispositif.nbVues +
-          " - date publication : " +
-          dispositif.publishedAt}
         <CustomCard
           onClick={() => {
             history.push({
