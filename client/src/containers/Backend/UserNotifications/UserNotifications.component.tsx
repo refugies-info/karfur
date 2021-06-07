@@ -59,10 +59,8 @@ export interface PropsBeforeInjection {
   history: any;
 }
 export const UserNotificationsComponent = (props: PropsBeforeInjection) => {
-  const [
-    selectedReaction,
-    setSelectedReaction,
-  ] = useState<FormattedNotification | null>(null);
+  const [selectedReaction, setSelectedReaction] =
+    useState<FormattedNotification | null>(null);
   const [showReactionModal, setShowReactionModal] = useState(false);
 
   const toggleReactionModal = () => setShowReactionModal(!showReactionModal);
@@ -96,8 +94,9 @@ export const UserNotificationsComponent = (props: PropsBeforeInjection) => {
     hasResponsibleSeenAnnuaireNotif
   );
 
-  const nbNewNotifications = notifications.filter((notif) => !notif.read)
-    .length;
+  const nbNewNotifications = notifications.filter(
+    (notif) => !notif.read
+  ).length;
 
   const onNotificationClick = (notif: FormattedNotification) => {
     if (notif.type === "reaction") {
@@ -259,6 +258,7 @@ export const UserNotificationsComponent = (props: PropsBeforeInjection) => {
           toggle={toggleReactionModal}
           delete={() => deleteNotificationAndUpdate(selectedReaction)}
           read={() => readNotificationAndUpdate(selectedReaction)}
+          history={props.history}
         />
       </MainContainer>
     </div>

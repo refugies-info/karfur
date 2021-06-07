@@ -70,15 +70,19 @@ const ThemeListContainer = styled.div`
 `;
 
 const SearchToggle = styled.div`
-  width: 36px;
-  height: 36px;
   display: flex;
   justify-content: center;
+  margin-left: 30px;
   align-items: center;
-  border-radius: 18px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 12px;
   border: 0.5px solid;
-  border-color: ${(props) => (props.visible ? "transparent" : "black")};
-  background-color: ${(props) => (props.visible ? "#828282" : "white")};
+  color: ${(props) => (props.visible ? colors.blancSimple : colors.bleuCharte)};
+  border-color: ${(props) =>
+    props.visible ? "transparent" : colors.bleuCharte};
+  background-color: ${(props) =>
+    props.visible ? colors.bleuCharte : "transparent"};
   align-self: center;
   cursor: pointer;
   &:hover {
@@ -235,7 +239,7 @@ export class AdvancedSearch extends Component {
       dropdownOpenTri: false,
       dropdownOpenFiltre: false,
       showBookmarkModal: false,
-      searchToggleVisible: true,
+      searchToggleVisible: false,
       visible: true,
       countTotal: 0,
       countShow: 0,
@@ -1143,17 +1147,20 @@ export class AdvancedSearch extends Component {
                   onClick={() => this.toggleSearch()}
                   visible={this.state.searchToggleVisible}
                 >
-                  {this.state.searchToggleVisible ? (
-                    <EVAIcon
-                      name="arrow-ios-upward-outline"
-                      fill={colors.blanc}
-                    />
-                  ) : (
-                    <EVAIcon
-                      name="arrow-ios-downward-outline"
-                      fill={colors.noir}
-                    />
-                  )}
+                  <div>
+                    {t("AdvancedSearch.Plus de filtres", "Plus de filtres")}{" "}
+                    {this.state.searchToggleVisible ? (
+                      <EVAIcon
+                        name="arrow-ios-upward-outline"
+                        fill={colors.blancSimple}
+                      />
+                    ) : (
+                      <EVAIcon
+                        name="arrow-ios-downward-outline"
+                        fill={colors.bleuCharte}
+                      />
+                    )}
+                  </div>
                 </SearchToggle>
               </div>
               <FilterBar

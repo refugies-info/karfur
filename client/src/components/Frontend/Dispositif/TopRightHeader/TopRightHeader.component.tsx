@@ -154,7 +154,7 @@ export class TopRightHeader extends React.Component<Props> {
                 ) : (
                   <FButton
                     className="default"
-                    name={"bookmark" + (props.pinned ? "" : "-outline")}
+                    name={"star" + (props.pinned ? "" : "-outline")}
                   >
                     {props.pinned
                       ? props.t(
