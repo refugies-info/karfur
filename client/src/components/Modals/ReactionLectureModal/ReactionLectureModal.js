@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from "react";
 import { Input, Modal } from "reactstrap";
 import FButton from "../../FigmaUI/FButton/FButton";
@@ -42,6 +43,7 @@ const ButtonContainer = styled.div`
 
 const ReactionLectureModal = (props) => {
   let suggestion = props.suggestion || {};
+  console.log(suggestion);
   const getUserName = () =>
     suggestion.username ? suggestion.username : "Utilisateur non connecté";
   return (
@@ -89,7 +91,8 @@ const ReactionLectureModal = (props) => {
           name="external-link-outline"
           onClick={() => {
             props.history.push({
-              pathname: "/dispositif/" + suggestion.dispositifId,
+              pathname:
+                "/" + suggestion.typeContenu + "/" + suggestion.dispositifId,
             });
           }}
           className="mr-16"
