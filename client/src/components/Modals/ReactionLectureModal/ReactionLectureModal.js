@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Modal } from "reactstrap";
+import { Input, Modal, ModalHeader } from "reactstrap";
 import FButton from "../../FigmaUI/FButton/FButton";
 import styled from "styled-components";
 
@@ -23,6 +23,13 @@ const ModalBodyContainer = styled.div`
 `;
 
 const SendByContainer = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  position: absolute;
+  right: 69px;
+`;
+const AProposContainer = styled.div`
   display: flex;
   align-items: center;
   font-size: 18px;
@@ -50,13 +57,20 @@ const ReactionLectureModal = (props) => {
       toggle={props.toggle}
       className="modal-suggestion"
     >
-      <ModalHeaderContainer toggle={props.toggle}>
-        Réaction{" "}
-        <SendByContainer>
-          Envoyée par
-          <UserNameContainer>{getUserName()}</UserNameContainer>
-        </SendByContainer>
-      </ModalHeaderContainer>
+      <ModalHeader toggle={props.toggle}>
+        <ModalHeaderContainer toggle={props.toggle}>
+          Réaction{" "}
+          <SendByContainer>
+            Envoyée par
+            <UserNameContainer>
+              {getUserName().length > 20
+                ? getUserName().substr(0, 19) + "..."
+                : getUserName()}
+            </UserNameContainer>
+          </SendByContainer>
+        </ModalHeaderContainer>
+      </ModalHeader>
+
       <ModalBodyContainer className="modal-body">
         <Input
           disabled
@@ -66,10 +80,10 @@ const ReactionLectureModal = (props) => {
           value={suggestion.text}
           id="suggestion"
         />
-        <SendByContainer>
+        <AProposContainer>
           A propos de la fiche
           <UserNameContainer>{suggestion.title}</UserNameContainer>
-        </SendByContainer>
+        </AProposContainer>
       </ModalBodyContainer>
 
       <ButtonContainer>
@@ -85,14 +99,10 @@ const ReactionLectureModal = (props) => {
         </FButton>
 
         <FButton
+          href={"/" + suggestion.typeContenu + "/" + suggestion.dispositifId}
           type="dark"
           name="external-link-outline"
-          onClick={() => {
-            props.history.push({
-              pathname:
-                "/" + suggestion.typeContenu + "/" + suggestion.dispositifId,
-            });
-          }}
+          target="_blank"
           className="mr-16"
         >
           Voir la fiche
