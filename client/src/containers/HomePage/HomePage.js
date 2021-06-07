@@ -86,7 +86,8 @@ const ButtonContainerRow = styled.div`
 `;
 
 const ButtonSeparator = styled.div`
-  margin: 0px 10px 0px 0px;
+  margin-right: ${(props) => (props.isRTL ? "0px" : "10px")};
+  margin-left: ${(props) => (props.isRTL ? "10px" : "0px")};
 `;
 
 export class HomePage extends Component {
@@ -224,7 +225,7 @@ export class HomePage extends Component {
             >
               <div className="slide-animation">
                 <EVAIcon
-                  className="bottom-slider"
+                  className={isRTL ? "bottom-slider-rtl" : "bottom-slider"}
                   name="arrow-circle-down"
                   size="xhero"
                   fill={colors.blancSimple}
@@ -395,14 +396,18 @@ export class HomePage extends Component {
                 </div>
                 <footer className="footer-section">
                   <ButtonContainerRow>
-                    <ButtonSeparator>
+                    <ButtonSeparator isRTL={isRTL}>
                       <FButton
                         tag={NavHashLink}
                         to={"/comment-contribuer#deployer-card"}
                         type="dark"
                         style={{ height: "60px" }}
                       >
-                        <img src={icon_mobilisation} alt="icon mobilisation" />
+                        <img
+                          src={icon_mobilisation}
+                          alt="icon mobilisation"
+                          className={"mr-8"}
+                        />
                         {t(
                           "Homepage.Participe déploiement",
                           "Je participe au déploiement"
