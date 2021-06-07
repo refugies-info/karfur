@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "../../../colors";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
+import i18n from "../../../i18n";
 
 interface Props {
   name: string;
@@ -32,20 +33,25 @@ const ButtonContainer = styled.div`
 `;
 
 const IconContainer = styled.div`
-  margin-right: 10px;
+  margin-right: ${(props) => (props.isRTL ? "0px" : "10px")};
+  margin-left: ${(props) => (props.isRTL ? "10px" : "0px")};
 `;
 
-export const FButtonMobile = (props: Props) => (
-  <ButtonContainer
-    onClick={props.isDisabled ? null : props.onClick}
-    isDisabled={props.isDisabled}
-    backgroundColor={props.color}
-    color={props.fill}
-  >
-    <IconContainer>
-      <EVAIcon name={props.name} fill={props.fill} size={"large"} />
-    </IconContainer>
+export const FButtonMobile = (props: Props) => {
+  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
 
-    {props.t(props.title, props.defaultTitle)}
-  </ButtonContainer>
-);
+  return (
+    <ButtonContainer
+      onClick={props.isDisabled ? null : props.onClick}
+      isDisabled={props.isDisabled}
+      backgroundColor={props.color}
+      color={props.fill}
+    >
+      <IconContainer isRTL={isRTL}>
+        <EVAIcon name={props.name} fill={props.fill} size={"large"} />
+      </IconContainer>
+
+      {props.t(props.title, props.defaultTitle)}
+    </ButtonContainer>
+  );
+};

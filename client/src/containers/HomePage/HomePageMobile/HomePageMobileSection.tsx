@@ -4,6 +4,7 @@ import { colors } from "../../../colors";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import traductionIconBlanc from "../../../assets/icon_traduction_blanc.svg";
 import icon_mobilisation from "../../../assets/icon_mobilisation.svg";
+import i18n from "../../../i18n";
 
 declare const window: Window;
 interface Props {
@@ -63,49 +64,54 @@ const ButtonContainer = styled.div`
 `;
 
 const IconContainer = styled.div`
-  margin-right: 10px;
+  margin-right: ${(props) => (props.isRTL ? "0px" : "10px")};
+  margin-left: ${(props) => (props.isRTL ? "10px" : "0px")};
 `;
 
-export const HomePageMobileSection = (props: Props) => (
-  <SectionContainer backgroundColor={props.backgroundColor}>
-    <img
-      alt="illustration section"
-      style={
-        props.text === "Homepage.Contribuer à la traduction"
-          ? { marginLeft: "-15px" }
-          : props.text === "Homepage.Une application mobile adaptée"
-          ? { marginLeft: "40px" }
-          : undefined
-      }
-      src={props.image}
-    />
-    <TitleContainer textColor={props.textColor}>
-      {props.t(props.title, props.defaultTitle)}
-    </TitleContainer>
-    <TextContainer textColor={props.textColor}>
-      {props.t(props.text, props.defaultText)}
-    </TextContainer>
-    <ButtonContainer
-      onClick={props.isDisabled ? null : props.onClick}
-      isDisabled={props.isDisabled}
-      backgroundColor={props.buttonColor}
-      color={props.buttonTextColor}
-    >
-      <IconContainer>
-        {props.iconType === "eva" ? (
-          <EVAIcon
-            name={props.iconName}
-            fill={props.buttonTextColor}
-            size={"large"}
-          />
-        ) : props.iconType === "traduction" ? (
-          <img src={traductionIconBlanc} alt="picto-traduction" />
-        ) : props.iconType === "territoire" ? (
-          <img src={icon_mobilisation} alt="picto-mobilisation" />
-        ) : null}
-      </IconContainer>
+export const HomePageMobileSection = (props: Props) => {
+  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
 
-      {props.t(props.buttonTitle, props.defaultBoutonTitle)}
-    </ButtonContainer>
-  </SectionContainer>
-);
+  return (
+    <SectionContainer backgroundColor={props.backgroundColor}>
+      <img
+        alt="illustration section"
+        style={
+          props.text === "Homepage.Contribuer à la traduction"
+            ? { marginLeft: "-15px" }
+            : props.text === "Homepage.Une application mobile adaptée"
+            ? { marginLeft: "40px" }
+            : undefined
+        }
+        src={props.image}
+      />
+      <TitleContainer textColor={props.textColor}>
+        {props.t(props.title, props.defaultTitle)}
+      </TitleContainer>
+      <TextContainer textColor={props.textColor}>
+        {props.t(props.text, props.defaultText)}
+      </TextContainer>
+      <ButtonContainer
+        onClick={props.isDisabled ? null : props.onClick}
+        isDisabled={props.isDisabled}
+        backgroundColor={props.buttonColor}
+        color={props.buttonTextColor}
+      >
+        <IconContainer isRTL={isRTL}>
+          {props.iconType === "eva" ? (
+            <EVAIcon
+              name={props.iconName}
+              fill={props.buttonTextColor}
+              size={"large"}
+            />
+          ) : props.iconType === "traduction" ? (
+            <img src={traductionIconBlanc} alt="picto-traduction" />
+          ) : props.iconType === "territoire" ? (
+            <img src={icon_mobilisation} alt="picto-mobilisation" />
+          ) : null}
+        </IconContainer>
+
+        {props.t(props.buttonTitle, props.defaultBoutonTitle)}
+      </ButtonContainer>
+    </SectionContainer>
+  );
+};
