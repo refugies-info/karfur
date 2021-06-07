@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from "react";
 import { Input, Modal } from "reactstrap";
 import FButton from "../../FigmaUI/FButton/FButton";
@@ -43,7 +42,6 @@ const ButtonContainer = styled.div`
 
 const ReactionLectureModal = (props) => {
   let suggestion = props.suggestion || {};
-  console.log(suggestion);
   const getUserName = () =>
     suggestion.username ? suggestion.username : "Utilisateur non connecté";
   return (
