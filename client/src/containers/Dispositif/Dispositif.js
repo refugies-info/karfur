@@ -1649,6 +1649,27 @@ export class Dispositif extends Component {
       timer: 1500,
     });
 
+  fixLeftMenu = () => {
+    const menu = document.querySelector(".left-side-col");
+    const content = document.querySelector(".col-middle");
+    let posYNav = null;
+    if (menu && content && !isMobile) {
+      posYNav = menu.offsetTop;
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > posYNav + 100) {
+          menu.style.position = "fixed";
+          menu.style.top = "75px";
+          menu.style.height = "100vh";
+          content.style.marginLeft = "25%";
+        }
+        if (window.scrollY < posYNav + 100) {
+          menu.style.position = "relative";
+          menu.style.top = "0px";
+          content.style.marginLeft = "0%";
+        }
+      });
+    }
+  };
   render() {
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     const { t, translating, windowWidth } = this.props;
@@ -1663,6 +1684,7 @@ export class Dispositif extends Component {
     } = this.state;
     const tag =
       mainTag && mainTag.short ? mainTag.short.split(" ").join("-") : "noImage";
+    this.fixLeftMenu();
     return (
       <div
         id="dispositif"
