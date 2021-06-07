@@ -750,6 +750,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             className="  new-size form-control"
             id="value"
             onChange={[Function]}
+            style={null}
             type="text"
             value=""
           />

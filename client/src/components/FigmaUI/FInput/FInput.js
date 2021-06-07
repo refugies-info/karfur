@@ -36,7 +36,7 @@ const FInput = (props) => {
             props.newSize ? "new-size" : "",
           ].join(" ")}
           style={
-            props.inputClassName === "password-input"
+            props.inputClassName === "password-input" && props.value
               ? { width: props.value.length * 10 }
               : null
           }
