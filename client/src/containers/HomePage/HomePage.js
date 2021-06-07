@@ -224,7 +224,7 @@ export class HomePage extends Component {
             >
               <div className="slide-animation">
                 <EVAIcon
-                  className="bottom-slider"
+                  className={isRTL ? "bottom-slider-rtl" : "bottom-slider"}
                   name="arrow-circle-down"
                   size="xhero"
                   fill={colors.blancSimple}
