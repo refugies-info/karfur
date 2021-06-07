@@ -136,34 +136,30 @@ export class TopRightHeader extends React.Component<Props> {
         <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right-edition">
           {!props.translating &&
             props.langue === "fr" &&
-            isUserAllowedToModifyDispositif && (
+            isUserAllowedToModifyDispositif &&
+            !isMobile && (
               <div
                 onClick={(event: any) => {
                   event.stopPropagation();
                   props.toggleTutoModal("Statut des fiches");
                 }}
-                className="align-middle"
+                className="top-icon-wrapper"
               >
                 <ContribStyledStatus size="large" text={props.status} />
               </div>
-              // <FButton
-              //   className="dark mr-10"
-              //   name="edit-outline"
-              //   onClick={props.editDispositif}
-              // >
-              //   Modifier la fiche
-              // </FButton>
             )}
           {!props.translating &&
             props.langue === "fr" &&
             isUserAllowedToModifyDispositif && (
-              <FButton
-                className="dark mr-10"
-                name="edit-outline"
-                onClick={props.editDispositif}
-              >
-                Modifier la fiche
-              </FButton>
+              <div className="top-icon-wrapper">
+                <FButton
+                  className="dark"
+                  name="edit-outline"
+                  onClick={props.editDispositif}
+                >
+                  Modifier la fiche
+                </FButton>
+              </div>
             )}
           {this.props.selectedDispositif &&
             this.props.selectedDispositif.status === "Actif" && (

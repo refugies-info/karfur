@@ -278,7 +278,9 @@ $imgHeight: 350px;
         color: "red";
 
         .top-icon-wrapper {
-          padding-top: 10px;
+          border-radius: 12px;
+          box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 10%);
+          margin-right: 11px;
         }
       }
     }

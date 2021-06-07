@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import styled from "styled-components";
 import { colors } from "../../../../colors";
 import React, { useState } from "react";
@@ -84,7 +83,6 @@ const ContribStyledStatusContainer = styled.div`
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
-  margin-right: ${(props) => (props.size === "large" ? "11px" : "")};
   color: ${(props) => (props.textColor ? props.textColor : colors.blancSimple)};
 `;
 
@@ -92,7 +90,6 @@ export const ContribStyledStatus = (props: { text: string; size?: string }) => {
   const [onMouseHover, setOnMouseHover] = useState(false);
 
   const { status, color, textColor } = getColorAndStatus(props.text);
-  console.log(props.size);
   return (
     <div style={{ width: props.size === "large" ? "" : "120px" }}>
       <ContribStyledStatusContainer
