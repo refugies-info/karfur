@@ -3,7 +3,6 @@ import { withTranslation } from "react-i18next";
 import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import ReactDependentScript from "react-dependent-script";
 import Autocomplete from "react-google-autocomplete";
-
 import FSearchBtn from "../../../components/FigmaUI/FSearchBtn/FSearchBtn";
 import Streamline from "../../../assets/streamline";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";

@@ -33,6 +33,11 @@ $borderRadius: 12px;
     &.new-size {
       height: 52px;
     }
+    &.password-input {
+      min-width: 300px;
+      max-width: 900px;
+      padding-right: 38px;
+    }
     &.has-prepend {
       padding-left: 45px;
 

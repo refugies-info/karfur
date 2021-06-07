@@ -215,7 +215,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -370,6 +370,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
               className=" has-prepend new-size form-control"
               id="username"
               onChange={[Function]}
+              style={null}
               type="text"
               value="username"
             />
@@ -433,6 +434,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
               id="email"
               onChange={[Function]}
               placeholder="Renseignez votre adresse email"
+              style={null}
               type="text"
               value="email@gmail.com"
             />
@@ -493,6 +495,11 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
             id="current-password"
             onChange={[Function]}
             placeholder="Votre mot de passe actuel"
+            style={
+              Object {
+                "width": 70,
+              }
+            }
             type="password"
             value="current"
           />
@@ -553,6 +560,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
                 id="new-password"
                 onChange={[Function]}
                 placeholder="Votre nouveau mot de passe"
+                style={null}
                 type="password"
               />
               <div
@@ -846,7 +854,7 @@ exports[`UserProfile should render correctly 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -1001,6 +1009,7 @@ exports[`UserProfile should render correctly 1`] = `
               className=" has-prepend new-size form-control"
               id="username"
               onChange={[Function]}
+              style={null}
               type="text"
               value="username"
             />
@@ -1064,6 +1073,7 @@ exports[`UserProfile should render correctly 1`] = `
               id="email"
               onChange={[Function]}
               placeholder="Renseignez votre adresse email"
+              style={null}
               type="text"
               value="email@gmail.com"
             />
@@ -1319,7 +1329,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -1474,6 +1484,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
               className=" has-prepend new-size form-control"
               id="username"
               onChange={[Function]}
+              style={null}
               type="text"
               value="username"
             />
@@ -1537,6 +1548,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
               id="email"
               onChange={[Function]}
               placeholder="Renseignez votre adresse email"
+              style={null}
               type="text"
               value="email@gmail.com"
             />
@@ -1597,6 +1609,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
             id="current-password"
             onChange={[Function]}
             placeholder="Votre mot de passe actuel"
+            style={null}
             type="password"
             value=""
           />
@@ -1657,6 +1670,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
                 id="new-password"
                 onChange={[Function]}
                 placeholder="Votre nouveau mot de passe"
+                style={null}
                 type="password"
               />
               <div
@@ -1891,7 +1905,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
