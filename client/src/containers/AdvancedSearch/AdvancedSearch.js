@@ -102,7 +102,6 @@ const FilterBar = styled.div`
   padding: 13px 16px 0px;
   margin-left: 68px;
   margin-right: 68px;
-  display: flex;
   z-index: 2;
   top: ${(props) =>
     props.visibleTop && props.visibleSearch
@@ -1069,6 +1068,19 @@ export class AdvancedSearch extends Component {
     );
   };
 
+  nbFilterSelected = () => {
+    let nb = 0;
+    this.state.recherche.map((item) => {
+      if (item.value !== null) {
+        nb++;
+      }
+    });
+    if (this.state.geoSearch) {
+      nb++;
+    }
+    return nb;
+  };
+
   render() {
     let {
       recherche,
@@ -1148,7 +1160,11 @@ export class AdvancedSearch extends Component {
                   visible={this.state.searchToggleVisible}
                 >
                   <div>
-                    {t("AdvancedSearch.Plus de filtres", "Plus de filtres")}{" "}
+                    {this.nbFilterSelected() < 2 &&
+                      t(
+                        "AdvancedSearch.Plus de filtres",
+                        "Plus de filtres"
+                      )}{" "}
                     {this.state.searchToggleVisible ? (
                       <EVAIcon
                         name="arrow-ios-upward-outline"

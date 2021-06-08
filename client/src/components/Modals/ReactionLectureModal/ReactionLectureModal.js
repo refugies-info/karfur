@@ -2,6 +2,7 @@ import React from "react";
 import { Input, Modal } from "reactstrap";
 import FButton from "../../FigmaUI/FButton/FButton";
 import styled from "styled-components";
+import Icon from "react-eva-icons";
 
 import "./ReactionLectureModal.scss";
 
@@ -22,7 +23,23 @@ const ModalBodyContainer = styled.div`
   justify-content: center;
 `;
 
+const IconContainer = styled.div`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+`;
+
 const SendByContainer = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  position: absolute;
+  right: 40px;
+`;
+const AProposContainer = styled.div`
   display: flex;
   align-items: center;
   font-size: 18px;
@@ -50,13 +67,21 @@ const ReactionLectureModal = (props) => {
       toggle={props.toggle}
       className="modal-suggestion"
     >
+      <IconContainer onClick={props.toggle}>
+        <Icon name="close-outline" fill="#3D3D3D" size="large" />
+      </IconContainer>
       <ModalHeaderContainer toggle={props.toggle}>
         Réaction{" "}
         <SendByContainer>
           Envoyée par
-          <UserNameContainer>{getUserName()}</UserNameContainer>
+          <UserNameContainer>
+            {getUserName().length > 20
+              ? getUserName().substr(0, 20) + "..."
+              : getUserName()}
+          </UserNameContainer>
         </SendByContainer>
       </ModalHeaderContainer>
+
       <ModalBodyContainer className="modal-body">
         <Input
           disabled
@@ -66,10 +91,10 @@ const ReactionLectureModal = (props) => {
           value={suggestion.text}
           id="suggestion"
         />
-        <SendByContainer>
+        <AProposContainer>
           A propos de la fiche
           <UserNameContainer>{suggestion.title}</UserNameContainer>
-        </SendByContainer>
+        </AProposContainer>
       </ModalBodyContainer>
 
       <ButtonContainer>
@@ -85,14 +110,10 @@ const ReactionLectureModal = (props) => {
         </FButton>
 
         <FButton
+          href={"/" + suggestion.typeContenu + "/" + suggestion.dispositifId}
           type="dark"
           name="external-link-outline"
-          onClick={() => {
-            props.history.push({
-              pathname:
-                "/" + suggestion.typeContenu + "/" + suggestion.dispositifId,
-            });
-          }}
+          target="_blank"
           className="mr-16"
         >
           Voir la fiche
