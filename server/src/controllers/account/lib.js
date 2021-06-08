@@ -242,24 +242,6 @@ function reset_password(req, res) {
           .exec();
         const newUrl = url + "reset/" + token;
 
-        // let html = "<p>Bonjour " + username + ",</p>";
-        // html +=
-        //   "<p>Vous avez demandé à réinitialiser votre mot de passe sur la plateforme <a href=" +
-        //   url +
-        //   "><b>Réfugiés.info</b>.</a> </p>";
-        // html += "<p>Merci de cliquer sur le lien ci-dessous :</p>";
-        // html += "<a href=" + newUrl + ">" + newUrl + "</a>";
-        // html += "<p>À bientôt,</p>";
-        // html += "<p>L'équipe Réfugiés.info</p>";
-
-        // const mailOptions = {
-        //   from: "nour@refugies.info",
-        //   subject: "Réinitialisation de votre mot de passe",
-        //   html,
-        //   to: user.email,
-        // };
-
-        // transporter.sendMail(mailOptions, () => {});
         sendResetPasswordMail(username, newUrl, user.email);
 
         return res.status(200).json({ text: "Envoi réussi", data: user.email });
