@@ -917,6 +917,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           <div
             className="card-col puff-in-center dispositif"
           >
+            nb vues : undefined - date publication : undefined
             <div
               className="custom-card border-none card"
               onClick={[Function]}
@@ -1015,6 +1016,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           <div
             className="card-col puff-in-center dispositif"
           >
+            nb vues : undefined - date publication : undefined
             <div
               className="custom-card border-none card"
               onClick={[Function]}
@@ -1107,6 +1109,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           <div
             className="card-col puff-in-center demarche"
           >
+            nb vues : undefined - date publication : undefined
             <div
               className="custom-card texte-Logement bg-light-Logement border-Logement card"
               onClick={[Function]}
