@@ -172,8 +172,9 @@ export class Dispositif extends Component {
     this.checkUserFetchedAndInitialize();
     window.scrollTo(0, 0);
     // this._initializeDispositif(this.props);
-
-    window.addEventListener("scroll", () => this.handleScroll());
+    if (!isMobile) {
+      window.addEventListener("scroll", () => this.handleScroll());
+    }
   }
 
   // eslint-disable-next-line react/no-deprecated
