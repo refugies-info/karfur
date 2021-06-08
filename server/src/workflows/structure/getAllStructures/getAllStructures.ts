@@ -33,6 +33,7 @@ export const getAllStructures = async (req: {}, res: Res) => {
       const responsableId =
         responsablesArray.length > 0 ? responsablesArray[0].userId : null;
 
+      // @ts-ignore
       const dispositifsAssocies = jsonStructure.dispositifsAssocies.filter(
         (dispo: any) => {
           return (
