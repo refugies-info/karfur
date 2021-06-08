@@ -5,7 +5,7 @@ import { Input, InputGroup, InputGroupAddon } from "reactstrap";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 
 import "./FInput.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 
 const FInput = (props) => {
   const autoFocus = props.autoFocus === false ? false : true;
@@ -35,6 +35,11 @@ const FInput = (props) => {
             props.prepend ? "has-prepend" : "",
             props.newSize ? "new-size" : "",
           ].join(" ")}
+          style={
+            props.inputClassName === "password-input" && props.value
+              ? { width: props.value.length * 10 }
+              : null
+          }
         />
         {props.append && (
           <InputGroupAddon

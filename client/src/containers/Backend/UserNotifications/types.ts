@@ -11,4 +11,5 @@ export interface FormattedNotification {
   text?: string;
   title?: string;
   dispositifId?: ObjectId;
+  typeContenu?: "dispositif" | "demarche";
 }

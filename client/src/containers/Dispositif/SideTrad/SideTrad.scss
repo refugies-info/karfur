@@ -129,7 +129,6 @@
       .editeur-sidebar {
         position: relative;
         overflow: none;
-        //overflow: scroll;
         border: none;
         border-radius: 0;
         flex: 1;
@@ -137,7 +136,7 @@
         flex-direction: column;
         padding: 0;
         .editor-editeur {
-        overflow: hidden;
+          overflow: hidden;
           display: flex;
           position: relative;
           padding: 0;

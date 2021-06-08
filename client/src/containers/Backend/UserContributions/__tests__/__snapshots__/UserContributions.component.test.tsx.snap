@@ -190,7 +190,7 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -645,7 +645,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -1400,7 +1400,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -2815,7 +2815,7 @@ exports[`userContributions should render correctly when loading 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
