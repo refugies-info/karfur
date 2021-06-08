@@ -2,6 +2,8 @@
 @import "src/scss/global.scss";
 
 .footer {
+  position: absolute;
+  width: 100%;
   background: $noir;
   padding: 60px 60px;
   color: #ffffff;
