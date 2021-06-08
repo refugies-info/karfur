@@ -119,6 +119,11 @@ export default {
       headers,
     }),
 
+  sendSubscriptionReminderMail: (query) =>
+    axios.post(burl + "/mail/sendSubscriptionReminderMail", query, {
+      headers,
+    }),
+
   add_dispositif_infocards: (query) => {
     return axios.post(burl + "/dispositifs/add_dispositif_infocards", query, {
       headers: headers,
@@ -220,6 +225,8 @@ export default {
   getFiguresOnUsers: () => axios.get(burl + "/user/getFiguresOnUsers"),
 
   exportUsers: () => axios.post(burl + "/user/exportUsers", {}, { headers }),
+  exportFiches: () => axios.post(burl + "/user/exportFiches", {}, { headers }),
+
   exportDispositifsGeolocalisation: () =>
     axios.post(
       burl + "/dispositifs/exportDispositifsGeolocalisation",

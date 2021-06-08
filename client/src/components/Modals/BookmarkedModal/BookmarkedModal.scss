@@ -23,16 +23,19 @@
         background: inherit;
 
         .bookmark-icon {
-          line-height: 20px;
-          padding: 10px;
           border-radius: 50%;
-          &.success{
-          background: #4caf50;
+          &.success {
+            background: #4caf50;
           }
-          &.oups{
-            background:#0421b1; 
+          &.oups {
+            background: #0421b1;
           }
-          width: fit-content;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding-bottom: 7px;
           margin-bottom: 20px;
         }
       }

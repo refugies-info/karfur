@@ -177,7 +177,7 @@ exports[`user translation should redirect if user has language but not langue in
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -491,7 +491,7 @@ exports[`user translation should redirect if user has no language but langue in 
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -1132,7 +1132,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -2163,7 +2163,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -3104,7 +3104,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -3920,7 +3920,7 @@ exports[`user translation should return loader langue in url = first selected la
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"

@@ -13,6 +13,15 @@ const CardText = styled.p`
   font-weight: 14px;
 `;
 
+const BookmarkedContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+`;
+
 const SearchResultCard = ({
   pin,
   pinnedList,
@@ -78,14 +87,13 @@ const SearchResultCard = ({
         >
           <CardBody>
             {showPinned && (
-              <EVAIcon
-                name="bookmark"
-                size="xlarge"
-                onClick={(e) => pin(e, dispositif)}
-                fill={pinned ? colors.validationHover : colors.noirCD}
+              <BookmarkedContainer
                 className={"bookmark-icon" + (pinned ? " pinned" : "")}
+                onClick={(e) => pin(e, dispositif)}
                 testID={"test-toggle-pin-" + dispositif._id}
-              />
+              >
+                <EVAIcon name="star" fill={colors.blanc} size="medium" />
+              </BookmarkedContainer>
             )}
             <h5>{dispositif.titreInformatif}</h5>
             <CardText>{dispositif.abstract}</CardText>

@@ -16,7 +16,7 @@ interface Props {
   nbFilteredResults: number;
   t: (a: string, b: string) => void;
   recherche: string[];
-  addParamasInRechercher: () => void;
+  addParamasInRechercher: (index: number, item: any) => void;
   queryDispositifs: () => void;
   desactiver: (index: number) => void;
   query: {
@@ -99,9 +99,8 @@ export const MobileAdvancedSearch = (props: Props) => {
   const [showAgeModal, setShowAgeModal] = useState(false);
   const [ageSelected, setAgeSelected] = useState<{ name: string } | null>(null);
   const [showFrenchModal, setShowFrenchModal] = useState(false);
-  const [frenchSelected, setFrenchSelected] = useState<{ name: string } | null>(
-    null
-  );
+  const [frenchSelected, setFrenchSelected] =
+    useState<{ name: string } | null>(null);
   const [ville, setVille] = useState("");
   const [geoSearch, setGeoSearch] = useState(false);
   const [isUrlEmpty, setIsUrlEmpty] = useState(true);
@@ -122,6 +121,36 @@ export const MobileAdvancedSearch = (props: Props) => {
       default:
         break;
     }
+  };
+  const selectOption = (item: any, type: string) => {
+    let index = 0;
+    let el;
+    switch (type) {
+      case "thème":
+        el = props.recherche.filter(
+          (item: any) => item.queryName === "tags.name"
+        )[0];
+        index = props.recherche.indexOf(el);
+        setTagSelected(item);
+        break;
+      case "age":
+        el = props.recherche.filter(
+          (item: any) => item.queryName === "audienceAge"
+        )[0];
+        index = props.recherche.indexOf(el);
+        setAgeSelected(item);
+        break;
+      case "french":
+        el = props.recherche.filter(
+          (item: any) => item.queryName === "niveauFrancais"
+        )[0];
+        index = props.recherche.indexOf(el);
+        setFrenchSelected(item);
+        break;
+      default:
+        break;
+    }
+    props.addParamasInRechercher(index, item);
   };
 
   useEffect(() => {
@@ -185,6 +214,7 @@ export const MobileAdvancedSearch = (props: Props) => {
     if (isUrlEmpty) return props.queryDispositifs();
     return props.history.push();
   };
+
   return (
     <MainContainer>
       <SearchBoutton
@@ -216,7 +246,7 @@ export const MobileAdvancedSearch = (props: Props) => {
       {isUrlEmpty ? (
         <>
           <TextTitle>
-            {props.t("SearchItem.Je cherche à", "Je cherche à")}
+            {props.t("SearchItem.J'ai besoin de", "J'ai besoin de")}
           </TextTitle>
           <SelectedFilter
             toggleShowModal={toggleShowModal}
@@ -280,22 +310,20 @@ export const MobileAdvancedSearch = (props: Props) => {
           {showTagModal && (
             <MobileSearchFilterModal
               t={props.t}
-              setSelectedItem={(item) => setTagSelected(item)}
+              selectOption={selectOption}
               type="thème"
               title="Tags.thème"
               defaultTitle="thème"
-              sentence="SearchItem.Je cherche à"
-              defaultSentence="Je cherche à"
+              sentence="SearchItem.J'ai besoin de"
+              defaultSentence="J'ai besoin de"
               toggle={() => toggleShowModal("thème")}
               show={showTagModal}
-              addParamasInRechercher={props.addParamasInRechercher}
-              recherche={props.recherche}
             />
           )}
           {showAgeModal && (
             <MobileSearchFilterModal
               t={props.t}
-              setSelectedItem={(item) => setAgeSelected(item)}
+              selectOption={selectOption}
               type="age"
               title="SearchItem.choisir mon âge"
               defaultTitle="choisir mon âge"
@@ -303,14 +331,12 @@ export const MobileAdvancedSearch = (props: Props) => {
               defaultSentence="J'ai'"
               toggle={() => toggleShowModal("age")}
               show={showAgeModal}
-              addParamasInRechercher={props.addParamasInRechercher}
-              recherche={props.recherche}
             />
           )}
           {showFrenchModal && (
             <MobileSearchFilterModal
               t={props.t}
-              setSelectedItem={(item) => setFrenchSelected(item)}
+              selectOption={selectOption}
               type="french"
               title="SearchItem.le français"
               defaultTitle="le français"
@@ -318,8 +344,6 @@ export const MobileAdvancedSearch = (props: Props) => {
               defaultSentence="Je parle"
               toggle={() => toggleShowModal("french")}
               show={showFrenchModal}
-              addParamasInRechercher={props.addParamasInRechercher}
-              recherche={props.recherche}
             />
           )}
         </>

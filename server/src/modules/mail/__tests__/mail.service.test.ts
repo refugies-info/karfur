@@ -9,6 +9,7 @@ import {
   sendNewFicheEnAttenteMail,
   sendPublishedTradMailToTraductorsService,
   sendAdminImprovementsMailService,
+  sendSubscriptionReminderMailService,
 } from "../mail.service";
 import { sendMail } from "../../../connectors/sendgrid/sendMail";
 import { addMailEvent } from "../mail.repository";
@@ -47,6 +48,31 @@ describe("sendWelcomeMail", () => {
       username: "username",
       email: "email",
       userId: "userId",
+    });
+  });
+});
+
+describe("sendSubscriptionReminderMailService", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  it("should call send mail and add mail event", async () => {
+    await sendSubscriptionReminderMailService("email");
+    const templateName = "subscriptionReminderMail";
+    const dynamicData = {
+      to: "email",
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      // cc: "contact@refugies.info",
+      reply_to: "contact@email.refugies.info",
+    };
+
+    expect(sendMail).toHaveBeenCalledWith(templateName, dynamicData);
+    expect(addMailEvent).toHaveBeenCalledWith({
+      templateName,
+      email: "email",
     });
   });
 });

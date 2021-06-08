@@ -4,11 +4,10 @@
 .homepage {
   flex: 1 1;
   color: $noir;
-  background: $gris;
+  background: $blancSimple;
   max-width: 100%;
   outline: none;
   z-index: 1;
-  //overflow: scroll;
   .overlay {
     position: fixed;
     width: 100%;
@@ -39,15 +38,23 @@
   }
 
   section {
-    min-height: 750px;
-    padding-top: 100px;
+    padding-top: 20px;
     padding-bottom: 93px;
+    @include media-max("tablet-up") {
+      min-height: 0px;
+      padding-bottom: 0px;
+    }
     position: relative;
     overflow: hidden;
   }
 
   #hero {
-    background-image: url(../../assets/figma/integration_illu.svg);
+    @include media-min("tablet-up") {
+      background-image: url(../../assets/figma/integration_illu.svg);
+    }
+    @include media-max("tablet-up") {
+      background-image: url(../../assets/figma/home_mobile.svg);
+    }
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
@@ -55,17 +62,11 @@
     justify-content: flex-start;
     align-items: center;
     padding-top: 150px;
+    @include media-max("tablet-up") {
+      padding-top: 116px;
+    }
     margin-top: -75px;
-    height: 772px;
-
-    /*     .search-row-pop{
-      margin: 15px;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255,255, .9);
-      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.25);
-      border-radius: 12px;
-      width: fit-content; */
+    height: 828px;
 
     .options-wrapper {
       list-style-type: none;
@@ -134,6 +135,21 @@
       align-items: center;
       z-index: 4;
       background: #ffffff;
+      @include media-max("tablet-up") {
+        flex-direction: column;
+        padding: 20px;
+      }
+      @include media-min("tablet-up") {
+        margin-bottom: 0;
+      }
+      .mb-15 {
+        @include media-min("tablet-up") {
+          margin-bottom: 0;
+        }
+        @include media-max("tablet-up") {
+          margin-bottom: 15px;
+        }
+      }
       .mr-10 {
         padding-right: 10px;
         z-index: 4;
@@ -146,6 +162,8 @@
 
   .triptique {
     padding-top: 50px;
+    padding-bottom: 50px;
+    min-height: 500px;
   }
 
   .hero-container {
@@ -154,6 +172,10 @@
     h5 {
       margin-top: 10px;
       font-weight: normal;
+      @include media-max("tablet-up") {
+        font-size: 18px;
+        padding: 0 50px;
+      }
     }
 
     .search-row {
@@ -191,27 +213,47 @@
     width: 100%;
     padding: 0 100px;
     height: 100%;
+    min-height: 60vh;
     @include media-max("sm-limit") {
       padding: 0 20px;
     }
 
     &.half-width {
-      width: 50%;
+      margin-top: 65px;
+      width: 47%;
       display: flex;
       flex-direction: column;
       @include media-max("tablet-down") {
         width: 100%;
       }
       h2 {
-        margin-bottom: 40px;
+        margin-bottom: 50px;
+        margin-right: 100px;
+      }
+      p {
+        font-size: 22px;
       }
 
       &.right-side {
         margin-left: auto;
       }
+      &.left-side {
+        margin-right: auto;
+      }
+      &.smartphone {
+        margin-top: 0px;
+      }
     }
     .section-body {
+      p {
+        line-height: 28px;
+      }
       flex: 1 1 auto;
+      margin-bottom: 40px;
+      &.smartphone {
+        margin-bottom: 20px;
+        flex: 0;
+      }
     }
 
     .footer-section {
@@ -224,29 +266,37 @@
   }
 
   #contribution {
-    background-image: url(../../assets/figma/contribution_illu.svg),
-      url(../../assets/figma/trame_home_bg.svg);
-    background-size: 65%, cover;
+    background-image: url(../../assets/figma/collaboratif_desktop.svg);
+    background-size: 55%, cover;
     background-repeat: no-repeat;
-    background-position: calc(100% + 20px) calc(100% - 160px), 0;
+    background-position: left;
+    margin-left: 100px;
     @include media-max("tablet-down") {
       background-position: calc(100% + 20px) calc(100% - 110px), 0;
     }
   }
 
-  #certifiee {
-    background-image: url(../../assets/figma/certifiee_illu.svg),
-      url(../../assets/figma/trame_home_bg.svg);
-    background-size: 65%, cover;
+  #deployer {
+    background-size: 50%, cover;
+    background-repeat: no-repeat;
+    background-position: right;
+    margin-right: 100px;
+  }
+
+  #ecrire {
+    background-image: url(../../assets/figma/rediger_desktop.svg);
+    background-size: 55%, cover;
     background-repeat: no-repeat, no-repeat;
-    background-position: calc(100% - 60px) calc(100% - 120px), 0;
+    background-position: right;
+    margin-right: 100px;
   }
 
   #multilangues {
-    background-image: url(../../assets/figma/illustration_Traduction.svg);
-    background-size: 70%;
+    background-image: url(../../assets/figma/traduire_desktop.svg);
+    background-size: 55%;
     background-repeat: no-repeat;
-    background-position: calc(100% - 350px);
+    background-position: left;
+    margin-left: 100px;
     @include media-max("desktop-down") {
       background-position: calc(100% - 300px) calc(100% - 60px);
     }
@@ -258,6 +308,24 @@
     }
     @include media-max("tablet-up") {
       background-position: calc(100% - 180px) calc(100% - 140px);
+    }
+  }
+
+  #smartphone {
+    padding-top: 100px;
+    padding-bottom: 0;
+    background: linear-gradient(#0421b1, rgba(4, 33, 177, 0.6496));
+    background-repeat: no-repeat;
+    color: $blancSimple;
+    display: flex;
+    justify-content: center;
+    img {
+      width: 25%;
+      position: absolute;
+      left: 15%;
+    }
+    h2 {
+      margin-right: 0;
     }
   }
 
@@ -422,8 +490,17 @@
     position: absolute;
     width: 48px;
     height: 48px;
-    bottom: -30px;
+    bottom: 80px;
+
     left: 50%;
+    @include media-max("tablet-up") {
+      left: 44%;
+      bottom: 160px;
+    }
+    svg {
+      mix-blend-mode: normal;
+      filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.25));
+    }
     background: $noir;
     border-radius: 50%;
     z-index: 1;
@@ -439,13 +516,37 @@
     fill: $blancSimple;
     z-index: 10;
     svg {
-      margin-left: -6px;
-      margin-top: -6px;
+      margin-left: -15px;
+      margin-top: -10px;
     }
+
     &:hover {
       svg {
         transition: all 0.5s ease;
         fill: $gris;
+        @include media-max("tablet-up") {
+          fill: $blancSimple;
+        }
+      }
+    }
+  }
+
+  .bottom-slider-rtl {
+    position: absolute;
+    fill: $blancSimple;
+    z-index: 10;
+    svg {
+      margin-right: -15px;
+      margin-top: -10px;
+    }
+
+    &:hover {
+      svg {
+        transition: all 0.5s ease;
+        fill: $gris;
+        @include media-max("tablet-up") {
+          fill: $blancSimple;
+        }
       }
     }
   }

@@ -28,6 +28,7 @@ import { colors } from "colors";
 import { EtapeModal } from "../../../components/Modals";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
+import i18n from "../../../i18n";
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>
@@ -75,7 +76,8 @@ const StyledStep = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 16px;
+  margin-right: ${(props) => (props.isRTL ? "0px" : "16px")};
+  margin-left: ${(props) => (props.isRTL ? "16px" : "0px")};
 `;
 class EtapeParagraphe extends Component {
   state = {
@@ -297,6 +299,8 @@ class EtapeParagraphe extends Component {
         ? this.props.mainTag.lightColor
         : colors.lightColor;
 
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+
     return (
       <div
         key={subkey}
@@ -330,7 +334,9 @@ class EtapeParagraphe extends Component {
                 aria-controls={"collapse" + keyValue + "-" + subkey}
               >
                 <StyledHeader darkColor={darkColor}>
-                  <StyledStep darkColor={darkColor}>{subkey + 1}</StyledStep>
+                  <StyledStep darkColor={darkColor} isRTL={isRTL}>
+                    {subkey + 1}{" "}
+                  </StyledStep>
                   <ContentEditable
                     id={keyValue}
                     data-subkey={subkey}

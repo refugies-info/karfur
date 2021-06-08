@@ -14,7 +14,7 @@ export const navigationData: {
   },
   {
     type: "favoris",
-    iconName: "bookmark",
+    iconName: "star",
     title: "Mes favoris",
     access: "all",
   },

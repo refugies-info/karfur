@@ -1,5 +1,6 @@
 import { sendDraftReminderMail } from "../workflows/mail/sendDraftReminderMail";
 import { sendAdminImprovementsMail } from "../workflows/mail/sendAdminImprovementsMail";
+import { sendSubscriptionReminderMail } from "../workflows/mail/sendSubscriptionReminderMail";
 const checkToken = require("./account/checkToken");
 
 module.exports = function (app) {
@@ -9,4 +10,5 @@ module.exports = function (app) {
     checkToken.check,
     sendAdminImprovementsMail
   );
+  app.post("/sendSubscriptionReminderMail", sendSubscriptionReminderMail);
 };

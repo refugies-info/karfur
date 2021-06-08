@@ -15,10 +15,20 @@ import logo_header from "./logo_header.svg";
 import minInt from "./minInt.png";
 import responsableFiche from "./responsableFiche.svg";
 import rejectionFiche from "./rejectionFiche.svg";
-import beta from "./beta.svg";
 import logoRI from "./logoRI.svg";
 import logo_mobile from "./logo_mobile.svg";
 import newsletter from "./newsletter.svg";
+import illustration_homeCard_dispositif from "./illustration_homeCard_dispositif.svg";
+import illustration_homeCard_annuaire from "./illustration_homeCard_annuaire.svg";
+import illustration_homeCard_demarche from "./illustration_homeCard_demarche.svg";
+import illustration_homeCard_lexique from "./illustration_homeCard_lexique.svg";
+import illustration_connaitre_initiative from "./illustration_connaitre_initiative.svg";
+import illustration_aidez_traduire from "./illustration_aidez_traduire.svg";
+import iphone from "./iphone.svg";
+import rendez_vous_ordinateur from "./rendez_vous_ordinateur.svg";
+import home_mobile from "./home_mobile.svg";
+import icon_France from "./icon_France.svg";
+import structure_definie from "./structure_definie.svg";
 
 export {
   boldBtn,
@@ -38,8 +48,18 @@ export {
   minInt,
   rejectionFiche,
   responsableFiche,
-  beta,
   logoRI,
   logo_mobile,
   newsletter,
+  illustration_homeCard_dispositif,
+  illustration_homeCard_annuaire,
+  illustration_homeCard_demarche,
+  illustration_homeCard_lexique,
+  illustration_connaitre_initiative,
+  illustration_aidez_traduire,
+  iphone,
+  rendez_vous_ordinateur,
+  home_mobile,
+  icon_France,
+  structure_definie,
 };

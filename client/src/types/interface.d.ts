@@ -1,4 +1,4 @@
-import { ObjectId, ObjectID } from "mongodb";
+import { ObjectId } from "mongodb";
 import { Moment } from "moment";
 
 export interface RequestReturn<Y> {

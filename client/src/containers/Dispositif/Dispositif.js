@@ -844,6 +844,20 @@ export class Dispositif extends Component {
           menuFiche[1].children.filter((x) => x.title === subkey).length > 0
             ? menuFiche[1].children.filter((x) => x.title === subkey)[0]
             : importantCard;
+
+        // very strange behaviour, when adding IC geoloc menu contains actual state and not data so overide newChild with correct value
+        if (subkey === "Zone d'action") {
+          newChild = {
+            type: "card",
+            isFakeContent: true,
+            title: "Zone d'action",
+            titleIcon: "pin-outline",
+            typeIcon: "eva",
+            departments: [],
+            free: true,
+            contentTitle: "Sélectionner",
+          };
+        }
       } else if (type === "accordion") {
         newChild = {
           type: "accordion",
@@ -880,7 +894,11 @@ export class Dispositif extends Component {
         };
       }
       newChild.type = type;
-      if (subkey === null || subkey === undefined) {
+      if (
+        subkey === null ||
+        subkey === undefined ||
+        subkey === "Zone d'action"
+      ) {
         prevState[key].children.push(newChild);
       } else {
         prevState[key].children.splice(subkey + 1, 0, newChild);

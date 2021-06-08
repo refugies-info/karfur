@@ -1,0 +1,39 @@
+{
+  "Onboarding1": {
+    "welcome": "Bienvenue ps"
+  },
+  "Onboarding2": {
+    "welcome": "Bienvenue ps"
+  },
+  "homepage": {
+    "test": "test ps"
+  },
+  "lists": "Lists ps",
+  "Tags": {
+    "Français": "فرانسوی",
+    "Logement": "استوګنځای",
+    "Insertion pro": "مسلکي مرسته",
+    "Formation pro": "مسلکي روزنه او تعلیم",
+    "Études": "زده کړې",
+    "Mobilité": "خوځښت",
+    "Bénévolat": "داوطلب",
+    "Rencontre": "ملاقات (کتنه)",
+    "Loisir": "تفریحي",
+    "Culture": "کلتور",
+    "Santé": "روغتیا",
+    "Administratif": "اداري",
+    "Autre": "نور",
+    "apprendre le français": "فرانسوي زده کړی",
+    "me loger": "استوګنځای پیداکول",
+    "trouver un travail": "دنده موندل",
+    "apprendre un métier": "یوه پیشه او کسب زده کړئ",
+    "faire des études": "تحصیل او زده کړي کول",
+    "me déplacer": "خپل ځای بدلول",
+    "aider une association": "د یوې ټولنې (انجمن) سره مرسته وکړئ",
+    "rencontrer des gens": "خلکو سره لیدل",
+    "occuper mon temps libre": "د خپل اضافی او فارغ وخت د اشغال او ډکولو کوشش کوم",
+    "découvrir la culture": "د کلتور په هکله زان خبر کړئ",
+    "me soigner": "تداوي کول غواړم",
+    "gérer mes papiers": "خپلې ورقې تنظیم ول"
+  }
+}
