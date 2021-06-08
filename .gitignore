@@ -56,3 +56,16 @@ token.json
 /client/src/locales/interfaceTranslation/csvAfterTrad
 /server/variables.env
 /client/src/scss/fonts/CircularStd
+
+/refugies-info-app/.expo/
+/refugies-info-app/.expo/packager-info.json
+/refugies-info-app/src/theme/fonts
+/refugies-info-app/node_modules/
+/refugies-info-app/npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+/refugies-info-app/web-build/

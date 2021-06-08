@@ -30,6 +30,7 @@ export const formatNotifications = (
         text: suggestion.suggestion,
         title: dispo.titreInformatif,
         dispositifId: dispo._id,
+        typeContenu: dispo.typeContenu,
       });
     });
   });

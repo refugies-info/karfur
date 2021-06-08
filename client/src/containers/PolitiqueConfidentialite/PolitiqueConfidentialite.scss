@@ -1,24 +1,23 @@
-@import 'src/scss/colors.scss';
-@import 'src/scss/global.scss';
+@import "src/scss/colors.scss";
+@import "src/scss/global.scss";
 
-.politique-de-confidentialite{
+.politique-de-confidentialite {
   flex: 1 1;
-  background: #FFFFFF;
+  background: #ffffff;
   max-width: 100%;
-  //overflow: scroll;
   padding: 5% 25%;
 
-  p{
+  p {
     font-size: 18px;
     line-height: 22px;
   }
 
-  h2{
+  h2 {
     font-size: 30px;
     margin-top: 20px;
   }
 
-  h3{
+  h3 {
     font-size: 20px;
     margin-top: 10px;
   }

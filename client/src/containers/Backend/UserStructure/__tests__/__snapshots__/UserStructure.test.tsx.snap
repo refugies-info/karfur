@@ -336,7 +336,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -750,6 +750,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             className="  new-size form-control"
             id="value"
             onChange={[Function]}
+            style={null}
             type="text"
             value=""
           />
@@ -1208,7 +1209,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -2127,7 +2128,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -2821,7 +2822,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -3102,7 +3103,7 @@ exports[`UserStructure should render correctly when no structure 1`] = `
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -3441,7 +3442,7 @@ exports[`UserStructure should render correctly when structure with membres when 
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"
@@ -4008,7 +4009,7 @@ exports[`UserStructure should render correctly when structure with membres when 
         className="mr-10"
       >
         <i
-          data-eva="bookmark-outline"
+          data-eva="star-outline"
           data-eva-fill="#212121"
           data-eva-height="20px"
           data-eva-width="20px"

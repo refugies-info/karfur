@@ -1,0 +1,39 @@
+{
+  "homepage": {
+    "test": "test anglais"
+  },
+  "lists": "Lists anglais",
+  "Onboarding1": {
+    "welcome": "Bienvenue en"
+  },
+  "Onboarding2": {
+    "welcome": "Bienvenue en"
+  },
+  "Tags": {
+    "Français": "French",
+    "Logement": "Housing",
+    "Insertion pro": "Job hunting",
+    "Formation pro": "Professional training",
+    "Études": "Studies",
+    "Mobilité": "Transportation",
+    "Bénévolat": "Volunteering",
+    "Rencontre": "Socializing",
+    "Loisir": "Leisure",
+    "Culture": "Culture",
+    "Santé": "Health",
+    "Administratif": "Admin",
+    "Autre": "Other",
+    "apprendre le français": "learn French",
+    "me loger": "find housing",
+    "trouver un travail": "find a job",
+    "apprendre un métier": "learn a job",
+    "faire des études": "study",
+    "me déplacer": "use transportation",
+    "aider une association": "help an association",
+    "rencontrer des gens": "meet people",
+    "occuper mon temps libre": "occupy my free time",
+    "découvrir la culture": "discover French culture",
+    "me soigner": "get medical care",
+    "gérer mes papiers": "manage my paperwork"
+  }
+}

@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import {
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Tooltip,
-} from "reactstrap";
+import { Tooltip } from "reactstrap";
 import Swal from "sweetalert2";
 import querySearch from "stringquery";
 import qs from "query-string";
@@ -38,6 +32,7 @@ import { isMobile } from "react-device-detect";
 import { filterContents } from "./filterContents";
 import { isLoadingSelector } from "../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../services/LoadingStatus/loadingStatus.actions";
+import { activatedLanguages } from "../../components/Modals/LanguageModal/data";
 
 import "./AdvancedSearch.scss";
 import { colors } from "colors";
@@ -75,15 +70,19 @@ const ThemeListContainer = styled.div`
 `;
 
 const SearchToggle = styled.div`
-  width: 36px;
-  height: 36px;
   display: flex;
   justify-content: center;
+  margin-left: 30px;
   align-items: center;
-  border-radius: 18px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 12px;
   border: 0.5px solid;
-  border-color: ${(props) => (props.visible ? "transparent" : "black")};
-  background-color: ${(props) => (props.visible ? "#828282" : "white")};
+  color: ${(props) => (props.visible ? colors.blancSimple : colors.bleuCharte)};
+  border-color: ${(props) =>
+    props.visible ? "transparent" : colors.bleuCharte};
+  background-color: ${(props) =>
+    props.visible ? colors.bleuCharte : "transparent"};
   align-self: center;
   cursor: pointer;
   &:hover {
@@ -103,7 +102,6 @@ const FilterBar = styled.div`
   padding: 13px 16px 0px;
   margin-left: 68px;
   margin-right: 68px;
-  display: flex;
   z-index: 2;
   top: ${(props) =>
     props.visibleTop && props.visibleSearch
@@ -235,13 +233,12 @@ export class AdvancedSearch extends Component {
       activeTri: "Par thème",
       data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
       order: "created_at",
-      croissant: true,
       filter: {},
       displayAll: true,
       dropdownOpenTri: false,
       dropdownOpenFiltre: false,
       showBookmarkModal: false,
-      searchToggleVisible: true,
+      searchToggleVisible: false,
       visible: true,
       countTotal: 0,
       countShow: 0,
@@ -297,7 +294,15 @@ export class AdvancedSearch extends Component {
     this._isMounted = true;
     this.retrieveCookies();
     // Retrieve filters value from url parameters
-    let tag = querySearch(this.props.location.search).tag;
+    let tagFromNav =
+      this.props.location.state === "clean-filters" ||
+      this.props.location.state === "dispositifs" ||
+      this.props.location.state === "demarches"
+        ? null
+        : this.props.location.state;
+
+    let tag = querySearch(this.props.location.search).tag || tagFromNav;
+
     let bottomValue = querySearch(this.props.location.search).bottomValue;
     let dep = querySearch(this.props.location.search).dep;
     let city = querySearch(this.props.location.search).city;
@@ -307,8 +312,29 @@ export class AdvancedSearch extends Component {
       (elem) => elem.name === decodeURIComponent(niveauFrancais)
     );
     let filter = querySearch(this.props.location.search).filter;
+    let langue = querySearch(this.props.location.search).langue;
+
+    // tri is created_at or nbVues
+    const tri = querySearch(this.props.location.search).tri;
+
     // Reinject filters value in recherche
-    if (tag || bottomValue || topValue || niveauFrancais || dep || city) {
+    if (
+      tag ||
+      bottomValue ||
+      topValue ||
+      niveauFrancais ||
+      dep ||
+      city ||
+      filter ||
+      langue ||
+      tri
+    ) {
+      const correspondingFilter = this.getFilter(
+        decodeURIComponent(filter),
+        langue
+      );
+      const correspondingLangue = this.getLangue(filter, langue);
+      const activeTri = this.getActiveTri(tri);
       this.setState(
         produce((draft) => {
           if (tag) {
@@ -323,6 +349,10 @@ export class AdvancedSearch extends Component {
               filtres.tags &&
               filtres.tags.find((x) => x.name === decodeURIComponent(tag))
                 .short;
+            draft.recherche[0].icon =
+              filtres.tags &&
+              filtres.tags.find((x) => x.name === decodeURIComponent(tag)).icon;
+            draft.activeTri = "";
           }
           if (topValue && bottomValue) {
             draft.recherche[2].value = initial_data[2].children.find(
@@ -330,6 +360,7 @@ export class AdvancedSearch extends Component {
             ).name;
             draft.recherche[2].query = draft.recherche[2].value;
             draft.recherche[2].active = true;
+            draft.activeTri = "";
           }
           if (dep && city) {
             let locationQuery = [
@@ -340,16 +371,27 @@ export class AdvancedSearch extends Component {
             draft.recherche[1].value = decodeURIComponent(city);
             draft.recherche[1].active = true;
             this.switchGeoSearch(true);
+            draft.activeTri = "";
           }
           if (niveauFrancais) {
             draft.recherche[3].name = decodeURIComponent(niveauFrancais);
             draft.recherche[3].value = decodeURIComponent(niveauFrancais);
             draft.recherche[3].query = niveauFrancaisObj.query;
             draft.recherche[3].active = true;
+            draft.activeTri = "";
           }
-          draft.activeTri = "";
+          if (filter) {
+            draft.activeFiltre = decodeURIComponent(filter);
+            draft.filter = correspondingFilter;
+          }
+          if (langue) {
+            draft.filterLanguage = correspondingLangue;
+          }
+          if (tri) {
+            draft.activeTri = activeTri;
+            draft.order = tri;
+          }
         }),
-        //Launch filter query with value from the url
         () =>
           this.queryDispositifs({
             "tags.name": tag ? decodeURIComponent(tag) : "",
@@ -363,10 +405,6 @@ export class AdvancedSearch extends Component {
             dep: decodeURIComponent(dep),
             niveauFrancais: niveauFrancaisObj ? niveauFrancaisObj.query : "",
           })
-      );
-    } else if (filter) {
-      this.filter_content(
-        filter === "dispositif" ? filtres_contenu[0] : filtres_contenu[1]
       );
     } else {
       this.queryDispositifs();
@@ -407,6 +445,37 @@ export class AdvancedSearch extends Component {
     }
   }
 
+  getActiveTri = (tri) => {
+    const correspondongTri = tris.filter((triData) => triData.value === tri);
+    if (correspondongTri.length > 0) {
+      return correspondongTri[0].name;
+    }
+    return "Par thème";
+  };
+
+  getLangue = (filter, langue) => {
+    if (filter !== "traduction") return "";
+
+    const correspondingLangueIndex = Object.keys(activatedLanguages).filter(
+      (index) => activatedLanguages[index].i18nCode === langue
+    );
+
+    if (correspondingLangueIndex)
+      return activatedLanguages[correspondingLangueIndex];
+    return "";
+  };
+
+  getFilter = (filter) => {
+    if (["Dispositifs", "Démarches"].includes(filter)) {
+      const dataFiltered = filtres_contenu.filter(
+        (data) => data.name === filter
+      );
+
+      if (dataFiltered.length > 0) return dataFiltered[0].query;
+    }
+    return {};
+  };
+
   handleScrolling = () => {
     const currentScrollPos = window.pageYOffset;
     //const visible = prevScrollpos > currentScrollPos;
@@ -418,13 +487,12 @@ export class AdvancedSearch extends Component {
   };
 
   queryDispositifs = (Nquery = null, props = this.props) => {
-    // if query from url parameters, delete all empty values
     if (Nquery) {
       Object.keys(Nquery).forEach((key) =>
         Nquery[key] === "" ? delete Nquery[key] : {}
       );
     }
-    // create query with values from Url or from values selected in search bar
+
     let query =
       Nquery ||
       this.state.recherche
@@ -447,11 +515,12 @@ export class AdvancedSearch extends Component {
             : { [x.queryName]: x.query }
         )
         .reduce((acc, curr) => ({ ...acc, ...curr }), {});
+
     // create object with localisation filter only
     const localisationSearch = this.state.recherche.find(
       (x) => x.queryName === "localisation" && x.value
     );
-    // When no paramaters from the url
+
     if (!Nquery) {
       let newQueryParam = {
         tag: query["tags.name"]
@@ -472,6 +541,16 @@ export class AdvancedSearch extends Component {
         dep: query["dep"]
           ? this.state.recherche[1].query[1].long_name
           : undefined,
+        filter: this.state.activeFiltre || undefined,
+        langue:
+          (this.state.filterLanguage && this.state.filterLanguage.i18nCode) ||
+          undefined,
+        tri:
+          this.state.order &&
+          this.state.activeTri &&
+          this.state.activeTri !== "Par thème"
+            ? this.state.order
+            : undefined,
       };
       //delete empty value from the filters
       Object.keys(newQueryParam).forEach((key) =>
@@ -491,8 +570,12 @@ export class AdvancedSearch extends Component {
       query,
       this.state.filter
     );
+    const sortedDispositifs = this.sortFunction(
+      filteredDispositifs,
+      this.state.order
+    );
 
-    let dispositifs = filteredDispositifs;
+    let dispositifs = sortedDispositifs;
     this.setState({ countTotal: dispositifs.length });
 
     if (query["tags.name"]) {
@@ -615,6 +698,10 @@ export class AdvancedSearch extends Component {
           return elem.tags[0].short === this.state.recherche[0].short;
         }
       });
+      const principalThemeListSorted = this.sortFunction(
+        principalThemeList,
+        this.state.order
+      );
 
       var secondaryThemeList = dispositifs.filter((element) => {
         if (element.tags && element.tags.length > 0) {
@@ -628,8 +715,15 @@ export class AdvancedSearch extends Component {
           }
         }
       });
+      const secondaryThemeListSorted = this.sortFunction(
+        secondaryThemeList,
+        this.state.order
+      );
 
-      this.setState({ principalThemeList, secondaryThemeList });
+      this.setState({
+        principalThemeList: principalThemeListSorted,
+        secondaryThemeList: secondaryThemeListSorted,
+      });
       if (
         localisationSearch &&
         localisationSearch.query[1] &&
@@ -641,6 +735,10 @@ export class AdvancedSearch extends Component {
               return elem.tags[0].short === this.state.recherche[0].short;
             }
           }
+        );
+        const principalThemeListFullFranceSorted = this.sortFunction(
+          principalThemeListFullFrance,
+          this.state.order
         );
         var secondaryThemeListFullFrance = dispositifsFullFrance.filter(
           (element) => {
@@ -656,9 +754,14 @@ export class AdvancedSearch extends Component {
             }
           }
         );
-        this.setState({
-          principalThemeListFullFrance,
+        const secondaryThemeListFullFranceSorted = this.sortFunction(
           secondaryThemeListFullFrance,
+          this.state.order
+        );
+
+        this.setState({
+          principalThemeListFullFrance: principalThemeListFullFranceSorted,
+          secondaryThemeListFullFrance: secondaryThemeListFullFranceSorted,
         });
       }
     }
@@ -776,7 +879,7 @@ export class AdvancedSearch extends Component {
     }
   };
 
-  sortFunction = (dispositifs, order, croissant) => {
+  sortFunction = (dispositifs, order) => {
     return dispositifs.sort((a, b) => {
       var aValue = 0;
       var bValue = 0;
@@ -787,19 +890,17 @@ export class AdvancedSearch extends Component {
         aValue = _.get(a, order);
         bValue = _.get(b, order);
       }
-      return aValue > bValue
-        ? croissant
-          ? 1
-          : -1
-        : aValue < bValue
-        ? croissant
-          ? -1
-          : 1
-        : 0;
+      return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
     });
   };
 
   reorder = (tri) => {
+    if (tri.name === this.state.activeTri) {
+      this.setState({ activeTri: "", order: "" }, () =>
+        this.queryDispositifs()
+      );
+      return;
+    }
     if (tri.name === "Par thème") {
       this.setState(
         {
@@ -807,32 +908,17 @@ export class AdvancedSearch extends Component {
           recherche: this.state.recherche.map((x, i) =>
             i === 0 ? initial_data[i] : x
           ),
-          order: "theme",
+          order: "created_at",
         },
         () => this.queryDispositifs()
       );
     } else {
-      const order = tri.value;
-      const croissant =
-        order === this.state.order ? !this.state.croissant : false;
       this.setState(
-        (pS) => ({
-          dispositifs: this.sortFunction(pS.dispositifs, order, croissant),
-          principalThemeList: this.sortFunction(
-            pS.principalThemeList,
-            order,
-            croissant
-          ),
-          secondaryThemeList: this.sortFunction(
-            pS.secondaryThemeList,
-            order,
-            croissant
-          ),
+        {
           order: tri.value,
           activeTri: tri.name,
-          croissant: croissant,
-        })
-        //() => this.queryDispositifs()
+        },
+        () => this.queryDispositifs()
       );
     }
   };
@@ -841,10 +927,11 @@ export class AdvancedSearch extends Component {
     const filter = this.state.activeFiltre === filtre.name ? {} : filtre.query;
     const activeFiltre =
       this.state.activeFiltre === filtre.name ? "" : filtre.name;
+
     this.setState(
       {
         filter,
-        activeFiltre /* activeTri: this.state.activeTri === "Par thème" ? "" : this.state.activeTri */,
+        activeFiltre,
         languageDropdown: false,
         filterLanguage: "",
       },
@@ -975,9 +1062,23 @@ export class AdvancedSearch extends Component {
   };
 
   selectLanguage = (language) => {
-    this.setState({ filterLanguage: language, languageDropdown: false }, () =>
-      this.queryDispositifs()
+    this.setState(
+      { filterLanguage: language, languageDropdown: false, filter: "" },
+      () => this.queryDispositifs()
     );
+  };
+
+  nbFilterSelected = () => {
+    let nb = 0;
+    this.state.recherche.map((item) => {
+      if (item.value !== null) {
+        nb++;
+      }
+    });
+    if (this.state.geoSearch) {
+      nb++;
+    }
+    return nb;
   };
 
   render() {
@@ -1058,28 +1159,25 @@ export class AdvancedSearch extends Component {
                   onClick={() => this.toggleSearch()}
                   visible={this.state.searchToggleVisible}
                 >
-                  {this.state.searchToggleVisible ? (
-                    <EVAIcon
-                      name="arrow-ios-upward-outline"
-                      fill={colors.blanc}
-                    />
-                  ) : (
-                    <EVAIcon
-                      name="arrow-ios-downward-outline"
-                      fill={colors.noir}
-                    />
-                  )}
+                  <div>
+                    {this.nbFilterSelected() < 2 &&
+                      t(
+                        "AdvancedSearch.Plus de filtres",
+                        "Plus de filtres"
+                      )}{" "}
+                    {this.state.searchToggleVisible ? (
+                      <EVAIcon
+                        name="arrow-ios-upward-outline"
+                        fill={colors.blancSimple}
+                      />
+                    ) : (
+                      <EVAIcon
+                        name="arrow-ios-downward-outline"
+                        fill={colors.bleuCharte}
+                      />
+                    )}
+                  </div>
                 </SearchToggle>
-                <ResponsiveFooter
-                  {...this.state}
-                  show={false}
-                  toggleDropdownTri={this.toggleDropdownTri}
-                  toggleDropdownFiltre={this.toggleDropdownFiltre}
-                  reorder={this.reorder}
-                  filter_content={this.filter_content}
-                  toggleDisplayAll={this.toggleDisplayAll}
-                  t={t}
-                />
               </div>
               <FilterBar
                 visibleTop={this.state.visible}
@@ -1990,71 +2088,6 @@ export class AdvancedSearch extends Component {
     );
   }
 }
-
-export const ResponsiveFooter = (props) => {
-  const { activeFiltre, activeTri, displayAll, t, show } = props;
-  return (
-    show && (
-      <div className="responsive-footer">
-        <ButtonDropdown
-          className={"options-dropdown" + (activeTri ? " active" : "")}
-          isOpen={props.dropdownOpenTri}
-          toggle={props.toggleDropdownTri}
-        >
-          <DropdownToggle color="transparent">
-            <EVAIcon name="options-2-outline" />
-          </DropdownToggle>
-          <DropdownMenu>
-            {tris.map((tri, idx) => (
-              <DropdownItem
-                key={idx}
-                onClick={() => props.reorder(tri)}
-                className={
-                  "side-option" + (tri.name === activeTri ? " active" : "")
-                }
-              >
-                {t("AdvancedSearch." + tri.name, tri.name)}
-              </DropdownItem>
-            ))}
-          </DropdownMenu>
-        </ButtonDropdown>
-        <ButtonDropdown
-          className={"options-dropdown" + (activeFiltre ? " active" : "")}
-          isOpen={props.dropdownOpenFiltre}
-          toggle={props.toggleDropdownFiltre}
-        >
-          <DropdownToggle
-            color="transparent"
-            className={activeFiltre ? "active" : ""}
-          >
-            <EVAIcon name="funnel-outline" />
-          </DropdownToggle>
-          <DropdownMenu>
-            {filtres_contenu.map((filtre, idx) => (
-              <DropdownItem
-                key={idx}
-                onClick={() => props.filter_content(filtre)}
-                className={
-                  "side-option" +
-                  (filtre.name === activeFiltre ? " active" : "")
-                }
-              >
-                {filtre.name && t("AdvancedSearch." + filtre.name, filtre.name)}
-              </DropdownItem>
-            ))}
-          </DropdownMenu>
-        </ButtonDropdown>
-        <EVAIcon
-          name={"arrow-circle-" + (displayAll ? "up" : "down")}
-          size="xlarge"
-          onClick={props.toggleDisplayAll}
-          className="close-arrow"
-          fill={colors.grisFonce}
-        />
-      </div>
-    )
-  );
-};
 
 const mapStateToProps = (state) => {
   return {

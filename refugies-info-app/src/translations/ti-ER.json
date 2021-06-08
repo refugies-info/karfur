@@ -1,0 +1,39 @@
+{
+  "Onboarding1": {
+    "welcome": "Bienvenue ti"
+  },
+  "Onboarding2": {
+    "welcome": "Bienvenue ti"
+  },
+  "homepage": {
+    "test": "test tig"
+  },
+  "lists": "Lists tig",
+  "Tags": {
+    "Français": "ፈረንሳይ",
+    "Logement": "መንበሪ ገዛ",
+    "Insertion pro": "ምትእትታው ሞያ ብውሕልልነት",
+    "Formation pro": "ምስልጣን ሞያ",
+    "Études": "ምምሃር",
+    "Mobilité": "ብቅዓት = ክእለት",
+    "Bénévolat": "ወልንታዊ",
+    "Rencontre": "ምርኻብ ወይ ምዝታይ",
+    "Loisir": "ምዝንጋዕ",
+    "Culture": "ባህሊ",
+    "Santé": "ጥዕና",
+    "Administratif": "ቤት ጽሕፈታት",
+    "Autre": "ካልእ",
+    "apprendre le français": "ትምህርቲ ቓንቓ ፈርንሳይ",
+    "me loger": "መቅረቢ",
+    "trouver un travail": "ሓደ ስራሕ ምርካብ",
+    "apprendre un métier": "ሓደ ሞያ ምምሃር",
+    "faire des études": "ትምህርቲ ስራሕ",
+    "me déplacer": "ኣነ ክሳፈር",
+    "aider une association": "ሓገዝ ን ማሕበር",
+    "rencontrer des gens": "ምስ ደቂ ሰባት ምርኻብ",
+    "occuper mon temps libre": "መደብ ምሓዝ ኣብ ትርፊ ግዘይ",
+    "découvrir la culture": "ሓድሽ ባህሊ ምልላይ",
+    "me soigner": "ኣነ ክሕከም",
+    "gérer mes papiers": "ባዕለይ የሳልጥ ኣብ ወረቃቕተይ"
+  }
+}
