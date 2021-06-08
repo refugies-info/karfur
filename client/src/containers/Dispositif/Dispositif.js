@@ -173,7 +173,7 @@ export class Dispositif extends Component {
     window.scrollTo(0, 0);
     // this._initializeDispositif(this.props);
     if (!isMobile) {
-      window.addEventListener("scroll", () => this.handleScroll());
+      window.addEventListener("scroll", this.handleScroll);
     }
   }
 
@@ -204,7 +204,7 @@ export class Dispositif extends Component {
     this._isMounted = false;
     clearInterval(this.timer);
     if (!isMobile) {
-      window.removeEventListener("scroll", () => this.handleScroll());
+      window.removeEventListener("scroll", this.handleScroll);
     }
   }
 
