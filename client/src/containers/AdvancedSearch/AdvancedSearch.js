@@ -72,7 +72,7 @@ const ThemeListContainer = styled.div`
 const SearchToggle = styled.div`
   display: flex;
   justify-content: center;
-  margin-left: 30px;
+  margin: 10px;
   align-items: center;
   height: 50px;
   padding: 10px;
@@ -91,7 +91,14 @@ const SearchToggle = styled.div`
 `;
 
 const FilterBar = styled.div`
-  display: flex;
+  display: ${(props) =>
+    props.visibleTop && props.visibleSearch
+      ? "flex"
+      : !props.visibleTop && props.visibleSearch
+      ? "none"
+      : props.visibleTop && !props.visibleSearch
+      ? "none"
+      : "flex"};
   flex-direction: row;
   align-items: center;
   justify-content: center;
