@@ -8,6 +8,7 @@ import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import Streamline from "../../assets/streamline";
 import "./AdvancedSearch.scss";
+import { Link } from "react-router-dom";
 
 const CardText = styled.p`
   font-weight: 14px;
@@ -27,7 +28,6 @@ const SearchResultCard = ({
   pinnedList,
   dispositif,
   themeList,
-  history,
   showPinned,
 }) => {
   if (themeList) {
@@ -64,69 +64,70 @@ const SearchResultCard = ({
         }
         key={dispositif._id}
       >
-        <CustomCard
-          onClick={() => {
-            history.push({
-              pathname:
-                "/" +
-                (dispositif.typeContenu || "dispositif") +
-                (dispositif._id ? "/" + dispositif._id : ""),
-              state: { previousRoute: "advanced-search" },
-            });
+        <Link
+          to={{
+            pathname:
+              "/" +
+              (dispositif.typeContenu || "dispositif") +
+              (dispositif._id ? "/" + dispositif._id : ""),
+            state: { previousRoute: "advanced-search" },
           }}
-          className={
-            dispositif.typeContenu === "demarche"
-              ? "texte-" +
-                shortTag +
-                " bg-light-" +
-                shortTag +
-                " border-" +
-                shortTag
-              : "border-none"
-          }
         >
-          <CardBody>
-            {showPinned && (
-              <BookmarkedContainer
-                className={"bookmark-icon" + (pinned ? " pinned" : "")}
-                onClick={(e) => pin(e, dispositif)}
-                testID={"test-toggle-pin-" + dispositif._id}
-              >
-                <EVAIcon name="star" fill={colors.blanc} size="medium" />
-              </BookmarkedContainer>
-            )}
-            <h5>{dispositif.titreInformatif}</h5>
-            <CardText>{dispositif.abstract}</CardText>
-          </CardBody>
-          {dispositif.typeContenu !== "demarche" && (
-            <CardFooter
-              className={
-                "correct-radius align-right bg-" +
-                shortTag +
-                (iconTag ? "" : " no-icon")
-              }
-            >
-              {iconTag ? (
-                <div
-                  style={{
-                    width: 35,
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    alignItems: "flex-start",
-                  }}
+          <CustomCard
+            className={
+              dispositif.typeContenu === "demarche"
+                ? "texte-" +
+                  shortTag +
+                  " bg-light-" +
+                  shortTag +
+                  " border-" +
+                  shortTag
+                : "border-none"
+            }
+          >
+            <CardBody>
+              {showPinned && (
+                <BookmarkedContainer
+                  className={"bookmark-icon" + (pinned ? " pinned" : "")}
+                  onClick={(e) => pin(e, dispositif)}
+                  testID={"test-toggle-pin-" + dispositif._id}
                 >
-                  <Streamline
-                    name={iconTag.icon}
-                    stroke={"white"}
-                    width={20}
-                    height={20}
-                  />
-                </div>
-              ) : null}
-              {dispositif.titreMarque}
-            </CardFooter>
-          )}
-        </CustomCard>
+                  <EVAIcon name="star" fill={colors.blanc} size="medium" />
+                </BookmarkedContainer>
+              )}
+              <h5>{dispositif.titreInformatif}</h5>
+              <CardText>{dispositif.abstract}</CardText>
+            </CardBody>
+            {dispositif.typeContenu !== "demarche" && (
+              <CardFooter
+                className={
+                  "correct-radius align-right bg-" +
+                  shortTag +
+                  (iconTag ? "" : " no-icon")
+                }
+              >
+                {iconTag ? (
+                  <div
+                    style={{
+                      width: 35,
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <Streamline
+                      name={iconTag.icon}
+                      stroke={"white"}
+                      width={20}
+                      height={20}
+                    />
+                  </div>
+                ) : null}
+                {dispositif.titreMarque}
+              </CardFooter>
+            )}
+          </CustomCard>
+        </Link>
       </div>
     );
   }

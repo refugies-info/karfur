@@ -31,6 +31,37 @@ export const sendWelcomeMail = async (
   }
 };
 
+export const sendResetPasswordMail = async (
+  username: string,
+  lien_reinitialisation: string,
+  email: string
+) => {
+  try {
+    logger.info("[sendResetPasswordMail] received", { email });
+    const dynamicData = {
+      to: email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        Pseudonyme: username,
+        lien_reinitialisation: lien_reinitialisation,
+      },
+    };
+    const templateName = "resetPassword";
+    sendMail(templateName, dynamicData);
+    await addMailEvent({ templateName, username, email });
+    return;
+  } catch (error) {
+    logger.error("[sendResetPasswordMail] error", {
+      email,
+      error: error.message,
+    });
+  }
+};
+
 export const sendSubscriptionReminderMailService = async (email: string) => {
   try {
     logger.info("[sendSubscriptionReminderMailService] received", { email });

@@ -5,6 +5,7 @@ import FButton from "../../../FigmaUI/FButton/FButton";
 import { Props } from "./TopRightHeader.container";
 import { isUserAllowedToModify } from "./functions";
 import { isMobile } from "react-device-detect";
+import { ContribStyledStatus } from "../../../../containers/Backend/UserContributions/components/SubComponents";
 
 export interface PropsBeforeInjection {
   disableEdit: boolean;
@@ -18,6 +19,7 @@ export interface PropsBeforeInjection {
   editDispositif: () => void;
   valider_dispositif: (arg1: string) => void;
   toggleDispositifCreateModal: () => void;
+  toggleTutoModal: (section: string) => void;
   translating: boolean;
   status: string;
   typeContenu: "dispositif" | "demarche";
@@ -134,14 +136,30 @@ export class TopRightHeader extends React.Component<Props> {
         <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right-edition">
           {!props.translating &&
             props.langue === "fr" &&
-            isUserAllowedToModifyDispositif && (
-              <FButton
-                className="dark"
-                name="edit-outline"
-                onClick={props.editDispositif}
+            isUserAllowedToModifyDispositif &&
+            !isMobile && (
+              <div
+                onClick={(event: any) => {
+                  event.stopPropagation();
+                  props.toggleTutoModal("Statut des fiches");
+                }}
+                className="top-icon-wrapper"
               >
-                Modifier la fiche
-              </FButton>
+                <ContribStyledStatus size="large" text={props.status} />
+              </div>
+            )}
+          {!props.translating &&
+            props.langue === "fr" &&
+            isUserAllowedToModifyDispositif && (
+              <div className="top-icon-wrapper">
+                <FButton
+                  className="dark"
+                  name="edit-outline"
+                  onClick={props.editDispositif}
+                >
+                  Modifier la fiche
+                </FButton>
+              </div>
             )}
           {this.props.selectedDispositif &&
             this.props.selectedDispositif.status === "Actif" && (

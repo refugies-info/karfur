@@ -6,6 +6,7 @@ const crypto = require("crypto");
 const logger = require("../../logger");
 const nodemailer = require("nodemailer");
 import { computePasswordStrengthScore } from "../../libs/computePasswordStrengthScore";
+import { sendResetPasswordMail } from "../../modules/mail/mail.service";
 
 const transporter = nodemailer.createTransport({
   host: "pro2.mail.ovh.net",
@@ -214,8 +215,7 @@ function reset_password(req, res) {
         return res.status(404).json({ text: "L'utilisateur n'existe pas" });
       } else if (!user.email) {
         return res.status(403).json({
-          text:
-            "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
+          text: "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
           data: "no-alert",
         });
       }
@@ -226,8 +226,7 @@ function reset_password(req, res) {
       ) {
         //L'admin ne peut pas le faire comme ça
         return res.status(401).json({
-          text:
-            "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
+          text: "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
         });
       }
       crypto.randomBytes(20, function (errb, buffer) {
@@ -243,24 +242,8 @@ function reset_password(req, res) {
           .exec();
         const newUrl = url + "reset/" + token;
 
-        let html = "<p>Bonjour " + username + ",</p>";
-        html +=
-          "<p>Vous avez demandé à réinitialiser votre mot de passe sur la plateforme <a href=" +
-          url +
-          "><b>Réfugiés.info</b>.</a> </p>";
-        html += "<p>Merci de cliquer sur le lien ci-dessous :</p>";
-        html += "<a href=" + newUrl + ">" + newUrl + "</a>";
-        html += "<p>À bientôt,</p>";
-        html += "<p>L'équipe Réfugiés.info</p>";
+        sendResetPasswordMail(username, newUrl, user.email);
 
-        const mailOptions = {
-          from: "nour@refugies.info",
-          subject: "Réinitialisation de votre mot de passe",
-          html,
-          to: user.email,
-        };
-
-        transporter.sendMail(mailOptions, () => {});
         return res.status(200).json({ text: "Envoi réussi", data: user.email });
       });
     }
@@ -287,8 +270,7 @@ function set_new_password(req, res) {
         return res.status(404).json({ text: "L'utilisateur n'existe pas" });
       } else if (!user.email) {
         return res.status(403).json({
-          text:
-            "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
+          text: "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
         });
       }
       if (
@@ -298,8 +280,7 @@ function set_new_password(req, res) {
       ) {
         //L'admin ne peut pas le faire comme ça
         return res.status(401).json({
-          text:
-            "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
+          text: "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
         });
       }
       if ((computePasswordStrengthScore(newPassword) || {}).score < 1) {
