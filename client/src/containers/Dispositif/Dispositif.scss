@@ -194,6 +194,11 @@ $imgHeight: 350px;
 
       .top-left .btn-retour {
         margin-left: 30px;
+        @include media-max("tablet-up") {
+          background-color: transparent;
+          margin-left: 75px;
+          margin-top: -20px;
+        }
       }
 
       .top-right {
