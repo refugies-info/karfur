@@ -102,7 +102,6 @@ const FilterBar = styled.div`
   padding: 13px 16px 0px;
   margin-left: 68px;
   margin-right: 68px;
-  display: flex;
   z-index: 2;
   top: ${(props) =>
     props.visibleTop && props.visibleSearch

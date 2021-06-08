@@ -693,6 +693,7 @@ class CommentContribuer extends Component {
           </TradContentContainer>
         </TraductionContainer>
         <DeployonsContainer id="deployer-card">
+          <br />
           <DeployonsHeader>
             {t(
               "CommentContribuer.Déployons ensemble",

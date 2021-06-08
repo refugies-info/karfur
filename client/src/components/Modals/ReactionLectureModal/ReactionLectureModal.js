@@ -1,7 +1,8 @@
 import React from "react";
-import { Input, Modal, ModalHeader } from "reactstrap";
+import { Input, Modal } from "reactstrap";
 import FButton from "../../FigmaUI/FButton/FButton";
 import styled from "styled-components";
+import Icon from "react-eva-icons";
 
 import "./ReactionLectureModal.scss";
 
@@ -22,12 +23,21 @@ const ModalBodyContainer = styled.div`
   justify-content: center;
 `;
 
+const IconContainer = styled.div`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+`;
+
 const SendByContainer = styled.div`
   display: flex;
   align-items: center;
   font-size: 18px;
   position: absolute;
-  right: 69px;
+  right: 40px;
 `;
 const AProposContainer = styled.div`
   display: flex;
@@ -57,19 +67,20 @@ const ReactionLectureModal = (props) => {
       toggle={props.toggle}
       className="modal-suggestion"
     >
-      <ModalHeader toggle={props.toggle}>
-        <ModalHeaderContainer toggle={props.toggle}>
-          Réaction{" "}
-          <SendByContainer>
-            Envoyée par
-            <UserNameContainer>
-              {getUserName().length > 20
-                ? getUserName().substr(0, 19) + "..."
-                : getUserName()}
-            </UserNameContainer>
-          </SendByContainer>
-        </ModalHeaderContainer>
-      </ModalHeader>
+      <IconContainer onClick={props.toggle}>
+        <Icon name="close-outline" fill="#3D3D3D" size="large" />
+      </IconContainer>
+      <ModalHeaderContainer toggle={props.toggle}>
+        Réaction{" "}
+        <SendByContainer>
+          Envoyée par
+          <UserNameContainer>
+            {getUserName().length > 20
+              ? getUserName().substr(0, 20) + "..."
+              : getUserName()}
+          </UserNameContainer>
+        </SendByContainer>
+      </ModalHeaderContainer>
 
       <ModalBodyContainer className="modal-body">
         <Input
