@@ -90,8 +90,7 @@ const SearchToggle = styled.div`
 `;
 
 const FilterBar = styled.div`
-  display: ${(props) =>
-    props.visibleTop && props.visibleSearch ? "flex" : "none"};
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
