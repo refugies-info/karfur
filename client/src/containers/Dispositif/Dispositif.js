@@ -172,6 +172,9 @@ export class Dispositif extends Component {
     this.checkUserFetchedAndInitialize();
     window.scrollTo(0, 0);
     // this._initializeDispositif(this.props);
+    if (!isMobile) {
+      window.addEventListener("scroll", this.handleScroll);
+    }
   }
 
   // eslint-disable-next-line react/no-deprecated
@@ -200,6 +203,9 @@ export class Dispositif extends Component {
   componentWillUnmount() {
     this._isMounted = false;
     clearInterval(this.timer);
+    if (!isMobile) {
+      window.removeEventListener("scroll", this.handleScroll);
+    }
   }
 
   checkUserFetchedAndInitialize = () => {
@@ -207,6 +213,25 @@ export class Dispositif extends Component {
       this._initializeDispositif(this.props);
     } else {
       setTimeout(this.checkUserFetchedAndInitialize, 100); // check again in a 100 ms
+    }
+  };
+
+  handleScroll = () => {
+    const menu = document.querySelector(".left-side-col");
+    const content = document.querySelector(".col-middle");
+    let posYNav = menu.offsetTop;
+    {
+      if (window.scrollY > posYNav + 100) {
+        menu.style.position = "fixed";
+        menu.style.top = "75px";
+        menu.style.height = "100vh";
+        content.style.marginLeft = "25%";
+      }
+      if (window.scrollY < posYNav + 100) {
+        menu.style.position = "relative";
+        menu.style.top = "0px";
+        content.style.marginLeft = "0%";
+      }
     }
   };
 
@@ -1195,9 +1220,7 @@ export class Dispositif extends Component {
     const prevState = [...this.state.menu];
     //var menuObj = [...menu[1].children]
     if (node === "title") {
-      prevState[key].children[
-        subkey
-      ] = this.state.initialMenu[1].children
+      prevState[key].children[subkey] = this.state.initialMenu[1].children
         .concat(importantCard)
         .find((x) => x.title === value);
     } else {
@@ -1665,6 +1688,7 @@ export class Dispositif extends Component {
     } = this.state;
     const tag =
       mainTag && mainTag.short ? mainTag.short.split(" ").join("-") : "noImage";
+
     return (
       <div
         id="dispositif"
@@ -1746,6 +1770,7 @@ export class Dispositif extends Component {
                   toggleDispositifValidateModal={
                     this.toggleDispositifValidateModal
                   }
+                  toggleTutoModal={this.toggleTutorielModal}
                   editDispositif={this.editDispositif}
                   valider_dispositif={this.valider_dispositif}
                   toggleDispositifCreateModal={this.toggleDispositifCreateModal}

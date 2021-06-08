@@ -9,6 +9,7 @@ declare type templateIds = {
   newFicheEnAttente: string;
   publishedTradForTraductors: string;
   subscriptionReminderMail: string;
+  resetPassword: string;
 };
 
 export const templatesIds: templateIds = {
@@ -22,4 +23,5 @@ export const templatesIds: templateIds = {
   newFicheEnAttente: "d-37278a1325b24d62a7db743796b5f7f3",
   publishedTradForTraductors: "d-f933396f06ac43c9aadfbcf41288fbb3",
   subscriptionReminderMail: "d-7b825e600f5c46ad9a1666e4431d2c97",
+  resetPassword: "d-20ecb97414ef4545b036c382493be037",
 };

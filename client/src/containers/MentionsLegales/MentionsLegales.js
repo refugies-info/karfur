@@ -20,7 +20,7 @@ class MentionsLegales extends Component {
 
         <h2>Directeur de la publication</h2>
 
-        <strong>Simon Karleskind</strong>
+        <strong>Nour Allazkani</strong>
 
         <h2>Droit d’accès</h2>
 
@@ -37,8 +37,16 @@ class MentionsLegales extends Component {
             Ou par courrier postal, daté et signé, accompagné d'une copie d’un
             titre d’identité, à l'adresse suivante :
           </p>
-          <strong>Refugies.info Simon Karleskind / Garance</strong>
-          Place Beauvau 75800 Paris Cedex 08
+          <p>
+            <strong>
+              Le délégué interministériel chargé de l'accueil et de
+              l'intégration des réfugiés
+            </strong>
+            <br />
+            18 rue des Pyrénées
+            <br />
+            75020 Paris
+          </p>
         </p>
 
         <h2>Politique de confidentialité</h2>

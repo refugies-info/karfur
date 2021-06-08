@@ -194,6 +194,11 @@ $imgHeight: 350px;
 
       .top-left .btn-retour {
         margin-left: 30px;
+        @include media-max("tablet-up") {
+          background-color: transparent;
+          margin-left: 75px;
+          margin-top: -20px;
+        }
       }
 
       .top-right {
@@ -271,13 +276,16 @@ $imgHeight: 350px;
 
       .top-right-edition {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-end;
         font-weight: bold;
+        justify-content: flex-end;
         color: "red";
 
         .top-icon-wrapper {
-          padding-top: 10px;
+          border-radius: 12px;
+          box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 10%);
+          margin-right: 11px;
         }
       }
     }
