@@ -56,6 +56,8 @@ export const CarousselCard = (props: Props) => {
         {
           alignItems: ["briefcase", "soccer"].includes(props.iconName)
             ? "center"
+            : props.iconName === "glasses"
+            ? "flex-end"
             : "flex-start",
         },
       ]}
