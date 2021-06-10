@@ -13,7 +13,7 @@ const ICON_SIZE = 24;
 
 interface Props {
   iconName: string;
-  onPress?: () => {};
+  onPress?: () => void;
 }
 export const SmallButton = (props: Props) => (
   <ButtonContainer onPress={props.onPress}>
