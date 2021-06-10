@@ -1,14 +1,4 @@
 {
-  "homepage": {
-    "test": " حياتك"
-  },
-  "lists": " حياتك",
-  "Onboarding1": {
-    "welcome": "Bienvenue ar"
-  },
-  "Onboarding2": {
-    "welcome": "Bienvenue ar"
-  },
   "Tags": {
     "Français": "الفرنسية",
     "Logement": "إسكان",
@@ -35,5 +25,6 @@
     "découvrir la culture": "اكتشف الثقافة",
     "me soigner": "معالجة صحّية",
     "gérer mes papiers": "ادارة أوراقي"
-  }
+  },
+  "Suivant": "التالي"
 }

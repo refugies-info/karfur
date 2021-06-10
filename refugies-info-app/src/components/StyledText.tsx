@@ -45,6 +45,20 @@ export const StyledTextVerySmallBold = styled.Text`
     props.isRTL ? "right" : "left"};
 `;
 
+export const StyledTextBig = styled.Text`
+  font-size: ${theme.fonts.sizes.big}px;
+  font-family: ${theme.fonts.families.circularStandard};
+  text-align: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? "right" : "left"};
+`;
+
+export const StyledTextBigBold = styled.Text`
+  font-size: ${theme.fonts.sizes.big}px;
+  font-family: ${theme.fonts.families.circularBold};
+  text-align: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? "right" : "left"};
+`;
+
 export const TextNormal = (props: any) => {
   const { isRTL } = useTranslationWithRTL();
   return <StyledTextNormal isRTL={isRTL} {...props} />;
