@@ -25,9 +25,10 @@ const ColoredText = styled(StyledTextSmallBold)`
 
 interface Props {
   textColor: string;
-  text?: string;
+  i18nKey: string;
   onPress: () => void;
   iconName?: string;
+  defaultText: string;
 }
 
 const ICON_SIZE = 24;
@@ -37,7 +38,7 @@ export const CustomButton = (props: Props) => {
   return (
     <ButtonContainer onPress={props.onPress}>
       <ColoredText textColor={props.textColor} isRTL={isRTL}>
-        {props.text || t("Suivant", "trad")}
+        {t(props.i18nKey, props.defaultText)}
       </ColoredText>
       {props.iconName && (
         <Icon

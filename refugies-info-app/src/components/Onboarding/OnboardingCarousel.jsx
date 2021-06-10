@@ -1,16 +1,14 @@
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import React from "react";
-import { View, Dimensions, SafeAreaView } from "react-native";
-import { tags } from "../../data/tagData";
+import { View, Dimensions } from "react-native";
 import { theme } from "../../theme";
 import i18n from "../../services/i18n";
 import { OnboardingCarouselElement } from "./OnboardingCarouselElement";
 import { CustomButton } from "../../components/CustomButton";
 import { SmallButton } from "../SmallButton";
 import styled from "styled-components/native";
-const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
-  "window"
-);
+import { onboardingCarouselData } from "./OnboardingCarouselData";
+const { width: viewportWidth } = Dimensions.get("window");
 
 const TopButtonsContainer = styled.View`
   position: absolute;
@@ -21,7 +19,7 @@ const TopButtonsContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   padding-horizontal: ${theme.margin * 3}px;
-  padding-top: ${theme.margin}px;
+  padding-top: ${theme.margin * 2}px;
   width: 100%;
 `;
 
@@ -36,11 +34,7 @@ const NextButtonContainer = styled.View`
   padding-horizontal: ${theme.margin * 3}px;
 `;
 
-const carouselItems = [
-  { element: "element1", color: "red" },
-  { element: "element2", color: "blue" },
-  { element: "element3", color: "green" },
-];
+const carouselItems = onboardingCarouselData;
 export class OnboardingCarousel extends React.Component {
   constructor(props) {
     super(props);
@@ -49,7 +43,7 @@ export class OnboardingCarousel extends React.Component {
     };
   }
   _renderItem({ item }) {
-    return <OnboardingCarouselElement text={item.element} color={item.color} />;
+    return <OnboardingCarouselElement step={item.stepNumber} />;
   }
 
   goToNextSlide() {}
@@ -69,20 +63,27 @@ export class OnboardingCarousel extends React.Component {
           width: 8,
           height: 8,
           borderRadius: 5,
-          backgroundColor: tags[activeIndex].lightColor,
+          backgroundColor: theme.colors.white,
+          borderWidth: 1,
+          borderColor: theme.colors.white,
         }}
         inactiveDotStyle={{
-          backgroundColor: theme.colors.darkGrey,
+          backgroundColor: "transparent",
+          borderWidth: 1,
+          borderColor: theme.colors.white,
+          width: 8,
+          height: 8,
+          borderRadius: 5,
         }}
-        inactiveDotOpacity={0.4}
-        inactiveDotScale={0.6}
+        inactiveDotOpacity={1}
+        inactiveDotScale={1}
         containerStyle={{
           position: "absolute",
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
           width: "100%",
-          bottom: 100,
+          bottom: 90,
         }}
       />
     );
@@ -123,6 +124,8 @@ export class OnboardingCarousel extends React.Component {
         {this.pagination}
         <NextButtonContainer>
           <CustomButton
+            i18nKey={activeIndex !== 3 ? "Suivant" : "Continuer"}
+            defaultText={activeIndex !== 3 ? "Suivant" : "Continuer"}
             textColor={theme.colors.black}
             onPress={() => {
               if (activeIndex === carouselItems.length - 1) {
