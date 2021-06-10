@@ -6,6 +6,7 @@ import { SmallButton } from "./SmallButton";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { RowContainer } from "./BasicComponents";
 import { LanguageSwitch } from "./Language/LanguageSwitch";
+import { View } from "react-native";
 
 const MainContainer = styled(RowContainer)`
   padding-left: ${(props: { isRTL: any }) =>
@@ -25,14 +26,16 @@ const LOGO_HEIGHT = 48;
 interface Props {
   onLongPressSwitchLanguage?: () => void;
   hideLanguageSwitch?: boolean;
+  hideLogo?: boolean;
 }
 export const Header = ({
   onLongPressSwitchLanguage,
   hideLanguageSwitch,
+  hideLogo,
 }: Props) => (
   <SafeAreaView>
     <MainContainer isRTL={false}>
-      <Logo width={LOGO_WIDTH} height={LOGO_HEIGHT} />
+      {!hideLogo ? <Logo width={LOGO_WIDTH} height={LOGO_HEIGHT} /> : <View />}
       <RowContainer>
         {!hideLanguageSwitch && (
           <LanguageSwitch

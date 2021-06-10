@@ -6,7 +6,7 @@ import { t } from "../../services/i18n";
 import { Header } from "../../components/Header";
 import { TextNormal } from "../../components/StyledText";
 
-export const Onboarding2 = () => {
+export const OnboardingStep1 = () => {
   const dispatch = useDispatch();
   const seeOnboarding = () => {
     try {

@@ -34,8 +34,11 @@ export type SearchParamList = {
 };
 
 export type OnboardingParamList = {
-  Onboarding1: undefined;
-  Onboarding2: undefined;
+  OnboardingStart: undefined;
+  OnboardingStep1: undefined;
+  OnboardingStep2: undefined;
+  OnboardingStep3: undefined;
+  OnboardingStep4: undefined;
 };
 
 export type LanguageChoiceParamList = {
