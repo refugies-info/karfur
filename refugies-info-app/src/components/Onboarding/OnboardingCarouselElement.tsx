@@ -9,6 +9,7 @@ import { StyledTextBigBold } from "../StyledText";
 import { CarouselStepImage } from "./CarouselStepImage";
 import EtatLogo from "../../theme/images/onboarding/onboardingStep2-logo.png";
 import { Image } from "react-native";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 interface Props {
   step: number;
@@ -31,6 +32,7 @@ const styles = StyleSheet.create({
   },
 });
 export const OnboardingCarouselElement = (props: Props) => {
+  const { t } = useTranslationWithRTL();
   const correspondingData = onboardingCarouselData.filter(
     (element) => element.stepNumber === props.step
   )[0];
@@ -44,7 +46,9 @@ export const OnboardingCarouselElement = (props: Props) => {
       {props.step === 2 && (
         <Image source={EtatLogo} style={{ marginTop: theme.margin * 3 }} />
       )}
-      <StyledText>{correspondingData.text}</StyledText>
+      <StyledText>
+        {t("Onboarding." + correspondingData.text, correspondingData.text)}
+      </StyledText>
     </LinearGradient>
   );
 };

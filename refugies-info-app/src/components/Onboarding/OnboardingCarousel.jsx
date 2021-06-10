@@ -50,15 +50,11 @@ export class OnboardingCarousel extends React.Component {
 
   get pagination() {
     const { activeIndex } = this.state;
-    const isRTL = i18n.isRTL();
-    const activeDotIndex = isRTL
-      ? carouselItems.length - activeIndex - 1
-      : activeIndex;
 
     return (
       <Pagination
         dotsLength={carouselItems.length}
-        activeDotIndex={activeDotIndex}
+        activeDotIndex={activeIndex}
         dotStyle={{
           width: 8,
           height: 8,
@@ -134,7 +130,7 @@ export class OnboardingCarousel extends React.Component {
               }
               this.carousel.snapToNext();
             }}
-            iconName="arrow-forward-outline"
+            iconName={activeIndex !== 3 ? "arrow-forward-outline" : null}
           />
         </NextButtonContainer>
       </View>
