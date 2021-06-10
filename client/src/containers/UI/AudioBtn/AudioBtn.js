@@ -33,10 +33,10 @@ class AudioBtn extends Component {
               name={"volume-up" + (ttsActive ? "" : "-outline")}
               fill={ttsActive ? "#FFFFFF" : colors.noir}
               id="audioBtn"
-              className="ml-15"
+              className={this.props.windowWidth > 1024 ? "ml-15" : ""}
             />
           )}
-          {!isMobile && (
+          {!isMobile && this.props.windowWidth > 1024 && (
             <div className="ecouter-text">
               {this.props.t("Écouter", "Écouter")}
             </div>
