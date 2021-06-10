@@ -1,8 +1,8 @@
 import React from "react";
-import Step0 from "../../theme/images/onboarding/onboardingStep0.svg";
-import Step1 from "../../theme/images/onboarding/onboardingStep1.svg";
-import Step2 from "../../theme/images/onboarding/onboardingStep2.svg";
-import Step3 from "../../theme/images/onboarding/onboardingStep3.svg";
+import Step0 from "../../theme/images/onboarding/onboardingStep0_opt.svg";
+import Step1 from "../../theme/images/onboarding/onboardingStep1_opt.svg";
+import Step2 from "../../theme/images/onboarding/onboardingStep2_opt.svg";
+import Step3 from "../../theme/images/onboarding/onboardingStep3_opt.svg";
 
 interface Props {
   step: number;
