@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
@@ -357,9 +356,7 @@ const DispositifCard = (props) => (
         props.history.push("/dispositif");
       } else {
         props.toggleModal();
-        console.log("no email");
       }
-      console.log("user", props.user);
     }}
   >
     <img src={assetsOnServer.commentContribuer.dispositif} alt="dispositif" />
@@ -925,6 +922,8 @@ class CommentContribuer extends Component {
         <CompleteProfilModal
           show={this.state.showCompleteProfilModal}
           toggle={this.toggleCompleteProfilModal}
+          history={this.props.history}
+          user={this.props.user}
         />
         ;
       </MainContainer>
