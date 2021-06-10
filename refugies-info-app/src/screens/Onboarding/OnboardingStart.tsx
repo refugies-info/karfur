@@ -1,27 +1,32 @@
-import { Button, Image, ImageBackground, StyleSheet } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import * as React from "react";
 import { StackScreenProps } from "@react-navigation/stack";
 import { OnboardingParamList } from "../../../types";
-import { t } from "../../services/i18n";
 import { Header } from "../../components/Header";
-import { TextNormal } from "../../components/StyledText";
+import { StyledTextBigBold } from "../../components/StyledText";
 import { theme } from "../../theme";
 import styled from "styled-components/native";
-// import IlluOnboarding from "../../theme/images/onboarding/illu_onboarding.svg";
 import IlluOnboarding from "../../theme/images/onboarding/illu-onboarding.png";
+import { CustomButton } from "../../components/CustomButton";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 const MainView = styled.View`
   background-color: ${theme.colors.darkBlue};
   display: flex;
   flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const ImageContainer = styled.View`
   position: absolute;
   top: 0;
   width: 100%;
-  background-color: red;
   left: 0;
+`;
+
+const ElementsContainer = styled.View`
+  padding: ${theme.margin * 3}px;
 `;
 
 const styles = StyleSheet.create({
@@ -33,26 +38,39 @@ const styles = StyleSheet.create({
   },
 });
 
+const StyledText = styled(StyledTextBigBold)`
+  color: ${theme.colors.white};
+  text-align: center;
+  margin-top: ${(props: { marginTop: string }) => props.marginTop || "0px"};
+  margin-bottom: ${(props: { marginBottom: string }) =>
+    props.marginBottom || "0px"};
+`;
+
 export const OnboardingStart = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "OnboardingStart">) => {
+  const { t } = useTranslationWithRTL();
   return (
     <MainView>
-      {/* <ImageBackground source={IlluOnboarding} style={styles.backgroundImage}>
-        <Header hideLanguageSwitch={true} hideLogo={true} />
-      </ImageBackground> */}
+      <Header hideLogo={true} hideLanguageSwitch={true} />
       <ImageContainer>
         <Image source={IlluOnboarding} style={styles.backgroundImage} />
       </ImageContainer>
-      {/* <TextNormal>
-        {t("Onboarding1.welcome", "onboarding1 trad not loaded")}
-      </TextNormal>
-      <Button
-        title="Suivant"
-        onPress={() => {
-          navigation.navigate("Onboarding2");
-        }}
-      /> */}
+      <ElementsContainer>
+        <StyledText>{t("Onboarding.bonjour", "trad")}</StyledText>
+        <StyledText
+          marginBottom={`${theme.margin * 5}px`}
+          marginTop={`${theme.margin * 2}px`}
+        >
+          {t("Onboarding.bonjour_desc", "trad")}
+        </StyledText>
+
+        <CustomButton
+          text={t("Onboarding.parti", "trad")}
+          textColor={theme.colors.darkBlue}
+          onPress={() => navigation.navigate("OnboardingStep1")}
+        />
+      </ElementsContainer>
     </MainView>
   );
 };

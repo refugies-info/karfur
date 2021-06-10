@@ -3,7 +3,6 @@ import { theme } from "../theme";
 import styled from "styled-components/native";
 import Logo from "../theme/images/logo.svg";
 import { SmallButton } from "./SmallButton";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { RowContainer } from "./BasicComponents";
 import { LanguageSwitch } from "./Language/LanguageSwitch";
 import { View } from "react-native";
@@ -20,6 +19,9 @@ const MainContainer = styled(RowContainer)`
   display: flex;
 `;
 
+const StyledSafeAreaView = styled.SafeAreaView`
+  z-index: 2;
+`;
 const LOGO_WIDTH = 70;
 const LOGO_HEIGHT = 48;
 
@@ -33,7 +35,7 @@ export const Header = ({
   hideLanguageSwitch,
   hideLogo,
 }: Props) => (
-  <SafeAreaView>
+  <StyledSafeAreaView>
     <MainContainer isRTL={false}>
       {!hideLogo ? <Logo width={LOGO_WIDTH} height={LOGO_HEIGHT} /> : <View />}
       <RowContainer>
@@ -45,5 +47,5 @@ export const Header = ({
         <SmallButton />
       </RowContainer>
     </MainContainer>
-  </SafeAreaView>
+  </StyledSafeAreaView>
 );

@@ -9,6 +9,11 @@
   "Onboarding2": {
     "welcome": "Bienvenue fr"
   },
+  "Onboarding": {
+    "parti": "C'est parti",
+    "bonjour": "Bonjour !",
+    "bonjour_desc": "Nous sommes très heureux de t'avoir avec nous."
+  },
   "tabBar": {
     "Explorer": "Explorer",
     "Favoris": "Favoris",
