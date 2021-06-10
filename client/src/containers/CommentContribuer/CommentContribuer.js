@@ -436,7 +436,15 @@ const StructureCard = (props) => (
 );
 
 const DemarcheCard = (props) => (
-  <DemarcheCardContainer>
+  <DemarcheCardContainer
+    onClick={() => {
+      if (props.user.email !== "") {
+        props.history.push("/dispositif");
+      } else {
+        props.toggleModal();
+      }
+    }}
+  >
     <img
       src={assetsOnServer.commentContribuer.demarche}
       height="190px"
@@ -614,9 +622,12 @@ class CommentContribuer extends Component {
               toggleModal={this.toggleCompleteProfilModal}
             />
 
-            <NavLink to="/demarche" className="no-decoration">
-              <DemarcheCard t={t} />
-            </NavLink>
+            <DemarcheCard
+              user={this.props.user}
+              history={this.props.history}
+              t={t}
+              toggleModal={this.toggleCompleteProfilModal}
+            />
 
             <StructureCard t={t} />
             <LexiqueCard t={t} />

@@ -96,7 +96,7 @@ export const CompleteProfilModal = (props) => {
         <FButton
           onClick={props.toggle}
           type="outline-black mr-8"
-          name="arrow-left"
+          name="arrow-back-outline"
         >
           {"Retour"}
         </FButton>{" "}
