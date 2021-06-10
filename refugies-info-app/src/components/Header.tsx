@@ -6,6 +6,7 @@ import { SmallButton } from "./SmallButton";
 import { RowContainer } from "./BasicComponents";
 import { LanguageSwitch } from "./Language/LanguageSwitch";
 import { View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const MainContainer = styled(RowContainer)`
   padding-left: ${(props: { isRTL: any }) =>
@@ -19,7 +20,7 @@ const MainContainer = styled(RowContainer)`
   display: flex;
 `;
 
-const StyledSafeAreaView = styled.SafeAreaView`
+const StyledSafeAreaView = styled(SafeAreaView)`
   z-index: 2;
 `;
 const LOGO_WIDTH = 70;
