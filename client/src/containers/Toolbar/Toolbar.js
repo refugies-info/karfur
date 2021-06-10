@@ -189,11 +189,7 @@ export class Toolbar extends React.Component {
               path !== "/homepage" &&
               windowWidth >= breakpoints.phoneDown && (
                 <NavLink to="/" className="home-btn">
-                  <FButton
-                    type="login"
-                    name="home-outline"
-                    onClick={this.goBack}
-                  >
+                  <FButton type="login" name="home-outline">
                     {windowWidth >= breakpoints.lgLimit && (
                       <b className="home-texte">
                         {t("Toolbar.Accueil", "Accueil")}
