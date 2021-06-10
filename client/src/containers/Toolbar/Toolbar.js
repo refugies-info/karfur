@@ -189,16 +189,17 @@ export class Toolbar extends React.Component {
               path !== "/homepage" &&
               windowWidth >= breakpoints.phoneDown && (
                 <NavLink to="/" className="home-btn">
-                  <EVAIcon
-                    name="home"
-                    fill={colors.noir}
-                    className="mr-10 rsz"
-                  />
-                  {windowWidth >= breakpoints.lgLimit && (
-                    <b className="home-texte">
-                      {t("Toolbar.Accueil", "Accueil")}
-                    </b>
-                  )}
+                  <FButton
+                    type="login"
+                    name="home-outline"
+                    onClick={this.goBack}
+                  >
+                    {windowWidth >= breakpoints.lgLimit && (
+                      <b className="home-texte">
+                        {t("Toolbar.Accueil", "Accueil")}
+                      </b>
+                    )}
+                  </FButton>
                 </NavLink>
               )}
           </div>
