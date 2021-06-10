@@ -72,7 +72,6 @@ const ThemeListContainer = styled.div`
 const SearchToggle = styled.div`
   display: flex;
   justify-content: center;
-  margin-left: 30px;
   align-items: center;
   height: 50px;
   padding: 10px;
@@ -98,7 +97,7 @@ const FilterBar = styled.div`
   background-color: #828282;
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
   position: fixed;
-  border-radius: 6px 6px 12px 12px;
+  border-radius: 12px;
   padding: 13px 16px 0px;
   margin-left: 68px;
   margin-right: 68px;
@@ -111,6 +110,7 @@ const FilterBar = styled.div`
       : props.visibleTop && !props.visibleSearch
       ? "90px"
       : "16px"};
+  opacity: ${(props) => (props.visibleSearch ? "1" : "0")};
   transition: top 0.6s;
   height: 80px;
 `;
