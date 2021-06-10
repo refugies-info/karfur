@@ -81,7 +81,7 @@ export class SearchItem extends Component {
         this.props.geoSearch ? (
           <FSearchBtn
             className={
-              "mr-10 in-header search-filter " +
+              "in-header search-filter " +
               (isBigDesktop ? "search-btn " : "search-btn-small ") +
               (item.active ? "active " : "")
             }
@@ -158,7 +158,7 @@ export class SearchItem extends Component {
               this.props.switchGeoSearch(true);
             }}
             className={
-              "mr-10 in-header search-filter " +
+              "in-header search-filter " +
               (isBigDesktop ? "search-btn " : "search-btn-small ")
             }
           >
