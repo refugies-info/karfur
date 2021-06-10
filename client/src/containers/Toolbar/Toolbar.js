@@ -164,6 +164,7 @@ export class Toolbar extends React.Component {
     const isUserOnContentPage =
       window.location.href.includes("dispositif") ||
       window.location.href.includes("demarche");
+    const screenWidth = window.innerWidth;
     return (
       <header
         className={
@@ -220,6 +221,7 @@ export class Toolbar extends React.Component {
               visible={this.state.visible}
               scroll={this.state.scroll}
               loupe
+              screenWidth={screenWidth}
               className="search-bar inner-addon right-addon mr-10 rsz"
             />
           )}

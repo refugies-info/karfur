@@ -13,7 +13,9 @@ export const SearchBarContainer = styled.div`
   margin-right: ${(props) => (props.withMargin ? "10px" : "0px")};
   font-size: 16px;
   font-weight: 400;
-  width: 280px;
+  width: ${(props) =>
+    props.screenWidth > 1440 ? "240px" : props.screenWidth * 0.18 + "px"};
+  min-width: 180px;
   height: 52px;
   color: #000000;
   flex-direction: row;
@@ -46,10 +48,14 @@ interface Props {
   onChange: () => void;
   value: string;
   withMargin?: boolean;
+  screenWidth?: string;
 }
 
 export const CustomSearchBar = (props: Props) => (
-  <SearchBarContainer withMargin={props.withMargin}>
+  <SearchBarContainer
+    screenWidth={props.screenWidth}
+    withMargin={props.withMargin}
+  >
     <SearchBar
       onChange={props.onChange}
       type="text"
