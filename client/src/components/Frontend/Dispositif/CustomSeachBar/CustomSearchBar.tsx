@@ -14,7 +14,7 @@ export const SearchBarContainer = styled.div`
   font-size: 16px;
   font-weight: 400;
   width: ${(props) =>
-    props.screenWidth > 1440 ? "240px" : props.screenWidth * 0.18 + "px"};
+    props.windowWidth > 1440 ? "240px" : props.windowWidth * 0.18 + "px"};
   min-width: 180px;
   height: 52px;
   color: #000000;
@@ -48,12 +48,12 @@ interface Props {
   onChange: () => void;
   value: string;
   withMargin?: boolean;
-  screenWidth?: string;
+  windowWidth?: string;
 }
 
 export const CustomSearchBar = (props: Props) => (
   <SearchBarContainer
-    screenWidth={props.screenWidth}
+    windowWidth={props.windowWidth}
     withMargin={props.withMargin}
   >
     <SearchBar
