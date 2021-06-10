@@ -44,7 +44,7 @@ export const Header = ({
             onLongPressSwitchLanguage={onLongPressSwitchLanguage}
           />
         )}
-        <SmallButton />
+        <SmallButton iconName="volume-up-outline" />
       </RowContainer>
     </MainContainer>
   </StyledSafeAreaView>

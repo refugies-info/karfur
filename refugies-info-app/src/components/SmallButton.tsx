@@ -3,17 +3,22 @@ import { theme } from "../theme";
 import styled from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
 
-const ButtonContainer = styled.View`
+const ButtonContainer = styled.TouchableOpacity`
   background-color: ${theme.colors.white};
   border-radius: ${theme.radius * 2}px;
   padding: ${theme.radius * 2}px;
 `;
 
 const ICON_SIZE = 24;
-export const SmallButton = () => (
-  <ButtonContainer>
+
+interface Props {
+  iconName: string;
+  onPress?: () => {};
+}
+export const SmallButton = (props: Props) => (
+  <ButtonContainer onPress={props.onPress}>
     <Icon
-      name="volume-up-outline"
+      name={props.iconName}
       width={ICON_SIZE}
       height={ICON_SIZE}
       fill={theme.colors.black}

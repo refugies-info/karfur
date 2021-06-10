@@ -1,19 +1,10 @@
 {
-  "homepage": {
-    "test": "test francais e"
-  },
-  "lists": "Lists francais",
-  "Onboarding1": {
-    "welcome": "Bienvenue fr"
-  },
-  "Onboarding2": {
-    "welcome": "Bienvenue fr"
-  },
   "Onboarding": {
     "parti": "C'est parti",
     "bonjour": "Bonjour !",
     "bonjour_desc": "Nous sommes très heureux de t'avoir avec nous."
   },
+  "Suivant": "Suivant",
   "tabBar": {
     "Explorer": "Explorer",
     "Favoris": "Favoris",

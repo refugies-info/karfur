@@ -68,7 +68,7 @@ export const OnboardingStart = ({
         <CustomButton
           text={t("Onboarding.parti", "trad")}
           textColor={theme.colors.darkBlue}
-          onPress={() => navigation.navigate("OnboardingStep1")}
+          onPress={() => navigation.navigate("OnboardingSteps")}
         />
       </ElementsContainer>
     </MainView>
