@@ -25,6 +25,7 @@ import "./CommentContribuer.scss";
 import { icon_France } from "../../assets/figma/index";
 import Nour from "../../assets/qui-sommes-nous/Nour.png";
 import FButton from "components/FigmaUI/FButton/FButton";
+import { CompleteProfilModal } from "../../components/Modals/CompleteProfilModal/CompleteProfilModal";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -349,7 +350,15 @@ const TraduireAnchor = styled.div`
 `;
 
 const DispositifCard = (props) => (
-  <DispoCardContainer>
+  <DispoCardContainer
+    onClick={() => {
+      if (props.user.email !== "") {
+        props.history.push("/dispositif");
+      } else {
+        props.toggleModal();
+      }
+    }}
+  >
     <img src={assetsOnServer.commentContribuer.dispositif} alt="dispositif" />
     <div
       style={{
@@ -427,7 +436,15 @@ const StructureCard = (props) => (
 );
 
 const DemarcheCard = (props) => (
-  <DemarcheCardContainer>
+  <DemarcheCardContainer
+    onClick={() => {
+      if (props.user.email !== "") {
+        props.history.push("/dispositif");
+      } else {
+        props.toggleModal();
+      }
+    }}
+  >
     <img
       src={assetsOnServer.commentContribuer.demarche}
       height="190px"
@@ -513,6 +530,7 @@ class CommentContribuer extends Component {
     showModals: { checkDemarche: false },
     nbTraductors: 0,
     nbExperts: 0,
+    showCompleteProfilModal: false,
   };
   _isMounted = false;
 
@@ -530,6 +548,10 @@ class CommentContribuer extends Component {
   componentWillUnmount() {
     this._isMounted = false;
   }
+  toggleCompleteProfilModal = () =>
+    this.setState((prevState) => ({
+      showCompleteProfilModal: !prevState.showCompleteProfilModal,
+    }));
 
   toggleModal = (show, name) =>
     this.setState((prevState) => ({
@@ -593,12 +615,19 @@ class CommentContribuer extends Component {
         <RedactionContainer id="ecrire-card">
           {t("CommentContribuer.Redaction", "Rédiger de nouveaux contenus")}
           <RedactionCardsContainer>
-            <NavLink to="/dispositif" className="no-decoration">
-              <DispositifCard t={t} />
-            </NavLink>
-            <NavLink to="/demarche" className="no-decoration">
-              <DemarcheCard t={t} />
-            </NavLink>
+            <DispositifCard
+              user={this.props.user}
+              history={this.props.history}
+              t={t}
+              toggleModal={this.toggleCompleteProfilModal}
+            />
+
+            <DemarcheCard
+              user={this.props.user}
+              history={this.props.history}
+              t={t}
+              toggleModal={this.toggleCompleteProfilModal}
+            />
 
             <StructureCard t={t} />
             <LexiqueCard t={t} />
@@ -800,7 +829,6 @@ class CommentContribuer extends Component {
             </RdvContactContainer>
           </DeployonsRdvContainer>
         </DeployonsContainer>
-
         <CorrectionContainer id="corriger">
           <CorrectionHeader>
             {t(
@@ -902,6 +930,13 @@ class CommentContribuer extends Component {
             <PapillonViolet />
           </div>
         </CorrectionContainer>
+        <CompleteProfilModal
+          show={this.state.showCompleteProfilModal}
+          toggle={this.toggleCompleteProfilModal}
+          history={this.props.history}
+          user={this.props.user}
+        />
+        ;
       </MainContainer>
     );
   }
@@ -1031,6 +1066,7 @@ const RoundIcon = (props) => (
 const mapStateToProps = (state) => {
   return {
     langues: state.langue.langues,
+    user: state.user.user,
   };
 };
 

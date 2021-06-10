@@ -1,14 +1,16 @@
 {
-  "homepage": {
-    "test": "test francais e"
+  "Onboarding": {
+    "parti": "C'est parti",
+    "bonjour": "Bonjour !",
+    "bonjour_desc": "Nous sommes très heureux de t'avoir avec nous.",
+    "Ici, tu trouves des fiches d’information pour faire tes démarches.": "Ici, tu trouves des fiches d’information pour faire tes démarches.",
+    "Découvre les associations et les activités de ta ville.": "Découvre les associations et les activités de ta ville.",
+
+    "Les fiches sont écrites par les associations et relues par l’État.": "Les fiches sont écrites par les associations et relues par l’État.",
+    "Toute l'application est gratuite ! Pas besoin de payer.": "Toute l'application est gratuite ! Pas besoin de payer."
   },
-  "lists": "Lists francais",
-  "Onboarding1": {
-    "welcome": "Bienvenue fr"
-  },
-  "Onboarding2": {
-    "welcome": "Bienvenue fr"
-  },
+  "Suivant": "Suivant",
+  "Continuer": "Continuer",
   "tabBar": {
     "Explorer": "Explorer",
     "Favoris": "Favoris",
