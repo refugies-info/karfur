@@ -13,6 +13,7 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
   border-radius: ${theme.radius * 2}px;
   align-items: center;
   width: 100%;
+  height: 56px;
 `;
 
 const ColoredText = styled(StyledTextSmallBold)`
