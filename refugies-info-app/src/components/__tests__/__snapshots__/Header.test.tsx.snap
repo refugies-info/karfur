@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header should render correctly with LTR 1`] = `
-<RCTSafeAreaView
-  emulateUnlessSupported={true}
+<RNCSafeAreaView
   style={
     Array [
       Object {
@@ -137,12 +136,11 @@ exports[`Header should render correctly with LTR 1`] = `
       </View>
     </View>
   </View>
-</RCTSafeAreaView>
+</RNCSafeAreaView>
 `;
 
 exports[`Header should render correctly with RTL 1`] = `
-<RCTSafeAreaView
-  emulateUnlessSupported={true}
+<RNCSafeAreaView
   style={
     Array [
       Object {
@@ -277,5 +275,5 @@ exports[`Header should render correctly with RTL 1`] = `
       </View>
     </View>
   </View>
-</RCTSafeAreaView>
+</RNCSafeAreaView>
 `;

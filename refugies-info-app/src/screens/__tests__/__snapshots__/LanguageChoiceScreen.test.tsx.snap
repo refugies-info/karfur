@@ -7,8 +7,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
   onGestureHandlerStateChange={[Function]}
 >
   <View>
-    <RCTSafeAreaView
-      emulateUnlessSupported={true}
+    <RNCSafeAreaView
       style={
         Array [
           Object {
@@ -143,7 +142,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
           </View>
         </View>
       </View>
-    </RCTSafeAreaView>
+    </RNCSafeAreaView>
     <View
       style={
         Array [
