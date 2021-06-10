@@ -151,7 +151,7 @@ export class TopRightHeader extends React.Component<Props> {
           {!props.translating &&
             props.langue === "fr" &&
             isUserAllowedToModifyDispositif && (
-              <div className="top-icon-wrapper">
+              <div className="top-icon-wrapper button">
                 <FButton
                   className="dark"
                   name="edit-outline"
@@ -164,7 +164,7 @@ export class TopRightHeader extends React.Component<Props> {
           {this.props.selectedDispositif &&
             this.props.selectedDispositif.status === "Actif" && (
               <div
-                className="top-icon-wrapper"
+                className="top-icon-wrapper button"
                 onClick={props.bookmarkDispositif}
               >
                 {props.showSpinnerBookmark ? (
