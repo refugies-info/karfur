@@ -1,7 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header should render correctly with LTR 1`] = `
-<RNCSafeAreaView>
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Array [
+      Object {
+        "zIndex": 2,
+      },
+    ]
+  }
+>
   <View
     isRTL={false}
     style={
@@ -35,17 +44,25 @@ exports[`Header should render correctly with LTR 1`] = `
     >
       <View />
       <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 12,
-              "paddingBottom": 12,
-              "paddingLeft": 12,
-              "paddingRight": 12,
-              "paddingTop": 12,
-            },
-          ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 12,
+            "opacity": 1,
+            "paddingBottom": 12,
+            "paddingLeft": 12,
+            "paddingRight": 12,
+            "paddingTop": 12,
+          }
         }
       >
         <View
@@ -120,11 +137,20 @@ exports[`Header should render correctly with LTR 1`] = `
       </View>
     </View>
   </View>
-</RNCSafeAreaView>
+</RCTSafeAreaView>
 `;
 
 exports[`Header should render correctly with RTL 1`] = `
-<RNCSafeAreaView>
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Array [
+      Object {
+        "zIndex": 2,
+      },
+    ]
+  }
+>
   <View
     isRTL={false}
     style={
@@ -158,17 +184,25 @@ exports[`Header should render correctly with RTL 1`] = `
     >
       <View />
       <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 12,
-              "paddingBottom": 12,
-              "paddingLeft": 12,
-              "paddingRight": 12,
-              "paddingTop": 12,
-            },
-          ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 12,
+            "opacity": 1,
+            "paddingBottom": 12,
+            "paddingLeft": 12,
+            "paddingRight": 12,
+            "paddingTop": 12,
+          }
         }
       >
         <View
@@ -243,5 +277,5 @@ exports[`Header should render correctly with RTL 1`] = `
       </View>
     </View>
   </View>
-</RNCSafeAreaView>
+</RCTSafeAreaView>
 `;

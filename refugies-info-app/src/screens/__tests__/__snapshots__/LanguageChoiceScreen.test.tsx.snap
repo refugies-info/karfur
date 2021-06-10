@@ -7,7 +7,16 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
   onGestureHandlerStateChange={[Function]}
 >
   <View>
-    <RNCSafeAreaView>
+    <RCTSafeAreaView
+      emulateUnlessSupported={true}
+      style={
+        Array [
+          Object {
+            "zIndex": 2,
+          },
+        ]
+      }
+    >
       <View
         isRTL={false}
         style={
@@ -41,17 +50,25 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         >
           <View />
           <View
+            accessible={true}
+            focusable={false}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 12,
-                  "paddingBottom": 12,
-                  "paddingLeft": 12,
-                  "paddingRight": 12,
-                  "paddingTop": 12,
-                },
-              ]
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "opacity": 1,
+                "paddingBottom": 12,
+                "paddingLeft": 12,
+                "paddingRight": 12,
+                "paddingTop": 12,
+              }
             }
           >
             <View
@@ -126,7 +143,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
           </View>
         </View>
       </View>
-    </RNCSafeAreaView>
+    </RCTSafeAreaView>
     <View
       style={
         Array [
