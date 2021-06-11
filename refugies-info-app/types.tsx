@@ -37,6 +37,9 @@ export type OnboardingParamList = {
   OnboardingStart: undefined;
   OnboardingSteps: undefined;
   FilterCity: undefined;
+  FilterAge: undefined;
+  FilterFrenchLevel: undefined;
+  FinishOnboarding: undefined;
 };
 
 export type LanguageChoiceParamList = {

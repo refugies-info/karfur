@@ -4,9 +4,9 @@ import { OnboardingParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { SmallButton } from "../../components/SmallButton";
 
-export const FilterCity = ({
+export const FilterFrenchLevel = ({
   navigation,
-}: StackScreenProps<OnboardingParamList, "FilterCity">) => {
+}: StackScreenProps<OnboardingParamList, "FilterFrenchLevel">) => {
   return (
     <View
       style={{
@@ -18,10 +18,10 @@ export const FilterCity = ({
     >
       <SmallButton iconName="arrow-back-outline" onPress={navigation.goBack} />
 
-      <Text>Filter city</Text>
+      <Text>Filter french</Text>
       <Button
-        title="commencer"
-        onPress={() => navigation.navigate("FilterAge")}
+        title="next"
+        onPress={() => navigation.navigate("FinishOnboarding")}
       />
     </View>
   );
