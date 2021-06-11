@@ -3,6 +3,7 @@ const colors = {
   black: "#212121",
   darkGrey: "#5E5E5E",
   grey: "#EDEBEB",
+  grey60: "#C6C6C6",
   white: "#FFFFFF",
   lightGrey: "#F6F6F6",
   admin100: "#443023",
@@ -41,6 +42,8 @@ const colors = {
   culture100: "#9E180A",
   culture80: "#E05A3E",
   culture30: "#F9E8E8",
+  lightBlue: "#D2EDFC",
+  blue: "#2D9CDB",
 };
 
 const images = {};
