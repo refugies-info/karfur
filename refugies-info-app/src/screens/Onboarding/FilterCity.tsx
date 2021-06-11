@@ -17,6 +17,7 @@ import { Icon } from "react-native-eva-icons";
 import { OnboardingHeader } from "./OnboardingHeader";
 import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
 import { Explaination } from "../../components/Onboarding/Explaination";
+import { SearchBarCity } from "../../components/Onboarding/SearchBarCity";
 
 const ContentContainer = styled.View`
   padding: ${theme.margin * 3}px;
@@ -64,6 +65,11 @@ const TextBold = styled(StyledTextNormalBold)`
   margin-right: ${theme.margin}px;
 `;
 
+const SearchBarCityContainer = styled.View`
+  background-color: red;
+  height: 100%;
+`;
+
 const ICON_SIZE = 24;
 export const FilterCity = ({
   navigation,
@@ -84,9 +90,12 @@ export const FilterCity = ({
           <Title>
             {t("Onboarding.ville", "Dans quelle ville habites tu ?")}
           </Title>
-          <Text>Search bar</Text>
+          <SearchBarCityContainer>
+            <SearchBarCity />
+          </SearchBarCityContainer>
+          {/* <Text>Search bar</Text>
           <Text>Position</Text>
-          <Text>Aide</Text>
+          <Text>Aide</Text> */}
           <Explaination
             step={1}
             defaultText="C’est pour te montrer les associations et les activités dans ta ville."
