@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { Col, Row, Spinner } from "reactstrap";
@@ -78,6 +79,7 @@ import { initGA, Event } from "../../tracking/dispatch";
 import { fetchActiveStructuresActionCreator } from "../../services/ActiveStructures/activeStructures.actions";
 import { logger } from "../../logger";
 import { isMobile } from "react-device-detect";
+import { PdfCreateModal } from "../../components/Modals/PdfCreateModal/PdfCreateModal";
 
 moment.locale("fr");
 
@@ -128,6 +130,7 @@ export class Dispositif extends Component {
     showDispositifValidateModal: false,
     showGeolocModal: false,
     showTagsModal: false,
+    showPdfModal: false,
     showTutorielModal: false,
     showDraftModal: false,
     showShareContentOnMobileModal: false,
@@ -540,6 +543,10 @@ export class Dispositif extends Component {
 
   toggleGeolocModal = (show) => {
     this.setState({ showGeolocModal: show });
+  };
+
+  toggleShowPdfModal = () => {
+    this.setState({ showPdfModal: !this.state.showPdfModal });
   };
 
   handleModalChange = (ev) =>
@@ -1332,6 +1339,10 @@ export class Dispositif extends Component {
     this.setState({ uiArray: uiArray, showSpinnerPrint: true, printing: true });
   };
 
+  printPdf = () => {
+    window.print();
+  };
+
   editDispositif = (_ = null, disableEdit = false) => {
     this.props.history.push({
       state: {
@@ -1918,6 +1929,7 @@ export class Dispositif extends Component {
                       toggleTutorielModal={this.toggleTutorielModal}
                       displayTuto={this.state.displayTuto}
                       updateUIArray={this.updateUIArray}
+                      toggleShowPdfModal={this.toggleShowPdfModal}
                     />
                   }
                 </Col>
@@ -2112,6 +2124,16 @@ export class Dispositif extends Component {
               editDispositif={this.editDispositif}
               update_status={this.update_status}
               sponsors={this.state.sponsors}
+            />
+
+            <PdfCreateModal
+              createPdf={this.createPdf}
+              t={this.props.t}
+              show={this.state.showPdfModal}
+              toggle={this.toggleShowPdfModal}
+              printPdf={this.printPdf}
+              closePdf={this.closePdf}
+              newRef={this.newRef}
             />
 
             <BookmarkedModal

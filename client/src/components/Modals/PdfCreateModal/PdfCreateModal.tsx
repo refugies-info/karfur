@@ -3,12 +3,16 @@ import { Modal } from "reactstrap";
 import styled from "styled-components";
 import Icon from "react-eva-icons";
 import FButton from "../../FigmaUI/FButton/FButton";
+import ReactToPrint from "react-to-print";
 
 interface Props {
   toggle: () => void;
   show: boolean;
   t: (a: string, b: string) => void;
   createPdf: () => void;
+  printPdf: () => void;
+  closePdf: () => void;
+  newRef: any;
 }
 
 const getIFrameSrc = () => {
@@ -115,16 +119,37 @@ export class PdfCreateModal extends Component<Props> {
               <div></div>
               {this.props.t("Annuler", "Annuler")}
             </FButton>
-            <FButton
-              type="validate"
-              name="download-outline"
-              onClick={() => {
-                this.props.createPdf();
+            <ReactToPrint
+              onBeforeGetContent={async () => {
+                await this.props.createPdf();
+                await this.props.toggle();
               }}
-            >
-              <div></div>
-              {this.props.t("Dispositif.Télécharger", "Télécharger")}
-            </FButton>
+              onAfterPrint={() => {
+                this.props.closePdf();
+              }}
+              copyStyles
+              fonts={[
+                {
+                  family: "CircularStdMedium",
+                  source:
+                    "../../../scss/fonts/CircularStd/CircularStd-Medium.WOFF",
+                },
+              ]}
+              trigger={() => (
+                <FButton
+                  type="validate"
+                  name="download-outline"
+                  onClick={() => {
+                    this.props.toggle();
+                    this.props.printPdf();
+                  }}
+                >
+                  <div></div>
+                  {this.props.t("Dispositif.Télécharger", "Télécharger")}
+                </FButton>
+              )}
+              content={() => this.props.newRef.current}
+            />
           </ButtonsContainer>
         </MainContainer>
       </Modal>
