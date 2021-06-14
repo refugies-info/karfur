@@ -935,6 +935,7 @@ class CommentContribuer extends Component {
           toggle={this.toggleCompleteProfilModal}
           history={this.props.history}
           user={this.props.user}
+          type={"dispositif"}
         />
         ;
       </MainContainer>

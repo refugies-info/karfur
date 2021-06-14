@@ -16,6 +16,8 @@ import styled from "styled-components";
 import { colors } from "../../../colors";
 import { TranslationLanguagesChoiceModal } from "./components/TranslationLanguagesChoiceModal";
 import { FrameModal } from "../../../components/Modals";
+import { CompleteProfilModal } from "../../../components/Modals/CompleteProfilModal/CompleteProfilModal";
+
 import API from "../../../utils/API";
 import { Indicators } from "../../../types/interface";
 import { Navigation } from "../Navigation";
@@ -24,6 +26,7 @@ declare const window: Window;
 export interface PropsBeforeInjection {
   match: any;
   history: any;
+  user: { username: string; password: string; email?: string };
 }
 
 const MainContainer = styled.div`
@@ -36,10 +39,15 @@ const availableLanguages = ["fa", "en", "ru", "ps", "ar", "ti-ER"];
 
 export const UserTranslationComponent = (props: Props) => {
   const [showTraducteurModal, setShowTraducteurModal] = useState(false);
+  const [showCompleteProfilModal, setShowCompleteProfilModal] = useState(false);
   const toggleTraducteurModal = () =>
     setShowTraducteurModal(!showTraducteurModal);
+  const toggleCompleteProfilModal = () =>
+    setShowCompleteProfilModal(!showCompleteProfilModal);
   const [showTutoModal, setShowTutoModal] = useState(false);
   const toggleTutoModal = () => setShowTutoModal(!showTutoModal);
+
+  const [elementToTranslate, setElementToTranslate] = useState(null);
 
   const [indicators, setIndicators] = useState<null | Indicators>(null);
 
@@ -64,6 +72,16 @@ export const UserTranslationComponent = (props: Props) => {
   const dispositifsWithTranslations = useSelector(
     dispositifsWithTranslationsStatusSelector
   );
+
+  const getLangueId = () => {
+    if (!userTradLanguages || userTradLanguages.length === 0) return null;
+    const langueArray = userTradLanguages.filter(
+      (langue) => langue.i18nCode === langueInUrl
+    );
+    // @ts-ignore
+    if (langueArray.length > 0) return langueArray[0]._id;
+    return null;
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -198,6 +216,10 @@ export const UserTranslationComponent = (props: Props) => {
           toggleTutoModal={toggleTutoModal}
           nbWords={nbWords}
           timeSpent={timeSpent}
+          toggleCompleteProfilModal={toggleCompleteProfilModal}
+          setElementToTranslate={setElementToTranslate}
+          user={user.user}
+          getLangueId={getLangueId}
         />
         {showTraducteurModal && (
           <TranslationLanguagesChoiceModal
@@ -210,6 +232,18 @@ export const UserTranslationComponent = (props: Props) => {
             show={showTutoModal}
             toggle={toggleTutoModal}
             section={"Traduction"}
+          />
+        )}
+        {showCompleteProfilModal && (
+          <CompleteProfilModal
+            show={showCompleteProfilModal}
+            toggle={toggleCompleteProfilModal}
+            history={props.history}
+            user={user}
+            type={"traduction"}
+            element={elementToTranslate}
+            isExpert={user.expertTrad}
+            langueId={getLangueId()}
           />
         )}
       </MainContainer>
