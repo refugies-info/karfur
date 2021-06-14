@@ -49,11 +49,6 @@ export interface PropsBeforeInjection {
 export const LeftSideDispositif = (props: Props) => {
   const { t } = props;
 
-  const printPage = async () => {
-    await props.createPdf();
-    await window.print();
-  };
-
   // when clicking on 'Voir le site'
   // if lecture mode : navigate to the link
   // if edition mode : modify the link
