@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { Tooltip } from "reactstrap";
@@ -317,6 +318,9 @@ export class AdvancedSearch extends Component {
     // tri is created_at or nbVues
     const tri = querySearch(this.props.location.search).tri;
 
+    if (filter || langue || tri) {
+      this.setState({ searchToggleVisible: true });
+    }
     // Reinject filters value in recherche
     if (
       tag ||
