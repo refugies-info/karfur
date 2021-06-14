@@ -48,6 +48,8 @@ export const CompleteProfilModal = (props) => {
   const redirect = () => {
     if (props.type === "dispositif") {
       props.history.push("/dispositif");
+    } else if (props.type === "demarche") {
+      props.history.push("/demarche");
     } else if (props.type === "traduction") {
       if (!props.langueId) return;
       if (!props.isExpert && props.element.tradStatus === "Validée") return;
@@ -79,7 +81,7 @@ export const CompleteProfilModal = (props) => {
       type: "success",
       timer: 1500,
     });
-    props.history.push("/dispositif");
+    redirect();
   };
 
   return (

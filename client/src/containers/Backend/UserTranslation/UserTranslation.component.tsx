@@ -239,7 +239,7 @@ export const UserTranslationComponent = (props: Props) => {
             show={showCompleteProfilModal}
             toggle={toggleCompleteProfilModal}
             history={props.history}
-            user={user}
+            user={user.user}
             type={"traduction"}
             element={elementToTranslate}
             isExpert={user.expertTrad}

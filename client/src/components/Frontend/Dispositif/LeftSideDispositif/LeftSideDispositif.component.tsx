@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React from "react";
+import React, { useState } from "react";
 import {
   ListGroup,
   ListGroupItem,
@@ -43,6 +43,7 @@ export interface PropsBeforeInjection {
   toggleTutorielModal: (arg: string) => void;
   displayTuto: boolean;
   updateUIArray: (arg: number) => void;
+  toggleShowPdfModal: () => void;
 }
 
 export const LeftSideDispositif = (props: Props) => {
@@ -51,6 +52,7 @@ export const LeftSideDispositif = (props: Props) => {
   // when clicking on 'Voir le site'
   // if lecture mode : navigate to the link
   // if edition mode : modify the link
+
   const onLinkClicked = props.disableEdit
     ? () =>
         props.content.externalLink &&
@@ -162,31 +164,16 @@ export const LeftSideDispositif = (props: Props) => {
         )}
         {props.disableEdit && (
           <>
-            <ReactToPrint
-              onBeforeGetContent={async () => {
-                await props.createPdf();
-              }}
-              onAfterPrint={() => {
-                props.closePdf();
-              }}
-              copyStyles
-              fonts={[
-                {
-                  family: "CircularStdMedium",
-                  source:
-                    "../../../scss/fonts/CircularStd/CircularStd-Medium.WOFF",
-                },
-              ]}
-              trigger={() => (
-                <FButton type="light-action" name="download-outline">
-                  {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
-                  {props.showSpinner && (
-                    <Spinner color="light" className="ml-8 small-spinner" />
-                  )}
-                </FButton>
+            <FButton
+              type="light-action"
+              name="download-outline"
+              onClick={() => props.toggleShowPdfModal()}
+            >
+              {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
+              {props.showSpinner && (
+                <Spinner color="light" className="ml-8 small-spinner" />
               )}
-              content={() => props.newRef.current}
-            />
+            </FButton>
             <FButton
               type="light-action"
               href={`mailto:?subject=${mailSubject}&body=${emailBody}`}
