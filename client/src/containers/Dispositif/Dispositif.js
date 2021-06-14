@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { Col, Row, Spinner } from "reactstrap";
