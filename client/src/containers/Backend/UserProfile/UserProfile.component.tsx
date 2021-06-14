@@ -108,9 +108,8 @@ export const UserProfileComponent = (props: Props) => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(false);
-  const [isCurrentPasswordVisible, setIsCurrentPasswordVisible] = useState(
-    false
-  );
+  const [isCurrentPasswordVisible, setIsCurrentPasswordVisible] =
+    useState(false);
   const [isChangePasswordLoading, setIsChangePasswordLoading] = useState(false);
   const [newPasswordScore, setNewPasswordScore] = useState(0);
   const [isPseudoModifyDisabled, setIsPseudoModifyDisabled] = useState(true);
@@ -154,8 +153,9 @@ export const UserProfileComponent = (props: Props) => {
     }
 
     if (e.target.id === "new-password") {
-      const newPasswordScore = computePasswordStrengthScore(e.target.value)
-        .score;
+      const newPasswordScore = computePasswordStrengthScore(
+        e.target.value
+      ).score;
       setNewPasswordScore(newPasswordScore);
       setNewPassword(e.target.value);
       return;

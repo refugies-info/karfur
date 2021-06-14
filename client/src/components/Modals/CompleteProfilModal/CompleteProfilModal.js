@@ -5,7 +5,7 @@ import styled from "styled-components";
 import FInput from "../../FigmaUI/FInput/FInput";
 import FButton from "../../FigmaUI/FButton/FButton";
 import { colors } from "colors";
-//import { useDispatch } from "react-redux";
+
 import { saveUserActionCreator } from "../../../services/User/user.actions";
 import Swal from "sweetalert2";
 
@@ -45,6 +45,26 @@ export const CompleteProfilModal = (props) => {
     setEmail(e.target.value);
   };
 
+  const redirect = () => {
+    if (props.type === "dispositif") {
+      props.history.push("/dispositif");
+    } else if (props.type === "demarche") {
+      props.history.push("/demarche");
+    } else if (props.type === "traduction") {
+      if (!props.langueId) return;
+      if (!props.isExpert && props.element.tradStatus === "Validée") return;
+      return props.history.push({
+        pathname:
+          (props.isExpert ? "/validation" : "/traduction") +
+          "/" +
+          (props.element.typeContenu || "dispositif") +
+          "/" +
+          props.element._id,
+        search: "?id=" + props.langueId,
+      });
+    }
+  };
+
   const dispatch = useDispatch();
 
   const onEmailModificationValidate = () => {
@@ -61,7 +81,7 @@ export const CompleteProfilModal = (props) => {
       type: "success",
       timer: 1500,
     });
-    props.history.push("/dispositif");
+    redirect();
   };
 
   return (
@@ -101,7 +121,7 @@ export const CompleteProfilModal = (props) => {
           {"Retour"}
         </FButton>{" "}
         <FButton
-          onClick={() => props.history.push("/dispositif")}
+          onClick={redirect}
           type="white mr-8"
           name="arrowhead-right-outline"
         >

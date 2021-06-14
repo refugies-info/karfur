@@ -355,7 +355,7 @@ const DispositifCard = (props) => (
       if (props.user.email !== "") {
         props.history.push("/dispositif");
       } else {
-        props.toggleModal();
+        props.toggleModal("dispositif");
       }
     }}
   >
@@ -439,9 +439,9 @@ const DemarcheCard = (props) => (
   <DemarcheCardContainer
     onClick={() => {
       if (props.user.email !== "") {
-        props.history.push("/dispositif");
+        props.history.push("/demarche");
       } else {
-        props.toggleModal();
+        props.toggleModal("demarche");
       }
     }}
   >
@@ -531,6 +531,7 @@ class CommentContribuer extends Component {
     nbTraductors: 0,
     nbExperts: 0,
     showCompleteProfilModal: false,
+    typeModal: "",
   };
   _isMounted = false;
 
@@ -548,9 +549,10 @@ class CommentContribuer extends Component {
   componentWillUnmount() {
     this._isMounted = false;
   }
-  toggleCompleteProfilModal = () =>
+  toggleCompleteProfilModal = (type = "") =>
     this.setState((prevState) => ({
       showCompleteProfilModal: !prevState.showCompleteProfilModal,
+      typeModal: type,
     }));
 
   toggleModal = (show, name) =>
@@ -935,6 +937,7 @@ class CommentContribuer extends Component {
           toggle={this.toggleCompleteProfilModal}
           history={this.props.history}
           user={this.props.user}
+          type={this.state.typeModal}
         />
         ;
       </MainContainer>

@@ -16,6 +16,7 @@ import { filterData } from "./functions";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { colors } from "../../../../colors";
 import { CustomSearchBar } from "../../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
+import { User } from "../../../../types/interface";
 
 interface Props {
   userTradLanguages: UserLanguage[];
@@ -26,8 +27,12 @@ interface Props {
   isAdmin: boolean;
   toggleTraducteurModal: () => void;
   toggleTutoModal: () => void;
+  toggleCompleteProfilModal: () => void;
   nbWords: number;
   timeSpent: number;
+  setElementToTranslate: any;
+  user: User | null;
+  getLangueId: any;
 }
 
 const RowContainer = styled.div`
@@ -70,8 +75,9 @@ const getInitialFilterStatus = (
   data: IDispositifTranslation[]
 ) => {
   if (!isExpert) return "À traduire";
-  const nbARevoir = data.filter((trad) => trad.tradStatus === "À revoir")
-    .length;
+  const nbARevoir = data.filter(
+    (trad) => trad.tradStatus === "À revoir"
+  ).length;
   if (nbARevoir > 0) return "À revoir";
   return "En attente";
 };
@@ -81,12 +87,10 @@ export const TranslationsAvancement = (props: Props) => {
     props.isExpert,
     props.data
   );
-  const [statusFilter, setStatusFilter] = useState<TranslationStatus | "all">(
-    initialStatusFilter
-  );
-  const [typeContenuFilter, setTypeContenuFilter] = useState<
-    ITypeContenu | "all"
-  >("dispositif");
+  const [statusFilter, setStatusFilter] =
+    useState<TranslationStatus | "all">(initialStatusFilter);
+  const [typeContenuFilter, setTypeContenuFilter] =
+    useState<ITypeContenu | "all">("dispositif");
 
   const navigateToLanguage = (langue: string) => {
     if (props.actualLanguage !== langue) {
@@ -94,16 +98,7 @@ export const TranslationsAvancement = (props: Props) => {
     }
     return;
   };
-  const getLangueId = () => {
-    if (!props.userTradLanguages || props.userTradLanguages.length === 0)
-      return null;
-    const langueArray = props.userTradLanguages.filter(
-      (langue) => langue.i18nCode === props.actualLanguage
-    );
-    // @ts-ignore
-    if (langueArray.length > 0) return langueArray[0]._id;
-    return null;
-  };
+
   const onFilterClick = (status: TranslationStatus | "all") => {
     if (status === statusFilter) return setStatusFilter("all");
     return setStatusFilter(status);
@@ -227,9 +222,12 @@ export const TranslationsAvancement = (props: Props) => {
         isExpert={props.isExpert}
         data={dataToDisplay}
         history={props.history}
-        langueId={getLangueId()}
+        langueId={props.getLangueId()}
         isAdmin={props.isAdmin}
         languei18nCode={props.actualLanguage}
+        toggleCompleteProfilModal={props.toggleCompleteProfilModal}
+        setElementToTranslate={props.setElementToTranslate}
+        user={props.user}
       />
     </MainContainer>
   );
