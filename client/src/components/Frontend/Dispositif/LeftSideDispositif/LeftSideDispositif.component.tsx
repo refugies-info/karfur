@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React from "react";
+import React, { useState } from "react";
 import {
   ListGroup,
   ListGroupItem,
@@ -18,6 +18,7 @@ import { DispositifContent } from "../../../../types/interface";
 import API from "../../../../utils/API";
 import Swal from "sweetalert2";
 import { send_sms } from "../../../../containers/Dispositif/function";
+import { PdfCreateModal } from "../../../Modals/PdfCreateModal/PdfCreateModal";
 
 declare const window: Window;
 export interface PropsBeforeInjection {
@@ -46,11 +47,22 @@ export interface PropsBeforeInjection {
 }
 
 export const LeftSideDispositif = (props: Props) => {
+  const [showPdfModal, setShowPdfModal] = useState(false);
   const { t } = props;
+
+  const toggleShowPdfModal = () => {
+    setShowPdfModal(!showPdfModal);
+  };
+
+  const printPage = async () => {
+    await props.createPdf();
+    await window.print();
+  };
 
   // when clicking on 'Voir le site'
   // if lecture mode : navigate to the link
   // if edition mode : modify the link
+
   const onLinkClicked = props.disableEdit
     ? () =>
         props.content.externalLink &&
@@ -163,11 +175,11 @@ export const LeftSideDispositif = (props: Props) => {
         {props.disableEdit && (
           <>
             <ReactToPrint
-              onBeforeGetContent={async () => {
-                await props.createPdf();
-              }}
               onAfterPrint={() => {
                 props.closePdf();
+              }}
+              print={async (e) => {
+                await toggleShowPdfModal();
               }}
               copyStyles
               fonts={[
@@ -224,6 +236,12 @@ export const LeftSideDispositif = (props: Props) => {
           </>
         )}
       </div>
+      <PdfCreateModal
+        createPdf={printPage}
+        t={props.t}
+        show={showPdfModal}
+        toggle={toggleShowPdfModal}
+      />
     </div>
   );
 };

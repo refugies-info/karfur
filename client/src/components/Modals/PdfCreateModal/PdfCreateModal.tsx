@@ -2,15 +2,18 @@ import React, { Component } from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
 import Icon from "react-eva-icons";
-import "./DispositifCreateModal.scss";
 import FButton from "../../FigmaUI/FButton/FButton";
 
 interface Props {
   toggle: () => void;
   show: boolean;
-  typeContenu: string;
-  navigateToCommentContribuer: () => void;
+  t: (a: string, b: string) => void;
+  createPdf: () => void;
 }
+
+const getIFrameSrc = () => {
+  return "https://www.loom.com/embed/b3493cec4f8f4ac3b59b11adabeb244a";
+};
 const IconContainer = styled.div`
   position: absolute;
   width: 20px;
@@ -34,30 +37,18 @@ const MainContainer = styled.div`
 const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-`;
-
-const TypeContenuContainer = styled.div`
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 8px 16px;
-  margin-left: 13px;
-  font-weight: bold;
-  font-size: 40px;
-  line-height: 51px;
-  color: #5e5e5e;
+  justify-content: flex-end;
 `;
 
 const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: ${(props) => (props.step === 2 ? "33px" : "41px")};
+  margin-bottom: 24px;
 `;
 
 const Subtitle = styled.div`
-  font-weight: bold;
-  font-size: 22px;
+  font-size: 16px;
   line-height: 28px;
 `;
 
@@ -68,53 +59,12 @@ const VideoContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top:  ${(props) => (props.step === 2 ? "32px" : "40px")}
-  margin-bottom: 82px;
+  margin-top: 24px;
+  margin-bottom: 24px;
 `;
-const YellowText = styled.div`
-  background: #f9ef99;
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  padding: 8px;
-  margin-left: 8px;
-  margin-right: 8px;
-  color: #3a3a3a;
-`;
-interface StateType {
-  step: number;
-}
 
-const getIFrameSrc = (step: number) => {
-  if (step === 1) {
-    return "https://www.loom.com/embed/43573b5bd3c349d9abb28c0c61af1a5f?autoplay=true";
-  }
-  if (step === 2) {
-    return "https://www.loom.com/embed/aa6bc53a6ed545cb9ec0196cbb40d5bf?autoplay=true";
-  }
-  return "https://www.loom.com/embed/a213b540704f4d598c338e50c4f07cdd?autoplay=true";
-};
-
-export class PdfCreateModal extends Component<Props, StateType> {
-  state: StateType = { step: 1 };
-  changeStep = (next = true) => {
-    if (this.state.step === 3 && next) {
-      return this.props.toggle();
-    }
-    return this.setState((pS) => ({ step: pS.step + (next ? 1 : -1) }));
-  };
-
-  getButtonText = () => {
-    if (this.state.step < 3) return "Suivant " + this.state.step + "/3";
-    return "C'est parti !";
-  };
-  UNSAFE_componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.show !== this.props.show && this.state.step !== 1) {
-      this.setState({ step: 1 });
-    }
-  }
+export class PdfCreateModal extends Component<Props> {
   render() {
-    const { step } = this.state;
     return (
       <Modal
         isOpen={this.props.show}
@@ -125,37 +75,25 @@ export class PdfCreateModal extends Component<Props, StateType> {
           <IconContainer onClick={this.props.toggle}>
             <Icon name="close-outline" fill="#3D3D3D" size="large" />
           </IconContainer>
-          <HeaderContainer step={this.state.step}>
-            <Header>Nouvelle fiche</Header>
-            <div>
-              <TypeContenuContainer>
-                {this.props.typeContenu}
-              </TypeContenuContainer>
-            </div>
+          <HeaderContainer>
+            <Header>
+              {this.props.t(
+                "Dispositif.Télécharger la fiche en PDF",
+                "Télécharger la fiche en PDF"
+              )}
+            </Header>
           </HeaderContainer>
-          {step === 1 && (
-            <Subtitle>Bienvenue dans l'éditeur de fiche dispositif !</Subtitle>
-          )}
 
-          {step === 3 && (
-            <Subtitle>Sauvegardez à tout moment pour finir plus tard</Subtitle>
-          )}
-          {step === 2 && (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <Subtitle>Cliquez sur les zones surlignées en </Subtitle>
-              <YellowText>jaune</YellowText>
-              <Subtitle>pour écrire.</Subtitle>
-            </div>
-          )}
-          <VideoContainer step={this.state.step}>
+          <Subtitle>
+            {this.props.t(
+              "Dispositif.Enregistrez la fiche depuis la fenêtre d’impression de votre navigateur",
+              "Enregistrez la fiche depuis la fenêtre d’impression de votre navigateur."
+            )}
+          </Subtitle>
+
+          <VideoContainer>
             <iframe
-              src={getIFrameSrc(this.state.step)}
+              src={getIFrameSrc()}
               frameBorder="0"
               style={{
                 top: "0",
@@ -168,32 +106,25 @@ export class PdfCreateModal extends Component<Props, StateType> {
           </VideoContainer>
           <ButtonsContainer>
             <FButton
-              type="outline-black"
-              name="log-out-outline"
+              type="white mr-10"
+              name="close-outline"
               onClick={() => {
                 this.props.toggle();
-                this.props.navigateToCommentContribuer();
               }}
             >
-              Quitter l'éditeur
+              <div></div>
+              {this.props.t("Annuler", "Annuler")}
             </FButton>
-            <div>
-              {step > 1 && (
-                <FButton
-                  type="outline-black"
-                  name="arrow-back"
-                  onClick={() => this.changeStep(false)}
-                  className="mr-10"
-                />
-              )}
-              <FButton
-                type="validate"
-                name={step < 3 ? "arrow-forward" : "checkmark-outline"}
-                onClick={this.changeStep}
-              >
-                {this.getButtonText()}
-              </FButton>
-            </div>
+            <FButton
+              type="validate"
+              name="download-outline"
+              onClick={() => {
+                this.props.createPdf();
+              }}
+            >
+              <div></div>
+              {this.props.t("Dispositif.Télécharger", "Télécharger")}
+            </FButton>
           </ButtonsContainer>
         </MainContainer>
       </Modal>
