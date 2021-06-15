@@ -4,6 +4,7 @@ import { theme } from "../../theme";
 import { GoogleAPISuggestion } from "../../../types";
 import { StyledTextSmall } from "../StyledText";
 import { RTLTouchableOpacity } from "../BasicComponents";
+import { View } from "react-native";
 
 const StyledInput = styled.TextInput`
  height:56px;
@@ -33,21 +34,24 @@ interface Props {
   enteredText: string;
   suggestions: GoogleAPISuggestion[];
   onChangeText: (data: string) => void;
+  selectSuggestion: (suggestion: GoogleAPISuggestion) => void;
 }
 
 export const SearchBarCity = (props: Props) => {
   return (
-    <>
+    <View>
       <StyledInput
         value={props.enteredText}
         placeholder={"Exemple : Paris"}
         onChangeText={props.onChangeText}
       />
       {props.suggestions.length > 0 && (
-        <SuggestionsContainer>
+        <SuggestionsContainer keyboardShouldPersistTaps={"handled"}>
           {props.suggestions.map((suggestion, index) => (
-            <>
-              <SuggestionContainer key={suggestion.place_id}>
+            <View key={suggestion.place_id}>
+              <SuggestionContainer
+                onPress={() => props.selectSuggestion(suggestion)}
+              >
                 <StyledTextSmall>
                   {suggestion &&
                     suggestion.structured_formatting &&
@@ -55,10 +59,10 @@ export const SearchBarCity = (props: Props) => {
                 </StyledTextSmall>
               </SuggestionContainer>
               {index !== props.suggestions.length - 1 && <Separator />}
-            </>
+            </View>
           ))}
         </SuggestionsContainer>
       )}
-    </>
+    </View>
   );
 };

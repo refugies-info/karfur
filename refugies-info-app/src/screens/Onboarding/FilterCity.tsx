@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View } from "react-native";
+import { View, Touchable } from "react-native";
 import { OnboardingParamList, GoogleAPISuggestion } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { RowTouchableOpacity } from "../../components/BasicComponents";
@@ -22,6 +22,7 @@ import {
   getCitiesFromGoogleAPI,
   getCityDetailsFromGoogleAPI,
 } from "../../utils/API";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const ContentContainer = styled.View`
   padding: ${theme.margin * 3}px;
@@ -157,12 +158,31 @@ export const FilterCity = ({
           <Title>
             {t("Onboarding.ville", "Dans quelle ville habites-tu ?")}
           </Title>
-          <SearchBarCity
-            enteredText={enteredText}
-            onChangeText={onChangeText}
-            suggestions={suggestions}
-            selectSuggestion={onSelectSuggestion}
-          />
+          {!selectedCity && (
+            <SearchBarCity
+              enteredText={enteredText}
+              onChangeText={onChangeText}
+              suggestions={suggestions}
+              selectSuggestion={onSelectSuggestion}
+            />
+          )}
+          {!!selectedCity && !!selectedDepartment && (
+            <>
+              <TextNormal>
+                {selectedCity + " - " + selectedDepartment}
+              </TextNormal>
+              <TouchableOpacity
+                onPress={() => {
+                  setSelectedCity("");
+                  setSelectedDepartment("");
+                  setEnteredText("");
+                  setSuggestions([]);
+                }}
+              >
+                <TextNormal>supprimer</TextNormal>
+              </TouchableOpacity>
+            </>
+          )}
           {hasError && (
             <ErrorText>
               {t("Erreur", "Une erreur est survenue, veuillez réessayer.")}
