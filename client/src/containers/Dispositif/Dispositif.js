@@ -2165,6 +2165,8 @@ export class Dispositif extends Component {
               toggle={this.toggleDispositifValidateModal}
               abstract={this.state.content.abstract}
               onChange={this.handleChange}
+              titreInformatif={this.state.content.titreInformatif}
+              titreMarque={this.state.content.titreMarque}
               validate={this.valider_dispositif}
               toggleTutorielModal={this.toggleTutorielModal}
               tags={this.state.tags}
