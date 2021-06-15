@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Touchable } from "react-native";
+import { View, ActivityIndicator } from "react-native";
 import { OnboardingParamList, GoogleAPISuggestion } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { RowTouchableOpacity } from "../../components/BasicComponents";
@@ -10,7 +10,7 @@ import {
   StyledTextNormalBold,
   TextNormal,
   StyledTextNormal,
-  TextVerySmallNormal,
+  TextSmallNormal,
 } from "../../components/StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { Icon } from "react-native-eva-icons";
@@ -21,8 +21,10 @@ import { SearchBarCity } from "../../components/Onboarding/SearchBarCity";
 import {
   getCitiesFromGoogleAPI,
   getCityDetailsFromGoogleAPI,
+  getPlaceIdFromLocationFromGoogleAPI,
 } from "../../utils/API";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import * as Location from "expo-location";
 
 const ContentContainer = styled.View`
   padding: ${theme.margin * 3}px;
@@ -70,7 +72,7 @@ const TextBold = styled(StyledTextNormalBold)`
   margin-right: ${theme.margin}px;
 `;
 
-const ErrorText = styled(TextVerySmallNormal)`
+const ErrorText = styled(TextSmallNormal)`
   color: red;
   margin-top: ${theme.margin}px;
 `;
@@ -100,11 +102,23 @@ export const FilterCity = ({
   const [suggestions, setSuggestions] = React.useState<GoogleAPISuggestion[]>(
     []
   );
-  const [hasError, setHasError] = React.useState(false);
+  const [error, setError] = React.useState("");
   const [selectedCity, setSelectedCity] = React.useState("");
   const [selectedDepartment, setSelectedDepartment] = React.useState("");
+  const [isGeolocLoading, setIsGeolocLoading] = React.useState(false);
 
   const { t } = useTranslationWithRTL();
+
+  const defaultError = t(
+    "Erreur",
+    "Une erreur est survenue, veuillez réessayer."
+  );
+
+  const resetData = () => {
+    setEnteredText("");
+    setSuggestions([]), setSelectedDepartment("");
+    setSelectedCity("");
+  };
 
   const onChangeText = async (data: string) => {
     setEnteredText(data);
@@ -114,34 +128,89 @@ export const FilterCity = ({
         setSuggestions(results.data.predictions);
       }
     } catch (error) {
-      setHasError(true);
-      setSuggestions([]);
+      setError(defaultError);
+      resetData();
+    }
+  };
+
+  const setCityAndGetDepartment = async (city: string, place_id: string) => {
+    setSelectedCity(city);
+    const results = await getCityDetailsFromGoogleAPI(place_id);
+    if (
+      results &&
+      results.data &&
+      results.data.result &&
+      results.data.result.address_components
+    ) {
+      const department = getDepartementFromResult(
+        results.data.result.address_components
+      );
+
+      if (!department) {
+        throw new Error("NO_CORRESPONDING_DEP");
+      }
+      setSelectedDepartment(department);
     }
   };
 
   const onSelectSuggestion = async (suggestion: GoogleAPISuggestion) => {
     try {
-      setSelectedCity(suggestion.structured_formatting.main_text);
-      const results = await getCityDetailsFromGoogleAPI(suggestion.place_id);
+      await setCityAndGetDepartment(
+        suggestion.structured_formatting.main_text,
+        suggestion.place_id
+      );
+    } catch (error) {
+      setError(defaultError);
+      resetData();
+    }
+  };
+
+  const useGeoloc = async () => {
+    try {
+      setIsGeolocLoading(true);
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
       if (
-        results &&
-        results.data &&
-        results.data.result &&
-        results.data.result.address_components
+        location &&
+        location.coords &&
+        location.coords.latitude &&
+        location.coords.longitude
       ) {
-        const department = getDepartementFromResult(
-          results.data.result.address_components
+        const result = await getPlaceIdFromLocationFromGoogleAPI(
+          location.coords.longitude,
+          location.coords.latitude
         );
-        if (!department) {
-          setHasError(true);
-          return;
+
+        if (
+          result &&
+          result.data &&
+          result.data.results &&
+          result.data.results.length > 0
+        ) {
+          try {
+            await setCityAndGetDepartment(
+              result.data.results[0].name,
+              result.data.results[0].place_id
+            );
+            setIsGeolocLoading(false);
+          } catch (error) {
+            setError(
+              t(
+                "Onboarding.error_geoloc",
+                "Une erreur est survenue lors de la géolocalisation, veuillez entrer votre ville dans le champ ci-dessus."
+              )
+            );
+            resetData();
+            setIsGeolocLoading(false);
+          }
         }
-        setSelectedDepartment(department);
       }
     } catch (error) {
-      setHasError(true);
-      setSelectedDepartment("");
-      setSelectedCity("");
+      setIsGeolocLoading(false);
     }
   };
 
@@ -158,38 +227,33 @@ export const FilterCity = ({
           <Title>
             {t("Onboarding.ville", "Dans quelle ville habites-tu ?")}
           </Title>
-          {!selectedCity && (
-            <SearchBarCity
-              enteredText={enteredText}
-              onChangeText={onChangeText}
-              suggestions={suggestions}
-              selectSuggestion={onSelectSuggestion}
-            />
+          {!selectedCity && !isGeolocLoading && (
+            <View>
+              <SearchBarCity
+                enteredText={enteredText}
+                onChangeText={onChangeText}
+                suggestions={suggestions}
+                selectSuggestion={onSelectSuggestion}
+              />
+              <TouchableOpacity onPress={useGeoloc}>
+                <TextNormal>geoloc</TextNormal>
+              </TouchableOpacity>
+            </View>
           )}
+          {isGeolocLoading && <ActivityIndicator />}
           {!!selectedCity && !!selectedDepartment && (
             <>
               <TextNormal>
                 {selectedCity + " - " + selectedDepartment}
               </TextNormal>
-              <TouchableOpacity
-                onPress={() => {
-                  setSelectedCity("");
-                  setSelectedDepartment("");
-                  setEnteredText("");
-                  setSuggestions([]);
-                }}
-              >
+              <TouchableOpacity onPress={resetData}>
                 <TextNormal>supprimer</TextNormal>
               </TouchableOpacity>
             </>
           )}
-          {hasError && (
-            <ErrorText>
-              {t("Erreur", "Une erreur est survenue, veuillez réessayer.")}
-            </ErrorText>
-          )}
+          {!!error && <ErrorText>{error}</ErrorText>}
 
-          {!enteredText && (
+          {!enteredText && !isGeolocLoading && !error && (
             <Explaination
               step={1}
               defaultText="C’est pour te montrer les associations et les activités dans ta ville."

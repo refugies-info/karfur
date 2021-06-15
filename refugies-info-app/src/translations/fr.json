@@ -9,7 +9,8 @@
     "Toute l'application est gratuite ! Pas besoin de payer.": "Toute l'application est gratuite ! Pas besoin de payer.",
     "Créer mon profil": "Créer mon profil",
     "help_1": "C’est pour te montrer les associations et les activités dans ta ville.",
-    "ville": "Dans quelle ville habites-tu ?"
+    "ville": "Dans quelle ville habites-tu ?",
+    "error_geoloc": "Une erreur est survenue lors de la géolocalisation, veuillez entrer votre ville dans le champ ci-dessus."
   },
   "Suivant": "Suivant",
   "Continuer": "Continuer",
