@@ -11,3 +11,21 @@ const apiCaller = axios.create({
 });
 
 export const getLanguages = () => apiCaller.get("/langues/getLanguages");
+
+export const getCitiesFromGoogleAPI = (text: string) =>
+  apiCaller.post(
+    `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${text}&language=fr&types=(cities)&components=country:fr&key=${process.env.GOOGLE_API_KEY}`
+  );
+
+export const getCityDetailsFromGoogleAPI = (placeId: string) =>
+  apiCaller.post(
+    `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=address_component&key=${process.env.GOOGLE_API_KEY}`
+  );
+
+export const getPlaceIdFromLocationFromGoogleAPI = (
+  longitude: number,
+  latitude: number
+) =>
+  apiCaller.post(
+    `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=1500&language=fr&type=locality&key=${process.env.GOOGLE_API_KEY}`
+  );
