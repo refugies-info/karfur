@@ -1,8 +1,7 @@
 import * as React from "react";
-import { View, Text, Button } from "react-native";
-import { OnboardingParamList } from "../../../types";
+import { View } from "react-native";
+import { OnboardingParamList, GoogleAPISuggestion } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { SmallButton } from "../../components/SmallButton";
 import { RowTouchableOpacity } from "../../components/BasicComponents";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
@@ -11,6 +10,7 @@ import {
   StyledTextNormalBold,
   TextNormal,
   StyledTextNormal,
+  TextVerySmallNormal,
 } from "../../components/StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { Icon } from "react-native-eva-icons";
@@ -18,6 +18,7 @@ import { OnboardingHeader } from "./OnboardingHeader";
 import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
 import { Explaination } from "../../components/Onboarding/Explaination";
 import { SearchBarCity } from "../../components/Onboarding/SearchBarCity";
+import { getCitiesFromGoogleAPI } from "../../utils/API";
 
 const ContentContainer = styled.View`
   padding: ${theme.margin * 3}px;
@@ -65,22 +66,40 @@ const TextBold = styled(StyledTextNormalBold)`
   margin-right: ${theme.margin}px;
 `;
 
-const SearchBarCityContainer = styled.View`
-  background-color: red;
-  height: 100%;
+const ErrorText = styled(TextVerySmallNormal)`
+  color: red;
+  margin-top: ${theme.margin}px;
 `;
 
 const ICON_SIZE = 24;
+
 export const FilterCity = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "FilterCity">) => {
+  const [enteredText, setEnteredText] = React.useState("");
+  const [suggestions, setSuggestions] = React.useState<GoogleAPISuggestion[]>(
+    []
+  );
+  const [hasError, setHasError] = React.useState(false);
+
   const { t } = useTranslationWithRTL();
+
+  const onChangeText = async (data: string) => {
+    setEnteredText(data);
+    try {
+      const results = await getCitiesFromGoogleAPI(data);
+      if (results && results.data && results.data.predictions) {
+        setSuggestions(results.data.predictions);
+      }
+    } catch (error) {
+      setHasError(true);
+      setSuggestions([]);
+    }
+  };
   return (
     <SafeAreaView
       style={{
         display: "flex",
-        // justifyContent: "center",
-        // alignItems: "center",
         flex: 1,
       }}
     >
@@ -88,18 +107,25 @@ export const FilterCity = ({
       <ContentContainer>
         <View>
           <Title>
-            {t("Onboarding.ville", "Dans quelle ville habites tu ?")}
+            {t("Onboarding.ville", "Dans quelle ville habites-tu ?")}
           </Title>
-          <SearchBarCityContainer>
-            <SearchBarCity />
-          </SearchBarCityContainer>
-          {/* <Text>Search bar</Text>
-          <Text>Position</Text>
-          <Text>Aide</Text> */}
-          <Explaination
-            step={1}
-            defaultText="C’est pour te montrer les associations et les activités dans ta ville."
+          <SearchBarCity
+            enteredText={enteredText}
+            onChangeText={onChangeText}
+            suggestions={suggestions}
           />
+          {hasError && (
+            <ErrorText>
+              {t("Erreur", "Une erreur est survenue, veuillez réessayer.")}
+            </ErrorText>
+          )}
+
+          {!enteredText && (
+            <Explaination
+              step={1}
+              defaultText="C’est pour te montrer les associations et les activités dans ta ville."
+            />
+          )}
         </View>
         <View>
           <OnboardingProgressBar step={1} />

@@ -45,3 +45,9 @@ export type OnboardingParamList = {
 export type LanguageChoiceParamList = {
   LanguageChoice: undefined;
 };
+
+export interface GoogleAPISuggestion {
+  structured_formatting: { main_text: string };
+  place_id: string;
+  description: string;
+}

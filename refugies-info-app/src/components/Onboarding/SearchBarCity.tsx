@@ -1,52 +1,38 @@
 import React from "react";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import { StyleSheet, View } from "react-native";
-import Constants from "expo-constants";
+import { Text } from "react-native";
+import styled from "styled-components/native";
+import { theme } from "../../theme";
+import { GoogleAPISuggestion } from "../../../types";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    // paddingTop: 10,
-    backgroundColor: "#ecf0f1",
-    marginBottom: 50,
-    paddingTop: Constants.statusBarHeight,
-  },
-});
+const StyledInput = styled.TextInput`
+ height:56px;
+ width 100%;
+ border: 1px solid ${theme.colors.darkGrey};
+ border-radius:${theme.radius * 2}px;
+ padding:${theme.margin * 2}px
+`;
 
-export const SearchBarCity = () => {
+interface Props {
+  enteredText: string;
+  suggestions: GoogleAPISuggestion[];
+  onChangeText: (data: string) => void;
+}
+
+export const SearchBarCity = (props: Props) => {
   return (
-    <View style={styles.container}>
-      <GooglePlacesAutocomplete
-        placeholder="Search"
-        onPress={(data, details = null) => {
-          // 'details' is provided when fetchDetails = true
-          console.log("data", data);
-          console.log("details", details?.address_components);
-          if (!details) return;
-          const city = details.address_components.filter((data) =>
-            data.types.includes("locality")
-          )[0].long_name;
-          const department = details.address_components.filter((data) =>
-            data.types.includes("administrative_area_level_2")
-          )[0].long_name;
-          console.log("city", city);
-          console.log("department", department);
-        }}
-        query={{
-          key: process.env.GOOGLE_API_KEY,
-          language: "fr",
-          components: "country:fr",
-        }}
-        minLength={2}
-        onFail={(error) => console.error(error)}
-        listViewDisplayed="auto"
-        filterReverseGeocodingByTypes={[
-          "administrative_area_level_3",
-          "locality",
-        ]}
-        fetchDetails={true}
+    <>
+      <StyledInput
+        value={props.enteredText}
+        placeholder={"Exemple : Paris"}
+        onChangeText={props.onChangeText}
       />
-    </View>
+      {props.suggestions.map((suggestion) => (
+        <Text key={suggestion.place_id}>
+          {suggestion.description +
+            " - " +
+            suggestion.structured_formatting.main_text}
+        </Text>
+      ))}
+    </>
   );
 };
