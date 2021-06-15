@@ -20,6 +20,8 @@ export const colors = {
   validationHover: "#4caf50",
   validationDefault: "#8bc34a",
   error: "#f44336",
+  orange: "#FF9800",
+  orangeLight: "#FFE2B8",
   erreur: "#ffcecb",
   lightColor: "#f2f2f2",
   darkColor: "#212121",

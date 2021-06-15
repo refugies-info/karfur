@@ -4,6 +4,9 @@ import styled from "styled-components";
 import FButton from "../../FigmaUI/FButton/FButton";
 import FInput from "../../FigmaUI/FInput/FInput";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
+import { colors } from "../../../colors";
+import { filtres } from "../../../containers/Dispositif/data";
+import Streamline from "../../../assets/streamline/index";
 
 import "./DispositifValidateModal.scss";
 
@@ -32,6 +35,75 @@ const Title = styled.div`
   color: ${(props) => (props.missingElement ? "#FF9800" : "#4caf50")};
 `;
 
+const TitleMockup = styled.div`
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 30px;
+  color: ${(props) =>
+    props.typeContenu === "demarche" && props.color ? props.color : "black"};
+`;
+
+const TextMockup = styled.div`
+  font-size: 16px;
+  color: ${(props) =>
+    props.textlength > 110
+      ? "red"
+      : props.typeContenu === "demarche" && props.color
+      ? props.color
+      : ""};
+`;
+
+const TagNameContainer = styled.div`
+  font-size: 16px;
+  color: ${colors.blancSimple};
+`;
+
+const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  height: ${(props) =>
+    props.typeContenu === "dispositif" ? "198px" : "248px"};
+  min-width: 248px;
+  max-width: 248px;
+`;
+
+const TagContainer = styled.div`
+  background-color: ${(props) => props.color};
+  height: 50px;
+  min-width: 248px;
+  border-radius: 0 0 12px 12px;
+  padding: 13px 15px;
+`;
+
+const TagContainerContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const EmptyTextContainer = styled.div`
+  width: 216px;
+  height: 80px;
+  background-color: ${colors.orangeLight};
+  border-radius: 12px;
+  border: ${colors.orange} dashed 2px;
+`;
+
+const MockupCardContainer = styled.div`
+  height: 248px;
+  min-width: 248px;
+  background-color: ${(props) =>
+    props.typeContenu === "dispositif" ? colors.blancSimple : "transparent"};
+  border-radius: 12px;
+  border: ${(props) =>
+    props.typeContenu === "demarche" && props.color
+      ? props.color + " solid 2px"
+      : props.typeContenu === "demarche"
+      ? "black solid 2px"
+      : ""};
+`;
+
 const getTitle = (section) =>
   section === "tags"
     ? "Choix des thèmes"
@@ -47,6 +119,15 @@ const onCheckContainerClick = (section, toggleModal, missingElement) => {
   }
   return toggleModal(true);
 };
+
+const getTagElement = (tag) => {
+  let fullTag = "";
+  if (tag) {
+    fullTag = filtres.tags.filter((item) => item.name === tag.name)[0];
+  }
+  return fullTag;
+};
+
 const Check = (props) => (
   <CheckContainer
     missingElement={props.missingElement}
@@ -79,19 +160,67 @@ const Check = (props) => (
         <p style={{ fontSize: 16, marginTop: 8 }}>
           Rédigez une dernière phrase, visible dans les résultats de recherche
         </p>
-        <FInput
-          type="textarea"
-          rows={5}
-          value={props.abstract}
-          onChange={props.onChange}
-          id="abstract"
-          placeholder="Résumez votre dispositif en une phrase"
-        />
+        <div style={{ display: "flex" }}>
+          <FInput
+            type="textarea"
+            rows={5}
+            value={props.abstract}
+            onChange={props.onChange}
+            id="abstract"
+            height="250px"
+            padding="15px"
+            placeholder="Résumez ici votre dispositif..."
+          />
+          <div style={{ marginTop: "100px" }}>
+            <EVAIcon
+              name={"chevron-right-outline"}
+              size="xlarge"
+              fill={colors.noir}
+            />
+          </div>
+          <MockupCardContainer
+            color={getTagElement(props.tags[0]).darkColor}
+            typeContenu={props.typeContenu}
+          >
+            <CardContainer typeContenu={props.typeContenu}>
+              <TitleMockup
+                color={getTagElement(props.tags[0]).darkColor}
+                typeContenu={props.typeContenu}
+              >
+                {props.titreInformatif}
+              </TitleMockup>
+              <TextMockup
+                color={getTagElement(props.tags[0]).darkColor}
+                typeContenu={props.typeContenu}
+                textlength={props.abstract.length}
+              >
+                {props.abstract.length === 0 && (
+                  <EmptyTextContainer
+                    typeContenu={props.typeContenu}
+                  ></EmptyTextContainer>
+                )}
+                {props.abstract.length > 0 ? props.abstract : ""}
+              </TextMockup>
+            </CardContainer>
+            {props.tags && props.typeContenu === "dispositif" && (
+              <TagContainer color={getTagElement(props.tags[0]).darkColor}>
+                <TagContainerContent>
+                  <Streamline
+                    name={getTagElement(props.tags[0]).icon}
+                    stroke={"white"}
+                    width={22}
+                    height={22}
+                  />
+                  <TagNameContainer> {props.titreMarque}</TagNameContainer>
+                </TagContainerContent>
+              </TagContainer>
+            )}
+          </MockupCardContainer>
+        </div>
         <div
           style={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "flex-end",
           }}
         >
           <div
@@ -100,7 +229,10 @@ const Check = (props) => (
               ((props.abstract || "").length > 110 ? " text-danger" : "")
             }
           >
-            {110 - (props.abstract || "").length} sur 110 caractères restants
+            {(props.abstract || "").length < 110
+              ? 110 - (props.abstract || "").length
+              : "110"}{" "}
+            sur 110 caractères restants
           </div>
         </div>
       </>
@@ -171,6 +303,10 @@ const dispositifValidateModal = (props) => {
           }
           toggleTagsModal={props.toggleTagsModal}
           toggleSponsorModal={props.toggleSponsorModal}
+          titreInformatif={props.titreInformatif}
+          titreMarque={props.titreMarque}
+          tags={props.tags}
+          typeContenu={props.typeContenu}
         />
       </div>
       <ModalFooter>
@@ -206,8 +342,16 @@ const dispositifValidateModal = (props) => {
           </FButton>
           <FButton
             name="checkmark"
-            type="validate"
-            onClick={validateAndClose}
+            type={
+              "validate-mockup" +
+              (!props.abstract ||
+              props.abstract === "" ||
+              props.abstract.length > 110 ||
+              (!geoloc && props.typeContenu !== "demarche") ||
+              props.tags.length === 0
+                ? " disabled"
+                : "")
+            }
             disabled={
               !props.abstract ||
               props.abstract === "" ||
@@ -215,6 +359,7 @@ const dispositifValidateModal = (props) => {
               (!geoloc && props.typeContenu !== "demarche") ||
               props.tags.length === 0
             }
+            onClick={validateAndClose}
           >
             Valider
           </FButton>
