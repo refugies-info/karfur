@@ -18,7 +18,10 @@ import { OnboardingHeader } from "./OnboardingHeader";
 import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
 import { Explaination } from "../../components/Onboarding/Explaination";
 import { SearchBarCity } from "../../components/Onboarding/SearchBarCity";
-import { getCitiesFromGoogleAPI } from "../../utils/API";
+import {
+  getCitiesFromGoogleAPI,
+  getCityDetailsFromGoogleAPI,
+} from "../../utils/API";
 
 const ContentContainer = styled.View`
   padding: ${theme.margin * 3}px;
@@ -73,6 +76,22 @@ const ErrorText = styled(TextVerySmallNormal)`
 
 const ICON_SIZE = 24;
 
+const getDepartementFromResult = (
+  data: { long_name: string; short_name: string; types: string[] }[]
+) => {
+  const result = data.filter((element) =>
+    element.types.includes("administrative_area_level_2")
+  );
+  if (result.length > 0) {
+    const department = result[0].long_name;
+    if (department === "Département de Paris") {
+      return "Paris";
+    }
+    return result[0].long_name;
+  }
+  return null;
+};
+
 export const FilterCity = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "FilterCity">) => {
@@ -81,6 +100,8 @@ export const FilterCity = ({
     []
   );
   const [hasError, setHasError] = React.useState(false);
+  const [selectedCity, setSelectedCity] = React.useState("");
+  const [selectedDepartment, setSelectedDepartment] = React.useState("");
 
   const { t } = useTranslationWithRTL();
 
@@ -96,6 +117,33 @@ export const FilterCity = ({
       setSuggestions([]);
     }
   };
+
+  const onSelectSuggestion = async (suggestion: GoogleAPISuggestion) => {
+    try {
+      setSelectedCity(suggestion.structured_formatting.main_text);
+      const results = await getCityDetailsFromGoogleAPI(suggestion.place_id);
+      if (
+        results &&
+        results.data &&
+        results.data.result &&
+        results.data.result.address_components
+      ) {
+        const department = getDepartementFromResult(
+          results.data.result.address_components
+        );
+        if (!department) {
+          setHasError(true);
+          return;
+        }
+        setSelectedDepartment(department);
+      }
+    } catch (error) {
+      setHasError(true);
+      setSelectedDepartment("");
+      setSelectedCity("");
+    }
+  };
+
   return (
     <SafeAreaView
       style={{
@@ -113,6 +161,7 @@ export const FilterCity = ({
             enteredText={enteredText}
             onChangeText={onChangeText}
             suggestions={suggestions}
+            selectSuggestion={onSelectSuggestion}
           />
           {hasError && (
             <ErrorText>
