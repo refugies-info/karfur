@@ -2,7 +2,10 @@ import * as React from "react";
 import { View, ActivityIndicator } from "react-native";
 import { OnboardingParamList, GoogleAPISuggestion } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { RowTouchableOpacity } from "../../components/BasicComponents";
+import {
+  RowTouchableOpacity,
+  RTLTouchableOpacity,
+} from "../../components/BasicComponents";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
@@ -11,6 +14,7 @@ import {
   TextNormal,
   StyledTextNormal,
   TextSmallNormal,
+  TextSmallBold,
 } from "../../components/StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { Icon } from "react-native-eva-icons";
@@ -52,7 +56,8 @@ const LeftButtonContainer = styled.TouchableOpacity`
 `;
 
 const RightButtonContainer = styled.TouchableOpacity`
-  background-color: ${theme.colors.grey60};
+  background-color: ${(props: { isDisabled: boolean }) =>
+    props.isDisabled ? theme.colors.grey60 : theme.colors.darkBlue};
   padding: ${theme.radius * 3}px;
   border-radius: ${theme.radius * 2}px;
   display: flex;
@@ -70,11 +75,25 @@ const BottomButtonsContainer = styled(RowTouchableOpacity)`
 
 const TextBold = styled(StyledTextNormalBold)`
   margin-right: ${theme.margin}px;
+  color: ${(props: { color: string }) => props.color};
+  align-items: center;
 `;
 
 const ErrorText = styled(TextSmallNormal)`
   color: red;
   margin-top: ${theme.margin}px;
+`;
+
+const GeolocContainer = styled(RTLTouchableOpacity)`
+  background-color: ${theme.colors.white};
+  margin-top: ${theme.margin * 2}px;
+  border-radius: ${theme.radius * 2}px;
+  padding: ${theme.margin * 2}px;
+  align-items: center;
+`;
+
+const GeolocText = styled(TextSmallBold)`
+  margin-left: ${theme.margin}px;
 `;
 
 const ICON_SIZE = 24;
@@ -155,6 +174,7 @@ export const FilterCity = ({
 
   const onSelectSuggestion = async (suggestion: GoogleAPISuggestion) => {
     try {
+      setEnteredText("");
       await setCityAndGetDepartment(
         suggestion.structured_formatting.main_text,
         suggestion.place_id
@@ -235,9 +255,17 @@ export const FilterCity = ({
                 suggestions={suggestions}
                 selectSuggestion={onSelectSuggestion}
               />
-              <TouchableOpacity onPress={useGeoloc}>
-                <TextNormal>geoloc</TextNormal>
-              </TouchableOpacity>
+              <GeolocContainer onPress={useGeoloc}>
+                <Icon
+                  name="navigation-2-outline"
+                  width={ICON_SIZE}
+                  height={ICON_SIZE}
+                  fill={theme.colors.black}
+                />
+                <GeolocText>
+                  {t("Onboarding.position", "Utiliser ma position")}
+                </GeolocText>
+              </GeolocContainer>
             </View>
           )}
           {isGeolocLoading && <ActivityIndicator />}
@@ -269,14 +297,20 @@ export const FilterCity = ({
               <StyledTextNormal>{t("Passer", "Passer")}</StyledTextNormal>
             </LeftButtonContainer>
             <RightButtonContainer
+              isDisabled={!selectedCity}
               onPress={() => navigation.navigate("FilterAge")}
+              disabled={!selectedCity}
             >
-              <TextBold>{t("Suivant", "Suivant")}</TextBold>
+              <TextBold
+                color={!selectedCity ? theme.colors.black : theme.colors.white}
+              >
+                {t("Suivant", "Suivant")}
+              </TextBold>
               <Icon
                 name={"arrow-forward-outline"}
                 width={ICON_SIZE}
                 height={ICON_SIZE}
-                fill={theme.colors.black}
+                fill={!selectedCity ? theme.colors.black : theme.colors.white}
               />
             </RightButtonContainer>
           </BottomButtonsContainer>
