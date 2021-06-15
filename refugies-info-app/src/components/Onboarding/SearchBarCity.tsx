@@ -1,8 +1,9 @@
 import React from "react";
-import { Text } from "react-native";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
 import { GoogleAPISuggestion } from "../../../types";
+import { StyledTextSmall } from "../StyledText";
+import { RTLTouchableOpacity } from "../BasicComponents";
 
 const StyledInput = styled.TextInput`
  height:56px;
@@ -10,6 +11,22 @@ const StyledInput = styled.TextInput`
  border: 1px solid ${theme.colors.darkGrey};
  border-radius:${theme.radius * 2}px;
  padding:${theme.margin * 2}px
+`;
+
+const SuggestionsContainer = styled.ScrollView`
+  background-color: ${theme.colors.white};
+  margin-top: ${theme.margin}px;
+  max-height: 140px;
+`;
+
+const SuggestionContainer = styled(RTLTouchableOpacity)`
+  padding: ${theme.margin * 2}px;
+`;
+
+const Separator = styled.View`
+  height: 1px;
+  background-color: ${theme.colors.grey60};
+  margin-horizontal: ${theme.margin * 2}px;
 `;
 
 interface Props {
@@ -26,13 +43,22 @@ export const SearchBarCity = (props: Props) => {
         placeholder={"Exemple : Paris"}
         onChangeText={props.onChangeText}
       />
-      {props.suggestions.map((suggestion) => (
-        <Text key={suggestion.place_id}>
-          {suggestion.description +
-            " - " +
-            suggestion.structured_formatting.main_text}
-        </Text>
-      ))}
+      {props.suggestions.length > 0 && (
+        <SuggestionsContainer>
+          {props.suggestions.map((suggestion, index) => (
+            <>
+              <SuggestionContainer key={suggestion.place_id}>
+                <StyledTextSmall>
+                  {suggestion &&
+                    suggestion.structured_formatting &&
+                    suggestion.structured_formatting.main_text}
+                </StyledTextSmall>
+              </SuggestionContainer>
+              {index !== props.suggestions.length - 1 && <Separator />}
+            </>
+          ))}
+        </SuggestionsContainer>
+      )}
     </>
   );
 };
