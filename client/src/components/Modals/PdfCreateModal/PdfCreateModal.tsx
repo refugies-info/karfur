@@ -99,6 +99,7 @@ export class PdfCreateModal extends Component<Props> {
             <iframe
               src={getIFrameSrc()}
               frameBorder="0"
+              allowFullScreen={true}
               style={{
                 top: "0",
                 left: " 0",

@@ -136,14 +136,14 @@ export class TopRightHeader extends React.Component<Props> {
         <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right-edition">
           {!props.translating &&
             props.langue === "fr" &&
-            isUserAllowedToModifyDispositif &&
+            (props.admin || isAuthor || userIsSponsor) &&
             !isMobile && (
               <div
                 onClick={(event: any) => {
                   event.stopPropagation();
                   props.toggleTutoModal("Statut des fiches");
                 }}
-                className="top-icon-wrapper"
+                className="top-icon-wrapper button"
               >
                 <ContribStyledStatus size="large" text={props.status} />
               </div>
