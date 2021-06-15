@@ -38,7 +38,7 @@ const Title = styled.div`
 const TitleMockup = styled.div`
   font-weight: bold;
   font-size: 22px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   color: ${(props) =>
     props.typeContenu === "demarche" && props.color ? props.color : "black"};
 `;
@@ -94,7 +94,7 @@ const MockupCardContainer = styled.div`
   height: 248px;
   min-width: 248px;
   background-color: ${(props) =>
-    props.typeContenu === "dispositif" ? colors.blancSimple : "transparent"};
+    props.typeContenu === "dispositif" ? colors.blancSimple : props.lightColor};
   border-radius: 12px;
   border: ${(props) =>
     props.typeContenu === "demarche" && props.color
@@ -180,6 +180,7 @@ const Check = (props) => (
           </div>
           <MockupCardContainer
             color={getTagElement(props.tags[0]).darkColor}
+            lightColor={getTagElement(props.tags[0]).lightColor}
             typeContenu={props.typeContenu}
           >
             <CardContainer typeContenu={props.typeContenu}>
