@@ -10,7 +10,6 @@ import Triangle from "../../theme/images/onboarding/Polygon.svg";
 const MainContainer = styled(RowContainer)`
   background-color: ${theme.colors.lightBlue};
   display: flex;
-  flex-direction: row;
   padding: ${theme.margin * 2}px;
   align-items: center;
   width: 100%;
@@ -20,6 +19,7 @@ const MainContainer = styled(RowContainer)`
 const StyledText = styled(StyledTextVerySmall)`
   color: ${theme.colors.blue};
   margin-left: ${theme.margin}px;
+  flex-shrink: 1;
 `;
 
 const TriangleContainer = styled.View`

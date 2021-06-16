@@ -29,7 +29,10 @@ const BottomContainer = styled.View`
 export const FilterFrenchLevel = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "FilterFrenchLevel">) => {
-  const [selectedFrenchLevel, setSelectedFrenchLevel] = React.useState("");
+  const [selectedFrenchLevel, setSelectedFrenchLevel] = React.useState<null | {
+    name: string;
+    cecrCorrespondency?: string[];
+  }>(null);
   const { t } = useTranslationWithRTL();
   return (
     <SafeAreaView
@@ -49,10 +52,14 @@ export const FilterFrenchLevel = ({
           </Title>
           {frenchLevelFilters.map((frenchLevel) => (
             <FilterButton
-              key={frenchLevel}
-              text={frenchLevel}
-              isSelected={frenchLevel === selectedFrenchLevel}
+              key={frenchLevel.name}
+              text={frenchLevel.name}
+              isSelected={
+                !!selectedFrenchLevel &&
+                frenchLevel.name === selectedFrenchLevel.name
+              }
               onPress={() => setSelectedFrenchLevel(frenchLevel)}
+              details={frenchLevel.cecrCorrespondency}
             />
           ))}
           <Explaination
