@@ -5,10 +5,10 @@ import { RowContainer } from "../BasicComponents";
 import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { StyledTextVerySmall } from "../StyledText";
-import Triangle from "../../theme/images/onboarding/Polygon.svg";
+import Triangle from "../../theme/images/onboarding/Polygon-white.svg";
 
 const MainContainer = styled(RowContainer)`
-  background-color: ${theme.colors.lightBlue};
+  background-color: ${theme.colors.white};
   display: flex;
   padding: ${theme.margin * 2}px;
   align-items: center;
