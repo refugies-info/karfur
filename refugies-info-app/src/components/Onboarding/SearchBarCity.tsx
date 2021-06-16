@@ -5,6 +5,7 @@ import { GoogleAPISuggestion } from "../../../types";
 import { StyledTextSmall } from "../StyledText";
 import { RTLTouchableOpacity } from "../BasicComponents";
 import { View } from "react-native";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 const StyledInput = styled.TextInput`
  height:56px;
@@ -38,11 +39,12 @@ interface Props {
 }
 
 export const SearchBarCity = (props: Props) => {
+  const { t } = useTranslationWithRTL();
   return (
     <View>
       <StyledInput
         value={props.enteredText}
-        placeholder={"Exemple : Paris"}
+        placeholder={t("Onboarding.placeholder", "Exemple : Paris")}
         onChangeText={props.onChangeText}
       />
       {props.suggestions.length > 0 && (
