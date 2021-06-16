@@ -16,7 +16,8 @@
     "position": "Utiliser ma position",
     "placeholder": "Exemple : Paris",
     "age": "Quel âge as-tu ?",
-    "niveauFrancais": "Quel est ton niveau en français ?"
+    "niveauFrancais": "Quel est ton niveau en français ?",
+    "end": "L’application est maintenant adaptée à ton profil."
   },
   "Suivant": "Suivant",
   "Continuer": "Continuer",
@@ -68,5 +69,7 @@
     "Je parle un peu": "Je parle un peu",
     "Je parle bien": "Je parle bien",
     "Je parle couramment": "Je parle couramment"
-  }
+  },
+  "Démarrer": "Démarrer",
+  "Merci !": "Merci !"
 }

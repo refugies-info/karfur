@@ -46,7 +46,7 @@ export const CustomButton = (props: Props) => {
           name={props.iconName}
           width={ICON_SIZE}
           height={ICON_SIZE}
-          fill={theme.colors.black}
+          fill={props.textColor}
         />
       )}
     </ButtonContainer>
