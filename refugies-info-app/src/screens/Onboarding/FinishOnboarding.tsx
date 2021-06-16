@@ -10,6 +10,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { CustomButton } from "../../components/CustomButton";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { StyledTextBigBold } from "../../components/StyledText";
+import LottieView from "lottie-react-native";
 
 const MainView = styled(SafeAreaView)`
   display: flex;
@@ -36,8 +37,15 @@ const StyledText = styled(StyledTextBigBold)`
   margin-bottom: ${theme.margin}px;
 `;
 
-const TextContainer = styled.View`
-  align-self: center;
+const ElementsContainer = styled.View`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const LottieContainer = styled.View`
+  height: 100px;
+  width: 100px;
 `;
 export const FinishOnboarding = ({
   navigation,
@@ -58,7 +66,14 @@ export const FinishOnboarding = ({
         />
         <SmallButton iconName="volume-up-outline" />
       </TopButtonsContainer>
-      <TextContainer>
+      <ElementsContainer>
+        <LottieContainer>
+          <LottieView
+            source={require("../../theme/lottie/thumbs-up-emoji-animation.json")}
+            autoPlay
+            loop
+          />
+        </LottieContainer>
         <StyledText>{t("Merci !", "Merci !")}</StyledText>
         <StyledText>
           {t(
@@ -66,9 +81,9 @@ export const FinishOnboarding = ({
             "L’application est maintenant adaptée à ton profil."
           )}
         </StyledText>
-      </TextContainer>
+      </ElementsContainer>
       <CustomButton
-        i18nKey={"Démarrer"}
+        i18nKey="Démarrer"
         defaultText="Démarrer"
         textColor={theme.colors.darkBlue}
         onPress={finishOnboarding}
