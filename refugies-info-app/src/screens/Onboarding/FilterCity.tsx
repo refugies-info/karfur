@@ -135,7 +135,8 @@ export const FilterCity = ({
 
   const resetData = () => {
     setEnteredText("");
-    setSuggestions([]), setSelectedDepartment("");
+    setSuggestions([]);
+    setSelectedDepartment("");
     setSelectedCity("");
   };
 
