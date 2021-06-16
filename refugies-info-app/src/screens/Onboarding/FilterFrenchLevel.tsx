@@ -1,28 +1,46 @@
 import * as React from "react";
-import { View, Text, Button } from "react-native";
+import { View } from "react-native";
 import { OnboardingParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { SmallButton } from "../../components/SmallButton";
+import { OnboardingHeader } from "./OnboardingHeader";
+import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
+import { BottomButtons } from "../../components/Onboarding/BottomButtons";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import {
+  ContentContainer,
+  Title,
+} from "../../components/Onboarding/SharedStyledComponents";
 
 export const FilterFrenchLevel = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "FilterFrenchLevel">) => {
+  const { t } = useTranslationWithRTL();
   return (
-    <View
+    <SafeAreaView
       style={{
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
         flex: 1,
       }}
     >
-      <SmallButton iconName="arrow-back-outline" onPress={navigation.goBack} />
-
-      <Text>Filter french</Text>
-      <Button
-        title="next"
-        onPress={() => navigation.navigate("FinishOnboarding")}
-      />
-    </View>
+      <OnboardingHeader navigation={navigation} />
+      <ContentContainer>
+        <View>
+          <Title>
+            {t(
+              "Onboarding.niveauFrancais",
+              "Quel est ton niveau en français ?"
+            )}
+          </Title>
+        </View>
+        <View>
+          <OnboardingProgressBar step={3} />
+          <BottomButtons
+            isRightButtonDisabled={false}
+            onButtonClick={() => navigation.navigate("FinishOnboarding")}
+          />
+        </View>
+      </ContentContainer>
+    </SafeAreaView>
   );
 };

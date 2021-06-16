@@ -2,20 +2,11 @@ import * as React from "react";
 import { View, ActivityIndicator } from "react-native";
 import { OnboardingParamList, GoogleAPISuggestion } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import {
-  RowTouchableOpacity,
-  RTLTouchableOpacity,
-} from "../../components/BasicComponents";
+import { RTLTouchableOpacity } from "../../components/BasicComponents";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
-import {
-  StyledTextNormalBold,
-  TextNormal,
-  StyledTextNormal,
-  TextSmallNormal,
-  TextSmallBold,
-} from "../../components/StyledText";
+import { TextSmallNormal, TextSmallBold } from "../../components/StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { Icon } from "react-native-eva-icons";
 import { OnboardingHeader } from "./OnboardingHeader";
@@ -29,55 +20,11 @@ import {
 } from "../../utils/API";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as Location from "expo-location";
-
-const ContentContainer = styled.View`
-  padding: ${theme.margin * 3}px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 1;
-`;
-
-const Title = styled(TextNormal)`
-  margin-top: ${theme.margin * 2}px;
-  margin-bottom: ${theme.margin * 4}px;
-`;
-
-const LeftButtonContainer = styled.TouchableOpacity`
-  background-color: ${theme.colors.white};
-  padding: ${theme.radius * 3}px;
-  border-radius: ${theme.radius * 2}px;
-  height: 56px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-right: ${theme.margin / 2}px;
-`;
-
-const RightButtonContainer = styled.TouchableOpacity`
-  background-color: ${(props: { isDisabled: boolean }) =>
-    props.isDisabled ? theme.colors.grey60 : theme.colors.darkBlue};
-  padding: ${theme.radius * 3}px;
-  border-radius: ${theme.radius * 2}px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  height: 56px;
-  align-items: center;
-  margin-left: ${theme.margin / 2}px;
-  flex: 2;
-`;
-
-const BottomButtonsContainer = styled(RowTouchableOpacity)`
-  margin-top: ${theme.margin * 3}px;
-`;
-
-const TextBold = styled(StyledTextNormalBold)`
-  margin-right: ${theme.margin}px;
-  color: ${(props: { color: string }) => props.color};
-  align-items: center;
-`;
+import { BottomButtons } from "../../components/Onboarding/BottomButtons";
+import {
+  ContentContainer,
+  Title,
+} from "../../components/Onboarding/SharedStyledComponents";
 
 const ErrorText = styled(TextSmallNormal)`
   color: red;
@@ -298,30 +245,10 @@ export const FilterCity = ({
         </View>
         <View>
           <OnboardingProgressBar step={1} />
-          <BottomButtonsContainer>
-            <LeftButtonContainer
-              onPress={() => navigation.navigate("FilterAge")}
-            >
-              <StyledTextNormal>{t("Passer", "Passer")}</StyledTextNormal>
-            </LeftButtonContainer>
-            <RightButtonContainer
-              isDisabled={!selectedCity}
-              onPress={() => navigation.navigate("FilterAge")}
-              disabled={!selectedCity}
-            >
-              <TextBold
-                color={!selectedCity ? theme.colors.black : theme.colors.white}
-              >
-                {t("Suivant", "Suivant")}
-              </TextBold>
-              <Icon
-                name={"arrow-forward-outline"}
-                width={ICON_SIZE}
-                height={ICON_SIZE}
-                fill={!selectedCity ? theme.colors.black : theme.colors.white}
-              />
-            </RightButtonContainer>
-          </BottomButtonsContainer>
+          <BottomButtons
+            isRightButtonDisabled={!selectedCity}
+            onButtonClick={() => navigation.navigate("FilterAge")}
+          />
         </View>
       </ContentContainer>
     </SafeAreaView>

@@ -12,7 +12,9 @@
     "ville": "Dans quelle ville habites-tu ?",
     "error_geoloc": "Une erreur est survenue lors de la géolocalisation, veuillez entrer votre ville dans le champ ci-dessus.",
     "position": "Utiliser ma position",
-    "placeholder": "Exemple : Paris"
+    "placeholder": "Exemple : Paris",
+    "age": "Quel âge as-tu ?",
+    "niveauFrancais": "Quel est ton niveau en français ?"
   },
   "Suivant": "Suivant",
   "Continuer": "Continuer",

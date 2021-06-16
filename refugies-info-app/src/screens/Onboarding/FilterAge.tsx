@@ -1,23 +1,21 @@
 import * as React from "react";
-import { View, SafeAreaView } from "react-native";
+import { View } from "react-native";
 import { OnboardingParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { OnboardingHeader } from "./OnboardingHeader";
 import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
-import { theme } from "../../theme";
-import styled from "styled-components/native";
-
-const ContentContainer = styled.View`
-  padding: ${theme.margin * 3}px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 1;
-`;
+import { BottomButtons } from "../../components/Onboarding/BottomButtons";
+import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  ContentContainer,
+  Title,
+} from "../../components/Onboarding/SharedStyledComponents";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 export const FilterAge = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "FilterAge">) => {
+  const { t } = useTranslationWithRTL();
   return (
     <SafeAreaView
       style={{
@@ -28,31 +26,14 @@ export const FilterAge = ({
       <OnboardingHeader navigation={navigation} />
       <ContentContainer>
         <View>
+          <Title>{t("Onboarding.age", "Quel âge as-tu ?")}</Title>
+        </View>
+        <View>
           <OnboardingProgressBar step={2} />
-          {/* <BottomButtonsContainer>
-            <LeftButtonContainer
-              onPress={() => navigation.navigate("FilterAge")}
-            >
-              <StyledTextNormal>{t("Passer", "Passer")}</StyledTextNormal>
-            </LeftButtonContainer>
-            <RightButtonContainer
-              isDisabled={!selectedCity}
-              onPress={() => navigation.navigate("FilterAge")}
-              disabled={!selectedCity}
-            >
-              <TextBold
-                color={!selectedCity ? theme.colors.black : theme.colors.white}
-              >
-                {t("Suivant", "Suivant")}
-              </TextBold>
-              <Icon
-                name={"arrow-forward-outline"}
-                width={ICON_SIZE}
-                height={ICON_SIZE}
-                fill={!selectedCity ? theme.colors.black : theme.colors.white}
-              />
-            </RightButtonContainer>
-          </BottomButtonsContainer> */}
+          <BottomButtons
+            isRightButtonDisabled={false}
+            onButtonClick={() => navigation.navigate("FilterFrenchLevel")}
+          />
         </View>
       </ContentContainer>
     </SafeAreaView>
