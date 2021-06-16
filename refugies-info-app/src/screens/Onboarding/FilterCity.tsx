@@ -6,7 +6,11 @@ import { RTLTouchableOpacity } from "../../components/BasicComponents";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
-import { TextSmallNormal, TextSmallBold } from "../../components/StyledText";
+import {
+  TextSmallNormal,
+  TextSmallBold,
+  TextNormal,
+} from "../../components/StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { Icon } from "react-native-eva-icons";
 import { OnboardingHeader } from "./OnboardingHeader";
