@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import { RTLTouchableOpacity } from "../BasicComponents";
 import { theme } from "../../theme";
 import { StyledTextNormalBold } from "../StyledText";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 interface Props {
   text: string;
@@ -24,8 +25,13 @@ const StyledText = styled(StyledTextNormalBold)`
     props.isSelected ? theme.colors.white : theme.colors.black};
 `;
 
-export const FilterButton = (props: Props) => (
-  <MainContainer onPress={props.onPress} isSelected={props.isSelected}>
-    <StyledText isSelected={props.isSelected}>{props.text}</StyledText>
-  </MainContainer>
-);
+export const FilterButton = (props: Props) => {
+  const { t } = useTranslationWithRTL();
+  return (
+    <MainContainer onPress={props.onPress} isSelected={props.isSelected}>
+      <StyledText isSelected={props.isSelected}>
+        {t("Filter." + props.text, props.text)}
+      </StyledText>
+    </MainContainer>
+  );
+};

@@ -37,7 +37,7 @@ const ErrorText = styled(TextSmallNormal)`
 
 const GeolocContainer = styled(RTLTouchableOpacity)`
   background-color: ${theme.colors.white};
-  margin-top: ${theme.margin * 2}px;
+  margin-vertical: ${theme.margin * 2}px;
   border-radius: ${theme.radius * 2}px;
   padding: ${theme.margin * 2}px;
   align-items: center;

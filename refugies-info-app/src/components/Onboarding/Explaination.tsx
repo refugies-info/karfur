@@ -15,7 +15,6 @@ const MainContainer = styled(RowContainer)`
   align-items: center;
   width: 100%;
   border-radius: ${theme.margin}px;
-  margin-top: ${theme.margin * 3}px;
 `;
 
 const StyledText = styled(StyledTextVerySmall)`

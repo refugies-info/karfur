@@ -59,5 +59,14 @@
     "découvrir la culture": "découvrir la culture",
     "me soigner": "me soigner",
     "gérer mes papiers": "gérer mes papiers"
+  },
+  "Filter": {
+    "0 à 17 ans": "0 à 17 ans",
+    "18 à 25 ans": "18 à 25 ans",
+    "Plus de 26 ans": "Plus de 26 ans",
+    "Je commence à apprendre": "Je commence à apprendre",
+    "Je parle un peu": "Je parle un peu",
+    "Je parle bien": "Je parle bien",
+    "Je parle couramment": "Je parle couramment"
   }
 }
