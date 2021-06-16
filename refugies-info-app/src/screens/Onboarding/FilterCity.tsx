@@ -190,7 +190,7 @@ export const FilterCity = ({
       setIsGeolocLoading(true);
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
-        return;
+        throw new Error("ERREUR");
       }
 
       let location = await Location.getCurrentPositionAsync({});
@@ -230,6 +230,13 @@ export const FilterCity = ({
         }
       }
     } catch (error) {
+      setError(
+        t(
+          "Onboarding.error_geoloc",
+          "Une erreur est survenue lors de la géolocalisation, veuillez entrer votre ville dans le champ ci-dessus."
+        )
+      );
+      resetData();
       setIsGeolocLoading(false);
     }
   };
