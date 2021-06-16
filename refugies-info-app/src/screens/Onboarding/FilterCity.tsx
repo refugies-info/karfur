@@ -29,11 +29,7 @@ import {
   ContentContainer,
   Title,
 } from "../../components/Onboarding/SharedStyledComponents";
-
-const ErrorText = styled(TextSmallNormal)`
-  color: red;
-  margin-top: ${theme.margin}px;
-`;
+import { ErrorComponent } from "../../components/ErrorComponent";
 
 const GeolocContainer = styled(RTLTouchableOpacity)`
   background-color: ${theme.colors.white};
@@ -79,10 +75,7 @@ export const FilterCity = ({
 
   const { t } = useTranslationWithRTL();
 
-  const defaultError = t(
-    "Erreur",
-    "Une erreur est survenue, veuillez réessayer."
-  );
+  const defaultError = t("Erreur", "Une erreur est survenue, réessaie.");
 
   const resetData = () => {
     setEnteredText("");
@@ -92,6 +85,7 @@ export const FilterCity = ({
   };
 
   const onChangeText = async (data: string) => {
+    setError("");
     setEnteredText(data);
     try {
       const results = await getCitiesFromGoogleAPI(data);
@@ -139,6 +133,7 @@ export const FilterCity = ({
 
   const useGeoloc = async () => {
     try {
+      setError("");
       setIsGeolocLoading(true);
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
@@ -173,7 +168,7 @@ export const FilterCity = ({
             setError(
               t(
                 "Onboarding.error_geoloc",
-                "Une erreur est survenue lors de la géolocalisation, veuillez entrer votre ville dans le champ ci-dessus."
+                "Une erreur est survenue lors de la géolocalisation. Entre ta ville manuellement."
               )
             );
             resetData();
@@ -185,7 +180,7 @@ export const FilterCity = ({
       setError(
         t(
           "Onboarding.error_geoloc",
-          "Une erreur est survenue lors de la géolocalisation, veuillez entrer votre ville dans le champ ci-dessus."
+          "Une erreur est survenue lors de la géolocalisation. Entre ta ville manuellement."
         )
       );
       resetData();
@@ -238,9 +233,8 @@ export const FilterCity = ({
               </TouchableOpacity>
             </>
           )}
-          {!!error && <ErrorText>{error}</ErrorText>}
 
-          {!enteredText && !isGeolocLoading && !error && (
+          {!enteredText && !isGeolocLoading && (
             <Explaination
               step={1}
               defaultText="C’est pour te montrer les associations et les activités dans ta ville."
@@ -248,6 +242,8 @@ export const FilterCity = ({
           )}
         </View>
         <View>
+          {!!error && <ErrorComponent text={error} />}
+
           <OnboardingProgressBar step={1} />
           <BottomButtons
             isRightButtonDisabled={!selectedCity}

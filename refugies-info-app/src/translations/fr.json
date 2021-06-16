@@ -12,7 +12,7 @@
     "help_2": "C’est pour te montrer les démarches et les activités pour ton âge.",
     "help_3": "C’est pour te montrer les formations faites pour ton niveau de français.",
     "ville": "Dans quelle ville habites-tu ?",
-    "error_geoloc": "Une erreur est survenue lors de la géolocalisation, veuillez entrer votre ville dans le champ ci-dessus.",
+    "error_geoloc": "Une erreur est survenue lors de la géolocalisation. Entre ta ville manuellement.",
     "position": "Utiliser ma position",
     "placeholder": "Exemple : Paris",
     "age": "Quel âge as-tu ?",
@@ -28,7 +28,7 @@
     "Search": "Rechercher"
   },
   "Langue app": "Langue de l'application",
-  "Erreur": "Une erreur est survenue, veuillez réessayer.",
+  "Erreur": "Une erreur est survenue, réessaie.",
 
   "ExplorerScreen": {
     "Liste": "Liste",

@@ -12,7 +12,8 @@ const StyledInput = styled.TextInput`
  width 100%;
  border: 1px solid ${theme.colors.darkGrey};
  border-radius:${theme.radius * 2}px;
- padding:${theme.margin * 2}px
+ padding:${theme.margin * 2}px;
+ background-color : ${theme.colors.white}
 `;
 
 const SuggestionsContainer = styled.ScrollView`
