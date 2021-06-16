@@ -16,6 +16,7 @@ interface Props {
 }
 export const OnboardingProgressBar = (props: Props) => {
   const [progress, setProgress] = React.useState(0);
+  const [startProgress, setStartProgress] = React.useState(0);
 
   let animation = React.useRef(new Animated.Value(0));
   useInterval(() => {
@@ -34,11 +35,12 @@ export const OnboardingProgressBar = (props: Props) => {
 
   React.useEffect(() => {
     setProgress(33 * (props.step - 1));
+    setStartProgress(33 * (props.step - 1));
   }, [props.step]);
 
   const width = animation.current.interpolate({
-    inputRange: [0, 100],
-    outputRange: ["0%", "100%"],
+    inputRange: [startProgress, 100],
+    outputRange: [`${startProgress}%`, "100%"],
     extrapolate: "clamp",
   });
 
