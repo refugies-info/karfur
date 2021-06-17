@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { theme } from "../../theme";
 import { RowTouchableOpacity } from "../BasicComponents";
-import { StyledTextNormalBold, StyledTextNormal } from "../StyledText";
+import { StyledTextSmallBold, StyledTextSmall } from "../StyledText";
 import { Icon } from "react-native-eva-icons";
 
 const LeftButtonContainer = styled.TouchableOpacity`
@@ -16,6 +16,7 @@ const LeftButtonContainer = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   margin-right: ${theme.margin / 2}px;
+  width: 50%;
 `;
 
 const RightButtonContainer = styled.TouchableOpacity`
@@ -29,14 +30,14 @@ const RightButtonContainer = styled.TouchableOpacity`
   height: 56px;
   align-items: center;
   margin-left: ${theme.margin / 2}px;
-  flex: 2;
+  width: 50%;
 `;
 
 const BottomButtonsContainer = styled(RowTouchableOpacity)`
   margin-top: ${theme.margin * 3}px;
 `;
 
-const TextBold = styled(StyledTextNormalBold)`
+const TextBold = styled(StyledTextSmallBold)`
   margin-right: ${theme.margin}px;
   color: ${(props: { color: string }) => props.color};
   align-items: center;
@@ -55,7 +56,9 @@ export const BottomButtons = (props: Props) => {
   return (
     <BottomButtonsContainer>
       <LeftButtonContainer onPress={props.onLeftButtonClick}>
-        <StyledTextNormal>{t("Passer", "Passer")}</StyledTextNormal>
+        <StyledTextSmall>
+          {t("Passer l'étape", "Passer l'étape")}
+        </StyledTextSmall>
       </LeftButtonContainer>
       <RightButtonContainer
         isDisabled={props.isRightButtonDisabled}
@@ -69,7 +72,7 @@ export const BottomButtons = (props: Props) => {
               : theme.colors.white
           }
         >
-          {t("Suivant", "Suivant")}
+          {t("Valider", "Valider")}
         </TextBold>
         <Icon
           name={"arrow-forward-outline"}
