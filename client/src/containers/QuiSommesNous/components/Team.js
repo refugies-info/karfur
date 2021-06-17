@@ -163,7 +163,7 @@ const MemberCard = (props) => {
                 className="mb-10 mt-10"
                 name="external-link-outline"
               >
-                {props.t("QuiSommesNous.PortFolio", "PortFolio ")}
+                {props.t("QuiSommesNous.Portfolio", "Portfolio ")}
               </FButton>
             )}
             {props.linkedin && (
@@ -174,7 +174,7 @@ const MemberCard = (props) => {
                 className="mb-10  mt-10"
                 name="linkedin-outline"
               >
-                {props.t("QuiSommesNous.Linkedin", "Linkedin ")}
+                Linkedin
               </FButton>
             )}
             {props.twitter && (
@@ -185,7 +185,7 @@ const MemberCard = (props) => {
                 className="mb-10 mt-10"
                 name="twitter-outline"
               >
-                {props.t("QuiSommesNous.Twitter", "Twitter ")}
+                Twitter
               </FButton>
             )}
             {props.autre && (
