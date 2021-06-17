@@ -29,7 +29,7 @@ const StyledText = styled(StyledTextNormalBold)`
     props.isRTL ? theme.margin : 0}px;
   margin-right: ${(props: { isRTL: boolean }) =>
     props.isRTL ? 0 : theme.margin}px;
-  flex-wrap: wrap;
+  flex-shrink: 1;
 `;
 export const TagButton = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();

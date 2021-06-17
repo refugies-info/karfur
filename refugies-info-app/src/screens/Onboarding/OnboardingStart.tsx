@@ -67,7 +67,7 @@ export const OnboardingStart = ({
 
         <CustomButton
           i18nKey={"Onboarding.parti"}
-          defaultText="trad"
+          defaultText="C'est parti"
           textColor={theme.colors.darkBlue}
           onPress={() => navigation.navigate("OnboardingSteps")}
         />

@@ -75,7 +75,7 @@ const ContribStyledStatusContainer = styled.div`
   align-items: center;
   font-weight: bold;
   box-shadow: ${(props) =>
-    props.size === "large" ? "0px 4px 40px rgba(0, 0, 0, 0.25);" : ""};
+    props.size === "large" ? "0px 0px 40px 0px #00000040" : ""};
   border-radius: ${(props) => (props.size === "large" ? "12px" : "6px")};
   padding: ${(props) => (props.size === "large" ? "15px" : "8px")};
   background-color: ${(props) => props.color};

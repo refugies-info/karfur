@@ -44,6 +44,7 @@ const colors = {
   culture30: "#F9E8E8",
   lightBlue: "#D2EDFC",
   blue: "#2D9CDB",
+  red: "#F44336",
 };
 
 const images = {};

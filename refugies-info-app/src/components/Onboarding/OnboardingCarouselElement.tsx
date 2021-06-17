@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { theme } from "../../theme";
 import { onboardingCarouselData } from "./OnboardingCarouselData";
-import { StyledTextBigBold } from "../StyledText";
+import { TextBigBold } from "../StyledText";
 import { CarouselStepImage } from "./CarouselStepImage";
 import EtatLogo from "../../theme/images/onboarding/onboardingStep2-logo.png";
 import { Image } from "react-native";
@@ -15,7 +15,7 @@ interface Props {
   step: number;
 }
 
-const StyledText = styled(StyledTextBigBold)`
+const StyledText = styled(TextBigBold)`
   color: ${theme.colors.white};
   margin-bottom: ${theme.margin * 5}px;
   margin-top: ${theme.margin * 3}px;

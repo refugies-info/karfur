@@ -1616,6 +1616,7 @@ export class Dispositif extends Component {
           this.props.fetchDispositifs();
           this.setState(
             {
+              status: dispositif.status,
               disableEdit:
                 [
                   "En attente admin",

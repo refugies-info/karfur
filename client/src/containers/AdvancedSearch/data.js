@@ -18,7 +18,7 @@ const initial_data = [
   //   ]
   // },
   {
-    title: "Je cherche à",
+    title: "J'ai besoin de",
     value: null,
     placeholder: "thème",
     query: "apprendre le français",

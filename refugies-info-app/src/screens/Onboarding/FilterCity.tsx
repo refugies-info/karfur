@@ -2,19 +2,13 @@ import * as React from "react";
 import { View, ActivityIndicator } from "react-native";
 import { OnboardingParamList, GoogleAPISuggestion } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import {
-  RowTouchableOpacity,
-  RTLTouchableOpacity,
-} from "../../components/BasicComponents";
+import { RTLTouchableOpacity, RTLView } from "../../components/BasicComponents";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
 import {
-  StyledTextNormalBold,
-  TextNormal,
-  StyledTextNormal,
-  TextSmallNormal,
   TextSmallBold,
+  StyledTextSmallBold,
 } from "../../components/StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { Icon } from "react-native-eva-icons";
@@ -27,73 +21,44 @@ import {
   getCityDetailsFromGoogleAPI,
   getPlaceIdFromLocationFromGoogleAPI,
 } from "../../utils/API";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import * as Location from "expo-location";
-
-const ContentContainer = styled.View`
-  padding: ${theme.margin * 3}px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 1;
-`;
-
-const Title = styled(TextNormal)`
-  margin-top: ${theme.margin * 2}px;
-  margin-bottom: ${theme.margin * 4}px;
-`;
-
-const LeftButtonContainer = styled.TouchableOpacity`
-  background-color: ${theme.colors.white};
-  padding: ${theme.radius * 3}px;
-  border-radius: ${theme.radius * 2}px;
-  height: 56px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-right: ${theme.margin / 2}px;
-`;
-
-const RightButtonContainer = styled.TouchableOpacity`
-  background-color: ${(props: { isDisabled: boolean }) =>
-    props.isDisabled ? theme.colors.grey60 : theme.colors.darkBlue};
-  padding: ${theme.radius * 3}px;
-  border-radius: ${theme.radius * 2}px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  height: 56px;
-  align-items: center;
-  margin-left: ${theme.margin / 2}px;
-  flex: 2;
-`;
-
-const BottomButtonsContainer = styled(RowTouchableOpacity)`
-  margin-top: ${theme.margin * 3}px;
-`;
-
-const TextBold = styled(StyledTextNormalBold)`
-  margin-right: ${theme.margin}px;
-  color: ${(props: { color: string }) => props.color};
-  align-items: center;
-`;
-
-const ErrorText = styled(TextSmallNormal)`
-  color: red;
-  margin-top: ${theme.margin}px;
-`;
+import { BottomButtons } from "../../components/Onboarding/BottomButtons";
+import {
+  ContentContainer,
+  Title,
+} from "../../components/Onboarding/SharedStyledComponents";
+import { ErrorComponent } from "../../components/ErrorComponent";
+import { useDispatch, useSelector } from "react-redux";
+import { saveUserLocationActionCreator } from "../../services/redux/User/user.actions";
+import { userLocationSelector } from "../../services/redux/User/user.selectors";
 
 const GeolocContainer = styled(RTLTouchableOpacity)`
   background-color: ${theme.colors.white};
-  margin-top: ${theme.margin * 2}px;
+  margin-vertical: ${theme.margin * 2}px;
   border-radius: ${theme.radius * 2}px;
   padding: ${theme.margin * 2}px;
   align-items: center;
 `;
 
 const GeolocText = styled(TextSmallBold)`
-  margin-left: ${theme.margin}px;
+  margin-left: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? 0 : theme.margin}px;
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? theme.margin : 0}px;
+`;
+
+const SelectedCityContainer = styled(RTLTouchableOpacity)`
+  background-color: ${theme.colors.black};
+  padding: ${theme.margin * 2}px;
+  border-radius: ${theme.radius * 2}px;
+  margin-bottom: ${theme.margin * 4}px;
+  align-items: center;
+  align-self: flex-start;
+`;
+
+const SelectedCityText = styled(StyledTextSmallBold)`
+  color: ${theme.colors.white};
+  margin-right: ${theme.margin}px;
 `;
 
 const ICON_SIZE = 24;
@@ -126,20 +91,30 @@ export const FilterCity = ({
   const [selectedDepartment, setSelectedDepartment] = React.useState("");
   const [isGeolocLoading, setIsGeolocLoading] = React.useState(false);
 
-  const { t } = useTranslationWithRTL();
+  const { t, isRTL } = useTranslationWithRTL();
 
-  const defaultError = t(
-    "Erreur",
-    "Une erreur est survenue, veuillez réessayer."
-  );
+  const defaultError = t("Erreur", "Une erreur est survenue, réessaie.");
+
+  const dispatch = useDispatch();
 
   const resetData = () => {
     setEnteredText("");
-    setSuggestions([]), setSelectedDepartment("");
+    setSuggestions([]);
+    setSelectedDepartment("");
     setSelectedCity("");
   };
 
+  const userLocation = useSelector(userLocationSelector);
+
+  React.useEffect(() => {
+    if (userLocation.city && userLocation.department) {
+      setSelectedCity(userLocation.city);
+      setSelectedDepartment(userLocation.department);
+    }
+  }, [userLocation]);
+
   const onChangeText = async (data: string) => {
+    setError("");
     setEnteredText(data);
     try {
       const results = await getCitiesFromGoogleAPI(data);
@@ -153,6 +128,7 @@ export const FilterCity = ({
   };
 
   const setCityAndGetDepartment = async (city: string, place_id: string) => {
+    setIsGeolocLoading(true);
     setSelectedCity(city);
     const results = await getCityDetailsFromGoogleAPI(place_id);
     if (
@@ -166,9 +142,12 @@ export const FilterCity = ({
       );
 
       if (!department) {
+        setIsGeolocLoading(false);
+
         throw new Error("NO_CORRESPONDING_DEP");
       }
       setSelectedDepartment(department);
+      setIsGeolocLoading(false);
     }
   };
 
@@ -187,10 +166,11 @@ export const FilterCity = ({
 
   const useGeoloc = async () => {
     try {
+      setError("");
       setIsGeolocLoading(true);
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
-        return;
+        throw new Error("ERREUR");
       }
 
       let location = await Location.getCurrentPositionAsync({});
@@ -221,7 +201,7 @@ export const FilterCity = ({
             setError(
               t(
                 "Onboarding.error_geoloc",
-                "Une erreur est survenue lors de la géolocalisation, veuillez entrer votre ville dans le champ ci-dessus."
+                "Une erreur est survenue lors de la géolocalisation. Entre ta ville manuellement."
               )
             );
             resetData();
@@ -230,7 +210,28 @@ export const FilterCity = ({
         }
       }
     } catch (error) {
+      setError(
+        t(
+          "Onboarding.error_geoloc",
+          "Une erreur est survenue lors de la géolocalisation. Entre ta ville manuellement."
+        )
+      );
+      resetData();
       setIsGeolocLoading(false);
+    }
+  };
+
+  const navigateToNextScreen = () => navigation.navigate("FilterAge");
+
+  const onValidate = () => {
+    if (selectedCity && selectedDepartment) {
+      dispatch(
+        saveUserLocationActionCreator({
+          city: selectedCity,
+          dep: selectedDepartment,
+        })
+      );
+      navigateToNextScreen();
     }
   };
 
@@ -262,26 +263,30 @@ export const FilterCity = ({
                   height={ICON_SIZE}
                   fill={theme.colors.black}
                 />
-                <GeolocText>
+                <GeolocText isRTL={isRTL}>
                   {t("Onboarding.position", "Utiliser ma position")}
                 </GeolocText>
               </GeolocContainer>
             </View>
           )}
-          {isGeolocLoading && <ActivityIndicator />}
+          {isGeolocLoading && <ActivityIndicator color={theme.colors.grey60} />}
           {!!selectedCity && !!selectedDepartment && (
-            <>
-              <TextNormal>
-                {selectedCity + " - " + selectedDepartment}
-              </TextNormal>
-              <TouchableOpacity onPress={resetData}>
-                <TextNormal>supprimer</TextNormal>
-              </TouchableOpacity>
-            </>
+            <RTLView>
+              <SelectedCityContainer onPress={resetData}>
+                <SelectedCityText>
+                  {selectedCity + " (" + selectedDepartment + ")"}
+                </SelectedCityText>
+                <Icon
+                  name="close-outline"
+                  fill={theme.colors.white}
+                  height={24}
+                  width={24}
+                />
+              </SelectedCityContainer>
+            </RTLView>
           )}
-          {!!error && <ErrorText>{error}</ErrorText>}
 
-          {!enteredText && !isGeolocLoading && !error && (
+          {!enteredText && !isGeolocLoading && (
             <Explaination
               step={1}
               defaultText="C’est pour te montrer les associations et les activités dans ta ville."
@@ -289,31 +294,14 @@ export const FilterCity = ({
           )}
         </View>
         <View>
+          {!!error && <ErrorComponent text={error} />}
+
           <OnboardingProgressBar step={1} />
-          <BottomButtonsContainer>
-            <LeftButtonContainer
-              onPress={() => navigation.navigate("FilterAge")}
-            >
-              <StyledTextNormal>{t("Passer", "Passer")}</StyledTextNormal>
-            </LeftButtonContainer>
-            <RightButtonContainer
-              isDisabled={!selectedCity}
-              onPress={() => navigation.navigate("FilterAge")}
-              disabled={!selectedCity}
-            >
-              <TextBold
-                color={!selectedCity ? theme.colors.black : theme.colors.white}
-              >
-                {t("Suivant", "Suivant")}
-              </TextBold>
-              <Icon
-                name={"arrow-forward-outline"}
-                width={ICON_SIZE}
-                height={ICON_SIZE}
-                fill={!selectedCity ? theme.colors.black : theme.colors.white}
-              />
-            </RightButtonContainer>
-          </BottomButtonsContainer>
+          <BottomButtons
+            isRightButtonDisabled={!selectedCity || !selectedDepartment}
+            onLeftButtonClick={navigateToNextScreen}
+            onRightButtonClick={onValidate}
+          />
         </View>
       </ContentContainer>
     </SafeAreaView>

@@ -7,7 +7,7 @@ import { Mission } from "./components/Mission";
 import { Problematic } from "./components/Problematic";
 import { Contribution } from "./components/Contribution";
 import { Team } from "./components/Team";
-import { MemberDetails } from "./components/MemberDetails";
+
 import { Partners } from "./components/Partners";
 import i18n from "../../i18n";
 import { assetsOnServer } from "../../assets/assetsOnServer";
@@ -73,10 +73,29 @@ const NavBarText = styled.div`
 
 const SectionHeader = styled.div`
   text-align: center;
-  font-weight: 500;
-  font-size: 32px;
+  font-weight: 700;
+  font-size: 40px;
   line-height: 40px;
   margin-bottom: 48px;
+`;
+const SectionSubHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  text-align: center;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 40px;
+  margin-bottom: 48px;
+`;
+
+const SectionSubHeaderMissing = styled.div`
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+  color: grey;
+  margin-left: 8px;
 `;
 
 const MissionContainer = styled.div`
@@ -229,15 +248,31 @@ class QuiSommesNous extends Component {
           <Mission t={t} isRTL={isRTL} />
         </MissionContainer>
         <TeamContainer id="equipe" onClick={this.closeSide}>
-          <SectionHeader>{t("QuiSommesNous.Équipe", "Équipe")}</SectionHeader>
+          <SectionHeader>
+            {t("QuiSommesNous.L'équipe", "L'équipe Réfugiés.info")}
+          </SectionHeader>
           <Team
             t={t}
             sideVisible={sideVisible}
             membre={membre}
             closeSide={this.closeSide}
             onMemberCardClick={this.onSelectMembre}
+            type="membres"
           />
-          <MemberDetails isOpened={sideVisible} membreName={membre} />
+          <SectionSubHeader>
+            {t("QuiSommesNous.Anciens membres", "Anciens membres")}
+            <SectionSubHeaderMissing>
+              {t("QuiSommesNous.Vous nous manquez", "(vous nous manquez !)")}
+            </SectionSubHeaderMissing>
+          </SectionSubHeader>
+          <Team
+            t={t}
+            sideVisible={sideVisible}
+            membre={membre}
+            closeSide={this.closeSide}
+            onMemberCardClick={this.onSelectMembre}
+            type="former_membres"
+          />
         </TeamContainer>
         <ProblematicContainer id="problematic">
           <SectionHeader>

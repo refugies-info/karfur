@@ -9,9 +9,15 @@
     "Toute l'application est gratuite ! Pas besoin de payer.": "Toute l'application est gratuite ! Pas besoin de payer.",
     "Créer mon profil": "Créer mon profil",
     "help_1": "C’est pour te montrer les associations et les activités dans ta ville.",
+    "help_2": "C’est pour te montrer les démarches et les activités pour ton âge.",
+    "help_3": "C’est pour te montrer les formations faites pour ton niveau de français.",
     "ville": "Dans quelle ville habites-tu ?",
-    "error_geoloc": "Une erreur est survenue lors de la géolocalisation, veuillez entrer votre ville dans le champ ci-dessus.",
-    "position": "Utiliser ma position"
+    "error_geoloc": "Une erreur est survenue lors de la géolocalisation. Entre ta ville manuellement.",
+    "position": "Utiliser ma position",
+    "placeholder": "Exemple : Paris",
+    "age": "Quel âge as-tu ?",
+    "niveauFrancais": "Quel est ton niveau en français ?",
+    "end": "L’application est maintenant adaptée à ton profil."
   },
   "Suivant": "Suivant",
   "Continuer": "Continuer",
@@ -22,7 +28,7 @@
     "Search": "Rechercher"
   },
   "Langue app": "Langue de l'application",
-  "Erreur": "Une erreur est survenue, veuillez réessayer.",
+  "Erreur": "Une erreur est survenue, réessaie.",
 
   "ExplorerScreen": {
     "Liste": "Liste",
@@ -54,5 +60,18 @@
     "découvrir la culture": "découvrir la culture",
     "me soigner": "me soigner",
     "gérer mes papiers": "gérer mes papiers"
-  }
+  },
+  "Filter": {
+    "0 à 17 ans": "0 à 17 ans",
+    "18 à 25 ans": "18 à 25 ans",
+    "Plus de 26 ans": "Plus de 26 ans",
+    "Je commence à apprendre": "Je commence à apprendre",
+    "Je parle un peu": "Je parle un peu",
+    "Je parle bien": "Je parle bien",
+    "Je parle couramment": "Je parle couramment"
+  },
+  "Démarrer": "Démarrer",
+  "Merci !": "Merci !",
+  "Passer l'étape": "Passer l'étape",
+  "Valider": "Valider"
 }
