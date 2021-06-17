@@ -45,19 +45,21 @@ const TextBold = styled(StyledTextNormalBold)`
 const ICON_SIZE = 24;
 
 interface Props {
-  onButtonClick: () => void;
+  onRightButtonClick: () => void;
+  onLeftButtonClick: () => void;
+
   isRightButtonDisabled: boolean;
 }
 export const BottomButtons = (props: Props) => {
   const { t } = useTranslationWithRTL();
   return (
     <BottomButtonsContainer>
-      <LeftButtonContainer onPress={props.onButtonClick}>
+      <LeftButtonContainer onPress={props.onLeftButtonClick}>
         <StyledTextNormal>{t("Passer", "Passer")}</StyledTextNormal>
       </LeftButtonContainer>
       <RightButtonContainer
         isDisabled={props.isRightButtonDisabled}
-        onPress={props.onButtonClick}
+        onPress={props.onRightButtonClick}
         disabled={props.isRightButtonDisabled}
       >
         <TextBold

@@ -13,6 +13,8 @@ import { FilterButton } from "../../components/Onboarding/FilterButton";
 import { Explaination } from "../../components/Onboarding/Explaination";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
+import { useDispatch } from "react-redux";
+import { saveUserFrenchLevelActionCreator } from "../../services/redux/User/user.actions";
 
 const ContentContainer = styled.View`
   padding-vertical: ${theme.margin * 3}px;
@@ -34,6 +36,17 @@ export const FilterFrenchLevel = ({
     cecrCorrespondency?: string[];
   }>(null);
   const { t } = useTranslationWithRTL();
+
+  const navigateToNextScreen = () => navigation.navigate("FinishOnboarding");
+
+  const dispatch = useDispatch();
+
+  const onValidate = () => {
+    if (selectedFrenchLevel) {
+      dispatch(saveUserFrenchLevelActionCreator(selectedFrenchLevel.name));
+      navigateToNextScreen();
+    }
+  };
   return (
     <SafeAreaView
       style={{
@@ -71,7 +84,8 @@ export const FilterFrenchLevel = ({
           <OnboardingProgressBar step={3} />
           <BottomButtons
             isRightButtonDisabled={!selectedFrenchLevel}
-            onButtonClick={() => navigation.navigate("FinishOnboarding")}
+            onLeftButtonClick={navigateToNextScreen}
+            onRightButtonClick={onValidate}
           />
         </BottomContainer>
       </ContentContainer>

@@ -3,8 +3,8 @@ import {
   SET_SELECTED_LANGUAGE,
   SAVE_SELECTED_LANGUAGE,
   SET_CURRENT_LANGUAGE,
-  SAVE_USER_CITY,
-  SET_USER_CITY,
+  SAVE_USER_LOCATION,
+  SET_USER_LOCATION,
   SAVE_USER_AGE,
   SAVE_USER_FRENCH_LEVEL,
   SET_USER_AGE,
@@ -25,11 +25,15 @@ export const setSelectedLanguageActionCreator = (value: string) =>
 export const saveSelectedLanguageActionCreator = (value: string) =>
   action(SAVE_SELECTED_LANGUAGE, value);
 
-export const saveUserCityActionCreator = (value: string) =>
-  action(SAVE_USER_CITY, value);
+export const saveUserLocationActionCreator = (value: {
+  city: string;
+  dep: string;
+}) => action(SAVE_USER_LOCATION, value);
 
-export const setUserCityActionCreator = (value: string | null) =>
-  action(SET_USER_CITY, value);
+export const setUserLocationActionCreator = (value: {
+  city: string | null;
+  dep: string | null;
+}) => action(SET_USER_LOCATION, value);
 
 export const saveUserAgeActionCreator = (value: string) =>
   action(SAVE_USER_AGE, value);
@@ -37,7 +41,7 @@ export const saveUserAgeActionCreator = (value: string) =>
 export const setUserAgeActionCreator = (value: string | null) =>
   action(SET_USER_AGE, value);
 
-export const saveUserFrenchLeveleActionCreator = (value: string) =>
+export const saveUserFrenchLevelActionCreator = (value: string) =>
   action(SAVE_USER_FRENCH_LEVEL, value);
 
 export const setUserFrenchLeveleActionCreator = (value: string | null) =>
@@ -53,10 +57,10 @@ const actions = {
   saveHasUserSeenOnboardingActionCreator,
   setCurrentLanguageActionCreator,
   setUserAgeActionCreator,
-  setUserCityActionCreator,
+  setUserLocationActionCreator,
   setUserFrenchLeveleActionCreator,
   saveUserAgeActionCreator,
-  saveUserCityActionCreator,
-  saveUserFrenchLeveleActionCreator,
+  saveUserLocationActionCreator,
+  saveUserFrenchLevelActionCreator,
 };
 export type UserActions = ActionType<typeof actions>;

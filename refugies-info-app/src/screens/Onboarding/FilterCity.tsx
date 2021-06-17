@@ -30,6 +30,8 @@ import {
   Title,
 } from "../../components/Onboarding/SharedStyledComponents";
 import { ErrorComponent } from "../../components/ErrorComponent";
+import { useDispatch } from "react-redux";
+import { saveUserLocationActionCreator } from "../../services/redux/User/user.actions";
 
 const GeolocContainer = styled(RTLTouchableOpacity)`
   background-color: ${theme.colors.white};
@@ -76,6 +78,8 @@ export const FilterCity = ({
   const { t } = useTranslationWithRTL();
 
   const defaultError = t("Erreur", "Une erreur est survenue, réessaie.");
+
+  const dispatch = useDispatch();
 
   const resetData = () => {
     setEnteredText("");
@@ -188,6 +192,20 @@ export const FilterCity = ({
     }
   };
 
+  const navigateToNextScreen = () => navigation.navigate("FilterAge");
+
+  const onValidate = () => {
+    if (selectedCity && selectedDepartment) {
+      dispatch(
+        saveUserLocationActionCreator({
+          city: selectedCity,
+          dep: selectedDepartment,
+        })
+      );
+      navigateToNextScreen();
+    }
+  };
+
   return (
     <SafeAreaView
       style={{
@@ -246,8 +264,9 @@ export const FilterCity = ({
 
           <OnboardingProgressBar step={1} />
           <BottomButtons
-            isRightButtonDisabled={!selectedCity}
-            onButtonClick={() => navigation.navigate("FilterAge")}
+            isRightButtonDisabled={!selectedCity || !selectedDepartment}
+            onLeftButtonClick={navigateToNextScreen}
+            onRightButtonClick={onValidate}
           />
         </View>
       </ContentContainer>

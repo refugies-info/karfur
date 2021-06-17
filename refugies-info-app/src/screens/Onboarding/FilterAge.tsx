@@ -14,11 +14,23 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ageFilters } from "../../data/filtersData";
 import { FilterButton } from "../../components/Onboarding/FilterButton";
 import { Explaination } from "../../components/Onboarding/Explaination";
+import { useDispatch } from "react-redux";
+import { saveUserAgeActionCreator } from "../../services/redux/User/user.actions";
 
 export const FilterAge = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "FilterAge">) => {
   const [selectedAge, setSelectedAge] = React.useState("");
+  const navigateToNextScreen = () => navigation.navigate("FilterFrenchLevel");
+
+  const dispatch = useDispatch();
+
+  const onValidate = () => {
+    if (selectedAge) {
+      dispatch(saveUserAgeActionCreator(selectedAge));
+      navigateToNextScreen();
+    }
+  };
 
   const { t } = useTranslationWithRTL();
   return (
@@ -49,7 +61,8 @@ export const FilterAge = ({
           <OnboardingProgressBar step={2} />
           <BottomButtons
             isRightButtonDisabled={!selectedAge}
-            onButtonClick={() => navigation.navigate("FilterFrenchLevel")}
+            onLeftButtonClick={navigateToNextScreen}
+            onRightButtonClick={onValidate}
           />
         </View>
       </ContentContainer>

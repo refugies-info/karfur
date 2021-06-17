@@ -6,17 +6,17 @@ import {
   setSelectedLanguageActionCreator,
   setHasUserSeenOnboardingActionCreator,
   setCurrentLanguageActionCreator,
-  saveUserCityActionCreator,
-  saveUserFrenchLeveleActionCreator,
+  saveUserLocationActionCreator,
+  saveUserFrenchLevelActionCreator,
   saveUserAgeActionCreator,
   setUserAgeActionCreator,
-  setUserCityActionCreator,
+  setUserLocationActionCreator,
   setUserFrenchLeveleActionCreator,
 } from "./user.actions";
 import {
   SAVE_SELECTED_LANGUAGE,
   SAVE_USER_HAS_SEEN_ONBOARDING,
-  SAVE_USER_CITY,
+  SAVE_USER_LOCATION,
   SAVE_USER_AGE,
   SAVE_USER_FRENCH_LEVEL,
 } from "./user.actionTypes";
@@ -38,22 +38,24 @@ export function* saveSelectedLanguage(
   }
 }
 
-export function* saveUserCity(
-  action: ReturnType<typeof saveUserCityActionCreator>
+export function* saveUserLocation(
+  action: ReturnType<typeof saveUserLocationActionCreator>
 ): SagaIterator {
   try {
-    const city = action.payload;
-    logger.info("[saveUserCity] saga", { city });
+    const { city, dep } = action.payload;
+    logger.info("[saveUserLocation] saga", { city, dep });
     yield call(saveItemInAsyncStorage, "CITY", city);
-    yield put(setUserCityActionCreator(city));
+    yield call(saveItemInAsyncStorage, "DEP", dep);
+
+    yield put(setUserLocationActionCreator({ city, dep }));
   } catch (error) {
-    logger.error("[saveUserCity] saga error", { error: error.message });
-    yield put(setUserCityActionCreator(null));
+    logger.error("[saveUserLocation] saga error", { error: error.message });
+    yield put(setUserLocationActionCreator({ city: null, dep: null }));
   }
 }
 
 export function* saveUserFrenchLevel(
-  action: ReturnType<typeof saveUserFrenchLeveleActionCreator>
+  action: ReturnType<typeof saveUserFrenchLevelActionCreator>
 ): SagaIterator {
   try {
     const frenchLevel = action.payload;
@@ -96,7 +98,7 @@ export function* saveHasUserSeenOnboarding(): SagaIterator {
 function* latestActionsSaga() {
   yield takeLatest(SAVE_SELECTED_LANGUAGE, saveSelectedLanguage);
   yield takeLatest(SAVE_USER_HAS_SEEN_ONBOARDING, saveHasUserSeenOnboarding);
-  yield takeLatest(SAVE_USER_CITY, saveUserCity);
+  yield takeLatest(SAVE_USER_LOCATION, saveUserLocation);
   yield takeLatest(SAVE_USER_FRENCH_LEVEL, saveUserFrenchLevel);
   yield takeLatest(SAVE_USER_AGE, saveUserAge);
 }

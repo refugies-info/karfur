@@ -9,7 +9,7 @@ interface Props {
   text: string;
   isSelected: boolean;
   onPress: () => void;
-  details: undefined | string[];
+  details?: undefined | string[];
 }
 
 const MainContainer = styled(RTLTouchableOpacity)`

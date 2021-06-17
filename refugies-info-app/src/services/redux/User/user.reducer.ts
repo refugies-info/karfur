@@ -36,5 +36,18 @@ export const userReducer = createReducer<UserState, UserActions>(
       ...state,
       currentLanguagei18nCode: action.payload,
     }),
+    SET_USER_LOCATION: (state, action) => ({
+      ...state,
+      city: action.payload.city,
+      dep: action.payload.dep,
+    }),
+    SET_USER_AGE: (state, action) => ({
+      ...state,
+      age: action.payload,
+    }),
+    SET_USER_FRENCH_LEVEL: (state, action) => ({
+      ...state,
+      frenchLevel: action.payload,
+    }),
   }
 );
