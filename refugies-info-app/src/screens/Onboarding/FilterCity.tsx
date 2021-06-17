@@ -7,9 +7,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
 import {
-  TextSmallNormal,
   TextSmallBold,
-  TextNormal,
+  StyledTextSmallBold,
 } from "../../components/StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { Icon } from "react-native-eva-icons";
@@ -22,7 +21,6 @@ import {
   getCityDetailsFromGoogleAPI,
   getPlaceIdFromLocationFromGoogleAPI,
 } from "../../utils/API";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import * as Location from "expo-location";
 import { BottomButtons } from "../../components/Onboarding/BottomButtons";
 import {
@@ -44,6 +42,20 @@ const GeolocContainer = styled(RTLTouchableOpacity)`
 
 const GeolocText = styled(TextSmallBold)`
   margin-left: ${theme.margin}px;
+`;
+
+const SelectedCityContainer = styled(RTLTouchableOpacity)`
+  background-color: ${theme.colors.black};
+  padding: ${theme.margin * 2}px;
+  border-radius: ${theme.radius * 2}px;
+  margin-bottom: ${theme.margin * 4}px;
+  align-items: center;
+  align-self: flex-start;
+`;
+
+const SelectedCityText = styled(StyledTextSmallBold)`
+  color: ${theme.colors.white};
+  margin-right: ${theme.margin}px;
 `;
 
 const ICON_SIZE = 24;
@@ -113,6 +125,7 @@ export const FilterCity = ({
   };
 
   const setCityAndGetDepartment = async (city: string, place_id: string) => {
+    setIsGeolocLoading(true);
     setSelectedCity(city);
     const results = await getCityDetailsFromGoogleAPI(place_id);
     if (
@@ -126,9 +139,12 @@ export const FilterCity = ({
       );
 
       if (!department) {
+        setIsGeolocLoading(false);
+
         throw new Error("NO_CORRESPONDING_DEP");
       }
       setSelectedDepartment(department);
+      setIsGeolocLoading(false);
     }
   };
 
@@ -252,14 +268,17 @@ export const FilterCity = ({
           )}
           {isGeolocLoading && <ActivityIndicator />}
           {!!selectedCity && !!selectedDepartment && (
-            <>
-              <TextNormal>
-                {selectedCity + " - " + selectedDepartment}
-              </TextNormal>
-              <TouchableOpacity onPress={resetData}>
-                <TextNormal>supprimer</TextNormal>
-              </TouchableOpacity>
-            </>
+            <SelectedCityContainer onPress={resetData}>
+              <SelectedCityText>
+                {selectedCity + " (" + selectedDepartment + ")"}
+              </SelectedCityText>
+              <Icon
+                name="close-outline"
+                fill={theme.colors.white}
+                height={24}
+                width={24}
+              />
+            </SelectedCityContainer>
           )}
 
           {!enteredText && !isGeolocLoading && (
