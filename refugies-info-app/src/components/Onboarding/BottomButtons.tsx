@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { theme } from "../../theme";
-import { RowTouchableOpacity } from "../BasicComponents";
+import { RowTouchableOpacity, RTLTouchableOpacity } from "../BasicComponents";
 import { StyledTextSmallBold, StyledTextSmall } from "../StyledText";
 import { Icon } from "react-native-eva-icons";
 
@@ -19,7 +19,7 @@ const LeftButtonContainer = styled.TouchableOpacity`
   width: 50%;
 `;
 
-const RightButtonContainer = styled.TouchableOpacity`
+const RightButtonContainer = styled(RTLTouchableOpacity)`
   background-color: ${(props: { isDisabled: boolean }) =>
     props.isDisabled ? theme.colors.grey60 : theme.colors.darkBlue};
   padding: ${theme.radius * 3}px;

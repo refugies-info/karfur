@@ -2,7 +2,7 @@ import * as React from "react";
 import { View, ActivityIndicator } from "react-native";
 import { OnboardingParamList, GoogleAPISuggestion } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { RTLTouchableOpacity } from "../../components/BasicComponents";
+import { RTLTouchableOpacity, RTLView } from "../../components/BasicComponents";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
@@ -41,7 +41,10 @@ const GeolocContainer = styled(RTLTouchableOpacity)`
 `;
 
 const GeolocText = styled(TextSmallBold)`
-  margin-left: ${theme.margin}px;
+  margin-left: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? 0 : theme.margin}px;
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? theme.margin : 0}px;
 `;
 
 const SelectedCityContainer = styled(RTLTouchableOpacity)`
@@ -88,7 +91,7 @@ export const FilterCity = ({
   const [selectedDepartment, setSelectedDepartment] = React.useState("");
   const [isGeolocLoading, setIsGeolocLoading] = React.useState(false);
 
-  const { t } = useTranslationWithRTL();
+  const { t, isRTL } = useTranslationWithRTL();
 
   const defaultError = t("Erreur", "Une erreur est survenue, réessaie.");
 
@@ -260,7 +263,7 @@ export const FilterCity = ({
                   height={ICON_SIZE}
                   fill={theme.colors.black}
                 />
-                <GeolocText>
+                <GeolocText isRTL={isRTL}>
                   {t("Onboarding.position", "Utiliser ma position")}
                 </GeolocText>
               </GeolocContainer>
@@ -268,17 +271,19 @@ export const FilterCity = ({
           )}
           {isGeolocLoading && <ActivityIndicator color={theme.colors.grey60} />}
           {!!selectedCity && !!selectedDepartment && (
-            <SelectedCityContainer onPress={resetData}>
-              <SelectedCityText>
-                {selectedCity + " (" + selectedDepartment + ")"}
-              </SelectedCityText>
-              <Icon
-                name="close-outline"
-                fill={theme.colors.white}
-                height={24}
-                width={24}
-              />
-            </SelectedCityContainer>
+            <RTLView>
+              <SelectedCityContainer onPress={resetData}>
+                <SelectedCityText>
+                  {selectedCity + " (" + selectedDepartment + ")"}
+                </SelectedCityText>
+                <Icon
+                  name="close-outline"
+                  fill={theme.colors.white}
+                  height={24}
+                  width={24}
+                />
+              </SelectedCityContainer>
+            </RTLView>
           )}
 
           {!enteredText && !isGeolocLoading && (

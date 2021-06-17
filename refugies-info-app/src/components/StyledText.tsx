@@ -70,6 +70,17 @@ export const TextNormalBold = (props: any) => {
   return <StyledTextNormalBold isRTL={isRTL} {...props} />;
 };
 
+export const TextBig = (props: any) => {
+  const { isRTL } = useTranslationWithRTL();
+  return <StyledTextBig isRTL={isRTL} {...props} />;
+};
+
+export const TextBigBold = (props: any) => {
+  const { isRTL } = useTranslationWithRTL();
+
+  return <StyledTextBigBold isRTL={isRTL} {...props} />;
+};
+
 export const TextVerySmallNormal = (props: any) => {
   const { isRTL } = useTranslationWithRTL();
 

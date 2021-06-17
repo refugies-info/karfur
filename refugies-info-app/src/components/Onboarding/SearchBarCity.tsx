@@ -13,7 +13,8 @@ const StyledInput = styled.TextInput`
  border: 1px solid ${theme.colors.darkGrey};
  border-radius:${theme.radius * 2}px;
  padding:${theme.margin * 2}px;
- background-color : ${theme.colors.white}
+ background-color : ${theme.colors.white};
+ text-align :${(props: { isRTL: boolean }) => (props.isRTL ? "right" : "left")} 
 `;
 
 const SuggestionsContainer = styled.ScrollView`
@@ -40,13 +41,14 @@ interface Props {
 }
 
 export const SearchBarCity = (props: Props) => {
-  const { t } = useTranslationWithRTL();
+  const { t, isRTL } = useTranslationWithRTL();
   return (
     <View>
       <StyledInput
         value={props.enteredText}
         placeholder={t("Onboarding.placeholder", "Exemple : Paris")}
         onChangeText={props.onChangeText}
+        isRTL={isRTL}
       />
       {props.suggestions.length > 0 && (
         <SuggestionsContainer keyboardShouldPersistTaps={"handled"}>
