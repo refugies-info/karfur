@@ -14,8 +14,9 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ageFilters } from "../../data/filtersData";
 import { FilterButton } from "../../components/Onboarding/FilterButton";
 import { Explaination } from "../../components/Onboarding/Explaination";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { saveUserAgeActionCreator } from "../../services/redux/User/user.actions";
+import { userAgeSelector } from "../../services/redux/User/user.selectors";
 
 export const FilterAge = ({
   navigation,
@@ -24,6 +25,14 @@ export const FilterAge = ({
   const navigateToNextScreen = () => navigation.navigate("FilterFrenchLevel");
 
   const dispatch = useDispatch();
+
+  const userAge = useSelector(userAgeSelector);
+
+  React.useEffect(() => {
+    if (userAge) {
+      setSelectedAge(userAge);
+    }
+  }, [userAge]);
 
   const onValidate = () => {
     if (selectedAge) {

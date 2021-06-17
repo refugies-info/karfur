@@ -30,8 +30,9 @@ import {
   Title,
 } from "../../components/Onboarding/SharedStyledComponents";
 import { ErrorComponent } from "../../components/ErrorComponent";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { saveUserLocationActionCreator } from "../../services/redux/User/user.actions";
+import { userLocationSelector } from "../../services/redux/User/user.selectors";
 
 const GeolocContainer = styled(RTLTouchableOpacity)`
   background-color: ${theme.colors.white};
@@ -87,6 +88,15 @@ export const FilterCity = ({
     setSelectedDepartment("");
     setSelectedCity("");
   };
+
+  const userLocation = useSelector(userLocationSelector);
+
+  React.useEffect(() => {
+    if (userLocation.city && userLocation.department) {
+      setSelectedCity(userLocation.city);
+      setSelectedDepartment(userLocation.department);
+    }
+  }, [userLocation]);
 
   const onChangeText = async (data: string) => {
     setError("");

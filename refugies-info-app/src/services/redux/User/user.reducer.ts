@@ -39,7 +39,7 @@ export const userReducer = createReducer<UserState, UserActions>(
     SET_USER_LOCATION: (state, action) => ({
       ...state,
       city: action.payload.city,
-      dep: action.payload.dep,
+      department: action.payload.dep,
     }),
     SET_USER_AGE: (state, action) => ({
       ...state,

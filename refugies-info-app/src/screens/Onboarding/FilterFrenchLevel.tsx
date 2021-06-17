@@ -13,8 +13,9 @@ import { FilterButton } from "../../components/Onboarding/FilterButton";
 import { Explaination } from "../../components/Onboarding/Explaination";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { saveUserFrenchLevelActionCreator } from "../../services/redux/User/user.actions";
+import { userFrenchLevelSelector } from "../../services/redux/User/user.selectors";
 
 const ContentContainer = styled.View`
   padding-vertical: ${theme.margin * 3}px;
@@ -40,6 +41,19 @@ export const FilterFrenchLevel = ({
   const navigateToNextScreen = () => navigation.navigate("FinishOnboarding");
 
   const dispatch = useDispatch();
+
+  const userFrenchLevel = useSelector(userFrenchLevelSelector);
+
+  React.useEffect(() => {
+    if (userFrenchLevel) {
+      const formattedLevel = frenchLevelFilters.filter(
+        (frenchLevelFilter) => frenchLevelFilter.name === userFrenchLevel
+      );
+      if (formattedLevel.length > 0) {
+        setSelectedFrenchLevel(formattedLevel[0]);
+      }
+    }
+  }, [userFrenchLevel]);
 
   const onValidate = () => {
     if (selectedFrenchLevel) {
