@@ -5,12 +5,20 @@ export interface UserState {
   hasUserSeenOnboarding: boolean;
   selectedLanguagei18nCode: string | null;
   currentLanguagei18nCode: string | null;
+  city: string | null;
+  department: string | null;
+  age: string | null;
+  frenchLevel: string | null;
 }
 
 export const initialUserState = {
   hasUserSeenOnboarding: false,
   selectedLanguagei18nCode: null,
   currentLanguagei18nCode: null,
+  city: null,
+  department: null,
+  age: null,
+  frenchLevel: null,
 };
 
 export const userReducer = createReducer<UserState, UserActions>(

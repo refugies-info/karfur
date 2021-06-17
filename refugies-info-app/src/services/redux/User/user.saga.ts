@@ -6,10 +6,19 @@ import {
   setSelectedLanguageActionCreator,
   setHasUserSeenOnboardingActionCreator,
   setCurrentLanguageActionCreator,
+  saveUserCityActionCreator,
+  saveUserFrenchLeveleActionCreator,
+  saveUserAgeActionCreator,
+  setUserAgeActionCreator,
+  setUserCityActionCreator,
+  setUserFrenchLeveleActionCreator,
 } from "./user.actions";
 import {
   SAVE_SELECTED_LANGUAGE,
   SAVE_USER_HAS_SEEN_ONBOARDING,
+  SAVE_USER_CITY,
+  SAVE_USER_AGE,
+  SAVE_USER_FRENCH_LEVEL,
 } from "./user.actionTypes";
 import { saveItemInAsyncStorage } from "./functions";
 
@@ -29,6 +38,48 @@ export function* saveSelectedLanguage(
   }
 }
 
+export function* saveUserCity(
+  action: ReturnType<typeof saveUserCityActionCreator>
+): SagaIterator {
+  try {
+    const city = action.payload;
+    logger.info("[saveUserCity] saga", { city });
+    yield call(saveItemInAsyncStorage, "CITY", city);
+    yield put(setUserCityActionCreator(city));
+  } catch (error) {
+    logger.error("[saveUserCity] saga error", { error: error.message });
+    yield put(setUserCityActionCreator(null));
+  }
+}
+
+export function* saveUserFrenchLevel(
+  action: ReturnType<typeof saveUserFrenchLeveleActionCreator>
+): SagaIterator {
+  try {
+    const frenchLevel = action.payload;
+    logger.info("[saveUserFrenchLevel] saga", { frenchLevel });
+    yield call(saveItemInAsyncStorage, "FRENCH_LEVEL", frenchLevel);
+    yield put(setUserFrenchLeveleActionCreator(frenchLevel));
+  } catch (error) {
+    logger.error("[saveUserFrenchLevel] saga error", { error: error.message });
+    yield put(setUserFrenchLeveleActionCreator(null));
+  }
+}
+
+export function* saveUserAge(
+  action: ReturnType<typeof saveUserAgeActionCreator>
+): SagaIterator {
+  try {
+    const age = action.payload;
+    logger.info("[saveUserAge] saga", { age });
+    yield call(saveItemInAsyncStorage, "AGE", age);
+    yield put(setUserAgeActionCreator(age));
+  } catch (error) {
+    logger.error("[saveUserAge] saga error", { error: error.message });
+    yield put(setUserAgeActionCreator(null));
+  }
+}
+
 export function* saveHasUserSeenOnboarding(): SagaIterator {
   try {
     logger.info("[saveHasUserSeenOnboarding] saga");
@@ -45,6 +96,9 @@ export function* saveHasUserSeenOnboarding(): SagaIterator {
 function* latestActionsSaga() {
   yield takeLatest(SAVE_SELECTED_LANGUAGE, saveSelectedLanguage);
   yield takeLatest(SAVE_USER_HAS_SEEN_ONBOARDING, saveHasUserSeenOnboarding);
+  yield takeLatest(SAVE_USER_CITY, saveUserCity);
+  yield takeLatest(SAVE_USER_FRENCH_LEVEL, saveUserFrenchLevel);
+  yield takeLatest(SAVE_USER_AGE, saveUserAge);
 }
 
 export default latestActionsSaga;
