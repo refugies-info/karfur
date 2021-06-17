@@ -35,6 +35,7 @@
     "expo-updates": "~0.5.4",
     "expo-web-browser": "~9.1.0",
     "i18next": "^20.2.4",
+    "lottie-react-native": "3.5.0",
     "mongodb": "^3.6.7",
     "react": "16.13.1",
     "react-dom": "16.13.1",

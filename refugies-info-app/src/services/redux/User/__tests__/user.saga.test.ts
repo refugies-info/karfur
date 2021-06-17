@@ -2,6 +2,9 @@ import { testSaga } from "redux-saga-test-plan";
 import latestActionsSaga, {
   saveSelectedLanguage,
   saveHasUserSeenOnboarding,
+  saveUserAge,
+  saveUserLocation,
+  saveUserFrenchLevel,
 } from "../user.saga";
 import { saveItemInAsyncStorage } from "../functions";
 import {
@@ -18,6 +21,12 @@ describe("[Saga] user", () => {
         .takeLatest("SAVE_SELECTED_LANGUAGE", saveSelectedLanguage)
         .next()
         .takeLatest("SAVE_USER_HAS_SEEN_ONBOARDING", saveHasUserSeenOnboarding)
+        .next()
+        .takeLatest("SAVE_USER_LOCATION", saveUserLocation)
+        .next()
+        .takeLatest("SAVE_USER_FRENCH_LEVEL", saveUserFrenchLevel)
+        .next()
+        .takeLatest("SAVE_USER_AGE", saveUserAge)
         .next()
         .isDone();
     });

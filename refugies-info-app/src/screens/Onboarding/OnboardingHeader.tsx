@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SmallButton } from "../../components/SmallButton";
-import { RowContainer } from "../../components/BasicComponents";
+import { RowContainer, RTLView } from "../../components/BasicComponents";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
 import { StyledTextSmall } from "../../components/StyledText";
@@ -14,13 +14,16 @@ const TopButtonsContainer = styled(RowContainer)`
 `;
 
 const StyledText = styled(StyledTextSmall)`
-  margin-left: ${theme.margin}px;
+  margin-left: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? 0 : theme.margin}px;
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? theme.margin : 0}px;
 `;
 
 const ICON_SIZE = 24;
 
 export const OnboardingHeader = (props: { navigation: any }) => {
-  const { t } = useTranslationWithRTL();
+  const { t, isRTL } = useTranslationWithRTL();
 
   return (
     <TopButtonsContainer>
@@ -28,17 +31,17 @@ export const OnboardingHeader = (props: { navigation: any }) => {
         iconName="arrow-back-outline"
         onPress={props.navigation.goBack}
       />
-      <RowContainer>
+      <RTLView>
         <Icon
           name={"person-outline"}
           width={ICON_SIZE}
           height={ICON_SIZE}
           fill={theme.colors.black}
         />
-        <StyledText>
+        <StyledText isRTL={isRTL}>
           {t("Onboarding.Créer mon profil", "Créer mon profil")}
         </StyledText>
-      </RowContainer>
+      </RTLView>
       <SmallButton iconName="volume-up-outline" />
     </TopButtonsContainer>
   );
