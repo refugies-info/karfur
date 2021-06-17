@@ -25,6 +25,18 @@ export const ProfilScreen = () => {
         onPress={() => cleanStorage("HAS_USER_SEEN_ONBOARDING")}
         title="Reset has seen onboarding"
       />
+
+      <Button
+        onPress={() => {
+          cleanStorage("CITY"), cleanStorage("DEP");
+        }}
+        title="Reset city and dep"
+      />
+      <Button onPress={() => cleanStorage("AGE")} title="Reset age" />
+      <Button
+        onPress={() => cleanStorage("FRENCH_LEVEL")}
+        title="Reset french level"
+      />
     </WrapperWithHeaderAndLanguageModal>
   );
 };

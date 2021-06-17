@@ -22,7 +22,12 @@ import {
   hasUserSeenOnboardingSelector,
   selectedI18nCodeSelector,
 } from "../services/redux/User/user.selectors";
-import { setHasUserSeenOnboardingActionCreator } from "../services/redux/User/user.actions";
+import {
+  setHasUserSeenOnboardingActionCreator,
+  setUserAgeActionCreator,
+  setUserFrenchLeveleActionCreator,
+  setUserLocationActionCreator,
+} from "../services/redux/User/user.actions";
 import { LanguageChoiceStackNavigator } from "./LanguageChoiceNavigator";
 import { theme } from "../theme";
 import "../services/i18n";
@@ -60,6 +65,34 @@ export const RootNavigator = () => {
           // error reading value
         }
         setIsI18nInitialized(true);
+        try {
+          const city = await AsyncStorage.getItem("CITY");
+          const dep = await AsyncStorage.getItem("DEP");
+
+          if (city && dep) {
+            dispatch(setUserLocationActionCreator({ city, dep }));
+          }
+        } catch (e) {
+          // error reading value
+        }
+        try {
+          const age = await AsyncStorage.getItem("AGE");
+
+          if (age) {
+            dispatch(setUserAgeActionCreator(age));
+          }
+        } catch (e) {
+          // error reading value
+        }
+        try {
+          const frenchLevel = await AsyncStorage.getItem("FRENCH_LEVEL");
+
+          if (frenchLevel) {
+            dispatch(setUserFrenchLeveleActionCreator(frenchLevel));
+          }
+        } catch (e) {
+          // error reading value
+        }
       } catch (error) {
         logger.warn("Error while initializing i18n", {
           error: error.message,
