@@ -266,7 +266,7 @@ export const FilterCity = ({
               </GeolocContainer>
             </View>
           )}
-          {isGeolocLoading && <ActivityIndicator />}
+          {isGeolocLoading && <ActivityIndicator color={theme.colors.grey60} />}
           {!!selectedCity && !!selectedDepartment && (
             <SelectedCityContainer onPress={resetData}>
               <SelectedCityText>
