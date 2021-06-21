@@ -11,6 +11,10 @@ import {
   setSelectedLanguageActionCreator,
   setHasUserSeenOnboardingActionCreator,
   setCurrentLanguageActionCreator,
+  setUserFrenchLevelActionCreator,
+  saveUserAgeActionCreator,
+  setUserAgeActionCreator,
+  setUserLocationActionCreator,
 } from "../user.actions";
 
 describe("[Saga] user", () => {
@@ -81,6 +85,94 @@ describe("[Saga] user", () => {
         .call(saveItemInAsyncStorage, "HAS_USER_SEEN_ONBOARDING", "TRUE")
         .throw(new Error("error"))
         .put(setHasUserSeenOnboardingActionCreator())
+        .next()
+        .isDone();
+    });
+  });
+
+  describe("save french level saga", () => {
+    it("should call functions and set data", () => {
+      testSaga(saveUserFrenchLevel, {
+        type: "SAVE_USER_FRENCH_LEVEL",
+        payload: "level1",
+      })
+        .next()
+        .call(saveItemInAsyncStorage, "FRENCH_LEVEL", "level1")
+        .next()
+        .put(setUserFrenchLevelActionCreator("level1"))
+        .next()
+        .isDone();
+    });
+
+    it("should call functions and set null if saveItemInAsyncStorage throws", () => {
+      testSaga(saveUserFrenchLevel, {
+        type: "SAVE_USER_FRENCH_LEVEL",
+        payload: "level1",
+      })
+        .next()
+        .call(saveItemInAsyncStorage, "FRENCH_LEVEL", "level1")
+        .throw(new Error("error"))
+        .put(setUserFrenchLevelActionCreator(null))
+        .next()
+
+        .isDone();
+    });
+  });
+
+  describe("save age saga", () => {
+    it("should call functions and set data", () => {
+      testSaga(saveUserAge, {
+        type: "SAVE_USER_AGE",
+        payload: "age",
+      })
+        .next()
+        .call(saveItemInAsyncStorage, "AGE", "age")
+        .next()
+        .put(setUserAgeActionCreator("age"))
+        .next()
+        .isDone();
+    });
+
+    it("should call functions and set null if saveItemInAsyncStorage throws", () => {
+      testSaga(saveUserAge, {
+        type: "SAVE_USER_AGE",
+        payload: "age",
+      })
+        .next()
+        .call(saveItemInAsyncStorage, "AGE", "age")
+        .throw(new Error("error"))
+        .put(setUserAgeActionCreator(null))
+        .next()
+
+        .isDone();
+    });
+  });
+
+  describe("save location saga", () => {
+    it("should call functions and set data", () => {
+      testSaga(saveUserLocation, {
+        type: "SAVE_USER_LOCATION",
+        payload: { city: "city", dep: "dep" },
+      })
+        .next()
+        .call(saveItemInAsyncStorage, "CITY", "city")
+        .next()
+        .call(saveItemInAsyncStorage, "DEP", "dep")
+        .next()
+        .put(setUserLocationActionCreator({ city: "city", dep: "dep" }))
+        .next()
+        .isDone();
+    });
+
+    it("should call functions and set null if saveItemInAsyncStorage throws", () => {
+      testSaga(saveUserLocation, {
+        type: "SAVE_USER_LOCATION",
+        payload: { city: "city", dep: "dep" },
+      })
+        .next()
+        .call(saveItemInAsyncStorage, "CITY", "city")
+        .throw(new Error("error"))
+        .put(setUserLocationActionCreator({ city: null, dep: null }))
         .next()
         .isDone();
     });
