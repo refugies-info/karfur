@@ -23,6 +23,7 @@ const StyledContainer = styled(RTLView)`
   align-items: center;
   margin-top: ${theme.margin * 5}px;
   align-self: center;
+  justify-content: center;
 `;
 const StyledText = styled(StyledTextSmallBold)`
   color: ${theme.colors.white};
@@ -30,11 +31,12 @@ const StyledText = styled(StyledTextSmallBold)`
     props.isRTL ? theme.margin : 0}px;
   margin-right: ${(props: { isRTL: boolean }) =>
     props.isRTL ? 0 : theme.margin}px;
-  flex-wrap: wrap;
+  flex-shrink: 1;
+  text-align: center;
 `;
 
 const CARD_HEIGHT = 320;
-const CARD_WIDTH = 232;
+const CARD_WIDTH = 234;
 
 const styles = StyleSheet.create({
   card: {

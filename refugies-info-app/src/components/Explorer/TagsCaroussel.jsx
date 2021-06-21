@@ -65,7 +65,7 @@ export class TagsCaroussel extends React.Component {
           ref={(ref) => (this.carousel = ref)}
           data={this.state.carouselItems}
           sliderWidth={460}
-          itemWidth={232}
+          itemWidth={234}
           renderItem={this._renderItem}
           onSnapToItem={(index) => this.setState({ activeIndex: index })}
           currentIndex={activeIndex}
