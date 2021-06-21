@@ -23,7 +23,9 @@ const ChoiceText = styled(TextVerySmallNormal)`
 `;
 
 const StyledButton = styled(RTLTouchableOpacity)`
-  padding: ${theme.margin * 3}px;
+  padding-horizontal: ${theme.margin * 3}px;
+  padding-top: ${theme.margin * 3}px;
+  padding-bottom: ${theme.margin * 2}px;
   margin-right: 2px;
   margin-left: 2px;
 `;

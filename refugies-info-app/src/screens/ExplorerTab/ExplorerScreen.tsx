@@ -10,15 +10,12 @@ import { TagButton } from "../../components/Explorer/TagButton";
 import { TagsCaroussel } from "../../components/Explorer/TagsCaroussel";
 import { sortByOrder } from "../../libs";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { ScrollView } from "react-native";
 
 const ViewChoiceContainer = styled(RTLView)`
   margin-top: ${theme.margin * 4}px;
   justify-content: center;
   align-items: center;
-`;
-
-const TagListContainer = styled.ScrollView`
-  margin-horizontal: ${theme.margin * 3}px;
 `;
 
 const CarousselContainer = styled.View`
@@ -54,7 +51,7 @@ export const ExplorerScreen = () => {
         />
       </ViewChoiceContainer>
       {tabSelected === "list" ? (
-        <TagListContainer>
+        <ScrollView contentContainerStyle={{ padding: theme.margin * 3 }}>
           {tags.sort(sortByOrder).map((tag, index) => (
             <TagButton
               key={index}
@@ -63,7 +60,7 @@ export const ExplorerScreen = () => {
               iconName={tag.icon}
             />
           ))}
-        </TagListContainer>
+        </ScrollView>
       ) : (
         <CenteredView>
           <CarousselContainer>
