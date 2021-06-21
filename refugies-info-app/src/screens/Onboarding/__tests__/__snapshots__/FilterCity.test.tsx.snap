@@ -731,6 +731,13 @@ exports[`Filter city should render correctly when city selected 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
+              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowOffset": Object {
+                "height": 8,
+                "width": 0,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 16,
               "width": "50%",
             }
           }
@@ -1575,6 +1582,13 @@ exports[`Filter city should render correctly when no city 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
+              "shadowColor": "black",
+              "shadowOffset": Object {
+                "height": 0,
+                "width": 0,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 0,
               "width": "50%",
             }
           }
