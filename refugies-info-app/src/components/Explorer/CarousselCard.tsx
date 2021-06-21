@@ -34,6 +34,7 @@ const StyledText = styled(StyledTextSmallBold)`
 `;
 
 const CARD_HEIGHT = 320;
+const CARD_WIDTH = 232;
 
 const styles = StyleSheet.create({
   card: {
@@ -41,6 +42,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "flex-end",
     height: CARD_HEIGHT,
+    width: CARD_WIDTH,
     borderRadius: theme.radius * 2,
   },
 });

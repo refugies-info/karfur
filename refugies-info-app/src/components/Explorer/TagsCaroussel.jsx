@@ -49,6 +49,8 @@ export class TagsCaroussel extends React.Component {
         }}
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}
+        animatedDuration={1000}
+        animatedTension={150}
       />
     );
   }
@@ -63,7 +65,7 @@ export class TagsCaroussel extends React.Component {
           ref={(ref) => (this.carousel = ref)}
           data={this.state.carouselItems}
           sliderWidth={460}
-          itemWidth={230}
+          itemWidth={232}
           renderItem={this._renderItem}
           onSnapToItem={(index) => this.setState({ activeIndex: index })}
           currentIndex={activeIndex}
