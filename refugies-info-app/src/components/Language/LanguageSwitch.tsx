@@ -102,7 +102,7 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
 
   if (selectedLanguageI18nCode === "fr")
     return (
-      <ButtonContainerFixedWidth onLongPress={onLongPressSwitchLanguage}>
+      <ButtonContainerFixedWidth onPress={onLongPressSwitchLanguage}>
         <Flag langueFr={"Français"} />
       </ButtonContainerFixedWidth>
     );
