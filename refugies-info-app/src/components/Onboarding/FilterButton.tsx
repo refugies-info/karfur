@@ -52,7 +52,11 @@ const Detail = (props: { text: string; isSelected: boolean }) => (
 export const FilterButton = (props: Props) => {
   const { t } = useTranslationWithRTL();
   return (
-    <MainContainer onPress={props.onPress} isSelected={props.isSelected}>
+    <MainContainer
+      onPress={props.onPress}
+      isSelected={props.isSelected}
+      testID={`test-filter-${props.text}`}
+    >
       <StyledText isSelected={props.isSelected}>
         {t("Filter." + props.text, props.text)}
       </StyledText>
