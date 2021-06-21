@@ -23,8 +23,9 @@ const ChoiceText = styled(TextVerySmallNormal)`
 `;
 
 const StyledButton = styled(RTLTouchableOpacity)`
-  margin-left: ${theme.margin * 3}px;
-  margin-right: ${theme.margin * 3}px;
+  padding: ${theme.margin * 3}px;
+  margin-right: 2px;
+  margin-left: 2px;
 `;
 interface Props {
   text: string;

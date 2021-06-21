@@ -12,10 +12,9 @@ import { sortByOrder } from "../../libs";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 const ViewChoiceContainer = styled(RTLView)`
-  margin-top: ${theme.margin * 6}px;
+  margin-top: ${theme.margin * 4}px;
   justify-content: center;
   align-items: center;
-  margin-bottom: ${theme.margin * 2}px;
 `;
 
 const TagListContainer = styled.ScrollView`
@@ -35,7 +34,7 @@ const CenteredView = styled.View`
   justify-content: center;
 `;
 export const ExplorerScreen = () => {
-  const { t, isRTL } = useTranslationWithRTL();
+  const { isRTL } = useTranslationWithRTL();
   const [tabSelected, setTabSelected] = React.useState("galery");
 
   return (
