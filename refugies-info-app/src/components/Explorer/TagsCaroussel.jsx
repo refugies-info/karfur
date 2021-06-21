@@ -42,6 +42,7 @@ export class TagsCaroussel extends React.Component {
           height: 8,
           borderRadius: 5,
           backgroundColor: tags[activeIndex].lightColor,
+          marginHorizontal: -2,
         }}
         inactiveDotStyle={{
           backgroundColor: theme.colors.darkGrey,
