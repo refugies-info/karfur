@@ -5,7 +5,6 @@ import { tags } from "../../data/tagData";
 import { CarousselCard } from "./CarousselCard";
 import { sortByOrder } from "../../libs";
 import { theme } from "../../theme";
-import i18n from "../../services/i18n";
 
 export class TagsCaroussel extends React.Component {
   constructor(props) {
@@ -28,7 +27,8 @@ export class TagsCaroussel extends React.Component {
 
   get pagination() {
     const { carouselItems, activeIndex } = this.state;
-    const isRTL = i18n.isRTL();
+    const isRTL = this.props.isRTL;
+
     const activeDotIndex = isRTL
       ? carouselItems.length - activeIndex - 1
       : activeIndex;
@@ -55,7 +55,7 @@ export class TagsCaroussel extends React.Component {
     );
   }
   render() {
-    const isRTL = i18n.isRTL();
+    const isRTL = this.props.isRTL;
     const { activeIndex } = this.state;
 
     return (

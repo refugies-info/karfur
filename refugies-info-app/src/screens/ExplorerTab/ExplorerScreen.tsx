@@ -9,6 +9,7 @@ import { tags } from "../../data/tagData";
 import { TagButton } from "../../components/Explorer/TagButton";
 import { TagsCaroussel } from "../../components/Explorer/TagsCaroussel";
 import { sortByOrder } from "../../libs";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 const ViewChoiceContainer = styled(RTLView)`
   margin-top: ${theme.margin * 6}px;
@@ -34,6 +35,7 @@ const CenteredView = styled.View`
   justify-content: center;
 `;
 export const ExplorerScreen = () => {
+  const { t, isRTL } = useTranslationWithRTL();
   const [tabSelected, setTabSelected] = React.useState("galery");
 
   return (
@@ -66,7 +68,7 @@ export const ExplorerScreen = () => {
       ) : (
         <CenteredView>
           <CarousselContainer>
-            <TagsCaroussel />
+            <TagsCaroussel isRTL={isRTL} />
           </CarousselContainer>
         </CenteredView>
       )}
