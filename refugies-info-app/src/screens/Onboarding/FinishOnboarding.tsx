@@ -20,8 +20,6 @@ const MainView = styled(SafeAreaView)`
   background-color: ${theme.colors.darkBlue};
   padding-horizontal: ${theme.margin * 3}px;
   padding-bottom: ${theme.margin * 3}px;
-
-  padding-top: ${theme.margin}px;
 `;
 
 const TopButtonsContainer = styled.View`
