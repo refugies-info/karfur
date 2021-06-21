@@ -64,6 +64,7 @@ export const BottomButtons = (props: Props) => {
         isDisabled={props.isRightButtonDisabled}
         onPress={props.onRightButtonClick}
         disabled={props.isRightButtonDisabled}
+        testID="test-validate-button"
       >
         <TextBold
           color={

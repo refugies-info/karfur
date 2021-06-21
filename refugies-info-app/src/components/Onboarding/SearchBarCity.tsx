@@ -49,6 +49,7 @@ export const SearchBarCity = (props: Props) => {
         placeholder={t("Onboarding.placeholder", "Exemple : Paris")}
         onChangeText={props.onChangeText}
         isRTL={isRTL}
+        testID="test-city-input"
       />
       {props.suggestions.length > 0 && (
         <SuggestionsContainer keyboardShouldPersistTaps={"handled"}>

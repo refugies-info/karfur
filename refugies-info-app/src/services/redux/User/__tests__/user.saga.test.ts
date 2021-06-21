@@ -12,7 +12,6 @@ import {
   setHasUserSeenOnboardingActionCreator,
   setCurrentLanguageActionCreator,
   setUserFrenchLevelActionCreator,
-  saveUserAgeActionCreator,
   setUserAgeActionCreator,
   setUserLocationActionCreator,
 } from "../user.actions";
