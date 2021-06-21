@@ -11,7 +11,7 @@ import {
   saveUserAgeActionCreator,
   setUserAgeActionCreator,
   setUserLocationActionCreator,
-  setUserFrenchLeveleActionCreator,
+  setUserFrenchLevelActionCreator,
 } from "./user.actions";
 import {
   SAVE_SELECTED_LANGUAGE,
@@ -61,10 +61,10 @@ export function* saveUserFrenchLevel(
     const frenchLevel = action.payload;
     logger.info("[saveUserFrenchLevel] saga", { frenchLevel });
     yield call(saveItemInAsyncStorage, "FRENCH_LEVEL", frenchLevel);
-    yield put(setUserFrenchLeveleActionCreator(frenchLevel));
+    yield put(setUserFrenchLevelActionCreator(frenchLevel));
   } catch (error) {
     logger.error("[saveUserFrenchLevel] saga error", { error: error.message });
-    yield put(setUserFrenchLeveleActionCreator(null));
+    yield put(setUserFrenchLevelActionCreator(null));
   }
 }
 

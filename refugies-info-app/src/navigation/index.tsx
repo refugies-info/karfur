@@ -25,7 +25,7 @@ import {
 import {
   setHasUserSeenOnboardingActionCreator,
   setUserAgeActionCreator,
-  setUserFrenchLeveleActionCreator,
+  setUserFrenchLevelActionCreator,
   setUserLocationActionCreator,
 } from "../services/redux/User/user.actions";
 import { LanguageChoiceStackNavigator } from "./LanguageChoiceNavigator";
@@ -88,7 +88,7 @@ export const RootNavigator = () => {
           const frenchLevel = await AsyncStorage.getItem("FRENCH_LEVEL");
 
           if (frenchLevel) {
-            dispatch(setUserFrenchLeveleActionCreator(frenchLevel));
+            dispatch(setUserFrenchLevelActionCreator(frenchLevel));
           }
         } catch (e) {
           // error reading value
