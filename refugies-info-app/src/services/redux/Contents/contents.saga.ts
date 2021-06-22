@@ -11,6 +11,7 @@ import {
   setContentsActionCreator,
 } from "./contents.actions";
 import { FETCH_CONTENTS } from "./contents.actionTypes";
+import { getContentsForApp } from "../../../utils/API";
 
 export function* fetchContents(
   action: ReturnType<typeof fetchContentsActionCreator>
@@ -19,11 +20,15 @@ export function* fetchContents(
     logger.info("[fetchContents] saga");
     const langueI18nCode = action.payload;
     yield put(startLoading(LoadingStatusKey.FETCH_CONTENTS));
-    // const data = yield call(getLanguages);
-
-    yield put(
-      setContentsActionCreator({ langue: langueI18nCode, contents: [] })
-    );
+    const data = yield call(getContentsForApp, langueI18nCode);
+    if (data && data.data && data.data.data) {
+      yield put(
+        setContentsActionCreator({
+          langue: langueI18nCode,
+          contents: data.data.data,
+        })
+      );
+    }
     yield put(finishLoading(LoadingStatusKey.FETCH_CONTENTS));
   } catch (error) {
     logger.error("Error while fetching contents", { error: error.message });
