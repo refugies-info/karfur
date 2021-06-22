@@ -72,8 +72,7 @@ export const FeedbackFooter = (props: Props) => {
         )}
         <FButton
           className={" feedback-btn error mr-8 mb-8 "}
-          // @ts-ignore
-          onClick={() => window.$crisp.push(["do", "chat:open"])}
+          id="no-thanks-btn"
         >
           <span role="img" aria-label="thanks">
             😔
