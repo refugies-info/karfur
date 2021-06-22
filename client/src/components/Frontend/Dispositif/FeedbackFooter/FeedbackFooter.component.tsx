@@ -77,7 +77,7 @@ export const FeedbackFooter = (props: Props) => {
           <span role="img" aria-label="thanks">
             😔
           </span>
-          {t("Dispositif.Non", "Non")}
+          {t("Non", "Non")}
         </FButton>
       </ButtonContainer>
     </FeedbackContainer>
