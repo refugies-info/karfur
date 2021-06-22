@@ -139,6 +139,13 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
             "paddingLeft": 16,
             "paddingRight": 16,
             "paddingTop": 16,
+            "shadowColor": "rgba(33, 33, 33, 0.24)",
+            "shadowOffset": Object {
+              "height": 8,
+              "width": 0,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 16,
           }
         }
         testID="test-language-button-Français"

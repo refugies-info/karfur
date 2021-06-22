@@ -41,10 +41,12 @@ const renderTabBarIcon = (
 
 const TabBarLabelText = styled(StyledTextVerySmall)`
   color: ${(props: { color: string }) => props.color};
+  margin-bottom: 4px;
 `;
 
 const TabBarLabelTextBold = styled(StyledTextVerySmallBold)`
   color: ${(props: { color: string }) => props.color};
+  margin-bottom: 4px;
 `;
 const renderTabBarLabel = (color: string, focused: boolean, name: string) => {
   if (focused)

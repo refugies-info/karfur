@@ -14,7 +14,6 @@ const MainContainer = styled(RowContainer)`
   padding-right: ${(props: { isRTL: any }) =>
     props.isRTL ? theme.margin * 3 : theme.margin * 3}px;
 
-  padding-vertical: ${theme.margin}px;
   align-items: center;
   justify-content: space-between;
   display: flex;
@@ -23,8 +22,8 @@ const MainContainer = styled(RowContainer)`
 const StyledSafeAreaView = styled(SafeAreaView)`
   z-index: 2;
 `;
-const LOGO_WIDTH = 70;
-const LOGO_HEIGHT = 48;
+const LOGO_WIDTH = 58;
+const LOGO_HEIGHT = 40;
 
 interface Props {
   onLongPressSwitchLanguage?: () => void;

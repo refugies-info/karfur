@@ -231,8 +231,9 @@ export const FilterCity = ({
           dep: selectedDepartment,
         })
       );
-      navigateToNextScreen();
+      return navigateToNextScreen();
     }
+    return navigateToNextScreen();
   };
 
   return (
@@ -299,7 +300,7 @@ export const FilterCity = ({
           <OnboardingProgressBar step={1} />
           <BottomButtons
             isRightButtonDisabled={!selectedCity || !selectedDepartment}
-            onLeftButtonClick={navigateToNextScreen}
+            onLeftButtonClick={onValidate}
             onRightButtonClick={onValidate}
           />
         </View>

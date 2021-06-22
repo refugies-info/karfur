@@ -37,8 +37,9 @@ export const FilterAge = ({
   const onValidate = () => {
     if (selectedAge) {
       dispatch(saveUserAgeActionCreator(selectedAge));
-      navigateToNextScreen();
+      return navigateToNextScreen();
     }
+    return navigateToNextScreen();
   };
 
   const { t } = useTranslationWithRTL();
@@ -70,7 +71,7 @@ export const FilterAge = ({
           <OnboardingProgressBar step={2} />
           <BottomButtons
             isRightButtonDisabled={!selectedAge}
-            onLeftButtonClick={navigateToNextScreen}
+            onLeftButtonClick={onValidate}
             onRightButtonClick={onValidate}
           />
         </View>

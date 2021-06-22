@@ -14,6 +14,7 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
   align-items: center;
   width: 100%;
   height: 56px;
+  box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
 `;
 
 const ColoredText = styled(StyledTextSmallBold)`

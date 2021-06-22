@@ -27,14 +27,13 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               "justifyContent": "space-between",
               "paddingLeft": 24,
               "paddingRight": 24,
-              "paddingVertical": 8,
             },
           ]
         }
       >
         <react-native-svg
-          height={48}
-          width={70}
+          height={40}
+          width={58}
         />
         <View
           style={
@@ -67,6 +66,13 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                 "paddingLeft": 12,
                 "paddingRight": 12,
                 "paddingTop": 12,
+                "shadowColor": "rgba(33, 33, 33, 0.1)",
+                "shadowOffset": Object {
+                  "height": 0,
+                  "width": 0,
+                },
+                "shadowOpacity": 1,
+                "shadowRadius": 40,
               }
             }
           >
@@ -178,6 +184,13 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingLeft": 16,
             "paddingRight": 16,
             "paddingTop": 16,
+            "shadowColor": "rgba(33, 33, 33, 0.24)",
+            "shadowOffset": Object {
+              "height": 8,
+              "width": 0,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 16,
           }
         }
         testID="test-language-button-Français"
@@ -259,6 +272,13 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingLeft": 16,
             "paddingRight": 16,
             "paddingTop": 16,
+            "shadowColor": "rgba(33, 33, 33, 0.24)",
+            "shadowOffset": Object {
+              "height": 8,
+              "width": 0,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 16,
           }
         }
         testID="test-language-button-Anglais"
@@ -380,6 +400,13 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingLeft": 16,
             "paddingRight": 16,
             "paddingTop": 16,
+            "shadowColor": "rgba(33, 33, 33, 0.24)",
+            "shadowOffset": Object {
+              "height": 8,
+              "width": 0,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 16,
           }
         }
         testID="test-language-button-Pachto"
@@ -501,6 +528,13 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingLeft": 16,
             "paddingRight": 16,
             "paddingTop": 16,
+            "shadowColor": "rgba(33, 33, 33, 0.24)",
+            "shadowOffset": Object {
+              "height": 8,
+              "width": 0,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 16,
           }
         }
         testID="test-language-button-Persan/Dari"
@@ -622,6 +656,13 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingLeft": 16,
             "paddingRight": 16,
             "paddingTop": 16,
+            "shadowColor": "rgba(33, 33, 33, 0.24)",
+            "shadowOffset": Object {
+              "height": 8,
+              "width": 0,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 16,
           }
         }
         testID="test-language-button-Tigrinya"
@@ -743,6 +784,13 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingLeft": 16,
             "paddingRight": 16,
             "paddingTop": 16,
+            "shadowColor": "rgba(33, 33, 33, 0.24)",
+            "shadowOffset": Object {
+              "height": 8,
+              "width": 0,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 16,
           }
         }
         testID="test-language-button-Russe"
@@ -864,6 +912,13 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingLeft": 16,
             "paddingRight": 16,
             "paddingTop": 16,
+            "shadowColor": "rgba(33, 33, 33, 0.24)",
+            "shadowOffset": Object {
+              "height": 8,
+              "width": 0,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 16,
           }
         }
         testID="test-language-button-Arabe"

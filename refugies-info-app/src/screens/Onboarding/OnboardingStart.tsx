@@ -6,7 +6,8 @@ import { Header } from "../../components/Header";
 import { StyledTextBigBold } from "../../components/StyledText";
 import { theme } from "../../theme";
 import styled from "styled-components/native";
-import IlluOnboarding from "../../theme/images/onboarding/illu-onboarding.png";
+import IlluOnboarding from "../../theme/images/onboarding/illu_onboarding_2.png";
+
 import { CustomButton } from "../../components/CustomButton";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     // flex: 1,
     resizeMode: "cover", // or 'stretch'
     width: "100%",
-    // height: "370",
+    height: 370,
   },
 });
 

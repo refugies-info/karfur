@@ -9,16 +9,13 @@ import { tags } from "../../data/tagData";
 import { TagButton } from "../../components/Explorer/TagButton";
 import { TagsCaroussel } from "../../components/Explorer/TagsCaroussel";
 import { sortByOrder } from "../../libs";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { ScrollView } from "react-native";
 
 const ViewChoiceContainer = styled(RTLView)`
-  margin-top: ${theme.margin * 6}px;
+  margin-top: ${theme.margin * 4}px;
   justify-content: center;
   align-items: center;
-  margin-bottom: ${theme.margin * 2}px;
-`;
-
-const TagListContainer = styled.ScrollView`
-  margin-horizontal: ${theme.margin * 3}px;
 `;
 
 const CarousselContainer = styled.View`
@@ -34,6 +31,7 @@ const CenteredView = styled.View`
   justify-content: center;
 `;
 export const ExplorerScreen = () => {
+  const { isRTL } = useTranslationWithRTL();
   const [tabSelected, setTabSelected] = React.useState("galery");
 
   return (
@@ -53,7 +51,7 @@ export const ExplorerScreen = () => {
         />
       </ViewChoiceContainer>
       {tabSelected === "list" ? (
-        <TagListContainer>
+        <ScrollView contentContainerStyle={{ padding: theme.margin * 3 }}>
           {tags.sort(sortByOrder).map((tag, index) => (
             <TagButton
               key={index}
@@ -62,11 +60,11 @@ export const ExplorerScreen = () => {
               iconName={tag.icon}
             />
           ))}
-        </TagListContainer>
+        </ScrollView>
       ) : (
         <CenteredView>
           <CarousselContainer>
-            <TagsCaroussel />
+            <TagsCaroussel isRTL={isRTL} />
           </CarousselContainer>
         </CenteredView>
       )}

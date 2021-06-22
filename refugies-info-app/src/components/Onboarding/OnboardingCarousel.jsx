@@ -2,24 +2,24 @@ import Carousel, { Pagination } from "react-native-snap-carousel";
 import React from "react";
 import { View, Dimensions } from "react-native";
 import { theme } from "../../theme";
-import i18n from "../../services/i18n";
 import { OnboardingCarouselElement } from "./OnboardingCarouselElement";
 import { CustomButton } from "../../components/CustomButton";
 import { SmallButton } from "../SmallButton";
 import styled from "styled-components/native";
 import { onboardingCarouselData } from "./OnboardingCarouselData";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 const { width: viewportWidth } = Dimensions.get("window");
 
-const TopButtonsContainer = styled.View`
+const TopButtonsContainer = styled(SafeAreaView)`
   position: absolute;
-  top: 10px;
+  top: 0px;
   left: 0px;
   z-index: 2;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding-horizontal: ${theme.margin * 3}px;
-  padding-top: ${theme.margin * 2}px;
   width: 100%;
 `;
 
@@ -85,7 +85,6 @@ export class OnboardingCarousel extends React.Component {
     );
   }
   render() {
-    const isRTL = i18n.isRTL();
     const { activeIndex } = this.state;
 
     return (
