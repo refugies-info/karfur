@@ -19,8 +19,10 @@ import {
   SAVE_USER_LOCATION,
   SAVE_USER_AGE,
   SAVE_USER_FRENCH_LEVEL,
+  GET_USER_INFOS,
 } from "./user.actionTypes";
-import { saveItemInAsyncStorage } from "./functions";
+import { saveItemInAsyncStorage, getItemInAsyncStorage } from "./functions";
+import { fetchContentsActionCreator } from "../Contents/contents.actions";
 
 export function* saveSelectedLanguage(
   action: ReturnType<typeof saveSelectedLanguageActionCreator>
@@ -95,12 +97,69 @@ export function* saveHasUserSeenOnboarding(): SagaIterator {
   }
 }
 
+export function* getUserInfos(): SagaIterator {
+  try {
+    logger.info("[getUserInfos] saga");
+    try {
+      const selectedLanguage = yield call(
+        getItemInAsyncStorage,
+        "SELECTED_LANGUAGE"
+      );
+      if (selectedLanguage) {
+        yield put(setSelectedLanguageActionCreator(selectedLanguage));
+        yield put(setCurrentLanguageActionCreator(selectedLanguage));
+      }
+    } catch (error) {
+      logger.error("Error while getting language", {
+        error: error.message,
+      });
+    }
+    try {
+      const city = yield call(getItemInAsyncStorage, "CITY");
+      const dep = yield call(getItemInAsyncStorage, "DEP");
+      if (city && dep) {
+        yield put(setUserLocationActionCreator({ city, dep }));
+      }
+    } catch (error) {
+      logger.error("Error while getting user location", {
+        error: error.message,
+      });
+    }
+    try {
+      const age = yield call(getItemInAsyncStorage, "AGE");
+      if (age) {
+        yield put(setUserAgeActionCreator(age));
+      }
+    } catch (error) {
+      logger.error("Error while getting user age", {
+        error: error.message,
+      });
+    }
+    try {
+      const frenchLevel = yield call(getItemInAsyncStorage, "FRENCH_LEVEL");
+      if (frenchLevel) {
+        yield put(setUserFrenchLevelActionCreator(frenchLevel));
+      }
+    } catch (error) {
+      logger.error("Error while getting user french level", {
+        error: error.message,
+      });
+    }
+    yield put(fetchContentsActionCreator());
+  } catch (error) {
+    logger.error("Error while getting user infos", {
+      error: error.message,
+    });
+  }
+}
+
 function* latestActionsSaga() {
   yield takeLatest(SAVE_SELECTED_LANGUAGE, saveSelectedLanguage);
   yield takeLatest(SAVE_USER_HAS_SEEN_ONBOARDING, saveHasUserSeenOnboarding);
   yield takeLatest(SAVE_USER_LOCATION, saveUserLocation);
   yield takeLatest(SAVE_USER_FRENCH_LEVEL, saveUserFrenchLevel);
   yield takeLatest(SAVE_USER_AGE, saveUserAge);
+  yield takeLatest(GET_USER_INFOS, getUserInfos);
 }
 
 export default latestActionsSaga;

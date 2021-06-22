@@ -12,22 +12,14 @@ import BottomTabNavigator from "./BottomTabNavigator";
 import i18n from "../services/i18n";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setSelectedLanguageActionCreator,
-  setCurrentLanguageActionCreator,
-} from "../services/redux/User/user.actions";
+import { getUserInfosActionCreator } from "../services/redux/User/user.actions";
 import { logger } from "../logger";
 import { OnboardingStackNavigator } from "./OnboardingNavigator";
 import {
   hasUserSeenOnboardingSelector,
   selectedI18nCodeSelector,
 } from "../services/redux/User/user.selectors";
-import {
-  setHasUserSeenOnboardingActionCreator,
-  setUserAgeActionCreator,
-  setUserFrenchLevelActionCreator,
-  setUserLocationActionCreator,
-} from "../services/redux/User/user.actions";
+import { setHasUserSeenOnboardingActionCreator } from "../services/redux/User/user.actions";
 import { LanguageChoiceStackNavigator } from "./LanguageChoiceNavigator";
 import { theme } from "../theme";
 import "../services/i18n";
@@ -49,48 +41,6 @@ export const RootNavigator = () => {
   const userSelectedLanguage = useSelector(selectedI18nCodeSelector);
   const dispatch = useDispatch();
   React.useEffect(() => {
-    const setLocation = async () => {
-      try {
-        const city = await AsyncStorage.getItem("CITY");
-        const dep = await AsyncStorage.getItem("DEP");
-
-        if (city && dep) {
-          dispatch(setUserLocationActionCreator({ city, dep }));
-        }
-      } catch (error) {
-        logger.error("Error while initializing location", {
-          error: error.message,
-        });
-      }
-    };
-
-    const setAge = async () => {
-      try {
-        const age = await AsyncStorage.getItem("AGE");
-        if (age) {
-          dispatch(setUserAgeActionCreator(age));
-        }
-      } catch (error) {
-        logger.error("Error while initializing age", {
-          error: error.message,
-        });
-      }
-    };
-
-    const setFrenchLevel = async () => {
-      try {
-        const frenchLevel = await AsyncStorage.getItem("FRENCH_LEVEL");
-
-        if (frenchLevel) {
-          dispatch(setUserFrenchLevelActionCreator(frenchLevel));
-        }
-      } catch (error) {
-        logger.error("Error while initializing french level", {
-          error: error.message,
-        });
-      }
-    };
-
     const setLanguage = async () => {
       try {
         i18n.use(initReactI18next);
@@ -102,8 +52,6 @@ export const RootNavigator = () => {
           );
           if (language) {
             i18n.changeLanguage(language);
-            dispatch(setSelectedLanguageActionCreator(language));
-            dispatch(setCurrentLanguageActionCreator(language));
           } else {
             i18n.changeLanguage("fr");
           }
@@ -134,9 +82,7 @@ export const RootNavigator = () => {
     };
     checkIfUserHasAlreadySeenOnboarding();
     setLanguage();
-    setLocation();
-    setAge();
-    setFrenchLevel();
+    dispatch(getUserInfosActionCreator());
   }, []);
 
   if (!isI18nInitialized || !isOnboardingValueInitialized) {

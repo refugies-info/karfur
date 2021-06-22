@@ -9,14 +9,23 @@ import { logger } from "../../../logger";
 import { setContentsActionCreator } from "./contents.actions";
 import { FETCH_CONTENTS } from "./contents.actionTypes";
 import { getContentsForApp } from "../../../utils/API";
-import { selectedI18nCodeSelector } from "../User/user.selectors";
+import {
+  selectedI18nCodeSelector,
+  userAgeSelector,
+  userLocationSelector,
+  userFrenchLevelSelector,
+} from "../User/user.selectors";
 
 export function* fetchContents(): SagaIterator {
   try {
     logger.info("[fetchContents] saga");
     yield put(startLoading(LoadingStatusKey.FETCH_CONTENTS));
     const selectedLanguage = yield select(selectedI18nCodeSelector);
-    if (selectedLanguage) {
+    const age = yield select(userAgeSelector);
+    const { department } = yield select(userLocationSelector);
+    const frenchLevel = yield select(userFrenchLevelSelector);
+
+    if (selectedLanguage && selectedLanguage !== "fr") {
       const data = yield call(getContentsForApp, selectedLanguage);
 
       if (data && data.data && data.data.data) {
@@ -27,6 +36,15 @@ export function* fetchContents(): SagaIterator {
           })
         );
       }
+    }
+    const dataFr = yield call(getContentsForApp, "fr");
+    if (dataFr && dataFr.data && dataFr.data.data) {
+      yield put(
+        setContentsActionCreator({
+          langue: "fr",
+          contents: dataFr.data.data,
+        })
+      );
     }
     yield put(finishLoading(LoadingStatusKey.FETCH_CONTENTS));
   } catch (error) {
