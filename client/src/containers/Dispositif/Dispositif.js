@@ -2041,7 +2041,7 @@ export class Dispositif extends Component {
                       <FeedbackFooter
                         pushReaction={this.pushReaction}
                         didThank={didThank}
-                        thanks={
+                        nbThanks={
                           this.state.dispositif.merci
                             ? this.state.dispositif.merci.length
                             : 0
