@@ -2035,15 +2035,20 @@ export class Dispositif extends Component {
                   {...this.state}
                 />
 
-                {this.state.disableEdit && !isMobile && (
+                {this.state.disableEdit && (
                   <>
                     {!printing && (
                       <FeedbackFooter
                         pushReaction={this.pushReaction}
                         didThank={didThank}
+                        thanks={
+                          this.state.dispositif.merci
+                            ? this.state.dispositif.merci.length
+                            : null
+                        }
                       />
                     )}
-                    {!printing && (
+                    {!printing && !isMobile && (
                       <div className="discussion-footer backgroundColor-darkColor">
                         <h5>{t("Dispositif.Avis", "Avis et discussions")}</h5>
                         <span>
@@ -2051,13 +2056,15 @@ export class Dispositif extends Component {
                         </span>
                       </div>
                     )}
-                    {this.state.contributeurs.length > 0 && !printing && (
-                      <div className="bottom-wrapper">
-                        <ContribCaroussel
-                          contributeurs={this.state.contributeurs}
-                        />
-                      </div>
-                    )}
+                    {this.state.contributeurs.length > 0 &&
+                      !isMobile &&
+                      !printing && (
+                        <div className="bottom-wrapper">
+                          <ContribCaroussel
+                            contributeurs={this.state.contributeurs}
+                          />
+                        </div>
+                      )}
                   </>
                 )}
 
