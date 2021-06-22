@@ -31,6 +31,8 @@ const RightButtonContainer = styled(RTLTouchableOpacity)`
   align-items: center;
   margin-left: ${theme.margin / 2}px;
   width: 50%;
+  box-shadow: ${(props: { isDisabled: boolean }) =>
+    props.isDisabled ? "none" : "0px 8px 16px rgba(33, 33, 33, 0.24)"};
 `;
 
 const BottomButtonsContainer = styled(RowTouchableOpacity)`
@@ -64,6 +66,7 @@ export const BottomButtons = (props: Props) => {
         isDisabled={props.isRightButtonDisabled}
         onPress={props.onRightButtonClick}
         disabled={props.isRightButtonDisabled}
+        testID="test-validate-button"
       >
         <TextBold
           color={

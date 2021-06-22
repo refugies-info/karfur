@@ -58,8 +58,9 @@ export const FilterFrenchLevel = ({
   const onValidate = () => {
     if (selectedFrenchLevel) {
       dispatch(saveUserFrenchLevelActionCreator(selectedFrenchLevel.name));
-      navigateToNextScreen();
+      return navigateToNextScreen();
     }
+    return navigateToNextScreen();
   };
   return (
     <SafeAreaView
@@ -98,7 +99,7 @@ export const FilterFrenchLevel = ({
           <OnboardingProgressBar step={3} />
           <BottomButtons
             isRightButtonDisabled={!selectedFrenchLevel}
-            onLeftButtonClick={navigateToNextScreen}
+            onLeftButtonClick={onValidate}
             onRightButtonClick={onValidate}
           />
         </BottomContainer>

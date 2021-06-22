@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components/native";
 import { RTLTouchableOpacity } from "./BasicComponents";
 import { theme } from "../theme";
-import { StyledTextSmallBold } from "./StyledText";
+import { StyledTextSmallBold, StyledTextSmall } from "./StyledText";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { Icon } from "react-native-eva-icons";
 
@@ -14,9 +14,18 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
   align-items: center;
   width: 100%;
   height: 56px;
+  box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
 `;
 
-const ColoredText = styled(StyledTextSmallBold)`
+const ColoredTextBold = styled(StyledTextSmallBold)`
+  color: ${(props: { textColor: string }) => props.textColor};
+  margin-left: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? theme.margin : 0}px;
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? 0 : theme.margin}px;
+`;
+
+const ColoredTextNormal = styled(StyledTextSmall)`
   color: ${(props: { textColor: string }) => props.textColor};
   margin-left: ${(props: { isRTL: boolean }) =>
     props.isRTL ? theme.margin : 0}px;
@@ -30,6 +39,7 @@ interface Props {
   onPress: () => void;
   iconName?: string;
   defaultText: string;
+  isTextNotBold?: boolean;
 }
 
 const ICON_SIZE = 24;
@@ -38,9 +48,15 @@ export const CustomButton = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
   return (
     <ButtonContainer onPress={props.onPress}>
-      <ColoredText textColor={props.textColor} isRTL={isRTL}>
-        {t(props.i18nKey, props.defaultText)}
-      </ColoredText>
+      {props.isTextNotBold ? (
+        <ColoredTextNormal textColor={props.textColor} isRTL={isRTL}>
+          {t(props.i18nKey, props.defaultText)}
+        </ColoredTextNormal>
+      ) : (
+        <ColoredTextBold textColor={props.textColor} isRTL={isRTL}>
+          {t(props.i18nKey, props.defaultText)}
+        </ColoredTextBold>
+      )}
       {props.iconName && (
         <Icon
           name={props.iconName}

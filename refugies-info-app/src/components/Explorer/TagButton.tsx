@@ -22,6 +22,7 @@ const StyledContainer = styled(RTLTouchableOpacity)`
   border-radius: ${theme.radius * 2}px;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
 `;
 const StyledText = styled(StyledTextNormalBold)`
   color: ${theme.colors.white};

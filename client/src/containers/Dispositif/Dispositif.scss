@@ -804,16 +804,30 @@ $imgHeight: 350px;
 
   .feedback-footer {
     background: $blanc;
-    color: $darkColor;
+    color: $darkOrange;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 35px 40px;
+    padding: 35px 20px 35px 40px;
     font-size: 18px;
-    @include media-max("lg-limit") {
-      width: 116%;
-    }
 
+    h5 {
+      color: $darkOrange;
+      @include media-max("tablet-up") {
+        font-size: 22px;
+        text-align: center;
+      }
+    }
+    span {
+      @include media-max("tablet-up") {
+        font-size: 18px;
+        text-align: center;
+      }
+    }
+    .feedback-btn {
+      width: -webkit-fill-available;
+      justify-content: center;
+    }
     .btn {
       font-weight: bold;
       font-size: 16px;

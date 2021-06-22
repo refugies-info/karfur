@@ -7,6 +7,7 @@ const ButtonContainer = styled.TouchableOpacity`
   background-color: ${theme.colors.white};
   border-radius: ${theme.radius * 2}px;
   padding: ${theme.radius * 2}px;
+  box-shadow: 0px 0px 40px rgba(33, 33, 33, 0.1);
 `;
 
 const ICON_SIZE = 24;

@@ -9,7 +9,6 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 const TopButtonsContainer = styled(RowContainer)`
   justify-content: space-between;
-  margin-top: ${theme.margin}px;
   padding-horizontal: ${theme.margin * 3}px;
 `;
 

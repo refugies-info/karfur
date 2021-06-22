@@ -9,5 +9,5 @@ export const getEnvironment = () => {
     return { envName: "STAGING", dbUrl: "https://api.staging.refugies.info" };
   }
   // assume any other release channel is development
-  return { envName: "DEVELOPMENT", dbUrl: process.env.API_URL_LOCAL };
+  return { envName: "DEVELOPMENT", dbUrl: process.env.API_URL };
 };

@@ -44,7 +44,7 @@ export const setUserAgeActionCreator = (value: string | null) =>
 export const saveUserFrenchLevelActionCreator = (value: string) =>
   action(SAVE_USER_FRENCH_LEVEL, value);
 
-export const setUserFrenchLeveleActionCreator = (value: string | null) =>
+export const setUserFrenchLevelActionCreator = (value: string | null) =>
   action(SET_USER_FRENCH_LEVEL, value);
 
 export const setCurrentLanguageActionCreator = (value: string) =>
@@ -58,7 +58,7 @@ const actions = {
   setCurrentLanguageActionCreator,
   setUserAgeActionCreator,
   setUserLocationActionCreator,
-  setUserFrenchLeveleActionCreator,
+  setUserFrenchLevelActionCreator,
   saveUserAgeActionCreator,
   saveUserLocationActionCreator,
   saveUserFrenchLevelActionCreator,

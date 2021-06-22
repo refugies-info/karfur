@@ -6,17 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
 import { theme } from "../../theme";
 import {
-  StyledTextNormal,
+  StyledTextNormalBold,
   StyledTextSmallBold,
   StyledTextSmall,
 } from "../../components/StyledText";
-import { LanguageDetailsButton } from "../../components/Language/LanguageDetailsButton";
-import { getSelectedLanguageFromI18nCode } from "../../libs/language";
 import { activatedLanguages } from "../../data/languagesData";
 import { RowContainer } from "../../components/BasicComponents";
 import { Flag } from "../../components/Language/Flag";
 import { selectedI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { CustomButton } from "../../components/CustomButton";
 interface Props {
   isModalVisible: boolean;
   toggleModal: () => void;
@@ -29,14 +28,15 @@ const styles = StyleSheet.create({
   },
 });
 const MainContainer = styled.TouchableOpacity`
-  background: ${theme.colors.white};
   padding: ${theme.margin * 2}px;
-  margin-vertical: ${theme.margin}px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  background-color: ${(props: { isSelected: boolean }) =>
+    props.isSelected ? theme.colors.black : theme.colors.lightGrey};
+  border-radius: ${theme.radius * 2}px;
 `;
 
 const StyledTextBold = styled(StyledTextSmallBold)`
@@ -55,20 +55,18 @@ const StyledText = styled(StyledTextSmall)`
 const ModalView = styled.View`
   background-color: ${theme.colors.lightGrey};
   display: flex;
-  padding-top: ${theme.margin}px;
-  padding-left: ${theme.margin * 3}px;
-  padding-right: ${theme.margin * 3}px;
+  padding-vertical: ${theme.margin}px;
+  padding-horizontal: ${theme.margin * 3}px;
 `;
 
-const TitleContainer = styled(StyledTextNormal)`
-  margin-bottom: ${theme.margin}px;
-`;
-
-const OtherLanguagesContainer = styled.View`
-  background-color: ${theme.colors.white};
-  border-radius: ${theme.radius * 2}px;
+const TitleText = styled(StyledTextNormalBold)`
   margin-top: ${theme.margin * 3}px;
-  margin-bottom: ${theme.margin * 3}px;
+  align-self: center;
+`;
+
+const LanguagesContainer = styled.ScrollView`
+  margin-top: ${theme.margin * 2}px;
+  margin-bottom: ${theme.margin}px;
 `;
 
 const Separator = styled.View`
@@ -77,18 +75,21 @@ const Separator = styled.View`
   margin-left: ${theme.margin * 2}px;
   margin-right: ${theme.margin * 2}px;
 `;
+
+const FlagBackground = styled.View`
+  margin: 4px;
+  background-color: ${theme.colors.white};
+  width: 22px;
+  height: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+`;
 export const LanguageChoiceModal = (props: Props) => {
   const { t, i18n } = useTranslationWithRTL();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
   const dispatch = useDispatch();
-
-  const selectedLanguage = getSelectedLanguageFromI18nCode(
-    selectedLanguageI18nCode
-  );
-
-  const otherLanguages = activatedLanguages.filter(
-    (langue) => langue.i18nCode !== selectedLanguageI18nCode
-  );
 
   const changeLanguage = (ln: string) => {
     i18n.changeLanguage(ln);
@@ -102,40 +103,46 @@ export const LanguageChoiceModal = (props: Props) => {
       onBackdropPress={props.toggleModal}
     >
       <ModalView>
-        <TitleContainer>
-          {t("Langue app", "Langue de l'application")}
-        </TitleContainer>
-        <LanguageDetailsButton
-          langueFr={selectedLanguage.langueFr}
-          langueLoc={selectedLanguage.langueLoc}
-          onPress={() => {}}
-          isSelected={true}
-        />
-        <OtherLanguagesContainer>
-          {otherLanguages.map((language, index) => {
+        <TitleText>{t("Langue app", "Langue de l'application")}</TitleText>
+        <LanguagesContainer>
+          {activatedLanguages.map((language, index) => {
+            const isSelected = selectedLanguageI18nCode === language.i18nCode;
             return (
-              <View key={index}>
+              <View key={language.langueFr}>
                 <MainContainer
                   onPress={() => changeLanguage(language.i18nCode)}
                   testID={"test-language-button-" + language.langueFr}
-                  key={index}
+                  isSelected={isSelected}
                 >
                   <RowContainer>
-                    <Flag langueFr={language.langueFr} />
-                    <StyledTextBold>{language.langueFr}</StyledTextBold>
+                    <FlagBackground>
+                      <Flag langueFr={language.langueFr} />
+                    </FlagBackground>
+                    <StyledTextBold isSelected={isSelected}>
+                      {language.langueFr}
+                    </StyledTextBold>
                     {language.langueFr !== "Français" && (
                       <RowContainer>
-                        <StyledTextSmallBold>{" - "}</StyledTextSmallBold>
-                        <StyledText>{language.langueLoc}</StyledText>
+                        <StyledText isSelected={isSelected}>{" - "}</StyledText>
+                        <StyledText isSelected={isSelected}>
+                          {language.langueLoc}
+                        </StyledText>
                       </RowContainer>
                     )}
                   </RowContainer>
                 </MainContainer>
-                {index !== otherLanguages.length - 1 && <Separator />}
+                {index !== activatedLanguages.length - 1 && <Separator />}
               </View>
             );
           })}
-        </OtherLanguagesContainer>
+        </LanguagesContainer>
+        <CustomButton
+          i18nKey={"Fermer"}
+          defaultText="Fermer"
+          textColor={theme.colors.black}
+          onPress={props.toggleModal}
+          isTextNotBold={true}
+        />
       </ModalView>
     </Modal>
   );

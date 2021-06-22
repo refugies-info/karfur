@@ -23,7 +23,7 @@ import gif from "../../assets/comment-contribuer/GIF-corriger.gif";
 import i18n from "../../i18n";
 import "./CommentContribuer.scss";
 import { icon_France } from "../../assets/figma/index";
-import Nour from "../../assets/qui-sommes-nous/Nour.png";
+import Nour from "../../assets/qui-sommes-nous/Nour-big.png";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { CompleteProfilModal } from "../../components/Modals/CompleteProfilModal/CompleteProfilModal";
 
@@ -302,7 +302,6 @@ const DeployonsRdvContainer = styled.div`
 
 const RdvContactContainer = styled.div`
   width: 458px;
-  height: 230px;
   background-color: ${colors.bleuCharte};
   border-radius: 12px;
   padding: 20px;
@@ -311,6 +310,7 @@ const RdvContactContainer = styled.div`
 
 const ContactInfoContainer = styled.div`
   padding-left: 20px;
+  padding-right: 20px;
 `;
 
 const MainTextContainer = styled.div`
@@ -800,7 +800,7 @@ class CommentContribuer extends Component {
               </p>
             </RdvTextContainer>
             <RdvContactContainer>
-              <img src={Nour} alt="Photo Nour" />
+              <img className="nour" src={Nour} alt="Photo Nour" />
               <ContactInfoContainer>
                 <ContactInfoTextContainer type="main">
                   Nour Allazkani
@@ -966,10 +966,10 @@ const ContactInfoTextContainer = styled.p`
   padding : 5px; 10px;
 `;
 
-const DispoContainer = styled.p`
+const DispoContainer = styled.div`
   color: ${colors.blancSimple};
   font-size: 16px;
-  padding : 12px; 10px;
+  padding: 12px 10px 0 10px;
   font-weight: 700;
 `;
 
