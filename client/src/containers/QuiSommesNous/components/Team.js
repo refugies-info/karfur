@@ -18,7 +18,6 @@ import Camille from "../../../assets/qui-sommes-nous/Camille.png";
 import Alice from "../../../assets/qui-sommes-nous/Alice.png";
 import Gael from "../../../assets/qui-sommes-nous/Gael.png";
 import Margot from "../../../assets/qui-sommes-nous/Margot.png";
-import { Row } from "reactstrap";
 
 const TeamContainer = styled.div`
   display: flex;
@@ -29,43 +28,41 @@ const TeamContainer = styled.div`
 `;
 export const Team = (props) => (
   <TeamContainer>
-    <Row>
-      {props.type === "membres"
-        ? membres.map((membre) => (
-            <MemberCard
-              portfolio={membre.portfolio}
-              linkedin={membre.linkedin}
-              twitter={membre.twitter}
-              name={membre.name}
-              key={membre.name}
-              autre={membre.autre}
-              role={membre.roleShort || membre.roleName}
-              color={membre.color}
-              borderColor={membre.borderColor}
-              onMemberCardClick={props.onMemberCardClick}
-              membreSelected={props.membre === membre.name && props.sideVisible}
-              t={props.t}
-            />
-          ))
-        : props.type === "former_membres"
-        ? former_membres.map((membre) => (
-            <MemberCard
-              portfolio={membre.portfolio}
-              linkedin={membre.linkedin}
-              twitter={membre.twitter}
-              name={membre.name}
-              key={membre.name}
-              autre={membre.autre}
-              role={membre.roleShort || membre.roleName}
-              color={membre.color}
-              borderColor={membre.borderColor}
-              onMemberCardClick={props.onMemberCardClick}
-              membreSelected={props.membre === membre.name && props.sideVisible}
-              t={props.t}
-            />
-          ))
-        : null}
-    </Row>
+    {props.type === "membres"
+      ? membres.map((membre) => (
+          <MemberCard
+            portfolio={membre.portfolio}
+            linkedin={membre.linkedin}
+            twitter={membre.twitter}
+            name={membre.name}
+            key={membre.name}
+            autre={membre.autre}
+            role={membre.roleShort || membre.roleName}
+            color={membre.color}
+            borderColor={membre.borderColor}
+            onMemberCardClick={props.onMemberCardClick}
+            membreSelected={props.membre === membre.name && props.sideVisible}
+            t={props.t}
+          />
+        ))
+      : props.type === "former_membres"
+      ? former_membres.map((membre) => (
+          <MemberCard
+            portfolio={membre.portfolio}
+            linkedin={membre.linkedin}
+            twitter={membre.twitter}
+            name={membre.name}
+            key={membre.name}
+            autre={membre.autre}
+            role={membre.roleShort || membre.roleName}
+            color={membre.color}
+            borderColor={membre.borderColor}
+            onMemberCardClick={props.onMemberCardClick}
+            membreSelected={props.membre === membre.name && props.sideVisible}
+            t={props.t}
+          />
+        ))
+      : null}
   </TeamContainer>
 );
 
@@ -75,8 +72,8 @@ const MemberCardContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 158px;
-  width: fit-content;
+  width: 207px;
+  height: 250px;
   margin-left: 4px;
   margin-right: 4px;
   margin-bottom: 32px;
