@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { UserStructureLoading } from "./components/UserStructureLoading";
@@ -120,7 +121,7 @@ export const UserStructureAdminComponent = (props: Props) => {
 
   if (!structure) return <div>No structure</div>;
 
-  if (structure.status === "En attente")
+  if (structure.status === "En attente" && !props.location.state.admin)
     return (
       <ErrorContainer>
         <ErrorText>
