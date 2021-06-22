@@ -120,16 +120,6 @@ export const UserStructureAdminComponent = (props: Props) => {
 
   if (!structure) return <div>No structure</div>;
 
-  if (structure.status === "En attente" && !props.location.state.admin)
-    return (
-      <ErrorContainer>
-        <ErrorText>
-          Votre structure n'a pas été validée. Veuillez contacter l'équipe de
-          réfugiés.info via le live chat en bas à droite de votre écran.
-        </ErrorText>
-      </ErrorContainer>
-    );
-
   return (
     <UserStructureDetails
       picture={structure.picture}

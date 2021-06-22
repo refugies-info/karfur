@@ -2044,7 +2044,7 @@ export class Dispositif extends Component {
                         thanks={
                           this.state.dispositif.merci
                             ? this.state.dispositif.merci.length
-                            : null
+                            : 0
                         }
                       />
                     )}

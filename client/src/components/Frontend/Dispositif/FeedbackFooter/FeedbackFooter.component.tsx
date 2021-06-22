@@ -23,11 +23,11 @@ export interface PropsBeforeInjection {
   t: any;
   pushReaction: (arg1: null, arg2: string) => void;
   didThank: boolean;
-  thanks: number;
+  nbThanks: number;
 }
 
 export const FeedbackFooter = (props: Props) => {
-  const { thanks, t, pushReaction, didThank } = props;
+  const { nbThanks, t, pushReaction, didThank } = props;
   return (
     <FeedbackContainer className="feedback-footer">
       <TextContainer>
@@ -40,7 +40,7 @@ export const FeedbackFooter = (props: Props) => {
 
         {t(
           "Dispositif.remerciez",
-          "Remerciez les contributeurs qui les ont rédigé pour vous"
+          "Remerciez les contributeurs qui les ont rédigées pour vous"
         )}
       </TextContainer>
       <ButtonContainer>
@@ -52,7 +52,7 @@ export const FeedbackFooter = (props: Props) => {
           }
         >
           <div style={{ color: didThank ? "" : "black" }}>
-            {didThank ? thanks + 1 : thanks}{" "}
+            {didThank ? nbThanks + 1 : nbThanks}{" "}
             <span role="img" aria-label="thanks">
               🙏
             </span>
