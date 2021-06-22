@@ -32,6 +32,7 @@ import { LanguageChoiceStackNavigator } from "./LanguageChoiceNavigator";
 import { theme } from "../theme";
 import "../services/i18n";
 import { initReactI18next } from "react-i18next";
+import { AvailableLanguageI18nCode } from "../types/interface";
 
 // A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal
@@ -45,19 +46,64 @@ export const RootNavigator = () => {
   ] = React.useState(false);
 
   const hasUserSeenOnboarding = useSelector(hasUserSeenOnboardingSelector);
-  const hasUserSelectedALanguage = !!useSelector(selectedI18nCodeSelector);
+  const userSelectedLanguage = useSelector(selectedI18nCodeSelector);
   const dispatch = useDispatch();
   React.useEffect(() => {
+    const setLocation = async () => {
+      try {
+        const city = await AsyncStorage.getItem("CITY");
+        const dep = await AsyncStorage.getItem("DEP");
+
+        if (city && dep) {
+          dispatch(setUserLocationActionCreator({ city, dep }));
+        }
+      } catch (error) {
+        logger.error("Error while initializing location", {
+          error: error.message,
+        });
+      }
+    };
+
+    const setAge = async () => {
+      try {
+        const age = await AsyncStorage.getItem("AGE");
+        if (age) {
+          dispatch(setUserAgeActionCreator(age));
+        }
+      } catch (error) {
+        logger.error("Error while initializing age", {
+          error: error.message,
+        });
+      }
+    };
+
+    const setFrenchLevel = async () => {
+      try {
+        const frenchLevel = await AsyncStorage.getItem("FRENCH_LEVEL");
+
+        if (frenchLevel) {
+          dispatch(setUserFrenchLevelActionCreator(frenchLevel));
+        }
+      } catch (error) {
+        logger.error("Error while initializing french level", {
+          error: error.message,
+        });
+      }
+    };
+
     const setLanguage = async () => {
       try {
         i18n.use(initReactI18next);
         await i18n.init();
         try {
-          const value = await AsyncStorage.getItem("SELECTED_LANGUAGE");
-          if (value) {
-            i18n.changeLanguage(value);
-            dispatch(setSelectedLanguageActionCreator(value));
-            dispatch(setCurrentLanguageActionCreator(value));
+          // @ts-ignore
+          const language: AvailableLanguageI18nCode | null = await AsyncStorage.getItem(
+            "SELECTED_LANGUAGE"
+          );
+          if (language) {
+            i18n.changeLanguage(language);
+            dispatch(setSelectedLanguageActionCreator(language));
+            dispatch(setCurrentLanguageActionCreator(language));
           } else {
             i18n.changeLanguage("fr");
           }
@@ -65,36 +111,8 @@ export const RootNavigator = () => {
           // error reading value
         }
         setIsI18nInitialized(true);
-        try {
-          const city = await AsyncStorage.getItem("CITY");
-          const dep = await AsyncStorage.getItem("DEP");
-
-          if (city && dep) {
-            dispatch(setUserLocationActionCreator({ city, dep }));
-          }
-        } catch (e) {
-          // error reading value
-        }
-        try {
-          const age = await AsyncStorage.getItem("AGE");
-
-          if (age) {
-            dispatch(setUserAgeActionCreator(age));
-          }
-        } catch (e) {
-          // error reading value
-        }
-        try {
-          const frenchLevel = await AsyncStorage.getItem("FRENCH_LEVEL");
-
-          if (frenchLevel) {
-            dispatch(setUserFrenchLevelActionCreator(frenchLevel));
-          }
-        } catch (e) {
-          // error reading value
-        }
       } catch (error) {
-        logger.warn("Error while initializing i18n", {
+        logger.error("Error while initializing i18n", {
           error: error.message,
         });
       }
@@ -116,6 +134,9 @@ export const RootNavigator = () => {
     };
     checkIfUserHasAlreadySeenOnboarding();
     setLanguage();
+    setLocation();
+    setAge();
+    setFrenchLevel();
   }, []);
 
   if (!isI18nInitialized || !isOnboardingValueInitialized) {
@@ -133,7 +154,7 @@ export const RootNavigator = () => {
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {!hasUserSelectedALanguage ? (
+        {!userSelectedLanguage ? (
           <Stack.Screen
             name="LanguageChoiceNavigator"
             component={LanguageChoiceStackNavigator}
