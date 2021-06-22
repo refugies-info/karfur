@@ -10,8 +10,7 @@ export const setContentsActionCreator = (value: {
   contents: SimplifiedContent[];
 }) => action(SET_CONTENTS, value);
 
-export const fetchContentsActionCreator = (langue: AvailableLanguageI18nCode) =>
-  action(FETCH_CONTENTS, langue);
+export const fetchContentsActionCreator = () => action(FETCH_CONTENTS);
 
 const actions = {
   setContentsActionCreator,

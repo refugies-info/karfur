@@ -1,33 +1,32 @@
 import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call } from "redux-saga/effects";
+import { takeLatest, put, call, select } from "redux-saga/effects";
 import {
   startLoading,
   finishLoading,
   LoadingStatusKey,
 } from "../LoadingStatus/loadingStatus.actions";
 import { logger } from "../../../logger";
-import {
-  fetchContentsActionCreator,
-  setContentsActionCreator,
-} from "./contents.actions";
+import { setContentsActionCreator } from "./contents.actions";
 import { FETCH_CONTENTS } from "./contents.actionTypes";
 import { getContentsForApp } from "../../../utils/API";
+import { selectedI18nCodeSelector } from "../User/user.selectors";
 
-export function* fetchContents(
-  action: ReturnType<typeof fetchContentsActionCreator>
-): SagaIterator {
+export function* fetchContents(): SagaIterator {
   try {
     logger.info("[fetchContents] saga");
-    const langueI18nCode = action.payload;
     yield put(startLoading(LoadingStatusKey.FETCH_CONTENTS));
-    const data = yield call(getContentsForApp, langueI18nCode);
-    if (data && data.data && data.data.data) {
-      yield put(
-        setContentsActionCreator({
-          langue: langueI18nCode,
-          contents: data.data.data,
-        })
-      );
+    const selectedLanguage = yield select(selectedI18nCodeSelector);
+    if (selectedLanguage) {
+      const data = yield call(getContentsForApp, selectedLanguage);
+
+      if (data && data.data && data.data.data) {
+        yield put(
+          setContentsActionCreator({
+            langue: selectedLanguage,
+            contents: data.data.data,
+          })
+        );
+      }
     }
     yield put(finishLoading(LoadingStatusKey.FETCH_CONTENTS));
   } catch (error) {
