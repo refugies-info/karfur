@@ -218,7 +218,7 @@ export const membres = [
 
   {
     name: "Alice Mugnier",
-    roleName: "Journaliste",
+    roleName: "Responsable éditoriale",
     linkedin: "https://www.linkedin.com/in/alice-mugnier-8a7717130",
     twitter: "https://twitter.com/Affy_M",
     portfolio: "https://acemugnier.wordpress.com/",

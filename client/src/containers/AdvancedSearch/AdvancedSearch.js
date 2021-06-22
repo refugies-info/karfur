@@ -362,6 +362,8 @@ export class AdvancedSearch extends Component {
             draft.recherche[2].value = initial_data[2].children.find(
               (item) => item.topValue === parseInt(topValue, 10)
             ).name;
+            draft.recherche[2].topValue = topValue;
+            draft.recherche[2].bottomValue = bottomValue;
             draft.recherche[2].query = draft.recherche[2].value;
             draft.recherche[2].active = true;
             draft.activeTri = "";
