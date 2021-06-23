@@ -1,8 +1,9 @@
 import { RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
-import { getActiveContents } from "../../../modules/dispositif/dispositif.repository";
+import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { getTitreInfoOrMarqueInLocale } from "../../../modules/dispositif/dispositif.adapter";
+import { addAgeQuery, addFrenchLevelQuery } from "./functions";
 
 interface Query {
   locale: string;
@@ -35,8 +36,22 @@ export const getContentsForApp = async (
       titreInformatif: 1,
       titreMarque: 1,
       avancement: 1,
+      audienceAge: 1,
     };
-    const contentsArray = await getActiveContents(neededFields);
+
+    const initialQuery = {
+      status: "Actif",
+    };
+    const queryWithAge = addAgeQuery(age, initialQuery);
+    const queryWithAgeAndFrenchLevel = addFrenchLevelQuery(
+      frenchLevel,
+      queryWithAge
+    );
+
+    const contentsArray = await getActiveContentsFiltered(
+      neededFields,
+      queryWithAgeAndFrenchLevel
+    );
 
     const contentsArrayFr = contentsArray.map((content) => {
       const titreInformatif = getTitreInfoOrMarqueInLocale(

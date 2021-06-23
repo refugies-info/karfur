@@ -1,8 +1,9 @@
+// @ts-nocheck
 import { getContentsForApp } from "./getContentsForApp";
-import { getActiveContents } from "../../../modules/dispositif/dispositif.repository";
+import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
-  getActiveContents: jest.fn(),
+  getActiveContentsFiltered: jest.fn().mockResolvedValue([]),
 }));
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -21,6 +22,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     titreInformatif: 1,
     titreMarque: 1,
     avancement: 1,
+    audienceAge: 1,
   };
 
   it("should return 405 if not from site", async () => {
@@ -35,7 +37,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     expect(res.status).toHaveBeenCalledWith(400);
   });
 
-  it("should return 400 if no locale inquery", async () => {
+  it("should return 400 if no locale in query", async () => {
     const req = { fromSite: true, query: {} };
     await getContentsForApp(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
@@ -43,10 +45,12 @@ describe("getDispositifsWithTranslationAvancement", () => {
 
   it("should return 200 when locale not fr", async () => {
     const contents = [{ titreInformatif: "ti", titreMarque: "TM" }];
-    getActiveContents.mockResolvedValueOnce(contents);
+    getActiveContentsFiltered.mockResolvedValueOnce(contents);
     const req = { fromSite: true, query: { locale: "ar" } };
     await getContentsForApp(req, res);
-    expect(getActiveContents).toHaveBeenCalledWith(neededFields);
+    expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, {
+      status: "Actif",
+    });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       text: "Succès",
@@ -62,10 +66,12 @@ describe("getDispositifsWithTranslationAvancement", () => {
         titreMarque: { ar: "TM_ar", fr: "tm" },
       },
     ];
-    getActiveContents.mockResolvedValueOnce(contentsInput);
+    getActiveContentsFiltered.mockResolvedValueOnce(contentsInput);
     const req = { fromSite: true, query: { locale: "ar" } };
     await getContentsForApp(req, res);
-    expect(getActiveContents).toHaveBeenCalledWith(neededFields);
+    expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, {
+      status: "Actif",
+    });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       text: "Succès",
@@ -81,10 +87,12 @@ describe("getDispositifsWithTranslationAvancement", () => {
         titreMarque: { ar: "TM_ar", fr: "tm" },
       },
     ];
-    getActiveContents.mockResolvedValueOnce(contentsInput);
+    getActiveContentsFiltered.mockResolvedValueOnce(contentsInput);
     const req = { fromSite: true, query: { locale: "fr" } };
     await getContentsForApp(req, res);
-    expect(getActiveContents).toHaveBeenCalledWith(neededFields);
+    expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, {
+      status: "Actif",
+    });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       text: "Succès",
@@ -92,11 +100,47 @@ describe("getDispositifsWithTranslationAvancement", () => {
     });
   });
 
-  it("should return 500 if getActiveContents throw", async () => {
-    getActiveContents.mockRejectedValueOnce(new Error("erreur"));
+  it("should return 500 if getActiveContentsFiltered throw", async () => {
+    getActiveContentsFiltered.mockRejectedValueOnce(new Error("erreur"));
     const req = { fromSite: true, query: { locale: "ar" } };
     await getContentsForApp(req, res);
-    expect(getActiveContents).toHaveBeenCalledWith(neededFields);
+    expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, {
+      status: "Actif",
+    });
     expect(res.status).toHaveBeenCalledWith(500);
+  });
+
+  it("should call getActiveContentsFiltered with correct data", async () => {
+    const req = { fromSite: true, query: { locale: "fr", age: "0 à 17 ans" } };
+    const query = {
+      status: "Actif",
+      "audienceAge.bottomValue": { $lte: 17 },
+    };
+    await getContentsForApp(req, res);
+    expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, query);
+  });
+
+  it("should call getActiveContentsFiltered with correct data", async () => {
+    const req = { fromSite: true, query: { locale: "fr", age: "18 à 25 ans" } };
+    const query = {
+      status: "Actif",
+      "audienceAge.bottomValue": { $lte: 25 },
+      "audienceAge.topValue": { $gte: 18 },
+    };
+    await getContentsForApp(req, res);
+    expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, query);
+  });
+
+  it("should call getActiveContentsFiltered with correct data", async () => {
+    const req = {
+      fromSite: true,
+      query: { locale: "fr", age: "Plus de 26 ans" },
+    };
+    const query = {
+      status: "Actif",
+      "audienceAge.topValue": { $gte: 26 },
+    };
+    await getContentsForApp(req, res);
+    expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, query);
   });
 });
