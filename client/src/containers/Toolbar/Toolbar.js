@@ -164,6 +164,7 @@ export class Toolbar extends React.Component {
     const isUserOnContentPage =
       window.location.href.includes("dispositif") ||
       window.location.href.includes("demarche");
+
     return (
       <header
         className={
@@ -189,24 +190,24 @@ export class Toolbar extends React.Component {
               path !== "/homepage" &&
               windowWidth >= breakpoints.phoneDown && (
                 <NavLink to="/" className="home-btn">
-                  <EVAIcon
-                    name="home"
-                    fill={colors.noir}
-                    className="mr-10 rsz"
-                  />
-                  {windowWidth >= breakpoints.lgLimit && (
-                    <b className="home-texte">
-                      {t("Toolbar.Accueil", "Accueil")}
-                    </b>
-                  )}
+                  <FButton type="login" name="home-outline">
+                    {windowWidth >= breakpoints.lgLimit &&
+                      windowWidth > 1280 && (
+                        <b className="home-texte">
+                          {t("Toolbar.Accueil", "Accueil")}
+                        </b>
+                      )}
+                  </FButton>
                 </NavLink>
               )}
           </div>
         )}
 
         <div className="center-buttons">
-          <AudioBtn />
-          <LanguageBtn hideText={windowWidth < breakpoints.tabletUp} />
+          <AudioBtn windowWidth={windowWidth} />
+          <LanguageBtn
+            hideText={windowWidth < breakpoints.tabletUp || windowWidth < 1024}
+          />
           {isMobile ? (
             <IconButton
               onClick={() => {
@@ -223,6 +224,7 @@ export class Toolbar extends React.Component {
               visible={this.state.visible}
               scroll={this.state.scroll}
               loupe
+              windowWidth={windowWidth}
               className="search-bar inner-addon right-addon mr-10 rsz"
             />
           )}
@@ -309,6 +311,7 @@ export class Toolbar extends React.Component {
                     onClick={() => logger.info("Click on Inscription")}
                   >
                     {windowWidth >= breakpoints.tabletUp &&
+                      windowWidth > 1280 &&
                       t("Toolbar.Inscription", "Inscription")}
                   </FButton>
                 </NavLink>
@@ -318,7 +321,7 @@ export class Toolbar extends React.Component {
                   }}
                 >
                   <FButton type="login" name={"log-in-outline"}>
-                    {t("Toolbar.Connexion", "Connexion")}
+                    {windowWidth > 1280 && t("Toolbar.Connexion", "Connexion")}
                   </FButton>
                 </NavLink>
               </>

@@ -34,10 +34,20 @@ export type SearchParamList = {
 };
 
 export type OnboardingParamList = {
-  Onboarding1: undefined;
-  Onboarding2: undefined;
+  OnboardingStart: undefined;
+  OnboardingSteps: undefined;
+  FilterCity: undefined;
+  FilterAge: undefined;
+  FilterFrenchLevel: undefined;
+  FinishOnboarding: undefined;
 };
 
 export type LanguageChoiceParamList = {
   LanguageChoice: undefined;
 };
+
+export interface GoogleAPISuggestion {
+  structured_formatting: { main_text: string };
+  place_id: string;
+  description: string;
+}

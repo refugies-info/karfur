@@ -50,7 +50,10 @@ describe("LanguageChoiceModal", () => {
       fireEvent.press(Button);
     });
     expect(changeLanguage).toHaveBeenCalledWith("en");
-    expect(saveSelectedLanguageActionCreator).toHaveBeenCalledWith("en");
+    expect(saveSelectedLanguageActionCreator).toHaveBeenCalledWith({
+      langue: "en",
+      shouldFetchContents: true,
+    });
     expect(toggleModal).toHaveBeenCalledWith();
   });
 });

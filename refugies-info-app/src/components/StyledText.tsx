@@ -45,6 +45,20 @@ export const StyledTextVerySmallBold = styled.Text`
     props.isRTL ? "right" : "left"};
 `;
 
+export const StyledTextBig = styled.Text`
+  font-size: ${theme.fonts.sizes.big}px;
+  font-family: ${theme.fonts.families.circularStandard};
+  text-align: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? "right" : "left"};
+`;
+
+export const StyledTextBigBold = styled.Text`
+  font-size: ${theme.fonts.sizes.big}px;
+  font-family: ${theme.fonts.families.circularBold};
+  text-align: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? "right" : "left"};
+`;
+
 export const TextNormal = (props: any) => {
   const { isRTL } = useTranslationWithRTL();
   return <StyledTextNormal isRTL={isRTL} {...props} />;
@@ -54,6 +68,17 @@ export const TextNormalBold = (props: any) => {
   const { isRTL } = useTranslationWithRTL();
 
   return <StyledTextNormalBold isRTL={isRTL} {...props} />;
+};
+
+export const TextBig = (props: any) => {
+  const { isRTL } = useTranslationWithRTL();
+  return <StyledTextBig isRTL={isRTL} {...props} />;
+};
+
+export const TextBigBold = (props: any) => {
+  const { isRTL } = useTranslationWithRTL();
+
+  return <StyledTextBigBold isRTL={isRTL} {...props} />;
 };
 
 export const TextVerySmallNormal = (props: any) => {
@@ -66,4 +91,16 @@ export const TextVerySmallBold = (props: any) => {
   const { isRTL } = useTranslationWithRTL();
 
   return <StyledTextVerySmallBold isRTL={isRTL} {...props} />;
+};
+
+export const TextSmallNormal = (props: any) => {
+  const { isRTL } = useTranslationWithRTL();
+
+  return <StyledTextSmall isRTL={isRTL} {...props} />;
+};
+
+export const TextSmallBold = (props: any) => {
+  const { isRTL } = useTranslationWithRTL();
+
+  return <StyledTextSmallBold isRTL={isRTL} {...props} />;
 };

@@ -136,14 +136,14 @@ export class TopRightHeader extends React.Component<Props> {
         <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right-edition">
           {!props.translating &&
             props.langue === "fr" &&
-            isUserAllowedToModifyDispositif &&
+            (props.admin || isAuthor || userIsSponsor) &&
             !isMobile && (
               <div
                 onClick={(event: any) => {
                   event.stopPropagation();
                   props.toggleTutoModal("Statut des fiches");
                 }}
-                className="top-icon-wrapper"
+                className="top-icon-wrapper button"
               >
                 <ContribStyledStatus size="large" text={props.status} />
               </div>
@@ -151,7 +151,7 @@ export class TopRightHeader extends React.Component<Props> {
           {!props.translating &&
             props.langue === "fr" &&
             isUserAllowedToModifyDispositif && (
-              <div className="top-icon-wrapper">
+              <div className="top-icon-wrapper button">
                 <FButton
                   className="dark"
                   name="edit-outline"
@@ -164,7 +164,7 @@ export class TopRightHeader extends React.Component<Props> {
           {this.props.selectedDispositif &&
             this.props.selectedDispositif.status === "Actif" && (
               <div
-                className="top-icon-wrapper"
+                className="top-icon-wrapper button"
                 onClick={props.bookmarkDispositif}
               >
                 {props.showSpinnerBookmark ? (

@@ -1,19 +1,19 @@
-@import 'src/scss/colors.scss';
+@import "src/scss/colors.scss";
 
 $placeholderColor: $blanc;
 
-.search-col{
-  padding: 10px;
+.search-col {
+  padding-right: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  .search-title{
+  .search-title {
     font-size: 22px;
     font-weight: bold;
     white-space: nowrap;
   }
-  .search-title-small{
+  .search-title-small {
     font-size: 18px;
     font-weight: bold;
     white-space: nowrap;
@@ -26,15 +26,14 @@ $placeholderColor: $blanc;
     font-size: 18px;
   }
 
-  .search-filter{
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-   padding: 12px; 
+  .search-filter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 12px;
   }
 
-
-  .dropdown-menu.show{
+  .dropdown-menu.show {
     display: flex;
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
     background: $blanc;
@@ -45,44 +44,44 @@ $placeholderColor: $blanc;
     flex-direction: row;
   }
 
-  .options-wrapper{
-    margin-top:-10px;
+  .options-wrapper {
+    margin-top: -10px;
     flex-direction: row;
     display: flex;
     -ms-overflow-style: none;
     overflow: -moz-scrollbars-none;
     //&::-webkit-scrollbar { width: 0 !important }
-    &.query-tags{
-    flex-wrap: wrap;
-    min-width: 700px;
+    &.query-tags {
+      flex-wrap: wrap;
+      min-width: 700px;
     }
   }
-  .search-options{
+  .search-options {
     outline: none;
     flex-direction: row;
     display: flex;
     white-space: nowrap;
     overflow: visible;
-    margin-top:10px;
+    margin-top: 10px;
 
-    &:not(:last-child){
+    &:not(:last-child) {
       margin-right: 8px;
     }
   }
-  .display-inline-block{
-    display:inline-block;
+  .display-inline-block {
+    display: inline-block;
   }
-  .texte-blanc{
-    color: #FFFFFF;
+  .texte-blanc {
+    color: #ffffff;
   }
 
-  .search-dropdown{
+  .search-dropdown {
     background: $gris;
     border-radius: 6px;
     padding: 20px;
   }
 
-  .search-autocomplete{
+  .search-autocomplete {
     padding: 12px;
     text-align: center;
     display: flex;
@@ -114,7 +113,7 @@ $placeholderColor: $blanc;
     }
   }
 
-  .close-icon{
+  .close-icon {
     position: absolute;
     top: -5px;
     right: -5px;

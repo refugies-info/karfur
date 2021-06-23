@@ -284,8 +284,11 @@ $imgHeight: 350px;
 
         .top-icon-wrapper {
           border-radius: 12px;
-          box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 10%);
+
           margin-right: 11px;
+        }
+        .button {
+          box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
         }
       }
     }
@@ -801,16 +804,30 @@ $imgHeight: 350px;
 
   .feedback-footer {
     background: $blanc;
-    color: $darkColor;
+    color: $darkOrange;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 35px 40px;
+    padding: 35px 20px 35px 40px;
     font-size: 18px;
-    @include media-max("lg-limit") {
-      width: 116%;
-    }
 
+    h5 {
+      color: $darkOrange;
+      @include media-max("tablet-up") {
+        font-size: 22px;
+        text-align: center;
+      }
+    }
+    span {
+      @include media-max("tablet-up") {
+        font-size: 18px;
+        text-align: center;
+      }
+    }
+    .feedback-btn {
+      width: -webkit-fill-available;
+      justify-content: center;
+    }
     .btn {
       font-weight: bold;
       font-size: 16px;

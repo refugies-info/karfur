@@ -43,6 +43,9 @@ describe("LanguageChoiceScreen", () => {
       fireEvent.press(Button);
     });
     expect(changeLanguage).toHaveBeenCalledWith("en");
-    expect(saveSelectedLanguageActionCreator).toHaveBeenCalledWith("en");
+    expect(saveSelectedLanguageActionCreator).toHaveBeenCalledWith({
+      langue: "en",
+      shouldFetchContents: false,
+    });
   });
 });

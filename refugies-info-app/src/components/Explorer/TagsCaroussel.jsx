@@ -5,7 +5,6 @@ import { tags } from "../../data/tagData";
 import { CarousselCard } from "./CarousselCard";
 import { sortByOrder } from "../../libs";
 import { theme } from "../../theme";
-import i18n from "../../services/i18n";
 
 export class TagsCaroussel extends React.Component {
   constructor(props) {
@@ -28,7 +27,8 @@ export class TagsCaroussel extends React.Component {
 
   get pagination() {
     const { carouselItems, activeIndex } = this.state;
-    const isRTL = i18n.isRTL();
+    const isRTL = this.props.isRTL;
+
     const activeDotIndex = isRTL
       ? carouselItems.length - activeIndex - 1
       : activeIndex;
@@ -42,17 +42,20 @@ export class TagsCaroussel extends React.Component {
           height: 8,
           borderRadius: 5,
           backgroundColor: tags[activeIndex].lightColor,
+          marginHorizontal: -2,
         }}
         inactiveDotStyle={{
           backgroundColor: theme.colors.darkGrey,
         }}
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}
+        animatedDuration={1000}
+        animatedTension={150}
       />
     );
   }
   render() {
-    const isRTL = i18n.isRTL();
+    const isRTL = this.props.isRTL;
     const { activeIndex } = this.state;
 
     return (
@@ -62,7 +65,7 @@ export class TagsCaroussel extends React.Component {
           ref={(ref) => (this.carousel = ref)}
           data={this.state.carouselItems}
           sliderWidth={460}
-          itemWidth={230}
+          itemWidth={234}
           renderItem={this._renderItem}
           onSnapToItem={(index) => this.setState({ activeIndex: index })}
           currentIndex={activeIndex}

@@ -78,6 +78,7 @@ import { initGA, Event } from "../../tracking/dispatch";
 import { fetchActiveStructuresActionCreator } from "../../services/ActiveStructures/activeStructures.actions";
 import { logger } from "../../logger";
 import { isMobile } from "react-device-detect";
+import { PdfCreateModal } from "../../components/Modals/PdfCreateModal/PdfCreateModal";
 
 moment.locale("fr");
 
@@ -128,6 +129,7 @@ export class Dispositif extends Component {
     showDispositifValidateModal: false,
     showGeolocModal: false,
     showTagsModal: false,
+    showPdfModal: false,
     showTutorielModal: false,
     showDraftModal: false,
     showShareContentOnMobileModal: false,
@@ -172,9 +174,6 @@ export class Dispositif extends Component {
     this.checkUserFetchedAndInitialize();
     window.scrollTo(0, 0);
     // this._initializeDispositif(this.props);
-    if (!isMobile) {
-      window.addEventListener("scroll", this.handleScroll);
-    }
   }
 
   // eslint-disable-next-line react/no-deprecated
@@ -203,9 +202,6 @@ export class Dispositif extends Component {
   componentWillUnmount() {
     this._isMounted = false;
     clearInterval(this.timer);
-    if (!isMobile) {
-      window.removeEventListener("scroll", this.handleScroll);
-    }
   }
 
   checkUserFetchedAndInitialize = () => {
@@ -213,25 +209,6 @@ export class Dispositif extends Component {
       this._initializeDispositif(this.props);
     } else {
       setTimeout(this.checkUserFetchedAndInitialize, 100); // check again in a 100 ms
-    }
-  };
-
-  handleScroll = () => {
-    const menu = document.querySelector(".left-side-col");
-    const content = document.querySelector(".col-middle");
-    let posYNav = menu.offsetTop;
-    {
-      if (window.scrollY > posYNav + 100) {
-        menu.style.position = "fixed";
-        menu.style.top = "75px";
-        menu.style.height = "100vh";
-        content.style.marginLeft = "25%";
-      }
-      if (window.scrollY < posYNav + 100) {
-        menu.style.position = "relative";
-        menu.style.top = "0px";
-        content.style.marginLeft = "0%";
-      }
     }
   };
 
@@ -565,6 +542,10 @@ export class Dispositif extends Component {
 
   toggleGeolocModal = (show) => {
     this.setState({ showGeolocModal: show });
+  };
+
+  toggleShowPdfModal = () => {
+    this.setState({ showPdfModal: !this.state.showPdfModal });
   };
 
   handleModalChange = (ev) =>
@@ -1357,6 +1338,10 @@ export class Dispositif extends Component {
     this.setState({ uiArray: uiArray, showSpinnerPrint: true, printing: true });
   };
 
+  printPdf = () => {
+    window.print();
+  };
+
   editDispositif = (_ = null, disableEdit = false) => {
     this.props.history.push({
       state: {
@@ -1631,6 +1616,7 @@ export class Dispositif extends Component {
           this.props.fetchDispositifs();
           this.setState(
             {
+              status: dispositif.status,
               disableEdit:
                 [
                   "En attente admin",
@@ -1943,6 +1929,7 @@ export class Dispositif extends Component {
                       toggleTutorielModal={this.toggleTutorielModal}
                       displayTuto={this.state.displayTuto}
                       updateUIArray={this.updateUIArray}
+                      toggleShowPdfModal={this.toggleShowPdfModal}
                     />
                   }
                 </Col>
@@ -2048,15 +2035,20 @@ export class Dispositif extends Component {
                   {...this.state}
                 />
 
-                {this.state.disableEdit && !isMobile && (
+                {this.state.disableEdit && (
                   <>
                     {!printing && (
                       <FeedbackFooter
                         pushReaction={this.pushReaction}
                         didThank={didThank}
+                        nbThanks={
+                          this.state.dispositif.merci
+                            ? this.state.dispositif.merci.length
+                            : 0
+                        }
                       />
                     )}
-                    {!printing && (
+                    {!printing && !isMobile && (
                       <div className="discussion-footer backgroundColor-darkColor">
                         <h5>{t("Dispositif.Avis", "Avis et discussions")}</h5>
                         <span>
@@ -2064,13 +2056,15 @@ export class Dispositif extends Component {
                         </span>
                       </div>
                     )}
-                    {this.state.contributeurs.length > 0 && !printing && (
-                      <div className="bottom-wrapper">
-                        <ContribCaroussel
-                          contributeurs={this.state.contributeurs}
-                        />
-                      </div>
-                    )}
+                    {this.state.contributeurs.length > 0 &&
+                      !isMobile &&
+                      !printing && (
+                        <div className="bottom-wrapper">
+                          <ContribCaroussel
+                            contributeurs={this.state.contributeurs}
+                          />
+                        </div>
+                      )}
                   </>
                 )}
 
@@ -2139,6 +2133,16 @@ export class Dispositif extends Component {
               sponsors={this.state.sponsors}
             />
 
+            <PdfCreateModal
+              createPdf={this.createPdf}
+              t={this.props.t}
+              show={this.state.showPdfModal}
+              toggle={this.toggleShowPdfModal}
+              printPdf={this.printPdf}
+              closePdf={this.closePdf}
+              newRef={this.newRef}
+            />
+
             <BookmarkedModal
               t={this.props.t}
               success={this.state.isAuth}
@@ -2169,6 +2173,8 @@ export class Dispositif extends Component {
               toggle={this.toggleDispositifValidateModal}
               abstract={this.state.content.abstract}
               onChange={this.handleChange}
+              titreInformatif={this.state.content.titreInformatif}
+              titreMarque={this.state.content.titreMarque}
               validate={this.valider_dispositif}
               toggleTutorielModal={this.toggleTutorielModal}
               tags={this.state.tags}

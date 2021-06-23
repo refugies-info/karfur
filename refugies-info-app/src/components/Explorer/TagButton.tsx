@@ -22,6 +22,7 @@ const StyledContainer = styled(RTLTouchableOpacity)`
   border-radius: ${theme.radius * 2}px;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
 `;
 const StyledText = styled(StyledTextNormalBold)`
   color: ${theme.colors.white};
@@ -29,7 +30,7 @@ const StyledText = styled(StyledTextNormalBold)`
     props.isRTL ? theme.margin : 0}px;
   margin-right: ${(props: { isRTL: boolean }) =>
     props.isRTL ? 0 : theme.margin}px;
-  flex-wrap: wrap;
+  flex-shrink: 1;
 `;
 export const TagButton = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();

@@ -230,6 +230,7 @@ const AdvancedSearchBar = (props) => {
         placeholder={props.t("Rechercher...", "Rechercher...")}
         onChange={onTextChange}
         withMargin={true}
+        windowWidth={props.windowWidth}
       />
       {isSearchModalVisible &&
         (searchThemes.length === 0 && searchDispositifs.length === 0 ? (
