@@ -11,7 +11,9 @@ import {
   SET_USER_FRENCH_LEVEL,
   SET_USER_HAS_SEEN_ONBOARDING,
   SAVE_USER_HAS_SEEN_ONBOARDING,
+  GET_USER_INFOS,
 } from "./user.actionTypes";
+import { AvailableLanguageI18nCode } from "../../../types/interface";
 
 export const setHasUserSeenOnboardingActionCreator = () =>
   action(SET_USER_HAS_SEEN_ONBOARDING);
@@ -19,11 +21,14 @@ export const setHasUserSeenOnboardingActionCreator = () =>
 export const saveHasUserSeenOnboardingActionCreator = () =>
   action(SAVE_USER_HAS_SEEN_ONBOARDING);
 
-export const setSelectedLanguageActionCreator = (value: string) =>
-  action(SET_SELECTED_LANGUAGE, value);
+export const setSelectedLanguageActionCreator = (
+  value: AvailableLanguageI18nCode
+) => action(SET_SELECTED_LANGUAGE, value);
 
-export const saveSelectedLanguageActionCreator = (value: string) =>
-  action(SAVE_SELECTED_LANGUAGE, value);
+export const saveSelectedLanguageActionCreator = (value: {
+  langue: AvailableLanguageI18nCode;
+  shouldFetchContents: boolean;
+}) => action(SAVE_SELECTED_LANGUAGE, value);
 
 export const saveUserLocationActionCreator = (value: {
   city: string;
@@ -47,8 +52,11 @@ export const saveUserFrenchLevelActionCreator = (value: string) =>
 export const setUserFrenchLevelActionCreator = (value: string | null) =>
   action(SET_USER_FRENCH_LEVEL, value);
 
-export const setCurrentLanguageActionCreator = (value: string) =>
-  action(SET_CURRENT_LANGUAGE, value);
+export const setCurrentLanguageActionCreator = (
+  value: AvailableLanguageI18nCode
+) => action(SET_CURRENT_LANGUAGE, value);
+
+export const getUserInfosActionCreator = () => action(GET_USER_INFOS);
 
 const actions = {
   setHasUserSeenOnboardingActionCreator,
@@ -62,5 +70,6 @@ const actions = {
   saveUserAgeActionCreator,
   saveUserLocationActionCreator,
   saveUserFrenchLevelActionCreator,
+  getUserInfosActionCreator,
 };
 export type UserActions = ActionType<typeof actions>;

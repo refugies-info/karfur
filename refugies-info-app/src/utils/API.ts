@@ -2,11 +2,13 @@ import axios from "react-native-axios";
 import { getEnvironment } from "../libs/getEnvironment";
 
 const dbURL = getEnvironment().dbUrl;
+const siteSecret = getEnvironment().siteSecret;
 
 const apiCaller = axios.create({
   baseURL: dbURL,
   headers: {
     "Content-Type": "application/json",
+    "site-secret": siteSecret,
   },
 });
 
@@ -29,3 +31,23 @@ export const getPlaceIdFromLocationFromGoogleAPI = (
   apiCaller.post(
     `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=1500&language=fr&type=locality&key=${process.env.GOOGLE_API_KEY}`
   );
+
+export const getContentsForApp = ({
+  locale,
+  age,
+  department,
+  frenchLevel,
+}: {
+  locale: string;
+  age: string | null;
+  department: string | null;
+  frenchLevel: string | null;
+}) => {
+  const route =
+    `/dispositifs/getContentsForApp?locale=${locale}` +
+    (age ? `&age=${age}` : "") +
+    (department ? `&department=${department}` : "") +
+    (frenchLevel ? `&frenchLevel=${frenchLevel}` : "");
+
+  return apiCaller.get(route);
+};

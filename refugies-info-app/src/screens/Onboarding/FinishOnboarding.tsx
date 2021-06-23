@@ -11,6 +11,7 @@ import { CustomButton } from "../../components/CustomButton";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { StyledTextBigBold } from "../../components/StyledText";
 import LottieView from "lottie-react-native";
+import { fetchContentsActionCreator } from "../../services/redux/Contents/contents.actions";
 
 const MainView = styled(SafeAreaView)`
   display: flex;
@@ -53,6 +54,7 @@ export const FinishOnboarding = ({
   const finishOnboarding = () => {
     try {
       dispatch(saveHasUserSeenOnboardingActionCreator());
+      dispatch(fetchContentsActionCreator());
     } catch (e) {}
   };
   return (

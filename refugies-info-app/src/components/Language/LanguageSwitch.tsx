@@ -11,6 +11,7 @@ import {
   selectedI18nCodeSelector,
 } from "../../services/redux/User/user.selectors";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { AvailableLanguageI18nCode } from "../../types/interface";
 
 const ButtonContainerCommon = styled.View`
   background-color: ${theme.colors.white};
@@ -68,8 +69,8 @@ const FlagBackground = styled.View`
 `;
 
 interface Props {
-  selectedLanguageI18nCode?: string | null;
-  currentLanguageI18nCode?: string | null;
+  selectedLanguageI18nCode?: AvailableLanguageI18nCode | null;
+  currentLanguageI18nCode?: AvailableLanguageI18nCode | null;
   onLongPressSwitchLanguage?: () => void;
 }
 
@@ -87,7 +88,7 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
 
   const changeLanguage = (
     isFrenchSelected: boolean,
-    selectedLanguageI18nCode: string
+    selectedLanguageI18nCode: AvailableLanguageI18nCode
   ) => {
     if (isFrenchSelected) {
       i18n.changeLanguage(selectedLanguageI18nCode);
