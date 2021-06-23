@@ -22,7 +22,6 @@ describe("getDispositifsWithTranslationAvancement", () => {
     titreInformatif: 1,
     titreMarque: 1,
     avancement: 1,
-    audienceAge: 1,
   };
 
   it("should return 405 if not from site", async () => {
@@ -111,21 +110,18 @@ describe("getDispositifsWithTranslationAvancement", () => {
   });
 
   it("should call getActiveContentsFiltered with correct data", async () => {
-    const req = { fromSite: true, query: { locale: "fr", age: "0 à 17 ans" } };
+    const req = {
+      fromSite: true,
+      query: {
+        locale: "fr",
+        age: "0 à 17 ans",
+        frenchLevel: "Je commence à apprendre",
+      },
+    };
     const query = {
       status: "Actif",
       "audienceAge.bottomValue": { $lte: 17 },
-    };
-    await getContentsForApp(req, res);
-    expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, query);
-  });
-
-  it("should call getActiveContentsFiltered with correct data", async () => {
-    const req = { fromSite: true, query: { locale: "fr", age: "18 à 25 ans" } };
-    const query = {
-      status: "Actif",
-      "audienceAge.bottomValue": { $lte: 25 },
-      "audienceAge.topValue": { $gte: 18 },
+      niveauFrancais: { $nin: ["Débutant", "Intermédiaire", "Avancé"] },
     };
     await getContentsForApp(req, res);
     expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, query);
@@ -134,11 +130,35 @@ describe("getDispositifsWithTranslationAvancement", () => {
   it("should call getActiveContentsFiltered with correct data", async () => {
     const req = {
       fromSite: true,
-      query: { locale: "fr", age: "Plus de 26 ans" },
+      query: {
+        locale: "fr",
+        age: "18 à 25 ans",
+        frenchLevel: "Je parle un peu",
+      },
+    };
+    const query = {
+      status: "Actif",
+      "audienceAge.bottomValue": { $lte: 25 },
+      "audienceAge.topValue": { $gte: 18 },
+      niveauFrancais: { $nin: ["Intermédiaire", "Avancé"] },
+    };
+    await getContentsForApp(req, res);
+    expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, query);
+  });
+
+  it("should call getActiveContentsFiltered with correct data", async () => {
+    const req = {
+      fromSite: true,
+      query: {
+        locale: "fr",
+        age: "Plus de 26 ans",
+        frenchLevel: "Je parle bien",
+      },
     };
     const query = {
       status: "Actif",
       "audienceAge.topValue": { $gte: 26 },
+      niveauFrancais: { $nin: ["Avancé"] },
     };
     await getContentsForApp(req, res);
     expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, query);

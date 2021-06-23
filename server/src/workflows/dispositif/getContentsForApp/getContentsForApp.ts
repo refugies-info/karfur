@@ -36,7 +36,6 @@ export const getContentsForApp = async (
       titreInformatif: 1,
       titreMarque: 1,
       avancement: 1,
-      audienceAge: 1,
     };
 
     const initialQuery = {

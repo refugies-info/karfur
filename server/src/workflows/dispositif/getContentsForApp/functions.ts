@@ -24,5 +24,17 @@ export const addFrenchLevelQuery = (
   frenchLevel: string | null,
   query: Record<string, any>
 ) => {
+  if (frenchLevel === "Je commence à apprendre") {
+    return {
+      ...query,
+      niveauFrancais: { $nin: ["Débutant", "Intermédiaire", "Avancé"] },
+    };
+  }
+  if (frenchLevel === "Je parle un peu") {
+    return { ...query, niveauFrancais: { $nin: ["Intermédiaire", "Avancé"] } };
+  }
+  if (frenchLevel === "Je parle bien") {
+    return { ...query, niveauFrancais: { $nin: ["Avancé"] } };
+  }
   return { ...query };
 };
