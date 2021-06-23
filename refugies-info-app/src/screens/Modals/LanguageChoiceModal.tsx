@@ -16,6 +16,7 @@ import { Flag } from "../../components/Language/Flag";
 import { selectedI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { CustomButton } from "../../components/CustomButton";
+import { AvailableLanguageI18nCode } from "../../types/interface";
 interface Props {
   isModalVisible: boolean;
   toggleModal: () => void;
@@ -91,9 +92,14 @@ export const LanguageChoiceModal = (props: Props) => {
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
   const dispatch = useDispatch();
 
-  const changeLanguage = (ln: string) => {
+  const changeLanguage = (ln: AvailableLanguageI18nCode) => {
     i18n.changeLanguage(ln);
-    dispatch(saveSelectedLanguageActionCreator(ln));
+    dispatch(
+      saveSelectedLanguageActionCreator({
+        langue: ln,
+        shouldFetchContents: true,
+      })
+    );
     props.toggleModal();
   };
   return (

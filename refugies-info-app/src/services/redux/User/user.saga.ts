@@ -1,5 +1,5 @@
 import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call } from "redux-saga/effects";
+import { takeLatest, put, call, select } from "redux-saga/effects";
 import { logger } from "../../../logger";
 import {
   saveSelectedLanguageActionCreator,
@@ -23,16 +23,20 @@ import {
 } from "./user.actionTypes";
 import { saveItemInAsyncStorage, getItemInAsyncStorage } from "./functions";
 import { fetchContentsActionCreator } from "../Contents/contents.actions";
+import { hasUserSeenOnboardingSelector } from "./user.selectors";
 
 export function* saveSelectedLanguage(
   action: ReturnType<typeof saveSelectedLanguageActionCreator>
 ): SagaIterator {
   try {
-    const i18nCode = action.payload;
+    const { langue: i18nCode, shouldFetchContents } = action.payload;
     logger.info("[saveSelectedLanguage] saga", { langue: i18nCode });
     yield call(saveItemInAsyncStorage, "SELECTED_LANGUAGE", i18nCode);
     yield put(setSelectedLanguageActionCreator(i18nCode));
     yield put(setCurrentLanguageActionCreator(i18nCode));
+    if (shouldFetchContents) {
+      yield put(fetchContentsActionCreator());
+    }
   } catch (error) {
     logger.error("Error while saving langue", { error: error.message });
     yield put(setSelectedLanguageActionCreator("fr"));
@@ -145,7 +149,10 @@ export function* getUserInfos(): SagaIterator {
         error: error.message,
       });
     }
-    yield put(fetchContentsActionCreator());
+    const hasUserSeenOnboarding = yield select(hasUserSeenOnboardingSelector);
+    if (hasUserSeenOnboarding) {
+      yield put(fetchContentsActionCreator());
+    }
   } catch (error) {
     logger.error("Error while getting user infos", {
       error: error.message,

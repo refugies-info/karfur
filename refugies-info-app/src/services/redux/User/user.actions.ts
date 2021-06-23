@@ -25,9 +25,10 @@ export const setSelectedLanguageActionCreator = (
   value: AvailableLanguageI18nCode
 ) => action(SET_SELECTED_LANGUAGE, value);
 
-export const saveSelectedLanguageActionCreator = (
-  value: AvailableLanguageI18nCode
-) => action(SAVE_SELECTED_LANGUAGE, value);
+export const saveSelectedLanguageActionCreator = (value: {
+  langue: AvailableLanguageI18nCode;
+  shouldFetchContents: boolean;
+}) => action(SAVE_SELECTED_LANGUAGE, value);
 
 export const saveUserLocationActionCreator = (value: {
   city: string;
