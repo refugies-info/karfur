@@ -19,7 +19,7 @@ export const SearchScreen = () => {
       <Button
         title="fetch contents"
         onPress={() => {
-          dispatch(fetchContentsActionCreator("fr"));
+          dispatch(fetchContentsActionCreator());
         }}
       />
     </WrapperWithHeaderAndLanguageModal>

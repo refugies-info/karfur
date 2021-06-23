@@ -1,0 +1,168 @@
+import { testSaga } from "redux-saga-test-plan";
+import latestActionsSaga, { fetchContents } from "../contents.saga";
+import { setContentsActionCreator } from "../contents.actions";
+import {
+  startLoading,
+  LoadingStatusKey,
+  finishLoading,
+} from "../../LoadingStatus/loadingStatus.actions";
+import { getContentsForApp } from "../../../../utils/API";
+import { selectedI18nCodeSelector } from "../../User/user.selectors";
+
+describe("[Saga] contents", () => {
+  describe("pilot", () => {
+    it("should trigger all the sagas", () => {
+      testSaga(latestActionsSaga)
+        .next()
+        .takeLatest("FETCH_CONTENTS", fetchContents)
+        .next()
+        .isDone();
+    });
+  });
+
+  describe("fetch contents saga", () => {
+    it("should not call function if no selected language", () => {
+      testSaga(fetchContents)
+        .next()
+        .put(startLoading(LoadingStatusKey.FETCH_CONTENTS))
+        .next()
+        .select(selectedI18nCodeSelector)
+        .next(null)
+        .call(getContentsForApp, "fr")
+        .next({
+          data: {
+            data: [
+              {
+                _id: "id",
+              },
+              {
+                _id: "id1",
+              },
+            ],
+          },
+        })
+        .put(
+          setContentsActionCreator({
+            langue: "fr",
+            contents: [
+              {
+                _id: "id",
+              },
+              {
+                _id: "id1",
+              },
+            ],
+          })
+        )
+        .next()
+        .put(finishLoading(LoadingStatusKey.FETCH_CONTENTS))
+        .next()
+        .isDone();
+    });
+
+    it("should not call function if selected language fr", () => {
+      testSaga(fetchContents)
+        .next()
+        .put(startLoading(LoadingStatusKey.FETCH_CONTENTS))
+        .next()
+        .select(selectedI18nCodeSelector)
+        .next("fr")
+        .call(getContentsForApp, "fr")
+        .next({
+          data: {
+            data: [
+              {
+                _id: "id",
+              },
+              {
+                _id: "id1",
+              },
+            ],
+          },
+        })
+        .put(
+          setContentsActionCreator({
+            langue: "fr",
+            contents: [
+              {
+                _id: "id",
+              },
+              {
+                _id: "id1",
+              },
+            ],
+          })
+        )
+        .next()
+        .put(finishLoading(LoadingStatusKey.FETCH_CONTENTS))
+        .next()
+        .isDone();
+    });
+
+    it("should not call function if selected language ar", () => {
+      testSaga(fetchContents)
+        .next()
+        .put(startLoading(LoadingStatusKey.FETCH_CONTENTS))
+        .next()
+        .select(selectedI18nCodeSelector)
+        .next("ar")
+        .call(getContentsForApp, "ar")
+        .next({
+          data: {
+            data: [
+              {
+                _id: "id_ar",
+              },
+              {
+                _id: "id1_ar",
+              },
+            ],
+          },
+        })
+        .put(
+          setContentsActionCreator({
+            langue: "ar",
+            contents: [
+              {
+                _id: "id_ar",
+              },
+              {
+                _id: "id1_ar",
+              },
+            ],
+          })
+        )
+        .next()
+        .call(getContentsForApp, "fr")
+        .next({
+          data: {
+            data: [
+              {
+                _id: "id",
+              },
+              {
+                _id: "id1",
+              },
+            ],
+          },
+        })
+        .put(
+          setContentsActionCreator({
+            langue: "fr",
+            contents: [
+              {
+                _id: "id",
+              },
+              {
+                _id: "id1",
+              },
+            ],
+          })
+        )
+        .next()
+        .put(finishLoading(LoadingStatusKey.FETCH_CONTENTS))
+        .next()
+        .isDone();
+    });
+  });
+});
