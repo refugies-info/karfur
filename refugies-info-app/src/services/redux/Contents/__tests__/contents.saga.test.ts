@@ -7,7 +7,12 @@ import {
   finishLoading,
 } from "../../LoadingStatus/loadingStatus.actions";
 import { getContentsForApp } from "../../../../utils/API";
-import { selectedI18nCodeSelector } from "../../User/user.selectors";
+import {
+  selectedI18nCodeSelector,
+  userAgeSelector,
+  userLocationSelector,
+  userFrenchLevelSelector,
+} from "../../User/user.selectors";
 
 describe("[Saga] contents", () => {
   describe("pilot", () => {
@@ -28,7 +33,18 @@ describe("[Saga] contents", () => {
         .next()
         .select(selectedI18nCodeSelector)
         .next(null)
-        .call(getContentsForApp, "fr")
+        .select(userAgeSelector)
+        .next(null)
+        .select(userLocationSelector)
+        .next({ department: null })
+        .select(userFrenchLevelSelector)
+        .next(null)
+        .call(getContentsForApp, {
+          locale: "fr",
+          age: null,
+          department: null,
+          frenchLevel: null,
+        })
         .next({
           data: {
             data: [
@@ -67,7 +83,18 @@ describe("[Saga] contents", () => {
         .next()
         .select(selectedI18nCodeSelector)
         .next("fr")
-        .call(getContentsForApp, "fr")
+        .select(userAgeSelector)
+        .next("age")
+        .select(userLocationSelector)
+        .next({ department: "dep" })
+        .select(userFrenchLevelSelector)
+        .next("frenchLevel")
+        .call(getContentsForApp, {
+          locale: "fr",
+          department: "dep",
+          frenchLevel: "frenchLevel",
+          age: "age",
+        })
         .next({
           data: {
             data: [
@@ -106,7 +133,18 @@ describe("[Saga] contents", () => {
         .next()
         .select(selectedI18nCodeSelector)
         .next("ar")
-        .call(getContentsForApp, "ar")
+        .select(userAgeSelector)
+        .next(null)
+        .select(userLocationSelector)
+        .next({ department: null })
+        .select(userFrenchLevelSelector)
+        .next(null)
+        .call(getContentsForApp, {
+          locale: "ar",
+          age: null,
+          department: null,
+          frenchLevel: null,
+        })
         .next({
           data: {
             data: [
@@ -133,7 +171,12 @@ describe("[Saga] contents", () => {
           })
         )
         .next()
-        .call(getContentsForApp, "fr")
+        .call(getContentsForApp, {
+          locale: "fr",
+          age: null,
+          department: null,
+          frenchLevel: null,
+        })
         .next({
           data: {
             data: [

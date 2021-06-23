@@ -32,5 +32,22 @@ export const getPlaceIdFromLocationFromGoogleAPI = (
     `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=1500&language=fr&type=locality&key=${process.env.GOOGLE_API_KEY}`
   );
 
-export const getContentsForApp = (locale: string) =>
-  apiCaller.get(`/dispositifs/getContentsForApp?locale=${locale}`);
+export const getContentsForApp = ({
+  locale,
+  age,
+  department,
+  frenchLevel,
+}: {
+  locale: string;
+  age: string | null;
+  department: string | null;
+  frenchLevel: string | null;
+}) => {
+  const route =
+    `/dispositifs/getContentsForApp?locale=${locale}` +
+    (age ? `&age=${age}` : "") +
+    (department ? `&department=${department}` : "") +
+    (frenchLevel ? `&frenchLevel=${frenchLevel}` : "");
+
+  return apiCaller.get(route);
+};
