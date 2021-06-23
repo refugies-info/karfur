@@ -1,11 +1,14 @@
 import { RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
 import { getActiveContents } from "../../../modules/dispositif/dispositif.repository";
-import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
+import { getTitreInfoOrMarqueInLocale } from "../../../modules/dispositif/dispositif.adapter";
 
 interface Query {
   locale: string;
+  age?: string;
+  department?: string;
+  frenchLevel?: string;
 }
 
 export const getContentsForApp = async (
@@ -18,23 +21,60 @@ export const getContentsForApp = async (
     if (!req.query || !req.query.locale) {
       throw new Error("INVALID_REQUEST");
     }
-    const locale = req.query.locale;
 
-    logger.info("[getContentsForApp] called", { locale });
+    const { locale, age, department, frenchLevel } = req.query;
+
+    logger.info("[getContentsForApp] called", {
+      locale,
+      age,
+      department,
+      frenchLevel,
+    });
 
     const neededFields = {
       titreInformatif: 1,
       titreMarque: 1,
+      avancement: 1,
     };
     const contentsArray = await getActiveContents(neededFields);
 
-    contentsArray.map((content) => {
-      turnToLocalizedTitles(content, locale);
+    const contentsArrayFr = contentsArray.map((content) => {
+      const titreInformatif = getTitreInfoOrMarqueInLocale(
+        content.titreInformatif,
+        "fr"
+      );
+      const titreMarque = getTitreInfoOrMarqueInLocale(
+        content.titreMarque,
+        "fr"
+      );
+
+      return { _id: content._id, titreInformatif, titreMarque };
+    });
+
+    if (locale === "fr") {
+      return res.status(200).json({
+        text: "Succès",
+        dataFr: contentsArrayFr,
+      });
+    }
+
+    const contentsArrayLocale = contentsArray.map((content) => {
+      const titreInformatif = getTitreInfoOrMarqueInLocale(
+        content.titreInformatif,
+        locale
+      );
+      const titreMarque = getTitreInfoOrMarqueInLocale(
+        content.titreMarque,
+        locale
+      );
+
+      return { _id: content._id, titreInformatif, titreMarque };
     });
 
     res.status(200).json({
       text: "Succès",
-      data: contentsArray,
+      data: contentsArrayLocale,
+      dataFr: contentsArrayFr,
     });
   } catch (error) {
     logger.error("[getContentsForApp] error while getting dispositifs", {

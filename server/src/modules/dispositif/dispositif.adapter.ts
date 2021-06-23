@@ -244,3 +244,14 @@ export const getTitreInfoOrMarque = (
   }
   return titre;
 };
+
+export const getTitreInfoOrMarqueInLocale = (
+  titre: string | Record<string, string> | null,
+  locale: string
+): string => {
+  if (!titre) return "";
+  if (isTitreInformatifObject(titre)) {
+    return titre[locale] || titre.fr;
+  }
+  return titre;
+};

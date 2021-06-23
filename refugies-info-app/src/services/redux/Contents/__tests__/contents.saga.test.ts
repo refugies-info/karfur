@@ -39,44 +39,12 @@ describe("[Saga] contents", () => {
         .next({ department: null })
         .select(userFrenchLevelSelector)
         .next(null)
-        .call(getContentsForApp, {
-          locale: "fr",
-          age: null,
-          department: null,
-          frenchLevel: null,
-        })
-        .next({
-          data: {
-            data: [
-              {
-                _id: "id",
-              },
-              {
-                _id: "id1",
-              },
-            ],
-          },
-        })
-        .put(
-          setContentsActionCreator({
-            langue: "fr",
-            contents: [
-              {
-                _id: "id",
-              },
-              {
-                _id: "id1",
-              },
-            ],
-          })
-        )
-        .next()
         .put(finishLoading(LoadingStatusKey.FETCH_CONTENTS))
         .next()
         .isDone();
     });
 
-    it("should not call function if selected language fr", () => {
+    it("should call function if selected language fr", () => {
       testSaga(fetchContents)
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_CONTENTS))
@@ -97,12 +65,12 @@ describe("[Saga] contents", () => {
         })
         .next({
           data: {
-            data: [
+            dataFr: [
               {
-                _id: "id",
+                _id: "idFr",
               },
               {
-                _id: "id1",
+                _id: "id1Fr",
               },
             ],
           },
@@ -112,10 +80,10 @@ describe("[Saga] contents", () => {
             langue: "fr",
             contents: [
               {
-                _id: "id",
+                _id: "idFr",
               },
               {
-                _id: "id1",
+                _id: "id1Fr",
               },
             ],
           })
@@ -155,6 +123,14 @@ describe("[Saga] contents", () => {
                 _id: "id1_ar",
               },
             ],
+            dataFr: [
+              {
+                _id: "id_fr",
+              },
+              {
+                _id: "id1_fr",
+              },
+            ],
           },
         })
         .put(
@@ -171,33 +147,15 @@ describe("[Saga] contents", () => {
           })
         )
         .next()
-        .call(getContentsForApp, {
-          locale: "fr",
-          age: null,
-          department: null,
-          frenchLevel: null,
-        })
-        .next({
-          data: {
-            data: [
-              {
-                _id: "id",
-              },
-              {
-                _id: "id1",
-              },
-            ],
-          },
-        })
         .put(
           setContentsActionCreator({
             langue: "fr",
             contents: [
               {
-                _id: "id",
+                _id: "id_fr",
               },
               {
-                _id: "id1",
+                _id: "id1_fr",
               },
             ],
           })

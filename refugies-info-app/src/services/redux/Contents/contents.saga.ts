@@ -25,7 +25,7 @@ export function* fetchContents(): SagaIterator {
     const { department } = yield select(userLocationSelector);
     const frenchLevel = yield select(userFrenchLevelSelector);
 
-    if (selectedLanguage && selectedLanguage !== "fr") {
+    if (selectedLanguage) {
       const data = yield call(getContentsForApp, {
         locale: selectedLanguage,
         age,
@@ -33,7 +33,7 @@ export function* fetchContents(): SagaIterator {
         frenchLevel,
       });
 
-      if (data && data.data && data.data.data) {
+      if (data && data.data && data.data.data && selectedLanguage !== "fr") {
         yield put(
           setContentsActionCreator({
             langue: selectedLanguage,
@@ -41,21 +41,16 @@ export function* fetchContents(): SagaIterator {
           })
         );
       }
+      if (data && data.data && data.data.dataFr) {
+        yield put(
+          setContentsActionCreator({
+            langue: "fr",
+            contents: data.data.dataFr,
+          })
+        );
+      }
     }
-    const dataFr = yield call(getContentsForApp, {
-      locale: "fr",
-      age,
-      department,
-      frenchLevel,
-    });
-    if (dataFr && dataFr.data && dataFr.data.data) {
-      yield put(
-        setContentsActionCreator({
-          langue: "fr",
-          contents: dataFr.data.data,
-        })
-      );
-    }
+
     yield put(finishLoading(LoadingStatusKey.FETCH_CONTENTS));
   } catch (error) {
     logger.error("Error while fetching contents", { error: error.message });
