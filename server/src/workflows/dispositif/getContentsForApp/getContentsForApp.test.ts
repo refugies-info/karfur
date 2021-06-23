@@ -22,6 +22,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     titreInformatif: 1,
     titreMarque: 1,
     avancement: 1,
+    contenu: 1,
   };
 
   it("should return 405 if not from site", async () => {
@@ -162,5 +163,106 @@ describe("getDispositifsWithTranslationAvancement", () => {
     };
     await getContentsForApp(req, res);
     expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, query);
+  });
+
+  it("should call getActiveContentsFiltered and filter geoloc", async () => {
+    const data = [
+      {
+        _id: "id1",
+        titreInformatif: "TI1",
+        contenu: [
+          {},
+          {
+            children: [
+              {
+                type: "card",
+                isFakeContent: false,
+                title: "Zone d'action",
+                titleIcon: "pin-outline",
+                typeIcon: "eva",
+                departments: ["38 - Isère"],
+                free: true,
+                contentTitle: "Sélectionner",
+                editable: false,
+              },
+            ],
+          },
+        ],
+      },
+
+      {
+        _id: "id3",
+        titreInformatif: "TI3",
+        contenu: [
+          {},
+          {
+            children: [
+              {
+                type: "card",
+                isFakeContent: false,
+                title: "Zone d'action",
+                titleIcon: "pin-outline",
+                typeIcon: "eva",
+                departments: ["All"],
+                free: true,
+                contentTitle: "Sélectionner",
+                editable: false,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        _id: "id4",
+        titreInformatif: "TI4",
+        contenu: [
+          {},
+          {
+            children: [
+              {
+                type: "card",
+                isFakeContent: false,
+                title: "Zone d'action",
+                titleIcon: "pin-outline",
+                typeIcon: "eva",
+                departments: ["75 - Paris"],
+                free: true,
+                contentTitle: "Sélectionner",
+                editable: false,
+              },
+            ],
+          },
+        ],
+      },
+    ];
+    getActiveContentsFiltered.mockResolvedValueOnce(data);
+    const req = {
+      fromSite: true,
+      query: {
+        locale: "fr",
+        department: "Paris",
+      },
+    };
+    const query = {
+      status: "Actif",
+    };
+    await getContentsForApp(req, res);
+    expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, query);
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "Succès",
+      dataFr: [
+        {
+          _id: "id3",
+          titreInformatif: "TI3",
+          titreMarque: "",
+        },
+        {
+          _id: "id4",
+          titreInformatif: "TI4",
+          titreMarque: "",
+        },
+      ],
+    });
   });
 });

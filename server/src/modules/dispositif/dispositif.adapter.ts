@@ -255,3 +255,32 @@ export const getTitreInfoOrMarqueInLocale = (
   }
   return titre;
 };
+
+export const filterContentsOnGeoloc = (
+  contentsArray: IDispositif[],
+  department: string | null
+) => {
+  if (!department) return contentsArray;
+  return contentsArray.filter((content) => {
+    if (
+      content.contenu &&
+      content.contenu[1] &&
+      content.contenu[1].children &&
+      content.contenu[1].children.length
+    ) {
+      const geolocInfocard = content.contenu[1].children.find(
+        (infocard: any) => infocard.title === "Zone d'action"
+      );
+      if (geolocInfocard && geolocInfocard.departments) {
+        for (var i = 0; i < geolocInfocard.departments.length; i++) {
+          if (geolocInfocard.departments[i] === "All") {
+            return true;
+          }
+          if (geolocInfocard.departments[i].split(" - ")[1] === department) {
+            return true;
+          }
+        }
+      }
+    }
+  });
+};

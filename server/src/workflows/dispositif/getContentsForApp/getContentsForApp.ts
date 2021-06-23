@@ -2,7 +2,10 @@ import { RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
 import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { getTitreInfoOrMarqueInLocale } from "../../../modules/dispositif/dispositif.adapter";
+import {
+  getTitreInfoOrMarqueInLocale,
+  filterContentsOnGeoloc,
+} from "../../../modules/dispositif/dispositif.adapter";
 import { addAgeQuery, addFrenchLevelQuery } from "./functions";
 
 interface Query {
@@ -36,6 +39,7 @@ export const getContentsForApp = async (
       titreInformatif: 1,
       titreMarque: 1,
       avancement: 1,
+      contenu: 1,
     };
 
     const initialQuery = {
@@ -52,7 +56,9 @@ export const getContentsForApp = async (
       queryWithAgeAndFrenchLevel
     );
 
-    const contentsArrayFr = contentsArray.map((content) => {
+    const filteredContents = filterContentsOnGeoloc(contentsArray, department);
+
+    const contentsArrayFr = filteredContents.map((content) => {
       const titreInformatif = getTitreInfoOrMarqueInLocale(
         content.titreInformatif,
         "fr"
@@ -72,7 +78,7 @@ export const getContentsForApp = async (
       });
     }
 
-    const contentsArrayLocale = contentsArray.map((content) => {
+    const contentsArrayLocale = filteredContents.map((content) => {
       const titreInformatif = getTitreInfoOrMarqueInLocale(
         content.titreInformatif,
         locale
