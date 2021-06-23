@@ -11,9 +11,9 @@ import { FETCH_CONTENTS } from "./contents.actionTypes";
 import { getContentsForApp } from "../../../utils/API";
 import {
   selectedI18nCodeSelector,
-  userAgeSelector,
-  userLocationSelector,
-  userFrenchLevelSelector,
+  // userAgeSelector,
+  // userLocationSelector,
+  // userFrenchLevelSelector,
 } from "../User/user.selectors";
 
 export function* fetchContents(): SagaIterator {
@@ -21,9 +21,9 @@ export function* fetchContents(): SagaIterator {
     logger.info("[fetchContents] saga");
     yield put(startLoading(LoadingStatusKey.FETCH_CONTENTS));
     const selectedLanguage = yield select(selectedI18nCodeSelector);
-    const age = yield select(userAgeSelector);
-    const { department } = yield select(userLocationSelector);
-    const frenchLevel = yield select(userFrenchLevelSelector);
+    // const age = yield select(userAgeSelector);
+    // const { department } = yield select(userLocationSelector);
+    // const frenchLevel = yield select(userFrenchLevelSelector);
 
     if (selectedLanguage && selectedLanguage !== "fr") {
       const data = yield call(getContentsForApp, selectedLanguage);
