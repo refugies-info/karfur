@@ -27,8 +27,9 @@ export const getContentsForApp = async (
       titreMarque: 1,
     };
     const contentsArray = await getActiveContents(neededFields);
+
     contentsArray.map((content) => {
-      turnToLocalizedTitles(content);
+      turnToLocalizedTitles(content, locale);
     });
 
     res.status(200).json({
