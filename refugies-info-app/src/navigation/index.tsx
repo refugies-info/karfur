@@ -100,12 +100,7 @@ export const RootNavigator = () => {
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {!userSelectedLanguage ? (
-          <Stack.Screen
-            name="LanguageChoiceNavigator"
-            component={LanguageChoiceStackNavigator}
-          />
-        ) : !hasUserSeenOnboarding ? (
+        {!hasUserSeenOnboarding ? (
           <Stack.Screen
             name="OnboardingNavigator"
             component={OnboardingStackNavigator}

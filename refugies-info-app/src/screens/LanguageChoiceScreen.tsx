@@ -3,19 +3,23 @@ import styled from "styled-components/native";
 import { useDispatch } from "react-redux";
 import { saveSelectedLanguageActionCreator } from "../services/redux/User/user.actions";
 import { theme } from "../theme";
-import { Header } from "../components/Header";
+import { HeaderWithLogo } from "../components/HeaderWithLogo";
 import { ScrollView } from "react-native-gesture-handler";
 import { LanguageDetailsButton } from "../components/Language/LanguageDetailsButton";
 import { activatedLanguages } from "../data/languagesData";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { AvailableLanguageI18nCode } from "../types/interface";
+import { OnboardingParamList } from "../../types";
+import { StackScreenProps } from "@react-navigation/stack";
 
 const MainContainer = styled.View`
   padding-horizontal: ${theme.margin * 2}px;
   padding-vertical: ${theme.margin}px;
 `;
 
-export const LanguageChoiceScreen = () => {
+export const LanguageChoiceScreen = ({
+  navigation,
+}: StackScreenProps<OnboardingParamList, "OnboardingSteps">) => {
   const { i18n } = useTranslationWithRTL();
   const dispatch = useDispatch();
 
@@ -27,10 +31,12 @@ export const LanguageChoiceScreen = () => {
         shouldFetchContents: false,
       })
     );
+    navigation.navigate("OnboardingStart");
+    return;
   };
   return (
     <ScrollView>
-      <Header />
+      <HeaderWithLogo />
       <MainContainer>
         {activatedLanguages.map((language, index) => (
           <LanguageDetailsButton

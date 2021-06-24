@@ -1,6 +1,6 @@
 import React from "react";
 import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
-import { Header } from "../components/Header";
+import { HeaderWithLogo } from "../components/HeaderWithLogo";
 import styled from "styled-components/native";
 
 interface Props {
@@ -21,7 +21,7 @@ export const WrapperWithHeaderAndLanguageModal = (props: Props) => {
 
   return (
     <StyledView>
-      <Header onLongPressSwitchLanguage={toggleLanguageModal} />
+      <HeaderWithLogo onLongPressSwitchLanguage={toggleLanguageModal} />
       {props.children}
 
       <LanguageChoiceModal

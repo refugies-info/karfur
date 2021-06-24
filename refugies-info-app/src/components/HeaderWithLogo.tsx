@@ -30,7 +30,7 @@ interface Props {
   hideLanguageSwitch?: boolean;
   hideLogo?: boolean;
 }
-export const Header = ({
+export const HeaderWithLogo = ({
   onLongPressSwitchLanguage,
   hideLanguageSwitch,
   hideLogo,
