@@ -117,7 +117,8 @@ export const addDispositif = async (
             dispResult.titreMarque,
             dispResult._id,
             dispResult.tags,
-            null
+            null,
+            false
           );
         } catch (error) {
           logger.error(

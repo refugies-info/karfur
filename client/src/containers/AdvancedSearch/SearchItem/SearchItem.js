@@ -134,7 +134,7 @@ export class SearchItem extends Component {
                   value={villeAuto}
                   onChange={this.handleChange}
                   onPlaceSelected={this.onPlaceSelected}
-                  types={["(regions)"]}
+                  types={["(cities)"]}
                   componentRestrictions={{ country: "fr" }}
                 />
                 {item.active && (

@@ -166,7 +166,8 @@ describe("validateTranslations", () => {
       "",
       "id_dispo",
       [],
-      "locale"
+      "locale",
+      false
     );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(sendPublishedTradMailToStructure).toHaveBeenCalledWith(
@@ -210,7 +211,8 @@ describe("validateTranslations", () => {
       "",
       "id_dispo",
       [],
-      "locale"
+      "locale",
+      false
     );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(sendPublishedTradMailToStructure).toHaveBeenCalledWith(
@@ -382,7 +384,8 @@ describe("validateTranslations", () => {
       "",
       "id_dispo",
       [],
-      "locale"
+      "locale",
+      false
     );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(sendPublishedTradMailToStructure).toHaveBeenCalledWith(
@@ -455,7 +458,8 @@ describe("validateTranslations", () => {
       "",
       "id_dispo",
       [],
-      "locale"
+      "locale",
+      false
     );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(sendPublishedTradMailToStructure).toHaveBeenCalledWith(
