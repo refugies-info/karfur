@@ -70,11 +70,8 @@ export const FeedbackFooter = (props: Props) => {
             {t("Dispositif.Oui, merci !", "Oui, merci !")}
           </FButton>
         )}
-        <a>
-          <FButton
-            className={" feedback-btn error mr-8 mb-8 "}
-            id="no-thanks-btn"
-          >
+        <a id="no-thanks-btn">
+          <FButton className={" feedback-btn error mr-8 mb-8 "}>
             <span role="img" aria-label="thanks">
               😔
             </span>
