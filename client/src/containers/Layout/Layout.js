@@ -117,6 +117,7 @@ export class Layout extends Component {
         sentence = sentence + nodeList[i].childNodes[0].data;
       }
     }
+
     return sentence;
   };
 
@@ -127,6 +128,8 @@ export class Layout extends Component {
           this.computeFullSentence(e.target.childNodes),
           i18n.language
         );
+      } else if (e.target.textContent) {
+        this.readAudio(e.target.textContent, i18n.language);
       } else {
         this.forceStopAudio();
       }
