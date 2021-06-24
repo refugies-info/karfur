@@ -28,8 +28,11 @@
       align-items: center;
     }
 
-    .first-row .btn-pill {
+    .first-row .isNonActiv {
       background-color: $lightColor;
+    }
+    .isActiv {
+      background-color: $validationHover;
     }
     .second-row .btn-pill {
       background-color: $darkColor;

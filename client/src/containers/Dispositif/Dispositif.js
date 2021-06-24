@@ -49,7 +49,7 @@ import ContribCaroussel from "./ContribCaroussel/ContribCaroussel";
 import SideTrad from "./SideTrad/SideTrad";
 import ExpertSideTrad from "./SideTrad/ExpertSideTrad";
 import { initializeTimer } from "../Translation/functions";
-import { readAudio } from "../Layout/functions";
+import { readAudio, stopAudio } from "../Layout/functions";
 import {
   contenu,
   menu,
@@ -103,6 +103,7 @@ export class Dispositif extends Component {
     this._isMounted = false;
     this.initializeTimer = initializeTimer.bind(this);
     this.readAudio = readAudio.bind(this);
+    this.stopAudio = stopAudio.bind(this);
   }
 
   state = {
@@ -2019,6 +2020,7 @@ export class Dispositif extends Component {
                   setMarkers={this.setMarkers}
                   filtres={filtres}
                   readAudio={this.readAudio}
+                  stopAudio={this.stopAudio}
                   demarcheSteps={demarcheSteps}
                   upcoming={this.upcoming}
                   toggleTutorielModal={this.toggleTutorielModal}

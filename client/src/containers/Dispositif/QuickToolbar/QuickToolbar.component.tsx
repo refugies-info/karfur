@@ -14,12 +14,14 @@ interface StateType {
   tooltipOpen: boolean[];
   isDropdownOpen: boolean;
   dropdownColor: string[];
+  isVoiceActiv: boolean;
 }
 
 export interface PropsBeforeInjection {
   disableEdit: boolean;
   toggleModal: (arg1: boolean, arg2: string) => void;
   readAudio: (arg1: any, arg2: string, arg3: any, arg4: boolean) => void;
+  stopAudio: () => void;
   item: any;
   subkey: number;
   handleContentClick: (arg1: any, arg2: boolean, arg3: number) => void;
@@ -36,6 +38,7 @@ export class QuickToolbar extends Component<Props, StateType> {
     tooltipOpen: new Array(4).fill(false),
     isDropdownOpen: false,
     dropdownColor: new Array(4).fill("#FFFFFF"),
+    isVoiceActiv: false,
   };
 
   _hoverOn = (key: number) =>
@@ -83,7 +86,7 @@ export class QuickToolbar extends Component<Props, StateType> {
     if (this.props.disableEdit) {
       if (id === 0) {
         this.props.toggleModal(true, "reaction");
-      } else if (id === 1) {
+      } else if (id === 1 && !this.state.isVoiceActiv) {
         let node = this.props.item;
         if (
           this.props.subkey !== undefined &&
@@ -94,6 +97,7 @@ export class QuickToolbar extends Component<Props, StateType> {
         ) {
           node = this.props.item.children[this.props.subkey];
         }
+        this.setState({ isVoiceActiv: !this.state.isVoiceActiv });
         node &&
           node.title &&
           this.props.readAudio(
@@ -103,11 +107,20 @@ export class QuickToolbar extends Component<Props, StateType> {
               this.props.readAudio(
                 h2p(node.content),
                 this.props.activeLangue,
-                null,
+                () =>
+                  this.props.readAudio(
+                    "",
+                    this.props.activeLangue,
+                    this.setState({ isVoiceActiv: !this.state.isVoiceActiv }),
+                    true
+                  ),
                 true
               ),
             true
           );
+      } else if (id === 1 && this.state.isVoiceActiv) {
+        this.setState({ isVoiceActiv: !this.state.isVoiceActiv });
+        this.props.stopAudio();
       }
     } else {
       if (id === 0) {
@@ -135,7 +148,7 @@ export class QuickToolbar extends Component<Props, StateType> {
               <Row className="first-row">
                 <Col lg="6" md="6" sm="12" xs="12" className="col-btn">
                   <Button
-                    className="btn-pill"
+                    className="btn-pill isNonActiv"
                     id="eva-icon-0"
                     onMouseEnter={() => this._hoverOn(0)}
                     onMouseLeave={this._hoverOff}
@@ -163,7 +176,11 @@ export class QuickToolbar extends Component<Props, StateType> {
                 {showLanguageButton && (
                   <Col lg="6" md="6" sm="12" xs="12" className="col-btn">
                     <Button
-                      className="btn-pill"
+                      className={
+                        this.state.isVoiceActiv
+                          ? "btn-pill isActiv"
+                          : "btn-pill isNonActiv"
+                      }
                       id="eva-icon-1"
                       onMouseEnter={() => this._hoverOn(1)}
                       onMouseLeave={this._hoverOff}
@@ -179,6 +196,7 @@ export class QuickToolbar extends Component<Props, StateType> {
                         fill={colors.darkColor}
                         className="icon-toolbar"
                       />
+
                       <Tooltip
                         className="dark-back"
                         placement="top"
