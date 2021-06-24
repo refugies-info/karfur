@@ -43,4 +43,9 @@ const readAudio = function (
     .catch(() => {});
 };
 
-export { readAudio };
+const stopAudio = function () {
+  this.audio.pause();
+  this.audio.currentTime = 0;
+};
+
+export { readAudio, stopAudio };
