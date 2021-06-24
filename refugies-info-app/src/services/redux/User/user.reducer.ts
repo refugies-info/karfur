@@ -1,10 +1,11 @@
 import { createReducer } from "typesafe-actions";
 import { UserActions } from "./user.actions";
+import { AvailableLanguageI18nCode } from "../../../types/interface";
 
 export interface UserState {
   hasUserSeenOnboarding: boolean;
-  selectedLanguagei18nCode: string | null;
-  currentLanguagei18nCode: string | null;
+  selectedLanguagei18nCode: AvailableLanguageI18nCode | null;
+  currentLanguagei18nCode: AvailableLanguageI18nCode | null;
   city: string | null;
   department: string | null;
   age: string | null;

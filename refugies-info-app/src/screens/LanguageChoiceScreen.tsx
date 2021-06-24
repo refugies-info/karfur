@@ -8,6 +8,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { LanguageDetailsButton } from "../components/Language/LanguageDetailsButton";
 import { activatedLanguages } from "../data/languagesData";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
+import { AvailableLanguageI18nCode } from "../types/interface";
 
 const MainContainer = styled.View`
   padding-horizontal: ${theme.margin * 2}px;
@@ -18,9 +19,14 @@ export const LanguageChoiceScreen = () => {
   const { i18n } = useTranslationWithRTL();
   const dispatch = useDispatch();
 
-  const changeLanguage = (ln: string) => {
+  const changeLanguage = (ln: AvailableLanguageI18nCode) => {
     i18n.changeLanguage(ln);
-    dispatch(saveSelectedLanguageActionCreator(ln));
+    dispatch(
+      saveSelectedLanguageActionCreator({
+        langue: ln,
+        shouldFetchContents: false,
+      })
+    );
   };
   return (
     <ScrollView>

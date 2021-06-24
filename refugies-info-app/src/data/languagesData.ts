@@ -1,4 +1,10 @@
-export const activatedLanguages = [
+import { AvailableLanguageI18nCode } from "../types/interface";
+
+export const activatedLanguages: {
+  langueFr: string;
+  langueLoc: string;
+  i18nCode: AvailableLanguageI18nCode;
+}[] = [
   {
     langueFr: "Français",
     langueLoc: "Français",
