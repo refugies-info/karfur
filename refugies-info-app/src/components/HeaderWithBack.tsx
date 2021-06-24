@@ -6,6 +6,7 @@ import { theme } from "../theme";
 import { StyledTextSmall } from "./StyledText";
 import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
+import { StackScreenProps } from "@react-navigation/stack";
 
 const TopButtonsContainer = styled(RowContainer)`
   justify-content: space-between;
@@ -22,8 +23,14 @@ const StyledText = styled(StyledTextSmall)`
 
 const ICON_SIZE = 24;
 
-export const HeaderWithBack = (props: { navigation: any }) => {
-  const { t, isRTL } = useTranslationWithRTL();
+interface Props {
+  iconName?: string;
+  text?: string;
+  navigation: StackScreenProps;
+}
+
+export const HeaderWithBack = (props: Props) => {
+  const { isRTL } = useTranslationWithRTL();
 
   return (
     <TopButtonsContainer>
@@ -31,17 +38,17 @@ export const HeaderWithBack = (props: { navigation: any }) => {
         iconName="arrow-back-outline"
         onPress={props.navigation.goBack}
       />
-      <RTLView>
-        <Icon
-          name={"person-outline"}
-          width={ICON_SIZE}
-          height={ICON_SIZE}
-          fill={theme.colors.black}
-        />
-        <StyledText isRTL={isRTL}>
-          {t("Onboarding.Créer mon profil", "Créer mon profil")}
-        </StyledText>
-      </RTLView>
+      {props.iconName && props.text && (
+        <RTLView>
+          <Icon
+            name={props.iconName}
+            width={ICON_SIZE}
+            height={ICON_SIZE}
+            fill={theme.colors.black}
+          />
+          <StyledText isRTL={isRTL}>{props.text}</StyledText>
+        </RTLView>
+      )}
       <SmallButton iconName="volume-up-outline" />
     </TopButtonsContainer>
   );

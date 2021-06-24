@@ -243,7 +243,11 @@ export const FilterCity = ({
         flex: 1,
       }}
     >
-      <HeaderWithBack navigation={navigation} />
+      <HeaderWithBack
+        navigation={navigation}
+        iconName={"person-outline"}
+        text={t("Onboarding.Créer mon profil", "Créer mon profil")}
+      />
       <ContentContainer>
         <View>
           <Title>
