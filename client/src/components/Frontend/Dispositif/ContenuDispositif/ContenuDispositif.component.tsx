@@ -37,6 +37,7 @@ export interface PropsBeforeInjection {
   tracking: any;
   toggleModal: any;
   readAudio: any;
+  stopAudio: any;
   subkey: any;
   show: any;
   tts: any;
@@ -150,6 +151,7 @@ export const contenuDispositif = (props: Props) => {
                   disableEdit={disableEdit}
                   toggleModal={props.toggleModal}
                   readAudio={props.readAudio}
+                  stopAudio={props.stopAudio}
                   subkey={props.subkey}
                   t={props.t}
                   removeItem={props.removeItem}
