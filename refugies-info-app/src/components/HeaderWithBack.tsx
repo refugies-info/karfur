@@ -6,7 +6,6 @@ import { theme } from "../theme";
 import { StyledTextSmall } from "./StyledText";
 import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
-import { StackScreenProps } from "@react-navigation/stack";
 
 const TopButtonsContainer = styled(RowContainer)`
   justify-content: space-between;
@@ -26,7 +25,7 @@ const ICON_SIZE = 24;
 interface Props {
   iconName?: string;
   text?: string;
-  navigation: StackScreenProps;
+  navigation: any;
 }
 
 export const HeaderWithBack = (props: Props) => {

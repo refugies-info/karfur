@@ -15,12 +15,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserInfosActionCreator } from "../services/redux/User/user.actions";
 import { logger } from "../logger";
 import { OnboardingStackNavigator } from "./OnboardingNavigator";
-import {
-  hasUserSeenOnboardingSelector,
-  selectedI18nCodeSelector,
-} from "../services/redux/User/user.selectors";
+import { hasUserSeenOnboardingSelector } from "../services/redux/User/user.selectors";
 import { setHasUserSeenOnboardingActionCreator } from "../services/redux/User/user.actions";
-import { LanguageChoiceStackNavigator } from "./LanguageChoiceNavigator";
 import { theme } from "../theme";
 import "../services/i18n";
 import { initReactI18next } from "react-i18next";
@@ -38,7 +34,6 @@ export const RootNavigator = () => {
   ] = React.useState(false);
 
   const hasUserSeenOnboarding = useSelector(hasUserSeenOnboardingSelector);
-  const userSelectedLanguage = useSelector(selectedI18nCodeSelector);
   const dispatch = useDispatch();
   React.useEffect(() => {
     const setLanguage = async () => {
