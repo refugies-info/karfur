@@ -2,7 +2,7 @@ import * as React from "react";
 import { View } from "react-native";
 import { OnboardingParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { OnboardingHeader } from "./OnboardingHeader";
+import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
 import { BottomButtons } from "../../components/Onboarding/BottomButtons";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -50,7 +50,7 @@ export const FilterAge = ({
         flex: 1,
       }}
     >
-      <OnboardingHeader navigation={navigation} />
+      <HeaderWithBack navigation={navigation} />
       <ContentContainer>
         <View>
           <Title>{t("Onboarding.age", "Quel âge as-tu ?")}</Title>

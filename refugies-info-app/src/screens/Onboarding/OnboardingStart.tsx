@@ -9,7 +9,7 @@ import IlluOnboarding from "../../theme/images/onboarding/illu_onboarding_2.png"
 
 import { CustomButton } from "../../components/CustomButton";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { OnboardingHeader } from "./OnboardingHeader";
+import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const MainView = styled(SafeAreaView)`
@@ -54,7 +54,7 @@ export const OnboardingStart = ({
   const { t } = useTranslationWithRTL();
   return (
     <MainView>
-      <OnboardingHeader navigation={navigation} />
+      <HeaderWithBack navigation={navigation} />
       <ImageContainer>
         <Image source={IlluOnboarding} style={styles.backgroundImage} />
       </ImageContainer>

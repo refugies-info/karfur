@@ -2,7 +2,7 @@ import * as React from "react";
 import { ScrollView } from "react-native";
 import { OnboardingParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { OnboardingHeader } from "./OnboardingHeader";
+import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
 import { BottomButtons } from "../../components/Onboarding/BottomButtons";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -69,7 +69,7 @@ export const FilterFrenchLevel = ({
         flex: 1,
       }}
     >
-      <OnboardingHeader navigation={navigation} />
+      <HeaderWithBack navigation={navigation} />
       <ContentContainer>
         <ScrollView contentContainerStyle={{ padding: theme.margin * 3 }}>
           <Title>

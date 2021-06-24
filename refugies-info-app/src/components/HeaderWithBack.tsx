@@ -1,11 +1,11 @@
 import * as React from "react";
-import { SmallButton } from "../../components/SmallButton";
-import { RowContainer, RTLView } from "../../components/BasicComponents";
+import { SmallButton } from "./SmallButton";
+import { RowContainer, RTLView } from "./BasicComponents";
 import styled from "styled-components/native";
-import { theme } from "../../theme";
-import { StyledTextSmall } from "../../components/StyledText";
+import { theme } from "../theme";
+import { StyledTextSmall } from "./StyledText";
 import { Icon } from "react-native-eva-icons";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 
 const TopButtonsContainer = styled(RowContainer)`
   justify-content: space-between;
@@ -22,7 +22,7 @@ const StyledText = styled(StyledTextSmall)`
 
 const ICON_SIZE = 24;
 
-export const OnboardingHeader = (props: { navigation: any }) => {
+export const HeaderWithBack = (props: { navigation: any }) => {
   const { t, isRTL } = useTranslationWithRTL();
 
   return (

@@ -12,7 +12,7 @@ import {
 } from "../../components/StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { Icon } from "react-native-eva-icons";
-import { OnboardingHeader } from "./OnboardingHeader";
+import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
 import { Explaination } from "../../components/Onboarding/Explaination";
 import { SearchBarCity } from "../../components/Onboarding/SearchBarCity";
@@ -243,7 +243,7 @@ export const FilterCity = ({
         flex: 1,
       }}
     >
-      <OnboardingHeader navigation={navigation} />
+      <HeaderWithBack navigation={navigation} />
       <ContentContainer>
         <View>
           <Title>
