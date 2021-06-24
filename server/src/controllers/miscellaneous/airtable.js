@@ -43,7 +43,19 @@ const removeTraductionDispositifInContenusAirtable = (recordId, title) => {
     }
   );
   base("CONTENUS").update([
-    { id: recordId, fields: { "! Titre": title, "! Traduits ?": [] } },
+    {
+      id: recordId,
+      fields: { "! Titre": title, "! Traduits ?": [] },
+    },
+  ]);
+};
+
+const removeDispositifInContenusAirtable = (recordId) => {
+  logger.info("[removeDispositifInContenusAirtable] update line for record", {
+    recordId,
+  });
+  base("CONTENUS").update([
+    { id: recordId, fields: { "! Traduits ?": [], "! À traduire ?": false } },
   ]);
 };
 
@@ -83,7 +95,8 @@ const addOrUpdateDispositifInContenusAirtable = async (
   titreMarque,
   id,
   tags,
-  locale
+  locale,
+  hasContentBeenDeleted
 ) => {
   if (process.env.NODE_ENV !== "production") {
     logger.info(
@@ -139,14 +152,20 @@ const addOrUpdateDispositifInContenusAirtable = async (
           );
           return;
         }
+        // add content in airtable
         addDispositifInContenusAirtable(title, link, tagsList);
         return;
       }
+      if (hasContentBeenDeleted) {
+        removeDispositifInContenusAirtable(recordsList[0].id);
+        return;
+      }
       if (!locale) {
-        // no locale and a record with the link ==> dispositif modified in french
+        // no locale and a record already in airtable ==> dispositif modified in french
         removeTraductionDispositifInContenusAirtable(recordsList[0].id, title);
         return;
       }
+      // dispositif has been translated
       addTraductionDispositifInContenusAirtable(recordsList[0], locale);
     });
 };

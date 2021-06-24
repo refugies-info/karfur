@@ -30,7 +30,8 @@ export const publishDispositif = async (dispositifId: ObjectId) => {
         newDispo.titreMarque,
         newDispo._id,
         newDispo.tags,
-        null
+        null,
+        false
       );
     } catch (error) {
       logger.error(

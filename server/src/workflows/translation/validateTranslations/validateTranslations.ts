@@ -78,7 +78,8 @@ export const validateTranslations = async (
             "",
             insertedDispositif.id,
             [],
-            body.locale
+            body.locale,
+            false
           );
         }
       } catch (error) {
