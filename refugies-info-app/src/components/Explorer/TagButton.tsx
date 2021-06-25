@@ -23,6 +23,7 @@ const StyledContainer = styled(RTLTouchableOpacity)`
   justify-content: space-between;
   align-items: center;
   box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
+  elevation: 1;
 `;
 const StyledText = styled(StyledTextNormalBold)`
   color: ${theme.colors.white};

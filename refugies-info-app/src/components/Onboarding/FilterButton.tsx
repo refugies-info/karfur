@@ -21,6 +21,7 @@ const MainContainer = styled(RTLTouchableOpacity)`
   margin-bottom: ${theme.margin * 2}px;
   justify-content: space-between;
   flex-wrap: wrap;
+  elevation: 1;
 `;
 
 const StyledText = styled(StyledTextNormalBold)`

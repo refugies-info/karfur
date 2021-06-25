@@ -7,11 +7,16 @@ import { FilterCity } from "../screens/Onboarding/FilterCity";
 import { FilterAge } from "../screens/Onboarding/FilterAge";
 import { FilterFrenchLevel } from "../screens/Onboarding/FilterFrenchLevel";
 import { FinishOnboarding } from "../screens/Onboarding/FinishOnboarding";
+import { LanguageChoiceScreen } from "../screens/LanguageChoiceScreen";
 
 const OnBoardingNavigator = createStackNavigator<OnboardingParamList>();
 
 export const OnboardingStackNavigator = () => (
   <OnBoardingNavigator.Navigator screenOptions={{ headerShown: false }}>
+    <OnBoardingNavigator.Screen
+      name="LanguageChoice"
+      component={LanguageChoiceScreen}
+    />
     <OnBoardingNavigator.Screen
       name="OnboardingStart"
       component={OnboardingStart}

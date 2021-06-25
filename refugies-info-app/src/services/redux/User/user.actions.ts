@@ -12,23 +12,34 @@ import {
   SET_USER_HAS_SEEN_ONBOARDING,
   SAVE_USER_HAS_SEEN_ONBOARDING,
   GET_USER_INFOS,
+  REMOVE_USER_HAS_SEEN_ONBOARDING,
+  REMOVE_SELECTED_LANGUAGE,
+  REMOVE_USER_AGE,
+  REMOVE_USER_LOCATION,
+  REMOVE_USER_FRENCH_LEVEL,
 } from "./user.actionTypes";
 import { AvailableLanguageI18nCode } from "../../../types/interface";
 
-export const setHasUserSeenOnboardingActionCreator = () =>
-  action(SET_USER_HAS_SEEN_ONBOARDING);
+export const setHasUserSeenOnboardingActionCreator = (value: boolean) =>
+  action(SET_USER_HAS_SEEN_ONBOARDING, value);
 
 export const saveHasUserSeenOnboardingActionCreator = () =>
   action(SAVE_USER_HAS_SEEN_ONBOARDING);
 
+export const removeHasUserSeenOnboardingActionCreator = () =>
+  action(REMOVE_USER_HAS_SEEN_ONBOARDING);
+
 export const setSelectedLanguageActionCreator = (
-  value: AvailableLanguageI18nCode
+  value: AvailableLanguageI18nCode | null
 ) => action(SET_SELECTED_LANGUAGE, value);
 
 export const saveSelectedLanguageActionCreator = (value: {
   langue: AvailableLanguageI18nCode;
   shouldFetchContents: boolean;
 }) => action(SAVE_SELECTED_LANGUAGE, value);
+
+export const removeSelectedLanguageActionCreator = () =>
+  action(REMOVE_SELECTED_LANGUAGE);
 
 export const saveUserLocationActionCreator = (value: {
   city: string;
@@ -40,11 +51,16 @@ export const setUserLocationActionCreator = (value: {
   dep: string | null;
 }) => action(SET_USER_LOCATION, value);
 
+export const removeUserLocationActionCreator = () =>
+  action(REMOVE_USER_LOCATION);
+
 export const saveUserAgeActionCreator = (value: string) =>
   action(SAVE_USER_AGE, value);
 
 export const setUserAgeActionCreator = (value: string | null) =>
   action(SET_USER_AGE, value);
+
+export const removeUserAgeActionCreator = () => action(REMOVE_USER_AGE);
 
 export const saveUserFrenchLevelActionCreator = (value: string) =>
   action(SAVE_USER_FRENCH_LEVEL, value);
@@ -52,8 +68,11 @@ export const saveUserFrenchLevelActionCreator = (value: string) =>
 export const setUserFrenchLevelActionCreator = (value: string | null) =>
   action(SET_USER_FRENCH_LEVEL, value);
 
+export const removeUserFrenchLevelActionCreator = () =>
+  action(REMOVE_USER_FRENCH_LEVEL);
+
 export const setCurrentLanguageActionCreator = (
-  value: AvailableLanguageI18nCode
+  value: AvailableLanguageI18nCode | null
 ) => action(SET_CURRENT_LANGUAGE, value);
 
 export const getUserInfosActionCreator = () => action(GET_USER_INFOS);
@@ -71,5 +90,10 @@ const actions = {
   saveUserLocationActionCreator,
   saveUserFrenchLevelActionCreator,
   getUserInfosActionCreator,
+  removeHasUserSeenOnboardingActionCreator,
+  removeSelectedLanguageActionCreator,
+  removeUserAgeActionCreator,
+  removeUserFrenchLevelActionCreator,
+  removeUserLocationActionCreator,
 };
 export type UserActions = ActionType<typeof actions>;

@@ -40,6 +40,7 @@ export type OnboardingParamList = {
   FilterAge: undefined;
   FilterFrenchLevel: undefined;
   FinishOnboarding: undefined;
+  LanguageChoice: undefined;
 };
 
 export type LanguageChoiceParamList = {

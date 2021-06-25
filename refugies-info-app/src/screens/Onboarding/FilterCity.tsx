@@ -12,7 +12,7 @@ import {
 } from "../../components/StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { Icon } from "react-native-eva-icons";
-import { OnboardingHeader } from "./OnboardingHeader";
+import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
 import { Explaination } from "../../components/Onboarding/Explaination";
 import { SearchBarCity } from "../../components/Onboarding/SearchBarCity";
@@ -29,7 +29,10 @@ import {
 } from "../../components/Onboarding/SharedStyledComponents";
 import { ErrorComponent } from "../../components/ErrorComponent";
 import { useDispatch, useSelector } from "react-redux";
-import { saveUserLocationActionCreator } from "../../services/redux/User/user.actions";
+import {
+  saveUserLocationActionCreator,
+  removeUserLocationActionCreator,
+} from "../../services/redux/User/user.actions";
 import { userLocationSelector } from "../../services/redux/User/user.selectors";
 
 const GeolocContainer = styled(RTLTouchableOpacity)`
@@ -111,7 +114,7 @@ export const FilterCity = ({
       setSelectedCity(userLocation.city);
       setSelectedDepartment(userLocation.department);
     }
-  }, [userLocation]);
+  }, [userLocation.city, userLocation.department]);
 
   const onChangeText = async (data: string) => {
     setError("");
@@ -209,6 +212,7 @@ export const FilterCity = ({
           }
         }
       }
+      throw new Error("ERREUR");
     } catch (error) {
       setError(
         t(
@@ -233,6 +237,7 @@ export const FilterCity = ({
       );
       return navigateToNextScreen();
     }
+    dispatch(removeUserLocationActionCreator());
     return navigateToNextScreen();
   };
 
@@ -243,7 +248,11 @@ export const FilterCity = ({
         flex: 1,
       }}
     >
-      <OnboardingHeader navigation={navigation} />
+      <HeaderWithBack
+        navigation={navigation}
+        iconName={"person-outline"}
+        text={t("Onboarding.Créer mon profil", "Créer mon profil")}
+      />
       <ContentContainer>
         <View>
           <Title>
@@ -257,17 +266,19 @@ export const FilterCity = ({
                 suggestions={suggestions}
                 selectSuggestion={onSelectSuggestion}
               />
-              <GeolocContainer onPress={useGeoloc}>
-                <Icon
-                  name="navigation-2-outline"
-                  width={ICON_SIZE}
-                  height={ICON_SIZE}
-                  fill={theme.colors.black}
-                />
-                <GeolocText isRTL={isRTL}>
-                  {t("Onboarding.position", "Utiliser ma position")}
-                </GeolocText>
-              </GeolocContainer>
+              {!enteredText && (
+                <GeolocContainer onPress={useGeoloc}>
+                  <Icon
+                    name="navigation-2-outline"
+                    width={ICON_SIZE}
+                    height={ICON_SIZE}
+                    fill={theme.colors.black}
+                  />
+                  <GeolocText isRTL={isRTL}>
+                    {t("Onboarding.position", "Utiliser ma position")}
+                  </GeolocText>
+                </GeolocContainer>
+              )}
             </View>
           )}
           {isGeolocLoading && <ActivityIndicator color={theme.colors.grey60} />}

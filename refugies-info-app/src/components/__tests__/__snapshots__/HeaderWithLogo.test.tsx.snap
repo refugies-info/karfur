@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header should render correctly with LTR 1`] = `
+exports[`HeaderWithLogo should render correctly with LTR 1`] = `
 <RNCSafeAreaView
   style={
     Array [
@@ -55,6 +55,7 @@ exports[`Header should render correctly with LTR 1`] = `
           Object {
             "backgroundColor": "#FFFFFF",
             "borderRadius": 12,
+            "elevation": 1,
             "opacity": 1,
             "paddingBottom": 12,
             "paddingLeft": 12,
@@ -145,7 +146,7 @@ exports[`Header should render correctly with LTR 1`] = `
 </RNCSafeAreaView>
 `;
 
-exports[`Header should render correctly with RTL 1`] = `
+exports[`HeaderWithLogo should render correctly with RTL 1`] = `
 <RNCSafeAreaView
   style={
     Array [
@@ -200,6 +201,7 @@ exports[`Header should render correctly with RTL 1`] = `
           Object {
             "backgroundColor": "#FFFFFF",
             "borderRadius": 12,
+            "elevation": 1,
             "opacity": 1,
             "paddingBottom": 12,
             "paddingLeft": 12,

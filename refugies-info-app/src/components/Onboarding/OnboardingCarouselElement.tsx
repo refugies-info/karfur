@@ -17,18 +17,24 @@ interface Props {
 
 const StyledText = styled(TextBigBold)`
   color: ${theme.colors.white};
-  margin-bottom: ${theme.margin * 5}px;
+  margin-bottom: ${theme.margin * 25}px;
   margin-top: ${theme.margin * 3}px;
 `;
-
+const ImagesContainer = styled.View`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
 const styles = StyleSheet.create({
   card: {
     width: "100%",
     height: "100%",
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: theme.margin * 3,
+    paddingTop: theme.margin * 6,
   },
 });
 export const OnboardingCarouselElement = (props: Props) => {
@@ -42,10 +48,12 @@ export const OnboardingCarouselElement = (props: Props) => {
       // @ts-ignore
       style={[styles.card]}
     >
-      <CarouselStepImage step={props.step} />
-      {props.step === 2 && (
-        <Image source={EtatLogo} style={{ marginTop: theme.margin * 3 }} />
-      )}
+      <ImagesContainer>
+        <CarouselStepImage step={props.step} />
+        {props.step === 2 && (
+          <Image source={EtatLogo} style={{ marginTop: theme.margin * 3 }} />
+        )}
+      </ImagesContainer>
       <StyledText>
         {t("Onboarding." + correspondingData.text, correspondingData.text)}
       </StyledText>

@@ -30,12 +30,13 @@ describe("LanguageChoiceScreen", () => {
     (useTranslationWithRTL as jest.Mock).mockReturnValueOnce({
       i18n: { changeLanguage },
     });
-
+    const navigation = { navigate: jest.fn() };
     const component = wrapWithProvidersAndRender({
       Component: LanguageChoiceScreen,
       reduxState: {
         ...initialRootStateFactory(),
       },
+      compProps: { navigation },
     });
     expect(component).toMatchSnapshot();
     const Button = component.getByTestId("test-language-button-Anglais");
@@ -47,5 +48,6 @@ describe("LanguageChoiceScreen", () => {
       langue: "en",
       shouldFetchContents: false,
     });
+    expect(navigation.navigate).toHaveBeenCalledWith("OnboardingStart");
   });
 });

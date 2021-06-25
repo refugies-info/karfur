@@ -2,16 +2,17 @@ import { Image, StyleSheet } from "react-native";
 import * as React from "react";
 import { StackScreenProps } from "@react-navigation/stack";
 import { OnboardingParamList } from "../../../types";
-import { Header } from "../../components/Header";
 import { StyledTextBigBold } from "../../components/StyledText";
 import { theme } from "../../theme";
 import styled from "styled-components/native";
-import IlluOnboarding from "../../theme/images/onboarding/illu_onboarding_2.png";
+import IlluOnboarding from "../../theme/images/onboarding/illu_onboarding.png";
 
 import { CustomButton } from "../../components/CustomButton";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { HeaderWithBack } from "../../components/HeaderWithBack";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const MainView = styled.View`
+const MainView = styled(SafeAreaView)`
   background-color: ${theme.colors.darkBlue};
   display: flex;
   flex: 1;
@@ -32,9 +33,7 @@ const ElementsContainer = styled.View`
 
 const styles = StyleSheet.create({
   backgroundImage: {
-    // flex: 1,
     resizeMode: "cover", // or 'stretch'
-    width: "100%",
     height: 370,
   },
 });
@@ -53,7 +52,7 @@ export const OnboardingStart = ({
   const { t } = useTranslationWithRTL();
   return (
     <MainView>
-      <Header hideLogo={true} hideLanguageSwitch={true} />
+      <HeaderWithBack navigation={navigation} />
       <ImageContainer>
         <Image source={IlluOnboarding} style={styles.backgroundImage} />
       </ImageContainer>
