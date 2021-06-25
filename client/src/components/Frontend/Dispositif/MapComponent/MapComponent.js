@@ -29,18 +29,20 @@ const mapComponent = compose(
         zoomToMarkers: (map) => {
           if (map) {
             const bounds = new window.google.maps.LatLngBounds();
-            map.props.children[1].forEach((child) => {
-              if (child.type === Marker) {
-                bounds.extend(
-                  new window.google.maps.LatLng(
-                    child.props.position.lat,
-                    child.props.position.lng
-                  )
-                );
+            if (map.props.children[1]) {
+              map.props.children[1].forEach((child) => {
+                if (child.type === Marker) {
+                  bounds.extend(
+                    new window.google.maps.LatLng(
+                      child.props.position.lat,
+                      child.props.position.lng
+                    )
+                  );
+                }
+              });
+              if (map.props.children[1].length > 1) {
+                map.fitBounds(bounds);
               }
-            });
-            if (map.props.children[1].length > 1) {
-              map.fitBounds(bounds);
             }
           }
         },
