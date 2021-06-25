@@ -24,6 +24,7 @@ export interface PropsBeforeInjection {
   pushReaction: (arg1: null, arg2: string) => void;
   didThank: boolean;
   nbThanks: number;
+  window: any;
 }
 
 export const FeedbackFooter = (props: Props) => {
@@ -70,14 +71,21 @@ export const FeedbackFooter = (props: Props) => {
             {t("Dispositif.Oui, merci !", "Oui, merci !")}
           </FButton>
         )}
-        <a href="#" id="no-thanks-btn">
-          <FButton className={" feedback-btn error mr-8 mb-8 "}>
-            <span role="img" aria-label="thanks">
-              😔
-            </span>
-            {t("Non", "Non")}
-          </FButton>
-        </a>
+        <FButton
+          className={"feedback-btn error mr-8 mb-8"}
+          onClick={() => {
+            props.window.$crisp.push([
+              "set",
+              "session:event",
+              ["no-thanks-btn"],
+            ]);
+          }}
+        >
+          <span role="img" aria-label="thanks">
+            😔
+          </span>
+          {t("Non", "Non")}
+        </FButton>
       </ButtonContainer>
     </FeedbackContainer>
   );
