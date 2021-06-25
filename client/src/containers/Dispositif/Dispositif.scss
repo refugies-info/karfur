@@ -130,7 +130,7 @@ $imgHeight: 350px;
       }
 
       @include media-max("tablet-up") {
-        background-image: url(../../assets/figma/illustration_Français_Mobile.svg);
+        background-image: url(../../assets/figma/illustration_Insertion-pro_mobile.svg);
       }
     }
 
@@ -147,7 +147,7 @@ $imgHeight: 350px;
         background-image: url(../../assets/figma/illustration_Culture.svg);
       }
       @include media-max("tablet-up") {
-        background-image: url(../../assets/figma/illustration_Français_Mobile.svg);
+        background-image: url(../../assets/figma/illustration_Culture_mobile.svg);
       }
     }
 
@@ -331,7 +331,6 @@ $imgHeight: 350px;
         align-items: flex-end;
         font-weight: bold;
         justify-content: flex-end;
-        color: "red";
 
         .top-icon-wrapper {
           border-radius: 12px;
