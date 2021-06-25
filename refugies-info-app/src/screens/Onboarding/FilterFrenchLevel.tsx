@@ -14,7 +14,10 @@ import { Explaination } from "../../components/Onboarding/Explaination";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
 import { useDispatch, useSelector } from "react-redux";
-import { saveUserFrenchLevelActionCreator } from "../../services/redux/User/user.actions";
+import {
+  saveUserFrenchLevelActionCreator,
+  removeUserFrenchLevelActionCreator,
+} from "../../services/redux/User/user.actions";
 import { userFrenchLevelSelector } from "../../services/redux/User/user.selectors";
 
 const ContentContainer = styled.View`
@@ -29,13 +32,19 @@ const BottomContainer = styled.View`
   padding-horizontal: ${theme.margin * 3}px;
   margin-top: ${theme.margin}px;
 `;
+
+interface FrenchLevel {
+  name: string;
+  cecrCorrespondency?: string[];
+}
+
 export const FilterFrenchLevel = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "FilterFrenchLevel">) => {
-  const [selectedFrenchLevel, setSelectedFrenchLevel] = React.useState<null | {
-    name: string;
-    cecrCorrespondency?: string[];
-  }>(null);
+  const [
+    selectedFrenchLevel,
+    setSelectedFrenchLevel,
+  ] = React.useState<null | FrenchLevel>(null);
   const { t } = useTranslationWithRTL();
 
   const navigateToNextScreen = () => navigation.navigate("FinishOnboarding");
@@ -60,7 +69,18 @@ export const FilterFrenchLevel = ({
       dispatch(saveUserFrenchLevelActionCreator(selectedFrenchLevel.name));
       return navigateToNextScreen();
     }
+    dispatch(removeUserFrenchLevelActionCreator());
     return navigateToNextScreen();
+  };
+
+  const onSelectFrenchLevel = (frenchLevel: FrenchLevel) => {
+    if (selectedFrenchLevel && selectedFrenchLevel.name === frenchLevel.name) {
+      setSelectedFrenchLevel(null);
+      return;
+    }
+
+    setSelectedFrenchLevel(frenchLevel);
+    return;
   };
   return (
     <SafeAreaView
@@ -90,7 +110,7 @@ export const FilterFrenchLevel = ({
                 !!selectedFrenchLevel &&
                 frenchLevel.name === selectedFrenchLevel.name
               }
-              onPress={() => setSelectedFrenchLevel(frenchLevel)}
+              onPress={() => onSelectFrenchLevel(frenchLevel)}
               details={frenchLevel.cecrCorrespondency}
             />
           ))}

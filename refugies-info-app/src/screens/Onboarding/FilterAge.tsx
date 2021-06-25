@@ -15,13 +15,16 @@ import { ageFilters } from "../../data/filtersData";
 import { FilterButton } from "../../components/Onboarding/FilterButton";
 import { Explaination } from "../../components/Onboarding/Explaination";
 import { useDispatch, useSelector } from "react-redux";
-import { saveUserAgeActionCreator } from "../../services/redux/User/user.actions";
+import {
+  saveUserAgeActionCreator,
+  removeUserAgeActionCreator,
+} from "../../services/redux/User/user.actions";
 import { userAgeSelector } from "../../services/redux/User/user.selectors";
 
 export const FilterAge = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "FilterAge">) => {
-  const [selectedAge, setSelectedAge] = React.useState("");
+  const [selectedAge, setSelectedAge] = React.useState<string | null>(null);
   const navigateToNextScreen = () => navigation.navigate("FilterFrenchLevel");
 
   const dispatch = useDispatch();
@@ -39,7 +42,15 @@ export const FilterAge = ({
       dispatch(saveUserAgeActionCreator(selectedAge));
       return navigateToNextScreen();
     }
+    dispatch(removeUserAgeActionCreator());
     return navigateToNextScreen();
+  };
+
+  const onAgeClick = (age: string) => {
+    if (selectedAge && selectedAge === age) {
+      return setSelectedAge(null);
+    }
+    return setSelectedAge(age);
   };
 
   const { t } = useTranslationWithRTL();
@@ -63,7 +74,7 @@ export const FilterAge = ({
               key={age}
               text={age}
               isSelected={age === selectedAge}
-              onPress={() => setSelectedAge(age)}
+              onPress={() => onAgeClick(age)}
             />
           ))}
           <Explaination
