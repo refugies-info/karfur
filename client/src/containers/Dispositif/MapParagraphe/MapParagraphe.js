@@ -42,7 +42,7 @@ class MapParagraphe extends PureComponent {
     this.props.showMapButton(false);
   }
 
-  onMapMounted = (ref) => (refs.map = ref);
+  onMapMounted = (ref) => (this.map = ref);
   onSearchBoxMounted = (ref) => (refs.searchBox = ref);
 
   onPlacesChanged = () => {
@@ -155,6 +155,7 @@ class MapParagraphe extends PureComponent {
     const markersToDisplay = this.state.selectedMarker
       ? this.props.subitem.markers.concat([this.state.selectedMarker])
       : this.props.subitem.markers;
+
     return (
       <div
         className="map-paragraphe"
