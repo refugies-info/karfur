@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
 import { GoogleAPISuggestion } from "../../../types";
@@ -14,13 +14,14 @@ const StyledInput = styled.TextInput`
  border-radius:${theme.radius * 2}px;
  padding:${theme.margin * 2}px;
  background-color : ${theme.colors.white};
- text-align :${(props: { isRTL: boolean }) => (props.isRTL ? "right" : "left")} 
+ text-align :${(props: { isRTL: boolean }) => (props.isRTL ? "right" : "left")};
+ border :${(props: { value: string; isFocused: boolean }) =>
+   props.value || props.isFocused ? `2px solid ${theme.colors.blue}` : "none"};
 `;
 
 const SuggestionsContainer = styled.ScrollView`
   background-color: ${theme.colors.white};
   margin-top: ${theme.margin}px;
-  max-height: 140px;
 `;
 
 const SuggestionContainer = styled(RTLTouchableOpacity)`
@@ -41,6 +42,7 @@ interface Props {
 }
 
 export const SearchBarCity = (props: Props) => {
+  const [isFocused, setIsFocused] = useState(false);
   const { t, isRTL } = useTranslationWithRTL();
   return (
     <View>
@@ -50,9 +52,15 @@ export const SearchBarCity = (props: Props) => {
         onChangeText={props.onChangeText}
         isRTL={isRTL}
         testID="test-city-input"
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        isFocused={isFocused}
       />
       {props.suggestions.length > 0 && (
-        <SuggestionsContainer keyboardShouldPersistTaps={"handled"}>
+        <SuggestionsContainer
+          keyboardShouldPersistTaps={"handled"}
+          keyboardDismissMode="on-drag"
+        >
           {props.suggestions.map((suggestion, index) => (
             <View key={suggestion.place_id}>
               <SuggestionContainer

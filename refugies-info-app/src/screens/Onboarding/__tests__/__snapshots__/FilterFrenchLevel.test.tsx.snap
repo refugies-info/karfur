@@ -210,7 +210,7 @@ exports[`Filter french level should render correctly when french level selected 
         style={
           Array [
             Object {
-              "fontFamily": "circularBook",
+              "fontFamily": "circularBold",
               "fontSize": 16,
               "lineHeight": 20,
               "marginLeft": 8,
@@ -1003,177 +1003,187 @@ exports[`Filter french level should render correctly when french level selected 
         }
       >
         <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 12,
-              "display": "flex",
-              "flexDirection": "row",
-              "height": 56,
-              "justifyContent": "center",
-              "marginRight": 4,
-              "opacity": 1,
-              "paddingBottom": 18,
-              "paddingLeft": 18,
-              "paddingRight": 18,
-              "paddingTop": 18,
+              "paddingRight": 4,
               "width": "50%",
             }
           }
         >
-          <Text
-            style={
-              Array [
-                Object {
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            Passer l'étape
-          </Text>
-        </View>
-        <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#0421B1",
-              "borderRadius": 12,
-              "display": "flex",
-              "elevation": 1,
-              "flexDirection": "row",
-              "height": 56,
-              "justifyContent": "center",
-              "marginLeft": 4,
-              "opacity": 1,
-              "paddingBottom": 18,
-              "paddingLeft": 18,
-              "paddingRight": 18,
-              "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
-              "shadowOffset": Object {
-                "height": 8,
-                "width": 0,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 16,
-              "width": "50%",
-            }
-          }
-          testID="test-validate-button"
-        >
-          <Text
-            color="#FFFFFF"
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "color": "#FFFFFF",
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "marginRight": 8,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            Valider
-          </Text>
           <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "transform": Array [
-                  Object {
-                    "scale": 1,
-                  },
-                ],
+                "alignItems": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "display": "flex",
+                "flexDirection": "row",
+                "height": 56,
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingBottom": 18,
+                "paddingLeft": 18,
+                "paddingRight": 18,
+                "paddingTop": 18,
               }
             }
           >
-            <RNSVGSvgView
-              align="xMidYMid"
-              bbHeight={24}
-              bbWidth={24}
-              fill="#FFFFFF"
-              focusable={false}
-              height={24}
-              meetOrSlice={0}
-              minX={0}
-              minY={0}
+            <Text
               style={
                 Array [
                   Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 24,
-                    "width": 24,
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
                   },
                 ]
               }
-              vbHeight={24}
-              vbWidth={24}
-              width={24}
             >
-              <RNSVGGroup
-                fill={4294967295}
-                propList={
+              Passer l'étape
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "paddingLeft": 4,
+              "width": "50%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#0421B1",
+                "borderRadius": 12,
+                "display": "flex",
+                "elevation": 1,
+                "flexDirection": "row",
+                "height": 56,
+                "justifyContent": "center",
+                "opacity": 1,
+                "shadowColor": "rgba(33, 33, 33, 0.24)",
+                "shadowOffset": Object {
+                  "height": 8,
+                  "width": 0,
+                },
+                "shadowOpacity": 1,
+                "shadowRadius": 16,
+              }
+            }
+            testID="test-validate-button"
+          >
+            <Text
+              color="#FFFFFF"
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "color": "#FFFFFF",
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "marginRight": 8,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              Valider
+            </Text>
+            <View
+              style={
+                Object {
+                  "transform": Array [
+                    Object {
+                      "scale": 1,
+                    },
+                  ],
+                }
+              }
+            >
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={24}
+                bbWidth={24}
+                fill="#FFFFFF"
+                focusable={false}
+                height={24}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
                   Array [
-                    "fill",
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 24,
+                      "width": 24,
+                    },
                   ]
                 }
+                vbHeight={24}
+                vbWidth={24}
+                width={24}
               >
-                <RNSVGGroup>
+                <RNSVGGroup
+                  fill={4294967295}
+                  propList={
+                    Array [
+                      "fill",
+                    ]
+                  }
+                >
                   <RNSVGGroup>
-                    <RNSVGRect
-                      height="24"
-                      matrix={
-                        Array [
-                          6.123233995736766e-17,
-                          -1,
-                          1,
-                          6.123233995736766e-17,
-                          0,
-                          24,
-                        ]
-                      }
-                      opacity={0}
-                      width="24"
-                      x={0}
-                      y={0}
-                    />
-                    <RNSVGPath
-                      d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                    />
+                    <RNSVGGroup>
+                      <RNSVGRect
+                        height="24"
+                        matrix={
+                          Array [
+                            6.123233995736766e-17,
+                            -1,
+                            1,
+                            6.123233995736766e-17,
+                            0,
+                            24,
+                          ]
+                        }
+                        opacity={0}
+                        width="24"
+                        x={0}
+                        y={0}
+                      />
+                      <RNSVGPath
+                        d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                      />
+                    </RNSVGGroup>
                   </RNSVGGroup>
                 </RNSVGGroup>
-              </RNSVGGroup>
-            </RNSVGSvgView>
+              </RNSVGSvgView>
+            </View>
           </View>
         </View>
       </View>
@@ -1392,7 +1402,7 @@ exports[`Filter french level should render correctly when no french level select
         style={
           Array [
             Object {
-              "fontFamily": "circularBook",
+              "fontFamily": "circularBold",
               "fontSize": 16,
               "lineHeight": 20,
               "marginLeft": 8,
@@ -2185,177 +2195,187 @@ exports[`Filter french level should render correctly when no french level select
         }
       >
         <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 12,
-              "display": "flex",
-              "flexDirection": "row",
-              "height": 56,
-              "justifyContent": "center",
-              "marginRight": 4,
-              "opacity": 1,
-              "paddingBottom": 18,
-              "paddingLeft": 18,
-              "paddingRight": 18,
-              "paddingTop": 18,
+              "paddingRight": 4,
               "width": "50%",
             }
           }
         >
-          <Text
-            style={
-              Array [
-                Object {
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            Passer l'étape
-          </Text>
-        </View>
-        <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#C6C6C6",
-              "borderRadius": 12,
-              "display": "flex",
-              "elevation": 1,
-              "flexDirection": "row",
-              "height": 56,
-              "justifyContent": "center",
-              "marginLeft": 4,
-              "opacity": 1,
-              "paddingBottom": 18,
-              "paddingLeft": 18,
-              "paddingRight": 18,
-              "paddingTop": 18,
-              "shadowColor": "black",
-              "shadowOffset": Object {
-                "height": 0,
-                "width": 0,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 0,
-              "width": "50%",
-            }
-          }
-          testID="test-validate-button"
-        >
-          <Text
-            color="#212121"
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "marginRight": 8,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            Valider
-          </Text>
           <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "transform": Array [
-                  Object {
-                    "scale": 1,
-                  },
-                ],
+                "alignItems": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "display": "flex",
+                "flexDirection": "row",
+                "height": 56,
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingBottom": 18,
+                "paddingLeft": 18,
+                "paddingRight": 18,
+                "paddingTop": 18,
               }
             }
           >
-            <RNSVGSvgView
-              align="xMidYMid"
-              bbHeight={24}
-              bbWidth={24}
-              fill="#212121"
-              focusable={false}
-              height={24}
-              meetOrSlice={0}
-              minX={0}
-              minY={0}
+            <Text
               style={
                 Array [
                   Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 24,
-                    "width": 24,
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
                   },
                 ]
               }
-              vbHeight={24}
-              vbWidth={24}
-              width={24}
             >
-              <RNSVGGroup
-                fill={4280361249}
-                propList={
+              Passer l'étape
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "paddingLeft": 4,
+              "width": "50%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#C6C6C6",
+                "borderRadius": 12,
+                "display": "flex",
+                "elevation": 1,
+                "flexDirection": "row",
+                "height": 56,
+                "justifyContent": "center",
+                "opacity": 1,
+                "shadowColor": "black",
+                "shadowOffset": Object {
+                  "height": 0,
+                  "width": 0,
+                },
+                "shadowOpacity": 1,
+                "shadowRadius": 0,
+              }
+            }
+            testID="test-validate-button"
+          >
+            <Text
+              color="#212121"
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "color": "#212121",
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "marginRight": 8,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              Valider
+            </Text>
+            <View
+              style={
+                Object {
+                  "transform": Array [
+                    Object {
+                      "scale": 1,
+                    },
+                  ],
+                }
+              }
+            >
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={24}
+                bbWidth={24}
+                fill="#212121"
+                focusable={false}
+                height={24}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
                   Array [
-                    "fill",
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 24,
+                      "width": 24,
+                    },
                   ]
                 }
+                vbHeight={24}
+                vbWidth={24}
+                width={24}
               >
-                <RNSVGGroup>
+                <RNSVGGroup
+                  fill={4280361249}
+                  propList={
+                    Array [
+                      "fill",
+                    ]
+                  }
+                >
                   <RNSVGGroup>
-                    <RNSVGRect
-                      height="24"
-                      matrix={
-                        Array [
-                          6.123233995736766e-17,
-                          -1,
-                          1,
-                          6.123233995736766e-17,
-                          0,
-                          24,
-                        ]
-                      }
-                      opacity={0}
-                      width="24"
-                      x={0}
-                      y={0}
-                    />
-                    <RNSVGPath
-                      d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                    />
+                    <RNSVGGroup>
+                      <RNSVGRect
+                        height="24"
+                        matrix={
+                          Array [
+                            6.123233995736766e-17,
+                            -1,
+                            1,
+                            6.123233995736766e-17,
+                            0,
+                            24,
+                          ]
+                        }
+                        opacity={0}
+                        width="24"
+                        x={0}
+                        y={0}
+                      />
+                      <RNSVGPath
+                        d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                      />
+                    </RNSVGGroup>
                   </RNSVGGroup>
                 </RNSVGGroup>
-              </RNSVGGroup>
-            </RNSVGSvgView>
+              </RNSVGSvgView>
+            </View>
           </View>
         </View>
       </View>
@@ -2574,7 +2594,7 @@ exports[`Filter french level should select level when click on it 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": "circularBook",
+              "fontFamily": "circularBold",
               "fontSize": 16,
               "lineHeight": 20,
               "marginLeft": 8,
@@ -3367,177 +3387,187 @@ exports[`Filter french level should select level when click on it 1`] = `
         }
       >
         <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 12,
-              "display": "flex",
-              "flexDirection": "row",
-              "height": 56,
-              "justifyContent": "center",
-              "marginRight": 4,
-              "opacity": 1,
-              "paddingBottom": 18,
-              "paddingLeft": 18,
-              "paddingRight": 18,
-              "paddingTop": 18,
+              "paddingRight": 4,
               "width": "50%",
             }
           }
         >
-          <Text
-            style={
-              Array [
-                Object {
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            Passer l'étape
-          </Text>
-        </View>
-        <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#0421B1",
-              "borderRadius": 12,
-              "display": "flex",
-              "elevation": 1,
-              "flexDirection": "row",
-              "height": 56,
-              "justifyContent": "center",
-              "marginLeft": 4,
-              "opacity": 1,
-              "paddingBottom": 18,
-              "paddingLeft": 18,
-              "paddingRight": 18,
-              "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
-              "shadowOffset": Object {
-                "height": 8,
-                "width": 0,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 16,
-              "width": "50%",
-            }
-          }
-          testID="test-validate-button"
-        >
-          <Text
-            color="#FFFFFF"
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "color": "#FFFFFF",
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "marginRight": 8,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            Valider
-          </Text>
           <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "transform": Array [
-                  Object {
-                    "scale": 1,
-                  },
-                ],
+                "alignItems": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "display": "flex",
+                "flexDirection": "row",
+                "height": 56,
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingBottom": 18,
+                "paddingLeft": 18,
+                "paddingRight": 18,
+                "paddingTop": 18,
               }
             }
           >
-            <RNSVGSvgView
-              align="xMidYMid"
-              bbHeight={24}
-              bbWidth={24}
-              fill="#FFFFFF"
-              focusable={false}
-              height={24}
-              meetOrSlice={0}
-              minX={0}
-              minY={0}
+            <Text
               style={
                 Array [
                   Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 24,
-                    "width": 24,
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
                   },
                 ]
               }
-              vbHeight={24}
-              vbWidth={24}
-              width={24}
             >
-              <RNSVGGroup
-                fill={4294967295}
-                propList={
+              Passer l'étape
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "paddingLeft": 4,
+              "width": "50%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#0421B1",
+                "borderRadius": 12,
+                "display": "flex",
+                "elevation": 1,
+                "flexDirection": "row",
+                "height": 56,
+                "justifyContent": "center",
+                "opacity": 1,
+                "shadowColor": "rgba(33, 33, 33, 0.24)",
+                "shadowOffset": Object {
+                  "height": 8,
+                  "width": 0,
+                },
+                "shadowOpacity": 1,
+                "shadowRadius": 16,
+              }
+            }
+            testID="test-validate-button"
+          >
+            <Text
+              color="#FFFFFF"
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "color": "#FFFFFF",
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "marginRight": 8,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              Valider
+            </Text>
+            <View
+              style={
+                Object {
+                  "transform": Array [
+                    Object {
+                      "scale": 1,
+                    },
+                  ],
+                }
+              }
+            >
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={24}
+                bbWidth={24}
+                fill="#FFFFFF"
+                focusable={false}
+                height={24}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
                   Array [
-                    "fill",
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 24,
+                      "width": 24,
+                    },
                   ]
                 }
+                vbHeight={24}
+                vbWidth={24}
+                width={24}
               >
-                <RNSVGGroup>
+                <RNSVGGroup
+                  fill={4294967295}
+                  propList={
+                    Array [
+                      "fill",
+                    ]
+                  }
+                >
                   <RNSVGGroup>
-                    <RNSVGRect
-                      height="24"
-                      matrix={
-                        Array [
-                          6.123233995736766e-17,
-                          -1,
-                          1,
-                          6.123233995736766e-17,
-                          0,
-                          24,
-                        ]
-                      }
-                      opacity={0}
-                      width="24"
-                      x={0}
-                      y={0}
-                    />
-                    <RNSVGPath
-                      d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                    />
+                    <RNSVGGroup>
+                      <RNSVGRect
+                        height="24"
+                        matrix={
+                          Array [
+                            6.123233995736766e-17,
+                            -1,
+                            1,
+                            6.123233995736766e-17,
+                            0,
+                            24,
+                          ]
+                        }
+                        opacity={0}
+                        width="24"
+                        x={0}
+                        y={0}
+                      />
+                      <RNSVGPath
+                        d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                      />
+                    </RNSVGGroup>
                   </RNSVGGroup>
                 </RNSVGGroup>
-              </RNSVGGroup>
-            </RNSVGSvgView>
+              </RNSVGSvgView>
+            </View>
           </View>
         </View>
       </View>

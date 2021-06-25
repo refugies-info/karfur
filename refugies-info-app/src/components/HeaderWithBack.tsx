@@ -3,7 +3,7 @@ import { SmallButton } from "./SmallButton";
 import { RowContainer, RTLView } from "./BasicComponents";
 import styled from "styled-components/native";
 import { theme } from "../theme";
-import { StyledTextSmall } from "./StyledText";
+import { StyledTextSmallBold } from "./StyledText";
 import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 
@@ -13,7 +13,7 @@ const TopButtonsContainer = styled(RowContainer)`
   z-index: 2;
 `;
 
-const StyledText = styled(StyledTextSmall)`
+const StyledText = styled(StyledTextSmallBold)`
   margin-left: ${(props: { isRTL: boolean }) =>
     props.isRTL ? 0 : theme.margin}px;
   margin-right: ${(props: { isRTL: boolean }) =>

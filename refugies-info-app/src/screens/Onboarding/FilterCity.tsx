@@ -212,6 +212,7 @@ export const FilterCity = ({
           }
         }
       }
+      throw new Error("ERREUR");
     } catch (error) {
       setError(
         t(
@@ -265,17 +266,19 @@ export const FilterCity = ({
                 suggestions={suggestions}
                 selectSuggestion={onSelectSuggestion}
               />
-              <GeolocContainer onPress={useGeoloc}>
-                <Icon
-                  name="navigation-2-outline"
-                  width={ICON_SIZE}
-                  height={ICON_SIZE}
-                  fill={theme.colors.black}
-                />
-                <GeolocText isRTL={isRTL}>
-                  {t("Onboarding.position", "Utiliser ma position")}
-                </GeolocText>
-              </GeolocContainer>
+              {!enteredText && (
+                <GeolocContainer onPress={useGeoloc}>
+                  <Icon
+                    name="navigation-2-outline"
+                    width={ICON_SIZE}
+                    height={ICON_SIZE}
+                    fill={theme.colors.black}
+                  />
+                  <GeolocText isRTL={isRTL}>
+                    {t("Onboarding.position", "Utiliser ma position")}
+                  </GeolocText>
+                </GeolocContainer>
+              )}
             </View>
           )}
           {isGeolocLoading && <ActivityIndicator color={theme.colors.grey60} />}
