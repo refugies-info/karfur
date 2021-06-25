@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from "react";
 import { Props } from "./FeedbackFooter.container";
 import FButton from "../../../FigmaUI/FButton/FButton";
@@ -24,6 +25,7 @@ export interface PropsBeforeInjection {
   pushReaction: (arg1: null, arg2: string) => void;
   didThank: boolean;
   nbThanks: number;
+  window: any;
 }
 
 export const FeedbackFooter = (props: Props) => {
@@ -62,7 +64,10 @@ export const FeedbackFooter = (props: Props) => {
           <FButton
             disabled={didThank}
             className={"feedback-btn validate mr-8 mb-8"}
-            onClick={() => pushReaction(null, "merci")}
+            onClick={() => {
+              console.log("merci");
+              pushReaction(null, "merci");
+            }}
           >
             <span role="img" aria-label="thanks">
               🙏
@@ -70,14 +75,22 @@ export const FeedbackFooter = (props: Props) => {
             {t("Dispositif.Oui, merci !", "Oui, merci !")}
           </FButton>
         )}
-        <a href="#" id="no-thanks-btn">
-          <FButton className={" feedback-btn error mr-8 mb-8 "}>
-            <span role="img" aria-label="thanks">
-              😔
-            </span>
-            {t("Non", "Non")}
-          </FButton>
-        </a>
+        <FButton
+          className={"feedback-btn error mr-8 mb-8"}
+          onClick={() => {
+            console.log("Non");
+            props.window.$crisp.push([
+              "set",
+              "session:event",
+              ["no-thanks-btn"],
+            ]);
+          }}
+        >
+          <span role="img" aria-label="thanks">
+            😔
+          </span>
+          {t("Non", "Non")}
+        </FButton>
       </ButtonContainer>
     </FeedbackContainer>
   );
