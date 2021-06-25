@@ -18,6 +18,7 @@ const RTLViewContainer = styled.View`
   display: flex;
   flex-direction: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "row-reverse" : "row"};
+  align-items: center;
 `;
 export const RTLView = (props: any) => {
   const { isRTL } = useTranslationWithRTL();

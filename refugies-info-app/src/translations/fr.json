@@ -75,8 +75,17 @@
   "Passer l'étape": "Passer l'étape",
   "Valider": "Valider",
   "Fermer": "Fermer",
+  "Toute la France": "Toute la France",
+  "Pour tout âge": "Pour tout âge",
+  "Pour tout niveau de français": "Pour tout niveau de français",
   "Profil": {
     "supprimer_data": "Supprimer les données de mon profil",
-    "reinit_app": "Réinitialiser mon application"
+    "reinit_app": "Réinitialiser mon application",
+    "Mon profil": "Mon profil",
+    "Langue choisie": "Langue choisie",
+    "Ville": "Ville",
+    "Âge": "Âge",
+    "Niveau de français": "Niveau de français",
+    "Paramètres": "Paramètres"
   }
 }
