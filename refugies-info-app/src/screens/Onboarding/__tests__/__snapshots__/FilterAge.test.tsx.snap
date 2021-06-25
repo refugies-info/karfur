@@ -212,6 +212,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
             Object {
               "fontFamily": "circularBook",
               "fontSize": 16,
+              "lineHeight": 20,
               "marginLeft": 8,
               "marginRight": 0,
               "textAlign": "left",
@@ -349,6 +350,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
             Object {
               "fontFamily": "circularBold",
               "fontSize": 19,
+              "lineHeight": 24,
               "textAlign": "left",
             },
             Object {
@@ -404,6 +406,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 "color": "#FFFFFF",
                 "fontFamily": "circularBold",
                 "fontSize": 19,
+                "lineHeight": 24,
                 "textAlign": "left",
               },
             ]
@@ -467,6 +470,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 "color": "#212121",
                 "fontFamily": "circularBold",
                 "fontSize": 19,
+                "lineHeight": 24,
                 "textAlign": "left",
               },
             ]
@@ -530,6 +534,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 "color": "#212121",
                 "fontFamily": "circularBold",
                 "fontSize": 19,
+                "lineHeight": 24,
                 "textAlign": "left",
               },
             ]
@@ -670,6 +675,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 "flexShrink": 1,
                 "fontFamily": "circularBook",
                 "fontSize": 13,
+                "lineHeight": 16,
                 "marginLeft": 8,
                 "marginRight": 0,
                 "textAlign": "left",
@@ -764,6 +770,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 Object {
                   "fontFamily": "circularBook",
                   "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]
@@ -819,6 +826,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   "color": "#FFFFFF",
                   "fontFamily": "circularBold",
                   "fontSize": 16,
+                  "lineHeight": 20,
                   "marginRight": 8,
                   "textAlign": "left",
                 },
@@ -1119,6 +1127,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             Object {
               "fontFamily": "circularBook",
               "fontSize": 16,
+              "lineHeight": 20,
               "marginLeft": 8,
               "marginRight": 0,
               "textAlign": "left",
@@ -1256,6 +1265,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             Object {
               "fontFamily": "circularBold",
               "fontSize": 19,
+              "lineHeight": 24,
               "textAlign": "left",
             },
             Object {
@@ -1311,6 +1321,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 "color": "#212121",
                 "fontFamily": "circularBold",
                 "fontSize": 19,
+                "lineHeight": 24,
                 "textAlign": "left",
               },
             ]
@@ -1374,6 +1385,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 "color": "#212121",
                 "fontFamily": "circularBold",
                 "fontSize": 19,
+                "lineHeight": 24,
                 "textAlign": "left",
               },
             ]
@@ -1437,6 +1449,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 "color": "#212121",
                 "fontFamily": "circularBold",
                 "fontSize": 19,
+                "lineHeight": 24,
                 "textAlign": "left",
               },
             ]
@@ -1577,6 +1590,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 "flexShrink": 1,
                 "fontFamily": "circularBook",
                 "fontSize": 13,
+                "lineHeight": 16,
                 "marginLeft": 8,
                 "marginRight": 0,
                 "textAlign": "left",
@@ -1671,6 +1685,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 Object {
                   "fontFamily": "circularBook",
                   "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]
@@ -1726,6 +1741,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 16,
+                  "lineHeight": 20,
                   "marginRight": 8,
                   "textAlign": "left",
                 },
@@ -2026,6 +2042,7 @@ exports[`Filter age should select age when click on it 1`] = `
             Object {
               "fontFamily": "circularBook",
               "fontSize": 16,
+              "lineHeight": 20,
               "marginLeft": 8,
               "marginRight": 0,
               "textAlign": "left",
@@ -2163,6 +2180,7 @@ exports[`Filter age should select age when click on it 1`] = `
             Object {
               "fontFamily": "circularBold",
               "fontSize": 19,
+              "lineHeight": 24,
               "textAlign": "left",
             },
             Object {
@@ -2218,6 +2236,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 "color": "#212121",
                 "fontFamily": "circularBold",
                 "fontSize": 19,
+                "lineHeight": 24,
                 "textAlign": "left",
               },
             ]
@@ -2281,6 +2300,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 "color": "#212121",
                 "fontFamily": "circularBold",
                 "fontSize": 19,
+                "lineHeight": 24,
                 "textAlign": "left",
               },
             ]
@@ -2344,6 +2364,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 "color": "#FFFFFF",
                 "fontFamily": "circularBold",
                 "fontSize": 19,
+                "lineHeight": 24,
                 "textAlign": "left",
               },
             ]
@@ -2484,6 +2505,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 "flexShrink": 1,
                 "fontFamily": "circularBook",
                 "fontSize": 13,
+                "lineHeight": 16,
                 "marginLeft": 8,
                 "marginRight": 0,
                 "textAlign": "left",
@@ -2578,6 +2600,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 Object {
                   "fontFamily": "circularBook",
                   "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]
@@ -2633,6 +2656,7 @@ exports[`Filter age should select age when click on it 1`] = `
                   "color": "#FFFFFF",
                   "fontFamily": "circularBold",
                   "fontSize": 16,
+                  "lineHeight": 20,
                   "marginRight": 8,
                   "textAlign": "left",
                 },

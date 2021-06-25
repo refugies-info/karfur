@@ -106,6 +106,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
               "alignSelf": "center",
               "fontFamily": "circularBold",
               "fontSize": 19,
+              "lineHeight": 24,
               "marginTop": 24,
               "textAlign": "left",
             },
@@ -197,6 +198,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         "color": "#212121",
                         "fontFamily": "circularBold",
                         "fontSize": 16,
+                        "lineHeight": 20,
                         "marginLeft": 8,
                         "textAlign": "left",
                       },
@@ -292,6 +294,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         "color": "#212121",
                         "fontFamily": "circularBold",
                         "fontSize": 16,
+                        "lineHeight": 20,
                         "marginLeft": 8,
                         "textAlign": "left",
                       },
@@ -319,6 +322,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
+                          "lineHeight": 20,
                           "textAlign": "left",
                         },
                       ]
@@ -334,6 +338,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
+                          "lineHeight": 20,
                           "textAlign": "left",
                         },
                       ]
@@ -429,6 +434,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         "color": "#212121",
                         "fontFamily": "circularBold",
                         "fontSize": 16,
+                        "lineHeight": 20,
                         "marginLeft": 8,
                         "textAlign": "left",
                       },
@@ -456,6 +462,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
+                          "lineHeight": 20,
                           "textAlign": "left",
                         },
                       ]
@@ -471,6 +478,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
+                          "lineHeight": 20,
                           "textAlign": "left",
                         },
                       ]
@@ -566,6 +574,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         "color": "#212121",
                         "fontFamily": "circularBold",
                         "fontSize": 16,
+                        "lineHeight": 20,
                         "marginLeft": 8,
                         "textAlign": "left",
                       },
@@ -593,6 +602,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
+                          "lineHeight": 20,
                           "textAlign": "left",
                         },
                       ]
@@ -608,6 +618,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
+                          "lineHeight": 20,
                           "textAlign": "left",
                         },
                       ]
@@ -703,6 +714,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         "color": "#212121",
                         "fontFamily": "circularBold",
                         "fontSize": 16,
+                        "lineHeight": 20,
                         "marginLeft": 8,
                         "textAlign": "left",
                       },
@@ -730,6 +742,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
+                          "lineHeight": 20,
                           "textAlign": "left",
                         },
                       ]
@@ -745,6 +758,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
+                          "lineHeight": 20,
                           "textAlign": "left",
                         },
                       ]
@@ -840,6 +854,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         "color": "#212121",
                         "fontFamily": "circularBold",
                         "fontSize": 16,
+                        "lineHeight": 20,
                         "marginLeft": 8,
                         "textAlign": "left",
                       },
@@ -867,6 +882,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
+                          "lineHeight": 20,
                           "textAlign": "left",
                         },
                       ]
@@ -882,6 +898,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
+                          "lineHeight": 20,
                           "textAlign": "left",
                         },
                       ]
@@ -977,6 +994,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         "color": "#212121",
                         "fontFamily": "circularBold",
                         "fontSize": 16,
+                        "lineHeight": 20,
                         "marginLeft": 8,
                         "textAlign": "left",
                       },
@@ -1004,6 +1022,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
+                          "lineHeight": 20,
                           "textAlign": "left",
                         },
                       ]
@@ -1019,6 +1038,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                           "color": "#212121",
                           "fontFamily": "circularBook",
                           "fontSize": 16,
+                          "lineHeight": 20,
                           "textAlign": "left",
                         },
                       ]
@@ -1075,6 +1095,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                 "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 16,
+                "lineHeight": 20,
                 "marginLeft": 0,
                 "marginRight": 8,
                 "textAlign": "left",

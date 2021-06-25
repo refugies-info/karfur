@@ -212,6 +212,7 @@ exports[`Filter french level should render correctly when french level selected 
             Object {
               "fontFamily": "circularBook",
               "fontSize": 16,
+              "lineHeight": 20,
               "marginLeft": 8,
               "marginRight": 0,
               "textAlign": "left",
@@ -353,6 +354,7 @@ exports[`Filter french level should render correctly when french level selected 
               Object {
                 "fontFamily": "circularBold",
                 "fontSize": 19,
+                "lineHeight": 24,
                 "textAlign": "left",
               },
               Object {
@@ -408,6 +410,7 @@ exports[`Filter french level should render correctly when french level selected 
                   "color": "#FFFFFF",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 },
               ]
@@ -471,6 +474,7 @@ exports[`Filter french level should render correctly when french level selected 
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 },
               ]
@@ -511,6 +515,7 @@ exports[`Filter french level should render correctly when french level selected 
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -541,6 +546,7 @@ exports[`Filter french level should render correctly when french level selected 
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -595,6 +601,7 @@ exports[`Filter french level should render correctly when french level selected 
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 },
               ]
@@ -635,6 +642,7 @@ exports[`Filter french level should render correctly when french level selected 
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -665,6 +673,7 @@ exports[`Filter french level should render correctly when french level selected 
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -719,6 +728,7 @@ exports[`Filter french level should render correctly when french level selected 
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 },
               ]
@@ -759,6 +769,7 @@ exports[`Filter french level should render correctly when french level selected 
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -789,6 +800,7 @@ exports[`Filter french level should render correctly when french level selected 
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -920,6 +932,7 @@ exports[`Filter french level should render correctly when french level selected 
                   "flexShrink": 1,
                   "fontFamily": "circularBook",
                   "fontSize": 13,
+                  "lineHeight": 16,
                   "marginLeft": 8,
                   "marginRight": 0,
                   "textAlign": "left",
@@ -1024,6 +1037,7 @@ exports[`Filter french level should render correctly when french level selected 
                 Object {
                   "fontFamily": "circularBook",
                   "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]
@@ -1079,6 +1093,7 @@ exports[`Filter french level should render correctly when french level selected 
                   "color": "#FFFFFF",
                   "fontFamily": "circularBold",
                   "fontSize": 16,
+                  "lineHeight": 20,
                   "marginRight": 8,
                   "textAlign": "left",
                 },
@@ -1379,6 +1394,7 @@ exports[`Filter french level should render correctly when no french level select
             Object {
               "fontFamily": "circularBook",
               "fontSize": 16,
+              "lineHeight": 20,
               "marginLeft": 8,
               "marginRight": 0,
               "textAlign": "left",
@@ -1520,6 +1536,7 @@ exports[`Filter french level should render correctly when no french level select
               Object {
                 "fontFamily": "circularBold",
                 "fontSize": 19,
+                "lineHeight": 24,
                 "textAlign": "left",
               },
               Object {
@@ -1575,6 +1592,7 @@ exports[`Filter french level should render correctly when no french level select
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 },
               ]
@@ -1638,6 +1656,7 @@ exports[`Filter french level should render correctly when no french level select
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 },
               ]
@@ -1678,6 +1697,7 @@ exports[`Filter french level should render correctly when no french level select
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -1708,6 +1728,7 @@ exports[`Filter french level should render correctly when no french level select
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -1762,6 +1783,7 @@ exports[`Filter french level should render correctly when no french level select
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 },
               ]
@@ -1802,6 +1824,7 @@ exports[`Filter french level should render correctly when no french level select
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -1832,6 +1855,7 @@ exports[`Filter french level should render correctly when no french level select
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -1886,6 +1910,7 @@ exports[`Filter french level should render correctly when no french level select
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 },
               ]
@@ -1926,6 +1951,7 @@ exports[`Filter french level should render correctly when no french level select
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -1956,6 +1982,7 @@ exports[`Filter french level should render correctly when no french level select
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -2087,6 +2114,7 @@ exports[`Filter french level should render correctly when no french level select
                   "flexShrink": 1,
                   "fontFamily": "circularBook",
                   "fontSize": 13,
+                  "lineHeight": 16,
                   "marginLeft": 8,
                   "marginRight": 0,
                   "textAlign": "left",
@@ -2191,6 +2219,7 @@ exports[`Filter french level should render correctly when no french level select
                 Object {
                   "fontFamily": "circularBook",
                   "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]
@@ -2246,6 +2275,7 @@ exports[`Filter french level should render correctly when no french level select
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 16,
+                  "lineHeight": 20,
                   "marginRight": 8,
                   "textAlign": "left",
                 },
@@ -2546,6 +2576,7 @@ exports[`Filter french level should select level when click on it 1`] = `
             Object {
               "fontFamily": "circularBook",
               "fontSize": 16,
+              "lineHeight": 20,
               "marginLeft": 8,
               "marginRight": 0,
               "textAlign": "left",
@@ -2687,6 +2718,7 @@ exports[`Filter french level should select level when click on it 1`] = `
               Object {
                 "fontFamily": "circularBold",
                 "fontSize": 19,
+                "lineHeight": 24,
                 "textAlign": "left",
               },
               Object {
@@ -2742,6 +2774,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   "color": "#FFFFFF",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 },
               ]
@@ -2805,6 +2838,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 },
               ]
@@ -2845,6 +2879,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -2875,6 +2910,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -2929,6 +2965,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 },
               ]
@@ -2969,6 +3006,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -2999,6 +3037,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -3053,6 +3092,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 19,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 },
               ]
@@ -3093,6 +3133,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -3123,6 +3164,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                       "color": "#FFFFFF",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
+                      "lineHeight": 16,
                       "textAlign": "left",
                     },
                   ]
@@ -3254,6 +3296,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   "flexShrink": 1,
                   "fontFamily": "circularBook",
                   "fontSize": 13,
+                  "lineHeight": 16,
                   "marginLeft": 8,
                   "marginRight": 0,
                   "textAlign": "left",
@@ -3358,6 +3401,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                 Object {
                   "fontFamily": "circularBook",
                   "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]
@@ -3413,6 +3457,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   "color": "#FFFFFF",
                   "fontFamily": "circularBold",
                   "fontSize": 16,
+                  "lineHeight": 20,
                   "marginRight": 8,
                   "textAlign": "left",
                 },

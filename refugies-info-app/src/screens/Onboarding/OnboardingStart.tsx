@@ -5,7 +5,7 @@ import { OnboardingParamList } from "../../../types";
 import { StyledTextBigBold } from "../../components/StyledText";
 import { theme } from "../../theme";
 import styled from "styled-components/native";
-import IlluOnboarding from "../../theme/images/onboarding/illu_onboarding_2.png";
+import IlluOnboarding from "../../theme/images/onboarding/illu_onboarding.png";
 
 import { CustomButton } from "../../components/CustomButton";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -33,9 +33,7 @@ const ElementsContainer = styled.View`
 
 const styles = StyleSheet.create({
   backgroundImage: {
-    // flex: 1,
     resizeMode: "cover", // or 'stretch'
-    width: "100%",
     height: 370,
   },
 });
