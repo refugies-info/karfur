@@ -60,7 +60,7 @@ export const saveUserAgeActionCreator = (value: string) =>
 export const setUserAgeActionCreator = (value: string | null) =>
   action(SET_USER_AGE, value);
 
-export const removeUSerAgeActionCreator = () => action(REMOVE_USER_AGE);
+export const removeUserAgeActionCreator = () => action(REMOVE_USER_AGE);
 
 export const saveUserFrenchLevelActionCreator = (value: string) =>
   action(SAVE_USER_FRENCH_LEVEL, value);
@@ -92,7 +92,7 @@ const actions = {
   getUserInfosActionCreator,
   removeHasUserSeenOnboardingActionCreator,
   removeSelectedLanguageActionCreator,
-  removeUSerAgeActionCreator,
+  removeUserAgeActionCreator,
   removeUserFrenchLevelActionCreator,
   removeUserLocationActionCreator,
 };

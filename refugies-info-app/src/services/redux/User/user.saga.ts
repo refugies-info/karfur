@@ -24,6 +24,7 @@ import {
   REMOVE_USER_LOCATION,
   REMOVE_USER_FRENCH_LEVEL,
   REMOVE_USER_AGE,
+  REMOVE_USER_HAS_SEEN_ONBOARDING,
 } from "./user.actionTypes";
 import {
   saveItemInAsyncStorage,
@@ -235,6 +236,10 @@ function* latestActionsSaga() {
   yield takeLatest(REMOVE_USER_LOCATION, removeUserLocation);
   yield takeLatest(REMOVE_USER_AGE, removeUserAge);
   yield takeLatest(REMOVE_USER_FRENCH_LEVEL, removeUserFrenchLevel);
+  yield takeLatest(
+    REMOVE_USER_HAS_SEEN_ONBOARDING,
+    removeHasUserSeenOnboarding
+  );
 }
 
 export default latestActionsSaga;

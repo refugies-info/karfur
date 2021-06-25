@@ -1,14 +1,49 @@
 import * as React from "react";
-import { TextNormal } from "../../components/StyledText";
+import { TextNormal, StyledTextVerySmall } from "../../components/StyledText";
 import { Button, AsyncStorage } from "react-native";
-import { t } from "../../services/i18n";
 import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import styled from "styled-components/native";
+import { theme } from "../../theme";
+import { useDispatch } from "react-redux";
+import {
+  removeUserFrenchLevelActionCreator,
+  removeUserAgeActionCreator,
+  removeUserLocationActionCreator,
+  removeHasUserSeenOnboardingActionCreator,
+  removeSelectedLanguageActionCreator,
+} from "../../services/redux/User/user.actions";
 
+const DeleteDataContainer = styled.TouchableOpacity`
+  align-items: center;
+  padding: ${theme.margin * 3}px;
+  margin-horizontal: ${theme.margin * 3}px;
+`;
+
+const DeleteDataText = styled(StyledTextVerySmall)`
+  color: ${theme.colors.darkBlue};
+`;
 export const ProfilScreen = () => {
+  const { t } = useTranslationWithRTL();
+
   const cleanStorage = (value: string) => {
     try {
       AsyncStorage.removeItem(value);
     } catch (e) {}
+  };
+
+  const dispatch = useDispatch();
+
+  const deleteUserData = () => {
+    dispatch(removeUserFrenchLevelActionCreator());
+    dispatch(removeUserAgeActionCreator());
+    dispatch(removeUserLocationActionCreator());
+  };
+
+  const reinitializeApp = () => {
+    deleteUserData();
+    dispatch(removeHasUserSeenOnboardingActionCreator());
+    dispatch(removeSelectedLanguageActionCreator());
   };
 
   return (
@@ -26,17 +61,16 @@ export const ProfilScreen = () => {
         title="Reset has seen onboarding"
       />
 
-      <Button
-        onPress={() => {
-          cleanStorage("CITY"), cleanStorage("DEP");
-        }}
-        title="Reset city and dep"
-      />
-      <Button onPress={() => cleanStorage("AGE")} title="Reset age" />
-      <Button
-        onPress={() => cleanStorage("FRENCH_LEVEL")}
-        title="Reset french level"
-      />
+      <DeleteDataContainer onPress={deleteUserData}>
+        <DeleteDataText>
+          {t("Profil.supprimer_data", "Supprimer les données de mon profil")}
+        </DeleteDataText>
+      </DeleteDataContainer>
+      <DeleteDataContainer onPress={reinitializeApp}>
+        <DeleteDataText>
+          {t("Profil.reinit_app", "Réinitialiser mon application")}
+        </DeleteDataText>
+      </DeleteDataContainer>
     </WrapperWithHeaderAndLanguageModal>
   );
 };
