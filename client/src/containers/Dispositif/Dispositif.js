@@ -2043,6 +2043,7 @@ export class Dispositif extends Component {
                       <FeedbackFooter
                         pushReaction={this.pushReaction}
                         didThank={didThank}
+                        window={window}
                         nbThanks={
                           this.state.dispositif.merci
                             ? this.state.dispositif.merci.length
