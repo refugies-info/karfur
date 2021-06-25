@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TextNormal, StyledTextVerySmall } from "../../components/StyledText";
-import { Button, AsyncStorage } from "react-native";
 import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import styled from "styled-components/native";
@@ -26,12 +25,6 @@ const DeleteDataText = styled(StyledTextVerySmall)`
 export const ProfilScreen = () => {
   const { t } = useTranslationWithRTL();
 
-  const cleanStorage = (value: string) => {
-    try {
-      AsyncStorage.removeItem(value);
-    } catch (e) {}
-  };
-
   const dispatch = useDispatch();
 
   const deleteUserData = () => {
@@ -49,17 +42,6 @@ export const ProfilScreen = () => {
   return (
     <WrapperWithHeaderAndLanguageModal>
       <TextNormal>Profil screen</TextNormal>
-
-      <TextNormal>{t("lists", "options")}</TextNormal>
-      <TextNormal>{t("homepage.test", "options")}</TextNormal>
-      <Button
-        onPress={() => cleanStorage("SELECTED_LANGUAGE")}
-        title="Reset langue"
-      />
-      <Button
-        onPress={() => cleanStorage("HAS_USER_SEEN_ONBOARDING")}
-        title="Reset has seen onboarding"
-      />
 
       <DeleteDataContainer onPress={deleteUserData}>
         <DeleteDataText>

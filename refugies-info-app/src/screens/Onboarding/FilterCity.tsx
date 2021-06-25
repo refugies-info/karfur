@@ -29,7 +29,10 @@ import {
 } from "../../components/Onboarding/SharedStyledComponents";
 import { ErrorComponent } from "../../components/ErrorComponent";
 import { useDispatch, useSelector } from "react-redux";
-import { saveUserLocationActionCreator } from "../../services/redux/User/user.actions";
+import {
+  saveUserLocationActionCreator,
+  removeUserLocationActionCreator,
+} from "../../services/redux/User/user.actions";
 import { userLocationSelector } from "../../services/redux/User/user.selectors";
 
 const GeolocContainer = styled(RTLTouchableOpacity)`
@@ -111,7 +114,7 @@ export const FilterCity = ({
       setSelectedCity(userLocation.city);
       setSelectedDepartment(userLocation.department);
     }
-  }, [userLocation]);
+  }, [userLocation.city, userLocation.department]);
 
   const onChangeText = async (data: string) => {
     setError("");
@@ -233,6 +236,7 @@ export const FilterCity = ({
       );
       return navigateToNextScreen();
     }
+    dispatch(removeUserLocationActionCreator());
     return navigateToNextScreen();
   };
 
