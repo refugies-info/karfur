@@ -33,6 +33,7 @@ const RightButtonContainer = styled(RTLTouchableOpacity)`
   width: 50%;
   box-shadow: ${(props: { isDisabled: boolean }) =>
     props.isDisabled ? "none" : "0px 8px 16px rgba(33, 33, 33, 0.24)"};
+  elevation: 1;
 `;
 
 const BottomButtonsContainer = styled(RowTouchableOpacity)`

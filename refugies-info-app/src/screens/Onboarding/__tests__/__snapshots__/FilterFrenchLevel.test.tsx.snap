@@ -37,6 +37,7 @@ exports[`Filter french level should render correctly when french level selected 
         Object {
           "backgroundColor": "#FFFFFF",
           "borderRadius": 12,
+          "elevation": 1,
           "opacity": 1,
           "paddingBottom": 12,
           "paddingLeft": 12,
@@ -131,6 +132,7 @@ exports[`Filter french level should render correctly when french level selected 
       style={
         Array [
           Object {
+            "alignItems": "center",
             "display": "flex",
             "flexDirection": "row",
           },
@@ -234,6 +236,7 @@ exports[`Filter french level should render correctly when french level selected 
         Object {
           "backgroundColor": "#FFFFFF",
           "borderRadius": 12,
+          "elevation": 1,
           "opacity": 1,
           "paddingBottom": 12,
           "paddingLeft": 12,
@@ -376,6 +379,7 @@ exports[`Filter french level should render correctly when french level selected 
               "backgroundColor": "#212121",
               "borderRadius": 12,
               "display": "flex",
+              "elevation": 1,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
@@ -438,6 +442,7 @@ exports[`Filter french level should render correctly when french level selected 
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
+              "elevation": 1,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
@@ -561,6 +566,7 @@ exports[`Filter french level should render correctly when french level selected 
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
+              "elevation": 1,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
@@ -684,6 +690,7 @@ exports[`Filter french level should render correctly when french level selected 
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
+              "elevation": 1,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
@@ -797,6 +804,7 @@ exports[`Filter french level should render correctly when french level selected 
           style={
             Array [
               Object {
+                "alignItems": "center",
                 "display": "flex",
                 "flexDirection": "row",
               },
@@ -1040,6 +1048,7 @@ exports[`Filter french level should render correctly when french level selected 
               "backgroundColor": "#0421B1",
               "borderRadius": 12,
               "display": "flex",
+              "elevation": 1,
               "flexDirection": "row",
               "height": 56,
               "justifyContent": "center",
@@ -1195,6 +1204,7 @@ exports[`Filter french level should render correctly when no french level select
         Object {
           "backgroundColor": "#FFFFFF",
           "borderRadius": 12,
+          "elevation": 1,
           "opacity": 1,
           "paddingBottom": 12,
           "paddingLeft": 12,
@@ -1289,6 +1299,7 @@ exports[`Filter french level should render correctly when no french level select
       style={
         Array [
           Object {
+            "alignItems": "center",
             "display": "flex",
             "flexDirection": "row",
           },
@@ -1392,6 +1403,7 @@ exports[`Filter french level should render correctly when no french level select
         Object {
           "backgroundColor": "#FFFFFF",
           "borderRadius": 12,
+          "elevation": 1,
           "opacity": 1,
           "paddingBottom": 12,
           "paddingLeft": 12,
@@ -1534,6 +1546,7 @@ exports[`Filter french level should render correctly when no french level select
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
+              "elevation": 1,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
@@ -1596,6 +1609,7 @@ exports[`Filter french level should render correctly when no french level select
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
+              "elevation": 1,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
@@ -1719,6 +1733,7 @@ exports[`Filter french level should render correctly when no french level select
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
+              "elevation": 1,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
@@ -1842,6 +1857,7 @@ exports[`Filter french level should render correctly when no french level select
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
+              "elevation": 1,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
@@ -1955,6 +1971,7 @@ exports[`Filter french level should render correctly when no french level select
           style={
             Array [
               Object {
+                "alignItems": "center",
                 "display": "flex",
                 "flexDirection": "row",
               },
@@ -2198,6 +2215,7 @@ exports[`Filter french level should render correctly when no french level select
               "backgroundColor": "#C6C6C6",
               "borderRadius": 12,
               "display": "flex",
+              "elevation": 1,
               "flexDirection": "row",
               "height": 56,
               "justifyContent": "center",
@@ -2353,6 +2371,7 @@ exports[`Filter french level should select level when click on it 1`] = `
         Object {
           "backgroundColor": "#FFFFFF",
           "borderRadius": 12,
+          "elevation": 1,
           "opacity": 1,
           "paddingBottom": 12,
           "paddingLeft": 12,
@@ -2447,6 +2466,7 @@ exports[`Filter french level should select level when click on it 1`] = `
       style={
         Array [
           Object {
+            "alignItems": "center",
             "display": "flex",
             "flexDirection": "row",
           },
@@ -2550,6 +2570,7 @@ exports[`Filter french level should select level when click on it 1`] = `
         Object {
           "backgroundColor": "#FFFFFF",
           "borderRadius": 12,
+          "elevation": 1,
           "opacity": 1,
           "paddingBottom": 12,
           "paddingLeft": 12,
@@ -2692,6 +2713,7 @@ exports[`Filter french level should select level when click on it 1`] = `
               "backgroundColor": "#212121",
               "borderRadius": 12,
               "display": "flex",
+              "elevation": 1,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
@@ -2754,6 +2776,7 @@ exports[`Filter french level should select level when click on it 1`] = `
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
+              "elevation": 1,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
@@ -2877,6 +2900,7 @@ exports[`Filter french level should select level when click on it 1`] = `
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
+              "elevation": 1,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
@@ -3000,6 +3024,7 @@ exports[`Filter french level should select level when click on it 1`] = `
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
+              "elevation": 1,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
@@ -3113,6 +3138,7 @@ exports[`Filter french level should select level when click on it 1`] = `
           style={
             Array [
               Object {
+                "alignItems": "center",
                 "display": "flex",
                 "flexDirection": "row",
               },
@@ -3356,6 +3382,7 @@ exports[`Filter french level should select level when click on it 1`] = `
               "backgroundColor": "#0421B1",
               "borderRadius": 12,
               "display": "flex",
+              "elevation": 1,
               "flexDirection": "row",
               "height": 56,
               "justifyContent": "center",

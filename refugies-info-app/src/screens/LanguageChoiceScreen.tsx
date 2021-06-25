@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { saveSelectedLanguageActionCreator } from "../services/redux/User/user.actions";
 import { theme } from "../theme";
 import { HeaderWithLogo } from "../components/HeaderWithLogo";
-import { ScrollView } from "react-native-gesture-handler";
 import { LanguageDetailsButton } from "../components/Language/LanguageDetailsButton";
 import { activatedLanguages } from "../data/languagesData";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
@@ -14,9 +13,16 @@ import { StackScreenProps } from "@react-navigation/stack";
 
 const MainContainer = styled.View`
   padding-horizontal: ${theme.margin * 2}px;
-  padding-vertical: ${theme.margin}px;
+  justify-content: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 `;
 
+const MainView = styled.View`
+  display: flex;
+  flex: 1;
+`;
 export const LanguageChoiceScreen = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "OnboardingSteps">) => {
@@ -35,7 +41,7 @@ export const LanguageChoiceScreen = ({
     return;
   };
   return (
-    <ScrollView>
+    <MainView>
       <HeaderWithLogo />
       <MainContainer>
         {activatedLanguages.map((language, index) => (
@@ -47,6 +53,6 @@ export const LanguageChoiceScreen = ({
           />
         ))}
       </MainContainer>
-    </ScrollView>
+    </MainView>
   );
 };
