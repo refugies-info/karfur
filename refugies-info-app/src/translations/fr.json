@@ -74,5 +74,9 @@
   "Merci !": "Merci !",
   "Passer l'étape": "Passer l'étape",
   "Valider": "Valider",
-  "Fermer": "Fermer"
+  "Fermer": "Fermer",
+  "Profil": {
+    "supprimer_data": "Supprimer les données de mon profil",
+    "reinit_app": "Réinitialiser mon application"
+  }
 }

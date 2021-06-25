@@ -95,7 +95,7 @@ describe("[Saga] user", () => {
         .next()
         .call(saveItemInAsyncStorage, "HAS_USER_SEEN_ONBOARDING", "TRUE")
         .next()
-        .put(setHasUserSeenOnboardingActionCreator())
+        .put(setHasUserSeenOnboardingActionCreator(true))
         .next()
         .isDone();
     });
@@ -105,7 +105,7 @@ describe("[Saga] user", () => {
         .next()
         .call(saveItemInAsyncStorage, "HAS_USER_SEEN_ONBOARDING", "TRUE")
         .throw(new Error("error"))
-        .put(setHasUserSeenOnboardingActionCreator())
+        .put(setHasUserSeenOnboardingActionCreator(true))
         .next()
         .isDone();
     });

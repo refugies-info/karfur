@@ -12,7 +12,7 @@ describe("[Reducer] user", () => {
   it("set user has seen onboarding ", () => {
     const state = initialUserState;
     expect(
-      userReducer(state, setHasUserSeenOnboardingActionCreator())
+      userReducer(state, setHasUserSeenOnboardingActionCreator(true))
     ).toEqual({ ...initialUserState, hasUserSeenOnboarding: true });
   });
 

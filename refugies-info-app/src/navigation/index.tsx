@@ -67,7 +67,7 @@ export const RootNavigator = () => {
 
         const hasUserAlreadySeenOnboarding = value === "TRUE";
         if (hasUserAlreadySeenOnboarding) {
-          dispatch(setHasUserSeenOnboardingActionCreator());
+          dispatch(setHasUserSeenOnboardingActionCreator(true));
         }
 
         setIsOnboardingValueInitialized(true);
