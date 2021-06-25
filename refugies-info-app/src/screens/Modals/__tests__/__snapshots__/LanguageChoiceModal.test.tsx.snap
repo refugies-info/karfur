@@ -92,6 +92,8 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
         Array [
           Object {
             "backgroundColor": "#F6F6F6",
+            "borderTopLeftRadius": 12,
+            "borderTopRightRadius": 12,
             "display": "flex",
             "paddingHorizontal": 24,
             "paddingVertical": 8,

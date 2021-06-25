@@ -58,6 +58,8 @@ const ModalView = styled.View`
   display: flex;
   padding-vertical: ${theme.margin}px;
   padding-horizontal: ${theme.margin * 3}px;
+  border-top-right-radius: ${theme.radius * 2}px;
+  border-top-left-radius: ${theme.radius * 2}px;
 `;
 
 const TitleText = styled(StyledTextNormalBold)`
