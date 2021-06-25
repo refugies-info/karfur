@@ -6,8 +6,17 @@ import latestActionsSaga, {
   saveUserLocation,
   saveUserFrenchLevel,
   getUserInfos,
+  removeSelectedLanguage,
+  removeUserLocation,
+  removeUserAge,
+  removeUserFrenchLevel,
+  removeHasUserSeenOnboarding,
 } from "../user.saga";
-import { saveItemInAsyncStorage, getItemInAsyncStorage } from "../functions";
+import {
+  saveItemInAsyncStorage,
+  getItemInAsyncStorage,
+  deleteItemInAsyncStorage,
+} from "../functions";
 import {
   setSelectedLanguageActionCreator,
   setHasUserSeenOnboardingActionCreator,
@@ -35,6 +44,19 @@ describe("[Saga] user", () => {
         .takeLatest("SAVE_USER_AGE", saveUserAge)
         .next()
         .takeLatest("GET_USER_INFOS", getUserInfos)
+        .next()
+        .takeLatest("REMOVE_SELECTED_LANGUAGE", removeSelectedLanguage)
+        .next()
+        .takeLatest("REMOVE_USER_LOCATION", removeUserLocation)
+        .next()
+        .takeLatest("REMOVE_USER_AGE", removeUserAge)
+        .next()
+        .takeLatest("REMOVE_USER_FRENCH_LEVEL", removeUserFrenchLevel)
+        .next()
+        .takeLatest(
+          "REMOVE_USER_HAS_SEEN_ONBOARDING",
+          removeHasUserSeenOnboarding
+        )
         .next()
         .isDone();
     });
@@ -261,6 +283,114 @@ describe("[Saga] user", () => {
         .throw(new Error("error"))
         .select(hasUserSeenOnboardingSelector)
         .next(false)
+        .isDone();
+    });
+  });
+
+  describe("remove selected language saga", () => {
+    it("should call functions and set data", () => {
+      testSaga(removeSelectedLanguage)
+        .next()
+        .call(deleteItemInAsyncStorage, "SELECTED_LANGUAGE")
+        .next()
+        .put(setSelectedLanguageActionCreator(null))
+        .next()
+        .put(setCurrentLanguageActionCreator(null))
+        .next()
+        .isDone();
+    });
+
+    it("should call functions and set fr if deleteItemInAsyncStorage throws", () => {
+      testSaga(removeSelectedLanguage)
+        .next()
+        .call(deleteItemInAsyncStorage, "SELECTED_LANGUAGE")
+        .throw(new Error("error"))
+        .put(setSelectedLanguageActionCreator("fr"))
+        .next()
+        .put(setCurrentLanguageActionCreator("fr"))
+        .next()
+        .isDone();
+    });
+  });
+
+  describe("remove user location saga", () => {
+    it("should call functions and set data", () => {
+      testSaga(removeUserLocation)
+        .next()
+        .call(deleteItemInAsyncStorage, "DEP")
+        .next()
+        .call(deleteItemInAsyncStorage, "CITY")
+        .next()
+        .put(setUserLocationActionCreator({ city: null, dep: null }))
+        .next()
+        .isDone();
+    });
+
+    it("should call functions and deleteItemInAsyncStorage throws", () => {
+      testSaga(removeUserLocation)
+        .next()
+        .call(deleteItemInAsyncStorage, "DEP")
+        .throw(new Error("error"))
+        .isDone();
+    });
+  });
+
+  describe("remove user french level saga", () => {
+    it("should call functions and set data", () => {
+      testSaga(removeUserFrenchLevel)
+        .next()
+        .call(deleteItemInAsyncStorage, "FRENCH_LEVEL")
+        .next()
+        .put(setUserFrenchLevelActionCreator(null))
+        .next()
+        .isDone();
+    });
+
+    it("should call functions and deleteItemInAsyncStorage throws", () => {
+      testSaga(removeUserFrenchLevel)
+        .next()
+        .call(deleteItemInAsyncStorage, "FRENCH_LEVEL")
+        .throw(new Error("error"))
+        .isDone();
+    });
+  });
+
+  describe("remove user age saga", () => {
+    it("should call functions and set data", () => {
+      testSaga(removeUserAge)
+        .next()
+        .call(deleteItemInAsyncStorage, "AGE")
+        .next()
+        .put(setUserAgeActionCreator(null))
+        .next()
+        .isDone();
+    });
+
+    it("should call functions and deleteItemInAsyncStorage throws", () => {
+      testSaga(removeUserAge)
+        .next()
+        .call(deleteItemInAsyncStorage, "AGE")
+        .throw(new Error("error"))
+        .isDone();
+    });
+  });
+
+  describe("remove user has seen onboarding saga", () => {
+    it("should call functions and set data", () => {
+      testSaga(removeHasUserSeenOnboarding)
+        .next()
+        .call(deleteItemInAsyncStorage, "HAS_USER_SEEN_ONBOARDING")
+        .next()
+        .put(setHasUserSeenOnboardingActionCreator(false))
+        .next()
+        .isDone();
+    });
+
+    it("should call functions and deleteItemInAsyncStorage throws", () => {
+      testSaga(removeHasUserSeenOnboarding)
+        .next()
+        .call(deleteItemInAsyncStorage, "HAS_USER_SEEN_ONBOARDING")
+        .throw(new Error("error"))
         .isDone();
     });
   });
