@@ -63,9 +63,7 @@ export const FeedbackFooter = (props: Props) => {
           <FButton
             disabled={didThank}
             className={"feedback-btn validate mr-8 mb-8"}
-            onClick={() => {
-              pushReaction(null, "merci");
-            }}
+            onClick={() => pushReaction(null, "merci")}
           >
             <span role="img" aria-label="thanks">
               🙏
