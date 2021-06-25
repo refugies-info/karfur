@@ -193,7 +193,11 @@ export class QuickToolbar extends Component<Props, StateType> {
                             ? ""
                             : "-outline")
                         }
-                        fill={colors.darkColor}
+                        fill={
+                          this.state.isVoiceActiv
+                            ? colors.blanc
+                            : colors.darkColor
+                        }
                         className="icon-toolbar"
                       />
 
