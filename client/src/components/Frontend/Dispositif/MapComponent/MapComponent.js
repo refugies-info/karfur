@@ -39,8 +39,9 @@ const mapComponent = compose(
                 );
               }
             });
-
-            map.fitBounds(bounds);
+            if (map.props.children[1].length > 1) {
+              map.fitBounds(bounds);
+            }
           }
         },
       });
@@ -51,9 +52,15 @@ const mapComponent = compose(
 )((props) => (
   <GoogleMap
     ref={props.zoomToMarkers}
-    // zoom={props.zoom}
-    // center={props.center}
-    defaultZoom={5}
+    center={
+      props.markers && props.markers.length === 1
+        ? {
+            lat: parseFloat(props.markers[0].latitude),
+            lng: parseFloat(props.markers[0].longitude),
+          }
+        : null
+    }
+    defaultZoom={15}
     defaultCenter={{ lat: 48.856614, lng: 2.3522219 }}
     defaultOptions={{
       mapTypeControl: false,

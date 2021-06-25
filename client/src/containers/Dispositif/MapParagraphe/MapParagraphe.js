@@ -31,7 +31,6 @@ const StyledButton = styled.div`
 const refs = {};
 class MapParagraphe extends PureComponent {
   state = {
-    zoom: 5,
     center: { lat: 48.856614, lng: 2.3522219 },
     selectedMarker: null,
     showSidebar: false,
@@ -42,7 +41,6 @@ class MapParagraphe extends PureComponent {
     this.props.showMapButton(false);
   }
 
-  onMapMounted = (ref) => (this.map = ref);
   onSearchBoxMounted = (ref) => (refs.searchBox = ref);
 
   onPlacesChanged = () => {
@@ -62,7 +60,6 @@ class MapParagraphe extends PureComponent {
       center: nextCenter,
       selectedMarker: nextMarker,
       showSidebar: true,
-      zoom: 10,
       searchValue: "",
     });
   };
@@ -70,7 +67,6 @@ class MapParagraphe extends PureComponent {
   handleMarkerClick = (_, marker) => {
     this.setState({
       showSidebar: true,
-      zoom: 15,
       center: { lat: marker.latitude, lng: marker.longitude },
       selectedMarker: marker,
     });
@@ -90,7 +86,6 @@ class MapParagraphe extends PureComponent {
 
   selectLocation = (key) => {
     this.setState({
-      zoom: 7,
       center: {
         lat: parseFloat(this.state.markers[key].latitude),
         lng: parseFloat(this.state.markers[key].longitude),
@@ -232,7 +227,6 @@ class MapParagraphe extends PureComponent {
               onMarkerClick={this.handleMarkerClick}
               onClose={this.onClose}
               markers={markersToDisplay || []}
-              onMapMounted={this.onMapMounted}
               onSearchBoxMounted={this.onSearchBoxMounted}
               onPlacesChanged={this.onPlacesChanged}
               disableEdit={disableEdit}
