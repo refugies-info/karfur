@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from "react";
 import { Props } from "./FeedbackFooter.container";
 import FButton from "../../../FigmaUI/FButton/FButton";
@@ -65,7 +64,6 @@ export const FeedbackFooter = (props: Props) => {
             disabled={didThank}
             className={"feedback-btn validate mr-8 mb-8"}
             onClick={() => {
-              console.log("merci");
               pushReaction(null, "merci");
             }}
           >
@@ -78,7 +76,6 @@ export const FeedbackFooter = (props: Props) => {
         <FButton
           className={"feedback-btn error mr-8 mb-8"}
           onClick={() => {
-            console.log("Non");
             props.window.$crisp.push([
               "set",
               "session:event",
