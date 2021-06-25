@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { IDispositif } from "../../../types/interface";
 import { FormattedNotification } from "./types";
 
@@ -48,6 +49,16 @@ export const formatNotifications = (
       if (b.type === "annuaire") {
         return 1;
       }
+      if (
+        a.type === "new content" &&
+        b.type === "new content" &&
+        a.createdAt &&
+        b.createdAt &&
+        a.createdAt < b.createdAt
+      ) {
+        return 1;
+      }
+
       if (a.type === "new content") {
         return -1;
       }
@@ -58,9 +69,11 @@ export const formatNotifications = (
       if (a.createdAt && b.createdAt && a.createdAt > b.createdAt) return -1;
       return 1;
     }
+    //trie par date les notifs lues
     if (a.createdAt && b.createdAt && a.createdAt > b.createdAt) return -1;
     return 1;
   });
+  console.log("result", result);
   return result;
 };
 
