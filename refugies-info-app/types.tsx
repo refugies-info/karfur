@@ -27,6 +27,10 @@ export type FavorisParamList = {
 
 export type ProfilParamList = {
   ProfilScreen: undefined;
+  LangueProfilScreen: undefined;
+  AgeProfilScreen: undefined;
+  FrenchLevelProfilScreen: undefined;
+  CityProfilScreen: undefined;
 };
 
 export type SearchParamList = {

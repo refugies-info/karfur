@@ -43,13 +43,14 @@ interface Props {
   isFirst: boolean;
   isLast: boolean;
   isRTL: boolean;
+  onPress?: any;
 }
 
 const ICON_SIZE = 20;
 
 export const ProfilDetailButton = (props: Props) => (
   <View>
-    <ButtonContainer>
+    <ButtonContainer onPress={props.onPress}>
       <RTLView>
         <Icon
           name={props.iconName}
