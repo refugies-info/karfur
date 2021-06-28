@@ -17,7 +17,10 @@ const languageBtn = (props) => {
     <FButton
       type="white"
       className="language-btn mr-10"
-      onClick={props.toggleLangueModal}
+      onClick={() => {
+        window.$crisp.push(["do", "session:reset"]);
+        props.toggleLangueModal();
+      }}
     >
       <i
         className={"flag-icon flag-icon-" + langueCode}

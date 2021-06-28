@@ -79,6 +79,7 @@ export const FeedbackFooter = (props: Props) => {
               "session:event",
               ["no-thanks-btn"],
             ]);
+            props.window.$crisp.push(["do", "chat:open"]);
           }}
         >
           <span role="img" aria-label="thanks">
