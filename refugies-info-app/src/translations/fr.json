@@ -17,7 +17,8 @@
     "placeholder": "Exemple : Paris",
     "age": "Quel âge as-tu ?",
     "niveauFrancais": "Quel est ton niveau en français ?",
-    "end": "L’application est maintenant adaptée à ton profil."
+    "end": "L’application est maintenant adaptée à ton profil.",
+    "error_geoloc_acces": "Une erreur est survenue lors de la géolocalisation. Vérifie dans tes réglages que tu as bien activé la géolocalisation."
   },
   "Suivant": "Suivant",
   "Continuer": "Continuer",
