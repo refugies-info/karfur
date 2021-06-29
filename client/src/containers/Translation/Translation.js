@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import Swal from "sweetalert2";
 import querySearch from "stringquery";
@@ -34,7 +35,15 @@ export class TranslationHOC extends Component {
       title: "",
       body: "",
     },
+    bonASavoirFrancais: {
+      title: "",
+      body: "",
+    },
     translated: {
+      body: "",
+      title: "",
+    },
+    bonASavoirTranslated: {
       body: "",
       title: "",
     },
@@ -42,7 +51,6 @@ export class TranslationHOC extends Component {
     texte_a_traduire: "",
     avancement: 1,
     isComplete: false,
-
     itemId: "",
     isExpert: false,
     isStructure: false,
@@ -346,7 +354,7 @@ export class TranslationHOC extends Component {
       };
     }
     traduction = { ...traduction, ...tradData };
-
+    console.log("traduction valier", traduction);
     //sent to the backend to save the trad
     await this.props.addTranslation(traduction);
     //traduction._id = (data.data.data || {})._id;
@@ -413,8 +421,7 @@ export class TranslationHOC extends Component {
       .catch(() =>
         Swal.fire({
           title: "Oh non",
-          text:
-            "Aucun résultat n'a été retourné. 2 possibilités : vous avez traduit tout le contenu disponible, ou une erreur s'est produite",
+          text: "Aucun résultat n'a été retourné. 2 possibilités : vous avez traduit tout le contenu disponible, ou une erreur s'est produite",
           type: "error",
           timer: 2000,
         })

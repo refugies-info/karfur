@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { Spinner, Tooltip, Progress } from "reactstrap";
@@ -108,54 +109,9 @@ class SideTrad extends Component {
     this.setState({ startingTime: moment() });
   }
 
-  /*   UNSAFE_componentWillReceiveProps(nextProps) {
-    if (
-      this.props.translations !== nextProps.translations &&
-      nextProps.translations
-    ) {
-      const { translations } = nextProps;
-      if (translations.length) {
-        const userTrad = translations.find(
-          (trad) => trad.userId._id === this.props.user._id
-        );
-        const expertTrad = translations.find(
-          (trad) => trad.userId._id === trad.validatorId
-        );
-        if (userTrad && userTrad.status === "À revoir") {
-          this.setState({ avancement: userTrad.avancement });
-        } else if (expertTrad && expertTrad.status === "À revoir") {
-          this.setState({ avancement: expertTrad.avancement });
-        } else {
-          this.setState({ avancement: translations[0].avancement });
-        }
-      }
-      this.props.fwdSetState({ disableBtn: false });
-      this.goChange(true, false);
-    }
-    if (
-      this.state.initialize === false &&
-      nextProps.content.titreInformatif !== this.props.content.titreInformatif
-    ) {
-      this._initializeComponent(nextProps);
-      this.setState({ initialize: true });
-    }
-    if (
-      this.state.initializeTrad === false &&
-      nextProps.traductionsFaites !== this.props.traductionsFaites
-    ) {
-      this._initializeComponent(nextProps);
-      this.setState({ initializeTrad: true });
-    }
-  } */
-
   componentDidUpdate(prevProps, prevState) {
-    const {
-      currIdx,
-      currSubIdx,
-      currSubName,
-      availableListTrad,
-      listTrad,
-    } = this.state;
+    const { currIdx, currSubIdx, currSubName, availableListTrad, listTrad } =
+      this.state;
     //we highlight the new section and scroll
     this._scrollAndHighlight(currIdx, currSubIdx, currSubName);
     if (
@@ -377,7 +333,10 @@ class SideTrad extends Component {
       if (this.state.currIdx === "titreInformatif") {
         this._scrollAndHighlight("titreInformatif");
         props.fwdSetState(
-          () => ({ francais: { body: props.content.titreInformatif } }),
+          () => ({
+            francais: { body: props.content.titreInformatif },
+            bonASavoirFrancais: { title: "", body: "" },
+          }),
           () => this.checkTranslate(props.locale)
         );
       } else {
@@ -423,7 +382,10 @@ class SideTrad extends Component {
         () => {
           const texte_francais = this.props.content[this.state.currIdx];
           this.props.fwdSetState(
-            () => ({ francais: { body: texte_francais } }),
+            () => ({
+              francais: { body: texte_francais },
+              bonASavoirFrancais: { title: "", body: "" },
+            }),
             () => {
               this.checkTranslate(this.props.locale);
             }
@@ -512,11 +474,38 @@ class SideTrad extends Component {
             this.goChange(isNext, false);
             return;
           }
-          //this._scrollAndHighlight(idx, subidx, subname);
-          this.props.fwdSetState(
-            () => ({ francais: { body: value } }),
-            () => this.checkTranslate(this.props.locale)
-          );
+          const parser = new DOMParser();
+          const html = parser.parseFromString(value, "text/html");
+          const blocRouge = html.body.querySelectorAll(".bloc-rouge");
+          if (blocRouge.length > 0) {
+            console.log(
+              "bloc rouge",
+              blocRouge[0].querySelector(".right-side").lastChild.textContent
+            );
+
+            html.body.removeChild(blocRouge[0]);
+            console.log(html.body.querySelector("p"));
+            this.props.fwdSetState(
+              () => ({
+                francais: {
+                  body: html.body.querySelector("p").outerHTML,
+                },
+                bonASavoirFrancais: {
+                  body: blocRouge[0].querySelector(".right-side").lastChild
+                    .textContent,
+                },
+              }),
+              () => this.checkTranslate(this.props.locale)
+            );
+          } else {
+            this.props.fwdSetState(
+              () => ({
+                francais: { body: value },
+                bonASavoirFrancais: { title: "", body: "" },
+              }),
+              () => this.checkTranslate(this.props.locale)
+            );
+          }
         }
       );
     }
@@ -678,6 +667,12 @@ class SideTrad extends Component {
           ContentState.createFromBlockArray(htmlToDraft("").contentBlocks)
         ),
       },
+      bonASavoirTranslated: {
+        ...this.props.translated,
+        ["body"]: EditorState.createWithContent(
+          ContentState.createFromBlockArray(htmlToDraft("").contentBlocks)
+        ),
+      },
     });
   };
 
@@ -785,6 +780,18 @@ class SideTrad extends Component {
       });
       return;
     }
+    if (
+      this.props.bonASavoirFrancais.body !== "" &&
+      !this.props.bonASavoirTranslated.body
+    ) {
+      Swal.fire({
+        title: "Oh non",
+        text: "Aucune traduction n'a été rentrée pour le bon à savoir, veuillez rééssayer",
+        type: "error",
+        timer: 1500,
+      });
+      return;
+    }
     let timeSpent = 0;
     //calculating the time spent in the translation for one section
     if (this.state.startingTime) {
@@ -803,6 +810,8 @@ class SideTrad extends Component {
       listTrad,
       availableListTrad,
     } = this.state;
+    console.log("listTrad", listTrad);
+    console.log("availableListTrad", availableListTrad);
     let avancementCount = this.state.avancementCount;
     if (!availableListTrad.length > 0) {
       avancementCount = this.state.avancementCount + 1;
@@ -822,6 +831,7 @@ class SideTrad extends Component {
       currSubName = "contentTitle";
     }
     let traduction = { ...this.props.traduction };
+    console.log("traduction", traduction);
     const userTrad = listTrad.find(
       (trad) => trad.userId._id === this.props.user._id
     );
@@ -841,6 +851,7 @@ class SideTrad extends Component {
         traduction.status = "À revoir";
       }
     }
+    console.log("traduction 2", traduction);
     //the map the object from the editor so that we can convert it to text and save it in the right spot within the translation
     ["translated"].forEach((nom) => {
       const initialValue = this.props[nom].body;
@@ -967,6 +978,7 @@ class SideTrad extends Component {
         timeSpent,
       };
       this.props.fwdSetState({ newTrad }, () => {});
+      console.log("nexTrad", newTrad);
       await this.props.valider(newTrad);
     } else {
       //if the trad for the user doesn't exists we create a new one
@@ -982,7 +994,13 @@ class SideTrad extends Component {
 
   render() {
     const langue = this.props.langue || {};
-    const { francais, translated, autosuggest } = this.props; //disableBtn
+    const {
+      francais,
+      translated,
+      autosuggest,
+      bonASavoirFrancais,
+      bonASavoirTranslated,
+    } = this.props; //disableBtn
     const {
       pointeurs,
       currIdx,
@@ -1071,6 +1089,27 @@ class SideTrad extends Component {
         >
           {ReactHtmlParser((francais || {}).body || "", options)}
         </div>
+        {bonASavoirFrancais.body !== "" && (
+          <div
+            className={
+              this.state.currIdx === "abstract" && modified
+                ? "content-data-french no-margin-modified"
+                : this.state.currIdx === "abstract"
+                ? "content-data-french no-margin-abstract"
+                : modified
+                ? "content-data-french no-margin-modified"
+                : validated && !modified
+                ? "content-data-french no-margin-validated"
+                : "content-data-french"
+            }
+            id="body_texte_initial"
+            ref={(initial_text_bonASavoir) => {
+              this.initial_text_bonASavoir = initial_text_bonASavoir;
+            }}
+          >
+            {ReactHtmlParser((bonASavoirFrancais || {}).body || "", options)}
+          </div>
+        )}
         {this.state.currIdx === "abstract" ? (
           <AlertModified type={modified ? "modified" : "abstract"}>
             <EVAIcon
@@ -1207,6 +1246,93 @@ class SideTrad extends Component {
             )}
           </div>
         </DirectionProvider>
+        {this.props.bonASavoirFrancais.body !== "" && (
+          <DirectionProvider
+            direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}
+          >
+            <div
+              className={
+                userId &&
+                userId.username &&
+                validated &&
+                !modified &&
+                !modifiedNew
+                  ? "content-data notrounded editor-validated"
+                  : userId &&
+                    userId.username &&
+                    validated &&
+                    !modified &&
+                    modifiedNew
+                  ? "content-data notrounded"
+                  : "content-data"
+              }
+              id="body_texte_final"
+            >
+              <ConditionalSpinner show={!(bonASavoirTranslated || {}).body} />
+
+              <Editor
+                toolbarClassName={
+                  isRTL
+                    ? "toolbar-editeur"
+                    : "toolbar-editeur toolbar-editeur-droite"
+                }
+                editorClassName={
+                  validated && !modifiedNew && !modified
+                    ? "editor-editeur editor-validated"
+                    : "editor-editeur"
+                }
+                readOnly={validated && !modifiedNew && !modified ? true : false}
+                //onContentStateChange={}
+                wrapperClassName="wrapper-editeur editeur-sidebar"
+                placeholder="Renseignez votre traduction ici"
+                onEditorStateChange={this.props.onEditorStateChange}
+                editorState={(bonASavoirTranslated || {}).body}
+                toolbarHidden={
+                  pointeurs.includes(currIdx) ||
+                  this.state.currSubName === "contentTitle" ||
+                  this.state.currSubName === "title"
+                }
+                toolbar={{
+                  options: ["inline", "list", "link"],
+                  inline: {
+                    inDropdown: false,
+                    options: ["bold", "italic", "underline"],
+                    className: "bloc-gauche-inline blc-gh",
+                    bold: { icon: boldBtn, className: "inline-btn btn-bold" },
+                    italic: {
+                      icon: italicBtn,
+                      className: "inline-btn btn-italic",
+                    },
+                    underline: {
+                      icon: underBtn,
+                      className: "inline-btn btn-underline",
+                    },
+                  },
+                  list: {
+                    inDropdown: false,
+                    options: ["unordered"],
+                    className: "inline-btn blc-gh",
+                    unordered: { icon: listBtn, className: "list-btn" },
+                  },
+                  link: {
+                    inDropdown: false,
+                    options: ["link"],
+                    className: "bloc-gauche-list blc-gh",
+                    link: { icon: linkBtn, className: "btn-link" },
+                    defaultTargetOption: "_blank",
+                    showOpenOptionOnHover: true,
+                  },
+                }}
+              />
+              {autosuggest && (
+                <div className="google-suggest">
+                  Suggestion par{" "}
+                  <img src={logo_google} className="google-logo" alt="google" />
+                </div>
+              )}
+            </div>
+          </DirectionProvider>
+        )}
         <div className="expert-bloc">
           {userId &&
           userId.username &&
