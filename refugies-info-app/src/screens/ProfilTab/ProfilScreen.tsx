@@ -23,6 +23,8 @@ import {
   userFrenchLevelSelector,
 } from "../../services/redux/User/user.selectors";
 import { getSelectedLanguageFromI18nCode } from "../../libs/language";
+import { ProfilParamList } from "../../../types";
+import { StackScreenProps } from "@react-navigation/stack";
 
 const DeleteDataContainer = styled.TouchableOpacity`
   align-items: center;
@@ -50,7 +52,9 @@ const ProfilButtonsContainer = styled.View`
   elevation: 0.5;
 `;
 
-export const ProfilScreen = () => {
+export const ProfilScreen = ({
+  navigation,
+}: StackScreenProps<ProfilParamList, "ProfilScreen">) => {
   const { t, isRTL } = useTranslationWithRTL();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
 
@@ -88,6 +92,7 @@ export const ProfilScreen = () => {
             isFirst={true}
             isLast={false}
             isRTL={isRTL}
+            onPress={() => navigation.navigate("LangueProfilScreen")}
           />
           <ProfilDetailButton
             iconName="pin-outline"
@@ -98,6 +103,7 @@ export const ProfilScreen = () => {
             isFirst={false}
             isLast={false}
             isRTL={isRTL}
+            onPress={() => navigation.navigate("CityProfilScreen")}
           />
           <ProfilDetailButton
             iconName="calendar-outline"
@@ -105,26 +111,25 @@ export const ProfilScreen = () => {
             userChoice={
               selectedAge
                 ? t("Filter." + selectedAge, selectedAge)
-                : t("Pour tout âge", "Pour tout âge")
+                : t("Profil.Tous les âges", "Tous les âges")
             }
             isFirst={false}
             isLast={false}
             isRTL={isRTL}
+            onPress={() => navigation.navigate("AgeProfilScreen")}
           />
           <ProfilDetailButton
             iconName="message-circle-outline"
-            category={t("Profil.Niveau de français", "Niveau de français")}
+            category={t("Profil.Français", "Français")}
             userChoice={
               selectedFrenchLevel
                 ? t("Filter." + selectedFrenchLevel, selectedFrenchLevel)
-                : t(
-                    "Pour tout niveau de français",
-                    "Pour tout niveau de français"
-                  )
+                : t("Profil.Tous les niveaux", "Tous les niveaux")
             }
             isFirst={false}
             isLast={true}
             isRTL={isRTL}
+            onPress={() => navigation.navigate("FrenchLevelProfilScreen")}
           />
         </ProfilButtonsContainer>
 

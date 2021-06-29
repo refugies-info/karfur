@@ -173,7 +173,7 @@ export const FilterCity = ({
       setIsGeolocLoading(true);
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
-        throw new Error("ERREUR");
+        throw new Error("ERREUR_NOT_GRANTED");
       }
 
       let location = await Location.getCurrentPositionAsync({});
@@ -214,12 +214,21 @@ export const FilterCity = ({
       }
       throw new Error("ERREUR");
     } catch (error) {
-      setError(
-        t(
-          "Onboarding.error_geoloc",
-          "Une erreur est survenue lors de la géolocalisation. Entre ta ville manuellement."
-        )
-      );
+      if (error.message === "ERREUR_NOT_GRANTED") {
+        setError(
+          t(
+            "Onboarding.error_geoloc_acces",
+            "Une erreur est survenue lors de la géolocalisation. Vérifie dans tes réglages que tu as bien activé la géolocalisation."
+          )
+        );
+      } else {
+        setError(
+          t(
+            "Onboarding.error_geoloc",
+            "Une erreur est survenue lors de la géolocalisation. Entre ta ville manuellement."
+          )
+        );
+      }
       resetData();
       setIsGeolocLoading(false);
     }

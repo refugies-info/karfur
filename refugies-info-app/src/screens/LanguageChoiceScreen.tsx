@@ -42,7 +42,7 @@ export const LanguageChoiceScreen = ({
   };
   return (
     <MainView>
-      <HeaderWithLogo />
+      <HeaderWithLogo hideLanguageSwitch={true} />
       <MainContainer>
         {activatedLanguages.map((language, index) => (
           <LanguageDetailsButton

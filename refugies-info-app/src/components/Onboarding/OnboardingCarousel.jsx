@@ -21,6 +21,7 @@ const TopButtonsContainer = styled(SafeAreaView)`
   justify-content: space-between;
   padding-horizontal: ${theme.margin * 3}px;
   width: 100%;
+  padding-top: ${theme.margin}px;
 `;
 
 const NextButtonContainer = styled.View`

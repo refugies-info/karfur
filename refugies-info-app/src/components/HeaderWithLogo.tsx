@@ -17,6 +17,7 @@ const MainContainer = styled(RowContainer)`
   align-items: center;
   justify-content: space-between;
   display: flex;
+  padding-top: ${theme.margin}px;
 `;
 
 const StyledSafeAreaView = styled(SafeAreaView)`

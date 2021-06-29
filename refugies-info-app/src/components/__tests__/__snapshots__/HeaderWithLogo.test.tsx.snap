@@ -21,6 +21,7 @@ exports[`HeaderWithLogo should render correctly with LTR 1`] = `
           "justifyContent": "space-between",
           "paddingLeft": 24,
           "paddingRight": 24,
+          "paddingTop": 8,
         },
       ]
     }
@@ -167,6 +168,7 @@ exports[`HeaderWithLogo should render correctly with RTL 1`] = `
           "justifyContent": "space-between",
           "paddingLeft": 24,
           "paddingRight": 24,
+          "paddingTop": 8,
         },
       ]
     }

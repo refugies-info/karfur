@@ -7,7 +7,7 @@ import { theme } from "../../theme";
 import { onboardingCarouselData } from "./OnboardingCarouselData";
 import { TextBigBold } from "../StyledText";
 import { CarouselStepImage } from "./CarouselStepImage";
-import EtatLogo from "../../theme/images/onboarding/onboardingStep2-logo.png";
+import EtatLogo from "../../theme/images/onboarding/onboardingStep2-logov1_opt.png";
 import { Image } from "react-native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
@@ -51,7 +51,14 @@ export const OnboardingCarouselElement = (props: Props) => {
       <ImagesContainer>
         <CarouselStepImage step={props.step} />
         {props.step === 2 && (
-          <Image source={EtatLogo} style={{ marginTop: theme.margin * 3 }} />
+          <Image
+            source={EtatLogo}
+            style={{
+              marginTop: theme.margin * 3,
+              resizeMode: "contain",
+              height: 90,
+            }}
+          />
         )}
       </ImagesContainer>
       <StyledText>

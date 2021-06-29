@@ -32,7 +32,6 @@ const StyledText = styled(StyledTextSmallBold)`
   margin-right: ${(props: { isRTL: boolean }) =>
     props.isRTL ? 0 : theme.margin}px;
   flex-shrink: 1;
-  text-align: center;
 `;
 
 const CARD_HEIGHT = 320;
