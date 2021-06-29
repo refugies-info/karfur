@@ -1,7 +1,7 @@
 import React from "react";
-import Step0 from "../../theme/images/onboarding/onboardingStep0_v1.png";
+import Step0 from "../../theme/images/onboarding/onboardingStep0_v1_opt.png";
 import { Image, StyleSheet } from "react-native";
-import Step1 from "../../theme/images/onboarding/onboardingStep1.png";
+import Step1 from "../../theme/images/onboarding/onboardingStep1_opt.png";
 import Step2 from "../../theme/images/onboarding/onboardingStep2_opt.svg";
 import Step3 from "../../theme/images/onboarding/onboardingStep3_opt.svg";
 

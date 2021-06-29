@@ -5,7 +5,7 @@ import { OnboardingParamList } from "../../../types";
 import { StyledTextBigBold } from "../../components/StyledText";
 import { theme } from "../../theme";
 import styled from "styled-components/native";
-import IlluOnboarding from "../../theme/images/onboarding/illu_onboardingv4.png";
+import IlluOnboarding from "../../theme/images/onboarding/illu_onboardingv4_opt.png";
 
 import { CustomButton } from "../../components/CustomButton";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
