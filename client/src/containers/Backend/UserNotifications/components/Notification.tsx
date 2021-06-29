@@ -73,7 +73,7 @@ const getText = (type: "reaction" | "annuaire" | "new content") => {
   if (type === "annuaire")
     return "Recensez votre structure dans l'annuaire de l'intégration";
 
-  return "Un nouveau contenu a été attribué à votre structure !";
+  return "Une nouvelle fiche a été attribuée à votre structure";
 };
 
 const getFormattedDate = (createdAt: Moment) => {
