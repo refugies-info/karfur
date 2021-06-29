@@ -11,6 +11,16 @@ export const activatedLanguages: {
     i18nCode: "fr",
   },
   {
+    langueFr: "Persan/Dari",
+    langueLoc: "فارسی/ دری",
+    i18nCode: "fa",
+  },
+  {
+    langueFr: "Arabe",
+    langueLoc: "العربية",
+    i18nCode: "ar",
+  },
+  {
     langueFr: "Anglais",
     langueLoc: "English",
     i18nCode: "en",
@@ -20,25 +30,14 @@ export const activatedLanguages: {
     langueLoc: "پښتو",
     i18nCode: "ps",
   },
-
-  {
-    langueFr: "Persan/Dari",
-    langueLoc: "فارسی/ دری",
-    i18nCode: "fa",
-  },
-  {
-    langueFr: "Tigrinya",
-    langueLoc: "ትግርኛ",
-    i18nCode: "ti-ER",
-  },
   {
     langueFr: "Russe",
     langueLoc: "Русский",
     i18nCode: "ru",
   },
   {
-    langueFr: "Arabe",
-    langueLoc: "العربية",
-    i18nCode: "ar",
+    langueFr: "Tigrinya",
+    langueLoc: "ትግርኛ",
+    i18nCode: "ti-ER",
   },
 ];

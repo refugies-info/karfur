@@ -16,9 +16,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "userInterfaceStyle": "light",
@@ -27,7 +25,7 @@
     "android": {
       "userInterfaceStyle": "light",
       "adaptiveIcon": {
-        "foregroundImage": "./src/theme/images/adaptive-icon-RI.png",
+        "foregroundImage": "./src/theme/images/adaptive-icon.png",
         "backgroundColor": "#F6F6F6"
       },
       "package": "com.agathek.refugiesinfoapp"

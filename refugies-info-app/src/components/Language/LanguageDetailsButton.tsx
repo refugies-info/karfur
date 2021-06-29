@@ -7,7 +7,7 @@ import { RowContainer } from "../BasicComponents";
 
 const MainContainer = styled.TouchableOpacity`
   background: ${(props: { isSelected: any }) =>
-    props.isSelected ? theme.colors.darkBlue : theme.colors.white};
+    props.isSelected ? theme.colors.black : theme.colors.white};
   border-radius: ${theme.radius * 2}px;
   padding: ${theme.margin * 2}px;
   margin-vertical: ${theme.margin}px;
@@ -16,6 +16,7 @@ const MainContainer = styled.TouchableOpacity`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  elevation: 1;
   box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
 `;
 

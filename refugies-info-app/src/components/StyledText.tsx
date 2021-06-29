@@ -8,6 +8,7 @@ export const StyledTextNormal = styled.Text`
   font-family: ${theme.fonts.families.circularStandard};
   text-align: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "right" : "left"};
+  line-height: 24px;
 `;
 
 export const StyledTextNormalBold = styled.Text`
@@ -15,6 +16,7 @@ export const StyledTextNormalBold = styled.Text`
     props.isRTL ? "right" : "left"};
   font-size: ${theme.fonts.sizes.normal}px;
   font-family: ${theme.fonts.families.circularBold};
+  line-height: 24px;
 `;
 
 export const StyledTextSmall = styled.Text`
@@ -22,6 +24,7 @@ export const StyledTextSmall = styled.Text`
   font-family: ${theme.fonts.families.circularStandard};
   text-align: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "right" : "left"};
+  line-height: 20px;
 `;
 
 export const StyledTextSmallBold = styled.Text`
@@ -29,6 +32,7 @@ export const StyledTextSmallBold = styled.Text`
   font-family: ${theme.fonts.families.circularBold};
   text-align: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "right" : "left"};
+  line-height: 20px;
 `;
 
 export const StyledTextVerySmall = styled.Text`
@@ -36,6 +40,7 @@ export const StyledTextVerySmall = styled.Text`
   font-family: ${theme.fonts.families.circularStandard};
   text-align: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "right" : "left"};
+  line-height: 16px;
 `;
 
 export const StyledTextVerySmallBold = styled.Text`
@@ -43,6 +48,7 @@ export const StyledTextVerySmallBold = styled.Text`
   font-family: ${theme.fonts.families.circularBold};
   text-align: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "right" : "left"};
+  line-height: 16px;
 `;
 
 export const StyledTextBig = styled.Text`
@@ -50,6 +56,7 @@ export const StyledTextBig = styled.Text`
   font-family: ${theme.fonts.families.circularStandard};
   text-align: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "right" : "left"};
+  line-height: 32px;
 `;
 
 export const StyledTextBigBold = styled.Text`
@@ -57,6 +64,7 @@ export const StyledTextBigBold = styled.Text`
   font-family: ${theme.fonts.families.circularBold};
   text-align: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "right" : "left"};
+  line-height: 32px;
 `;
 
 export const TextNormal = (props: any) => {
