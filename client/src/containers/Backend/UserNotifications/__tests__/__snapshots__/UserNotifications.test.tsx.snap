@@ -877,7 +877,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
         <div
           className="c9"
         >
-          Un nouveau contenu a été attribué à votre structure !
+          Une nouvelle fiche a été attribuée à votre structure
         </div>
       </div>
       <div
