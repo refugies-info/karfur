@@ -1,5 +1,5 @@
 import React from "react";
-import Step0 from "../../theme/images/onboarding/onboardingStep0.png";
+import Step0 from "../../theme/images/onboarding/onboardingStep0_v1.png";
 import { Image, StyleSheet } from "react-native";
 import Step1 from "../../theme/images/onboarding/onboardingStep1.png";
 import Step2 from "../../theme/images/onboarding/onboardingStep2_opt.svg";
@@ -14,11 +14,15 @@ const styles = StyleSheet.create({
     resizeMode: "contain", // or 'stretch'
     height: 230,
   },
+  step0: {
+    width: 200,
+    resizeMode: "contain", // or 'stretch'
+  },
 });
 export const CarouselStepImage = ({ step }: Props) => {
   switch (step) {
     case 0:
-      return <Image source={Step0} />;
+      return <Image source={Step0} style={styles.step0} />;
     case 1:
       return <Image source={Step1} style={styles.step1} />;
     case 2:

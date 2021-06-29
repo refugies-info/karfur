@@ -5,7 +5,7 @@ import { OnboardingParamList } from "../../../types";
 import { StyledTextBigBold } from "../../components/StyledText";
 import { theme } from "../../theme";
 import styled from "styled-components/native";
-import IlluOnboarding from "../../theme/images/onboarding/illu_onboarding.png";
+import IlluOnboarding from "../../theme/images/onboarding/illu_onboardingv4.png";
 
 import { CustomButton } from "../../components/CustomButton";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -20,21 +20,17 @@ const MainView = styled(SafeAreaView)`
   justify-content: space-between;
 `;
 
-const ImageContainer = styled.View`
-  position: absolute;
-  top: 0;
-  width: 100%;
-  left: 0;
-`;
-
 const ElementsContainer = styled.View`
   padding: ${theme.margin * 3}px;
 `;
 
 const styles = StyleSheet.create({
   backgroundImage: {
-    resizeMode: "cover", // or 'stretch'
     height: 370,
+    width: "100%",
+
+    position: "absolute",
+    top: 0,
   },
 });
 
@@ -53,9 +49,11 @@ export const OnboardingStart = ({
   return (
     <MainView>
       <HeaderWithBack navigation={navigation} />
-      <ImageContainer>
-        <Image source={IlluOnboarding} style={styles.backgroundImage} />
-      </ImageContainer>
+      <Image
+        source={IlluOnboarding}
+        style={styles.backgroundImage}
+        resizeMode="cover"
+      />
       <ElementsContainer>
         <StyledText>{t("Onboarding.bonjour", "trad")}</StyledText>
         <StyledText
