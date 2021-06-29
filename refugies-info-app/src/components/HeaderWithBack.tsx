@@ -11,6 +11,7 @@ const TopButtonsContainer = styled(RowContainer)`
   justify-content: space-between;
   padding-horizontal: ${theme.margin * 3}px;
   z-index: 2;
+  padding-top: ${theme.margin}px;
 `;
 
 const StyledText = styled(StyledTextSmallBold)`
