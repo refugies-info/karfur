@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { Spinner, Tooltip, Progress } from "reactstrap";
@@ -478,13 +477,8 @@ class SideTrad extends Component {
           const html = parser.parseFromString(value, "text/html");
           const blocRouge = html.body.querySelectorAll(".bloc-rouge");
           if (blocRouge.length > 0) {
-            console.log(
-              "bloc rouge",
-              blocRouge[0].querySelector(".right-side").lastChild.textContent
-            );
-
             html.body.removeChild(blocRouge[0]);
-            console.log(html.body.querySelector("p"));
+
             this.props.fwdSetState(
               () => ({
                 francais: {
@@ -810,8 +804,7 @@ class SideTrad extends Component {
       listTrad,
       availableListTrad,
     } = this.state;
-    console.log("listTrad", listTrad);
-    console.log("availableListTrad", availableListTrad);
+
     let avancementCount = this.state.avancementCount;
     if (!availableListTrad.length > 0) {
       avancementCount = this.state.avancementCount + 1;
@@ -831,7 +824,7 @@ class SideTrad extends Component {
       currSubName = "contentTitle";
     }
     let traduction = { ...this.props.traduction };
-    console.log("traduction", traduction);
+
     const userTrad = listTrad.find(
       (trad) => trad.userId._id === this.props.user._id
     );
@@ -851,7 +844,7 @@ class SideTrad extends Component {
         traduction.status = "À revoir";
       }
     }
-    console.log("traduction 2", traduction);
+
     //the map the object from the editor so that we can convert it to text and save it in the right spot within the translation
     ["translated"].forEach((nom) => {
       const initialValue = this.props[nom].body;
@@ -978,7 +971,7 @@ class SideTrad extends Component {
         timeSpent,
       };
       this.props.fwdSetState({ newTrad }, () => {});
-      console.log("nexTrad", newTrad);
+
       await this.props.valider(newTrad);
     } else {
       //if the trad for the user doesn't exists we create a new one

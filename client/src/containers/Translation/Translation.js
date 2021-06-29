@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import Swal from "sweetalert2";
 import querySearch from "stringquery";
@@ -354,7 +353,6 @@ export class TranslationHOC extends Component {
       };
     }
     traduction = { ...traduction, ...tradData };
-    console.log("traduction valier", traduction);
     //sent to the backend to save the trad
     await this.props.addTranslation(traduction);
     //traduction._id = (data.data.data || {})._id;
