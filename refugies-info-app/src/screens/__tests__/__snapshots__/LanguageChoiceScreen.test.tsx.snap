@@ -33,6 +33,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "justifyContent": "space-between",
             "paddingLeft": 24,
             "paddingRight": 24,
+            "paddingTop": 8,
           },
         ]
       }
@@ -52,7 +53,6 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
           ]
         }
       >
-        <View />
         <View
           accessible={true}
           focusable={false}
