@@ -3,13 +3,15 @@ import styled from "styled-components/native";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import { theme } from "../../theme";
 import { Icon } from "react-native-eva-icons";
-import { StyledTextSmallBold, StyledTextSmall } from "../StyledText";
+import { StyledTextSmallBold, StyledTextVerySmall } from "../StyledText";
 import { View } from "react-native";
 
 const ButtonContainer = styled(RTLTouchableOpacity)`
   align-items: center;
   height: 56px;
-  padding-horizontal: ${theme.margin * 2}px;
+  padding-left: ${theme.margin * 2}px;
+  padding-right: ${theme.margin}px;
+
   justify-content: space-between;
 `;
 
@@ -20,15 +22,16 @@ const StyledCategoryText = styled(StyledTextSmallBold)`
     !props.isRTL ? 0 : theme.margin}px;
 `;
 
-const StyledChoiceText = styled(StyledTextSmall)`
+const StyledChoiceText = styled(StyledTextVerySmall)`
   color: ${theme.colors.darkGrey};
   margin-right: ${(props: { isRTL: boolean }) =>
     props.isRTL ? 0 : theme.margin}px;
   margin-left: ${(props: { isRTL: boolean }) =>
     !props.isRTL ? 0 : theme.margin}px;
-
-  max-width: 110px;
+  max-width: 150px;
   flex-shrink: 1;
+  text-align: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? "left" : "right"};
 `;
 
 const Separator = styled.View`

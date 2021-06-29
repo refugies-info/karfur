@@ -111,7 +111,7 @@ export const ProfilScreen = ({
             userChoice={
               selectedAge
                 ? t("Filter." + selectedAge, selectedAge)
-                : t("Pour tout âge", "Pour tout âge")
+                : t("Profil.Tous les âges", "Tous les âges")
             }
             isFirst={false}
             isLast={false}
@@ -120,14 +120,11 @@ export const ProfilScreen = ({
           />
           <ProfilDetailButton
             iconName="message-circle-outline"
-            category={t("Profil.Niveau de français", "Niveau de français")}
+            category={t("Profil.Français", "Français")}
             userChoice={
               selectedFrenchLevel
                 ? t("Filter." + selectedFrenchLevel, selectedFrenchLevel)
-                : t(
-                    "Pour tout niveau de français",
-                    "Pour tout niveau de français"
-                  )
+                : t("Profil.Tous les niveaux", "Tous les niveaux")
             }
             isFirst={false}
             isLast={true}
