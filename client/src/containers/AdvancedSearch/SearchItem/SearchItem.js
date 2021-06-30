@@ -162,7 +162,7 @@ export class SearchItem extends Component {
               (isBigDesktop ? "search-btn " : "search-btn-small ")
             }
           >
-            {"ma ville"}
+            {t("SearchItem.ma ville", "ma ville")}
           </FSearchBtn>
         ) : (
           <Dropdown
