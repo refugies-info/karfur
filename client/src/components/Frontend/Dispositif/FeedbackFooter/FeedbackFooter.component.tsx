@@ -24,6 +24,7 @@ export interface PropsBeforeInjection {
   pushReaction: (arg1: null, arg2: string) => void;
   didThank: boolean;
   nbThanks: number;
+  window: any;
 }
 
 export const FeedbackFooter = (props: Props) => {
@@ -71,8 +72,15 @@ export const FeedbackFooter = (props: Props) => {
           </FButton>
         )}
         <FButton
-          className={" feedback-btn error mr-8 mb-8 "}
-          id="no-thanks-btn"
+          className={"feedback-btn error mr-8 mb-8"}
+          onClick={() => {
+            props.window.$crisp.push([
+              "set",
+              "session:event",
+              ["no-thanks-btn"],
+            ]);
+            props.window.$crisp.push(["do", "chat:open"]);
+          }}
         >
           <span role="img" aria-label="thanks">
             😔

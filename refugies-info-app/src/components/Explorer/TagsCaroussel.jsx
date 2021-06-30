@@ -49,8 +49,7 @@ export class TagsCaroussel extends React.Component {
         }}
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}
-        animatedDuration={1000}
-        animatedTension={150}
+        animatedTension={10}
       />
     );
   }

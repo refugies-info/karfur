@@ -17,7 +17,8 @@
     "placeholder": "Exemple : Paris",
     "age": "Quel âge as-tu ?",
     "niveauFrancais": "Quel est ton niveau en français ?",
-    "end": "L’application est maintenant adaptée à ton profil."
+    "end": "L’application est maintenant adaptée à ton profil.",
+    "error_geoloc_acces": "Une erreur est survenue lors de la géolocalisation. Vérifie dans tes réglages que tu as bien activé la géolocalisation."
   },
   "Suivant": "Suivant",
   "Continuer": "Continuer",
@@ -74,5 +75,21 @@
   "Merci !": "Merci !",
   "Passer l'étape": "Passer l'étape",
   "Valider": "Valider",
-  "Fermer": "Fermer"
+  "Fermer": "Fermer",
+  "Toute la France": "Toute la France",
+  "Pour tout âge": "Pour tout âge",
+  "Pour tout niveau de français": "Pour tout niveau de français",
+  "Profil": {
+    "supprimer_data": "Supprimer les données de mon profil",
+    "reinit_app": "Réinitialiser mon application",
+    "Mon profil": "Mon profil",
+    "Langue choisie": "Langue choisie",
+    "Ville": "Ville",
+    "Âge": "Âge",
+    "Niveau de français": "Niveau de français",
+    "Paramètres": "Paramètres",
+    "Français": "Français",
+    "Tous les niveaux": "Tous les niveaux",
+    "Tous les âges": "Tous les âges"
+  }
 }

@@ -134,7 +134,7 @@ export class SearchItem extends Component {
                   value={villeAuto}
                   onChange={this.handleChange}
                   onPlaceSelected={this.onPlaceSelected}
-                  types={["(regions)"]}
+                  types={["(cities)"]}
                   componentRestrictions={{ country: "fr" }}
                 />
                 {item.active && (
@@ -162,7 +162,7 @@ export class SearchItem extends Component {
               (isBigDesktop ? "search-btn " : "search-btn-small ")
             }
           >
-            {"ma ville"}
+            {t("SearchItem.ma ville", "ma ville")}
           </FSearchBtn>
         ) : (
           <Dropdown

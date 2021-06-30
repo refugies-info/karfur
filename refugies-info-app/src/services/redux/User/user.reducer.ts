@@ -25,9 +25,9 @@ export const initialUserState = {
 export const userReducer = createReducer<UserState, UserActions>(
   initialUserState,
   {
-    SET_USER_HAS_SEEN_ONBOARDING: (state) => ({
+    SET_USER_HAS_SEEN_ONBOARDING: (state, action) => ({
       ...state,
-      hasUserSeenOnboarding: true,
+      hasUserSeenOnboarding: action.payload,
     }),
     SET_SELECTED_LANGUAGE: (state, action) => ({
       ...state,

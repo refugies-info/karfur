@@ -20,3 +20,13 @@ export const getItemInAsyncStorage = async (
     | "AGE"
     | "FRENCH_LEVEL"
 ) => await AsyncStorage.getItem(item);
+
+export const deleteItemInAsyncStorage = async (
+  item:
+    | "SELECTED_LANGUAGE"
+    | "HAS_USER_SEEN_ONBOARDING"
+    | "CITY"
+    | "DEP"
+    | "AGE"
+    | "FRENCH_LEVEL"
+) => await AsyncStorage.removeItem(item);
