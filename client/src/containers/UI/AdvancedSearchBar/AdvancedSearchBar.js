@@ -227,7 +227,7 @@ const AdvancedSearchBar = (props) => {
     <>
       <CustomSearchBar
         value={searchText}
-        placeholder={props.t("Rechercher...", "Rechercher...")}
+        placeholder={props.t("Rechercher2", "Rechercher...")}
         onChange={onTextChange}
         withMargin={true}
         windowWidth={props.windowWidth}
