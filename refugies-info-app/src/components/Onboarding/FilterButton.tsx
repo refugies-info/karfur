@@ -35,9 +35,12 @@ const DetailContainer = styled.View`
     props.isSelected ? theme.colors.white : theme.colors.grey60};
   margin-left: ${theme.margin}px;
   padding-vertical: 4px;
-  padding-horizontal: ${theme.margin}px;
-
   border-radius: ${theme.margin}px;
+  width: 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;
 
 const TextVerySmall = styled(StyledTextVerySmallBold)`

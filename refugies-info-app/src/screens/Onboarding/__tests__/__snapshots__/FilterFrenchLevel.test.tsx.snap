@@ -335,7 +335,7 @@ exports[`Filter french level should render correctly when french level selected 
           "flexGrow": 1,
           "flexShrink": 1,
           "justifyContent": "space-between",
-          "paddingVertical": 24,
+          "paddingBottom": 24,
         },
       ]
     }
@@ -499,11 +499,15 @@ exports[`Filter french level should render correctly when french level selected 
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -530,11 +534,15 @@ exports[`Filter french level should render correctly when french level selected 
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -626,11 +634,15 @@ exports[`Filter french level should render correctly when french level selected 
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -657,11 +669,15 @@ exports[`Filter french level should render correctly when french level selected 
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -753,11 +769,15 @@ exports[`Filter french level should render correctly when french level selected 
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -784,11 +804,15 @@ exports[`Filter french level should render correctly when french level selected 
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -1537,7 +1561,7 @@ exports[`Filter french level should render correctly when no french level select
           "flexGrow": 1,
           "flexShrink": 1,
           "justifyContent": "space-between",
-          "paddingVertical": 24,
+          "paddingBottom": 24,
         },
       ]
     }
@@ -1701,11 +1725,15 @@ exports[`Filter french level should render correctly when no french level select
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -1732,11 +1760,15 @@ exports[`Filter french level should render correctly when no french level select
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -1828,11 +1860,15 @@ exports[`Filter french level should render correctly when no french level select
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -1859,11 +1895,15 @@ exports[`Filter french level should render correctly when no french level select
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -1955,11 +1995,15 @@ exports[`Filter french level should render correctly when no french level select
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -1986,11 +2030,15 @@ exports[`Filter french level should render correctly when no french level select
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -2739,7 +2787,7 @@ exports[`Filter french level should select level when click on it 1`] = `
           "flexGrow": 1,
           "flexShrink": 1,
           "justifyContent": "space-between",
-          "paddingVertical": 24,
+          "paddingBottom": 24,
         },
       ]
     }
@@ -2903,11 +2951,15 @@ exports[`Filter french level should select level when click on it 1`] = `
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -2934,11 +2986,15 @@ exports[`Filter french level should select level when click on it 1`] = `
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -3030,11 +3086,15 @@ exports[`Filter french level should select level when click on it 1`] = `
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -3061,11 +3121,15 @@ exports[`Filter french level should select level when click on it 1`] = `
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -3157,11 +3221,15 @@ exports[`Filter french level should select level when click on it 1`] = `
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -3188,11 +3256,15 @@ exports[`Filter french level should select level when click on it 1`] = `
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }

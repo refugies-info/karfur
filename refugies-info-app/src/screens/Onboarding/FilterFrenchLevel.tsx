@@ -21,7 +21,7 @@ import {
 import { userFrenchLevelSelector } from "../../services/redux/User/user.selectors";
 
 const ContentContainer = styled.View`
-  padding-vertical: ${theme.margin * 3}px;
+  padding-bottom: ${theme.margin * 3}px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
