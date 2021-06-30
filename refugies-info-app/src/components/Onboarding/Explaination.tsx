@@ -10,7 +10,7 @@ import Triangle from "../../theme/images/onboarding/Polygon-white.svg";
 const MainContainer = styled(RTLView)`
   background-color: ${theme.colors.white};
   display: flex;
-  padding: ${theme.margin * 2}px;
+  padding-vertical: ${theme.margin * 2}px;
   align-items: center;
   width: 100%;
   border-radius: ${theme.margin}px;
@@ -19,9 +19,9 @@ const MainContainer = styled(RTLView)`
 const StyledText = styled(StyledTextVerySmall)`
   color: ${theme.colors.blue};
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin}px;
+    props.isRTL ? theme.margin * 2 : theme.margin}px;
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin : 0}px;
+    props.isRTL ? theme.margin : theme.margin * 2}px;
   flex-shrink: 1;
 `;
 
@@ -33,6 +33,12 @@ const TriangleContainer = styled.View`
   flex-direction: row;
   width: 100%;
 `;
+const IconContainer = styled.View`
+  margin-left: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? 0 : theme.margin * 2}px;
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? theme.margin * 2 : 0}px;
+`;
 const ICON_SIZE = 24;
 
 export const Explaination = (props: { step: number; defaultText: string }) => {
@@ -42,12 +48,14 @@ export const Explaination = (props: { step: number; defaultText: string }) => {
       <TriangleContainer>
         <Triangle />
       </TriangleContainer>
-      <Icon
-        name="info"
-        width={ICON_SIZE}
-        height={ICON_SIZE}
-        fill={theme.colors.blue}
-      />
+      <IconContainer isRTL={isRTL}>
+        <Icon
+          name="info"
+          width={ICON_SIZE}
+          height={ICON_SIZE}
+          fill={theme.colors.blue}
+        />
+      </IconContainer>
       <StyledText isRTL={isRTL}>
         {t("Onboarding.help_" + props.step, props.defaultText)}
       </StyledText>

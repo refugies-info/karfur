@@ -388,13 +388,13 @@ exports[`Filter age should render correctly when age selected 1`] = `
             "paddingLeft": 16,
             "paddingRight": 16,
             "paddingTop": 16,
-            "shadowColor": "rgba(33, 33, 33, 0.24)",
+            "shadowColor": "black",
             "shadowOffset": Object {
-              "height": 8,
+              "height": 0,
               "width": 0,
             },
             "shadowOpacity": 1,
-            "shadowRadius": 16,
+            "shadowRadius": 0,
           }
         }
         testID="test-filter-0 à 17 ans"
@@ -525,7 +525,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
             "shadowRadius": 16,
           }
         }
-        testID="test-filter-Plus de 26 ans"
+        testID="test-filter-26 ans et plus"
       >
         <Text
           isSelected={false}
@@ -541,7 +541,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
             ]
           }
         >
-          Plus de 26 ans
+          26 ans et plus
         </Text>
         <View
           style={
@@ -569,10 +569,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
               "backgroundColor": "#FFFFFF",
               "borderRadius": 8,
               "display": "flex",
-              "paddingBottom": 16,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 16,
+              "paddingVertical": 16,
               "width": "100%",
             },
           ]
@@ -595,77 +592,89 @@ exports[`Filter age should render correctly when age selected 1`] = `
           <react-native-svg />
         </View>
         <View
+          isRTL={false}
           style={
-            Object {
-              "transform": Array [
-                Object {
-                  "scale": 1,
-                },
-              ],
-            }
+            Array [
+              Object {
+                "marginLeft": 16,
+                "marginRight": 0,
+              },
+            ]
           }
         >
-          <RNSVGSvgView
-            align="xMidYMid"
-            bbHeight={24}
-            bbWidth={24}
-            fill="#2D9CDB"
-            focusable={false}
-            height={24}
-            meetOrSlice={0}
-            minX={0}
-            minY={0}
+          <View
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                  "borderWidth": 0,
-                },
-                Object {
-                  "flex": 0,
-                  "height": 24,
-                  "width": 24,
-                },
-              ]
+              Object {
+                "transform": Array [
+                  Object {
+                    "scale": 1,
+                  },
+                ],
+              }
             }
-            vbHeight={24}
-            vbWidth={24}
-            width={24}
           >
-            <RNSVGGroup
-              fill={4281179355}
-              propList={
+            <RNSVGSvgView
+              align="xMidYMid"
+              bbHeight={24}
+              bbWidth={24}
+              fill="#2D9CDB"
+              focusable={false}
+              height={24}
+              meetOrSlice={0}
+              minX={0}
+              minY={0}
+              style={
                 Array [
-                  "fill",
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                  Object {
+                    "flex": 0,
+                    "height": 24,
+                    "width": 24,
+                  },
                 ]
               }
+              vbHeight={24}
+              vbWidth={24}
+              width={24}
             >
-              <RNSVGGroup>
+              <RNSVGGroup
+                fill={4281179355}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              >
                 <RNSVGGroup>
-                  <RNSVGRect
-                    height="24"
-                    matrix={
-                      Array [
-                        -1,
-                        1.2246467991473532e-16,
-                        -1.2246467991473532e-16,
-                        -1,
-                        24,
-                        24,
-                      ]
-                    }
-                    opacity={0}
-                    width="24"
-                    x={0}
-                    y={0}
-                  />
-                  <RNSVGPath
-                    d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
-                  />
+                  <RNSVGGroup>
+                    <RNSVGRect
+                      height="24"
+                      matrix={
+                        Array [
+                          -1,
+                          1.2246467991473532e-16,
+                          -1.2246467991473532e-16,
+                          -1,
+                          24,
+                          24,
+                        ]
+                      }
+                      opacity={0}
+                      width="24"
+                      x={0}
+                      y={0}
+                    />
+                    <RNSVGPath
+                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
+                    />
+                  </RNSVGGroup>
                 </RNSVGGroup>
               </RNSVGGroup>
-            </RNSVGGroup>
-          </RNSVGSvgView>
+            </RNSVGSvgView>
+          </View>
         </View>
         <Text
           isRTL={false}
@@ -678,7 +687,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 "fontSize": 13,
                 "lineHeight": 16,
                 "marginLeft": 8,
-                "marginRight": 0,
+                "marginRight": 16,
                 "textAlign": "left",
               },
             ]
@@ -1451,7 +1460,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             "shadowRadius": 16,
           }
         }
-        testID="test-filter-Plus de 26 ans"
+        testID="test-filter-26 ans et plus"
       >
         <Text
           isSelected={false}
@@ -1467,7 +1476,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             ]
           }
         >
-          Plus de 26 ans
+          26 ans et plus
         </Text>
         <View
           style={
@@ -1495,10 +1504,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               "backgroundColor": "#FFFFFF",
               "borderRadius": 8,
               "display": "flex",
-              "paddingBottom": 16,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 16,
+              "paddingVertical": 16,
               "width": "100%",
             },
           ]
@@ -1521,77 +1527,89 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           <react-native-svg />
         </View>
         <View
+          isRTL={false}
           style={
-            Object {
-              "transform": Array [
-                Object {
-                  "scale": 1,
-                },
-              ],
-            }
+            Array [
+              Object {
+                "marginLeft": 16,
+                "marginRight": 0,
+              },
+            ]
           }
         >
-          <RNSVGSvgView
-            align="xMidYMid"
-            bbHeight={24}
-            bbWidth={24}
-            fill="#2D9CDB"
-            focusable={false}
-            height={24}
-            meetOrSlice={0}
-            minX={0}
-            minY={0}
+          <View
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                  "borderWidth": 0,
-                },
-                Object {
-                  "flex": 0,
-                  "height": 24,
-                  "width": 24,
-                },
-              ]
+              Object {
+                "transform": Array [
+                  Object {
+                    "scale": 1,
+                  },
+                ],
+              }
             }
-            vbHeight={24}
-            vbWidth={24}
-            width={24}
           >
-            <RNSVGGroup
-              fill={4281179355}
-              propList={
+            <RNSVGSvgView
+              align="xMidYMid"
+              bbHeight={24}
+              bbWidth={24}
+              fill="#2D9CDB"
+              focusable={false}
+              height={24}
+              meetOrSlice={0}
+              minX={0}
+              minY={0}
+              style={
                 Array [
-                  "fill",
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                  Object {
+                    "flex": 0,
+                    "height": 24,
+                    "width": 24,
+                  },
                 ]
               }
+              vbHeight={24}
+              vbWidth={24}
+              width={24}
             >
-              <RNSVGGroup>
+              <RNSVGGroup
+                fill={4281179355}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              >
                 <RNSVGGroup>
-                  <RNSVGRect
-                    height="24"
-                    matrix={
-                      Array [
-                        -1,
-                        1.2246467991473532e-16,
-                        -1.2246467991473532e-16,
-                        -1,
-                        24,
-                        24,
-                      ]
-                    }
-                    opacity={0}
-                    width="24"
-                    x={0}
-                    y={0}
-                  />
-                  <RNSVGPath
-                    d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
-                  />
+                  <RNSVGGroup>
+                    <RNSVGRect
+                      height="24"
+                      matrix={
+                        Array [
+                          -1,
+                          1.2246467991473532e-16,
+                          -1.2246467991473532e-16,
+                          -1,
+                          24,
+                          24,
+                        ]
+                      }
+                      opacity={0}
+                      width="24"
+                      x={0}
+                      y={0}
+                    />
+                    <RNSVGPath
+                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
+                    />
+                  </RNSVGGroup>
                 </RNSVGGroup>
               </RNSVGGroup>
-            </RNSVGGroup>
-          </RNSVGSvgView>
+            </RNSVGSvgView>
+          </View>
         </View>
         <Text
           isRTL={false}
@@ -1604,7 +1622,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 "fontSize": 13,
                 "lineHeight": 16,
                 "marginLeft": 8,
-                "marginRight": 0,
+                "marginRight": 16,
                 "textAlign": "left",
               },
             ]
@@ -2368,16 +2386,16 @@ exports[`Filter age should select age when click on it 1`] = `
             "paddingLeft": 16,
             "paddingRight": 16,
             "paddingTop": 16,
-            "shadowColor": "rgba(33, 33, 33, 0.24)",
+            "shadowColor": "black",
             "shadowOffset": Object {
-              "height": 8,
+              "height": 0,
               "width": 0,
             },
             "shadowOpacity": 1,
-            "shadowRadius": 16,
+            "shadowRadius": 0,
           }
         }
-        testID="test-filter-Plus de 26 ans"
+        testID="test-filter-26 ans et plus"
       >
         <Text
           isSelected={true}
@@ -2393,7 +2411,7 @@ exports[`Filter age should select age when click on it 1`] = `
             ]
           }
         >
-          Plus de 26 ans
+          26 ans et plus
         </Text>
         <View
           style={
@@ -2421,10 +2439,7 @@ exports[`Filter age should select age when click on it 1`] = `
               "backgroundColor": "#FFFFFF",
               "borderRadius": 8,
               "display": "flex",
-              "paddingBottom": 16,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 16,
+              "paddingVertical": 16,
               "width": "100%",
             },
           ]
@@ -2447,77 +2462,89 @@ exports[`Filter age should select age when click on it 1`] = `
           <react-native-svg />
         </View>
         <View
+          isRTL={false}
           style={
-            Object {
-              "transform": Array [
-                Object {
-                  "scale": 1,
-                },
-              ],
-            }
+            Array [
+              Object {
+                "marginLeft": 16,
+                "marginRight": 0,
+              },
+            ]
           }
         >
-          <RNSVGSvgView
-            align="xMidYMid"
-            bbHeight={24}
-            bbWidth={24}
-            fill="#2D9CDB"
-            focusable={false}
-            height={24}
-            meetOrSlice={0}
-            minX={0}
-            minY={0}
+          <View
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                  "borderWidth": 0,
-                },
-                Object {
-                  "flex": 0,
-                  "height": 24,
-                  "width": 24,
-                },
-              ]
+              Object {
+                "transform": Array [
+                  Object {
+                    "scale": 1,
+                  },
+                ],
+              }
             }
-            vbHeight={24}
-            vbWidth={24}
-            width={24}
           >
-            <RNSVGGroup
-              fill={4281179355}
-              propList={
+            <RNSVGSvgView
+              align="xMidYMid"
+              bbHeight={24}
+              bbWidth={24}
+              fill="#2D9CDB"
+              focusable={false}
+              height={24}
+              meetOrSlice={0}
+              minX={0}
+              minY={0}
+              style={
                 Array [
-                  "fill",
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                  Object {
+                    "flex": 0,
+                    "height": 24,
+                    "width": 24,
+                  },
                 ]
               }
+              vbHeight={24}
+              vbWidth={24}
+              width={24}
             >
-              <RNSVGGroup>
+              <RNSVGGroup
+                fill={4281179355}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              >
                 <RNSVGGroup>
-                  <RNSVGRect
-                    height="24"
-                    matrix={
-                      Array [
-                        -1,
-                        1.2246467991473532e-16,
-                        -1.2246467991473532e-16,
-                        -1,
-                        24,
-                        24,
-                      ]
-                    }
-                    opacity={0}
-                    width="24"
-                    x={0}
-                    y={0}
-                  />
-                  <RNSVGPath
-                    d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
-                  />
+                  <RNSVGGroup>
+                    <RNSVGRect
+                      height="24"
+                      matrix={
+                        Array [
+                          -1,
+                          1.2246467991473532e-16,
+                          -1.2246467991473532e-16,
+                          -1,
+                          24,
+                          24,
+                        ]
+                      }
+                      opacity={0}
+                      width="24"
+                      x={0}
+                      y={0}
+                    />
+                    <RNSVGPath
+                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
+                    />
+                  </RNSVGGroup>
                 </RNSVGGroup>
               </RNSVGGroup>
-            </RNSVGGroup>
-          </RNSVGSvgView>
+            </RNSVGSvgView>
+          </View>
         </View>
         <Text
           isRTL={false}
@@ -2530,7 +2557,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 "fontSize": 13,
                 "lineHeight": 16,
                 "marginLeft": 8,
-                "marginRight": 0,
+                "marginRight": 16,
                 "textAlign": "left",
               },
             ]
