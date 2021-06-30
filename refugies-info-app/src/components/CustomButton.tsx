@@ -7,7 +7,8 @@ import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { Icon } from "react-native-eva-icons";
 
 const ButtonContainer = styled(RTLTouchableOpacity)`
-  background-color: ${theme.colors.white};
+  background-color: ${(props: { backgroundColor: string }) =>
+    props.backgroundColor || theme.colors.white};
   justify-content: center;
   padding: ${theme.radius * 3}px;
   border-radius: ${theme.radius * 2}px;
@@ -41,6 +42,7 @@ interface Props {
   iconName?: string;
   defaultText: string;
   isTextNotBold?: boolean;
+  backgroundColor?: string;
 }
 
 const ICON_SIZE = 24;
@@ -48,7 +50,10 @@ const ICON_SIZE = 24;
 export const CustomButton = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
   return (
-    <ButtonContainer onPress={props.onPress}>
+    <ButtonContainer
+      onPress={props.onPress}
+      backgroundColor={props.backgroundColor}
+    >
       {props.isTextNotBold ? (
         <ColoredTextNormal textColor={props.textColor} isRTL={isRTL}>
           {t(props.i18nKey, props.defaultText)}

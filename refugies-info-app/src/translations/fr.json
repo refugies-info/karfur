@@ -76,6 +76,7 @@
   "Passer l'étape": "Passer l'étape",
   "Valider": "Valider",
   "Fermer": "Fermer",
+  "Annuler": "Annuler",
   "Toute la France": "Toute la France",
   "Pour tout âge": "Pour tout âge",
   "Pour tout niveau de français": "Pour tout niveau de français",
@@ -90,6 +91,8 @@
     "Paramètres": "Paramètres",
     "Français": "Français",
     "Tous les niveaux": "Tous les niveaux",
-    "Tous les âges": "Tous les âges"
+    "Tous les âges": "Tous les âges",
+    "reinit_app2": "Es-tu sûr de vouloir réinitialiser ton application ?",
+    "delete_data": "Es-tu sûr de vouloir supprimer les données de ton profil ?"
   }
 }

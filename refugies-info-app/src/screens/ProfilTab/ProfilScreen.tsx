@@ -25,6 +25,7 @@ import {
 import { getSelectedLanguageFromI18nCode } from "../../libs/language";
 import { ProfilParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
+import { ConfirmationModal } from "../../components/ConfirmationModal";
 
 const DeleteDataContainer = styled.TouchableOpacity`
   align-items: center;
@@ -55,6 +56,18 @@ const ProfilButtonsContainer = styled.View`
 export const ProfilScreen = ({
   navigation,
 }: StackScreenProps<ProfilParamList, "ProfilScreen">) => {
+  const [isDeleteDataModalVisible, setDeleteDataModalVisible] = React.useState(
+    false
+  );
+  const toggleDeleteDataModal = () =>
+    setDeleteDataModalVisible(!isDeleteDataModalVisible);
+
+  const [isReinitAppModalVisible, setReinitAppModalVisible] = React.useState(
+    false
+  );
+  const toggleReinitAppModal = () =>
+    setReinitAppModalVisible(!isReinitAppModalVisible);
+
   const { t, isRTL } = useTranslationWithRTL();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
 
@@ -133,7 +146,7 @@ export const ProfilScreen = ({
           />
         </ProfilButtonsContainer>
 
-        <DeleteDataContainer onPress={deleteUserData}>
+        <DeleteDataContainer onPress={toggleDeleteDataModal}>
           <DeleteDataText>
             {t("Profil.supprimer_data", "Supprimer les données de mon profil")}
           </DeleteDataText>
@@ -148,12 +161,30 @@ export const ProfilScreen = ({
             isRTL={isRTL}
           />
         </ProfilButtonsContainer>
-        <DeleteDataContainer onPress={reinitializeApp}>
+        <DeleteDataContainer onPress={toggleReinitAppModal}>
           <DeleteDataText>
             {t("Profil.reinit_app", "Réinitialiser mon application")}
           </DeleteDataText>
         </DeleteDataContainer>
       </ContentContainer>
+      <ConfirmationModal
+        isModalVisible={isDeleteDataModalVisible}
+        toggleModal={toggleDeleteDataModal}
+        text={t(
+          "Profil.delete_data",
+          "Es-tu sûr de vouloir supprimer les données de ton profil ?"
+        )}
+        onValidate={deleteUserData}
+      />
+      <ConfirmationModal
+        isModalVisible={isReinitAppModalVisible}
+        toggleModal={toggleReinitAppModal}
+        text={t(
+          "Profil.reinit_app2",
+          "Es-tu sûr de vouloir réinitialiser ton application ?"
+        )}
+        onValidate={reinitializeApp}
+      />
     </WrapperWithHeaderAndLanguageModal>
   );
 };
