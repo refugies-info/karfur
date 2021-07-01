@@ -92,25 +92,9 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
 
   // we do not show our temporary structure in production
 
-  // const groupedStructureByLetter =
-  //   filterStructures && filterStructures.length > 0
-  //     ? _.groupBy(filterStructures, (structure) =>
-  //         structure.nom ? structure.nom[0].toLowerCase() : "no name"
-  //       )
-  //     : [];
-
-  //const letters = Object.keys(groupedStructureByLetter).sort();
-
   if (isLoading || !structure) {
     return (
       <MainContainer>
-        {/* <Header
-          letters={letters}
-          // onLetterClick={onLetterClick}
-          stopScroll={true}
-          t={props.t}
-        /> */}
-
         <Content className="annuaire-detail">
           <LeftAnnuaireDetail
             structure={structure}
@@ -130,13 +114,6 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
   }
   return (
     <MainContainer>
-      {/* <Header
-        letters={letters}
-        // onLetterClick={onLetterClick}
-        stopScroll={true}
-        t={props.t}
-      /> */}
-
       <Content className="annuaire-detail">
         <LeftAnnuaireDetail
           structure={structure}
