@@ -59,12 +59,13 @@ export const ProfilScreen = ({
   const [isDeleteDataModalVisible, setDeleteDataModalVisible] = React.useState(
     false
   );
-  const toggleDeleteDataModal = () =>
-    setDeleteDataModalVisible(!isDeleteDataModalVisible);
-
   const [isReinitAppModalVisible, setReinitAppModalVisible] = React.useState(
     false
   );
+
+  const toggleDeleteDataModal = () =>
+    setDeleteDataModalVisible(!isDeleteDataModalVisible);
+
   const toggleReinitAppModal = () =>
     setReinitAppModalVisible(!isReinitAppModalVisible);
 
@@ -88,9 +89,9 @@ export const ProfilScreen = ({
   };
 
   const reinitializeApp = () => {
+    dispatch(removeSelectedLanguageActionCreator());
     deleteUserData();
     dispatch(removeHasUserSeenOnboardingActionCreator());
-    dispatch(removeSelectedLanguageActionCreator());
   };
 
   return (
