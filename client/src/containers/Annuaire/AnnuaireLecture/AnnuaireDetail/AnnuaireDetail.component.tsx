@@ -101,6 +101,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
             leftPartHeight={leftPartHeight}
             t={props.t}
             isLoading={isLoading}
+            history={props.history}
           />
           <MiddleAnnuaireDetail
             structure={structure}
@@ -120,6 +121,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
           leftPartHeight={leftPartHeight}
           t={props.t}
           isLoading={isLoading}
+          history={props.history}
         />
 
         <MiddleAnnuaireDetail
