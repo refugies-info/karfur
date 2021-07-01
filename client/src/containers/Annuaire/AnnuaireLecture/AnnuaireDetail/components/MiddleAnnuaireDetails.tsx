@@ -65,7 +65,7 @@ const BottomContainer = styled.div`
   color: #e5e5e5;
 `;
 const RedContainer = styled.div`
-  background: #ffcecb;
+  background: ${colors.grey2};
   border-radius: 12px;
   padding: 16px;
   width: fit-content;
