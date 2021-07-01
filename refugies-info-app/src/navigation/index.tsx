@@ -25,7 +25,7 @@ import { ProfilScreen } from "../screens/ProfilTab/ProfilScreen";
 import { LangueProfilScreen } from "../screens/ProfilTab/LangueProfilScreen";
 import { AgeProfilScreen } from "../screens/ProfilTab/AgeProfilScreen";
 import { CityProfilScreen } from "../screens/ProfilTab/CityProfilScreen";
-import { FrenchLevelProfilScreen } from "../screens/ProfilTab/FrenchLevelScreen";
+import { FrenchLevelProfilScreen } from "../screens/ProfilTab/FrenchLevelProfilScreen";
 
 // A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal

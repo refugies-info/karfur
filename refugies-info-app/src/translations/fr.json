@@ -93,6 +93,8 @@
     "Tous les niveaux": "Tous les niveaux",
     "Tous les âges": "Tous les âges",
     "reinit_app2": "Es-tu sûr de vouloir réinitialiser ton application ?",
-    "delete_data": "Es-tu sûr de vouloir supprimer les données de ton profil ?"
+    "delete_data": "Es-tu sûr de vouloir supprimer les données de ton profil ?",
+    "Ne pas filtrer selon mon niveau de français": "Ne pas filtrer selon mon niveau de français",
+    "Ne pas filtrer selon mon âge": "Ne pas filtrer selon mon âge"
   }
 }

@@ -53,3 +53,8 @@ export interface GoogleAPISuggestion {
   place_id: string;
   description: string;
 }
+
+export interface FrenchLevel {
+  name: string;
+  cecrCorrespondency?: string[];
+}

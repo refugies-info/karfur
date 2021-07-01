@@ -18,11 +18,11 @@ import {
   removeUserAgeActionCreator,
 } from "../../services/redux/User/user.actions";
 
-export const Title = styled(TextNormalBold)`
+const Title = styled(TextNormalBold)`
   margin-bottom: ${theme.margin * 2}px;
 `;
 
-export const ContentContainer = styled.View`
+const ContentContainer = styled.View`
   padding: ${theme.margin * 3}px;
   display: flex;
   flex-direction: column;

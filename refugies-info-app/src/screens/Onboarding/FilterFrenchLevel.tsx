@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ScrollView } from "react-native";
-import { OnboardingParamList } from "../../../types";
+import { OnboardingParamList, FrenchLevel } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
@@ -32,11 +32,6 @@ const BottomContainer = styled.View`
   padding-horizontal: ${theme.margin * 3}px;
   margin-top: ${theme.margin}px;
 `;
-
-interface FrenchLevel {
-  name: string;
-  cecrCorrespondency?: string[];
-}
 
 export const FilterFrenchLevel = ({
   navigation,
