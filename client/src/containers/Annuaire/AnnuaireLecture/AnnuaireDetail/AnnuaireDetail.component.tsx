@@ -9,7 +9,7 @@ import { selectedStructureSelector } from "../../../../services/SelectedStructur
 import { LeftAnnuaireDetail } from "./components/LeftAnnuaireDetail";
 import { MiddleAnnuaireDetail } from "./components/MiddleAnnuaireDetails";
 import { RightAnnuaireDetails } from "./components/RightAnnuaireDetails";
-import { Header } from "../components/Header";
+
 import { activeStructuresSelector } from "../../../../services/ActiveStructures/activeStructures.selector";
 import _ from "lodash";
 import { fetchActiveStructuresActionCreator } from "../../../../services/ActiveStructures/activeStructures.actions";
@@ -25,7 +25,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-  margin-top: 80px;
+
   height: 100hv;
 `;
 declare global {
@@ -38,6 +38,7 @@ declare global {
 const MainContainer = styled.div`
   display: flex;
   flex: 1;
+  margin-top: -75px;
 `;
 
 function useWindowSize() {
@@ -90,31 +91,25 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
   }, [dispatch, structureId, locale]);
 
   // we do not show our temporary structure in production
-  const filterStructures = structures
-    ? structures.filter(
-        // @ts-ignore
-        (structure) => structure._id !== "5f69cb9c0aab6900460c0f3f"
-      )
-    : [];
 
-  const groupedStructureByLetter =
-    filterStructures && filterStructures.length > 0
-      ? _.groupBy(filterStructures, (structure) =>
-          structure.nom ? structure.nom[0].toLowerCase() : "no name"
-        )
-      : [];
+  // const groupedStructureByLetter =
+  //   filterStructures && filterStructures.length > 0
+  //     ? _.groupBy(filterStructures, (structure) =>
+  //         structure.nom ? structure.nom[0].toLowerCase() : "no name"
+  //       )
+  //     : [];
 
-  const letters = Object.keys(groupedStructureByLetter).sort();
+  //const letters = Object.keys(groupedStructureByLetter).sort();
 
   if (isLoading || !structure) {
     return (
       <MainContainer>
-        <Header
+        {/* <Header
           letters={letters}
           // onLetterClick={onLetterClick}
           stopScroll={true}
           t={props.t}
-        />
+        /> */}
 
         <Content className="annuaire-detail">
           <LeftAnnuaireDetail
@@ -135,12 +130,12 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
   }
   return (
     <MainContainer>
-      <Header
+      {/* <Header
         letters={letters}
         // onLetterClick={onLetterClick}
         stopScroll={true}
         t={props.t}
-      />
+      /> */}
 
       <Content className="annuaire-detail">
         <LeftAnnuaireDetail

@@ -9,11 +9,12 @@ import placeholder from "../../../../../assets/annuaire/placeholder_logo_annuair
 const LeftContainer = styled.div`
   width: 360px;
   background-image: url(${img});
+  background-repeat: no-repeat;
   padding: 32px;
   display: flex;
+  padding-top: 200px;
   flex-direction: column;
   justify-content: space-between;
-  height: ${(props) => props.height}px;
 `;
 
 const LogoContainer = styled.div`

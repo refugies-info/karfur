@@ -18,6 +18,7 @@ const Title = styled.div`
   font-size: 40px;
   line-height: 51px;
   margin-right: 8px;
+  padding-top: 71px;
 `;
 
 const TitleContainer = styled.div`

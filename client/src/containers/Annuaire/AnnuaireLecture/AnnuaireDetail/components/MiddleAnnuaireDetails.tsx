@@ -18,7 +18,7 @@ interface Props {
 
 const MiddleContainer = styled.div`
   padding: 32px;
-  height: ${(props) => props.height}px;
+  padding-top: 100px;
   overflow: scroll;
   display: flex;
   flex: 1;
