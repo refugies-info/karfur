@@ -244,6 +244,7 @@ export const FilterCityComponent = (props: Props) => {
     return navigateToNextScreen();
   };
 
+  const isOnValidateDisabled = userLocation.city === selectedCity;
   return (
     <ContentContainer>
       <View>
@@ -313,9 +314,18 @@ export const FilterCityComponent = (props: Props) => {
               <CustomButton
                 i18nKey={"Valider"}
                 defaultText="Valider"
-                textColor={theme.colors.white}
-                onPress={onValidate}
-                backgroundColor={theme.colors.darkBlue}
+                textColor={
+                  isOnValidateDisabled ? theme.colors.black : theme.colors.white
+                }
+                onPress={() => {
+                  if (isOnValidateDisabled) return;
+                  onValidate();
+                }}
+                backgroundColor={
+                  isOnValidateDisabled
+                    ? theme.colors.grey60
+                    : theme.colors.darkBlue
+                }
                 iconName="arrow-forward-outline"
               />
             </ValidateButtonContainer>

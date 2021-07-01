@@ -10,13 +10,14 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 const StyledInput = styled.TextInput`
  height:56px;
  width 100%;
- border: 1px solid ${theme.colors.darkGrey};
  border-radius:${theme.radius * 2}px;
  padding:${theme.margin * 2}px;
  background-color : ${theme.colors.white};
  text-align :${(props: { isRTL: boolean }) => (props.isRTL ? "right" : "left")};
  border :${(props: { value: string; isFocused: boolean }) =>
-   props.value || props.isFocused ? `2px solid ${theme.colors.blue}` : "none"};
+   props.value || props.isFocused
+     ? `2px solid ${theme.colors.blue}`
+     : `1px solid ${theme.colors.darkGrey}`};
 `;
 
 const SuggestionsContainer = styled.ScrollView`

@@ -1254,10 +1254,10 @@ exports[`Filter city should render correctly when no city 1`] = `
               Array [
                 Object {
                   "backgroundColor": "#FFFFFF",
-                  "borderColor": "black",
+                  "borderColor": "#5E5E5E",
                   "borderRadius": 12,
                   "borderStyle": "solid",
-                  "borderWidth": 0,
+                  "borderWidth": 1,
                   "height": 56,
                   "paddingBottom": 16,
                   "paddingLeft": 16,
