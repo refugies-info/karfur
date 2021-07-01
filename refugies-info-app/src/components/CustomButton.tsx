@@ -15,7 +15,8 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
   align-items: center;
   width: 100%;
   height: 56px;
-  box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
+  box-shadow: ${(props: { isDisabled: boolean }) =>
+    props.isDisabled ? "none" : "0px 8px 16px rgba(33, 33, 33, 0.24)"};
   elevation: 1;
 `;
 
@@ -43,6 +44,7 @@ interface Props {
   defaultText: string;
   isTextNotBold?: boolean;
   backgroundColor?: string;
+  isDisabled?: boolean;
 }
 
 const ICON_SIZE = 24;
@@ -53,6 +55,7 @@ export const CustomButton = (props: Props) => {
     <ButtonContainer
       onPress={props.onPress}
       backgroundColor={props.backgroundColor}
+      isDisabled={props.isDisabled}
     >
       {props.isTextNotBold ? (
         <ColoredTextNormal textColor={props.textColor} isRTL={isRTL}>

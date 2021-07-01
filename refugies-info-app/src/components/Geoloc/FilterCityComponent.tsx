@@ -327,6 +327,7 @@ export const FilterCityComponent = (props: Props) => {
                     : theme.colors.darkBlue
                 }
                 iconName="arrow-forward-outline"
+                isDisabled={isOnValidateDisabled}
               />
             </ValidateButtonContainer>
 
