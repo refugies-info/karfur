@@ -9,7 +9,6 @@ import "./RightAnnuaireDetails.scss";
 const Container = styled.div`
   width: 300px;
   overflow: scroll;
-  height: ${(props) => props.height}px;
   padding: 32px;
 `;
 

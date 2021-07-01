@@ -47,14 +47,14 @@ const SubTitle = styled.div`
 `;
 const LineContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 `;
 const WhiteContainer = styled.div`
   background: #ffffff;
   border-radius: 12px;
   padding: 16px;
   width: fit-content;
-  margin-right: 8px;
+  margin-bottom: 8px;
 `;
 
 // on firefox behaviour is strange with overflow, we have to add an empty container to have margin
@@ -85,6 +85,11 @@ const Description = styled.div`
   line-height: 20px;
 `;
 
+const InfoContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 const NoDescription = styled.div`
   font-weight: normal;
   font-size: 16px;
@@ -100,6 +105,10 @@ const weekDays = [
   "Samedi",
   "Dimanche",
 ];
+
+const InfoColumnContainer = styled.div`
+  margin-right: 32px;
+`;
 
 const ActivityContainer = styled.div`
   display: flex;
@@ -194,102 +203,116 @@ export const MiddleAnnuaireDetail = (props: Props) => {
             )}
           </NoDescription>
         )}
-        <SubTitle>
-          {props.t("Annuaire.Adresse email", "Adresse email")}
-        </SubTitle>
-        <LineContainer>
-          {structure.mailsPublic &&
-            structure.mailsPublic.map((mail) => (
-              <Mail mail={mail} key={mail} />
-            ))}
-          {(!structure.mailsPublic || structure.mailsPublic.length === 0) && (
-            <Placeholder
-              iconName="email-outline"
-              text="Aucune adresse email renseignée"
-              t={props.t}
-              i18nKey="noemail"
-            />
-          )}
-        </LineContainer>
-        <SubTitle>
-          {props.t("Annuaire.Numéro de téléphone", "Numéro de téléphone")}
-        </SubTitle>
-        <LineContainer>
-          {structure.phonesPublic &&
-            structure.phonesPublic.map((phone) => (
-              <PhoneNumber phone={phone} key={phone} />
-            ))}
-          {(!structure.phonesPublic || structure.phonesPublic.length === 0) && (
-            <Placeholder
-              iconName="phone-call-outline"
-              text="Aucun numéro de téléphone renseigné"
-              t={props.t}
-              i18nKey="noPhone"
-            />
-          )}
-        </LineContainer>
-        <SubTitle>
-          {props.t("Annuaire.Adresse postale", "Adresse postale")}
-        </SubTitle>
-        {structure.adressPublic && <Adress adress={structure.adressPublic} />}
-        {!structure.adressPublic && (
-          <Placeholder
-            iconName="pin-outline"
-            text="Aucune adresse postale renseignée"
-            t={props.t}
-            i18nKey="noAdress"
-          />
-        )}
-        <SubTitle>
-          {props.t("Annuaire.Horaires d'accueil", "Horaires d'accueil")}
-        </SubTitle>
-        {!structure.openingHours && (
-          <Placeholder
-            iconName="alert-circle-outline"
-            text="Horaires non-renseignées"
-            i18nKey="noOpeningHours"
-            t={props.t}
-          />
-        )}
-        {structure.openingHours && structure.openingHours.precisions && (
-          <div style={{ marginBottom: "8px" }}>
-            <HoursPrecisions text={structure.openingHours.precisions} />
-          </div>
-        )}
-        {structure.openingHours && structure.openingHours.noPublic && (
-          <HoursPrecisions text={"Nous ne recevons pas de public"} />
-        )}
-        {structure.openingHours &&
-          !structure.openingHours.noPublic &&
-          weekDays.map((day) => (
-            <DayHoursPrecisions
-              day={day}
-              openingHours={structure.openingHours}
-              key={day}
-              t={props.t}
-            />
-          ))}
-        <SubTitle>
-          {props.t("Annuaire.Départements d'action", "Départements d'action")}
-        </SubTitle>
-        <LineContainer>
-          {structure.departments &&
-            structure.departments.map((departement) => (
-              <Departement
-                key={departement}
-                departement={departement}
+        <InfoContainer>
+          <InfoColumnContainer>
+            <SubTitle>
+              {props.t("Annuaire.Adresse email", "Adresse email")}
+            </SubTitle>
+            <LineContainer>
+              {structure.mailsPublic &&
+                structure.mailsPublic.map((mail) => (
+                  <Mail mail={mail} key={mail} />
+                ))}
+              {(!structure.mailsPublic ||
+                structure.mailsPublic.length === 0) && (
+                <Placeholder
+                  iconName="email-outline"
+                  text="Aucune adresse email renseignée"
+                  t={props.t}
+                  i18nKey="noemail"
+                />
+              )}
+            </LineContainer>
+            <SubTitle>
+              {props.t("Annuaire.Numéro de téléphone", "Numéro de téléphone")}
+            </SubTitle>
+            <LineContainer>
+              {structure.phonesPublic &&
+                structure.phonesPublic.map((phone) => (
+                  <PhoneNumber phone={phone} key={phone} />
+                ))}
+              {(!structure.phonesPublic ||
+                structure.phonesPublic.length === 0) && (
+                <Placeholder
+                  iconName="phone-call-outline"
+                  text="Aucun numéro de téléphone renseigné"
+                  t={props.t}
+                  i18nKey="noPhone"
+                />
+              )}
+            </LineContainer>
+            <SubTitle>
+              {props.t("Annuaire.Adresse postale", "Adresse postale")}
+            </SubTitle>
+            {structure.adressPublic && (
+              <Adress adress={structure.adressPublic} />
+            )}
+            {!structure.adressPublic && (
+              <Placeholder
+                iconName="pin-outline"
+                text="Aucune adresse postale renseignée"
+                t={props.t}
+                i18nKey="noAdress"
+              />
+            )}
+            <SubTitle>
+              {props.t(
+                "Annuaire.Départements d'action",
+                "Départements d'action"
+              )}
+            </SubTitle>
+            <LineContainer>
+              {structure.departments &&
+                structure.departments.map((departement) => (
+                  <Departement
+                    key={departement}
+                    departement={departement}
+                    t={props.t}
+                  />
+                ))}
+              {(!structure.departments ||
+                structure.departments.length === 0) && (
+                <Placeholder
+                  iconName="hash"
+                  text="Aucun département renseigné"
+                  t={props.t}
+                  i18nKey="noDepartement"
+                />
+              )}
+            </LineContainer>
+          </InfoColumnContainer>
+          <InfoColumnContainer>
+            <SubTitle>
+              {props.t("Annuaire.Horaires d'accueil", "Horaires d'accueil")}
+            </SubTitle>
+            {!structure.openingHours && (
+              <Placeholder
+                iconName="alert-circle-outline"
+                text="Horaires non-renseignées"
+                i18nKey="noOpeningHours"
                 t={props.t}
               />
-            ))}
-          {(!structure.departments || structure.departments.length === 0) && (
-            <Placeholder
-              iconName="hash"
-              text="Aucun département renseigné"
-              t={props.t}
-              i18nKey="noDepartement"
-            />
-          )}
-        </LineContainer>
+            )}
+            {structure.openingHours && structure.openingHours.precisions && (
+              <div style={{ marginBottom: "8px" }}>
+                <HoursPrecisions text={structure.openingHours.precisions} />
+              </div>
+            )}
+            {structure.openingHours && structure.openingHours.noPublic && (
+              <HoursPrecisions text={"Nous ne recevons pas de public"} />
+            )}
+            {structure.openingHours &&
+              !structure.openingHours.noPublic &&
+              weekDays.map((day) => (
+                <DayHoursPrecisions
+                  day={day}
+                  openingHours={structure.openingHours}
+                  key={day}
+                  t={props.t}
+                />
+              ))}
+          </InfoColumnContainer>
+        </InfoContainer>
         <div style={{ marginTop: "24px", marginBottom: "24px" }}>
           <Title>
             {props.t("Annuaire.Activités et services", "Activités et services")}
