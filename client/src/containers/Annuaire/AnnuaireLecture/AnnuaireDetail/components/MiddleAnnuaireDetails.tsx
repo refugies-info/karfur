@@ -10,14 +10,16 @@ import { NoActivity } from "./NoActivity";
 import Skeleton from "react-loading-skeleton";
 import { colors } from "../../../../../colors";
 import FButton from "components/FigmaUI/FButton/FButton";
+import { UserStructureMembre } from "../../../../../types/interface";
+import { ObjectId } from "mongodb";
 
 interface Props {
   structure: Structure | null;
   leftPartHeight: number;
   t: any;
   isLoading: boolean;
-  user: any;
-  members: any;
+  userId: ObjectId | "";
+  members: UserStructureMembre[];
 }
 
 const MiddleContainer = styled.div`
@@ -180,9 +182,7 @@ const getActivityDetails = (activity: string) => {
 };
 export const MiddleAnnuaireDetail = (props: Props) => {
   const structure = props.structure;
-  const isMember = props.members.find(
-    (el: { _id: any }) => el._id === props.user.userId
-  )
+  const isMember = props.members.find((el) => el._id === props.userId)
     ? true
     : false;
   if (!props.isLoading && structure) {

@@ -115,7 +115,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
             t={props.t}
             isLoading={isLoading}
             members={members}
-            user={user}
+            userId={user.userId}
           />
         </Content>
       </MainContainer>
@@ -138,7 +138,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
           t={props.t}
           isLoading={isLoading}
           members={members}
-          user={user}
+          userId={user.userId}
         />
         <RightAnnuaireDetails
           leftPartHeight={leftPartHeight}
