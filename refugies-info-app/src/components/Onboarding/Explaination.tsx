@@ -14,6 +14,7 @@ const MainContainer = styled(RTLView)`
   align-items: center;
   width: 100%;
   border-radius: ${theme.margin}px;
+  margin-top: 8px;
 `;
 
 const StyledText = styled(StyledTextVerySmall)`
