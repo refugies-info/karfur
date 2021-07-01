@@ -136,12 +136,13 @@ export const FilterCityComponent = (props: Props) => {
 
       if (!department) {
         setIsGeolocLoading(false);
-
         throw new Error("NO_CORRESPONDING_DEP");
       }
       setSelectedDepartment(department);
       setIsGeolocLoading(false);
+      return;
     }
+    throw new Error("ERREUR");
   };
 
   const onSelectSuggestion = async (suggestion: GoogleAPISuggestion) => {
@@ -191,6 +192,7 @@ export const FilterCityComponent = (props: Props) => {
               result.data.results[0].place_id
             );
             setIsGeolocLoading(false);
+            return;
           } catch (error) {
             setError(
               t(
@@ -200,6 +202,7 @@ export const FilterCityComponent = (props: Props) => {
             );
             resetData();
             setIsGeolocLoading(false);
+            return;
           }
         }
       }
@@ -244,7 +247,8 @@ export const FilterCityComponent = (props: Props) => {
     return navigateToNextScreen();
   };
 
-  const isOnValidateDisabled = userLocation.city === selectedCity;
+  const isOnValidateDisabled =
+    userLocation.city === selectedCity || (!userLocation.city && !selectedCity);
   return (
     <ContentContainer>
       <View>
