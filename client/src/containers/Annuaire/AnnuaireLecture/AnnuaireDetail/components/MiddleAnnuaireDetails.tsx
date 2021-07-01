@@ -181,6 +181,17 @@ export const MiddleAnnuaireDetail = (props: Props) => {
             </Title>
           )}
         </TitleContainer>
+        {structure.description && (
+          <Description>{structure.description}</Description>
+        )}
+        {!structure.description && (
+          <NoDescription>
+            {props.t(
+              "Annuaire.noDescription",
+              "Aucune description de la structure disponible."
+            )}
+          </NoDescription>
+        )}
         <SubTitle>
           {props.t("Annuaire.Adresse email", "Adresse email")}
         </SubTitle>
@@ -278,20 +289,6 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           )}
         </LineContainer>
         <div style={{ marginTop: "24px", marginBottom: "24px" }}>
-          <Title>{props.t("Annuaire.a propos", "À propos")}</Title>
-        </div>
-        {structure.description && (
-          <Description>{structure.description}</Description>
-        )}
-        {!structure.description && (
-          <NoDescription>
-            {props.t(
-              "Annuaire.noDescription",
-              "Aucune description de la structure disponible."
-            )}
-          </NoDescription>
-        )}
-        <div style={{ marginTop: "24px", marginBottom: "24px" }}>
           <Title>
             {props.t("Annuaire.Activités et services", "Activités et services")}
           </Title>
@@ -324,7 +321,6 @@ export const MiddleAnnuaireDetail = (props: Props) => {
             </>
           )}
         </ActivityContainer>
-
         <BottomContainer>{"s"}</BottomContainer>
       </MiddleContainer>
     );
