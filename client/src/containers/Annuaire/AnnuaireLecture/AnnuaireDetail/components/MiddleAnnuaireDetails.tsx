@@ -9,12 +9,15 @@ import { filtres } from "../../../../Dispositif/data";
 import { NoActivity } from "./NoActivity";
 import Skeleton from "react-loading-skeleton";
 import { colors } from "../../../../../colors";
+import FButton from "components/FigmaUI/FButton/FButton";
 
 interface Props {
   structure: Structure | null;
   leftPartHeight: number;
   t: any;
   isLoading: boolean;
+  user: any;
+  members: any;
 }
 
 const MiddleContainer = styled.div`
@@ -107,7 +110,7 @@ const weekDays = [
 ];
 
 const InfoColumnContainer = styled.div`
-  margin-right: 32px;
+  margin-right: 42px;
 `;
 
 const ActivityContainer = styled.div`
@@ -177,21 +180,34 @@ const getActivityDetails = (activity: string) => {
 };
 export const MiddleAnnuaireDetail = (props: Props) => {
   const structure = props.structure;
-
+  const isMember = props.members.find(
+    (el: { _id: any }) => el._id === props.user.userId
+  )
+    ? true
+    : false;
   if (!props.isLoading && structure) {
     return (
       <MiddleContainer height={props.leftPartHeight}>
-        <TitleContainer>
-          {!structure.acronyme && <Title>{structure.nom}</Title>}
-          {structure.acronyme && (
-            <Title>
-              {structure.nom}{" "}
-              <span style={{ color: "#828282" }}>
-                {"- " + structure.acronyme}
-              </span>{" "}
-            </Title>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <TitleContainer>
+            {!structure.acronyme && <Title>{structure.nom}</Title>}
+            {structure.acronyme && (
+              <Title>
+                {structure.nom}{" "}
+                <span style={{ color: "#828282" }}>
+                  {"- " + structure.acronyme}
+                </span>{" "}
+              </Title>
+            )}
+          </TitleContainer>
+          {isMember && (
+            <div style={{ height: "5Opx" }}>
+              <FButton type="dark" name="edit-outline">
+                Modifier la fiche
+              </FButton>
+            </div>
           )}
-        </TitleContainer>
+        </div>
         {structure.description && (
           <Description>{structure.description}</Description>
         )}

@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
 import { selectedStructureSelector } from "../../../../services/SelectedStructure/selectedStructure.selector";
+import { userStructureMembresSelector } from "../../../../services/UserStructure/userStructure.selectors";
+import { userSelector } from "../../../../services/User/user.selectors";
 import { LeftAnnuaireDetail } from "./components/LeftAnnuaireDetail";
 import { MiddleAnnuaireDetail } from "./components/MiddleAnnuaireDetails";
 import { RightAnnuaireDetails } from "./components/RightAnnuaireDetails";
@@ -61,6 +63,9 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
   );
 
   const structure = useSelector(selectedStructureSelector);
+  const members = useSelector(userStructureMembresSelector);
+  const user = useSelector(userSelector);
+
   const height = useWindowSize();
   const dispatch = useDispatch();
   // @ts-ignore
@@ -109,6 +114,8 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
             leftPartHeight={leftPartHeight}
             t={props.t}
             isLoading={isLoading}
+            members={members}
+            user={user}
           />
         </Content>
       </MainContainer>
@@ -130,6 +137,8 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
           leftPartHeight={leftPartHeight}
           t={props.t}
           isLoading={isLoading}
+          members={members}
+          user={user}
         />
         <RightAnnuaireDetails
           leftPartHeight={leftPartHeight}
