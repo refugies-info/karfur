@@ -3,6 +3,7 @@ import { Props } from "./FeedbackFooter.container";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
+import { colors } from "../../../../colors";
 
 const FeedbackContainer = styled.div`
   display: flex;
@@ -17,6 +18,18 @@ const ButtonContainer = styled.div`
 const TextContainer = styled.div`
   text-align: ${isMobile ? "center" : ""};
   margin-bottom: ${isMobile ? "16px" : ""};
+`;
+
+const CountButtonContainer = styled.div`
+  padding: 15px;
+  display: flex;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  font-weight: 700;
+  line-height:20px;
+  background-color:${(props) => (props.didThank ? colors.vert : colors.gris)}
+  color:${(props) => (props.didThank ? colors.blancSimple : colors.noir)};
 `;
 
 export interface PropsBeforeInjection {
@@ -45,20 +58,13 @@ export const FeedbackFooter = (props: Props) => {
         )}
       </TextContainer>
       <ButtonContainer>
-        <FButton
-          className={
-            didThank
-              ? " validate mr-8 mb-8 feedback-btn"
-              : "disabled mr-8 mb-8 feedback-btn"
-          }
-        >
-          <div style={{ color: didThank ? "" : "black" }}>
-            {didThank ? nbThanks + 1 : nbThanks}{" "}
-            <span role="img" aria-label="thanks">
-              🙏
-            </span>
-          </div>
-        </FButton>
+        <CountButtonContainer didThank={didThank}>
+          {didThank ? nbThanks + 1 : nbThanks}{" "}
+          <span role="img" aria-label="thanks" style={{ marginLeft: "5px" }}>
+            🙏
+          </span>
+        </CountButtonContainer>
+
         {!didThank && (
           <FButton
             disabled={didThank}

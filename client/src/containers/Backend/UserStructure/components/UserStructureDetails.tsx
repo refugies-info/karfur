@@ -73,9 +73,8 @@ export const UserStructureDetails = (props: Props) => {
   const toggleEditMemberModal = () =>
     setShowEditMemberModal(!showEditMemberModal);
 
-  const [selectedUser, setSelectedUser] = useState<null | UserStructureMembre>(
-    null
-  );
+  const [selectedUser, setSelectedUser] =
+    useState<null | UserStructureMembre>(null);
 
   const getSecureUrl = (picture: Picture | null) => {
     if (picture && picture.secure_url) return picture.secure_url;
@@ -95,6 +94,10 @@ export const UserStructureDetails = (props: Props) => {
   const membres = formattedMembres.filter(
     (membre) => membre.mainRole !== "Exclus"
   );
+  const isMember = props.membres.find((el) => el._id === props.userId)
+    ? true
+    : false;
+
   return (
     <MainContainer className="structure-detail">
       <StructurePictureContainer>
@@ -104,14 +107,16 @@ export const UserStructureDetails = (props: Props) => {
           alt={props.acronyme}
         />
         <StructureName>{props.name}</StructureName>
-        <FButton
-          type="dark"
-          name="book-outline"
-          tag={NavLink}
-          to="/annuaire-create"
-        >
-          Modifier dans l'annuaire
-        </FButton>
+        {isMember && (
+          <FButton
+            type="dark"
+            name="book-outline"
+            tag={NavLink}
+            to="/annuaire-create"
+          >
+            Modifier dans l'annuaire
+          </FButton>
+        )}
       </StructurePictureContainer>
       <StructureContainer>
         <TitleContainer>
