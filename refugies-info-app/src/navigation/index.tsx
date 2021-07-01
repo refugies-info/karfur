@@ -21,6 +21,11 @@ import { theme } from "../theme";
 import "../services/i18n";
 import { initReactI18next } from "react-i18next";
 import { AvailableLanguageI18nCode } from "../types/interface";
+import { ProfilScreen } from "../screens/ProfilTab/ProfilScreen";
+import { LangueProfilScreen } from "../screens/ProfilTab/LangueProfilScreen";
+import { AgeProfilScreen } from "../screens/ProfilTab/AgeProfilScreen";
+import { CityProfilScreen } from "../screens/ProfilTab/CityProfilScreen";
+import { FrenchLevelProfilScreen } from "../screens/ProfilTab/FrenchLevelScreen";
 
 // A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal
@@ -103,6 +108,21 @@ export const RootNavigator = () => {
         ) : (
           <>
             <Stack.Screen name="Root" component={BottomTabNavigator} />
+            <Stack.Screen name="ProfilScreen" component={ProfilScreen} />
+            <Stack.Screen
+              name="LangueProfilScreen"
+              component={LangueProfilScreen}
+            />
+            <Stack.Screen name="AgeProfilScreen" component={AgeProfilScreen} />
+            <Stack.Screen
+              name="CityProfilScreen"
+              component={CityProfilScreen}
+            />
+
+            <Stack.Screen
+              name="FrenchLevelProfilScreen"
+              component={FrenchLevelProfilScreen}
+            />
           </>
         )}
       </Stack.Navigator>

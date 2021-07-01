@@ -23,7 +23,7 @@ import {
   userFrenchLevelSelector,
 } from "../../services/redux/User/user.selectors";
 import { getSelectedLanguageFromI18nCode } from "../../libs/language";
-import { ProfilParamList } from "../../../types";
+import { RootStackParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ConfirmationModal } from "../../components/ConfirmationModal";
 
@@ -55,7 +55,7 @@ const ProfilButtonsContainer = styled.View`
 
 export const ProfilScreen = ({
   navigation,
-}: StackScreenProps<ProfilParamList, "ProfilScreen">) => {
+}: StackScreenProps<RootStackParamList, "ProfilScreen">) => {
   const [isDeleteDataModalVisible, setDeleteDataModalVisible] = React.useState(
     false
   );

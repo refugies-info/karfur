@@ -3,13 +3,13 @@ import styled from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextNormal } from "../../components/StyledText";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
-import { ProfilParamList } from "../../../types";
+import { RootStackParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 export const CityProfilScreen = ({
   navigation,
-}: StackScreenProps<ProfilParamList, "CityProfilScreen">) => {
+}: StackScreenProps<RootStackParamList, "CityProfilScreen">) => {
   const { t } = useTranslationWithRTL();
   return (
     <SafeAreaView>

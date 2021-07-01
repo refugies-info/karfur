@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextNormal, TextNormalBold } from "../../components/StyledText";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
-import { ProfilParamList } from "../../../types";
+import { RootStackParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { theme } from "../../theme";
@@ -37,7 +37,7 @@ export const ContentContainer = styled.View`
 
 export const AgeProfilScreen = ({
   navigation,
-}: StackScreenProps<ProfilParamList, "AgeProfilScreen">) => {
+}: StackScreenProps<RootStackParamList, "AgeProfilScreen">) => {
   const [selectedAge, setSelectedAge] = React.useState<string | null>(null);
   const navigateToNextScreen = () => navigation.navigate("FilterFrenchLevel");
 
