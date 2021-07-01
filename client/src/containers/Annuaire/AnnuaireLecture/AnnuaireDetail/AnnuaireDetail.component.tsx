@@ -9,7 +9,7 @@ import { selectedStructureSelector } from "../../../../services/SelectedStructur
 import { LeftAnnuaireDetail } from "./components/LeftAnnuaireDetail";
 import { MiddleAnnuaireDetail } from "./components/MiddleAnnuaireDetails";
 import { RightAnnuaireDetails } from "./components/RightAnnuaireDetails";
-
+import { colors } from "../../../../colors";
 import { activeStructuresSelector } from "../../../../services/ActiveStructures/activeStructures.selector";
 import _ from "lodash";
 import { fetchActiveStructuresActionCreator } from "../../../../services/ActiveStructures/activeStructures.actions";
@@ -39,6 +39,7 @@ const MainContainer = styled.div`
   display: flex;
   flex: 1;
   margin-top: -75px;
+  background-color: ${colors.gris};
 `;
 
 function useWindowSize() {
