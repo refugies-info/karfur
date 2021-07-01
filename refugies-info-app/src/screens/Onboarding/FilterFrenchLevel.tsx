@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ScrollView } from "react-native";
-import { OnboardingParamList } from "../../../types";
+import { OnboardingParamList, FrenchLevel } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
@@ -21,7 +21,7 @@ import {
 import { userFrenchLevelSelector } from "../../services/redux/User/user.selectors";
 
 const ContentContainer = styled.View`
-  padding-vertical: ${theme.margin * 3}px;
+  padding-bottom: ${theme.margin * 3}px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -32,11 +32,6 @@ const BottomContainer = styled.View`
   padding-horizontal: ${theme.margin * 3}px;
   margin-top: ${theme.margin}px;
 `;
-
-interface FrenchLevel {
-  name: string;
-  cecrCorrespondency?: string[];
-}
 
 export const FilterFrenchLevel = ({
   navigation,

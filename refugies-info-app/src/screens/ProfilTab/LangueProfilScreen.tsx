@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextSmallNormal } from "../../components/StyledText";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
-import { ProfilParamList } from "../../../types";
+import { RootStackParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
@@ -31,7 +31,7 @@ const HeaderText = styled(TextSmallNormal)`
 
 export const LangueProfilScreen = ({
   navigation,
-}: StackScreenProps<ProfilParamList, "LangueProfilScreen">) => {
+}: StackScreenProps<RootStackParamList, "LangueProfilScreen">) => {
   const { t, i18n } = useTranslationWithRTL();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
   const dispatch = useDispatch();
@@ -65,7 +65,6 @@ export const LangueProfilScreen = ({
       <ScrollView
         contentContainerStyle={{
           paddingTop: theme.margin * 2,
-          paddingBottom: theme.margin * 2,
         }}
       >
         <MainContainer>

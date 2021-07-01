@@ -152,7 +152,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
       fromSite: true,
       query: {
         locale: "fr",
-        age: "Plus de 26 ans",
+        age: "26 ans et plus",
         frenchLevel: "Je parle bien",
       },
     };
