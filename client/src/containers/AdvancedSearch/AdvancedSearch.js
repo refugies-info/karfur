@@ -77,6 +77,7 @@ const SearchToggle = styled.div`
   padding: 10px;
   border-radius: 12px;
   border: 0.5px solid;
+  margin-right: ${(props) => (props.isRtl ? "10px" : "")};
   color: ${(props) => (props.visible ? colors.blancSimple : colors.bleuCharte)};
   border-color: ${(props) =>
     props.visible ? "transparent" : colors.bleuCharte};
@@ -1164,6 +1165,7 @@ export class AdvancedSearch extends Component {
                 <SearchToggle
                   onClick={() => this.toggleSearch()}
                   visible={this.state.searchToggleVisible}
+                  isRtl={isRTL}
                 >
                   <div>
                     {this.nbFilterSelected() < 2 &&
