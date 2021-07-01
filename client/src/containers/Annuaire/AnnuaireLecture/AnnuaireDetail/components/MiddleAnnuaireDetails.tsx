@@ -8,6 +8,7 @@ import { activities } from "../../../AnnuaireCreate/components/Step3/data";
 import { filtres } from "../../../../Dispositif/data";
 import { NoActivity } from "./NoActivity";
 import Skeleton from "react-loading-skeleton";
+import { colors } from "../../../../../colors";
 
 interface Props {
   structure: Structure | null;
@@ -34,6 +35,7 @@ const Title = styled.div`
 
 const TitleContainer = styled.div`
   margin-bottom: 14px;
+  color: ${colors.bleuCharte};
 `;
 
 const SubTitle = styled.div`
@@ -176,7 +178,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
             <Title>
               {structure.nom}{" "}
               <span style={{ color: "#828282" }}>
-                {" (" + structure.acronyme + ")"}
+                {"- " + structure.acronyme}
               </span>{" "}
             </Title>
           )}
