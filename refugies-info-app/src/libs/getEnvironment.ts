@@ -6,12 +6,12 @@ export const getEnvironment = () => {
     return {
       envName: "STAGING",
       dbUrl: "https://api.staging.refugies.info",
-      siteSecret: process.env.REACT_APP_SITE_SECRET2,
+      siteSecret: process.env.REACT_APP_SITE_SECRET,
     };
   }
   return {
     envName: "DEVELOPMENT",
-    dbUrl: process.env.API_URL_LOCALE,
-    siteSecret: process.env.REACT_APP_SITE_SECRET2,
+    dbUrl: process.env.API_URL,
+    siteSecret: process.env.REACT_APP_SITE_SECRET,
   };
 };
