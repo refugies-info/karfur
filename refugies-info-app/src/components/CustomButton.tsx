@@ -56,6 +56,7 @@ export const CustomButton = (props: Props) => {
       onPress={props.onPress}
       backgroundColor={props.backgroundColor}
       isDisabled={props.isDisabled}
+      testID={"test-custom-button-" + props.defaultText}
     >
       {props.isTextNotBold ? (
         <ColoredTextNormal textColor={props.textColor} isRTL={isRTL}>
