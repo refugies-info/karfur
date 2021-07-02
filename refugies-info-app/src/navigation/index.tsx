@@ -118,7 +118,6 @@ export const RootNavigator = () => {
               name="CityProfilScreen"
               component={CityProfilScreen}
             />
-
             <Stack.Screen
               name="FrenchLevelProfilScreen"
               component={FrenchLevelProfilScreen}

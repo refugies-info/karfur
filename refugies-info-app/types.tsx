@@ -24,6 +24,7 @@ export type BottomTabParamList = {
 
 export type ExplorerParamList = {
   ExplorerScreen: undefined;
+  ContentScreen: undefined;
 };
 
 export type FavorisParamList = {

@@ -9,12 +9,14 @@ import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet } from "react-native";
 import { TagImage } from "./TagImage";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 interface Props {
   tagName: string;
   colorLight: string;
   colorVeryLight: string;
   iconName: string;
+  navigation: any;
 }
 
 const StyledContainer = styled(RTLView)`
@@ -51,27 +53,31 @@ const styles = StyleSheet.create({
 export const CarousselCard = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
   return (
-    <LinearGradient
-      colors={[props.colorVeryLight, props.colorLight]}
-      // @ts-ignore
-      style={[
-        styles.card,
-        {
-          alignItems: ["briefcase", "soccer"].includes(props.iconName)
-            ? "center"
-            : props.iconName === "glasses"
-            ? "flex-end"
-            : "flex-start",
-        },
-      ]}
+    <TouchableOpacity
+      onPress={() => props.navigation.navigate("ContentScreen")}
     >
-      <TagImage name={props.iconName} />
-      <StyledContainer>
-        <StyledText isRTL={isRTL}>
-          {firstLetterUpperCase(t("Tags." + props.tagName, props.tagName))}
-        </StyledText>
-        <StreamlineIcon name={props.iconName} width={20} height={20} />
-      </StyledContainer>
-    </LinearGradient>
+      <LinearGradient
+        colors={[props.colorVeryLight, props.colorLight]}
+        // @ts-ignore
+        style={[
+          styles.card,
+          {
+            alignItems: ["briefcase", "soccer"].includes(props.iconName)
+              ? "center"
+              : props.iconName === "glasses"
+              ? "flex-end"
+              : "flex-start",
+          },
+        ]}
+      >
+        <TagImage name={props.iconName} />
+        <StyledContainer>
+          <StyledText isRTL={isRTL}>
+            {firstLetterUpperCase(t("Tags." + props.tagName, props.tagName))}
+          </StyledText>
+          <StreamlineIcon name={props.iconName} width={20} height={20} />
+        </StyledContainer>
+      </LinearGradient>
+    </TouchableOpacity>
   );
 };
