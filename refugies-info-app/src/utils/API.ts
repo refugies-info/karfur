@@ -51,3 +51,6 @@ export const getContentsForApp = ({
 
   return apiCaller.get(route);
 };
+
+export const get_dispositif = (params = {}) =>
+  apiCaller.post("/dispositifs/get_dispositif", params);

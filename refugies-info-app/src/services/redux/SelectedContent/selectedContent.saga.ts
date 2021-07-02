@@ -5,7 +5,7 @@ import {
   finishLoading,
   LoadingStatusKey,
 } from "../LoadingStatus/loadingStatus.actions";
-import { getLanguages } from "../../../utils/API";
+import { get_dispositif } from "../../../utils/API";
 import { logger } from "../../../logger";
 import {
   fetchSelectedContentActionCreator,
@@ -20,8 +20,15 @@ export function* fetchSelectedContent(
     const id = action.payload;
     logger.info("[fetchSelectedContent] saga", { id });
     yield put(startLoading(LoadingStatusKey.FETCH_SELECTED_CONTENT));
-    const data = yield call(getLanguages);
-    const content = null;
+    const data = yield call(get_dispositif, {
+      query: { _id: id },
+      sort: {},
+      locale: "fr",
+    });
+    const content =
+      data && data.data && data.data.data && data.data.data.length > 0
+        ? data.data.data[0]
+        : null;
     yield put(setSelectedContentActionCreator(content));
     yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_CONTENT));
   } catch (error) {
