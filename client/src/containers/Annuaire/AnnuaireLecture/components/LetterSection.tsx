@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from "react";
 import styled from "styled-components";
 import { Structure, Picture } from "../../../../types/interface";
@@ -72,8 +71,6 @@ const StructureCard = (props: StructureCardProps) => {
 
     return placeholder;
   };
-  console.log(props.nom.length, props.nom);
-  console.log(props.nom.substr(0, 43));
   return (
     <StructureCardContainer
       onClick={() => props.onStructureCardClick(props.id)}
