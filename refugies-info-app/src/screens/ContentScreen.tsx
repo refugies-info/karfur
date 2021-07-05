@@ -14,7 +14,10 @@ import { theme } from "../theme";
 import { TextNormal } from "../components/StyledText";
 import { RTLView } from "../components/BasicComponents";
 import { Icon } from "react-native-eva-icons";
-import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
+import {
+  selectedI18nCodeSelector,
+  currentI18nCodeSelector,
+} from "../services/redux/User/user.selectors";
 
 const TextContainer = styled.View`
   padding: 24px;
@@ -26,14 +29,23 @@ export const ContentScreen = ({
 
   const dispatch = useDispatch();
 
+  const selectedLanguage = useSelector(selectedI18nCodeSelector);
   const currentLanguage = useSelector(currentI18nCodeSelector);
+
   React.useEffect(() => {
     // const id = "606eb3baf1ab0700152063ba";
-    const id = "5e676c47361338004e16fe31";
+    const id = "5dd55ea09c2d3400163bc00a";
+    if (id && selectedLanguage) {
+      dispatch(
+        fetchSelectedContentActionCreator({
+          contentId: id,
+          locale: selectedLanguage,
+        })
+      );
+    }
+  }, [selectedLanguage]);
 
-    dispatch(fetchSelectedContentActionCreator(id));
-  }, [currentLanguage]);
-  const selectedContent = useSelector(selectedContentSelector);
+  const selectedContent = useSelector(selectedContentSelector(currentLanguage));
 
   const contentWidth = useWindowDimensions().width;
   if (!selectedContent) {

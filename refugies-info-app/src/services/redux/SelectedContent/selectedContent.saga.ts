@@ -16,24 +16,43 @@ import { FETCH_SELECTED_CONTENT } from "./selectedContent.actionTypes";
 export function* fetchSelectedContent(
   action: ReturnType<typeof fetchSelectedContentActionCreator>
 ): SagaIterator {
+  const { contentId, locale } = action.payload;
   try {
-    const id = action.payload;
-    logger.info("[fetchSelectedContent] saga", { id });
+    logger.info("[fetchSelectedContent] saga", { contentId, locale });
     yield put(startLoading(LoadingStatusKey.FETCH_SELECTED_CONTENT));
     const data = yield call(get_dispositif, {
-      query: { _id: id },
+      query: { _id: contentId },
       sort: {},
-      locale: "fr",
+      locale,
     });
-    const content =
+    const contentLocale =
       data && data.data && data.data.data && data.data.data.length > 0
         ? data.data.data[0]
         : null;
-    yield put(setSelectedContentActionCreator(content));
+    yield put(
+      setSelectedContentActionCreator({ content: contentLocale, locale })
+    );
+    if (locale !== "fr") {
+      const dataFr = yield call(get_dispositif, {
+        query: { _id: contentId },
+        sort: {},
+        locale: "fr",
+      });
+      const contentFr =
+        dataFr && dataFr.data && dataFr.data.data && dataFr.data.data.length > 0
+          ? dataFr.data.data[0]
+          : null;
+      yield put(
+        setSelectedContentActionCreator({
+          content: contentFr,
+          locale: "fr",
+        })
+      );
+    }
     yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_CONTENT));
   } catch (error) {
     logger.error("Error while getting content", { error: error.message });
-    yield put(setSelectedContentActionCreator(null));
+    yield put(setSelectedContentActionCreator({ content: null, locale }));
   }
 }
 
