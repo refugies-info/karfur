@@ -95,8 +95,8 @@ export const ContentFromHtml = (props: Props) => {
         p: (_, children) => (
           <TextSmallNormal
             style={{
-              marginBottom: theme.margin / 2,
-              marginTop: theme.margin / 2,
+              marginBottom: theme.margin,
+              marginTop: theme.margin,
               flexShrink: 1,
             }}
           >
