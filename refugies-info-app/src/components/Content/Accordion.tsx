@@ -2,15 +2,18 @@ import * as React from "react";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
 import { TextSmallBold } from "../StyledText";
-import { RTLTouchableOpacity } from "../BasicComponents";
+import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import { ContentFromHtml } from "./ContentFromHtml";
 import { Icon } from "react-native-eva-icons";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 interface Props {
   title: string;
   content: string;
   isExpanded: boolean;
   toggleAccordion: () => void;
+  stepNumber: number | null;
+  width: number;
 }
 
 const TitleContainer = styled(RTLTouchableOpacity)`
@@ -27,26 +30,68 @@ const TitleContainer = styled(RTLTouchableOpacity)`
     props.isExpanded
       ? `2px solid ${theme.colors.black}`
       : `2px solid ${theme.colors.white}`} ;
+    align-items:center;
 `;
 
 const AccordionContainer = styled.View`
   margin-bottom: ${theme.margin}px;
   margin-top: ${theme.margin}px;
 `;
+
+const StepContainer = styled.View`
+  width: 32px;
+  height: 32px;
+  background-color: ${theme.colors.black};
+  border-radius: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? 0 : theme.margin * 2}px;
+  margin-left: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? theme.margin * 2 : 0}px;
+`;
+
+const StepText = styled(TextSmallBold)`
+  color: ${theme.colors.white};
+`;
+
+const IconContainer = styled.View`
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? theme.margin : 0}px;
+  margin-left: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? theme.margin : 0}px;
+`;
+
+const TitleText = styled(TextSmallBold)`
+  width: ${(props: { width: number }) => props.width}px;
+`;
 export const Accordion = (props: Props) => {
+  const { isRTL } = useTranslationWithRTL();
+
   return (
     <AccordionContainer>
       <TitleContainer
         onPress={props.toggleAccordion}
         isExpanded={props.isExpanded}
       >
-        <TextSmallBold>{props.title}</TextSmallBold>
-        <Icon
-          name={props.isExpanded ? "chevron-up" : "chevron-down"}
-          height={24}
-          width={24}
-          fill={theme.colors.black}
-        />
+        <RTLView>
+          {props.stepNumber && (
+            <StepContainer isRTL={isRTL}>
+              <StepText>{props.stepNumber}</StepText>
+            </StepContainer>
+          )}
+          <TitleText width={props.width}>{props.title}</TitleText>
+        </RTLView>
+        <IconContainer isRTL={isRTL}>
+          <Icon
+            name={props.isExpanded ? "chevron-up" : "chevron-down"}
+            height={24}
+            width={24}
+            fill={theme.colors.black}
+          />
+        </IconContainer>
       </TitleContainer>
       {props.isExpanded && <ContentFromHtml htmlContent={props.content} />}
     </AccordionContainer>

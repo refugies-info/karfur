@@ -33,6 +33,7 @@ export const StyledTextSmallBold = styled.Text`
   text-align: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "right" : "left"};
   line-height: 20px;
+  flex-shrink: 1;
 `;
 
 export const StyledTextVerySmall = styled.Text`

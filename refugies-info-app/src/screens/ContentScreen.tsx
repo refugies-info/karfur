@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { Text } from "react-native";
+import { Text, useWindowDimensions } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ExplorerParamList } from "../../types";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
@@ -50,7 +50,7 @@ export const ContentScreen = ({
 }: StackScreenProps<ExplorerParamList, "ExplorerScreen">) => {
   const [accordionExpanded, setAccordionExpanded] = React.useState("");
 
-  const { t, isRTL } = useTranslationWithRTL();
+  const { t } = useTranslationWithRTL();
 
   const dispatch = useDispatch();
 
@@ -59,7 +59,8 @@ export const ContentScreen = ({
 
   React.useEffect(() => {
     // const id = "606eb3baf1ab0700152063ba";
-    const id = "5dd55ea09c2d3400163bc00a";
+    // const id = "5dd55ea09c2d3400163bc00a";
+    const id = "5e189ed30742580052a332b6";
     if (id && selectedLanguage) {
       dispatch(
         fetchSelectedContentActionCreator({
@@ -97,6 +98,10 @@ export const ContentScreen = ({
     setAccordionExpanded(index);
     return;
   };
+
+  const windowWidth = useWindowDimensions().width;
+  const accordionMaxWidthWithStep = windowWidth - 2 * 24 - 4 * 16 - 24 - 32;
+  const accordionMaxWidthWithoutStep = windowWidth - 2 * 24 - 3 * 16 - 24;
 
   return (
     <WrapperWithHeaderAndLanguageModal
@@ -145,7 +150,10 @@ export const ContentScreen = ({
                   selectedContent.contenu[index].children &&
                   selectedContent.contenu[index].children.map(
                     (child, indexChild) => {
-                      if (child.type === "accordion") {
+                      if (
+                        child.type === "accordion" ||
+                        child.type === "etape"
+                      ) {
                         const accordionIndex =
                           index.toString() + "-" + indexChild.toString();
                         const isAccordionExpanded =
@@ -159,6 +167,14 @@ export const ContentScreen = ({
                               toggleAccordion(accordionIndex)
                             }
                             key={indexChild}
+                            stepNumber={
+                              child.type === "etape" ? indexChild + 1 : null
+                            }
+                            width={
+                              child.type === "etape"
+                                ? accordionMaxWidthWithStep
+                                : accordionMaxWidthWithoutStep
+                            }
                           />
                         );
                       }
