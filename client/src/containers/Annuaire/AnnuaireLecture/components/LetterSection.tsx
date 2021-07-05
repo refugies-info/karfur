@@ -90,7 +90,14 @@ const StructureCard = (props: StructureCardProps) => {
         />
       </div>
       {(!props.picture || !props.picture.secure_url) && <div></div>}
-      <LinesEllipsis text={props.nom} maxLine="4" trimRight basedOn="letters" />
+      <LinesEllipsis
+        text={
+          props.acronyme ? props.nom + " (" + props.acronyme + ")" : props.nom
+        }
+        maxLine="4"
+        trimRight
+        basedOn="letters"
+      />
     </StructureCardContainer>
   );
 };
