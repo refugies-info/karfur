@@ -28,7 +28,8 @@ export const ContentScreen = ({
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    const id = "606eb3baf1ab0700152063ba";
+    // const id = "606eb3baf1ab0700152063ba";
+    const id = "5e676c47361338004e16fe31";
 
     dispatch(fetchSelectedContentActionCreator(id));
   }, []);
@@ -77,6 +78,10 @@ export const ContentScreen = ({
               "icon-left-side": {
                 paddingRight: isRTL ? 0 : 20,
                 paddingLeft: isRTL ? 20 : 0,
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
               },
             }}
             tagsStyles={{
