@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { View, Text, useWindowDimensions } from "react-native";
+import { Text } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ExplorerParamList } from "../../types";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
@@ -9,22 +9,47 @@ import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSelectedContentActionCreator } from "../services/redux/SelectedContent/selectedContent.actions";
 import { selectedContentSelector } from "../services/redux/SelectedContent/selectedContent.selectors";
-import HTML from "react-native-render-html";
 import { theme } from "../theme";
-import { TextNormal } from "../components/StyledText";
-import { RTLView } from "../components/BasicComponents";
-import { Icon } from "react-native-eva-icons";
+import { TextNormal, TextBigBold } from "../components/StyledText";
 import {
   selectedI18nCodeSelector,
   currentI18nCodeSelector,
 } from "../services/redux/User/user.selectors";
+import { ContentFromHtml } from "../components/Content/ContentFromHtml";
+import { Accordion } from "../components/Content/Accordion";
 
-const TextContainer = styled.View`
+const ContentContainer = styled.View`
   padding: 24px;
 `;
+
+const TitlesContainer = styled.View`
+  background-color: ${theme.colors.culture40};
+`;
+
+const HeaderText = styled(TextBigBold)`
+  margin-top: ${theme.margin * 2}px;
+  margin-bottom: ${theme.margin * 2}px;
+`;
+
+const headersDispositif = [
+  "C'est quoi ?",
+  "C'est pour qui ?",
+  "Pourquoi c'est intéressant ?",
+  "Comment je m'engage ?",
+];
+
+const headersDemarche = [
+  "C'est quoi ?",
+  "C'est pour qui ?",
+  "Comment faire ?",
+  "Et après ?",
+];
+
 export const ContentScreen = ({
   navigation,
 }: StackScreenProps<ExplorerParamList, "ExplorerScreen">) => {
+  const [accordionExpanded, setAccordionExpanded] = React.useState("");
+
   const { t, isRTL } = useTranslationWithRTL();
 
   const dispatch = useDispatch();
@@ -47,7 +72,6 @@ export const ContentScreen = ({
 
   const selectedContent = useSelector(selectedContentSelector(currentLanguage));
 
-  const contentWidth = useWindowDimensions().width;
   if (!selectedContent) {
     return (
       <WrapperWithHeaderAndLanguageModal
@@ -58,14 +82,21 @@ export const ContentScreen = ({
           <Text>Back</Text>
         </TouchableOpacity>
 
-        <TextContainer>
+        <ContentContainer>
           <Text>pas de contenu</Text>
-        </TextContainer>
+        </ContentContainer>
       </WrapperWithHeaderAndLanguageModal>
     );
   }
+  const isDispositif = selectedContent.typeContenu === "dispositif";
 
-  const part1 = selectedContent.contenu[0].content;
+  const headers = isDispositif ? headersDispositif : headersDemarche;
+
+  const toggleAccordion = (index: string) => {
+    if (index === accordionExpanded) return setAccordionExpanded("");
+    setAccordionExpanded(index);
+    return;
+  };
 
   return (
     <WrapperWithHeaderAndLanguageModal
@@ -73,91 +104,70 @@ export const ContentScreen = ({
       navigation={navigation}
     >
       <ScrollView>
-        <TextContainer>
-          <TextNormal>{selectedContent.titreInformatif}</TextNormal>
-          <Text>{part1}</Text>
-          <HTML
-            contentWidth={contentWidth}
-            source={{ html: part1 }}
-            classesStyles={{
-              "bloc-rouge": {
-                backgroundColor: theme.colors.lightRed,
-                borderRadius: 12,
-                padding: 20,
-                display: "flex",
-                marginBottom: 10,
-                flexDirection: isRTL ? "row-reverse" : "row",
-                textAlign: isRTL ? "right" : "left",
-                marginTop: 10,
-              },
-              "icon-left-side": {
-                paddingRight: isRTL ? 0 : 20,
-                paddingLeft: isRTL ? 20 : 0,
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-              },
-              "right-side": {
-                color: theme.colors.black,
-                textAlign: isRTL ? "right" : "left",
-              },
-            }}
-            tagsStyles={{
-              strong: {
-                fontFamily: theme.fonts.families.circularBold,
-              },
-              b: {
-                fontFamily: theme.fonts.families.circularBold,
-                textAlign: isRTL ? "right" : "left",
-              },
-            }}
-            baseFontStyle={{
-              fontSize: 19,
-              fontFamily: theme.fonts.families.circularStandard,
-              textAlign: isRTL ? "right" : "left",
-              lineHeight: 24,
-            }}
-            renderers={{
-              // eslint-disable-next-line react/display-name
-              ul: (_, children) => (
-                <View
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  {children}
-                </View>
-              ),
-              // eslint-disable-next-line react/display-name
-              li: (_, children) => (
-                <RTLView style={{ marginBottom: 8 }}>
-                  <View
-                    style={{
-                      marginLeft: isRTL ? 8 : 0,
-                      marginRight: isRTL ? 0 : 8,
-                    }}
-                  >
-                    <Icon
-                      name={isRTL ? "arrow-left" : "arrow-right"}
-                      height={18}
-                      width={18}
-                      fill={theme.colors.black}
-                    />
-                  </View>
-                  <TextNormal>{children}</TextNormal>
-                </RTLView>
-              ),
-              // eslint-disable-next-line react/display-name
-              p: (_, children) => (
-                <TextNormal style={{ marginBottom: 8, marginTop: 8 }}>
-                  {children}
-                </TextNormal>
-              ),
-            }}
-          />
-        </TextContainer>
+        <ContentContainer>
+          <TitlesContainer>
+            <TextNormal>{selectedContent.titreInformatif}</TextNormal>
+            {selectedContent.titreMarque && (
+              <TextNormal>{"avec " + selectedContent.titreMarque}</TextNormal>
+            )}
+          </TitlesContainer>
+
+          {headers.map((header, index) => {
+            if (index === 0 && selectedContent.contenu[0].content) {
+              return (
+                <>
+                  <HeaderText key={header}>
+                    {t("Content." + header, header)}
+                  </HeaderText>
+                  <ContentFromHtml
+                    htmlContent={selectedContent.contenu[index].content}
+                  />
+                </>
+              );
+            }
+            if (index === 1) {
+              return (
+                <>
+                  <HeaderText key={header}>
+                    {t("Content." + header, header)}
+                  </HeaderText>
+                </>
+              );
+            }
+
+            return (
+              <>
+                <HeaderText key={header}>
+                  {t("Content." + header, header)}
+                </HeaderText>
+                {selectedContent &&
+                  selectedContent.contenu[index] &&
+                  selectedContent.contenu[index].children &&
+                  selectedContent.contenu[index].children.map(
+                    (child, indexChild) => {
+                      if (child.type === "accordion") {
+                        const accordionIndex =
+                          index.toString() + "-" + indexChild.toString();
+                        const isAccordionExpanded =
+                          accordionExpanded === accordionIndex;
+                        return (
+                          <Accordion
+                            isExpanded={isAccordionExpanded}
+                            title={child.title}
+                            content={child.content}
+                            toggleAccordion={() =>
+                              toggleAccordion(accordionIndex)
+                            }
+                            key={indexChild}
+                          />
+                        );
+                      }
+                    }
+                  )}
+              </>
+            );
+          })}
+        </ContentContainer>
       </ScrollView>
     </WrapperWithHeaderAndLanguageModal>
   );
