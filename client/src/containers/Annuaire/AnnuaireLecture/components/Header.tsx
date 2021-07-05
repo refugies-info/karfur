@@ -63,7 +63,7 @@ export const Header = (props: Props) => {
         <TextContainer isRTL={isRTL}>
           {props.t("Annuaire.Annuaire", "Annuaire")}
         </TextContainer>
-        <SearchBarAnnuaire text="Camille" />
+        <SearchBarAnnuaire t={props.t} />
       </SearchContainer>
 
       <LettersContainer isRTL={isRTL}>
