@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useLayoutEffect } from "react";
 import styled from "styled-components";
 import "./AnnuaireDetail.scss";
-import { fetchSelectedStructureActionCreator } from "../../../../services/SelectedStructure/selectedStructure.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
@@ -12,9 +11,7 @@ import { LeftAnnuaireDetail } from "./components/LeftAnnuaireDetail";
 import { MiddleAnnuaireDetail } from "./components/MiddleAnnuaireDetails";
 import { RightAnnuaireDetails } from "./components/RightAnnuaireDetails";
 import { colors } from "../../../../colors";
-import { activeStructuresSelector } from "../../../../services/ActiveStructures/activeStructures.selector";
 import _ from "lodash";
-import { fetchActiveStructuresActionCreator } from "../../../../services/ActiveStructures/activeStructures.actions";
 import i18n from "../../../../i18n";
 export interface PropsBeforeInjection {
   t: any;
@@ -73,26 +70,9 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
     // @ts-ignore
     props.match && props.match.params && props.match.params.id;
 
-  const structures = useSelector(activeStructuresSelector);
   const locale = i18n.language;
   const leftPartHeight = height - 150;
   useEffect(() => {
-    const loadStructure = async () => {
-      dispatch(
-        fetchSelectedStructureActionCreator({ id: structureId, locale })
-      );
-    };
-    const loadStructures = async () => {
-      dispatch(fetchActiveStructuresActionCreator());
-    };
-
-    if (!structures || structures.length === 0) {
-      loadStructures();
-    }
-    if (structureId) {
-      loadStructure();
-    }
-
     window.scrollTo(0, 0);
   }, [dispatch, structureId, locale]);
 

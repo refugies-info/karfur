@@ -51,7 +51,7 @@ export const LeftAnnuaireDetail = (props: Props) => {
             name="arrow-back-outline"
             onClick={() => props.history.go(-1)}
           >
-            Retour à l'Annuaire
+            {props.t("Annuaire.Retour à l'annuaire", "Retour à l'annuaire")}
           </FButton>
         </div>
         <div>
