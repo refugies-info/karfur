@@ -1,8 +1,6 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { View, Text, I18nManager } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { HeaderWithBack } from "../components/HeaderWithBack";
+import { View, Text, useWindowDimensions } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ExplorerParamList } from "../../types";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
@@ -16,6 +14,7 @@ import { theme } from "../theme";
 import { TextNormal } from "../components/StyledText";
 import { RTLView } from "../components/BasicComponents";
 import { Icon } from "react-native-eva-icons";
+import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
 
 const TextContainer = styled.View`
   padding: 24px;
@@ -27,14 +26,16 @@ export const ContentScreen = ({
 
   const dispatch = useDispatch();
 
+  const currentLanguage = useSelector(currentI18nCodeSelector);
   React.useEffect(() => {
     // const id = "606eb3baf1ab0700152063ba";
     const id = "5e676c47361338004e16fe31";
 
     dispatch(fetchSelectedContentActionCreator(id));
-  }, []);
+  }, [currentLanguage]);
   const selectedContent = useSelector(selectedContentSelector);
 
+  const contentWidth = useWindowDimensions().width;
   if (!selectedContent) {
     return (
       <WrapperWithHeaderAndLanguageModal>
@@ -50,14 +51,11 @@ export const ContentScreen = ({
   }
 
   const part1 = selectedContent.contenu[0].content;
+
   return (
     <WrapperWithHeaderAndLanguageModal>
       <TouchableOpacity onPress={navigation.goBack}>
         <Text>Back</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => I18nManager.forceRTL(false)}>
-        <Text>test</Text>
       </TouchableOpacity>
 
       <ScrollView>
@@ -65,6 +63,7 @@ export const ContentScreen = ({
           <TextNormal>{selectedContent.titreInformatif}</TextNormal>
           <Text>{part1}</Text>
           <HTML
+            contentWidth={contentWidth}
             source={{ html: part1 }}
             classesStyles={{
               "bloc-rouge": {
@@ -74,6 +73,8 @@ export const ContentScreen = ({
                 display: "flex",
                 marginBottom: 10,
                 flexDirection: isRTL ? "row-reverse" : "row",
+                textAlign: isRTL ? "right" : "left",
+                marginTop: 10,
               },
               "icon-left-side": {
                 paddingRight: isRTL ? 0 : 20,
@@ -83,6 +84,10 @@ export const ContentScreen = ({
                 justifyContent: "center",
                 alignItems: "center",
               },
+              "right-side": {
+                color: theme.colors.black,
+                textAlign: isRTL ? "right" : "left",
+              },
             }}
             tagsStyles={{
               strong: {
@@ -90,6 +95,7 @@ export const ContentScreen = ({
               },
               b: {
                 fontFamily: theme.fonts.families.circularBold,
+                textAlign: isRTL ? "right" : "left",
               },
             }}
             baseFontStyle={{
@@ -100,32 +106,40 @@ export const ContentScreen = ({
             }}
             renderers={{
               // eslint-disable-next-line react/display-name
-              ul: (htmlAttribs, children, convertedCSSStyles, passProps) => (
-                <View style={{ display: "flex", flexDirection: "column" }}>
-                  {/* <Icon
-                    name={isRTL ? "arrow-left" : "arrow-right"}
-                    height={18}
-                    width={18}
-                    fill={theme.colors.black}
-                  /> */}
+              ul: (_, children) => (
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
                   {children}
                 </View>
               ),
-
               // eslint-disable-next-line react/display-name
-              li: (htmlAttribs, children, convertedCSSStyles, passProps) => (
+              li: (_, children) => (
                 <RTLView style={{ marginBottom: 8 }}>
-                  <Icon
-                    name={isRTL ? "arrow-left" : "arrow-right"}
-                    height={18}
-                    width={18}
-                    fill={theme.colors.black}
-                  />
-                  {children}
+                  <View
+                    style={{
+                      marginLeft: isRTL ? 8 : 0,
+                      marginRight: isRTL ? 0 : 8,
+                    }}
+                  >
+                    <Icon
+                      name={isRTL ? "arrow-left" : "arrow-right"}
+                      height={18}
+                      width={18}
+                      fill={theme.colors.black}
+                    />
+                  </View>
+                  <TextNormal>{children}</TextNormal>
                 </RTLView>
               ),
-              p: (htmlAttribs, children, convertedCSSStyles, passProps) => (
-                <TextNormal>{children}</TextNormal>
+              // eslint-disable-next-line react/display-name
+              p: (_, children) => (
+                <TextNormal style={{ marginBottom: 8, marginTop: 8 }}>
+                  {children}
+                </TextNormal>
               ),
             }}
           />
