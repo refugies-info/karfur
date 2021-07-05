@@ -38,13 +38,15 @@ const Title = styled.div`
 const TitleMockup = styled.div`
   font-weight: bold;
   font-size: 22px;
-  margin-bottom: 20px;
+  margin-bottom: 11px;
+  line-height: 27px;
   color: ${(props) =>
     props.typeContenu === "demarche" && props.color ? props.color : "black"};
 `;
 
 const TextMockup = styled.div`
   font-size: 16px;
+  line-height: 20px;
   color: ${(props) =>
     props.textlength > 110
       ? "red"
@@ -67,6 +69,7 @@ const CardContainer = styled.div`
     props.typeContenu === "dispositif" ? "198px" : "248px"};
   min-width: 248px;
   max-width: 248px;
+  overflow: auto;
 `;
 
 const TagContainer = styled.div`
