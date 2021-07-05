@@ -22,13 +22,6 @@ const MainContainer = styled.div`
   padding-top: 24px;
 `;
 
-const LetterContainer = styled.div`
-  font-size: 100px;
-  line-height: 58px;
-  margin-top: 30px;
-  width: 127px;
-`;
-
 const StructuresContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -113,7 +106,6 @@ const StructureCard = (props: StructureCardProps) => {
 export const LetterSection = (props: Props) => (
   <MainContainer className="letter-section">
     <Anchor id={props.letter.toUpperCase()} />
-    <LetterContainer>{props.letter.toUpperCase()}</LetterContainer>
     <StructuresContainer>
       {props.structures &&
         props.structures.map((structure) => (
