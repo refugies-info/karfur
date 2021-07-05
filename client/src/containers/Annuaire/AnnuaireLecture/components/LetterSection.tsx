@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from "react";
 import styled from "styled-components";
 import { Structure, Picture } from "../../../../types/interface";
@@ -71,6 +72,8 @@ const StructureCard = (props: StructureCardProps) => {
 
     return placeholder;
   };
+  console.log(props.nom.length, props.nom);
+  console.log(props.nom.substr(0, 43));
   return (
     <StructureCardContainer
       onClick={() => props.onStructureCardClick(props.id)}
@@ -90,9 +93,17 @@ const StructureCard = (props: StructureCardProps) => {
         />
       </div>
       {(!props.picture || !props.picture.secure_url) && <div></div>}
+
       <LinesEllipsis
         text={
-          props.acronyme ? props.nom + " (" + props.acronyme + ")" : props.nom
+          props.acronyme
+            ? props.nom.length + props.acronyme.length > 43
+              ? props.nom.substr(0, 36 - props.acronyme.length) +
+                "... (" +
+                props.acronyme +
+                ")"
+              : props.nom + " (" + props.acronyme + ")"
+            : props.nom
         }
         maxLine="4"
         trimRight
