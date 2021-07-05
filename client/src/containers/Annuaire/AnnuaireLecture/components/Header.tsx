@@ -31,7 +31,8 @@ const TextContainer = styled.div`
 `;
 
 const LettersContainer = styled.div`
-  margin-left: 72px;
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 44px;
   position: absolute;

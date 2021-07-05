@@ -100,16 +100,17 @@ export const LetterSection = (props: Props) => (
     <Anchor id={props.letter.toUpperCase()} />
     <LetterContainer>{props.letter.toUpperCase()}</LetterContainer>
     <StructuresContainer>
-      {props.structures.map((structure) => (
-        <StructureCard
-          key={structure.nom}
-          nom={structure.nom}
-          picture={structure.picture || {}}
-          acronyme={structure.acronyme}
-          onStructureCardClick={props.onStructureCardClick}
-          id={structure._id}
-        />
-      ))}
+      {props.structures &&
+        props.structures.map((structure) => (
+          <StructureCard
+            key={structure.nom}
+            nom={structure.nom}
+            picture={structure.picture || {}}
+            acronyme={structure.acronyme}
+            onStructureCardClick={props.onStructureCardClick}
+            id={structure._id}
+          />
+        ))}
     </StructuresContainer>
   </MainContainer>
 );
