@@ -10,6 +10,7 @@ import { NoActivity } from "./NoActivity";
 import Skeleton from "react-loading-skeleton";
 import { colors } from "../../../../../colors";
 import FButton from "components/FigmaUI/FButton/FButton";
+import { NavLink } from "react-router-dom";
 
 import { ObjectId } from "mongodb";
 
@@ -203,7 +204,12 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           </TitleContainer>
           {isMember && (
             <div style={{ height: "5Opx" }}>
-              <FButton type="dark" name="edit-outline">
+              <FButton
+                to="/annuaire-create"
+                tag={NavLink}
+                type="dark"
+                name="edit-outline"
+              >
                 Modifier la fiche
               </FButton>
             </div>
