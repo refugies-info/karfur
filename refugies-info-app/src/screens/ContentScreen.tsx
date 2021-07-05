@@ -47,6 +47,7 @@ const headersDemarche = [
 
 export const ContentScreen = ({
   navigation,
+  route,
 }: StackScreenProps<ExplorerParamList, "ExplorerScreen">) => {
   const [accordionExpanded, setAccordionExpanded] = React.useState("");
 
@@ -56,15 +57,13 @@ export const ContentScreen = ({
 
   const selectedLanguage = useSelector(selectedI18nCodeSelector);
   const currentLanguage = useSelector(currentI18nCodeSelector);
+  const { contentId } = route.params;
 
   React.useEffect(() => {
-    // const id = "606eb3baf1ab0700152063ba";
-    // const id = "5dd55ea09c2d3400163bc00a";
-    const id = "5e189ed30742580052a332b6";
-    if (id && selectedLanguage) {
+    if (contentId && selectedLanguage) {
       dispatch(
         fetchSelectedContentActionCreator({
-          contentId: id,
+          contentId: contentId,
           locale: selectedLanguage,
         })
       );
