@@ -4,6 +4,7 @@ import img from "../../../../assets/annuaire/annuaire_lecture.svg";
 import { Letter } from "./Letter";
 import { NavHashLink } from "react-router-hash-link";
 import i18n from "../../../../i18n";
+import { SearchBarAnnuaire } from "./SearchBarAnnuaire";
 
 const HeaderContainer = styled.div`
   background-attachment: fixed;
@@ -42,6 +43,10 @@ const LettersContainer = styled.div`
   margin-right: ${(props) => props.isRTL && "72px"};
 `;
 
+const SearchContainer = styled.div`
+  display: flex;
+`;
+
 interface Props {
   letters: string[];
   //   onLetterClick: (letter: string) => void;
@@ -53,9 +58,14 @@ export const Header = (props: Props) => {
   const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
   return (
     <HeaderContainer stopScroll={props.stopScroll}>
-      <TextContainer isRTL={isRTL}>
-        {props.t("Annuaire.Annuaire", "Annuaire")}
-      </TextContainer>
+      <SearchContainer>
+        {" "}
+        <TextContainer isRTL={isRTL}>
+          {props.t("Annuaire.Annuaire", "Annuaire")}
+        </TextContainer>
+        <SearchBarAnnuaire text="Camille" />
+      </SearchContainer>
+
       <LettersContainer isRTL={isRTL}>
         <>
           {props.letters.map((letter, index) => (
