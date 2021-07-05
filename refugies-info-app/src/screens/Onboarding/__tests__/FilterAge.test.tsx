@@ -73,7 +73,7 @@ describe("Filter age", () => {
       compProps: { navigation: { goBack: jest.fn() } },
     });
 
-    const AgeButton = component.getByTestId("test-filter-Plus de 26 ans");
+    const AgeButton = component.getByTestId("test-filter-26 ans et plus");
 
     act(() => {
       fireEvent.press(AgeButton);

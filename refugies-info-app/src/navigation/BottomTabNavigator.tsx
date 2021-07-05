@@ -17,8 +17,8 @@ import {
 } from "../components/StyledText";
 import styled from "styled-components/native";
 import { FavorisNavigator } from "./BottomTabBar/FavorisNavigator";
-import { ProfilNavigator } from "./BottomTabBar/ProfilNavigator";
 import { SearchNavigator } from "./BottomTabBar/SearchNavigator";
+import { ProfilScreen } from "../screens/ProfilTab/ProfilScreen";
 
 const ICON_SIZE = 24;
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -129,7 +129,7 @@ export default function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Profil"
-        component={ProfilNavigator}
+        component={ProfilScreen}
         options={{
           tabBarIcon: ({
             color,

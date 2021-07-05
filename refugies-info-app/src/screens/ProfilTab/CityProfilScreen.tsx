@@ -1,24 +1,28 @@
 import * as React from "react";
-import styled from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { TextNormal } from "../../components/StyledText";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
-import { ProfilParamList } from "../../../types";
+import { RootStackParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { FilterCityComponent } from "../../components/Geoloc/FilterCityComponent";
 
 export const CityProfilScreen = ({
   navigation,
-}: StackScreenProps<ProfilParamList, "CityProfilScreen">) => {
+}: StackScreenProps<RootStackParamList, "CityProfilScreen">) => {
   const { t } = useTranslationWithRTL();
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      style={{
+        display: "flex",
+        flex: 1,
+      }}
+    >
       <HeaderWithBack
         navigation={navigation}
         text={t("Profil.Ville", "Ville")}
         iconName="pin-outline"
       />
-      <TextNormal>City</TextNormal>
+      <FilterCityComponent navigation={navigation} isOnboardingScreen={false} />
     </SafeAreaView>
   );
 };

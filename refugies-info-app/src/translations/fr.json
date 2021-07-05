@@ -65,7 +65,7 @@
   "Filter": {
     "0 à 17 ans": "0 à 17 ans",
     "18 à 25 ans": "18 à 25 ans",
-    "Plus de 26 ans": "Plus de 26 ans",
+    "26 ans et plus": "26 ans et plus",
     "Je commence à apprendre": "Je commence à apprendre",
     "Je parle un peu": "Je parle un peu",
     "Je parle bien": "Je parle bien",
@@ -76,6 +76,7 @@
   "Passer l'étape": "Passer l'étape",
   "Valider": "Valider",
   "Fermer": "Fermer",
+  "Annuler": "Annuler",
   "Toute la France": "Toute la France",
   "Pour tout âge": "Pour tout âge",
   "Pour tout niveau de français": "Pour tout niveau de français",
@@ -90,6 +91,10 @@
     "Paramètres": "Paramètres",
     "Français": "Français",
     "Tous les niveaux": "Tous les niveaux",
-    "Tous les âges": "Tous les âges"
+    "Tous les âges": "Tous les âges",
+    "reinit_app2": "Es-tu sûr de vouloir réinitialiser ton application ?",
+    "delete_data": "Es-tu sûr de vouloir supprimer les données de ton profil ?",
+    "Ne pas filtrer selon mon niveau de français": "Ne pas filtrer selon mon niveau de français",
+    "Ne pas filtrer selon mon âge": "Ne pas filtrer selon mon âge"
   }
 }
