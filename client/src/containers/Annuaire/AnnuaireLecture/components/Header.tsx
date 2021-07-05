@@ -5,6 +5,7 @@ import { Letter } from "./Letter";
 import { NavHashLink } from "react-router-hash-link";
 import i18n from "../../../../i18n";
 import { SearchBarAnnuaire } from "./SearchBarAnnuaire";
+import { colors } from "../../../../colors";
 
 const HeaderContainer = styled.div`
   background-attachment: fixed;
@@ -17,10 +18,8 @@ const HeaderContainer = styled.div`
 `;
 
 const TextContainer = styled.div`
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  height: 74px;
+  padding: 4px 8px 4px 8px;
   background: #ffffff;
   font-weight: bold;
   font-size: 52px;
@@ -29,6 +28,7 @@ const TextContainer = styled.div`
   margin-top: 146px;
   margin-left: 72px;
   margin-right: ${(props) => props.isRTL && "72px"};
+  color: ${colors.bleuCharte};
 `;
 
 const LettersContainer = styled.div`
