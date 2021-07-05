@@ -50,7 +50,10 @@ export const ContentScreen = ({
   const contentWidth = useWindowDimensions().width;
   if (!selectedContent) {
     return (
-      <WrapperWithHeaderAndLanguageModal>
+      <WrapperWithHeaderAndLanguageModal
+        showSwitch={true}
+        navigation={navigation}
+      >
         <TouchableOpacity onPress={navigation.goBack}>
           <Text>Back</Text>
         </TouchableOpacity>
@@ -65,11 +68,10 @@ export const ContentScreen = ({
   const part1 = selectedContent.contenu[0].content;
 
   return (
-    <WrapperWithHeaderAndLanguageModal>
-      <TouchableOpacity onPress={navigation.goBack}>
-        <Text>Back</Text>
-      </TouchableOpacity>
-
+    <WrapperWithHeaderAndLanguageModal
+      showSwitch={true}
+      navigation={navigation}
+    >
       <ScrollView>
         <TextContainer>
           <TextNormal>{selectedContent.titreInformatif}</TextNormal>

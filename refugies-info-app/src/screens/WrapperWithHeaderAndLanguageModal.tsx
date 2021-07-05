@@ -1,10 +1,15 @@
 import React from "react";
 import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
-import { HeaderWithLogo } from "../components/HeaderWithLogo";
+import {
+  HeaderWithLogo,
+  HeaderWithBackForWrapper,
+} from "../components/HeaderWithLogo";
 import styled from "styled-components/native";
 
 interface Props {
   children: any;
+  navigation?: any;
+  showSwitch?: boolean;
 }
 
 const StyledView = styled.View`
@@ -21,7 +26,14 @@ export const WrapperWithHeaderAndLanguageModal = (props: Props) => {
 
   return (
     <StyledView>
-      <HeaderWithLogo onLongPressSwitchLanguage={toggleLanguageModal} />
+      {props.showSwitch && props.navigation ? (
+        <HeaderWithBackForWrapper
+          onLongPressSwitchLanguage={toggleLanguageModal}
+          navigation={props.navigation}
+        />
+      ) : (
+        <HeaderWithLogo onLongPressSwitchLanguage={toggleLanguageModal} />
+      )}
       {props.children}
 
       <LanguageChoiceModal
