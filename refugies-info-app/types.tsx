@@ -1,3 +1,5 @@
+import { ObjectId } from "./src/types/interface";
+
 /**
  * Learn more about using TypeScript with React Navigation:
  * https://reactnavigation.org/docs/typescript/
@@ -24,6 +26,8 @@ export type BottomTabParamList = {
 
 export type ExplorerParamList = {
   ExplorerScreen: undefined;
+  ContentsScreen: { tagName: string };
+  ContentScreen: { contentId: ObjectId };
 };
 
 export type FavorisParamList = {
