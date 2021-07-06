@@ -30,14 +30,29 @@ export const ContentsScreen = ({
     ? useSelector(contentsSelector(currentLanguageI18nCode))
     : [];
   const { tagName } = route.params;
+
+  const filteredContents = contents.filter((content) => {
+    const mainTag =
+      content.tags && content.tags.length > 0 ? content.tags[0] : null;
+    if (mainTag && mainTag.name === tagName) {
+      return true;
+    }
+    return false;
+  });
   return (
     <WrapperWithHeaderAndLanguageModal
       navigation={navigation}
       showSwitch={true}
     >
-      <Header>{"Contents screen : " + tagName}</Header>
+      <Header>
+        {"Contents screen : " +
+          tagName +
+          " " +
+          filteredContents.length +
+          " fiches"}
+      </Header>
       <ScrollView>
-        {contents.map((content, index) => (
+        {filteredContents.map((content, index) => (
           <ContentContainer
             key={index}
             onPress={() =>

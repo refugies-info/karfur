@@ -10,6 +10,7 @@ export interface Language {
 
 interface Tag {
   short: string;
+  name: string;
 }
 export interface SimplifiedContent {
   _id: ObjectId;
