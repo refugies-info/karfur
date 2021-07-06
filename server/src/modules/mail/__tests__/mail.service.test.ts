@@ -1,6 +1,7 @@
 // @ts-nocheck
 import {
   sendWelcomeMail,
+  sendResetPasswordMail,
   sendOneDraftReminderMailService,
   sendMultipleDraftsReminderMailService,
   sendPublishedFicheMailToStructureMembersService,
@@ -48,6 +49,35 @@ describe("sendWelcomeMail", () => {
       username: "username",
       email: "email",
       userId: "userId",
+    });
+  });
+});
+
+describe("sendResetPasswordMail", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  it("should call send mail and add mail event", async () => {
+    await sendResetPasswordMail("pseudo", "lien_reinitialisation", "email");
+    const templateName = "resetPassword";
+    const dynamicData = {
+      to: "email",
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      // cc: "contact@refugies.info",
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        Pseudonyme: "pseudo",
+        lien_reinitialisation: "lien_reinitialisation",
+      },
+    };
+    expect(sendMail).toHaveBeenCalledWith(templateName, dynamicData);
+    expect(addMailEvent).toHaveBeenCalledWith({
+      templateName,
+      username: "pseudo",
+      email: "email",
     });
   });
 });

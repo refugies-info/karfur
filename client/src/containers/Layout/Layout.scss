@@ -1,3 +1,4 @@
+@import "src/scss/global.scss";
 .text-center {
   text-align: center;
 }
@@ -15,6 +16,9 @@
 }
 
 div.app-body {
+  @include media-min("tablet-up") {
+    overflow-x: inherit;
+  }
   display: flex;
   flex-direction: row;
   flex-grow: 1;

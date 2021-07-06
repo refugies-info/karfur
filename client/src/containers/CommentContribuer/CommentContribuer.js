@@ -23,8 +23,9 @@ import gif from "../../assets/comment-contribuer/GIF-corriger.gif";
 import i18n from "../../i18n";
 import "./CommentContribuer.scss";
 import { icon_France } from "../../assets/figma/index";
-import Nour from "../../assets/qui-sommes-nous/Nour.png";
+import Nour from "../../assets/qui-sommes-nous/Nour-big.png";
 import FButton from "components/FigmaUI/FButton/FButton";
+import { CompleteProfilModal } from "../../components/Modals/CompleteProfilModal/CompleteProfilModal";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -301,7 +302,6 @@ const DeployonsRdvContainer = styled.div`
 
 const RdvContactContainer = styled.div`
   width: 458px;
-  height: 230px;
   background-color: ${colors.bleuCharte};
   border-radius: 12px;
   padding: 20px;
@@ -310,6 +310,7 @@ const RdvContactContainer = styled.div`
 
 const ContactInfoContainer = styled.div`
   padding-left: 20px;
+  padding-right: 20px;
 `;
 
 const MainTextContainer = styled.div`
@@ -349,7 +350,15 @@ const TraduireAnchor = styled.div`
 `;
 
 const DispositifCard = (props) => (
-  <DispoCardContainer>
+  <DispoCardContainer
+    onClick={() => {
+      if (props.user.email !== "") {
+        props.history.push("/dispositif");
+      } else {
+        props.toggleModal("dispositif");
+      }
+    }}
+  >
     <img src={assetsOnServer.commentContribuer.dispositif} alt="dispositif" />
     <div
       style={{
@@ -427,7 +436,15 @@ const StructureCard = (props) => (
 );
 
 const DemarcheCard = (props) => (
-  <DemarcheCardContainer>
+  <DemarcheCardContainer
+    onClick={() => {
+      if (props.user.email !== "") {
+        props.history.push("/demarche");
+      } else {
+        props.toggleModal("demarche");
+      }
+    }}
+  >
     <img
       src={assetsOnServer.commentContribuer.demarche}
       height="190px"
@@ -513,6 +530,8 @@ class CommentContribuer extends Component {
     showModals: { checkDemarche: false },
     nbTraductors: 0,
     nbExperts: 0,
+    showCompleteProfilModal: false,
+    typeModal: "",
   };
   _isMounted = false;
 
@@ -530,6 +549,11 @@ class CommentContribuer extends Component {
   componentWillUnmount() {
     this._isMounted = false;
   }
+  toggleCompleteProfilModal = (type = "") =>
+    this.setState((prevState) => ({
+      showCompleteProfilModal: !prevState.showCompleteProfilModal,
+      typeModal: type,
+    }));
 
   toggleModal = (show, name) =>
     this.setState((prevState) => ({
@@ -593,12 +617,19 @@ class CommentContribuer extends Component {
         <RedactionContainer id="ecrire-card">
           {t("CommentContribuer.Redaction", "Rédiger de nouveaux contenus")}
           <RedactionCardsContainer>
-            <NavLink to="/dispositif" className="no-decoration">
-              <DispositifCard t={t} />
-            </NavLink>
-            <NavLink to="/demarche" className="no-decoration">
-              <DemarcheCard t={t} />
-            </NavLink>
+            <DispositifCard
+              user={this.props.user}
+              history={this.props.history}
+              t={t}
+              toggleModal={this.toggleCompleteProfilModal}
+            />
+
+            <DemarcheCard
+              user={this.props.user}
+              history={this.props.history}
+              t={t}
+              toggleModal={this.toggleCompleteProfilModal}
+            />
 
             <StructureCard t={t} />
             <LexiqueCard t={t} />
@@ -769,7 +800,7 @@ class CommentContribuer extends Component {
               </p>
             </RdvTextContainer>
             <RdvContactContainer>
-              <img src={Nour} alt="Photo Nour" />
+              <img className="nour" src={Nour} alt="Photo Nour" />
               <ContactInfoContainer>
                 <ContactInfoTextContainer type="main">
                   Nour Allazkani
@@ -800,7 +831,6 @@ class CommentContribuer extends Component {
             </RdvContactContainer>
           </DeployonsRdvContainer>
         </DeployonsContainer>
-
         <CorrectionContainer id="corriger">
           <CorrectionHeader>
             {t(
@@ -902,6 +932,14 @@ class CommentContribuer extends Component {
             <PapillonViolet />
           </div>
         </CorrectionContainer>
+        <CompleteProfilModal
+          show={this.state.showCompleteProfilModal}
+          toggle={this.toggleCompleteProfilModal}
+          history={this.props.history}
+          user={this.props.user}
+          type={this.state.typeModal}
+        />
+        ;
       </MainContainer>
     );
   }
@@ -928,10 +966,10 @@ const ContactInfoTextContainer = styled.p`
   padding : 5px; 10px;
 `;
 
-const DispoContainer = styled.p`
+const DispoContainer = styled.div`
   color: ${colors.blancSimple};
   font-size: 16px;
-  padding : 12px; 10px;
+  padding: 12px 10px 0 10px;
   font-weight: 700;
 `;
 
@@ -1031,6 +1069,7 @@ const RoundIcon = (props) => (
 const mapStateToProps = (state) => {
   return {
     langues: state.langue.langues,
+    user: state.user.user,
   };
 };
 

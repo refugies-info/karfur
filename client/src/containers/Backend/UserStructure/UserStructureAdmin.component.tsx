@@ -2,29 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { UserStructureLoading } from "./components/UserStructureLoading";
 import { UserStructureDetails } from "./components/UserStructureDetails";
-import styled from "styled-components";
 import { colors } from "../../../colors";
 import { userSelector } from "../../../services/User/user.selectors";
 import { ObjectId } from "mongodb";
 import API from "../../../utils/API";
 import { UserStructure } from "../../../types/interface";
 import Swal from "sweetalert2";
-
-const ErrorContainer = styled.div`
-  margin-top: 60px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex: 1;
-`;
-
-const ErrorText = styled.div`
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  color: ${colors.error};
-  margin-top: 60px;
-`;
 
 declare const window: Window;
 
@@ -119,16 +102,6 @@ export const UserStructureAdminComponent = (props: Props) => {
   }
 
   if (!structure) return <div>No structure</div>;
-
-  if (structure.status === "En attente")
-    return (
-      <ErrorContainer>
-        <ErrorText>
-          Votre structure n'a pas été validée. Veuillez contacter l'équipe de
-          réfugiés.info via le live chat en bas à droite de votre écran.
-        </ErrorText>
-      </ErrorContainer>
-    );
 
   return (
     <UserStructureDetails

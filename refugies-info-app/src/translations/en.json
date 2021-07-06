@@ -1,14 +1,4 @@
 {
-  "homepage": {
-    "test": "test anglais"
-  },
-  "lists": "Lists anglais",
-  "Onboarding1": {
-    "welcome": "Bienvenue en"
-  },
-  "Onboarding2": {
-    "welcome": "Bienvenue en"
-  },
   "Tags": {
     "Français": "French",
     "Logement": "Housing",
@@ -35,5 +25,6 @@
     "découvrir la culture": "discover French culture",
     "me soigner": "get medical care",
     "gérer mes papiers": "manage my paperwork"
-  }
+  },
+  "Suivant": "Next"
 }

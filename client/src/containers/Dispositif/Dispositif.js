@@ -49,7 +49,7 @@ import ContribCaroussel from "./ContribCaroussel/ContribCaroussel";
 import SideTrad from "./SideTrad/SideTrad";
 import ExpertSideTrad from "./SideTrad/ExpertSideTrad";
 import { initializeTimer } from "../Translation/functions";
-import { readAudio } from "../Layout/functions";
+import { readAudio, stopAudio } from "../Layout/functions";
 import {
   contenu,
   menu,
@@ -78,6 +78,7 @@ import { initGA, Event } from "../../tracking/dispatch";
 import { fetchActiveStructuresActionCreator } from "../../services/ActiveStructures/activeStructures.actions";
 import { logger } from "../../logger";
 import { isMobile } from "react-device-detect";
+import { PdfCreateModal } from "../../components/Modals/PdfCreateModal/PdfCreateModal";
 
 moment.locale("fr");
 
@@ -102,6 +103,7 @@ export class Dispositif extends Component {
     this._isMounted = false;
     this.initializeTimer = initializeTimer.bind(this);
     this.readAudio = readAudio.bind(this);
+    this.stopAudio = stopAudio.bind(this);
   }
 
   state = {
@@ -128,6 +130,7 @@ export class Dispositif extends Component {
     showDispositifValidateModal: false,
     showGeolocModal: false,
     showTagsModal: false,
+    showPdfModal: false,
     showTutorielModal: false,
     showDraftModal: false,
     showShareContentOnMobileModal: false,
@@ -540,6 +543,10 @@ export class Dispositif extends Component {
 
   toggleGeolocModal = (show) => {
     this.setState({ showGeolocModal: show });
+  };
+
+  toggleShowPdfModal = () => {
+    this.setState({ showPdfModal: !this.state.showPdfModal });
   };
 
   handleModalChange = (ev) =>
@@ -1195,9 +1202,7 @@ export class Dispositif extends Component {
     const prevState = [...this.state.menu];
     //var menuObj = [...menu[1].children]
     if (node === "title") {
-      prevState[key].children[
-        subkey
-      ] = this.state.initialMenu[1].children
+      prevState[key].children[subkey] = this.state.initialMenu[1].children
         .concat(importantCard)
         .find((x) => x.title === value);
     } else {
@@ -1332,6 +1337,10 @@ export class Dispositif extends Component {
       }),
     }));
     this.setState({ uiArray: uiArray, showSpinnerPrint: true, printing: true });
+  };
+
+  printPdf = () => {
+    window.print();
   };
 
   editDispositif = (_ = null, disableEdit = false) => {
@@ -1608,6 +1617,7 @@ export class Dispositif extends Component {
           this.props.fetchDispositifs();
           this.setState(
             {
+              status: dispositif.status,
               disableEdit:
                 [
                   "En attente admin",
@@ -1665,6 +1675,7 @@ export class Dispositif extends Component {
     } = this.state;
     const tag =
       mainTag && mainTag.short ? mainTag.short.split(" ").join("-") : "noImage";
+
     return (
       <div
         id="dispositif"
@@ -1746,6 +1757,7 @@ export class Dispositif extends Component {
                   toggleDispositifValidateModal={
                     this.toggleDispositifValidateModal
                   }
+                  toggleTutoModal={this.toggleTutorielModal}
                   editDispositif={this.editDispositif}
                   valider_dispositif={this.valider_dispositif}
                   toggleDispositifCreateModal={this.toggleDispositifCreateModal}
@@ -1918,6 +1930,7 @@ export class Dispositif extends Component {
                       toggleTutorielModal={this.toggleTutorielModal}
                       displayTuto={this.state.displayTuto}
                       updateUIArray={this.updateUIArray}
+                      toggleShowPdfModal={this.toggleShowPdfModal}
                     />
                   }
                 </Col>
@@ -2007,6 +2020,7 @@ export class Dispositif extends Component {
                   setMarkers={this.setMarkers}
                   filtres={filtres}
                   readAudio={this.readAudio}
+                  stopAudio={this.stopAudio}
                   demarcheSteps={demarcheSteps}
                   upcoming={this.upcoming}
                   toggleTutorielModal={this.toggleTutorielModal}
@@ -2023,15 +2037,21 @@ export class Dispositif extends Component {
                   {...this.state}
                 />
 
-                {this.state.disableEdit && !isMobile && (
+                {this.state.disableEdit && (
                   <>
                     {!printing && (
                       <FeedbackFooter
                         pushReaction={this.pushReaction}
                         didThank={didThank}
+                        window={window}
+                        nbThanks={
+                          this.state.dispositif.merci
+                            ? this.state.dispositif.merci.length
+                            : 0
+                        }
                       />
                     )}
-                    {!printing && (
+                    {!printing && !isMobile && (
                       <div className="discussion-footer backgroundColor-darkColor">
                         <h5>{t("Dispositif.Avis", "Avis et discussions")}</h5>
                         <span>
@@ -2039,13 +2059,15 @@ export class Dispositif extends Component {
                         </span>
                       </div>
                     )}
-                    {this.state.contributeurs.length > 0 && !printing && (
-                      <div className="bottom-wrapper">
-                        <ContribCaroussel
-                          contributeurs={this.state.contributeurs}
-                        />
-                      </div>
-                    )}
+                    {this.state.contributeurs.length > 0 &&
+                      !isMobile &&
+                      !printing && (
+                        <div className="bottom-wrapper">
+                          <ContribCaroussel
+                            contributeurs={this.state.contributeurs}
+                          />
+                        </div>
+                      )}
                   </>
                 )}
 
@@ -2114,6 +2136,16 @@ export class Dispositif extends Component {
               sponsors={this.state.sponsors}
             />
 
+            <PdfCreateModal
+              createPdf={this.createPdf}
+              t={this.props.t}
+              show={this.state.showPdfModal}
+              toggle={this.toggleShowPdfModal}
+              printPdf={this.printPdf}
+              closePdf={this.closePdf}
+              newRef={this.newRef}
+            />
+
             <BookmarkedModal
               t={this.props.t}
               success={this.state.isAuth}
@@ -2144,6 +2176,8 @@ export class Dispositif extends Component {
               toggle={this.toggleDispositifValidateModal}
               abstract={this.state.content.abstract}
               onChange={this.handleChange}
+              titreInformatif={this.state.content.titreInformatif}
+              titreMarque={this.state.content.titreMarque}
               validate={this.valider_dispositif}
               toggleTutorielModal={this.toggleTutorielModal}
               tags={this.state.tags}

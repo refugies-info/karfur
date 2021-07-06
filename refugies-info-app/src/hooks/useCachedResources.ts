@@ -15,8 +15,10 @@ export default function useCachedResources() {
         // Load fonts
         await Font.loadAsync({
           ...Ionicons.font,
-          circularBook: require("../theme/fonts/CircularStd-Book.otf"),
-          circularBold: require("../theme/fonts/CircularStd-Bold.otf"),
+          // circularBook: require("../theme/fonts/CircularStd-Book.otf"),
+          // circularBold: require("../theme/fonts/CircularStd-Bold.otf"),
+          circularBook: require("../theme/SpaceMono-Regular.ttf"),
+          circularBold: require("../theme/SpaceMono-Regular.ttf"),
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service

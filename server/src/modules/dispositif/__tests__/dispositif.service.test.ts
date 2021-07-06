@@ -68,7 +68,8 @@ describe("publish dispositif", () => {
       "tm",
       "id",
       [],
-      null
+      null,
+      false
     );
     expect(sendMailWhenDispositifPublished).toHaveBeenCalledWith(dispositif);
   });
@@ -89,7 +90,8 @@ describe("publish dispositif", () => {
       "tm",
       "id",
       [],
-      null
+      null,
+      false
     );
     expect(sendMailWhenDispositifPublished).toHaveBeenCalledWith(dispositif);
   });

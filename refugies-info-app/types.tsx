@@ -8,6 +8,11 @@ export type RootStackParamList = {
   Root: undefined;
   OnboardingNavigator: undefined;
   LanguageChoiceNavigator: undefined;
+  ProfilScreen: undefined;
+  LangueProfilScreen: undefined;
+  AgeProfilScreen: undefined;
+  FrenchLevelProfilScreen: undefined;
+  CityProfilScreen: undefined;
 };
 
 export type BottomTabParamList = {
@@ -25,19 +30,31 @@ export type FavorisParamList = {
   FavorisScreen: undefined;
 };
 
-export type ProfilParamList = {
-  ProfilScreen: undefined;
-};
-
 export type SearchParamList = {
   SearchScreen: undefined;
 };
 
 export type OnboardingParamList = {
-  Onboarding1: undefined;
-  Onboarding2: undefined;
+  OnboardingStart: undefined;
+  OnboardingSteps: undefined;
+  FilterCity: undefined;
+  FilterAge: undefined;
+  FilterFrenchLevel: undefined;
+  FinishOnboarding: undefined;
+  LanguageChoice: undefined;
 };
 
 export type LanguageChoiceParamList = {
   LanguageChoice: undefined;
 };
+
+export interface GoogleAPISuggestion {
+  structured_formatting: { main_text: string };
+  place_id: string;
+  description: string;
+}
+
+export interface FrenchLevel {
+  name: string;
+  cecrCorrespondency?: string[];
+}

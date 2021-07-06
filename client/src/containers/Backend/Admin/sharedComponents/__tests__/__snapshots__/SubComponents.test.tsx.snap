@@ -362,7 +362,7 @@ exports[`should render Structure with sponsor en attente 1`] = `
 .c1 {
   width: 10px;
   height: 10px;
-  background-color: #ff9800;
+  background-color: #FF9800;
   border-radius: 50%;
   margin-right: 10px;
 }
@@ -377,7 +377,7 @@ exports[`should render Structure with sponsor en attente 1`] = `
 >
   <div
     className="c1"
-    color="#ff9800"
+    color="#FF9800"
   />
   <div
     className="c2"

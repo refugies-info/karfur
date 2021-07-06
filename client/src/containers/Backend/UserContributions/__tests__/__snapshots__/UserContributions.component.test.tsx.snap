@@ -463,6 +463,14 @@ exports[`userContributions should render correctly when click on delete 1`] = `
 }
 
 .c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
@@ -1158,6 +1166,14 @@ exports[`userContributions should render correctly when contributions 1`] = `
 }
 
 .c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
@@ -1173,6 +1189,14 @@ exports[`userContributions should render correctly when contributions 1`] = `
 }
 
 .c18 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
@@ -1188,6 +1212,14 @@ exports[`userContributions should render correctly when contributions 1`] = `
 }
 
 .c19 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
@@ -1203,6 +1235,14 @@ exports[`userContributions should render correctly when contributions 1`] = `
 }
 
 .c21 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
@@ -1218,6 +1258,14 @@ exports[`userContributions should render correctly when contributions 1`] = `
 }
 
 .c22 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;

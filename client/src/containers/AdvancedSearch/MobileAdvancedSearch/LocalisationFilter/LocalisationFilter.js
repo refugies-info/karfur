@@ -71,7 +71,7 @@ export const LocalisationFilter = (props) => {
                 value={props.ville}
                 onChange={handleChange}
                 onPlaceSelected={onPlaceSelected}
-                types={["(regions)"]}
+                types={["(cities)"]}
                 componentRestrictions={{ country: "fr" }}
               />
             </div>
