@@ -1,4 +1,4 @@
-export const ageFilters = ["0 à 17 ans", "18 à 25 ans", "Plus de 26 ans"];
+export const ageFilters = ["0 à 17 ans", "18 à 25 ans", "26 ans et plus"];
 
 export const frenchLevelFilters = [
   { name: "Je commence à apprendre" },

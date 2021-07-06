@@ -16,7 +16,8 @@ const MainContainer = styled(RTLTouchableOpacity)`
   background-color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.black : theme.colors.white};
   padding: ${theme.margin * 2}px;
-  box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
+  box-shadow: ${(props: { isSelected: boolean }) =>
+    props.isSelected ? "none" : "0px 8px 16px rgba(33, 33, 33, 0.24)"};
   border-radius: ${theme.radius * 2}px;
   margin-bottom: ${theme.margin * 2}px;
   justify-content: space-between;
@@ -34,9 +35,12 @@ const DetailContainer = styled.View`
     props.isSelected ? theme.colors.white : theme.colors.grey60};
   margin-left: ${theme.margin}px;
   padding-vertical: 4px;
-  padding-horizontal: ${theme.margin}px;
-
   border-radius: ${theme.margin}px;
+  width: 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;
 
 const TextVerySmall = styled(StyledTextVerySmallBold)`

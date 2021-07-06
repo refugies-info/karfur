@@ -14,7 +14,7 @@ export const addAgeQuery = (
     };
   }
 
-  if (age === "Plus de 26 ans") {
+  if (age === "26 ans et plus") {
     return { ...query, "audienceAge.topValue": { $gte: 26 } };
   }
   return { ...query };

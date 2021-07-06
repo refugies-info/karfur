@@ -335,7 +335,7 @@ exports[`Filter french level should render correctly when french level selected 
           "flexGrow": 1,
           "flexShrink": 1,
           "justifyContent": "space-between",
-          "paddingVertical": 24,
+          "paddingBottom": 24,
         },
       ]
     }
@@ -392,13 +392,13 @@ exports[`Filter french level should render correctly when french level selected 
               "paddingLeft": 16,
               "paddingRight": 16,
               "paddingTop": 16,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "black",
               "shadowOffset": Object {
-                "height": 8,
+                "height": 0,
                 "width": 0,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 0,
             }
           }
           testID="test-filter-Je commence à apprendre"
@@ -499,11 +499,15 @@ exports[`Filter french level should render correctly when french level selected 
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -530,11 +534,15 @@ exports[`Filter french level should render correctly when french level selected 
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -626,11 +634,15 @@ exports[`Filter french level should render correctly when french level selected 
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -657,11 +669,15 @@ exports[`Filter french level should render correctly when french level selected 
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -753,11 +769,15 @@ exports[`Filter french level should render correctly when french level selected 
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -784,11 +804,15 @@ exports[`Filter french level should render correctly when french level selected 
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -826,10 +850,8 @@ exports[`Filter french level should render correctly when french level selected 
                 "backgroundColor": "#FFFFFF",
                 "borderRadius": 8,
                 "display": "flex",
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
+                "marginTop": 8,
+                "paddingVertical": 16,
                 "width": "100%",
               },
             ]
@@ -852,77 +874,89 @@ exports[`Filter french level should render correctly when french level selected 
             <react-native-svg />
           </View>
           <View
+            isRTL={false}
             style={
-              Object {
-                "transform": Array [
-                  Object {
-                    "scale": 1,
-                  },
-                ],
-              }
+              Array [
+                Object {
+                  "marginLeft": 16,
+                  "marginRight": 0,
+                },
+              ]
             }
           >
-            <RNSVGSvgView
-              align="xMidYMid"
-              bbHeight={24}
-              bbWidth={24}
-              fill="#2D9CDB"
-              focusable={false}
-              height={24}
-              meetOrSlice={0}
-              minX={0}
-              minY={0}
+            <View
               style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 24,
-                    "width": 24,
-                  },
-                ]
+                Object {
+                  "transform": Array [
+                    Object {
+                      "scale": 1,
+                    },
+                  ],
+                }
               }
-              vbHeight={24}
-              vbWidth={24}
-              width={24}
             >
-              <RNSVGGroup
-                fill={4281179355}
-                propList={
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={24}
+                bbWidth={24}
+                fill="#2D9CDB"
+                focusable={false}
+                height={24}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
                   Array [
-                    "fill",
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 24,
+                      "width": 24,
+                    },
                   ]
                 }
+                vbHeight={24}
+                vbWidth={24}
+                width={24}
               >
-                <RNSVGGroup>
+                <RNSVGGroup
+                  fill={4281179355}
+                  propList={
+                    Array [
+                      "fill",
+                    ]
+                  }
+                >
                   <RNSVGGroup>
-                    <RNSVGRect
-                      height="24"
-                      matrix={
-                        Array [
-                          -1,
-                          1.2246467991473532e-16,
-                          -1.2246467991473532e-16,
-                          -1,
-                          24,
-                          24,
-                        ]
-                      }
-                      opacity={0}
-                      width="24"
-                      x={0}
-                      y={0}
-                    />
-                    <RNSVGPath
-                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
-                    />
+                    <RNSVGGroup>
+                      <RNSVGRect
+                        height="24"
+                        matrix={
+                          Array [
+                            -1,
+                            1.2246467991473532e-16,
+                            -1.2246467991473532e-16,
+                            -1,
+                            24,
+                            24,
+                          ]
+                        }
+                        opacity={0}
+                        width="24"
+                        x={0}
+                        y={0}
+                      />
+                      <RNSVGPath
+                        d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
+                      />
+                    </RNSVGGroup>
                   </RNSVGGroup>
                 </RNSVGGroup>
-              </RNSVGGroup>
-            </RNSVGSvgView>
+              </RNSVGSvgView>
+            </View>
           </View>
           <Text
             isRTL={false}
@@ -935,7 +969,7 @@ exports[`Filter french level should render correctly when french level selected 
                   "fontSize": 13,
                   "lineHeight": 16,
                   "marginLeft": 8,
-                  "marginRight": 0,
+                  "marginRight": 16,
                   "textAlign": "left",
                 },
               ]
@@ -1528,7 +1562,7 @@ exports[`Filter french level should render correctly when no french level select
           "flexGrow": 1,
           "flexShrink": 1,
           "justifyContent": "space-between",
-          "paddingVertical": 24,
+          "paddingBottom": 24,
         },
       ]
     }
@@ -1692,11 +1726,15 @@ exports[`Filter french level should render correctly when no french level select
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -1723,11 +1761,15 @@ exports[`Filter french level should render correctly when no french level select
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -1819,11 +1861,15 @@ exports[`Filter french level should render correctly when no french level select
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -1850,11 +1896,15 @@ exports[`Filter french level should render correctly when no french level select
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -1946,11 +1996,15 @@ exports[`Filter french level should render correctly when no french level select
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -1977,11 +2031,15 @@ exports[`Filter french level should render correctly when no french level select
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -2019,10 +2077,8 @@ exports[`Filter french level should render correctly when no french level select
                 "backgroundColor": "#FFFFFF",
                 "borderRadius": 8,
                 "display": "flex",
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
+                "marginTop": 8,
+                "paddingVertical": 16,
                 "width": "100%",
               },
             ]
@@ -2045,77 +2101,89 @@ exports[`Filter french level should render correctly when no french level select
             <react-native-svg />
           </View>
           <View
+            isRTL={false}
             style={
-              Object {
-                "transform": Array [
-                  Object {
-                    "scale": 1,
-                  },
-                ],
-              }
+              Array [
+                Object {
+                  "marginLeft": 16,
+                  "marginRight": 0,
+                },
+              ]
             }
           >
-            <RNSVGSvgView
-              align="xMidYMid"
-              bbHeight={24}
-              bbWidth={24}
-              fill="#2D9CDB"
-              focusable={false}
-              height={24}
-              meetOrSlice={0}
-              minX={0}
-              minY={0}
+            <View
               style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 24,
-                    "width": 24,
-                  },
-                ]
+                Object {
+                  "transform": Array [
+                    Object {
+                      "scale": 1,
+                    },
+                  ],
+                }
               }
-              vbHeight={24}
-              vbWidth={24}
-              width={24}
             >
-              <RNSVGGroup
-                fill={4281179355}
-                propList={
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={24}
+                bbWidth={24}
+                fill="#2D9CDB"
+                focusable={false}
+                height={24}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
                   Array [
-                    "fill",
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 24,
+                      "width": 24,
+                    },
                   ]
                 }
+                vbHeight={24}
+                vbWidth={24}
+                width={24}
               >
-                <RNSVGGroup>
+                <RNSVGGroup
+                  fill={4281179355}
+                  propList={
+                    Array [
+                      "fill",
+                    ]
+                  }
+                >
                   <RNSVGGroup>
-                    <RNSVGRect
-                      height="24"
-                      matrix={
-                        Array [
-                          -1,
-                          1.2246467991473532e-16,
-                          -1.2246467991473532e-16,
-                          -1,
-                          24,
-                          24,
-                        ]
-                      }
-                      opacity={0}
-                      width="24"
-                      x={0}
-                      y={0}
-                    />
-                    <RNSVGPath
-                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
-                    />
+                    <RNSVGGroup>
+                      <RNSVGRect
+                        height="24"
+                        matrix={
+                          Array [
+                            -1,
+                            1.2246467991473532e-16,
+                            -1.2246467991473532e-16,
+                            -1,
+                            24,
+                            24,
+                          ]
+                        }
+                        opacity={0}
+                        width="24"
+                        x={0}
+                        y={0}
+                      />
+                      <RNSVGPath
+                        d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
+                      />
+                    </RNSVGGroup>
                   </RNSVGGroup>
                 </RNSVGGroup>
-              </RNSVGGroup>
-            </RNSVGSvgView>
+              </RNSVGSvgView>
+            </View>
           </View>
           <Text
             isRTL={false}
@@ -2128,7 +2196,7 @@ exports[`Filter french level should render correctly when no french level select
                   "fontSize": 13,
                   "lineHeight": 16,
                   "marginLeft": 8,
-                  "marginRight": 0,
+                  "marginRight": 16,
                   "textAlign": "left",
                 },
               ]
@@ -2721,7 +2789,7 @@ exports[`Filter french level should select level when click on it 1`] = `
           "flexGrow": 1,
           "flexShrink": 1,
           "justifyContent": "space-between",
-          "paddingVertical": 24,
+          "paddingBottom": 24,
         },
       ]
     }
@@ -2778,13 +2846,13 @@ exports[`Filter french level should select level when click on it 1`] = `
               "paddingLeft": 16,
               "paddingRight": 16,
               "paddingTop": 16,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "black",
               "shadowOffset": Object {
-                "height": 8,
+                "height": 0,
                 "width": 0,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 0,
             }
           }
           testID="test-filter-Je commence à apprendre"
@@ -2885,11 +2953,15 @@ exports[`Filter french level should select level when click on it 1`] = `
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -2916,11 +2988,15 @@ exports[`Filter french level should select level when click on it 1`] = `
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -3012,11 +3088,15 @@ exports[`Filter french level should select level when click on it 1`] = `
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -3043,11 +3123,15 @@ exports[`Filter french level should select level when click on it 1`] = `
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -3139,11 +3223,15 @@ exports[`Filter french level should select level when click on it 1`] = `
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -3170,11 +3258,15 @@ exports[`Filter french level should select level when click on it 1`] = `
               style={
                 Array [
                   Object {
+                    "alignItems": "center",
                     "backgroundColor": "#C6C6C6",
                     "borderRadius": 8,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
                     "marginLeft": 8,
-                    "paddingHorizontal": 8,
                     "paddingVertical": 4,
+                    "width": 32,
                   },
                 ]
               }
@@ -3212,10 +3304,8 @@ exports[`Filter french level should select level when click on it 1`] = `
                 "backgroundColor": "#FFFFFF",
                 "borderRadius": 8,
                 "display": "flex",
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
+                "marginTop": 8,
+                "paddingVertical": 16,
                 "width": "100%",
               },
             ]
@@ -3238,77 +3328,89 @@ exports[`Filter french level should select level when click on it 1`] = `
             <react-native-svg />
           </View>
           <View
+            isRTL={false}
             style={
-              Object {
-                "transform": Array [
-                  Object {
-                    "scale": 1,
-                  },
-                ],
-              }
+              Array [
+                Object {
+                  "marginLeft": 16,
+                  "marginRight": 0,
+                },
+              ]
             }
           >
-            <RNSVGSvgView
-              align="xMidYMid"
-              bbHeight={24}
-              bbWidth={24}
-              fill="#2D9CDB"
-              focusable={false}
-              height={24}
-              meetOrSlice={0}
-              minX={0}
-              minY={0}
+            <View
               style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 24,
-                    "width": 24,
-                  },
-                ]
+                Object {
+                  "transform": Array [
+                    Object {
+                      "scale": 1,
+                    },
+                  ],
+                }
               }
-              vbHeight={24}
-              vbWidth={24}
-              width={24}
             >
-              <RNSVGGroup
-                fill={4281179355}
-                propList={
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={24}
+                bbWidth={24}
+                fill="#2D9CDB"
+                focusable={false}
+                height={24}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
                   Array [
-                    "fill",
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 24,
+                      "width": 24,
+                    },
                   ]
                 }
+                vbHeight={24}
+                vbWidth={24}
+                width={24}
               >
-                <RNSVGGroup>
+                <RNSVGGroup
+                  fill={4281179355}
+                  propList={
+                    Array [
+                      "fill",
+                    ]
+                  }
+                >
                   <RNSVGGroup>
-                    <RNSVGRect
-                      height="24"
-                      matrix={
-                        Array [
-                          -1,
-                          1.2246467991473532e-16,
-                          -1.2246467991473532e-16,
-                          -1,
-                          24,
-                          24,
-                        ]
-                      }
-                      opacity={0}
-                      width="24"
-                      x={0}
-                      y={0}
-                    />
-                    <RNSVGPath
-                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
-                    />
+                    <RNSVGGroup>
+                      <RNSVGRect
+                        height="24"
+                        matrix={
+                          Array [
+                            -1,
+                            1.2246467991473532e-16,
+                            -1.2246467991473532e-16,
+                            -1,
+                            24,
+                            24,
+                          ]
+                        }
+                        opacity={0}
+                        width="24"
+                        x={0}
+                        y={0}
+                      />
+                      <RNSVGPath
+                        d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
+                      />
+                    </RNSVGGroup>
                   </RNSVGGroup>
                 </RNSVGGroup>
-              </RNSVGGroup>
-            </RNSVGSvgView>
+              </RNSVGSvgView>
+            </View>
           </View>
           <Text
             isRTL={false}
@@ -3321,7 +3423,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   "fontSize": 13,
                   "lineHeight": 16,
                   "marginLeft": 8,
-                  "marginRight": 0,
+                  "marginRight": 16,
                   "textAlign": "left",
                 },
               ]
