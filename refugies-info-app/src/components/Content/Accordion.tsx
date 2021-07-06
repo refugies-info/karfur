@@ -6,6 +6,8 @@ import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import { ContentFromHtml } from "./ContentFromHtml";
 import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { AccordionHeaderFromHtml } from "./AccordionHeaderFromHtml";
+import { AvailableLanguageI18nCode } from "../../types/interface";
 
 interface Props {
   title: string;
@@ -14,6 +16,8 @@ interface Props {
   toggleAccordion: () => void;
   stepNumber: number | null;
   width: number;
+  currentLanguage: AvailableLanguageI18nCode | null;
+  windowWidth: number;
 }
 
 const TitleContainer = styled(RTLTouchableOpacity)`
@@ -67,6 +71,7 @@ const IconContainer = styled.View`
 const TitleText = styled(TextSmallBold)`
   width: ${(props: { width: number }) => props.width}px;
 `;
+
 export const Accordion = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
 
@@ -82,7 +87,15 @@ export const Accordion = (props: Props) => {
               <StepText>{props.stepNumber}</StepText>
             </StepContainer>
           )}
-          <TitleText width={props.width}>{props.title}</TitleText>
+          {props.currentLanguage === "fr" ? (
+            <TitleText width={props.width}>{props.title}</TitleText>
+          ) : (
+            <AccordionHeaderFromHtml
+              htmlContent={props.title}
+              width={props.width}
+              windowWidth={props.windowWidth}
+            />
+          )}
         </RTLView>
         <IconContainer isRTL={isRTL}>
           <Icon
@@ -93,7 +106,13 @@ export const Accordion = (props: Props) => {
           />
         </IconContainer>
       </TitleContainer>
-      {props.isExpanded && <ContentFromHtml htmlContent={props.content} />}
+
+      {props.isExpanded && (
+        <ContentFromHtml
+          htmlContent={props.content}
+          windowWidth={props.windowWidth}
+        />
+      )}
     </AccordionContainer>
   );
 };

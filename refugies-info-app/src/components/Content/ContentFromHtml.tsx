@@ -1,6 +1,6 @@
 import HTML from "react-native-render-html";
 import * as React from "react";
-import { useWindowDimensions, View } from "react-native";
+import { View } from "react-native";
 import { theme } from "../../theme";
 import { RTLView } from "../BasicComponents";
 import { Icon } from "react-native-eva-icons";
@@ -9,14 +9,14 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 interface Props {
   htmlContent: string;
+  windowWidth: number;
 }
 export const ContentFromHtml = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
-  const contentWidth = useWindowDimensions().width;
 
   return (
     <HTML
-      contentWidth={contentWidth}
+      contentWidth={props.windowWidth}
       source={{ html: props.htmlContent }}
       classesStyles={{
         "bloc-rouge": {
@@ -65,6 +65,8 @@ export const ContentFromHtml = (props: Props) => {
             style={{
               display: "flex",
               flexDirection: "column",
+              marginBottom: theme.margin,
+              marginTop: theme.margin,
             }}
           >
             {children}

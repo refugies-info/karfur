@@ -48,7 +48,7 @@ const headersDemarche = [
 export const ContentScreen = ({
   navigation,
   route,
-}: StackScreenProps<ExplorerParamList, "ExplorerScreen">) => {
+}: StackScreenProps<ExplorerParamList, "ContentScreen">) => {
   const [accordionExpanded, setAccordionExpanded] = React.useState("");
 
   const { t } = useTranslationWithRTL();
@@ -59,6 +59,7 @@ export const ContentScreen = ({
   const currentLanguage = useSelector(currentI18nCodeSelector);
   const { contentId } = route.params;
 
+  const windowWidth = useWindowDimensions().width;
   React.useEffect(() => {
     if (contentId && selectedLanguage) {
       dispatch(
@@ -98,7 +99,6 @@ export const ContentScreen = ({
     return;
   };
 
-  const windowWidth = useWindowDimensions().width;
   const accordionMaxWidthWithStep = windowWidth - 2 * 24 - 4 * 16 - 24 - 32;
   const accordionMaxWidthWithoutStep = windowWidth - 2 * 24 - 3 * 16 - 24;
 
@@ -125,6 +125,7 @@ export const ContentScreen = ({
                   </HeaderText>
                   <ContentFromHtml
                     htmlContent={selectedContent.contenu[index].content}
+                    windowWidth={windowWidth}
                   />
                 </>
               );
@@ -147,6 +148,7 @@ export const ContentScreen = ({
                 {selectedContent &&
                   selectedContent.contenu[index] &&
                   selectedContent.contenu[index].children &&
+                  // @ts-ignore
                   selectedContent.contenu[index].children.map(
                     (child, indexChild) => {
                       if (
@@ -174,6 +176,8 @@ export const ContentScreen = ({
                                 ? accordionMaxWidthWithStep
                                 : accordionMaxWidthWithoutStep
                             }
+                            currentLanguage={currentLanguage}
+                            windowWidth={windowWidth}
                           />
                         );
                       }
