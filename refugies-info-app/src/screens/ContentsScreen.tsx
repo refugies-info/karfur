@@ -11,24 +11,31 @@ import styled from "styled-components/native";
 import { theme } from "../theme";
 
 const ContentContainer = styled.TouchableOpacity`
-  background-color: ${theme.colors.logement40};
+  background-color: ${theme.colors.grey60};
   margin-horizontal: 16px;
   margin-vertical: 16px;
   padding: 16px;
 `;
+
+const Header = styled(TextNormal)`
+  margin-left: 24px;
+  margin-top: 8px;
+`;
 export const ContentsScreen = ({
   navigation,
-}: StackScreenProps<ExplorerParamList, "ExplorerScreen">) => {
+  route,
+}: StackScreenProps<ExplorerParamList, "ContentsScreen">) => {
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const contents = currentLanguageI18nCode
     ? useSelector(contentsSelector(currentLanguageI18nCode))
     : [];
+  const { tagName } = route.params;
   return (
     <WrapperWithHeaderAndLanguageModal
       navigation={navigation}
       showSwitch={true}
     >
-      <TextNormal>Contents screen</TextNormal>
+      <Header>{"Contents screen : " + tagName}</Header>
       <ScrollView>
         {contents.map((content, index) => (
           <ContentContainer
@@ -38,6 +45,9 @@ export const ContentsScreen = ({
             }
           >
             <TextNormal>{content.titreInformatif}</TextNormal>
+            {!!content.titreMarque && (
+              <TextNormal>{" - " + content.titreMarque}</TextNormal>
+            )}
           </ContentContainer>
         ))}
       </ScrollView>

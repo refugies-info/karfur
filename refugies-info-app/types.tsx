@@ -26,7 +26,7 @@ export type BottomTabParamList = {
 
 export type ExplorerParamList = {
   ExplorerScreen: undefined;
-  ContentsScreen: undefined;
+  ContentsScreen: { tagName: string };
   ContentScreen: { contentId: ObjectId };
 };
 

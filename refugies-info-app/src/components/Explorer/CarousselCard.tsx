@@ -54,7 +54,9 @@ export const CarousselCard = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
   return (
     <TouchableOpacity
-      onPress={() => props.navigation.navigate("ContentsScreen")}
+      onPress={() =>
+        props.navigation.navigate("ContentsScreen", { tagName: props.tagName })
+      }
     >
       <LinearGradient
         colors={[props.colorVeryLight, props.colorLight]}
