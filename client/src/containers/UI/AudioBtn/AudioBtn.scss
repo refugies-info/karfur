@@ -14,9 +14,8 @@
   user-select: none;
   transition: all 0.2s ease;
   display: flex;
-  @include media-min("tablet-up") {
-    justify-content: center;
-  }
+
+  justify-content: center;
 
   align-items: center;
   margin-top: auto;

@@ -3,7 +3,7 @@ import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 
 import { colors } from "colors";
 
-const { compose, withProps } = require("recompose");
+const { compose, withProps, lifecycle } = require("recompose");
 const {
   withScriptjs,
   withGoogleMap,
@@ -23,14 +23,46 @@ const mapComponent = compose(
     containerElement: <div style={{ height: "470px", width: "100%" }} />,
     mapElement: <div style={{ height: "100%", width: "100%" }} />,
   }),
+  lifecycle({
+    componentWillMount() {
+      this.setState({
+        zoomToMarkers: (map) => {
+          if (map) {
+            const bounds = new window.google.maps.LatLngBounds();
+            if (map.props.children[1]) {
+              map.props.children[1].forEach((child) => {
+                if (child.type === Marker) {
+                  bounds.extend(
+                    new window.google.maps.LatLng(
+                      child.props.position.lat,
+                      child.props.position.lng
+                    )
+                  );
+                }
+              });
+              if (map.props.children[1].length > 1) {
+                map.fitBounds(bounds);
+              }
+            }
+          }
+        },
+      });
+    },
+  }),
   withScriptjs,
   withGoogleMap
 )((props) => (
   <GoogleMap
-    ref={props.onMapMounted}
-    zoom={props.zoom}
-    center={props.center}
-    defaultZoom={5}
+    ref={props.zoomToMarkers}
+    center={
+      props.markers && props.markers.length === 1
+        ? {
+            lat: parseFloat(props.markers[0].latitude),
+            lng: parseFloat(props.markers[0].longitude),
+          }
+        : { lat: 48.856614, lng: 2.3522219 }
+    }
+    defaultZoom={props.markers && props.markers.length === 0 ? 5 : 15}
     defaultCenter={{ lat: 48.856614, lng: 2.3522219 }}
     defaultOptions={{
       mapTypeControl: false,
@@ -66,15 +98,14 @@ const mapComponent = compose(
       props.markers.length > 0 &&
       props.markers.map((marker, key) => {
         return (
-          <React.Fragment key={key}>
-            <Marker
-              position={{
-                lat: parseFloat(marker.latitude),
-                lng: parseFloat(marker.longitude),
-              }}
-              onClick={(e) => props.onMarkerClick(e, marker, key)}
-            ></Marker>
-          </React.Fragment>
+          <Marker
+            key={key}
+            position={{
+              lat: parseFloat(marker.latitude),
+              lng: parseFloat(marker.longitude),
+            }}
+            onClick={(e) => props.onMarkerClick(e, marker, key)}
+          ></Marker>
         );
       })}
   </GoogleMap>

@@ -11,6 +11,7 @@ import {
   checkIfUserIsAdmin,
   checkUserIsAuthorizedToModifyDispositif,
 } from "../../../libs/checkAuthorizations";
+import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 
 interface QueryUpdate {
   dispositifId: ObjectId;
@@ -55,6 +56,16 @@ export const updateDispositifStatus = async (
         // @ts-ignore : populate roles
         req.user.roles
       );
+      if (dispositif.typeContenu === "dispositif") {
+        await addOrUpdateDispositifInContenusAirtable(
+          dispositif.titreInformatif,
+          dispositif.titreMarque,
+          dispositif._id,
+          dispositif.tags,
+          null,
+          true
+        );
+      }
     }
 
     newDispositif = { status };

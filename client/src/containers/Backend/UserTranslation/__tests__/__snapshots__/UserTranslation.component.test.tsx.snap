@@ -848,7 +848,8 @@ exports[`user translation should render correctly with expert, admin 1`] = `
   margin-right: 0px;
   font-size: 16px;
   font-weight: 400;
-  width: 280px;
+  width: NaNpx;
+  min-width: 180px;
   height: 52px;
   color: #000000;
   -webkit-flex-direction: row;
@@ -1898,7 +1899,8 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
   margin-right: 0px;
   font-size: 16px;
   font-weight: 400;
-  width: 280px;
+  width: NaNpx;
+  min-width: 180px;
   height: 52px;
   color: #000000;
   -webkit-flex-direction: row;
@@ -2839,7 +2841,8 @@ exports[`user translation should render correctly with non expert, non admin 1`]
   margin-right: 0px;
   font-size: 16px;
   font-weight: 400;
-  width: 280px;
+  width: NaNpx;
+  min-width: 180px;
   height: 52px;
   color: #000000;
   -webkit-flex-direction: row;
@@ -3709,7 +3712,8 @@ exports[`user translation should return loader langue in url = first selected la
   margin-right: 0px;
   font-size: 16px;
   font-weight: 400;
-  width: 280px;
+  width: NaNpx;
+  min-width: 180px;
   height: 52px;
   color: #000000;
   -webkit-flex-direction: row;

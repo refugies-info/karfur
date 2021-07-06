@@ -107,11 +107,29 @@ export class Layout extends Component {
       this.props.toggleLangueModal();
     }
   };
+  computeFullSentence = (nodeList) => {
+    let sentence = "";
+
+    for (let i = 0; i < nodeList.length; i++) {
+      if (nodeList[i].data) {
+        sentence = sentence + nodeList[i].data;
+      } else if (nodeList[i].childNodes.length > 0) {
+        sentence = sentence + nodeList[i].childNodes[0].data;
+      }
+    }
+
+    return sentence;
+  };
 
   toggleHover = (e) => {
     if (this.props.ttsActive) {
       if (e.target && e.target.firstChild && e.target.firstChild.nodeValue) {
-        this.readAudio(e.target.firstChild.nodeValue, i18n.language);
+        this.readAudio(
+          this.computeFullSentence(e.target.childNodes),
+          i18n.language
+        );
+      } else if (e.target.textContent) {
+        this.readAudio(e.target.textContent, i18n.language);
       } else {
         this.forceStopAudio();
       }

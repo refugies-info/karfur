@@ -1,14 +1,27 @@
 {
-  "homepage": {
-    "test": "test francais e"
+  "Onboarding": {
+    "parti": "C'est parti",
+    "bonjour": "Bonjour !",
+    "bonjour_desc": "Nous sommes très heureux de t'avoir avec nous.",
+    "Ici, tu trouves des fiches d’information pour faire tes démarches.": "Ici, tu trouves des fiches d’information pour faire tes démarches.",
+    "Découvre les associations et les activités de ta ville.": "Découvre les associations et les activités de ta ville.",
+    "Les fiches sont écrites par les associations et relues par l’État.": "Les fiches sont écrites par les associations et relues par l’État.",
+    "Toute l'application est gratuite ! Pas besoin de payer.": "Toute l'application est gratuite ! Pas besoin de payer.",
+    "Créer mon profil": "Créer mon profil",
+    "help_1": "C’est pour te montrer les associations et les activités dans ta ville.",
+    "help_2": "C’est pour te montrer les démarches et les activités pour ton âge.",
+    "help_3": "C’est pour te montrer les formations faites pour ton niveau de français.",
+    "ville": "Dans quelle ville habites-tu ?",
+    "error_geoloc": "Une erreur est survenue lors de la géolocalisation. Entre ta ville manuellement.",
+    "position": "Utiliser ma position",
+    "placeholder": "Exemple : Paris",
+    "age": "Quel âge as-tu ?",
+    "niveauFrancais": "Quel est ton niveau en français ?",
+    "end": "L’application est maintenant adaptée à ton profil.",
+    "error_geoloc_acces": "Une erreur est survenue lors de la géolocalisation. Vérifie dans tes réglages que tu as bien activé la géolocalisation."
   },
-  "lists": "Lists francais",
-  "Onboarding1": {
-    "welcome": "Bienvenue fr"
-  },
-  "Onboarding2": {
-    "welcome": "Bienvenue fr"
-  },
+  "Suivant": "Suivant",
+  "Continuer": "Continuer",
   "tabBar": {
     "Explorer": "Explorer",
     "Favoris": "Favoris",
@@ -16,6 +29,7 @@
     "Search": "Rechercher"
   },
   "Langue app": "Langue de l'application",
+  "Erreur": "Une erreur est survenue, réessaie.",
 
   "ExplorerScreen": {
     "Liste": "Liste",
@@ -47,5 +61,40 @@
     "découvrir la culture": "découvrir la culture",
     "me soigner": "me soigner",
     "gérer mes papiers": "gérer mes papiers"
+  },
+  "Filter": {
+    "0 à 17 ans": "0 à 17 ans",
+    "18 à 25 ans": "18 à 25 ans",
+    "26 ans et plus": "26 ans et plus",
+    "Je commence à apprendre": "Je commence à apprendre",
+    "Je parle un peu": "Je parle un peu",
+    "Je parle bien": "Je parle bien",
+    "Je parle couramment": "Je parle couramment"
+  },
+  "Démarrer": "Démarrer",
+  "Merci !": "Merci !",
+  "Passer l'étape": "Passer l'étape",
+  "Valider": "Valider",
+  "Fermer": "Fermer",
+  "Annuler": "Annuler",
+  "Toute la France": "Toute la France",
+  "Pour tout âge": "Pour tout âge",
+  "Pour tout niveau de français": "Pour tout niveau de français",
+  "Profil": {
+    "supprimer_data": "Supprimer les données de mon profil",
+    "reinit_app": "Réinitialiser mon application",
+    "Mon profil": "Mon profil",
+    "Langue choisie": "Langue choisie",
+    "Ville": "Ville",
+    "Âge": "Âge",
+    "Niveau de français": "Niveau de français",
+    "Paramètres": "Paramètres",
+    "Français": "Français",
+    "Tous les niveaux": "Tous les niveaux",
+    "Tous les âges": "Tous les âges",
+    "reinit_app2": "Es-tu sûr de vouloir réinitialiser ton application ?",
+    "delete_data": "Es-tu sûr de vouloir supprimer les données de ton profil ?",
+    "Ne pas filtrer selon mon niveau de français": "Ne pas filtrer selon mon niveau de français",
+    "Ne pas filtrer selon mon âge": "Ne pas filtrer selon mon âge"
   }
 }

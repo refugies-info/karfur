@@ -92,10 +92,11 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
         Array [
           Object {
             "backgroundColor": "#F6F6F6",
+            "borderTopLeftRadius": 12,
+            "borderTopRightRadius": 12,
             "display": "flex",
-            "paddingLeft": 24,
-            "paddingRight": 24,
-            "paddingTop": 8,
+            "paddingHorizontal": 24,
+            "paddingVertical": 8,
           },
         ]
       }
@@ -104,9 +105,11 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": "circularBook",
+              "alignSelf": "center",
+              "fontFamily": "circularBold",
               "fontSize": 19,
-              "marginBottom": 8,
+              "lineHeight": 24,
+              "marginTop": 24,
               "textAlign": "left",
             },
           ]
@@ -114,6 +117,943 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
       >
         Langue app
       </Text>
+      <RCTScrollView
+        style={
+          Array [
+            Object {
+              "marginBottom": 8,
+              "marginTop": 16,
+            },
+          ]
+        }
+      >
+        <View>
+          <View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#F6F6F6",
+                  "borderRadius": 12,
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "flexWrap": "wrap",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 16,
+                }
+              }
+              testID="test-language-button-Français"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#FFFFFF",
+                        "borderRadius": 4,
+                        "display": "flex",
+                        "height": 17,
+                        "justifyContent": "center",
+                        "marginBottom": 4,
+                        "marginLeft": 4,
+                        "marginRight": 4,
+                        "marginTop": 4,
+                        "width": 22,
+                      },
+                    ]
+                  }
+                >
+                  <react-native-svg
+                    height={15}
+                    width={20}
+                  />
+                </View>
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 8,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  Français
+                </Text>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#EDEBEB",
+                    "height": 1,
+                    "marginLeft": 16,
+                    "marginRight": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#F6F6F6",
+                  "borderRadius": 12,
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "flexWrap": "wrap",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 16,
+                }
+              }
+              testID="test-language-button-Persan/Dari"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#FFFFFF",
+                        "borderRadius": 4,
+                        "display": "flex",
+                        "height": 17,
+                        "justifyContent": "center",
+                        "marginBottom": 4,
+                        "marginLeft": 4,
+                        "marginRight": 4,
+                        "marginTop": 4,
+                        "width": 22,
+                      },
+                    ]
+                  }
+                >
+                  <react-native-svg
+                    height={15}
+                    width={20}
+                  />
+                </View>
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 8,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  Persan/Dari
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     - 
+                  </Text>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    فارسی/ دری
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#EDEBEB",
+                    "height": 1,
+                    "marginLeft": 16,
+                    "marginRight": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#F6F6F6",
+                  "borderRadius": 12,
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "flexWrap": "wrap",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 16,
+                }
+              }
+              testID="test-language-button-Arabe"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#FFFFFF",
+                        "borderRadius": 4,
+                        "display": "flex",
+                        "height": 17,
+                        "justifyContent": "center",
+                        "marginBottom": 4,
+                        "marginLeft": 4,
+                        "marginRight": 4,
+                        "marginTop": 4,
+                        "width": 22,
+                      },
+                    ]
+                  }
+                >
+                  <react-native-svg
+                    height={15}
+                    width={20}
+                  />
+                </View>
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 8,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  Arabe
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     - 
+                  </Text>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    العربية
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#EDEBEB",
+                    "height": 1,
+                    "marginLeft": 16,
+                    "marginRight": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#F6F6F6",
+                  "borderRadius": 12,
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "flexWrap": "wrap",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 16,
+                }
+              }
+              testID="test-language-button-Anglais"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#FFFFFF",
+                        "borderRadius": 4,
+                        "display": "flex",
+                        "height": 17,
+                        "justifyContent": "center",
+                        "marginBottom": 4,
+                        "marginLeft": 4,
+                        "marginRight": 4,
+                        "marginTop": 4,
+                        "width": 22,
+                      },
+                    ]
+                  }
+                >
+                  <react-native-svg
+                    height={15}
+                    width={20}
+                  />
+                </View>
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 8,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  Anglais
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     - 
+                  </Text>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    English
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#EDEBEB",
+                    "height": 1,
+                    "marginLeft": 16,
+                    "marginRight": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#F6F6F6",
+                  "borderRadius": 12,
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "flexWrap": "wrap",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 16,
+                }
+              }
+              testID="test-language-button-Pachto"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#FFFFFF",
+                        "borderRadius": 4,
+                        "display": "flex",
+                        "height": 17,
+                        "justifyContent": "center",
+                        "marginBottom": 4,
+                        "marginLeft": 4,
+                        "marginRight": 4,
+                        "marginTop": 4,
+                        "width": 22,
+                      },
+                    ]
+                  }
+                >
+                  <react-native-svg
+                    height={15}
+                    width={20}
+                  />
+                </View>
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 8,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  Pachto
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     - 
+                  </Text>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    پښتو
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#EDEBEB",
+                    "height": 1,
+                    "marginLeft": 16,
+                    "marginRight": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#F6F6F6",
+                  "borderRadius": 12,
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "flexWrap": "wrap",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 16,
+                }
+              }
+              testID="test-language-button-Russe"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#FFFFFF",
+                        "borderRadius": 4,
+                        "display": "flex",
+                        "height": 17,
+                        "justifyContent": "center",
+                        "marginBottom": 4,
+                        "marginLeft": 4,
+                        "marginRight": 4,
+                        "marginTop": 4,
+                        "width": 22,
+                      },
+                    ]
+                  }
+                >
+                  <react-native-svg
+                    height={15}
+                    width={20}
+                  />
+                </View>
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 8,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  Russe
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     - 
+                  </Text>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    Русский
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#EDEBEB",
+                    "height": 1,
+                    "marginLeft": 16,
+                    "marginRight": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#F6F6F6",
+                  "borderRadius": 12,
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "flexWrap": "wrap",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 16,
+                }
+              }
+              testID="test-language-button-Tigrinya"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#FFFFFF",
+                        "borderRadius": 4,
+                        "display": "flex",
+                        "height": 17,
+                        "justifyContent": "center",
+                        "marginBottom": 4,
+                        "marginLeft": 4,
+                        "marginRight": 4,
+                        "marginTop": 4,
+                        "width": 22,
+                      },
+                    ]
+                  }
+                >
+                  <react-native-svg
+                    height={15}
+                    width={20}
+                  />
+                </View>
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 8,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  Tigrinya
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     - 
+                  </Text>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    ትግርኛ
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
       <View
         accessible={true}
         focusable={true}
@@ -127,827 +1067,45 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "#0421B1",
+            "backgroundColor": "#FFFFFF",
             "borderRadius": 12,
             "display": "flex",
+            "elevation": 1,
             "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "space-between",
-            "marginVertical": 8,
+            "height": 56,
+            "justifyContent": "center",
             "opacity": 1,
-            "paddingBottom": 16,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 16,
+            "paddingBottom": 18,
+            "paddingLeft": 18,
+            "paddingRight": 18,
+            "paddingTop": 18,
+            "shadowColor": "rgba(33, 33, 33, 0.24)",
+            "shadowOffset": Object {
+              "height": 8,
+              "width": 0,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 16,
+            "width": "100%",
           }
         }
-        testID="test-language-button-Français"
       >
-        <View
+        <Text
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "marginLeft": 0,
+                "marginRight": 8,
+                "textAlign": "left",
               },
             ]
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 4,
-                  "display": "flex",
-                  "height": 17,
-                  "justifyContent": "center",
-                  "marginBottom": 4,
-                  "marginLeft": 4,
-                  "marginRight": 4,
-                  "marginTop": 4,
-                  "width": 22,
-                },
-              ]
-            }
-          >
-            <react-native-svg
-              height={15}
-              width={20}
-            />
-          </View>
-          <Text
-            isSelected={true}
-            style={
-              Array [
-                Object {
-                  "color": "#FFFFFF",
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "marginLeft": 8,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            Français
-          </Text>
-        </View>
-      </View>
-      <View
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 12,
-              "marginBottom": 24,
-              "marginTop": 24,
-            },
-          ]
-        }
-      >
-        <View>
-          <View
-            accessible={true}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "display": "flex",
-                "flexDirection": "row",
-                "flexWrap": "wrap",
-                "justifyContent": "space-between",
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-              }
-            }
-            testID="test-language-button-Français"
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
-                    "flexDirection": "row",
-                  },
-                ]
-              }
-            >
-              <react-native-svg
-                height={15}
-                width={20}
-              />
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "marginLeft": 8,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                Français
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#EDEBEB",
-                  "height": 1,
-                  "marginLeft": 16,
-                  "marginRight": 16,
-                },
-              ]
-            }
-          />
-        </View>
-        <View>
-          <View
-            accessible={true}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "display": "flex",
-                "flexDirection": "row",
-                "flexWrap": "wrap",
-                "justifyContent": "space-between",
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-              }
-            }
-            testID="test-language-button-Anglais"
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
-                    "flexDirection": "row",
-                  },
-                ]
-              }
-            >
-              <react-native-svg
-                height={15}
-                width={20}
-              />
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "marginLeft": 8,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                Anglais
-              </Text>
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                   - 
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  English
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#EDEBEB",
-                  "height": 1,
-                  "marginLeft": 16,
-                  "marginRight": 16,
-                },
-              ]
-            }
-          />
-        </View>
-        <View>
-          <View
-            accessible={true}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "display": "flex",
-                "flexDirection": "row",
-                "flexWrap": "wrap",
-                "justifyContent": "space-between",
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-              }
-            }
-            testID="test-language-button-Pachto"
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
-                    "flexDirection": "row",
-                  },
-                ]
-              }
-            >
-              <react-native-svg
-                height={15}
-                width={20}
-              />
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "marginLeft": 8,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                Pachto
-              </Text>
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                   - 
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  پښتو
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#EDEBEB",
-                  "height": 1,
-                  "marginLeft": 16,
-                  "marginRight": 16,
-                },
-              ]
-            }
-          />
-        </View>
-        <View>
-          <View
-            accessible={true}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "display": "flex",
-                "flexDirection": "row",
-                "flexWrap": "wrap",
-                "justifyContent": "space-between",
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-              }
-            }
-            testID="test-language-button-Persan/Dari"
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
-                    "flexDirection": "row",
-                  },
-                ]
-              }
-            >
-              <react-native-svg
-                height={15}
-                width={20}
-              />
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "marginLeft": 8,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                Persan/Dari
-              </Text>
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                   - 
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  فارسی/ دری
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#EDEBEB",
-                  "height": 1,
-                  "marginLeft": 16,
-                  "marginRight": 16,
-                },
-              ]
-            }
-          />
-        </View>
-        <View>
-          <View
-            accessible={true}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "display": "flex",
-                "flexDirection": "row",
-                "flexWrap": "wrap",
-                "justifyContent": "space-between",
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-              }
-            }
-            testID="test-language-button-Tigrinya"
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
-                    "flexDirection": "row",
-                  },
-                ]
-              }
-            >
-              <react-native-svg
-                height={15}
-                width={20}
-              />
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "marginLeft": 8,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                Tigrinya
-              </Text>
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                   - 
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  ትግርኛ
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#EDEBEB",
-                  "height": 1,
-                  "marginLeft": 16,
-                  "marginRight": 16,
-                },
-              ]
-            }
-          />
-        </View>
-        <View>
-          <View
-            accessible={true}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "display": "flex",
-                "flexDirection": "row",
-                "flexWrap": "wrap",
-                "justifyContent": "space-between",
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-              }
-            }
-            testID="test-language-button-Russe"
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
-                    "flexDirection": "row",
-                  },
-                ]
-              }
-            >
-              <react-native-svg
-                height={15}
-                width={20}
-              />
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "marginLeft": 8,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                Russe
-              </Text>
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                   - 
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  Русский
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#EDEBEB",
-                  "height": 1,
-                  "marginLeft": 16,
-                  "marginRight": 16,
-                },
-              ]
-            }
-          />
-        </View>
-        <View>
-          <View
-            accessible={true}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "display": "flex",
-                "flexDirection": "row",
-                "flexWrap": "wrap",
-                "justifyContent": "space-between",
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-              }
-            }
-            testID="test-language-button-Arabe"
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
-                    "flexDirection": "row",
-                  },
-                ]
-              }
-            >
-              <react-native-svg
-                height={15}
-                width={20}
-              />
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "marginLeft": 8,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                Arabe
-              </Text>
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                   - 
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  العربية
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
+          textColor="#212121"
+        />
       </View>
     </View>
   </View>

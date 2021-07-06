@@ -50,30 +50,70 @@ $imgHeight: 350px;
     }
 
     &.Logement {
-      background-image: url(../../assets/figma/illustration_Logement.svg);
+      @include media-min("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Logement.svg);
+      }
+      @include media-max("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Logement_mobile.svg);
+      }
     }
 
     &.Bénévolat {
-      background-image: url(../../assets/figma/illustration_Bénévolat.svg);
+      @include media-min("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Bénévolat.svg);
+      }
+      @include media-max("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Bénévolat_mobile.svg);
+      }
     }
     &.Loisir {
-      background-image: url(../../assets/figma/illustration_Loisir.svg);
+      @include media-min("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Loisir.svg);
+      }
+      @include media-max("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Loisirs_mobile.svg);
+      }
     }
     &.Mobilité {
-      background-image: url(../../assets/figma/illustration_Mobilité.svg);
+      @include media-min("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Mobilité.svg);
+      }
+      @include media-max("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Mobilité_mobile.svg);
+      }
     }
     &.Rencontre {
-      background-image: url(../../assets/figma/illustration_Rencontre.svg);
+      @include media-min("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Rencontre.svg);
+      }
+      @include media-max("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Rencontres_mobile.svg);
+      }
     }
     &.Santé {
-      background-image: url(../../assets/figma/illustration_Santé.svg);
+      @include media-min("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Santé.svg);
+      }
+      @include media-max("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Santé_mobile.svg);
+      }
     }
     &.Études {
-      background-image: url(../../assets/figma/illustration_Études.svg);
+      @include media-min("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Études.svg);
+      }
+      @include media-max("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Etudes_mobile.svg);
+      }
     }
 
     &.Formation-pro {
-      background-image: url(../../assets/figma/illustration_Formation-pro.svg);
+      @include media-min("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Formation-pro.svg);
+      }
+      @include media-max("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Formation-pro_mobile.svg);
+      }
     }
 
     &.Français {
@@ -85,7 +125,13 @@ $imgHeight: 350px;
       }
     }
     &.Insertion-pro {
-      background-image: url(../../assets/figma/illustration_Insertion-pro.svg);
+      @include media-min("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Insertion-pro.svg);
+      }
+
+      @include media-max("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Insertion-pro_mobile.svg);
+      }
     }
 
     &.Administratif {
@@ -97,7 +143,12 @@ $imgHeight: 350px;
       }
     }
     &.Culture {
-      background-image: url(../../assets/figma/illustration_Culture.svg);
+      @include media-min("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Culture.svg);
+      }
+      @include media-max("tablet-up") {
+        background-image: url(../../assets/figma/illustration_Culture_mobile.svg);
+      }
     }
 
     &.noImage {
@@ -194,6 +245,11 @@ $imgHeight: 350px;
 
       .top-left .btn-retour {
         margin-left: 30px;
+        @include media-max("tablet-up") {
+          background-color: transparent;
+          margin-left: 75px;
+          margin-top: -20px;
+        }
       }
 
       .top-right {
@@ -271,13 +327,18 @@ $imgHeight: 350px;
 
       .top-right-edition {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-end;
         font-weight: bold;
-        color: "red";
+        justify-content: flex-end;
 
         .top-icon-wrapper {
-          padding-top: 10px;
+          border-radius: 12px;
+
+          margin-right: 11px;
+        }
+        .button {
+          box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
         }
       }
     }
@@ -793,16 +854,30 @@ $imgHeight: 350px;
 
   .feedback-footer {
     background: $blanc;
-    color: $darkColor;
+    color: $darkOrange;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 35px 40px;
+    padding: 35px 20px 35px 40px;
     font-size: 18px;
-    @include media-max("lg-limit") {
-      width: 116%;
-    }
 
+    h5 {
+      color: $darkOrange;
+      @include media-max("tablet-up") {
+        font-size: 22px;
+        text-align: center;
+      }
+    }
+    span {
+      @include media-max("tablet-up") {
+        font-size: 18px;
+        text-align: center;
+      }
+    }
+    .feedback-btn {
+      width: -webkit-fill-available;
+      justify-content: center;
+    }
     .btn {
       font-weight: bold;
       font-size: 16px;

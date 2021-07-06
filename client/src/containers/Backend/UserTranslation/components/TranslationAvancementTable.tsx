@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { ObjectId } from "mongodb";
 import "./TranslationAvancementTable.scss";
 import { sortData } from "./functions";
+import { User } from "../../../../types/interface";
 
 moment.locale("fr");
 
@@ -25,6 +26,9 @@ interface Props {
   langueId: ObjectId | null;
   isAdmin: boolean;
   languei18nCode: string;
+  setElementToTranslate: any;
+  toggleCompleteProfilModal: () => void;
+  user: User | null;
 }
 
 const TableContainer = styled.div`
@@ -62,17 +66,22 @@ export const TranslationAvancementTable = (props: Props) => {
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
 
   const goToTraduction = (element: IDispositifTranslation) => {
-    if (!props.langueId) return;
-    if (!props.isExpert && element.tradStatus === "Validée") return;
-    return props.history.push({
-      pathname:
-        (props.isExpert ? "/validation" : "/traduction") +
-        "/" +
-        (element.typeContenu || "dispositif") +
-        "/" +
-        element._id,
-      search: "?id=" + props.langueId,
-    });
+    if (props.user && props.user.email === "") {
+      props.toggleCompleteProfilModal();
+      props.setElementToTranslate(element);
+    } else {
+      if (!props.langueId) return;
+      if (!props.isExpert && element.tradStatus === "Validée") return;
+      return props.history.push({
+        pathname:
+          (props.isExpert ? "/validation" : "/traduction") +
+          "/" +
+          (element.typeContenu || "dispositif") +
+          "/" +
+          element._id,
+        search: "?id=" + props.langueId,
+      });
+    }
   };
   const reorder = (element: { name: string; order: string }) => {
     if (sortedHeader.name === element.name) {

@@ -11,6 +11,7 @@ import {
   selectedI18nCodeSelector,
 } from "../../services/redux/User/user.selectors";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { AvailableLanguageI18nCode } from "../../types/interface";
 
 const ButtonContainerCommon = styled.View`
   background-color: ${theme.colors.white};
@@ -34,6 +35,8 @@ const ButtonContainer = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  box-shadow: 0px 0px 40px rgba(33, 33, 33, 0.1);
+  elevation: 1;
 `;
 
 const ButtonContainerFixedWidth = styled.TouchableOpacity`
@@ -46,6 +49,8 @@ const ButtonContainerFixedWidth = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  box-shadow: 0px 0px 40px rgba(33, 33, 33, 0.1);
+  elevation: 1;
 `;
 
 const LanguageContainer = styled(ButtonContainerCommon)`
@@ -66,8 +71,8 @@ const FlagBackground = styled.View`
 `;
 
 interface Props {
-  selectedLanguageI18nCode?: string | null;
-  currentLanguageI18nCode?: string | null;
+  selectedLanguageI18nCode?: AvailableLanguageI18nCode | null;
+  currentLanguageI18nCode?: AvailableLanguageI18nCode | null;
   onLongPressSwitchLanguage?: () => void;
 }
 
@@ -85,7 +90,7 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
 
   const changeLanguage = (
     isFrenchSelected: boolean,
-    selectedLanguageI18nCode: string
+    selectedLanguageI18nCode: AvailableLanguageI18nCode
   ) => {
     if (isFrenchSelected) {
       i18n.changeLanguage(selectedLanguageI18nCode);
@@ -100,7 +105,7 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
 
   if (selectedLanguageI18nCode === "fr")
     return (
-      <ButtonContainerFixedWidth onLongPress={onLongPressSwitchLanguage}>
+      <ButtonContainerFixedWidth onPress={onLongPressSwitchLanguage}>
         <Flag langueFr={"Français"} />
       </ButtonContainerFixedWidth>
     );

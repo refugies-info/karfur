@@ -11,6 +11,7 @@ import {
   checkUserIsAuthorizedToModifyDispositif,
 } from "../../../libs/checkAuthorizations";
 import { publishDispositif } from "../../../modules/dispositif/dispositif.service";
+import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -36,6 +37,10 @@ jest.mock("../../../libs/checkAuthorizations", () => ({
   checkRequestIsFromSite: jest.fn(),
   checkIfUserIsAdmin: jest.fn(),
   checkUserIsAuthorizedToModifyDispositif: jest.fn(),
+}));
+
+jest.mock("../../../controllers/miscellaneous/airtable", () => ({
+  addOrUpdateDispositifInContenusAirtable: jest.fn(),
 }));
 
 describe("updateDispositifStatus", () => {
@@ -80,6 +85,7 @@ describe("updateDispositifStatus", () => {
     expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
       status: "En attente",
     });
+    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });
@@ -108,6 +114,8 @@ describe("updateDispositifStatus", () => {
     };
     const res = mockResponse();
     await updateDispositifStatus(req, res);
+    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+
     expect(publishDispositif).toHaveBeenCalledWith("id");
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
@@ -125,6 +133,7 @@ describe("updateDispositifStatus", () => {
     };
     const res = mockResponse();
     await updateDispositifStatus(req, res);
+    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
 
     expect(publishDispositif).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(404);
@@ -135,7 +144,7 @@ describe("updateDispositifStatus", () => {
     mainSponsor: 1,
     status: 1,
   };
-  it("should return a 200 when new status is supprimé and user authorized", async () => {
+  it("should return a 200 when new status is supprimé and user authorized and demarche", async () => {
     updateDispositifInDB.mockResolvedValueOnce({ typeContenu: "demarche" });
     const date = 148707670800;
     Date.now = jest.fn(() => date);
@@ -161,6 +170,7 @@ describe("updateDispositifStatus", () => {
     expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
       status: "Supprimé",
     });
+    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
@@ -191,9 +201,59 @@ describe("updateDispositifStatus", () => {
       "userId",
       []
     );
+    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+
     expect(updateDispositifInDB).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(404);
     expect(res.json).toHaveBeenCalledWith({ text: "Non authorisé" });
+  });
+
+  it("should return a 200 when new status is supprimé and user authorized and dispositif", async () => {
+    const dispo = {
+      typeContenu: "dispositif",
+      titreInformatif: "TI",
+      titreMarque: "TM",
+      _id: "id",
+      tags: [],
+    };
+    updateDispositifInDB.mockResolvedValueOnce(dispo);
+
+    getDispositifByIdWithMainSponsor.mockResolvedValueOnce(dispo);
+    const date = 148707670800;
+    Date.now = jest.fn(() => date);
+
+    const req = {
+      fromSite: true,
+      body: { query: { dispositifId: "id", status: "Supprimé" } },
+      user: { roles: [] },
+      userId: "userId",
+    };
+    const res = mockResponse();
+    await updateDispositifStatus(req, res);
+
+    expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith(
+      "id",
+      neededFields
+    );
+    expect(checkUserIsAuthorizedToModifyDispositif).toHaveBeenCalledWith(
+      dispo,
+      "userId",
+      []
+    );
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
+      status: "Supprimé",
+    });
+    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalledWith(
+      "TI",
+      "TM",
+      "id",
+      [],
+      null,
+      true
+    );
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });
 });

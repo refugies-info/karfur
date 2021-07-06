@@ -190,6 +190,34 @@ body .figma-btn {
       background: $vert;
     }
   }
+  &.validate-mockup {
+    background: $vert;
+    color: $blancSimple;
+    svg {
+      fill: $blancSimple;
+    }
+    &:not(:disabled):not(.disabled):hover {
+      transition: all 0.5s ease;
+      background: $vertFonce;
+      color: $blancSimple;
+      box-shadow: none;
+      svg {
+        fill: $blancSimple;
+      }
+    }
+    &:not(:disabled):not(.disabled):active {
+      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+      background: $vert;
+    }
+    &.disabled {
+      background: $orange;
+      color: $blanc;
+      cursor: not-allowed;
+      svg {
+        fill: $blanc;
+      }
+    }
+  }
 
   &.login {
     background: #0421b1;
