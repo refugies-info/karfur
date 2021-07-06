@@ -248,6 +248,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             Array [
               Object {
                 "color": "#212121",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
                 "lineHeight": 20,
@@ -338,6 +339,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             Array [
               Object {
                 "color": "#212121",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
                 "lineHeight": 20,
@@ -470,6 +472,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             Array [
               Object {
                 "color": "#212121",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
                 "lineHeight": 20,
@@ -602,6 +605,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             Array [
               Object {
                 "color": "#212121",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
                 "lineHeight": 20,
@@ -734,6 +738,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             Array [
               Object {
                 "color": "#212121",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
                 "lineHeight": 20,
@@ -866,6 +871,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             Array [
               Object {
                 "color": "#212121",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
                 "lineHeight": 20,
@@ -998,6 +1004,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             Array [
               Object {
                 "color": "#212121",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
                 "lineHeight": 20,

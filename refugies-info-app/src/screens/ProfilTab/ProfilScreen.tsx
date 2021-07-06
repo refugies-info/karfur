@@ -147,7 +147,10 @@ export const ProfilScreen = ({
           />
         </ProfilButtonsContainer>
 
-        <DeleteDataContainer onPress={toggleDeleteDataModal}>
+        <DeleteDataContainer
+          onPress={toggleDeleteDataModal}
+          testID="test-delete-data"
+        >
           <DeleteDataText>
             {t("Profil.supprimer_data", "Supprimer les données de mon profil")}
           </DeleteDataText>
