@@ -41,7 +41,7 @@ export const ContentFromHtml = (props: Props) => {
           marginRight: isRTL ? 0 : theme.margin,
           marginLeft: isRTL ? theme.margin : 0,
           borderRadius: "50%",
-          color: "white",
+          color: theme.colors.lightRed,
         },
         "right-side": {
           color: theme.colors.black,
