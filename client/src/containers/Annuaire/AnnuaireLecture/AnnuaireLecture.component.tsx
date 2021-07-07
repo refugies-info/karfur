@@ -32,7 +32,8 @@ const LoadingContainer = styled.div`
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: ${(props) => (props.stopScroll ? "256px" : "0px")};
+  margin-top: ${(props) =>
+    props.stopScroll ? "140px" : -props.currentScroll + "px"};
   margin-bottom: ${(props) => (props.hasMarginBottom ? "24px" : "0px")};
 `;
 
@@ -81,6 +82,7 @@ export interface PropsBeforeInjection {
 }
 export const AnnuaireLectureComponent = (props: Props) => {
   const [stopScroll, setStopScroll] = useState(false);
+  const [currentScroll, setCurrentScroll] = useState(0);
 
   const structures = useSelector(activeStructuresSelector);
   const isLoading = useSelector(
@@ -89,11 +91,11 @@ export const AnnuaireLectureComponent = (props: Props) => {
 
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
-
-    if (currentScrollPos >= 175) {
+    setCurrentScroll(currentScrollPos);
+    if (currentScrollPos >= 30) {
       return setStopScroll(true);
     }
-    if (currentScrollPos <= 175) return setStopScroll(false);
+    if (currentScrollPos <= 30) return setStopScroll(false);
   };
 
   const dispatch = useDispatch();
@@ -144,6 +146,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
           letters={letters}
           // onLetterClick={onLetterClick}
           stopScroll={stopScroll}
+          currentScroll={currentScroll}
           t={props.t}
         />
         <LoadingContainer>
@@ -166,9 +169,14 @@ export const AnnuaireLectureComponent = (props: Props) => {
         letters={letters}
         // onLetterClick={onLetterClick}
         stopScroll={stopScroll}
+        currentScroll={currentScroll}
         t={props.t}
       />
-      <Content stopScroll={stopScroll} hasMarginBottom={true}>
+      <Content
+        currentScroll={currentScroll}
+        stopScroll={stopScroll}
+        hasMarginBottom={true}
+      >
         <>
           {letters.map((letter) => (
             <LetterSection
