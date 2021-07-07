@@ -4,6 +4,8 @@ import img from "../../../../assets/annuaire/annuaire_lecture.svg";
 import { Letter } from "./Letter";
 import { NavHashLink } from "react-router-hash-link";
 import i18n from "../../../../i18n";
+import { SearchBarAnnuaire } from "./SearchBarAnnuaire";
+import { colors } from "../../../../colors";
 
 const HeaderContainer = styled.div`
   background-attachment: fixed;
@@ -16,10 +18,8 @@ const HeaderContainer = styled.div`
 `;
 
 const TextContainer = styled.div`
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  height: 74px;
+  padding: 4px 8px 4px 8px;
   background: #ffffff;
   font-weight: bold;
   font-size: 52px;
@@ -28,10 +28,12 @@ const TextContainer = styled.div`
   margin-top: 146px;
   margin-left: 72px;
   margin-right: ${(props) => props.isRTL && "72px"};
+  color: ${colors.bleuCharte};
 `;
 
 const LettersContainer = styled.div`
-  margin-left: 72px;
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 44px;
   position: absolute;
@@ -39,6 +41,10 @@ const LettersContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-right: ${(props) => props.isRTL && "72px"};
+`;
+
+const SearchContainer = styled.div`
+  display: flex;
 `;
 
 interface Props {
@@ -52,9 +58,14 @@ export const Header = (props: Props) => {
   const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
   return (
     <HeaderContainer stopScroll={props.stopScroll}>
-      <TextContainer isRTL={isRTL}>
-        {props.t("Annuaire.Annuaire", "Annuaire")}
-      </TextContainer>
+      <SearchContainer>
+        {" "}
+        <TextContainer isRTL={isRTL}>
+          {props.t("Annuaire.Annuaire", "Annuaire")}
+        </TextContainer>
+        <SearchBarAnnuaire t={props.t} />
+      </SearchContainer>
+
       <LettersContainer isRTL={isRTL}>
         <>
           {props.letters.map((letter, index) => (

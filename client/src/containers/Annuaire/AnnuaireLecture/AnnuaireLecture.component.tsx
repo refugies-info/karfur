@@ -131,9 +131,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
         )
       : [];
 
-  const letters = Object.keys(groupedStructureByLetter).sort();
-
-  // const onLetterClick = (letter: string) => setSelectedLetter(letter);
+  const letters = "abcdefghijklmnopqrstuvwxyz".split("");
 
   const onStructureCardClick = (id: ObjectId) =>
     props.history.push(`/annuaire/${id}`);

@@ -72,6 +72,7 @@ export const ConfirmationModal = (props: Props) => {
           textColor={theme.colors.black}
           onPress={props.toggleModal}
           isTextNotBold={true}
+          isDisabled={true}
         />
       </ModalView>
     </Modal>

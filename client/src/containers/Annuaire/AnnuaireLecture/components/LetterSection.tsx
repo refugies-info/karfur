@@ -22,13 +22,6 @@ const MainContainer = styled.div`
   padding-top: 24px;
 `;
 
-const LetterContainer = styled.div`
-  font-size: 100px;
-  line-height: 58px;
-  margin-top: 30px;
-  width: 127px;
-`;
-
 const StructuresContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -90,7 +83,22 @@ const StructureCard = (props: StructureCardProps) => {
         />
       </div>
       {(!props.picture || !props.picture.secure_url) && <div></div>}
-      <LinesEllipsis text={props.nom} maxLine="4" trimRight basedOn="letters" />
+
+      <LinesEllipsis
+        text={
+          props.acronyme
+            ? props.nom.length + props.acronyme.length > 43
+              ? props.nom.substr(0, 36 - props.acronyme.length) +
+                "... (" +
+                props.acronyme +
+                ")"
+              : props.nom + " (" + props.acronyme + ")"
+            : props.nom
+        }
+        maxLine="4"
+        trimRight
+        basedOn="letters"
+      />
     </StructureCardContainer>
   );
 };
@@ -98,18 +106,18 @@ const StructureCard = (props: StructureCardProps) => {
 export const LetterSection = (props: Props) => (
   <MainContainer className="letter-section">
     <Anchor id={props.letter.toUpperCase()} />
-    <LetterContainer>{props.letter.toUpperCase()}</LetterContainer>
     <StructuresContainer>
-      {props.structures.map((structure) => (
-        <StructureCard
-          key={structure.nom}
-          nom={structure.nom}
-          picture={structure.picture || {}}
-          acronyme={structure.acronyme}
-          onStructureCardClick={props.onStructureCardClick}
-          id={structure._id}
-        />
-      ))}
+      {props.structures &&
+        props.structures.map((structure) => (
+          <StructureCard
+            key={structure.nom}
+            nom={structure.nom}
+            picture={structure.picture || {}}
+            acronyme={structure.acronyme}
+            onStructureCardClick={props.onStructureCardClick}
+            id={structure._id}
+          />
+        ))}
     </StructuresContainer>
   </MainContainer>
 );

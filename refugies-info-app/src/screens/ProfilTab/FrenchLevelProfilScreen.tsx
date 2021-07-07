@@ -87,7 +87,7 @@ export const FrenchLevelProfilScreen = ({
         </Title>
         <ScrollView
           contentContainerStyle={{
-            paddingTop: theme.margin * 2,
+            paddingTop: theme.margin * 4,
             paddingHorizontal: theme.margin * 3,
           }}
         >

@@ -41,9 +41,6 @@ export const ContentsScreen = ({
     return false;
   });
 
-  const dbURL = getEnvironment().dbUrl;
-  const siteSecret = getEnvironment().siteSecret;
-
   return (
     <WrapperWithHeaderAndLanguageModal
       navigation={navigation}
@@ -56,8 +53,6 @@ export const ContentsScreen = ({
           filteredContents.length +
           " fiches"}
       </Header>
-      <Header>{dbURL}</Header>
-      <Header>{siteSecret}</Header>
 
       <ScrollView>
         {filteredContents.map((content, index) => (
