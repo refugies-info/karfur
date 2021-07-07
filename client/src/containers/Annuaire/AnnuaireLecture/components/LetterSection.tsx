@@ -7,14 +7,15 @@ import { ObjectId } from "mongodb";
 import placeholder from "../../../../assets/annuaire/placeholder_logo_annuaire.svg";
 
 interface Props {
-  letter: string;
   structures: Structure[];
   onStructureCardClick: (id: ObjectId) => void;
+  setLetterSelected: any;
 }
 
 const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   font-weight: bold;
   font-size: 100px;
   padding-left: 72px;
@@ -22,12 +23,6 @@ const MainContainer = styled.div`
   padding-top: 24px;
 `;
 
-const StructuresContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  flex: 1;
-`;
 const StructureCardContainer = styled.div`
   font-weight: bold;
   font-size: 22px;
@@ -103,21 +98,31 @@ const StructureCard = (props: StructureCardProps) => {
   );
 };
 
-export const LetterSection = (props: Props) => (
-  <MainContainer className="letter-section">
-    <Anchor id={props.letter.toUpperCase()} />
-    <StructuresContainer>
+export const LetterSection = (props: Props) => {
+  return (
+    <MainContainer className="letter-section">
       {props.structures &&
-        props.structures.map((structure) => (
-          <StructureCard
-            key={structure.nom}
-            nom={structure.nom}
-            picture={structure.picture || {}}
-            acronyme={structure.acronyme}
-            onStructureCardClick={props.onStructureCardClick}
-            id={structure._id}
-          />
+        props.structures.map((structure, key) => (
+          <>
+            {key === 0 && <Anchor id="A" />}
+
+            {key > 1 && // @ts-ignore
+              props.structures[key - 1].nom[0].toLowerCase() !==
+                props.structures[key].nom[0].toLowerCase() && (
+                <>
+                  <Anchor id={props.structures[key].nom[0].toUpperCase()} />
+                </>
+              )}
+            <StructureCard
+              key={structure.nom}
+              nom={structure.nom}
+              picture={structure.picture || {}}
+              acronyme={structure.acronyme}
+              onStructureCardClick={props.onStructureCardClick}
+              id={structure._id}
+            />
+          </>
         ))}
-    </StructuresContainer>
-  </MainContainer>
-);
+    </MainContainer>
+  );
+};

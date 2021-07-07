@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import img from "../../../../assets/annuaire/annuaire_lecture.svg";
+//import img from "../../../../assets/annuaire/annuaire_lecture.svg";
 import { Letter } from "./Letter";
 import { NavHashLink } from "react-router-hash-link";
 import i18n from "../../../../i18n";
-import { SearchBarAnnuaire } from "./SearchBarAnnuaire";
+import { SearchBarAnnuaire } from "./SearBarAnnuaire/SearchBarAnnuaire";
 import { colors } from "../../../../colors";
 
 const HeaderContainer = styled.div`
   background-attachment: fixed;
-  background-image: url(${img});
-  height: 330px;
+
+  height: 290px;
   width: 100%;
-  margin-top: ${(props) => (props.stopScroll ? "-250px" : "-75px")};
+  margin-top: ${(props) =>
+    props.stopScroll
+      ? "-140px"
+      : -75 - props.currentScroll < -105
+      ? "-105px"
+      : -75 - props.currentScroll + "px"};
   position: ${(props) => (props.stopScroll ? "fixed" : "relative")};
   z-index: 1;
 `;
@@ -51,13 +56,26 @@ interface Props {
   letters: string[];
   //   onLetterClick: (letter: string) => void;
   stopScroll: boolean;
+  currentScroll: number;
+  letterSelected: string;
+  setLetterSelected: () => void;
   t: any;
 }
 
 export const Header = (props: Props) => {
   const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+
+  useEffect(() => {
+    if (props.currentScroll === 0) {
+      props.setLetterSelected("");
+    }
+  }, [props.currentScroll]);
+
   return (
-    <HeaderContainer stopScroll={props.stopScroll}>
+    <HeaderContainer
+      currentScroll={props.currentScroll}
+      stopScroll={props.stopScroll}
+    >
       <SearchContainer>
         {" "}
         <TextContainer isRTL={isRTL}>
@@ -70,15 +88,17 @@ export const Header = (props: Props) => {
         <>
           {props.letters.map((letter, index) => (
             <NavHashLink
+              onClick={() => props.setLetterSelected(letter)}
               to={`/annuaire#${letter.toUpperCase()}`}
               smooth={true}
               key={letter}
             >
               <Letter
                 letter={letter}
+                isOneSelected={props.letterSelected === "" ? false : true}
                 index={props.letters.length - index}
                 //   onLetterClick={props.onLetterClick}
-                isSelected={false}
+                isSelected={props.letterSelected === letter ? true : false}
               />
             </NavHashLink>
           ))}
