@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import { Props } from "./AnnuaireLecture.container";
 import _ from "lodash";
@@ -77,6 +76,7 @@ export interface PropsBeforeInjection {
 export const AnnuaireLectureComponent = (props: Props) => {
   const [stopScroll, setStopScroll] = useState(false);
   const [currentScroll, setCurrentScroll] = useState(0);
+  const [letterSelected, setLetterSelected] = useState("");
 
   const structures = useSelector(activeStructuresSelector);
   const isLoading = useSelector(
@@ -101,7 +101,6 @@ export const AnnuaireLectureComponent = (props: Props) => {
     };
 
     loadStructures();
-
     window.addEventListener("scroll", handleScroll);
     window.scrollTo(0, 0);
 
@@ -137,6 +136,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
           stopScroll={stopScroll}
           currentScroll={currentScroll}
           t={props.t}
+          letterSelected={letterSelected}
+          setLetterSelected={setLetterSelected}
         />
         <LoadingContainer>
           <div
@@ -158,6 +159,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
         stopScroll={stopScroll}
         currentScroll={currentScroll}
         t={props.t}
+        letterSelected={letterSelected}
+        setLetterSelected={setLetterSelected}
       />
       <Content
         currentScroll={currentScroll}
@@ -168,6 +171,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
           onStructureCardClick={onStructureCardClick}
           // @ts-ignore
           structures={sortStructureByAlpha}
+          setLetterSelected={setLetterSelected}
         />
       </Content>
     </MainContainer>

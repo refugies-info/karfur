@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from "react";
 import styled from "styled-components";
 import { Structure, Picture } from "../../../../types/interface";
@@ -10,6 +9,7 @@ import placeholder from "../../../../assets/annuaire/placeholder_logo_annuaire.s
 interface Props {
   structures: Structure[];
   onStructureCardClick: (id: ObjectId) => void;
+  setLetterSelected: any;
 }
 
 const MainContainer = styled.div`
@@ -98,29 +98,31 @@ const StructureCard = (props: StructureCardProps) => {
   );
 };
 
-export const LetterSection = (props: Props) => (
-  <MainContainer className="letter-section">
-    {props.structures &&
-      props.structures.map((structure, key) => (
-        <>
-          {key === 0 && <Anchor id="A" />}
+export const LetterSection = (props: Props) => {
+  return (
+    <MainContainer className="letter-section">
+      {props.structures &&
+        props.structures.map((structure, key) => (
+          <>
+            {key === 0 && <Anchor id="A" />}
 
-          {key > 1 && // @ts-ignore
-            props.structures[key - 1].nom[0].toLowerCase() !==
-              props.structures[key].nom[0].toLowerCase() && (
-              <>
-                <Anchor id={props.structures[key].nom[0].toUpperCase()} />
-              </>
-            )}
-          <StructureCard
-            key={structure.nom}
-            nom={structure.nom}
-            picture={structure.picture || {}}
-            acronyme={structure.acronyme}
-            onStructureCardClick={props.onStructureCardClick}
-            id={structure._id}
-          />
-        </>
-      ))}
-  </MainContainer>
-);
+            {key > 1 && // @ts-ignore
+              props.structures[key - 1].nom[0].toLowerCase() !==
+                props.structures[key].nom[0].toLowerCase() && (
+                <>
+                  <Anchor id={props.structures[key].nom[0].toUpperCase()} />
+                </>
+              )}
+            <StructureCard
+              key={structure.nom}
+              nom={structure.nom}
+              picture={structure.picture || {}}
+              acronyme={structure.acronyme}
+              onStructureCardClick={props.onStructureCardClick}
+              id={structure._id}
+            />
+          </>
+        ))}
+    </MainContainer>
+  );
+};
