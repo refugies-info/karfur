@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useEffect, useState, useLayoutEffect } from "react";
 import styled from "styled-components";
 import "./AnnuaireDetail.scss";
@@ -94,7 +93,6 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
       : false;
 
   if (isLoading || !structure) {
-    console.log("props", structure);
     return (
       <MainContainer>
         <Content className="annuaire-detail">
