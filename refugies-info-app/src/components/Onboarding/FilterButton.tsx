@@ -22,7 +22,8 @@ const MainContainer = styled(RTLTouchableOpacity)`
   margin-bottom: ${theme.margin * 2}px;
   justify-content: space-between;
   flex-wrap: wrap;
-  elevation: 1;
+  elevation: ${(props: { isSelected: boolean }) =>
+    props.isSelected ? 0 : 1}; ;
 `;
 
 const StyledText = styled(StyledTextSmallBold)`

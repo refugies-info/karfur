@@ -641,66 +641,6 @@ exports[`Filter city should render correctly when city selected 1`] = `
       </View>
     </View>
     <View>
-      <Text
-        isRTL={false}
-        style={
-          Array [
-            Object {
-              "fontFamily": "circularBold",
-              "fontSize": 19,
-              "lineHeight": 24,
-              "textAlign": "left",
-            },
-          ]
-        }
-      >
-        aucun
-      </Text>
-      <Text
-        isRTL={false}
-        style={
-          Array [
-            Object {
-              "fontFamily": "circularBold",
-              "fontSize": 19,
-              "lineHeight": 24,
-              "textAlign": "left",
-            },
-          ]
-        }
-      >
-        aucun-aucun
-      </Text>
-      <Text
-        isRTL={false}
-        style={
-          Array [
-            Object {
-              "fontFamily": "circularBold",
-              "fontSize": 19,
-              "lineHeight": 24,
-              "textAlign": "left",
-            },
-          ]
-        }
-      >
-        erreur 1 aucun
-      </Text>
-      <Text
-        isRTL={false}
-        style={
-          Array [
-            Object {
-              "fontFamily": "circularBold",
-              "fontSize": 19,
-              "lineHeight": 24,
-              "textAlign": "left",
-            },
-          ]
-        }
-      >
-        erreur 2 aucun
-      </Text>
       <View
         style={
           Array [
@@ -1591,66 +1531,6 @@ exports[`Filter city should render correctly when no city 1`] = `
       </View>
     </View>
     <View>
-      <Text
-        isRTL={false}
-        style={
-          Array [
-            Object {
-              "fontFamily": "circularBold",
-              "fontSize": 19,
-              "lineHeight": 24,
-              "textAlign": "left",
-            },
-          ]
-        }
-      >
-        aucun
-      </Text>
-      <Text
-        isRTL={false}
-        style={
-          Array [
-            Object {
-              "fontFamily": "circularBold",
-              "fontSize": 19,
-              "lineHeight": 24,
-              "textAlign": "left",
-            },
-          ]
-        }
-      >
-        aucun-aucun
-      </Text>
-      <Text
-        isRTL={false}
-        style={
-          Array [
-            Object {
-              "fontFamily": "circularBold",
-              "fontSize": 19,
-              "lineHeight": 24,
-              "textAlign": "left",
-            },
-          ]
-        }
-      >
-        erreur 1 aucun
-      </Text>
-      <Text
-        isRTL={false}
-        style={
-          Array [
-            Object {
-              "fontFamily": "circularBold",
-              "fontSize": 19,
-              "lineHeight": 24,
-              "textAlign": "left",
-            },
-          ]
-        }
-      >
-        erreur 2 aucun
-      </Text>
       <View
         style={
           Array [
@@ -1773,18 +1653,18 @@ exports[`Filter city should render correctly when no city 1`] = `
                 "backgroundColor": "#C6C6C6",
                 "borderRadius": 12,
                 "display": "flex",
-                "elevation": 1,
+                "elevation": 0,
                 "flexDirection": "row",
                 "height": 56,
                 "justifyContent": "center",
                 "opacity": 1,
-                "shadowColor": "black",
+                "shadowColor": "#EDEBEB",
                 "shadowOffset": Object {
-                  "height": 0,
+                  "height": 8,
                   "width": 0,
                 },
                 "shadowOpacity": 1,
-                "shadowRadius": 0,
+                "shadowRadius": 16,
               }
             }
             testID="test-validate-button"

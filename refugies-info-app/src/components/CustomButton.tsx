@@ -19,7 +19,8 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
     props.isDisabled
       ? `0px 0px 0px ${theme.colors.grey}`
       : "0px 8px 16px rgba(33, 33, 33, 0.24)"};
-  elevation: 1;
+  elevation: ${(props: { isDisabled: boolean }) =>
+    props.isDisabled ? 0 : 1}; ;
 `;
 
 const ColoredTextBold = styled(StyledTextSmallBold)`
