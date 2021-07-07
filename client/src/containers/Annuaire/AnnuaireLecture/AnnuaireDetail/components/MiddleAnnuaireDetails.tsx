@@ -12,15 +12,13 @@ import { colors } from "../../../../../colors";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { NavLink } from "react-router-dom";
 
-import { ObjectId } from "mongodb";
-
 interface Props {
   structure: Structure | null;
   leftPartHeight: number;
   t: any;
   isLoading: boolean;
-  userId: ObjectId | "";
-  members: any | undefined;
+
+  isMember: boolean;
 }
 
 const MiddleContainer = styled.div`
@@ -183,10 +181,7 @@ const getActivityDetails = (activity: string) => {
 };
 export const MiddleAnnuaireDetail = (props: Props) => {
   const structure = props.structure;
-  const isMember =
-    props.members && props.members.find((el: any) => el._id === props.userId)
-      ? true
-      : false;
+
   if (!props.isLoading && structure) {
     return (
       <MiddleContainer height={props.leftPartHeight}>
@@ -202,7 +197,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
               </Title>
             )}
           </TitleContainer>
-          {isMember && (
+          {props.isMember && (
             <div style={{ height: "5Opx" }}>
               <FButton
                 to="/annuaire-create"

@@ -1,7 +1,7 @@
+/* eslint-disable no-console */
 import React, { useEffect, useState, useLayoutEffect } from "react";
 import styled from "styled-components";
 import "./AnnuaireDetail.scss";
-import API from "../../../../utils/API";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
@@ -11,8 +11,6 @@ import { LeftAnnuaireDetail } from "./components/LeftAnnuaireDetail";
 import { MiddleAnnuaireDetail } from "./components/MiddleAnnuaireDetails";
 import { RightAnnuaireDetails } from "./components/RightAnnuaireDetails";
 import { fetchSelectedStructureActionCreator } from "../../../../services/SelectedStructure/selectedStructure.actions";
-import { fetchActiveStructuresActionCreator } from "../../../../services/ActiveStructures/activeStructures.actions";
-import { activeStructuresSelector } from "../../../../services/ActiveStructures/activeStructures.selector";
 import { colors } from "../../../../colors";
 import _ from "lodash";
 import i18n from "../../../../i18n";
@@ -59,7 +57,6 @@ function useWindowSize() {
 }
 
 export const AnnuaireDetail = (props: PropsBeforeInjection) => {
-  const [members, setMembers] = useState([]);
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_STRUCTURE)
   );
@@ -77,31 +74,27 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
 
   const locale = i18n.language;
   const leftPartHeight = height - 150;
-  const structures = useSelector(activeStructuresSelector);
   useEffect(() => {
     const loadStructure = async () => {
       dispatch(
         fetchSelectedStructureActionCreator({ id: structureId, locale })
       );
     };
-    const loadStructures = async () => {
-      dispatch(fetchActiveStructuresActionCreator());
-    };
 
-    if (!structures || structures.length === 0) {
-      loadStructures();
-    }
     if (structureId) {
       loadStructure();
     }
-    API.getStructureById(structureId, false, locale, true).then((res: any) =>
-      setMembers(res.data.data.membres)
-    );
 
     window.scrollTo(0, 0);
   }, [dispatch, structureId, locale]);
 
+  const isMember =
+    structure && structure.membres.find((el: any) => el._id === user.userId)
+      ? true
+      : false;
+
   if (isLoading || !structure) {
+    console.log("props", structure);
     return (
       <MainContainer>
         <Content className="annuaire-detail">
@@ -117,8 +110,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
             leftPartHeight={leftPartHeight}
             t={props.t}
             isLoading={isLoading}
-            members={members}
-            userId={user.userId}
+            isMember={isMember}
           />
         </Content>
       </MainContainer>
@@ -140,8 +132,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
           leftPartHeight={leftPartHeight}
           t={props.t}
           isLoading={isLoading}
-          members={members}
-          userId={user.userId}
+          isMember={isMember}
         />
         <RightAnnuaireDetails
           leftPartHeight={leftPartHeight}
