@@ -410,9 +410,10 @@ exports[`Filter french level should render correctly when french level selected 
               Array [
                 Object {
                   "color": "#FFFFFF",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
-                  "lineHeight": 24,
+                  "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]
@@ -474,9 +475,10 @@ exports[`Filter french level should render correctly when french level selected 
               Array [
                 Object {
                   "color": "#212121",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
-                  "lineHeight": 24,
+                  "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]
@@ -609,9 +611,10 @@ exports[`Filter french level should render correctly when french level selected 
               Array [
                 Object {
                   "color": "#212121",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
-                  "lineHeight": 24,
+                  "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]
@@ -744,9 +747,10 @@ exports[`Filter french level should render correctly when french level selected 
               Array [
                 Object {
                   "color": "#212121",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
-                  "lineHeight": 24,
+                  "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]
@@ -1639,9 +1643,10 @@ exports[`Filter french level should render correctly when no french level select
               Array [
                 Object {
                   "color": "#212121",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
-                  "lineHeight": 24,
+                  "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]
@@ -1703,9 +1708,10 @@ exports[`Filter french level should render correctly when no french level select
               Array [
                 Object {
                   "color": "#212121",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
-                  "lineHeight": 24,
+                  "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]
@@ -1838,9 +1844,10 @@ exports[`Filter french level should render correctly when no french level select
               Array [
                 Object {
                   "color": "#212121",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
-                  "lineHeight": 24,
+                  "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]
@@ -1973,9 +1980,10 @@ exports[`Filter french level should render correctly when no french level select
               Array [
                 Object {
                   "color": "#212121",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
-                  "lineHeight": 24,
+                  "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]
@@ -2868,9 +2876,10 @@ exports[`Filter french level should select level when click on it 1`] = `
               Array [
                 Object {
                   "color": "#FFFFFF",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
-                  "lineHeight": 24,
+                  "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]
@@ -2932,9 +2941,10 @@ exports[`Filter french level should select level when click on it 1`] = `
               Array [
                 Object {
                   "color": "#212121",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
-                  "lineHeight": 24,
+                  "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]
@@ -3067,9 +3077,10 @@ exports[`Filter french level should select level when click on it 1`] = `
               Array [
                 Object {
                   "color": "#212121",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
-                  "lineHeight": 24,
+                  "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]
@@ -3202,9 +3213,10 @@ exports[`Filter french level should select level when click on it 1`] = `
               Array [
                 Object {
                   "color": "#212121",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
-                  "fontSize": 19,
-                  "lineHeight": 24,
+                  "fontSize": 16,
+                  "lineHeight": 20,
                   "textAlign": "left",
                 },
               ]

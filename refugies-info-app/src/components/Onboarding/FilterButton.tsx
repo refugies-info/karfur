@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components/native";
 import { RTLTouchableOpacity, RowContainer } from "../BasicComponents";
 import { theme } from "../../theme";
-import { StyledTextNormalBold, StyledTextVerySmallBold } from "../StyledText";
+import { StyledTextSmallBold, StyledTextVerySmallBold } from "../StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 interface Props {
@@ -25,7 +25,7 @@ const MainContainer = styled(RTLTouchableOpacity)`
   elevation: 1;
 `;
 
-const StyledText = styled(StyledTextNormalBold)`
+const StyledText = styled(StyledTextSmallBold)`
   color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.white : theme.colors.black};
 `;

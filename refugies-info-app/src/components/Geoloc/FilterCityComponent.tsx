@@ -341,6 +341,7 @@ export const FilterCityComponent = (props: Props) => {
               textColor={theme.colors.black}
               onPress={props.navigation.goBack}
               isTextNotBold={true}
+              isDisabled={true}
             />
           </BottomButtonsContainer>
         )}

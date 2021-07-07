@@ -19,7 +19,7 @@ import {
 } from "../../services/redux/User/user.actions";
 
 const Title = styled(TextNormalBold)`
-  margin-bottom: ${theme.margin * 2}px;
+  margin-bottom: ${theme.margin * 3}px;
 `;
 
 const ContentContainer = styled.View`
