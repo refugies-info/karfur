@@ -352,11 +352,13 @@ const TraduireAnchor = styled.div`
 const DispositifCard = (props) => (
   <DispoCardContainer
     onClick={() => {
-      if (props.user.email !== "") {
-        props.history.push("/dispositif");
-      } else {
-        props.toggleModal("dispositif");
+      if (!props.user) {
+        return props.history.push("/login");
       }
+      if (props.user.email !== "") {
+        return props.history.push("/dispositif");
+      }
+      return props.toggleModal("dispositif");
     }}
   >
     <img src={assetsOnServer.commentContribuer.dispositif} alt="dispositif" />
@@ -438,11 +440,13 @@ const StructureCard = (props) => (
 const DemarcheCard = (props) => (
   <DemarcheCardContainer
     onClick={() => {
-      if (props.user.email !== "") {
-        props.history.push("/demarche");
-      } else {
-        props.toggleModal("demarche");
+      if (!props.user) {
+        return props.history.push("/login");
       }
+      if (props.user.email !== "") {
+        return props.history.push("/demarche");
+      }
+      return props.toggleModal("demarche");
     }}
   >
     <img

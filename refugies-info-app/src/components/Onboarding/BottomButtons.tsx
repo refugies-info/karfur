@@ -28,8 +28,10 @@ const RightButtonContainer = styled(RTLTouchableOpacity)`
   height: 56px;
   align-items: center;
   box-shadow: ${(props: { isDisabled: boolean }) =>
-    props.isDisabled ? "none" : "0px 8px 16px rgba(33, 33, 33, 0.24)"};
-  elevation: 1;
+    props.isDisabled
+      ? `0px 8px 16px ${theme.colors.grey}`
+      : "0px 8px 16px rgba(33, 33, 33, 0.24)"};
+  elevation: ${(props: { isDisabled: boolean }) => (props.isDisabled ? 0 : 1)};
 `;
 
 const BottomButtonsContainer = styled(RowTouchableOpacity)`

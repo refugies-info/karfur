@@ -28,7 +28,7 @@ const TitleContainer = styled(RTLTouchableOpacity)`
     props.isExpanded
       ? `0px 0px 0px ${theme.colors.white}`
       : "0px 8px 16px rgba(33, 33, 33, 0.24)"};
-  elevation: 1;
+  elevation: ${(props: { isExpanded: boolean }) => (props.isExpanded ? 0 : 1)};
   justify-content:space-between;
   border: ${(props: { isExpanded: boolean }) =>
     props.isExpanded
