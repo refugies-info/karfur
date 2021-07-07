@@ -111,8 +111,15 @@ export const AnnuaireLectureComponent = (props: Props) => {
     };
   }, [dispatch]);
 
-  const sortStructureByAlpha = structures
-    ? structures.sort((a, b) =>
+  const filterStructures = structures
+    ? structures.filter(
+        // @ts-ignore
+        (structure) => structure._id !== "5f69cb9c0aab6900460c0f3f"
+      )
+    : [];
+
+  const sortStructureByAlpha = filterStructures
+    ? filterStructures.sort((a, b) =>
         a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
           ? -1
           : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()

@@ -70,17 +70,18 @@ interface Props {
 
 export const SearchBarAnnuaire = (props: Props) => {
   const [dropdownOpen, setOpen] = useState(false);
-  const [typeSelected, setTypeSelected] = useState([]);
+  const [typeSelected, setTypeSelected] = useState<string[]>([]);
   const [ville, setVille] = useState("");
   const [isCityFocus, setIsCityFocus] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
 
-  const selectType = (item: any) => {
-    let array = typeSelected;
-    // @ts-ignore
-    array.push(item);
-    setTypeSelected(array);
+  const selectType = (item: string) => {
+    if (!typeSelected.includes(item)) {
+      let newTypesSelected = typeSelected.concat([item]);
+      setTypeSelected(newTypesSelected);
+    }
+
     toggle();
   };
 
@@ -88,9 +89,8 @@ export const SearchBarAnnuaire = (props: Props) => {
 
   const onPlaceSelected = () => {};
 
-  const removeType = (item: any) => {
+  const removeType = (item: string) => {
     let array = typeSelected.filter((el) => el !== item);
-    // @ts-ignore
     setTypeSelected(array);
     toggle();
   };
@@ -189,7 +189,7 @@ export const SearchBarAnnuaire = (props: Props) => {
         </DropdownToggle>
         <DropdownMenu>
           <DropDownItemContainer>
-            {StructureTypes.map((item: String, key) => {
+            {StructureTypes.map((item: string, key) => {
               return (
                 <FButton
                   onClick={() => {
@@ -197,7 +197,6 @@ export const SearchBarAnnuaire = (props: Props) => {
                   }}
                   type="white"
                   style={
-                    // @ts-ignore
                     typeSelected.includes(item)
                       ? { border: "2px black solid" }
                       : {}
@@ -207,22 +206,19 @@ export const SearchBarAnnuaire = (props: Props) => {
                 >
                   {item}
 
-                  {
-                    // @ts-ignore
-                    typeSelected.includes(item) && (
-                      <EVAIcon
-                        name="close-circle"
-                        fill={colors.blancSimple}
-                        onClick={(e: any) => {
-                          e.stopPropagation();
-                          removeType(item);
-                        }}
-                        id="bookmarkBtn"
-                        className="ml-10"
-                        size={"large"}
-                      />
-                    )
-                  }
+                  {typeSelected.includes(item) && (
+                    <EVAIcon
+                      name="close-circle"
+                      fill={colors.blancSimple}
+                      onClick={(e: any) => {
+                        e.stopPropagation();
+                        removeType(item);
+                      }}
+                      id="bookmarkBtn"
+                      className="ml-10"
+                      size={"large"}
+                    />
+                  )}
                 </FButton>
               );
             })}

@@ -57,8 +57,8 @@ interface Props {
   //   onLetterClick: (letter: string) => void;
   stopScroll: boolean;
   currentScroll: number;
-  letterSelected: String;
-  setLetterSelected: any;
+  letterSelected: string;
+  setLetterSelected: () => void;
   t: any;
 }
 

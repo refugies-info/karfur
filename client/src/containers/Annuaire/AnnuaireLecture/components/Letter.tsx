@@ -16,8 +16,7 @@ const MainContainer = styled.div`
   z-index: ${(props) => (props.isSelected ? "25" : props.index)};
   cursor: pointer;
   background: #ffffff;
-  color: ${(props) =>
-    props.isSelected ? "#212121" : props.isOneSelected ? "#C6C6C6" : "#212121"};
+  color: ${(props) => (props.isOneSelected ? "#C6C6C6" : "#212121")};
   margin: 4px;
   &:hover {
     background: #212121;
