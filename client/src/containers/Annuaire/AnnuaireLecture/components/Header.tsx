@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 //import img from "../../../../assets/annuaire/annuaire_lecture.svg";
 import { Letter } from "./Letter";
@@ -62,6 +62,14 @@ interface Props {
 
 export const Header = (props: Props) => {
   const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  const [letterSelected, setLetterSelected] = useState("");
+
+  useEffect(() => {
+    if (props.currentScroll === 0) {
+      setLetterSelected("");
+    }
+  }, [props.currentScroll]);
+
   return (
     <HeaderContainer
       currentScroll={props.currentScroll}
@@ -79,15 +87,17 @@ export const Header = (props: Props) => {
         <>
           {props.letters.map((letter, index) => (
             <NavHashLink
+              onClick={() => setLetterSelected(letter)}
               to={`/annuaire#${letter.toUpperCase()}`}
               smooth={true}
               key={letter}
             >
               <Letter
                 letter={letter}
+                isOneSelected={letterSelected === "" ? false : true}
                 index={props.letters.length - index}
                 //   onLetterClick={props.onLetterClick}
-                isSelected={false}
+                isSelected={letterSelected === letter ? true : false}
               />
             </NavHashLink>
           ))}
