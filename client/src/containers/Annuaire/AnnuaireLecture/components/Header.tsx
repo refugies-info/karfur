@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Letter } from "./Letter";
 import { NavHashLink } from "react-router-hash-link";
 import i18n from "../../../../i18n";
-import { SearchBarAnnuaire } from "./SearchBarAnnuaire";
+import { SearchBarAnnuaire } from "./SearBarAnnuaire/SearchBarAnnuaire";
 import { colors } from "../../../../colors";
 
 const HeaderContainer = styled.div`

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { colors } from "../../../../colors";
-import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
+import { colors } from "../../../../../colors";
+import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
 import "./SearchBarAnnuaire.scss";
+// @ts-ignore
+import ReactDependentScript from "react-dependent-script";
+import Autocomplete from "react-google-autocomplete";
 import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
-import { StructureTypes } from "../../AnnuaireCreate/data";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import { StructureTypes } from "../../../AnnuaireCreate/data";
+import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 // import { NavHashLink } from "react-router-hash-link";
 // import i18n from "../../../../i18n";
 
@@ -68,6 +71,9 @@ interface Props {
 export const SearchBarAnnuaire = (props: Props) => {
   const [dropdownOpen, setOpen] = useState(false);
   const [typeSelected, setTypeSelected] = useState([]);
+  const [ville, setVille] = useState("");
+  const [isCityFocus, setIsCityFocus] = useState(false);
+
   const toggle = () => setOpen(!dropdownOpen);
 
   const selectType = (item: any) => {
@@ -77,6 +83,10 @@ export const SearchBarAnnuaire = (props: Props) => {
     setTypeSelected(array);
     toggle();
   };
+
+  const handleChange = (e: any) => setVille(e.target.value);
+
+  const onPlaceSelected = () => {};
 
   const removeType = (item: any) => {
     let array = typeSelected.filter((el) => el !== item);
@@ -98,15 +108,56 @@ export const SearchBarAnnuaire = (props: Props) => {
         />
       </TextInputContainer>
       <WhiteButtonContainer>
-        {" "}
-        <EVAIcon
-          name="pin-outline"
-          fill={colors.noir}
-          className="mr-10"
-          id="bookmarkBtn"
-          size={"large"}
-        />
-        {props.t("Annuaire.Ville ou département", "Ville ou département")}
+        {ville === "" && !isCityFocus ? (
+          <div
+            onClick={() => {
+              setIsCityFocus(true);
+            }}
+          >
+            <EVAIcon
+              name="pin-outline"
+              fill={colors.noir}
+              className="mr-10"
+              id="bookmarkBtn"
+              size={"large"}
+            />
+            {props.t("Annuaire.Ville ou département", "Ville ou département")}
+          </div>
+        ) : (
+          <ReactDependentScript
+            loadingComponent={<div>Chargement de Google Maps...</div>}
+            scripts={[
+              "https://maps.googleapis.com/maps/api/js?key=" +
+                process.env.REACT_APP_GOOGLE_API_KEY +
+                "&v=3.exp&libraries=places&language=fr&region=FR",
+            ]}
+          >
+            <div className="position-relative">
+              {true && ( //@ts-ignore
+                <Autocomplete
+                  ref={(input: any) => {
+                    input && input.refs.input.focus();
+                  }}
+                  className="search-btn in-header search-autocomplete "
+                  onBlur={() => {}}
+                  placeholder={""}
+                  id="villeAuto"
+                  value={ville}
+                  onChange={handleChange}
+                  onPlaceSelected={onPlaceSelected}
+                  types={["(cities)"]}
+                  componentRestrictions={{ country: "fr" }}
+                />
+              )}
+              <EVAIcon
+                name="close-outline"
+                size="large"
+                className="ml-10"
+                onClick={() => {}}
+              />
+            </div>
+          </ReactDependentScript>
+        )}
       </WhiteButtonContainer>
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle
