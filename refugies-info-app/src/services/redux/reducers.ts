@@ -15,12 +15,18 @@ import {
   ContentsState,
   initialContentsState,
 } from "./Contents/contents.reducer";
+import {
+  SelectedContentState,
+  initialSelectedContentState,
+  selectedContentReducer,
+} from "./SelectedContent/selectedContent.reducer";
 
 const appReducer = combineReducers({
   loadingStatus: loadingStatusReducer,
   languages: languagesReducer,
   user: userReducer,
   contents: contentsReducer,
+  selectedContent: selectedContentReducer,
 });
 
 export interface RootState {
@@ -28,6 +34,7 @@ export interface RootState {
   languages: LanguageState;
   user: UserState;
   contents: ContentsState;
+  selectedContent: SelectedContentState;
 }
 
 type RootReducer = ReturnType<typeof appReducer>;
@@ -37,6 +44,7 @@ export const initialRootStateFactory = (): RootState => ({
   languages: initialLanguageState,
   user: initialUserState,
   contents: initialContentsState,
+  selectedContent: initialSelectedContentState,
 });
 
 export const rootReducer = (

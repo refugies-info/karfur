@@ -3,6 +3,7 @@ import { action, ActionType } from "typesafe-actions";
 export enum LoadingStatusKey {
   FETCH_LANGUAGES = "FETCH_LANGUAGES",
   FETCH_CONTENTS = "FETCH_CONTENTS",
+  FETCH_SELECTED_CONTENT = "FETCH_SELECTED_CONTENT",
 }
 
 export const startLoading = (key: LoadingStatusKey) =>

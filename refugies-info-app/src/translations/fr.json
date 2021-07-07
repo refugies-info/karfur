@@ -96,5 +96,13 @@
     "delete_data": "Es-tu sûr de vouloir supprimer les données de ton profil ?",
     "Ne pas filtrer selon mon niveau de français": "Ne pas filtrer selon mon niveau de français",
     "Ne pas filtrer selon mon âge": "Ne pas filtrer selon mon âge"
+  },
+  "Content": {
+    "C'est quoi ?": "C'est quoi ?",
+    "C'est pour qui ?": "C'est pour qui ?",
+    "Pourquoi c'est intéressant ?": "Pourquoi c'est intéressant ?",
+    "Comment je m'engage ?": "Comment je m'engage ?",
+    "Comment faire ?": "Comment faire ?",
+    "Et après ?": "Et après ?"
   }
 }

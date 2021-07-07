@@ -50,3 +50,23 @@ export const HeaderWithLogo = ({
     </MainContainer>
   </StyledSafeAreaView>
 );
+
+interface PropsBack {
+  onLongPressSwitchLanguage?: () => void;
+  navigation: any;
+}
+export const HeaderWithBackForWrapper = ({
+  onLongPressSwitchLanguage,
+  navigation,
+}: PropsBack) => (
+  <StyledSafeAreaView>
+    <MainContainer isRTL={false}>
+      <SmallButton iconName="arrow-back-outline" onPress={navigation.goBack} />
+      <RowContainer>
+        <LanguageSwitch onLongPressSwitchLanguage={onLongPressSwitchLanguage} />
+
+        <SmallButton iconName="volume-up-outline" />
+      </RowContainer>
+    </MainContainer>
+  </StyledSafeAreaView>
+);

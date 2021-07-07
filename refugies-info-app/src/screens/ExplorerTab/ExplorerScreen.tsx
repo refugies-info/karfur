@@ -11,6 +11,8 @@ import { TagsCaroussel } from "../../components/Explorer/TagsCaroussel";
 import { sortByOrder } from "../../libs";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ScrollView } from "react-native";
+import { StackScreenProps } from "@react-navigation/stack";
+import { ExplorerParamList } from "../../../types";
 
 const ViewChoiceContainer = styled(RTLView)`
   margin-top: ${theme.margin * 4}px;
@@ -30,7 +32,9 @@ const CenteredView = styled.View`
   flex: 1;
   justify-content: center;
 `;
-export const ExplorerScreen = () => {
+export const ExplorerScreen = ({
+  navigation,
+}: StackScreenProps<ExplorerParamList, "ExplorerScreen">) => {
   const { isRTL } = useTranslationWithRTL();
   const [tabSelected, setTabSelected] = React.useState("galery");
 
@@ -64,7 +68,7 @@ export const ExplorerScreen = () => {
       ) : (
         <CenteredView>
           <CarousselContainer>
-            <TagsCaroussel isRTL={isRTL} />
+            <TagsCaroussel isRTL={isRTL} navigation={navigation} />
           </CarousselContainer>
         </CenteredView>
       )}

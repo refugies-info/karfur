@@ -53,7 +53,10 @@ const ICON_SIZE = 20;
 
 export const ProfilDetailButton = (props: Props) => (
   <View>
-    <ButtonContainer onPress={props.onPress}>
+    <ButtonContainer
+      onPress={props.onPress}
+      testID={"test-profil-button-" + props.iconName}
+    >
       <RTLView>
         <Icon
           name={props.iconName}
