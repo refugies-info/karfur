@@ -86,11 +86,6 @@ export const FilterCityComponent = (props: Props) => {
   const [selectedCity, setSelectedCity] = React.useState("");
   const [selectedDepartment, setSelectedDepartment] = React.useState("");
   const [isGeolocLoading, setIsGeolocLoading] = React.useState(false);
-  const [geolocStatus, setGeoloStatus] = React.useState("aucun");
-  const [coord, setCoord] = React.useState({ lat: "aucun", long: "aucun" });
-  const [erreurTest, setErreurTest] = React.useState("aucun");
-  const [erreurTest2, setErreurTest2] = React.useState("aucun");
-
   const { t, isRTL } = useTranslationWithRTL();
 
   const defaultError = t("Erreur", "Une erreur est survenue, réessaie.");
@@ -119,6 +114,7 @@ export const FilterCityComponent = (props: Props) => {
     try {
       const results = await getCitiesFromGoogleAPI(data);
       if (results && results.data && results.data.predictions) {
+        console.log("results get cities", results);
         setSuggestions(results.data.predictions);
       }
     } catch (error) {
@@ -172,23 +168,17 @@ export const FilterCityComponent = (props: Props) => {
       setError("");
       setIsGeolocLoading(true);
       let { status } = await Location.requestForegroundPermissionsAsync();
-      setGeoloStatus(status);
       if (status !== "granted") {
         throw new Error("ERREUR_NOT_GRANTED");
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      console.log("location", location);
       if (
         location &&
         location.coords &&
         location.coords.latitude &&
         location.coords.longitude
       ) {
-        setCoord({
-          lat: location.coords.latitude,
-          long: location.coords.longitude,
-        });
         const result = await getPlaceIdFromLocationFromGoogleAPI(
           location.coords.longitude,
           location.coords.latitude
@@ -208,7 +198,6 @@ export const FilterCityComponent = (props: Props) => {
             setIsGeolocLoading(false);
             return;
           } catch (error) {
-            setErreurTest("erreur set city and get dep");
             setError(
               t(
                 "Onboarding.error_geoloc",
@@ -220,12 +209,9 @@ export const FilterCityComponent = (props: Props) => {
             return;
           }
         }
-        setErreurTest("pas de result de geoloc");
       }
       throw new Error("ERREUR");
     } catch (error) {
-      console.log("error.message", error.message);
-      setErreurTest2(error.message);
       if (error.message === "ERREUR_NOT_GRANTED") {
         setError(
           t(
@@ -320,10 +306,6 @@ export const FilterCityComponent = (props: Props) => {
       </View>
       <View>
         {!!error && <ErrorComponent text={error} />}
-        <TextNormalBold>{geolocStatus}</TextNormalBold>
-        <TextNormalBold>{coord.lat + "-" + coord.long}</TextNormalBold>
-        <TextNormalBold>{"erreur 1 " + erreurTest}</TextNormalBold>
-        <TextNormalBold>{"erreur 2 " + erreurTest2}</TextNormalBold>
 
         {props.isOnboardingScreen ? (
           <>
