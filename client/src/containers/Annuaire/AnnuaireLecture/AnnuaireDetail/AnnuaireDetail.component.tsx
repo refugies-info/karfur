@@ -74,7 +74,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
   const locale = i18n.language;
   const leftPartHeight = height - 150;
   useEffect(() => {
-    const loadStructure = async () => {
+    const loadStructure = () => {
       dispatch(
         fetchSelectedStructureActionCreator({ id: structureId, locale })
       );
