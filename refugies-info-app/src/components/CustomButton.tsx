@@ -16,8 +16,11 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
   width: 100%;
   height: 56px;
   box-shadow: ${(props: { isDisabled: boolean }) =>
-    props.isDisabled ? "none" : "0px 8px 16px rgba(33, 33, 33, 0.24)"};
-  elevation: 1;
+    props.isDisabled
+      ? `0px 0px 0px ${theme.colors.grey}`
+      : "0px 8px 16px rgba(33, 33, 33, 0.24)"};
+  elevation: ${(props: { isDisabled: boolean }) =>
+    props.isDisabled ? 0 : 1}; ;
 `;
 
 const ColoredTextBold = styled(StyledTextSmallBold)`

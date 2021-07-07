@@ -34,7 +34,7 @@ const DeleteDataContainer = styled.TouchableOpacity`
 `;
 
 const DeleteDataText = styled(StyledTextVerySmall)`
-  color: ${theme.colors.darkBlue};
+  color: ${theme.colors.darkGrey};
 `;
 
 const ContentContainer = styled.View`

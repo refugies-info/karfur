@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { TextSmallNormal } from "../../components/StyledText";
+import { TextNormalBold } from "../../components/StyledText";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { RootStackParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -16,14 +16,14 @@ import { theme } from "../../theme";
 import { ScrollView } from "react-native-gesture-handler";
 
 const MainContainer = styled.View`
-  padding-horizontal: ${theme.margin * 2}px;
+  padding-horizontal: ${theme.margin * 3}px;
   justify-content: center;
   flex: 1;
   display: flex;
   flex-direction: column;
 `;
 
-const HeaderText = styled(TextSmallNormal)`
+const HeaderText = styled(TextNormalBold)`
   margin-horizontal: ${theme.margin * 3}px;
   margin-top: ${theme.margin * 3}px;
   margin-bottom: ${theme.margin}px;
