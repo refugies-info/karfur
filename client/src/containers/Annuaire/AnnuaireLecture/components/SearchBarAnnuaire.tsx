@@ -67,8 +67,23 @@ interface Props {
 
 export const SearchBarAnnuaire = (props: Props) => {
   const [dropdownOpen, setOpen] = useState(false);
-
+  const [typeSelected, setTypeSelected] = useState([]);
   const toggle = () => setOpen(!dropdownOpen);
+
+  const selectType = (item: any) => {
+    let array = typeSelected;
+    // @ts-ignore
+    array.push(item);
+    setTypeSelected(array);
+    toggle();
+  };
+
+  const removeType = (item: any) => {
+    let array = typeSelected.filter((el) => el !== item);
+    // @ts-ignore
+    setTypeSelected(array);
+    toggle();
+  };
 
   return (
     <MainContainer>
@@ -94,15 +109,69 @@ export const SearchBarAnnuaire = (props: Props) => {
         {props.t("Annuaire.Ville ou département", "Ville ou département")}
       </WhiteButtonContainer>
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-        <DropdownToggle className="whiteButton" caret>
-          {props.t("Annuaire.Type de structure", "Type de structure")}
+        <DropdownToggle
+          caret={false}
+          className={
+            typeSelected === null
+              ? "typeButton whiteButton"
+              : "typeButton typeSelected"
+          }
+        >
+          {typeSelected.length === 1
+            ? typeSelected[0]
+            : typeSelected.length > 1
+            ? typeSelected.length + " types"
+            : props.t("Annuaire.Type de structure", "Type de structure")}
+          {typeSelected.length > 0 && (
+            <EVAIcon
+              name="close-circle"
+              fill={colors.blancSimple}
+              onClick={(e: any) => {
+                e.stopPropagation();
+                setTypeSelected([]);
+              }}
+              id="bookmarkBtn"
+              className="ml-10"
+              size={"large"}
+            />
+          )}
         </DropdownToggle>
         <DropdownMenu>
           <DropDownItemContainer>
-            {StructureTypes.map((item, key) => {
+            {StructureTypes.map((item: String, key) => {
               return (
-                <FButton type="white" className="mb-8" key={key}>
+                <FButton
+                  onClick={() => {
+                    selectType(item);
+                  }}
+                  type="white"
+                  style={
+                    // @ts-ignore
+                    typeSelected.includes(item)
+                      ? { border: "2px black solid" }
+                      : {}
+                  }
+                  className="mb-8"
+                  key={key}
+                >
                   {item}
+
+                  {
+                    // @ts-ignore
+                    typeSelected.includes(item) && (
+                      <EVAIcon
+                        name="close-circle"
+                        fill={colors.blancSimple}
+                        onClick={(e: any) => {
+                          e.stopPropagation();
+                          removeType(item);
+                        }}
+                        id="bookmarkBtn"
+                        className="ml-10"
+                        size={"large"}
+                      />
+                    )
+                  }
                 </FButton>
               );
             })}
