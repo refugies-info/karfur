@@ -112,7 +112,7 @@ export const SearchBarAnnuaire = (props: Props) => {
         <DropdownToggle
           caret={false}
           className={
-            typeSelected === null
+            typeSelected.length === 0
               ? "typeButton whiteButton"
               : "typeButton typeSelected"
           }
