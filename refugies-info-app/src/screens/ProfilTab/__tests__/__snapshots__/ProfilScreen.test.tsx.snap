@@ -1186,7 +1186,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         style={
           Array [
             Object {
-              "color": "#0421B1",
+              "color": "#5E5E5E",
               "fontFamily": "circularBook",
               "fontSize": 13,
               "lineHeight": 16,
@@ -1467,7 +1467,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         style={
           Array [
             Object {
-              "color": "#0421B1",
+              "color": "#5E5E5E",
               "fontFamily": "circularBook",
               "fontSize": 13,
               "lineHeight": 16,
@@ -1763,13 +1763,13 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "#EDEBEB",
               "shadowOffset": Object {
-                "height": 8,
+                "height": 0,
                 "width": 0,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 0,
               "width": "100%",
             }
           }
@@ -2080,13 +2080,13 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "#EDEBEB",
               "shadowOffset": Object {
-                "height": 8,
+                "height": 0,
                 "width": 0,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 0,
               "width": "100%",
             }
           }
@@ -4422,7 +4422,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         style={
           Array [
             Object {
-              "color": "#0421B1",
+              "color": "#5E5E5E",
               "fontFamily": "circularBook",
               "fontSize": 13,
               "lineHeight": 16,
@@ -4703,7 +4703,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         style={
           Array [
             Object {
-              "color": "#0421B1",
+              "color": "#5E5E5E",
               "fontFamily": "circularBook",
               "fontSize": 13,
               "lineHeight": 16,
@@ -4999,13 +4999,13 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "#EDEBEB",
               "shadowOffset": Object {
-                "height": 8,
+                "height": 0,
                 "width": 0,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 0,
               "width": "100%",
             }
           }
@@ -5316,13 +5316,13 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "#EDEBEB",
               "shadowOffset": Object {
-                "height": 8,
+                "height": 0,
                 "width": 0,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 0,
               "width": "100%",
             }
           }
@@ -7658,7 +7658,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
         style={
           Array [
             Object {
-              "color": "#0421B1",
+              "color": "#5E5E5E",
               "fontFamily": "circularBook",
               "fontSize": 13,
               "lineHeight": 16,
@@ -7939,7 +7939,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
         style={
           Array [
             Object {
-              "color": "#0421B1",
+              "color": "#5E5E5E",
               "fontFamily": "circularBook",
               "fontSize": 13,
               "lineHeight": 16,
@@ -8235,13 +8235,13 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "#EDEBEB",
               "shadowOffset": Object {
-                "height": 8,
+                "height": 0,
                 "width": 0,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 0,
               "width": "100%",
             }
           }
@@ -8552,13 +8552,13 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "#EDEBEB",
               "shadowOffset": Object {
-                "height": 8,
+                "height": 0,
                 "width": 0,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 0,
               "width": "100%",
             }
           }
