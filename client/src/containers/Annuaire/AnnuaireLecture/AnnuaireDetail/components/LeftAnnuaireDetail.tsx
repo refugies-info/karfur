@@ -5,15 +5,16 @@ import styled from "styled-components";
 import { StructureType } from "./StructureType";
 import { SocialsLink } from "./SocialsLink";
 import placeholder from "../../../../../assets/annuaire/placeholder_logo_annuaire.svg";
+import FButton from "components/FigmaUI/FButton/FButton";
 
 const LeftContainer = styled.div`
   width: 360px;
   background-image: url(${img});
+  background-repeat: no-repeat;
   padding: 32px;
   display: flex;
+  padding-top: 100px;
   flex-direction: column;
-  justify-content: space-between;
-  height: ${(props) => props.height}px;
 `;
 
 const LogoContainer = styled.div`
@@ -32,6 +33,7 @@ interface Props {
   leftPartHeight: number;
   t: any;
   isLoading: boolean;
+  history: any;
 }
 export const LeftAnnuaireDetail = (props: Props) => {
   const getSecureUrl = (picture: Picture | null) => {
@@ -43,6 +45,15 @@ export const LeftAnnuaireDetail = (props: Props) => {
   if (props.structure && !props.isLoading) {
     return (
       <LeftContainer height={props.leftPartHeight}>
+        <div style={{ marginBottom: "33px" }}>
+          <FButton
+            type="login"
+            name="arrow-back-outline"
+            onClick={() => props.history.go(-1)}
+          >
+            {props.t("Annuaire.Retour à l'annuaire", "Retour à l'annuaire")}
+          </FButton>
+        </div>
         <div>
           <LogoContainer>
             <img

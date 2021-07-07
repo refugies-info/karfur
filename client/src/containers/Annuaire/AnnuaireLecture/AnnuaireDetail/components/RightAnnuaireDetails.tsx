@@ -9,7 +9,6 @@ import "./RightAnnuaireDetails.scss";
 const Container = styled.div`
   width: 300px;
   overflow: scroll;
-  height: ${(props) => props.height}px;
   padding: 32px;
 `;
 
@@ -24,6 +23,7 @@ const TitleContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
+  padding-top: 71px;
 `;
 
 // on firefox behaviour is strange with overflow, we have to add an empty container to have margin
@@ -92,6 +92,7 @@ export const RightAnnuaireDetails = (props: Props) => {
     (dispositif: IDispositif) => dispositif.status === "Actif"
   );
   const nbActiveDispositifs = activeDispositifsAssocies.length;
+
   return (
     <Container height={props.leftPartHeight} className="right-annuaire">
       <TitleContainer>
