@@ -7,8 +7,6 @@ import i18n from "../../../../i18n";
 import { SearchBarAnnuaire } from "./SearchBarAnnuaire";
 import { colors } from "../../../../colors";
 
-declare const window: Window;
-
 const HeaderContainer = styled.div`
   background-attachment: fixed;
 
