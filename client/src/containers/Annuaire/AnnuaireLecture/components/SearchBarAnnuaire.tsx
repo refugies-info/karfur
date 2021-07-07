@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
-
+import "./SearchBarAnnuaire.scss";
+import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
+import { StructureTypes } from "../../AnnuaireCreate/data";
+import FButton from "../../../../components/FigmaUI/FButton/FButton";
 // import { NavHashLink } from "react-router-hash-link";
 // import i18n from "../../../../i18n";
 
@@ -28,6 +31,18 @@ const TextInputContainer = styled.div`
   align-items: center;
 `;
 
+const DropDownItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0px;
+  background: #e0e0e0;
+  padding: 16px;
+  border-radius: 12px;
+  align-items: left;
+  width: max-content;
+`;
+
 const WhiteButtonContainer = styled.div`
   height: 50px;
   background: ${colors.blanc};
@@ -51,6 +66,10 @@ interface Props {
 }
 
 export const SearchBarAnnuaire = (props: Props) => {
+  const [dropdownOpen, setOpen] = useState(false);
+
+  const toggle = () => setOpen(!dropdownOpen);
+
   return (
     <MainContainer>
       <TextInputContainer>
@@ -74,13 +93,27 @@ export const SearchBarAnnuaire = (props: Props) => {
         />
         {props.t("Annuaire.Ville ou département", "Ville ou département")}
       </WhiteButtonContainer>
-      <WhiteButtonContainer>
-        {props.t("Annuaire.Type de structure", "Type de structure")}
-      </WhiteButtonContainer>
-      <WhiteButtonContainer>
+      <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+        <DropdownToggle className="whiteButton" caret>
+          {props.t("Annuaire.Type de structure", "Type de structure")}
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropDownItemContainer>
+            {StructureTypes.map((item, key) => {
+              return (
+                <FButton type="white" className="mb-8" key={key}>
+                  {item}
+                </FButton>
+              );
+            })}
+          </DropDownItemContainer>
+        </DropdownMenu>
+      </Dropdown>
+
+      {/* <WhiteButtonContainer>
         {" "}
         {props.t("Annuaire.Thèmes & activités", "Thèmes & activités")}
-      </WhiteButtonContainer>
+      </WhiteButtonContainer> */}
       <ResultNumberContainer>
         {" "}
         {props.t("AdvancedSearch.résultats", "résultats")}
