@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import { Props } from "./AnnuaireLecture.container";
 import _ from "lodash";
@@ -31,7 +32,8 @@ const LoadingContainer = styled.div`
 `;
 const Content = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flew-wrap: wrap;
   margin-top: ${(props) =>
     props.stopScroll ? "140px" : -props.currentScroll + "px"};
   margin-bottom: ${(props) => (props.hasMarginBottom ? "24px" : "0px")};
@@ -50,14 +52,6 @@ const LoadingCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const Letter = styled.div`
-  font-size: 100px;
-  line-height: 58px;
-  margin-top: 30px;
-  margin-left: 72px;
-  margin-right: 72px;
 `;
 
 const GreyContainer = styled.div`
@@ -118,26 +112,23 @@ export const AnnuaireLectureComponent = (props: Props) => {
     };
   }, [dispatch]);
 
-  // we do not show our temporary structure in production
-  const filterStructures = structures
-    ? structures.filter(
-        // @ts-ignore
-        (structure) => structure._id !== "5f69cb9c0aab6900460c0f3f"
+  const sortStructureByAlpha = structures
+    ? structures.sort((a, b) =>
+        a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
+          ? -1
+          : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()
+          ? 1
+          : 0
       )
-    : [];
+    : null;
 
-  const groupedStructureByLetter =
-    filterStructures && filterStructures.length > 0
-      ? _.groupBy(filterStructures, (structure) =>
-          structure.nom ? structure.nom[0].toLowerCase() : "no name"
-        )
-      : [];
+  console.log(sortStructureByAlpha);
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
 
   const onStructureCardClick = (id: ObjectId) =>
     props.history.push(`/annuaire/${id}`);
-
+  console.log("structure", structures);
   if (isLoading) {
     const emptyArray = new Array(7).fill("a");
     return (
@@ -150,7 +141,6 @@ export const AnnuaireLectureComponent = (props: Props) => {
           t={props.t}
         />
         <LoadingContainer>
-          <Letter>A</Letter>
           <div
             style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
           >
@@ -167,7 +157,6 @@ export const AnnuaireLectureComponent = (props: Props) => {
     <MainContainer>
       <Header
         letters={letters}
-        // onLetterClick={onLetterClick}
         stopScroll={stopScroll}
         currentScroll={currentScroll}
         t={props.t}
@@ -177,17 +166,11 @@ export const AnnuaireLectureComponent = (props: Props) => {
         stopScroll={stopScroll}
         hasMarginBottom={true}
       >
-        <>
-          {letters.map((letter) => (
-            <LetterSection
-              onStructureCardClick={onStructureCardClick}
-              key={letter}
-              letter={letter}
-              // @ts-ignore
-              structures={groupedStructureByLetter[letter]}
-            />
-          ))}
-        </>
+        <LetterSection
+          onStructureCardClick={onStructureCardClick}
+          // @ts-ignore
+          structures={sortStructureByAlpha}
+        />
       </Content>
     </MainContainer>
   );

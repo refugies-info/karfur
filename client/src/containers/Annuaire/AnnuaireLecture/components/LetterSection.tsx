@@ -7,7 +7,6 @@ import { ObjectId } from "mongodb";
 import placeholder from "../../../../assets/annuaire/placeholder_logo_annuaire.svg";
 
 interface Props {
-  letter: string;
   structures: Structure[];
   onStructureCardClick: (id: ObjectId) => void;
 }
@@ -15,6 +14,7 @@ interface Props {
 const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   font-weight: bold;
   font-size: 100px;
   padding-left: 72px;
@@ -22,12 +22,6 @@ const MainContainer = styled.div`
   padding-top: 24px;
 `;
 
-const StructuresContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  flex: 1;
-`;
 const StructureCardContainer = styled.div`
   font-weight: bold;
   font-size: 22px;
@@ -47,9 +41,9 @@ const StructureCardContainer = styled.div`
   justify-content: space-between;
 `;
 
-const Anchor = styled.div`
-  margin-top: -250px;
-`;
+// const Anchor = styled.div`
+//   margin-top: -250px;
+// `;
 
 interface StructureCardProps {
   nom: string;
@@ -105,10 +99,10 @@ const StructureCard = (props: StructureCardProps) => {
 
 export const LetterSection = (props: Props) => (
   <MainContainer className="letter-section">
-    <Anchor id={props.letter.toUpperCase()} />
-    <StructuresContainer>
-      {props.structures &&
-        props.structures.map((structure) => (
+    {props.structures &&
+      props.structures.map((structure) => (
+        <>
+          {/* <Anchor id={props.letter.toUpperCase()} /> */}
           <StructureCard
             key={structure.nom}
             nom={structure.nom}
@@ -117,7 +111,7 @@ export const LetterSection = (props: Props) => (
             onStructureCardClick={props.onStructureCardClick}
             id={structure._id}
           />
-        ))}
-    </StructuresContainer>
+        </>
+      ))}
   </MainContainer>
 );
