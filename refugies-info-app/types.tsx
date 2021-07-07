@@ -26,8 +26,16 @@ export type BottomTabParamList = {
 
 export type ExplorerParamList = {
   ExplorerScreen: undefined;
-  ContentsScreen: { tagName: string };
-  ContentScreen: { contentId: ObjectId };
+  ContentsScreen: {
+    tagName: string;
+    tagDarkColor: string;
+    tagVeryLightColor: string;
+  };
+  ContentScreen: {
+    contentId: ObjectId;
+    tagDarkColor: string;
+    tagVeryLightColor: string;
+  };
 };
 
 export type FavorisParamList = {

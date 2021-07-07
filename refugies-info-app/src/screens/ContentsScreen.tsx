@@ -30,7 +30,7 @@ export const ContentsScreen = ({
   const contents = currentLanguageI18nCode
     ? useSelector(contentsSelector(currentLanguageI18nCode))
     : [];
-  const { tagName } = route.params;
+  const { tagName, tagDarkColor, tagVeryLightColor } = route.params;
 
   const filteredContents = contents.filter((content) => {
     const mainTag =
@@ -59,7 +59,11 @@ export const ContentsScreen = ({
           <ContentContainer
             key={index}
             onPress={() =>
-              navigation.navigate("ContentScreen", { contentId: content._id })
+              navigation.navigate("ContentScreen", {
+                contentId: content._id,
+                tagDarkColor,
+                tagVeryLightColor,
+              })
             }
           >
             <TextNormal>{content.titreInformatif}</TextNormal>

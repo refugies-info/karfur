@@ -17,6 +17,7 @@ import {
 } from "../services/redux/User/user.selectors";
 import { ContentFromHtml } from "../components/Content/ContentFromHtml";
 import { Accordion } from "../components/Content/Accordion";
+import { AvailableLanguageI18nCode } from "../types/interface";
 
 const ContentContainer = styled.View`
   padding: 24px;
@@ -29,6 +30,7 @@ const TitlesContainer = styled.View`
 const HeaderText = styled(TextBigBold)`
   margin-top: ${theme.margin * 2}px;
   margin-bottom: ${theme.margin * 2}px;
+  color: ${(props: { textColor: string }) => props.textColor};
 `;
 
 const headersDispositif = [
@@ -45,6 +47,15 @@ const headersDemarche = [
   "Et après ?",
 ];
 
+const computeIfContentIsTranslatedInCurrentLanguage = (
+  avancement: 1 | Record<AvailableLanguageI18nCode, number>,
+  currentLanguage: AvailableLanguageI18nCode
+) => {
+  if (currentLanguage === "fr") return false;
+  if (avancement === 1) return false;
+  return avancement[currentLanguage] === 1;
+};
+
 export const ContentScreen = ({
   navigation,
   route,
@@ -57,7 +68,7 @@ export const ContentScreen = ({
 
   const selectedLanguage = useSelector(selectedI18nCodeSelector);
   const currentLanguage = useSelector(currentI18nCodeSelector);
-  const { contentId } = route.params;
+  const { contentId, tagDarkColor, tagVeryLightColor } = route.params;
 
   const windowWidth = useWindowDimensions().width;
   React.useEffect(() => {
@@ -73,7 +84,7 @@ export const ContentScreen = ({
 
   const selectedContent = useSelector(selectedContentSelector(currentLanguage));
 
-  if (!selectedContent) {
+  if (!selectedContent || !currentLanguage) {
     return (
       <WrapperWithHeaderAndLanguageModal
         showSwitch={true}
@@ -92,6 +103,10 @@ export const ContentScreen = ({
   const isDispositif = selectedContent.typeContenu === "dispositif";
 
   const headers = isDispositif ? headersDispositif : headersDemarche;
+  const isContentTranslatedInCurrentLanguage = computeIfContentIsTranslatedInCurrentLanguage(
+    selectedContent.avancement,
+    currentLanguage
+  );
 
   const toggleAccordion = (index: string) => {
     if (index === accordionExpanded) return setAccordionExpanded("");
@@ -120,7 +135,7 @@ export const ContentScreen = ({
             if (index === 0 && selectedContent.contenu[0].content) {
               return (
                 <>
-                  <HeaderText key={header}>
+                  <HeaderText key={header} textColor={tagDarkColor}>
                     {t("Content." + header, header)}
                   </HeaderText>
                   <ContentFromHtml
@@ -133,7 +148,7 @@ export const ContentScreen = ({
             if (index === 1) {
               return (
                 <>
-                  <HeaderText key={header}>
+                  <HeaderText key={header} textColor={tagDarkColor}>
                     {t("Content." + header, header)}
                   </HeaderText>
                 </>
@@ -142,7 +157,7 @@ export const ContentScreen = ({
 
             return (
               <>
-                <HeaderText key={header}>
+                <HeaderText key={header} textColor={tagDarkColor}>
                   {t("Content." + header, header)}
                 </HeaderText>
                 {selectedContent &&
@@ -178,6 +193,11 @@ export const ContentScreen = ({
                             }
                             currentLanguage={currentLanguage}
                             windowWidth={windowWidth}
+                            darkColor={tagDarkColor}
+                            lightColor={tagVeryLightColor}
+                            isContentTranslated={
+                              isContentTranslatedInCurrentLanguage
+                            }
                           />
                         );
                       }
