@@ -641,6 +641,66 @@ exports[`Filter city should render correctly when city selected 1`] = `
       </View>
     </View>
     <View>
+      <Text
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "fontFamily": "circularBold",
+              "fontSize": 19,
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+          ]
+        }
+      >
+        aucun
+      </Text>
+      <Text
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "fontFamily": "circularBold",
+              "fontSize": 19,
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+          ]
+        }
+      >
+        aucun-aucun
+      </Text>
+      <Text
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "fontFamily": "circularBold",
+              "fontSize": 19,
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+          ]
+        }
+      >
+        erreur 1 aucun
+      </Text>
+      <Text
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "fontFamily": "circularBold",
+              "fontSize": 19,
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+          ]
+        }
+      >
+        erreur 2 aucun
+      </Text>
       <View
         style={
           Array [
@@ -1531,6 +1591,66 @@ exports[`Filter city should render correctly when no city 1`] = `
       </View>
     </View>
     <View>
+      <Text
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "fontFamily": "circularBold",
+              "fontSize": 19,
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+          ]
+        }
+      >
+        aucun
+      </Text>
+      <Text
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "fontFamily": "circularBold",
+              "fontSize": 19,
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+          ]
+        }
+      >
+        aucun-aucun
+      </Text>
+      <Text
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "fontFamily": "circularBold",
+              "fontSize": 19,
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+          ]
+        }
+      >
+        erreur 1 aucun
+      </Text>
+      <Text
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "fontFamily": "circularBold",
+              "fontSize": 19,
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+          ]
+        }
+      >
+        erreur 2 aucun
+      </Text>
       <View
         style={
           Array [
