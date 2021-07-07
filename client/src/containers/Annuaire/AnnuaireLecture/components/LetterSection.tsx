@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from "react";
 import styled from "styled-components";
 import { Structure, Picture } from "../../../../types/interface";
@@ -41,9 +42,9 @@ const StructureCardContainer = styled.div`
   justify-content: space-between;
 `;
 
-// const Anchor = styled.div`
-//   margin-top: -250px;
-// `;
+const Anchor = styled.div`
+  margin-top: -250px;
+`;
 
 interface StructureCardProps {
   nom: string;
@@ -100,9 +101,17 @@ const StructureCard = (props: StructureCardProps) => {
 export const LetterSection = (props: Props) => (
   <MainContainer className="letter-section">
     {props.structures &&
-      props.structures.map((structure) => (
+      props.structures.map((structure, key) => (
         <>
-          {/* <Anchor id={props.letter.toUpperCase()} /> */}
+          {key === 0 && <Anchor id="A" />}
+
+          {key > 1 && // @ts-ignore
+            props.structures[key - 1].nom[0].toLowerCase() !==
+              props.structures[key].nom[0].toLowerCase() && (
+              <>
+                <Anchor id={props.structures[key].nom[0].toUpperCase()} />
+              </>
+            )}
           <StructureCard
             key={structure.nom}
             nom={structure.nom}

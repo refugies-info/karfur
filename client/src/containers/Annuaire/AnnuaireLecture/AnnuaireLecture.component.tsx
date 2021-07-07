@@ -122,13 +122,11 @@ export const AnnuaireLectureComponent = (props: Props) => {
       )
     : null;
 
-  console.log(sortStructureByAlpha);
-
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
 
   const onStructureCardClick = (id: ObjectId) =>
     props.history.push(`/annuaire/${id}`);
-  console.log("structure", structures);
+
   if (isLoading) {
     const emptyArray = new Array(7).fill("a");
     return (
