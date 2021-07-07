@@ -16,7 +16,7 @@ import { theme } from "../../theme";
 import { ScrollView } from "react-native-gesture-handler";
 
 const MainContainer = styled.View`
-  padding-horizontal: ${theme.margin * 2}px;
+  padding-horizontal: ${theme.margin * 3}px;
   justify-content: center;
   flex: 1;
   display: flex;
