@@ -31,6 +31,7 @@ type NeededFields =
       acronyme: number;
       picture: number;
       structureTypes: number;
+      departments: number;
     }
   | {
       nom: number;

@@ -7,7 +7,7 @@ export const getActiveStructures = async (req: {}, res: Res) => {
     logger.info("[getActiveStructures] get structures ");
     const structures = await getStructuresFromDB(
       { status: "Actif" },
-      { nom: 1, acronyme: 1, picture: 1, structureTypes: 1 },
+      { nom: 1, acronyme: 1, picture: 1, structureTypes: 1, departments: 1 },
       false
     );
     return res.status(200).json({ data: structures });
