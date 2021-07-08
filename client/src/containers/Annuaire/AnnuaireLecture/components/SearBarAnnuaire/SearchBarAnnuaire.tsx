@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../../../../colors";
@@ -47,6 +48,7 @@ const DropDownItemContainer = styled.div`
 `;
 
 const WhiteButtonContainer = styled.div`
+  display: flex;
   height: 50px;
   background: ${colors.blanc};
   padding: 12px;
@@ -87,14 +89,19 @@ export const SearchBarAnnuaire = (props: Props) => {
 
   const handleChange = (e: any) => setVille(e.target.value);
 
-  const onPlaceSelected = () => {};
+  const onPlaceSelected = (place: any) => {
+    if (place.formatted_address) {
+      setVille(place.formatted_address);
+    }
+    setIsCityFocus(false);
+  };
 
   const removeType = (item: string) => {
     let array = typeSelected.filter((el) => el !== item);
     setTypeSelected(array);
     toggle();
   };
-
+  console.log(ville);
   return (
     <MainContainer>
       <TextInputContainer>
@@ -108,19 +115,19 @@ export const SearchBarAnnuaire = (props: Props) => {
         />
       </TextInputContainer>
       <WhiteButtonContainer>
+        <EVAIcon
+          name="pin-outline"
+          fill={colors.noir}
+          className="mr-10"
+          id="bookmarkBtn"
+          size={"large"}
+        />
         {ville === "" && !isCityFocus ? (
           <div
             onClick={() => {
               setIsCityFocus(true);
             }}
           >
-            <EVAIcon
-              name="pin-outline"
-              fill={colors.noir}
-              className="mr-10"
-              id="bookmarkBtn"
-              size={"large"}
-            />
             {props.t("Annuaire.Ville ou département", "Ville ou département")}
           </div>
         ) : (
@@ -138,8 +145,10 @@ export const SearchBarAnnuaire = (props: Props) => {
                   ref={(input: any) => {
                     input && input.refs.input.focus();
                   }}
-                  className="search-btn in-header search-autocomplete "
-                  onBlur={() => {}}
+                  className="autocomplete"
+                  onBlur={() => {
+                    setIsCityFocus(false);
+                  }}
                   placeholder={""}
                   id="villeAuto"
                   value={ville}
