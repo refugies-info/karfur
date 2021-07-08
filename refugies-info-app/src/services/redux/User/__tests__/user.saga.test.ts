@@ -347,7 +347,10 @@ describe("[Saga] user", () => {
 
   describe("remove user location saga", () => {
     it("should call functions and set data", () => {
-      testSaga(removeUserLocation)
+      testSaga(removeUserLocation, {
+        type: "REMOVE_USER_LOCATION",
+        payload: false,
+      })
         .next()
         .call(deleteItemInAsyncStorage, "DEP")
         .next()
@@ -358,8 +361,28 @@ describe("[Saga] user", () => {
         .isDone();
     });
 
+    it("should call functions and set data", () => {
+      testSaga(removeUserLocation, {
+        type: "REMOVE_USER_LOCATION",
+        payload: true,
+      })
+        .next()
+        .call(deleteItemInAsyncStorage, "DEP")
+        .next()
+        .call(deleteItemInAsyncStorage, "CITY")
+        .next()
+        .put(setUserLocationActionCreator({ city: null, dep: null }))
+        .next()
+        .put(fetchContentsActionCreator())
+        .next()
+        .isDone();
+    });
+
     it("should call functions and deleteItemInAsyncStorage throws", () => {
-      testSaga(removeUserLocation)
+      testSaga(removeUserLocation, {
+        type: "REMOVE_USER_LOCATION",
+        payload: false,
+      })
         .next()
         .call(deleteItemInAsyncStorage, "DEP")
         .throw(new Error("error"))

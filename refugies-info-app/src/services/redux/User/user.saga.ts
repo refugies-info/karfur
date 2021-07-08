@@ -13,6 +13,7 @@ import {
   setUserLocationActionCreator,
   setUserFrenchLevelActionCreator,
   removeUserAgeActionCreator,
+  removeUserLocationActionCreator,
 } from "./user.actions";
 import {
   SAVE_SELECTED_LANGUAGE,
@@ -85,12 +86,18 @@ export function* saveUserLocation(
   }
 }
 
-export function* removeUserLocation(): SagaIterator {
+export function* removeUserLocation(
+  action: ReturnType<typeof removeUserLocationActionCreator>
+): SagaIterator {
   try {
+    const shouldFetchContents = action.payload;
     logger.info("[removeUserLocation] saga");
     yield call(deleteItemInAsyncStorage, "DEP");
     yield call(deleteItemInAsyncStorage, "CITY");
     yield put(setUserLocationActionCreator({ city: null, dep: null }));
+    if (shouldFetchContents) {
+      yield put(fetchContentsActionCreator());
+    }
   } catch (error) {
     logger.error("Error while removing location", { error: error.message });
   }

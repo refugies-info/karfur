@@ -243,7 +243,9 @@ export const FilterCityComponent = (props: Props) => {
       );
       return navigateToNextScreen();
     }
-    dispatch(removeUserLocationActionCreator());
+    dispatch(
+      removeUserLocationActionCreator(props.isOnboardingScreen ? false : true)
+    );
     return navigateToNextScreen();
   };
 
