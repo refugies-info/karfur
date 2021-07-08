@@ -238,6 +238,7 @@ export const FilterCityComponent = (props: Props) => {
         saveUserLocationActionCreator({
           city: selectedCity,
           dep: selectedDepartment,
+          shouldFetchContents: props.isOnboardingScreen ? false : true,
         })
       );
       return navigateToNextScreen();

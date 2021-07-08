@@ -71,11 +71,14 @@ export function* saveUserLocation(
   action: ReturnType<typeof saveUserLocationActionCreator>
 ): SagaIterator {
   try {
-    const { city, dep } = action.payload;
+    const { city, dep, shouldFetchContents } = action.payload;
     logger.info("[saveUserLocation] saga", { city, dep });
     yield call(saveItemInAsyncStorage, "CITY", city);
     yield call(saveItemInAsyncStorage, "DEP", dep);
     yield put(setUserLocationActionCreator({ city, dep }));
+    if (shouldFetchContents) {
+      yield put(fetchContentsActionCreator());
+    }
   } catch (error) {
     logger.error("[saveUserLocation] saga error", { error: error.message });
     yield put(setUserLocationActionCreator({ city: null, dep: null }));

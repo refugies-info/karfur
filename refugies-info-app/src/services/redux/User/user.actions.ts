@@ -44,6 +44,7 @@ export const removeSelectedLanguageActionCreator = () =>
 export const saveUserLocationActionCreator = (value: {
   city: string;
   dep: string;
+  shouldFetchContents: boolean;
 }) => action(SAVE_USER_LOCATION, value);
 
 export const setUserLocationActionCreator = (value: {

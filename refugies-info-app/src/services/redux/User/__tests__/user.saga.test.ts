@@ -210,7 +210,7 @@ describe("[Saga] user", () => {
     it("should call functions and set data", () => {
       testSaga(saveUserLocation, {
         type: "SAVE_USER_LOCATION",
-        payload: { city: "city", dep: "dep" },
+        payload: { city: "city", dep: "dep", shouldFetchContents: false },
       })
         .next()
         .call(saveItemInAsyncStorage, "CITY", "city")
@@ -222,10 +222,27 @@ describe("[Saga] user", () => {
         .isDone();
     });
 
+    it("should call functions and set data", () => {
+      testSaga(saveUserLocation, {
+        type: "SAVE_USER_LOCATION",
+        payload: { city: "city", dep: "dep", shouldFetchContents: true },
+      })
+        .next()
+        .call(saveItemInAsyncStorage, "CITY", "city")
+        .next()
+        .call(saveItemInAsyncStorage, "DEP", "dep")
+        .next()
+        .put(setUserLocationActionCreator({ city: "city", dep: "dep" }))
+        .next()
+        .put(fetchContentsActionCreator())
+        .next()
+        .isDone();
+    });
+
     it("should call functions and set null if saveItemInAsyncStorage throws", () => {
       testSaga(saveUserLocation, {
         type: "SAVE_USER_LOCATION",
-        payload: { city: "city", dep: "dep" },
+        payload: { city: "city", dep: "dep", shouldFetchContents: false },
       })
         .next()
         .call(saveItemInAsyncStorage, "CITY", "city")
