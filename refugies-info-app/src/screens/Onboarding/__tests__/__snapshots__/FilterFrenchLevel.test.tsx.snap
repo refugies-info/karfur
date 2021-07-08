@@ -405,16 +405,19 @@ exports[`Filter french level should render correctly when french level selected 
           testID="test-filter-Je parle un peu"
         >
           <Text
+            isRTL={false}
             isSelected={false}
             style={
               Array [
                 Object {
-                  "color": "#212121",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 16,
                   "lineHeight": 20,
                   "textAlign": "left",
+                },
+                Object {
+                  "color": "#212121",
                 },
               ]
             }
@@ -541,16 +544,19 @@ exports[`Filter french level should render correctly when french level selected 
           testID="test-filter-Je parle bien"
         >
           <Text
+            isRTL={false}
             isSelected={true}
             style={
               Array [
                 Object {
-                  "color": "#FFFFFF",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 16,
                   "lineHeight": 20,
                   "textAlign": "left",
+                },
+                Object {
+                  "color": "#FFFFFF",
                 },
               ]
             }
@@ -677,16 +683,19 @@ exports[`Filter french level should render correctly when french level selected 
           testID="test-filter-Je parle couramment"
         >
           <Text
+            isRTL={false}
             isSelected={false}
             style={
               Array [
                 Object {
-                  "color": "#212121",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 16,
                   "lineHeight": 20,
                   "textAlign": "left",
+                },
+                Object {
+                  "color": "#212121",
                 },
               ]
             }
@@ -1573,16 +1582,19 @@ exports[`Filter french level should render correctly when no french level select
           testID="test-filter-Je parle un peu"
         >
           <Text
+            isRTL={false}
             isSelected={false}
             style={
               Array [
                 Object {
-                  "color": "#212121",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 16,
                   "lineHeight": 20,
                   "textAlign": "left",
+                },
+                Object {
+                  "color": "#212121",
                 },
               ]
             }
@@ -1709,16 +1721,19 @@ exports[`Filter french level should render correctly when no french level select
           testID="test-filter-Je parle bien"
         >
           <Text
+            isRTL={false}
             isSelected={false}
             style={
               Array [
                 Object {
-                  "color": "#212121",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 16,
                   "lineHeight": 20,
                   "textAlign": "left",
+                },
+                Object {
+                  "color": "#212121",
                 },
               ]
             }
@@ -1845,16 +1860,19 @@ exports[`Filter french level should render correctly when no french level select
           testID="test-filter-Je parle couramment"
         >
           <Text
+            isRTL={false}
             isSelected={false}
             style={
               Array [
                 Object {
-                  "color": "#212121",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 16,
                   "lineHeight": 20,
                   "textAlign": "left",
+                },
+                Object {
+                  "color": "#212121",
                 },
               ]
             }
@@ -2741,16 +2759,19 @@ exports[`Filter french level should select level when click on it 1`] = `
           testID="test-filter-Je parle un peu"
         >
           <Text
+            isRTL={false}
             isSelected={false}
             style={
               Array [
                 Object {
-                  "color": "#212121",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 16,
                   "lineHeight": 20,
                   "textAlign": "left",
+                },
+                Object {
+                  "color": "#212121",
                 },
               ]
             }
@@ -2877,16 +2898,19 @@ exports[`Filter french level should select level when click on it 1`] = `
           testID="test-filter-Je parle bien"
         >
           <Text
+            isRTL={false}
             isSelected={true}
             style={
               Array [
                 Object {
-                  "color": "#FFFFFF",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 16,
                   "lineHeight": 20,
                   "textAlign": "left",
+                },
+                Object {
+                  "color": "#FFFFFF",
                 },
               ]
             }
@@ -3013,16 +3037,19 @@ exports[`Filter french level should select level when click on it 1`] = `
           testID="test-filter-Je parle couramment"
         >
           <Text
+            isRTL={false}
             isSelected={false}
             style={
               Array [
                 Object {
-                  "color": "#212121",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 16,
                   "lineHeight": 20,
                   "textAlign": "left",
+                },
+                Object {
+                  "color": "#212121",
                 },
               ]
             }

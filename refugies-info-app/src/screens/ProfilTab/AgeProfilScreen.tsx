@@ -47,7 +47,7 @@ export const AgeProfilScreen = ({
 
   const removeAge = () => {
     if (!selectedAge) return;
-    dispatch(removeUserAgeActionCreator());
+    dispatch(removeUserAgeActionCreator(true));
     return navigation.goBack();
   };
 

@@ -62,7 +62,8 @@ export const saveUserAgeActionCreator = (value: {
 export const setUserAgeActionCreator = (value: string | null) =>
   action(SET_USER_AGE, value);
 
-export const removeUserAgeActionCreator = () => action(REMOVE_USER_AGE);
+export const removeUserAgeActionCreator = (shouldFetchContents: boolean) =>
+  action(REMOVE_USER_AGE, shouldFetchContents);
 
 export const saveUserFrenchLevelActionCreator = (value: string) =>
   action(SAVE_USER_FRENCH_LEVEL, value);

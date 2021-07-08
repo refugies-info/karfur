@@ -12,6 +12,7 @@ import {
   setUserAgeActionCreator,
   setUserLocationActionCreator,
   setUserFrenchLevelActionCreator,
+  removeUserAgeActionCreator,
 } from "./user.actions";
 import {
   SAVE_SELECTED_LANGUAGE,
@@ -133,11 +134,17 @@ export function* saveUserAge(
   }
 }
 
-export function* removeUserAge(): SagaIterator {
+export function* removeUserAge(
+  action: ReturnType<typeof removeUserAgeActionCreator>
+): SagaIterator {
   try {
+    const shouldFetchContents = action.payload;
     logger.info("[removeUserAge] saga");
     yield call(deleteItemInAsyncStorage, "AGE");
     yield put(setUserAgeActionCreator(null));
+    if (shouldFetchContents) {
+      yield put(fetchContentsActionCreator());
+    }
   } catch (error) {
     logger.error("Error while removing age", { error: error.message });
   }

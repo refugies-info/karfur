@@ -84,7 +84,7 @@ export const ProfilScreen = ({
 
   const deleteUserData = () => {
     dispatch(removeUserFrenchLevelActionCreator());
-    dispatch(removeUserAgeActionCreator());
+    dispatch(removeUserAgeActionCreator(true));
     dispatch(removeUserLocationActionCreator());
   };
 

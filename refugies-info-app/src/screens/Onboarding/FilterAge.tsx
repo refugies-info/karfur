@@ -47,7 +47,7 @@ export const FilterAge = ({
       );
       return navigateToNextScreen();
     }
-    dispatch(removeUserAgeActionCreator());
+    dispatch(removeUserAgeActionCreator(false));
     return navigateToNextScreen();
   };
 

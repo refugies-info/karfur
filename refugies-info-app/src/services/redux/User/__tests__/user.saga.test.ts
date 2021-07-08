@@ -372,7 +372,7 @@ describe("[Saga] user", () => {
 
   describe("remove user age saga", () => {
     it("should call functions and set data", () => {
-      testSaga(removeUserAge)
+      testSaga(removeUserAge, { type: "REMOVE_USER_AGE", payload: false })
         .next()
         .call(deleteItemInAsyncStorage, "AGE")
         .next()
@@ -381,8 +381,20 @@ describe("[Saga] user", () => {
         .isDone();
     });
 
+    it("should call functions and set data", () => {
+      testSaga(removeUserAge, { type: "REMOVE_USER_AGE", payload: true })
+        .next()
+        .call(deleteItemInAsyncStorage, "AGE")
+        .next()
+        .put(setUserAgeActionCreator(null))
+        .next()
+        .put(fetchContentsActionCreator())
+        .next()
+        .isDone();
+    });
+
     it("should call functions and deleteItemInAsyncStorage throws", () => {
-      testSaga(removeUserAge)
+      testSaga(removeUserAge, { type: "REMOVE_USER_AGE", payload: false })
         .next()
         .call(deleteItemInAsyncStorage, "AGE")
         .throw(new Error("error"))
