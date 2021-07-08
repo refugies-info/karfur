@@ -24,6 +24,7 @@ export class TagsCaroussel extends React.Component {
         iconName={item.icon}
         navigation={this.props.navigation}
         colorDark={item.darkColor}
+        color30={item.color30}
       />
     );
   }
