@@ -65,9 +65,10 @@ describe("Filter french level", () => {
     act(() => {
       fireEvent.press(Button);
     });
-    expect(saveUserFrenchLevelActionCreator).toHaveBeenCalledWith(
-      "Je parle bien"
-    );
+    expect(saveUserFrenchLevelActionCreator).toHaveBeenCalledWith({
+      frenchLevel: "Je parle bien",
+      shouldFetchContents: false,
+    });
     expect(navigate).toHaveBeenCalledWith("FinishOnboarding");
   });
 

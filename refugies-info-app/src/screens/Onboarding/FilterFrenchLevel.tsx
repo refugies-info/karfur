@@ -61,10 +61,15 @@ export const FilterFrenchLevel = ({
 
   const onValidate = () => {
     if (selectedFrenchLevel) {
-      dispatch(saveUserFrenchLevelActionCreator(selectedFrenchLevel.name));
+      dispatch(
+        saveUserFrenchLevelActionCreator({
+          frenchLevel: selectedFrenchLevel.name,
+          shouldFetchContents: false,
+        })
+      );
       return navigateToNextScreen();
     }
-    dispatch(removeUserFrenchLevelActionCreator());
+    dispatch(removeUserFrenchLevelActionCreator(false));
     return navigateToNextScreen();
   };
 

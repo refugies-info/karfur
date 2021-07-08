@@ -137,7 +137,7 @@ describe("[Saga] user", () => {
     it("should call functions and set data", () => {
       testSaga(saveUserFrenchLevel, {
         type: "SAVE_USER_FRENCH_LEVEL",
-        payload: "level1",
+        payload: { frenchLevel: "level1", shouldFetchContents: false },
       })
         .next()
         .call(saveItemInAsyncStorage, "FRENCH_LEVEL", "level1")
@@ -147,10 +147,25 @@ describe("[Saga] user", () => {
         .isDone();
     });
 
+    it("should call functions and set data", () => {
+      testSaga(saveUserFrenchLevel, {
+        type: "SAVE_USER_FRENCH_LEVEL",
+        payload: { frenchLevel: "level1", shouldFetchContents: true },
+      })
+        .next()
+        .call(saveItemInAsyncStorage, "FRENCH_LEVEL", "level1")
+        .next()
+        .put(setUserFrenchLevelActionCreator("level1"))
+        .next()
+        .put(fetchContentsActionCreator())
+        .next()
+        .isDone();
+    });
+
     it("should call functions and set null if saveItemInAsyncStorage throws", () => {
       testSaga(saveUserFrenchLevel, {
         type: "SAVE_USER_FRENCH_LEVEL",
-        payload: "level1",
+        payload: { frenchLevel: "level1", shouldFetchContents: false },
       })
         .next()
         .call(saveItemInAsyncStorage, "FRENCH_LEVEL", "level1")
@@ -392,7 +407,10 @@ describe("[Saga] user", () => {
 
   describe("remove user french level saga", () => {
     it("should call functions and set data", () => {
-      testSaga(removeUserFrenchLevel)
+      testSaga(removeUserFrenchLevel, {
+        type: "REMOVE_USER_FRENCH_LEVEL",
+        payload: false,
+      })
         .next()
         .call(deleteItemInAsyncStorage, "FRENCH_LEVEL")
         .next()
@@ -401,8 +419,26 @@ describe("[Saga] user", () => {
         .isDone();
     });
 
+    it("should call functions and set data", () => {
+      testSaga(removeUserFrenchLevel, {
+        type: "REMOVE_USER_FRENCH_LEVEL",
+        payload: true,
+      })
+        .next()
+        .call(deleteItemInAsyncStorage, "FRENCH_LEVEL")
+        .next()
+        .put(setUserFrenchLevelActionCreator(null))
+        .next()
+        .put(fetchContentsActionCreator())
+        .next()
+        .isDone();
+    });
+
     it("should call functions and deleteItemInAsyncStorage throws", () => {
-      testSaga(removeUserFrenchLevel)
+      testSaga(removeUserFrenchLevel, {
+        type: "REMOVE_USER_FRENCH_LEVEL",
+        payload: false,
+      })
         .next()
         .call(deleteItemInAsyncStorage, "FRENCH_LEVEL")
         .throw(new Error("error"))

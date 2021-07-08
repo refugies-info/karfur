@@ -14,6 +14,7 @@ import {
   setUserFrenchLevelActionCreator,
   removeUserAgeActionCreator,
   removeUserLocationActionCreator,
+  removeUserFrenchLevelActionCreator,
 } from "./user.actions";
 import {
   SAVE_SELECTED_LANGUAGE,
@@ -107,21 +108,30 @@ export function* saveUserFrenchLevel(
   action: ReturnType<typeof saveUserFrenchLevelActionCreator>
 ): SagaIterator {
   try {
-    const frenchLevel = action.payload;
+    const { frenchLevel, shouldFetchContents } = action.payload;
     logger.info("[saveUserFrenchLevel] saga", { frenchLevel });
     yield call(saveItemInAsyncStorage, "FRENCH_LEVEL", frenchLevel);
     yield put(setUserFrenchLevelActionCreator(frenchLevel));
+    if (shouldFetchContents) {
+      yield put(fetchContentsActionCreator());
+    }
   } catch (error) {
     logger.error("[saveUserFrenchLevel] saga error", { error: error.message });
     yield put(setUserFrenchLevelActionCreator(null));
   }
 }
 
-export function* removeUserFrenchLevel(): SagaIterator {
+export function* removeUserFrenchLevel(
+  action: ReturnType<typeof removeUserFrenchLevelActionCreator>
+): SagaIterator {
   try {
+    const shouldFetchContents = action.payload;
     logger.info("[removeUserFrenchLevel] saga");
     yield call(deleteItemInAsyncStorage, "FRENCH_LEVEL");
     yield put(setUserFrenchLevelActionCreator(null));
+    if (shouldFetchContents) {
+      yield put(fetchContentsActionCreator());
+    }
   } catch (error) {
     logger.error("Error while removing french level", { error: error.message });
   }

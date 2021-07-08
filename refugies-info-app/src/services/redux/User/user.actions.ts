@@ -66,14 +66,17 @@ export const setUserAgeActionCreator = (value: string | null) =>
 export const removeUserAgeActionCreator = (shouldFetchContents: boolean) =>
   action(REMOVE_USER_AGE, shouldFetchContents);
 
-export const saveUserFrenchLevelActionCreator = (value: string) =>
-  action(SAVE_USER_FRENCH_LEVEL, value);
+export const saveUserFrenchLevelActionCreator = (value: {
+  frenchLevel: string;
+  shouldFetchContents: boolean;
+}) => action(SAVE_USER_FRENCH_LEVEL, value);
 
 export const setUserFrenchLevelActionCreator = (value: string | null) =>
   action(SET_USER_FRENCH_LEVEL, value);
 
-export const removeUserFrenchLevelActionCreator = () =>
-  action(REMOVE_USER_FRENCH_LEVEL);
+export const removeUserFrenchLevelActionCreator = (
+  shouldFetchContents: boolean
+) => action(REMOVE_USER_FRENCH_LEVEL, shouldFetchContents);
 
 export const setCurrentLanguageActionCreator = (
   value: AvailableLanguageI18nCode | null
