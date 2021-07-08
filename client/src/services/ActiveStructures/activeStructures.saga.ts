@@ -15,6 +15,8 @@ export function* fetchActiveStructures(): SagaIterator {
     yield put(startLoading(LoadingStatusKey.FETCH_STRUCTURES));
     logger.info("[fetchActiveStructures] fetching structures");
     const data = yield call(API.getActiveStructures);
+    // eslint-disable-next-line no-console
+    console.log("data", data);
     yield put(setActiveStructuresActionCreator(data.data.data));
     yield put(finishLoading(LoadingStatusKey.FETCH_STRUCTURES));
   } catch (error) {

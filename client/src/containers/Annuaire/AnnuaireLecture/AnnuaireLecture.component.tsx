@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import { Props } from "./AnnuaireLecture.container";
 import styled from "styled-components";
@@ -77,14 +76,13 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const [stopScroll, setStopScroll] = useState(false);
   const [currentScroll, setCurrentScroll] = useState(0);
   const [letterSelected, setLetterSelected] = useState("");
+  //@ts-ignore
   const [filteredStructures, setFilteredStructures] = useState([]);
 
   const structures = useSelector(activeStructuresSelector);
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES)
   );
-
-  console.log("filteredStructures", filteredStructures);
 
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;

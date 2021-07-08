@@ -266,6 +266,7 @@ export interface SimplifiedStructure {
   _id: ObjectId;
   acronyme: string;
   nom: string;
+  structureTypes?: string[];
   picture: Picture;
   role?: string[];
 }

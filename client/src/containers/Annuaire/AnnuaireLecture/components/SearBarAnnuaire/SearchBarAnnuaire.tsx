@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { colors } from "../../../../../colors";
 import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
@@ -80,6 +80,12 @@ export const SearchBarAnnuaire = (props: Props) => {
 
   const toggle = () => setOpen(!dropdownOpen);
 
+  const filterStructure = () => {};
+
+  useEffect(() => {
+    filterStructure();
+  }, [ville, keywords, typeSelected]);
+
   const selectType = (item: string) => {
     if (!typeSelected.includes(item)) {
       let newTypesSelected = typeSelected.concat([item]);
@@ -116,6 +122,7 @@ export const SearchBarAnnuaire = (props: Props) => {
           placeholder="Rechercher par nom ..."
           value={keywords}
         />
+        {}
 
         <EVAIcon
           name="search-outline"
