@@ -62,6 +62,7 @@ export const ContentsScreen = ({
                 contentId: content._id,
                 tagDarkColor,
                 tagVeryLightColor,
+                tagName,
               })
             }
           >

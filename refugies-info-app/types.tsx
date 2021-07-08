@@ -35,6 +35,7 @@ export type ExplorerParamList = {
     contentId: ObjectId;
     tagDarkColor: string;
     tagVeryLightColor: string;
+    tagName: string;
   };
 };
 

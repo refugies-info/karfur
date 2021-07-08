@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { Text, useWindowDimensions } from "react-native";
+import { Text, useWindowDimensions, View } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ExplorerParamList } from "../../types";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
@@ -18,6 +18,9 @@ import {
 import { ContentFromHtml } from "../components/Content/ContentFromHtml";
 import { Accordion } from "../components/Content/Accordion";
 import { AvailableLanguageI18nCode } from "../types/interface";
+import { HeaderImage } from "../components/Content/HeaderImage";
+import { HeaderWithBackForWrapper } from "../components/HeaderWithLogo";
+import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
 
 const ContentContainer = styled.View`
   padding: 24px;
@@ -31,6 +34,14 @@ const HeaderText = styled(TextBigBold)`
   margin-top: ${theme.margin * 2}px;
   margin-bottom: ${theme.margin * 2}px;
   color: ${(props: { textColor: string }) => props.textColor};
+`;
+
+const Test = styled.View`
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 5;
+  width: 100%;
 `;
 
 const headersDispositif = [
@@ -60,6 +71,13 @@ export const ContentScreen = ({
   navigation,
   route,
 }: StackScreenProps<ExplorerParamList, "ContentScreen">) => {
+  const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
+    false
+  );
+
+  const toggleLanguageModal = () =>
+    setLanguageModalVisible(!isLanguageModalVisible);
+
   const [accordionExpanded, setAccordionExpanded] = React.useState("");
 
   const { t } = useTranslationWithRTL();
@@ -68,7 +86,7 @@ export const ContentScreen = ({
 
   const selectedLanguage = useSelector(selectedI18nCodeSelector);
   const currentLanguage = useSelector(currentI18nCodeSelector);
-  const { contentId, tagDarkColor, tagVeryLightColor } = route.params;
+  const { contentId, tagDarkColor, tagVeryLightColor, tagName } = route.params;
 
   const windowWidth = useWindowDimensions().width;
   React.useEffect(() => {
@@ -116,13 +134,17 @@ export const ContentScreen = ({
 
   const accordionMaxWidthWithStep = windowWidth - 2 * 24 - 4 * 16 - 24 - 32;
   const accordionMaxWidthWithoutStep = windowWidth - 2 * 24 - 3 * 16 - 24;
-
+  console.log("tagName", tagName);
   return (
-    <WrapperWithHeaderAndLanguageModal
-      showSwitch={true}
-      navigation={navigation}
-    >
-      <ScrollView>
+    <View>
+      <Test>
+        <HeaderWithBackForWrapper
+          onLongPressSwitchLanguage={toggleLanguageModal}
+          navigation={navigation}
+        />
+      </Test>
+      <ScrollView contentContainerStyle={{}}>
+        <HeaderImage tagName={tagName} />
         <ContentContainer>
           <TitlesContainer>
             <TextNormal>{selectedContent.titreInformatif}</TextNormal>
@@ -208,6 +230,10 @@ export const ContentScreen = ({
           })}
         </ContentContainer>
       </ScrollView>
-    </WrapperWithHeaderAndLanguageModal>
+      <LanguageChoiceModal
+        isModalVisible={isLanguageModalVisible}
+        toggleModal={toggleLanguageModal}
+      />
+    </View>
   );
 };
