@@ -380,71 +380,6 @@ exports[`Filter french level should render correctly when french level selected 
           onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "backgroundColor": "#212121",
-              "borderRadius": 12,
-              "display": "flex",
-              "elevation": 0,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 16,
-              "opacity": 1,
-              "paddingBottom": 16,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 16,
-              "shadowColor": "black",
-              "shadowOffset": Object {
-                "height": 0,
-                "width": 0,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 0,
-            }
-          }
-          testID="test-filter-Je commence à apprendre"
-        >
-          <Text
-            isSelected={true}
-            style={
-              Array [
-                Object {
-                  "color": "#FFFFFF",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            Je commence à apprendre
-          </Text>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-              ]
-            }
-          />
-        </View>
-        <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
@@ -581,10 +516,10 @@ exports[`Filter french level should render correctly when french level selected 
           onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "backgroundColor": "#FFFFFF",
+              "backgroundColor": "#212121",
               "borderRadius": 12,
               "display": "flex",
-              "elevation": 1,
+              "elevation": 0,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
@@ -594,23 +529,23 @@ exports[`Filter french level should render correctly when french level selected 
               "paddingLeft": 16,
               "paddingRight": 16,
               "paddingTop": 16,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "black",
               "shadowOffset": Object {
-                "height": 8,
+                "height": 0,
                 "width": 0,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 0,
             }
           }
           testID="test-filter-Je parle bien"
         >
           <Text
-            isSelected={false}
+            isSelected={true}
             style={
               Array [
                 Object {
-                  "color": "#212121",
+                  "color": "#FFFFFF",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 16,
@@ -634,12 +569,12 @@ exports[`Filter french level should render correctly when french level selected 
             }
           >
             <View
-              isSelected={false}
+              isSelected={true}
               style={
                 Array [
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "#C6C6C6",
+                    "backgroundColor": "#FFFFFF",
                     "borderRadius": 8,
                     "display": "flex",
                     "flexDirection": "row",
@@ -652,11 +587,11 @@ exports[`Filter french level should render correctly when french level selected 
               }
             >
               <Text
-                isSelected={false}
+                isSelected={true}
                 style={
                   Array [
                     Object {
-                      "color": "#FFFFFF",
+                      "color": "#212121",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
                       "lineHeight": 16,
@@ -669,12 +604,12 @@ exports[`Filter french level should render correctly when french level selected 
               </Text>
             </View>
             <View
-              isSelected={false}
+              isSelected={true}
               style={
                 Array [
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "#C6C6C6",
+                    "backgroundColor": "#FFFFFF",
                     "borderRadius": 8,
                     "display": "flex",
                     "flexDirection": "row",
@@ -687,11 +622,11 @@ exports[`Filter french level should render correctly when french level selected 
               }
             >
               <Text
-                isSelected={false}
+                isSelected={true}
                 style={
                   Array [
                     Object {
-                      "color": "#FFFFFF",
+                      "color": "#212121",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
                       "lineHeight": 16,
@@ -1601,71 +1536,6 @@ exports[`Filter french level should render correctly when no french level select
         >
           Quel est ton niveau en français ?
         </Text>
-        <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 12,
-              "display": "flex",
-              "elevation": 1,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 16,
-              "opacity": 1,
-              "paddingBottom": 16,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 16,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
-              "shadowOffset": Object {
-                "height": 8,
-                "width": 0,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 16,
-            }
-          }
-          testID="test-filter-Je commence à apprendre"
-        >
-          <Text
-            isSelected={false}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            Je commence à apprendre
-          </Text>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-              ]
-            }
-          />
-        </View>
         <View
           accessible={true}
           focusable={true}
@@ -2846,71 +2716,6 @@ exports[`Filter french level should select level when click on it 1`] = `
           onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "backgroundColor": "#212121",
-              "borderRadius": 12,
-              "display": "flex",
-              "elevation": 0,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 16,
-              "opacity": 1,
-              "paddingBottom": 16,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 16,
-              "shadowColor": "black",
-              "shadowOffset": Object {
-                "height": 0,
-                "width": 0,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 0,
-            }
-          }
-          testID="test-filter-Je commence à apprendre"
-        >
-          <Text
-            isSelected={true}
-            style={
-              Array [
-                Object {
-                  "color": "#FFFFFF",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            Je commence à apprendre
-          </Text>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-              ]
-            }
-          />
-        </View>
-        <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
@@ -3047,10 +2852,10 @@ exports[`Filter french level should select level when click on it 1`] = `
           onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "backgroundColor": "#FFFFFF",
+              "backgroundColor": "#212121",
               "borderRadius": 12,
               "display": "flex",
-              "elevation": 1,
+              "elevation": 0,
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "space-between",
@@ -3060,23 +2865,23 @@ exports[`Filter french level should select level when click on it 1`] = `
               "paddingLeft": 16,
               "paddingRight": 16,
               "paddingTop": 16,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "black",
               "shadowOffset": Object {
-                "height": 8,
+                "height": 0,
                 "width": 0,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 0,
             }
           }
           testID="test-filter-Je parle bien"
         >
           <Text
-            isSelected={false}
+            isSelected={true}
             style={
               Array [
                 Object {
-                  "color": "#212121",
+                  "color": "#FFFFFF",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 16,
@@ -3100,12 +2905,12 @@ exports[`Filter french level should select level when click on it 1`] = `
             }
           >
             <View
-              isSelected={false}
+              isSelected={true}
               style={
                 Array [
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "#C6C6C6",
+                    "backgroundColor": "#FFFFFF",
                     "borderRadius": 8,
                     "display": "flex",
                     "flexDirection": "row",
@@ -3118,11 +2923,11 @@ exports[`Filter french level should select level when click on it 1`] = `
               }
             >
               <Text
-                isSelected={false}
+                isSelected={true}
                 style={
                   Array [
                     Object {
-                      "color": "#FFFFFF",
+                      "color": "#212121",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
                       "lineHeight": 16,
@@ -3135,12 +2940,12 @@ exports[`Filter french level should select level when click on it 1`] = `
               </Text>
             </View>
             <View
-              isSelected={false}
+              isSelected={true}
               style={
                 Array [
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "#C6C6C6",
+                    "backgroundColor": "#FFFFFF",
                     "borderRadius": 8,
                     "display": "flex",
                     "flexDirection": "row",
@@ -3153,11 +2958,11 @@ exports[`Filter french level should select level when click on it 1`] = `
               }
             >
               <Text
-                isSelected={false}
+                isSelected={true}
                 style={
                   Array [
                     Object {
-                      "color": "#FFFFFF",
+                      "color": "#212121",
                       "fontFamily": "circularBold",
                       "fontSize": 13,
                       "lineHeight": 16,

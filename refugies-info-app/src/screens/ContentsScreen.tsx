@@ -9,7 +9,6 @@ import { contentsSelector } from "../services/redux/Contents/contents.selectors"
 import { ScrollView } from "react-native";
 import styled from "styled-components/native";
 import { theme } from "../theme";
-import { getEnvironment } from "../libs/getEnvironment";
 
 const ContentContainer = styled.TouchableOpacity`
   background-color: ${theme.colors.grey60};

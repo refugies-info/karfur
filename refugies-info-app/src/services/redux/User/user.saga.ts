@@ -74,7 +74,6 @@ export function* saveUserLocation(
     logger.info("[saveUserLocation] saga", { city, dep });
     yield call(saveItemInAsyncStorage, "CITY", city);
     yield call(saveItemInAsyncStorage, "DEP", dep);
-
     yield put(setUserLocationActionCreator({ city, dep }));
   } catch (error) {
     logger.error("[saveUserLocation] saga error", { error: error.message });
@@ -121,10 +120,13 @@ export function* saveUserAge(
   action: ReturnType<typeof saveUserAgeActionCreator>
 ): SagaIterator {
   try {
-    const age = action.payload;
+    const { age, shouldFetchContents } = action.payload;
     logger.info("[saveUserAge] saga", { age });
     yield call(saveItemInAsyncStorage, "AGE", age);
     yield put(setUserAgeActionCreator(age));
+    if (shouldFetchContents) {
+      yield put(fetchContentsActionCreator());
+    }
   } catch (error) {
     logger.error("[saveUserAge] saga error", { error: error.message });
     yield put(setUserAgeActionCreator(null));

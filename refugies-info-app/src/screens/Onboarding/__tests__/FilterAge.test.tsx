@@ -63,7 +63,10 @@ describe("Filter age", () => {
     act(() => {
       fireEvent.press(Button);
     });
-    expect(saveUserAgeActionCreator).toHaveBeenCalledWith("0 à 17 ans");
+    expect(saveUserAgeActionCreator).toHaveBeenCalledWith({
+      age: "0 à 17 ans",
+      shouldFetchContents: false,
+    });
     expect(navigate).toHaveBeenCalledWith("FilterFrenchLevel");
   });
 

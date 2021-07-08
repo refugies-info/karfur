@@ -163,10 +163,25 @@ describe("[Saga] user", () => {
   });
 
   describe("save age saga", () => {
-    it("should call functions and set data", () => {
+    it("should call functions and set data when shouldFetchContents true", () => {
       testSaga(saveUserAge, {
         type: "SAVE_USER_AGE",
-        payload: "age",
+        payload: { age: "age", shouldFetchContents: true },
+      })
+        .next()
+        .call(saveItemInAsyncStorage, "AGE", "age")
+        .next()
+        .put(setUserAgeActionCreator("age"))
+        .next()
+        .put(fetchContentsActionCreator())
+        .next()
+        .isDone();
+    });
+
+    it("should call functions and set data when shouldFetchContents false", () => {
+      testSaga(saveUserAge, {
+        type: "SAVE_USER_AGE",
+        payload: { age: "age", shouldFetchContents: false },
       })
         .next()
         .call(saveItemInAsyncStorage, "AGE", "age")
@@ -179,7 +194,7 @@ describe("[Saga] user", () => {
     it("should call functions and set null if saveItemInAsyncStorage throws", () => {
       testSaga(saveUserAge, {
         type: "SAVE_USER_AGE",
-        payload: "age",
+        payload: { age: "age", shouldFetchContents: true },
       })
         .next()
         .call(saveItemInAsyncStorage, "AGE", "age")

@@ -53,7 +53,7 @@ export const AgeProfilScreen = ({
 
   const onValidateAge = (age: string) => {
     if (selectedAge === age) return;
-    dispatch(saveUserAgeActionCreator(age));
+    dispatch(saveUserAgeActionCreator({ age, shouldFetchContents: true }));
     return navigation.goBack();
   };
 

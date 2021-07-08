@@ -113,7 +113,6 @@ export const FilterCityComponent = (props: Props) => {
     try {
       const results = await getCitiesFromGoogleAPI(data);
       if (results && results.data && results.data.predictions) {
-        console.log("results get cities", results);
         setSuggestions(results.data.predictions);
       }
     } catch (error) {

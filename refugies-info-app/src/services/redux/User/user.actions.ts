@@ -54,8 +54,10 @@ export const setUserLocationActionCreator = (value: {
 export const removeUserLocationActionCreator = () =>
   action(REMOVE_USER_LOCATION);
 
-export const saveUserAgeActionCreator = (value: string) =>
-  action(SAVE_USER_AGE, value);
+export const saveUserAgeActionCreator = (value: {
+  age: string;
+  shouldFetchContents: boolean;
+}) => action(SAVE_USER_AGE, value);
 
 export const setUserAgeActionCreator = (value: string | null) =>
   action(SET_USER_AGE, value);
