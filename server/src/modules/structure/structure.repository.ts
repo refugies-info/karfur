@@ -26,7 +26,12 @@ export const getStructureFromDB = async (
 
 type Query = { status: "Actif" } | {};
 type NeededFields =
-  | { nom: number; acronyme: number; picture: number }
+  | {
+      nom: number;
+      acronyme: number;
+      picture: number;
+      structureTypes: number;
+    }
   | {
       nom: number;
       status: number;
