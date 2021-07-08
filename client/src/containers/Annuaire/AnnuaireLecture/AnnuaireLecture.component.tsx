@@ -1,6 +1,6 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import { Props } from "./AnnuaireLecture.container";
-import _ from "lodash";
 import styled from "styled-components";
 import { LetterSection } from "./components/LetterSection";
 import { ObjectId } from "mongodb";
@@ -77,11 +77,14 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const [stopScroll, setStopScroll] = useState(false);
   const [currentScroll, setCurrentScroll] = useState(0);
   const [letterSelected, setLetterSelected] = useState("");
+  const [filteredStructures, setFilteredStructures] = useState([]);
 
   const structures = useSelector(activeStructuresSelector);
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES)
   );
+
+  console.log("filteredStructures", filteredStructures);
 
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
@@ -132,7 +135,6 @@ export const AnnuaireLectureComponent = (props: Props) => {
 
   const onStructureCardClick = (id: ObjectId) =>
     props.history.push(`/annuaire/${id}`);
-
   if (isLoading) {
     const emptyArray = new Array(7).fill("a");
     return (
@@ -145,6 +147,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
           t={props.t}
           letterSelected={letterSelected}
           setLetterSelected={setLetterSelected}
+          setFilteredStructures={setFilteredStructures}
+          sortStructureByAlpha={sortStructureByAlpha}
         />
         <LoadingContainer>
           <div
@@ -168,6 +172,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
         t={props.t}
         letterSelected={letterSelected}
         setLetterSelected={setLetterSelected}
+        setFilteredStructures={setFilteredStructures}
+        sortStructureByAlpha={sortStructureByAlpha}
       />
       <Content
         currentScroll={currentScroll}

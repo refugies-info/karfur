@@ -1,9 +1,9 @@
-/* eslint-disable no-console */
 import React, { useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../../../../colors";
 import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
 import "./SearchBarAnnuaire.scss";
+import { Input } from "reactstrap";
 // @ts-ignore
 import ReactDependentScript from "react-dependent-script";
 import Autocomplete from "react-google-autocomplete";
@@ -23,7 +23,7 @@ const MainContainer = styled.div`
   padding: 12px;
 `;
 
-const TextInputContainer = styled.div`
+const TextInputContainer = styled(Input)`
   display: flex;
   height: 50px;
   background: ${colors.blanc};
@@ -68,12 +68,14 @@ const ResultNumberContainer = styled.div`
 
 interface Props {
   t: any;
+  setFilteredStructures: any;
 }
 
 export const SearchBarAnnuaire = (props: Props) => {
   const [dropdownOpen, setOpen] = useState(false);
   const [typeSelected, setTypeSelected] = useState<string[]>([]);
   const [ville, setVille] = useState("");
+  const [keywords, setKeywords] = useState("");
   const [isCityFocus, setIsCityFocus] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
@@ -87,6 +89,8 @@ export const SearchBarAnnuaire = (props: Props) => {
     toggle();
   };
 
+  const onChangeKeywords = (e: any) => setKeywords(e.target.value);
+
   const handleChange = (e: any) => setVille(e.target.value);
 
   const onPlaceSelected = (place: any) => {
@@ -94,6 +98,7 @@ export const SearchBarAnnuaire = (props: Props) => {
       setVille(place.formatted_address);
     }
     setIsCityFocus(false);
+    setKeywords("");
   };
 
   const removeType = (item: string) => {
@@ -101,11 +106,17 @@ export const SearchBarAnnuaire = (props: Props) => {
     setTypeSelected(array);
     toggle();
   };
-  console.log(ville);
   return (
     <MainContainer>
-      <TextInputContainer>
-        Rechercher par nom...
+      <WhiteButtonContainer>
+        <TextInputContainer
+          onChange={onChangeKeywords}
+          type="text"
+          plaintext={true}
+          placeholder="Rechercher par nom ..."
+          value={keywords}
+        />
+
         <EVAIcon
           name="search-outline"
           fill={colors.noir}
@@ -113,7 +124,8 @@ export const SearchBarAnnuaire = (props: Props) => {
           className="ml-10"
           size={"large"}
         />
-      </TextInputContainer>
+      </WhiteButtonContainer>
+
       <WhiteButtonContainer>
         <EVAIcon
           name="pin-outline"

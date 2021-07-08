@@ -6,6 +6,7 @@ import { NavHashLink } from "react-router-hash-link";
 import i18n from "../../../../i18n";
 import { SearchBarAnnuaire } from "./SearBarAnnuaire/SearchBarAnnuaire";
 import { colors } from "../../../../colors";
+import { SimplifiedStructure } from "types/interface";
 
 const HeaderContainer = styled.div`
   background-attachment: fixed;
@@ -59,6 +60,8 @@ interface Props {
   currentScroll: number;
   letterSelected: string;
   setLetterSelected: any;
+  setFilteredStructures: any;
+  sortStructureByAlpha: SimplifiedStructure[] | null;
   t: any;
 }
 
@@ -81,7 +84,10 @@ export const Header = (props: Props) => {
         <TextContainer isRTL={isRTL}>
           {props.t("Annuaire.Annuaire", "Annuaire")}
         </TextContainer>
-        <SearchBarAnnuaire t={props.t} />
+        <SearchBarAnnuaire
+          setFilteredStructures={props.setFilteredStructures}
+          t={props.t}
+        />
       </SearchContainer>
 
       <LettersContainer isRTL={isRTL}>
