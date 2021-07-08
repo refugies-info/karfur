@@ -25,7 +25,7 @@ describe("getActiveStructures", () => {
     await getActiveStructures({}, res);
     expect(getStructuresFromDB).toHaveBeenCalledWith(
       { status: "Actif" },
-      { nom: 1, acronyme: 1, picture: 1 },
+      { nom: 1, acronyme: 1, picture: 1, departements: 1, structuresTypes: 1 },
       false
     );
     expect(res.status).toHaveBeenCalledWith(200);
@@ -40,7 +40,7 @@ describe("getActiveStructures", () => {
     await getActiveStructures({}, res);
     expect(getStructuresFromDB).toHaveBeenCalledWith(
       { status: "Actif" },
-      { nom: 1, acronyme: 1, picture: 1 },
+      { nom: 1, acronyme: 1, picture: 1, departements: 1, structuresTypes: 1 },
       false
     );
     expect(res.status).toHaveBeenCalledWith(500);
