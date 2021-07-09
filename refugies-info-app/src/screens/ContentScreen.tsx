@@ -25,6 +25,9 @@ import { isLoadingSelector } from "../services/redux/LoadingStatus/loadingStatus
 import { LoadingStatusKey } from "../services/redux/LoadingStatus/loadingStatus.actions";
 import SkeletonContent from "react-native-skeleton-content";
 import { CustomButton } from "../components/CustomButton";
+import { RTLView } from "../components/BasicComponents";
+// @ts-ignore
+import moment from "moment/min/moment-with-locales";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -99,6 +102,21 @@ const StructureNameContainer = styled.View`
 `;
 const StructureNameText = styled(TextSmallNormal)`
   text-align: center;
+`;
+
+const LastUpdateDateContainer = styled(RTLView)`
+  margin-top: ${theme.margin * 3}px;
+  margin-bottom: ${theme.margin * 3}px;
+`;
+
+const LastUpdateDate = styled(TextSmallNormal)`
+  color: ${theme.colors.formation80};
+`;
+
+const LastUpdateText = styled(TextSmallNormal)`
+  color: ${theme.colors.darkGrey};
+  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 4 : 0)}px;
+  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : 4)}px;
 `;
 const headersDispositif = [
   "C'est quoi ?",
@@ -255,6 +273,10 @@ export const ContentScreen = ({
     sponsor && sponsor.picture && sponsor.picture.secure_url
       ? sponsor.picture.secure_url
       : null;
+
+  const formattedLastModifDate = selectedContent.lastModificationDate
+    ? moment(selectedContent.lastModificationDate).locale("fr")
+    : null;
   return (
     <View>
       <FixedContainerForHeader>
@@ -391,6 +413,16 @@ export const ContentScreen = ({
                 iconName="external-link-outline"
               />
             </View>
+          )}
+          {formattedLastModifDate && (
+            <LastUpdateDateContainer>
+              <LastUpdateText isRTL={isRTL}>
+                {t("Content.last_update", "Dernière mise à jour :")}
+              </LastUpdateText>
+              <LastUpdateDate>
+                {formattedLastModifDate.format("ll")}
+              </LastUpdateDate>
+            </LastUpdateDateContainer>
           )}
         </ContentContainer>
       </ScrollView>
