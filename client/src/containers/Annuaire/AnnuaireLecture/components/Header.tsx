@@ -61,7 +61,7 @@ interface Props {
   letterSelected: string;
   setLetterSelected: any;
   setFilteredStructures: any;
-  sortStructureByAlpha: SimplifiedStructure[] | null;
+  sortedStructureByAlpha: SimplifiedStructure[] | null;
   t: any;
 }
 

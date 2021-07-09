@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { colors } from "../../../../../colors";
@@ -75,7 +76,7 @@ export const SearchBarAnnuaire = (props: Props) => {
   const [dropdownOpen, setOpen] = useState(false);
   const [typeSelected, setTypeSelected] = useState<string[]>([]);
   const [ville, setVille] = useState("");
-  const [keywords, setKeywords] = useState("");
+  const [keyword, setKeyword] = useState("");
   const [isCityFocus, setIsCityFocus] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
@@ -84,7 +85,7 @@ export const SearchBarAnnuaire = (props: Props) => {
 
   useEffect(() => {
     filterStructure();
-  }, [ville, keywords, typeSelected]);
+  }, [ville, keyword, typeSelected]);
 
   const selectType = (item: string) => {
     if (!typeSelected.includes(item)) {
@@ -95,7 +96,7 @@ export const SearchBarAnnuaire = (props: Props) => {
     toggle();
   };
 
-  const onChangeKeywords = (e: any) => setKeywords(e.target.value);
+  const onChangeKeywords = (e: any) => setKeyword(e.target.value);
 
   const handleChange = (e: any) => setVille(e.target.value);
 
@@ -104,7 +105,7 @@ export const SearchBarAnnuaire = (props: Props) => {
       setVille(place.formatted_address);
     }
     setIsCityFocus(false);
-    setKeywords("");
+    setKeyword("");
   };
 
   const removeType = (item: string) => {
@@ -112,6 +113,7 @@ export const SearchBarAnnuaire = (props: Props) => {
     setTypeSelected(array);
     toggle();
   };
+  console.log(ville);
   return (
     <MainContainer>
       <WhiteButtonContainer>
@@ -119,8 +121,11 @@ export const SearchBarAnnuaire = (props: Props) => {
           onChange={onChangeKeywords}
           type="text"
           plaintext={true}
-          placeholder="Rechercher par nom ..."
-          value={keywords}
+          placeholder={props.t(
+            "Annuaire.Rechercher par",
+            "Rechercher par nom ..."
+          )}
+          value={keyword}
         />
         {}
 

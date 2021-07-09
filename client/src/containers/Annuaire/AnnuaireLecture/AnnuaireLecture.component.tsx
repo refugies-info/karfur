@@ -119,7 +119,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
       )
     : [];
 
-  const sortStructureByAlpha = filterStructures
+  const sortedStructureByAlpha = filterStructures
     ? filterStructures.sort((a, b) =>
         a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
           ? -1
@@ -127,7 +127,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
           ? 1
           : 0
       )
-    : null;
+    : [];
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
 
@@ -146,7 +146,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
           letterSelected={letterSelected}
           setLetterSelected={setLetterSelected}
           setFilteredStructures={setFilteredStructures}
-          sortStructureByAlpha={sortStructureByAlpha}
+          sortedStructureByAlpha={sortedStructureByAlpha}
         />
         <LoadingContainer>
           <div
@@ -171,7 +171,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
         letterSelected={letterSelected}
         setLetterSelected={setLetterSelected}
         setFilteredStructures={setFilteredStructures}
-        sortStructureByAlpha={sortStructureByAlpha}
+        sortedStructureByAlpha={sortedStructureByAlpha}
       />
       <Content
         currentScroll={currentScroll}
@@ -181,7 +181,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
         <LetterSection
           onStructureCardClick={onStructureCardClick}
           // @ts-ignore
-          structures={sortStructureByAlpha}
+          structures={sortedStructureByAlpha}
           setLetterSelected={setLetterSelected}
         />
       </Content>
