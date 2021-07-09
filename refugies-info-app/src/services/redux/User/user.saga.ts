@@ -12,6 +12,9 @@ import {
   setUserAgeActionCreator,
   setUserLocationActionCreator,
   setUserFrenchLevelActionCreator,
+  removeUserAgeActionCreator,
+  removeUserLocationActionCreator,
+  removeUserFrenchLevelActionCreator,
 } from "./user.actions";
 import {
   SAVE_SELECTED_LANGUAGE,
@@ -70,24 +73,32 @@ export function* saveUserLocation(
   action: ReturnType<typeof saveUserLocationActionCreator>
 ): SagaIterator {
   try {
-    const { city, dep } = action.payload;
+    const { city, dep, shouldFetchContents } = action.payload;
     logger.info("[saveUserLocation] saga", { city, dep });
     yield call(saveItemInAsyncStorage, "CITY", city);
     yield call(saveItemInAsyncStorage, "DEP", dep);
-
     yield put(setUserLocationActionCreator({ city, dep }));
+    if (shouldFetchContents) {
+      yield put(fetchContentsActionCreator());
+    }
   } catch (error) {
     logger.error("[saveUserLocation] saga error", { error: error.message });
     yield put(setUserLocationActionCreator({ city: null, dep: null }));
   }
 }
 
-export function* removeUserLocation(): SagaIterator {
+export function* removeUserLocation(
+  action: ReturnType<typeof removeUserLocationActionCreator>
+): SagaIterator {
   try {
+    const shouldFetchContents = action.payload;
     logger.info("[removeUserLocation] saga");
     yield call(deleteItemInAsyncStorage, "DEP");
     yield call(deleteItemInAsyncStorage, "CITY");
     yield put(setUserLocationActionCreator({ city: null, dep: null }));
+    if (shouldFetchContents) {
+      yield put(fetchContentsActionCreator());
+    }
   } catch (error) {
     logger.error("Error while removing location", { error: error.message });
   }
@@ -97,21 +108,30 @@ export function* saveUserFrenchLevel(
   action: ReturnType<typeof saveUserFrenchLevelActionCreator>
 ): SagaIterator {
   try {
-    const frenchLevel = action.payload;
+    const { frenchLevel, shouldFetchContents } = action.payload;
     logger.info("[saveUserFrenchLevel] saga", { frenchLevel });
     yield call(saveItemInAsyncStorage, "FRENCH_LEVEL", frenchLevel);
     yield put(setUserFrenchLevelActionCreator(frenchLevel));
+    if (shouldFetchContents) {
+      yield put(fetchContentsActionCreator());
+    }
   } catch (error) {
     logger.error("[saveUserFrenchLevel] saga error", { error: error.message });
     yield put(setUserFrenchLevelActionCreator(null));
   }
 }
 
-export function* removeUserFrenchLevel(): SagaIterator {
+export function* removeUserFrenchLevel(
+  action: ReturnType<typeof removeUserFrenchLevelActionCreator>
+): SagaIterator {
   try {
+    const shouldFetchContents = action.payload;
     logger.info("[removeUserFrenchLevel] saga");
     yield call(deleteItemInAsyncStorage, "FRENCH_LEVEL");
     yield put(setUserFrenchLevelActionCreator(null));
+    if (shouldFetchContents) {
+      yield put(fetchContentsActionCreator());
+    }
   } catch (error) {
     logger.error("Error while removing french level", { error: error.message });
   }
@@ -121,21 +141,30 @@ export function* saveUserAge(
   action: ReturnType<typeof saveUserAgeActionCreator>
 ): SagaIterator {
   try {
-    const age = action.payload;
+    const { age, shouldFetchContents } = action.payload;
     logger.info("[saveUserAge] saga", { age });
     yield call(saveItemInAsyncStorage, "AGE", age);
     yield put(setUserAgeActionCreator(age));
+    if (shouldFetchContents) {
+      yield put(fetchContentsActionCreator());
+    }
   } catch (error) {
     logger.error("[saveUserAge] saga error", { error: error.message });
     yield put(setUserAgeActionCreator(null));
   }
 }
 
-export function* removeUserAge(): SagaIterator {
+export function* removeUserAge(
+  action: ReturnType<typeof removeUserAgeActionCreator>
+): SagaIterator {
   try {
+    const shouldFetchContents = action.payload;
     logger.info("[removeUserAge] saga");
     yield call(deleteItemInAsyncStorage, "AGE");
     yield put(setUserAgeActionCreator(null));
+    if (shouldFetchContents) {
+      yield put(fetchContentsActionCreator());
+    }
   } catch (error) {
     logger.error("Error while removing age", { error: error.message });
   }

@@ -10,7 +10,6 @@ import Culture from "../../theme/images/Tags/culture.svg";
 import Rencontre from "../../theme/images/Tags/rencontre.svg";
 import Benevolat from "../../theme/images/Tags/benevolat.svg";
 import Soccer from "../../theme/images/Tags/loisirs.svg";
-
 import React from "react";
 
 interface Props {
