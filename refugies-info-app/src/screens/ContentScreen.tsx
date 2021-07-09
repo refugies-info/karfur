@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { Text, useWindowDimensions, View, Image } from "react-native";
+import { Text, useWindowDimensions, View, Image, Linking } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ExplorerParamList } from "../../types";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
@@ -24,6 +24,7 @@ import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
 import { isLoadingSelector } from "../services/redux/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../services/redux/LoadingStatus/loadingStatus.actions";
 import SkeletonContent from "react-native-skeleton-content";
+import { CustomButton } from "../components/CustomButton";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -216,6 +217,17 @@ export const ContentScreen = ({
       </WrapperWithHeaderAndLanguageModal>
     );
   }
+
+  const handleClick = () => {
+    const url = !selectedContent.externalLink.includes("https://")
+      ? "https://" + selectedContent.externalLink
+      : selectedContent.externalLink;
+    Linking.canOpenURL(url).then((supported) => {
+      if (supported) {
+        Linking.openURL(url);
+      }
+    });
+  };
   const isDispositif = selectedContent.typeContenu === "dispositif";
 
   const headers = isDispositif ? headersDispositif : headersDemarche;
@@ -368,6 +380,18 @@ export const ContentScreen = ({
               </>
             );
           })}
+          {!!selectedContent.externalLink && (
+            <View style={{ marginTop: 8 }}>
+              <CustomButton
+                textColor={theme.colors.white}
+                i18nKey="Content.Voir le site"
+                onPress={handleClick}
+                defaultText="Voir le site"
+                backgroundColor={tagDarkColor}
+                iconName="external-link-outline"
+              />
+            </View>
+          )}
         </ContentContainer>
       </ScrollView>
       <LanguageChoiceModal
