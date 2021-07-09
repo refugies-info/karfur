@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { Text, useWindowDimensions, View } from "react-native";
+import { Text, useWindowDimensions, View, Image } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ExplorerParamList } from "../../types";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
@@ -34,8 +34,8 @@ const ContentContainer = styled.View`
 
 const TitlesContainer = styled(View)`
   position: absolute;
-  top: 130px;
-  width: ${(props: { width: number }) => props.width};
+  top: 100px;
+  width: ${(props: { width: number }) => props.width}px;
   left: 24px;
 `;
 
@@ -46,6 +46,7 @@ const TitreInfoText = styled(TextBigBold)`
     props.isRTL ? "flex-end" : "flex-start"};
   line-height: 40px;
   margin-bottom: ${theme.margin * 2}px;
+  padding: ${theme.margin}px;
 `;
 
 const TitreMarqueText = styled(TextSmallNormal)`
@@ -54,6 +55,7 @@ const TitreMarqueText = styled(TextSmallNormal)`
   line-height: 32px;
   align-self: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "flex-end" : "flex-start"};
+  padding: ${theme.margin}px;
 `;
 
 const HeaderText = styled(TextBigBold)`
@@ -61,6 +63,18 @@ const HeaderText = styled(TextBigBold)`
   margin-bottom: ${theme.margin * 2}px;
   color: ${(props: { textColor: string }) => props.textColor};
   flex-shrink: 1;
+`;
+const SponsorImageContainer = styled.View`
+  width: ${(props: { width: number }) => props.width}px;
+  height: 100px;
+  background-color: ${theme.colors.lightGrey};
+  z-index: 2;
+  margin-top: -50px;
+  margin-left: ${theme.margin * 3}px;
+  border-radius: ${theme.radius * 2}px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const FixedContainerForHeader = styled.View`
@@ -71,6 +85,16 @@ const FixedContainerForHeader = styled.View`
   width: 100%;
 `;
 
+const StructureNameContainer = styled.View`
+  background-color: ${theme.colors.white};
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  border-radius: 8px;
+`;
+const StructureNameText = styled(TextSmallNormal)`
+  text-align: center;
+`;
 const headersDispositif = [
   "C'est quoi ?",
   "C'est pour qui ?",
@@ -175,9 +199,16 @@ export const ContentScreen = ({
   const accordionMaxWidthWithStep = windowWidth - 2 * 24 - 4 * 16 - 24 - 32;
   const accordionMaxWidthWithoutStep = windowWidth - 2 * 24 - 3 * 16 - 24;
 
-  const nbLinesTitle = nbLinesTitreInfo + nbLinesTitreMarque;
+  const nbLinesTitle =
+    nbLinesTitreInfo +
+    (selectedContent.typeContenu === "dispositif" ? nbLinesTitreMarque : 0);
   const headerImageHeight = getHeaderImageHeight(nbLinesTitle);
 
+  const sponsor = selectedContent.mainSponsor;
+  const sponsorPictureUrl =
+    sponsor && sponsor.picture && sponsor.picture.secure_url
+      ? sponsor.picture.secure_url
+      : null;
   return (
     <View>
       <FixedContainerForHeader>
@@ -205,6 +236,28 @@ export const ContentScreen = ({
             </TitreMarqueText>
           )}
         </TitlesContainer>
+        <SponsorImageContainer width={sponsorPictureUrl ? 100 : 160}>
+          {sponsorPictureUrl ? (
+            <Image
+              source={{
+                uri: sponsorPictureUrl,
+              }}
+              resizeMode={"contain"}
+              style={{
+                height: 84,
+                width: 84,
+                backgroundColor: theme.colors.white,
+                borderRadius: 8,
+              }}
+            />
+          ) : (
+            <StructureNameContainer>
+              <StructureNameText numberOfLines={3}>
+                {sponsor.nom}
+              </StructureNameText>
+            </StructureNameContainer>
+          )}
+        </SponsorImageContainer>
         <ContentContainer>
           {headers.map((header, index) => {
             if (index === 0 && selectedContent.contenu[0].content) {

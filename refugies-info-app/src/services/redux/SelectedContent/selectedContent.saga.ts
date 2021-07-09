@@ -23,6 +23,8 @@ export function* fetchSelectedContent(
     const data = yield call(get_dispositif, {
       query: { _id: contentId },
       sort: {},
+      populate: "mainSponsor",
+
       locale,
     });
     const contentLocale =
@@ -36,6 +38,7 @@ export function* fetchSelectedContent(
       const dataFr = yield call(get_dispositif, {
         query: { _id: contentId },
         sort: {},
+        populate: "mainSponsor",
         locale: "fr",
       });
       const contentFr =
