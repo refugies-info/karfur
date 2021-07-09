@@ -10,12 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSelectedContentActionCreator } from "../services/redux/SelectedContent/selectedContent.actions";
 import { selectedContentSelector } from "../services/redux/SelectedContent/selectedContent.selectors";
 import { theme } from "../theme";
-import {
-  TextBigBold,
-  StyledTextBigBold,
-  StyledTextSmall,
-  TextSmallNormal,
-} from "../components/StyledText";
+import { TextBigBold, TextSmallNormal } from "../components/StyledText";
 import {
   selectedI18nCodeSelector,
   currentI18nCodeSelector,
@@ -26,7 +21,6 @@ import { AvailableLanguageI18nCode } from "../types/interface";
 import { HeaderImage } from "../components/Content/HeaderImage";
 import { HeaderWithBackForWrapper } from "../components/HeaderWithLogo";
 import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
-import { RTLView } from "../components/BasicComponents";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -43,24 +37,23 @@ const TitlesContainer = styled(View)`
   top: 130px;
   width: ${(props: { width: number }) => props.width};
   left: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
 
 const TitreInfoText = styled(TextBigBold)`
   opacity: 0.9;
   background-color: ${theme.colors.white};
-  align-self: flex-start;
+  align-self: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? "flex-end" : "flex-start"};
   line-height: 40px;
+  margin-bottom: ${theme.margin * 2}px;
 `;
 
 const TitreMarqueText = styled(TextSmallNormal)`
   background-color: ${theme.colors.white};
   opacity: 0.9;
   line-height: 32px;
-  align-self: flex-start;
+  align-self: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? "flex-end" : "flex-start"};
 `;
 
 const HeaderText = styled(TextBigBold)`
@@ -68,14 +61,6 @@ const HeaderText = styled(TextBigBold)`
   margin-bottom: ${theme.margin * 2}px;
   color: ${(props: { textColor: string }) => props.textColor};
   flex-shrink: 1;
-`;
-
-const TextWrapper = styled(TextSmallNormal)`
-  margin-bottom: ${theme.margin * 2}px;
-  align-self: flex-start;
-  line-height: ${(props) => props.lineHeight};
-  display: flex;
-  flex: 1;
 `;
 
 const FixedContainerForHeader = styled.View`
@@ -204,33 +189,20 @@ export const ContentScreen = ({
       <ScrollView contentContainerStyle={{}}>
         <HeaderImage tagName={tagName} height={headerImageHeight} />
         <TitlesContainer width={windowWidth - 2 * 24} isRTL={isRTL}>
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-            }}
+          <TitreInfoText
+            isRTL={isRTL}
+            onLayout={(e: any) => onLayoutTitre(e, "titreInfo")}
           >
-            <TextWrapper
-              onLayout={(e: any) => onLayoutTitre(e, "titreInfo")}
-              lineHeight={40}
-            >
-              <TitreInfoText isRTL={isRTL}>
-                {selectedContent.titreInformatif}
-              </TitreInfoText>
-            </TextWrapper>
-          </View>
+            {selectedContent.titreInformatif}
+          </TitreInfoText>
 
           {selectedContent.titreMarque && (
-            <View style={{ display: "flex", flexDirection: "row" }}>
-              <TextWrapper
-                onLayout={(e: any) => onLayoutTitre(e, "titreMarque")}
-                lineHeight={32}
-              >
-                <TitreMarqueText>
-                  {"avec " + selectedContent.titreMarque}
-                </TitreMarqueText>
-              </TextWrapper>
-            </View>
+            <TitreMarqueText
+              onLayout={(e: any) => onLayoutTitre(e, "titreMarque")}
+              isRTL={isRTL}
+            >
+              {"avec " + selectedContent.titreMarque}
+            </TitreMarqueText>
           )}
         </TitlesContainer>
         <ContentContainer>
