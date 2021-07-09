@@ -13,6 +13,7 @@ import { Header } from "./components/Header";
 import Skeleton from "react-loading-skeleton";
 import { Event, initGA } from "../../../tracking/dispatch";
 import { SimplifiedStructure } from "types/interface";
+import { NoResult } from "./components/NoResult";
 
 declare const window: Window;
 
@@ -190,12 +191,16 @@ export const AnnuaireLectureComponent = (props: Props) => {
         stopScroll={stopScroll}
         hasMarginBottom={true}
       >
-        <LetterSection
-          onStructureCardClick={onStructureCardClick}
-          // @ts-ignore
-          structures={filteredStructures}
-          setLetterSelected={setLetterSelected}
-        />
+        {filteredStructures.length > 0 ? (
+          <LetterSection
+            onStructureCardClick={onStructureCardClick}
+            // @ts-ignore
+            structures={filteredStructures}
+            setLetterSelected={setLetterSelected}
+          />
+        ) : (
+          <NoResult resetSearch={resetSearch} t={props.t} />
+        )}
       </Content>
     </MainContainer>
   );
