@@ -10,7 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSelectedContentActionCreator } from "../services/redux/SelectedContent/selectedContent.actions";
 import { selectedContentSelector } from "../services/redux/SelectedContent/selectedContent.selectors";
 import { theme } from "../theme";
-import { TextNormal, TextBigBold } from "../components/StyledText";
+import {
+  TextBigBold,
+  StyledTextBigBold,
+  StyledTextSmall,
+  TextSmallNormal,
+} from "../components/StyledText";
 import {
   selectedI18nCodeSelector,
   currentI18nCodeSelector,
@@ -21,26 +26,63 @@ import { AvailableLanguageI18nCode } from "../types/interface";
 import { HeaderImage } from "../components/Content/HeaderImage";
 import { HeaderWithBackForWrapper } from "../components/HeaderWithLogo";
 import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
+import { RTLView } from "../components/BasicComponents";
 
+const getHeaderImageHeight = (nbLines: number) => {
+  if (nbLines < 3) {
+    return 280;
+  }
+  return 280 + 40 * (nbLines - 2);
+};
 const ContentContainer = styled.View`
   padding: 24px;
 `;
 
-const TitlesContainer = styled.View`
-  background-color: ${theme.colors.culture40};
+const TitlesContainer = styled(View)`
+  position: absolute;
+  top: 130px;
+  width: ${(props: { width: number }) => props.width};
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const TitreInfoText = styled(TextBigBold)`
+  opacity: 0.9;
+  background-color: ${theme.colors.white};
+  align-self: flex-start;
+  line-height: 40px;
+`;
+
+const TitreMarqueText = styled(TextSmallNormal)`
+  background-color: ${theme.colors.white};
+  opacity: 0.9;
+  line-height: 32px;
+  align-self: flex-start;
 `;
 
 const HeaderText = styled(TextBigBold)`
   margin-top: ${theme.margin * 2}px;
   margin-bottom: ${theme.margin * 2}px;
   color: ${(props: { textColor: string }) => props.textColor};
+  flex-shrink: 1;
 `;
 
-const Test = styled.View`
+const TextWrapper = styled(TextSmallNormal)`
+  margin-bottom: ${theme.margin * 2}px;
+  align-self: flex-start;
+  line-height: ${(props) => props.lineHeight};
+  display: flex;
+  flex: 1;
+`;
+
+const FixedContainerForHeader = styled.View`
   top: 0;
   left: 0;
   position: absolute;
-  z-index: 5;
+  z-index: 2;
   width: 100%;
 `;
 
@@ -74,13 +116,15 @@ export const ContentScreen = ({
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
   );
+  const [nbLinesTitreInfo, setNbLinesTitreInfo] = React.useState(2);
+  const [nbLinesTitreMarque, setNbLinesTitreMarque] = React.useState(1);
 
   const toggleLanguageModal = () =>
     setLanguageModalVisible(!isLanguageModalVisible);
 
   const [accordionExpanded, setAccordionExpanded] = React.useState("");
 
-  const { t } = useTranslationWithRTL();
+  const { t, isRTL } = useTranslationWithRTL();
 
   const dispatch = useDispatch();
 
@@ -89,6 +133,7 @@ export const ContentScreen = ({
   const { contentId, tagDarkColor, tagVeryLightColor, tagName } = route.params;
 
   const windowWidth = useWindowDimensions().width;
+
   React.useEffect(() => {
     if (contentId && selectedLanguage) {
       dispatch(
@@ -101,6 +146,16 @@ export const ContentScreen = ({
   }, [selectedLanguage]);
 
   const selectedContent = useSelector(selectedContentSelector(currentLanguage));
+
+  const onLayoutTitre = (e: any, titre: string) => {
+    const { height } = e.nativeEvent.layout;
+    if (titre === "titreInfo") {
+      setNbLinesTitreInfo(Math.floor(height / 40));
+      return;
+    }
+    setNbLinesTitreMarque(Math.floor(height / 32));
+    return;
+  };
 
   if (!selectedContent || !currentLanguage) {
     return (
@@ -134,25 +189,51 @@ export const ContentScreen = ({
 
   const accordionMaxWidthWithStep = windowWidth - 2 * 24 - 4 * 16 - 24 - 32;
   const accordionMaxWidthWithoutStep = windowWidth - 2 * 24 - 3 * 16 - 24;
-  console.log("tagName", tagName);
+
+  const nbLinesTitle = nbLinesTitreInfo + nbLinesTitreMarque;
+  const headerImageHeight = getHeaderImageHeight(nbLinesTitle);
+
   return (
     <View>
-      <Test>
+      <FixedContainerForHeader>
         <HeaderWithBackForWrapper
           onLongPressSwitchLanguage={toggleLanguageModal}
           navigation={navigation}
         />
-      </Test>
+      </FixedContainerForHeader>
       <ScrollView contentContainerStyle={{}}>
-        <HeaderImage tagName={tagName} />
-        <ContentContainer>
-          <TitlesContainer>
-            <TextNormal>{selectedContent.titreInformatif}</TextNormal>
-            {selectedContent.titreMarque && (
-              <TextNormal>{"avec " + selectedContent.titreMarque}</TextNormal>
-            )}
-          </TitlesContainer>
+        <HeaderImage tagName={tagName} height={headerImageHeight} />
+        <TitlesContainer width={windowWidth - 2 * 24} isRTL={isRTL}>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
+            <TextWrapper
+              onLayout={(e: any) => onLayoutTitre(e, "titreInfo")}
+              lineHeight={40}
+            >
+              <TitreInfoText isRTL={isRTL}>
+                {selectedContent.titreInformatif}
+              </TitreInfoText>
+            </TextWrapper>
+          </View>
 
+          {selectedContent.titreMarque && (
+            <View style={{ display: "flex", flexDirection: "row" }}>
+              <TextWrapper
+                onLayout={(e: any) => onLayoutTitre(e, "titreMarque")}
+                lineHeight={32}
+              >
+                <TitreMarqueText>
+                  {"avec " + selectedContent.titreMarque}
+                </TitreMarqueText>
+              </TextWrapper>
+            </View>
+          )}
+        </TitlesContainer>
+        <ContentContainer>
           {headers.map((header, index) => {
             if (index === 0 && selectedContent.contenu[0].content) {
               return (

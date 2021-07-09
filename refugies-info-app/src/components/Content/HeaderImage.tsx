@@ -14,14 +14,20 @@ import Sante from "../../theme/images/contentsHeaders/sante.png";
 import React from "react";
 import { Image } from "react-native";
 
-export const HeaderImage = ({ tagName }: { tagName: string }) => {
+export const HeaderImage = ({
+  tagName,
+  height,
+}: {
+  tagName: string;
+  height: number;
+}) => {
   switch (tagName) {
     case "apprendre le français":
       return (
         <Image
           source={Francais}
           resizeMode="cover"
-          style={{ width: "100%", height: 280 }}
+          style={{ width: "100%", height }}
         />
       );
     case "gérer mes papiers":
@@ -29,7 +35,7 @@ export const HeaderImage = ({ tagName }: { tagName: string }) => {
         <Image
           source={Admin}
           resizeMode="cover"
-          style={{ width: "100%", height: 280 }}
+          style={{ width: "100%", height }}
         />
       );
     case "me loger":
@@ -37,7 +43,7 @@ export const HeaderImage = ({ tagName }: { tagName: string }) => {
         <Image
           source={Logement}
           resizeMode="cover"
-          style={{ width: "100%", height: 280 }}
+          style={{ width: "100%", height }}
         />
       );
     case "me déplacer":
@@ -45,7 +51,7 @@ export const HeaderImage = ({ tagName }: { tagName: string }) => {
         <Image
           source={Mobilite}
           resizeMode="cover"
-          style={{ width: "100%", height: 280 }}
+          style={{ width: "100%", height }}
         />
       );
     case "trouver un travail":
@@ -53,7 +59,7 @@ export const HeaderImage = ({ tagName }: { tagName: string }) => {
         <Image
           source={Insertion}
           resizeMode="cover"
-          style={{ width: "100%", height: 280 }}
+          style={{ width: "100%", height }}
         />
       );
     case "me soigner":
@@ -61,7 +67,7 @@ export const HeaderImage = ({ tagName }: { tagName: string }) => {
         <Image
           source={Sante}
           resizeMode="cover"
-          style={{ width: "100%", height: 280 }}
+          style={{ width: "100%", height }}
         />
       );
     case "apprendre un métier":
@@ -69,7 +75,7 @@ export const HeaderImage = ({ tagName }: { tagName: string }) => {
         <Image
           source={Formation}
           resizeMode="cover"
-          style={{ width: "100%", height: 280 }}
+          style={{ width: "100%", height }}
         />
       );
     case "faire des études":
@@ -77,7 +83,7 @@ export const HeaderImage = ({ tagName }: { tagName: string }) => {
         <Image
           source={Etudes}
           resizeMode="cover"
-          style={{ width: "100%", height: 280 }}
+          style={{ width: "100%", height }}
         />
       );
     case "aider une association":
@@ -85,7 +91,7 @@ export const HeaderImage = ({ tagName }: { tagName: string }) => {
         <Image
           source={Benevolat}
           resizeMode="cover"
-          style={{ width: "100%", height: 280 }}
+          style={{ width: "100%", height }}
         />
       );
     case "rencontrer des gens":
@@ -93,7 +99,7 @@ export const HeaderImage = ({ tagName }: { tagName: string }) => {
         <Image
           source={Rencontres}
           resizeMode="cover"
-          style={{ width: "100%", height: 280 }}
+          style={{ width: "100%", height }}
         />
       );
     case "occuper mon temps libre":
@@ -101,7 +107,7 @@ export const HeaderImage = ({ tagName }: { tagName: string }) => {
         <Image
           source={Loisirs}
           resizeMode="cover"
-          style={{ width: "100%", height: 280 }}
+          style={{ width: "100%", height }}
         />
       );
     case "découvrir la culture":
@@ -109,7 +115,7 @@ export const HeaderImage = ({ tagName }: { tagName: string }) => {
         <Image
           source={Culture}
           resizeMode="cover"
-          style={{ width: "100%", height: 280 }}
+          style={{ width: "100%", height }}
         />
       );
 
@@ -118,7 +124,7 @@ export const HeaderImage = ({ tagName }: { tagName: string }) => {
         <Image
           source={Francais}
           resizeMode="cover"
-          style={{ width: "100%", height: 280 }}
+          style={{ width: "100%", height }}
         />
       );
   }
