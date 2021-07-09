@@ -21,6 +21,9 @@ import { AvailableLanguageI18nCode } from "../types/interface";
 import { HeaderImage } from "../components/Content/HeaderImage";
 import { HeaderWithBackForWrapper } from "../components/HeaderWithLogo";
 import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
+import { isLoadingSelector } from "../services/redux/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "../services/redux/LoadingStatus/loadingStatus.actions";
+import SkeletonContent from "react-native-skeleton-content";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -29,7 +32,7 @@ const getHeaderImageHeight = (nbLines: number) => {
   return 280 + 40 * (nbLines - 2);
 };
 const ContentContainer = styled.View`
-  padding: 24px;
+  padding-horizontal: 24px;
 `;
 
 const TitlesContainer = styled(View)`
@@ -75,6 +78,7 @@ const SponsorImageContainer = styled.View`
   padding: 8px;
   display: flex;
   flex-direction: column;
+  margin-bottom: ${theme.margin}px;
 `;
 
 const FixedContainerForHeader = styled.View`
@@ -142,6 +146,9 @@ export const ContentScreen = ({
   const { contentId, tagDarkColor, tagVeryLightColor, tagName } = route.params;
 
   const windowWidth = useWindowDimensions().width;
+  const isLoading = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_CONTENT)
+  );
 
   React.useEffect(() => {
     if (contentId && selectedLanguage) {
@@ -165,6 +172,33 @@ export const ContentScreen = ({
     setNbLinesTitreMarque(Math.floor(height / 32));
     return;
   };
+
+  if (isLoading) {
+    return (
+      <WrapperWithHeaderAndLanguageModal
+        showSwitch={true}
+        navigation={navigation}
+      >
+        <SkeletonContent
+          containerStyle={{
+            display: "flex",
+            flex: 1,
+            marginTop: 50,
+            marginHorizontal: 24,
+          }}
+          isLoading={true}
+          layout={[
+            { key: "titreInfo", width: 220, height: 40, marginBottom: 16 },
+            { key: "titreMarque", width: 180, height: 40, marginBottom: 52 },
+            { key: "Title", width: 130, height: 35, marginBottom: 16 },
+            { key: "Section1", width: "100%", height: 100 },
+          ]}
+          boneColor={theme.colors.grey}
+          highlightColor={theme.colors.lightGrey}
+        />
+      </WrapperWithHeaderAndLanguageModal>
+    );
+  }
 
   if (!selectedContent || !currentLanguage) {
     return (
@@ -217,7 +251,7 @@ export const ContentScreen = ({
           navigation={navigation}
         />
       </FixedContainerForHeader>
-      <ScrollView contentContainerStyle={{}}>
+      <ScrollView>
         <HeaderImage tagName={tagName} height={headerImageHeight} />
         <TitlesContainer width={windowWidth - 2 * 24} isRTL={isRTL}>
           <TitreInfoText
