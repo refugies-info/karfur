@@ -134,10 +134,9 @@ export const AnnuaireLectureComponent = (props: Props) => {
       : [];
 
     setFilteredStructures(sortedStructureByAlpha);
-  }, []);
+  }, [structures]);
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
-
   const onStructureCardClick = (id: ObjectId) =>
     props.history.push(`/annuaire/${id}`);
   if (isLoading) {

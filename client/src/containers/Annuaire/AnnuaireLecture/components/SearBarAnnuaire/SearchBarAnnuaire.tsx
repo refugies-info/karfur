@@ -82,7 +82,24 @@ export const SearchBarAnnuaire = (props: Props) => {
 
   const toggle = () => setOpen(!dropdownOpen);
 
-  const filterStructure = () => {};
+  const filterStructure = () => {
+    let newArray: any[] = [];
+    if (typeSelected.length > 0) {
+      if (props.filteredStructures) {
+        typeSelected.forEach((type) => {
+          props.filteredStructures?.forEach((structure) => {
+            if (
+              structure.structureTypes?.includes(type) &&
+              !newArray.includes(structure)
+            ) {
+              newArray.push(structure);
+            }
+          });
+        });
+      }
+    }
+    props.setFilteredStructures(newArray);
+  };
 
   useEffect(() => {
     filterStructure();
