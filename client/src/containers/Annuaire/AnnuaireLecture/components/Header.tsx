@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-//import img from "../../../../assets/annuaire/annuaire_lecture.svg";
+import img from "../../../../assets/annuaire/annuaire_cover.svg";
 import { Letter } from "./Letter";
 import { NavHashLink } from "react-router-hash-link";
 import i18n from "../../../../i18n";
@@ -9,16 +9,17 @@ import { colors } from "../../../../colors";
 import { SimplifiedStructure } from "types/interface";
 
 const HeaderContainer = styled.div`
-  background-attachment: fixed;
-
+  background-image: url(${img});
+  background-repeat: no-repeat;
   height: 290px;
   width: 100%;
+  margin-left: 30px;
   margin-top: ${(props) =>
     props.stopScroll
       ? "-140px"
-      : -75 - props.currentScroll < -105
-      ? "-105px"
-      : -75 - props.currentScroll + "px"};
+      : -props.currentScroll < -60
+      ? "-60px"
+      : -props.currentScroll + "px"};
   position: ${(props) => (props.stopScroll ? "fixed" : "relative")};
   z-index: 1;
 `;
