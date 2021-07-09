@@ -62,7 +62,7 @@ interface Props {
   letterSelected: string;
   setLetterSelected: any;
   setFilteredStructures: any;
-  sortedStructureByAlpha: SimplifiedStructure[] | null;
+  filteredStructures: SimplifiedStructure[] | null;
   t: any;
 }
 
@@ -86,6 +86,7 @@ export const Header = (props: Props) => {
           {props.t("Annuaire.Annuaire", "Annuaire")}
         </TextContainer>
         <SearchBarAnnuaire
+          filteredStructures={props.filteredStructures}
           setFilteredStructures={props.setFilteredStructures}
           t={props.t}
         />

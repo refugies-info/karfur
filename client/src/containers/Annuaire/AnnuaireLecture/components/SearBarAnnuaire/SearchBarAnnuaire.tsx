@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { colors } from "../../../../../colors";
@@ -11,6 +10,7 @@ import Autocomplete from "react-google-autocomplete";
 import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import { StructureTypes } from "../../../AnnuaireCreate/data";
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
+import { SimplifiedStructure } from "types/interface";
 // import { NavHashLink } from "react-router-hash-link";
 // import i18n from "../../../../i18n";
 
@@ -70,6 +70,7 @@ const ResultNumberContainer = styled.div`
 interface Props {
   t: any;
   setFilteredStructures: any;
+  filteredStructures: SimplifiedStructure[] | null;
 }
 
 export const SearchBarAnnuaire = (props: Props) => {
@@ -113,7 +114,6 @@ export const SearchBarAnnuaire = (props: Props) => {
     setTypeSelected(array);
     toggle();
   };
-  console.log(ville);
   return (
     <MainContainer>
       <WhiteButtonContainer>
@@ -264,7 +264,7 @@ export const SearchBarAnnuaire = (props: Props) => {
         {props.t("Annuaire.Thèmes & activités", "Thèmes & activités")}
       </WhiteButtonContainer> */}
       <ResultNumberContainer>
-        {" "}
+        {props.filteredStructures ? props.filteredStructures.length : 0}{" "}
         {props.t("AdvancedSearch.résultats", "résultats")}
       </ResultNumberContainer>
     </MainContainer>
