@@ -71,6 +71,7 @@ interface Props {
   t: any;
   setFilteredStructures: any;
   filteredStructures: SimplifiedStructure[] | null;
+  resetSearch: () => void;
 }
 
 export const SearchBarAnnuaire = (props: Props) => {
@@ -97,8 +98,8 @@ export const SearchBarAnnuaire = (props: Props) => {
           });
         });
       }
+      props.setFilteredStructures(newArray);
     }
-    props.setFilteredStructures(newArray);
   };
 
   useEffect(() => {
@@ -230,6 +231,7 @@ export const SearchBarAnnuaire = (props: Props) => {
               onClick={(e: any) => {
                 e.stopPropagation();
                 setTypeSelected([]);
+                props.resetSearch();
               }}
               id="bookmarkBtn"
               className="ml-10"

@@ -115,7 +115,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
     };
   }, [dispatch]);
 
-  useEffect(() => {
+  const resetSearch = () => {
     const filterStructures = structures
       ? structures.filter(
           // @ts-ignore
@@ -134,6 +134,10 @@ export const AnnuaireLectureComponent = (props: Props) => {
       : [];
 
     setFilteredStructures(sortedStructureByAlpha);
+  };
+
+  useEffect(() => {
+    resetSearch();
   }, [structures]);
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
@@ -153,6 +157,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
           setLetterSelected={setLetterSelected}
           setFilteredStructures={setFilteredStructures}
           filteredStructures={filteredStructures}
+          resetSearch={resetSearch}
         />
         <LoadingContainer>
           <div
@@ -170,6 +175,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
   return (
     <MainContainer>
       <Header
+        resetSearch={resetSearch}
         letters={letters}
         stopScroll={stopScroll}
         currentScroll={currentScroll}

@@ -64,6 +64,7 @@ interface Props {
   setFilteredStructures: any;
   filteredStructures: SimplifiedStructure[] | null;
   t: any;
+  resetSearch: () => void;
 }
 
 export const Header = (props: Props) => {
@@ -89,6 +90,7 @@ export const Header = (props: Props) => {
           filteredStructures={props.filteredStructures}
           setFilteredStructures={props.setFilteredStructures}
           t={props.t}
+          resetSearch={props.resetSearch}
         />
       </SearchContainer>
 
