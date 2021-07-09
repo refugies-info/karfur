@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Props } from "./AnnuaireLecture.container";
-import _ from "lodash";
 import styled from "styled-components";
 import { LetterSection } from "./components/LetterSection";
 import { ObjectId } from "mongodb";
@@ -77,6 +76,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const [stopScroll, setStopScroll] = useState(false);
   const [currentScroll, setCurrentScroll] = useState(0);
   const [letterSelected, setLetterSelected] = useState("");
+  //@ts-ignore
+  const [filteredStructures, setFilteredStructures] = useState([]);
 
   const structures = useSelector(activeStructuresSelector);
   const isLoading = useSelector(
@@ -118,7 +119,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
       )
     : [];
 
-  const sortStructureByAlpha = filterStructures
+  const sortedStructureByAlpha = filterStructures
     ? filterStructures.sort((a, b) =>
         a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
           ? -1
@@ -126,13 +127,12 @@ export const AnnuaireLectureComponent = (props: Props) => {
           ? 1
           : 0
       )
-    : null;
+    : [];
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
 
   const onStructureCardClick = (id: ObjectId) =>
     props.history.push(`/annuaire/${id}`);
-
   if (isLoading) {
     const emptyArray = new Array(7).fill("a");
     return (
@@ -145,6 +145,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
           t={props.t}
           letterSelected={letterSelected}
           setLetterSelected={setLetterSelected}
+          setFilteredStructures={setFilteredStructures}
+          sortedStructureByAlpha={sortedStructureByAlpha}
         />
         <LoadingContainer>
           <div
@@ -168,6 +170,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
         t={props.t}
         letterSelected={letterSelected}
         setLetterSelected={setLetterSelected}
+        setFilteredStructures={setFilteredStructures}
+        sortedStructureByAlpha={sortedStructureByAlpha}
       />
       <Content
         currentScroll={currentScroll}
@@ -177,7 +181,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
         <LetterSection
           onStructureCardClick={onStructureCardClick}
           // @ts-ignore
-          structures={sortStructureByAlpha}
+          structures={sortedStructureByAlpha}
           setLetterSelected={setLetterSelected}
         />
       </Content>

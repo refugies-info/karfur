@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+/* eslint-disable no-console */
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { colors } from "../../../../../colors";
 import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
 import "./SearchBarAnnuaire.scss";
+import { Input } from "reactstrap";
 // @ts-ignore
 import ReactDependentScript from "react-dependent-script";
 import Autocomplete from "react-google-autocomplete";
@@ -22,7 +24,7 @@ const MainContainer = styled.div`
   padding: 12px;
 `;
 
-const TextInputContainer = styled.div`
+const TextInputContainer = styled(Input)`
   display: flex;
   height: 50px;
   background: ${colors.blanc};
@@ -47,6 +49,7 @@ const DropDownItemContainer = styled.div`
 `;
 
 const WhiteButtonContainer = styled.div`
+  display: flex;
   height: 50px;
   background: ${colors.blanc};
   padding: 12px;
@@ -66,15 +69,23 @@ const ResultNumberContainer = styled.div`
 
 interface Props {
   t: any;
+  setFilteredStructures: any;
 }
 
 export const SearchBarAnnuaire = (props: Props) => {
   const [dropdownOpen, setOpen] = useState(false);
   const [typeSelected, setTypeSelected] = useState<string[]>([]);
   const [ville, setVille] = useState("");
+  const [keyword, setKeyword] = useState("");
   const [isCityFocus, setIsCityFocus] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
+
+  const filterStructure = () => {};
+
+  useEffect(() => {
+    filterStructure();
+  }, [ville, keyword, typeSelected]);
 
   const selectType = (item: string) => {
     if (!typeSelected.includes(item)) {
@@ -85,20 +96,39 @@ export const SearchBarAnnuaire = (props: Props) => {
     toggle();
   };
 
+  const onChangeKeywords = (e: any) => setKeyword(e.target.value);
+
   const handleChange = (e: any) => setVille(e.target.value);
 
-  const onPlaceSelected = () => {};
+  const onPlaceSelected = (place: any) => {
+    if (place.formatted_address) {
+      setVille(place.formatted_address);
+    }
+    setIsCityFocus(false);
+    setKeyword("");
+  };
 
   const removeType = (item: string) => {
     let array = typeSelected.filter((el) => el !== item);
     setTypeSelected(array);
     toggle();
   };
-
+  console.log(ville);
   return (
     <MainContainer>
-      <TextInputContainer>
-        Rechercher par nom...
+      <WhiteButtonContainer>
+        <TextInputContainer
+          onChange={onChangeKeywords}
+          type="text"
+          plaintext={true}
+          placeholder={props.t(
+            "Annuaire.Rechercher par",
+            "Rechercher par nom ..."
+          )}
+          value={keyword}
+        />
+        {}
+
         <EVAIcon
           name="search-outline"
           fill={colors.noir}
@@ -106,21 +136,22 @@ export const SearchBarAnnuaire = (props: Props) => {
           className="ml-10"
           size={"large"}
         />
-      </TextInputContainer>
+      </WhiteButtonContainer>
+
       <WhiteButtonContainer>
+        <EVAIcon
+          name="pin-outline"
+          fill={colors.noir}
+          className="mr-10"
+          id="bookmarkBtn"
+          size={"large"}
+        />
         {ville === "" && !isCityFocus ? (
           <div
             onClick={() => {
               setIsCityFocus(true);
             }}
           >
-            <EVAIcon
-              name="pin-outline"
-              fill={colors.noir}
-              className="mr-10"
-              id="bookmarkBtn"
-              size={"large"}
-            />
             {props.t("Annuaire.Ville ou département", "Ville ou département")}
           </div>
         ) : (
@@ -138,8 +169,10 @@ export const SearchBarAnnuaire = (props: Props) => {
                   ref={(input: any) => {
                     input && input.refs.input.focus();
                   }}
-                  className="search-btn in-header search-autocomplete "
-                  onBlur={() => {}}
+                  className="autocomplete"
+                  onBlur={() => {
+                    setIsCityFocus(false);
+                  }}
                   placeholder={""}
                   id="villeAuto"
                   value={ville}
