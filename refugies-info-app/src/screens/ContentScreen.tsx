@@ -85,12 +85,17 @@ const SponsorImageContainer = styled.View`
   background-color: ${theme.colors.lightGrey};
   z-index: 2;
   margin-top: -50px;
-  margin-left: ${theme.margin * 3}px;
+  margin-left: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? 0 : theme.margin * 3}px;
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? theme.margin * 3 : 0}px;
+
   border-radius: ${theme.radius * 2}px;
   padding: 8px;
   display: flex;
-  flex-direction: column;
   margin-bottom: ${theme.margin}px;
+  align-self: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? "flex-end" : "flex-start"};
 `;
 
 const FixedContainerForHeader = styled.View`
@@ -321,7 +326,10 @@ export const ContentScreen = ({
           </TitlesContainer>
         </HeaderImageContainer>
 
-        <SponsorImageContainer width={sponsorPictureUrl ? 100 : 160}>
+        <SponsorImageContainer
+          width={sponsorPictureUrl ? 100 : 160}
+          isRTL={isRTL}
+        >
           {sponsorPictureUrl ? (
             <StructureImageContainer>
               <Image
