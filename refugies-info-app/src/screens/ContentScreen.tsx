@@ -107,6 +107,7 @@ const StructureNameContainer = styled.View`
   flex: 1;
   justify-content: center;
   border-radius: 8px;
+  z-index: 2;
 `;
 const StructureNameText = styled(TextSmallNormal)`
   text-align: center;
@@ -318,18 +319,18 @@ export const ContentScreen = ({
 
         <SponsorImageContainer width={sponsorPictureUrl ? 100 : 160}>
           {sponsorPictureUrl ? (
-            <Image
-              source={{
-                uri: sponsorPictureUrl,
-              }}
-              resizeMode={"contain"}
-              style={{
-                height: 84,
-                width: 84,
-                backgroundColor: theme.colors.white,
-                borderRadius: 8,
-              }}
-            />
+            <StructureNameContainer>
+              <Image
+                source={{
+                  uri: sponsorPictureUrl,
+                }}
+                resizeMode={"contain"}
+                style={{
+                  height: 84,
+                  width: 84,
+                }}
+              />
+            </StructureNameContainer>
           ) : (
             <StructureNameContainer>
               <StructureNameText numberOfLines={3}>
