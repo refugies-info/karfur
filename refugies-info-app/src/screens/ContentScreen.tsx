@@ -304,7 +304,7 @@ export const ContentScreen = ({
           navigation={navigation}
         />
       </FixedContainerForHeader>
-      <ScrollView>
+      <ScrollView contentContainerStyle={{ paddingBottom: theme.margin * 3 }}>
         <HeaderImage tagName={tagName} height={headerImageHeight} />
         <HeaderImageContainer height={headerImageHeight}>
           <TitlesContainer width={windowWidth - 2 * 24} isRTL={isRTL}>

@@ -80,7 +80,9 @@ export const ContentFromHtml = (props: Props) => {
         ),
         // eslint-disable-next-line react/display-name
         li: (_, children) => (
-          <RTLView style={{ marginBottom: theme.margin }}>
+          <RTLView
+            style={{ marginBottom: theme.margin, alignItems: "flex-start" }}
+          >
             <View
               style={{
                 marginLeft: isRTL ? theme.margin : 0,
