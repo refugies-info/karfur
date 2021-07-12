@@ -27,10 +27,12 @@ export function* fetchSelectedContent(
 
       locale,
     });
+    console.log("data", data);
     const contentLocale =
       data && data.data && data.data.data && data.data.data.length > 0
         ? data.data.data[0]
         : null;
+    console.log("contentLocale", contentLocale);
     yield put(
       setSelectedContentActionCreator({ content: contentLocale, locale })
     );
@@ -56,6 +58,7 @@ export function* fetchSelectedContent(
   } catch (error) {
     logger.error("Error while getting content", { error: error.message });
     yield put(setSelectedContentActionCreator({ content: null, locale }));
+    yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_CONTENT));
   }
 }
 
