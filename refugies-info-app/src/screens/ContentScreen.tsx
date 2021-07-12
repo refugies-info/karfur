@@ -10,7 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSelectedContentActionCreator } from "../services/redux/SelectedContent/selectedContent.actions";
 import { selectedContentSelector } from "../services/redux/SelectedContent/selectedContent.selectors";
 import { theme } from "../theme";
-import { TextBigBold, TextSmallNormal } from "../components/StyledText";
+import {
+  TextBigBold,
+  TextSmallNormal,
+  TextSmallBold,
+} from "../components/StyledText";
 import {
   selectedI18nCodeSelector,
   currentI18nCodeSelector,
@@ -25,9 +29,11 @@ import { isLoadingSelector } from "../services/redux/LoadingStatus/loadingStatus
 import { LoadingStatusKey } from "../services/redux/LoadingStatus/loadingStatus.actions";
 import SkeletonContent from "react-native-skeleton-content";
 import { CustomButton } from "../components/CustomButton";
-import { RTLView } from "../components/BasicComponents";
+import { RTLView, RTLTouchableOpacity } from "../components/BasicComponents";
 // @ts-ignore
 import moment from "moment/min/moment-with-locales";
+import ErrorImage from "../theme/images/error.png";
+import { Icon } from "react-native-eva-icons";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -136,6 +142,20 @@ const LastUpdateText = styled(TextSmallNormal)`
   margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 4 : 0)}px;
   margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : 4)}px;
 `;
+
+const ErrorContainer = styled.View`
+  margin-top: ${theme.margin * 7}px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-horizontal: ${theme.margin * 3}px;
+`;
+
+const RestartButton = styled(RTLTouchableOpacity)`
+  background-color: ${theme.colors.black};
+  padding: ${theme.margin * 2}px;
+  border-radius: ${theme.radius * 2}px;
+`;
 const headersDispositif = [
   "C'est quoi ?",
   "C'est pour qui ?",
@@ -210,6 +230,18 @@ export const ContentScreen = ({
     return;
   };
 
+  const refetchContent = () => {
+    if (contentId && selectedLanguage) {
+      return dispatch(
+        fetchSelectedContentActionCreator({
+          contentId: contentId,
+          locale: selectedLanguage,
+        })
+      );
+    }
+    return;
+  };
+
   if (isLoading) {
     return (
       <WrapperWithHeaderAndLanguageModal
@@ -243,13 +275,42 @@ export const ContentScreen = ({
         showSwitch={true}
         navigation={navigation}
       >
-        <TouchableOpacity onPress={navigation.goBack}>
-          <Text>Back</Text>
-        </TouchableOpacity>
-
-        <ContentContainer>
-          <Text>pas de contenu</Text>
-        </ContentContainer>
+        <ErrorContainer>
+          <Image
+            source={ErrorImage}
+            style={{ width: 240, height: 160, marginBottom: theme.margin * 4 }}
+            width={240}
+            height={160}
+          />
+          <TextBigBold style={{ marginBottom: theme.margin * 2 }}>
+            {t("Content.Oups", "Oups !")}
+          </TextBigBold>
+          <TextSmallNormal
+            style={{ textAlign: "center", marginBottom: theme.margin * 4 }}
+          >
+            {t(
+              "Content.error",
+              "Une erreur est survenue. Vérifie que tu es bien connecté à internet. Sinon, réessaie plus tard."
+            )}
+          </TextSmallNormal>
+          <RestartButton onPress={refetchContent}>
+            <Icon
+              name="refresh-outline"
+              height={20}
+              width={20}
+              fill={theme.colors.white}
+            />
+            <TextSmallBold
+              style={{
+                color: theme.colors.white,
+                marginLeft: isRTL ? 0 : theme.margin,
+                marginRight: isRTL ? theme.margin : 0,
+              }}
+            >
+              {t("Content.recommencer", "Recommencer")}
+            </TextSmallBold>
+          </RestartButton>
+        </ErrorContainer>
       </WrapperWithHeaderAndLanguageModal>
     );
   }

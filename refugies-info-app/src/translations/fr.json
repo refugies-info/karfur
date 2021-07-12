@@ -104,6 +104,9 @@
     "Comment faire ?": "Comment faire ?",
     "Et après ?": "Et après ?",
     "Voir le site": "Voir le site",
-    "last_update": "Dernière mise à jour :"
+    "last_update": "Dernière mise à jour :",
+    "Oups": "Oups !",
+    "error": "Une erreur est survenue. Vérifie que tu es bien connecté à internet. Sinon, réessaie plus tard.",
+    "recommencer": "Recommencer"
   }
 }
