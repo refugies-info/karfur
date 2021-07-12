@@ -277,6 +277,7 @@ export const ContentScreen = ({
   const formattedLastModifDate = selectedContent.lastModificationDate
     ? moment(selectedContent.lastModificationDate).locale("fr")
     : null;
+
   return (
     <View>
       <FixedContainerForHeader>
@@ -295,7 +296,7 @@ export const ContentScreen = ({
             {selectedContent.titreInformatif}
           </TitreInfoText>
 
-          {selectedContent.titreMarque && (
+          {!!selectedContent.titreMarque && (
             <TitreMarqueText
               onLayout={(e: any) => onLayoutTitre(e, "titreMarque")}
               isRTL={isRTL}
