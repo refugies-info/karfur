@@ -101,14 +101,18 @@ const FixedContainerForHeader = styled.View`
   width: 100%;
 `;
 
-const StructureNameContainer = styled.View`
+const StructureImageContainer = styled.View`
   background-color: ${theme.colors.white};
   display: flex;
   flex: 1;
   justify-content: center;
   border-radius: 8px;
-  z-index: 2;
 `;
+
+const StructureNameContainer = styled(StructureImageContainer)`
+  padding: 4px;
+`;
+
 const StructureNameText = styled(TextSmallNormal)`
   text-align: center;
 `;
@@ -319,7 +323,7 @@ export const ContentScreen = ({
 
         <SponsorImageContainer width={sponsorPictureUrl ? 100 : 160}>
           {sponsorPictureUrl ? (
-            <StructureNameContainer>
+            <StructureImageContainer>
               <Image
                 source={{
                   uri: sponsorPictureUrl,
@@ -330,7 +334,7 @@ export const ContentScreen = ({
                   width: 84,
                 }}
               />
-            </StructureNameContainer>
+            </StructureImageContainer>
           ) : (
             <StructureNameContainer>
               <StructureNameText numberOfLines={3}>
