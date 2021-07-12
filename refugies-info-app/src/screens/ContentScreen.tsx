@@ -41,9 +41,10 @@ const ContentContainer = styled.View`
 
 const TitlesContainer = styled(View)`
   position: absolute;
-  top: 100px;
+  bottom: 0px;
   width: ${(props: { width: number }) => props.width}px;
   left: 24px;
+  margin-bottom: 66px;
 `;
 
 const TitreInfoText = styled(TextBigBold)`
@@ -54,6 +55,13 @@ const TitreInfoText = styled(TextBigBold)`
   line-height: 40px;
   margin-bottom: ${theme.margin * 2}px;
   padding: ${theme.margin}px;
+`;
+
+const HeaderImageContainer = styled.View`
+  width: 100%;
+  height: ${(props: { height: number }) => props.height}px;
+  position: absolute;
+  top: 0px;
 `;
 
 const TitreMarqueText = styled(TextSmallNormal)`
@@ -288,23 +296,26 @@ export const ContentScreen = ({
       </FixedContainerForHeader>
       <ScrollView>
         <HeaderImage tagName={tagName} height={headerImageHeight} />
-        <TitlesContainer width={windowWidth - 2 * 24} isRTL={isRTL}>
-          <TitreInfoText
-            isRTL={isRTL}
-            onLayout={(e: any) => onLayoutTitre(e, "titreInfo")}
-          >
-            {selectedContent.titreInformatif}
-          </TitreInfoText>
-
-          {!!selectedContent.titreMarque && (
-            <TitreMarqueText
-              onLayout={(e: any) => onLayoutTitre(e, "titreMarque")}
+        <HeaderImageContainer height={headerImageHeight}>
+          <TitlesContainer width={windowWidth - 2 * 24} isRTL={isRTL}>
+            <TitreInfoText
               isRTL={isRTL}
+              onLayout={(e: any) => onLayoutTitre(e, "titreInfo")}
             >
-              {"avec " + selectedContent.titreMarque}
-            </TitreMarqueText>
-          )}
-        </TitlesContainer>
+              {selectedContent.titreInformatif}
+            </TitreInfoText>
+
+            {!!selectedContent.titreMarque && (
+              <TitreMarqueText
+                onLayout={(e: any) => onLayoutTitre(e, "titreMarque")}
+                isRTL={isRTL}
+              >
+                {"avec " + selectedContent.titreMarque}
+              </TitreMarqueText>
+            )}
+          </TitlesContainer>
+        </HeaderImageContainer>
+
         <SponsorImageContainer width={sponsorPictureUrl ? 100 : 160}>
           {sponsorPictureUrl ? (
             <Image
