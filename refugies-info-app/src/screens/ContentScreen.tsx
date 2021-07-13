@@ -1,11 +1,11 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { Text, useWindowDimensions, View, Image, Linking } from "react-native";
+import { useWindowDimensions, View, Image, Linking } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ExplorerParamList } from "../../types";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { WrapperWithHeaderAndLanguageModal } from "./WrapperWithHeaderAndLanguageModal";
-import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
+import { ScrollView } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSelectedContentActionCreator } from "../services/redux/SelectedContent/selectedContent.actions";
 import { selectedContentSelector } from "../services/redux/SelectedContent/selectedContent.selectors";
