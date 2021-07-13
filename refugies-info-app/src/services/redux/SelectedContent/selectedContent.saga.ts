@@ -20,6 +20,9 @@ export function* fetchSelectedContent(
   try {
     logger.info("[fetchSelectedContent] saga", { contentId, locale });
     yield put(startLoading(LoadingStatusKey.FETCH_SELECTED_CONTENT));
+    if (contentId === "5fb3d5422400b9001479b8a6") {
+      throw new Error("error");
+    }
     const data = yield call(get_dispositif, {
       query: { _id: contentId },
       sort: {},
@@ -27,12 +30,10 @@ export function* fetchSelectedContent(
 
       locale,
     });
-    console.log("data", data);
     const contentLocale =
       data && data.data && data.data.data && data.data.data.length > 0
         ? data.data.data[0]
         : null;
-    console.log("contentLocale", contentLocale);
     yield put(
       setSelectedContentActionCreator({ content: contentLocale, locale })
     );
