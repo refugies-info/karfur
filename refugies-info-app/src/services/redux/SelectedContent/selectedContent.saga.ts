@@ -20,6 +20,7 @@ export function* fetchSelectedContent(
   try {
     logger.info("[fetchSelectedContent] saga", { contentId, locale });
     yield put(startLoading(LoadingStatusKey.FETCH_SELECTED_CONTENT));
+
     const data = yield call(get_dispositif, {
       query: { _id: contentId },
       sort: {},
@@ -56,6 +57,8 @@ export function* fetchSelectedContent(
   } catch (error) {
     logger.error("Error while getting content", { error: error.message });
     yield put(setSelectedContentActionCreator({ content: null, locale }));
+    yield put(setSelectedContentActionCreator({ content: null, locale: "fr" }));
+    yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_CONTENT));
   }
 }
 

@@ -38,8 +38,8 @@ export const ContentFromHtml = (props: Props) => {
           justifyContent: "center",
           alignItems: "center",
           backgroundColor: theme.colors.black,
-          marginRight: isRTL ? 0 : theme.margin,
-          marginLeft: isRTL ? theme.margin : 0,
+          marginRight: isRTL ? 0 : theme.margin * 2,
+          marginLeft: isRTL ? theme.margin * 2 : 0,
           borderRadius: "50%",
           color: theme.colors.lightRed,
         },
@@ -80,11 +80,17 @@ export const ContentFromHtml = (props: Props) => {
         ),
         // eslint-disable-next-line react/display-name
         li: (_, children) => (
-          <RTLView style={{ marginBottom: theme.margin }}>
+          <RTLView
+            style={{
+              marginBottom: theme.margin,
+              alignItems: "flex-start",
+            }}
+          >
             <View
               style={{
                 marginLeft: isRTL ? theme.margin : 0,
                 marginRight: isRTL ? 0 : theme.margin,
+                marginTop: 3,
               }}
             >
               <Icon

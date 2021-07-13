@@ -65,6 +65,9 @@ const StepText = styled(TextSmallBold)`
   color: ${theme.colors.white};
 `;
 
+const ExpandedContentContainer = styled.View`
+  padding: ${theme.margin}px;
+`;
 const IconContainer = styled.View`
   margin-right: ${(props: { isRTL: boolean }) =>
     props.isRTL ? theme.margin : 0}px;
@@ -118,10 +121,12 @@ export const Accordion = (props: Props) => {
       </TitleContainer>
 
       {props.isExpanded && (
-        <ContentFromHtml
-          htmlContent={props.content}
-          windowWidth={props.windowWidth}
-        />
+        <ExpandedContentContainer>
+          <ContentFromHtml
+            htmlContent={props.content}
+            windowWidth={props.windowWidth}
+          />
+        </ExpandedContentContainer>
       )}
     </AccordionContainer>
   );
