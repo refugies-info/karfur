@@ -3,7 +3,7 @@ import { DispositifContent } from "../types/interface";
 const sectionsDispositif = [
   { title: "C'est où ?", filters: ["Zone d'action"] },
   { title: "C'est pour qui ?", filters: ["Âge requis", "Niveau de français"] },
-  { title: "Comment ça marche ?", filters: ["Combien ça coute ?", "Durée"] },
+  { title: "Comment ça marche ?", filters: ["Combien ça coûte ?", "Durée"] },
   { title: "Important", filters: ["Important !"] },
 ];
 
@@ -78,6 +78,23 @@ export const getDescription = (infocard: DispositifContent, t: any) => {
 
       return result;
     }
+  }
+
+  if (infocard.title === "Niveau de français") {
+    if (infocard.niveaux && infocard.niveaux.length > 0) {
+      let levels = "";
+      infocard.niveaux.forEach((niveau) => {
+        levels = levels === "" ? niveau : levels + "/" + niveau;
+      });
+
+      return (
+        t("Content." + infocard.contentTitle, infocard.contentTitle) +
+        " : " +
+        levels
+      );
+    }
+
+    return t("Content." + infocard.contentTitle, infocard.contentTitle);
   }
   return t("test");
 };
