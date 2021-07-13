@@ -1,11 +1,16 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { TextNormalBold, TextSmallNormal, TextNormal } from "../StyledText";
+import {
+  TextNormalBold,
+  TextVerySmallNormal,
+  TextSmallNormal,
+} from "../StyledText";
 import { DispositifContent } from "../../types/interface";
 import { theme } from "../../theme";
 import { formatInfocards, getDescription } from "../../libs/content";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { infocardsCorrespondencyNames } from "./data";
+import { TextFromHtml } from "./TextFromHtml";
 
 interface Props {
   content: DispositifContent[];
@@ -28,19 +33,20 @@ const TitleText = styled(TextNormalBold)`
   margin-bottom: ${theme.radius * 2}px;
 `;
 
-const SubtitleText = styled(TextSmallNormal)`
+const SubtitleText = styled(TextVerySmallNormal)`
   color: ${theme.colors.darkGrey};
   margin-bottom: 4px;
 `;
 
-const DescriptionText = styled(TextNormal)``;
+const DescriptionText = styled(TextSmallNormal)``;
 
 const SectionContainer = styled.View`
   padding-horizontal: ${theme.margin * 2}px;
 `;
 
 const InfocardContainer = styled.View`
-  margin-bottom: ${theme.margin * 3}px;
+  margin-bottom: ${(props: { isDuree: boolean }) =>
+    props.isDuree ? theme.margin : theme.margin * 3}px;
 `;
 
 const Separator = styled.View`
@@ -57,7 +63,7 @@ export const InfocardsSection = (props: Props) => {
   console.log("formattedData", formattedData);
   return (
     <MainContainer>
-      {formattedData.map((data) => {
+      {formattedData.map((data, indexSection) => {
         return (
           <>
             <SectionContainer key={data.title}>
@@ -76,7 +82,10 @@ export const InfocardsSection = (props: Props) => {
 
                 const description = getDescription(infocard, t);
                 return (
-                  <InfocardContainer key={infocard.title}>
+                  <InfocardContainer
+                    key={infocard.title}
+                    isDuree={infocard.title === "Durée"}
+                  >
                     {!!displayedName && (
                       <SubtitleText>
                         {t("Content." + displayedName, displayedName)}
@@ -85,11 +94,18 @@ export const InfocardsSection = (props: Props) => {
                     {!!description && (
                       <DescriptionText>{description}</DescriptionText>
                     )}
+                    {infocard.title === "Durée" && infocard.contentTitle && (
+                      <TextFromHtml htmlContent={infocard.contentTitle} />
+                    )}
+                    {infocard.title === "Important !" &&
+                      infocard.contentTitle && (
+                        <TextFromHtml htmlContent={infocard.contentTitle} />
+                      )}
                   </InfocardContainer>
                 );
               })}
             </SectionContainer>
-            <Separator />
+            {indexSection !== formattedData.length - 1 && <Separator />}
           </>
         );
       })}

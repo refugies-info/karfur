@@ -96,5 +96,23 @@ export const getDescription = (infocard: DispositifContent, t: any) => {
 
     return t("Content." + infocard.contentTitle, infocard.contentTitle);
   }
-  return t("test");
+
+  if (infocard.title === "Combien ça coûte ?") {
+    if (infocard.free) {
+      return t("Content.Gratuit", "Gratuit");
+    }
+    return infocard.price + "€ " + infocard.contentTitle;
+  }
+
+  if (infocard.title === "Durée") {
+    return null;
+  }
+
+  if (infocard.title === "Acte de naissance OFPRA") {
+    return t("Content.L'acte de naissance OFPRA", "L'acte de naissance OFPRA");
+  }
+
+  if (infocard.title === "Titre de séjour")
+    return t("Content.Titre de séjour", "Le titre de séjour");
+  return null;
 };
