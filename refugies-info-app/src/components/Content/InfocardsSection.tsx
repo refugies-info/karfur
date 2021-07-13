@@ -11,6 +11,9 @@ import { formatInfocards, getDescription } from "../../libs/content";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { infocardsCorrespondencyNames } from "./data";
 import { TextFromHtml } from "./TextFromHtml";
+import { RTLView } from "../BasicComponents";
+import { View } from "react-native";
+import { InfocardImage } from "./InfocardImage";
 
 interface Props {
   content: DispositifContent[];
@@ -60,7 +63,6 @@ const Separator = styled.View`
 export const InfocardsSection = (props: Props) => {
   const { t } = useTranslationWithRTL();
   const formattedData = formatInfocards(props.content, props.typeContenu);
-  console.log("formattedData", formattedData);
   return (
     <MainContainer>
       {formattedData.map((data, indexSection) => {
@@ -86,21 +88,30 @@ export const InfocardsSection = (props: Props) => {
                     key={infocard.title}
                     isDuree={infocard.title === "Durée"}
                   >
-                    {!!displayedName && (
-                      <SubtitleText>
-                        {t("Content." + displayedName, displayedName)}
-                      </SubtitleText>
-                    )}
-                    {!!description && (
-                      <DescriptionText>{description}</DescriptionText>
-                    )}
-                    {infocard.title === "Durée" && infocard.contentTitle && (
-                      <TextFromHtml htmlContent={infocard.contentTitle} />
-                    )}
-                    {infocard.title === "Important !" &&
-                      infocard.contentTitle && (
-                        <TextFromHtml htmlContent={infocard.contentTitle} />
-                      )}
+                    <RTLView style={{ justifyContent: "space-between" }}>
+                      <View>
+                        {!!displayedName && (
+                          <SubtitleText>
+                            {t("Content." + displayedName, displayedName)}
+                          </SubtitleText>
+                        )}
+                        {!!description && (
+                          <DescriptionText>{description}</DescriptionText>
+                        )}
+                        {infocard.title === "Durée" &&
+                          infocard.contentTitle && (
+                            <TextFromHtml htmlContent={infocard.contentTitle} />
+                          )}
+                        {infocard.title === "Important !" &&
+                          infocard.contentTitle && (
+                            <TextFromHtml htmlContent={infocard.contentTitle} />
+                          )}
+                      </View>
+                      <InfocardImage
+                        title={infocard.title}
+                        isFree={!!infocard.free}
+                      />
+                    </RTLView>
                   </InfocardContainer>
                 );
               })}
