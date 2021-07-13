@@ -34,6 +34,7 @@ import { RTLView, RTLTouchableOpacity } from "../components/BasicComponents";
 import moment from "moment/min/moment-with-locales";
 import ErrorImage from "../theme/images/error.png";
 import { Icon } from "react-native-eva-icons";
+import { InfocardsSection } from "../components/Content/InfocardsSection";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -414,6 +415,20 @@ export const ContentScreen = ({
         </SponsorImageContainer>
         <ContentContainer>
           {headers.map((header, index) => {
+            if (
+              index === 1 &&
+              selectedContent.contenu[1] &&
+              selectedContent.contenu[1].children
+            )
+              return (
+                <InfocardsSection
+                  content={selectedContent.contenu[1].children.filter(
+                    (element) => element.type === "card"
+                  )}
+                  color={tagDarkColor}
+                  typeContenu={selectedContent.typeContenu}
+                />
+              );
             if (index === 0 && selectedContent.contenu[0].content) {
               return (
                 <>

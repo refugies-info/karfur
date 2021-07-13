@@ -98,7 +98,6 @@
   },
   "Content": {
     "C'est quoi ?": "C'est quoi ?",
-    "C'est pour qui ?": "C'est pour qui ?",
     "Pourquoi c'est intéressant ?": "Pourquoi c'est intéressant ?",
     "Comment je m'engage ?": "Comment je m'engage ?",
     "Comment faire ?": "Comment faire ?",
@@ -107,6 +106,22 @@
     "last_update": "Dernière mise à jour :",
     "Oups": "Oups !",
     "error": "Une erreur est survenue. Vérifie que tu es bien connecté à internet. Sinon, réessaie plus tard.",
-    "recommencer": "Recommencer"
+    "recommencer": "Recommencer",
+    "C'est où ?": "C'est où ?",
+    "C'est pour qui ?": "C'est pour qui ?",
+    "Comment ça marche ?": "Comment ça marche ?",
+    "Important": "Important",
+    "Impossible sans": "Impossible sans",
+    "Départements": "Départements",
+    "Âge": "Âge",
+    "Niveau de français": "Niveau de français",
+    "Prix": "Prix",
+    "Durée": "Durée",
+    "Toute la France": "Toute la France",
+    "Plus de": "Plus de ",
+    "Moins de": "Moins de ",
+    "ans": " ans",
+    "De": "De ",
+    "à": " à "
   }
 }
