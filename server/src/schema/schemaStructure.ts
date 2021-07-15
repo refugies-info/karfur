@@ -135,6 +135,7 @@ export interface StructureDoc extends mongoose.Document {
   openingHours?: OpeningHours;
   description?: string;
   hasResponsibleSeenNotification?: boolean;
+  disposAssociesLocalisation?: string[];
 }
 export const Structure = mongoose.model<StructureDoc>(
   "Structure",
