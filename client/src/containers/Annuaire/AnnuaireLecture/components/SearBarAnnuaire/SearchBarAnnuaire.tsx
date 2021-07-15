@@ -78,12 +78,14 @@ export const SearchBarAnnuaire = (props: Props) => {
   const [dropdownOpen, setOpen] = useState(false);
   const [typeSelected, setTypeSelected] = useState<string[]>([]);
   const [ville, setVille] = useState("");
+  const [depName, setDepName] = useState("");
+  const [depNumber, setDepNumber] = useState(null);
   const [keyword, setKeyword] = useState("");
   const [isCityFocus, setIsCityFocus] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
 
-  const filterStructure = () => {
+  const filterStructureByStructure = () => {
     let newArray: any[] = [];
     if (typeSelected.length > 0) {
       if (props.filteredStructures) {
@@ -101,10 +103,40 @@ export const SearchBarAnnuaire = (props: Props) => {
       props.setFilteredStructures(newArray);
     }
   };
+  const filterStructureByLocation = () => {
+    let newArray: any[] = [];
+
+    if (props.filteredStructures) {
+      props.filteredStructures?.forEach((structure) => {
+        if (structure.disposAssociesLocalisation?.includes("All")) {
+          newArray.push(structure);
+        } else {
+          if (depNumber) {
+            structure.disposAssociesLocalisation?.forEach((el) => {
+              if (el.substr(0, 2) === depNumber) {
+                newArray.push(structure);
+              }
+            });
+          } else if (depName) {
+            structure.disposAssociesLocalisation?.forEach((el) => {
+              if (el.includes(depName)) {
+                newArray.push(structure);
+              }
+            });
+          }
+        }
+      });
+    }
+    props.setFilteredStructures(newArray);
+  };
 
   useEffect(() => {
-    filterStructure();
-  }, [ville, keyword, typeSelected]);
+    filterStructureByStructure();
+  }, [typeSelected]);
+
+  useEffect(() => {
+    filterStructureByLocation();
+  }, [depName, depNumber]);
 
   const selectType = (item: string) => {
     if (!typeSelected.includes(item)) {
@@ -123,6 +155,29 @@ export const SearchBarAnnuaire = (props: Props) => {
     if (place.formatted_address) {
       setVille(place.formatted_address);
     }
+    if (
+      place.address_components.find((item: any) =>
+        item.types.includes("postal_code")
+      )
+    ) {
+      setDepNumber(
+        place.address_components
+          .find((item: any) => item.types.includes("postal_code"))
+          .long_name.substr(0, 2)
+      );
+    }
+    if (
+      place.address_components.find((item: any) =>
+        item.types.includes("administrative_area_level_2")
+      )
+    ) {
+      setDepName(
+        place.address_components.find((item: any) =>
+          item.types.includes("administrative_area_level_2")
+        ).long_name
+      );
+    }
+
     setIsCityFocus(false);
     setKeyword("");
   };

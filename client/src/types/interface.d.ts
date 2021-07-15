@@ -270,6 +270,7 @@ export interface SimplifiedStructure {
   departments?: string[];
   picture: Picture;
   role?: string[];
+  disposAssociesLocalisation?: string[];
 }
 
 export interface Picture {
