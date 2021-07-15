@@ -32,6 +32,7 @@ type NeededFields =
       picture: number;
       structureTypes: number;
       departments: number;
+      disposAssociesLocalisation: number;
     }
   | {
       nom: number;
