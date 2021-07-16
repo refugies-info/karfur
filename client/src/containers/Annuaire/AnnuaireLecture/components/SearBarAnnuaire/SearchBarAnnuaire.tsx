@@ -368,13 +368,24 @@ export const SearchBarAnnuaire = (props: Props) => {
         />
         {}
 
-        <EVAIcon
-          name="search-outline"
-          fill={colors.noir}
-          id="bookmarkBtn"
-          className="ml-10"
-          size={"large"}
-        />
+        {props.keyword === "" ? (
+          <EVAIcon
+            name="search-outline"
+            fill={colors.noir}
+            id="bookmarkBtn"
+            className="ml-10"
+            size={"large"}
+          />
+        ) : (
+          <EVAIcon
+            name="close-circle"
+            fill={colors.noir}
+            id="bookmarkBtn"
+            className="ml-10"
+            size={"large"}
+            onClick={() => props.setKeyword("")}
+          />
+        )}
       </WhiteButtonContainer>
       {props.ville === "" && !props.isCityFocus ? (
         <WhiteButtonContainer>
