@@ -12,6 +12,8 @@ import { setSelectedStructureActionCreator } from "../../../services/SelectedStr
 import { Header } from "./components/Header";
 import Skeleton from "react-loading-skeleton";
 import { Event, initGA } from "../../../tracking/dispatch";
+import { SimplifiedStructure } from "types/interface";
+import { NoResult } from "./components/NoResult";
 
 declare const window: Window;
 
@@ -77,7 +79,9 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const [currentScroll, setCurrentScroll] = useState(0);
   const [letterSelected, setLetterSelected] = useState("");
   //@ts-ignore
-  const [filteredStructures, setFilteredStructures] = useState([]);
+  const [filteredStructures, setFilteredStructures] = useState<
+    SimplifiedStructure[]
+  >([]);
 
   const structures = useSelector(activeStructuresSelector);
   const isLoading = useSelector(
@@ -87,10 +91,10 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
     setCurrentScroll(currentScrollPos);
-    if (currentScrollPos >= 30) {
+    if (currentScrollPos >= 60) {
       return setStopScroll(true);
     }
-    if (currentScrollPos <= 30) return setStopScroll(false);
+    if (currentScrollPos <= 60) return setStopScroll(false);
   };
 
   const dispatch = useDispatch();
@@ -112,25 +116,32 @@ export const AnnuaireLectureComponent = (props: Props) => {
     };
   }, [dispatch]);
 
-  const filterStructures = structures
-    ? structures.filter(
-        // @ts-ignore
-        (structure) => structure._id !== "5f69cb9c0aab6900460c0f3f"
-      )
-    : [];
+  const resetSearch = () => {
+    const filterStructures = structures
+      ? structures.filter(
+          // @ts-ignore
+          (structure) => structure._id !== "5f69cb9c0aab6900460c0f3f"
+        )
+      : [];
 
-  const sortedStructureByAlpha = filterStructures
-    ? filterStructures.sort((a, b) =>
-        a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
-          ? -1
-          : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()
-          ? 1
-          : 0
-      )
-    : [];
+    const sortedStructureByAlpha = filterStructures
+      ? filterStructures.sort((a, b) =>
+          a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
+            ? -1
+            : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()
+            ? 1
+            : 0
+        )
+      : [];
+
+    setFilteredStructures(sortedStructureByAlpha);
+  };
+
+  useEffect(() => {
+    resetSearch();
+  }, [structures]);
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
-
   const onStructureCardClick = (id: ObjectId) =>
     props.history.push(`/annuaire/${id}`);
   if (isLoading) {
@@ -146,7 +157,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
           letterSelected={letterSelected}
           setLetterSelected={setLetterSelected}
           setFilteredStructures={setFilteredStructures}
-          sortedStructureByAlpha={sortedStructureByAlpha}
+          filteredStructures={filteredStructures}
+          resetSearch={resetSearch}
         />
         <LoadingContainer>
           <div
@@ -164,6 +176,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
   return (
     <MainContainer>
       <Header
+        resetSearch={resetSearch}
         letters={letters}
         stopScroll={stopScroll}
         currentScroll={currentScroll}
@@ -171,19 +184,23 @@ export const AnnuaireLectureComponent = (props: Props) => {
         letterSelected={letterSelected}
         setLetterSelected={setLetterSelected}
         setFilteredStructures={setFilteredStructures}
-        sortedStructureByAlpha={sortedStructureByAlpha}
+        filteredStructures={filteredStructures}
       />
       <Content
         currentScroll={currentScroll}
         stopScroll={stopScroll}
         hasMarginBottom={true}
       >
-        <LetterSection
-          onStructureCardClick={onStructureCardClick}
-          // @ts-ignore
-          structures={sortedStructureByAlpha}
-          setLetterSelected={setLetterSelected}
-        />
+        {filteredStructures.length > 0 ? (
+          <LetterSection
+            onStructureCardClick={onStructureCardClick}
+            // @ts-ignore
+            structures={filteredStructures}
+            setLetterSelected={setLetterSelected}
+          />
+        ) : (
+          <NoResult resetSearch={resetSearch} t={props.t} />
+        )}
       </Content>
     </MainContainer>
   );

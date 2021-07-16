@@ -1,6 +1,6 @@
 import React from "react";
 import { Structure, Picture } from "../../../../../types/interface";
-import img from "../../../../../assets/annuaire/annuaire_create_large.svg";
+import img from "../../../../../assets/annuaire/illu_annuaire_big.svg";
 import styled from "styled-components";
 import { StructureType } from "./StructureType";
 import { SocialsLink } from "./SocialsLink";
@@ -8,10 +8,11 @@ import placeholder from "../../../../../assets/annuaire/placeholder_logo_annuair
 import FButton from "components/FigmaUI/FButton/FButton";
 
 const LeftContainer = styled.div`
-  width: 360px;
+  width: 390px;
   background-image: url(${img});
   background-repeat: no-repeat;
-  padding: 32px;
+  background-size: cover;
+  padding: 44px;
   display: flex;
   padding-top: 100px;
   flex-direction: column;

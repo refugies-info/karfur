@@ -135,7 +135,18 @@ export interface StructureDoc extends mongoose.Document {
   openingHours?: OpeningHours;
   description?: string;
   hasResponsibleSeenNotification?: boolean;
+  disposAssociesLocalisation?: string[];
 }
+
+export interface StructureSimplifiedWithLoc extends mongoose.Document {
+  _id: ObjectId;
+  acronyme?: string;
+  picture?: Picture;
+  structureTypes?: string[];
+  departments?: string[];
+  disposAssociesLocalisation?: string[];
+}
+
 export const Structure = mongoose.model<StructureDoc>(
   "Structure",
   structureSchema

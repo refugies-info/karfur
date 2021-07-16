@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { colors } from "../../../../../colors";
@@ -11,6 +10,7 @@ import Autocomplete from "react-google-autocomplete";
 import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import { StructureTypes } from "../../../AnnuaireCreate/data";
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
+import { SimplifiedStructure } from "types/interface";
 // import { NavHashLink } from "react-router-hash-link";
 // import i18n from "../../../../i18n";
 
@@ -60,6 +60,19 @@ const WhiteButtonContainer = styled.div`
   align-items: center;
   margin-right: 12px;
 `;
+const DarkButtonContainer = styled.div`
+  display: flex;
+  height: 50px;
+  background: ${colors.noir};
+  padding: 12px;
+  border: 0.5px solid #ffffff;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  align-items: center;
+  margin-right: 12px;
+  color: ${colors.blanc};
+`;
 const ResultNumberContainer = styled.div`
   font-size: 16px;
   font-weight: 700;
@@ -70,22 +83,74 @@ const ResultNumberContainer = styled.div`
 interface Props {
   t: any;
   setFilteredStructures: any;
+  filteredStructures: SimplifiedStructure[] | null;
+  resetSearch: () => void;
 }
 
 export const SearchBarAnnuaire = (props: Props) => {
   const [dropdownOpen, setOpen] = useState(false);
   const [typeSelected, setTypeSelected] = useState<string[]>([]);
   const [ville, setVille] = useState("");
+  const [depName, setDepName] = useState("");
+  const [depNumber, setDepNumber] = useState(null);
   const [keyword, setKeyword] = useState("");
   const [isCityFocus, setIsCityFocus] = useState(false);
+  const [isCitySelected, setIsCitySelected] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
 
-  const filterStructure = () => {};
+  const filterStructureByStructure = () => {
+    let newArray: any[] = [];
+    if (typeSelected.length > 0) {
+      if (props.filteredStructures) {
+        typeSelected.forEach((type) => {
+          props.filteredStructures?.forEach((structure) => {
+            if (
+              structure.structureTypes?.includes(type) &&
+              !newArray.includes(structure)
+            ) {
+              newArray.push(structure);
+            }
+          });
+        });
+      }
+      props.setFilteredStructures(newArray);
+    }
+  };
+  const filterStructureByLocation = () => {
+    let newArray: any[] = [];
+
+    if (props.filteredStructures) {
+      props.filteredStructures?.forEach((structure) => {
+        if (structure.disposAssociesLocalisation?.includes("All")) {
+          newArray.push(structure);
+        } else {
+          if (depNumber) {
+            structure.disposAssociesLocalisation?.forEach((el) => {
+              if (el.substr(0, 2) === depNumber) {
+                newArray.push(structure);
+              }
+            });
+          } else if (depName) {
+            structure.disposAssociesLocalisation?.forEach((el) => {
+              if (el.includes(depName)) {
+                newArray.push(structure);
+              }
+            });
+          }
+        }
+      });
+    }
+    props.setFilteredStructures(newArray);
+  };
 
   useEffect(() => {
-    filterStructure();
-  }, [ville, keyword, typeSelected]);
+    filterStructureByStructure();
+  }, [typeSelected]);
+
+  useEffect(() => {
+    filterStructureByLocation();
+  }, [depName, depNumber]);
 
   const selectType = (item: string) => {
     if (!typeSelected.includes(item)) {
@@ -103,6 +168,29 @@ export const SearchBarAnnuaire = (props: Props) => {
   const onPlaceSelected = (place: any) => {
     if (place.formatted_address) {
       setVille(place.formatted_address);
+      setIsCitySelected(true);
+    }
+    if (
+      place.address_components.find((item: any) =>
+        item.types.includes("postal_code")
+      )
+    ) {
+      setDepNumber(
+        place.address_components
+          .find((item: any) => item.types.includes("postal_code"))
+          .long_name.substr(0, 2)
+      );
+    }
+    if (
+      place.address_components.find((item: any) =>
+        item.types.includes("administrative_area_level_2")
+      )
+    ) {
+      setDepName(
+        place.address_components.find((item: any) =>
+          item.types.includes("administrative_area_level_2")
+        ).long_name
+      );
     }
     setIsCityFocus(false);
     setKeyword("");
@@ -113,7 +201,6 @@ export const SearchBarAnnuaire = (props: Props) => {
     setTypeSelected(array);
     toggle();
   };
-  console.log(ville);
   return (
     <MainContainer>
       <WhiteButtonContainer>
@@ -137,24 +224,59 @@ export const SearchBarAnnuaire = (props: Props) => {
           size={"large"}
         />
       </WhiteButtonContainer>
-
-      <WhiteButtonContainer>
-        <EVAIcon
-          name="pin-outline"
-          fill={colors.noir}
-          className="mr-10"
-          id="bookmarkBtn"
-          size={"large"}
-        />
-        {ville === "" && !isCityFocus ? (
+      {ville === "" && !isCityFocus ? (
+        <WhiteButtonContainer>
+          <EVAIcon
+            name="pin-outline"
+            fill={colors.noir}
+            className="mr-10"
+            id="bookmarkBtn"
+            size={"large"}
+          />
           <div
             onClick={() => {
               setIsCityFocus(true);
             }}
           >
             {props.t("Annuaire.Ville ou département", "Ville ou département")}
-          </div>
-        ) : (
+          </div>{" "}
+        </WhiteButtonContainer>
+      ) : isCitySelected ? (
+        <DarkButtonContainer>
+          <EVAIcon
+            name="pin-outline"
+            fill={colors.blancSimple}
+            className="mr-10"
+            id="bookmarkBtn"
+            size={"large"}
+          />
+          <div
+            onClick={() => {
+              setIsCitySelected(false);
+            }}
+          >
+            {ville}
+          </div>{" "}
+          <EVAIcon
+            name="close-outline"
+            fill={colors.blancSimple}
+            className="ml-10"
+            size={"large"}
+            onClick={() => {
+              setIsCitySelected(false);
+              setVille("");
+            }}
+          />
+        </DarkButtonContainer>
+      ) : (
+        <WhiteButtonContainer>
+          <EVAIcon
+            name="pin-outline"
+            fill={colors.noir}
+            className="mr-10"
+            id="bookmarkBtn"
+            size={"large"}
+          />
           <ReactDependentScript
             loadingComponent={<div>Chargement de Google Maps...</div>}
             scripts={[
@@ -190,8 +312,8 @@ export const SearchBarAnnuaire = (props: Props) => {
               />
             </div>
           </ReactDependentScript>
-        )}
-      </WhiteButtonContainer>
+        </WhiteButtonContainer>
+      )}{" "}
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle
           caret={false}
@@ -213,6 +335,7 @@ export const SearchBarAnnuaire = (props: Props) => {
               onClick={(e: any) => {
                 e.stopPropagation();
                 setTypeSelected([]);
+                props.resetSearch();
               }}
               id="bookmarkBtn"
               className="ml-10"
@@ -258,13 +381,12 @@ export const SearchBarAnnuaire = (props: Props) => {
           </DropDownItemContainer>
         </DropdownMenu>
       </Dropdown>
-
       {/* <WhiteButtonContainer>
         {" "}
         {props.t("Annuaire.Thèmes & activités", "Thèmes & activités")}
       </WhiteButtonContainer> */}
       <ResultNumberContainer>
-        {" "}
+        {props.filteredStructures ? props.filteredStructures.length : 0}{" "}
         {props.t("AdvancedSearch.résultats", "résultats")}
       </ResultNumberContainer>
     </MainContainer>
