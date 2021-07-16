@@ -66,7 +66,7 @@ const DarkButtonContainer = styled.div`
   height: 50px;
   background: ${colors.noir};
   padding: 12px;
-  border: 0.5px solid #ffffff;
+
   border-radius: 12px;
   font-weight: 700;
   font-size: 16px;
@@ -421,7 +421,7 @@ export const SearchBarAnnuaire = (props: Props) => {
             {props.ville}
           </div>{" "}
           <EVAIcon
-            name="close-outline"
+            name="close-circle"
             fill={colors.blancSimple}
             className="ml-10"
             size={"large"}
@@ -467,7 +467,7 @@ export const SearchBarAnnuaire = (props: Props) => {
                 />
               )}
               <EVAIcon
-                name="close-outline"
+                name="close-circle"
                 size="large"
                 className="ml-10"
                 onClick={() => {}}
