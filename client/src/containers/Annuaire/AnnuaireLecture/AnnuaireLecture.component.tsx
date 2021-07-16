@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import { Props } from "./AnnuaireLecture.container";
 import styled from "styled-components";
@@ -144,8 +143,6 @@ export const AnnuaireLectureComponent = (props: Props) => {
   useEffect(() => {
     resetSearch();
   }, [structures]);
-  console.log("filteredStructuresByKeyword", filteredStructuresByKeyword);
-  console.log("filteredStru", filteredStructures);
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
   const onStructureCardClick = (id: ObjectId) =>
     props.history.push(`/annuaire/${id}`);

@@ -11,6 +11,9 @@ import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import { StructureTypes } from "../../../AnnuaireCreate/data";
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 import { SimplifiedStructure } from "types/interface";
+import { history } from "services/configureStore";
+// @ts-ignore
+import qs from "query-string";
 
 const MainContainer = styled.div`
   display: flex;
@@ -100,6 +103,16 @@ export const SearchBarAnnuaire = (props: Props) => {
 
   const toggle = () => setOpen(!dropdownOpen);
 
+  const computeUrl = (query: {
+    depName?: string | undefined;
+    depNumber?: number | null;
+    keyword?: string;
+  }) => {
+    history.push({
+      search: qs.stringify(query),
+    });
+  };
+
   const filterStructureByType = () => {
     let newArray: any[] = [];
     let arrayTofilter =
@@ -142,6 +155,7 @@ export const SearchBarAnnuaire = (props: Props) => {
       props.setFilteredStructuresByKeyword(newArray);
     }
   };
+
   const filterStructureByLocation = () => {
     let newArray: any[] = [];
     let arrayTofilter =
@@ -189,6 +203,25 @@ export const SearchBarAnnuaire = (props: Props) => {
       }
     }
   }, [typeSelected]);
+
+  useEffect(() => {
+    let query: {
+      depName?: string | undefined;
+      depNumber?: number | null;
+      keyword?: string;
+    } = {};
+
+    if (depName !== "") {
+      query.depName = depName;
+    }
+    if (depNumber) {
+      query.depNumber = depNumber;
+    }
+    if (props.keyword !== "") {
+      query.keyword = props.keyword;
+    }
+    computeUrl(query);
+  }, [typeSelected, depName, depNumber, props.keyword]);
 
   useEffect(() => {
     if (isCitySelected) {
