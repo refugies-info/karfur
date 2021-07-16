@@ -83,6 +83,10 @@ interface Props {
   setFilteredStructures: any;
   filteredStructures: SimplifiedStructure[] | null;
   resetSearch: () => void;
+  setFilteredStructuresByKeyword: any;
+  keyword: string;
+  setKeyword: any;
+  filteredStructuresByKeyword: SimplifiedStructure[] | null;
 }
 
 export const SearchBarAnnuaire = (props: Props) => {
@@ -91,7 +95,6 @@ export const SearchBarAnnuaire = (props: Props) => {
   const [ville, setVille] = useState("");
   const [depName, setDepName] = useState("");
   const [depNumber, setDepNumber] = useState(null);
-  const [keyword, setKeyword] = useState("");
   const [isCityFocus, setIsCityFocus] = useState(false);
   const [isCitySelected, setIsCitySelected] = useState(false);
 
@@ -99,10 +102,14 @@ export const SearchBarAnnuaire = (props: Props) => {
 
   const filterStructureByType = () => {
     let newArray: any[] = [];
+    let arrayTofilter =
+      props.keyword === ""
+        ? props.filteredStructures
+        : props.filteredStructuresByKeyword;
     if (typeSelected.length > 0) {
-      if (props.filteredStructures) {
+      if (arrayTofilter) {
         typeSelected.forEach((type) => {
-          props.filteredStructures?.forEach((structure) => {
+          arrayTofilter?.forEach((structure) => {
             if (
               structure.structureTypes?.includes(type) &&
               !newArray.includes(structure)
@@ -112,14 +119,37 @@ export const SearchBarAnnuaire = (props: Props) => {
           });
         });
       }
-      props.setFilteredStructures(newArray);
+      if (props.keyword === "") {
+        props.setFilteredStructures(newArray);
+      } else {
+        props.setFilteredStructuresByKeyword(newArray);
+      }
+    }
+  };
+  const filterStructureByKeyword = () => {
+    let newArray: any[] = [];
+    if (props.keyword.length > 0) {
+      if (props.filteredStructures) {
+        props.filteredStructures?.forEach((structure) => {
+          if (
+            structure.nom.toLowerCase().includes(props.keyword) &&
+            !newArray.includes(structure)
+          ) {
+            newArray.push(structure);
+          }
+        });
+      }
+      props.setFilteredStructuresByKeyword(newArray);
     }
   };
   const filterStructureByLocation = () => {
     let newArray: any[] = [];
-
-    if (props.filteredStructures) {
-      props.filteredStructures?.forEach((structure) => {
+    let arrayTofilter =
+      props.keyword === ""
+        ? props.filteredStructures
+        : props.filteredStructuresByKeyword;
+    if (arrayTofilter) {
+      arrayTofilter?.forEach((structure) => {
         if (structure.disposAssociesLocalisation?.includes("All")) {
           newArray.push(structure);
         } else {
@@ -139,14 +169,24 @@ export const SearchBarAnnuaire = (props: Props) => {
         }
       });
     }
-    props.setFilteredStructures(newArray);
+
+    if (props.keyword === "") {
+      props.setFilteredStructures(newArray);
+    } else {
+      props.setFilteredStructuresByKeyword(newArray);
+    }
   };
 
   useEffect(() => {
     if (typeSelected.length) {
       filterStructureByType();
     } else {
-      filterStructureByLocation();
+      if (isCitySelected) {
+        filterStructureByLocation();
+      }
+      if (props.keyword !== "") {
+        filterStructureByKeyword();
+      }
     }
   }, [typeSelected]);
 
@@ -154,9 +194,27 @@ export const SearchBarAnnuaire = (props: Props) => {
     if (isCitySelected) {
       filterStructureByLocation();
     } else {
-      filterStructureByType();
+      if (typeSelected.length) {
+        filterStructureByType();
+      }
+      if (props.keyword !== "") {
+        filterStructureByKeyword();
+      }
     }
   }, [isCitySelected]);
+
+  useEffect(() => {
+    if (props.keyword !== "") {
+      filterStructureByKeyword();
+    } else {
+      if (isCitySelected) {
+        filterStructureByLocation();
+      }
+      if (typeSelected.length) {
+        filterStructureByType();
+      }
+    }
+  }, [props.keyword]);
 
   const selectType = (item: string) => {
     if (!typeSelected.includes(item)) {
@@ -167,7 +225,7 @@ export const SearchBarAnnuaire = (props: Props) => {
     toggle();
   };
 
-  const onChangeKeywords = (e: any) => setKeyword(e.target.value);
+  const onChangeKeywords = (e: any) => props.setKeyword(e.target.value);
 
   const handleChange = (e: any) => setVille(e.target.value);
 
@@ -199,7 +257,6 @@ export const SearchBarAnnuaire = (props: Props) => {
       );
     }
     setIsCityFocus(false);
-    setKeyword("");
   };
 
   const resetCity = () => {
@@ -225,7 +282,7 @@ export const SearchBarAnnuaire = (props: Props) => {
             "Annuaire.Rechercher par",
             "Rechercher par nom ..."
           )}
-          value={keyword}
+          value={props.keyword}
         />
         {}
 
@@ -398,7 +455,11 @@ export const SearchBarAnnuaire = (props: Props) => {
         {props.t("Annuaire.Thèmes & activités", "Thèmes & activités")}
       </WhiteButtonContainer> */}
       <ResultNumberContainer>
-        {props.filteredStructures ? props.filteredStructures.length : 0}{" "}
+        {props.keyword !== "" && props.filteredStructuresByKeyword
+          ? props.filteredStructuresByKeyword.length
+          : props.filteredStructures
+          ? props.filteredStructures.length
+          : 0}{" "}
         {props.t("AdvancedSearch.résultats", "résultats")}
       </ResultNumberContainer>
     </MainContainer>

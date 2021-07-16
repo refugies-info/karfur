@@ -63,8 +63,13 @@ interface Props {
   setLetterSelected: any;
   setFilteredStructures: any;
   filteredStructures: SimplifiedStructure[] | null;
+  filteredStructuresByKeyword: SimplifiedStructure[] | null;
+  setFilteredStructuresByKeyword: any;
+
   t: any;
   resetSearch: () => void;
+  keyword: string;
+  setKeyword: any;
 }
 
 export const Header = (props: Props) => {
@@ -88,9 +93,13 @@ export const Header = (props: Props) => {
         </TextContainer>
         <SearchBarAnnuaire
           filteredStructures={props.filteredStructures}
+          setFilteredStructuresByKeyword={props.setFilteredStructuresByKeyword}
           setFilteredStructures={props.setFilteredStructures}
+          filteredStructuresByKeyword={props.filteredStructuresByKeyword}
           t={props.t}
           resetSearch={props.resetSearch}
+          keyword={props.keyword}
+          setKeyword={props.setKeyword}
         />
       </SearchContainer>
 

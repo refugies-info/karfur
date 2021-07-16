@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import { Props } from "./AnnuaireLecture.container";
 import styled from "styled-components";
@@ -82,6 +83,9 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const [filteredStructures, setFilteredStructures] = useState<
     SimplifiedStructure[]
   >([]);
+  const [filteredStructuresByKeyword, setFilteredStructuresByKeyword] =
+    useState<any[]>([]);
+  const [keyword, setKeyword] = useState("");
 
   const structures = useSelector(activeStructuresSelector);
   const isLoading = useSelector(
@@ -140,7 +144,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
   useEffect(() => {
     resetSearch();
   }, [structures]);
-
+  console.log("filteredStructuresByKeyword", filteredStructuresByKeyword);
+  console.log("filteredStru", filteredStructures);
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
   const onStructureCardClick = (id: ObjectId) =>
     props.history.push(`/annuaire/${id}`);
@@ -158,7 +163,11 @@ export const AnnuaireLectureComponent = (props: Props) => {
           setLetterSelected={setLetterSelected}
           setFilteredStructures={setFilteredStructures}
           filteredStructures={filteredStructures}
+          filteredStructuresByKeyword={filteredStructuresByKeyword}
+          setFilteredStructuresByKeyword={setFilteredStructuresByKeyword}
           resetSearch={resetSearch}
+          keyword={keyword}
+          setKeyword={setKeyword}
         />
         <LoadingContainer>
           <div
@@ -184,14 +193,25 @@ export const AnnuaireLectureComponent = (props: Props) => {
         letterSelected={letterSelected}
         setLetterSelected={setLetterSelected}
         setFilteredStructures={setFilteredStructures}
+        setFilteredStructuresByKeyword={setFilteredStructuresByKeyword}
         filteredStructures={filteredStructures}
+        filteredStructuresByKeyword={filteredStructuresByKeyword}
+        keyword={keyword}
+        setKeyword={setKeyword}
       />
       <Content
         currentScroll={currentScroll}
         stopScroll={stopScroll}
         hasMarginBottom={true}
       >
-        {filteredStructures.length > 0 ? (
+        {keyword !== "" ? (
+          <LetterSection
+            onStructureCardClick={onStructureCardClick}
+            // @ts-ignore
+            structures={filteredStructuresByKeyword}
+            setLetterSelected={setLetterSelected}
+          />
+        ) : filteredStructures.length > 0 ? (
           <LetterSection
             onStructureCardClick={onStructureCardClick}
             // @ts-ignore
