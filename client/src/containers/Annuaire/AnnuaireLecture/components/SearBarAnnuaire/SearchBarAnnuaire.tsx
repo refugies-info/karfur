@@ -60,6 +60,19 @@ const WhiteButtonContainer = styled.div`
   align-items: center;
   margin-right: 12px;
 `;
+const DarkButtonContainer = styled.div`
+  display: flex;
+  height: 50px;
+  background: ${colors.noir};
+  padding: 12px;
+  border: 0.5px solid #ffffff;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  align-items: center;
+  margin-right: 12px;
+  color: ${colors.blanc};
+`;
 const ResultNumberContainer = styled.div`
   font-size: 16px;
   font-weight: 700;
@@ -82,6 +95,7 @@ export const SearchBarAnnuaire = (props: Props) => {
   const [depNumber, setDepNumber] = useState(null);
   const [keyword, setKeyword] = useState("");
   const [isCityFocus, setIsCityFocus] = useState(false);
+  const [isCitySelected, setIsCitySelected] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
 
@@ -154,6 +168,7 @@ export const SearchBarAnnuaire = (props: Props) => {
   const onPlaceSelected = (place: any) => {
     if (place.formatted_address) {
       setVille(place.formatted_address);
+      setIsCitySelected(true);
     }
     if (
       place.address_components.find((item: any) =>
@@ -177,7 +192,6 @@ export const SearchBarAnnuaire = (props: Props) => {
         ).long_name
       );
     }
-
     setIsCityFocus(false);
     setKeyword("");
   };
@@ -210,24 +224,59 @@ export const SearchBarAnnuaire = (props: Props) => {
           size={"large"}
         />
       </WhiteButtonContainer>
-
-      <WhiteButtonContainer>
-        <EVAIcon
-          name="pin-outline"
-          fill={colors.noir}
-          className="mr-10"
-          id="bookmarkBtn"
-          size={"large"}
-        />
-        {ville === "" && !isCityFocus ? (
+      {ville === "" && !isCityFocus ? (
+        <WhiteButtonContainer>
+          <EVAIcon
+            name="pin-outline"
+            fill={colors.noir}
+            className="mr-10"
+            id="bookmarkBtn"
+            size={"large"}
+          />
           <div
             onClick={() => {
               setIsCityFocus(true);
             }}
           >
             {props.t("Annuaire.Ville ou département", "Ville ou département")}
-          </div>
-        ) : (
+          </div>{" "}
+        </WhiteButtonContainer>
+      ) : isCitySelected ? (
+        <DarkButtonContainer>
+          <EVAIcon
+            name="pin-outline"
+            fill={colors.blancSimple}
+            className="mr-10"
+            id="bookmarkBtn"
+            size={"large"}
+          />
+          <div
+            onClick={() => {
+              setIsCitySelected(false);
+            }}
+          >
+            {ville}
+          </div>{" "}
+          <EVAIcon
+            name="close-outline"
+            fill={colors.blancSimple}
+            className="ml-10"
+            size={"large"}
+            onClick={() => {
+              setIsCitySelected(false);
+              setVille("");
+            }}
+          />
+        </DarkButtonContainer>
+      ) : (
+        <WhiteButtonContainer>
+          <EVAIcon
+            name="pin-outline"
+            fill={colors.noir}
+            className="mr-10"
+            id="bookmarkBtn"
+            size={"large"}
+          />
           <ReactDependentScript
             loadingComponent={<div>Chargement de Google Maps...</div>}
             scripts={[
@@ -263,8 +312,8 @@ export const SearchBarAnnuaire = (props: Props) => {
               />
             </div>
           </ReactDependentScript>
-        )}
-      </WhiteButtonContainer>
+        </WhiteButtonContainer>
+      )}{" "}
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle
           caret={false}
@@ -332,7 +381,6 @@ export const SearchBarAnnuaire = (props: Props) => {
           </DropDownItemContainer>
         </DropdownMenu>
       </Dropdown>
-
       {/* <WhiteButtonContainer>
         {" "}
         {props.t("Annuaire.Thèmes & activités", "Thèmes & activités")}
