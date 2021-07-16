@@ -11,8 +11,6 @@ import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import { StructureTypes } from "../../../AnnuaireCreate/data";
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 import { SimplifiedStructure } from "types/interface";
-// import { NavHashLink } from "react-router-hash-link";
-// import i18n from "../../../../i18n";
 
 const MainContainer = styled.div`
   display: flex;
@@ -99,7 +97,7 @@ export const SearchBarAnnuaire = (props: Props) => {
 
   const toggle = () => setOpen(!dropdownOpen);
 
-  const filterStructureByStructure = () => {
+  const filterStructureByType = () => {
     let newArray: any[] = [];
     if (typeSelected.length > 0) {
       if (props.filteredStructures) {
@@ -145,12 +143,20 @@ export const SearchBarAnnuaire = (props: Props) => {
   };
 
   useEffect(() => {
-    filterStructureByStructure();
+    if (typeSelected.length) {
+      filterStructureByType();
+    } else {
+      filterStructureByLocation();
+    }
   }, [typeSelected]);
 
   useEffect(() => {
-    filterStructureByLocation();
-  }, [depName, depNumber]);
+    if (isCitySelected) {
+      filterStructureByLocation();
+    } else {
+      filterStructureByType();
+    }
+  }, [isCitySelected]);
 
   const selectType = (item: string) => {
     if (!typeSelected.includes(item)) {
@@ -194,6 +200,13 @@ export const SearchBarAnnuaire = (props: Props) => {
     }
     setIsCityFocus(false);
     setKeyword("");
+  };
+
+  const resetCity = () => {
+    setIsCitySelected(false);
+    setVille("");
+    setDepNumber(null);
+    props.resetSearch();
   };
 
   const removeType = (item: string) => {
@@ -263,8 +276,7 @@ export const SearchBarAnnuaire = (props: Props) => {
             className="ml-10"
             size={"large"}
             onClick={() => {
-              setIsCitySelected(false);
-              setVille("");
+              resetCity();
             }}
           />
         </DarkButtonContainer>
