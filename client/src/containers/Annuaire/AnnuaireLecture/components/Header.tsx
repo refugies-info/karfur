@@ -65,6 +65,18 @@ interface Props {
   filteredStructures: SimplifiedStructure[] | null;
   filteredStructuresByKeyword: SimplifiedStructure[] | null;
   setFilteredStructuresByKeyword: any;
+  typeSelected: string[] | null;
+  setTypeSelected: any;
+  ville: string;
+  setVille: any;
+  depName: string;
+  setDepName: any;
+  depNumber: any;
+  setDepNumber: any;
+  isCityFocus: boolean;
+  setIsCityFocus: any;
+  isCitySelected: boolean;
+  setIsCitySelected: any;
 
   t: any;
   resetSearch: () => void;
@@ -100,6 +112,18 @@ export const Header = (props: Props) => {
           resetSearch={props.resetSearch}
           keyword={props.keyword}
           setKeyword={props.setKeyword}
+          typeSelected={props.typeSelected}
+          setTypeSelected={props.setTypeSelected}
+          ville={props.ville}
+          setVille={props.setVille}
+          depName={props.depName}
+          setDepName={props.setDepName}
+          depNumber={props.depNumber}
+          setDepNumber={props.setDepNumber}
+          isCityFocus={props.isCityFocus}
+          setIsCityFocus={props.setIsCityFocus}
+          isCitySelected={props.isCitySelected}
+          setIsCitySelected={props.setIsCitySelected}
         />
       </SearchContainer>
 

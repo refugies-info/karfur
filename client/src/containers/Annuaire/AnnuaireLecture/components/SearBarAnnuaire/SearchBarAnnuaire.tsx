@@ -90,22 +90,34 @@ interface Props {
   keyword: string;
   setKeyword: any;
   filteredStructuresByKeyword: SimplifiedStructure[] | null;
+  typeSelected: string[] | null;
+  setTypeSelected: any;
+  ville: string;
+  setVille: any;
+  depName: string;
+  setDepName: any;
+  depNumber: string;
+  setDepNumber: any;
+  isCityFocus: boolean;
+  setIsCityFocus: any;
+  isCitySelected: boolean;
+  setIsCitySelected: any;
 }
 
 export const SearchBarAnnuaire = (props: Props) => {
   const [dropdownOpen, setOpen] = useState(false);
-  const [typeSelected, setTypeSelected] = useState<string[]>([]);
-  const [ville, setVille] = useState("");
-  const [depName, setDepName] = useState("");
-  const [depNumber, setDepNumber] = useState(null);
-  const [isCityFocus, setIsCityFocus] = useState(false);
-  const [isCitySelected, setIsCitySelected] = useState(false);
+  // const [typeSelected, setTypeSelected] = useState<string[]>([]);
+  // const [ville, setVille] = useState("");
+  // const [depName, setDepName] = useState("");
+  // const [depNumber, setDepNumber] = useState(null);
+  // const [isCityFocus, setIsCityFocus] = useState(false);
+  // const [isCitySelected, setIsCitySelected] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
 
   const computeUrl = (query: {
     depName?: string | undefined;
-    depNumber?: number | null;
+    depNumber?: string | null;
     keyword?: string;
   }) => {
     history.push({
@@ -119,9 +131,9 @@ export const SearchBarAnnuaire = (props: Props) => {
       props.keyword === ""
         ? props.filteredStructures
         : props.filteredStructuresByKeyword;
-    if (typeSelected.length > 0) {
+    if (props.typeSelected && props.typeSelected.length > 0) {
       if (arrayTofilter) {
-        typeSelected.forEach((type) => {
+        props.typeSelected.forEach((type) => {
           arrayTofilter?.forEach((structure) => {
             if (
               structure.structureTypes?.includes(type) &&
@@ -170,10 +182,10 @@ export const SearchBarAnnuaire = (props: Props) => {
         ) {
           newArray.push(structure);
         } else {
-          if (depNumber) {
+          if (props.depNumber) {
             structure.disposAssociesLocalisation?.forEach((el) => {
               if (
-                el.substr(0, 2) === depNumber &&
+                el.substr(0, 2) === props.depNumber &&
                 !newArray.includes(structure)
               ) {
                 newArray.push(structure);
@@ -181,20 +193,20 @@ export const SearchBarAnnuaire = (props: Props) => {
             });
             structure.departments?.forEach((el) => {
               if (
-                el.substr(0, 2) === depNumber &&
+                el.substr(0, 2) === props.depNumber &&
                 !newArray.includes(structure)
               ) {
                 newArray.push(structure);
               }
             });
-          } else if (depName) {
+          } else if (props.depName) {
             structure.disposAssociesLocalisation?.forEach((el) => {
-              if (el.includes(depName) && !newArray.includes(structure)) {
+              if (el.includes(props.depName) && !newArray.includes(structure)) {
                 newArray.push(structure);
               }
             });
             structure.departments?.forEach((el) => {
-              if (el.includes(depName) && !newArray.includes(structure)) {
+              if (el.includes(props.depName) && !newArray.includes(structure)) {
                 newArray.push(structure);
               }
             });
@@ -211,73 +223,73 @@ export const SearchBarAnnuaire = (props: Props) => {
   };
 
   useEffect(() => {
-    if (typeSelected.length) {
+    if (props.typeSelected && props.typeSelected.length) {
       filterStructureByType();
     } else {
-      if (isCitySelected) {
+      if (props.isCitySelected) {
         filterStructureByLocation();
       }
       if (props.keyword !== "") {
         filterStructureByKeyword();
       }
     }
-  }, [typeSelected]);
+  }, [props.typeSelected]);
 
   useEffect(() => {
     let query: {
       depName?: string | undefined;
-      depNumber?: number | null;
+      depNumber?: string;
       keyword?: string;
       type?: any;
     } = {};
 
-    if (depName !== "") {
-      query.depName = depName;
+    if (props.depName !== "") {
+      query.depName = props.depName;
     }
-    if (depNumber) {
-      query.depNumber = depNumber;
+    if (props.depNumber) {
+      query.depNumber = props.depNumber;
     }
     if (props.keyword !== "") {
       query.keyword = props.keyword;
     }
-    if (typeSelected.length) {
-      query.type = typeSelected;
+    if (props.typeSelected && props.typeSelected.length) {
+      query.type = props.typeSelected;
     }
     computeUrl(query);
-  }, [typeSelected, depName, depNumber, props.keyword]);
+  }, [props.typeSelected, props.depName, props.depNumber, props.keyword]);
 
   useEffect(() => {}, []);
 
   useEffect(() => {
-    if (isCitySelected) {
+    if (props.isCitySelected) {
       filterStructureByLocation();
     } else {
-      if (typeSelected.length) {
+      if (props.typeSelected && props.typeSelected.length) {
         filterStructureByType();
       }
       if (props.keyword !== "") {
         filterStructureByKeyword();
       }
     }
-  }, [isCitySelected]);
+  }, [props.isCitySelected]);
 
   useEffect(() => {
     if (props.keyword !== "") {
       filterStructureByKeyword();
     } else {
-      if (isCitySelected) {
+      if (props.isCitySelected) {
         filterStructureByLocation();
       }
-      if (typeSelected.length) {
+      if (props.typeSelected && props.typeSelected.length) {
         filterStructureByType();
       }
     }
   }, [props.keyword]);
 
   const selectType = (item: string) => {
-    if (!typeSelected.includes(item)) {
-      let newTypesSelected = typeSelected.concat([item]);
-      setTypeSelected(newTypesSelected);
+    if (props.typeSelected && !props.typeSelected.includes(item)) {
+      let newTypesSelected = props.typeSelected.concat([item]);
+      props.setTypeSelected(newTypesSelected);
     }
 
     toggle();
@@ -285,7 +297,7 @@ export const SearchBarAnnuaire = (props: Props) => {
 
   const onChangeKeywords = (e: any) => props.setKeyword(e.target.value);
 
-  const handleChange = (e: any) => setVille(e.target.value);
+  const handleChange = (e: any) => props.setVille(e.target.value);
 
   const onPlaceSelected = (place: any) => {
     if (
@@ -293,7 +305,7 @@ export const SearchBarAnnuaire = (props: Props) => {
         item.types.includes("postal_code")
       )
     ) {
-      setDepNumber(
+      props.setDepNumber(
         place.address_components
           .find((item: any) => item.types.includes("postal_code"))
           .long_name.substr(0, 2)
@@ -309,33 +321,35 @@ export const SearchBarAnnuaire = (props: Props) => {
           item.types.includes("administrative_area_level_2")
         ).long_name === "Département de Paris"
       ) {
-        setDepName("Paris");
+        props.setDepName("Paris");
       } else {
-        setDepName(
+        props.setDepName(
           place.address_components.find((item: any) =>
             item.types.includes("administrative_area_level_2")
           ).long_name
         );
       }
     }
-    setIsCityFocus(false);
+    props.setIsCityFocus(false);
     if (place.formatted_address) {
-      setVille(place.formatted_address);
-      setIsCitySelected(true);
+      props.setVille(place.formatted_address);
+      props.setIsCitySelected(true);
     }
   };
 
   const resetCity = () => {
-    setIsCitySelected(false);
-    setVille("");
-    setDepNumber(null);
-    setDepName("");
+    props.setIsCitySelected(false);
+    props.setVille("");
+    props.setDepNumber(null);
+    props.setDepName("");
     props.resetSearch();
   };
 
   const removeType = (item: string) => {
-    let array = typeSelected.filter((el) => el !== item);
-    setTypeSelected(array);
+    let array = props.typeSelected
+      ? props.typeSelected.filter((el) => el !== item)
+      : null;
+    props.setTypeSelected(array);
     toggle();
   };
 
@@ -362,7 +376,7 @@ export const SearchBarAnnuaire = (props: Props) => {
           size={"large"}
         />
       </WhiteButtonContainer>
-      {ville === "" && !isCityFocus ? (
+      {props.ville === "" && !props.isCityFocus ? (
         <WhiteButtonContainer>
           <EVAIcon
             name="pin-outline"
@@ -373,13 +387,13 @@ export const SearchBarAnnuaire = (props: Props) => {
           />
           <div
             onClick={() => {
-              setIsCityFocus(true);
+              props.setIsCityFocus(true);
             }}
           >
             {props.t("Annuaire.Ville ou département", "Ville ou département")}
           </div>{" "}
         </WhiteButtonContainer>
-      ) : isCitySelected ? (
+      ) : props.isCitySelected ? (
         <DarkButtonContainer>
           <EVAIcon
             name="pin-outline"
@@ -390,10 +404,10 @@ export const SearchBarAnnuaire = (props: Props) => {
           />
           <div
             onClick={() => {
-              setIsCitySelected(false);
+              props.setIsCitySelected(false);
             }}
           >
-            {ville}
+            {props.ville}
           </div>{" "}
           <EVAIcon
             name="close-outline"
@@ -430,11 +444,11 @@ export const SearchBarAnnuaire = (props: Props) => {
                   }}
                   className="autocomplete"
                   onBlur={() => {
-                    setIsCityFocus(false);
+                    props.setIsCityFocus(false);
                   }}
                   placeholder={""}
                   id="villeAuto"
-                  value={ville}
+                  value={props.ville}
                   onChange={handleChange}
                   onPlaceSelected={onPlaceSelected}
                   types={["(cities)"]}
@@ -455,23 +469,23 @@ export const SearchBarAnnuaire = (props: Props) => {
         <DropdownToggle
           caret={false}
           className={
-            typeSelected.length === 0
+            props.typeSelected && props.typeSelected.length === 0
               ? "typeButton whiteButton"
               : "typeButton typeSelected"
           }
         >
-          {typeSelected.length === 1
-            ? typeSelected[0]
-            : typeSelected.length > 1
-            ? typeSelected.length + " types"
+          {props.typeSelected && props.typeSelected.length === 1
+            ? props.typeSelected[0]
+            : props.typeSelected && props.typeSelected.length > 1
+            ? props.typeSelected.length + " types"
             : props.t("Annuaire.Type de structure", "Type de structure")}
-          {typeSelected.length > 0 && (
+          {props.typeSelected && props.typeSelected.length > 0 && (
             <EVAIcon
               name="close-circle"
               fill={colors.blancSimple}
               onClick={(e: any) => {
                 e.stopPropagation();
-                setTypeSelected([]);
+                props.setTypeSelected([]);
                 props.resetSearch();
               }}
               id="bookmarkBtn"
@@ -490,7 +504,7 @@ export const SearchBarAnnuaire = (props: Props) => {
                   }}
                   type="white"
                   style={
-                    typeSelected.includes(item)
+                    props.typeSelected && props.typeSelected.includes(item)
                       ? { border: "2px black solid" }
                       : {}
                   }
@@ -499,7 +513,7 @@ export const SearchBarAnnuaire = (props: Props) => {
                 >
                   {item}
 
-                  {typeSelected.includes(item) && (
+                  {props.typeSelected && props.typeSelected.includes(item) && (
                     <EVAIcon
                       name="close-circle"
                       fill={colors.blancSimple}

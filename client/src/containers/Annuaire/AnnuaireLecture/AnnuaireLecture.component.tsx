@@ -85,12 +85,26 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const [filteredStructuresByKeyword, setFilteredStructuresByKeyword] =
     useState<any[]>([]);
   const [keyword, setKeyword] = useState("");
+  const [typeSelected, setTypeSelected] = useState<string[]>([]);
+  const [ville, setVille] = useState("");
+  const [depName, setDepName] = useState("");
+  const [depNumber, setDepNumber] = useState(null);
+  const [isCityFocus, setIsCityFocus] = useState(false);
+  const [isCitySelected, setIsCitySelected] = useState(false);
 
   const structures = useSelector(activeStructuresSelector);
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES)
   );
-
+  const resetAllFilter = () => {
+    setIsCitySelected(false);
+    setIsCityFocus(false);
+    setDepNumber(null);
+    setDepName("");
+    setVille("");
+    setTypeSelected([]);
+    setKeyword("");
+  };
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
     setCurrentScroll(currentScrollPos);
@@ -138,6 +152,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
       : [];
 
     setFilteredStructures(sortedStructureByAlpha);
+    resetAllFilter();
   };
 
   useEffect(() => {
@@ -165,6 +180,18 @@ export const AnnuaireLectureComponent = (props: Props) => {
           resetSearch={resetSearch}
           keyword={keyword}
           setKeyword={setKeyword}
+          typeSelected={typeSelected}
+          setTypeSelected={setTypeSelected}
+          ville={ville}
+          setVille={setVille}
+          depName={depName}
+          setDepName={setDepName}
+          depNumber={depNumber}
+          setDepNumber={setDepNumber}
+          isCityFocus={isCityFocus}
+          setIsCityFocus={setIsCityFocus}
+          isCitySelected={isCitySelected}
+          setIsCitySelected={setIsCitySelected}
         />
         <LoadingContainer>
           <div
@@ -195,6 +222,18 @@ export const AnnuaireLectureComponent = (props: Props) => {
         filteredStructuresByKeyword={filteredStructuresByKeyword}
         keyword={keyword}
         setKeyword={setKeyword}
+        typeSelected={typeSelected}
+        setTypeSelected={setTypeSelected}
+        ville={ville}
+        setVille={setVille}
+        depName={depName}
+        setDepName={setDepName}
+        depNumber={depNumber}
+        setDepNumber={setDepNumber}
+        isCityFocus={isCityFocus}
+        setIsCityFocus={setIsCityFocus}
+        isCitySelected={isCitySelected}
+        setIsCitySelected={setIsCitySelected}
       />
       <Content
         currentScroll={currentScroll}
