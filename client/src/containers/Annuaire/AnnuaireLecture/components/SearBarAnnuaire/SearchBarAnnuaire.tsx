@@ -209,6 +209,7 @@ export const SearchBarAnnuaire = (props: Props) => {
       depName?: string | undefined;
       depNumber?: number | null;
       keyword?: string;
+      type?: any;
     } = {};
 
     if (depName !== "") {
@@ -219,6 +220,9 @@ export const SearchBarAnnuaire = (props: Props) => {
     }
     if (props.keyword !== "") {
       query.keyword = props.keyword;
+    }
+    if (typeSelected.length) {
+      query.type = typeSelected;
     }
     computeUrl(query);
   }, [typeSelected, depName, depNumber, props.keyword]);
