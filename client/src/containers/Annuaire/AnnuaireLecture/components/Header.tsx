@@ -11,15 +11,16 @@ import { SimplifiedStructure } from "types/interface";
 const HeaderContainer = styled.div`
   background-image: url(${img});
   background-repeat: no-repeat;
+  background-position: 20px ${(props) => -props.currentScroll + "px"};
   height: 290px;
   width: 100%;
   margin-left: 30px;
   margin-top: ${(props) =>
     props.stopScroll
       ? "-140px"
-      : -props.currentScroll < -60
+      : -props.currentScroll < -120
       ? "-60px"
-      : -props.currentScroll + "px"};
+      : -props.currentScroll / 2 + "px"};
   position: ${(props) => (props.stopScroll ? "fixed" : "relative")};
   z-index: 1;
 `;

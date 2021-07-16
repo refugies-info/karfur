@@ -108,10 +108,10 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
     setCurrentScroll(currentScrollPos);
-    if (currentScrollPos >= 60) {
+    if (currentScrollPos >= 85) {
       return setStopScroll(true);
     }
-    if (currentScrollPos <= 60) return setStopScroll(false);
+    if (currentScrollPos <= 85) return setStopScroll(false);
   };
 
   const dispatch = useDispatch();
