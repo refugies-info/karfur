@@ -164,18 +164,37 @@ export const SearchBarAnnuaire = (props: Props) => {
         : props.filteredStructuresByKeyword;
     if (arrayTofilter) {
       arrayTofilter?.forEach((structure) => {
-        if (structure.disposAssociesLocalisation?.includes("All")) {
+        if (
+          structure.disposAssociesLocalisation?.includes("All") ||
+          structure.departments?.includes("All")
+        ) {
           newArray.push(structure);
         } else {
           if (depNumber) {
             structure.disposAssociesLocalisation?.forEach((el) => {
-              if (el.substr(0, 2) === depNumber) {
+              if (
+                el.substr(0, 2) === depNumber &&
+                !newArray.includes(structure)
+              ) {
+                newArray.push(structure);
+              }
+            });
+            structure.departments?.forEach((el) => {
+              if (
+                el.substr(0, 2) === depNumber &&
+                !newArray.includes(structure)
+              ) {
                 newArray.push(structure);
               }
             });
           } else if (depName) {
             structure.disposAssociesLocalisation?.forEach((el) => {
-              if (el.includes(depName)) {
+              if (el.includes(depName) && !newArray.includes(structure)) {
+                newArray.push(structure);
+              }
+            });
+            structure.departments?.forEach((el) => {
+              if (el.includes(depName) && !newArray.includes(structure)) {
                 newArray.push(structure);
               }
             });
@@ -269,10 +288,6 @@ export const SearchBarAnnuaire = (props: Props) => {
   const handleChange = (e: any) => setVille(e.target.value);
 
   const onPlaceSelected = (place: any) => {
-    if (place.formatted_address) {
-      setVille(place.formatted_address);
-      setIsCitySelected(true);
-    }
     if (
       place.address_components.find((item: any) =>
         item.types.includes("postal_code")
@@ -289,13 +304,25 @@ export const SearchBarAnnuaire = (props: Props) => {
         item.types.includes("administrative_area_level_2")
       )
     ) {
-      setDepName(
+      if (
         place.address_components.find((item: any) =>
           item.types.includes("administrative_area_level_2")
-        ).long_name
-      );
+        ).long_name === "Département de Paris"
+      ) {
+        setDepName("Paris");
+      } else {
+        setDepName(
+          place.address_components.find((item: any) =>
+            item.types.includes("administrative_area_level_2")
+          ).long_name
+        );
+      }
     }
     setIsCityFocus(false);
+    if (place.formatted_address) {
+      setVille(place.formatted_address);
+      setIsCitySelected(true);
+    }
   };
 
   const resetCity = () => {
@@ -311,6 +338,7 @@ export const SearchBarAnnuaire = (props: Props) => {
     setTypeSelected(array);
     toggle();
   };
+
   return (
     <MainContainer>
       <WhiteButtonContainer>
