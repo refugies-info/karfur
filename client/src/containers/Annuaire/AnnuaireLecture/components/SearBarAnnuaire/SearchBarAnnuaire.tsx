@@ -227,6 +227,8 @@ export const SearchBarAnnuaire = (props: Props) => {
     computeUrl(query);
   }, [typeSelected, depName, depNumber, props.keyword]);
 
+  useEffect(() => {}, []);
+
   useEffect(() => {
     if (isCitySelected) {
       filterStructureByLocation();
@@ -300,6 +302,7 @@ export const SearchBarAnnuaire = (props: Props) => {
     setIsCitySelected(false);
     setVille("");
     setDepNumber(null);
+    setDepName("");
     props.resetSearch();
   };
 

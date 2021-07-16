@@ -201,14 +201,14 @@ export const AnnuaireLectureComponent = (props: Props) => {
         stopScroll={stopScroll}
         hasMarginBottom={true}
       >
-        {keyword !== "" ? (
+        {keyword !== "" && filteredStructuresByKeyword.length ? (
           <LetterSection
             onStructureCardClick={onStructureCardClick}
             // @ts-ignore
             structures={filteredStructuresByKeyword}
             setLetterSelected={setLetterSelected}
           />
-        ) : filteredStructures.length > 0 ? (
+        ) : keyword === "" && filteredStructures.length > 0 ? (
           <LetterSection
             onStructureCardClick={onStructureCardClick}
             // @ts-ignore
