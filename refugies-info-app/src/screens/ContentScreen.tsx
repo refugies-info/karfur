@@ -22,7 +22,7 @@ import {
 } from "../services/redux/User/user.selectors";
 import { ContentFromHtml } from "../components/Content/ContentFromHtml";
 import { Accordion } from "../components/Content/Accordion";
-import { AvailableLanguageI18nCode } from "../types/interface";
+import { AvailableLanguageI18nCode, MapGoogle } from "../types/interface";
 import { HeaderImage } from "../components/Content/HeaderImage";
 import { HeaderWithBackForWrapper } from "../components/HeaderWithLogo";
 import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
@@ -36,6 +36,7 @@ import moment from "moment/min/moment-with-locales";
 import ErrorImage from "../theme/images/error.png";
 import { Icon } from "react-native-eva-icons";
 import { InfocardsSection } from "../components/Content/InfocardsSection";
+import { Map } from "../components/Content/Map";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -292,7 +293,8 @@ export const ContentScreen = ({
     );
   }
 
-  const map =
+  // @ts-ignore
+  const map: MapGoogle =
     selectedContent &&
     selectedContent.contenu[3] &&
     selectedContent.contenu[3].children &&
@@ -568,17 +570,21 @@ export const ContentScreen = ({
           )}
 
           {!!map && (
-            <MapHeaderContainer color={tagDarkColor}>
-              <MapHeaderText>
-                {t(
-                  "Content.Trouver un interlocuteur",
-                  "Trouver un interlocuteur"
-                )}
-              </MapHeaderText>
-              <PinContainer>
-                <Icon name="pin" width={20} height={20} fill={tagDarkColor} />
-              </PinContainer>
-            </MapHeaderContainer>
+            <>
+              <MapHeaderContainer color={tagDarkColor}>
+                <MapHeaderText>
+                  {t(
+                    "Content.Trouver un interlocuteur",
+                    "Trouver un interlocuteur"
+                  )}
+                </MapHeaderText>
+                <PinContainer>
+                  <Icon name="pin" width={20} height={20} fill={tagDarkColor} />
+                </PinContainer>
+              </MapHeaderContainer>
+
+              <Map map={map} markersColor={tagDarkColor} />
+            </>
           )}
         </View>
       </ScrollView>
