@@ -154,7 +154,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
   };
 
   useEffect(() => {
-    //resetSearch();
+    resetSearch();
   }, [structures]);
 
   const filterStructuresByType = (arrayTofilter: SimplifiedStructure[]) => {
