@@ -80,7 +80,6 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const [stopScroll, setStopScroll] = useState(false);
   const [currentScroll, setCurrentScroll] = useState(0);
   const [letterSelected, setLetterSelected] = useState("");
-  //@ts-ignore
   const [filteredStructures, setFilteredStructures] = useState<
     SimplifiedStructure[]
   >([]);
@@ -155,7 +154,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
   };
 
   useEffect(() => {
-    resetSearch();
+    //resetSearch();
   }, [structures]);
 
   const filterStructuresByType = (arrayTofilter: SimplifiedStructure[]) => {
