@@ -15,7 +15,6 @@ export const getActiveStructures = async (req: {}, res: Res) => {
         picture: 1,
         structureTypes: 1,
         departments: 1,
-        disposAssociesLocalisation: 1,
       },
       true
     );
