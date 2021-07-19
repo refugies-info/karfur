@@ -14,6 +14,7 @@ import {
   TextBigBold,
   TextSmallNormal,
   TextSmallBold,
+  TextNormalBold,
 } from "../components/StyledText";
 import {
   selectedI18nCodeSelector,
@@ -42,9 +43,6 @@ const getHeaderImageHeight = (nbLines: number) => {
   }
   return 280 + 40 * (nbLines - 2);
 };
-const ContentContainer = styled.View`
-  padding-horizontal: 24px;
-`;
 
 const TitlesContainer = styled(View)`
   position: absolute;
@@ -85,6 +83,7 @@ const HeaderText = styled(TextBigBold)`
   margin-bottom: ${theme.margin * 2}px;
   color: ${(props: { textColor: string }) => props.textColor};
   flex-shrink: 1;
+  margin-horizontal: ${theme.margin * 3}px;
 `;
 const SponsorImageContainer = styled.View`
   width: ${(props: { width: number }) => props.width}px;
@@ -132,6 +131,7 @@ const StructureNameText = styled(TextSmallNormal)`
 const LastUpdateDateContainer = styled(RTLView)`
   margin-top: ${theme.margin * 3}px;
   margin-bottom: ${theme.margin * 3}px;
+  margin-horizontal: ${theme.margin * 3}px;
 `;
 
 const LastUpdateDate = styled(TextSmallNormal)`
@@ -156,6 +156,28 @@ const RestartButton = styled(RTLTouchableOpacity)`
   background-color: ${theme.colors.black};
   padding: ${theme.margin * 2}px;
   border-radius: ${theme.radius * 2}px;
+`;
+
+const MapHeaderContainer = styled(RTLView)`
+  background-color: ${(props: { color: string }) => props.color};
+  padding-vertical: 30px;
+  padding-horizontal: ${theme.margin * 3}px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const MapHeaderText = styled(TextNormalBold)`
+  color: ${theme.colors.white};
+`;
+const PinContainer = styled.View`
+  width: 36px;
+  height: 36px;
+  background-color: ${theme.colors.white};
+  border-radius: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;
 const headersDispositif = [
   "C'est quoi ?",
@@ -269,6 +291,18 @@ export const ContentScreen = ({
       </WrapperWithHeaderAndLanguageModal>
     );
   }
+
+  const map =
+    selectedContent &&
+    selectedContent.contenu[3] &&
+    selectedContent.contenu[3].children &&
+    // @ts-ignore
+    selectedContent.contenu[3].children.filter((child) => child.type === "map")
+      .length > 0
+      ? selectedContent.contenu[3].children.filter(
+          (child) => child.type === "map"
+        )[0]
+      : null;
 
   if (!selectedContent || !currentLanguage) {
     return (
@@ -413,7 +447,7 @@ export const ContentScreen = ({
             </StructureNameContainer>
           )}
         </SponsorImageContainer>
-        <ContentContainer>
+        <View>
           {headers.map((header, index) => {
             if (
               index === 1 &&
@@ -435,10 +469,12 @@ export const ContentScreen = ({
                   <HeaderText key={header} textColor={tagDarkColor}>
                     {t("Content." + header, header)}
                   </HeaderText>
-                  <ContentFromHtml
-                    htmlContent={selectedContent.contenu[index].content}
-                    windowWidth={windowWidth}
-                  />
+                  <View style={{ marginHorizontal: theme.margin * 3 }}>
+                    <ContentFromHtml
+                      htmlContent={selectedContent.contenu[index].content}
+                      windowWidth={windowWidth}
+                    />
+                  </View>
                 </>
               );
             }
@@ -504,7 +540,12 @@ export const ContentScreen = ({
             );
           })}
           {!!selectedContent.externalLink && (
-            <View style={{ marginTop: 8 }}>
+            <View
+              style={{
+                marginTop: theme.margin,
+                marginHorizontal: theme.margin * 3,
+              }}
+            >
               <CustomButton
                 textColor={theme.colors.white}
                 i18nKey="Content.Voir le site"
@@ -525,7 +566,21 @@ export const ContentScreen = ({
               </LastUpdateDate>
             </LastUpdateDateContainer>
           )}
-        </ContentContainer>
+
+          {!!map && (
+            <MapHeaderContainer color={tagDarkColor}>
+              <MapHeaderText>
+                {t(
+                  "Content.Trouver un interlocuteur",
+                  "Trouver un interlocuteur"
+                )}
+              </MapHeaderText>
+              <PinContainer>
+                <Icon name="pin" width={20} height={20} fill={tagDarkColor} />
+              </PinContainer>
+            </MapHeaderContainer>
+          )}
+        </View>
       </ScrollView>
       <LanguageChoiceModal
         isModalVisible={isLanguageModalVisible}

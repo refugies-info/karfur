@@ -30,6 +30,7 @@ const MainContainer = styled.View`
   box-shadow: 0px 0px 40px rgba(33, 33, 33, 0.1);
   elevation: 1;
   margin-top: ${theme.margin}px;
+  margin-horizontal: ${theme.margin * 3}px;
 `;
 
 const TitleText = styled(TextNormalBold)`
