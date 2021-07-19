@@ -51,7 +51,6 @@ const LoadingCardContainer = styled.div`
   margin-left: 8px;
   margin-bottom: 16px;
   padding: 24px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -160,26 +159,23 @@ export const AnnuaireLectureComponent = (props: Props) => {
   }, [structures]);
 
   const filterStructuresByType = (arrayTofilter: SimplifiedStructure[]) => {
-    let newArrayType: SimplifiedStructure[] = [];
-
-    if (typeSelected && typeSelected.length > 0) {
-      if (arrayTofilter) {
-        typeSelected.forEach((type) => {
-          arrayTofilter?.forEach((structure) => {
-            if (
-              structure.structureTypes?.includes(type) &&
-              newArrayType &&
-              !newArrayType.includes(structure)
-            ) {
-              newArrayType.push(structure);
-            }
-          });
-        });
-      }
-    } else {
-      newArrayType = arrayTofilter;
+    if (!typeSelected || typeSelected.length === 0) {
+      return arrayTofilter;
     }
-    return newArrayType;
+    return arrayTofilter.filter((structure) => {
+      let hasType: boolean = false;
+
+      typeSelected.forEach((type) => {
+        if (
+          structure.structureTypes &&
+          structure.structureTypes.includes(type)
+        ) {
+          hasType = true;
+        }
+      });
+
+      return hasType;
+    });
   };
 
   const filterStructuresByKeword = (arrayTofilter: SimplifiedStructure[]) => {
@@ -188,7 +184,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
       if (arrayTofilter) {
         arrayTofilter.forEach((structure) => {
           if (
-            structure.nom.toLowerCase().includes(keyword) &&
+            structure.nom.toLowerCase().includes(keyword.toLowerCase()) &&
             newArrayKeyword &&
             !newArrayKeyword.includes(structure)
           ) {
@@ -206,16 +202,15 @@ export const AnnuaireLectureComponent = (props: Props) => {
     let newArrayLoc: SimplifiedStructure[] = [];
     if (isCitySelected) {
       if (arrayTofilter) {
-        arrayTofilter?.forEach((structure) => {
+        arrayTofilter.forEach((structure) => {
           if (
             structure.disposAssociesLocalisation?.includes("All") ||
             (structure.departments?.includes("All") && newArrayLoc)
           ) {
-            //@ts-ignore
             newArrayLoc.push(structure);
           } else {
-            if (depNumber) {
-              structure.disposAssociesLocalisation?.forEach((el) => {
+            if (depNumber && structure.disposAssociesLocalisation) {
+              structure.disposAssociesLocalisation.forEach((el) => {
                 if (
                   el.substr(0, 2) === depNumber &&
                   newArrayLoc &&
@@ -224,26 +219,19 @@ export const AnnuaireLectureComponent = (props: Props) => {
                   newArrayLoc.push(structure);
                 }
               });
-              structure.departments?.forEach((el) => {
-                if (
-                  el.substr(0, 2) === depNumber &&
-                  newArrayLoc &&
-                  !newArrayLoc.includes(structure)
-                ) {
-                  newArrayLoc.push(structure);
-                }
-              });
-            } else if (depName) {
-              structure.disposAssociesLocalisation?.forEach((el) => {
-                if (
-                  el.includes(depName) &&
-                  newArrayLoc &&
-                  !newArrayLoc.includes(structure)
-                ) {
-                  newArrayLoc.push(structure);
-                }
-              });
-              structure.departments?.forEach((el) => {
+              if (structure.departments) {
+                structure.departments.forEach((el) => {
+                  if (
+                    el.substr(0, 2) === depNumber &&
+                    newArrayLoc &&
+                    !newArrayLoc.includes(structure)
+                  ) {
+                    newArrayLoc.push(structure);
+                  }
+                });
+              }
+            } else if (depName && structure.disposAssociesLocalisation) {
+              structure.disposAssociesLocalisation.forEach((el) => {
                 if (
                   el.includes(depName) &&
                   newArrayLoc &&
@@ -252,6 +240,17 @@ export const AnnuaireLectureComponent = (props: Props) => {
                   newArrayLoc.push(structure);
                 }
               });
+              if (structure.departments) {
+                structure.departments.forEach((el) => {
+                  if (
+                    el.includes(depName) &&
+                    newArrayLoc &&
+                    !newArrayLoc.includes(structure)
+                  ) {
+                    newArrayLoc.push(structure);
+                  }
+                });
+              }
             }
           }
         });
@@ -382,7 +381,6 @@ export const AnnuaireLectureComponent = (props: Props) => {
         {filteredStructures.length > 0 ? (
           <LetterSection
             onStructureCardClick={onStructureCardClick}
-            // @ts-ignore
             structures={filteredStructures}
             setLetterSelected={setLetterSelected}
           />

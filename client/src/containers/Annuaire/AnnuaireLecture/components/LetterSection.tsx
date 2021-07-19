@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { Structure, Picture } from "../../../../types/interface";
+import { Picture, SimplifiedStructure } from "../../../../types/interface";
 import "./LetterSection.scss";
 import LinesEllipsis from "react-lines-ellipsis";
 import { ObjectId } from "mongodb";
 import placeholder from "../../../../assets/annuaire/placeholder_logo_annuaire.svg";
 
 interface Props {
-  structures: Structure[];
+  structures: SimplifiedStructure[];
   onStructureCardClick: (id: ObjectId) => void;
   setLetterSelected: any;
 }
