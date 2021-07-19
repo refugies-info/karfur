@@ -61,7 +61,6 @@ interface Props {
   currentScroll: number;
   letterSelected: string;
   setLetterSelected: (a: string) => void;
-  setFilteredStructures: (a: SimplifiedStructure[]) => void;
   filteredStructures: SimplifiedStructure[] | null;
   typeSelected: string[] | null;
   setTypeSelected: (a: string[]) => void;
@@ -75,7 +74,6 @@ interface Props {
   setIsCityFocus: (a: boolean) => void;
   isCitySelected: boolean;
   setIsCitySelected: (a: boolean) => void;
-  structures: SimplifiedStructure[];
   t: any;
   resetSearch: () => void;
   keyword: string;
@@ -103,7 +101,6 @@ export const Header = (props: Props) => {
         </TextContainer>
         <SearchBarAnnuaire
           filteredStructures={props.filteredStructures}
-          setFilteredStructures={props.setFilteredStructures}
           t={props.t}
           resetSearch={props.resetSearch}
           keyword={props.keyword}
@@ -120,7 +117,6 @@ export const Header = (props: Props) => {
           setIsCityFocus={props.setIsCityFocus}
           isCitySelected={props.isCitySelected}
           setIsCitySelected={props.setIsCitySelected}
-          structures={props.structures}
         />
       </SearchContainer>
 

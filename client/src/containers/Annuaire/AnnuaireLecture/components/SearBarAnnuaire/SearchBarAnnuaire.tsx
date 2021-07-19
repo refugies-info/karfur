@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../../../../colors";
 import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
@@ -11,9 +11,6 @@ import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import { StructureTypes } from "../../../AnnuaireCreate/data";
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 import { SimplifiedStructure } from "types/interface";
-import { history } from "services/configureStore";
-// @ts-ignore
-import qs from "query-string";
 
 const MainContainer = styled.div`
   display: flex;
@@ -83,7 +80,6 @@ const ResultNumberContainer = styled.div`
 
 interface Props {
   t: any;
-  setFilteredStructures: (a: SimplifiedStructure[]) => void;
   filteredStructures: SimplifiedStructure[] | null;
   resetSearch: () => void;
   keyword: string;
@@ -100,163 +96,12 @@ interface Props {
   setIsCityFocus: (a: boolean) => void;
   isCitySelected: boolean;
   setIsCitySelected: (a: boolean) => void;
-  structures: SimplifiedStructure[];
 }
 
 export const SearchBarAnnuaire = (props: Props) => {
   const [dropdownOpen, setOpen] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
-
-  const computeUrl = (query: {
-    depName?: string | undefined;
-    depNumber?: string | null;
-    keyword?: string;
-  }) => {
-    history.push({
-      search: qs.stringify(query),
-    });
-  };
-
-  const filterStructuresByType = (arrayTofilter: SimplifiedStructure[]) => {
-    let newArrayType: SimplifiedStructure[] = [];
-
-    if (props.typeSelected && props.typeSelected.length > 0) {
-      if (arrayTofilter) {
-        props.typeSelected.forEach((type) => {
-          arrayTofilter?.forEach((structure) => {
-            if (
-              structure.structureTypes?.includes(type) &&
-              newArrayType &&
-              !newArrayType.includes(structure)
-            ) {
-              newArrayType.push(structure);
-            }
-          });
-        });
-      }
-    } else {
-      newArrayType = arrayTofilter;
-    }
-    return newArrayType;
-  };
-
-  const filterStructuresByKeword = (arrayTofilter: SimplifiedStructure[]) => {
-    let newArrayKeyword: SimplifiedStructure[] = [];
-    if (props.keyword.length > 0) {
-      if (arrayTofilter) {
-        arrayTofilter.forEach((structure) => {
-          if (
-            structure.nom.toLowerCase().includes(props.keyword) &&
-            newArrayKeyword &&
-            !newArrayKeyword.includes(structure)
-          ) {
-            newArrayKeyword.push(structure);
-          }
-        });
-      }
-    } else {
-      newArrayKeyword = arrayTofilter;
-    }
-    return newArrayKeyword;
-  };
-
-  const filterStructuresByLoc = (arrayTofilter: SimplifiedStructure[]) => {
-    let newArrayLoc: SimplifiedStructure[] = [];
-    if (props.isCitySelected) {
-      if (arrayTofilter) {
-        arrayTofilter?.forEach((structure) => {
-          if (
-            structure.disposAssociesLocalisation?.includes("All") ||
-            (structure.departments?.includes("All") && newArrayLoc)
-          ) {
-            //@ts-ignore
-            newArrayLoc.push(structure);
-          } else {
-            if (props.depNumber) {
-              structure.disposAssociesLocalisation?.forEach((el) => {
-                if (
-                  el.substr(0, 2) === props.depNumber &&
-                  newArrayLoc &&
-                  !newArrayLoc.includes(structure)
-                ) {
-                  newArrayLoc.push(structure);
-                }
-              });
-              structure.departments?.forEach((el) => {
-                if (
-                  el.substr(0, 2) === props.depNumber &&
-                  newArrayLoc &&
-                  !newArrayLoc.includes(structure)
-                ) {
-                  newArrayLoc.push(structure);
-                }
-              });
-            } else if (props.depName) {
-              structure.disposAssociesLocalisation?.forEach((el) => {
-                if (
-                  el.includes(props.depName) &&
-                  newArrayLoc &&
-                  !newArrayLoc.includes(structure)
-                ) {
-                  newArrayLoc.push(structure);
-                }
-              });
-              structure.departments?.forEach((el) => {
-                if (
-                  el.includes(props.depName) &&
-                  newArrayLoc &&
-                  !newArrayLoc.includes(structure)
-                ) {
-                  newArrayLoc.push(structure);
-                }
-              });
-            }
-          }
-        });
-      }
-    } else {
-      newArrayLoc = arrayTofilter;
-    }
-    return newArrayLoc;
-  };
-  const filterStructures = () => {
-    const filterByType = filterStructuresByType(props.structures);
-    const filterByTypeAndLoc = filterStructuresByLoc(filterByType);
-    const filterByTypeAndLocAndKeyword =
-      filterStructuresByKeword(filterByTypeAndLoc);
-    props.setFilteredStructures(filterByTypeAndLocAndKeyword);
-  };
-
-  useEffect(() => {
-    let query: {
-      depName?: string | undefined;
-      depNumber?: string;
-      keyword?: string;
-      type?: string[];
-    } = {};
-
-    if (props.depName !== "") {
-      query.depName = props.depName;
-    }
-    if (props.depNumber) {
-      query.depNumber = props.depNumber;
-    }
-    if (props.keyword !== "") {
-      query.keyword = props.keyword;
-    }
-    if (props.typeSelected && props.typeSelected.length) {
-      query.type = props.typeSelected;
-    }
-    computeUrl(query);
-    filterStructures();
-  }, [
-    props.typeSelected,
-    props.depName,
-    props.depNumber,
-    props.keyword,
-    props.isCitySelected,
-  ]);
 
   const selectType = (item: string) => {
     if (props.typeSelected && !props.typeSelected.includes(item)) {

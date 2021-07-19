@@ -14,6 +14,9 @@ import Skeleton from "react-loading-skeleton";
 import { Event, initGA } from "../../../tracking/dispatch";
 import { SimplifiedStructure } from "types/interface";
 import { NoResult } from "./components/NoResult";
+import { history } from "services/configureStore";
+// @ts-ignore
+import qs from "query-string";
 
 declare const window: Window;
 
@@ -156,6 +159,151 @@ export const AnnuaireLectureComponent = (props: Props) => {
     resetSearch();
   }, [structures]);
 
+  const filterStructuresByType = (arrayTofilter: SimplifiedStructure[]) => {
+    let newArrayType: SimplifiedStructure[] = [];
+
+    if (typeSelected && typeSelected.length > 0) {
+      if (arrayTofilter) {
+        typeSelected.forEach((type) => {
+          arrayTofilter?.forEach((structure) => {
+            if (
+              structure.structureTypes?.includes(type) &&
+              newArrayType &&
+              !newArrayType.includes(structure)
+            ) {
+              newArrayType.push(structure);
+            }
+          });
+        });
+      }
+    } else {
+      newArrayType = arrayTofilter;
+    }
+    return newArrayType;
+  };
+
+  const filterStructuresByKeword = (arrayTofilter: SimplifiedStructure[]) => {
+    let newArrayKeyword: SimplifiedStructure[] = [];
+    if (keyword.length > 0) {
+      if (arrayTofilter) {
+        arrayTofilter.forEach((structure) => {
+          if (
+            structure.nom.toLowerCase().includes(keyword) &&
+            newArrayKeyword &&
+            !newArrayKeyword.includes(structure)
+          ) {
+            newArrayKeyword.push(structure);
+          }
+        });
+      }
+    } else {
+      newArrayKeyword = arrayTofilter;
+    }
+    return newArrayKeyword;
+  };
+
+  const filterStructuresByLoc = (arrayTofilter: SimplifiedStructure[]) => {
+    let newArrayLoc: SimplifiedStructure[] = [];
+    if (isCitySelected) {
+      if (arrayTofilter) {
+        arrayTofilter?.forEach((structure) => {
+          if (
+            structure.disposAssociesLocalisation?.includes("All") ||
+            (structure.departments?.includes("All") && newArrayLoc)
+          ) {
+            //@ts-ignore
+            newArrayLoc.push(structure);
+          } else {
+            if (depNumber) {
+              structure.disposAssociesLocalisation?.forEach((el) => {
+                if (
+                  el.substr(0, 2) === depNumber &&
+                  newArrayLoc &&
+                  !newArrayLoc.includes(structure)
+                ) {
+                  newArrayLoc.push(structure);
+                }
+              });
+              structure.departments?.forEach((el) => {
+                if (
+                  el.substr(0, 2) === depNumber &&
+                  newArrayLoc &&
+                  !newArrayLoc.includes(structure)
+                ) {
+                  newArrayLoc.push(structure);
+                }
+              });
+            } else if (depName) {
+              structure.disposAssociesLocalisation?.forEach((el) => {
+                if (
+                  el.includes(depName) &&
+                  newArrayLoc &&
+                  !newArrayLoc.includes(structure)
+                ) {
+                  newArrayLoc.push(structure);
+                }
+              });
+              structure.departments?.forEach((el) => {
+                if (
+                  el.includes(depName) &&
+                  newArrayLoc &&
+                  !newArrayLoc.includes(structure)
+                ) {
+                  newArrayLoc.push(structure);
+                }
+              });
+            }
+          }
+        });
+      }
+    } else {
+      newArrayLoc = arrayTofilter;
+    }
+    return newArrayLoc;
+  };
+
+  const filterStructures = () => {
+    const filterByType = filterStructuresByType(structures);
+    const filterByTypeAndLoc = filterStructuresByLoc(filterByType);
+    const filterByTypeAndLocAndKeyword =
+      filterStructuresByKeword(filterByTypeAndLoc);
+    setFilteredStructures(filterByTypeAndLocAndKeyword);
+  };
+
+  const computeUrl = (query: {
+    depName?: string | undefined;
+    depNumber?: string | null;
+    keyword?: string;
+  }) => {
+    history.push({
+      search: qs.stringify(query),
+    });
+  };
+
+  useEffect(() => {
+    let query: {
+      depName?: string | undefined;
+      depNumber?: string;
+      keyword?: string;
+      type?: string[];
+    } = {};
+
+    if (depName !== "") {
+      query.depName = depName;
+    }
+    if (depNumber) {
+      query.depNumber = depNumber;
+    }
+    if (keyword !== "") {
+      query.keyword = keyword;
+    }
+    if (typeSelected && typeSelected.length) {
+      query.type = typeSelected;
+    }
+    computeUrl(query);
+    filterStructures();
+  }, [typeSelected, depName, depNumber, keyword, isCitySelected]);
+
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
   const onStructureCardClick = (id: ObjectId) =>
     props.history.push(`/annuaire/${id}`);
@@ -170,7 +318,6 @@ export const AnnuaireLectureComponent = (props: Props) => {
           t={props.t}
           letterSelected={letterSelected}
           setLetterSelected={setLetterSelected}
-          setFilteredStructures={setFilteredStructures}
           filteredStructures={filteredStructures}
           resetSearch={resetSearch}
           keyword={keyword}
@@ -187,7 +334,6 @@ export const AnnuaireLectureComponent = (props: Props) => {
           setIsCityFocus={setIsCityFocus}
           isCitySelected={isCitySelected}
           setIsCitySelected={setIsCitySelected}
-          structures={structures}
         />
         <LoadingContainer>
           <div
@@ -212,26 +358,21 @@ export const AnnuaireLectureComponent = (props: Props) => {
         t={props.t}
         letterSelected={letterSelected}
         setLetterSelected={setLetterSelected}
-        //@ts-ignore
-        setFilteredStructures={setFilteredStructures}
         filteredStructures={filteredStructures}
         keyword={keyword}
         setKeyword={setKeyword}
         typeSelected={typeSelected}
-        //@ts-ignore
         setTypeSelected={setTypeSelected}
         ville={ville}
         setVille={setVille}
         depName={depName}
         setDepName={setDepName}
         depNumber={depNumber}
-        //@ts-ignore
         setDepNumber={setDepNumber}
         isCityFocus={isCityFocus}
         setIsCityFocus={setIsCityFocus}
         isCitySelected={isCitySelected}
         setIsCitySelected={setIsCitySelected}
-        structures={structures}
       />
       <Content
         currentScroll={currentScroll}
