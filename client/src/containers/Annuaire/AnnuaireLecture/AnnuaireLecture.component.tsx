@@ -86,7 +86,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const [typeSelected, setTypeSelected] = useState<string[]>([]);
   const [ville, setVille] = useState("");
   const [depName, setDepName] = useState("");
-  const [depNumber, setDepNumber] = useState(null);
+  const [depNumber, setDepNumber] = useState("");
   const [isCityFocus, setIsCityFocus] = useState(false);
   const [isCitySelected, setIsCitySelected] = useState(false);
 
@@ -97,7 +97,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const resetAllFilter = () => {
     setIsCitySelected(false);
     setIsCityFocus(false);
-    setDepNumber(null);
+    setDepNumber("");
     setDepName("");
     setVille("");
     setTypeSelected([]);
@@ -170,21 +170,18 @@ export const AnnuaireLectureComponent = (props: Props) => {
           t={props.t}
           letterSelected={letterSelected}
           setLetterSelected={setLetterSelected}
-          //@ts-ignore
           setFilteredStructures={setFilteredStructures}
           filteredStructures={filteredStructures}
           resetSearch={resetSearch}
           keyword={keyword}
           setKeyword={setKeyword}
           typeSelected={typeSelected}
-          //@ts-ignore
           setTypeSelected={setTypeSelected}
           ville={ville}
           setVille={setVille}
           depName={depName}
           setDepName={setDepName}
           depNumber={depNumber}
-          //@ts-ignore
           setDepNumber={setDepNumber}
           isCityFocus={isCityFocus}
           setIsCityFocus={setIsCityFocus}

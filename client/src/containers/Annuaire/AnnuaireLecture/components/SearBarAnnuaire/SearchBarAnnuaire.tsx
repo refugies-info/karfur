@@ -83,24 +83,24 @@ const ResultNumberContainer = styled.div`
 
 interface Props {
   t: any;
-  setFilteredStructures: (a: SimplifiedStructure[] | null) => void;
+  setFilteredStructures: (a: SimplifiedStructure[]) => void;
   filteredStructures: SimplifiedStructure[] | null;
   resetSearch: () => void;
   keyword: string;
   setKeyword: (a: string) => void;
   typeSelected: string[] | null;
-  setTypeSelected: (a: string[] | null) => void;
+  setTypeSelected: (a: string[]) => void;
   ville: string;
   setVille: (a: string) => void;
   depName: string;
   setDepName: (a: string) => void;
   depNumber: string | null;
-  setDepNumber: (a: string | null) => void;
+  setDepNumber: (a: string) => void;
   isCityFocus: boolean;
   setIsCityFocus: (a: boolean) => void;
   isCitySelected: boolean;
   setIsCitySelected: (a: boolean) => void;
-  structures: SimplifiedStructure[] | null;
+  structures: SimplifiedStructure[];
 }
 
 export const SearchBarAnnuaire = (props: Props) => {
@@ -118,11 +118,9 @@ export const SearchBarAnnuaire = (props: Props) => {
     });
   };
 
-  const filterStructure = () => {
-    let newArrayType: SimplifiedStructure[] | null = [];
-    let newArrayLoc: SimplifiedStructure[] | null = [];
-    let newArrayKeyword: SimplifiedStructure[] | null = [];
-    let arrayTofilter = props.structures;
+  const filterStructuresByType = (arrayTofilter: SimplifiedStructure[]) => {
+    let newArrayType: SimplifiedStructure[] = [];
+
     if (props.typeSelected && props.typeSelected.length > 0) {
       if (arrayTofilter) {
         props.typeSelected.forEach((type) => {
@@ -138,8 +136,13 @@ export const SearchBarAnnuaire = (props: Props) => {
         });
       }
     } else {
-      newArrayType = props.structures;
+      newArrayType = arrayTofilter;
     }
+    return newArrayType;
+  };
+
+  const filterStructuresByKeword = (arrayTofilter: SimplifiedStructure[]) => {
+    let newArrayKeyword: SimplifiedStructure[] = [];
     if (props.keyword.length > 0) {
       if (arrayTofilter) {
         arrayTofilter.forEach((structure) => {
@@ -153,8 +156,13 @@ export const SearchBarAnnuaire = (props: Props) => {
         });
       }
     } else {
-      newArrayKeyword = props.structures;
+      newArrayKeyword = arrayTofilter;
     }
+    return newArrayKeyword;
+  };
+
+  const filterStructuresByLoc = (arrayTofilter: SimplifiedStructure[]) => {
+    let newArrayLoc: SimplifiedStructure[] = [];
     if (props.isCitySelected) {
       if (arrayTofilter) {
         arrayTofilter?.forEach((structure) => {
@@ -208,12 +216,16 @@ export const SearchBarAnnuaire = (props: Props) => {
         });
       }
     } else {
-      newArrayLoc = props.structures;
+      newArrayLoc = arrayTofilter;
     }
-    let allResult = [newArrayType, newArrayLoc, newArrayKeyword];
-    //@ts-ignore
-    let finalArray = allResult.reduce((p, c) => p.filter((e) => c.includes(e)));
-    props.setFilteredStructures(finalArray);
+    return newArrayLoc;
+  };
+  const filterStructures = () => {
+    const filterByType = filterStructuresByType(props.structures);
+    const filterByTypeAndLoc = filterStructuresByLoc(filterByType);
+    const filterByTypeAndLocAndKeyword =
+      filterStructuresByKeword(filterByTypeAndLoc);
+    props.setFilteredStructures(filterByTypeAndLocAndKeyword);
   };
 
   useEffect(() => {
@@ -221,7 +233,7 @@ export const SearchBarAnnuaire = (props: Props) => {
       depName?: string | undefined;
       depNumber?: string;
       keyword?: string;
-      type?: any;
+      type?: string[];
     } = {};
 
     if (props.depName !== "") {
@@ -237,7 +249,7 @@ export const SearchBarAnnuaire = (props: Props) => {
       query.type = props.typeSelected;
     }
     computeUrl(query);
-    filterStructure();
+    filterStructures();
   }, [
     props.typeSelected,
     props.depName,
@@ -300,7 +312,7 @@ export const SearchBarAnnuaire = (props: Props) => {
   const resetCity = () => {
     props.setIsCitySelected(false);
     props.setVille("");
-    props.setDepNumber(null);
+    props.setDepNumber("");
     props.setDepName("");
     props.resetSearch();
   };
@@ -308,7 +320,7 @@ export const SearchBarAnnuaire = (props: Props) => {
   const removeType = (item: string) => {
     let array = props.typeSelected
       ? props.typeSelected.filter((el) => el !== item)
-      : null;
+      : [];
     props.setTypeSelected(array);
     toggle();
   };

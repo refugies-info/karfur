@@ -61,26 +61,25 @@ interface Props {
   currentScroll: number;
   letterSelected: string;
   setLetterSelected: (a: string) => void;
-  setFilteredStructures: (a: SimplifiedStructure[] | null) => void;
+  setFilteredStructures: (a: SimplifiedStructure[]) => void;
   filteredStructures: SimplifiedStructure[] | null;
   typeSelected: string[] | null;
-  setTypeSelected: (a: string[] | null) => void;
+  setTypeSelected: (a: string[]) => void;
   ville: string;
   setVille: (a: string) => void;
   depName: string;
   setDepName: (a: string) => void;
   depNumber: string | null;
-  setDepNumber: (a: string | null) => void;
+  setDepNumber: (a: string) => void;
   isCityFocus: boolean;
   setIsCityFocus: (a: boolean) => void;
   isCitySelected: boolean;
   setIsCitySelected: (a: boolean) => void;
-  structures: SimplifiedStructure[] | null;
-
+  structures: SimplifiedStructure[];
   t: any;
   resetSearch: () => void;
   keyword: string;
-  setKeyword: any;
+  setKeyword: (a: string) => void;
 }
 
 export const Header = (props: Props) => {
