@@ -266,8 +266,11 @@ export interface SimplifiedStructure {
   _id: ObjectId;
   acronyme: string;
   nom: string;
+  structureTypes?: string[];
+  departments?: string[];
   picture: Picture;
   role?: string[];
+  disposAssociesLocalisation?: string[];
 }
 
 export interface Picture {

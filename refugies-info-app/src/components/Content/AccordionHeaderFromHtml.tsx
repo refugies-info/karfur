@@ -8,6 +8,7 @@ interface Props {
   htmlContent: string;
   width: number;
   windowWidth: number;
+  darkColor: string;
 }
 export const AccordionHeaderFromHtml = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
@@ -22,7 +23,8 @@ export const AccordionHeaderFromHtml = (props: Props) => {
         textAlign: isRTL ? "right" : "left",
         lineHeight: 20,
         flexShrink: 1,
-        backgroundColor: "red",
+        width: props.width,
+        color: props.darkColor,
       }}
       renderers={{
         // eslint-disable-next-line react/display-name
@@ -31,6 +33,7 @@ export const AccordionHeaderFromHtml = (props: Props) => {
             style={{
               flexShrink: 1,
               width: props.width,
+              color: props.darkColor,
             }}
           >
             {children}

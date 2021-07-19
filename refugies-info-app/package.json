@@ -49,6 +49,7 @@
     "react-native-render-html": "^5.1.1",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.0.0",
+    "react-native-skeleton-content": "^1.0.22",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-svg": "12.1.0",
     "react-native-web": "~0.13.12",

@@ -17,6 +17,8 @@ interface Props {
   colorVeryLight: string;
   iconName: string;
   navigation: any;
+  colorDark: string;
+  color30: string;
 }
 
 const StyledContainer = styled(RTLView)`
@@ -55,7 +57,11 @@ export const CarousselCard = (props: Props) => {
   return (
     <TouchableOpacity
       onPress={() =>
-        props.navigation.navigate("ContentsScreen", { tagName: props.tagName })
+        props.navigation.navigate("ContentsScreen", {
+          tagName: props.tagName,
+          tagDarkColor: props.colorDark,
+          tagVeryLightColor: props.color30,
+        })
       }
     >
       <LinearGradient

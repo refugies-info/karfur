@@ -44,7 +44,7 @@ export const LangueProfilScreen = ({
         shouldFetchContents: true,
       })
     );
-    return navigation.navigate("ProfilScreen");
+    return navigation.goBack();
   };
 
   return (

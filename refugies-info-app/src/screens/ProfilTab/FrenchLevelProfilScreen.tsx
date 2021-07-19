@@ -57,14 +57,19 @@ export const FrenchLevelProfilScreen = ({
   const onValidateFrenchLevel = (frenchLevelName: string) => {
     if (selectedFrenchLevel && selectedFrenchLevel.name === frenchLevelName)
       return;
-    dispatch(saveUserFrenchLevelActionCreator(frenchLevelName));
+    dispatch(
+      saveUserFrenchLevelActionCreator({
+        frenchLevel: frenchLevelName,
+        shouldFetchContents: true,
+      })
+    );
 
     return navigation.goBack();
   };
 
   const removeFrenchLevel = () => {
     if (!selectedFrenchLevel) return;
-    dispatch(removeUserFrenchLevelActionCreator());
+    dispatch(removeUserFrenchLevelActionCreator(true));
     return navigation.goBack();
   };
 
