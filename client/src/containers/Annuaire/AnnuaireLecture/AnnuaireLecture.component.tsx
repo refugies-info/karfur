@@ -82,8 +82,6 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const [filteredStructures, setFilteredStructures] = useState<
     SimplifiedStructure[]
   >([]);
-  const [filteredStructuresByKeyword, setFilteredStructuresByKeyword] =
-    useState<any[]>([]);
   const [keyword, setKeyword] = useState("");
   const [typeSelected, setTypeSelected] = useState<string[]>([]);
   const [ville, setVille] = useState("");
@@ -157,6 +155,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
   useEffect(() => {
     resetSearch();
   }, [structures]);
+
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
   const onStructureCardClick = (id: ObjectId) =>
     props.history.push(`/annuaire/${id}`);
@@ -166,31 +165,32 @@ export const AnnuaireLectureComponent = (props: Props) => {
       <MainContainer>
         <Header
           letters={letters}
-          // onLetterClick={onLetterClick}
           stopScroll={stopScroll}
           currentScroll={currentScroll}
           t={props.t}
           letterSelected={letterSelected}
           setLetterSelected={setLetterSelected}
+          //@ts-ignore
           setFilteredStructures={setFilteredStructures}
           filteredStructures={filteredStructures}
-          filteredStructuresByKeyword={filteredStructuresByKeyword}
-          setFilteredStructuresByKeyword={setFilteredStructuresByKeyword}
           resetSearch={resetSearch}
           keyword={keyword}
           setKeyword={setKeyword}
           typeSelected={typeSelected}
+          //@ts-ignore
           setTypeSelected={setTypeSelected}
           ville={ville}
           setVille={setVille}
           depName={depName}
           setDepName={setDepName}
           depNumber={depNumber}
+          //@ts-ignore
           setDepNumber={setDepNumber}
           isCityFocus={isCityFocus}
           setIsCityFocus={setIsCityFocus}
           isCitySelected={isCitySelected}
           setIsCitySelected={setIsCitySelected}
+          structures={structures}
         />
         <LoadingContainer>
           <div
@@ -215,38 +215,33 @@ export const AnnuaireLectureComponent = (props: Props) => {
         t={props.t}
         letterSelected={letterSelected}
         setLetterSelected={setLetterSelected}
+        //@ts-ignore
         setFilteredStructures={setFilteredStructures}
-        setFilteredStructuresByKeyword={setFilteredStructuresByKeyword}
         filteredStructures={filteredStructures}
-        filteredStructuresByKeyword={filteredStructuresByKeyword}
         keyword={keyword}
         setKeyword={setKeyword}
         typeSelected={typeSelected}
+        //@ts-ignore
         setTypeSelected={setTypeSelected}
         ville={ville}
         setVille={setVille}
         depName={depName}
         setDepName={setDepName}
         depNumber={depNumber}
+        //@ts-ignore
         setDepNumber={setDepNumber}
         isCityFocus={isCityFocus}
         setIsCityFocus={setIsCityFocus}
         isCitySelected={isCitySelected}
         setIsCitySelected={setIsCitySelected}
+        structures={structures}
       />
       <Content
         currentScroll={currentScroll}
         stopScroll={stopScroll}
         hasMarginBottom={true}
       >
-        {keyword !== "" && filteredStructuresByKeyword.length ? (
-          <LetterSection
-            onStructureCardClick={onStructureCardClick}
-            // @ts-ignore
-            structures={filteredStructuresByKeyword}
-            setLetterSelected={setLetterSelected}
-          />
-        ) : keyword === "" && filteredStructures.length > 0 ? (
+        {filteredStructures.length > 0 ? (
           <LetterSection
             onStructureCardClick={onStructureCardClick}
             // @ts-ignore

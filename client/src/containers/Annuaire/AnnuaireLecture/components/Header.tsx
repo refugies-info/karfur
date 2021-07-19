@@ -57,27 +57,25 @@ const SearchContainer = styled.div`
 
 interface Props {
   letters: string[];
-  //   onLetterClick: (letter: string) => void;
   stopScroll: boolean;
   currentScroll: number;
   letterSelected: string;
-  setLetterSelected: any;
-  setFilteredStructures: any;
+  setLetterSelected: (a: string) => void;
+  setFilteredStructures: (a: SimplifiedStructure[] | null) => void;
   filteredStructures: SimplifiedStructure[] | null;
-  filteredStructuresByKeyword: SimplifiedStructure[] | null;
-  setFilteredStructuresByKeyword: any;
   typeSelected: string[] | null;
-  setTypeSelected: any;
+  setTypeSelected: (a: string[] | null) => void;
   ville: string;
-  setVille: any;
+  setVille: (a: string) => void;
   depName: string;
-  setDepName: any;
-  depNumber: any;
-  setDepNumber: any;
+  setDepName: (a: string) => void;
+  depNumber: string | null;
+  setDepNumber: (a: string | null) => void;
   isCityFocus: boolean;
-  setIsCityFocus: any;
+  setIsCityFocus: (a: boolean) => void;
   isCitySelected: boolean;
-  setIsCitySelected: any;
+  setIsCitySelected: (a: boolean) => void;
+  structures: SimplifiedStructure[] | null;
 
   t: any;
   resetSearch: () => void;
@@ -106,9 +104,7 @@ export const Header = (props: Props) => {
         </TextContainer>
         <SearchBarAnnuaire
           filteredStructures={props.filteredStructures}
-          setFilteredStructuresByKeyword={props.setFilteredStructuresByKeyword}
           setFilteredStructures={props.setFilteredStructures}
-          filteredStructuresByKeyword={props.filteredStructuresByKeyword}
           t={props.t}
           resetSearch={props.resetSearch}
           keyword={props.keyword}
@@ -125,6 +121,7 @@ export const Header = (props: Props) => {
           setIsCityFocus={props.setIsCityFocus}
           isCitySelected={props.isCitySelected}
           setIsCitySelected={props.setIsCitySelected}
+          structures={props.structures}
         />
       </SearchContainer>
 

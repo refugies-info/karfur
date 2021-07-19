@@ -83,35 +83,28 @@ const ResultNumberContainer = styled.div`
 
 interface Props {
   t: any;
-  setFilteredStructures: any;
+  setFilteredStructures: (a: SimplifiedStructure[] | null) => void;
   filteredStructures: SimplifiedStructure[] | null;
   resetSearch: () => void;
-  setFilteredStructuresByKeyword: any;
   keyword: string;
-  setKeyword: any;
-  filteredStructuresByKeyword: SimplifiedStructure[] | null;
+  setKeyword: (a: string) => void;
   typeSelected: string[] | null;
-  setTypeSelected: any;
+  setTypeSelected: (a: string[] | null) => void;
   ville: string;
-  setVille: any;
+  setVille: (a: string) => void;
   depName: string;
-  setDepName: any;
-  depNumber: string;
-  setDepNumber: any;
+  setDepName: (a: string) => void;
+  depNumber: string | null;
+  setDepNumber: (a: string | null) => void;
   isCityFocus: boolean;
-  setIsCityFocus: any;
+  setIsCityFocus: (a: boolean) => void;
   isCitySelected: boolean;
-  setIsCitySelected: any;
+  setIsCitySelected: (a: boolean) => void;
+  structures: SimplifiedStructure[] | null;
 }
 
 export const SearchBarAnnuaire = (props: Props) => {
   const [dropdownOpen, setOpen] = useState(false);
-  // const [typeSelected, setTypeSelected] = useState<string[]>([]);
-  // const [ville, setVille] = useState("");
-  // const [depName, setDepName] = useState("");
-  // const [depNumber, setDepNumber] = useState(null);
-  // const [isCityFocus, setIsCityFocus] = useState(false);
-  // const [isCitySelected, setIsCitySelected] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
 
@@ -125,115 +118,103 @@ export const SearchBarAnnuaire = (props: Props) => {
     });
   };
 
-  const filterStructureByType = () => {
-    let newArray: any[] = [];
-    let arrayTofilter =
-      props.keyword === ""
-        ? props.filteredStructures
-        : props.filteredStructuresByKeyword;
+  const filterStructure = () => {
+    let newArrayType: SimplifiedStructure[] | null = [];
+    let newArrayLoc: SimplifiedStructure[] | null = [];
+    let newArrayKeyword: SimplifiedStructure[] | null = [];
+    let arrayTofilter = props.structures;
     if (props.typeSelected && props.typeSelected.length > 0) {
       if (arrayTofilter) {
         props.typeSelected.forEach((type) => {
           arrayTofilter?.forEach((structure) => {
             if (
               structure.structureTypes?.includes(type) &&
-              !newArray.includes(structure)
+              newArrayType &&
+              !newArrayType.includes(structure)
             ) {
-              newArray.push(structure);
+              newArrayType.push(structure);
             }
           });
         });
       }
-      if (props.keyword === "") {
-        props.setFilteredStructures(newArray);
-      } else {
-        props.setFilteredStructuresByKeyword(newArray);
-      }
+    } else {
+      newArrayType = props.structures;
     }
-  };
-  const filterStructureByKeyword = () => {
-    let newArray: any[] = [];
     if (props.keyword.length > 0) {
-      if (props.filteredStructures) {
-        props.filteredStructures?.forEach((structure) => {
+      if (arrayTofilter) {
+        arrayTofilter.forEach((structure) => {
           if (
             structure.nom.toLowerCase().includes(props.keyword) &&
-            !newArray.includes(structure)
+            newArrayKeyword &&
+            !newArrayKeyword.includes(structure)
           ) {
-            newArray.push(structure);
+            newArrayKeyword.push(structure);
           }
         });
       }
-      props.setFilteredStructuresByKeyword(newArray);
+    } else {
+      newArrayKeyword = props.structures;
     }
-  };
-
-  const filterStructureByLocation = () => {
-    let newArray: any[] = [];
-    let arrayTofilter =
-      props.keyword === ""
-        ? props.filteredStructures
-        : props.filteredStructuresByKeyword;
-    if (arrayTofilter) {
-      arrayTofilter?.forEach((structure) => {
-        if (
-          structure.disposAssociesLocalisation?.includes("All") ||
-          structure.departments?.includes("All")
-        ) {
-          newArray.push(structure);
-        } else {
-          if (props.depNumber) {
-            structure.disposAssociesLocalisation?.forEach((el) => {
-              if (
-                el.substr(0, 2) === props.depNumber &&
-                !newArray.includes(structure)
-              ) {
-                newArray.push(structure);
-              }
-            });
-            structure.departments?.forEach((el) => {
-              if (
-                el.substr(0, 2) === props.depNumber &&
-                !newArray.includes(structure)
-              ) {
-                newArray.push(structure);
-              }
-            });
-          } else if (props.depName) {
-            structure.disposAssociesLocalisation?.forEach((el) => {
-              if (el.includes(props.depName) && !newArray.includes(structure)) {
-                newArray.push(structure);
-              }
-            });
-            structure.departments?.forEach((el) => {
-              if (el.includes(props.depName) && !newArray.includes(structure)) {
-                newArray.push(structure);
-              }
-            });
+    if (props.isCitySelected) {
+      if (arrayTofilter) {
+        arrayTofilter?.forEach((structure) => {
+          if (
+            structure.disposAssociesLocalisation?.includes("All") ||
+            (structure.departments?.includes("All") && newArrayLoc)
+          ) {
+            //@ts-ignore
+            newArrayLoc.push(structure);
+          } else {
+            if (props.depNumber) {
+              structure.disposAssociesLocalisation?.forEach((el) => {
+                if (
+                  el.substr(0, 2) === props.depNumber &&
+                  newArrayLoc &&
+                  !newArrayLoc.includes(structure)
+                ) {
+                  newArrayLoc.push(structure);
+                }
+              });
+              structure.departments?.forEach((el) => {
+                if (
+                  el.substr(0, 2) === props.depNumber &&
+                  newArrayLoc &&
+                  !newArrayLoc.includes(structure)
+                ) {
+                  newArrayLoc.push(structure);
+                }
+              });
+            } else if (props.depName) {
+              structure.disposAssociesLocalisation?.forEach((el) => {
+                if (
+                  el.includes(props.depName) &&
+                  newArrayLoc &&
+                  !newArrayLoc.includes(structure)
+                ) {
+                  newArrayLoc.push(structure);
+                }
+              });
+              structure.departments?.forEach((el) => {
+                if (
+                  el.includes(props.depName) &&
+                  newArrayLoc &&
+                  !newArrayLoc.includes(structure)
+                ) {
+                  newArrayLoc.push(structure);
+                }
+              });
+            }
           }
-        }
-      });
-    }
-
-    if (props.keyword === "") {
-      props.setFilteredStructures(newArray);
+        });
+      }
     } else {
-      props.setFilteredStructuresByKeyword(newArray);
+      newArrayLoc = props.structures;
     }
+    let allResult = [newArrayType, newArrayLoc, newArrayKeyword];
+    //@ts-ignore
+    let finalArray = allResult.reduce((p, c) => p.filter((e) => c.includes(e)));
+    props.setFilteredStructures(finalArray);
   };
-
-  useEffect(() => {
-    if (props.typeSelected && props.typeSelected.length) {
-      filterStructureByType();
-    } else {
-      if (props.isCitySelected) {
-        filterStructureByLocation();
-      }
-      if (props.keyword !== "") {
-        filterStructureByKeyword();
-      }
-    }
-  }, [props.typeSelected]);
 
   useEffect(() => {
     let query: {
@@ -256,35 +237,14 @@ export const SearchBarAnnuaire = (props: Props) => {
       query.type = props.typeSelected;
     }
     computeUrl(query);
-  }, [props.typeSelected, props.depName, props.depNumber, props.keyword]);
-
-  useEffect(() => {}, []);
-
-  useEffect(() => {
-    if (props.isCitySelected) {
-      filterStructureByLocation();
-    } else {
-      if (props.typeSelected && props.typeSelected.length) {
-        filterStructureByType();
-      }
-      if (props.keyword !== "") {
-        filterStructureByKeyword();
-      }
-    }
-  }, [props.isCitySelected]);
-
-  useEffect(() => {
-    if (props.keyword !== "") {
-      filterStructureByKeyword();
-    } else {
-      if (props.isCitySelected) {
-        filterStructureByLocation();
-      }
-      if (props.typeSelected && props.typeSelected.length) {
-        filterStructureByType();
-      }
-    }
-  }, [props.keyword]);
+    filterStructure();
+  }, [
+    props.typeSelected,
+    props.depName,
+    props.depNumber,
+    props.keyword,
+    props.isCitySelected,
+  ]);
 
   const selectType = (item: string) => {
     if (props.typeSelected && !props.typeSelected.includes(item)) {
@@ -543,16 +503,8 @@ export const SearchBarAnnuaire = (props: Props) => {
           </DropDownItemContainer>
         </DropdownMenu>
       </Dropdown>
-      {/* <WhiteButtonContainer>
-        {" "}
-        {props.t("Annuaire.Thèmes & activités", "Thèmes & activités")}
-      </WhiteButtonContainer> */}
       <ResultNumberContainer>
-        {props.keyword !== "" && props.filteredStructuresByKeyword
-          ? props.filteredStructuresByKeyword.length
-          : props.filteredStructures
-          ? props.filteredStructures.length
-          : 0}{" "}
+        {props.filteredStructures ? props.filteredStructures.length : 0}{" "}
         {props.t("AdvancedSearch.résultats", "résultats")}
       </ResultNumberContainer>
     </MainContainer>
