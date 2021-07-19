@@ -66,7 +66,7 @@ export const NoResult = (props) => {
             type="dark"
             name="refresh-outline"
             className="mr-10"
-            onClick={props.resetSearch}
+            onClick={props.resetAllFilter}
           >
             Recommencer
           </FButton>

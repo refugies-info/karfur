@@ -152,7 +152,6 @@ export const AnnuaireLectureComponent = (props: Props) => {
       : [];
 
     setFilteredStructures(sortedStructureByAlpha);
-    resetAllFilter();
   };
 
   useEffect(() => {
@@ -255,7 +254,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
             setLetterSelected={setLetterSelected}
           />
         ) : (
-          <NoResult resetSearch={resetSearch} t={props.t} />
+          <NoResult resetAllFilter={resetAllFilter} t={props.t} />
         )}
       </Content>
     </MainContainer>
