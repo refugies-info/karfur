@@ -65,7 +65,7 @@ describe("getActiveStructures", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  it.only("should call getStructuresFromDB and return a 200", async () => {
+  it("should call getStructuresFromDB and return a 200", async () => {
     const res = mockResponse();
     await getActiveStructures({}, res);
     expect(getStructuresFromDB).toHaveBeenCalledWith(
