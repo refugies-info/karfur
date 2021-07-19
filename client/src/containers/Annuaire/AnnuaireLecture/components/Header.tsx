@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-//import img from "../../../../assets/annuaire/annuaire_lecture.svg";
+import img from "../../../../assets/annuaire/annuaire_cover.svg";
 import { Letter } from "./Letter";
 import { NavHashLink } from "react-router-hash-link";
 import i18n from "../../../../i18n";
@@ -9,16 +9,18 @@ import { colors } from "../../../../colors";
 import { SimplifiedStructure } from "types/interface";
 
 const HeaderContainer = styled.div`
-  background-attachment: fixed;
-
+  background-image: url(${img});
+  background-repeat: no-repeat;
+  background-position: 20px ${(props) => -props.currentScroll + "px"};
   height: 290px;
   width: 100%;
+  margin-left: 30px;
   margin-top: ${(props) =>
     props.stopScroll
       ? "-140px"
-      : -75 - props.currentScroll < -105
-      ? "-105px"
-      : -75 - props.currentScroll + "px"};
+      : -props.currentScroll < -120
+      ? "-60px"
+      : -props.currentScroll / 2 + "px"};
   position: ${(props) => (props.stopScroll ? "fixed" : "relative")};
   z-index: 1;
 `;
@@ -55,14 +57,27 @@ const SearchContainer = styled.div`
 
 interface Props {
   letters: string[];
-  //   onLetterClick: (letter: string) => void;
   stopScroll: boolean;
   currentScroll: number;
   letterSelected: string;
-  setLetterSelected: any;
-  setFilteredStructures: any;
-  sortedStructureByAlpha: SimplifiedStructure[] | null;
+  setLetterSelected: (a: string) => void;
+  filteredStructures: SimplifiedStructure[] | null;
+  typeSelected: string[] | null;
+  setTypeSelected: (a: string[]) => void;
+  ville: string;
+  setVille: (a: string) => void;
+  depName: string;
+  setDepName: (a: string) => void;
+  depNumber: string | null;
+  setDepNumber: (a: string) => void;
+  isCityFocus: boolean;
+  setIsCityFocus: (a: boolean) => void;
+  isCitySelected: boolean;
+  setIsCitySelected: (a: boolean) => void;
   t: any;
+  resetSearch: () => void;
+  keyword: string;
+  setKeyword: (a: string) => void;
 }
 
 export const Header = (props: Props) => {
@@ -85,8 +100,23 @@ export const Header = (props: Props) => {
           {props.t("Annuaire.Annuaire", "Annuaire")}
         </TextContainer>
         <SearchBarAnnuaire
-          setFilteredStructures={props.setFilteredStructures}
+          filteredStructures={props.filteredStructures}
           t={props.t}
+          resetSearch={props.resetSearch}
+          keyword={props.keyword}
+          setKeyword={props.setKeyword}
+          typeSelected={props.typeSelected}
+          setTypeSelected={props.setTypeSelected}
+          ville={props.ville}
+          setVille={props.setVille}
+          depName={props.depName}
+          setDepName={props.setDepName}
+          depNumber={props.depNumber}
+          setDepNumber={props.setDepNumber}
+          isCityFocus={props.isCityFocus}
+          setIsCityFocus={props.setIsCityFocus}
+          isCitySelected={props.isCitySelected}
+          setIsCitySelected={props.setIsCitySelected}
         />
       </SearchContainer>
 

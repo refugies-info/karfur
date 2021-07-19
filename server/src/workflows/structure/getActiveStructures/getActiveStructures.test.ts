@@ -11,9 +11,54 @@ const mockResponse = (): MockResponse => {
 };
 
 jest.mock("../../../modules/structure/structure.repository", () => ({
-  getStructuresFromDB: jest
-    .fn()
-    .mockResolvedValue([{ id: "id1" }, { id: "id2" }]),
+  getStructuresFromDB: jest.fn().mockResolvedValue([
+    {
+      _id: "id1",
+      nom: "nom1",
+      departments: [],
+      dispositifsAssocies: [
+        {
+          contenu: [
+            {},
+            {
+              children: [
+                {
+                  type: "card",
+                  isFakeContent: false,
+                  title: "Zone d'action",
+                  titleIcon: "pin-outline",
+                  typeIcon: "eva",
+                  departments: ["All", "68 - Haut-Rhin"],
+                  free: true,
+                  contentTitle: "Sélectionner",
+                  editable: false,
+                },
+                {},
+                {},
+                {},
+                {},
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      _id: "id2",
+      nom: "nom2",
+      departments: [],
+      dispositifsAssocies: [
+        {
+          contenu: [
+            {},
+            {
+              children: [{}, {}, {}, {}],
+            },
+          ],
+        },
+      ],
+    },
+  ]),
 }));
 
 describe("getActiveStructures", () => {
@@ -26,11 +71,30 @@ describe("getActiveStructures", () => {
     expect(getStructuresFromDB).toHaveBeenCalledWith(
       { status: "Actif" },
       { nom: 1, acronyme: 1, picture: 1, departments: 1, structureTypes: 1 },
-      false
+      true
     );
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
-      data: [{ id: "id1" }, { id: "id2" }],
+      data: [
+        {
+          _id: "id1",
+          departments: [],
+          nom: "nom1",
+          disposAssociesLocalisation: ["All", "68 - Haut-Rhin"],
+          acronyme: undefined,
+          picture: undefined,
+          structureTypes: undefined,
+        },
+        {
+          _id: "id2",
+          departments: [],
+          nom: "nom2",
+          disposAssociesLocalisation: [],
+          acronyme: undefined,
+          picture: undefined,
+          structureTypes: undefined,
+        },
+      ],
     });
   });
 
@@ -41,7 +105,7 @@ describe("getActiveStructures", () => {
     expect(getStructuresFromDB).toHaveBeenCalledWith(
       { status: "Actif" },
       { nom: 1, acronyme: 1, picture: 1, departments: 1, structureTypes: 1 },
-      false
+      true
     );
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({

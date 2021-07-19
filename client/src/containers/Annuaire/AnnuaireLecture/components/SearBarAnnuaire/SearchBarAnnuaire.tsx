@@ -1,5 +1,4 @@
-/* eslint-disable no-console */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../../../../colors";
 import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
@@ -11,8 +10,7 @@ import Autocomplete from "react-google-autocomplete";
 import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import { StructureTypes } from "../../../AnnuaireCreate/data";
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
-// import { NavHashLink } from "react-router-hash-link";
-// import i18n from "../../../../i18n";
+import { SimplifiedStructure } from "types/interface";
 
 const MainContainer = styled.div`
   display: flex;
@@ -60,6 +58,19 @@ const WhiteButtonContainer = styled.div`
   align-items: center;
   margin-right: 12px;
 `;
+const DarkButtonContainer = styled.div`
+  display: flex;
+  height: 50px;
+  background: ${colors.noir};
+  padding: 12px;
+
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  align-items: center;
+  margin-right: 12px;
+  color: ${colors.blanc};
+`;
 const ResultNumberContainer = styled.div`
   font-size: 16px;
   font-weight: 700;
@@ -69,51 +80,96 @@ const ResultNumberContainer = styled.div`
 
 interface Props {
   t: any;
-  setFilteredStructures: any;
+  filteredStructures: SimplifiedStructure[] | null;
+  resetSearch: () => void;
+  keyword: string;
+  setKeyword: (a: string) => void;
+  typeSelected: string[] | null;
+  setTypeSelected: (a: string[]) => void;
+  ville: string;
+  setVille: (a: string) => void;
+  depName: string;
+  setDepName: (a: string) => void;
+  depNumber: string | null;
+  setDepNumber: (a: string) => void;
+  isCityFocus: boolean;
+  setIsCityFocus: (a: boolean) => void;
+  isCitySelected: boolean;
+  setIsCitySelected: (a: boolean) => void;
 }
 
 export const SearchBarAnnuaire = (props: Props) => {
   const [dropdownOpen, setOpen] = useState(false);
-  const [typeSelected, setTypeSelected] = useState<string[]>([]);
-  const [ville, setVille] = useState("");
-  const [keyword, setKeyword] = useState("");
-  const [isCityFocus, setIsCityFocus] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
 
-  const filterStructure = () => {};
-
-  useEffect(() => {
-    filterStructure();
-  }, [ville, keyword, typeSelected]);
-
   const selectType = (item: string) => {
-    if (!typeSelected.includes(item)) {
-      let newTypesSelected = typeSelected.concat([item]);
-      setTypeSelected(newTypesSelected);
+    if (props.typeSelected && !props.typeSelected.includes(item)) {
+      let newTypesSelected = props.typeSelected.concat([item]);
+      props.setTypeSelected(newTypesSelected);
     }
 
     toggle();
   };
 
-  const onChangeKeywords = (e: any) => setKeyword(e.target.value);
+  const onChangeKeywords = (e: any) => props.setKeyword(e.target.value);
 
-  const handleChange = (e: any) => setVille(e.target.value);
+  const handleChange = (e: any) => props.setVille(e.target.value);
 
   const onPlaceSelected = (place: any) => {
-    if (place.formatted_address) {
-      setVille(place.formatted_address);
+    if (
+      place.address_components.find((item: any) =>
+        item.types.includes("postal_code")
+      )
+    ) {
+      props.setDepNumber(
+        place.address_components
+          .find((item: any) => item.types.includes("postal_code"))
+          .long_name.substr(0, 2)
+      );
     }
-    setIsCityFocus(false);
-    setKeyword("");
+    if (
+      place.address_components.find((item: any) =>
+        item.types.includes("administrative_area_level_2")
+      )
+    ) {
+      if (
+        place.address_components.find((item: any) =>
+          item.types.includes("administrative_area_level_2")
+        ).long_name === "Département de Paris"
+      ) {
+        props.setDepName("Paris");
+      } else {
+        props.setDepName(
+          place.address_components.find((item: any) =>
+            item.types.includes("administrative_area_level_2")
+          ).long_name
+        );
+      }
+    }
+    props.setIsCityFocus(false);
+    if (place.formatted_address) {
+      props.setVille(place.formatted_address);
+      props.setIsCitySelected(true);
+    }
+  };
+
+  const resetCity = () => {
+    props.setIsCitySelected(false);
+    props.setVille("");
+    props.setDepNumber("");
+    props.setDepName("");
+    props.resetSearch();
   };
 
   const removeType = (item: string) => {
-    let array = typeSelected.filter((el) => el !== item);
-    setTypeSelected(array);
+    let array = props.typeSelected
+      ? props.typeSelected.filter((el) => el !== item)
+      : [];
+    props.setTypeSelected(array);
     toggle();
   };
-  console.log(ville);
+
   return (
     <MainContainer>
       <WhiteButtonContainer>
@@ -125,36 +181,81 @@ export const SearchBarAnnuaire = (props: Props) => {
             "Annuaire.Rechercher par",
             "Rechercher par nom ..."
           )}
-          value={keyword}
+          value={props.keyword}
         />
         {}
 
-        <EVAIcon
-          name="search-outline"
-          fill={colors.noir}
-          id="bookmarkBtn"
-          className="ml-10"
-          size={"large"}
-        />
+        {props.keyword === "" ? (
+          <EVAIcon
+            name="search-outline"
+            fill={colors.noir}
+            id="bookmarkBtn"
+            className="ml-10"
+            size={"large"}
+          />
+        ) : (
+          <EVAIcon
+            name="close-circle"
+            fill={colors.noir}
+            id="bookmarkBtn"
+            className="ml-10"
+            size={"large"}
+            onClick={() => props.setKeyword("")}
+          />
+        )}
       </WhiteButtonContainer>
-
-      <WhiteButtonContainer>
-        <EVAIcon
-          name="pin-outline"
-          fill={colors.noir}
-          className="mr-10"
-          id="bookmarkBtn"
-          size={"large"}
-        />
-        {ville === "" && !isCityFocus ? (
+      {props.ville === "" && !props.isCityFocus ? (
+        <WhiteButtonContainer>
+          <EVAIcon
+            name="pin-outline"
+            fill={colors.noir}
+            className="mr-10"
+            id="bookmarkBtn"
+            size={"large"}
+          />
           <div
             onClick={() => {
-              setIsCityFocus(true);
+              props.setIsCityFocus(true);
             }}
           >
             {props.t("Annuaire.Ville ou département", "Ville ou département")}
-          </div>
-        ) : (
+          </div>{" "}
+        </WhiteButtonContainer>
+      ) : props.isCitySelected ? (
+        <DarkButtonContainer>
+          <EVAIcon
+            name="pin-outline"
+            fill={colors.blancSimple}
+            className="mr-10"
+            id="bookmarkBtn"
+            size={"large"}
+          />
+          <div
+            onClick={() => {
+              props.setIsCitySelected(false);
+            }}
+          >
+            {props.ville}
+          </div>{" "}
+          <EVAIcon
+            name="close-circle"
+            fill={colors.blancSimple}
+            className="ml-10"
+            size={"large"}
+            onClick={() => {
+              resetCity();
+            }}
+          />
+        </DarkButtonContainer>
+      ) : (
+        <WhiteButtonContainer>
+          <EVAIcon
+            name="pin-outline"
+            fill={colors.noir}
+            className="mr-10"
+            id="bookmarkBtn"
+            size={"large"}
+          />
           <ReactDependentScript
             loadingComponent={<div>Chargement de Google Maps...</div>}
             scripts={[
@@ -171,11 +272,11 @@ export const SearchBarAnnuaire = (props: Props) => {
                   }}
                   className="autocomplete"
                   onBlur={() => {
-                    setIsCityFocus(false);
+                    props.setIsCityFocus(false);
                   }}
                   placeholder={""}
                   id="villeAuto"
-                  value={ville}
+                  value={props.ville}
                   onChange={handleChange}
                   onPlaceSelected={onPlaceSelected}
                   types={["(cities)"]}
@@ -183,36 +284,37 @@ export const SearchBarAnnuaire = (props: Props) => {
                 />
               )}
               <EVAIcon
-                name="close-outline"
+                name="close-circle"
                 size="large"
                 className="ml-10"
                 onClick={() => {}}
               />
             </div>
           </ReactDependentScript>
-        )}
-      </WhiteButtonContainer>
+        </WhiteButtonContainer>
+      )}{" "}
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle
           caret={false}
           className={
-            typeSelected.length === 0
+            props.typeSelected && props.typeSelected.length === 0
               ? "typeButton whiteButton"
               : "typeButton typeSelected"
           }
         >
-          {typeSelected.length === 1
-            ? typeSelected[0]
-            : typeSelected.length > 1
-            ? typeSelected.length + " types"
+          {props.typeSelected && props.typeSelected.length === 1
+            ? props.typeSelected[0]
+            : props.typeSelected && props.typeSelected.length > 1
+            ? props.typeSelected.length + " types"
             : props.t("Annuaire.Type de structure", "Type de structure")}
-          {typeSelected.length > 0 && (
+          {props.typeSelected && props.typeSelected.length > 0 && (
             <EVAIcon
               name="close-circle"
               fill={colors.blancSimple}
               onClick={(e: any) => {
                 e.stopPropagation();
-                setTypeSelected([]);
+                props.setTypeSelected([]);
+                props.resetSearch();
               }}
               id="bookmarkBtn"
               className="ml-10"
@@ -230,7 +332,7 @@ export const SearchBarAnnuaire = (props: Props) => {
                   }}
                   type="white"
                   style={
-                    typeSelected.includes(item)
+                    props.typeSelected && props.typeSelected.includes(item)
                       ? { border: "2px black solid" }
                       : {}
                   }
@@ -239,7 +341,7 @@ export const SearchBarAnnuaire = (props: Props) => {
                 >
                   {item}
 
-                  {typeSelected.includes(item) && (
+                  {props.typeSelected && props.typeSelected.includes(item) && (
                     <EVAIcon
                       name="close-circle"
                       fill={colors.blancSimple}
@@ -258,13 +360,8 @@ export const SearchBarAnnuaire = (props: Props) => {
           </DropDownItemContainer>
         </DropdownMenu>
       </Dropdown>
-
-      {/* <WhiteButtonContainer>
-        {" "}
-        {props.t("Annuaire.Thèmes & activités", "Thèmes & activités")}
-      </WhiteButtonContainer> */}
       <ResultNumberContainer>
-        {" "}
+        {props.filteredStructures ? props.filteredStructures.length : 0}{" "}
         {props.t("AdvancedSearch.résultats", "résultats")}
       </ResultNumberContainer>
     </MainContainer>
