@@ -34,7 +34,6 @@ export const getActiveStructures = async (req: {}, res: Res) => {
         //@ts-ignore
         item.dispositifsAssocies.map((el: any) => {
           if (
-            el.status === "Actif" &&
             el.contenu &&
             el.contenu[1] &&
             el.contenu[1].children &&

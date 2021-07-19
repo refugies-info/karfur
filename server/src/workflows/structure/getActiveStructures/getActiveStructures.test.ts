@@ -26,7 +26,7 @@ describe("getActiveStructures", () => {
     expect(getStructuresFromDB).toHaveBeenCalledWith(
       { status: "Actif" },
       { nom: 1, acronyme: 1, picture: 1, departments: 1, structureTypes: 1 },
-      false
+      true
     );
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
@@ -41,7 +41,7 @@ describe("getActiveStructures", () => {
     expect(getStructuresFromDB).toHaveBeenCalledWith(
       { status: "Actif" },
       { nom: 1, acronyme: 1, picture: 1, departments: 1, structureTypes: 1 },
-      false
+      true
     );
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
