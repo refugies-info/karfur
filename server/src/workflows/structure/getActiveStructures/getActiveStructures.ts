@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Res } from "../../../types/interface";
 import logger from "../../../logger";
 import { getStructuresFromDB } from "../../../modules/structure/structure.repository";
@@ -6,7 +5,6 @@ import { StructureSimplifiedWithLoc } from "src/schema/schemaStructure";
 
 export const getActiveStructures = async (req: {}, res: Res) => {
   try {
-    console.log("getActiveStructures");
     logger.info("[getActiveStructures] get structures ");
     const structures = await getStructuresFromDB(
       { status: "Actif" },
@@ -19,7 +17,7 @@ export const getActiveStructures = async (req: {}, res: Res) => {
       },
       true
     );
-    console.log("structures", structures);
+
     let newStructures: StructureSimplifiedWithLoc[] = [];
     structures.map((item) => {
       let newStructure = {
@@ -41,7 +39,6 @@ export const getActiveStructures = async (req: {}, res: Res) => {
             el.contenu[1].children &&
             el.contenu[1].children.length
           ) {
-            console.log("el children", el.contenu[1].children);
             const geolocInfocard = el.contenu[1].children.find(
               (infocard: any) => infocard.title === "Zone d'action"
             );
