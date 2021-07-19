@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import img from "../../../../assets/annuaire/annuaire_lecture.svg";
+import img from "../../../../assets/annuaire/annuaire_cover.svg";
 import { Letter } from "./Letter";
 import { NavHashLink } from "react-router-hash-link";
 import i18n from "../../../../i18n";
-import { SearchBarAnnuaire } from "./SearchBarAnnuaire";
+import { SearchBarAnnuaire } from "./SearBarAnnuaire/SearchBarAnnuaire";
 import { colors } from "../../../../colors";
+import { SimplifiedStructure } from "types/interface";
 
 const HeaderContainer = styled.div`
-  background-attachment: fixed;
   background-image: url(${img});
-  height: 330px;
+  background-repeat: no-repeat;
+  background-position: 20px ${(props) => -props.currentScroll + "px"};
+  height: 290px;
   width: 100%;
-  margin-top: ${(props) => (props.stopScroll ? "-250px" : "-75px")};
+  margin-left: 30px;
+  margin-top: ${(props) =>
+    props.stopScroll
+      ? "-140px"
+      : -props.currentScroll < -120
+      ? "-60px"
+      : -props.currentScroll / 2 + "px"};
   position: ${(props) => (props.stopScroll ? "fixed" : "relative")};
   z-index: 1;
 `;
@@ -49,36 +57,84 @@ const SearchContainer = styled.div`
 
 interface Props {
   letters: string[];
-  //   onLetterClick: (letter: string) => void;
   stopScroll: boolean;
+  currentScroll: number;
+  letterSelected: string;
+  setLetterSelected: (a: string) => void;
+  filteredStructures: SimplifiedStructure[] | null;
+  typeSelected: string[] | null;
+  setTypeSelected: (a: string[]) => void;
+  ville: string;
+  setVille: (a: string) => void;
+  depName: string;
+  setDepName: (a: string) => void;
+  depNumber: string | null;
+  setDepNumber: (a: string) => void;
+  isCityFocus: boolean;
+  setIsCityFocus: (a: boolean) => void;
+  isCitySelected: boolean;
+  setIsCitySelected: (a: boolean) => void;
   t: any;
+  resetSearch: () => void;
+  keyword: string;
+  setKeyword: (a: string) => void;
 }
 
 export const Header = (props: Props) => {
   const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+
+  useEffect(() => {
+    if (props.currentScroll === 0) {
+      props.setLetterSelected("");
+    }
+  }, [props.currentScroll]);
+
   return (
-    <HeaderContainer stopScroll={props.stopScroll}>
+    <HeaderContainer
+      currentScroll={props.currentScroll}
+      stopScroll={props.stopScroll}
+    >
       <SearchContainer>
         {" "}
         <TextContainer isRTL={isRTL}>
           {props.t("Annuaire.Annuaire", "Annuaire")}
         </TextContainer>
-        <SearchBarAnnuaire t={props.t} />
+        <SearchBarAnnuaire
+          filteredStructures={props.filteredStructures}
+          t={props.t}
+          resetSearch={props.resetSearch}
+          keyword={props.keyword}
+          setKeyword={props.setKeyword}
+          typeSelected={props.typeSelected}
+          setTypeSelected={props.setTypeSelected}
+          ville={props.ville}
+          setVille={props.setVille}
+          depName={props.depName}
+          setDepName={props.setDepName}
+          depNumber={props.depNumber}
+          setDepNumber={props.setDepNumber}
+          isCityFocus={props.isCityFocus}
+          setIsCityFocus={props.setIsCityFocus}
+          isCitySelected={props.isCitySelected}
+          setIsCitySelected={props.setIsCitySelected}
+        />
       </SearchContainer>
 
       <LettersContainer isRTL={isRTL}>
         <>
           {props.letters.map((letter, index) => (
             <NavHashLink
+              onClick={() => props.setLetterSelected(letter)}
               to={`/annuaire#${letter.toUpperCase()}`}
               smooth={true}
               key={letter}
             >
               <Letter
                 letter={letter}
+                isOneSelected={props.letterSelected === "" ? false : true}
                 index={props.letters.length - index}
                 //   onLetterClick={props.onLetterClick}
-                isSelected={false}
+                isSelected={props.letterSelected === letter ? true : false}
               />
             </NavHashLink>
           ))}

@@ -15,8 +15,8 @@ const MainContainer = styled.div`
   position: relative;
   z-index: ${(props) => (props.isSelected ? "25" : props.index)};
   cursor: pointer;
-  background: ${(props) => (props.isSelected ? "#212121" : "#ffffff")};
-  color: ${(props) => (props.isSelected ? "#ffffff" : "#212121")};
+  background: #ffffff;
+  color: ${(props) => (props.isOneSelected ? "#C6C6C6" : "#212121")};
   margin: 4px;
   &:hover {
     background: #212121;
@@ -27,6 +27,7 @@ const MainContainer = styled.div`
 interface Props {
   letter: string;
   index: number;
+  isOneSelected: boolean;
   // onLetterClick: (arg: string) => void;
   isSelected: boolean;
 }
@@ -36,6 +37,7 @@ export const Letter = (props: Props) => (
     index={props.index}
     // onClick={() => props.onLetterClick(props.letter)}
     isSelected={props.isSelected}
+    isOneSelected={props.isOneSelected}
   >
     {props.letter.toUpperCase()}
   </MainContainer>

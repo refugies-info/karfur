@@ -8,7 +8,7 @@ export const tags = [
     darkColor: theme.colors.français100,
     lightColor: theme.colors.français80,
     veryLightColor: theme.colors.français40,
-
+    color30: theme.colors.français30,
     order: 2,
   },
   {
@@ -18,7 +18,7 @@ export const tags = [
     darkColor: theme.colors.admin100,
     lightColor: theme.colors.admin80,
     veryLightColor: theme.colors.admin40,
-
+    color30: theme.colors.admin30,
     order: 1,
   },
   {
@@ -28,6 +28,7 @@ export const tags = [
     darkColor: theme.colors.logement100,
     lightColor: theme.colors.logement80,
     veryLightColor: theme.colors.logement40,
+    color30: theme.colors.logement30,
     order: 5,
   },
   {
@@ -37,6 +38,7 @@ export const tags = [
     darkColor: theme.colors.mobilite100,
     lightColor: theme.colors.mobilite80,
     veryLightColor: theme.colors.mobilite40,
+    color30: theme.colors.mobilite30,
     order: 7,
   },
   {
@@ -46,6 +48,7 @@ export const tags = [
     darkColor: theme.colors.travail100,
     lightColor: theme.colors.travail80,
     veryLightColor: theme.colors.travail40,
+    color30: theme.colors.travail30,
     order: 3,
   },
   {
@@ -55,6 +58,7 @@ export const tags = [
     darkColor: theme.colors.sante100,
     lightColor: theme.colors.sante80,
     veryLightColor: theme.colors.sante40,
+    color30: theme.colors.sante30,
     order: 6,
   },
   {
@@ -64,6 +68,7 @@ export const tags = [
     darkColor: theme.colors.formation100,
     lightColor: theme.colors.formation80,
     veryLightColor: theme.colors.formation40,
+    color30: theme.colors.formation30,
     order: 4,
   },
   {
@@ -74,6 +79,7 @@ export const tags = [
     lightColor: theme.colors.etudes80,
     veryLightColor: theme.colors.etudes40,
     order: 9,
+    color30: theme.colors.etudes30,
   },
   {
     short: "Bénévolat",
@@ -83,6 +89,7 @@ export const tags = [
     lightColor: theme.colors.benevolat80,
     veryLightColor: theme.colors.benevolat40,
     order: 10,
+    color30: theme.colors.benevolat30,
   },
   {
     short: "Rencontre",
@@ -92,6 +99,7 @@ export const tags = [
     lightColor: theme.colors.rencontre80,
     veryLightColor: theme.colors.rencontre40,
     order: 8,
+    color30: theme.colors.rencontre30,
   },
   {
     short: "Loisir",
@@ -101,6 +109,7 @@ export const tags = [
     lightColor: theme.colors.loisirs80,
     veryLightColor: theme.colors.loisirs40,
     order: 11,
+    color30: theme.colors.loisirs30,
   },
   {
     short: "Culture",
@@ -110,5 +119,6 @@ export const tags = [
     lightColor: theme.colors.culture80,
     veryLightColor: theme.colors.culture40,
     order: 12,
+    color30: theme.colors.culture30,
   },
 ];

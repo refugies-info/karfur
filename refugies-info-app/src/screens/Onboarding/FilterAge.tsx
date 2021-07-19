@@ -39,10 +39,15 @@ export const FilterAge = ({
 
   const onValidate = () => {
     if (selectedAge) {
-      dispatch(saveUserAgeActionCreator(selectedAge));
+      dispatch(
+        saveUserAgeActionCreator({
+          age: selectedAge,
+          shouldFetchContents: false,
+        })
+      );
       return navigateToNextScreen();
     }
-    dispatch(removeUserAgeActionCreator());
+    dispatch(removeUserAgeActionCreator(false));
     return navigateToNextScreen();
   };
 

@@ -73,4 +73,5 @@ export interface Content {
   updatedAt: Moment;
   nbVues: number;
   nbMercis: number;
+  lastModificationDate: Moment | null;
 }

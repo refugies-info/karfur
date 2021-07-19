@@ -113,7 +113,6 @@ export const FilterCityComponent = (props: Props) => {
     try {
       const results = await getCitiesFromGoogleAPI(data);
       if (results && results.data && results.data.predictions) {
-        console.log("results get cities", results);
         setSuggestions(results.data.predictions);
       }
     } catch (error) {
@@ -239,11 +238,14 @@ export const FilterCityComponent = (props: Props) => {
         saveUserLocationActionCreator({
           city: selectedCity,
           dep: selectedDepartment,
+          shouldFetchContents: props.isOnboardingScreen ? false : true,
         })
       );
       return navigateToNextScreen();
     }
-    dispatch(removeUserLocationActionCreator());
+    dispatch(
+      removeUserLocationActionCreator(props.isOnboardingScreen ? false : true)
+    );
     return navigateToNextScreen();
   };
 
