@@ -26,9 +26,10 @@ const MainContainer = styled.View`
   flex-direction: column;
   background-color: ${theme.colors.white};
   border-radius: ${theme.radius * 2}px;
-  padding-vertical: ${theme.margin * 2}px;
+  padding-top: ${theme.margin * 2}px;
   box-shadow: 0px 0px 40px rgba(33, 33, 33, 0.1);
   elevation: 1;
+  margin-top: ${theme.margin}px;
 `;
 
 const TitleText = styled(TextNormalBold)`
@@ -63,6 +64,10 @@ const Separator = styled.View`
 export const InfocardsSection = (props: Props) => {
   const { t } = useTranslationWithRTL();
   const formattedData = formatInfocards(props.content, props.typeContenu);
+
+  if (formattedData.length === 0) {
+    return <View />;
+  }
   return (
     <MainContainer>
       {formattedData.map((data, indexSection) => {
