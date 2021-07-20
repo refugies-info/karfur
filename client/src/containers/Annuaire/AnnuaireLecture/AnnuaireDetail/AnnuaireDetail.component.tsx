@@ -23,9 +23,7 @@ declare const window: Window;
 const Content = styled.div`
   display: flex;
   flex-direction: row;
-  flex: 1;
-
-  height: 100hv;
+  flex: 1 1 0%;
 `;
 declare global {
   interface Window {
@@ -37,6 +35,7 @@ declare global {
 const MainContainer = styled.div`
   display: flex;
   flex: 1;
+  max-height: 105vh;
   margin-top: -75px;
   background-color: ${colors.gris};
 `;
@@ -91,6 +90,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
     structure && structure.membres.find((el: any) => el._id === user.userId)
       ? true
       : false;
+
   if (isLoading || !structure) {
     return (
       <MainContainer>

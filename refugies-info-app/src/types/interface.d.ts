@@ -75,3 +75,18 @@ export interface Content {
   nbMercis: number;
   lastModificationDate: Moment | null;
 }
+
+export interface MarkerGoogle {
+  address?: string;
+  email?: string;
+  latitude: number;
+  longitude: number;
+  nom: string;
+  telephone?: string;
+  vicinity: string;
+  description?: string;
+}
+
+export interface MapGoogle {
+  markers: MarkerGoogle[];
+}

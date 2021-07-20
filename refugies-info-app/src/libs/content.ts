@@ -30,7 +30,9 @@ export const formatInfocards = (
       section.filters.includes(el.title)
     );
 
-    result.push({ title: section.title, filteredData });
+    if (filteredData.length > 0) {
+      result.push({ title: section.title, filteredData });
+    }
   });
   return result;
 };

@@ -400,7 +400,10 @@ export const AnnuaireLectureComponent = (props: Props) => {
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
   const onStructureCardClick = (id: ObjectId) =>
-    props.history.push(`/annuaire/${id}`);
+    props.history.push({
+      pathname: `/annuaire/${id}`,
+      state: "from_annuaire_lecture",
+    });
   if (isLoading) {
     const emptyArray = new Array(7).fill("a");
     return (

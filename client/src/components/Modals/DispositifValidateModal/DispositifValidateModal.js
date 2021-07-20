@@ -67,8 +67,8 @@ const CardContainer = styled.div`
   padding: 16px;
   height: ${(props) =>
     props.typeContenu === "dispositif" ? "198px" : "248px"};
-  min-width: 248px;
-  max-width: 248px;
+  min-width: 252px;
+  max-width: 252px;
   overflow: auto;
 `;
 
@@ -95,6 +95,7 @@ const EmptyTextContainer = styled.div`
 
 const MockupCardContainer = styled.div`
   height: 248px;
+  width: 252px;
   min-width: 248px;
   background-color: ${(props) =>
     props.typeContenu === "dispositif" ? colors.blancSimple : props.lightColor};
