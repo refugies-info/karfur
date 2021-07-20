@@ -23,8 +23,9 @@ const MainContainer = styled.View`
   height: ${(props: { height: number }) => props.height}px;
   display: flex;
   flex-direction: column;
-
   position: absolute;
+  left: 0;
+  top: 0;
 `;
 
 const CategoryText = styled(TextSmallNormal)`
@@ -98,7 +99,7 @@ export const MapSideBar = (props: Props) => {
           {props.selectedMarker.telephone ||
             t("Content.Non renseigné", "Non renseigné")}
         </TextValue>
-        <View style={{ marginTop: 8 }}>
+        <View style={{ marginTop: theme.margin * 2 }}>
           <CustomButton
             defaultText="Ok"
             i18nKey="Ok"

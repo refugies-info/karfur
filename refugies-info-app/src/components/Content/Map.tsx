@@ -46,6 +46,7 @@ export class Map extends React.Component<PropsType, StateType> {
     const markers = this.props.map.markers;
     const mapHeight = Dimensions.get("window").height * 0.6;
     const mapWidth = Dimensions.get("window").width;
+
     return (
       <View>
         <MapView
@@ -84,14 +85,14 @@ export class Map extends React.Component<PropsType, StateType> {
               </Marker>
             );
           })}
-          <MapSideBar
-            selectedMarker={this.state.markerOpen}
-            height={mapHeight}
-            width={0.8 * mapWidth}
-            textColor={this.props.markersColor}
-            hideSideBar={this.hideMarkerDetails}
-          />
         </MapView>
+        <MapSideBar
+          selectedMarker={this.state.markerOpen}
+          height={mapHeight}
+          width={0.8 * mapWidth}
+          textColor={this.props.markersColor}
+          hideSideBar={this.hideMarkerDetails}
+        />
       </View>
     );
   }
