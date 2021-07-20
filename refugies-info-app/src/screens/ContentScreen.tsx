@@ -569,7 +569,7 @@ export const ContentScreen = ({
             </LastUpdateDateContainer>
           )}
 
-          {!!map && (
+          {!!map && map.markers.length > 0 && (
             <>
               <MapHeaderContainer color={tagDarkColor}>
                 <MapHeaderText>
