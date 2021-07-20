@@ -17,6 +17,8 @@ import { NoResult } from "./components/NoResult";
 import { history } from "services/configureStore";
 // @ts-ignore
 import qs from "query-string";
+// @ts-ignore
+import querySearch from "stringquery";
 
 declare const window: Window;
 
@@ -152,10 +154,33 @@ export const AnnuaireLectureComponent = (props: Props) => {
 
     setFilteredStructures(sortedStructureByAlpha);
   };
+  const computeStateFromUrl = (search: any) => {
+    let keywordFromUrl = querySearch(search).keyword;
+    let typeSelectedFromUrl = querySearch(search).type;
+    let villeFromUrl = querySearch(search).ville;
+    let depNameFromUrl = querySearch(search).depName;
+    let depNumberFromUrl = querySearch(search).depNumber;
+    if (keywordFromUrl) {
+      setKeyword(decodeURIComponent(keywordFromUrl));
+    }
+    if (typeSelectedFromUrl) {
+      setTypeSelected([decodeURIComponent(typeSelectedFromUrl)]);
+    }
+    if (depNameFromUrl) {
+      setDepName(decodeURIComponent(depNameFromUrl));
+      setVille(decodeURIComponent(villeFromUrl));
+      setIsCitySelected(true);
+    }
+    if (depNumberFromUrl) {
+      setDepNumber(decodeURIComponent(depNumberFromUrl));
+      setVille(decodeURIComponent(villeFromUrl));
+      setIsCitySelected(true);
+    }
+  };
 
   useEffect(() => {
-    resetSearch();
-  }, [structures]);
+    computeStateFromUrl(history.location.search);
+  }, []);
 
   const filterStructuresByType = (arrayTofilter: SimplifiedStructure[]) => {
     if (!typeSelected || typeSelected.length === 0) {
@@ -268,10 +293,11 @@ export const AnnuaireLectureComponent = (props: Props) => {
     setFilteredStructures(filterByTypeAndLocAndKeyword);
   };
 
-  const computeUrl = (query: {
+  const computeUrlFromState = (query: {
     depName?: string | undefined;
     depNumber?: string | null;
     keyword?: string;
+    ville?: string;
   }) => {
     history.push({
       search: qs.stringify(query),
@@ -279,15 +305,21 @@ export const AnnuaireLectureComponent = (props: Props) => {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log("use effect state");
     let query: {
       depName?: string | undefined;
       depNumber?: string;
       keyword?: string;
       type?: string[];
+      ville?: string;
     } = {};
 
     if (depName !== "") {
       query.depName = depName;
+    }
+    if (ville !== "") {
+      query.ville = ville;
     }
     if (depNumber) {
       query.depNumber = depNumber;
@@ -298,9 +330,14 @@ export const AnnuaireLectureComponent = (props: Props) => {
     if (typeSelected && typeSelected.length) {
       query.type = typeSelected;
     }
-    computeUrl(query);
+    computeUrlFromState(query);
     filterStructures();
   }, [typeSelected, depName, depNumber, keyword, isCitySelected]);
+
+  useEffect(() => {
+    resetSearch();
+    filterStructures();
+  }, [structures]);
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
   const onStructureCardClick = (id: ObjectId) =>
