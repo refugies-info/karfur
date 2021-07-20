@@ -14,17 +14,11 @@ interface StateType {
   markerOpen: MarkerGoogle | null;
 }
 
-const DEFAULT_PADDING = { top: 50, right: 50, bottom: 50, left: 50 };
 export class Map extends React.Component<PropsType, StateType> {
   state: StateType = {
     markerOpen: null,
   };
 
-  componentDidMount() {
-    if (this.props.map.markers.length > 0) {
-      this.fitAllMarkers();
-    }
-  }
   onMarkerClick = (marker: MarkerGoogle, e: any) => {
     e.stopPropagation();
     this.setState({ markerOpen: marker });
@@ -33,14 +27,6 @@ export class Map extends React.Component<PropsType, StateType> {
   hideMarkerDetails = () => {
     this.setState({ markerOpen: null });
   };
-
-  fitAllMarkers() {
-    // @ts-ignore
-    this.map.fitToCoordinates(this.props.map.markers, {
-      edgePadding: DEFAULT_PADDING,
-      animated: true,
-    });
-  }
 
   render() {
     const markers = this.props.map.markers;
@@ -59,10 +45,6 @@ export class Map extends React.Component<PropsType, StateType> {
             longitude: 2,
             latitudeDelta: 10,
             longitudeDelta: 5,
-          }}
-          ref={(ref) => {
-            // @ts-ignore
-            this.map = ref;
           }}
           onPress={this.hideMarkerDetails}
         >
