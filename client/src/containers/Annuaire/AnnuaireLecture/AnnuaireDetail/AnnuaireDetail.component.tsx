@@ -35,6 +35,7 @@ declare global {
 const MainContainer = styled.div`
   display: flex;
   flex: 1;
+  max-height: 105vh;
   margin-top: -75px;
   background-color: ${colors.gris};
 `;
