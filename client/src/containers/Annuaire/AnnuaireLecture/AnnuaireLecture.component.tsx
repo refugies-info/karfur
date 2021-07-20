@@ -34,6 +34,7 @@ const LoadingContainer = styled.div`
   margin-top: 24px;
   display: flex;
   flex-direction: row;
+  margin-left: 72px;
 `;
 const Content = styled.div`
   display: flex;
