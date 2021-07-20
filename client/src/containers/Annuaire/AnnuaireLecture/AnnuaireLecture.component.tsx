@@ -305,8 +305,6 @@ export const AnnuaireLectureComponent = (props: Props) => {
   };
 
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log("use effect state");
     let query: {
       depName?: string | undefined;
       depNumber?: string;
