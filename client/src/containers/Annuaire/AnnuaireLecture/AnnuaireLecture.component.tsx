@@ -142,17 +142,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
         )
       : [];
 
-    const sortedStructureByAlpha = filterStructures
-      ? filterStructures.sort((a, b) =>
-          a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
-            ? -1
-            : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()
-            ? 1
-            : 0
-        )
-      : [];
-
-    setFilteredStructures(sortedStructureByAlpha);
+    setFilteredStructures(filterStructures);
   };
   const computeStateFromUrl = (search: any) => {
     let keywordFromUrl = querySearch(search).keyword;
@@ -290,7 +280,16 @@ export const AnnuaireLectureComponent = (props: Props) => {
     const filterByTypeAndLoc = filterStructuresByLoc(filterByType);
     const filterByTypeAndLocAndKeyword =
       filterStructuresByKeword(filterByTypeAndLoc);
-    setFilteredStructures(filterByTypeAndLocAndKeyword);
+    const sortedStructureByAlpha = filterByTypeAndLocAndKeyword
+      ? filterByTypeAndLocAndKeyword.sort((a, b) =>
+          a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
+            ? -1
+            : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()
+            ? 1
+            : 0
+        )
+      : [];
+    setFilteredStructures(sortedStructureByAlpha);
   };
 
   const computeUrlFromState = (query: {
