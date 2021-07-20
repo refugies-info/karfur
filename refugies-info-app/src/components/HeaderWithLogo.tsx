@@ -18,11 +18,16 @@ const MainContainer = styled(RowContainer)`
   justify-content: space-between;
   display: flex;
   padding-top: ${theme.margin}px;
+  background-color: ${(props: { backgroundColor: string }) =>
+    props.backgroundColor ? props.backgroundColor : "transparent"};
 `;
 
 const StyledSafeAreaView = styled(SafeAreaView)`
   z-index: 2;
+  background-color: ${(props: { backgroundColor: string }) =>
+    props.backgroundColor ? props.backgroundColor : "transparent"};
 `;
+
 const LOGO_WIDTH = 58;
 const LOGO_HEIGHT = 40;
 
@@ -54,13 +59,15 @@ export const HeaderWithLogo = ({
 interface PropsBack {
   onLongPressSwitchLanguage?: () => void;
   navigation: any;
+  backgroundColor?: string;
 }
 export const HeaderWithBackForWrapper = ({
   onLongPressSwitchLanguage,
   navigation,
+  backgroundColor,
 }: PropsBack) => (
-  <StyledSafeAreaView>
-    <MainContainer isRTL={false}>
+  <StyledSafeAreaView backgroundColor={backgroundColor}>
+    <MainContainer isRTL={false} backgroundColor={backgroundColor}>
       <SmallButton iconName="arrow-back-outline" onPress={navigation.goBack} />
       <RowContainer>
         <LanguageSwitch onLongPressSwitchLanguage={onLongPressSwitchLanguage} />

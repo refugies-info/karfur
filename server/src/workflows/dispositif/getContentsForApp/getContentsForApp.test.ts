@@ -117,13 +117,16 @@ describe("getDispositifsWithTranslationAvancement", () => {
       query: {
         locale: "fr",
         age: "0 à 17 ans",
-        frenchLevel: "Je commence à apprendre",
+        frenchLevel: "Je parle un peu",
       },
     };
     const query = {
       status: "Actif",
       "audienceAge.bottomValue": { $lte: 17 },
-      niveauFrancais: { $nin: ["Débutant", "Intermédiaire", "Avancé"] },
+      $and: [
+        { niveauFrancais: { $ne: ["Avancé"] } },
+        { niveauFrancais: { $ne: ["Intermédiaire"] } },
+      ],
     };
     await getContentsForApp(req, res);
     expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, query);
@@ -142,7 +145,10 @@ describe("getDispositifsWithTranslationAvancement", () => {
       status: "Actif",
       "audienceAge.bottomValue": { $lte: 25 },
       "audienceAge.topValue": { $gte: 18 },
-      niveauFrancais: { $nin: ["Intermédiaire", "Avancé"] },
+      $and: [
+        { niveauFrancais: { $ne: ["Avancé"] } },
+        { niveauFrancais: { $ne: ["Intermédiaire"] } },
+      ],
     };
     await getContentsForApp(req, res);
     expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, query);
@@ -160,7 +166,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     const query = {
       status: "Actif",
       "audienceAge.topValue": { $gte: 26 },
-      niveauFrancais: { $nin: ["Avancé"] },
+      niveauFrancais: { $ne: ["Avancé"] },
     };
     await getContentsForApp(req, res);
     expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, query);
