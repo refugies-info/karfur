@@ -90,6 +90,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
     structure && structure.membres.find((el: any) => el._id === user.userId)
       ? true
       : false;
+
   if (isLoading || !structure) {
     return (
       <MainContainer>
