@@ -17,6 +17,8 @@ import { NoResult } from "./components/NoResult";
 import { history } from "services/configureStore";
 // @ts-ignore
 import qs from "query-string";
+// @ts-ignore
+import querySearch from "stringquery";
 
 declare const window: Window;
 
@@ -32,6 +34,7 @@ const LoadingContainer = styled.div`
   margin-top: 24px;
   display: flex;
   flex-direction: row;
+  margin-left: 72px;
 `;
 const Content = styled.div`
   display: flex;
@@ -140,22 +143,35 @@ export const AnnuaireLectureComponent = (props: Props) => {
         )
       : [];
 
-    const sortedStructureByAlpha = filterStructures
-      ? filterStructures.sort((a, b) =>
-          a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
-            ? -1
-            : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()
-            ? 1
-            : 0
-        )
-      : [];
-
-    setFilteredStructures(sortedStructureByAlpha);
+    setFilteredStructures(filterStructures);
+  };
+  const computeStateFromUrl = (search: any) => {
+    let keywordFromUrl = querySearch(search).keyword;
+    let typeSelectedFromUrl = querySearch(search).type;
+    let villeFromUrl = querySearch(search).ville;
+    let depNameFromUrl = querySearch(search).depName;
+    let depNumberFromUrl = querySearch(search).depNumber;
+    if (keywordFromUrl) {
+      setKeyword(decodeURIComponent(keywordFromUrl));
+    }
+    if (typeSelectedFromUrl) {
+      setTypeSelected([decodeURIComponent(typeSelectedFromUrl)]);
+    }
+    if (depNameFromUrl) {
+      setDepName(decodeURIComponent(depNameFromUrl));
+      setVille(decodeURIComponent(villeFromUrl));
+      setIsCitySelected(true);
+    }
+    if (depNumberFromUrl) {
+      setDepNumber(decodeURIComponent(depNumberFromUrl));
+      setVille(decodeURIComponent(villeFromUrl));
+      setIsCitySelected(true);
+    }
   };
 
   useEffect(() => {
-    resetSearch();
-  }, [structures]);
+    computeStateFromUrl(history.location.search);
+  }, []);
 
   const filterStructuresByType = (arrayTofilter: SimplifiedStructure[]) => {
     if (!typeSelected || typeSelected.length === 0) {
@@ -265,13 +281,23 @@ export const AnnuaireLectureComponent = (props: Props) => {
     const filterByTypeAndLoc = filterStructuresByLoc(filterByType);
     const filterByTypeAndLocAndKeyword =
       filterStructuresByKeword(filterByTypeAndLoc);
-    setFilteredStructures(filterByTypeAndLocAndKeyword);
+    const sortedStructureByAlpha = filterByTypeAndLocAndKeyword
+      ? filterByTypeAndLocAndKeyword.sort((a, b) =>
+          a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
+            ? -1
+            : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()
+            ? 1
+            : 0
+        )
+      : [];
+    setFilteredStructures(sortedStructureByAlpha);
   };
 
-  const computeUrl = (query: {
+  const computeUrlFromState = (query: {
     depName?: string | undefined;
     depNumber?: string | null;
     keyword?: string;
+    ville?: string;
   }) => {
     history.push({
       search: qs.stringify(query),
@@ -284,10 +310,14 @@ export const AnnuaireLectureComponent = (props: Props) => {
       depNumber?: string;
       keyword?: string;
       type?: string[];
+      ville?: string;
     } = {};
 
     if (depName !== "") {
       query.depName = depName;
+    }
+    if (ville !== "") {
+      query.ville = ville;
     }
     if (depNumber) {
       query.depNumber = depNumber;
@@ -298,9 +328,14 @@ export const AnnuaireLectureComponent = (props: Props) => {
     if (typeSelected && typeSelected.length) {
       query.type = typeSelected;
     }
-    computeUrl(query);
+    computeUrlFromState(query);
     filterStructures();
   }, [typeSelected, depName, depNumber, keyword, isCitySelected]);
+
+  useEffect(() => {
+    resetSearch();
+    filterStructures();
+  }, [structures]);
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
   const onStructureCardClick = (id: ObjectId) =>
