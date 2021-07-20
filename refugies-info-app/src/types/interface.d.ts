@@ -84,6 +84,7 @@ export interface MarkerGoogle {
   nom: string;
   telephone?: string;
   vicinity: string;
+  description?: string;
 }
 
 export interface MapGoogle {

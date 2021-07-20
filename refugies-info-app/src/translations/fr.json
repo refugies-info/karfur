@@ -22,6 +22,7 @@
   },
   "Suivant": "Suivant",
   "Continuer": "Continuer",
+  "Ok": "Ok",
   "tabBar": {
     "Explorer": "Explorer",
     "Favoris": "Favoris",
@@ -130,6 +131,13 @@
     "Gratuit": "Gratuit",
     "L'acte de naissance OFPRA": "L'acte de naissance OFPRA",
     "Titre de séjour": "Le titre de séjour",
-    "Trouver un interlocuteur": "Trouver un interlocuteur"
+    "Trouver un interlocuteur": "Trouver un interlocuteur",
+    "Titre du lieu": "Titre du lieu",
+    "Adresse": "Adresse",
+    "Ville": "Ville",
+    "Email de contact": "Email de contact",
+    "Numéro de téléphone": "Numéro de téléphone",
+    "Informations pratiques": "Informations pratiques",
+    "Non renseigné": "Non renseigné"
   }
 }
