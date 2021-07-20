@@ -63,7 +63,7 @@ const DarkButtonContainer = styled.div`
   height: 50px;
   background: ${colors.noir};
   padding: 12px;
-
+  cursor: pointer;
   border-radius: 12px;
   font-weight: 700;
   font-size: 16px;
