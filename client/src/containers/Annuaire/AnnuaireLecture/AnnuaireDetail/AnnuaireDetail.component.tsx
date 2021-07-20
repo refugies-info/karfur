@@ -23,9 +23,7 @@ declare const window: Window;
 const Content = styled.div`
   display: flex;
   flex-direction: row;
-  flex: 1;
-
-  height: 100hv;
+  flex: 1 1 0%;
 `;
 declare global {
   interface Window {
