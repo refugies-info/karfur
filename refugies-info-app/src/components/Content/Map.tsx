@@ -29,7 +29,15 @@ export const Map = (props: Props) => {
   };
   return (
     <View style={styles.container}>
-      <MapView style={styles.map}>
+      <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude: 47,
+          longitude: 2,
+          latitudeDelta: 10,
+          longitudeDelta: 5,
+        }}
+      >
         {markers.map((marker, key) => {
           return (
             <Marker
