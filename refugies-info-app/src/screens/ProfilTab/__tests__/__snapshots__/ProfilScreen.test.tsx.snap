@@ -17,6 +17,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
     style={
       Array [
         Object {
+          "backgroundColor": "transparent",
           "zIndex": 2,
         },
       ]
@@ -28,6 +29,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         Array [
           Object {
             "alignItems": "center",
+            "backgroundColor": "transparent",
             "display": "flex",
             "flexDirection": "row",
             "justifyContent": "space-between",
@@ -3253,6 +3255,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
     style={
       Array [
         Object {
+          "backgroundColor": "transparent",
           "zIndex": 2,
         },
       ]
@@ -3264,6 +3267,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         Array [
           Object {
             "alignItems": "center",
+            "backgroundColor": "transparent",
             "display": "flex",
             "flexDirection": "row",
             "justifyContent": "space-between",
@@ -6489,6 +6493,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
     style={
       Array [
         Object {
+          "backgroundColor": "transparent",
           "zIndex": 2,
         },
       ]
@@ -6500,6 +6505,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
         Array [
           Object {
             "alignItems": "center",
+            "backgroundColor": "transparent",
             "display": "flex",
             "flexDirection": "row",
             "justifyContent": "space-between",

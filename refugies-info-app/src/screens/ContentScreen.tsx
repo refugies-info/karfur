@@ -180,6 +180,14 @@ const PinContainer = styled.View`
   justify-content: center;
   align-items: center;
 `;
+
+const SimplifiedHeaderContainer = styled.View`
+  background: ${theme.colors.greyF7};
+  padding-horizontal: ${theme.margin * 3}px;
+  padding-vertical: ${theme.margin}px;
+  box-shadow: 0px 0px 40px rgba(33, 33, 33, 0.1);
+`;
+
 const headersDispositif = [
   "C'est quoi ?",
   "C'est pour qui ?",
@@ -212,6 +220,8 @@ export const ContentScreen = ({
   );
   const [nbLinesTitreInfo, setNbLinesTitreInfo] = React.useState(2);
   const [nbLinesTitreMarque, setNbLinesTitreMarque] = React.useState(1);
+
+  const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
 
   const toggleLanguageModal = () =>
     setLanguageModalVisible(!isLanguageModalVisible);
@@ -394,61 +404,91 @@ export const ContentScreen = ({
     ? moment(selectedContent.lastModificationDate).locale("fr")
     : null;
 
+  const handleScroll = (event: any) => {
+    if (event.nativeEvent.contentOffset.y > headerImageHeight * 0.8) {
+      setShowSimplifiedHeader(true);
+      return;
+    }
+    if (event.nativeEvent.contentOffset.y < headerImageHeight * 0.8) {
+      setShowSimplifiedHeader(false);
+      return;
+    }
+    return;
+  };
+
   return (
     <View>
       <FixedContainerForHeader>
         <HeaderWithBackForWrapper
           onLongPressSwitchLanguage={toggleLanguageModal}
           navigation={navigation}
+          backgroundColor={
+            showSimplifiedHeader ? theme.colors.greyF7 : undefined
+          }
         />
-      </FixedContainerForHeader>
-      <ScrollView contentContainerStyle={{ paddingBottom: theme.margin * 5 }}>
-        <HeaderImage tagName={tagName} height={headerImageHeight} />
-        <HeaderImageContainer height={headerImageHeight}>
-          <TitlesContainer width={windowWidth - 2 * 24} isRTL={isRTL}>
-            <TitreInfoText
-              isRTL={isRTL}
-              onLayout={(e: any) => onLayoutTitre(e, "titreInfo")}
-            >
+        {showSimplifiedHeader && (
+          <SimplifiedHeaderContainer>
+            <TextSmallNormal style={{ color: tagDarkColor }}>
               {selectedContent.titreInformatif}
-            </TitreInfoText>
+            </TextSmallNormal>
+          </SimplifiedHeaderContainer>
+        )}
+      </FixedContainerForHeader>
+      <ScrollView
+        contentContainerStyle={{ paddingBottom: theme.margin * 5 }}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+      >
+        {(!showSimplifiedHeader || true) && (
+          <>
+            <HeaderImage tagName={tagName} height={headerImageHeight} />
+            <HeaderImageContainer height={headerImageHeight}>
+              <TitlesContainer width={windowWidth - 2 * 24} isRTL={isRTL}>
+                <TitreInfoText
+                  isRTL={isRTL}
+                  onLayout={(e: any) => onLayoutTitre(e, "titreInfo")}
+                >
+                  {selectedContent.titreInformatif}
+                </TitreInfoText>
 
-            {!!selectedContent.titreMarque && (
-              <TitreMarqueText
-                onLayout={(e: any) => onLayoutTitre(e, "titreMarque")}
-                isRTL={isRTL}
-              >
-                {"avec " + selectedContent.titreMarque}
-              </TitreMarqueText>
-            )}
-          </TitlesContainer>
-        </HeaderImageContainer>
+                {!!selectedContent.titreMarque && (
+                  <TitreMarqueText
+                    onLayout={(e: any) => onLayoutTitre(e, "titreMarque")}
+                    isRTL={isRTL}
+                  >
+                    {"avec " + selectedContent.titreMarque}
+                  </TitreMarqueText>
+                )}
+              </TitlesContainer>
+            </HeaderImageContainer>
 
-        <SponsorImageContainer
-          width={sponsorPictureUrl ? 100 : 160}
-          isRTL={isRTL}
-        >
-          {sponsorPictureUrl ? (
-            <StructureImageContainer>
-              <Image
-                source={{
-                  uri: sponsorPictureUrl,
-                }}
-                resizeMode={"contain"}
-                style={{
-                  height: 84,
-                  width: 84,
-                }}
-              />
-            </StructureImageContainer>
-          ) : (
-            <StructureNameContainer>
-              <StructureNameText numberOfLines={3}>
-                {sponsor.nom}
-              </StructureNameText>
-            </StructureNameContainer>
-          )}
-        </SponsorImageContainer>
+            <SponsorImageContainer
+              width={sponsorPictureUrl ? 100 : 160}
+              isRTL={isRTL}
+            >
+              {sponsorPictureUrl ? (
+                <StructureImageContainer>
+                  <Image
+                    source={{
+                      uri: sponsorPictureUrl,
+                    }}
+                    resizeMode={"contain"}
+                    style={{
+                      height: 84,
+                      width: 84,
+                    }}
+                  />
+                </StructureImageContainer>
+              ) : (
+                <StructureNameContainer>
+                  <StructureNameText numberOfLines={3}>
+                    {sponsor.nom}
+                  </StructureNameText>
+                </StructureNameContainer>
+              )}
+            </SponsorImageContainer>
+          </>
+        )}
         <View>
           {headers.map((header, index) => {
             if (

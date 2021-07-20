@@ -5,6 +5,7 @@ exports[`HeaderWithLogo should render correctly with LTR 1`] = `
   style={
     Array [
       Object {
+        "backgroundColor": "transparent",
         "zIndex": 2,
       },
     ]
@@ -16,6 +17,7 @@ exports[`HeaderWithLogo should render correctly with LTR 1`] = `
       Array [
         Object {
           "alignItems": "center",
+          "backgroundColor": "transparent",
           "display": "flex",
           "flexDirection": "row",
           "justifyContent": "space-between",
@@ -152,6 +154,7 @@ exports[`HeaderWithLogo should render correctly with RTL 1`] = `
   style={
     Array [
       Object {
+        "backgroundColor": "transparent",
         "zIndex": 2,
       },
     ]
@@ -163,6 +166,7 @@ exports[`HeaderWithLogo should render correctly with RTL 1`] = `
       Array [
         Object {
           "alignItems": "center",
+          "backgroundColor": "transparent",
           "display": "flex",
           "flexDirection": "row",
           "justifyContent": "space-between",
