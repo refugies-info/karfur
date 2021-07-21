@@ -9,23 +9,15 @@ import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const MainContainer = styled(RowContainer)`
-  padding-left: ${(props: { isRTL: any }) =>
-    props.isRTL ? theme.margin * 3 : theme.margin * 3}px;
-  padding-right: ${(props: { isRTL: any }) =>
-    props.isRTL ? theme.margin * 3 : theme.margin * 3}px;
-
+  padding-horizontal: ${theme.margin * 3}px;
   align-items: center;
   justify-content: space-between;
   display: flex;
   padding-top: ${theme.margin}px;
-  background-color: ${(props: { backgroundColor: string }) =>
-    props.backgroundColor ? props.backgroundColor : "transparent"};
 `;
 
 const StyledSafeAreaView = styled(SafeAreaView)`
   z-index: 2;
-  background-color: ${(props: { backgroundColor: string }) =>
-    props.backgroundColor ? props.backgroundColor : "transparent"};
 `;
 
 const LOGO_WIDTH = 58;
@@ -59,15 +51,13 @@ export const HeaderWithLogo = ({
 interface PropsBack {
   onLongPressSwitchLanguage?: () => void;
   navigation: any;
-  backgroundColor?: string;
 }
 export const HeaderWithBackForWrapper = ({
   onLongPressSwitchLanguage,
   navigation,
-  backgroundColor,
 }: PropsBack) => (
-  <StyledSafeAreaView backgroundColor={backgroundColor}>
-    <MainContainer isRTL={false} backgroundColor={backgroundColor}>
+  <StyledSafeAreaView>
+    <MainContainer isRTL={false}>
       <SmallButton iconName="arrow-back-outline" onPress={navigation.goBack} />
       <RowContainer>
         <LanguageSwitch onLongPressSwitchLanguage={onLongPressSwitchLanguage} />

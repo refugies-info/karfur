@@ -1,6 +1,13 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { useWindowDimensions, View, Image, Linking } from "react-native";
+import {
+  useWindowDimensions,
+  View,
+  Image,
+  Linking,
+  StyleSheet,
+  Animated,
+} from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ExplorerParamList } from "../../types";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
@@ -182,7 +189,6 @@ const PinContainer = styled.View`
 `;
 
 const SimplifiedHeaderContainer = styled.View`
-  background: ${theme.colors.greyF7};
   padding-horizontal: ${theme.margin * 3}px;
   padding-vertical: ${theme.margin}px;
   box-shadow: 0px 0px 40px rgba(33, 33, 33, 0.1);
@@ -201,6 +207,18 @@ const headersDemarche = [
   "Comment faire ?",
   "Et après ?",
 ];
+
+const styles = StyleSheet.create({
+  bodyBackground: {
+    overflow: "hidden",
+  },
+
+  bodyContainer: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+  },
+});
 
 const computeIfContentIsTranslatedInCurrentLanguage = (
   avancement: 1 | Record<AvailableLanguageI18nCode, number>,
@@ -228,6 +246,14 @@ export const ContentScreen = ({
 
   const [accordionExpanded, setAccordionExpanded] = React.useState("");
 
+  const animatedController = React.useRef(new Animated.Value(0)).current;
+  const [bodySectionHeight, setBodySectionHeight] = React.useState(0);
+
+  const bodyHeight = animatedController.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, bodySectionHeight],
+  });
+
   const { t, isRTL } = useTranslationWithRTL();
 
   const dispatch = useDispatch();
@@ -240,6 +266,33 @@ export const ContentScreen = ({
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_CONTENT)
   );
+
+  const toggleSimplifiedHeader = (displayHeader: boolean) => {
+    if (displayHeader && !showSimplifiedHeader) {
+      Animated.timing(animatedController, {
+        duration: 400,
+        toValue: 1,
+        useNativeDriver: false,
+      }).start();
+      setShowSimplifiedHeader(true);
+      return;
+    }
+
+    if (!displayHeader && showSimplifiedHeader) {
+      Animated.timing(animatedController, {
+        duration: 400,
+        toValue: 0,
+        useNativeDriver: false,
+      }).start();
+      setShowSimplifiedHeader(false);
+      return;
+    }
+  };
+
+  const boxInterpolation = animatedController.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["transparent", theme.colors.greyF7],
+  });
 
   React.useEffect(() => {
     if (contentId && selectedLanguage) {
@@ -405,12 +458,12 @@ export const ContentScreen = ({
     : null;
 
   const handleScroll = (event: any) => {
-    if (event.nativeEvent.contentOffset.y > headerImageHeight * 0.8) {
-      setShowSimplifiedHeader(true);
+    if (event.nativeEvent.contentOffset.y > headerImageHeight * 0.7) {
+      toggleSimplifiedHeader(true);
       return;
     }
-    if (event.nativeEvent.contentOffset.y < headerImageHeight * 0.8) {
-      setShowSimplifiedHeader(false);
+    if (event.nativeEvent.contentOffset.y < headerImageHeight * 0.6) {
+      toggleSimplifiedHeader(false);
       return;
     }
     return;
@@ -419,20 +472,30 @@ export const ContentScreen = ({
   return (
     <View>
       <FixedContainerForHeader>
-        <HeaderWithBackForWrapper
-          onLongPressSwitchLanguage={toggleLanguageModal}
-          navigation={navigation}
-          backgroundColor={
-            showSimplifiedHeader ? theme.colors.greyF7 : undefined
-          }
-        />
-        {showSimplifiedHeader && (
-          <SimplifiedHeaderContainer>
+        <Animated.View style={{ backgroundColor: boxInterpolation }}>
+          <HeaderWithBackForWrapper
+            onLongPressSwitchLanguage={toggleLanguageModal}
+            navigation={navigation}
+          />
+        </Animated.View>
+
+        <Animated.View
+          style={[
+            styles.bodyBackground,
+            { height: bodyHeight, backgroundColor: boxInterpolation },
+          ]}
+        >
+          <SimplifiedHeaderContainer
+            onLayout={(event: any) =>
+              setBodySectionHeight(event.nativeEvent.layout.height)
+            }
+            style={styles.bodyContainer}
+          >
             <TextSmallNormal style={{ color: tagDarkColor }}>
               {selectedContent.titreInformatif}
             </TextSmallNormal>
           </SimplifiedHeaderContainer>
-        )}
+        </Animated.View>
       </FixedContainerForHeader>
       <ScrollView
         contentContainerStyle={{ paddingBottom: theme.margin * 5 }}
