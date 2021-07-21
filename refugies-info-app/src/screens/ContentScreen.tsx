@@ -21,7 +21,6 @@ import {
   currentI18nCodeSelector,
 } from "../services/redux/User/user.selectors";
 import { ContentFromHtml } from "../components/Content/ContentFromHtml";
-import { Accordion } from "../components/Content/Accordion";
 import { AvailableLanguageI18nCode, MapGoogle } from "../types/interface";
 import { HeaderImage } from "../components/Content/HeaderImage";
 import { HeaderWithBackForWrapper } from "../components/HeaderWithLogo";
@@ -37,6 +36,7 @@ import ErrorImage from "../theme/images/error.png";
 import { Icon } from "react-native-eva-icons";
 import { InfocardsSection } from "../components/Content/InfocardsSection";
 import { Map } from "../components/Content/Map";
+import { AccordionAnimated } from "../components/Content/AccordionAnimated";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -550,7 +550,7 @@ export const ContentScreen = ({
                         const isAccordionExpanded =
                           accordionExpanded === accordionIndex;
                         return (
-                          <Accordion
+                          <AccordionAnimated
                             isExpanded={isAccordionExpanded}
                             title={child.title}
                             content={child.content}
