@@ -229,7 +229,11 @@ export const AnnuaireLectureComponent = (props: Props) => {
       if (arrayTofilter) {
         arrayTofilter.forEach((structure) => {
           if (
-            structure.nom.toLowerCase().includes(keyword.toLowerCase()) &&
+            (structure.nom.toLowerCase().includes(keyword.toLowerCase()) ||
+              (structure.acronyme &&
+                structure.acronyme
+                  .toLowerCase()
+                  .includes(keyword.toLowerCase()))) &&
             newArrayKeyword &&
             !newArrayKeyword.includes(structure)
           ) {
