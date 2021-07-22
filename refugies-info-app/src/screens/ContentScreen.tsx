@@ -686,7 +686,11 @@ export const ContentScreen = ({
                 </PinContainer>
               </MapHeaderContainer>
 
-              <Map map={map} markersColor={tagDarkColor} />
+              <Map
+                map={map}
+                markersColor={tagDarkColor}
+                windowWidth={windowWidth}
+              />
             </>
           )}
         </View>
