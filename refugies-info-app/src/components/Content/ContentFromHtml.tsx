@@ -53,6 +53,9 @@ export const ContentFromHtml = (props: Props) => {
         strong: {
           fontFamily: theme.fonts.families.circularBold,
         },
+        em: {
+          fontFamily: theme.fonts.families.circularItalic,
+        },
         b: {
           fontFamily: theme.fonts.families.circularBold,
           textAlign: isRTL ? "right" : "left",
