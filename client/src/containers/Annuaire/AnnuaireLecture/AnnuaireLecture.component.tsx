@@ -118,13 +118,28 @@ export const AnnuaireLectureComponent = (props: Props) => {
 
   const dispatch = useDispatch();
 
+  const defineLettersClickable = (
+    sortedStructureByAlpha: SimplifiedStructure[]
+  ) => {
+    let lettersClickable: string[] = [];
+    sortedStructureByAlpha.forEach((structure) => {
+      let letter = structure.nom.substr(0, 1);
+      if (!lettersClickable.includes(letter.toLocaleUpperCase())) {
+        lettersClickable.push(letter.toLocaleUpperCase());
+      }
+    });
+    return lettersClickable;
+  };
+
   useEffect(() => {
     const loadStructures = () => {
       dispatch(setSelectedStructureActionCreator(null));
       dispatch(fetchActiveStructuresActionCreator());
     };
+    if (!structures.length) {
+      loadStructures();
+    }
 
-    loadStructures();
     window.addEventListener("scroll", handleScroll);
     window.scrollTo(0, 0);
 
@@ -229,7 +244,11 @@ export const AnnuaireLectureComponent = (props: Props) => {
       if (arrayTofilter) {
         arrayTofilter.forEach((structure) => {
           if (
-            structure.nom.toLowerCase().includes(keyword.toLowerCase()) &&
+            (structure.nom.toLowerCase().includes(keyword.toLowerCase()) ||
+              (structure.acronyme &&
+                structure.acronyme
+                  .toLowerCase()
+                  .includes(keyword.toLowerCase()))) &&
             newArrayKeyword &&
             !newArrayKeyword.includes(structure)
           ) {
@@ -320,6 +339,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
             : 0
         )
       : [];
+
     setFilteredStructures(sortedStructureByAlpha);
   };
 
@@ -404,6 +424,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
       pathname: `/annuaire/${id}`,
       state: "from_annuaire_lecture",
     });
+  const lettersClickable = defineLettersClickable(filteredStructures);
   if (isLoading) {
     const emptyArray = new Array(7).fill("a");
     return (
@@ -431,6 +452,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
           setIsCityFocus={setIsCityFocus}
           isCitySelected={isCitySelected}
           setIsCitySelected={setIsCitySelected}
+          history={history}
+          lettersClickable={lettersClickable}
         />
         <LoadingContainer>
           <div
@@ -470,6 +493,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
         setIsCityFocus={setIsCityFocus}
         isCitySelected={isCitySelected}
         setIsCitySelected={setIsCitySelected}
+        history={history}
+        lettersClickable={lettersClickable}
       />
       <Content
         currentScroll={currentScroll}

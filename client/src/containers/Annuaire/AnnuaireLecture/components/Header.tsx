@@ -36,6 +36,7 @@ const TextContainer = styled.div`
   margin-top: 146px;
   margin-left: 72px;
   margin-right: ${(props) => props.isRTL && "72px"};
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.25));
   color: ${colors.bleuCharte};
 `;
 
@@ -49,6 +50,8 @@ const LettersContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-right: ${(props) => props.isRTL && "72px"};
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.25));
+  z-index: -1;
 `;
 
 const SearchContainer = styled.div`
@@ -78,6 +81,8 @@ interface Props {
   resetSearch: () => void;
   keyword: string;
   setKeyword: (a: string) => void;
+  history: any;
+  lettersClickable: string[];
 }
 
 export const Header = (props: Props) => {
@@ -88,6 +93,16 @@ export const Header = (props: Props) => {
       props.setLetterSelected("");
     }
   }, [props.currentScroll]);
+
+  const selectLetter = (letter: string) => {
+    props.setLetterSelected(letter);
+    let search = props.history.location.search;
+    if (search !== "") {
+      setTimeout(function () {
+        props.history.push(search);
+      }, 1000);
+    }
+  };
 
   return (
     <HeaderContainer
@@ -124,14 +139,21 @@ export const Header = (props: Props) => {
         <>
           {props.letters.map((letter, index) => (
             <NavHashLink
-              onClick={() => props.setLetterSelected(letter)}
-              to={`/annuaire#${letter.toUpperCase()}`}
+              onClick={() => selectLetter(letter)}
+              to={
+                props.lettersClickable.includes(letter.toLocaleUpperCase())
+                  ? `/annuaire#${letter.toUpperCase()}`
+                  : "/annuaire"
+              }
               smooth={true}
               key={letter}
             >
               <Letter
                 letter={letter}
                 isOneSelected={props.letterSelected === "" ? false : true}
+                isClickable={props.lettersClickable.includes(
+                  letter.toLocaleUpperCase()
+                )}
                 index={props.letters.length - index}
                 //   onLetterClick={props.onLetterClick}
                 isSelected={props.letterSelected === letter ? true : false}

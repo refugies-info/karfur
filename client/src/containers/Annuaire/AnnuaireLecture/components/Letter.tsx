@@ -14,13 +14,13 @@ const MainContainer = styled.div`
   box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
   position: relative;
   z-index: ${(props) => (props.isSelected ? "25" : props.index)};
-  cursor: pointer;
+  cursor: ${(props) => (props.isClickable ? "pointer" : "default")};
   background: #ffffff;
-  color: ${(props) => (props.isOneSelected ? "#C6C6C6" : "#212121")};
+  color: ${(props) => (!props.isClickable ? "#C6C6C6" : "#212121")};
   margin: 4px;
   &:hover {
-    background: #212121;
-    color: #ffffff;
+    background: ${(props) => (props.isClickable ? "#212121" : "")};
+    color: ${(props) => (props.isClickable ? "#ffffff" : "")};
   }
 `;
 
@@ -28,16 +28,16 @@ interface Props {
   letter: string;
   index: number;
   isOneSelected: boolean;
-  // onLetterClick: (arg: string) => void;
   isSelected: boolean;
+  isClickable: boolean;
 }
 
 export const Letter = (props: Props) => (
   <MainContainer
     index={props.index}
-    // onClick={() => props.onLetterClick(props.letter)}
     isSelected={props.isSelected}
     isOneSelected={props.isOneSelected}
+    isClickable={props.isClickable}
   >
     {props.letter.toUpperCase()}
   </MainContainer>
