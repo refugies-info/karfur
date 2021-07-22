@@ -82,6 +82,7 @@ interface Props {
   keyword: string;
   setKeyword: (a: string) => void;
   history: any;
+  lettersClickable: string[];
 }
 
 export const Header = (props: Props) => {
@@ -96,9 +97,11 @@ export const Header = (props: Props) => {
   const selectLetter = (letter: string) => {
     props.setLetterSelected(letter);
     let search = props.history.location.search;
-    setTimeout(function () {
-      props.history.push(search);
-    }, 1000);
+    if (search !== "") {
+      setTimeout(function () {
+        props.history.push(search);
+      }, 1000);
+    }
   };
 
   return (
@@ -137,13 +140,20 @@ export const Header = (props: Props) => {
           {props.letters.map((letter, index) => (
             <NavHashLink
               onClick={() => selectLetter(letter)}
-              to={`/annuaire#${letter.toUpperCase()}`}
+              to={
+                props.lettersClickable.includes(letter.toLocaleUpperCase())
+                  ? `/annuaire#${letter.toUpperCase()}`
+                  : "/annuaire"
+              }
               smooth={true}
               key={letter}
             >
               <Letter
                 letter={letter}
                 isOneSelected={props.letterSelected === "" ? false : true}
+                isClickable={props.lettersClickable.includes(
+                  letter.toLocaleUpperCase()
+                )}
                 index={props.letters.length - index}
                 //   onLetterClick={props.onLetterClick}
                 isSelected={props.letterSelected === letter ? true : false}

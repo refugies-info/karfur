@@ -118,6 +118,19 @@ export const AnnuaireLectureComponent = (props: Props) => {
 
   const dispatch = useDispatch();
 
+  const defineLettersClickable = (
+    sortedStructureByAlpha: SimplifiedStructure[]
+  ) => {
+    let lettersClickable: string[] = [];
+    sortedStructureByAlpha.forEach((structure) => {
+      let letter = structure.nom.substr(0, 1);
+      if (!lettersClickable.includes(letter.toLocaleUpperCase())) {
+        lettersClickable.push(letter.toLocaleUpperCase());
+      }
+    });
+    return lettersClickable;
+  };
+
   useEffect(() => {
     const loadStructures = () => {
       dispatch(setSelectedStructureActionCreator(null));
@@ -324,6 +337,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
             : 0
         )
       : [];
+
     setFilteredStructures(sortedStructureByAlpha);
   };
 
@@ -408,6 +422,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
       pathname: `/annuaire/${id}`,
       state: "from_annuaire_lecture",
     });
+  const lettersClickable = defineLettersClickable(filteredStructures);
   if (isLoading) {
     const emptyArray = new Array(7).fill("a");
     return (
@@ -436,6 +451,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
           isCitySelected={isCitySelected}
           setIsCitySelected={setIsCitySelected}
           history={history}
+          lettersClickable={lettersClickable}
         />
         <LoadingContainer>
           <div
@@ -476,6 +492,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
         isCitySelected={isCitySelected}
         setIsCitySelected={setIsCitySelected}
         history={history}
+        lettersClickable={lettersClickable}
       />
       <Content
         currentScroll={currentScroll}
