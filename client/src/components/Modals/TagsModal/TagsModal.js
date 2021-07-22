@@ -6,7 +6,7 @@ import Streamline from "../../../assets/streamline";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import { withTranslation } from "react-i18next";
 import { colors } from "colors";
-
+import Swal from "sweetalert2";
 import FButton from "../../FigmaUI/FButton/FButton";
 
 import "./TagsModal.scss";
@@ -151,6 +151,15 @@ export class dispositifValidateModal extends Component {
       tag2: null,
       tag3: null,
     }));
+
+  validateThemes = () => {
+    Swal.fire({
+      title: "Attention!",
+      text: "Attention à ne pas valider la fiche sinon toutes les traductions vont tomber !",
+      type: "alert",
+    });
+    this.props.toggle();
+  };
 
   validateAndClose = () => {
     this.props.validate([this.state.tag1, this.state.tag2, this.state.tag3]);
@@ -349,6 +358,7 @@ export class dispositifValidateModal extends Component {
                 type="dark"
                 name="shield-outline"
                 fill={colors.noir}
+                onClick={this.validateThemes}
               >
                 {"Valider seulement les thèmes"}
               </FButton>
