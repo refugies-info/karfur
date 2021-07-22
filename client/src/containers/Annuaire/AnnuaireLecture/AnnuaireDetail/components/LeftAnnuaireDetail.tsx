@@ -27,6 +27,7 @@ const LogoContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 8px;
+  padding: 32px;
 `;
 
 interface Props {
