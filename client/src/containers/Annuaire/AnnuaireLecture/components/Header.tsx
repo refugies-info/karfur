@@ -25,6 +25,14 @@ const HeaderContainer = styled.div`
   z-index: 1;
 `;
 
+const GreyBlockContainer = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 400px;
+  margin-top: -90px;
+  background: linear-gradient(#e6e6e6, rgba(246, 246, 246, 0));
+`;
+
 const TextContainer = styled.div`
   height: 74px;
   padding: 4px 8px 4px 8px;
@@ -105,63 +113,66 @@ export const Header = (props: Props) => {
   };
 
   return (
-    <HeaderContainer
-      currentScroll={props.currentScroll}
-      stopScroll={props.stopScroll}
-    >
-      <SearchContainer>
-        {" "}
-        <TextContainer isRTL={isRTL}>
-          {props.t("Annuaire.Annuaire", "Annuaire")}
-        </TextContainer>
-        <SearchBarAnnuaire
-          filteredStructures={props.filteredStructures}
-          t={props.t}
-          resetSearch={props.resetSearch}
-          keyword={props.keyword}
-          setKeyword={props.setKeyword}
-          typeSelected={props.typeSelected}
-          setTypeSelected={props.setTypeSelected}
-          ville={props.ville}
-          setVille={props.setVille}
-          depName={props.depName}
-          setDepName={props.setDepName}
-          depNumber={props.depNumber}
-          setDepNumber={props.setDepNumber}
-          isCityFocus={props.isCityFocus}
-          setIsCityFocus={props.setIsCityFocus}
-          isCitySelected={props.isCitySelected}
-          setIsCitySelected={props.setIsCitySelected}
-        />
-      </SearchContainer>
+    <>
+      <GreyBlockContainer />
+      <HeaderContainer
+        currentScroll={props.currentScroll}
+        stopScroll={props.stopScroll}
+      >
+        <SearchContainer>
+          {" "}
+          <TextContainer isRTL={isRTL}>
+            {props.t("Annuaire.Annuaire", "Annuaire")}
+          </TextContainer>
+          <SearchBarAnnuaire
+            filteredStructures={props.filteredStructures}
+            t={props.t}
+            resetSearch={props.resetSearch}
+            keyword={props.keyword}
+            setKeyword={props.setKeyword}
+            typeSelected={props.typeSelected}
+            setTypeSelected={props.setTypeSelected}
+            ville={props.ville}
+            setVille={props.setVille}
+            depName={props.depName}
+            setDepName={props.setDepName}
+            depNumber={props.depNumber}
+            setDepNumber={props.setDepNumber}
+            isCityFocus={props.isCityFocus}
+            setIsCityFocus={props.setIsCityFocus}
+            isCitySelected={props.isCitySelected}
+            setIsCitySelected={props.setIsCitySelected}
+          />
+        </SearchContainer>
 
-      <LettersContainer isRTL={isRTL}>
-        <>
-          {props.letters.map((letter, index) => (
-            <NavHashLink
-              onClick={() => selectLetter(letter)}
-              to={
-                props.lettersClickable.includes(letter.toLocaleUpperCase())
-                  ? `/annuaire#${letter.toUpperCase()}`
-                  : "/annuaire"
-              }
-              smooth={true}
-              key={letter}
-            >
-              <Letter
-                letter={letter}
-                isOneSelected={props.letterSelected === "" ? false : true}
-                isClickable={props.lettersClickable.includes(
-                  letter.toLocaleUpperCase()
-                )}
-                index={props.letters.length - index}
-                //   onLetterClick={props.onLetterClick}
-                isSelected={props.letterSelected === letter ? true : false}
-              />
-            </NavHashLink>
-          ))}
-        </>
-      </LettersContainer>
-    </HeaderContainer>
+        <LettersContainer isRTL={isRTL}>
+          <>
+            {props.letters.map((letter, index) => (
+              <NavHashLink
+                onClick={() => selectLetter(letter)}
+                to={
+                  props.lettersClickable.includes(letter.toLocaleUpperCase())
+                    ? `/annuaire#${letter.toUpperCase()}`
+                    : "/annuaire"
+                }
+                smooth={true}
+                key={letter}
+              >
+                <Letter
+                  letter={letter}
+                  isOneSelected={props.letterSelected === "" ? false : true}
+                  isClickable={props.lettersClickable.includes(
+                    letter.toLocaleUpperCase()
+                  )}
+                  index={props.letters.length - index}
+                  //   onLetterClick={props.onLetterClick}
+                  isSelected={props.letterSelected === letter ? true : false}
+                />
+              </NavHashLink>
+            ))}
+          </>
+        </LettersContainer>
+      </HeaderContainer>
+    </>
   );
 };
