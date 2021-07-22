@@ -81,6 +81,7 @@ const BlueContainer = styled.div`
   border-radius: 12px;
   padding: 16px;
   width: fit-content;
+  margin: 10px 0;
 `;
 
 const Description = styled.div`
@@ -181,7 +182,6 @@ const getActivityDetails = (activity: string) => {
 };
 export const MiddleAnnuaireDetail = (props: Props) => {
   const structure = props.structure;
-
   if (!props.isLoading && structure) {
     return (
       <MiddleContainer height={props.leftPartHeight}>
@@ -317,7 +317,20 @@ export const MiddleAnnuaireDetail = (props: Props) => {
               </div>
             )}
             {structure.openingHours && structure.openingHours.noPublic && (
-              <HoursPrecisions text={"Nous ne recevons pas de public"} />
+              <HoursPrecisions
+                text={props.t(
+                  "Annuaire.Cette structure n'accueille pas de public.",
+                  "Cette structure n'accueille pas de public."
+                )}
+              />
+            )}
+            {structure.onlyWithRdv && (
+              <HoursPrecisions
+                text={props.t(
+                  "Annuaire.Uniquement sur rendez-vous",
+                  "Uniquement sur rendez-vous."
+                )}
+              />
             )}
             {structure.openingHours &&
               !structure.openingHours.noPublic &&
