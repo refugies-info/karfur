@@ -345,10 +345,6 @@ export class dispositifValidateModal extends Component {
           <div style={{ justifyContent: "flex-start", display: "flex" }}>
             {isAdmin ? (
               <FButton
-                tag={"a"}
-                href="https://help.refugies.info/fr/"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="footer-btn"
                 type="dark"
                 name="shield-outline"
