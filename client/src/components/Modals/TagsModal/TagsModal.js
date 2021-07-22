@@ -157,6 +157,11 @@ export class dispositifValidateModal extends Component {
     this.props.toggle();
   };
   render() {
+    const isAdmin = this.props.user
+      ? this.props.user.roles.find((element) => element.nom === "Admin")
+        ? true
+        : false
+      : false;
     return (
       <Modal
         isOpen={this.props.show}
@@ -337,28 +342,30 @@ export class dispositifValidateModal extends Component {
           </div>
         </ModalBody>
         <ModalFooter style={{ justifyContent: "space-between" }}>
-          <div style={{ justifyContent: "flex-start", display: "flex" }}>
-            <FButton
-              tag={"a"}
-              href="https://help.refugies.info/fr/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-btn"
-              type="help"
-              name="question-mark-circle-outline"
-              fill={colors.noir}
-            >
-              {"Centre d'aide"}
-            </FButton>
-            <FButton
-              type="tuto"
-              name={"play-circle-outline"}
-              className="ml-10"
-              onClick={() => this.props.toggleTutorielModal("Tags")}
-            >
-              Tutoriel
-            </FButton>
-          </div>
+          {!isAdmin && (
+            <div style={{ justifyContent: "flex-start", display: "flex" }}>
+              <FButton
+                tag={"a"}
+                href="https://help.refugies.info/fr/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-btn"
+                type="help"
+                name="question-mark-circle-outline"
+                fill={colors.noir}
+              >
+                {"Centre d'aide"}
+              </FButton>
+              <FButton
+                type="tuto"
+                name={"play-circle-outline"}
+                className="ml-10"
+                onClick={() => this.props.toggleTutorielModal("Tags")}
+              >
+                Tutoriel
+              </FButton>
+            </div>
+          )}
           <div style={{ justifyContent: "flex-end", display: "flex" }}>
             <FButton
               type="outline-black"

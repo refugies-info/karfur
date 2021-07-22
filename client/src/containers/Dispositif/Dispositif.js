@@ -117,7 +117,6 @@ export class Dispositif extends Component {
       hoverColor: colors.gris,
       short: "noImage",
     },
-
     uiArray: new Array(menuDispositif.length).fill(uiElement),
     showModals: showModals,
     accordion: new Array(1).fill(false),
@@ -2201,6 +2200,7 @@ export class Dispositif extends Component {
               show={this.state.showTagsModal}
               toggle={this.toggleTagsModal}
               toggleTutorielModal={this.toggleTutorielModal}
+              user={this.props.user}
             />
             <FrameModal
               show={this.state.showTutorielModal}
