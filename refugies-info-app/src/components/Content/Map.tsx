@@ -8,6 +8,7 @@ import { MapSideBar } from "./MapSideBar";
 interface PropsType {
   map: MapGoogle;
   markersColor: string;
+  windowWidth: number;
 }
 
 interface StateType {
@@ -74,6 +75,7 @@ export class Map extends React.Component<PropsType, StateType> {
           width={0.8 * mapWidth}
           textColor={this.props.markersColor}
           hideSideBar={this.hideMarkerDetails}
+          windowWidth={this.props.windowWidth}
         />
       </View>
     );

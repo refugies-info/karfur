@@ -73,6 +73,7 @@ const fonts = {
   families: {
     circularStandard: "circularBook",
     circularBold: "circularBold",
+    circularItalic: "circularItalic",
   },
 };
 
