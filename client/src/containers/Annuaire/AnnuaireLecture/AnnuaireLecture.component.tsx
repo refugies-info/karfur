@@ -136,8 +136,10 @@ export const AnnuaireLectureComponent = (props: Props) => {
       dispatch(setSelectedStructureActionCreator(null));
       dispatch(fetchActiveStructuresActionCreator());
     };
+    if (!structures.length) {
+      loadStructures();
+    }
 
-    loadStructures();
     window.addEventListener("scroll", handleScroll);
     window.scrollTo(0, 0);
 
