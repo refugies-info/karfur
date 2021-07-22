@@ -137,8 +137,8 @@ const StructureNameText = styled(TextSmallNormal)`
 `;
 
 const LastUpdateDateContainer = styled(RTLView)`
-  margin-top: ${theme.margin * 3}px;
-  margin-bottom: ${theme.margin * 3}px;
+  margin-top: ${theme.margin}px;
+  margin-bottom: ${theme.margin * 2}px;
   margin-horizontal: ${theme.margin * 3}px;
 `;
 
@@ -172,6 +172,7 @@ const MapHeaderContainer = styled(RTLView)`
   padding-horizontal: ${theme.margin * 3}px;
   display: flex;
   justify-content: space-between;
+  margin-top: ${theme.margin}px;
 `;
 
 const MapHeaderText = styled(TextNormalBold)`
@@ -649,6 +650,7 @@ export const ContentScreen = ({
               style={{
                 marginTop: theme.margin,
                 marginHorizontal: theme.margin * 3,
+                marginBottom: theme.margin * 2,
               }}
             >
               <CustomButton
