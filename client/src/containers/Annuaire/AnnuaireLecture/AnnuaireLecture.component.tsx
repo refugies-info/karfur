@@ -435,6 +435,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
           setIsCityFocus={setIsCityFocus}
           isCitySelected={isCitySelected}
           setIsCitySelected={setIsCitySelected}
+          history={history}
         />
         <LoadingContainer>
           <div
@@ -474,6 +475,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
         setIsCityFocus={setIsCityFocus}
         isCitySelected={isCitySelected}
         setIsCitySelected={setIsCitySelected}
+        history={history}
       />
       <Content
         currentScroll={currentScroll}

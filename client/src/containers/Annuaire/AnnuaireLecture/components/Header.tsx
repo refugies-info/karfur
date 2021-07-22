@@ -51,6 +51,7 @@ const LettersContainer = styled.div`
   flex-direction: row;
   margin-right: ${(props) => props.isRTL && "72px"};
   filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.25));
+  z-index: -1;
 `;
 
 const SearchContainer = styled.div`
@@ -80,6 +81,7 @@ interface Props {
   resetSearch: () => void;
   keyword: string;
   setKeyword: (a: string) => void;
+  history: any;
 }
 
 export const Header = (props: Props) => {
@@ -90,6 +92,14 @@ export const Header = (props: Props) => {
       props.setLetterSelected("");
     }
   }, [props.currentScroll]);
+
+  const selectLetter = (letter: string) => {
+    props.setLetterSelected(letter);
+    let search = props.history.location.search;
+    setTimeout(function () {
+      props.history.push(search);
+    }, 1000);
+  };
 
   return (
     <HeaderContainer
@@ -126,7 +136,7 @@ export const Header = (props: Props) => {
         <>
           {props.letters.map((letter, index) => (
             <NavHashLink
-              onClick={() => props.setLetterSelected(letter)}
+              onClick={() => selectLetter(letter)}
               to={`/annuaire#${letter.toUpperCase()}`}
               smooth={true}
               key={letter}
