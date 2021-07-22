@@ -36,6 +36,7 @@ const TextContainer = styled.div`
   margin-top: 146px;
   margin-left: 72px;
   margin-right: ${(props) => props.isRTL && "72px"};
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.25));
   color: ${colors.bleuCharte};
 `;
 
@@ -49,6 +50,7 @@ const LettersContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-right: ${(props) => props.isRTL && "72px"};
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.25));
 `;
 
 const SearchContainer = styled.div`

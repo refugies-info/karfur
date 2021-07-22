@@ -18,6 +18,7 @@ const MainContainer = styled.div`
   margin-left: 77px;
   height: 74px;
   background-color: ${colors.bleuCharte};
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.25));
   border-radius: 12px;
   padding: 12px;
 `;
