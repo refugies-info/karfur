@@ -58,6 +58,7 @@ const WhiteButtonContainer = styled.div`
   font-size: 16px;
   align-items: center;
   margin-right: 12px;
+  padding-right: 16px;
 `;
 const DarkButtonContainer = styled.div`
   display: flex;
@@ -219,7 +220,7 @@ export const SearchBarAnnuaire = (props: Props) => {
               props.setIsCityFocus(true);
             }}
           >
-            {props.t("Annuaire.Ville ou département", "Ville ou département")}
+            {props.t("Dispositif.Ville", "Ville")}
           </div>{" "}
         </WhiteButtonContainer>
       ) : props.isCitySelected ? (
