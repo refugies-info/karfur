@@ -357,6 +357,13 @@ export class dispositifValidateModal extends Component {
                 className="footer-btn"
                 type="dark"
                 name="shield-outline"
+                disabled={
+                  !this.state.tag1 ||
+                  (this.state.tag1 &&
+                    !this.state.tag2 &&
+                    !this.state.tag3 &&
+                    !this.state.noTag)
+                }
                 fill={colors.noir}
                 onClick={this.validateThemes}
               >
