@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Structure, StructureDoc } from "../../schema/schemaStructure";
 import { ObjectId } from "mongoose";
 import logger from "../../logger";
@@ -113,7 +112,6 @@ export const updateStructureInDB = async (
   structureId: ObjectId,
   structure: StructureDoc
 ) => {
-  console.log("structure en back", structure);
   await Structure.findOneAndUpdate(
     {
       _id: structureId,

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
@@ -130,7 +129,6 @@ export const AnnuaireCreateComponent = (props: Props) => {
   };
 
   const setStructure = (structure: UserStructure) => {
-    console.log("setStructure", structure);
     dispatch(setUserStructureActionCreator(structure));
   };
 
