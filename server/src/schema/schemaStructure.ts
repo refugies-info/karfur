@@ -133,6 +133,7 @@ export interface StructureDoc extends mongoose.Document {
   phonesPublic?: string[];
   adressPublic?: string;
   openingHours?: OpeningHours;
+  onlyWithRdv?: boolean;
   description?: string;
   hasResponsibleSeenNotification?: boolean;
   disposAssociesLocalisation?: string[];

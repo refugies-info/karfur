@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Structure, StructureDoc } from "../../schema/schemaStructure";
 import { ObjectId } from "mongoose";
 import logger from "../../logger";
@@ -111,7 +112,8 @@ export const createStructureInDB = async (structure: StructureDoc) =>
 export const updateStructureInDB = async (
   structureId: ObjectId,
   structure: StructureDoc
-) =>
+) => {
+  console.log("structure en back", structure);
   await Structure.findOneAndUpdate(
     {
       _id: structureId,
@@ -120,6 +122,7 @@ export const updateStructureInDB = async (
     // @ts-ignore
     { upsert: true, new: true }
   );
+};
 
 export const updateStructureMember = async (
   membreId: ObjectId,

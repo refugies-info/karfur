@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from "react";
 import styled from "styled-components";
 import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
@@ -181,7 +182,7 @@ const getActivityDetails = (activity: string) => {
 };
 export const MiddleAnnuaireDetail = (props: Props) => {
   const structure = props.structure;
-
+  console.log("strucure", structure);
   if (!props.isLoading && structure) {
     return (
       <MiddleContainer height={props.leftPartHeight}>

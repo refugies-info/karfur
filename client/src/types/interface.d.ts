@@ -244,6 +244,7 @@ export interface Structure {
   phonesPublic?: string[];
   adressPublic?: string;
   openingHours?: OpeningHours;
+  onlyWithRdv?: boolean;
   description?: string;
   hasResponsibleSeenNotification?: boolean;
   mailsPublic?: string[];

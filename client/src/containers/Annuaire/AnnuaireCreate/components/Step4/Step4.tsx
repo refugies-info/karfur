@@ -188,6 +188,22 @@ export const Step4 = (props: Props) => {
     });
   };
 
+  const handleRdvCheckboxChange = () => {
+    props.setHasModifications(true);
+
+    if (props.structure && props.structure.onlyWithRdv) {
+      return props.setStructure({
+        ...props.structure,
+        onlyWithRdv: false,
+      });
+    } else if (props.structure && !props.structure.onlyWithRdv) {
+      return props.setStructure({
+        ...props.structure,
+        onlyWithRdv: true,
+      });
+    }
+  };
+
   const handlePublicCheckboxChange = () => {
     props.setHasModifications(true);
 
@@ -354,6 +370,8 @@ export const Step4 = (props: Props) => {
     !!props.structure &&
     !!props.structure.openingHours &&
     props.structure.openingHours.noPublic;
+
+  const onlyWithRdv = !!props.structure && !!props.structure.onlyWithRdv;
 
   const getNewDetailedOpeningHours = (day: string) => {
     props.setHasModifications(true);
@@ -647,6 +665,14 @@ export const Step4 = (props: Props) => {
         <CustomCheckBox checked={noPublicChecked} />
         Notre structure n'accueille pas de public.
       </CheckboxContainer>
+      <CheckboxContainer
+        onClick={handleRdvCheckboxChange}
+        checked={onlyWithRdv}
+      >
+        <CustomCheckBox checked={onlyWithRdv} />
+        Uniquement sur rendez-vous.
+      </CheckboxContainer>
+
       {!noPublicChecked && (
         <>
           <Subtitle>Cochez ou décochez les jours d'ouverture :</Subtitle>
