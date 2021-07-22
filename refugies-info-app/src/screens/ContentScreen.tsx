@@ -1,6 +1,13 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { useWindowDimensions, View, Image, Linking } from "react-native";
+import {
+  useWindowDimensions,
+  View,
+  Image,
+  Linking,
+  StyleSheet,
+  Animated,
+} from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ExplorerParamList } from "../../types";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
@@ -14,14 +21,14 @@ import {
   TextBigBold,
   TextSmallNormal,
   TextSmallBold,
+  TextNormalBold,
 } from "../components/StyledText";
 import {
   selectedI18nCodeSelector,
   currentI18nCodeSelector,
 } from "../services/redux/User/user.selectors";
 import { ContentFromHtml } from "../components/Content/ContentFromHtml";
-import { Accordion } from "../components/Content/Accordion";
-import { AvailableLanguageI18nCode } from "../types/interface";
+import { AvailableLanguageI18nCode, MapGoogle } from "../types/interface";
 import { HeaderImage } from "../components/Content/HeaderImage";
 import { HeaderWithBackForWrapper } from "../components/HeaderWithLogo";
 import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
@@ -35,6 +42,8 @@ import moment from "moment/min/moment-with-locales";
 import ErrorImage from "../theme/images/error.png";
 import { Icon } from "react-native-eva-icons";
 import { InfocardsSection } from "../components/Content/InfocardsSection";
+import { Map } from "../components/Content/Map";
+import { AccordionAnimated } from "../components/Content/AccordionAnimated";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -42,9 +51,6 @@ const getHeaderImageHeight = (nbLines: number) => {
   }
   return 280 + 40 * (nbLines - 2);
 };
-const ContentContainer = styled.View`
-  padding-horizontal: 24px;
-`;
 
 const TitlesContainer = styled(View)`
   position: absolute;
@@ -85,6 +91,7 @@ const HeaderText = styled(TextBigBold)`
   margin-bottom: ${theme.margin * 2}px;
   color: ${(props: { textColor: string }) => props.textColor};
   flex-shrink: 1;
+  margin-horizontal: ${theme.margin * 3}px;
 `;
 const SponsorImageContainer = styled.View`
   width: ${(props: { width: number }) => props.width}px;
@@ -132,6 +139,7 @@ const StructureNameText = styled(TextSmallNormal)`
 const LastUpdateDateContainer = styled(RTLView)`
   margin-top: ${theme.margin * 3}px;
   margin-bottom: ${theme.margin * 3}px;
+  margin-horizontal: ${theme.margin * 3}px;
 `;
 
 const LastUpdateDate = styled(TextSmallNormal)`
@@ -157,6 +165,35 @@ const RestartButton = styled(RTLTouchableOpacity)`
   padding: ${theme.margin * 2}px;
   border-radius: ${theme.radius * 2}px;
 `;
+
+const MapHeaderContainer = styled(RTLView)`
+  background-color: ${(props: { color: string }) => props.color};
+  padding-vertical: 30px;
+  padding-horizontal: ${theme.margin * 3}px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const MapHeaderText = styled(TextNormalBold)`
+  color: ${theme.colors.white};
+`;
+const PinContainer = styled.View`
+  width: 36px;
+  height: 36px;
+  background-color: ${theme.colors.white};
+  border-radius: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const SimplifiedHeaderContainer = styled.View`
+  padding-horizontal: ${theme.margin * 3}px;
+  padding-vertical: ${theme.margin}px;
+  box-shadow: 0px 0px 40px rgba(33, 33, 33, 0.1);
+`;
+
 const headersDispositif = [
   "C'est quoi ?",
   "C'est pour qui ?",
@@ -170,6 +207,18 @@ const headersDemarche = [
   "Comment faire ?",
   "Et après ?",
 ];
+
+const styles = StyleSheet.create({
+  bodyBackground: {
+    overflow: "hidden",
+  },
+
+  bodyContainer: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+  },
+});
 
 const computeIfContentIsTranslatedInCurrentLanguage = (
   avancement: 1 | Record<AvailableLanguageI18nCode, number>,
@@ -190,10 +239,20 @@ export const ContentScreen = ({
   const [nbLinesTitreInfo, setNbLinesTitreInfo] = React.useState(2);
   const [nbLinesTitreMarque, setNbLinesTitreMarque] = React.useState(1);
 
+  const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
+
   const toggleLanguageModal = () =>
     setLanguageModalVisible(!isLanguageModalVisible);
 
   const [accordionExpanded, setAccordionExpanded] = React.useState("");
+
+  const animatedController = React.useRef(new Animated.Value(0)).current;
+  const [bodySectionHeight, setBodySectionHeight] = React.useState(0);
+
+  const bodyHeight = animatedController.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, bodySectionHeight],
+  });
 
   const { t, isRTL } = useTranslationWithRTL();
 
@@ -207,6 +266,33 @@ export const ContentScreen = ({
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_CONTENT)
   );
+
+  const toggleSimplifiedHeader = (displayHeader: boolean) => {
+    if (displayHeader && !showSimplifiedHeader) {
+      Animated.timing(animatedController, {
+        duration: 400,
+        toValue: 1,
+        useNativeDriver: false,
+      }).start();
+      setShowSimplifiedHeader(true);
+      return;
+    }
+
+    if (!displayHeader && showSimplifiedHeader) {
+      Animated.timing(animatedController, {
+        duration: 400,
+        toValue: 0,
+        useNativeDriver: false,
+      }).start();
+      setShowSimplifiedHeader(false);
+      return;
+    }
+  };
+
+  const boxInterpolation = animatedController.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["transparent", theme.colors.greyF7],
+  });
 
   React.useEffect(() => {
     if (contentId && selectedLanguage) {
@@ -269,6 +355,19 @@ export const ContentScreen = ({
       </WrapperWithHeaderAndLanguageModal>
     );
   }
+
+  // @ts-ignore
+  const map: MapGoogle =
+    selectedContent &&
+    selectedContent.contenu[3] &&
+    selectedContent.contenu[3].children &&
+    // @ts-ignore
+    selectedContent.contenu[3].children.filter((child) => child.type === "map")
+      .length > 0
+      ? selectedContent.contenu[3].children.filter(
+          (child) => child.type === "map"
+        )[0]
+      : null;
 
   if (!selectedContent || !currentLanguage) {
     return (
@@ -358,62 +457,102 @@ export const ContentScreen = ({
     ? moment(selectedContent.lastModificationDate).locale("fr")
     : null;
 
+  const handleScroll = (event: any) => {
+    if (event.nativeEvent.contentOffset.y > headerImageHeight * 0.7) {
+      toggleSimplifiedHeader(true);
+      return;
+    }
+    if (event.nativeEvent.contentOffset.y < headerImageHeight * 0.6) {
+      toggleSimplifiedHeader(false);
+      return;
+    }
+    return;
+  };
+
   return (
     <View>
       <FixedContainerForHeader>
-        <HeaderWithBackForWrapper
-          onLongPressSwitchLanguage={toggleLanguageModal}
-          navigation={navigation}
-        />
-      </FixedContainerForHeader>
-      <ScrollView contentContainerStyle={{ paddingBottom: theme.margin * 3 }}>
-        <HeaderImage tagName={tagName} height={headerImageHeight} />
-        <HeaderImageContainer height={headerImageHeight}>
-          <TitlesContainer width={windowWidth - 2 * 24} isRTL={isRTL}>
-            <TitreInfoText
-              isRTL={isRTL}
-              onLayout={(e: any) => onLayoutTitre(e, "titreInfo")}
-            >
-              {selectedContent.titreInformatif}
-            </TitreInfoText>
+        <Animated.View style={{ backgroundColor: boxInterpolation }}>
+          <HeaderWithBackForWrapper
+            onLongPressSwitchLanguage={toggleLanguageModal}
+            navigation={navigation}
+          />
+        </Animated.View>
 
-            {!!selectedContent.titreMarque && (
-              <TitreMarqueText
-                onLayout={(e: any) => onLayoutTitre(e, "titreMarque")}
-                isRTL={isRTL}
-              >
-                {"avec " + selectedContent.titreMarque}
-              </TitreMarqueText>
-            )}
-          </TitlesContainer>
-        </HeaderImageContainer>
-
-        <SponsorImageContainer
-          width={sponsorPictureUrl ? 100 : 160}
-          isRTL={isRTL}
+        <Animated.View
+          style={[
+            styles.bodyBackground,
+            { height: bodyHeight, backgroundColor: boxInterpolation },
+          ]}
         >
-          {sponsorPictureUrl ? (
-            <StructureImageContainer>
-              <Image
-                source={{
-                  uri: sponsorPictureUrl,
-                }}
-                resizeMode={"contain"}
-                style={{
-                  height: 84,
-                  width: 84,
-                }}
-              />
-            </StructureImageContainer>
-          ) : (
-            <StructureNameContainer>
-              <StructureNameText numberOfLines={3}>
-                {sponsor.nom}
-              </StructureNameText>
-            </StructureNameContainer>
-          )}
-        </SponsorImageContainer>
-        <ContentContainer>
+          <SimplifiedHeaderContainer
+            onLayout={(event: any) =>
+              setBodySectionHeight(event.nativeEvent.layout.height)
+            }
+            style={styles.bodyContainer}
+          >
+            <TextSmallNormal style={{ color: tagDarkColor }}>
+              {selectedContent.titreInformatif}
+            </TextSmallNormal>
+          </SimplifiedHeaderContainer>
+        </Animated.View>
+      </FixedContainerForHeader>
+      <ScrollView
+        contentContainerStyle={{ paddingBottom: theme.margin * 5 }}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+      >
+        {(!showSimplifiedHeader || true) && (
+          <>
+            <HeaderImage tagName={tagName} height={headerImageHeight} />
+            <HeaderImageContainer height={headerImageHeight}>
+              <TitlesContainer width={windowWidth - 2 * 24} isRTL={isRTL}>
+                <TitreInfoText
+                  isRTL={isRTL}
+                  onLayout={(e: any) => onLayoutTitre(e, "titreInfo")}
+                >
+                  {selectedContent.titreInformatif}
+                </TitreInfoText>
+
+                {!!selectedContent.titreMarque && (
+                  <TitreMarqueText
+                    onLayout={(e: any) => onLayoutTitre(e, "titreMarque")}
+                    isRTL={isRTL}
+                  >
+                    {"avec " + selectedContent.titreMarque}
+                  </TitreMarqueText>
+                )}
+              </TitlesContainer>
+            </HeaderImageContainer>
+
+            <SponsorImageContainer
+              width={sponsorPictureUrl ? 100 : 160}
+              isRTL={isRTL}
+            >
+              {sponsorPictureUrl ? (
+                <StructureImageContainer>
+                  <Image
+                    source={{
+                      uri: sponsorPictureUrl,
+                    }}
+                    resizeMode={"contain"}
+                    style={{
+                      height: 84,
+                      width: 84,
+                    }}
+                  />
+                </StructureImageContainer>
+              ) : (
+                <StructureNameContainer>
+                  <StructureNameText numberOfLines={3}>
+                    {sponsor.nom}
+                  </StructureNameText>
+                </StructureNameContainer>
+              )}
+            </SponsorImageContainer>
+          </>
+        )}
+        <View>
           {headers.map((header, index) => {
             if (
               index === 1 &&
@@ -435,10 +574,12 @@ export const ContentScreen = ({
                   <HeaderText key={header} textColor={tagDarkColor}>
                     {t("Content." + header, header)}
                   </HeaderText>
-                  <ContentFromHtml
-                    htmlContent={selectedContent.contenu[index].content}
-                    windowWidth={windowWidth}
-                  />
+                  <View style={{ marginHorizontal: theme.margin * 3 }}>
+                    <ContentFromHtml
+                      htmlContent={selectedContent.contenu[index].content}
+                      windowWidth={windowWidth}
+                    />
+                  </View>
                 </>
               );
             }
@@ -472,7 +613,7 @@ export const ContentScreen = ({
                         const isAccordionExpanded =
                           accordionExpanded === accordionIndex;
                         return (
-                          <Accordion
+                          <AccordionAnimated
                             isExpanded={isAccordionExpanded}
                             title={child.title}
                             content={child.content}
@@ -504,7 +645,12 @@ export const ContentScreen = ({
             );
           })}
           {!!selectedContent.externalLink && (
-            <View style={{ marginTop: 8 }}>
+            <View
+              style={{
+                marginTop: theme.margin,
+                marginHorizontal: theme.margin * 3,
+              }}
+            >
               <CustomButton
                 textColor={theme.colors.white}
                 i18nKey="Content.Voir le site"
@@ -525,7 +671,25 @@ export const ContentScreen = ({
               </LastUpdateDate>
             </LastUpdateDateContainer>
           )}
-        </ContentContainer>
+
+          {!!map && map.markers.length > 0 && (
+            <>
+              <MapHeaderContainer color={tagDarkColor}>
+                <MapHeaderText>
+                  {t(
+                    "Content.Trouver un interlocuteur",
+                    "Trouver un interlocuteur"
+                  )}
+                </MapHeaderText>
+                <PinContainer>
+                  <Icon name="pin" width={20} height={20} fill={tagDarkColor} />
+                </PinContainer>
+              </MapHeaderContainer>
+
+              <Map map={map} markersColor={tagDarkColor} />
+            </>
+          )}
+        </View>
       </ScrollView>
       <LanguageChoiceModal
         isModalVisible={isLanguageModalVisible}

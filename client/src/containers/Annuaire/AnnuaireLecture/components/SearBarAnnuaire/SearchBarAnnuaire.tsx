@@ -18,6 +18,7 @@ const MainContainer = styled.div`
   margin-left: 77px;
   height: 74px;
   background-color: ${colors.bleuCharte};
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.25));
   border-radius: 12px;
   padding: 12px;
 `;
@@ -57,13 +58,14 @@ const WhiteButtonContainer = styled.div`
   font-size: 16px;
   align-items: center;
   margin-right: 12px;
+  padding-right: 16px;
 `;
 const DarkButtonContainer = styled.div`
   display: flex;
   height: 50px;
   background: ${colors.noir};
   padding: 12px;
-
+  cursor: pointer;
   border-radius: 12px;
   font-weight: 700;
   font-size: 16px;
@@ -218,7 +220,7 @@ export const SearchBarAnnuaire = (props: Props) => {
               props.setIsCityFocus(true);
             }}
           >
-            {props.t("Annuaire.Ville ou département", "Ville ou département")}
+            {props.t("Dispositif.Ville", "Ville")}
           </div>{" "}
         </WhiteButtonContainer>
       ) : props.isCitySelected ? (

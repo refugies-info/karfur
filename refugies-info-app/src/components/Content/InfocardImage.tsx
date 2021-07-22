@@ -15,31 +15,80 @@ interface Props {
   title: string;
   isFree: boolean;
 }
+
+const IMAGE_SIZE = 56;
 export const InfocardImage = ({ title, isFree }: Props) => {
   if (title === "Combien ça coûte ?" && isFree) {
-    return <Image source={Gratuit} />;
+    return (
+      <Image
+        source={Gratuit}
+        style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
+      />
+    );
   }
 
   if (title === "Combien ça coûte ?" && !isFree) {
-    return <Image source={Payant} />;
+    return (
+      <Image
+        source={Payant}
+        style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
+      />
+    );
   }
 
   switch (title) {
     case "Acte de naissance OFPRA":
-      return <Image source={acte_naissance} />;
+      return (
+        <Image
+          source={acte_naissance}
+          style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
+        />
+      );
     case "Durée":
-      return <Image source={duree} />;
+      return (
+        <Image
+          source={duree}
+          style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
+        />
+      );
     case "Important !":
-      return <Image source={important} />;
+      return (
+        <Image
+          source={important}
+          style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
+        />
+      );
     case "Zone d'action":
-      return <Image source={localisation} />;
+      return (
+        <Image
+          source={localisation}
+          style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
+        />
+      );
     case "Titre de séjour":
-      return <Image source={titreSejour} />;
+      return (
+        <Image
+          source={titreSejour}
+          style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
+        />
+      );
     case "Âge requis":
-      return <Image source={age} />;
+      return (
+        <Image source={age} style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }} />
+      );
     case "Niveau de français":
-      return <Image source={francais} />;
+      return (
+        <Image
+          source={francais}
+          style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
+        />
+      );
     default:
-      return <Image source={Payant} />;
+      return (
+        <Image
+          source={Payant}
+          style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
+        />
+      );
   }
 };

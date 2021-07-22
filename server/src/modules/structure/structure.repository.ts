@@ -111,7 +111,7 @@ export const createStructureInDB = async (structure: StructureDoc) =>
 export const updateStructureInDB = async (
   structureId: ObjectId,
   structure: StructureDoc
-) =>
+) => {
   await Structure.findOneAndUpdate(
     {
       _id: structureId,
@@ -120,6 +120,7 @@ export const updateStructureInDB = async (
     // @ts-ignore
     { upsert: true, new: true }
   );
+};
 
 export const updateStructureMember = async (
   membreId: ObjectId,

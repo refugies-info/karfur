@@ -27,6 +27,7 @@ const LogoContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 8px;
+  padding: 32px;
 `;
 
 interface Props {
@@ -36,6 +37,7 @@ interface Props {
   isLoading: boolean;
   history: any;
 }
+
 export const LeftAnnuaireDetail = (props: Props) => {
   const getSecureUrl = (picture: Picture | null) => {
     if (picture && picture.secure_url) return picture.secure_url;
@@ -43,6 +45,13 @@ export const LeftAnnuaireDetail = (props: Props) => {
     return placeholder;
   };
 
+  const onClickGoBack = () => {
+    if (props.history.location.state === "from_annuaire_lecture") {
+      props.history.go(-1);
+    } else {
+      props.history.push("/annuaire");
+    }
+  };
   if (props.structure && !props.isLoading) {
     return (
       <LeftContainer height={props.leftPartHeight}>
@@ -50,7 +59,7 @@ export const LeftAnnuaireDetail = (props: Props) => {
           <FButton
             type="login"
             name="arrow-back-outline"
-            onClick={() => props.history.go(-1)}
+            onClick={onClickGoBack}
           >
             {props.t("Annuaire.Retour à l'annuaire", "Retour à l'annuaire")}
           </FButton>

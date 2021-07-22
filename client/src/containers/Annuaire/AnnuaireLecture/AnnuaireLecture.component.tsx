@@ -17,6 +17,8 @@ import { NoResult } from "./components/NoResult";
 import { history } from "services/configureStore";
 // @ts-ignore
 import qs from "query-string";
+// @ts-ignore
+import querySearch from "stringquery";
 
 declare const window: Window;
 
@@ -24,7 +26,7 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: auto;
   background: #e5e5e5;
 `;
 
@@ -32,6 +34,7 @@ const LoadingContainer = styled.div`
   margin-top: 24px;
   display: flex;
   flex-direction: row;
+  margin-left: 72px;
 `;
 const Content = styled.div`
   display: flex;
@@ -115,13 +118,28 @@ export const AnnuaireLectureComponent = (props: Props) => {
 
   const dispatch = useDispatch();
 
+  const defineLettersClickable = (
+    sortedStructureByAlpha: SimplifiedStructure[]
+  ) => {
+    let lettersClickable: string[] = [];
+    sortedStructureByAlpha.forEach((structure) => {
+      let letter = structure.nom.substr(0, 1);
+      if (!lettersClickable.includes(letter.toLocaleUpperCase())) {
+        lettersClickable.push(letter.toLocaleUpperCase());
+      }
+    });
+    return lettersClickable;
+  };
+
   useEffect(() => {
     const loadStructures = () => {
       dispatch(setSelectedStructureActionCreator(null));
       dispatch(fetchActiveStructuresActionCreator());
     };
+    if (!structures.length) {
+      loadStructures();
+    }
 
-    loadStructures();
     window.addEventListener("scroll", handleScroll);
     window.scrollTo(0, 0);
 
@@ -140,22 +158,65 @@ export const AnnuaireLectureComponent = (props: Props) => {
         )
       : [];
 
-    const sortedStructureByAlpha = filterStructures
-      ? filterStructures.sort((a, b) =>
-          a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
-            ? -1
-            : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()
-            ? 1
-            : 0
-        )
-      : [];
+    setFilteredStructures(filterStructures);
+  };
+  const computeTypeFromUrl = (search: any) => {
+    let typeSelectedFromUrl: string[] = [];
+    if (querySearch(search).isAssociation) {
+      typeSelectedFromUrl.push("Association");
+    }
+    if (querySearch(search).isEntreprise) {
+      typeSelectedFromUrl.push("Entreprise");
+    }
+    if (querySearch(search).isEcole) {
+      typeSelectedFromUrl.push("École");
+    }
+    if (querySearch(search).isUni) {
+      typeSelectedFromUrl.push("Université");
+    }
+    if (querySearch(search).isOpe) {
+      typeSelectedFromUrl.push("Opérateur");
+    }
+    if (querySearch(search).isPublic) {
+      typeSelectedFromUrl.push("Établissement publicateur");
+    }
+    if (querySearch(search).isReseau) {
+      typeSelectedFromUrl.push("Réseau d'acteurs");
+    }
+    if (querySearch(search).isCenter) {
+      typeSelectedFromUrl.push("Centre de formation");
+    }
 
-    setFilteredStructures(sortedStructureByAlpha);
+    return typeSelectedFromUrl;
+  };
+
+  const computeStateFromUrl = (search: any) => {
+    let keywordFromUrl = querySearch(search).keyword;
+    let typeSelectedFromUrl = computeTypeFromUrl(search);
+    let villeFromUrl = querySearch(search).ville;
+    let depNameFromUrl = querySearch(search).depName;
+    let depNumberFromUrl = querySearch(search).depNumber;
+    if (keywordFromUrl) {
+      setKeyword(decodeURIComponent(keywordFromUrl));
+    }
+    if (typeSelectedFromUrl) {
+      setTypeSelected(typeSelectedFromUrl);
+    }
+    if (depNameFromUrl) {
+      setDepName(decodeURIComponent(depNameFromUrl));
+      setVille(decodeURIComponent(villeFromUrl));
+      setIsCitySelected(true);
+    }
+    if (depNumberFromUrl) {
+      setDepNumber(decodeURIComponent(depNumberFromUrl));
+      setVille(decodeURIComponent(villeFromUrl));
+      setIsCitySelected(true);
+    }
   };
 
   useEffect(() => {
-    resetSearch();
-  }, [structures]);
+    computeStateFromUrl(history.location.search);
+  }, []);
 
   const filterStructuresByType = (arrayTofilter: SimplifiedStructure[]) => {
     if (!typeSelected || typeSelected.length === 0) {
@@ -183,7 +244,11 @@ export const AnnuaireLectureComponent = (props: Props) => {
       if (arrayTofilter) {
         arrayTofilter.forEach((structure) => {
           if (
-            structure.nom.toLowerCase().includes(keyword.toLowerCase()) &&
+            (structure.nom.toLowerCase().includes(keyword.toLowerCase()) ||
+              (structure.acronyme &&
+                structure.acronyme
+                  .toLowerCase()
+                  .includes(keyword.toLowerCase()))) &&
             newArrayKeyword &&
             !newArrayKeyword.includes(structure)
           ) {
@@ -265,13 +330,24 @@ export const AnnuaireLectureComponent = (props: Props) => {
     const filterByTypeAndLoc = filterStructuresByLoc(filterByType);
     const filterByTypeAndLocAndKeyword =
       filterStructuresByKeword(filterByTypeAndLoc);
-    setFilteredStructures(filterByTypeAndLocAndKeyword);
+    const sortedStructureByAlpha = filterByTypeAndLocAndKeyword
+      ? filterByTypeAndLocAndKeyword.sort((a, b) =>
+          a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
+            ? -1
+            : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()
+            ? 1
+            : 0
+        )
+      : [];
+
+    setFilteredStructures(sortedStructureByAlpha);
   };
 
-  const computeUrl = (query: {
+  const computeUrlFromState = (query: {
     depName?: string | undefined;
     depNumber?: string | null;
     keyword?: string;
+    ville?: string;
   }) => {
     history.push({
       search: qs.stringify(query),
@@ -284,10 +360,22 @@ export const AnnuaireLectureComponent = (props: Props) => {
       depNumber?: string;
       keyword?: string;
       type?: string[];
+      ville?: string;
+      isUni?: boolean;
+      isEcole?: boolean;
+      isEntreprise?: boolean;
+      isAssociation?: boolean;
+      isOpe?: boolean;
+      isPublic?: boolean;
+      isReseau?: boolean;
+      isCenter?: boolean;
     } = {};
 
     if (depName !== "") {
       query.depName = depName;
+    }
+    if (ville !== "") {
+      query.ville = ville;
     }
     if (depNumber) {
       query.depNumber = depNumber;
@@ -296,15 +384,47 @@ export const AnnuaireLectureComponent = (props: Props) => {
       query.keyword = keyword;
     }
     if (typeSelected && typeSelected.length) {
-      query.type = typeSelected;
+      if (typeSelected.includes("Association")) {
+        query.isAssociation = true;
+      }
+      if (typeSelected.includes("Entreprise")) {
+        query.isEntreprise = true;
+      }
+      if (typeSelected.includes("École")) {
+        query.isEcole = true;
+      }
+      if (typeSelected.includes("Université")) {
+        query.isUni = true;
+      }
+      if (typeSelected.includes("Opérateur")) {
+        query.isOpe = true;
+      }
+      if (typeSelected.includes("Établissement publicateur")) {
+        query.isPublic = true;
+      }
+      if (typeSelected.includes("Réseau d'acteurs")) {
+        query.isReseau = true;
+      }
+      if (typeSelected.includes("Centre de formation")) {
+        query.isCenter = true;
+      }
     }
-    computeUrl(query);
+    computeUrlFromState(query);
     filterStructures();
   }, [typeSelected, depName, depNumber, keyword, isCitySelected]);
 
+  useEffect(() => {
+    resetSearch();
+    filterStructures();
+  }, [structures]);
+
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
   const onStructureCardClick = (id: ObjectId) =>
-    props.history.push(`/annuaire/${id}`);
+    props.history.push({
+      pathname: `/annuaire/${id}`,
+      state: "from_annuaire_lecture",
+    });
+  const lettersClickable = defineLettersClickable(filteredStructures);
   if (isLoading) {
     const emptyArray = new Array(7).fill("a");
     return (
@@ -332,6 +452,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
           setIsCityFocus={setIsCityFocus}
           isCitySelected={isCitySelected}
           setIsCitySelected={setIsCitySelected}
+          history={history}
+          lettersClickable={lettersClickable}
         />
         <LoadingContainer>
           <div
@@ -371,6 +493,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
         setIsCityFocus={setIsCityFocus}
         isCitySelected={isCitySelected}
         setIsCitySelected={setIsCitySelected}
+        history={history}
+        lettersClickable={lettersClickable}
       />
       <Content
         currentScroll={currentScroll}

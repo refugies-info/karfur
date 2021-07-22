@@ -42,7 +42,6 @@ export function* fetchUserStructure(
     const userInStructure = structureMembers.filter(
       (member: any) => member._id === userId
     );
-
     const userRoles =
       userInStructure.length > 0 ? userInStructure[0].roles : [];
     const isUserContribOrAdmin =
