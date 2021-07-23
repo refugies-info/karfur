@@ -52,10 +52,15 @@ export const ContentFromHtml = (props: Props) => {
       tagsStyles={{
         strong: {
           fontFamily: theme.fonts.families.circularBold,
+          fontWeight: null,
+        },
+        em: {
+          fontFamily: theme.fonts.families.circularItalic,
         },
         b: {
           fontFamily: theme.fonts.families.circularBold,
           textAlign: isRTL ? "right" : "left",
+          fontWeight: null,
         },
       }}
       baseFontStyle={{

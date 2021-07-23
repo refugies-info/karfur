@@ -17,6 +17,7 @@ export default function useCachedResources() {
           ...Ionicons.font,
           circularBook: require("../theme/fonts/CircularStd-Book.otf"),
           circularBold: require("../theme/fonts/CircularStd-Bold.otf"),
+          circularItalic: require("../theme/fonts/CircularStd-BookItalic.otf"),
           // circularBook: require("../theme/SpaceMono-Regular.ttf"),
           // circularBold: require("../theme/SpaceMono-Regular.ttf"),
         });
