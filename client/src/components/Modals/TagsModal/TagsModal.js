@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 import FButton from "../../FigmaUI/FButton/FButton";
 
 import "./TagsModal.scss";
+import API from "../../../utils/API";
 
 const Title = styled.p`
   align-self: center;
@@ -153,12 +154,20 @@ export class dispositifValidateModal extends Component {
     }));
 
   validateThemes = () => {
+    API.updateDispositifTags({
+      query: {
+        dispositifId: this.props.dispositifId,
+        tags: [this.state.tag1, this.state.tag2, this.state.tag3],
+      },
+    });
+    this.validateAndClose();
+
     Swal.fire({
       title: "Attention!",
-      text: "Attention à ne pas valider la fiche sinon toutes les traductions vont tomber !",
+      text:
+        "Les nouveaux thèmes sont enregitrés. Attention à ne pas valider la fiche sinon toutes les traductions vont tomber !",
       type: "alert",
     });
-    this.props.toggle();
   };
 
   validateAndClose = () => {
@@ -171,6 +180,7 @@ export class dispositifValidateModal extends Component {
         ? true
         : false
       : false;
+
     return (
       <Modal
         isOpen={this.props.show}

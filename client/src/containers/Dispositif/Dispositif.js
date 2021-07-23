@@ -2201,6 +2201,7 @@ export class Dispositif extends Component {
               toggle={this.toggleTagsModal}
               toggleTutorielModal={this.toggleTutorielModal}
               user={this.props.user}
+              dispositifId={this.state.dispositif._id}
             />
             <FrameModal
               show={this.state.showTutorielModal}

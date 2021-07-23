@@ -1,0 +1,1 @@
+export { updateDispositifTags } from "./updateDispositifTags";
