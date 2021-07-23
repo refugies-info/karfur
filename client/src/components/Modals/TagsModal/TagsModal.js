@@ -165,7 +165,7 @@ export class dispositifValidateModal extends Component {
     Swal.fire({
       title: "Attention!",
       text:
-        "Les nouveaux thèmes sont enregitrés. Attention à ne pas valider la fiche sinon toutes les traductions vont tomber !",
+        "Les nouveaux thèmes sont enregistrés. Attention à ne pas valider la fiche sinon toutes les traductions vont tomber !",
       type: "alert",
     });
   };
