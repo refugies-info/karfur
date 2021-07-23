@@ -1,5 +1,6 @@
 import { Res } from "../../../types/interface";
 import logger = require("../../../logger");
+import { createNeedInDB } from "../../../modules/needs/needs.repository";
 var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY_APPLI }).base(
   process.env.AIRTABLE_BASE_APPLI
@@ -31,22 +32,27 @@ export const retrieveNeedsFromAirtable = async (req: {}, res: Res) => {
             .eachPage(
               function page(records: any, fetchNextPage: any) {
                 records.forEach(function (record: any) {
-                  themes.push({
-                    recordId: record.id,
-                    tagName: record.get("Phrases"),
-                  });
+                  if (record.get("Statut") === "Implémenté") {
+                    themes.push({
+                      recordId: record.id,
+                      tagName: record.get("Phrases"),
+                    });
+                  }
                 });
 
-                const formattedNeeds = needs.map((need) => {
+                needs.forEach((need) => {
                   const correspondingTheme = themes.filter(
                     (theme) => theme.recordId === need.tagRecordId
                   );
 
                   if (correspondingTheme && correspondingTheme.length > 0) {
-                    return {
-                      needName: need.needName,
+                    const needDB = {
+                      fr: { text: need.needName, updatedAt: Date.now() },
                       tagName: correspondingTheme[0].tagName,
                     };
+                    // @ts-ignore
+                    createNeedInDB(needDB);
+                    return;
                   }
                 });
 
@@ -54,7 +60,7 @@ export const retrieveNeedsFromAirtable = async (req: {}, res: Res) => {
               },
               function done(err: any) {
                 if (err) {
-                  console.error(err);
+                  // console.error(err);
                   return;
                 }
               }
@@ -64,7 +70,7 @@ export const retrieveNeedsFromAirtable = async (req: {}, res: Res) => {
         },
         function done(err: any) {
           if (err) {
-            console.error(err);
+            // console.error(err);
             return;
           }
         }
