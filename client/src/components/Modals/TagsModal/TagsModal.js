@@ -6,10 +6,11 @@ import Streamline from "../../../assets/streamline";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import { withTranslation } from "react-i18next";
 import { colors } from "colors";
-
+import Swal from "sweetalert2";
 import FButton from "../../FigmaUI/FButton/FButton";
 
 import "./TagsModal.scss";
+import API from "../../../utils/API";
 
 const Title = styled.p`
   align-self: center;
@@ -152,11 +153,34 @@ export class dispositifValidateModal extends Component {
       tag3: null,
     }));
 
+  validateThemes = () => {
+    API.updateDispositifTags({
+      query: {
+        dispositifId: this.props.dispositifId,
+        tags: [this.state.tag1, this.state.tag2, this.state.tag3],
+      },
+    });
+    this.validateAndClose();
+
+    Swal.fire({
+      title: "Attention!",
+      text:
+        "Les nouveaux thèmes sont enregitrés. Attention à ne pas valider la fiche sinon toutes les traductions vont tomber !",
+      type: "alert",
+    });
+  };
+
   validateAndClose = () => {
     this.props.validate([this.state.tag1, this.state.tag2, this.state.tag3]);
     this.props.toggle();
   };
   render() {
+    const isAdmin = this.props.user
+      ? this.props.user.roles.find((element) => element.nom === "Admin")
+        ? true
+        : false
+      : false;
+
     return (
       <Modal
         isOpen={this.props.show}
@@ -338,27 +362,49 @@ export class dispositifValidateModal extends Component {
         </ModalBody>
         <ModalFooter style={{ justifyContent: "space-between" }}>
           <div style={{ justifyContent: "flex-start", display: "flex" }}>
-            <FButton
-              tag={"a"}
-              href="https://help.refugies.info/fr/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-btn"
-              type="help"
-              name="question-mark-circle-outline"
-              fill={colors.noir}
-            >
-              {"Centre d'aide"}
-            </FButton>
-            <FButton
-              type="tuto"
-              name={"play-circle-outline"}
-              className="ml-10"
-              onClick={() => this.props.toggleTutorielModal("Tags")}
-            >
-              Tutoriel
-            </FButton>
+            {isAdmin ? (
+              <FButton
+                className="footer-btn"
+                type="dark"
+                name="shield-outline"
+                disabled={
+                  !this.state.tag1 ||
+                  (this.state.tag1 &&
+                    !this.state.tag2 &&
+                    !this.state.tag3 &&
+                    !this.state.noTag)
+                }
+                fill={colors.noir}
+                onClick={this.validateThemes}
+              >
+                {"Valider seulement les thèmes"}
+              </FButton>
+            ) : (
+              <>
+                <FButton
+                  tag={"a"}
+                  href="https://help.refugies.info/fr/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer-btn"
+                  type="help"
+                  name="question-mark-circle-outline"
+                  fill={colors.noir}
+                >
+                  {"Centre d'aide"}
+                </FButton>
+                <FButton
+                  type="tuto"
+                  name={"play-circle-outline"}
+                  className="ml-10"
+                  onClick={() => this.props.toggleTutorielModal("Tags")}
+                >
+                  Tutoriel
+                </FButton>
+              </>
+            )}
           </div>
+
           <div style={{ justifyContent: "flex-end", display: "flex" }}>
             <FButton
               type="outline-black"

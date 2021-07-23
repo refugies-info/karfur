@@ -1,12 +1,13 @@
 import * as React from "react";
 import styled from "styled-components/native";
 import { MarkerGoogle } from "../../types/interface";
-import { TextSmallNormal, TextNormalBold, TextNormal } from "../StyledText";
+import { TextSmallNormal, TextNormal } from "../StyledText";
 import { theme } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { CustomButton } from "../CustomButton";
 import { View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import { MapContentFromHtml } from "./MapContentHtml";
 
 interface Props {
   selectedMarker: MarkerGoogle | null;
@@ -14,6 +15,7 @@ interface Props {
   width: number;
   textColor: string;
   hideSideBar: () => void;
+  windowWidth: number;
 }
 
 const MainContainer = styled.View`
@@ -32,9 +34,9 @@ const CategoryText = styled(TextSmallNormal)`
   color: ${theme.colors.grey60};
 `;
 
-const BoldValueText = styled(TextNormalBold)`
-  color: ${(props: { color: string }) => props.color};
+const ContentContainer = styled.View`
   margin-bottom: ${theme.margin}px;
+  margin-top: ${theme.margin / 2}px;
 `;
 
 const TextValue = styled(TextNormal)`
@@ -64,9 +66,14 @@ export const MapSideBar = (props: Props) => {
         <CategoryText>
           {t("Content.Titre du lieu", "Titre du lieu")}
         </CategoryText>
-        <BoldValueText color={props.textColor}>
-          {props.selectedMarker.nom}
-        </BoldValueText>
+        <ContentContainer color={props.textColor}>
+          <MapContentFromHtml
+            htmlContent={props.selectedMarker.nom}
+            windowWidth={props.windowWidth}
+            darkColor={props.textColor}
+            isBold={true}
+          />
+        </ContentContainer>
         <CategoryText>{t("Content.Adresse", "Adresse")}</CategoryText>
         <TextValue color={props.textColor}>
           {props.selectedMarker.address}
@@ -80,25 +87,50 @@ export const MapSideBar = (props: Props) => {
             <CategoryText>
               {t("Content.Informations pratiques", "Informations pratiques")}
             </CategoryText>
-            <TextValue color={props.textColor}>
-              {props.selectedMarker.description}
-            </TextValue>
+            <ContentContainer color={props.textColor}>
+              <MapContentFromHtml
+                htmlContent={props.selectedMarker.description}
+                windowWidth={props.windowWidth}
+                darkColor={props.textColor}
+                isBold={false}
+              />
+            </ContentContainer>
           </>
         )}
         <CategoryText>
           {t("Content.Email de contact", "Email de contact")}
         </CategoryText>
-        <TextValue color={props.textColor}>
-          {props.selectedMarker.email ||
-            t("Content.Non renseigné", "Non renseigné")}
-        </TextValue>
+        {props.selectedMarker.email ? (
+          <ContentContainer color={props.textColor}>
+            <MapContentFromHtml
+              htmlContent={props.selectedMarker.email}
+              windowWidth={props.windowWidth}
+              darkColor={props.textColor}
+              isBold={false}
+            />
+          </ContentContainer>
+        ) : (
+          <TextValue color={props.textColor}>
+            {t("Content.Non renseigné", "Non renseigné")}
+          </TextValue>
+        )}
         <CategoryText>
           {t("Content.Numéro de téléphone", "Numéro de téléphone")}
         </CategoryText>
-        <TextValue color={props.textColor}>
-          {props.selectedMarker.telephone ||
-            t("Content.Non renseigné", "Non renseigné")}
-        </TextValue>
+        {props.selectedMarker.telephone ? (
+          <ContentContainer color={props.textColor}>
+            <MapContentFromHtml
+              htmlContent={props.selectedMarker.telephone}
+              windowWidth={props.windowWidth}
+              darkColor={props.textColor}
+              isBold={false}
+            />
+          </ContentContainer>
+        ) : (
+          <TextValue color={props.textColor}>
+            {t("Content.Non renseigné", "Non renseigné")}
+          </TextValue>
+        )}
         <View style={{ marginTop: theme.margin * 2 }}>
           <CustomButton
             defaultText="Ok"
