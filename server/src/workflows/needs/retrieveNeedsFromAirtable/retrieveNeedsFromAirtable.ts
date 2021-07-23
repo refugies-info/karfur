@@ -8,59 +8,58 @@ var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY_APPLI }).base(
 export const retrieveNeedsFromAirtable = async (req: {}, res: Res) => {
   try {
     logger.info("[retrieveNeedsFromAirtable]");
+    let needs: any[] = [];
+    let themes: any[] = [];
+
     base("Besoins")
       .select({
-        // Selecting the first 3 records in Besoins par thèmes:
-        maxRecords: 3,
+        maxRecords: 70,
         view: "Besoins par thèmes",
       })
       .eachPage(
         function page(records: any, fetchNextPage: any) {
-          // This function (`page`) will get called for each page of records.
-
           records.forEach(function (record: any) {
-            console.log(
-              "Retrieved",
-              record.get("Nom du besoin ou édito"),
-              record.get("Thèmes")
-            );
+            needs.push({
+              needName: record.get("Nom du besoin ou édito"),
+              tagRecordId: record.get("Thèmes")[0],
+            });
           });
+          base("Thèmes")
+            .select({
+              maxRecords: 16,
+            })
+            .eachPage(
+              function page(records: any, fetchNextPage: any) {
+                records.forEach(function (record: any) {
+                  themes.push({
+                    recordId: record.id,
+                    tagName: record.get("Phrases"),
+                  });
+                });
 
-          // To fetch the next page of records, call `fetchNextPage`.
-          // If there are more records, `page` will get called again.
-          // If there are no more records, `done` will get called.
-          fetchNextPage();
-        },
-        function done(err: any) {
-          if (err) {
-            console.error(err);
-            return;
-          }
-        }
-      );
+                const formattedNeeds = needs.map((need) => {
+                  const correspondingTheme = themes.filter(
+                    (theme) => theme.recordId === need.tagRecordId
+                  );
 
-    base("Thèmes")
-      .select({
-        // Selecting the first 3 records in Besoins par thèmes:
-        maxRecords: 3,
-        // view: "Besoins par thèmes",
-      })
-      .eachPage(
-        function page(records: any, fetchNextPage: any) {
-          // This function (`page`) will get called for each page of records.
+                  if (correspondingTheme && correspondingTheme.length > 0) {
+                    return {
+                      needName: need.needName,
+                      tagName: correspondingTheme[0].tagName,
+                    };
+                  }
+                });
 
-          records.forEach(function (record: any) {
-            console.log(
-              "Retrieved theme",
-              record.get("Mots-clefs"),
-              record.get("Phrases"),
-              record.id
+                fetchNextPage();
+              },
+              function done(err: any) {
+                if (err) {
+                  console.error(err);
+                  return;
+                }
+              }
             );
-          });
 
-          // To fetch the next page of records, call `fetchNextPage`.
-          // If there are more records, `page` will get called again.
-          // If there are no more records, `done` will get called.
           fetchNextPage();
         },
         function done(err: any) {
