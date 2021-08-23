@@ -89,9 +89,15 @@ export const Needs = () => {
     setShowNeedDetailModal(true);
   };
 
-  const isLoading = useSelector(
+  const isLoadingFetch = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_NEEDS)
   );
+  const isLoadingSave = useSelector(
+    isLoadingSelector(LoadingStatusKey.SAVE_NEED)
+  );
+
+  const isLoading = isLoadingFetch || isLoadingSave;
+
   const needs = useSelector(needsSelector);
 
   const reorder = (element: { name: string; order: string }) => {
@@ -111,7 +117,6 @@ export const Needs = () => {
   if (isLoading) {
     return <div>loading</div>;
   }
-
   return (
     <div>
       <StyledHeader>
@@ -175,7 +180,10 @@ export const Needs = () => {
       <NeedDetailsModal
         show={showNeedDetailModal}
         selectedNeed={selectedNeed}
-        toggleModal={() => setShowNeedDetailModal(!showNeedDetailModal)}
+        toggleModal={() => {
+          setSelectedNeed(null);
+          setShowNeedDetailModal(!showNeedDetailModal);
+        }}
       />
     </div>
   );

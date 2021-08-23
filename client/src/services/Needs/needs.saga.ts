@@ -9,8 +9,12 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
-import { GET_NEEDS } from "./needs.actionTypes";
-import { setNeedsActionCreator } from "./needs.actions";
+import { GET_NEEDS, SAVE_NEED } from "./needs.actionTypes";
+import {
+  setNeedsActionCreator,
+  saveNeedActionCreator,
+  getNeedsActionCreator,
+} from "./needs.actions";
 
 export function* fetchNeeds(): SagaIterator {
   try {
@@ -30,8 +34,31 @@ export function* fetchNeeds(): SagaIterator {
   }
 }
 
+export function* saveNeed(
+  action: ReturnType<typeof saveNeedActionCreator>
+): SagaIterator {
+  try {
+    yield put(startLoading(LoadingStatusKey.SAVE_NEED));
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
+    const newNeed = action.payload;
+    logger.info("[saveNeed] start saving need");
+    // const data = yield call(API.getNeeds);
+
+    // const needs = data && data.data && data.data.data ? data.data.data : [];
+    yield put(getNeedsActionCreator());
+    yield put(finishLoading(LoadingStatusKey.SAVE_NEED));
+  } catch (error) {
+    logger.error("Error while saving need ", {
+      error: error.message,
+      need: action.payload,
+    });
+    yield put(setNeedsActionCreator([]));
+  }
+}
+
 function* latestActionsSaga() {
   yield takeLatest(GET_NEEDS, fetchNeeds);
+  yield takeLatest(SAVE_NEED, saveNeed);
 }
 
 export default latestActionsSaga;

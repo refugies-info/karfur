@@ -7,6 +7,8 @@ import { getTagColor } from "./lib";
 import { jsUcfirst } from "../../../../lib/index";
 import FInput from "../../../../components/FigmaUI/FInput/FInput";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import { useDispatch } from "react-redux";
+import { saveNeedActionCreator } from "../../../../services/Needs/needs.actions";
 interface Props {
   show: boolean;
   toggleModal: () => void;
@@ -47,9 +49,20 @@ export const NeedDetailsModal = (props: Props) => {
     if (props.selectedNeed) {
       setValue(props.selectedNeed.fr.text);
     }
-  }, []);
+  }, [props.selectedNeed]);
+
+  const dispatch = useDispatch();
 
   const onSave = () => {
+    if (props.selectedNeed) {
+      dispatch(
+        saveNeedActionCreator({
+          _id: props.selectedNeed._id,
+          //@ts-ignore
+          fr: { text: value, updatedAt: Date.now() },
+        })
+      );
+    }
     props.toggleModal();
   };
 
@@ -66,7 +79,6 @@ export const NeedDetailsModal = (props: Props) => {
     );
   }
   const tagColor = getTagColor(props.selectedNeed.tagName);
-
   return (
     <Modal
       isOpen={props.show}
@@ -79,11 +91,9 @@ export const NeedDetailsModal = (props: Props) => {
       </StyledTagContainer>
       <FInput
         autoFocus={false}
-        id="website0"
         value={value}
         onChange={onValueChange}
         newSize={true}
-        placeholder="Votre site internet"
       />
       <BottomRowContainer>
         <FButton
