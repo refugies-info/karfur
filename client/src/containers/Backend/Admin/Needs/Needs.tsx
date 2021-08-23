@@ -13,10 +13,10 @@ import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingSta
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
 import { needsSelector } from "../../../../services/Needs/needs.selectors";
 import { Need } from "../../../../types/interface";
-import { filtres } from "../../../Dispositif/data";
 import styled from "styled-components";
 import { jsUcfirst } from "../../../../lib/index";
 import { NeedDetailsModal } from "./NeedDetailsModal";
+import { getTagColor } from "./lib";
 
 const needsHeaders = [
   { name: "Thème", order: "tagName" },
@@ -26,49 +26,52 @@ const needsHeaders = [
 
 const StyledTagName = styled.div`
   font-weight: bold;
-  color: ${(props) => props.color};
+  color: white;
 `;
+
+const StyledTagContainer = styled.div`
+  background-color: ${(props) => props.color};
+  padding: 12px;
+  width: fit-content;
+  border-radius: 12px;
+`;
+
 const sortNeeds = (
   needs: Need[],
   sortedHeader: { name: string; sens: string; orderColumn: string }
 ) => {
-  return needs.sort((a: Need, b: Need) => {
-    const valueA =
-      sortedHeader.orderColumn === "besoin"
-        ? a.fr.text
-        : //@ts-ignore
-          a[sortedHeader.orderColumn];
+  return needs
+    .sort((a: Need, b: Need) => {
+      return a.updatedAt > b.updatedAt ? 1 : -1;
+    })
+    .sort((a: Need, b: Need) => {
+      const valueA =
+        sortedHeader.orderColumn === "besoin"
+          ? a.fr.text
+          : //@ts-ignore
+            a[sortedHeader.orderColumn];
 
-    const valueB =
-      sortedHeader.orderColumn === "besoin"
-        ? b.fr.text
-        : //@ts-ignore
-          b[sortedHeader.orderColumn];
+      const valueB =
+        sortedHeader.orderColumn === "besoin"
+          ? b.fr.text
+          : //@ts-ignore
+            b[sortedHeader.orderColumn];
 
-    const lowerValueA = valueA ? valueA.toLowerCase() : "";
-    const valueAWithoutAccent = lowerValueA
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
+      const lowerValueA = valueA ? valueA.toLowerCase() : "";
+      const valueAWithoutAccent = lowerValueA
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
 
-    const lowerValueB = valueB ? valueB.toLowerCase() : "";
-    const valueBWithoutAccent = lowerValueB
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
+      const lowerValueB = valueB ? valueB.toLowerCase() : "";
+      const valueBWithoutAccent = lowerValueB
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
 
-    if (valueAWithoutAccent > valueBWithoutAccent)
-      return sortedHeader.sens === "up" ? 1 : -1;
+      if (valueAWithoutAccent > valueBWithoutAccent)
+        return sortedHeader.sens === "up" ? 1 : -1;
 
-    return sortedHeader.sens === "up" ? -1 : 1;
-  });
-};
-
-const getTagColor = (tagName: string) => {
-  const data = filtres.tags.filter((tag) => tag.name === tagName.toLowerCase());
-
-  if (data && data.length > 0) {
-    return data[0].darkColor;
-  }
-  return "#212121";
+      return sortedHeader.sens === "up" ? -1 : 1;
+    });
 };
 
 export const Needs = () => {
@@ -90,6 +93,7 @@ export const Needs = () => {
     isLoadingSelector(LoadingStatusKey.FETCH_NEEDS)
   );
   const needs = useSelector(needsSelector);
+
   const reorder = (element: { name: string; order: string }) => {
     if (sortedHeader.name === element.name) {
       const sens = sortedHeader.sens === "up" ? "down" : "up";
@@ -104,7 +108,6 @@ export const Needs = () => {
   };
 
   const sortedNeeds = sortNeeds(needs, sortedHeader);
-
   if (isLoading) {
     return <div>loading</div>;
   }
@@ -157,12 +160,12 @@ export const Needs = () => {
                   key={key}
                   onClick={() => setSelectedNeedAndToggleModal(need)}
                 >
-                  <td>
-                    <StyledTagName color={color}>
-                      {jsUcfirst(need.tagName)}
-                    </StyledTagName>
+                  <td className="align-middle" style={{ width: 300 }}>
+                    <StyledTagContainer color={color}>
+                      <StyledTagName>{jsUcfirst(need.tagName)}</StyledTagName>
+                    </StyledTagContainer>
                   </td>
-                  <td>{need.fr.text}</td>
+                  <td className="align-middle">{need.fr.text}</td>
                 </tr>
               );
             })}
