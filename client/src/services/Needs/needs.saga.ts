@@ -39,12 +39,9 @@ export function* saveNeed(
 ): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.SAVE_NEED));
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
     const newNeed = action.payload;
     logger.info("[saveNeed] start saving need");
-    // const data = yield call(API.getNeeds);
-
-    // const needs = data && data.data && data.data.data ? data.data.data : [];
+    yield call(API.saveNeed, { query: newNeed });
     yield put(getNeedsActionCreator());
     yield put(finishLoading(LoadingStatusKey.SAVE_NEED));
   } catch (error) {

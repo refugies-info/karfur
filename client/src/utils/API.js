@@ -268,9 +268,15 @@ export default {
   },
   validateTranslations: (query) => {
     return axios.post(burl + "/traduction/validateTranslations", query, {
-      headers: headers,
+      headers,
     });
   },
+
+  saveNeed: (query) =>
+    axios.post(burl + "/needs/saveNeed", query, {
+      headers,
+    }),
+
   delete_trads: (query) => {
     return axios.post(burl + "/traduction/delete_trads", query, {
       headers: headers,
