@@ -16,6 +16,7 @@ import { Need } from "../../../../types/interface";
 import { filtres } from "../../../Dispositif/data";
 import styled from "styled-components";
 import { jsUcfirst } from "../../../../lib/index";
+import { NeedDetailsModal } from "./NeedDetailsModal";
 
 const needsHeaders = [
   { name: "Thème", order: "tagName" },
@@ -77,6 +78,14 @@ export const Needs = () => {
     orderColumn: "tagName",
   };
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
+  const [selectedNeed, setSelectedNeed] = useState<null | Need>(null);
+  const [showNeedDetailModal, setShowNeedDetailModal] = useState(false);
+
+  const setSelectedNeedAndToggleModal = (need: Need) => {
+    setSelectedNeed(need);
+    setShowNeedDetailModal(true);
+  };
+
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_NEEDS)
   );
@@ -144,7 +153,10 @@ export const Needs = () => {
             {sortedNeeds.map((need, key) => {
               const color = getTagColor(need.tagName);
               return (
-                <tr key={key}>
+                <tr
+                  key={key}
+                  onClick={() => setSelectedNeedAndToggleModal(need)}
+                >
                   <td>
                     <StyledTagName color={color}>
                       {jsUcfirst(need.tagName)}
@@ -157,6 +169,11 @@ export const Needs = () => {
           </tbody>
         </Table>
       </Content>
+      <NeedDetailsModal
+        show={showNeedDetailModal}
+        selectedNeed={selectedNeed}
+        toggleModal={() => setShowNeedDetailModal(!showNeedDetailModal)}
+      />
     </div>
   );
 };
