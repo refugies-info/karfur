@@ -209,6 +209,7 @@ export default {
     axios.get(burl + `/user/getUserFavoritesInLocale?locale=${locale}`, {
       headers,
     }),
+  getNeeds: () => axios.get(burl + "/needs/getNeeds"),
 
   getDispositifsWithTranslationAvancement: (locale) =>
     axios.get(

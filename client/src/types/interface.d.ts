@@ -368,3 +368,21 @@ export type Indicators = {
 };
 
 export type ITypeContenu = "dispositif" | "demarche";
+
+export interface NeedDetail {
+  text: string;
+  updatedAt: Moment;
+}
+export interface Need {
+  fr: NeedDetail;
+  ar?: NeedDetail;
+  en?: NeedDetail;
+  "ti-ER"?: NeedDetail;
+  ru?: NeedDetail;
+  ps?: NeedDetail;
+  fa?: NeedDetail;
+  _id: ObjectId;
+  tagName: string;
+  created_at: Moment;
+  updatedAt: Moment;
+}
