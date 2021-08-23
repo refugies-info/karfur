@@ -21,11 +21,12 @@ export function* fetchNeeds(): SagaIterator {
     const needs = data && data.data && data.data.data ? data.data.data : [];
     yield put(setNeedsActionCreator(needs));
 
-    yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_DISPOSITIF));
+    yield put(finishLoading(LoadingStatusKey.FETCH_NEEDS));
   } catch (error) {
     logger.error("Error while fetching needs ", {
       error: error.message,
     });
+    yield put(setNeedsActionCreator([]));
   }
 }
 

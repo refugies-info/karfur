@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
-import React from "react";
+import React, { useState } from "react";
 import {
   StyledHeader,
   StyledTitle,
@@ -7,21 +6,100 @@ import {
   Content,
 } from "../sharedComponents/StyledAdmin";
 import { Table } from "reactstrap";
-import { headers } from "../AdminStructures/data";
-import { TabHeader, StyledStatus } from "../sharedComponents/SubComponents";
-import {
-  RowContainer,
-  StructureName,
-  ResponsableComponent,
-} from "../AdminStructures/components/AdminStructureComponents";
-import moment from "moment";
+import { TabHeader } from "../sharedComponents/SubComponents";
+
+import { useSelector } from "react-redux";
+import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
+import { needsSelector } from "../../../../services/Needs/needs.selectors";
+import { Need } from "../../../../types/interface";
+import { filtres } from "../../../Dispositif/data";
+import styled from "styled-components";
+import { jsUcfirst } from "../../../../lib/index";
 
 const needsHeaders = [
-  { name: "Thème", order: "" },
-  { name: "Besoin", order: "" },
+  { name: "Thème", order: "tagName" },
+  { name: "Besoin", order: "besoin" },
   { name: "", order: "" },
 ];
+
+const StyledTagName = styled.div`
+  font-weight: bold;
+  color: ${(props) => props.color};
+`;
+const sortNeeds = (
+  needs: Need[],
+  sortedHeader: { name: string; sens: string; orderColumn: string }
+) => {
+  return needs.sort((a: Need, b: Need) => {
+    const valueA =
+      sortedHeader.orderColumn === "besoin"
+        ? a.fr.text
+        : //@ts-ignore
+          a[sortedHeader.orderColumn];
+
+    const valueB =
+      sortedHeader.orderColumn === "besoin"
+        ? b.fr.text
+        : //@ts-ignore
+          b[sortedHeader.orderColumn];
+
+    const lowerValueA = valueA ? valueA.toLowerCase() : "";
+    const valueAWithoutAccent = lowerValueA
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+
+    const lowerValueB = valueB ? valueB.toLowerCase() : "";
+    const valueBWithoutAccent = lowerValueB
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+
+    if (valueAWithoutAccent > valueBWithoutAccent)
+      return sortedHeader.sens === "up" ? 1 : -1;
+
+    return sortedHeader.sens === "up" ? -1 : 1;
+  });
+};
+
+const getTagColor = (tagName: string) => {
+  const data = filtres.tags.filter((tag) => tag.name === tagName.toLowerCase());
+
+  if (data && data.length > 0) {
+    return data[0].darkColor;
+  }
+  return "#212121";
+};
+
 export const Needs = () => {
+  const defaultSortedHeader = {
+    name: "Thème",
+    sens: "up",
+    orderColumn: "tagName",
+  };
+  const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
+  const isLoading = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_NEEDS)
+  );
+  const needs = useSelector(needsSelector);
+  const reorder = (element: { name: string; order: string }) => {
+    if (sortedHeader.name === element.name) {
+      const sens = sortedHeader.sens === "up" ? "down" : "up";
+      setSortedHeader({ name: element.name, sens, orderColumn: element.order });
+    } else {
+      setSortedHeader({
+        name: element.name,
+        sens: "up",
+        orderColumn: element.order,
+      });
+    }
+  };
+
+  const sortedNeeds = sortNeeds(needs, sortedHeader);
+
+  if (isLoading) {
+    return <div>loading</div>;
+  }
+
   return (
     <div>
       <StyledHeader>
@@ -34,7 +112,7 @@ export const Needs = () => {
           }}
         >
           <StyledTitle>Besoins</StyledTitle>
-          <FigureContainer>{10}</FigureContainer>
+          <FigureContainer>{needs.length}</FigureContainer>
         </div>
       </StyledHeader>
       <Content>
@@ -44,87 +122,38 @@ export const Needs = () => {
               {needsHeaders.map((element, key) => (
                 <th
                   key={key}
-                  //   onClick={() => {
-                  //     reorder(element);
-                  //   }}
+                  onClick={() => {
+                    reorder(element);
+                  }}
                 >
                   <TabHeader
                     name={element.name}
                     order={element.order}
-                    // isSortedHeader={sortedHeader.name === element.name}
-                    // sens={
-                    //   sortedHeader.name === element.name
-                    //     ? sortedHeader.sens
-                    //     : "down"
-                    // }
-                    isSortedHeader={false}
-                    sens={"down"}
+                    isSortedHeader={sortedHeader.name === element.name}
+                    sens={
+                      sortedHeader.name === element.name
+                        ? sortedHeader.sens
+                        : "down"
+                    }
                   />
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {/* {structuresToDisplay.map((element, key) => (
-              <tr key={key}>
-                <td
-                  className="align-middle"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
-                >
-                  <RowContainer>
-                    {element.picture && element.picture.secure_url && (
-                      <img
-                        className="sponsor-img mr-8"
-                        src={(element.picture || {}).secure_url}
-                      />
-                    )}
-                    <StructureName>{element.nom}</StructureName>
-                  </RowContainer>
-                </td>
-                <td
-                  className="align-middle"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
-                >
-                  <StyledStatus
-                    text={element.status}
-                    textToDisplay={element.status}
-                  />
-                </td>
-                <td
-                  className="align-middle cursor-pointer"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
-                >
-                  {element.nbMembres}
-                </td>
-
-                <td
-                  className={"align-middle "}
-                  onClick={() =>
-                    setSelectedUserIdAndToggleModal(element.responsable)
-                  }
-                >
-                  <ResponsableComponent
-                    responsable={element.responsable}
-                    canModifyRespo={false}
-                    onClick={() => {}}
-                  />
-                </td>
-                <td
-                  className="align-middle"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
-                >
-                  {element.nbFiches}
-                </td>
-                <td
-                  className="align-middle"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
-                >
-                  {element.created_at
-                    ? moment(element.created_at).format("LLL")
-                    : "Non connue"}
-                </td>
-              </tr>
-            ))} */}
+            {sortedNeeds.map((need, key) => {
+              const color = getTagColor(need.tagName);
+              return (
+                <tr key={key}>
+                  <td>
+                    <StyledTagName color={color}>
+                      {jsUcfirst(need.tagName)}
+                    </StyledTagName>
+                  </td>
+                  <td>{need.fr.text}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </Table>
       </Content>
