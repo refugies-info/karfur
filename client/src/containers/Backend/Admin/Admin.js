@@ -144,6 +144,21 @@ export const Admin = () => {
             />
           </NavLink>
         </NavItem>
+        <NavItem>
+          <NavLink
+            active={activeTab === "4"}
+            onClick={() => {
+              toggleTab("4");
+            }}
+          >
+            <Onglet
+              iconSelected="pie-chart"
+              iconNotSelected="pie-chart-outline"
+              text="Besoins"
+              isSelected={activeTab === "4"}
+            />
+          </NavLink>
+        </NavItem>
       </Nav>
       <TabContent activeTab={activeTab}>
         <CustomTabPane />
