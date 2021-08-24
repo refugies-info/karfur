@@ -18,8 +18,9 @@ import { NeedDetailsModal } from "./NeedDetailsModal";
 import { getTagColor } from "./lib";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { AddNeedModal } from "./AddNeedModal";
+import { LoadingNeeds } from "./LoadingNeeds";
 
-const needsHeaders = [
+export const needsHeaders = [
   { name: "Thème", order: "tagName" },
   { name: "Besoin", order: "besoin" },
   { name: "", order: "" },
@@ -127,7 +128,7 @@ export const Needs = () => {
 
   const sortedNeeds = sortNeeds(needs, sortedHeader);
   if (isLoading) {
-    return <div>loading</div>;
+    return <LoadingNeeds />;
   }
   return (
     <div>
