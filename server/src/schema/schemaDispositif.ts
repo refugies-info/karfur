@@ -179,6 +179,7 @@ var dispositifSchema = new mongoose.Schema(
       unique: false,
       required: false,
     },
+    needs: [{ type: mongoose.Types.ObjectId, ref: "Needs" }],
   },
   // @ts-ignore
   { timestamps: { createdAt: "created_at" } }
@@ -225,6 +226,7 @@ export interface DispositifDoc extends mongoose.Document {
   updatedAt: number;
   draftReminderMailSentDate?: number;
   status: string;
+  needs?: ObjectId[];
 }
 
 export interface DispositifNotPopulateDoc extends DispositifDoc {
