@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  StyledHeader,
   StyledTitle,
   FigureContainer,
   Content,
@@ -17,6 +16,8 @@ import styled from "styled-components";
 import { jsUcfirst } from "../../../../lib/index";
 import { NeedDetailsModal } from "./NeedDetailsModal";
 import { getTagColor } from "./lib";
+import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import { AddNeedModal } from "./AddNeedModal";
 
 const needsHeaders = [
   { name: "Thème", order: "tagName" },
@@ -34,6 +35,16 @@ const StyledTagContainer = styled.div`
   padding: 12px;
   width: fit-content;
   border-radius: 12px;
+`;
+
+const StyledHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 8px;
+  margin-left: 24px;
+  justify-content: space-between;
+  margin-right: 24px;
 `;
 
 const sortNeeds = (
@@ -83,6 +94,7 @@ export const Needs = () => {
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [selectedNeed, setSelectedNeed] = useState<null | Need>(null);
   const [showNeedDetailModal, setShowNeedDetailModal] = useState(false);
+  const [showAddNeedModal, setShowAddNeedModal] = useState(false);
 
   const setSelectedNeedAndToggleModal = (need: Need) => {
     setSelectedNeed(need);
@@ -131,6 +143,9 @@ export const Needs = () => {
           <StyledTitle>Besoins</StyledTitle>
           <FigureContainer>{needs.length}</FigureContainer>
         </div>
+        <FButton type="dark" onClick={() => setShowAddNeedModal(true)}>
+          Ajouter un besoin
+        </FButton>
       </StyledHeader>
       <Content>
         <Table responsive borderless>
@@ -185,6 +200,15 @@ export const Needs = () => {
           setShowNeedDetailModal(!showNeedDetailModal);
         }}
       />
+
+      {showAddNeedModal && (
+        <AddNeedModal
+          show={showAddNeedModal}
+          toggleModal={() => {
+            setShowAddNeedModal(!showAddNeedModal);
+          }}
+        />
+      )}
     </div>
   );
 };

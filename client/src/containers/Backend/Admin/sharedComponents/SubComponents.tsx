@@ -300,7 +300,6 @@ const StyledTabHeader = styled.div`
   display: flex;
   flex-direction: row;
   font-weight: "bold";
-
   cursor: ${(props) => props.order && "pointer"};
 `;
 
