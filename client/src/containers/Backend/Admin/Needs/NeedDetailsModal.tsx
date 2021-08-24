@@ -109,6 +109,7 @@ export const NeedDetailsModal = (props: Props) => {
           type="validate"
           name="checkmark-outline"
           onClick={onSave}
+          disabled={!value || value === props.selectedNeed.fr.text}
         >
           Enregistrer
         </FButton>
