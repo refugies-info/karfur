@@ -1,13 +1,5 @@
 import styled from "styled-components";
 
-export const StyledThead = styled.thead`
-  flex: 1;
-  flex-direction: row;
-  width: 100%;
-  justify-content: flex-end;
-  align-items: flex-end;
-`;
-
 export const StyledSort = styled.div`
   display: flex;
   flex-direction: row;
