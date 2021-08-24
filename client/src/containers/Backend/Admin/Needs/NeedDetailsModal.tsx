@@ -22,6 +22,10 @@ const Title = styled.div`
   margin-bottom: 24px;
 `;
 
+const SubTitle = styled.div`
+  font-size: 18px;
+  margin-bottom: 8px;
+`;
 const StyledTagName = styled.div`
   font-weight: bold;
   color: white;
@@ -32,7 +36,7 @@ const StyledTagContainer = styled.div`
   padding: 12px;
   width: fit-content;
   border-radius: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 `;
 
 const BottomRowContainer = styled.div`
@@ -85,10 +89,12 @@ export const NeedDetailsModal = (props: Props) => {
       toggle={props.toggleModal}
       className="need-details-modal"
     >
-      <Title>Modification d'un besoin</Title>
+      <Title>Modifier un besoin existant</Title>
+      <SubTitle>Thème actuel (non modifiable)</SubTitle>
       <StyledTagContainer color={tagColor}>
         <StyledTagName>{jsUcfirst(props.selectedNeed.tagName)}</StyledTagName>
       </StyledTagContainer>
+      <SubTitle>Nom du besoin*</SubTitle>
       <FInput
         autoFocus={false}
         value={value}
@@ -111,7 +117,7 @@ export const NeedDetailsModal = (props: Props) => {
           onClick={onSave}
           disabled={!value || value === props.selectedNeed.fr.text}
         >
-          Enregistrer
+          Valider
         </FButton>
       </BottomRowContainer>
     </Modal>
