@@ -1,4 +1,9 @@
-import { GET_NEEDS, SET_NEEDS, SAVE_NEED } from "./needs.actionTypes";
+import {
+  GET_NEEDS,
+  SET_NEEDS,
+  SAVE_NEED,
+  CREATE_NEED,
+} from "./needs.actionTypes";
 import { action, ActionType } from "typesafe-actions";
 import { Need } from "../../types/interface";
 
@@ -10,10 +15,14 @@ export const setNeedsActionCreator = (value: Need[]) =>
 export const saveNeedActionCreator = (value: Partial<Need>) =>
   action(SAVE_NEED, value);
 
+export const createNeedActionCreator = (value: { name: string; tag: string }) =>
+  action(CREATE_NEED, value);
+
 const actions = {
   getNeedsActionCreator,
   setNeedsActionCreator,
   saveNeedActionCreator,
+  createNeedActionCreator,
 };
 
 export type NeedsActions = ActionType<typeof actions>;

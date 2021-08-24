@@ -9,11 +9,12 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
-import { GET_NEEDS, SAVE_NEED } from "./needs.actionTypes";
+import { GET_NEEDS, SAVE_NEED, CREATE_NEED } from "./needs.actionTypes";
 import {
   setNeedsActionCreator,
   saveNeedActionCreator,
   getNeedsActionCreator,
+  createNeedActionCreator,
 } from "./needs.actions";
 
 export function* fetchNeeds(): SagaIterator {
@@ -53,9 +54,29 @@ export function* saveNeed(
   }
 }
 
+export function* createNeed(
+  action: ReturnType<typeof createNeedActionCreator>
+): SagaIterator {
+  try {
+    yield put(startLoading(LoadingStatusKey.SAVE_NEED));
+    const newNeed = action.payload;
+    logger.info("[createNeed] start creating need");
+    yield call(API.createNeed, { query: newNeed });
+    yield put(getNeedsActionCreator());
+    yield put(finishLoading(LoadingStatusKey.SAVE_NEED));
+  } catch (error) {
+    logger.error("Error while creating need ", {
+      error: error.message,
+      need: action.payload,
+    });
+    yield put(setNeedsActionCreator([]));
+  }
+}
+
 function* latestActionsSaga() {
   yield takeLatest(GET_NEEDS, fetchNeeds);
   yield takeLatest(SAVE_NEED, saveNeed);
+  yield takeLatest(CREATE_NEED, createNeed);
 }
 
 export default latestActionsSaga;

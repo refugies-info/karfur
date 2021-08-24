@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState } from "react";
 import { Modal } from "reactstrap";
 import "./NeedDetailsModal.scss";
@@ -7,6 +6,8 @@ import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import FInput from "../../../../components/FigmaUI/FInput/FInput";
 import { filtres } from "../../../Dispositif/data";
 import { TagButton } from "./TagButton";
+import { useDispatch } from "react-redux";
+import { createNeedActionCreator } from "../../../../services/Needs/needs.actions";
 
 interface Props {
   show: boolean;
@@ -44,9 +45,12 @@ export const AddNeedModal = (props: Props) => {
   const [value, setValue] = useState("");
   const [tagSelected, setTagSelected] = useState<null | string>(null);
 
+  const dispatch = useDispatch();
+
   const onSave = () => {
-    console.log("value", value);
-    console.log("tagSelected", tagSelected);
+    if (value && tagSelected) {
+      dispatch(createNeedActionCreator({ name: value, tag: tagSelected }));
+    }
     props.toggleModal();
   };
 
@@ -103,9 +107,9 @@ export const AddNeedModal = (props: Props) => {
           type="validate"
           name="checkmark-outline"
           onClick={onSave}
-          disabled={!tagSelected}
+          disabled={!tagSelected || !value}
         >
-          Valider
+          Enregistrer
         </FButton>
       </BottomRowContainer>
     </Modal>

@@ -277,6 +277,11 @@ export default {
       headers,
     }),
 
+  createNeed: (query) =>
+    axios.post(burl + "/needs/createNeed", query, {
+      headers,
+    }),
+
   delete_trads: (query) => {
     return axios.post(burl + "/traduction/delete_trads", query, {
       headers: headers,
