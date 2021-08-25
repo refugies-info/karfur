@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import { Res } from "../../../types/interface";
 import logger = require("../../../logger");
 import { needsAirtable } from "./data";
@@ -19,7 +20,7 @@ export const extractNeedsFichesFromAirtable = async (req: {}, res: Res) => {
       })
       .eachPage(
         function page(records: any, fetchNextPage: any) {
-          fs.writeFileSync("programming.txt", "[", {
+          fs.writeFileSync("extract.txt", "[", {
             encoding: "utf8",
             flag: "a+",
             mode: 0o666,
@@ -64,18 +65,16 @@ export const extractNeedsFichesFromAirtable = async (req: {}, res: Res) => {
               }
             }
           });
-          fs.writeFileSync("programming.txt", "]", {
+          fs.writeFileSync("extract.txt", "]", {
             encoding: "utf8",
             flag: "a+",
             mode: 0o666,
           });
-          // console.log("result", results);
 
           fetchNextPage();
         },
         function done(err: any) {
           if (err) {
-            // console.error(err);
             return;
           }
         }

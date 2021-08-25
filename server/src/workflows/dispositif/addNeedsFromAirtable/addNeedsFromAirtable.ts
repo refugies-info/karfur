@@ -64,7 +64,9 @@ export const addNeedsFromAirtable = async (req: {}, res: Res) => {
     logger.info(
       `[addNeedsFromAirtable] successfully updated ${nbDispoUpdated} contents`
     );
-    return res.status(200).json({ text: "ok" });
+    return res
+      .status(200)
+      .json({ text: "ok", nbContentsUpdated: nbDispoUpdated });
   } catch (error) {
     logger.error("[addNeedsFromAirtable] error ", {
       error: error.message,
