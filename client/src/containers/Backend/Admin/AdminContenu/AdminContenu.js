@@ -133,6 +133,15 @@ export const AdminContenu = () => {
       };
 
     const dispositifsToDisplay = filteredDispositifs.sort((a, b) => {
+      if (sortedHeader.orderColumn === "needs") {
+        const nbNeedsA = a.needs ? a.needs.length : 0;
+        const nbNeedsB = b.needs ? b.needs.length : 0;
+
+        if (nbNeedsA > nbNeedsB) return sortedHeader.sens === "up" ? 1 : -1;
+
+        return sortedHeader.sens === "up" ? -1 : 1;
+      }
+
       const sponsorA =
         a.mainSponsor && a.mainSponsor.nom
           ? a.mainSponsor.nom.toLowerCase()
@@ -417,6 +426,9 @@ export const AdminContenu = () => {
                       type={element.typeContenu || "dispositif"}
                       isDetailedVue={false}
                     />
+                  </td>
+                  <td className="align-middle">
+                    {element.needs ? element.needs.length : 0}
                   </td>
                   <td
                     className="align-middle"

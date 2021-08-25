@@ -68,6 +68,11 @@ export const LoadingAdminContenu = () => {
                   </td>
                   <td>
                     <SkeletonTheme color="#CDCDCD">
+                      <Skeleton width={50} count={1} />
+                    </SkeletonTheme>
+                  </td>
+                  <td>
+                    <SkeletonTheme color="#CDCDCD">
                       <Skeleton width={270} count={1} />
                     </SkeletonTheme>
                   </td>
