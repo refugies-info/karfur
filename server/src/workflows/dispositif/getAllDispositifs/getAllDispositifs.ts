@@ -55,6 +55,7 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
       draftReminderMailSentDate: 1,
       lastModificationDate: 1,
       needs: 1,
+      tags: 1,
     };
 
     const dispositifs = await getDispositifsFromDB(neededFields);

@@ -39,6 +39,7 @@ import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureMod
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { ImprovementsMailModal } from "./ImprovementsMailModal/ImprovementsMailModal";
+import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
 
 moment.locale("fr");
 
@@ -62,6 +63,7 @@ export const AdminContenu = () => {
   const [showImprovementsMailModal, setShowImprovementsMailModal] = useState(
     false
   );
+  const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
   const [isExportLoading, setIsExportLoading] = useState(false);
 
   const [selectedDispositif, setSelectedDispositif] = useState(null);
@@ -83,6 +85,9 @@ export const AdminContenu = () => {
     setShowChangeStructureModal(!showChangeStructureModal);
 
   const toggleDetailsModal = () => setShowDetailsModal(!showDetailsModal);
+  const toggleNeedsChoiceModal = () =>
+    setShowNeedsChoiceModal(!showNeedsChoiceModal);
+
   const toggleImprovementsMailModal = () =>
     setShowImprovementsMailModal(!showImprovementsMailModal);
 
@@ -515,6 +520,7 @@ export const AdminContenu = () => {
         onDeleteClick={() => prepareDeleteContrib(selectedDispositif)}
         setShowChangeStructureModal={setShowChangeStructureModal}
         toggleImprovementsMailModal={toggleImprovementsMailModal}
+        toggleNeedsChoiceModal={toggleNeedsChoiceModal}
       />
       {showImprovementsMailModal && (
         <ImprovementsMailModal
@@ -545,6 +551,13 @@ export const AdminContenu = () => {
           show={showSelectFirstRespoModal}
           toggleModal={() => setSelectFirstRespoModal(false)}
           selectedStructureId={selectedStructureId}
+        />
+      )}
+      {showNeedsChoiceModal && (
+        <NeedsChoiceModal
+          show={showNeedsChoiceModal}
+          toggle={toggleNeedsChoiceModal}
+          dispositifId={selectedDispositif ? selectedDispositif._id : null}
         />
       )}
     </div>
