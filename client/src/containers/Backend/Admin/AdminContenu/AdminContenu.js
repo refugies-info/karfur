@@ -39,6 +39,7 @@ import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureMod
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { ImprovementsMailModal } from "./ImprovementsMailModal/ImprovementsMailModal";
+import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
 
 moment.locale("fr");
 
@@ -62,6 +63,7 @@ export const AdminContenu = () => {
   const [showImprovementsMailModal, setShowImprovementsMailModal] = useState(
     false
   );
+  const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
   const [isExportLoading, setIsExportLoading] = useState(false);
 
   const [selectedDispositif, setSelectedDispositif] = useState(null);
@@ -83,6 +85,9 @@ export const AdminContenu = () => {
     setShowChangeStructureModal(!showChangeStructureModal);
 
   const toggleDetailsModal = () => setShowDetailsModal(!showDetailsModal);
+  const toggleNeedsChoiceModal = () =>
+    setShowNeedsChoiceModal(!showNeedsChoiceModal);
+
   const toggleImprovementsMailModal = () =>
     setShowImprovementsMailModal(!showImprovementsMailModal);
 
@@ -133,6 +138,15 @@ export const AdminContenu = () => {
       };
 
     const dispositifsToDisplay = filteredDispositifs.sort((a, b) => {
+      if (sortedHeader.orderColumn === "needs") {
+        const nbNeedsA = a.needs ? a.needs.length : 0;
+        const nbNeedsB = b.needs ? b.needs.length : 0;
+
+        if (nbNeedsA > nbNeedsB) return sortedHeader.sens === "up" ? 1 : -1;
+
+        return sortedHeader.sens === "up" ? -1 : 1;
+      }
+
       const sponsorA =
         a.mainSponsor && a.mainSponsor.nom
           ? a.mainSponsor.nom.toLowerCase()
@@ -418,6 +432,9 @@ export const AdminContenu = () => {
                       isDetailedVue={false}
                     />
                   </td>
+                  <td className="align-middle">
+                    {element.needs ? element.needs.length : 0}
+                  </td>
                   <td
                     className="align-middle"
                     onClick={() => setSelectedDispositifAndToggleModal(element)}
@@ -503,6 +520,7 @@ export const AdminContenu = () => {
         onDeleteClick={() => prepareDeleteContrib(selectedDispositif)}
         setShowChangeStructureModal={setShowChangeStructureModal}
         toggleImprovementsMailModal={toggleImprovementsMailModal}
+        toggleNeedsChoiceModal={toggleNeedsChoiceModal}
       />
       {showImprovementsMailModal && (
         <ImprovementsMailModal
@@ -533,6 +551,13 @@ export const AdminContenu = () => {
           show={showSelectFirstRespoModal}
           toggleModal={() => setSelectFirstRespoModal(false)}
           selectedStructureId={selectedStructureId}
+        />
+      )}
+      {showNeedsChoiceModal && (
+        <NeedsChoiceModal
+          show={showNeedsChoiceModal}
+          toggle={toggleNeedsChoiceModal}
+          dispositifId={selectedDispositif ? selectedDispositif._id : null}
         />
       )}
     </div>

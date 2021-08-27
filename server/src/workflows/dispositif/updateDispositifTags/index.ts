@@ -1,1 +1,0 @@
-export { updateDispositifTags } from "./updateDispositifTags";

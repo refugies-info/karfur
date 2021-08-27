@@ -161,8 +161,8 @@ export default {
       headers,
     }),
 
-  updateDispositifTags: (query) =>
-    axios.post(burl + "/dispositifs/updateDispositifTags", query, {
+  updateDispositifTagsOrNeeds: (query) =>
+    axios.post(burl + "/dispositifs/updateDispositifTagsOrNeeds", query, {
       headers,
     }),
 
