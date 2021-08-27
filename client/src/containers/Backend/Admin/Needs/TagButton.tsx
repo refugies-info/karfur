@@ -7,7 +7,7 @@ interface Props {
   icon: string;
   isSelected: boolean;
   color: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const TagContainer = styled.div`
@@ -22,16 +22,23 @@ const TagContainer = styled.div`
   background-color: ${(props) => props.color};
   width: fit-content;
   margin: 4px;
-  cursor: pointer;
+  cursor: ${(props) => (props.isClickable ? "pointer" : "default")};
   opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
   align-items: center;
 `;
 export const TagButton = (props: Props) => {
+  const onTagClick = () => {
+    if (props.onClick) {
+      return props.onClick();
+    }
+    return;
+  };
   return (
     <TagContainer
       color={props.color}
-      onClick={props.onClick}
+      onClick={onTagClick}
       isSelected={props.isSelected}
+      isClickable={!!props.onClick}
     >
       {props.icon ? (
         <div

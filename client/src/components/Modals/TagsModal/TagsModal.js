@@ -154,7 +154,7 @@ export class dispositifValidateModal extends Component {
     }));
 
   validateThemes = () => {
-    API.updateDispositifTags({
+    API.updateDispositifTagsOrNeeds({
       query: {
         dispositifId: this.props.dispositifId,
         tags: [this.state.tag1, this.state.tag2, this.state.tag3],

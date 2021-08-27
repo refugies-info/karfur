@@ -29,6 +29,7 @@ interface Props {
   onDeleteClick: () => void;
   setShowChangeStructureModal: (arg: boolean) => void;
   toggleImprovementsMailModal: () => void;
+  toggleNeedsChoiceModal: () => void;
 }
 
 const LeftPart = styled.div`
@@ -412,6 +413,11 @@ export const DetailsModal = (props: Props) => {
                     </FButton>
                   </>
                 )}
+              <div style={{ marginTop: 12 }}>
+                <FButton type="dark" onClick={props.toggleNeedsChoiceModal}>
+                  Gérer les besoins
+                </FButton>
+              </div>
             </RightPart>
           </RowContainer>
           <ButtonsContainer>

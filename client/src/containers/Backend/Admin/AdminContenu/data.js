@@ -8,6 +8,10 @@ export const table_contenu = {
       order: "typeContenu",
     },
     {
+      name: "B",
+      order: "needs",
+    },
+    {
       name: "Titre",
       order: "titreInformatif",
     },
