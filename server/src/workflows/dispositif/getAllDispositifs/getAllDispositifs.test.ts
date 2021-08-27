@@ -40,6 +40,8 @@ describe("getAllispositifs", () => {
     lastAdminUpdate: 1,
     draftReminderMailSentDate: 1,
     lastModificationDate: 1,
+    needs: 1,
+    tags: 1,
   };
 
   const dispositifsToJson = [

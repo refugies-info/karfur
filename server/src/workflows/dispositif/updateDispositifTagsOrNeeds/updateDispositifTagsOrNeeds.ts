@@ -9,9 +9,10 @@ import {
 
 interface QueryUpdate {
   dispositifId: ObjectId;
-  tags: Object[];
+  tags?: Object[];
+  needs?: ObjectId[];
 }
-export const updateDispositifTags = async (
+export const updateDispositifTagsOrNeeds = async (
   req: RequestFromClient<QueryUpdate>,
   res: Res
 ) => {
@@ -22,17 +23,20 @@ export const updateDispositifTags = async (
       throw new Error("INVALID_REQUEST");
     }
 
-    const { dispositifId, tags } = req.body.query;
-    logger.info("[updateDispositifTags]", { dispositifId, tags });
+    const { dispositifId, tags, needs } = req.body.query;
+    logger.info("[updateDispositifTagsOrNeeds]", { dispositifId, tags });
 
     // @ts-ignore
     checkIfUserIsAdmin(req.user.roles);
 
-    const newDispositif = { tags };
+    const newDispositif = tags ? { tags } : { needs };
+
     await updateDispositifInDB(dispositifId, newDispositif);
     return res.status(200).json({ text: "OK" });
   } catch (error) {
-    logger.error("[updateDispositifTags] error", { error: error.message });
+    logger.error("[updateDispositifTagsOrNeeds] error", {
+      error: error.message,
+    });
     switch (error.message) {
       case "NOT_FROM_SITE":
         return res.status(405).json({ text: "Requête bloquée par API" });

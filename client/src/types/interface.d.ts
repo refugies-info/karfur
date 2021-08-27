@@ -61,6 +61,8 @@ export interface SimplifiedDispositif {
   lastAdminUpdate?: Moment;
   draftReminderMailSentDate?: Moment;
   lastModificationDate?: Moment;
+  needs?: ObjectId[];
+  tags: Tag[];
 }
 export interface Picture {
   imgId: ObjectId;
