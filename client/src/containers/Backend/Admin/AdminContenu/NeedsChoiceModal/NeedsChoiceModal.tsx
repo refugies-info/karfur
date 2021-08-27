@@ -1,7 +1,4 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
-/* eslint-disable no-undef */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Modal, Spinner, Table } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
@@ -18,6 +15,8 @@ import FInput from "../../../../../components/FigmaUI/FInput/FInput";
 import { needsSelector } from "../../../../../services/Needs/needs.selectors";
 import { DeleteButton } from "../../sharedComponents/SubComponents";
 import { colors } from "../../../../../colors";
+import API from "../../../../../utils/API";
+import { fetchAllDispositifsActionsCreator } from "../../../../../services/AllDispositifs/allDispositifs.actions";
 
 interface Props {
   show: boolean;
@@ -38,7 +37,15 @@ const Title = styled.div`
   font-weight: bold;
   font-size: 32px;
   line-height: 40px;
-  margin-bottom: 24px;
+  margin-bottom: 8px;
+  margin-right: 8px;
+`;
+
+const TitreInfo = styled.div`
+  font-style: normal;
+  font-size: 28px;
+  line-height: 40px;
+  margin-bottom: 8px;
 `;
 const RowContainer = styled.div`
   display: flex;
@@ -78,6 +85,10 @@ const PossibleNeedsContainer = styled.div`
   border-radius: 12px;
 `;
 
+const TitleContainer = styled(RowContainer)`
+  align-items: center;
+`;
+
 export const NeedsChoiceModal = (props: Props) => {
   const [value, setValue] = useState("");
 
@@ -85,29 +96,60 @@ export const NeedsChoiceModal = (props: Props) => {
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
   );
 
+  const [selectedNeeds, setSelectedNeeds] = useState<ObjectId[]>([]);
+
   const dispatch = useDispatch();
 
   const dispositif = useSelector(dispositifSelector(props.dispositifId));
+
+  useEffect(() => {
+    if (dispositif && dispositif.needs && dispositif.needs.length > 0) {
+      setSelectedNeeds(dispositif.needs);
+    }
+  }, []);
+
   const allNeeds = useSelector(needsSelector);
   const allPossibleNeeds = dispositif
     ? allNeeds.filter((need) => {
         let isPossible = false;
         dispositif.tags.forEach((tag) => {
-          if (tag.name === need.tagName) {
+          if (tag && tag.name === need.tagName) {
             isPossible = true;
             return;
           }
         });
-        if (dispositif.needs && dispositif.needs.includes(need._id)) {
+        if (selectedNeeds.includes(need._id)) {
           isPossible = false;
         }
         return isPossible;
       })
     : [];
-  console.log("dispositif", dispositif);
-  console.log("possibleNeeds", allPossibleNeeds);
 
   const onValueChange = (e: any) => setValue(e.target.value);
+
+  const onSelectNeed = (needId: ObjectId) => {
+    if (selectedNeeds.includes(needId)) {
+      return;
+    }
+    setSelectedNeeds(selectedNeeds.concat([needId]));
+    setValue("");
+  };
+
+  const onRemoveNeed = (needId: ObjectId) => {
+    const newNeeds = selectedNeeds.filter((need) => need !== needId);
+    setSelectedNeeds(newNeeds);
+  };
+
+  const onValidate = async () => {
+    await API.updateDispositifTagsOrNeeds({
+      query: {
+        dispositifId: props.dispositifId,
+        needs: selectedNeeds,
+      },
+    });
+    dispatch(fetchAllDispositifsActionsCreator());
+    props.toggle();
+  };
 
   const filteredPossibleNeeds = value
     ? allPossibleNeeds.filter((possibleNeed) => {
@@ -150,7 +192,10 @@ export const NeedsChoiceModal = (props: Props) => {
     >
       <Content>
         <div>
-          <Title>Besoins de la fiche</Title>
+          <TitleContainer>
+            <Title>Besoins de la fiche :</Title>
+            <TitreInfo>{dispositif.titreInformatif}</TitreInfo>
+          </TitleContainer>
           <SubTitle>Thème(s) de la fiche</SubTitle>
           <TagsContainer>
             {dispositif &&
@@ -185,7 +230,10 @@ export const NeedsChoiceModal = (props: Props) => {
 
               if (!needTag) return;
               return (
-                <PossibleNeedContainer key={possibleNeed.fr.text}>
+                <PossibleNeedContainer
+                  key={possibleNeed.fr.text}
+                  onClick={() => onSelectNeed(possibleNeed._id)}
+                >
                   <div>{possibleNeed.fr.text}</div>
                   <TagButton
                     name={jsUcfirst(needTag.short) || ""}
@@ -209,36 +257,36 @@ export const NeedsChoiceModal = (props: Props) => {
               </tr>
             </thead>
             <tbody>
-              {dispositif.needs &&
-                dispositif.needs.map((need, key) => {
-                  const filteredNeeds = allNeeds.filter(
-                    (el) => el._id === need
-                  );
-                  const needPopulate =
-                    filteredNeeds.length > 0 ? filteredNeeds[0] : null;
-                  const needTag = needPopulate
-                    ? getTag(needPopulate.tagName)
-                    : null;
-                  if (!needTag || !needPopulate) return;
-                  return (
-                    <tr key={key}>
-                      <td className="align-middle">{needPopulate.fr.text}</td>
-                      <td className="align-middle">
-                        <div style={{ marginLeft: -4 }}>
-                          <TagButton
-                            name={jsUcfirst(needTag.short) || ""}
-                            icon={needTag.icon}
-                            isSelected={true}
-                            color={needTag.darkColor}
-                          />
-                        </div>
-                      </td>
-                      <td>
-                        <DeleteButton onClick={() => {}} disabled={false} />
-                      </td>
-                    </tr>
-                  );
-                })}
+              {selectedNeeds.map((need, key) => {
+                const filteredNeeds = allNeeds.filter((el) => el._id === need);
+                const needPopulate =
+                  filteredNeeds.length > 0 ? filteredNeeds[0] : null;
+                const needTag = needPopulate
+                  ? getTag(needPopulate.tagName)
+                  : null;
+                if (!needTag || !needPopulate) return;
+                return (
+                  <tr key={key}>
+                    <td className="align-middle">{needPopulate.fr.text}</td>
+                    <td className="align-middle">
+                      <div style={{ marginLeft: -4 }}>
+                        <TagButton
+                          name={jsUcfirst(needTag.short) || ""}
+                          icon={needTag.icon}
+                          isSelected={true}
+                          color={needTag.darkColor}
+                        />
+                      </div>
+                    </td>
+                    <td className="align-middle">
+                      <DeleteButton
+                        onClick={() => onRemoveNeed(need)}
+                        disabled={false}
+                      />
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </Table>
 
@@ -253,8 +301,7 @@ export const NeedsChoiceModal = (props: Props) => {
             <FButton
               type="validate"
               name="checkmark-outline"
-              //   disabled={!selectedStructure}
-              //   onClick={validateStructureChange}
+              onClick={onValidate}
             >
               Valider
             </FButton>
