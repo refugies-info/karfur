@@ -13,7 +13,7 @@ import { GET_NEEDS, SAVE_NEED, CREATE_NEED } from "./needs.actionTypes";
 import {
   setNeedsActionCreator,
   saveNeedActionCreator,
-  getNeedsActionCreator,
+  fetchNeedsActionCreator,
   createNeedActionCreator,
 } from "./needs.actions";
 
@@ -43,7 +43,7 @@ export function* saveNeed(
     const newNeed = action.payload;
     logger.info("[saveNeed] start saving need");
     yield call(API.saveNeed, { query: newNeed });
-    yield put(getNeedsActionCreator());
+    yield put(fetchNeedsActionCreator());
     yield put(finishLoading(LoadingStatusKey.SAVE_NEED));
   } catch (error) {
     logger.error("Error while saving need ", {
@@ -62,7 +62,7 @@ export function* createNeed(
     const newNeed = action.payload;
     logger.info("[createNeed] start creating need");
     yield call(API.createNeed, { query: newNeed });
-    yield put(getNeedsActionCreator());
+    yield put(fetchNeedsActionCreator());
     yield put(finishLoading(LoadingStatusKey.SAVE_NEED));
   } catch (error) {
     logger.error("Error while creating need ", {
