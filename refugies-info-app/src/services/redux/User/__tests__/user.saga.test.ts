@@ -137,7 +137,7 @@ describe("[Saga] user", () => {
     it("should call functions and set data", () => {
       testSaga(saveUserFrenchLevel, {
         type: "SAVE_USER_FRENCH_LEVEL",
-        payload: "level1",
+        payload: { frenchLevel: "level1", shouldFetchContents: false },
       })
         .next()
         .call(saveItemInAsyncStorage, "FRENCH_LEVEL", "level1")
@@ -147,10 +147,25 @@ describe("[Saga] user", () => {
         .isDone();
     });
 
+    it("should call functions and set data", () => {
+      testSaga(saveUserFrenchLevel, {
+        type: "SAVE_USER_FRENCH_LEVEL",
+        payload: { frenchLevel: "level1", shouldFetchContents: true },
+      })
+        .next()
+        .call(saveItemInAsyncStorage, "FRENCH_LEVEL", "level1")
+        .next()
+        .put(setUserFrenchLevelActionCreator("level1"))
+        .next()
+        .put(fetchContentsActionCreator())
+        .next()
+        .isDone();
+    });
+
     it("should call functions and set null if saveItemInAsyncStorage throws", () => {
       testSaga(saveUserFrenchLevel, {
         type: "SAVE_USER_FRENCH_LEVEL",
-        payload: "level1",
+        payload: { frenchLevel: "level1", shouldFetchContents: false },
       })
         .next()
         .call(saveItemInAsyncStorage, "FRENCH_LEVEL", "level1")
@@ -163,10 +178,25 @@ describe("[Saga] user", () => {
   });
 
   describe("save age saga", () => {
-    it("should call functions and set data", () => {
+    it("should call functions and set data when shouldFetchContents true", () => {
       testSaga(saveUserAge, {
         type: "SAVE_USER_AGE",
-        payload: "age",
+        payload: { age: "age", shouldFetchContents: true },
+      })
+        .next()
+        .call(saveItemInAsyncStorage, "AGE", "age")
+        .next()
+        .put(setUserAgeActionCreator("age"))
+        .next()
+        .put(fetchContentsActionCreator())
+        .next()
+        .isDone();
+    });
+
+    it("should call functions and set data when shouldFetchContents false", () => {
+      testSaga(saveUserAge, {
+        type: "SAVE_USER_AGE",
+        payload: { age: "age", shouldFetchContents: false },
       })
         .next()
         .call(saveItemInAsyncStorage, "AGE", "age")
@@ -179,7 +209,7 @@ describe("[Saga] user", () => {
     it("should call functions and set null if saveItemInAsyncStorage throws", () => {
       testSaga(saveUserAge, {
         type: "SAVE_USER_AGE",
-        payload: "age",
+        payload: { age: "age", shouldFetchContents: true },
       })
         .next()
         .call(saveItemInAsyncStorage, "AGE", "age")
@@ -195,7 +225,7 @@ describe("[Saga] user", () => {
     it("should call functions and set data", () => {
       testSaga(saveUserLocation, {
         type: "SAVE_USER_LOCATION",
-        payload: { city: "city", dep: "dep" },
+        payload: { city: "city", dep: "dep", shouldFetchContents: false },
       })
         .next()
         .call(saveItemInAsyncStorage, "CITY", "city")
@@ -207,10 +237,27 @@ describe("[Saga] user", () => {
         .isDone();
     });
 
+    it("should call functions and set data", () => {
+      testSaga(saveUserLocation, {
+        type: "SAVE_USER_LOCATION",
+        payload: { city: "city", dep: "dep", shouldFetchContents: true },
+      })
+        .next()
+        .call(saveItemInAsyncStorage, "CITY", "city")
+        .next()
+        .call(saveItemInAsyncStorage, "DEP", "dep")
+        .next()
+        .put(setUserLocationActionCreator({ city: "city", dep: "dep" }))
+        .next()
+        .put(fetchContentsActionCreator())
+        .next()
+        .isDone();
+    });
+
     it("should call functions and set null if saveItemInAsyncStorage throws", () => {
       testSaga(saveUserLocation, {
         type: "SAVE_USER_LOCATION",
-        payload: { city: "city", dep: "dep" },
+        payload: { city: "city", dep: "dep", shouldFetchContents: false },
       })
         .next()
         .call(saveItemInAsyncStorage, "CITY", "city")
@@ -315,7 +362,10 @@ describe("[Saga] user", () => {
 
   describe("remove user location saga", () => {
     it("should call functions and set data", () => {
-      testSaga(removeUserLocation)
+      testSaga(removeUserLocation, {
+        type: "REMOVE_USER_LOCATION",
+        payload: false,
+      })
         .next()
         .call(deleteItemInAsyncStorage, "DEP")
         .next()
@@ -326,8 +376,28 @@ describe("[Saga] user", () => {
         .isDone();
     });
 
+    it("should call functions and set data", () => {
+      testSaga(removeUserLocation, {
+        type: "REMOVE_USER_LOCATION",
+        payload: true,
+      })
+        .next()
+        .call(deleteItemInAsyncStorage, "DEP")
+        .next()
+        .call(deleteItemInAsyncStorage, "CITY")
+        .next()
+        .put(setUserLocationActionCreator({ city: null, dep: null }))
+        .next()
+        .put(fetchContentsActionCreator())
+        .next()
+        .isDone();
+    });
+
     it("should call functions and deleteItemInAsyncStorage throws", () => {
-      testSaga(removeUserLocation)
+      testSaga(removeUserLocation, {
+        type: "REMOVE_USER_LOCATION",
+        payload: false,
+      })
         .next()
         .call(deleteItemInAsyncStorage, "DEP")
         .throw(new Error("error"))
@@ -337,7 +407,10 @@ describe("[Saga] user", () => {
 
   describe("remove user french level saga", () => {
     it("should call functions and set data", () => {
-      testSaga(removeUserFrenchLevel)
+      testSaga(removeUserFrenchLevel, {
+        type: "REMOVE_USER_FRENCH_LEVEL",
+        payload: false,
+      })
         .next()
         .call(deleteItemInAsyncStorage, "FRENCH_LEVEL")
         .next()
@@ -346,8 +419,26 @@ describe("[Saga] user", () => {
         .isDone();
     });
 
+    it("should call functions and set data", () => {
+      testSaga(removeUserFrenchLevel, {
+        type: "REMOVE_USER_FRENCH_LEVEL",
+        payload: true,
+      })
+        .next()
+        .call(deleteItemInAsyncStorage, "FRENCH_LEVEL")
+        .next()
+        .put(setUserFrenchLevelActionCreator(null))
+        .next()
+        .put(fetchContentsActionCreator())
+        .next()
+        .isDone();
+    });
+
     it("should call functions and deleteItemInAsyncStorage throws", () => {
-      testSaga(removeUserFrenchLevel)
+      testSaga(removeUserFrenchLevel, {
+        type: "REMOVE_USER_FRENCH_LEVEL",
+        payload: false,
+      })
         .next()
         .call(deleteItemInAsyncStorage, "FRENCH_LEVEL")
         .throw(new Error("error"))
@@ -357,7 +448,7 @@ describe("[Saga] user", () => {
 
   describe("remove user age saga", () => {
     it("should call functions and set data", () => {
-      testSaga(removeUserAge)
+      testSaga(removeUserAge, { type: "REMOVE_USER_AGE", payload: false })
         .next()
         .call(deleteItemInAsyncStorage, "AGE")
         .next()
@@ -366,8 +457,20 @@ describe("[Saga] user", () => {
         .isDone();
     });
 
+    it("should call functions and set data", () => {
+      testSaga(removeUserAge, { type: "REMOVE_USER_AGE", payload: true })
+        .next()
+        .call(deleteItemInAsyncStorage, "AGE")
+        .next()
+        .put(setUserAgeActionCreator(null))
+        .next()
+        .put(fetchContentsActionCreator())
+        .next()
+        .isDone();
+    });
+
     it("should call functions and deleteItemInAsyncStorage throws", () => {
-      testSaga(removeUserAge)
+      testSaga(removeUserAge, { type: "REMOVE_USER_AGE", payload: false })
         .next()
         .call(deleteItemInAsyncStorage, "AGE")
         .throw(new Error("error"))

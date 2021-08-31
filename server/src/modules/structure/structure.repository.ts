@@ -26,7 +26,13 @@ export const getStructureFromDB = async (
 
 type Query = { status: "Actif" } | {};
 type NeededFields =
-  | { nom: number; acronyme: number; picture: number }
+  | {
+      nom: number;
+      acronyme: number;
+      picture: number;
+      structureTypes: number;
+      departments: number;
+    }
   | {
       nom: number;
       status: number;
@@ -105,7 +111,7 @@ export const createStructureInDB = async (structure: StructureDoc) =>
 export const updateStructureInDB = async (
   structureId: ObjectId,
   structure: StructureDoc
-) =>
+) => {
   await Structure.findOneAndUpdate(
     {
       _id: structureId,
@@ -114,6 +120,7 @@ export const updateStructureInDB = async (
     // @ts-ignore
     { upsert: true, new: true }
   );
+};
 
 export const updateStructureMember = async (
   membreId: ObjectId,

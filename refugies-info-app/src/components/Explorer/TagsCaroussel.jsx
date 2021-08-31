@@ -14,6 +14,7 @@ export class TagsCaroussel extends React.Component {
       carouselItems: tags.sort(sortByOrder),
     };
   }
+
   _renderItem({ item }) {
     return (
       <CarousselCard
@@ -21,6 +22,9 @@ export class TagsCaroussel extends React.Component {
         colorLight={item.lightColor}
         colorVeryLight={item.veryLightColor}
         iconName={item.icon}
+        navigation={this.props.navigation}
+        colorDark={item.darkColor}
+        color30={item.color30}
       />
     );
   }
@@ -65,7 +69,7 @@ export class TagsCaroussel extends React.Component {
           data={this.state.carouselItems}
           sliderWidth={460}
           itemWidth={234}
-          renderItem={this._renderItem}
+          renderItem={this._renderItem.bind(this)}
           onSnapToItem={(index) => this.setState({ activeIndex: index })}
           currentIndex={activeIndex}
           inverted={isRTL}

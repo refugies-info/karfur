@@ -29,7 +29,7 @@ export const getPlaceIdFromLocationFromGoogleAPI = (
   latitude: number
 ) =>
   apiCaller.post(
-    `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=1500&language=fr&type=locality&key=${process.env.GOOGLE_API_KEY}`
+    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.GOOGLE_API_KEY}`
   );
 
 export const getContentsForApp = ({
@@ -51,3 +51,6 @@ export const getContentsForApp = ({
 
   return apiCaller.get(route);
 };
+
+export const get_dispositif = (params = {}) =>
+  apiCaller.post("/dispositifs/get_dispositif", params);

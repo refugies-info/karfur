@@ -1,20 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import { Structure, Picture } from "../../../../types/interface";
+import { Picture, SimplifiedStructure } from "../../../../types/interface";
 import "./LetterSection.scss";
 import LinesEllipsis from "react-lines-ellipsis";
 import { ObjectId } from "mongodb";
 import placeholder from "../../../../assets/annuaire/placeholder_logo_annuaire.svg";
 
 interface Props {
-  letter: string;
-  structures: Structure[];
+  structures: SimplifiedStructure[];
   onStructureCardClick: (id: ObjectId) => void;
+  setLetterSelected: any;
 }
 
 const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   font-weight: bold;
   font-size: 100px;
   padding-left: 72px;
@@ -22,19 +23,6 @@ const MainContainer = styled.div`
   padding-top: 24px;
 `;
 
-const LetterContainer = styled.div`
-  font-size: 100px;
-  line-height: 58px;
-  margin-top: 30px;
-  width: 127px;
-`;
-
-const StructuresContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  flex: 1;
-`;
 const StructureCardContainer = styled.div`
   font-weight: bold;
   font-size: 22px;
@@ -90,26 +78,51 @@ const StructureCard = (props: StructureCardProps) => {
         />
       </div>
       {(!props.picture || !props.picture.secure_url) && <div></div>}
-      <LinesEllipsis text={props.nom} maxLine="4" trimRight basedOn="letters" />
+
+      <LinesEllipsis
+        text={
+          props.acronyme
+            ? props.nom.length + props.acronyme.length > 43
+              ? props.nom.substr(0, 36 - props.acronyme.length) +
+                "... (" +
+                props.acronyme +
+                ")"
+              : props.nom + " (" + props.acronyme + ")"
+            : props.nom
+        }
+        maxLine="4"
+        trimRight
+        basedOn="letters"
+      />
     </StructureCardContainer>
   );
 };
 
-export const LetterSection = (props: Props) => (
-  <MainContainer className="letter-section">
-    <Anchor id={props.letter.toUpperCase()} />
-    <LetterContainer>{props.letter.toUpperCase()}</LetterContainer>
-    <StructuresContainer>
-      {props.structures.map((structure) => (
-        <StructureCard
-          key={structure.nom}
-          nom={structure.nom}
-          picture={structure.picture || {}}
-          acronyme={structure.acronyme}
-          onStructureCardClick={props.onStructureCardClick}
-          id={structure._id}
-        />
-      ))}
-    </StructuresContainer>
-  </MainContainer>
-);
+export const LetterSection = (props: Props) => {
+  return (
+    <MainContainer className="letter-section">
+      {props.structures &&
+        props.structures.map((structure, key) => (
+          <>
+            {key === 0 && <Anchor id="A" />}
+
+            {key > 1 && // @ts-ignore
+              props.structures[key - 1].nom[0].toLowerCase() !==
+                props.structures[key].nom[0].toLowerCase() && (
+                <>
+                  <Anchor id={props.structures[key].nom[0].toUpperCase()} />
+                </>
+              )}
+            <StructureCard
+              key={structure.nom}
+              nom={structure.nom}
+              picture={structure.picture || {}}
+              acronyme={structure.acronyme}
+              onStructureCardClick={props.onStructureCardClick}
+              id={structure._id}
+            />
+          </>
+        ))}
+    </MainContainer>
+  );
+};

@@ -3,6 +3,7 @@ import { TabPane } from "reactstrap";
 import { AdminContenu } from "../../../containers/Backend/Admin/AdminContenu/AdminContenu";
 import { AdminStructures } from "../../../containers/Backend/Admin/AdminStructures/AdminStructures";
 import { AdminUsers } from "../../../containers/Backend/Admin/AdminUsers/AdminUsers";
+import { Needs } from "../../../containers/Backend/Admin/Needs/Needs";
 
 import Dashboard from "../../../containers/Backend/Dashboard/Dashboard";
 
@@ -20,6 +21,9 @@ const customTabPane = () => {
       </TabPane>
       <TabPane tabId="3" className="no-padding">
         <Dashboard />
+      </TabPane>
+      <TabPane tabId="4" className="no-padding">
+        <Needs />
       </TabPane>
     </>
   );
