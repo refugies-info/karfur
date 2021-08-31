@@ -21,6 +21,7 @@ import { CompleteProfilModal } from "../../../components/Modals/CompleteProfilMo
 import API from "../../../utils/API";
 import { Indicators } from "../../../types/interface";
 import { Navigation } from "../Navigation";
+import { TranslationNeedsModal } from "./components/TranslationNeedsModal";
 
 declare const window: Window;
 export interface PropsBeforeInjection {
@@ -39,7 +40,10 @@ const availableLanguages = ["fa", "en", "ru", "ps", "ar", "ti-ER"];
 
 export const UserTranslationComponent = (props: Props) => {
   const [showTraducteurModal, setShowTraducteurModal] = useState(false);
+  const [showNeedsModal, setShowNeedsModal] = useState(false);
   const [showCompleteProfilModal, setShowCompleteProfilModal] = useState(false);
+
+  const toggleNeedsModal = () => setShowNeedsModal(!showNeedsModal);
   const toggleTraducteurModal = () =>
     setShowTraducteurModal(!showTraducteurModal);
   const toggleCompleteProfilModal = () =>
@@ -220,11 +224,20 @@ export const UserTranslationComponent = (props: Props) => {
           setElementToTranslate={setElementToTranslate}
           user={user.user}
           getLangueId={getLangueId}
+          toggleNeedsModal={toggleNeedsModal}
         />
         {showTraducteurModal && (
           <TranslationLanguagesChoiceModal
             show={showTraducteurModal}
             toggle={toggleTraducteurModal}
+          />
+        )}
+
+        {showNeedsModal && (
+          <TranslationNeedsModal
+            show={showNeedsModal}
+            toggle={toggleNeedsModal}
+            getLangueId={getLangueId}
           />
         )}
         {showTutoModal && (

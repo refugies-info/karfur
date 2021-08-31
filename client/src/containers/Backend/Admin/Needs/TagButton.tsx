@@ -4,7 +4,7 @@ import Streamline from "../../../../assets/streamline";
 
 interface Props {
   name: string;
-  icon: string;
+  icon?: string;
   isSelected: boolean;
   color: string;
   onClick?: () => void;
