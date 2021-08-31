@@ -161,6 +161,11 @@ export default {
       headers,
     }),
 
+  updateDispositifTagsOrNeeds: (query) =>
+    axios.post(burl + "/dispositifs/updateDispositifTagsOrNeeds", query, {
+      headers,
+    }),
+
   modifyDispositifMainSponsor: (query) =>
     axios.post(burl + "/dispositifs/modifyDispositifMainSponsor", query, {
       headers,
@@ -204,6 +209,7 @@ export default {
     axios.get(burl + `/user/getUserFavoritesInLocale?locale=${locale}`, {
       headers,
     }),
+  getNeeds: () => axios.get(burl + "/needs/getNeeds"),
 
   getDispositifsWithTranslationAvancement: (locale) =>
     axios.get(
@@ -262,9 +268,20 @@ export default {
   },
   validateTranslations: (query) => {
     return axios.post(burl + "/traduction/validateTranslations", query, {
-      headers: headers,
+      headers,
     });
   },
+
+  saveNeed: (query) =>
+    axios.post(burl + "/needs/saveNeed", query, {
+      headers,
+    }),
+
+  createNeed: (query) =>
+    axios.post(burl + "/needs/createNeed", query, {
+      headers,
+    }),
+
   delete_trads: (query) => {
     return axios.post(burl + "/traduction/delete_trads", query, {
       headers: headers,

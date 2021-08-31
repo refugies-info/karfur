@@ -1,0 +1,34 @@
+.typeButton {
+  height: 50px;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+
+  align-items: center;
+  margin-right: 12px;
+
+  &.whiteButton {
+    background: #ffffff;
+    border: 0.5px solid white;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  &.typeSelected {
+    color: #ffffff;
+    border: 0.5px solid black;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    background-color: black;
+  }
+}
+
+.autocomplete {
+  border: #ffffff;
+}
+
+.position-relative span {
+  display: none;
+}

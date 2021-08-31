@@ -19,8 +19,7 @@ exports[`HeaderWithLogo should render correctly with LTR 1`] = `
           "display": "flex",
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "paddingLeft": 24,
-          "paddingRight": 24,
+          "paddingHorizontal": 24,
           "paddingTop": 8,
         },
       ]
@@ -166,8 +165,7 @@ exports[`HeaderWithLogo should render correctly with RTL 1`] = `
           "display": "flex",
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "paddingLeft": 24,
-          "paddingRight": 24,
+          "paddingHorizontal": 24,
           "paddingTop": 8,
         },
       ]

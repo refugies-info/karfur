@@ -57,6 +57,8 @@ const colors = {
   lightBlue: "#D2EDFC",
   blue: "#2D9CDB",
   red: "#F44336",
+  lightRed: "#ffcecb",
+  greyF7: "#F7F7F7",
 };
 
 const images = {};
@@ -71,6 +73,7 @@ const fonts = {
   families: {
     circularStandard: "circularBook",
     circularBold: "circularBold",
+    circularItalic: "circularItalic",
   },
 };
 

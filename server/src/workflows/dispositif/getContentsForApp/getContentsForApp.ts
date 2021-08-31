@@ -40,6 +40,7 @@ export const getContentsForApp = async (
       titreMarque: 1,
       avancement: 1,
       contenu: 1,
+      tags: 1,
     };
 
     const initialQuery = {
@@ -68,7 +69,12 @@ export const getContentsForApp = async (
         "fr"
       );
 
-      return { _id: content._id, titreInformatif, titreMarque };
+      return {
+        _id: content._id,
+        titreInformatif,
+        titreMarque,
+        tags: content.tags,
+      };
     });
 
     if (locale === "fr") {
@@ -88,7 +94,12 @@ export const getContentsForApp = async (
         locale
       );
 
-      return { _id: content._id, titreInformatif, titreMarque };
+      return {
+        _id: content._id,
+        titreInformatif,
+        titreMarque,
+        tags: content.tags,
+      };
     });
 
     res.status(200).json({

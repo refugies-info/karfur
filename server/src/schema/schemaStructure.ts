@@ -91,6 +91,7 @@ var structureSchema = new mongoose.Schema(
     mailsPublic: { type: Array, unique: false, required: false },
     adressPublic: { type: String, unique: false, required: false },
     openingHours: { type: Object, unique: false, required: false },
+    onlyWithRdv: { type: Boolean, unique: false, required: false },
     description: { type: String, unique: false, required: false },
     hasResponsibleSeenNotification: {
       type: Boolean,
@@ -133,9 +134,21 @@ export interface StructureDoc extends mongoose.Document {
   phonesPublic?: string[];
   adressPublic?: string;
   openingHours?: OpeningHours;
+  onlyWithRdv?: boolean;
   description?: string;
   hasResponsibleSeenNotification?: boolean;
+  disposAssociesLocalisation?: string[];
 }
+
+export interface StructureSimplifiedWithLoc extends mongoose.Document {
+  _id: ObjectId;
+  acronyme?: string;
+  picture?: Picture;
+  structureTypes?: string[];
+  departments?: string[];
+  disposAssociesLocalisation?: string[];
+}
+
 export const Structure = mongoose.model<StructureDoc>(
   "Structure",
   structureSchema

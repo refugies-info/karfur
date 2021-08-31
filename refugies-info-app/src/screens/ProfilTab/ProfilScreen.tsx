@@ -34,7 +34,7 @@ const DeleteDataContainer = styled.TouchableOpacity`
 `;
 
 const DeleteDataText = styled(StyledTextVerySmall)`
-  color: ${theme.colors.darkBlue};
+  color: ${theme.colors.darkGrey};
 `;
 
 const ContentContainer = styled.View`
@@ -83,9 +83,9 @@ export const ProfilScreen = ({
   const dispatch = useDispatch();
 
   const deleteUserData = () => {
-    dispatch(removeUserFrenchLevelActionCreator());
-    dispatch(removeUserAgeActionCreator());
-    dispatch(removeUserLocationActionCreator());
+    dispatch(removeUserFrenchLevelActionCreator(true));
+    dispatch(removeUserAgeActionCreator(true));
+    dispatch(removeUserLocationActionCreator(true));
   };
 
   const reinitializeApp = () => {
@@ -147,7 +147,10 @@ export const ProfilScreen = ({
           />
         </ProfilButtonsContainer>
 
-        <DeleteDataContainer onPress={toggleDeleteDataModal}>
+        <DeleteDataContainer
+          onPress={toggleDeleteDataModal}
+          testID="test-delete-data"
+        >
           <DeleteDataText>
             {t("Profil.supprimer_data", "Supprimer les données de mon profil")}
           </DeleteDataText>

@@ -198,6 +198,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     Array [
                       Object {
                         "color": "#212121",
+                        "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
@@ -294,6 +295,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     Array [
                       Object {
                         "color": "#212121",
+                        "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
@@ -434,6 +436,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     Array [
                       Object {
                         "color": "#212121",
+                        "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
@@ -574,6 +577,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     Array [
                       Object {
                         "color": "#212121",
+                        "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
@@ -714,6 +718,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     Array [
                       Object {
                         "color": "#212121",
+                        "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
@@ -854,6 +859,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     Array [
                       Object {
                         "color": "#212121",
+                        "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
@@ -994,6 +1000,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     Array [
                       Object {
                         "color": "#212121",
+                        "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
@@ -1089,6 +1096,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
             "width": "100%",
           }
         }
+        testID="test-custom-button-Fermer"
       >
         <Text
           style={

@@ -211,6 +211,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
         style={
           Array [
             Object {
+              "flexShrink": 1,
               "fontFamily": "circularBold",
               "fontSize": 16,
               "lineHeight": 20,
@@ -378,7 +379,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
             "backgroundColor": "#212121",
             "borderRadius": 12,
             "display": "flex",
-            "elevation": 1,
+            "elevation": 0,
             "flexDirection": "row",
             "flexWrap": "wrap",
             "justifyContent": "space-between",
@@ -400,15 +401,19 @@ exports[`Filter age should render correctly when age selected 1`] = `
         testID="test-filter-0 à 17 ans"
       >
         <Text
+          isRTL={false}
           isSelected={true}
           style={
             Array [
               Object {
-                "color": "#FFFFFF",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
-                "fontSize": 19,
-                "lineHeight": 24,
+                "fontSize": 16,
+                "lineHeight": 20,
                 "textAlign": "left",
+              },
+              Object {
+                "color": "#FFFFFF",
               },
             ]
           }
@@ -464,15 +469,19 @@ exports[`Filter age should render correctly when age selected 1`] = `
         testID="test-filter-18 à 25 ans"
       >
         <Text
+          isRTL={false}
           isSelected={false}
           style={
             Array [
               Object {
-                "color": "#212121",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
-                "fontSize": 19,
-                "lineHeight": 24,
+                "fontSize": 16,
+                "lineHeight": 20,
                 "textAlign": "left",
+              },
+              Object {
+                "color": "#212121",
               },
             ]
           }
@@ -528,15 +537,19 @@ exports[`Filter age should render correctly when age selected 1`] = `
         testID="test-filter-26 ans et plus"
       >
         <Text
+          isRTL={false}
           isSelected={false}
           style={
             Array [
               Object {
-                "color": "#212121",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
-                "fontSize": 19,
-                "lineHeight": 24,
+                "fontSize": 16,
+                "lineHeight": 20,
                 "textAlign": "left",
+              },
+              Object {
+                "color": "#212121",
               },
             ]
           }
@@ -844,6 +857,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   Object {
                     "alignItems": "center",
                     "color": "#FFFFFF",
+                    "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
                     "lineHeight": 20,
@@ -1147,6 +1161,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         style={
           Array [
             Object {
+              "flexShrink": 1,
               "fontFamily": "circularBold",
               "fontSize": 16,
               "lineHeight": 20,
@@ -1336,15 +1351,19 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         testID="test-filter-0 à 17 ans"
       >
         <Text
+          isRTL={false}
           isSelected={false}
           style={
             Array [
               Object {
-                "color": "#212121",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
-                "fontSize": 19,
-                "lineHeight": 24,
+                "fontSize": 16,
+                "lineHeight": 20,
                 "textAlign": "left",
+              },
+              Object {
+                "color": "#212121",
               },
             ]
           }
@@ -1400,15 +1419,19 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         testID="test-filter-18 à 25 ans"
       >
         <Text
+          isRTL={false}
           isSelected={false}
           style={
             Array [
               Object {
-                "color": "#212121",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
-                "fontSize": 19,
-                "lineHeight": 24,
+                "fontSize": 16,
+                "lineHeight": 20,
                 "textAlign": "left",
+              },
+              Object {
+                "color": "#212121",
               },
             ]
           }
@@ -1464,15 +1487,19 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         testID="test-filter-26 ans et plus"
       >
         <Text
+          isRTL={false}
           isSelected={false}
           style={
             Array [
               Object {
-                "color": "#212121",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
-                "fontSize": 19,
-                "lineHeight": 24,
+                "fontSize": 16,
+                "lineHeight": 20,
                 "textAlign": "left",
+              },
+              Object {
+                "color": "#212121",
               },
             ]
           }
@@ -1757,18 +1784,18 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 "backgroundColor": "#C6C6C6",
                 "borderRadius": 12,
                 "display": "flex",
-                "elevation": 1,
+                "elevation": 0,
                 "flexDirection": "row",
                 "height": 56,
                 "justifyContent": "center",
                 "opacity": 1,
-                "shadowColor": "black",
+                "shadowColor": "#EDEBEB",
                 "shadowOffset": Object {
-                  "height": 0,
+                  "height": 8,
                   "width": 0,
                 },
                 "shadowOpacity": 1,
-                "shadowRadius": 0,
+                "shadowRadius": 16,
               }
             }
             testID="test-validate-button"
@@ -1780,6 +1807,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   Object {
                     "alignItems": "center",
                     "color": "#212121",
+                    "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
                     "lineHeight": 20,
@@ -2083,6 +2111,7 @@ exports[`Filter age should select age when click on it 1`] = `
         style={
           Array [
             Object {
+              "flexShrink": 1,
               "fontFamily": "circularBold",
               "fontSize": 16,
               "lineHeight": 20,
@@ -2272,15 +2301,19 @@ exports[`Filter age should select age when click on it 1`] = `
         testID="test-filter-0 à 17 ans"
       >
         <Text
+          isRTL={false}
           isSelected={false}
           style={
             Array [
               Object {
-                "color": "#212121",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
-                "fontSize": 19,
-                "lineHeight": 24,
+                "fontSize": 16,
+                "lineHeight": 20,
                 "textAlign": "left",
+              },
+              Object {
+                "color": "#212121",
               },
             ]
           }
@@ -2336,15 +2369,19 @@ exports[`Filter age should select age when click on it 1`] = `
         testID="test-filter-18 à 25 ans"
       >
         <Text
+          isRTL={false}
           isSelected={false}
           style={
             Array [
               Object {
-                "color": "#212121",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
-                "fontSize": 19,
-                "lineHeight": 24,
+                "fontSize": 16,
+                "lineHeight": 20,
                 "textAlign": "left",
+              },
+              Object {
+                "color": "#212121",
               },
             ]
           }
@@ -2378,7 +2415,7 @@ exports[`Filter age should select age when click on it 1`] = `
             "backgroundColor": "#212121",
             "borderRadius": 12,
             "display": "flex",
-            "elevation": 1,
+            "elevation": 0,
             "flexDirection": "row",
             "flexWrap": "wrap",
             "justifyContent": "space-between",
@@ -2400,15 +2437,19 @@ exports[`Filter age should select age when click on it 1`] = `
         testID="test-filter-26 ans et plus"
       >
         <Text
+          isRTL={false}
           isSelected={true}
           style={
             Array [
               Object {
-                "color": "#FFFFFF",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
-                "fontSize": 19,
-                "lineHeight": 24,
+                "fontSize": 16,
+                "lineHeight": 20,
                 "textAlign": "left",
+              },
+              Object {
+                "color": "#FFFFFF",
               },
             ]
           }
@@ -2716,6 +2757,7 @@ exports[`Filter age should select age when click on it 1`] = `
                   Object {
                     "alignItems": "center",
                     "color": "#FFFFFF",
+                    "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
                     "lineHeight": 20,

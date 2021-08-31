@@ -44,6 +44,7 @@ export const removeSelectedLanguageActionCreator = () =>
 export const saveUserLocationActionCreator = (value: {
   city: string;
   dep: string;
+  shouldFetchContents: boolean;
 }) => action(SAVE_USER_LOCATION, value);
 
 export const setUserLocationActionCreator = (value: {
@@ -51,25 +52,31 @@ export const setUserLocationActionCreator = (value: {
   dep: string | null;
 }) => action(SET_USER_LOCATION, value);
 
-export const removeUserLocationActionCreator = () =>
-  action(REMOVE_USER_LOCATION);
+export const removeUserLocationActionCreator = (shouldFetchContents: boolean) =>
+  action(REMOVE_USER_LOCATION, shouldFetchContents);
 
-export const saveUserAgeActionCreator = (value: string) =>
-  action(SAVE_USER_AGE, value);
+export const saveUserAgeActionCreator = (value: {
+  age: string;
+  shouldFetchContents: boolean;
+}) => action(SAVE_USER_AGE, value);
 
 export const setUserAgeActionCreator = (value: string | null) =>
   action(SET_USER_AGE, value);
 
-export const removeUserAgeActionCreator = () => action(REMOVE_USER_AGE);
+export const removeUserAgeActionCreator = (shouldFetchContents: boolean) =>
+  action(REMOVE_USER_AGE, shouldFetchContents);
 
-export const saveUserFrenchLevelActionCreator = (value: string) =>
-  action(SAVE_USER_FRENCH_LEVEL, value);
+export const saveUserFrenchLevelActionCreator = (value: {
+  frenchLevel: string;
+  shouldFetchContents: boolean;
+}) => action(SAVE_USER_FRENCH_LEVEL, value);
 
 export const setUserFrenchLevelActionCreator = (value: string | null) =>
   action(SET_USER_FRENCH_LEVEL, value);
 
-export const removeUserFrenchLevelActionCreator = () =>
-  action(REMOVE_USER_FRENCH_LEVEL);
+export const removeUserFrenchLevelActionCreator = (
+  shouldFetchContents: boolean
+) => action(REMOVE_USER_FRENCH_LEVEL, shouldFetchContents);
 
 export const setCurrentLanguageActionCreator = (
   value: AvailableLanguageI18nCode | null

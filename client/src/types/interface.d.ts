@@ -61,6 +61,8 @@ export interface SimplifiedDispositif {
   lastAdminUpdate?: Moment;
   draftReminderMailSentDate?: Moment;
   lastModificationDate?: Moment;
+  needs?: ObjectId[];
+  tags: Tag[];
 }
 export interface Picture {
   imgId: ObjectId;
@@ -244,6 +246,7 @@ export interface Structure {
   phonesPublic?: string[];
   adressPublic?: string;
   openingHours?: OpeningHours;
+  onlyWithRdv?: boolean;
   description?: string;
   hasResponsibleSeenNotification?: boolean;
   mailsPublic?: string[];
@@ -266,8 +269,11 @@ export interface SimplifiedStructure {
   _id: ObjectId;
   acronyme: string;
   nom: string;
+  structureTypes?: string[];
+  departments?: string[];
   picture: Picture;
   role?: string[];
+  disposAssociesLocalisation?: string[];
 }
 
 export interface Picture {
@@ -364,3 +370,21 @@ export type Indicators = {
 };
 
 export type ITypeContenu = "dispositif" | "demarche";
+
+export interface NeedDetail {
+  text: string;
+  updatedAt: Moment;
+}
+export interface Need {
+  fr: NeedDetail;
+  ar?: NeedDetail;
+  en?: NeedDetail;
+  "ti-ER"?: NeedDetail;
+  ru?: NeedDetail;
+  ps?: NeedDetail;
+  fa?: NeedDetail;
+  _id: ObjectId;
+  tagName: string;
+  created_at: Moment;
+  updatedAt: Moment;
+}

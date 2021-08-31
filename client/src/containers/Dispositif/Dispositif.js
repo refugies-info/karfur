@@ -52,7 +52,7 @@ import { initializeTimer } from "../Translation/functions";
 import { readAudio, stopAudio } from "../Layout/functions";
 import {
   contenu,
-  menu,
+  menu as menuDispositif,
   filtres,
   importantCard,
   showModals,
@@ -117,8 +117,7 @@ export class Dispositif extends Component {
       hoverColor: colors.gris,
       short: "noImage",
     },
-
-    uiArray: new Array(menu.length).fill(uiElement),
+    uiArray: new Array(menuDispositif.length).fill(uiElement),
     showModals: showModals,
     accordion: new Array(1).fill(false),
     dropdown: new Array(5).fill(false),
@@ -434,7 +433,8 @@ export class Dispositif extends Component {
       this.initializeTimer(3 * 60 * 1000, () =>
         this.valider_dispositif("Brouillon", true)
       ); //Enregistrement automatique du dispositif toutes les 3 minutes
-      const menuContenu = typeContenu === "demarche" ? menuDemarche : menu;
+      const menuContenu =
+        typeContenu === "demarche" ? menuDemarche : menuDispositif;
       this.setState(
         {
           disableEdit: false,
@@ -465,7 +465,7 @@ export class Dispositif extends Component {
           typeContenu,
           initialMenu:
             typeContenu === "dispositif"
-              ? JSON.parse(JSON.stringify(menu))
+              ? JSON.parse(JSON.stringify(menuDispositif))
               : JSON.parse(JSON.stringify(menuDemarche)),
         },
         () => this.setColors()
@@ -845,7 +845,9 @@ export class Dispositif extends Component {
         newChild = importantCard;
       } else if (type === "card") {
         const menuFiche =
-          this.state.typeContenu === "dispositif" ? menu : menuDemarche;
+          this.state.typeContenu === "dispositif"
+            ? menuDispositif
+            : menuDemarche;
         // the new child is an infocard which title is subkey (a title that is not already displayed)
         newChild =
           menuFiche[1].children.filter((x) => x.title === subkey).length > 0
@@ -1202,7 +1204,7 @@ export class Dispositif extends Component {
     const prevState = [...this.state.menu];
     //var menuObj = [...menu[1].children]
     if (node === "title") {
-      prevState[key].children[subkey] = this.state.initialMenu[1].children
+      prevState[key].children[subkey] = menuDispositif[1].children
         .concat(importantCard)
         .find((x) => x.title === value);
     } else {
@@ -2198,6 +2200,8 @@ export class Dispositif extends Component {
               show={this.state.showTagsModal}
               toggle={this.toggleTagsModal}
               toggleTutorielModal={this.toggleTutorielModal}
+              user={this.props.user}
+              dispositifId={this.state.dispositif._id}
             />
             <FrameModal
               show={this.state.showTutorielModal}

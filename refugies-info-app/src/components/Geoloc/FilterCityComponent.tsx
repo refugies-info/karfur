@@ -13,7 +13,10 @@ import {
   getCityDetailsFromGoogleAPI,
   getPlaceIdFromLocationFromGoogleAPI,
 } from "../../utils/API";
-import { getDepartementFromResult } from "../../libs/geolocalisation";
+import {
+  getDepartementFromResult,
+  getCityFromResult,
+} from "../../libs/geolocalisation";
 import {
   saveUserLocationActionCreator,
   removeUserLocationActionCreator,
@@ -82,7 +85,6 @@ export const FilterCityComponent = (props: Props) => {
   const [selectedCity, setSelectedCity] = React.useState("");
   const [selectedDepartment, setSelectedDepartment] = React.useState("");
   const [isGeolocLoading, setIsGeolocLoading] = React.useState(false);
-
   const { t, isRTL } = useTranslationWithRTL();
 
   const defaultError = t("Erreur", "Une erreur est survenue, réessaie.");
@@ -184,26 +186,23 @@ export const FilterCityComponent = (props: Props) => {
           result &&
           result.data &&
           result.data.results &&
-          result.data.results.length > 0
+          result.data.results.length > 0 &&
+          result.data.results[0].address_components
         ) {
-          try {
-            await setCityAndGetDepartment(
-              result.data.results[0].name,
-              result.data.results[0].place_id
-            );
-            setIsGeolocLoading(false);
-            return;
-          } catch (error) {
-            setError(
-              t(
-                "Onboarding.error_geoloc",
-                "Une erreur est survenue lors de la géolocalisation. Entre ta ville manuellement."
-              )
-            );
-            resetData();
-            setIsGeolocLoading(false);
-            return;
+          const department = getDepartementFromResult(
+            result.data.results[0].address_components
+          );
+          const city = getCityFromResult(
+            result.data.results[0].address_components
+          );
+
+          if (!department || !city) {
+            throw new Error("NO_CORRESPONDING_DEP");
           }
+          setSelectedDepartment(department);
+          setSelectedCity(city);
+          setIsGeolocLoading(false);
+          return;
         }
       }
       throw new Error("ERREUR");
@@ -239,11 +238,14 @@ export const FilterCityComponent = (props: Props) => {
         saveUserLocationActionCreator({
           city: selectedCity,
           dep: selectedDepartment,
+          shouldFetchContents: props.isOnboardingScreen ? false : true,
         })
       );
       return navigateToNextScreen();
     }
-    dispatch(removeUserLocationActionCreator());
+    dispatch(
+      removeUserLocationActionCreator(props.isOnboardingScreen ? false : true)
+    );
     return navigateToNextScreen();
   };
 
@@ -341,6 +343,7 @@ export const FilterCityComponent = (props: Props) => {
               textColor={theme.colors.black}
               onPress={props.navigation.goBack}
               isTextNotBold={true}
+              isDisabled={true}
             />
           </BottomButtonsContainer>
         )}

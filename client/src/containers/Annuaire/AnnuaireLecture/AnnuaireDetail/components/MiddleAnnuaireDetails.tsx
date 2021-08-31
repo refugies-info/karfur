@@ -8,17 +8,22 @@ import { activities } from "../../../AnnuaireCreate/components/Step3/data";
 import { filtres } from "../../../../Dispositif/data";
 import { NoActivity } from "./NoActivity";
 import Skeleton from "react-loading-skeleton";
+import { colors } from "../../../../../colors";
+import FButton from "components/FigmaUI/FButton/FButton";
+import { NavLink } from "react-router-dom";
 
 interface Props {
   structure: Structure | null;
   leftPartHeight: number;
   t: any;
   isLoading: boolean;
+
+  isMember: boolean;
 }
 
 const MiddleContainer = styled.div`
   padding: 32px;
-  height: ${(props) => props.height}px;
+  padding-top: 100px;
   overflow: scroll;
   display: flex;
   flex: 1;
@@ -34,6 +39,7 @@ const Title = styled.div`
 
 const TitleContainer = styled.div`
   margin-bottom: 14px;
+  color: ${colors.bleuCharte};
 `;
 
 const SubTitle = styled.div`
@@ -45,14 +51,14 @@ const SubTitle = styled.div`
 `;
 const LineContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 `;
 const WhiteContainer = styled.div`
   background: #ffffff;
   border-radius: 12px;
   padding: 16px;
   width: fit-content;
-  margin-right: 8px;
+  margin-bottom: 8px;
 `;
 
 // on firefox behaviour is strange with overflow, we have to add an empty container to have margin
@@ -63,7 +69,7 @@ const BottomContainer = styled.div`
   color: #e5e5e5;
 `;
 const RedContainer = styled.div`
-  background: #ffcecb;
+  background: ${colors.grey2};
   border-radius: 12px;
   padding: 16px;
   width: fit-content;
@@ -75,12 +81,18 @@ const BlueContainer = styled.div`
   border-radius: 12px;
   padding: 16px;
   width: fit-content;
+  margin: 10px 0;
 `;
 
 const Description = styled.div`
   font-weight: normal;
   font-size: 16px;
   line-height: 20px;
+`;
+
+const InfoContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 const NoDescription = styled.div`
@@ -98,6 +110,10 @@ const weekDays = [
   "Samedi",
   "Dimanche",
 ];
+
+const InfoColumnContainer = styled.div`
+  margin-right: 42px;
+`;
 
 const ActivityContainer = styled.div`
   display: flex;
@@ -166,119 +182,33 @@ const getActivityDetails = (activity: string) => {
 };
 export const MiddleAnnuaireDetail = (props: Props) => {
   const structure = props.structure;
-
   if (!props.isLoading && structure) {
     return (
       <MiddleContainer height={props.leftPartHeight}>
-        <TitleContainer>
-          {!structure.acronyme && <Title>{structure.nom}</Title>}
-          {structure.acronyme && (
-            <Title>
-              {structure.nom}{" "}
-              <span style={{ color: "#828282" }}>
-                {" (" + structure.acronyme + ")"}
-              </span>{" "}
-            </Title>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <TitleContainer>
+            {!structure.acronyme && <Title>{structure.nom}</Title>}
+            {structure.acronyme && (
+              <Title>
+                {structure.nom}{" "}
+                <span style={{ color: "#828282" }}>
+                  {"- " + structure.acronyme}
+                </span>{" "}
+              </Title>
+            )}
+          </TitleContainer>
+          {props.isMember && (
+            <div style={{ height: "5Opx" }}>
+              <FButton
+                to="/annuaire-create"
+                tag={NavLink}
+                type="dark"
+                name="edit-outline"
+              >
+                Modifier la fiche
+              </FButton>
+            </div>
           )}
-        </TitleContainer>
-        <SubTitle>
-          {props.t("Annuaire.Adresse email", "Adresse email")}
-        </SubTitle>
-        <LineContainer>
-          {structure.mailsPublic &&
-            structure.mailsPublic.map((mail) => (
-              <Mail mail={mail} key={mail} />
-            ))}
-          {(!structure.mailsPublic || structure.mailsPublic.length === 0) && (
-            <Placeholder
-              iconName="email-outline"
-              text="Aucune adresse email renseignée"
-              t={props.t}
-              i18nKey="noemail"
-            />
-          )}
-        </LineContainer>
-        <SubTitle>
-          {props.t("Annuaire.Numéro de téléphone", "Numéro de téléphone")}
-        </SubTitle>
-        <LineContainer>
-          {structure.phonesPublic &&
-            structure.phonesPublic.map((phone) => (
-              <PhoneNumber phone={phone} key={phone} />
-            ))}
-          {(!structure.phonesPublic || structure.phonesPublic.length === 0) && (
-            <Placeholder
-              iconName="phone-call-outline"
-              text="Aucun numéro de téléphone renseigné"
-              t={props.t}
-              i18nKey="noPhone"
-            />
-          )}
-        </LineContainer>
-        <SubTitle>
-          {props.t("Annuaire.Adresse postale", "Adresse postale")}
-        </SubTitle>
-        {structure.adressPublic && <Adress adress={structure.adressPublic} />}
-        {!structure.adressPublic && (
-          <Placeholder
-            iconName="pin-outline"
-            text="Aucune adresse postale renseignée"
-            t={props.t}
-            i18nKey="noAdress"
-          />
-        )}
-        <SubTitle>
-          {props.t("Annuaire.Horaires d'accueil", "Horaires d'accueil")}
-        </SubTitle>
-        {!structure.openingHours && (
-          <Placeholder
-            iconName="alert-circle-outline"
-            text="Horaires non-renseignées"
-            i18nKey="noOpeningHours"
-            t={props.t}
-          />
-        )}
-        {structure.openingHours && structure.openingHours.precisions && (
-          <div style={{ marginBottom: "8px" }}>
-            <HoursPrecisions text={structure.openingHours.precisions} />
-          </div>
-        )}
-        {structure.openingHours && structure.openingHours.noPublic && (
-          <HoursPrecisions text={"Nous ne recevons pas de public"} />
-        )}
-        {structure.openingHours &&
-          !structure.openingHours.noPublic &&
-          weekDays.map((day) => (
-            <DayHoursPrecisions
-              day={day}
-              openingHours={structure.openingHours}
-              key={day}
-              t={props.t}
-            />
-          ))}
-        <SubTitle>
-          {props.t("Annuaire.Départements d'action", "Départements d'action")}
-        </SubTitle>
-        <LineContainer>
-          {structure.departments &&
-            structure.departments.map((departement) => (
-              <Departement
-                key={departement}
-                departement={departement}
-                t={props.t}
-              />
-            ))}
-          {(!structure.departments || structure.departments.length === 0) && (
-            <Placeholder
-              iconName="hash"
-              text="Aucun département renseigné"
-              t={props.t}
-              i18nKey="noDepartement"
-            />
-          )}
-        </LineContainer>
-        <div style={{ marginTop: "24px", marginBottom: "24px" }}>
-          <Title>{props.t("Annuaire.a propos", "À propos")}</Title>
         </div>
         {structure.description && (
           <Description>{structure.description}</Description>
@@ -291,6 +221,129 @@ export const MiddleAnnuaireDetail = (props: Props) => {
             )}
           </NoDescription>
         )}
+        <InfoContainer>
+          <InfoColumnContainer>
+            <SubTitle>
+              {props.t("Annuaire.Adresse email", "Adresse email")}
+            </SubTitle>
+            <LineContainer>
+              {structure.mailsPublic &&
+                structure.mailsPublic.map((mail) => (
+                  <Mail mail={mail} key={mail} />
+                ))}
+              {(!structure.mailsPublic ||
+                structure.mailsPublic.length === 0) && (
+                <Placeholder
+                  iconName="email-outline"
+                  text="Aucune adresse email renseignée"
+                  t={props.t}
+                  i18nKey="noemail"
+                />
+              )}
+            </LineContainer>
+            <SubTitle>
+              {props.t("Annuaire.Numéro de téléphone", "Numéro de téléphone")}
+            </SubTitle>
+            <LineContainer>
+              {structure.phonesPublic &&
+                structure.phonesPublic.map((phone) => (
+                  <PhoneNumber phone={phone} key={phone} />
+                ))}
+              {(!structure.phonesPublic ||
+                structure.phonesPublic.length === 0) && (
+                <Placeholder
+                  iconName="phone-call-outline"
+                  text="Aucun numéro de téléphone renseigné"
+                  t={props.t}
+                  i18nKey="noPhone"
+                />
+              )}
+            </LineContainer>
+            <SubTitle>
+              {props.t("Annuaire.Adresse postale", "Adresse postale")}
+            </SubTitle>
+            {structure.adressPublic && (
+              <Adress adress={structure.adressPublic} />
+            )}
+            {!structure.adressPublic && (
+              <Placeholder
+                iconName="pin-outline"
+                text="Aucune adresse postale renseignée"
+                t={props.t}
+                i18nKey="noAdress"
+              />
+            )}
+            <SubTitle>
+              {props.t(
+                "Annuaire.Départements d'action",
+                "Départements d'action"
+              )}
+            </SubTitle>
+            <LineContainer>
+              {structure.departments &&
+                structure.departments.map((departement) => (
+                  <Departement
+                    key={departement}
+                    departement={departement}
+                    t={props.t}
+                  />
+                ))}
+              {(!structure.departments ||
+                structure.departments.length === 0) && (
+                <Placeholder
+                  iconName="hash"
+                  text="Aucun département renseigné"
+                  t={props.t}
+                  i18nKey="noDepartement"
+                />
+              )}
+            </LineContainer>
+          </InfoColumnContainer>
+          <InfoColumnContainer>
+            <SubTitle>
+              {props.t("Annuaire.Horaires d'accueil", "Horaires d'accueil")}
+            </SubTitle>
+            {!structure.openingHours && (
+              <Placeholder
+                iconName="alert-circle-outline"
+                text="Horaires non-renseignées"
+                i18nKey="noOpeningHours"
+                t={props.t}
+              />
+            )}
+            {structure.openingHours && structure.openingHours.precisions && (
+              <div style={{ marginBottom: "8px" }}>
+                <HoursPrecisions text={structure.openingHours.precisions} />
+              </div>
+            )}
+            {structure.openingHours && structure.openingHours.noPublic && (
+              <HoursPrecisions
+                text={props.t(
+                  "Annuaire.Cette structure n'accueille pas de public.",
+                  "Cette structure n'accueille pas de public."
+                )}
+              />
+            )}
+            {structure.onlyWithRdv && (
+              <HoursPrecisions
+                text={props.t(
+                  "Annuaire.Uniquement sur rendez-vous",
+                  "Uniquement sur rendez-vous."
+                )}
+              />
+            )}
+            {structure.openingHours &&
+              !structure.openingHours.noPublic &&
+              weekDays.map((day) => (
+                <DayHoursPrecisions
+                  day={day}
+                  openingHours={structure.openingHours}
+                  key={day}
+                  t={props.t}
+                />
+              ))}
+          </InfoColumnContainer>
+        </InfoContainer>
         <div style={{ marginTop: "24px", marginBottom: "24px" }}>
           <Title>
             {props.t("Annuaire.Activités et services", "Activités et services")}
@@ -324,7 +377,6 @@ export const MiddleAnnuaireDetail = (props: Props) => {
             </>
           )}
         </ActivityContainer>
-
         <BottomContainer>{"s"}</BottomContainer>
       </MiddleContainer>
     );

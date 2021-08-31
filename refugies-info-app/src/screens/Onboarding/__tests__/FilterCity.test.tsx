@@ -67,6 +67,7 @@ describe("Filter city", () => {
     expect(saveUserLocationActionCreator).toHaveBeenCalledWith({
       city: "city",
       dep: "dep",
+      shouldFetchContents: false,
     });
     expect(navigate).toHaveBeenCalledWith("FilterAge");
   });
