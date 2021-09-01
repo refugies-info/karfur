@@ -19,6 +19,7 @@ import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingSta
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
 import { colors } from "../../../../colors";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 interface Props {
   show: boolean;
@@ -78,11 +79,14 @@ const getStatusColorAndText = (
     need.fr.updatedAt > need[langueI18nCode].updatedAt
   )
     return { statusColor: colors.rouge, statusText: "À revoir" };
-  return { statusColor: colors.darkGrey, statusText: "À jour" };
+  return { statusColor: colors.green, statusText: "À jour" };
 };
 
 export const TranslationNeedsModal = (props: Props) => {
   const userTradLanguages = useSelector(userSelectedLanguageSelector);
+
+  const arrayLines = new Array(6).fill("a");
+  const arrayContent = new Array(3).fill("a");
 
   const langueId = props.getLangueId();
   const { langueSelectedFr, langueI18nCode } = getLangueName(
@@ -134,20 +138,7 @@ export const TranslationNeedsModal = (props: Props) => {
         className="modal-besoins"
         size="lg"
       >
-        Loading
-      </Modal>
-    );
-  }
-
-  return (
-    <>
-      <Modal
-        isOpen={props.show}
-        toggle={props.toggle}
-        className="modal-besoins"
-        size="lg"
-      >
-        <Header>{"Traduction des besoins en " + langueSelectedFr}</Header>
+        <Header>{"Traduction des besoins"}</Header>
         <Table responsive borderless>
           <thead>
             <tr>
@@ -161,35 +152,21 @@ export const TranslationNeedsModal = (props: Props) => {
             </tr>
           </thead>
           <tbody>
-            {needsWithStatus.map((need, key) => {
-              const needTag = getTag(need.tagName);
-              const translatedNeed =
-                // @ts-ignore
-                need[langueI18nCode] && need[langueI18nCode].text
-                  ? //@ts-ignore
-                    need[langueI18nCode].text
-                  : "";
-              if (!needTag) return;
+            {arrayLines.map((_, key) => {
               return (
-                <tr key={key} onClick={() => onNeedClick(need)}>
-                  <td className="align-middle" style={{ width: 300 }}>
-                    {need.fr.text}
+                <tr key={key} className={"bg-blancSimple"}>
+                  <td>
+                    <SkeletonTheme color="#CDCDCD">
+                      <Skeleton width={170} count={1} />
+                    </SkeletonTheme>
                   </td>
-                  <td className="align-middle">
-                    <div style={{ marginLeft: -4 }}>
-                      <TagButton
-                        name={jsUcfirst(needTag.short) || ""}
-                        isSelected={true}
-                        color={needTag.darkColor}
-                      />
-                    </div>
-                  </td>
-                  <td className="align-middle">{translatedNeed}</td>
-                  <td className="align-middle">
-                    <StatusContainer backgroundColor={need.statusColor}>
-                      {need.statusText}
-                    </StatusContainer>
-                  </td>
+                  {arrayContent.map((_, key) => (
+                    <td key={key}>
+                      <SkeletonTheme color="#CDCDCD">
+                        <Skeleton width={100} count={1} />
+                      </SkeletonTheme>
+                    </td>
+                  ))}
                 </tr>
               );
             })}
@@ -212,6 +189,80 @@ export const TranslationNeedsModal = (props: Props) => {
           </FButton>
         </div>
       </Modal>
-    </>
+    );
+  }
+
+  return (
+    <Modal
+      isOpen={props.show}
+      toggle={props.toggle}
+      className="modal-besoins"
+      size="lg"
+    >
+      <Header>{"Traduction des besoins en " + langueSelectedFr}</Header>
+      <Table responsive borderless>
+        <thead>
+          <tr>
+            {["Nom du besoin", "Thème", "Traduction", "Statut"].map(
+              (element, key) => (
+                <th key={key}>
+                  <div>{element}</div>
+                </th>
+              )
+            )}
+          </tr>
+        </thead>
+        <tbody>
+          {needsWithStatus.map((need, key) => {
+            const needTag = getTag(need.tagName);
+            const translatedNeed =
+              // @ts-ignore
+              need[langueI18nCode] && need[langueI18nCode].text
+                ? //@ts-ignore
+                  need[langueI18nCode].text
+                : "";
+            if (!needTag) return;
+            return (
+              <tr key={key} onClick={() => onNeedClick(need)}>
+                <td className="align-middle" style={{ width: 300 }}>
+                  {need.fr.text}
+                </td>
+                <td className="align-middle">
+                  <div style={{ marginLeft: -4 }}>
+                    <TagButton
+                      name={jsUcfirst(needTag.short) || ""}
+                      isSelected={true}
+                      color={needTag.darkColor}
+                    />
+                  </div>
+                </td>
+                <td className="align-middle">{translatedNeed}</td>
+                <td className="align-middle">
+                  <StatusContainer backgroundColor={need.statusColor}>
+                    {need.statusText}
+                  </StatusContainer>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "flex-end",
+        }}
+      >
+        <FButton
+          className="mr-8"
+          type="white"
+          name="arrow-back-outline"
+          onClick={props.toggle}
+        >
+          Retour
+        </FButton>
+      </div>
+    </Modal>
   );
 };
