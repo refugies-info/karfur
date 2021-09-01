@@ -113,6 +113,17 @@ export const TranslationNeedsModal = (props: Props) => {
     return { ...need, statusText, statusColor };
   });
 
+  const sortedNeeds = needsWithStatus.sort((a: any, b: any) => {
+    if (a.statusText === b.statusText) {
+      return a.tagName > b.tagName ? 1 : -1;
+    }
+    if (a.statusText === "À revoir" || b.statusText === "À revoir") return -1;
+    if (a.statusText === "À traduire" || b.statusText === "À traduire")
+      return -1;
+
+    return -1;
+  });
+
   const onNeedClick = (need: Need) => {
     props.setSelectedNeedId(need._id);
     props.toggleOneNeedTranslationModal();
@@ -213,7 +224,7 @@ export const TranslationNeedsModal = (props: Props) => {
           </tr>
         </thead>
         <tbody>
-          {needsWithStatus.map((need, key) => {
+          {sortedNeeds.map((need, key) => {
             const needTag = getTag(need.tagName);
             const translatedNeed =
               // @ts-ignore
@@ -228,7 +239,7 @@ export const TranslationNeedsModal = (props: Props) => {
                   {need.fr.text}
                 </td>
                 <td className="align-middle">
-                  <div style={{ marginLeft: -4 }}>
+                  <div style={{ marginLeft: -4, width: 130 }}>
                     <TagButton
                       name={jsUcfirst(needTag.short) || ""}
                       isSelected={true}
@@ -237,7 +248,7 @@ export const TranslationNeedsModal = (props: Props) => {
                   </div>
                 </td>
                 <td className="align-middle">{translatedNeed}</td>
-                <td className="align-middle">
+                <td className="align-middle" style={{ width: 120 }}>
                   <StatusContainer backgroundColor={need.statusColor}>
                     {need.statusText}
                   </StatusContainer>
