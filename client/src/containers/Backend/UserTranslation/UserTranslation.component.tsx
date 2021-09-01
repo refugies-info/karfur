@@ -22,6 +22,8 @@ import API from "../../../utils/API";
 import { Indicators } from "../../../types/interface";
 import { Navigation } from "../Navigation";
 import { TranslationNeedsModal } from "./components/TranslationNeedsModal";
+import { OneNeedTranslationModal } from "./components/OneNeedTranslationModal";
+import { ObjectId } from "mongodb";
 
 declare const window: Window;
 export interface PropsBeforeInjection {
@@ -39,9 +41,17 @@ const MainContainer = styled.div`
 const availableLanguages = ["fa", "en", "ru", "ps", "ar", "ti-ER"];
 
 export const UserTranslationComponent = (props: Props) => {
+  const [
+    showOneNeedTranslationModal,
+    setShowOneNeedTranslationModal,
+  ] = useState(false);
   const [showTraducteurModal, setShowTraducteurModal] = useState(false);
   const [showNeedsModal, setShowNeedsModal] = useState(false);
   const [showCompleteProfilModal, setShowCompleteProfilModal] = useState(false);
+  const [selectedNeedId, setSelectedNeedId] = useState<ObjectId | null>(null);
+
+  const toggleOneNeedTranslationModal = () =>
+    setShowOneNeedTranslationModal(!showOneNeedTranslationModal);
 
   const toggleNeedsModal = () => setShowNeedsModal(!showNeedsModal);
   const toggleTraducteurModal = () =>
@@ -238,6 +248,8 @@ export const UserTranslationComponent = (props: Props) => {
             show={showNeedsModal}
             toggle={toggleNeedsModal}
             getLangueId={getLangueId}
+            toggleOneNeedTranslationModal={toggleOneNeedTranslationModal}
+            setSelectedNeedId={setSelectedNeedId}
           />
         )}
         {showTutoModal && (
@@ -257,6 +269,13 @@ export const UserTranslationComponent = (props: Props) => {
             element={elementToTranslate}
             isExpert={user.expertTrad}
             langueId={getLangueId()}
+          />
+        )}
+        {showOneNeedTranslationModal && (
+          <OneNeedTranslationModal
+            show={showOneNeedTranslationModal}
+            toggle={toggleOneNeedTranslationModal}
+            selectedNeedId={selectedNeedId}
           />
         )}
       </MainContainer>

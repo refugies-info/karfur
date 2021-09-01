@@ -18,11 +18,14 @@ import { fetchNeedsActionCreator } from "../../../../services/Needs/needs.action
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
 import { colors } from "../../../../colors";
+import FButton from "../../../../components/FigmaUI/FButton/FButton";
 
 interface Props {
   show: boolean;
   toggle: () => void;
   getLangueId: () => ObjectId | null;
+  toggleOneNeedTranslationModal: () => void;
+  setSelectedNeedId: (arg: ObjectId) => void;
 }
 const Header = styled.div`
   font-weight: bold;
@@ -106,6 +109,11 @@ export const TranslationNeedsModal = (props: Props) => {
     return { ...need, statusText, statusColor };
   });
 
+  const onNeedClick = (need: Need) => {
+    props.setSelectedNeedId(need._id);
+    props.toggleOneNeedTranslationModal();
+  };
+
   if (!langueId || !langueSelectedFr || !langueI18nCode)
     return (
       <Modal
@@ -132,54 +140,78 @@ export const TranslationNeedsModal = (props: Props) => {
   }
 
   return (
-    <Modal
-      isOpen={props.show}
-      toggle={props.toggle}
-      className="modal-besoins"
-      size="lg"
-    >
-      <Header>{"Traduction des besoins en " + langueSelectedFr}</Header>
-      <Table responsive borderless>
-        <thead>
-          <tr>
-            {["Nom du besoin", "Thème", "Traduction", "Statut"].map(
-              (element, key) => (
-                <th key={key}>
-                  <div>{element}</div>
-                </th>
-              )
-            )}
-          </tr>
-        </thead>
-        <tbody>
-          {needsWithStatus.map((need, key) => {
-            const needTag = getTag(need.tagName);
-            if (!needTag) return;
-            return (
-              <tr key={key}>
-                <td className="align-middle" style={{ width: 300 }}>
-                  {need.fr.text}
-                </td>
-                <td className="align-middle">
-                  <div style={{ marginLeft: -4 }}>
-                    <TagButton
-                      name={jsUcfirst(needTag.short) || ""}
-                      isSelected={true}
-                      color={needTag.darkColor}
-                    />
-                  </div>
-                </td>
-                <td className="align-middle">trad</td>
-                <td className="align-middle">
-                  <StatusContainer backgroundColor={need.statusColor}>
-                    {need.statusText}
-                  </StatusContainer>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
-    </Modal>
+    <>
+      <Modal
+        isOpen={props.show}
+        toggle={props.toggle}
+        className="modal-besoins"
+        size="lg"
+      >
+        <Header>{"Traduction des besoins en " + langueSelectedFr}</Header>
+        <Table responsive borderless>
+          <thead>
+            <tr>
+              {["Nom du besoin", "Thème", "Traduction", "Statut"].map(
+                (element, key) => (
+                  <th key={key}>
+                    <div>{element}</div>
+                  </th>
+                )
+              )}
+            </tr>
+          </thead>
+          <tbody>
+            {needsWithStatus.map((need, key) => {
+              const needTag = getTag(need.tagName);
+              const translatedNeed =
+                // @ts-ignore
+                need[langueI18nCode] && need[langueI18nCode].text
+                  ? //@ts-ignore
+                    need[langueI18nCode].text
+                  : "";
+              if (!needTag) return;
+              return (
+                <tr key={key} onClick={() => onNeedClick(need)}>
+                  <td className="align-middle" style={{ width: 300 }}>
+                    {need.fr.text}
+                  </td>
+                  <td className="align-middle">
+                    <div style={{ marginLeft: -4 }}>
+                      <TagButton
+                        name={jsUcfirst(needTag.short) || ""}
+                        isSelected={true}
+                        color={needTag.darkColor}
+                      />
+                    </div>
+                  </td>
+                  <td className="align-middle">{translatedNeed}</td>
+                  <td className="align-middle">
+                    <StatusContainer backgroundColor={need.statusColor}>
+                      {need.statusText}
+                    </StatusContainer>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+          }}
+        >
+          <FButton
+            className="mr-8"
+            type="white"
+            name="arrow-back-outline"
+            onClick={props.toggle}
+          >
+            Retour
+          </FButton>
+        </div>
+      </Modal>
+    </>
   );
 };
