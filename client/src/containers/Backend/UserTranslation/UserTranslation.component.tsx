@@ -276,6 +276,7 @@ export const UserTranslationComponent = (props: Props) => {
             show={showOneNeedTranslationModal}
             toggle={toggleOneNeedTranslationModal}
             selectedNeedId={selectedNeedId}
+            langueI18nCode={langueInUrl}
           />
         )}
       </MainContainer>

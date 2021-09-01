@@ -1,17 +1,19 @@
 import "./TranslationNeedsModal.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { ObjectId } from "mongodb";
 import { needSelector } from "../../../../services/Needs/needs.selectors";
 import FInput from "../../../../components/FigmaUI/FInput/FInput";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import { saveNeedActionCreator } from "../../../../services/Needs/needs.actions";
 
 interface Props {
   show: boolean;
   toggle: () => void;
   selectedNeedId: null | ObjectId;
+  langueI18nCode: string;
 }
 
 export const RowContainer = styled.div`
@@ -48,7 +50,34 @@ export const OneNeedTranslationModal = (props: Props) => {
   const [value, setValue] = useState("");
   const need = useSelector(needSelector(props.selectedNeedId));
 
+  useEffect(() => {
+    if (
+      need &&
+      props.langueI18nCode &&
+      //@ts-ignore
+      need[props.langueI18nCode] &&
+      //@ts-ignore
+      need[props.langueI18nCode].text
+    ) {
+      //@ts-ignore
+      setValue(need[props.langueI18nCode].text);
+    }
+  }, []);
+
   const onValueChange = (e: any) => setValue(e.target.value);
+  const dispatch = useDispatch();
+
+  const onSave = () => {
+    if (props.selectedNeedId && props.langueI18nCode) {
+      dispatch(
+        saveNeedActionCreator({
+          _id: props.selectedNeedId,
+          [props.langueI18nCode]: { text: value, updatedAt: Date.now() },
+        })
+      );
+    }
+    props.toggle();
+  };
 
   if (!need || !props.selectedNeedId) {
     return (
@@ -98,7 +127,7 @@ export const OneNeedTranslationModal = (props: Props) => {
           className="mr-8"
           type="validate"
           name="checkmark-outline"
-          //   onClick={onSave}
+          onClick={onSave}
           disabled={!value}
         >
           Enregistrer
