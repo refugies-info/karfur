@@ -89,11 +89,13 @@ export const TranslationNeedsModal = (props: Props) => {
     if (a.statusText === b.statusText) {
       return a.tagName > b.tagName ? 1 : -1;
     }
-    if (a.statusText === "À revoir" || b.statusText === "À revoir") return -1;
-    if (a.statusText === "À traduire" || b.statusText === "À traduire")
-      return -1;
+    if (a.statusText === "À revoir") return -1;
+    if (b.statusText === "À revoir") return 1;
 
-    return -1;
+    if (a.statusText === "À traduire") return -1;
+    if (a.statusText === "À traduire") return 1;
+
+    return 1;
   });
 
   const onNeedClick = (need: Need) => {
