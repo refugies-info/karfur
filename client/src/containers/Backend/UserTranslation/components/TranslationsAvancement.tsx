@@ -33,6 +33,8 @@ interface Props {
   setElementToTranslate: any;
   user: User | null;
   getLangueId: any;
+  toggleNeedsModal: () => void;
+  isOneNeedNonTranslated: boolean;
 }
 
 const RowContainer = styled.div`
@@ -75,9 +77,8 @@ const getInitialFilterStatus = (
   data: IDispositifTranslation[]
 ) => {
   if (!isExpert) return "À traduire";
-  const nbARevoir = data.filter(
-    (trad) => trad.tradStatus === "À revoir"
-  ).length;
+  const nbARevoir = data.filter((trad) => trad.tradStatus === "À revoir")
+    .length;
   if (nbARevoir > 0) return "À revoir";
   return "En attente";
 };
@@ -87,10 +88,12 @@ export const TranslationsAvancement = (props: Props) => {
     props.isExpert,
     props.data
   );
-  const [statusFilter, setStatusFilter] =
-    useState<TranslationStatus | "all">(initialStatusFilter);
-  const [typeContenuFilter, setTypeContenuFilter] =
-    useState<ITypeContenu | "all">("dispositif");
+  const [statusFilter, setStatusFilter] = useState<TranslationStatus | "all">(
+    initialStatusFilter
+  );
+  const [typeContenuFilter, setTypeContenuFilter] = useState<
+    ITypeContenu | "all"
+  >("dispositif");
 
   const navigateToLanguage = (langue: string) => {
     if (props.actualLanguage !== langue) {
@@ -156,6 +159,13 @@ export const TranslationsAvancement = (props: Props) => {
             className="mr-8"
           >
             Explications
+          </FButton>
+          <FButton
+            type={props.isOneNeedNonTranslated ? "error" : "dark"}
+            onClick={props.toggleNeedsModal}
+            className="mr-8"
+          >
+            Besoins
           </FButton>
           <FButton
             type="dark"

@@ -1280,6 +1280,12 @@ exports[`user translation should render correctly with expert, admin 1`] = `
             Explications
           </button>
           <button
+            className="figma-btn dark mr-8"
+            onClick={[Function]}
+          >
+            Besoins
+          </button>
+          <button
             className="figma-btn dark "
             onClick={[Function]}
           >
@@ -2294,6 +2300,12 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
             Explications
           </button>
           <button
+            className="figma-btn dark mr-8"
+            onClick={[Function]}
+          >
+            Besoins
+          </button>
+          <button
             className="figma-btn dark "
             onClick={[Function]}
           >
@@ -3234,6 +3246,12 @@ exports[`user translation should render correctly with non expert, non admin 1`]
               />
             </span>
             Explications
+          </button>
+          <button
+            className="figma-btn dark mr-8"
+            onClick={[Function]}
+          >
+            Besoins
           </button>
           <button
             className="figma-btn dark "
