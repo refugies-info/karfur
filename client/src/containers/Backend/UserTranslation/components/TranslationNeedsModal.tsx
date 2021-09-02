@@ -234,9 +234,16 @@ export const TranslationNeedsModal = (props: Props) => {
         style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "flex-end",
+          justifyContent: "space-between",
         }}
       >
+        <FButton
+          type="tuto"
+          name={"play-circle-outline"}
+          // onClick={toggleTutorielModal}
+        >
+          Tutoriel
+        </FButton>
         <FButton
           className="mr-8"
           type="white"
