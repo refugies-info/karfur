@@ -2,14 +2,9 @@ import "./TranslationNeedsModal.scss";
 import React, { useEffect } from "react";
 import { Modal, Table } from "reactstrap";
 import styled from "styled-components";
-import { userSelectedLanguageSelector } from "../../../../services/User/user.selectors";
 import { useSelector, useDispatch } from "react-redux";
 import { ObjectId } from "mongodb";
-import {
-  UserLanguage,
-  Need,
-  AvailableLanguageI18nCode,
-} from "../../../../types/interface";
+import { Need, AvailableLanguageI18nCode } from "../../../../types/interface";
 import { needsSelector } from "../../../../services/Needs/needs.selectors";
 import { getTag } from "../../Admin/Needs/lib";
 import { TagButton } from "../../Admin/Needs/TagButton";
@@ -24,9 +19,10 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 interface Props {
   show: boolean;
   toggle: () => void;
-  getLangueId: () => ObjectId | null;
   toggleOneNeedTranslationModal: () => void;
   setSelectedNeedId: (arg: ObjectId) => void;
+  langueSelectedFr: null | string;
+  langueI18nCode: null | string;
 }
 const Header = styled.div`
   font-weight: bold;
@@ -44,23 +40,6 @@ const StatusContainer = styled.div`
   color: #ffffff;
   width: fit-content;
 `;
-
-const getLangueName = (
-  langueId: ObjectId | null,
-  userTradLanguages: UserLanguage[]
-) => {
-  if (!langueId) return { langueSelectedFr: null, langueI18nCode: null };
-
-  const langueArray = userTradLanguages.filter(
-    (langue) => langue._id === langueId
-  );
-  if (langueArray.length > 0)
-    return {
-      langueSelectedFr: langueArray[0].langueFr,
-      langueI18nCode: langueArray[0].i18nCode,
-    };
-  return { langueSelectedFr: null, langueI18nCode: null };
-};
 
 const getStatusColorAndText = (
   need: Need,
@@ -83,16 +62,9 @@ const getStatusColorAndText = (
 };
 
 export const TranslationNeedsModal = (props: Props) => {
-  const userTradLanguages = useSelector(userSelectedLanguageSelector);
-
   const arrayLines = new Array(6).fill("a");
   const arrayContent = new Array(3).fill("a");
 
-  const langueId = props.getLangueId();
-  const { langueSelectedFr, langueI18nCode } = getLangueName(
-    langueId,
-    userTradLanguages
-  );
   const dispatch = useDispatch();
 
   const isLoading = useSelector(
@@ -108,7 +80,7 @@ export const TranslationNeedsModal = (props: Props) => {
     const { statusColor, statusText } = getStatusColorAndText(
       need,
       // @ts-ignore
-      langueI18nCode
+      props.langueI18nCode
     );
     return { ...need, statusText, statusColor };
   });
@@ -129,7 +101,7 @@ export const TranslationNeedsModal = (props: Props) => {
     props.toggleOneNeedTranslationModal();
   };
 
-  if (!langueId || !langueSelectedFr || !langueI18nCode)
+  if (!props.langueSelectedFr || !props.langueI18nCode)
     return (
       <Modal
         isOpen={props.show}
@@ -210,7 +182,7 @@ export const TranslationNeedsModal = (props: Props) => {
       className="modal-besoins"
       size="lg"
     >
-      <Header>{"Traduction des besoins en " + langueSelectedFr}</Header>
+      <Header>{"Traduction des besoins en " + props.langueSelectedFr}</Header>
       <Table responsive borderless>
         <thead>
           <tr>
@@ -228,9 +200,9 @@ export const TranslationNeedsModal = (props: Props) => {
             const needTag = getTag(need.tagName);
             const translatedNeed =
               // @ts-ignore
-              need[langueI18nCode] && need[langueI18nCode].text
+              need[props.langueI18nCode] && need[props.langueI18nCode].text
                 ? //@ts-ignore
-                  need[langueI18nCode].text
+                  need[props.langueI18nCode].text
                 : "";
             if (!needTag) return;
             return (

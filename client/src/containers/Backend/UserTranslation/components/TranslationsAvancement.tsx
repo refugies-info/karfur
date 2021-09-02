@@ -34,6 +34,7 @@ interface Props {
   user: User | null;
   getLangueId: any;
   toggleNeedsModal: () => void;
+  isOneNeedNonTranslated: boolean;
 }
 
 const RowContainer = styled.div`
@@ -160,7 +161,7 @@ export const TranslationsAvancement = (props: Props) => {
             Explications
           </FButton>
           <FButton
-            type="dark"
+            type={props.isOneNeedNonTranslated ? "error" : "dark"}
             onClick={props.toggleNeedsModal}
             className="mr-8"
           >
