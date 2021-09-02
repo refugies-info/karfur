@@ -50,6 +50,9 @@ export const retrieveNeedsFromAirtable = async (req: {}, res: Res) => {
                       fr: { text: need.needName, updatedAt: Date.now() },
                       tagName: correspondingTheme[0].tagName.toLowerCase(),
                     };
+                    logger.info("[retrieveNeedsFromAirtable] creating need", {
+                      need: need.fr.text,
+                    });
                     // @ts-ignore
                     createNeedInDB(needDB);
                     return;
