@@ -106,10 +106,7 @@ const _checkAndNotifyAdmin = async function (
 
     const mailOptions = {
       from: "nour@refugies.info",
-      to:
-        process.env.NODE_ENV === "dev"
-          ? "agathe.kieny@lamednum.coop"
-          : "diairagir@gmail.com",
+      to: "diairagir@gmail.com",
       subject: "Nouvel administrateur Réfugiés.info - " + user.username,
       html,
     };
@@ -215,7 +212,8 @@ function reset_password(req, res) {
         return res.status(404).json({ text: "L'utilisateur n'existe pas" });
       } else if (!user.email) {
         return res.status(403).json({
-          text: "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
+          text:
+            "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
           data: "no-alert",
         });
       }
@@ -226,7 +224,8 @@ function reset_password(req, res) {
       ) {
         //L'admin ne peut pas le faire comme ça
         return res.status(401).json({
-          text: "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
+          text:
+            "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
         });
       }
       crypto.randomBytes(20, function (errb, buffer) {
@@ -270,7 +269,8 @@ function set_new_password(req, res) {
         return res.status(404).json({ text: "L'utilisateur n'existe pas" });
       } else if (!user.email) {
         return res.status(403).json({
-          text: "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
+          text:
+            "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
         });
       }
       if (
@@ -280,7 +280,8 @@ function set_new_password(req, res) {
       ) {
         //L'admin ne peut pas le faire comme ça
         return res.status(401).json({
-          text: "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
+          text:
+            "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
         });
       }
       if ((computePasswordStrengthScore(newPassword) || {}).score < 1) {

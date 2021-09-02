@@ -388,3 +388,12 @@ export interface Need {
   created_at: Moment;
   updatedAt: Moment;
 }
+
+export type AvailableLanguageI18nCode =
+  | "fr"
+  | "en"
+  | "ps"
+  | "ar"
+  | "ti-ER"
+  | "ru"
+  | "fa";
