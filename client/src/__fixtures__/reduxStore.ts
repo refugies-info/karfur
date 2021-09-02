@@ -40,4 +40,5 @@ export const initialMockStore = {
   users: [],
   userFavorites: [],
   userContributions: [],
+  needs: [],
 };

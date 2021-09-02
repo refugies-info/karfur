@@ -21,7 +21,7 @@ import "./Admin.scss";
 import { colors } from "colors";
 import styled from "styled-components";
 import { Navigation } from "../Navigation";
-import { getNeedsActionCreator } from "../../../services/Needs/needs.actions";
+import { fetchNeedsActionCreator } from "../../../services/Needs/needs.actions";
 const OngletText = styled.span`
   color: ${(props) => (props.isActive ? colors.bleuCharte : colors.darkColor)};
   font-weight: ${(props) => (props.isActive ? "bold" : "normal")};
@@ -56,7 +56,7 @@ export const Admin = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getNeedsActionCreator());
+    dispatch(fetchNeedsActionCreator());
     dispatch(fetchAllDispositifsActionsCreator());
     dispatch(fetchAllUsersActionsCreator());
     dispatch(fetchAllStructuresActionsCreator());
