@@ -63,7 +63,9 @@ export const retrieveNeedsFromAirtable = async (req: {}, res: Res) => {
               },
               function done(err: any) {
                 if (err) {
-                  // console.error(err);
+                  logger.error("[retrieveNeedsFromAirtable] error", {
+                    err: err.message,
+                  });
                   return;
                 }
               }
@@ -73,7 +75,9 @@ export const retrieveNeedsFromAirtable = async (req: {}, res: Res) => {
         },
         function done(err: any) {
           if (err) {
-            // console.error(err);
+            logger.error("[retrieveNeedsFromAirtable] error 2", {
+              err: err.message,
+            });
             return;
           }
         }
