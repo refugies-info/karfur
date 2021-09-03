@@ -245,8 +245,6 @@ export const ContentScreen = ({
   const toggleLanguageModal = () =>
     setLanguageModalVisible(!isLanguageModalVisible);
 
-  const [accordionExpanded, setAccordionExpanded] = React.useState("");
-
   const animatedController = React.useRef(new Animated.Value(0)).current;
   const [bodySectionHeight, setBodySectionHeight] = React.useState(0);
 
@@ -434,12 +432,6 @@ export const ContentScreen = ({
     currentLanguage
   );
 
-  const toggleAccordion = (index: string) => {
-    if (index === accordionExpanded) return setAccordionExpanded("");
-    setAccordionExpanded(index);
-    return;
-  };
-
   const accordionMaxWidthWithStep = windowWidth - 2 * 24 - 4 * 16 - 24 - 32;
   const accordionMaxWidthWithoutStep = windowWidth - 2 * 24 - 3 * 16 - 24;
 
@@ -609,18 +601,10 @@ export const ContentScreen = ({
                         child.type === "accordion" ||
                         child.type === "etape"
                       ) {
-                        const accordionIndex =
-                          index.toString() + "-" + indexChild.toString();
-                        const isAccordionExpanded =
-                          accordionExpanded === accordionIndex;
                         return (
                           <AccordionAnimated
-                            isExpanded={isAccordionExpanded}
                             title={child.title}
                             content={child.content}
-                            toggleAccordion={() =>
-                              toggleAccordion(accordionIndex)
-                            }
                             key={indexChild}
                             stepNumber={
                               child.type === "etape" ? indexChild + 1 : null
