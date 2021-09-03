@@ -40,10 +40,12 @@ const TitleText = styled(TextNormalBold)`
 
 const SubtitleText = styled(TextVerySmallNormal)`
   color: ${theme.colors.darkGrey};
-  margin-bottom: 4px;
 `;
 
-const DescriptionText = styled(TextSmallNormal)``;
+const DescriptionText = styled(TextSmallNormal)`
+  margin-top: 4px;
+  flex-shrink: 1;
+`;
 
 const SectionContainer = styled.View`
   padding-horizontal: ${theme.margin * 2}px;
@@ -62,8 +64,15 @@ const Separator = styled.View`
   margin-top: ${theme.margin}px;
 `;
 
+const InfocardTextContainer = styled.View`
+  flex-wrap: wrap;
+  flex: 1;
+  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : 8)}px;
+  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 8 : 0)}px;
+`;
+
 export const InfocardsSection = (props: Props) => {
-  const { t } = useTranslationWithRTL();
+  const { t, isRTL } = useTranslationWithRTL();
   const formattedData = formatInfocards(props.content, props.typeContenu);
 
   if (formattedData.length === 0) {
@@ -74,11 +83,11 @@ export const InfocardsSection = (props: Props) => {
       {formattedData.map((data, indexSection) => {
         return (
           <>
-            <SectionContainer key={data.title}>
+            <SectionContainer key={indexSection}>
               <TitleText color={props.color}>
                 {t("Content." + data.title, data.title)}
               </TitleText>
-              {data.filteredData.map((infocard) => {
+              {data.filteredData.map((infocard, key) => {
                 const displayedName =
                   infocardsCorrespondencyNames.filter(
                     (data) => data.databaseName === infocard.title
@@ -91,18 +100,20 @@ export const InfocardsSection = (props: Props) => {
                 const description = getDescription(infocard, t);
                 return (
                   <InfocardContainer
-                    key={infocard.title}
+                    key={key}
                     isDuree={infocard.title === "Durée"}
                   >
                     <RTLView style={{ justifyContent: "space-between" }}>
-                      <View>
+                      <InfocardTextContainer isRTL={isRTL}>
                         {!!displayedName && (
                           <SubtitleText>
                             {t("Content." + displayedName, displayedName)}
                           </SubtitleText>
                         )}
                         {!!description && (
-                          <DescriptionText>{description}</DescriptionText>
+                          <View>
+                            <DescriptionText>{description}</DescriptionText>
+                          </View>
                         )}
                         {infocard.title === "Durée" &&
                           infocard.contentTitle && (
@@ -112,7 +123,7 @@ export const InfocardsSection = (props: Props) => {
                           infocard.contentTitle && (
                             <TextFromHtml htmlContent={infocard.contentTitle} />
                           )}
-                      </View>
+                      </InfocardTextContainer>
                       <InfocardImage
                         title={infocard.title}
                         isFree={!!infocard.free}
