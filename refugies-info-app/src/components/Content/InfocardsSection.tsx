@@ -58,7 +58,7 @@ const InfocardContainer = styled.View`
 
 const Separator = styled.View`
   width: 100%;
-  height: 2px;
+  height: 1px;
   background-color: ${theme.colors.grey};
   margin-bottom: ${theme.margin * 3}px;
   margin-top: ${theme.margin}px;
