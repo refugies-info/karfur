@@ -186,10 +186,12 @@ export const AccordionAnimated = (props: Props) => {
                 style={styles.bodyContainer}
               >
                 <ExpandedContentContainer>
-                  <ContentFromHtml
-                    htmlContent={props.content}
-                    windowWidth={props.windowWidth}
-                  />
+                  {!!props.content && (
+                    <ContentFromHtml
+                      htmlContent={props.content}
+                      windowWidth={props.windowWidth}
+                    />
+                  )}
                 </ExpandedContentContainer>
               </RTLView>
             </Animated.View>
