@@ -88,8 +88,6 @@ const styles = StyleSheet.create({
 interface Props {
   title: string;
   content: string;
-  isExpanded: boolean;
-  toggleAccordion: () => void;
   stepNumber: number | null;
   width: number;
   currentLanguage: AvailableLanguageI18nCode | null;
@@ -100,6 +98,8 @@ interface Props {
 }
 
 export const AccordionAnimated = (props: Props) => {
+  const [isExpanded, setIsExpanded] = React.useState(false);
+  const toggleAccordion = () => setIsExpanded(!isExpanded);
   const animatedController = React.useRef(new Animated.Value(0)).current;
   const [bodySectionHeight, setBodySectionHeight] = React.useState(0);
 
@@ -110,19 +110,8 @@ export const AccordionAnimated = (props: Props) => {
 
   const { isRTL } = useTranslationWithRTL();
 
-  React.useEffect(() => {
-    // when open other accordeon we want the other to be closed
-    if (!props.isExpanded) {
-      Animated.timing(animatedController, {
-        duration: 500,
-        toValue: 0,
-        useNativeDriver: false,
-      }).start();
-    }
-  });
-
   const toggleListItem = () => {
-    if (props.isExpanded) {
+    if (isExpanded) {
       Animated.timing(animatedController, {
         duration: 500,
         toValue: 0,
@@ -135,7 +124,7 @@ export const AccordionAnimated = (props: Props) => {
         useNativeDriver: false,
       }).start();
     }
-    props.toggleAccordion();
+    toggleAccordion();
   };
 
   return (
@@ -143,7 +132,7 @@ export const AccordionAnimated = (props: Props) => {
       <TouchableWithoutFeedback onPress={() => toggleListItem()}>
         <View>
           <TitleContainer
-            isExpanded={props.isExpanded}
+            isExpanded={isExpanded}
             darkColor={props.darkColor}
             lightColor={props.lightColor}
           >
@@ -168,7 +157,7 @@ export const AccordionAnimated = (props: Props) => {
             </RTLView>
             <IconContainer isRTL={isRTL}>
               <Icon
-                name={props.isExpanded ? "chevron-up" : "chevron-down"}
+                name={isExpanded ? "chevron-up" : "chevron-down"}
                 height={24}
                 width={24}
                 fill={props.darkColor}
