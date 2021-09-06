@@ -494,6 +494,7 @@ export const ContentScreen = ({
         contentContainerStyle={{ paddingBottom: theme.margin * 5 }}
         onScroll={handleScroll}
         scrollEventThrottle={16}
+        scrollIndicatorInsets={{ right: 1 }}
       >
         {(!showSimplifiedHeader || true) && (
           <>
