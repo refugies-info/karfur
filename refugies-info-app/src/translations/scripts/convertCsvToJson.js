@@ -2,7 +2,6 @@ const csv = require("csvtojson");
 const fs = require("fs");
 
 const convertCsvToJson = async (language) => {
-  console.log("test", "./csvAfterTrad/" + language + " - " + language + ".csv");
   const jsonArray = await csv().fromFile(
     "./csvAfterTrad/" + language + " - " + language + ".csv"
   );
