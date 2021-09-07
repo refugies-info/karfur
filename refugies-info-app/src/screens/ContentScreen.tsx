@@ -47,9 +47,9 @@ import { AccordionAnimated } from "../components/Content/AccordionAnimated";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
-    return 280;
+    return 290;
   }
-  return 280 + 40 * (nbLines - 2);
+  return 290 + 40 * (nbLines - 2);
 };
 
 const TitlesContainer = styled(View)`
@@ -494,6 +494,7 @@ export const ContentScreen = ({
         contentContainerStyle={{ paddingBottom: theme.margin * 5 }}
         onScroll={handleScroll}
         scrollEventThrottle={16}
+        scrollIndicatorInsets={{ right: 1 }}
       >
         {(!showSimplifiedHeader || true) && (
           <>

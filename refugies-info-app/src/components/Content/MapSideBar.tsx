@@ -1,13 +1,13 @@
 import * as React from "react";
 import styled from "styled-components/native";
 import { MarkerGoogle } from "../../types/interface";
-import { TextSmallNormal, TextNormal } from "../StyledText";
+import { TextVerySmallNormal, TextSmallNormal } from "../StyledText";
 import { theme } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { CustomButton } from "../CustomButton";
 import { View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { MapContentFromHtml } from "./MapContentHtml";
+import { Icon } from "react-native-eva-icons";
 
 interface Props {
   selectedMarker: MarkerGoogle | null;
@@ -28,10 +28,12 @@ const MainContainer = styled.View`
   position: absolute;
   left: 0;
   top: 0;
+  padding: ${(props: { isSelected: boolean }) =>
+    props.isSelected ? theme.margin * 2 : 0}px;
 `;
 
-const CategoryText = styled(TextSmallNormal)`
-  color: ${theme.colors.grey60};
+const CategoryText = styled(TextVerySmallNormal)`
+  color: ${theme.colors.darkGrey};
 `;
 
 const ContentContainer = styled.View`
@@ -39,9 +41,21 @@ const ContentContainer = styled.View`
   margin-top: ${theme.margin / 2}px;
 `;
 
-const TextValue = styled(TextNormal)`
+const TextValue = styled(TextSmallNormal)`
   margin-bottom: ${theme.margin}px;
   color: ${(props: { color: string }) => props.color};
+`;
+
+const CloseContainer = styled(TouchableOpacity)`
+  background-color: ${theme.colors.black};
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  align-self: center;
+  margin-top: ${theme.margin * 2}px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const MapSideBar = (props: Props) => {
@@ -56,19 +70,19 @@ export const MapSideBar = (props: Props) => {
       />
     );
   }
+  const formattedMarkerName =
+    props.selectedMarker && props.selectedMarker.nom
+      ? props.selectedMarker.nom.replace("<br>", "")
+      : "";
   return (
     <MainContainer isSelected={true} height={props.height} width={props.width}>
-      <ScrollView
-        contentContainerStyle={{
-          padding: theme.margin * 3,
-        }}
-      >
+      <View>
         <CategoryText>
           {t("Content.Titre du lieu", "Titre du lieu")}
         </CategoryText>
         <ContentContainer color={props.textColor}>
           <MapContentFromHtml
-            htmlContent={props.selectedMarker.nom}
+            htmlContent={formattedMarkerName}
             windowWidth={props.windowWidth}
             darkColor={props.textColor}
             isBold={true}
@@ -131,16 +145,16 @@ export const MapSideBar = (props: Props) => {
             {t("Content.Non renseigné", "Non renseigné")}
           </TextValue>
         )}
-        <View style={{ marginTop: theme.margin * 2 }}>
-          <CustomButton
-            defaultText="Ok"
-            i18nKey="Ok"
-            textColor={theme.colors.white}
-            onPress={props.hideSideBar}
-            backgroundColor={theme.colors.formation80}
+
+        <CloseContainer onPress={props.hideSideBar}>
+          <Icon
+            name={"close-outline"}
+            height={24}
+            width={24}
+            fill={theme.colors.white}
           />
-        </View>
-      </ScrollView>
+        </CloseContainer>
+      </View>
     </MainContainer>
   );
 };
