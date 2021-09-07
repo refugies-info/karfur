@@ -47,9 +47,9 @@ import { AccordionAnimated } from "../components/Content/AccordionAnimated";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
-    return 295;
+    return 290;
   }
-  return 295 + 40 * (nbLines - 2);
+  return 290 + 40 * (nbLines - 2);
 };
 
 const TitlesContainer = styled(View)`
