@@ -12,3 +12,5 @@ npm-debug.*
 web-build/
 src/translations/scripts/csvAfterTrad
 src/translations/scripts/csvBeforeTrad
+.env
+.DS_Store
