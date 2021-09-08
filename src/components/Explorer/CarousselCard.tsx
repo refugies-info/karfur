@@ -19,6 +19,7 @@ interface Props {
   navigation: any;
   colorDark: string;
   color30: string;
+  lightColor: string;
 }
 
 const StyledContainer = styled(RTLView)`
@@ -61,6 +62,7 @@ export const CarousselCard = (props: Props) => {
           tagName: props.tagName,
           tagDarkColor: props.colorDark,
           tagVeryLightColor: props.color30,
+          tagLightColor: props.lightColor,
         })
       }
     >

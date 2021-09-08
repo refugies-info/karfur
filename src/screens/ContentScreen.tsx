@@ -259,7 +259,13 @@ export const ContentScreen = ({
 
   const selectedLanguage = useSelector(selectedI18nCodeSelector);
   const currentLanguage = useSelector(currentI18nCodeSelector);
-  const { contentId, tagDarkColor, tagVeryLightColor, tagName } = route.params;
+  const {
+    contentId,
+    tagDarkColor,
+    tagVeryLightColor,
+    tagName,
+    tagLightColor,
+  } = route.params;
 
   const windowWidth = useWindowDimensions().width;
   const isLoading = useSelector(
@@ -290,7 +296,7 @@ export const ContentScreen = ({
 
   const boxInterpolation = animatedController.interpolate({
     inputRange: [0, 1],
-    outputRange: ["transparent", theme.colors.greyF7],
+    outputRange: ["transparent", tagLightColor],
   });
 
   React.useEffect(() => {
@@ -484,7 +490,7 @@ export const ContentScreen = ({
             }
             style={styles.bodyContainer}
           >
-            <TextSmallNormal style={{ color: tagDarkColor }}>
+            <TextSmallNormal style={{ color: theme.colors.white }}>
               {selectedContent.titreInformatif}
             </TextSmallNormal>
           </SimplifiedHeaderContainer>
