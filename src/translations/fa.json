@@ -1,0 +1,39 @@
+{
+  "Onboarding1": {
+    "welcome": "Bienvenue fa"
+  },
+  "Onboarding2": {
+    "welcome": "Bienvenue fa"
+  },
+  "homepage": {
+    "test": "test fa"
+  },
+  "lists": "Lists fa",
+  "Tags": {
+    "Français": "فرانسوی",
+    "Logement": "مسکن",
+    "Insertion pro": "اضافه کردن پیشه و کسب",
+    "Formation pro": "آموزش حرفه ای",
+    "Études": "تحصیلات",
+    "Mobilité": "تحرک",
+    "Bénévolat": "داوطلب",
+    "Rencontre": "ملاقات",
+    "Loisir": "فعالیت های دلپسند دراوقات فراغت",
+    "Culture": "فرهنگ",
+    "Santé": "صحت",
+    "Administratif": "اداری",
+    "Autre": "دیگر",
+    "apprendre le français": "آموختن زبان فرانسوی",
+    "me loger": "پیدا کردن جای سکونت",
+    "trouver un travail": "پیدا کردن شغل",
+    "apprendre un métier": "یک کسب یاد بگیرید",
+    "faire des études": "شروع کردن تحصیل",
+    "me déplacer": "بجای دیگر نقل کردن (سفر کردن)",
+    "aider une association": "به یک انجمن کمک کنید",
+    "rencontrer des gens": "با مردم در تماس شدن",
+    "occuper mon temps libre": "مشغول کردن در اوقات بیکار",
+    "découvrir la culture": "با فرهنگ اشناشدن",
+    "me soigner": "دسترس به تداوی و علاج",
+    "gérer mes papiers": "مدیریت پرونده (دوسیه) هایم"
+  }
+}

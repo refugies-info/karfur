@@ -1,0 +1,14 @@
+.expo/
+.expo/packager-info.json
+src/theme/fonts
+node_modules/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+src/translations/scripts/csvAfterTrad
+src/translations/scripts/csvBeforeTrad

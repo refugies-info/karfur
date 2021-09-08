@@ -1,0 +1,34 @@
+{
+  "builds": {
+    "ios": {
+      "release": {
+        "workflow": "generic",
+        "env": {
+          "API_URL": "https://api.new.refugies.info"
+        }
+      },
+      "preview": {
+        "workflow": "managed",
+        "distribution": "simulator",
+        "env": {
+          "API_URL": "https://api.new.refugies.info"
+        }
+      }
+    },
+    "android": {
+      "release": {
+        "workflow": "managed",
+        "env": {
+          "API_URL": "https://api.new.refugies.info"
+        }
+      },
+      "preview": {
+        "workflow": "managed",
+        "buildType": "apk",
+        "env": {
+          "API_URL": "https://api.new.refugies.info"
+        }
+      }
+    }
+  }
+}
