@@ -31,6 +31,7 @@ import {
   DeleteButton,
   FilterButton,
   TabHeader,
+  ColoredRound,
 } from "../sharedComponents/SubComponents";
 import { CustomSearchBar } from "../../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
@@ -40,8 +41,16 @@ import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { ImprovementsMailModal } from "./ImprovementsMailModal/ImprovementsMailModal";
 import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
+import styled from "styled-components";
+import { needsSelector } from "../../../../services/Needs/needs.selectors";
 
 moment.locale("fr");
+
+const RowContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
 
 export const compare = (a, b) => {
   const orderA = a.order;
@@ -95,6 +104,7 @@ export const AdminContenu = () => {
     setSelectedDispositif(element);
     toggleDetailsModal();
   };
+  const allNeeds = useSelector(needsSelector);
 
   if (isLoading || dispositifs.length === 0) {
     return (
@@ -329,6 +339,32 @@ export const AdminContenu = () => {
       }
     }
   };
+
+  const checkIfNeedsAreCompatibleWithTags = (element) => {
+    if (allNeeds.length === 0) {
+      return false;
+    }
+    if (
+      !element.needs ||
+      element.needs.length === 0 ||
+      !element.tags ||
+      element.tags.length === 0
+    )
+      return false;
+
+    const formattedNeedsTheme = element.needs.map((needId) => {
+      const needArray = allNeeds.filter((need) => need._id === needId);
+      const needTheme = needArray.length > 0 ? needArray[0].tagName : null;
+      return needTheme;
+    });
+
+    const uniqueNeedsTheme = [...new Set(formattedNeedsTheme)];
+    const uniqueTags = element.tags
+      .filter((tag) => !!tag)
+      .map((tag) => tag.name);
+
+    return uniqueNeedsTheme.sort().join(",") === uniqueTags.sort().join(",");
+  };
   const nbNonDeletedDispositifs =
     dispositifs.length > 0
       ? dispositifs.filter((dispo) => dispo.status !== "Supprimé").length
@@ -421,6 +457,11 @@ export const AdminContenu = () => {
                 element.status === "Actif" ||
                 !element.mainSponsor ||
                 element.mainSponsor.status !== "Actif";
+
+              const areNeedsCompatibleWithTags = checkIfNeedsAreCompatibleWithTags(
+                element
+              );
+
               return (
                 <tr key={key}>
                   <td
@@ -433,7 +474,16 @@ export const AdminContenu = () => {
                     />
                   </td>
                   <td className="align-middle">
-                    {element.needs ? element.needs.length : 0}
+                    <RowContainer>
+                      <ColoredRound
+                        color={
+                          areNeedsCompatibleWithTags
+                            ? colors.validationHover
+                            : colors.error
+                        }
+                      />
+                      {element.needs ? element.needs.length : 0}
+                    </RowContainer>
                   </td>
                   <td
                     className="align-middle"

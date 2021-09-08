@@ -17,6 +17,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
     style={
       Array [
         Object {
+          "marginBottom": 0,
           "zIndex": 2,
         },
       ]

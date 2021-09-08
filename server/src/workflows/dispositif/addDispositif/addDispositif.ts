@@ -19,6 +19,7 @@ import { DispositifDoc } from "../../../schema/schemaDispositif";
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
+import { computePossibleNeeds } from "../../../modules/needs/needs.service";
 
 interface Request {
   titreInformatif: string;
@@ -29,6 +30,8 @@ interface Request {
   typeContenu: "dispositif" | "demarche";
   mainSponsor: ObjectId;
   titreMarque: string;
+  tags?: any[];
+  needs?: ObjectId[];
 }
 
 /**
@@ -79,6 +82,15 @@ export const addDispositif = async (
       logger.info("[addDispositif] updating a dispositif", {
         dispositifId: dispositif.dispositifId,
       });
+
+      if (originalDispositif.needs) {
+        // if a need of the content has a tag that is not a tag of the content we remove the need
+        const newNeeds = await computePossibleNeeds(
+          originalDispositif.needs,
+          dispositif.tags
+        );
+        dispositif.needs = newNeeds;
+      }
 
       if (dispositif.contenu) {
         // @ts-ignore

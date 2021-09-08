@@ -47,9 +47,9 @@ import { AccordionAnimated } from "../components/Content/AccordionAnimated";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
-    return 280;
+    return 290;
   }
-  return 280 + 40 * (nbLines - 2);
+  return 290 + 40 * (nbLines - 2);
 };
 
 const TitlesContainer = styled(View)`
@@ -245,8 +245,6 @@ export const ContentScreen = ({
   const toggleLanguageModal = () =>
     setLanguageModalVisible(!isLanguageModalVisible);
 
-  const [accordionExpanded, setAccordionExpanded] = React.useState("");
-
   const animatedController = React.useRef(new Animated.Value(0)).current;
   const [bodySectionHeight, setBodySectionHeight] = React.useState(0);
 
@@ -434,12 +432,6 @@ export const ContentScreen = ({
     currentLanguage
   );
 
-  const toggleAccordion = (index: string) => {
-    if (index === accordionExpanded) return setAccordionExpanded("");
-    setAccordionExpanded(index);
-    return;
-  };
-
   const accordionMaxWidthWithStep = windowWidth - 2 * 24 - 4 * 16 - 24 - 32;
   const accordionMaxWidthWithoutStep = windowWidth - 2 * 24 - 3 * 16 - 24;
 
@@ -502,6 +494,7 @@ export const ContentScreen = ({
         contentContainerStyle={{ paddingBottom: theme.margin * 5 }}
         onScroll={handleScroll}
         scrollEventThrottle={16}
+        scrollIndicatorInsets={{ right: 1 }}
       >
         {(!showSimplifiedHeader || true) && (
           <>
@@ -609,18 +602,10 @@ export const ContentScreen = ({
                         child.type === "accordion" ||
                         child.type === "etape"
                       ) {
-                        const accordionIndex =
-                          index.toString() + "-" + indexChild.toString();
-                        const isAccordionExpanded =
-                          accordionExpanded === accordionIndex;
                         return (
                           <AccordionAnimated
-                            isExpanded={isAccordionExpanded}
                             title={child.title}
                             content={child.content}
-                            toggleAccordion={() =>
-                              toggleAccordion(accordionIndex)
-                            }
                             key={indexChild}
                             stepNumber={
                               child.type === "etape" ? indexChild + 1 : null

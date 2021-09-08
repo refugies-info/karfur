@@ -87,7 +87,7 @@ const getStructureNameAndStatus = (
   return { structureName, statusColor };
 };
 
-const ColoredRound = styled.div`
+export const ColoredRound = styled.div`
   width: 10px;
   height: 10px;
   background-color: ${(props) => props.color};
