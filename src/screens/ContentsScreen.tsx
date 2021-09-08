@@ -29,7 +29,12 @@ export const ContentsScreen = ({
   const contents = currentLanguageI18nCode
     ? useSelector(contentsSelector(currentLanguageI18nCode))
     : [];
-  const { tagName, tagDarkColor, tagVeryLightColor } = route.params;
+  const {
+    tagName,
+    tagDarkColor,
+    tagVeryLightColor,
+    tagLightColor,
+  } = route.params;
 
   const filteredContents = contents.filter((content) => {
     const mainTag =
@@ -50,7 +55,7 @@ export const ContentsScreen = ({
           tagName +
           " " +
           filteredContents.length +
-          " fiches"}
+          " fiches plus test"}
       </Header>
 
       <ScrollView>
@@ -63,6 +68,7 @@ export const ContentsScreen = ({
                 tagDarkColor,
                 tagVeryLightColor,
                 tagName,
+                tagLightColor,
               })
             }
           >
