@@ -42,6 +42,7 @@ export const InfocardImage = ({ title, isFree }: Props) => {
         <Image
           source={acte_naissance}
           style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
+          resizeMode="contain"
         />
       );
     case "Durée":

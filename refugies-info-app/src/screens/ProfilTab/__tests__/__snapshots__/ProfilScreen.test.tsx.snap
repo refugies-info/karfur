@@ -17,6 +17,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
     style={
       Array [
         Object {
+          "marginBottom": 0,
           "zIndex": 2,
         },
       ]
@@ -3252,6 +3253,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
     style={
       Array [
         Object {
+          "marginBottom": 0,
           "zIndex": 2,
         },
       ]
@@ -6487,6 +6489,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
     style={
       Array [
         Object {
+          "marginBottom": 0,
           "zIndex": 2,
         },
       ]

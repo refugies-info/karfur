@@ -5,6 +5,7 @@ exports[`HeaderWithLogo should render correctly with LTR 1`] = `
   style={
     Array [
       Object {
+        "marginBottom": 0,
         "zIndex": 2,
       },
     ]
@@ -151,6 +152,7 @@ exports[`HeaderWithLogo should render correctly with RTL 1`] = `
   style={
     Array [
       Object {
+        "marginBottom": 0,
         "zIndex": 2,
       },
     ]
