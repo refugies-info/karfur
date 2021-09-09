@@ -431,7 +431,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
       <a
         aria-current={null}
         className="figma-btn dark "
-        href="/annuaire-create"
+        href="/annuaire/structureId"
         onClick={[Function]}
       >
         <span
@@ -444,7 +444,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             data-eva-width="20px"
           />
         </span>
-        Modifier dans l'annuaire
+        Voir dans l'annuaire
       </a>
     </div>
     <div
@@ -1304,7 +1304,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       <a
         aria-current={null}
         className="figma-btn dark "
-        href="/annuaire-create"
+        href="/annuaire/structureId"
         onClick={[Function]}
       >
         <span
@@ -1317,7 +1317,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             data-eva-width="20px"
           />
         </span>
-        Modifier dans l'annuaire
+        Voir dans l'annuaire
       </a>
     </div>
     <div
@@ -2223,7 +2223,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       <a
         aria-current={null}
         className="figma-btn dark "
-        href="/annuaire-create"
+        href="/annuaire/structureId"
         onClick={[Function]}
       >
         <span
@@ -2236,7 +2236,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             data-eva-width="20px"
           />
         </span>
-        Modifier dans l'annuaire
+        Voir dans l'annuaire
       </a>
     </div>
     <div
@@ -3537,7 +3537,7 @@ exports[`UserStructure should render correctly when structure with membres when 
       <a
         aria-current={null}
         className="figma-btn dark "
-        href="/annuaire-create"
+        href="/annuaire/structureId"
         onClick={[Function]}
       >
         <span
@@ -3550,7 +3550,7 @@ exports[`UserStructure should render correctly when structure with membres when 
             data-eva-width="20px"
           />
         </span>
-        Modifier dans l'annuaire
+        Voir dans l'annuaire
       </a>
     </div>
     <div
@@ -4104,7 +4104,7 @@ exports[`UserStructure should render correctly when structure with membres when 
       <a
         aria-current={null}
         className="figma-btn dark "
-        href="/annuaire-create"
+        href="/annuaire/structureId"
         onClick={[Function]}
       >
         <span
@@ -4117,7 +4117,7 @@ exports[`UserStructure should render correctly when structure with membres when 
             data-eva-width="20px"
           />
         </span>
-        Modifier dans l'annuaire
+        Voir dans l'annuaire
       </a>
     </div>
     <div
