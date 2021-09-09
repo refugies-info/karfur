@@ -41,6 +41,7 @@ export const getContentsForApp = async (
       avancement: 1,
       contenu: 1,
       tags: 1,
+      needs: 1,
     };
 
     const initialQuery = {
@@ -74,6 +75,7 @@ export const getContentsForApp = async (
         titreInformatif,
         titreMarque,
         tags: content.tags,
+        needs: content.needs,
       };
     });
 
@@ -99,6 +101,7 @@ export const getContentsForApp = async (
         titreInformatif,
         titreMarque,
         tags: content.tags,
+        needs: content.needs,
       };
     });
 
