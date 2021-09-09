@@ -16,7 +16,7 @@ interface UserToExport {
   Pseudonyme: string;
   Email: string;
   "Date de création": string;
-  "Date de dernière visite": String;
+  "Date de dernière visite": string;
   Role: string[];
   "Mots traduits": number;
   "Temps passé à traduire": number;
@@ -134,8 +134,6 @@ export const exportUsers = async (req: RequestFromClient<{}>, res: Res) => {
     await asyncForEach(adaptedUsers, async (user) => {
       logger.info(`[exportUsers] get indicators user ${user._id}`);
       const totalIndicator = await computeGlobalIndicator(user._id);
-
-      //@ts-ignore
       const formattedUser = formatUser({ ...user, totalIndicator });
       usersToExport.push(formattedUser);
 
