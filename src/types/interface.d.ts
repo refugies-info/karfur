@@ -90,3 +90,17 @@ export interface MarkerGoogle {
 export interface MapGoogle {
   markers: MarkerGoogle[];
 }
+
+export interface Need {
+  fr: NeedDetail;
+  ar?: NeedDetail;
+  en?: NeedDetail;
+  "ti-ER"?: NeedDetail;
+  ru?: NeedDetail;
+  ps?: NeedDetail;
+  fa?: NeedDetail;
+  _id: ObjectId;
+  tagName: string;
+  created_at: Moment;
+  updatedAt: Moment;
+}
