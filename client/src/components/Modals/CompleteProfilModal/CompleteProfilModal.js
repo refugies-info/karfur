@@ -121,13 +121,6 @@ export const CompleteProfilModal = (props) => {
           {"Retour"}
         </FButton>{" "}
         <FButton
-          onClick={redirect}
-          type="white mr-8"
-          name="arrowhead-right-outline"
-        >
-          {"Plus tard"}
-        </FButton>
-        <FButton
           disabled={email === ""}
           onClick={onEmailModificationValidate}
           type={"validate"}

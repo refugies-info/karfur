@@ -854,7 +854,7 @@ $imgHeight: 350px;
 
   .feedback-footer {
     background: $blanc;
-    color: $darkOrange;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -862,7 +862,6 @@ $imgHeight: 350px;
     font-size: 18px;
 
     h5 {
-      color: $darkOrange;
       @include media-max("tablet-up") {
         font-size: 22px;
         text-align: center;

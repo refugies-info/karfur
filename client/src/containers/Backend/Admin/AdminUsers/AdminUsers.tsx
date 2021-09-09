@@ -68,15 +68,12 @@ export const AdminUsers = () => {
   const [search, setSearch] = useState("");
   const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(null);
-  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
-    false
-  );
+  const [showStructureDetailsModal, setShowStructureDetailsModal] =
+    useState(false);
   const [isExportLoading, setIsExportLoading] = useState(false);
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
-  const [
-    selectedStructureId,
-    setSelectedStructureId,
-  ] = useState<ObjectId | null>(null);
+  const [selectedStructureId, setSelectedStructureId] =
+    useState<ObjectId | null>(null);
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
@@ -269,11 +266,11 @@ export const AdminUsers = () => {
   return (
     <div className="admin-users">
       <SearchBarContainer>
-        {process.env.REACT_APP_ENV === "production" && (
-          <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
-            {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
-          </FButton>
-        )}
+        {/* {process.env.REACT_APP_ENV === "production" && ( */}
+        <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
+          {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
+        </FButton>
+        {/* )} */}
         <CustomSearchBar
           value={search}
           // @ts-ignore

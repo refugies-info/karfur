@@ -69,19 +69,16 @@ export const AdminContenu = () => {
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
   const [showDetailsModal, setShowDetailsModal] = useState(false);
-  const [showImprovementsMailModal, setShowImprovementsMailModal] = useState(
-    false
-  );
+  const [showImprovementsMailModal, setShowImprovementsMailModal] =
+    useState(false);
   const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
   const [isExportLoading, setIsExportLoading] = useState(false);
 
   const [selectedDispositif, setSelectedDispositif] = useState(null);
-  const [showChangeStructureModal, setShowChangeStructureModal] = useState(
-    false
-  );
-  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
-    false
-  );
+  const [showChangeStructureModal, setShowChangeStructureModal] =
+    useState(false);
+  const [showStructureDetailsModal, setShowStructureDetailsModal] =
+    useState(false);
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
   const [selectedStructureId, setSelectedStructureId] = useState(null);
 
@@ -195,10 +192,8 @@ export const AdminContenu = () => {
       dispositifsForCount: dispositifsFilteredBySearch,
     };
   };
-  const {
-    dispositifsToDisplay,
-    dispositifsForCount,
-  } = filterAndSortDispositifs(dispositifs);
+  const { dispositifsToDisplay, dispositifsForCount } =
+    filterAndSortDispositifs(dispositifs);
 
   const reorder = (element) => {
     if (sortedHeader.name === element.name) {
@@ -458,9 +453,8 @@ export const AdminContenu = () => {
                 !element.mainSponsor ||
                 element.mainSponsor.status !== "Actif";
 
-              const areNeedsCompatibleWithTags = checkIfNeedsAreCompatibleWithTags(
-                element
-              );
+              const areNeedsCompatibleWithTags =
+                checkIfNeedsAreCompatibleWithTags(element);
 
               return (
                 <tr key={key}>

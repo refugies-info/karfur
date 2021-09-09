@@ -8,6 +8,23 @@ import { fetchUserActionCreator } from "../services/User/user.actions";
 
 const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
   const { user, fetchUser } = rest;
+
+  const updateLastConnexion = () => {
+    if (
+      API.isAuth &&
+      user &&
+      user.last_connected &&
+      !(
+        new Date(user.last_connected).getDate() === new Date().getDate() &&
+        new Date(user.last_connected).getDay() === new Date().getDay() &&
+        new Date(user.last_connected).getFullYear() === new Date().getFullYear()
+      )
+    ) {
+      user.last_connected = new Date();
+      API.set_user_info(user);
+    }
+  };
+  updateLastConnexion();
   return (
     <Route
       {...rest}
@@ -45,9 +62,8 @@ const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
             const roles = (user && user.roles) || [];
             const isAuthorized =
               roles.filter((x) => route.restriction.includes(x.nom)).length > 0;
-            const hasRouteRestrictionHasStructure = route.restriction.includes(
-              "hasStructure"
-            );
+            const hasRouteRestrictionHasStructure =
+              route.restriction.includes("hasStructure");
 
             const hasUserStructure =
               user && user.structures && user.structures.length > 0
