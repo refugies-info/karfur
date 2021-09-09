@@ -54,15 +54,7 @@ const mapComponent = compose(
 )((props) => (
   <GoogleMap
     ref={props.zoomToMarkers}
-    center={
-      props.markers && props.markers.length === 1
-        ? {
-            lat: parseFloat(props.markers[0].latitude),
-            lng: parseFloat(props.markers[0].longitude),
-          }
-        : { lat: 48.856614, lng: 2.3522219 }
-    }
-    defaultZoom={props.markers && props.markers.length === 0 ? 5 : 15}
+    defaultZoom={5}
     defaultCenter={{ lat: 48.856614, lng: 2.3522219 }}
     defaultOptions={{
       mapTypeControl: false,
