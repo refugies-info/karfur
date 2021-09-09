@@ -180,7 +180,7 @@ export interface UserDoc extends mongoose.Document {
   };
 
   structures?: ObjectId[];
-  last_connected?: number;
+  last_connected?: Date;
   authy_id?: string;
   reset_password_token?: string;
   reset_password_expires?: number;
