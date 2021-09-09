@@ -16,6 +16,7 @@ interface UserToExport {
   Pseudonyme: string;
   Email: string;
   "Date de création": string;
+  "Date de dernière visite": String;
   Role: string[];
   "Mots traduits": number;
   "Temps passé à traduire": number;
@@ -28,6 +29,7 @@ interface User {
   _id: ObjectId;
   username: string;
   created_at: Date;
+  last_connected: Date;
   roles: string[];
   email: string;
   langues: {
@@ -72,6 +74,10 @@ const formatUser = (user: User) => {
   const createdAt = user.created_at
     ? moment(user.created_at).format(format2)
     : "1900/01/01";
+
+  const last_connected = user.last_connected
+    ? moment(user.last_connected).format(format2)
+    : "1900/01/01";
   const rolesWithTraducteur =
     user.langues.length > 0 ? user.roles.concat(["Traducteur"]) : user.roles;
 
@@ -91,6 +97,7 @@ const formatUser = (user: User) => {
       Pseudonyme: user.username,
       Email: user.email,
       "Date de création": createdAt,
+      "Date de dernière visite": last_connected,
       Role: rolesWithTraducteur,
       "Mots traduits": nbWords,
       "Temps passé à traduire": timeSpent,
@@ -118,6 +125,7 @@ export const exportUsers = async (req: RequestFromClient<{}>, res: Res) => {
       email: 1,
       selectedLanguages: 1,
       contributions: 1,
+      last_connected: 1,
     };
 
     const users = await getAllUsersFromDB(neededFields);
@@ -126,6 +134,8 @@ export const exportUsers = async (req: RequestFromClient<{}>, res: Res) => {
     await asyncForEach(adaptedUsers, async (user) => {
       logger.info(`[exportUsers] get indicators user ${user._id}`);
       const totalIndicator = await computeGlobalIndicator(user._id);
+
+      //@ts-ignore
       const formattedUser = formatUser({ ...user, totalIndicator });
       usersToExport.push(formattedUser);
 
