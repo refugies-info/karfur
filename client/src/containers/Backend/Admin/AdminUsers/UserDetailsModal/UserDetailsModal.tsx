@@ -270,7 +270,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
       </div>
       <IndicatorContainer>
         <IndicatorColumn>
-          <Title>Temps passé en minutes</Title>
+          <Title>Minutes passées à traduire</Title>
           {indicators ? (
             <>
               <span>

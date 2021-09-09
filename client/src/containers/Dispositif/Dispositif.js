@@ -2046,6 +2046,7 @@ export class Dispositif extends Component {
                         pushReaction={this.pushReaction}
                         didThank={didThank}
                         window={window}
+                        color={this.state.mainTag.darkColor}
                         nbThanks={
                           this.state.dispositif.merci
                             ? this.state.dispositif.merci.length
