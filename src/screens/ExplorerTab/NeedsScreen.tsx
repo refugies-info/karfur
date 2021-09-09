@@ -12,7 +12,26 @@ import { needsSelector } from "../../services/redux/Needs/needs.selectors";
 import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
 import { RTLTouchableOpacity } from "../../components/BasicComponents";
+import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
+import { ObjectId, Need } from "../../types/interface";
 
+const computeNeedsToDisplay = (
+  allNeeds: Need[],
+  groupedContents: Record<ObjectId, ObjectId[]>,
+  tagName: string
+) => {
+  const filteredNeeds = allNeeds.filter((need) => {
+    if (
+      need.tagName === tagName &&
+      groupedContents[need._id] &&
+      groupedContents[need._id].length > 0
+    )
+      return true;
+    return false;
+  });
+
+  return filteredNeeds;
+};
 const NeedContainer = styled(RTLTouchableOpacity)`
   padding: 16px;
   background-color: ${theme.colors.grey};
@@ -48,6 +67,14 @@ export const NeedsScreen = ({
   } = route.params;
 
   const allNeeds = useSelector(needsSelector);
+  const groupedContents = useSelector(groupedContentsSelector);
+
+  const needsToDisplay = computeNeedsToDisplay(
+    allNeeds,
+    // @ts-ignore
+    groupedContents,
+    tagName
+  );
 
   if (isLoading) {
     return (
@@ -68,7 +95,7 @@ export const NeedsScreen = ({
       <Header>{"needs screen : " + tagName + " "}</Header>
 
       <ScrollView scrollIndicatorInsets={{ right: 1 }}>
-        {allNeeds.map((need) => (
+        {needsToDisplay.map((need) => (
           <NeedContainer
             onPress={() =>
               navigation.navigate("ContentsScreen", {
