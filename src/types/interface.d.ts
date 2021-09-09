@@ -17,6 +17,7 @@ export interface SimplifiedContent {
   titreInformatif: string;
   titreMarque?: string;
   tags: Tag[];
+  needs?: ObjectId[];
 }
 
 export type AvailableLanguageI18nCode =

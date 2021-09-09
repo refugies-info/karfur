@@ -25,6 +25,11 @@ import {
   initialNeedState,
   needsReducer,
 } from "./Needs/needs.reducer";
+import {
+  groupedContentsReducer,
+  GroupedContentsState,
+  initialGroupedContentsState,
+} from "./ContentsGroupedByNeeds/contentsGroupedByNeeds.reducer";
 
 const appReducer = combineReducers({
   loadingStatus: loadingStatusReducer,
@@ -33,6 +38,7 @@ const appReducer = combineReducers({
   contents: contentsReducer,
   selectedContent: selectedContentReducer,
   needs: needsReducer,
+  groupedContents: groupedContentsReducer,
 });
 
 export interface RootState {
@@ -42,6 +48,7 @@ export interface RootState {
   contents: ContentsState;
   selectedContent: SelectedContentState;
   needs: NeedState;
+  groupedContents: GroupedContentsState;
 }
 
 type RootReducer = ReturnType<typeof appReducer>;
@@ -53,6 +60,7 @@ export const initialRootStateFactory = (): RootState => ({
   contents: initialContentsState,
   selectedContent: initialSelectedContentState,
   needs: initialNeedState,
+  groupedContents: initialGroupedContentsState,
 });
 
 export const rootReducer = (
