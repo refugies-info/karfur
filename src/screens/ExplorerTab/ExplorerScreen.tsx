@@ -62,6 +62,14 @@ export const ExplorerScreen = ({
               tagName={tag.name}
               backgroundColor={tag.darkColor}
               iconName={tag.icon}
+              onPress={() =>
+                navigation.navigate("NeedsScreen", {
+                  tagName: tag.name,
+                  tagDarkColor: tag.darkColor,
+                  tagVeryLightColor: tag.color30,
+                  tagLightColor: tag.lightColor,
+                })
+              }
             />
           ))}
         </ScrollView>

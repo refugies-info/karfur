@@ -58,7 +58,7 @@ export const CarousselCard = (props: Props) => {
   return (
     <TouchableOpacity
       onPress={() =>
-        props.navigation.navigate("ContentsScreen", {
+        props.navigation.navigate("NeedsScreen", {
           tagName: props.tagName,
           tagDarkColor: props.colorDark,
           tagVeryLightColor: props.color30,

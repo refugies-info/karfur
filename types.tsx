@@ -39,6 +39,12 @@ export type ExplorerParamList = {
     tagName: string;
     tagLightColor: string;
   };
+  NeedsScreen: {
+    tagDarkColor: string;
+    tagVeryLightColor: string;
+    tagName: string;
+    tagLightColor: string;
+  };
 };
 
 export type FavorisParamList = {
