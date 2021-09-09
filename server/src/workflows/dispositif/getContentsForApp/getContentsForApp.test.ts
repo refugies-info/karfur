@@ -24,6 +24,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     avancement: 1,
     contenu: 1,
     tags: 1,
+    needs: 1,
   };
 
   it("should return 405 if not from site", async () => {
