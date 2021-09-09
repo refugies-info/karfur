@@ -7,13 +7,16 @@ import { useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import { contentsSelector } from "../../services/redux/Contents/contents.selectors";
 import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
+import { needsSelector } from "../../services/redux/Needs/needs.selectors";
+import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
+import { RTLTouchableOpacity } from "../../components/BasicComponents";
 
-const ContentContainer = styled.TouchableOpacity`
-  background-color: ${theme.colors.grey60};
-  margin-horizontal: 16px;
-  margin-vertical: 16px;
+const NeedContainer = styled(RTLTouchableOpacity)`
   padding: 16px;
+  background-color: ${theme.colors.grey};
+  margin: 8px;
 `;
 
 const Header = styled(TextNormal)`
@@ -28,12 +31,34 @@ export const NeedsScreen = ({
   const contents = currentLanguageI18nCode
     ? useSelector(contentsSelector(currentLanguageI18nCode))
     : [];
+
+  const isLoadingContents = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_CONTENTS)
+  );
+  const isLoadingNeeds = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_NEEDS)
+  );
+  const isLoading = isLoadingContents || isLoadingNeeds;
+
   const {
     tagName,
     tagDarkColor,
     tagVeryLightColor,
     tagLightColor,
   } = route.params;
+
+  const allNeeds = useSelector(needsSelector);
+
+  if (isLoading) {
+    return (
+      <WrapperWithHeaderAndLanguageModal
+        navigation={navigation}
+        showSwitch={true}
+      >
+        <Header>{"loading"}</Header>
+      </WrapperWithHeaderAndLanguageModal>
+    );
+  }
 
   return (
     <WrapperWithHeaderAndLanguageModal
@@ -42,7 +67,23 @@ export const NeedsScreen = ({
     >
       <Header>{"needs screen : " + tagName + " "}</Header>
 
-      <ScrollView></ScrollView>
+      <ScrollView scrollIndicatorInsets={{ right: 1 }}>
+        {allNeeds.map((need) => (
+          <NeedContainer
+            onPress={() =>
+              navigation.navigate("ContentsScreen", {
+                tagName,
+                tagDarkColor,
+                tagVeryLightColor,
+                tagLightColor,
+                needId: need._id,
+              })
+            }
+          >
+            <TextNormal>{need.fr.text}</TextNormal>
+          </NeedContainer>
+        ))}
+      </ScrollView>
     </WrapperWithHeaderAndLanguageModal>
   );
 };

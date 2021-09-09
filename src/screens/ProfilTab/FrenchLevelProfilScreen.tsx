@@ -95,6 +95,7 @@ export const FrenchLevelProfilScreen = ({
             paddingTop: theme.margin * 4,
             paddingHorizontal: theme.margin * 3,
           }}
+          scrollIndicatorInsets={{ right: 1 }}
         >
           {frenchLevelFilters.map((frenchLevel) => (
             <FilterButton

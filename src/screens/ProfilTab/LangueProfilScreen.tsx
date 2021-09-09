@@ -66,6 +66,7 @@ export const LangueProfilScreen = ({
         contentContainerStyle={{
           paddingTop: theme.margin * 2,
         }}
+        scrollIndicatorInsets={{ right: 1 }}
       >
         <MainContainer>
           {activatedLanguages.map((language, index) => (

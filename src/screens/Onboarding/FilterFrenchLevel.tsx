@@ -95,7 +95,10 @@ export const FilterFrenchLevel = ({
         text={t("Onboarding.Créer mon profil", "Créer mon profil")}
       />
       <ContentContainer>
-        <ScrollView contentContainerStyle={{ padding: theme.margin * 3 }}>
+        <ScrollView
+          contentContainerStyle={{ padding: theme.margin * 3 }}
+          scrollIndicatorInsets={{ right: 1 }}
+        >
           <Title>
             {t(
               "Onboarding.niveauFrancais",

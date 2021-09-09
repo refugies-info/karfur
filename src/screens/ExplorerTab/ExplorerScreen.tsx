@@ -55,7 +55,10 @@ export const ExplorerScreen = ({
         />
       </ViewChoiceContainer>
       {tabSelected === "list" ? (
-        <ScrollView contentContainerStyle={{ padding: theme.margin * 3 }}>
+        <ScrollView
+          contentContainerStyle={{ padding: theme.margin * 3 }}
+          scrollIndicatorInsets={{ right: 1 }}
+        >
           {tags.sort(sortByOrder).map((tag, index) => (
             <TagButton
               key={index}

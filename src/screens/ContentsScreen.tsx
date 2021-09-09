@@ -9,6 +9,7 @@ import { contentsSelector } from "../services/redux/Contents/contents.selectors"
 import { ScrollView } from "react-native";
 import styled from "styled-components/native";
 import { theme } from "../theme";
+import { needNameSelector } from "../services/redux/Needs/needs.selectors";
 
 const ContentContainer = styled.TouchableOpacity`
   background-color: ${theme.colors.grey60};
@@ -34,6 +35,7 @@ export const ContentsScreen = ({
     tagDarkColor,
     tagVeryLightColor,
     tagLightColor,
+    needId,
   } = route.params;
 
   const filteredContents = contents.filter((content) => {
@@ -45,20 +47,26 @@ export const ContentsScreen = ({
     return false;
   });
 
+  const needName = useSelector(
+    needNameSelector(needId, currentLanguageI18nCode)
+  );
+
   return (
     <WrapperWithHeaderAndLanguageModal
       navigation={navigation}
       showSwitch={true}
     >
       <Header>
-        {"Contents screen : " +
+        {"Contents screen : tag " +
           tagName +
+          " need :  " +
+          needName +
           " " +
           filteredContents.length +
           " fiches plus test"}
       </Header>
 
-      <ScrollView>
+      <ScrollView scrollIndicatorInsets={{ right: 1 }}>
         {filteredContents.map((content, index) => (
           <ContentContainer
             key={index}
