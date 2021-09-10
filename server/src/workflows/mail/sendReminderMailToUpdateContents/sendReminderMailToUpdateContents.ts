@@ -1,16 +1,11 @@
+/* eslint-disable no-console */
 import { RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
-import {
-  getAllDispositifWithMainSponsor,
-  //updateDispositifInDB,
-} from "../../../modules/dispositif/dispositif.repository";
-// import { asyncForEach } from "../../../libs/asyncForEach";
-// import {
-//   sendOneDraftReminderMailService,
-//   sendMultipleDraftsReminderMailService,
-// } from "../../../modules/mail/mail.service";
+import { getPublishedDispositifWithMainSponsor } from "../../../modules/dispositif/dispositif.repository";
+import { getUserById } from "../../../modules/users/users.repository";
 import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
 import { filterDispositifsForUpdateReminders } from "../../../modules/dispositif/dispositif.adapter";
+import { sendUpdateReminderMailService } from "../../../modules/mail/mail.service";
 // import { isTitreInformatifObject } from "../../../types/typeguards";
 
 export const sendReminderMailToUpdateContents = async (
@@ -22,7 +17,7 @@ export const sendReminderMailToUpdateContents = async (
 
     checkCronAuthorization(req.body.query && req.body.query.cronToken);
 
-    const dispositifs = await getAllDispositifWithMainSponsor();
+    const dispositifs = await getPublishedDispositifWithMainSponsor();
     logger.info(
       `[sendReminderMailToUpdateContents] ${dispositifs.length} dispositifs find`
     );
@@ -40,16 +35,43 @@ export const sendReminderMailToUpdateContents = async (
     );
 
     logger.info(
-      `[sendReminderMailToUpdateContents] send ${filteredDispositifs.length} reminders`
+      `[sendReminderMailToUpdateContents] find ${filteredDispositifs.length} reminders to send`
     );
 
-    // const dispositifsWithFormattedTitle = filteredDispositifs.map((dispo) => {
-    //   if (isTitreInformatifObject(dispo.titreInformatif)) {
-    //     return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif.fr };
-    //   }
-    //   return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif };
-    // });
+    filteredDispositifs.forEach((dispositif) => {
+      if (dispositif.mainSponsor) {
+        //@ts-ignore
+        if (dispositif.mainSponsor.membres) {
+          //@ts-ignore
+          dispositif.mainSponsor.membres.forEach(async (membre) => {
+            if (membre.roles[0] === "administrateur") {
+              let user = await getUserById(membre.userId, {
+                username: 1,
+                email: 1,
+              });
+              if (user.email) {
+                sendUpdateReminderMailService(
+                  user.email,
+                  user.username,
+                  //@ts-ignore
+                  dispositif.titreInformatif,
+                  user._id,
+                  dispositif._id,
+                  "https://refugies.info/" +
+                    dispositif.typeContenu +
+                    "/" +
+                    dispositif._id
+                );
+              }
+            }
+          });
+        }
+      }
+    });
 
+    // logger.info(
+    //   `[sendReminderMailToUpdateContents] send ${filteredDispositif} reminders`
+    // );
     // const formattedRecipients = formatDispositifsByCreator(
     //   dispositifsWithFormattedTitle
     // );

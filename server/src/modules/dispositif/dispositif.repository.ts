@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { IDispositif, AudienceAge } from "../../types/interface";
 import {
   Dispositif,
@@ -134,8 +135,19 @@ export const getDispositifByIdWithMainSponsor = async (
   );
 };
 
-export const getAllDispositifWithMainSponsor = async () =>
-  await Dispositif.find({}, {}).populate("mainSponsor");
+export const getPublishedDispositifWithMainSponsor = async () =>
+  await Dispositif.find(
+    { status: "Actif" },
+    {
+      created_at: 1,
+      updatedAt: 1,
+      mainSponsor: 1,
+      lastReminderMailSentToUpdateContentDate: 1,
+      lastModificationDate: 1,
+      titreInformatif: 1,
+      typeContenu: 1,
+    }
+  ).populate("mainSponsor");
 
 export const getActiveContents = async (neededFields: Record<string, number>) =>
   await Dispositif.find({ status: "Actif" }, neededFields);

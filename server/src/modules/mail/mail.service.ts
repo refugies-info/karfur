@@ -123,6 +123,46 @@ export const sendOneDraftReminderMailService = async (
   }
 };
 
+export const sendUpdateReminderMailService = async (
+  email: string,
+  username: string,
+  titreInformatif: string,
+  userId: ObjectId,
+  dispositifId: ObjectId,
+  lien: string
+) => {
+  try {
+    logger.info("[sendUpdateReminderMailService]  received", {
+      email,
+      dispositifId,
+    });
+    const dynamicData = {
+      to: "cssaillard@gmail.com",
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      // cc: "contact@refugies.info",
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        pseudo: username,
+        titreInformatif,
+        lien,
+      },
+    };
+    const templateName = "updateReminder";
+    sendMail(templateName, dynamicData);
+
+    await addMailEvent({ templateName, username, email, userId, dispositifId });
+    return;
+  } catch (error) {
+    logger.error("[sendUpdateReminderMailService] error", {
+      email,
+      error: error.message,
+    });
+  }
+};
+
 export const sendMultipleDraftsReminderMailService = async (
   email: string,
   username: string,
