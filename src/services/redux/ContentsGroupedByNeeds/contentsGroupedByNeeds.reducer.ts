@@ -10,5 +10,5 @@ export const groupedContentsReducer = createReducer<
   GroupedContentsState,
   GroupedContentsActions
 >(initialGroupedContentsState, {
-  SET_GROUPED_CONTENTS: (state, action) => action.payload,
+  SET_GROUPED_CONTENTS: (_, action) => action.payload,
 });

@@ -92,6 +92,10 @@ export interface MapGoogle {
   markers: MarkerGoogle[];
 }
 
+export interface NeedDetail {
+  text: string;
+  updatedAt: Moment;
+}
 export interface Need {
   fr: NeedDetail;
   ar?: NeedDetail;

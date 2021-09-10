@@ -5,15 +5,15 @@ import { TextNormal } from "../../components/StyledText";
 import { ExplorerParamList } from "../../../types";
 import { useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { contentsSelector } from "../../services/redux/Contents/contents.selectors";
 import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal";
-import { ScrollView, View } from "react-native";
+import { ScrollView } from "react-native";
 import { needsSelector } from "../../services/redux/Needs/needs.selectors";
 import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
 import { RTLTouchableOpacity } from "../../components/BasicComponents";
 import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import { ObjectId, Need } from "../../types/interface";
+import { StackScreenProps } from "@react-navigation/stack";
 
 const computeNeedsToDisplay = (
   allNeeds: Need[],
@@ -32,6 +32,7 @@ const computeNeedsToDisplay = (
 
   return filteredNeeds;
 };
+
 const NeedContainer = styled(RTLTouchableOpacity)`
   padding: 16px;
   background-color: ${theme.colors.grey};
@@ -47,9 +48,6 @@ export const NeedsScreen = ({
   route,
 }: StackScreenProps<ExplorerParamList, "NeedsScreen">) => {
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
-  const contents = currentLanguageI18nCode
-    ? useSelector(contentsSelector(currentLanguageI18nCode))
-    : [];
 
   const isLoadingContents = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_CONTENTS)
@@ -71,7 +69,6 @@ export const NeedsScreen = ({
 
   const needsToDisplay = computeNeedsToDisplay(
     allNeeds,
-    // @ts-ignore
     groupedContents,
     tagName
   );
@@ -95,21 +92,32 @@ export const NeedsScreen = ({
       <Header>{"needs screen : " + tagName + " "}</Header>
 
       <ScrollView scrollIndicatorInsets={{ right: 1 }}>
-        {needsToDisplay.map((need) => (
-          <NeedContainer
-            onPress={() =>
-              navigation.navigate("ContentsScreen", {
-                tagName,
-                tagDarkColor,
-                tagVeryLightColor,
-                tagLightColor,
-                needId: need._id,
-              })
-            }
-          >
-            <TextNormal>{need.fr.text}</TextNormal>
-          </NeedContainer>
-        ))}
+        {needsToDisplay.map((need) => {
+          const needText =
+            currentLanguageI18nCode &&
+            need[currentLanguageI18nCode] &&
+            // @ts-ignore
+            need[currentLanguageI18nCode].text
+              ? // @ts-ignore
+                need[currentLanguageI18nCode].text
+              : need.fr.text;
+          return (
+            <NeedContainer
+              key={need._id}
+              onPress={() =>
+                navigation.navigate("ContentsScreen", {
+                  tagName,
+                  tagDarkColor,
+                  tagVeryLightColor,
+                  tagLightColor,
+                  needId: need._id,
+                })
+              }
+            >
+              <TextNormal>{needText}</TextNormal>
+            </NeedContainer>
+          );
+        })}
       </ScrollView>
     </WrapperWithHeaderAndLanguageModal>
   );

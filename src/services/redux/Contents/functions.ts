@@ -6,10 +6,13 @@ export const groupResultsByNeed = (contents: SimplifiedContent[]) => {
     contents.forEach((content) => {
       if (content.needs && content.needs.length > 0) {
         content.needs.forEach((needId) => {
+          // @ts-ignore
           if (results[needId]) {
+            // @ts-ignore
             results[needId].push(content._id);
             return;
           }
+          // @ts-ignore
           results[needId] = [content._id];
           return;
         });
@@ -17,6 +20,5 @@ export const groupResultsByNeed = (contents: SimplifiedContent[]) => {
       }
     });
   }
-  console.log("results", results);
   return results;
 };
