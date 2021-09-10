@@ -29,7 +29,7 @@ export const filterDispositifsForDraftReminders = (
 
     if (nbDaysFromNow < nbDaysBeforeReminder) {
       logger.info(
-        `[sendDraftReminderMail] dispositif with id ${dispositif._id} has been updated ${nbDaysFromNow} ago`
+        `[sendDraftReminderMail] dispositif with id ${dispositif._id} has been updated ${nbDaysFromNow} days ago`
       );
       return false;
     }
@@ -37,6 +37,41 @@ export const filterDispositifsForDraftReminders = (
     if (!dispositif.creatorId.email) {
       logger.info(
         `[sendDraftReminderMail] dispositif with id ${dispositif._id}, creator has no email related`
+      );
+      return false;
+    }
+
+    return true;
+  });
+
+export const filterDispositifsForUpdateReminders = (
+  dispositifs: DispositifPopulatedDoc[],
+  nbDaysBeforeReminder: number
+) =>
+  dispositifs.filter((dispositif) => {
+    if (dispositif.lastReminderMailSentToUpdateContentDate) {
+      const nbDaysLastReminderFromNow = Math.round(
+        moment(moment()).diff(
+          dispositif.lastReminderMailSentToUpdateContentDate
+        ) /
+          (1000 * 60 * 60 * 24)
+      );
+      if (nbDaysLastReminderFromNow < nbDaysBeforeReminder) {
+        logger.info(
+          `[sendReminderMailToUpdateContents] dispositif with id ${dispositif._id} has already received reminder ${nbDaysLastReminderFromNow} days ago`
+        );
+        return false;
+      }
+    }
+
+    const lastUpdate = dispositif.lastModificationDate || dispositif.updatedAt;
+    const nbDaysFromNow = Math.round(
+      moment(moment()).diff(lastUpdate) / (1000 * 60 * 60 * 24)
+    );
+
+    if (nbDaysFromNow < nbDaysBeforeReminder) {
+      logger.info(
+        `[sendReminderMailToUpdateContents] dispositif with id ${dispositif._id} has been updated ${nbDaysFromNow} days ago`
       );
       return false;
     }

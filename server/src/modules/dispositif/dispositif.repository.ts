@@ -133,6 +133,10 @@ export const getDispositifByIdWithMainSponsor = async (
     "mainSponsor"
   );
 };
+
+export const getAllDispositifWithMainSponsor = async () =>
+  await Dispositif.find({}, {}).populate("mainSponsor");
+
 export const getActiveContents = async (neededFields: Record<string, number>) =>
   await Dispositif.find({ status: "Actif" }, neededFields);
 
