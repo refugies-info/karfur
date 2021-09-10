@@ -69,59 +69,6 @@ export const sendReminderMailToUpdateContents = async (
       }
     });
 
-    // logger.info(
-    //   `[sendReminderMailToUpdateContents] send ${filteredDispositif} reminders`
-    // );
-    // const formattedRecipients = formatDispositifsByCreator(
-    //   dispositifsWithFormattedTitle
-    // );
-
-    // await asyncForEach(formattedRecipients, async (recipient) => {
-    //   try {
-    //     if (recipient.dispositifs.length === 1) {
-    //       const dispositifId = recipient.dispositifs[0]._id;
-    //       logger.info(
-    //         `[sendReminderMailToUpdateContents] send mail to ${recipient.email} for dispositif with id ${dispositifId} `
-    //       );
-    //       await sendOneDraftReminderMailService(
-    //         recipient.email,
-    //         recipient.username,
-    //         recipient.dispositifs[0].titreInformatif,
-    //         recipient.creatorId,
-    //         dispositifId
-    //       );
-    //       await updateDispositifInDB(dispositifId, {
-    //         draftReminderMailSentDate: Date.now(),
-    //       });
-    //       return;
-    //     }
-
-    //     logger.info(
-    //       `[sendReminderMailToUpdateContents] send mail to ${recipient.email} for multiple dispositifs`
-    //     );
-
-    //     await sendMultipleDraftsReminderMailService(
-    //       recipient.email,
-    //       recipient.username,
-    //       recipient.creatorId
-    //     );
-
-    //     recipient.dispositifs.map(
-    //       async (dispositif) =>
-    //         await updateDispositifInDB(dispositif._id, {
-    //           draftReminderMailSentDate: Date.now(),
-    //         })
-    //     );
-    //   } catch (error) {
-    //     logger.error(
-    //       "[sendReminderMailToUpdateContents] error with the recipient",
-    //       {
-    //         creatorId: recipient.creatorId,
-    //       }
-    //     );
-    //   }
-    // });
-
     return res.status(200).json({ text: "OK" });
   } catch (error) {
     logger.error("[sendReminderMailToUpdateContents] error", {
