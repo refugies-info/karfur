@@ -136,7 +136,7 @@ describe("sendDraftReminderMail", () => {
       "[sendDraftReminderMail] dispositif with id id2 has already received reminder"
     );
     expect(logger.info).toHaveBeenCalledWith(
-      "[sendDraftReminderMail] dispositif with id id3 has been updated 1 day ago"
+      "[sendDraftReminderMail] dispositif with id id3 has been updated 1 days ago"
     );
     expect(logger.info).toHaveBeenCalledWith(
       "[sendDraftReminderMail] dispositif with id id4, creator has no email related"

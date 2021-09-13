@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
 import { getPublishedDispositifWithMainSponsor } from "../../../modules/dispositif/dispositif.repository";

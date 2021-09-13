@@ -20,7 +20,6 @@ jest.mock("../../../modules/users/users.repository", () => ({
 }));
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
-  getDraftDispositifs: jest.fn(),
   getPublishedDispositifWithMainSponsor: jest.fn(),
   updateDispositifInDB: jest.fn(),
 }));
@@ -192,17 +191,6 @@ describe("sendReminderMailToUpdateContents", () => {
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
-  //
-  // expect(updateDispositifInDB).toHaveBeenCalledWith("id1", {
-  //   draftReminderMailSentDate: 1573380000000,
-  // });
-  // expect(updateDispositifInDB).not.toHaveBeenCalledWith("id2", {
-  //   draftReminderMailSentDate: 1573380000000,
-  // });
-  // expect(updateDispositifInDB).not.toHaveBeenCalledWith("id3", {
-  //   draftReminderMailSentDate: 1573380000000,
-  // });
-
   it("should get dispositifs sendOneDraftReminderMailService for dispo with object in titre info", async () => {
     const dispo1 = {
       _id: "id1",
@@ -242,11 +230,6 @@ describe("sendReminderMailToUpdateContents", () => {
       "id1",
       "https://refugies.info/dispositif/id1"
     );
-
-    // expect(updateDispositifInDB).toHaveBeenCalledWith("id1", {
-    //   draftReminderMailSentDate: 1573380000000,
-    // });
-
     expect(res.status).toHaveBeenCalledWith(200);
   });
 });

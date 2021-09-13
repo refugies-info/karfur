@@ -137,7 +137,7 @@ export const sendUpdateReminderMailService = async (
       dispositifId,
     });
     const dynamicData = {
-      to: "cssaillard@gmail.com",
+      to: email,
       from: {
         email: "contact@refugies.info",
         name: "L'équipe de Réfugiés.info",
