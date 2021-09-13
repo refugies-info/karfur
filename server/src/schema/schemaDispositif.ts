@@ -225,6 +225,7 @@ export interface DispositifDoc extends mongoose.Document {
   lastModificationDate?: number;
   updatedAt: number;
   draftReminderMailSentDate?: number;
+  lastReminderMailSentToUpdateContentDate?: number;
   status: string;
   needs?: ObjectId[];
 }
