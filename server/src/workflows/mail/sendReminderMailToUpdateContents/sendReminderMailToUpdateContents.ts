@@ -1,6 +1,9 @@
 import { RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
-import { getPublishedDispositifWithMainSponsor } from "../../../modules/dispositif/dispositif.repository";
+import {
+  getPublishedDispositifWithMainSponsor,
+  updateDispositifInDB,
+} from "../../../modules/dispositif/dispositif.repository";
 import { getUserById } from "../../../modules/users/users.repository";
 import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
 import { filterDispositifsForUpdateReminders } from "../../../modules/dispositif/dispositif.adapter";
@@ -73,6 +76,10 @@ export const sendReminderMailToUpdateContents = async (
                           "/" +
                           dispositif._id
                       );
+
+                      await updateDispositifInDB(dispositif._id, {
+                        lastReminderMailSentToUpdateContentDate: Date.now(),
+                      });
                     }
                   }
                 }

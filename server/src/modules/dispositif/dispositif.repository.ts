@@ -47,6 +47,7 @@ export const updateDispositifInDB = async (
     | { audienceAge: AudienceAge[]; contenu: any }
     | { nbVues: number }
     | { draftReminderMailSentDate: number }
+    | { lastReminderMailSentToUpdateContentDate: number }
     | { $pull: { [x: string]: { suggestionId: string } } }
     | { tags: any }
     | { needs: any }
