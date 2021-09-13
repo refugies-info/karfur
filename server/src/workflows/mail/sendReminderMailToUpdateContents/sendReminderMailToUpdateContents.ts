@@ -8,7 +8,6 @@ import { sendUpdateReminderMailService } from "../../../modules/mail/mail.servic
 import { isTitreInformatifObject } from "../../../types/typeguards";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { Membre } from "../../../types/interface";
-// import { isTitreInformatifObject } from "../../../types/typeguards";
 
 export const sendReminderMailToUpdateContents = async (
   req: RequestFromClient<{ cronToken: string }>,
@@ -22,10 +21,6 @@ export const sendReminderMailToUpdateContents = async (
     const dispositifs = await getPublishedDispositifWithMainSponsor();
     logger.info(
       `[sendReminderMailToUpdateContents] ${dispositifs.length} dispositifs find`
-    );
-
-    logger.info(
-      `[sendReminderMailToUpdateContents] ${dispositifs[0]} dispositifs find`
     );
 
     const nbDaysBeforeReminder = 90;
@@ -51,14 +46,14 @@ export const sendReminderMailToUpdateContents = async (
       }
     );
 
-    asyncForEach(
+    await asyncForEach(
       filteredDispositifWithTitreInfoFormated,
       async (dispositif) => {
         try {
           if (dispositif.mainSponsor) {
             //@ts-ignore
             if (dispositif.mainSponsor.membres) {
-              asyncForEach(
+              await asyncForEach(
                 //@ts-ignore
                 dispositif.mainSponsor.membres,
                 async (membre: Membre) => {

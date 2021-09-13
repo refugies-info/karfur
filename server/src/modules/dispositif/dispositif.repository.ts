@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { IDispositif, AudienceAge } from "../../types/interface";
 import {
   Dispositif,
