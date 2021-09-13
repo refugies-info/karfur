@@ -1,6 +1,9 @@
 // @ts-nocheck
 import { sendReminderMailToUpdateContents } from "./sendReminderMailToUpdateContents";
-import { getPublishedDispositifWithMainSponsor } from "../../../modules/dispositif/dispositif.repository";
+import {
+  getPublishedDispositifWithMainSponsor,
+  updateDispositifInDB,
+} from "../../../modules/dispositif/dispositif.repository";
 import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
 import { sendUpdateReminderMailService } from "../../../modules/mail/mail.service";
 import { getUserById } from "../../../modules/users/users.repository";
@@ -188,6 +191,13 @@ describe("sendReminderMailToUpdateContents", () => {
     expect(logger.info).toHaveBeenCalledWith(
       "[sendReminderMailToUpdateContents] dispositif with id id2 has already received reminder 40 days ago"
     );
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id1", {
+      lastReminderMailSentToUpdateContentDate: 1573380000000,
+    });
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id3", {
+      lastReminderMailSentToUpdateContentDate: 1573380000000,
+    });
+
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
@@ -230,6 +240,9 @@ describe("sendReminderMailToUpdateContents", () => {
       "id1",
       "https://refugies.info/dispositif/id1"
     );
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id1", {
+      lastReminderMailSentToUpdateContentDate: 1573380000000,
+    });
     expect(res.status).toHaveBeenCalledWith(200);
   });
 });
