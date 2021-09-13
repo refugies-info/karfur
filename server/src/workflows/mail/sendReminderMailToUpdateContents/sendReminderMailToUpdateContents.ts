@@ -46,7 +46,6 @@ export const sendReminderMailToUpdateContents = async (
         return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif };
       }
     );
-    console.log("test oui");
     await asyncForEach(
       filteredDispositifWithTitreInfoFormated,
       async (dispositif) => {

@@ -3,17 +3,21 @@
 import { sendReminderMailToUpdateContents } from "./sendReminderMailToUpdateContents";
 import { getPublishedDispositifWithMainSponsor } from "../../../modules/dispositif/dispositif.repository";
 import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
-//import { filterDispositifsForUpdateReminders } from "../../../modules/dispositif/dispositif.adapter";
 import { sendUpdateReminderMailService } from "../../../modules/mail/mail.service";
+import { getUserById } from "../../../modules/users/users.repository";
 import moment from "moment";
 import mockdate from "mockdate";
-//import logger from "../../../logger";
+import logger from "../../../logger";
 
 mockdate.set("2019-11-10T10:00:00.00Z");
 
 jest.mock("../../../logger");
 jest.mock("../../../libs/checkAuthorizations", () => ({
   checkCronAuthorization: jest.fn(),
+}));
+
+jest.mock("../../../modules/users/users.repository", () => ({
+  getUserById: jest.fn(),
 }));
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
@@ -23,12 +27,7 @@ jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
 }));
 
 jest.mock("../../../modules/mail/mail.service", () => ({
-  sendOneDraftReminderMailService: jest.fn(),
-  sendMultipleDraftsReminderMailService: jest.fn(),
-}));
-
-jest.mock("../../../modules/dispositif/dispositif.adapter", () => ({
-  filterDispositifsForUpdateReminders: jest.fn(),
+  sendUpdateReminderMailService: jest.fn(),
 }));
 
 type MockResponse = { json: any; status: any };
@@ -81,8 +80,8 @@ describe("sendReminderMailToUpdateContents", () => {
     mainSponsor: {
       _id: "sponsor_id",
       membres: [
-        { roles: "administrateur", userId: "userId" },
-        { roles: "contributeur", userId: "userId" },
+        { roles: "administrateur", userId: "userId1" },
+        { roles: "contributeur", userId: "userId2" },
       ],
     },
   };
@@ -90,13 +89,13 @@ describe("sendReminderMailToUpdateContents", () => {
   const dispo3 = {
     _id: "id3",
     titreInformatif: "titre",
-    typeContenu: "dispositif",
+    typeContenu: "demarche",
     lastModificationDate: moment.utc("2019-02-01T13:00:00.232Z"),
     mainSponsor: {
       _id: "sponsor_id",
       membres: [
-        { roles: "administrateur", userId: "userId" },
-        { roles: "contributeur", userId: "userId" },
+        { roles: "administrateur", userId: "userId1" },
+        { roles: "contributeur", userId: "userId2" },
       ],
     },
   };
@@ -109,8 +108,8 @@ describe("sendReminderMailToUpdateContents", () => {
     mainSponsor: {
       _id: "sponsor_id",
       membres: [
-        { roles: "administrateur", userId: "userId" },
-        { roles: "contributeur", userId: "userId" },
+        { roles: "administrateur", userId: "userId1" },
+        { roles: "contributeur", userId: "userId2" },
       ],
     },
   };
@@ -134,48 +133,67 @@ describe("sendReminderMailToUpdateContents", () => {
         toJSON: () => dispo4,
       },
     ]);
+    getUserById.mockResolvedValue({
+      username: "username",
+      email: "email",
+      _id: "userId",
+    });
     const req = { body: { query: { cronToken: "cronToken" } } };
     await sendReminderMailToUpdateContents(req, res);
     expect(checkCronAuthorization).toHaveBeenCalledWith("cronToken");
     expect(getPublishedDispositifWithMainSponsor).toHaveBeenCalledWith();
+    expect(getUserById).toHaveBeenCalledWith("userId", {
+      username: 1,
+      email: 1,
+    });
+    expect(getUserById).toHaveBeenCalledWith("userId1", {
+      username: 1,
+      email: 1,
+    });
+    expect(getUserById).not.toHaveBeenCalledWith("userId2", {
+      username: 1,
+      email: 1,
+    });
+
     expect(sendUpdateReminderMailService).toHaveBeenCalledWith(
       "email",
-      "pseudo",
+      "username",
       "titre",
       "userId",
-      "id1"
+      "id1",
+      "https://refugies.info/dispositif/id1"
     );
-    console.log("res", res);
-    //expect(res.status).toHaveBeenCalledWith(200);
+
+    expect(sendUpdateReminderMailService).toHaveBeenCalledWith(
+      "email",
+      "username",
+      "titre",
+      "userId",
+      "id3",
+      "https://refugies.info/demarche/id3"
+    );
+
+    expect(sendUpdateReminderMailService).not.toHaveBeenCalledWith(
+      "email",
+      "username",
+      "titre",
+      "userId",
+      "id4",
+      "https://refugies.info/dispositif/id4"
+    );
+    expect(logger.info).toHaveBeenCalledWith(
+      "[sendReminderMailToUpdateContents] received"
+    );
+    expect(logger.info).toHaveBeenCalledWith(
+      "[sendReminderMailToUpdateContents] 4 dispositifs find"
+    );
+    expect(logger.info).toHaveBeenCalledWith(
+      "[sendReminderMailToUpdateContents] dispositif with id id2 has already received reminder 40 days ago"
+    );
+    expect(res.status).toHaveBeenCalledWith(200);
   });
+
   //
-  //     expect(sendUpdateReminderMailService).toHaveBeenCalledWith(
-  //       "email",
-  //       "pseudo",
-  //       "titre",
-  //       "userId",
-  //       "id1"
-  //     );
-  //     expect(sendUpdateReminderMailService).not.toHaveBeenCalledWith(
-  //       "email",
-  //       "pseudo",
-  //       "titre",
-  //       "userId",
-  //       "id2"
-  //     );
-  //     expect(sendUpdateReminderMailService).not.toHaveBeenCalledWith(
-  //       "email",
-  //       "pseudo",
-  //       "titre",
-  //       "userId",
-  //       "id3"
-  //     );
-  //     expect(logger.info).toHaveBeenCalledWith(
-  //       "[sendUpdateReminderMailService] dispositif with id id2 has already received reminder 40 days ago"
-  //     );
-  //     expect(logger.info).toHaveBeenCalledWith(
-  //       "[sendUpdateReminderMailService] dispositif with id id3 has been updated 3 days ago"
-  //     );
   // expect(updateDispositifInDB).toHaveBeenCalledWith("id1", {
   //   draftReminderMailSentDate: 1573380000000,
   // });
@@ -185,75 +203,51 @@ describe("sendReminderMailToUpdateContents", () => {
   // expect(updateDispositifInDB).not.toHaveBeenCalledWith("id3", {
   //   draftReminderMailSentDate: 1573380000000,
   // });
+
+  it("should get dispositifs sendOneDraftReminderMailService for dispo with object in titre info", async () => {
+    const dispo1 = {
+      _id: "id1",
+      titreInformatif: { fr: "titre" },
+      typeContenu: "dispositif",
+      updatedAt: moment.utc("2019-02-01T13:00:00.232Z"),
+      mainSponsor: {
+        _id: "sponsor_id",
+        membres: [
+          { roles: "administrateur", userId: "userId" },
+          { roles: "contributeur", userId: "userId" },
+        ],
+      },
+    };
+
+    getPublishedDispositifWithMainSponsor.mockResolvedValueOnce([
+      { ...dispo1, toJSON: () => dispo1 },
+    ]);
+    getUserById.mockResolvedValue({
+      username: "username",
+      email: "email",
+      _id: "userId",
+    });
+    const req = { body: { query: { cronToken: "cronToken" } } };
+    await sendReminderMailToUpdateContents(req, res);
+    expect(checkCronAuthorization).toHaveBeenCalledWith("cronToken");
+    expect(getPublishedDispositifWithMainSponsor).toHaveBeenCalledWith();
+    expect(getUserById).toHaveBeenCalledWith("userId", {
+      username: 1,
+      email: 1,
+    });
+    expect(sendUpdateReminderMailService).toHaveBeenCalledWith(
+      "email",
+      "username",
+      "titre",
+      "userId",
+      "id1",
+      "https://refugies.info/dispositif/id1"
+    );
+
+    // expect(updateDispositifInDB).toHaveBeenCalledWith("id1", {
+    //   draftReminderMailSentDate: 1573380000000,
+    // });
+
+    expect(res.status).toHaveBeenCalledWith(200);
+  });
 });
-
-//   it("should get dispositifs sendOneDraftReminderMailService for dispo id1 and continue with id2 4 even if it throws", async () => {
-//     const dispo1 = {
-//       _id: "id1",
-//       titreInformatif: "titre",
-//       lastModificationDate: moment.utc("2019-02-01T13:00:00.232Z"),
-//       creatorId: { email: "email", username: "pseudo", _id: "userId" },
-//     };
-//     const dispo2 = {
-//       _id: "id2",
-//       titreInformatif: "titre",
-//       lastModificationDate: moment.utc("2019-02-01T13:00:00.232Z"),
-//       creatorId: { email: "email", username: "pseudo", _id: "userId" },
-//       draftReminderMailSentDate: moment.utc("2019-02-01T13:00:00.232Z"),
-//     };
-//     getDraftDispositifs.mockResolvedValueOnce([
-//       { ...dispo1, toJSON: () => dispo1 },
-//       { ...dispo2, toJSON: () => dispo2 },
-//     ]);
-//     sendOneDraftReminderMailService.mockRejectedValueOnce(new Error("erreur"));
-//     const req = { body: { query: { cronToken: "cronToken" } } };
-//     await sendDraftReminderMail(req, res);
-//     expect(checkCronAuthorization).toHaveBeenCalledWith("cronToken");
-//     expect(getDraftDispositifs).toHaveBeenCalledWith();
-//     expect(sendOneDraftReminderMailService).toHaveBeenCalledWith(
-//       "email",
-//       "pseudo",
-//       "titre",
-//       "userId",
-//       "id1"
-//     );
-
-//     expect(logger.info).toHaveBeenCalledWith(
-//       "[sendDraftReminderMail] dispositif with id id2 has already received reminder"
-//     );
-
-//     expect(updateDispositifInDB).not.toHaveBeenCalledWith("id1", {
-//       draftReminderMailSentDate: 1573380000000,
-//     });
-
-//     expect(res.status).toHaveBeenCalledWith(200);
-//   });
-
-//   it("should get dispositifs sendOneDraftReminderMailService for dispo with object in titre info", async () => {
-//     const dispo1 = {
-//       _id: "id1",
-//       titreInformatif: { fr: "titre" },
-//       lastModificationDate: moment.utc("2019-02-01T13:00:00.232Z"),
-//       creatorId: { email: "email", username: "pseudo", _id: "userId" },
-//     };
-//     filterDispositifsForUpdateReminders.mockResolvedValueOnce([
-//       { ...dispo1, toJSON: () => dispo1 },
-//     ]);
-//     const req = { body: { query: { cronToken: "cronToken" } } };
-//     await sendReminderMailToUpdateContents(req, res);
-//     expect(checkCronAuthorization).toHaveBeenCalledWith("cronToken");
-//     expect(sendUpdateReminderMailService).toHaveBeenCalledWith(
-//       "email",
-//       "pseudo",
-//       "titre",
-//       "userId",
-//       "id1"
-//     );
-
-//     // expect(updateDispositifInDB).toHaveBeenCalledWith("id1", {
-//     //   draftReminderMailSentDate: 1573380000000,
-//     // });
-
-//     expect(res.status).toHaveBeenCalledWith(200);
-//   });
-// });
