@@ -135,7 +135,10 @@ export const getDispositifByIdWithMainSponsor = async (
   );
 };
 
-export const getPublishedDispositifWithMainSponsor = async () =>
+export const getPublishedDispositifWithMainSponsor = async (): Promise<
+  DispositifPopulatedDoc[]
+> =>
+  // @ts-ignore
   await Dispositif.find(
     { status: "Actif" },
     {

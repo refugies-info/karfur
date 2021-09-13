@@ -129,7 +129,7 @@ export const sendUpdateReminderMailService = async (
   titreInformatif: string,
   userId: ObjectId,
   dispositifId: ObjectId,
-  lien: string
+  lienFiche: string
 ) => {
   try {
     logger.info("[sendUpdateReminderMailService]  received", {
@@ -145,9 +145,9 @@ export const sendUpdateReminderMailService = async (
       // cc: "contact@refugies.info",
       reply_to: "contact@email.refugies.info",
       dynamicTemplateData: {
-        pseudo: username,
+        Pseudonyme: username,
         titreInformatif,
-        lien,
+        lienFiche,
       },
     };
     const templateName = "updateReminder";

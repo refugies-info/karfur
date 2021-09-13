@@ -6,6 +6,9 @@ import { getUserById } from "../../../modules/users/users.repository";
 import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
 import { filterDispositifsForUpdateReminders } from "../../../modules/dispositif/dispositif.adapter";
 import { sendUpdateReminderMailService } from "../../../modules/mail/mail.service";
+import { isTitreInformatifObject } from "../../../types/typeguards";
+import { asyncForEach } from "../../../libs/asyncForEach";
+import { Membre } from "../../../types/interface";
 // import { isTitreInformatifObject } from "../../../types/typeguards";
 
 export const sendReminderMailToUpdateContents = async (
@@ -29,7 +32,6 @@ export const sendReminderMailToUpdateContents = async (
     const nbDaysBeforeReminder = 90;
 
     const filteredDispositifs = filterDispositifsForUpdateReminders(
-      //@ts-ignore
       dispositifs,
       nbDaysBeforeReminder
     );
@@ -38,34 +40,50 @@ export const sendReminderMailToUpdateContents = async (
       `[sendReminderMailToUpdateContents] find ${filteredDispositifs.length} reminders to send`
     );
 
-    filteredDispositifs.forEach((dispositif) => {
-      if (dispositif.mainSponsor) {
-        //@ts-ignore
-        if (dispositif.mainSponsor.membres) {
+    filteredDispositifs.map((dispo) => {
+      if (isTitreInformatifObject(dispo.titreInformatif)) {
+        return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif.fr };
+      }
+      return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif };
+    });
+
+    asyncForEach(filteredDispositifs, async (dispositif) => {
+      try {
+        if (dispositif.mainSponsor) {
           //@ts-ignore
-          dispositif.mainSponsor.membres.forEach(async (membre) => {
-            if (membre.roles[0] === "administrateur") {
-              let user = await getUserById(membre.userId, {
-                username: 1,
-                email: 1,
-              });
-              if (user.email) {
-                sendUpdateReminderMailService(
-                  user.email,
-                  user.username,
-                  //@ts-ignore
-                  dispositif.titreInformatif,
-                  user._id,
-                  dispositif._id,
-                  "https://refugies.info/" +
-                    dispositif.typeContenu +
-                    "/" +
-                    dispositif._id
-                );
+          if (dispositif.mainSponsor.membres) {
+            asyncForEach(
+              //@ts-ignore
+              dispositif.mainSponsor.membres,
+              async (membre: Membre) => {
+                if (membre.roles.includes("administrateur")) {
+                  let user = await getUserById(membre.userId, {
+                    username: 1,
+                    email: 1,
+                  });
+                  if (user.email) {
+                    sendUpdateReminderMailService(
+                      user.email,
+                      user.username,
+                      //@ts-ignore
+                      dispositif.titreInformatif,
+                      user._id,
+                      dispositif._id,
+                      "https://refugies.info/" +
+                        dispositif.typeContenu +
+                        "/" +
+                        dispositif._id
+                    );
+                  }
+                }
               }
-            }
-          });
+            );
+          }
         }
+      } catch (error) {
+        logger.error("[sendReminderMailToUpdateContents] error", {
+          error: error.message,
+        });
       }
     });
 
