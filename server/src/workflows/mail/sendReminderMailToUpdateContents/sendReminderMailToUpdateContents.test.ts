@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 // @ts-nocheck
 import { sendReminderMailToUpdateContents } from "./sendReminderMailToUpdateContents";
 import { getPublishedDispositifWithMainSponsor } from "../../../modules/dispositif/dispositif.repository";
