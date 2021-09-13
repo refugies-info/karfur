@@ -1,9 +1,10 @@
+/* eslint-disable no-console */
 // @ts-nocheck
 import { sendReminderMailToUpdateContents } from "./sendReminderMailToUpdateContents";
 import { getPublishedDispositifWithMainSponsor } from "../../../modules/dispositif/dispositif.repository";
 import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
 //import { filterDispositifsForUpdateReminders } from "../../../modules/dispositif/dispositif.adapter";
-//import { sendUpdateReminderMailService } from "../../../modules/mail/mail.service";
+import { sendUpdateReminderMailService } from "../../../modules/mail/mail.service";
 import moment from "moment";
 import mockdate from "mockdate";
 //import logger from "../../../logger";
@@ -16,11 +17,8 @@ jest.mock("../../../libs/checkAuthorizations", () => ({
 }));
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
-  getPublishedDispositifWithMainSponsor: jest.fn(),
-}));
-
-jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getDraftDispositifs: jest.fn(),
+  getPublishedDispositifWithMainSponsor: jest.fn(),
   updateDispositifInDB: jest.fn(),
 }));
 
@@ -140,7 +138,15 @@ describe("sendReminderMailToUpdateContents", () => {
     await sendReminderMailToUpdateContents(req, res);
     expect(checkCronAuthorization).toHaveBeenCalledWith("cronToken");
     expect(getPublishedDispositifWithMainSponsor).toHaveBeenCalledWith();
-    expect(res.status).toHaveBeenCalledWith(200);
+    expect(sendUpdateReminderMailService).toHaveBeenCalledWith(
+      "email",
+      "pseudo",
+      "titre",
+      "userId",
+      "id1"
+    );
+    console.log("res", res);
+    //expect(res.status).toHaveBeenCalledWith(200);
   });
   //
   //     expect(sendUpdateReminderMailService).toHaveBeenCalledWith(

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
 import { getPublishedDispositifWithMainSponsor } from "../../../modules/dispositif/dispositif.repository";
@@ -45,7 +46,7 @@ export const sendReminderMailToUpdateContents = async (
         return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif };
       }
     );
-
+    console.log("test oui");
     await asyncForEach(
       filteredDispositifWithTitreInfoFormated,
       async (dispositif) => {
