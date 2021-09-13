@@ -154,6 +154,7 @@ export const sendUpdateReminderMailService = async (
     sendMail(templateName, dynamicData);
 
     await addMailEvent({ templateName, username, email, userId, dispositifId });
+
     return;
   } catch (error) {
     logger.error("[sendUpdateReminderMailService] error", {

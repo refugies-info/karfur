@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
 import { getPublishedDispositifWithMainSponsor } from "../../../modules/dispositif/dispositif.repository";
@@ -40,53 +39,59 @@ export const sendReminderMailToUpdateContents = async (
       `[sendReminderMailToUpdateContents] find ${filteredDispositifs.length} reminders to send`
     );
 
-    filteredDispositifs.map((dispo) => {
-      if (isTitreInformatifObject(dispo.titreInformatif)) {
-        return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif.fr };
+    const filteredDispositifWithTitreInfoFormated = filteredDispositifs.map(
+      (dispo) => {
+        if (isTitreInformatifObject(dispo.titreInformatif)) {
+          return {
+            ...dispo.toJSON(),
+            titreInformatif: dispo.titreInformatif.fr,
+          };
+        }
+        return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif };
       }
-      return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif };
-    });
+    );
 
-    asyncForEach(filteredDispositifs, async (dispositif) => {
-      try {
-        if (dispositif.mainSponsor) {
-          //@ts-ignore
-          if (dispositif.mainSponsor.membres) {
-            asyncForEach(
-              //@ts-ignore
-              dispositif.mainSponsor.membres,
-              async (membre: Membre) => {
-                if (membre.roles.includes("administrateur")) {
-                  let user = await getUserById(membre.userId, {
-                    username: 1,
-                    email: 1,
-                  });
-                  if (user.email) {
-                    sendUpdateReminderMailService(
-                      user.email,
-                      user.username,
-                      //@ts-ignore
-                      dispositif.titreInformatif,
-                      user._id,
-                      dispositif._id,
-                      "https://refugies.info/" +
-                        dispositif.typeContenu +
-                        "/" +
-                        dispositif._id
-                    );
+    asyncForEach(
+      filteredDispositifWithTitreInfoFormated,
+      async (dispositif) => {
+        try {
+          if (dispositif.mainSponsor) {
+            //@ts-ignore
+            if (dispositif.mainSponsor.membres) {
+              asyncForEach(
+                //@ts-ignore
+                dispositif.mainSponsor.membres,
+                async (membre: Membre) => {
+                  if (membre.roles.includes("administrateur")) {
+                    let user = await getUserById(membre.userId, {
+                      username: 1,
+                      email: 1,
+                    });
+                    if (user.email) {
+                      sendUpdateReminderMailService(
+                        user.email,
+                        user.username,
+                        dispositif.titreInformatif,
+                        user._id,
+                        dispositif._id,
+                        "https://refugies.info/" +
+                          dispositif.typeContenu +
+                          "/" +
+                          dispositif._id
+                      );
+                    }
                   }
                 }
-              }
-            );
+              );
+            }
           }
+        } catch (error) {
+          logger.error("[sendReminderMailToUpdateContents] error", {
+            error: error.message,
+          });
         }
-      } catch (error) {
-        logger.error("[sendReminderMailToUpdateContents] error", {
-          error: error.message,
-        });
       }
-    });
-
+    );
     return res.status(200).json({ text: "OK" });
   } catch (error) {
     logger.error("[sendReminderMailToUpdateContents] error", {
