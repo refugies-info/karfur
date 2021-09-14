@@ -21,6 +21,7 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { firstLetterUpperCase } from "../../libs";
 import { NeedsHeader } from "../../components/Needs/NeedsHeader";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import SkeletonContent from "react-native-skeleton-content";
 
 const computeNeedsToDisplay = (
   allNeeds: Need[],
@@ -122,7 +123,43 @@ export const NeedsScreen = ({
         navigation={navigation}
         showSwitch={true}
       >
-        <Header>{"loading"}</Header>
+        <NeedsHeader
+          text={firstLetterUpperCase(t("Tags." + tagName, tagName)) || ""}
+          color={tagDarkColor}
+          isRTL={isRTL}
+          iconName={iconName}
+        />
+        <SkeletonContent
+          containerStyle={{
+            display: "flex",
+            flex: 1,
+            marginTop: 110,
+            marginHorizontal: 24,
+          }}
+          isLoading={true}
+          layout={[
+            {
+              key: "Section1",
+              width: "100%",
+              height: 80,
+              marginBottom: theme.margin * 3,
+            },
+            {
+              key: "Section2",
+              width: "100%",
+              height: 80,
+              marginBottom: theme.margin * 3,
+            },
+            {
+              key: "Section3",
+              width: "100%",
+              height: 80,
+              marginBottom: theme.margin * 3,
+            },
+          ]}
+          boneColor={theme.colors.grey}
+          highlightColor={theme.colors.lightGrey}
+        />
       </WrapperWithHeaderAndLanguageModal>
     );
   }
