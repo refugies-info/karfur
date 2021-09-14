@@ -10,14 +10,7 @@ import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { AvailableLanguageI18nCode } from "../types/interface";
 import { OnboardingParamList } from "../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-
-const MainContainer = styled.View`
-  padding-horizontal: ${theme.margin * 2}px;
-  justify-content: center;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-`;
+import { ScrollView } from "react-native-gesture-handler";
 
 const MainView = styled.View`
   display: flex;
@@ -43,7 +36,18 @@ export const LanguageChoiceScreen = ({
   return (
     <MainView>
       <HeaderWithLogo hideLanguageSwitch={true} />
-      <MainContainer>
+      <ScrollView
+        scrollIndicatorInsets={{ right: 1 }}
+        contentContainerStyle={{
+          paddingHorizontal: theme.margin * 2,
+          paddingBottom: theme.margin * 3,
+          paddingTop: theme.margin,
+
+          justifyContent: "center",
+          flexGrow: 1,
+          flexDirection: "column",
+        }}
+      >
         {activatedLanguages.map((language, index) => (
           <LanguageDetailsButton
             langueFr={language.langueFr}
@@ -52,7 +56,7 @@ export const LanguageChoiceScreen = ({
             onPress={() => changeLanguage(language.i18nCode)}
           />
         ))}
-      </MainContainer>
+      </ScrollView>
     </MainView>
   );
 };
