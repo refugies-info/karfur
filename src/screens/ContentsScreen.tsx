@@ -2,14 +2,15 @@ import { WrapperWithHeaderAndLanguageModal } from "./WrapperWithHeaderAndLanguag
 import * as React from "react";
 import { ExplorerParamList } from "../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { TextNormal } from "../components/StyledText";
+import { TextNormal, TextNormalBold } from "../components/StyledText";
 import { useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
 import { contentsSelector } from "../services/redux/Contents/contents.selectors";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 import styled from "styled-components/native";
 import { theme } from "../theme";
 import { needNameSelector } from "../services/redux/Needs/needs.selectors";
+import { groupedContentsSelector } from "../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 
 const ContentContainer = styled.TouchableOpacity`
   background-color: ${theme.colors.grey60};
@@ -38,6 +39,9 @@ export const ContentsScreen = ({
     needId,
   } = route.params;
 
+  const groupedContents = useSelector(groupedContentsSelector);
+  const contentsId = groupedContents[needId];
+
   const filteredContents = contents.filter((content) => {
     const mainTag =
       content.tags && content.tags.length > 0 ? content.tags[0] : null;
@@ -45,6 +49,14 @@ export const ContentsScreen = ({
       return true;
     }
     return false;
+  });
+
+  const contentsToDisplay = contentsId.map((contentId) => {
+    const contentWithInfosArray = contents.filter(
+      (content) => content._id === contentId
+    );
+    if (contentWithInfosArray.length > 0) return contentWithInfosArray[0];
+    return null;
   });
 
   const needName = useSelector(
@@ -62,30 +74,38 @@ export const ContentsScreen = ({
           " need :  " +
           needName +
           " " +
-          filteredContents.length +
-          " fiches plus test"}
+          contentsToDisplay.length +
+          " fiches "}
       </Header>
 
       <ScrollView scrollIndicatorInsets={{ right: 1 }}>
-        {filteredContents.map((content, index) => (
-          <ContentContainer
-            key={index}
-            onPress={() =>
-              navigation.navigate("ContentScreen", {
-                contentId: content._id,
-                tagDarkColor,
-                tagVeryLightColor,
-                tagName,
-                tagLightColor,
-              })
-            }
-          >
-            <TextNormal>{content.titreInformatif}</TextNormal>
-            {!!content.titreMarque && (
-              <TextNormal>{" - " + content.titreMarque}</TextNormal>
-            )}
-          </ContentContainer>
-        ))}
+        {contentsToDisplay.map((content, index) => {
+          if (!content)
+            return (
+              <View>
+                <TextNormalBold>Erreur</TextNormalBold>
+              </View>
+            );
+          return (
+            <ContentContainer
+              key={index}
+              onPress={() =>
+                navigation.navigate("ContentScreen", {
+                  contentId: content._id,
+                  tagDarkColor,
+                  tagVeryLightColor,
+                  tagName,
+                  tagLightColor,
+                })
+              }
+            >
+              <TextNormal>{content.titreInformatif}</TextNormal>
+              {!!content.titreMarque && (
+                <TextNormal>{" - " + content.titreMarque}</TextNormal>
+              )}
+            </ContentContainer>
+          );
+        })}
       </ScrollView>
     </WrapperWithHeaderAndLanguageModal>
   );

@@ -139,5 +139,9 @@
     "Numéro de téléphone": "Numéro de téléphone",
     "Informations pratiques": "Informations pratiques",
     "Non renseigné": "Non renseigné"
+  },
+  "NeedsScreen": {
+    "fiches": "fiches",
+    "fiche": "fiche"
   }
 }

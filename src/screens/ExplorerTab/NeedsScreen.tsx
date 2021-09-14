@@ -1,7 +1,11 @@
 import * as React from "react";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import { theme } from "../../theme";
-import { TextNormal } from "../../components/StyledText";
+import {
+  TextNormal,
+  TextSmallBold,
+  TextVerySmallNormal,
+} from "../../components/StyledText";
 import { ExplorerParamList } from "../../../types";
 import { useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
@@ -33,19 +37,48 @@ const computeNeedsToDisplay = (
     return false;
   });
 
-  return filteredNeeds;
+  return filteredNeeds.map((need) => {
+    return { ...need, nbContents: groupedContents[need._id].length };
+  });
 };
 
 const NeedContainer = styled(RTLTouchableOpacity)`
-  padding: 16px;
-  background-color: ${theme.colors.grey};
-  margin: 8px;
+  padding:${theme.margin * 2}px
+  background-color: ${theme.colors.white};
+  margin-bottom: ${theme.margin * 3}px;
+  border-radius: ${theme.radius * 2}px;
+  box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
+  
+  justify-content:space-between;
+  align-items :center
 `;
 
 const Header = styled(TextNormal)`
   margin-left: 24px;
   margin-top: 8px;
 `;
+
+const StyledText = styled(TextSmallBold)`
+  color: ${(props: { color: string }) => props.color};
+`;
+
+const IndicatorContainer = styled.View`
+  background-color: ${(props: { backgroundColor: string }) =>
+    props.backgroundColor};
+  padding: ${theme.margin}px;
+  align-self: center;
+  border-radius: 8px;
+  height: 32px;
+  margin-left: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? 0 : theme.margin}px;
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? theme.margin : 0}px;
+`;
+
+const IndicatorText = styled(TextVerySmallNormal)`
+  color: ${theme.colors.white};
+`;
+
 export const NeedsScreen = ({
   navigation,
   route,
@@ -103,7 +136,8 @@ export const NeedsScreen = ({
 
       <ScrollView
         scrollIndicatorInsets={{ right: 1 }}
-        style={{ marginTop: 90 }}
+        style={{ marginTop: 110 }}
+        contentContainerStyle={{ paddingHorizontal: theme.margin * 3 }}
       >
         {needsToDisplay.map((need) => {
           const needText =
@@ -114,6 +148,10 @@ export const NeedsScreen = ({
               ? // @ts-ignore
                 need[currentLanguageI18nCode].text
               : need.fr.text;
+          const indicatorText =
+            need.nbContents < 2
+              ? need.nbContents + " " + t("NeedsScreen.fiche", "fiche")
+              : need.nbContents + " " + t("NeedsScreen.fiches", "fiches");
           return (
             <NeedContainer
               key={need._id}
@@ -127,7 +165,10 @@ export const NeedsScreen = ({
                 })
               }
             >
-              <TextNormal>{needText}</TextNormal>
+              <StyledText color={tagDarkColor}>{needText}</StyledText>
+              <IndicatorContainer backgroundColor={tagLightColor} isRTL={isRTL}>
+                <IndicatorText>{indicatorText}</IndicatorText>
+              </IndicatorContainer>
             </NeedContainer>
           );
         })}
