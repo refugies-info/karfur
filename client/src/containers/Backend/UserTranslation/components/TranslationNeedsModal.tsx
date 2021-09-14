@@ -15,7 +15,7 @@ import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStat
 import { colors } from "../../../../colors";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import { TutorialTranslationModal } from "./TutorielTranslationModal";
+import { FrameModal } from "../../../../components/Modals/FrameModal/FrameModal";
 
 interface Props {
   show: boolean;
@@ -257,9 +257,12 @@ export const TranslationNeedsModal = (props: Props) => {
           Retour
         </FButton>
       </div>
-      <TutorialTranslationModal
+      <FrameModal
         show={showTutorielModal}
         toggle={toggleTutorielModal}
+        section={
+          "https://help.refugies.info/fr/article/experts-traduire-les-besoins-pour-lapplication-mobile-1fpz5wg/reader/"
+        }
       />
     </Modal>
   );
