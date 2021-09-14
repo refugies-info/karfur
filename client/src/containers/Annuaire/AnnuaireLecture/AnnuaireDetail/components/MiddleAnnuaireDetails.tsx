@@ -181,12 +181,11 @@ const getActivityDetails = (activity: string) => {
   return { tag: correspondingTag[0], image: correspondingActivity[0].image };
 };
 
-const sortStructureByActivity = (structure: Structure | null) => {
+const sortStructureActivities = (structure: Structure | null) => {
   let structureActivities: { title: string; tagName: string }[] = [];
   if (structure && structure.activities) {
     structure.activities.forEach((element) => {
       let detail = getActivityDetails(element);
-
       let el = { title: element, tagName: detail.tag ? detail.tag.name : "" };
       structureActivities.push(el);
     });
@@ -200,16 +199,17 @@ const sortStructureByActivity = (structure: Structure | null) => {
     }
     return 0;
   });
-  let structureSortedByActivities: string[] = [];
+  let structureWithActivitiesSortedByTheme: string[] = [];
   structureActivities.forEach((el) =>
-    structureSortedByActivities.push(el.title)
+    structureWithActivitiesSortedByTheme.push(el.title)
   );
-  return structureSortedByActivities;
+  return structureWithActivitiesSortedByTheme;
 };
 
 export const MiddleAnnuaireDetail = (props: Props) => {
   const structure = props.structure;
-  const structureSortedByActivities = sortStructureByActivity(structure);
+  const structureWithActivitiesSortedByTheme =
+    sortStructureActivities(structure);
 
   if (!props.isLoading && structure) {
     return (
@@ -379,8 +379,8 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           </Title>
         </div>
         <ActivityContainer>
-          {structureSortedByActivities &&
-            structureSortedByActivities.map((activity) => {
+          {structureWithActivitiesSortedByTheme &&
+            structureWithActivitiesSortedByTheme.map((activity) => {
               const { tag, image } = getActivityDetails(activity);
               if (!tag) return;
               return (
