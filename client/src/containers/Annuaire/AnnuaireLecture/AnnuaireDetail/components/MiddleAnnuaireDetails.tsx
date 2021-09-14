@@ -180,8 +180,37 @@ const getActivityDetails = (activity: string) => {
   const correspondingTag = filtres.tags.filter((tag) => tag.short === theme);
   return { tag: correspondingTag[0], image: correspondingActivity[0].image };
 };
+
+const sortStructureByActivity = (structure: Structure | null) => {
+  let structureActivities: { title: string; tagName: string }[] = [];
+  if (structure && structure.activities) {
+    structure.activities.forEach((element) => {
+      let detail = getActivityDetails(element);
+
+      let el = { title: element, tagName: detail.tag ? detail.tag.name : "" };
+      structureActivities.push(el);
+    });
+  }
+  structureActivities.sort(function (a, b) {
+    if (a.tagName > b.tagName) {
+      return -1;
+    }
+    if (b.tagName > a.tagName) {
+      return 1;
+    }
+    return 0;
+  });
+  let structureSortedByActivities: string[] = [];
+  structureActivities.forEach((el) =>
+    structureSortedByActivities.push(el.title)
+  );
+  return structureSortedByActivities;
+};
+
 export const MiddleAnnuaireDetail = (props: Props) => {
   const structure = props.structure;
+  const structureSortedByActivities = sortStructureByActivity(structure);
+
   if (!props.isLoading && structure) {
     return (
       <MiddleContainer height={props.leftPartHeight}>
@@ -350,8 +379,8 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           </Title>
         </div>
         <ActivityContainer>
-          {structure.activities &&
-            structure.activities.map((activity) => {
+          {structureSortedByActivities &&
+            structureSortedByActivities.map((activity) => {
               const { tag, image } = getActivityDetails(activity);
               if (!tag) return;
               return (
