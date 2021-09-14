@@ -71,6 +71,7 @@ export const ExplorerScreen = ({
                   tagDarkColor: tag.darkColor,
                   tagVeryLightColor: tag.color30,
                   tagLightColor: tag.lightColor,
+                  iconName: tag.icon,
                 })
               }
             />

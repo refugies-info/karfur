@@ -63,6 +63,7 @@ export const CarousselCard = (props: Props) => {
           tagDarkColor: props.colorDark,
           tagVeryLightColor: props.color30,
           tagLightColor: props.lightColor,
+          iconName: props.iconName,
         })
       }
     >

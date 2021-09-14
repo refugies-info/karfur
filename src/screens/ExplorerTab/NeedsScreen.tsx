@@ -66,6 +66,7 @@ export const NeedsScreen = ({
     tagDarkColor,
     tagVeryLightColor,
     tagLightColor,
+    iconName,
   } = route.params;
 
   const allNeeds = useSelector(needsSelector);
@@ -96,11 +97,13 @@ export const NeedsScreen = ({
       <NeedsHeader
         text={firstLetterUpperCase(t("Tags." + tagName, tagName)) || ""}
         color={tagDarkColor}
+        isRTL={isRTL}
+        iconName={iconName}
       />
 
       <ScrollView
         scrollIndicatorInsets={{ right: 1 }}
-        style={{ marginTop: 110 }}
+        style={{ marginTop: 90 }}
       >
         {needsToDisplay.map((need) => {
           const needText =
