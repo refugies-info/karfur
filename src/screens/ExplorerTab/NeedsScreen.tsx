@@ -9,13 +9,14 @@ import {
 import { ExplorerParamList } from "../../../types";
 import { useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 import { needsSelector } from "../../services/redux/Needs/needs.selectors";
 import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
 import { RTLTouchableOpacity } from "../../components/BasicComponents";
 import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import { ObjectId, Need } from "../../types/interface";
+import { ScrollView } from "react-native-gesture-handler";
 import { StackScreenProps } from "@react-navigation/stack";
 import { firstLetterUpperCase } from "../../libs";
 import { NeedsHeader } from "../../components/Needs/NeedsHeader";
@@ -182,7 +183,7 @@ export const NeedsScreen = ({
   }
 
   return (
-    <View>
+    <View style={{ display: "flex", flex: 1 }}>
       <View style={{ backgroundColor: tagDarkColor }}>
         <HeaderWithBackForWrapper
           onLongPressSwitchLanguage={toggleLanguageModal}
@@ -219,6 +220,7 @@ export const NeedsScreen = ({
         contentContainerStyle={{
           paddingHorizontal: theme.margin * 3,
           paddingTop: theme.margin * 3,
+          paddingBottom: theme.margin * 3,
         }}
       >
         {needsToDisplay.map((need) => {
