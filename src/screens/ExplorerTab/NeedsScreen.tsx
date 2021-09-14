@@ -37,9 +37,14 @@ const computeNeedsToDisplay = (
     return false;
   });
 
-  return filteredNeeds.map((need) => {
-    return { ...need, nbContents: groupedContents[need._id].length };
-  });
+  return filteredNeeds
+    .map((need) => {
+      return { ...need, nbContents: groupedContents[need._id].length };
+    })
+    .sort((a, b) => {
+      if (a.nbContents > b.nbContents) return -1;
+      return 1;
+    });
 };
 
 const NeedContainer = styled(RTLTouchableOpacity)`
@@ -136,8 +141,11 @@ export const NeedsScreen = ({
 
       <ScrollView
         scrollIndicatorInsets={{ right: 1 }}
-        style={{ marginTop: 110 }}
-        contentContainerStyle={{ paddingHorizontal: theme.margin * 3 }}
+        style={{ marginTop: 90 }}
+        contentContainerStyle={{
+          paddingHorizontal: theme.margin * 3,
+          paddingTop: theme.margin * 3,
+        }}
       >
         {needsToDisplay.map((need) => {
           const needText =
