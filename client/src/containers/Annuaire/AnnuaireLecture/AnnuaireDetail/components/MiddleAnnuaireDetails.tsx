@@ -199,17 +199,14 @@ const sortStructureActivities = (structure: Structure | null) => {
     }
     return 0;
   });
-  let structureWithActivitiesSortedByTheme: string[] = [];
-  structureActivities.forEach((el) =>
-    structureWithActivitiesSortedByTheme.push(el.title)
-  );
-  return structureWithActivitiesSortedByTheme;
+  let ActivitiesSortedByTheme: string[] = [];
+  structureActivities.forEach((el) => ActivitiesSortedByTheme.push(el.title));
+  return ActivitiesSortedByTheme;
 };
 
 export const MiddleAnnuaireDetail = (props: Props) => {
   const structure = props.structure;
-  const structureWithActivitiesSortedByTheme =
-    sortStructureActivities(structure);
+  const ActivitiesSortedByTheme = sortStructureActivities(structure);
 
   if (!props.isLoading && structure) {
     return (
@@ -379,8 +376,8 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           </Title>
         </div>
         <ActivityContainer>
-          {structureWithActivitiesSortedByTheme &&
-            structureWithActivitiesSortedByTheme.map((activity) => {
+          {ActivitiesSortedByTheme &&
+            ActivitiesSortedByTheme.map((activity) => {
               const { tag, image } = getActivityDetails(activity);
               if (!tag) return;
               return (
