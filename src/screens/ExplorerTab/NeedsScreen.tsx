@@ -9,8 +9,7 @@ import {
 import { ExplorerParamList } from "../../../types";
 import { useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 import { needsSelector } from "../../services/redux/Needs/needs.selectors";
 import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
@@ -22,6 +21,8 @@ import { firstLetterUpperCase } from "../../libs";
 import { NeedsHeader } from "../../components/Needs/NeedsHeader";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import SkeletonContent from "react-native-skeleton-content";
+import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
+import { HeaderWithBackForWrapper } from "../../components/HeaderWithLogo";
 
 const computeNeedsToDisplay = (
   allNeeds: Need[],
@@ -89,6 +90,15 @@ export const NeedsScreen = ({
   navigation,
   route,
 }: StackScreenProps<ExplorerParamList, "NeedsScreen">) => {
+  const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
+    false
+  );
+
+  const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
+
+  const toggleLanguageModal = () =>
+    setLanguageModalVisible(!isLanguageModalVisible);
+
   const { t, isRTL } = useTranslationWithRTL();
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
@@ -119,10 +129,13 @@ export const NeedsScreen = ({
 
   if (isLoading) {
     return (
-      <WrapperWithHeaderAndLanguageModal
-        navigation={navigation}
-        showSwitch={true}
-      >
+      <View>
+        <View style={{ backgroundColor: tagDarkColor }}>
+          <HeaderWithBackForWrapper
+            onLongPressSwitchLanguage={toggleLanguageModal}
+            navigation={navigation}
+          />
+        </View>
         <NeedsHeader
           text={firstLetterUpperCase(t("Tags." + tagName, tagName)) || ""}
           color={tagDarkColor}
@@ -160,15 +173,22 @@ export const NeedsScreen = ({
           boneColor={theme.colors.grey}
           highlightColor={theme.colors.lightGrey}
         />
-      </WrapperWithHeaderAndLanguageModal>
+        <LanguageChoiceModal
+          isModalVisible={isLanguageModalVisible}
+          toggleModal={toggleLanguageModal}
+        />
+      </View>
     );
   }
 
   return (
-    <WrapperWithHeaderAndLanguageModal
-      navigation={navigation}
-      showSwitch={true}
-    >
+    <View>
+      <View style={{ backgroundColor: tagDarkColor }}>
+        <HeaderWithBackForWrapper
+          onLongPressSwitchLanguage={toggleLanguageModal}
+          navigation={navigation}
+        />
+      </View>
       <NeedsHeader
         text={firstLetterUpperCase(t("Tags." + tagName, tagName)) || ""}
         color={tagDarkColor}
@@ -176,9 +196,26 @@ export const NeedsScreen = ({
         iconName={iconName}
       />
 
+      {/* <Animated.View
+          style={[
+            styles.bodyBackground,
+            { height: bodyHeight, backgroundColor: boxInterpolation },
+          ]}
+        >
+          <SimplifiedHeaderContainer
+            onLayout={(event: any) =>
+              setBodySectionHeight(event.nativeEvent.layout.height)
+            }
+            style={styles.bodyContainer}
+          >
+            <TextSmallNormal style={{ color: theme.colors.white }}>
+              {selectedContent.titreInformatif}
+            </TextSmallNormal>
+          </SimplifiedHeaderContainer>
+        </Animated.View> */}
+
       <ScrollView
         scrollIndicatorInsets={{ right: 1 }}
-        style={{ marginTop: 90 }}
         contentContainerStyle={{
           paddingHorizontal: theme.margin * 3,
           paddingTop: theme.margin * 3,
@@ -218,6 +255,10 @@ export const NeedsScreen = ({
           );
         })}
       </ScrollView>
-    </WrapperWithHeaderAndLanguageModal>
+      <LanguageChoiceModal
+        isModalVisible={isLanguageModalVisible}
+        toggleModal={toggleLanguageModal}
+      />
+    </View>
   );
 };

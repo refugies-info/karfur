@@ -14,12 +14,8 @@ interface Props {
 
 const MainContainer = styled.View`
   background-color: ${(props: { color: string }) => props.color};
-  position: absolute;
-  top: 0;
-  height: 200px;
   width: 100%;
   display: flex;
-  flex: 1;
   flex-direction: column;
   padding: ${theme.margin * 3}px;
   justify-content: flex-end;
@@ -35,6 +31,7 @@ const Text = styled(StyledTextBigBold)`
     props.isRTL ? theme.margin * 2 : 0}px;
   margin-bottom: ${theme.margin}px;
 `;
+
 export const NeedsHeader = (props: Props) => (
   <MainContainer color={props.color}>
     <RTLView>
