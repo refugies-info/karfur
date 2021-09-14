@@ -260,9 +260,7 @@ export const TranslationNeedsModal = (props: Props) => {
       <FrameModal
         show={showTutorielModal}
         toggle={toggleTutorielModal}
-        section={
-          "https://help.refugies.info/fr/article/experts-traduire-les-besoins-pour-lapplication-mobile-1fpz5wg/reader/"
-        }
+        section={"Traduction besoin"}
       />
     </Modal>
   );

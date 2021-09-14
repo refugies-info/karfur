@@ -74,4 +74,9 @@ export const sectionUrlCorrespondencies = [
     tutoUrl:
       "https://help.refugies.info/fr/article/comment-traduire-une-page-sur-refugiesinfo-1nnffof",
   },
+  {
+    section: "Traduction besoin",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/experts-traduire-les-besoins-pour-lapplication-mobile-1fpz5wg/reader/",
+  },
 ];
