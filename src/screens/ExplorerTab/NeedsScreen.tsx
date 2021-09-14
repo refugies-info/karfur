@@ -14,6 +14,9 @@ import { RTLTouchableOpacity } from "../../components/BasicComponents";
 import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import { ObjectId, Need } from "../../types/interface";
 import { StackScreenProps } from "@react-navigation/stack";
+import { firstLetterUpperCase } from "../../libs";
+import { NeedsHeader } from "../../components/Needs/NeedsHeader";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 const computeNeedsToDisplay = (
   allNeeds: Need[],
@@ -47,6 +50,7 @@ export const NeedsScreen = ({
   navigation,
   route,
 }: StackScreenProps<ExplorerParamList, "NeedsScreen">) => {
+  const { t, isRTL } = useTranslationWithRTL();
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
   const isLoadingContents = useSelector(
@@ -89,9 +93,15 @@ export const NeedsScreen = ({
       navigation={navigation}
       showSwitch={true}
     >
-      <Header>{"needs screen : " + tagName + " "}</Header>
+      <NeedsHeader
+        text={firstLetterUpperCase(t("Tags." + tagName, tagName)) || ""}
+        color={tagDarkColor}
+      />
 
-      <ScrollView scrollIndicatorInsets={{ right: 1 }}>
+      <ScrollView
+        scrollIndicatorInsets={{ right: 1 }}
+        style={{ marginTop: 110 }}
+      >
         {needsToDisplay.map((need) => {
           const needText =
             currentLanguageI18nCode &&
