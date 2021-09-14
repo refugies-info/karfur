@@ -35,6 +35,13 @@ export const MainContainer = styled.div`
   margin-bottom: 42px;
 `;
 
+const ErrorMessageContainer = styled.div`
+  color: ${colors.error};
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 16px;
+`;
+
 export const ProfileContainer = styled.div`
   background: ${colors.lightGrey};
   border-radius: 12px;
@@ -115,7 +122,7 @@ export const UserProfileComponent = (props: Props) => {
   const [isPseudoModifyDisabled, setIsPseudoModifyDisabled] = useState(true);
   const [isEmailModifyDisabled, setIsEmailModifyDisabled] = useState(true);
   const [isPictureUploading, setIsPictureUploading] = useState(false);
-
+  const [notEmailError, setNotEmailError] = useState(false);
   const isLoadingSave = useSelector(
     isLoadingSelector(LoadingStatusKey.SAVE_USER)
   );
@@ -217,21 +224,27 @@ export const UserProfileComponent = (props: Props) => {
   };
 
   const onEmailModificationValidate = () => {
-    if (!user) return;
-    dispatch(
-      saveUserActionCreator({
-        user: { email, _id: user._id },
-        type: "modify-my-details",
-      })
-    );
+    const regex = /^\S+@\S+\.\S+$/;
+    const isEmail = email ? !!email.match(regex) : false;
+    if (isEmail) {
+      if (!user) return;
+      dispatch(
+        saveUserActionCreator({
+          user: { email, _id: user._id },
+          type: "modify-my-details",
+        })
+      );
 
-    Swal.fire({
-      title: "Yay...",
-      text: "Votre email a bien été modifié",
-      type: "success",
-      timer: 1500,
-    });
-    setIsEmailModifyDisabled(true);
+      Swal.fire({
+        title: "Yay...",
+        text: "Votre email a bien été modifié",
+        type: "success",
+        timer: 1500,
+      });
+      setIsEmailModifyDisabled(true);
+    } else {
+      setNotEmailError(true);
+    }
   };
 
   const onPseudoModificationValidate = async () => {
@@ -394,6 +407,11 @@ export const UserProfileComponent = (props: Props) => {
               </FButton>
             </div>
           </RowContainer>
+          {notEmailError && (
+            <ErrorMessageContainer>
+              Ceci n'est pas un email, vérifiez l'orthographe.
+            </ErrorMessageContainer>
+          )}
           <DescriptionText>
             {props.t(
               "UserProfile.emailExplication",

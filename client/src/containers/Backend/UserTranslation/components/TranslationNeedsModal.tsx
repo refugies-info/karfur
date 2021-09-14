@@ -1,5 +1,5 @@
 import "./TranslationNeedsModal.scss";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, Table } from "reactstrap";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,6 +15,7 @@ import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStat
 import { colors } from "../../../../colors";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { FrameModal } from "../../../../components/Modals/FrameModal/FrameModal";
 
 interface Props {
   show: boolean;
@@ -64,6 +65,7 @@ const getStatusColorAndText = (
 export const TranslationNeedsModal = (props: Props) => {
   const arrayLines = new Array(6).fill("a");
   const arrayContent = new Array(3).fill("a");
+  const [showTutorielModal, setShowTutorielModal] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -73,7 +75,7 @@ export const TranslationNeedsModal = (props: Props) => {
   useEffect(() => {
     dispatch(fetchNeedsActionCreator());
   }, []);
-
+  const toggleTutorielModal = () => setShowTutorielModal(!showTutorielModal);
   const needs = useSelector(needsSelector);
 
   const needsWithStatus = needs.map((need) => {
@@ -242,7 +244,7 @@ export const TranslationNeedsModal = (props: Props) => {
         <FButton
           type="tuto"
           name={"play-circle-outline"}
-          // onClick={toggleTutorielModal}
+          onClick={toggleTutorielModal}
         >
           Tutoriel
         </FButton>
@@ -255,6 +257,11 @@ export const TranslationNeedsModal = (props: Props) => {
           Retour
         </FButton>
       </div>
+      <FrameModal
+        show={showTutorielModal}
+        toggle={toggleTutorielModal}
+        section={"Traduction besoin"}
+      />
     </Modal>
   );
 };

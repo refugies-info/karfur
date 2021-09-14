@@ -1,2 +1,0 @@
-export const SET_LANGUAGES = "SET_LANGUAGES";
-export const FETCH_LANGUAGES = "FETCH_LANGUAGES";
