@@ -199,14 +199,14 @@ const sortStructureActivities = (structure: Structure | null) => {
     }
     return 0;
   });
-  let ActivitiesSortedByTheme: string[] = [];
-  structureActivities.forEach((el) => ActivitiesSortedByTheme.push(el.title));
-  return ActivitiesSortedByTheme;
+  let activitiesSortedByTheme: string[] = [];
+  structureActivities.forEach((el) => activitiesSortedByTheme.push(el.title));
+  return activitiesSortedByTheme;
 };
 
 export const MiddleAnnuaireDetail = (props: Props) => {
   const structure = props.structure;
-  const ActivitiesSortedByTheme = sortStructureActivities(structure);
+  const activitiesSortedByTheme = sortStructureActivities(structure);
 
   if (!props.isLoading && structure) {
     return (
@@ -376,8 +376,8 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           </Title>
         </div>
         <ActivityContainer>
-          {ActivitiesSortedByTheme &&
-            ActivitiesSortedByTheme.map((activity) => {
+          {activitiesSortedByTheme &&
+            activitiesSortedByTheme.map((activity) => {
               const { tag, image } = getActivityDetails(activity);
               if (!tag) return;
               return (
