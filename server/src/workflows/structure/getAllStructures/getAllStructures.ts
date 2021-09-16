@@ -34,6 +34,17 @@ export const getAllStructures = async (req: {}, res: Res) => {
         responsablesArray.length > 0 ? responsablesArray[0].userId : null;
 
       // @ts-ignore
+      const dispositifsSimplified: any[] = [];
+      jsonStructure.dispositifsAssocies.forEach((dispositif: any) => {
+        let el = {
+          titreInformatif: dispositif.titreInformatif,
+          creatorId: dispositif.creatorId,
+          created_at: dispositif.created_at,
+          _id: dispositif._id,
+          status: dispositif.status,
+        };
+        dispositifsSimplified.push(el);
+      });
       const dispositifsAssocies = jsonStructure.dispositifsAssocies.filter(
         (dispo: any) => {
           return (
@@ -52,6 +63,7 @@ export const getAllStructures = async (req: {}, res: Res) => {
         nbMembres,
         responsable: responsableId,
         nbFiches,
+        dispositifsSimplified,
       };
     });
     const neededFieldsUser = { username: 1, picture: 1 };
