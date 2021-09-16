@@ -25,6 +25,7 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { fetchAllStructuresActionsCreator } from "../../../../../services/AllStructures/allStructures.actions";
 import { fetchAllDispositifsActionsCreator } from "../../../../../services/AllDispositifs/allDispositifs.actions";
 import { fetchAllUsersActionsCreator } from "../../../../../services/AllUsers/allUsers.actions";
+import { colors } from "colors";
 moment.locale("fr");
 
 const Title = styled.div`
@@ -67,6 +68,34 @@ const FichesColumnContainer = styled.div`
   padding-left: 32px;
   font-weight: 700;
   font-size: 16px;
+  padding-bottom: 8px;
+`;
+const TitleFichesContainer = styled.div`
+  padding-left: 32px;
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: underline;
+  padding-bottom: 5px;
+  max-width: 450px;
+  cursor: pointer;
+  color: ${(props) => props.color};
+`;
+const TextInfoFichesContainer = styled.div`
+  padding-left: 32px;
+  font-size: 12px;
+`;
+
+const TextNoFicheContainer = styled.div`
+  padding-left: 32px;
+  font-weight: 700;
+color:${colors.grisFonce}
+  font-size: 22px;
+`;
+
+const DetailsFichesContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 interface Props extends RouteComponentProps {
   show: boolean;
@@ -163,6 +192,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
   );
+
   // eslint-disable-next-line no-console
   console.log("structure", structure);
   if (isLoading) {
@@ -192,6 +222,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
       isOpen={props.show}
       toggle={props.toggleModal}
       className="structure-details-modal"
+      style={{ maxWidth: "950px" }}
     >
       <ColumnContainer>
         <div>
@@ -308,7 +339,63 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
             ? moment(structure.created_at).format("LLL")
             : "Non connue"}
         </div>
-        <FichesColumnContainer>Fiche de la structure</FichesColumnContainer>
+        <div>
+          <FichesColumnContainer>Fiche de la structure</FichesColumnContainer>
+          {structure.dispositifsSimplified.length ? (
+            structure.dispositifsSimplified.map((dispositif, index) => {
+              return (
+                <>
+                  <TitleFichesContainer
+                    color={dispositif.color}
+                    key={dispositif._id}
+                  >
+                    {
+                      //@ts-ignore
+                      dispositif.titreInformatif.fr
+                        ? //@ts-ignore
+                          dispositif.titreInformatif.fr
+                        : dispositif.titreInformatif
+                    }
+                  </TitleFichesContainer>
+                  <DetailsFichesContainer>
+                    <TextInfoFichesContainer>
+                      {index === 0 && (
+                        <div style={{ fontWeight: 700 }}>
+                          Fiche ayant créée la structure
+                        </div>
+                      )}
+                      <div>
+                        {" "}
+                        Créé le {moment(dispositif.created_at).format(
+                          "LLL"
+                        )} - {dispositif.status}
+                      </div>
+                    </TextInfoFichesContainer>
+                    {!isLoading && (
+                      <div
+                        style={{
+                          marginBottom: "8px",
+                          cursor: "pointer",
+                          textDecoration: "underline",
+                        }}
+                      >
+                        <ResponsableComponent
+                          responsable={structure.responsable}
+                          canModifyRespo={true}
+                          onClick={props.toggleRespoModal}
+                        />
+                      </div>
+                    )}{" "}
+                  </DetailsFichesContainer>
+                </>
+              );
+            })
+          ) : (
+            <TextNoFicheContainer>
+              Aucune fiche n'est connectée à cette structure
+            </TextNoFicheContainer>
+          )}
+        </div>
       </ColumnContainer>
       <BottomRowContainer>
         <div>

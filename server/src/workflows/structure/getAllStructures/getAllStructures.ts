@@ -42,9 +42,21 @@ export const getAllStructures = async (req: {}, res: Res) => {
             created_at: dispositif.created_at,
             _id: dispositif._id,
             status: dispositif.status,
+            color: dispositif.tags.length
+              ? dispositif.tags[0].darkColor
+              : "#000000",
           };
           dispositifsSimplified.push(el);
         }
+      });
+      dispositifsSimplified.sort(function (a, b) {
+        if (a.created_at < b.created_at) {
+          return -1;
+        }
+        if (b.created_at < a.created_at) {
+          return 1;
+        }
+        return 0;
       });
       const dispositifsAssocies = jsonStructure.dispositifsAssocies.filter(
         (dispo: any) => {

@@ -322,11 +322,12 @@ export interface SimplifiedStructureForAdmin {
   responsable: null | Responsable;
   membres: Membre[];
   dispositifsSimplified: {
-    titreInformatif: string;
+    titreInformatif: any;
     creatorId: string;
     created_at: string;
     _id: string;
     status: string;
+    color: string;
   }[];
   nbFiches: number;
 }
