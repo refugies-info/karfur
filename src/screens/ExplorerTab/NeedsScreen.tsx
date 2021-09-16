@@ -8,21 +8,20 @@ import {
 import { ExplorerParamList } from "../../../types";
 import { useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { View, Animated, StyleSheet } from "react-native";
+import { View, Animated } from "react-native";
 import { needsSelector } from "../../services/redux/Needs/needs.selectors";
 import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
-import { RTLTouchableOpacity, RTLView } from "../../components/BasicComponents";
+import { RTLTouchableOpacity } from "../../components/BasicComponents";
 import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import { ObjectId, Need } from "../../types/interface";
 import { ScrollView } from "react-native-gesture-handler";
 import { StackScreenProps } from "@react-navigation/stack";
-import { firstLetterUpperCase } from "../../libs";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import SkeletonContent from "react-native-skeleton-content";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 import { HeaderWithBackForWrapper } from "../../components/HeaderWithLogo";
-import { StreamlineIcon } from "../../components/StreamlineIcon";
+import { NeedsHeaderAnimated } from "../../components/Needs/NeedsHeaderAnimated";
 
 const computeNeedsToDisplay = (
   allNeeds: Need[],
@@ -80,25 +79,6 @@ const IndicatorContainer = styled.View`
 const IndicatorText = styled(TextVerySmallNormal)`
   color: ${theme.colors.white};
 `;
-
-const styles = StyleSheet.create({
-  bodyBackground: {
-    overflow: "hidden",
-    paddingHorizontal: theme.margin * 3,
-  },
-
-  bodyContainer: {
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-  },
-  headerText: {
-    fontSize: theme.fonts.sizes.big,
-    fontFamily: theme.fonts.families.circularBold,
-    lineHeight: 32,
-    color: theme.colors.white,
-  },
-});
 
 export const NeedsScreen = ({
   navigation,
@@ -206,40 +186,16 @@ export const NeedsScreen = ({
             navigation={navigation}
           />
         </View>
-        <Animated.View
-          style={[
-            styles.bodyBackground,
-            {
-              height: bodyHeight,
-              backgroundColor: tagDarkColor,
-              borderBottomRightRadius: radius,
-              borderBottomLeftRadius: radius,
-              paddingTop: padding,
-            },
-          ]}
-        >
-          <RTLView>
-            <Animated.Text
-              style={[
-                styles.headerText,
-                {
-                  textAlign: isRTL ? "right" : "left",
-                  marginRight: isRTL ? 0 : theme.margin,
-                  marginLeft: isRTL ? theme.margin : 0,
-                  fontSize,
-                },
-              ]}
-            >
-              {firstLetterUpperCase(t("Tags." + tagName, tagName)) || ""}
-            </Animated.Text>
-
-            <StreamlineIcon
-              name={iconName}
-              width={showSimplifiedHeader ? 16 : 24}
-              height={showSimplifiedHeader ? 16 : 24}
-            />
-          </RTLView>
-        </Animated.View>
+        <NeedsHeaderAnimated
+          tagDarkColor={tagDarkColor}
+          radius={radius}
+          bodyHeight={bodyHeight}
+          padding={padding}
+          tagName={tagName}
+          fontSize={fontSize}
+          iconName={iconName}
+          showSimplifiedHeader={showSimplifiedHeader}
+        />
 
         <SkeletonContent
           containerStyle={{
@@ -288,41 +244,16 @@ export const NeedsScreen = ({
           navigation={navigation}
         />
       </View>
-
-      <Animated.View
-        style={[
-          styles.bodyBackground,
-          {
-            height: bodyHeight,
-            backgroundColor: tagDarkColor,
-            borderBottomRightRadius: radius,
-            borderBottomLeftRadius: radius,
-            paddingTop: padding,
-          },
-        ]}
-      >
-        <RTLView>
-          <Animated.Text
-            style={[
-              styles.headerText,
-              {
-                textAlign: isRTL ? "right" : "left",
-                marginRight: isRTL ? 0 : theme.margin,
-                marginLeft: isRTL ? theme.margin : 0,
-                fontSize,
-              },
-            ]}
-          >
-            {firstLetterUpperCase(t("Tags." + tagName, tagName)) || ""}
-          </Animated.Text>
-
-          <StreamlineIcon
-            name={iconName}
-            width={showSimplifiedHeader ? 16 : 24}
-            height={showSimplifiedHeader ? 16 : 24}
-          />
-        </RTLView>
-      </Animated.View>
+      <NeedsHeaderAnimated
+        tagDarkColor={tagDarkColor}
+        radius={radius}
+        bodyHeight={bodyHeight}
+        padding={padding}
+        tagName={tagName}
+        fontSize={fontSize}
+        iconName={iconName}
+        showSimplifiedHeader={showSimplifiedHeader}
+      />
 
       <ScrollView
         scrollIndicatorInsets={{ right: 1 }}
