@@ -42,16 +42,7 @@ export const ContentsScreen = ({
   const groupedContents = useSelector(groupedContentsSelector);
   const contentsId = groupedContents[needId];
 
-  const filteredContents = contents.filter((content) => {
-    const mainTag =
-      content.tags && content.tags.length > 0 ? content.tags[0] : null;
-    if (mainTag && mainTag.name === tagName) {
-      return true;
-    }
-    return false;
-  });
-
-  const contentsToDisplay = contentsId.map((contentId) => {
+  const contentsToDisplay = contentsId.map((contentId: any) => {
     const contentWithInfosArray = contents.filter(
       (content) => content._id === contentId
     );

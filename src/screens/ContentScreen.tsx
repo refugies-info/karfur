@@ -502,7 +502,7 @@ export const ContentScreen = ({
         scrollEventThrottle={16}
         scrollIndicatorInsets={{ right: 1 }}
       >
-        {(!showSimplifiedHeader || true) && (
+        {!showSimplifiedHeader && (
           <>
             <HeaderImage tagName={tagName} height={headerImageHeight} />
             <HeaderImageContainer height={headerImageHeight}>

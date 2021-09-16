@@ -2,28 +2,27 @@ import * as React from "react";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
 import {
-  TextNormal,
   TextSmallBold,
   TextVerySmallNormal,
 } from "../../components/StyledText";
 import { ExplorerParamList } from "../../../types";
 import { useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { View } from "react-native";
+import { View, Animated, StyleSheet } from "react-native";
 import { needsSelector } from "../../services/redux/Needs/needs.selectors";
 import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
-import { RTLTouchableOpacity } from "../../components/BasicComponents";
+import { RTLTouchableOpacity, RTLView } from "../../components/BasicComponents";
 import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import { ObjectId, Need } from "../../types/interface";
 import { ScrollView } from "react-native-gesture-handler";
 import { StackScreenProps } from "@react-navigation/stack";
 import { firstLetterUpperCase } from "../../libs";
-import { NeedsHeader } from "../../components/Needs/NeedsHeader";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import SkeletonContent from "react-native-skeleton-content";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 import { HeaderWithBackForWrapper } from "../../components/HeaderWithLogo";
+import { StreamlineIcon } from "../../components/StreamlineIcon";
 
 const computeNeedsToDisplay = (
   allNeeds: Need[],
@@ -61,11 +60,6 @@ const NeedContainer = styled(RTLTouchableOpacity)`
   align-items :center
 `;
 
-const Header = styled(TextNormal)`
-  margin-left: 24px;
-  margin-top: 8px;
-`;
-
 const StyledText = styled(TextSmallBold)`
   color: ${(props: { color: string }) => props.color};
 `;
@@ -87,6 +81,25 @@ const IndicatorText = styled(TextVerySmallNormal)`
   color: ${theme.colors.white};
 `;
 
+const styles = StyleSheet.create({
+  bodyBackground: {
+    overflow: "hidden",
+    paddingHorizontal: theme.margin * 3,
+  },
+
+  bodyContainer: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+  },
+  headerText: {
+    fontSize: theme.fonts.sizes.big,
+    fontFamily: theme.fonts.families.circularBold,
+    lineHeight: 32,
+    color: theme.colors.white,
+  },
+});
+
 export const NeedsScreen = ({
   navigation,
   route,
@@ -96,6 +109,62 @@ export const NeedsScreen = ({
   );
 
   const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
+
+  const animatedController = React.useRef(new Animated.Value(0)).current;
+
+  const toggleSimplifiedHeader = (displayHeader: boolean) => {
+    if (displayHeader && !showSimplifiedHeader) {
+      Animated.timing(animatedController, {
+        duration: 400,
+        toValue: 1,
+        useNativeDriver: false,
+      }).start();
+      setShowSimplifiedHeader(true);
+      return;
+    }
+
+    if (!displayHeader && showSimplifiedHeader) {
+      Animated.timing(animatedController, {
+        duration: 400,
+        toValue: 0,
+        useNativeDriver: false,
+      }).start();
+      setShowSimplifiedHeader(false);
+      return;
+    }
+  };
+
+  const handleScroll = (event: any) => {
+    if (event.nativeEvent.contentOffset.y > 10) {
+      toggleSimplifiedHeader(true);
+      return;
+    }
+    if (event.nativeEvent.contentOffset.y < 10) {
+      toggleSimplifiedHeader(false);
+      return;
+    }
+    return;
+  };
+
+  const bodyHeight = animatedController.interpolate({
+    inputRange: [0, 1],
+    outputRange: [90, 40],
+  });
+
+  const radius = animatedController.interpolate({
+    inputRange: [0, 1],
+    outputRange: [12, 0],
+  });
+
+  const padding = animatedController.interpolate({
+    inputRange: [0, 1],
+    outputRange: [32, 0],
+  });
+
+  const fontSize = animatedController.interpolate({
+    inputRange: [0, 1],
+    outputRange: [25, 16],
+  });
 
   const toggleLanguageModal = () =>
     setLanguageModalVisible(!isLanguageModalVisible);
@@ -137,18 +206,47 @@ export const NeedsScreen = ({
             navigation={navigation}
           />
         </View>
-        <NeedsHeader
-          text={firstLetterUpperCase(t("Tags." + tagName, tagName)) || ""}
-          color={tagDarkColor}
-          isRTL={isRTL}
-          iconName={iconName}
-        />
+        <Animated.View
+          style={[
+            styles.bodyBackground,
+            {
+              height: bodyHeight,
+              backgroundColor: tagDarkColor,
+              borderBottomRightRadius: radius,
+              borderBottomLeftRadius: radius,
+              paddingTop: padding,
+            },
+          ]}
+        >
+          <RTLView>
+            <Animated.Text
+              style={[
+                styles.headerText,
+                {
+                  textAlign: isRTL ? "right" : "left",
+                  marginRight: isRTL ? 0 : theme.margin,
+                  marginLeft: isRTL ? theme.margin : 0,
+                  fontSize,
+                },
+              ]}
+            >
+              {firstLetterUpperCase(t("Tags." + tagName, tagName)) || ""}
+            </Animated.Text>
+
+            <StreamlineIcon
+              name={iconName}
+              width={showSimplifiedHeader ? 16 : 24}
+              height={showSimplifiedHeader ? 16 : 24}
+            />
+          </RTLView>
+        </Animated.View>
+
         <SkeletonContent
           containerStyle={{
             display: "flex",
             flex: 1,
-            marginTop: 110,
-            marginHorizontal: 24,
+            marginTop: theme.margin * 3,
+            marginHorizontal: theme.margin * 3,
           }}
           isLoading={true}
           layout={[
@@ -190,30 +288,41 @@ export const NeedsScreen = ({
           navigation={navigation}
         />
       </View>
-      <NeedsHeader
-        text={firstLetterUpperCase(t("Tags." + tagName, tagName)) || ""}
-        color={tagDarkColor}
-        isRTL={isRTL}
-        iconName={iconName}
-      />
 
-      {/* <Animated.View
-          style={[
-            styles.bodyBackground,
-            { height: bodyHeight, backgroundColor: boxInterpolation },
-          ]}
-        >
-          <SimplifiedHeaderContainer
-            onLayout={(event: any) =>
-              setBodySectionHeight(event.nativeEvent.layout.height)
-            }
-            style={styles.bodyContainer}
+      <Animated.View
+        style={[
+          styles.bodyBackground,
+          {
+            height: bodyHeight,
+            backgroundColor: tagDarkColor,
+            borderBottomRightRadius: radius,
+            borderBottomLeftRadius: radius,
+            paddingTop: padding,
+          },
+        ]}
+      >
+        <RTLView>
+          <Animated.Text
+            style={[
+              styles.headerText,
+              {
+                textAlign: isRTL ? "right" : "left",
+                marginRight: isRTL ? 0 : theme.margin,
+                marginLeft: isRTL ? theme.margin : 0,
+                fontSize,
+              },
+            ]}
           >
-            <TextSmallNormal style={{ color: theme.colors.white }}>
-              {selectedContent.titreInformatif}
-            </TextSmallNormal>
-          </SimplifiedHeaderContainer>
-        </Animated.View> */}
+            {firstLetterUpperCase(t("Tags." + tagName, tagName)) || ""}
+          </Animated.Text>
+
+          <StreamlineIcon
+            name={iconName}
+            width={showSimplifiedHeader ? 16 : 24}
+            height={showSimplifiedHeader ? 16 : 24}
+          />
+        </RTLView>
+      </Animated.View>
 
       <ScrollView
         scrollIndicatorInsets={{ right: 1 }}
@@ -222,6 +331,8 @@ export const NeedsScreen = ({
           paddingTop: theme.margin * 3,
           paddingBottom: theme.margin * 3,
         }}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
       >
         {needsToDisplay.map((need) => {
           const needText =
