@@ -135,11 +135,11 @@ export const NeedsScreen = ({
   };
 
   const handleScroll = (event: any) => {
-    if (event.nativeEvent.contentOffset.y > 10) {
+    if (event.nativeEvent.contentOffset.y > 30) {
       toggleSimplifiedHeader(true);
       return;
     }
-    if (event.nativeEvent.contentOffset.y < 10) {
+    if (event.nativeEvent.contentOffset.y < 30) {
       toggleSimplifiedHeader(false);
       return;
     }
