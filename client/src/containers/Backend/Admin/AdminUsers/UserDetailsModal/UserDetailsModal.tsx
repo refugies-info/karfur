@@ -76,6 +76,10 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
 
   const userFromStore = useSelector(userSelector(props.selectedUserId));
   const dispatch = useDispatch();
+  // eslint-disable-next-line no-console
+  console.log("userFromProps", props.selectedUserId);
+  // eslint-disable-next-line no-console
+  console.log("userFromStore", userFromStore);
   useEffect(() => {
     const loadIndicators = async () => {
       if (userFromStore) {

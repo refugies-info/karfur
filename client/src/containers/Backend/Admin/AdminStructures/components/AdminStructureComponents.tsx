@@ -21,6 +21,7 @@ interface Props {
   responsable: Responsable | null;
   canModifyRespo: boolean;
   onClick: () => void;
+  type?: string;
 }
 
 export const ResponsableComponent = (props: Props) => {
@@ -39,7 +40,7 @@ export const ResponsableComponent = (props: Props) => {
         )}
         {props.responsable ? (
           props.responsable.username
-        ) : (
+        ) : props.type !== "fromStructureModal" ? (
           <FButton
             type="white"
             name="person-add-outline"
@@ -47,7 +48,7 @@ export const ResponsableComponent = (props: Props) => {
           >
             Choisir un responsable
           </FButton>
-        )}
+        ) : null}
       </RowContainer>
     );
 

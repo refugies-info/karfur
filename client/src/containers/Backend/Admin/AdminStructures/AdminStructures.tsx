@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from "react";
 import { Table } from "reactstrap";
 import { useSelector } from "react-redux";
@@ -38,6 +39,7 @@ import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/Selec
 import { NewStructureModal } from "./NewStructureModal/NewStructureModal";
 import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
+import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
 
 moment.locale("fr");
 
@@ -51,18 +53,18 @@ export const AdminStructures = () => {
   const [filter, setFilter] = useState("En attente");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
-  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
-    false
-  );
+  const [showStructureDetailsModal, setShowStructureDetailsModal] =
+    useState(false);
   const [showNewStructureModal, setShowNewStructureModal] = useState(false);
 
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
-  const [
-    selectedStructureId,
-    setSelectedStructureId,
-  ] = useState<ObjectId | null>(null);
+  const [selectedStructureId, setSelectedStructureId] =
+    useState<ObjectId | null>(null);
   const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(null);
+  const [showContentDetailsModal, setShowContentDetailsModal] = useState(false);
+  const [selectedContentId, setSelectedContentId] =
+    useState<ObjectId | null>(null);
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
@@ -116,9 +118,17 @@ export const AdminStructures = () => {
   const toggleUserDetailsModal = () =>
     setShowUserDetailsModal(!showUserDetailsModal);
 
+  const toggleContentDetailsModal = () =>
+    setShowContentDetailsModal(!showContentDetailsModal);
+
   const setSelectedUserIdAndToggleModal = (element: Responsable | null) => {
+    console.log("element", element);
     setSelectedUserId(element ? element._id : null);
     toggleUserDetailsModal();
+  };
+  const setSelectedContentIdAndToggleModal = (element: ObjectId | null) => {
+    setSelectedContentId(element ? element : null);
+    toggleContentDetailsModal();
   };
 
   const filterAndSortStructures = (
@@ -218,9 +228,8 @@ export const AdminStructures = () => {
       ? structures.filter((structure) => structure.status === status).length
       : 0;
 
-  const { structuresToDisplay, structuresForCount } = filterAndSortStructures(
-    structures
-  );
+  const { structuresToDisplay, structuresForCount } =
+    filterAndSortStructures(structures);
 
   const nbNonDeletedStructures = structures.filter(
     (structure) => structure.status !== "Supprimé"
@@ -368,6 +377,8 @@ export const AdminStructures = () => {
         toggleModal={() => setSelectedStructureIdAndToggleModal(null)}
         selectedStructureId={selectedStructureId}
         toggleRespoModal={() => setSelectFirstRespoModal(true)}
+        setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
+        setSelectedContentIdAndToggleModal={setSelectedContentIdAndToggleModal}
       />
       <NewStructureModal
         show={showNewStructureModal}
@@ -384,6 +395,20 @@ export const AdminStructures = () => {
           show={showUserDetailsModal}
           toggleModal={() => setSelectedUserIdAndToggleModal(null)}
           selectedUserId={selectedUserId}
+        />
+      )}
+
+      {selectedContentId && (
+        <DetailsModal
+          show={showContentDetailsModal}
+          toggleModal={() => setSelectedContentIdAndToggleModal(null)}
+          selectedDispositifId={selectedContentId}
+          onDeleteClick={() => {}}
+          toggleNeedsChoiceModal={() => {}}
+          toggleImprovementsMailModal={() => {}}
+          setShowChangeStructureModal={(el: boolean) => {
+            el;
+          }}
         />
       )}
     </div>

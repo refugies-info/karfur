@@ -326,7 +326,7 @@ export interface SimplifiedStructureForAdmin {
     creatorId: string;
     creator: Responsable;
     created_at: string;
-    _id: string;
+    _id: ObjectId;
     status: string;
     color: string;
   }[];

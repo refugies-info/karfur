@@ -29,6 +29,7 @@ import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/C
 import {
   SimplifiedUser,
   SimplifiedStructure,
+  Responsable,
 } from "../../../../types/interface";
 import { removeAccents } from "../../../../lib";
 import { ObjectId } from "mongodb";
@@ -38,6 +39,7 @@ import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstRespo
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import API from "../../../../utils/API";
 import Swal from "sweetalert2";
+import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
 
 moment.locale("fr");
 declare const window: Window;
@@ -74,6 +76,9 @@ export const AdminUsers = () => {
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
   const [selectedStructureId, setSelectedStructureId] =
     useState<ObjectId | null>(null);
+  const [showContentDetailsModal, setShowContentDetailsModal] = useState(false);
+  const [selectedContentId, setSelectedContentId] =
+    useState<ObjectId | null>(null);
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
@@ -84,9 +89,19 @@ export const AdminUsers = () => {
   const toggleUserDetailsModal = () =>
     setShowUserDetailsModal(!showUserDetailsModal);
 
-  const setSelectedUserIdAndToggleModal = (element: SimplifiedUser | null) => {
+  const toggleContentDetailsModal = () =>
+    setShowContentDetailsModal(!showContentDetailsModal);
+
+  const setSelectedUserIdAndToggleModal = (
+    element: SimplifiedUser | null | Responsable
+  ) => {
     setSelectedUserId(element ? element._id : null);
     toggleUserDetailsModal();
+  };
+
+  const setSelectedContentIdAndToggleModal = (element: ObjectId | null) => {
+    setSelectedContentId(element ? element : null);
+    toggleContentDetailsModal();
   };
 
   const onFilterClick = (status: string) => {
@@ -421,6 +436,10 @@ export const AdminUsers = () => {
           toggleModal={() => setSelectedStructureIdAndToggleModal(null)}
           selectedStructureId={selectedStructureId}
           toggleRespoModal={() => setSelectFirstRespoModal(true)}
+          setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
+          setSelectedContentIdAndToggleModal={
+            setSelectedContentIdAndToggleModal
+          }
         />
       )}
       {selectedStructureId && (
@@ -428,6 +447,19 @@ export const AdminUsers = () => {
           show={showSelectFirstRespoModal}
           toggleModal={() => setSelectFirstRespoModal(false)}
           selectedStructureId={selectedStructureId}
+        />
+      )}
+      {selectedContentId && (
+        <DetailsModal
+          show={showContentDetailsModal}
+          toggleModal={() => setSelectedContentIdAndToggleModal(null)}
+          selectedDispositifId={selectedContentId}
+          onDeleteClick={() => {}}
+          toggleNeedsChoiceModal={() => {}}
+          toggleImprovementsMailModal={() => {}}
+          setShowChangeStructureModal={(el: boolean) => {
+            el;
+          }}
         />
       )}
     </div>

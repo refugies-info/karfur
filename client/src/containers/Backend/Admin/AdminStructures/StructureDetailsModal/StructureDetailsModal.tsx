@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { SimplifiedStructureForAdmin, Event } from "types/interface";
+import {
+  SimplifiedStructureForAdmin,
+  Event,
+  Responsable,
+} from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
 import "./StructureDetailsModal.scss";
 import FInput from "components/FigmaUI/FInput/FInput";
@@ -102,6 +106,8 @@ interface Props extends RouteComponentProps {
   toggleModal: () => void;
   toggleRespoModal: () => void;
   selectedStructureId: ObjectId | null;
+  setSelectedUserIdAndToggleModal: (element: Responsable | null) => void;
+  setSelectedContentIdAndToggleModal: (element: ObjectId | null) => void;
 }
 
 const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
@@ -348,6 +354,10 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                   <TitleFichesContainer
                     color={dispositif.color}
                     key={dispositif._id}
+                    onClick={() => {
+                      props.toggleModal();
+                      props.setSelectedContentIdAndToggleModal(dispositif._id);
+                    }}
                   >
                     {
                       //@ts-ignore
@@ -378,11 +388,18 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                           cursor: "pointer",
                           textDecoration: "underline",
                         }}
+                        onClick={() => {
+                          props.toggleModal();
+                          props.setSelectedUserIdAndToggleModal(
+                            dispositif.creator
+                          );
+                        }}
                       >
                         <ResponsableComponent
                           responsable={dispositif.creator}
                           canModifyRespo={true}
                           onClick={props.toggleRespoModal}
+                          type="fromStructureModal"
                         />
                       </div>
                     )}{" "}
