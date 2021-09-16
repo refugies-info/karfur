@@ -17,6 +17,7 @@ export interface SimplifiedContent {
   titreInformatif: string;
   titreMarque?: string;
   tags: Tag[];
+  needs?: ObjectId[];
 }
 
 export type AvailableLanguageI18nCode =
@@ -89,4 +90,22 @@ export interface MarkerGoogle {
 
 export interface MapGoogle {
   markers: MarkerGoogle[];
+}
+
+export interface NeedDetail {
+  text: string;
+  updatedAt: Moment;
+}
+export interface Need {
+  fr: NeedDetail;
+  ar?: NeedDetail;
+  en?: NeedDetail;
+  "ti-ER"?: NeedDetail;
+  ru?: NeedDetail;
+  ps?: NeedDetail;
+  fa?: NeedDetail;
+  _id: ObjectId;
+  tagName: string;
+  created_at: Moment;
+  updatedAt: Moment;
 }

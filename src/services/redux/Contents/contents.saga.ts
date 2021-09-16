@@ -15,6 +15,8 @@ import {
   userLocationSelector,
   userFrenchLevelSelector,
 } from "../User/user.selectors";
+import { groupResultsByNeed } from "./functions";
+import { setGroupedContentsActionCreator } from "../ContentsGroupedByNeeds/contentsGroupedByNeeds.actions";
 
 export function* fetchContents(): SagaIterator {
   try {
@@ -48,6 +50,9 @@ export function* fetchContents(): SagaIterator {
             contents: data.data.dataFr,
           })
         );
+
+        const groupedResults = yield call(groupResultsByNeed, data.data.dataFr);
+        yield put(setGroupedContentsActionCreator(groupedResults));
       }
     }
 

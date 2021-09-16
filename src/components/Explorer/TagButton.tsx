@@ -11,6 +11,7 @@ interface Props {
   tagName: string;
   backgroundColor: string;
   iconName: string;
+  onPress: () => void;
 }
 
 const StyledContainer = styled(RTLTouchableOpacity)`
@@ -37,7 +38,10 @@ export const TagButton = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
 
   return (
-    <StyledContainer backgroundColor={props.backgroundColor}>
+    <StyledContainer
+      backgroundColor={props.backgroundColor}
+      onPress={props.onPress}
+    >
       <StyledText isRTL={isRTL}>
         {firstLetterUpperCase(t("Tags." + props.tagName, props.tagName))}
       </StyledText>

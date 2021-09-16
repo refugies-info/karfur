@@ -4,6 +4,7 @@ export enum LoadingStatusKey {
   FETCH_LANGUAGES = "FETCH_LANGUAGES",
   FETCH_CONTENTS = "FETCH_CONTENTS",
   FETCH_SELECTED_CONTENT = "FETCH_SELECTED_CONTENT",
+  FETCH_NEEDS = "FETCH_NEEDS",
 }
 
 export const startLoading = (key: LoadingStatusKey) =>

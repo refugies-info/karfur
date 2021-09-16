@@ -13,6 +13,8 @@ import {
   userLocationSelector,
   userFrenchLevelSelector,
 } from "../../User/user.selectors";
+import { groupResultsByNeed } from "../functions";
+import { setGroupedContentsActionCreator } from "../../ContentsGroupedByNeeds/contentsGroupedByNeeds.actions";
 
 describe("[Saga] contents", () => {
   describe("pilot", () => {
@@ -89,6 +91,17 @@ describe("[Saga] contents", () => {
           })
         )
         .next()
+        .call(groupResultsByNeed, [
+          {
+            _id: "idFr",
+          },
+          {
+            _id: "id1Fr",
+          },
+        ])
+        .next({ idFr: [], id1Fr: [] })
+        .put(setGroupedContentsActionCreator({ idFr: [], id1Fr: [] }))
+        .next()
         .put(finishLoading(LoadingStatusKey.FETCH_CONTENTS))
         .next()
         .isDone();
@@ -160,6 +173,17 @@ describe("[Saga] contents", () => {
             ],
           })
         )
+        .next()
+        .call(groupResultsByNeed, [
+          {
+            _id: "id_fr",
+          },
+          {
+            _id: "id1_fr",
+          },
+        ])
+        .next({ idFr: [], id1Fr: [] })
+        .put(setGroupedContentsActionCreator({ idFr: [], id1Fr: [] }))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_CONTENTS))
         .next()

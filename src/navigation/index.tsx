@@ -26,6 +26,7 @@ import { LangueProfilScreen } from "../screens/ProfilTab/LangueProfilScreen";
 import { AgeProfilScreen } from "../screens/ProfilTab/AgeProfilScreen";
 import { CityProfilScreen } from "../screens/ProfilTab/CityProfilScreen";
 import { FrenchLevelProfilScreen } from "../screens/ProfilTab/FrenchLevelProfilScreen";
+import { fetchNeedsActionCreator } from "../services/redux/Needs/needs.actions";
 
 // A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal
@@ -83,6 +84,7 @@ export const RootNavigator = () => {
     checkIfUserHasAlreadySeenOnboarding();
     setLanguage();
     dispatch(getUserInfosActionCreator());
+    dispatch(fetchNeedsActionCreator());
   }, []);
 
   if (!isI18nInitialized || !isOnboardingValueInitialized) {

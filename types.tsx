@@ -31,6 +31,7 @@ export type ExplorerParamList = {
     tagDarkColor: string;
     tagVeryLightColor: string;
     tagLightColor: string;
+    needId: ObjectId;
   };
   ContentScreen: {
     contentId: ObjectId;
@@ -38,6 +39,13 @@ export type ExplorerParamList = {
     tagVeryLightColor: string;
     tagName: string;
     tagLightColor: string;
+  };
+  NeedsScreen: {
+    tagDarkColor: string;
+    tagVeryLightColor: string;
+    tagName: string;
+    tagLightColor: string;
+    iconName: string;
   };
 };
 

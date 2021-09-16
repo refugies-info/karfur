@@ -55,13 +55,25 @@ export const ExplorerScreen = ({
         />
       </ViewChoiceContainer>
       {tabSelected === "list" ? (
-        <ScrollView contentContainerStyle={{ padding: theme.margin * 3 }}>
+        <ScrollView
+          contentContainerStyle={{ padding: theme.margin * 3 }}
+          scrollIndicatorInsets={{ right: 1 }}
+        >
           {tags.sort(sortByOrder).map((tag, index) => (
             <TagButton
               key={index}
               tagName={tag.name}
               backgroundColor={tag.darkColor}
               iconName={tag.icon}
+              onPress={() =>
+                navigation.navigate("NeedsScreen", {
+                  tagName: tag.name,
+                  tagDarkColor: tag.darkColor,
+                  tagVeryLightColor: tag.color30,
+                  tagLightColor: tag.lightColor,
+                  iconName: tag.icon,
+                })
+              }
             />
           ))}
         </ScrollView>

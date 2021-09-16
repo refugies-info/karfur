@@ -347,6 +347,11 @@ exports[`Filter french level should render correctly when french level selected 
           "padding": 24,
         }
       }
+      scrollIndicatorInsets={
+        Object {
+          "right": 1,
+        }
+      }
     >
       <View>
         <Text
@@ -1524,6 +1529,11 @@ exports[`Filter french level should render correctly when no french level select
           "padding": 24,
         }
       }
+      scrollIndicatorInsets={
+        Object {
+          "right": 1,
+        }
+      }
     >
       <View>
         <Text
@@ -2699,6 +2709,11 @@ exports[`Filter french level should select level when click on it 1`] = `
       contentContainerStyle={
         Object {
           "padding": 24,
+        }
+      }
+      scrollIndicatorInsets={
+        Object {
+          "right": 1,
         }
       }
     >
