@@ -35,14 +35,16 @@ export const getAllStructures = async (req: {}, res: Res) => {
 
       const dispositifsSimplified: any[] = [];
       jsonStructure.dispositifsAssocies.forEach((dispositif: any) => {
-        let el = {
-          titreInformatif: dispositif.titreInformatif,
-          creatorId: dispositif.creatorId,
-          created_at: dispositif.created_at,
-          _id: dispositif._id,
-          status: dispositif.status,
-        };
-        dispositifsSimplified.push(el);
+        if (!["Supprimé"].includes(dispositif.status)) {
+          let el = {
+            titreInformatif: dispositif.titreInformatif,
+            creatorId: dispositif.creatorId,
+            created_at: dispositif.created_at,
+            _id: dispositif._id,
+            status: dispositif.status,
+          };
+          dispositifsSimplified.push(el);
+        }
       });
       const dispositifsAssocies = jsonStructure.dispositifsAssocies.filter(
         (dispo: any) => {
