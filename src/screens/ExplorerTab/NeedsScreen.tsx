@@ -126,22 +126,22 @@ export const NeedsScreen = ({
     return;
   };
 
-  const bodyHeight = animatedController.interpolate({
+  const headerHeight = animatedController.interpolate({
     inputRange: [0, 1],
     outputRange: [90, 40],
   });
 
-  const radius = animatedController.interpolate({
+  const headerBottomRadius = animatedController.interpolate({
     inputRange: [0, 1],
     outputRange: [12, 0],
   });
 
-  const padding = animatedController.interpolate({
+  const headerPaddingTop = animatedController.interpolate({
     inputRange: [0, 1],
     outputRange: [32, 0],
   });
 
-  const fontSize = animatedController.interpolate({
+  const headerFontSize = animatedController.interpolate({
     inputRange: [0, 1],
     outputRange: [25, 16],
   });
@@ -188,11 +188,11 @@ export const NeedsScreen = ({
         </View>
         <NeedsHeaderAnimated
           tagDarkColor={tagDarkColor}
-          radius={radius}
-          bodyHeight={bodyHeight}
-          padding={padding}
+          headerBottomRadius={headerBottomRadius}
+          headerHeight={headerHeight}
+          headerPaddingTop={headerPaddingTop}
           tagName={tagName}
-          fontSize={fontSize}
+          headerFontSize={headerFontSize}
           iconName={iconName}
           showSimplifiedHeader={showSimplifiedHeader}
         />
@@ -246,11 +246,11 @@ export const NeedsScreen = ({
       </View>
       <NeedsHeaderAnimated
         tagDarkColor={tagDarkColor}
-        radius={radius}
-        bodyHeight={bodyHeight}
-        padding={padding}
+        headerBottomRadius={headerBottomRadius}
+        headerHeight={headerHeight}
+        headerPaddingTop={headerPaddingTop}
         tagName={tagName}
-        fontSize={fontSize}
+        headerFontSize={headerFontSize}
         iconName={iconName}
         showSimplifiedHeader={showSimplifiedHeader}
       />

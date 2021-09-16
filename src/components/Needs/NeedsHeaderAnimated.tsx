@@ -8,11 +8,11 @@ import { StreamlineIcon } from "../StreamlineIcon";
 
 interface Props {
   tagDarkColor: string;
-  radius: any;
-  bodyHeight: any;
-  padding: any;
+  headerBottomRadius: any;
+  headerHeight: any;
+  headerPaddingTop: any;
   tagName: string;
-  fontSize: any;
+  headerFontSize: any;
   iconName: string;
   showSimplifiedHeader: boolean;
 }
@@ -43,11 +43,11 @@ export const NeedsHeaderAnimated = (props: Props) => {
       style={[
         styles.bodyBackground,
         {
-          height: props.bodyHeight,
+          height: props.headerHeight,
           backgroundColor: props.tagDarkColor,
-          borderBottomRightRadius: props.radius,
-          borderBottomLeftRadius: props.radius,
-          paddingTop: props.padding,
+          borderBottomRightRadius: props.headerBottomRadius,
+          borderBottomLeftRadius: props.headerBottomRadius,
+          paddingTop: props.headerPaddingTop,
         },
       ]}
     >
@@ -59,7 +59,7 @@ export const NeedsHeaderAnimated = (props: Props) => {
               textAlign: isRTL ? "right" : "left",
               marginRight: isRTL ? 0 : theme.margin,
               marginLeft: isRTL ? theme.margin : 0,
-              fontSize: props.fontSize,
+              fontSize: props.headerFontSize,
             },
           ]}
         >
