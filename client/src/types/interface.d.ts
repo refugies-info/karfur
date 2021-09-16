@@ -324,6 +324,7 @@ export interface SimplifiedStructureForAdmin {
   dispositifsSimplified: {
     titreInformatif: any;
     creatorId: string;
+    creator: Responsable;
     created_at: string;
     _id: string;
     status: string;

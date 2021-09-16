@@ -380,7 +380,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                         }}
                       >
                         <ResponsableComponent
-                          responsable={structure.responsable}
+                          responsable={dispositif.creator}
                           canModifyRespo={true}
                           onClick={props.toggleRespoModal}
                         />

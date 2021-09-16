@@ -86,6 +86,20 @@ export const getAllStructures = async (req: {}, res: Res) => {
       simplifiedStructures,
       async (structure): Promise<any> => {
         if (structure.responsable) {
+          if (structure.dispositifsSimplified) {
+            await asyncForEach(
+              structure.dispositifsSimplified,
+              async (dispositif) => {
+                if (dispositif.creatorId) {
+                  const creator = await getUserById(
+                    structure.responsable,
+                    neededFieldsUser
+                  );
+                  dispositif.creator = creator;
+                }
+              }
+            );
+          }
           const responsable = await getUserById(
             structure.responsable,
             neededFieldsUser
