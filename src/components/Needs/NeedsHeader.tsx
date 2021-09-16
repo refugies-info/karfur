@@ -20,7 +20,6 @@ const MainContainer = styled.View`
   flex-direction: column;
   padding-horizontal: ${theme.margin * 3}px;
   padding-bottom: ${theme.margin * 3}px;
-
   justify-content: flex-end;
   border-bottom-left-radius: ${theme.radius * 2}px;
   border-bottom-right-radius: ${theme.radius * 2}px;

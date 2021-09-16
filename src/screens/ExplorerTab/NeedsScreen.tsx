@@ -288,6 +288,7 @@ export const NeedsScreen = ({
                   tagVeryLightColor,
                   tagLightColor,
                   needId: need._id,
+                  iconName,
                 })
               }
             >
