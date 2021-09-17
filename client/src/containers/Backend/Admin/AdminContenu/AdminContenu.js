@@ -5,7 +5,7 @@ import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
 import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
 import { fetchActiveDispositifsActionsCreator } from "../../../../services/ActiveDispositifs/activeDispositifs.actions";
-
+import { prepareDeleteContrib } from "../Needs/lib";
 import { table_contenu, correspondingStatus } from "./data";
 import API from "../../../../utils/API";
 import {
@@ -231,47 +231,6 @@ export const AdminContenu = () => {
   };
 
   const dispatch = useDispatch();
-
-  const prepareDeleteContrib = (dispositif) => {
-    Swal.fire({
-      title: "Êtes-vous sûr ?",
-      text: "La suppression d'un dispositif est irréversible",
-      type: "question",
-      showCancelButton: true,
-      confirmButtonColor: colors.rouge,
-      cancelButtonColor: colors.vert,
-      confirmButtonText: "Oui, le supprimer",
-      cancelButtonText: "Annuler",
-    }).then((result) => {
-      if (result.value) {
-        const newDispositif = {
-          dispositifId: dispositif._id,
-          status: "Supprimé",
-        };
-
-        API.updateDispositifStatus({ query: newDispositif })
-          .then(() => {
-            Swal.fire({
-              title: "Yay...",
-              text: "Suppression effectuée",
-              type: "success",
-              timer: 1500,
-            });
-            setSelectedDispositif(null);
-            setShowDetailsModal(false);
-            dispatch(fetchAllDispositifsActionsCreator());
-          })
-          .catch(() => {
-            Swal.fire({
-              title: "Oh non!",
-              text: "Something went wrong",
-              type: "error",
-              timer: 1500,
-            });
-          });
-      }
-    });
-  };
 
   const onFilterClick = (status) => {
     setFilter(status);
@@ -544,7 +503,15 @@ export const AdminContenu = () => {
                         hoverColor={colors.validationHover}
                       />
                       <DeleteButton
-                        onClick={() => prepareDeleteContrib(element)}
+                        onClick={() =>
+                          prepareDeleteContrib(
+                            setSelectedDispositif,
+                            setShowDetailsModal,
+                            fetchAllDispositifsActionsCreator,
+                            dispatch,
+                            element
+                          )
+                        }
                         disabled={element.status === "Supprimé"}
                       />
                     </div>
@@ -561,7 +528,15 @@ export const AdminContenu = () => {
         selectedDispositifId={
           selectedDispositif ? selectedDispositif._id : null
         }
-        onDeleteClick={() => prepareDeleteContrib(selectedDispositif)}
+        onDeleteClick={() =>
+          prepareDeleteContrib(
+            setSelectedDispositif,
+            setShowDetailsModal,
+            fetchAllDispositifsActionsCreator,
+            dispatch,
+            selectedDispositif
+          )
+        }
         setShowChangeStructureModal={setShowChangeStructureModal}
         toggleImprovementsMailModal={toggleImprovementsMailModal}
         toggleNeedsChoiceModal={toggleNeedsChoiceModal}

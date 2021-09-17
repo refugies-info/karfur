@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { SimplifiedStructureForAdmin, Event } from "types/interface";
+import {
+  SimplifiedStructureForAdmin,
+  Event,
+  Responsable,
+  SimplifiedDispositif,
+} from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
 import "./StructureDetailsModal.scss";
 import FInput from "components/FigmaUI/FInput/FInput";
@@ -14,6 +19,7 @@ import {
   RowContainer,
 } from "../components/AdminStructureComponents";
 import { correspondingStatus } from "../data";
+import { allDispositifsSelector } from "../../../../../services/AllDispositifs/allDispositifs.selector";
 import { compare } from "../../AdminContenu/AdminContenu";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import Swal from "sweetalert2";
@@ -25,6 +31,7 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { fetchAllStructuresActionsCreator } from "../../../../../services/AllStructures/allStructures.actions";
 import { fetchAllDispositifsActionsCreator } from "../../../../../services/AllDispositifs/allDispositifs.actions";
 import { fetchAllUsersActionsCreator } from "../../../../../services/AllUsers/allUsers.actions";
+import { colors } from "colors";
 moment.locale("fr");
 
 const Title = styled.div`
@@ -57,21 +64,99 @@ const RightLogoContainer = styled.div`
   margin-left: 32px;
   margin-bottom: 24px;
 `;
+
+const ColumnContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const FichesColumnContainer = styled.div`
+  padding-left: 32px;
+  font-weight: 700;
+  font-size: 16px;
+  padding-bottom: 8px;
+`;
+const TitleFichesContainer = styled.div`
+  padding-left: 32px;
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: underline;
+  padding-bottom: 5px;
+  max-width: 450px;
+  cursor: pointer;
+  color: ${(props) => props.color};
+`;
+const TextInfoFichesContainer = styled.div`
+  padding-left: 32px;
+  font-size: 12px;
+`;
+
+const TextNoFicheContainer = styled.div`
+  padding-left: 32px;
+  font-weight: 700;
+color:${colors.grisFonce}
+  font-size: 22px;
+`;
+
+const DetailsFichesContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 interface Props extends RouteComponentProps {
   show: boolean;
   toggleModal: () => void;
   toggleRespoModal: () => void;
   selectedStructureId: ObjectId | null;
+  setSelectedUserIdAndToggleModal: (element: Responsable | null) => void;
+  setSelectedContentIdAndToggleModal: (
+    element: ObjectId | null,
+    status: string | null
+  ) => void;
 }
+
+const getStructureWithAllInformationRequired = (
+  dispositifsIds: ObjectId[],
+  allDispositifs: SimplifiedDispositif[]
+) => {
+  let dispositifsWithAllInformation: any = [];
+  dispositifsIds.forEach((dispositifId) => {
+    let simplifiedDispositif = allDispositifs.find(
+      (dispositif) => dispositif._id === dispositifId
+    );
+    if (simplifiedDispositif) {
+      let element = {
+        titreInformatif: simplifiedDispositif.titreInformatif,
+        creator: simplifiedDispositif.creatorId,
+        created_at: simplifiedDispositif.created_at,
+        _id: simplifiedDispositif._id,
+        status: simplifiedDispositif.status,
+        color: simplifiedDispositif.tags.length
+          ? simplifiedDispositif.tags[0].darkColor
+          : "#000000",
+      };
+      dispositifsWithAllInformation.push(element);
+    }
+  });
+  return dispositifsWithAllInformation;
+};
 
 const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   props: Props
 ) => {
-  const [
-    structure,
-    setStructure,
-  ] = useState<SimplifiedStructureForAdmin | null>(null);
+  const [structure, setStructure] =
+    useState<SimplifiedStructureForAdmin | null>(null);
   const [uploading, setUploading] = useState(false);
+
+  const isLoadingStructures = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
+  );
+
+  const isLoadingDispositifs = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
+  );
+
+  const isLoading = isLoadingDispositifs || isLoadingStructures;
 
   const structureFromStore = useSelector(
     structureSelector(props.selectedStructureId)
@@ -82,11 +167,15 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   }, [structureFromStore]);
 
   const dispatch = useDispatch();
+
+  const allDispositifs = useSelector(allDispositifsSelector);
+
   const updateData = () => {
     dispatch(fetchAllStructuresActionsCreator());
     dispatch(fetchAllDispositifsActionsCreator());
     dispatch(fetchAllUsersActionsCreator());
   };
+
   const onSave = async () => {
     try {
       await API.updateStructure({ query: structure });
@@ -151,9 +240,14 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   const secureUrl =
     structure && structure.picture && structure.picture.secure_url;
 
-  const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
-  );
+  if (structure) {
+    const dispositifsWithAllInformation =
+      getStructureWithAllInformationRequired(
+        structure.dispositifsIds,
+        allDispositifs
+      );
+    structure.dispositifsSimplified = dispositifsWithAllInformation;
+  }
 
   if (isLoading) {
     return (
@@ -182,115 +276,194 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
       isOpen={props.show}
       toggle={props.toggleModal}
       className="structure-details-modal"
+      style={{ maxWidth: "950px" }}
     >
-      <InputContainer>
-        <FInput
-          id="nom"
-          value={structure.nom}
-          onChange={onChange}
-          newSize={true}
-          autoFocus={false}
-        />
-      </InputContainer>
-      <LogoContainer>
-        <LogoWrapper>
-          <img className="sponsor-img" src={secureUrl || noStructure} />
-        </LogoWrapper>
-        <RightLogoContainer>
-          <FButton className="upload-btn" type="theme" name="upload-outline">
-            <Input
-              className="file-input"
-              type="file"
-              id="picture"
-              name="structure"
-              accept="image/*"
-              onChange={handleFileInputChange}
+      <ColumnContainer>
+        <div>
+          <InputContainer>
+            <FInput
+              id="nom"
+              value={structure.nom}
+              onChange={onChange}
+              newSize={true}
+              autoFocus={false}
             />
-            {secureUrl ? (
-              <span>Choisir une autre image</span>
-            ) : (
-              <span>Ajouter un logo</span>
-            )}
+          </InputContainer>
+          <LogoContainer>
+            <LogoWrapper>
+              <img className="sponsor-img" src={secureUrl || noStructure} />
+            </LogoWrapper>
+            <RightLogoContainer>
+              <FButton
+                className="upload-btn"
+                type="theme"
+                name="upload-outline"
+              >
+                <Input
+                  className="file-input"
+                  type="file"
+                  id="picture"
+                  name="structure"
+                  accept="image/*"
+                  onChange={handleFileInputChange}
+                />
+                {secureUrl ? (
+                  <span>Choisir une autre image</span>
+                ) : (
+                  <span>Ajouter un logo</span>
+                )}
 
-            {uploading && <Spinner color="success" className="ml-10" />}
-          </FButton>
-        </RightLogoContainer>
-      </LogoContainer>
-      <Title>Premier responsable</Title>
-      {!isLoading && (
-        <div style={{ marginBottom: "8px" }}>
-          <ResponsableComponent
-            responsable={structure.responsable}
-            canModifyRespo={true}
-            onClick={props.toggleRespoModal}
-          />
-        </div>
-      )}
-
-      {isLoading && (
-        <div style={{ marginBottom: "8px" }}>
-          <Spinner />
-        </div>
-      )}
-
-      <Title>Coordonnées du contact unique</Title>
-      <InputContainer>
-        <FInput
-          id="contact"
-          value={structure.contact}
-          onChange={onChange}
-          newSize={true}
-          autoFocus={false}
-          placeholder="Coordonnées"
-        />
-      </InputContainer>
-      <InputContainer>
-        <FInput
-          id="mail_contact"
-          value={structure.mail_contact}
-          onChange={onChange}
-          newSize={true}
-          autoFocus={false}
-          placeholder="Adresse email"
-        />
-      </InputContainer>
-      <InputContainer>
-        <FInput
-          id="phone_contact"
-          value={structure.phone_contact}
-          onChange={onChange}
-          newSize={true}
-          autoFocus={false}
-          placeholder="Numéro de téléphone"
-        />
-      </InputContainer>
-      <Title>Statut</Title>
-      <RowContainer>
-        {correspondingStatus.sort(compare).map((element) => {
-          return (
-            <div
-              key={element.status}
-              style={{
-                marginRight: "8px",
-                marginBottom: "8px",
-              }}
-              onClick={() => modifyStatus(element.status)}
-            >
-              <StyledStatus
-                text={element.status}
-                overrideColor={structure.status !== element.status}
-                textToDisplay={element.status}
-                // color={element.color}
-                disabled={false}
+                {uploading && <Spinner color="success" className="ml-10" />}
+              </FButton>
+            </RightLogoContainer>
+          </LogoContainer>
+          <Title>Premier responsable</Title>
+          {!isLoading && (
+            <div style={{ marginBottom: "8px" }}>
+              <ResponsableComponent
+                responsable={structure.responsable}
+                canModifyRespo={true}
+                onClick={props.toggleRespoModal}
               />
             </div>
-          );
-        })}
-      </RowContainer>
-      <Title>Date de création</Title>
-      {structure.created_at
-        ? moment(structure.created_at).format("LLL")
-        : "Non connue"}
+          )}
+
+          {isLoading && (
+            <div style={{ marginBottom: "8px" }}>
+              <Spinner />
+            </div>
+          )}
+
+          <Title>Coordonnées du contact unique</Title>
+          <InputContainer>
+            <FInput
+              id="contact"
+              value={structure.contact}
+              onChange={onChange}
+              newSize={true}
+              autoFocus={false}
+              placeholder="Coordonnées"
+            />
+          </InputContainer>
+          <InputContainer>
+            <FInput
+              id="mail_contact"
+              value={structure.mail_contact}
+              onChange={onChange}
+              newSize={true}
+              autoFocus={false}
+              placeholder="Adresse email"
+            />
+          </InputContainer>
+          <InputContainer>
+            <FInput
+              id="phone_contact"
+              value={structure.phone_contact}
+              onChange={onChange}
+              newSize={true}
+              autoFocus={false}
+              placeholder="Numéro de téléphone"
+            />
+          </InputContainer>
+          <Title>Statut</Title>
+          <RowContainer>
+            {correspondingStatus.sort(compare).map((element) => {
+              return (
+                <div
+                  key={element.status}
+                  style={{
+                    marginRight: "8px",
+                    marginBottom: "8px",
+                  }}
+                  onClick={() => modifyStatus(element.status)}
+                >
+                  <StyledStatus
+                    text={element.status}
+                    overrideColor={structure.status !== element.status}
+                    textToDisplay={element.status}
+                    // color={element.color}
+                    disabled={false}
+                  />
+                </div>
+              );
+            })}
+          </RowContainer>
+          <Title>Date de création</Title>
+          {structure.created_at
+            ? moment(structure.created_at).format("LLL")
+            : "Non connue"}
+        </div>
+        <div>
+          <FichesColumnContainer>Fiche de la structure</FichesColumnContainer>
+          {structure.dispositifsSimplified &&
+          structure.dispositifsSimplified.length ? (
+            structure.dispositifsSimplified.map((dispositif, index) => {
+              return (
+                <>
+                  <TitleFichesContainer
+                    color={dispositif.color}
+                    key={dispositif._id}
+                    onClick={() => {
+                      props.toggleModal();
+                      props.setSelectedContentIdAndToggleModal(
+                        dispositif._id,
+                        dispositif.status
+                      );
+                    }}
+                  >
+                    {
+                      //@ts-ignore
+                      dispositif.titreInformatif.fr
+                        ? //@ts-ignore
+                          dispositif.titreInformatif.fr
+                        : dispositif.titreInformatif
+                    }
+                  </TitleFichesContainer>
+                  <DetailsFichesContainer>
+                    <TextInfoFichesContainer>
+                      {index === 0 && (
+                        <div style={{ fontWeight: 700 }}>
+                          Fiche ayant créé la structure
+                        </div>
+                      )}
+                      <div>
+                        {" "}
+                        Créé le {moment(dispositif.created_at).format(
+                          "LLL"
+                        )} - {dispositif.status}
+                      </div>
+                    </TextInfoFichesContainer>
+
+                    <div
+                      style={{
+                        marginBottom: "8px",
+                        cursor: "pointer",
+                        textDecoration: "underline",
+                      }}
+                      onClick={() => {
+                        props.toggleModal();
+                        props.setSelectedUserIdAndToggleModal(
+                          dispositif.creator
+                        );
+                      }}
+                    >
+                      <ResponsableComponent
+                        responsable={dispositif.creator}
+                        canModifyRespo={false}
+                        onClick={() => {}}
+                      />
+                    </div>
+                  </DetailsFichesContainer>
+                </>
+              );
+            })
+          ) : (
+            <TextNoFicheContainer>
+              Aucune fiche n'est connectée à cette structure
+            </TextNoFicheContainer>
+          )}
+        </div>
+      </ColumnContainer>
       <BottomRowContainer>
         <div>
           <FButton
