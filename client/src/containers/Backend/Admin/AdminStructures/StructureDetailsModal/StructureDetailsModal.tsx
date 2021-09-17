@@ -107,7 +107,10 @@ interface Props extends RouteComponentProps {
   toggleRespoModal: () => void;
   selectedStructureId: ObjectId | null;
   setSelectedUserIdAndToggleModal: (element: Responsable | null) => void;
-  setSelectedContentIdAndToggleModal: (element: ObjectId | null) => void;
+  setSelectedContentIdAndToggleModal: (
+    element: ObjectId | null,
+    status: string | null
+  ) => void;
 }
 
 const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
@@ -198,9 +201,6 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
   );
-
-  // eslint-disable-next-line no-console
-  console.log("structure", structure);
   if (isLoading) {
     return (
       <Modal
@@ -356,7 +356,10 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                     key={dispositif._id}
                     onClick={() => {
                       props.toggleModal();
-                      props.setSelectedContentIdAndToggleModal(dispositif._id);
+                      props.setSelectedContentIdAndToggleModal(
+                        dispositif._id,
+                        dispositif.status
+                      );
                     }}
                   >
                     {

@@ -1,11 +1,16 @@
-/* eslint-disable no-console */
 import React, { useState } from "react";
 import { Table } from "reactstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { allStructuresSelector } from "../../../../services/AllStructures/allStructures.selector";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
 import { LoadingAdminStructures } from "./components/LoadingAdminStructures";
+import { prepareDeleteContrib } from "../Needs/lib";
+import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
+import { ChangeStructureModal } from "../AdminContenu/ChangeStructureModale/ChangeStructureModale";
+
+import { ImprovementsMailModal } from "../AdminContenu/ImprovementsMailModal/ImprovementsMailModal";
+import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
 import {
   StyledTitle,
   StyledHeader,
@@ -65,6 +70,14 @@ export const AdminStructures = () => {
   const [showContentDetailsModal, setShowContentDetailsModal] = useState(false);
   const [selectedContentId, setSelectedContentId] =
     useState<ObjectId | null>(null);
+  const [selectedContentStatus, setSelectedContentStatus] =
+    useState<string | null>(null);
+  const [showImprovementsMailModal, setShowImprovementsMailModal] =
+    useState(false);
+  const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
+  const [showChangeStructureModal, setShowChangeStructureModal] =
+    useState(false);
+  const dispatch = useDispatch();
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
@@ -72,11 +85,20 @@ export const AdminStructures = () => {
 
   const handleChange = (e: any) => setSearch(e.target.value);
 
+  const toggleImprovementsMailModal = () =>
+    setShowImprovementsMailModal(!showImprovementsMailModal);
+
   const toggleShowNewStructureModal = () =>
     setShowNewStructureModal(!showNewStructureModal);
 
   const toggleStructureDetailsModal = () =>
     setShowStructureDetailsModal(!showStructureDetailsModal);
+
+  const toggleNeedsChoiceModal = () =>
+    setShowNeedsChoiceModal(!showNeedsChoiceModal);
+
+  const toggleShowChangeStructureModal = () =>
+    setShowChangeStructureModal(!showChangeStructureModal);
 
   const addNewStructure = () => {
     toggleShowNewStructureModal();
@@ -122,12 +144,15 @@ export const AdminStructures = () => {
     setShowContentDetailsModal(!showContentDetailsModal);
 
   const setSelectedUserIdAndToggleModal = (element: Responsable | null) => {
-    console.log("element", element);
     setSelectedUserId(element ? element._id : null);
     toggleUserDetailsModal();
   };
-  const setSelectedContentIdAndToggleModal = (element: ObjectId | null) => {
+  const setSelectedContentIdAndToggleModal = (
+    element: ObjectId | null,
+    status: string | null = null
+  ) => {
     setSelectedContentId(element ? element : null);
+    if (status) setSelectedContentStatus(status);
     toggleContentDetailsModal();
   };
 
@@ -403,14 +428,40 @@ export const AdminStructures = () => {
           show={showContentDetailsModal}
           toggleModal={() => setSelectedContentIdAndToggleModal(null)}
           selectedDispositifId={selectedContentId}
-          onDeleteClick={() => {}}
-          toggleNeedsChoiceModal={() => {}}
-          toggleImprovementsMailModal={() => {}}
-          setShowChangeStructureModal={(el: boolean) => {
-            el;
-          }}
+          onDeleteClick={() =>
+            prepareDeleteContrib(
+              setSelectedContentId,
+              setShowContentDetailsModal,
+              fetchAllDispositifsActionsCreator,
+              dispatch,
+              selectedContentId
+            )
+          }
+          toggleNeedsChoiceModal={toggleNeedsChoiceModal}
+          toggleImprovementsMailModal={toggleImprovementsMailModal}
+          setShowChangeStructureModal={setShowChangeStructureModal}
         />
       )}
+      {showImprovementsMailModal && (
+        <ImprovementsMailModal
+          show={showImprovementsMailModal}
+          toggleModal={toggleImprovementsMailModal}
+          selectedDispositifId={selectedContentId}
+        />
+      )}
+      {showNeedsChoiceModal && (
+        <NeedsChoiceModal
+          show={showNeedsChoiceModal}
+          toggle={toggleNeedsChoiceModal}
+          dispositifId={selectedContentId}
+        />
+      )}
+      <ChangeStructureModal
+        show={showChangeStructureModal}
+        toggle={toggleShowChangeStructureModal}
+        dispositifId={selectedContentId}
+        dispositifStatus={selectedContentStatus}
+      />
     </div>
   );
 };
