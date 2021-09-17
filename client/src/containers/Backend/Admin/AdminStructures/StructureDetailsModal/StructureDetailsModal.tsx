@@ -4,6 +4,7 @@ import {
   SimplifiedStructureForAdmin,
   Event,
   Responsable,
+  SimplifiedDispositif,
 } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
 import "./StructureDetailsModal.scss";
@@ -18,6 +19,7 @@ import {
   RowContainer,
 } from "../components/AdminStructureComponents";
 import { correspondingStatus } from "../data";
+import { allDispositifsSelector } from "../../../../../services/AllDispositifs/allDispositifs.selector";
 import { compare } from "../../AdminContenu/AdminContenu";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import Swal from "sweetalert2";
@@ -113,6 +115,32 @@ interface Props extends RouteComponentProps {
   ) => void;
 }
 
+const GetStructureWithAllInformationRequired = (
+  dispositifsIds: ObjectId[],
+  allDispositifs: SimplifiedDispositif[]
+) => {
+  let dispositifsWithAllInformation: any = [];
+  dispositifsIds.forEach((dispositifId) => {
+    let simplifiedDispositif = allDispositifs.find(
+      (dispositif) => dispositif._id === dispositifId
+    );
+    if (simplifiedDispositif) {
+      let element = {
+        titreInformatif: simplifiedDispositif.titreInformatif,
+        creator: simplifiedDispositif.creatorId,
+        created_at: simplifiedDispositif.created_at,
+        _id: simplifiedDispositif._id,
+        status: simplifiedDispositif.status,
+        color: simplifiedDispositif.tags.length
+          ? simplifiedDispositif.tags[0].darkColor
+          : "#000000",
+      };
+      dispositifsWithAllInformation.push(element);
+    }
+  });
+  return dispositifsWithAllInformation;
+};
+
 const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   props: Props
 ) => {
@@ -129,11 +157,15 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   }, [structureFromStore]);
 
   const dispatch = useDispatch();
+
+  const allDispositifs = useSelector(allDispositifsSelector);
+
   const updateData = () => {
     dispatch(fetchAllStructuresActionsCreator());
     dispatch(fetchAllDispositifsActionsCreator());
     dispatch(fetchAllUsersActionsCreator());
   };
+
   const onSave = async () => {
     try {
       await API.updateStructure({ query: structure });
@@ -201,6 +233,16 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
   );
+
+  if (structure) {
+    const dispositifsWithAllInformation =
+      GetStructureWithAllInformationRequired(
+        structure.dispositifsIds,
+        allDispositifs
+      );
+    structure.dispositifsSimplified = dispositifsWithAllInformation;
+  }
+
   if (isLoading) {
     return (
       <Modal
@@ -347,7 +389,8 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
         </div>
         <div>
           <FichesColumnContainer>Fiche de la structure</FichesColumnContainer>
-          {structure.dispositifsSimplified.length ? (
+          {structure.dispositifsSimplified &&
+          structure.dispositifsSimplified.length ? (
             structure.dispositifsSimplified.map((dispositif, index) => {
               return (
                 <>

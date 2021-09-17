@@ -33,30 +33,11 @@ export const getAllStructures = async (req: {}, res: Res) => {
       const responsableId =
         responsablesArray.length > 0 ? responsablesArray[0].userId : null;
 
-      const dispositifsSimplified: any[] = [];
+      const dispositifsIds: any[] = [];
       jsonStructure.dispositifsAssocies.forEach((dispositif: any) => {
         if (!["Supprimé"].includes(dispositif.status)) {
-          let el = {
-            titreInformatif: dispositif.titreInformatif,
-            creatorId: dispositif.creatorId,
-            created_at: dispositif.created_at,
-            _id: dispositif._id,
-            status: dispositif.status,
-            color: dispositif.tags.length
-              ? dispositif.tags[0].darkColor
-              : "#000000",
-          };
-          dispositifsSimplified.push(el);
+          dispositifsIds.push(dispositif._id);
         }
-      });
-      dispositifsSimplified.sort(function (a, b) {
-        if (a.created_at < b.created_at) {
-          return -1;
-        }
-        if (b.created_at < a.created_at) {
-          return 1;
-        }
-        return 0;
       });
       const dispositifsAssocies = jsonStructure.dispositifsAssocies.filter(
         (dispo: any) => {
@@ -76,7 +57,7 @@ export const getAllStructures = async (req: {}, res: Res) => {
         nbMembres,
         responsable: responsableId,
         nbFiches,
-        dispositifsSimplified,
+        dispositifsIds,
       };
     });
     const neededFieldsUser = { username: 1, picture: 1 };
@@ -86,20 +67,6 @@ export const getAllStructures = async (req: {}, res: Res) => {
       simplifiedStructures,
       async (structure): Promise<any> => {
         if (structure.responsable) {
-          if (structure.dispositifsSimplified) {
-            await asyncForEach(
-              structure.dispositifsSimplified,
-              async (dispositif) => {
-                if (dispositif.creatorId) {
-                  const creator = await getUserById(
-                    structure.responsable,
-                    neededFieldsUser
-                  );
-                  dispositif.creator = creator;
-                }
-              }
-            );
-          }
           const responsable = await getUserById(
             structure.responsable,
             neededFieldsUser

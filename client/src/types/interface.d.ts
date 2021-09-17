@@ -321,16 +321,16 @@ export interface SimplifiedStructureForAdmin {
   created_at: Moment;
   responsable: null | Responsable;
   membres: Membre[];
-  dispositifsSimplified: {
+  dispositifsIds: ObjectId[];
+  nbFiches: number;
+  dispositifsSimplified?: {
     titreInformatif: string | { fr: string };
-    creatorId: ObjectId;
     creator: Responsable;
-    created_at: string;
+    created_at: number;
     _id: ObjectId;
     status: string;
     color: string;
   }[];
-  nbFiches: number;
 }
 
 export interface IUserFavorite {
