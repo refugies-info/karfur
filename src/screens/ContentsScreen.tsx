@@ -1,4 +1,3 @@
-import { WrapperWithHeaderAndLanguageModal } from "./WrapperWithHeaderAndLanguageModal";
 import * as React from "react";
 import { ExplorerParamList } from "../../types";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -14,22 +13,16 @@ import { groupedContentsSelector } from "../services/redux/ContentsGroupedByNeed
 import { isLoadingSelector } from "../services/redux/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../services/redux/LoadingStatus/loadingStatus.actions";
 import { HeaderWithBackForWrapper } from "../components/HeaderWithLogo";
-import { NeedsHeaderAnimated } from "../components/Needs/NeedsHeaderAnimated";
 import SkeletonContent from "react-native-skeleton-content";
 import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
 import { ContentsHeaderAnimated } from "../components/Contents/ContentsHeaderAnimated";
 
 const ContentContainer = styled.TouchableOpacity`
   background-color: ${theme.colors.grey60};
-  margin-horizontal: 16px;
-  margin-vertical: 16px;
+  margin-bottom: ${theme.margin * 3}px;
   padding: 16px;
 `;
 
-const Header = styled(TextNormal)`
-  margin-left: 24px;
-  margin-top: 8px;
-`;
 export const ContentsScreen = ({
   navigation,
   route,
@@ -83,7 +76,7 @@ export const ContentsScreen = ({
   const toggleSimplifiedHeader = (displayHeader: boolean) => {
     if (displayHeader && !showSimplifiedHeader) {
       Animated.timing(animatedController, {
-        duration: 400,
+        duration: 600,
         toValue: 1,
         useNativeDriver: false,
       }).start();
@@ -93,7 +86,7 @@ export const ContentsScreen = ({
 
     if (!displayHeader && showSimplifiedHeader) {
       Animated.timing(animatedController, {
-        duration: 400,
+        duration: 600,
         toValue: 0,
         useNativeDriver: false,
       }).start();
@@ -103,21 +96,16 @@ export const ContentsScreen = ({
   };
 
   const handleScroll = (event: any) => {
-    if (event.nativeEvent.contentOffset.y > 30) {
+    if (event.nativeEvent.contentOffset.y > 10) {
       toggleSimplifiedHeader(true);
       return;
     }
-    if (event.nativeEvent.contentOffset.y < 30) {
+    if (event.nativeEvent.contentOffset.y < 10) {
       toggleSimplifiedHeader(false);
       return;
     }
     return;
   };
-
-  const headerHeight = animatedController.interpolate({
-    inputRange: [0, 1],
-    outputRange: [200, 40],
-  });
 
   const headerBottomRadius = animatedController.interpolate({
     inputRange: [0, 1],
@@ -126,7 +114,7 @@ export const ContentsScreen = ({
 
   const headerPaddingTop = animatedController.interpolate({
     inputRange: [0, 1],
-    outputRange: [32, 0],
+    outputRange: [24, 0],
   });
 
   const headerFontSize = animatedController.interpolate({
@@ -134,7 +122,12 @@ export const ContentsScreen = ({
     outputRange: [25, 16],
   });
 
-  if (isLoading || true) {
+  const tagHeight = animatedController.interpolate({
+    inputRange: [0, 1],
+    outputRange: [32, 0],
+  });
+
+  if (isLoading) {
     return (
       <View>
         <View style={{ backgroundColor: tagDarkColor }}>
@@ -146,7 +139,6 @@ export const ContentsScreen = ({
         <ContentsHeaderAnimated
           tagDarkColor={tagDarkColor}
           headerBottomRadius={headerBottomRadius}
-          headerHeight={headerHeight}
           headerPaddingTop={headerPaddingTop}
           tagName={tagName}
           headerFontSize={headerFontSize}
@@ -156,6 +148,7 @@ export const ContentsScreen = ({
           needName={needName}
           nbContents={0}
           isLoading={true}
+          tagHeight={tagHeight}
         />
 
         <SkeletonContent
@@ -198,21 +191,38 @@ export const ContentsScreen = ({
   }
 
   return (
-    <WrapperWithHeaderAndLanguageModal
-      navigation={navigation}
-      showSwitch={true}
-    >
-      <Header>
-        {"Contents screen : tag " +
-          tagName +
-          " need :  " +
-          needName +
-          " " +
-          contentsToDisplay.length +
-          " fiches "}
-      </Header>
+    <View style={{ display: "flex", flex: 1 }}>
+      <View style={{ backgroundColor: tagDarkColor }}>
+        <HeaderWithBackForWrapper
+          onLongPressSwitchLanguage={toggleLanguageModal}
+          navigation={navigation}
+        />
+      </View>
+      <ContentsHeaderAnimated
+        tagDarkColor={tagDarkColor}
+        headerBottomRadius={headerBottomRadius}
+        headerPaddingTop={headerPaddingTop}
+        tagName={tagName}
+        headerFontSize={headerFontSize}
+        iconName={iconName}
+        showSimplifiedHeader={showSimplifiedHeader}
+        navigation={navigation}
+        needName={needName}
+        nbContents={contentsToDisplay.length}
+        isLoading={false}
+        tagHeight={tagHeight}
+      />
 
-      <ScrollView scrollIndicatorInsets={{ right: 1 }}>
+      <ScrollView
+        scrollIndicatorInsets={{ right: 1 }}
+        contentContainerStyle={{
+          paddingHorizontal: theme.margin * 3,
+          paddingTop: theme.margin * 3,
+          paddingBottom: theme.margin * 3,
+        }}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+      >
         {contentsToDisplay.map((content, index) => {
           if (!content)
             return (
@@ -241,6 +251,10 @@ export const ContentsScreen = ({
           );
         })}
       </ScrollView>
-    </WrapperWithHeaderAndLanguageModal>
+      <LanguageChoiceModal
+        isModalVisible={isLanguageModalVisible}
+        toggleModal={toggleLanguageModal}
+      />
+    </View>
   );
 };

@@ -54,7 +54,6 @@ const NeedContainer = styled(RTLTouchableOpacity)`
   margin-bottom: ${theme.margin * 3}px;
   border-radius: ${theme.radius * 2}px;
   box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
-  
   justify-content:space-between;
   align-items :center
 `;

@@ -32,6 +32,7 @@ export type ExplorerParamList = {
     tagVeryLightColor: string;
     tagLightColor: string;
     needId: ObjectId;
+    iconName: string;
   };
   ContentScreen: {
     contentId: ObjectId;

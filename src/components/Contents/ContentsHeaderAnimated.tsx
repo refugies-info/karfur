@@ -2,16 +2,11 @@ import { Animated, StyleSheet } from "react-native";
 import React from "react";
 import { theme } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { RTLView, RTLTouchableOpacity } from "../BasicComponents";
+import { RTLTouchableOpacity } from "../BasicComponents";
 import { firstLetterUpperCase } from "../../libs";
 import { StreamlineIcon } from "../StreamlineIcon";
-import {
-  TextNormal,
-  TextSmallNormal,
-  TextVerySmallNormal,
-} from "../StyledText";
+import { TextSmallNormal, TextVerySmallNormal } from "../StyledText";
 import styled from "styled-components/native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import SkeletonContent from "react-native-skeleton-content";
 
 const ThemeText = styled(TextSmallNormal)`
@@ -24,7 +19,6 @@ const ThemeText = styled(TextSmallNormal)`
 `;
 
 const ThemeContainer = styled(RTLTouchableOpacity)`
-  margin-bottom: ${theme.margin * 2}px;
   align-items: center;
 `;
 
@@ -34,7 +28,6 @@ const IndicatorContainer = styled.View`
   align-self: center;
   border-radius: 8px;
   height: 32px;
-margin-top:${theme.margin * 2}px
   align-self: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "flex-end" : "flex-start"};
 `;
@@ -46,7 +39,6 @@ const IndicatorText = styled(TextVerySmallNormal)`
 interface Props {
   tagDarkColor: string;
   headerBottomRadius: any;
-  headerHeight: any;
   headerPaddingTop: any;
   tagName: string;
   headerFontSize: any;
@@ -56,6 +48,7 @@ interface Props {
   needName: string;
   nbContents: number;
   isLoading: boolean;
+  tagHeight: any;
 }
 
 const styles = StyleSheet.create({
@@ -88,7 +81,6 @@ export const ContentsHeaderAnimated = (props: Props) => {
       style={[
         styles.bodyBackground,
         {
-          height: props.headerHeight,
           backgroundColor: props.tagDarkColor,
           borderBottomRightRadius: props.headerBottomRadius,
           borderBottomLeftRadius: props.headerBottomRadius,
@@ -96,13 +88,22 @@ export const ContentsHeaderAnimated = (props: Props) => {
         },
       ]}
     >
-      <ThemeContainer onPress={props.navigation.goBack}>
-        <ThemeText isRTL={isRTL}>
-          {firstLetterUpperCase(t("Tags." + props.tagName, props.tagName)) ||
-            ""}
-        </ThemeText>
-        <StreamlineIcon name={props.iconName} width={16} height={16} />
-      </ThemeContainer>
+      <Animated.View
+        style={{
+          height: props.tagHeight,
+        }}
+      >
+        <ThemeContainer onPress={props.navigation.goBack}>
+          <ThemeText isRTL={isRTL}>
+            {firstLetterUpperCase(t("Tags." + props.tagName, props.tagName)) ||
+              ""}
+          </ThemeText>
+          {!props.showSimplifiedHeader && (
+            <StreamlineIcon name={props.iconName} width={16} height={16} />
+          )}
+        </ThemeContainer>
+      </Animated.View>
+
       <Animated.Text
         style={[
           styles.headerText,
@@ -116,19 +117,16 @@ export const ContentsHeaderAnimated = (props: Props) => {
       >
         {props.needName}
       </Animated.Text>
-      {props.isLoading || false ? (
+      {props.isLoading ? (
         <SkeletonContent
           containerStyle={{
-            display: "flex",
-            flex: 1,
-            marginTop: theme.margin * 3,
-            marginHorizontal: theme.margin * 3,
+            marginTop: theme.margin * 2,
           }}
           isLoading={true}
           layout={[
             {
               key: "SectionHeader",
-              width: 32,
+              width: 62,
               height: 32,
             },
           ]}
@@ -136,13 +134,21 @@ export const ContentsHeaderAnimated = (props: Props) => {
           highlightColor={theme.colors.lightGrey}
         />
       ) : (
-        <IndicatorContainer isRTL={isRTL}>
-          <IndicatorText>{indicatorText}</IndicatorText>
-        </IndicatorContainer>
+        !props.showSimplifiedHeader && (
+          <Animated.View
+            style={{
+              display: "flex",
+              height: props.tagHeight,
+              marginTop: theme.margin * 2,
+              marginBottom: theme.margin * 4,
+            }}
+          >
+            <IndicatorContainer isRTL={isRTL}>
+              <IndicatorText>{indicatorText}</IndicatorText>
+            </IndicatorContainer>
+          </Animated.View>
+        )
       )}
-      {/* <IndicatorContainer isRTL={isRTL}>
-        <IndicatorText>{indicatorText}</IndicatorText>
-      </IndicatorContainer> */}
     </Animated.View>
   );
 };
