@@ -401,8 +401,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                       <ResponsableComponent
                         responsable={dispositif.creator}
                         canModifyRespo={false}
-                        onClick={props.toggleRespoModal}
-                        type="fromStructureModal"
+                        onClick={() => {}}
                       />
                     </div>
                   </DetailsFichesContainer>
