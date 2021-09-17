@@ -374,7 +374,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                     <TextInfoFichesContainer>
                       {index === 0 && (
                         <div style={{ fontWeight: 700 }}>
-                          Fiche ayant créée la structure
+                          Fiche ayant créé la structure
                         </div>
                       )}
                       <div>
@@ -384,28 +384,27 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                         )} - {dispositif.status}
                       </div>
                     </TextInfoFichesContainer>
-                    {!isLoading && (
-                      <div
-                        style={{
-                          marginBottom: "8px",
-                          cursor: "pointer",
-                          textDecoration: "underline",
-                        }}
-                        onClick={() => {
-                          props.toggleModal();
-                          props.setSelectedUserIdAndToggleModal(
-                            dispositif.creator
-                          );
-                        }}
-                      >
-                        <ResponsableComponent
-                          responsable={dispositif.creator}
-                          canModifyRespo={true}
-                          onClick={props.toggleRespoModal}
-                          type="fromStructureModal"
-                        />
-                      </div>
-                    )}{" "}
+
+                    <div
+                      style={{
+                        marginBottom: "8px",
+                        cursor: "pointer",
+                        textDecoration: "underline",
+                      }}
+                      onClick={() => {
+                        props.toggleModal();
+                        props.setSelectedUserIdAndToggleModal(
+                          dispositif.creator
+                        );
+                      }}
+                    >
+                      <ResponsableComponent
+                        responsable={dispositif.creator}
+                        canModifyRespo={false}
+                        onClick={props.toggleRespoModal}
+                        type="fromStructureModal"
+                      />
+                    </div>
                   </DetailsFichesContainer>
                 </>
               );

@@ -322,8 +322,8 @@ export interface SimplifiedStructureForAdmin {
   responsable: null | Responsable;
   membres: Membre[];
   dispositifsSimplified: {
-    titreInformatif: any;
-    creatorId: string;
+    titreInformatif: string | { fr: string };
+    creatorId: ObjectId;
     creator: Responsable;
     created_at: string;
     _id: ObjectId;

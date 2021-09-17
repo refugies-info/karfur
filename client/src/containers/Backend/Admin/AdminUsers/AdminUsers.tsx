@@ -1,6 +1,7 @@
 import marioProfile from "assets/mario-profile.jpg";
 import React, { useState } from "react";
 import moment from "moment/min/moment-with-locales";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import {
   SearchBarContainer,
@@ -31,11 +32,17 @@ import {
   SimplifiedStructure,
   Responsable,
 } from "../../../../types/interface";
+import { prepareDeleteContrib } from "../Needs/lib";
+import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
+import { ChangeStructureModal } from "../AdminContenu/ChangeStructureModale/ChangeStructureModale";
+import { ImprovementsMailModal } from "../AdminContenu/ImprovementsMailModal/ImprovementsMailModal";
 import { removeAccents } from "../../../../lib";
 import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "./UserDetailsModal/UserDetailsModal";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
+import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
+
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import API from "../../../../utils/API";
 import Swal from "sweetalert2";
@@ -79,12 +86,28 @@ export const AdminUsers = () => {
   const [showContentDetailsModal, setShowContentDetailsModal] = useState(false);
   const [selectedContentId, setSelectedContentId] =
     useState<ObjectId | null>(null);
+  const [selectedContentStatus, setSelectedContentStatus] =
+    useState<string | null>(null);
+  const [showImprovementsMailModal, setShowImprovementsMailModal] =
+    useState(false);
+  const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
+  const [showChangeStructureModal, setShowChangeStructureModal] =
+    useState(false);
+  const dispatch = useDispatch();
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
   );
 
   const handleChange = (e: any) => setSearch(e.target.value);
+
+  const toggleNeedsChoiceModal = () =>
+    setShowNeedsChoiceModal(!showNeedsChoiceModal);
+
+  const toggleShowChangeStructureModal = () =>
+    setShowChangeStructureModal(!showChangeStructureModal);
+  const toggleImprovementsMailModal = () =>
+    setShowImprovementsMailModal(!showImprovementsMailModal);
 
   const toggleUserDetailsModal = () =>
     setShowUserDetailsModal(!showUserDetailsModal);
@@ -99,8 +122,12 @@ export const AdminUsers = () => {
     toggleUserDetailsModal();
   };
 
-  const setSelectedContentIdAndToggleModal = (element: ObjectId | null) => {
+  const setSelectedContentIdAndToggleModal = (
+    element: ObjectId | null,
+    status: string | null = null
+  ) => {
     setSelectedContentId(element ? element : null);
+    if (status) setSelectedContentStatus(status);
     toggleContentDetailsModal();
   };
 
@@ -454,14 +481,40 @@ export const AdminUsers = () => {
           show={showContentDetailsModal}
           toggleModal={() => setSelectedContentIdAndToggleModal(null)}
           selectedDispositifId={selectedContentId}
-          onDeleteClick={() => {}}
-          toggleNeedsChoiceModal={() => {}}
-          toggleImprovementsMailModal={() => {}}
-          setShowChangeStructureModal={(el: boolean) => {
-            el;
-          }}
+          onDeleteClick={() =>
+            prepareDeleteContrib(
+              setSelectedContentId,
+              setShowContentDetailsModal,
+              fetchAllDispositifsActionsCreator,
+              dispatch,
+              selectedContentId
+            )
+          }
+          toggleNeedsChoiceModal={toggleNeedsChoiceModal}
+          toggleImprovementsMailModal={toggleImprovementsMailModal}
+          setShowChangeStructureModal={setShowChangeStructureModal}
         />
       )}
+      {showImprovementsMailModal && (
+        <ImprovementsMailModal
+          show={showImprovementsMailModal}
+          toggleModal={toggleImprovementsMailModal}
+          selectedDispositifId={selectedContentId}
+        />
+      )}
+      {showNeedsChoiceModal && (
+        <NeedsChoiceModal
+          show={showNeedsChoiceModal}
+          toggle={toggleNeedsChoiceModal}
+          dispositifId={selectedContentId}
+        />
+      )}
+      <ChangeStructureModal
+        show={showChangeStructureModal}
+        toggle={toggleShowChangeStructureModal}
+        dispositifId={selectedContentId}
+        dispositifStatus={selectedContentStatus}
+      />
     </div>
   );
 };
