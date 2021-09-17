@@ -77,6 +77,6 @@ export const sectionUrlCorrespondencies = [
   {
     section: "Traduction besoin",
     tutoUrl:
-      "https://help.refugies.info/fr/article/experts-traduire-les-besoins-pour-lapplication-mobile-1fpz5wg/reader/",
+      "https://help.refugies.info/fr/article/experts-traduire-les-besoins-pour-lapplication-mobile-1fpz5wg",
   },
 ];
