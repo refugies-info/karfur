@@ -115,7 +115,7 @@ interface Props extends RouteComponentProps {
   ) => void;
 }
 
-const GetStructureWithAllInformationRequired = (
+const getStructureWithAllInformationRequired = (
   dispositifsIds: ObjectId[],
   allDispositifs: SimplifiedDispositif[]
 ) => {
@@ -147,6 +147,16 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   const [structure, setStructure] =
     useState<SimplifiedStructureForAdmin | null>(null);
   const [uploading, setUploading] = useState(false);
+
+  const isLoadingStructures = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
+  );
+
+  const isLoadingDispositifs = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
+  );
+
+  const isLoading = isLoadingDispositifs || isLoadingStructures;
 
   const structureFromStore = useSelector(
     structureSelector(props.selectedStructureId)
@@ -230,13 +240,9 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   const secureUrl =
     structure && structure.picture && structure.picture.secure_url;
 
-  const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
-  );
-
   if (structure) {
     const dispositifsWithAllInformation =
-      GetStructureWithAllInformationRequired(
+      getStructureWithAllInformationRequired(
         structure.dispositifsIds,
         allDispositifs
       );
