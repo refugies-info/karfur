@@ -33,7 +33,12 @@ export const getAllStructures = async (req: {}, res: Res) => {
       const responsableId =
         responsablesArray.length > 0 ? responsablesArray[0].userId : null;
 
-      // @ts-ignore
+      const dispositifsIds: any[] = [];
+      jsonStructure.dispositifsAssocies.forEach((dispositif: any) => {
+        if (!["Supprimé"].includes(dispositif.status)) {
+          dispositifsIds.push(dispositif._id);
+        }
+      });
       const dispositifsAssocies = jsonStructure.dispositifsAssocies.filter(
         (dispo: any) => {
           return (
@@ -52,6 +57,7 @@ export const getAllStructures = async (req: {}, res: Res) => {
         nbMembres,
         responsable: responsableId,
         nbFiches,
+        dispositifsIds,
       };
     });
     const neededFieldsUser = { username: 1, picture: 1 };
