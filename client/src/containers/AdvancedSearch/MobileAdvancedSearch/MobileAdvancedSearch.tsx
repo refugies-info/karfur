@@ -217,32 +217,6 @@ export const MobileAdvancedSearch = (props: Props) => {
 
   return (
     <MainContainer>
-      <SearchBoutton
-        isDisabled={isSearchButtonDisabled}
-        isUrlEmpty={isUrlEmpty}
-        tagSelected={tagSelected}
-        onClick={onSearchClick}
-      >
-        <EVAIcon
-          name={
-            isSearchButtonDisabled
-              ? "search"
-              : isUrlEmpty
-              ? "checkmark"
-              : "options-2"
-          }
-          fill="#FFFFFF"
-          size="large"
-        />
-        <SearchTitle>
-          {isUrlEmpty
-            ? props.t("Rechercher", "Rechercher")
-            : props.t(
-                "AdvancedSearch.Modifier ma recherche",
-                "Modifier ma recherche"
-              )}
-        </SearchTitle>
-      </SearchBoutton>
       {isUrlEmpty ? (
         <>
           <TextTitle>
@@ -366,6 +340,32 @@ export const MobileAdvancedSearch = (props: Props) => {
           history={props.history}
         />
       )}
+      <SearchBoutton
+        isDisabled={isSearchButtonDisabled}
+        isUrlEmpty={isUrlEmpty}
+        tagSelected={tagSelected}
+        onClick={onSearchClick}
+      >
+        <EVAIcon
+          name={
+            isSearchButtonDisabled
+              ? "search"
+              : isUrlEmpty
+              ? "checkmark"
+              : "options-2"
+          }
+          fill="#FFFFFF"
+          size="large"
+        />
+        <SearchTitle>
+          {isUrlEmpty
+            ? props.t("Rechercher", "Rechercher")
+            : props.t(
+                "AdvancedSearch.Modifier ma recherche",
+                "Modifier ma recherche"
+              )}
+        </SearchTitle>
+      </SearchBoutton>
     </MainContainer>
   );
 };
