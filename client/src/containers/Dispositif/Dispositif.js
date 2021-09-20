@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { Col, Row, Spinner } from "reactstrap";
@@ -5,6 +6,7 @@ import { connect } from "react-redux";
 import ContentEditable from "react-contenteditable";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import htmlToDraft from "html-to-draftjs";
+import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import {
   EditorState,
   convertToRaw,
@@ -79,8 +81,19 @@ import { fetchActiveStructuresActionCreator } from "../../services/ActiveStructu
 import { logger } from "../../logger";
 import { isMobile } from "react-device-detect";
 import { PdfCreateModal } from "../../components/Modals/PdfCreateModal/PdfCreateModal";
+import styled from "styled-components";
 
 moment.locale("fr");
+
+const InfoBoxLanguageContainer = styled.div`
+  display: flex;
+  max-width: 1002px;
+  color: ${colors.blanc};
+  background-color: ${colors.focus};
+  border-radius: 12px;
+  padding: 16px;
+  margin: 40px;
+`;
 
 const sponsorsData = [];
 const uiElement = {
@@ -1678,6 +1691,22 @@ export class Dispositif extends Component {
     const tag =
       mainTag && mainTag.short ? mainTag.short.split(" ").join("-") : "noImage";
 
+    let langues = this.props.langues;
+
+    let langSelected = langues.find(
+      (item) => item.i18nCode === this.props.languei18nCode
+    );
+
+    const isTranslated =
+      (this.state.dispositif.avancement &&
+        langSelected &&
+        this.state.dispositif.avancement[langSelected.i18nCode] &&
+        this.state.dispositif.avancement[langSelected.i18nCode] === 1) ||
+      langSelected === "fr";
+    console.log("avancement", this.state.dispositif.avancement);
+    console.log("langues", langues);
+    console.log("langSelected", langSelected);
+    console.log("isTranslated", isTranslated);
     return (
       <div
         id="dispositif"
@@ -1968,6 +1997,23 @@ export class Dispositif extends Component {
                     </FButton>
                   </div>
                 )}
+                {!isTranslated && (
+                  <InfoBoxLanguageContainer>
+                    <EVAIcon
+                      name={"alert-triangle"}
+                      fill={colors.blanc}
+                      className="mr-10"
+                    ></EVAIcon>
+                    <div>
+                      {t(
+                        "",
+                        "Cette fiche n'est pas encore disponible en français. Vous pouvez la lire en français"
+                      )}
+                      {t("", " ou sélectionner une autre langue ")}
+                      {t("", "ci-dessous. ")}
+                    </div>
+                  </InfoBoxLanguageContainer>
+                )}
                 {disableEdit && this.state.dispositif.lastModificationDate && (
                   // Part about last update
                   <Row className="fiabilite-row">
@@ -2251,6 +2297,7 @@ const mapStateToProps = (state) => {
     userId: state.user.userId,
     admin: state.user.admin,
     userFetched: state.user.userFetched,
+    langues: state.langue.langues,
   };
 };
 
