@@ -67,6 +67,7 @@ const SearchBoutton = styled.div`
   color: white;
   font-weight: 700;
   margin: 5px 0;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
 `;
 const FilterButton = styled.div`
   padding: 16px;
@@ -82,6 +83,7 @@ const FilterButton = styled.div`
   margin: 10px 0;
   display: flex;
   justify-content: space-between;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
 `;
 
 const TextTitle = styled.div`
@@ -91,6 +93,14 @@ const TextTitle = styled.div`
 `;
 const SearchTitle = styled.div`
   margin-left: 10px;
+`;
+
+const ShowMoreFiltreTextContainer = styled.div`
+  text-decoration: underline;
+  color: ${colors.grisFonce};
+  font-size: 18px;
+  margin: 10px auto;
+  height: 23px;
 `;
 
 export const MobileAdvancedSearch = (props: Props) => {
@@ -106,6 +116,7 @@ export const MobileAdvancedSearch = (props: Props) => {
   const [isUrlEmpty, setIsUrlEmpty] = useState(true);
   const isSearchButtonDisabled =
     !tagSelected && !ageSelected && !frenchSelected && ville === "";
+  const [showMoreFiltre, setShowMoreFiltre] = useState(false);
 
   const toggleShowModal = (modal: string) => {
     switch (modal) {
@@ -122,6 +133,9 @@ export const MobileAdvancedSearch = (props: Props) => {
         break;
     }
   };
+
+  const toggleShowFiltre = () => setShowMoreFiltre(!showMoreFiltre);
+
   const selectOption = (item: any, type: string) => {
     let index = 0;
     let el;
@@ -254,33 +268,49 @@ export const MobileAdvancedSearch = (props: Props) => {
               </FilterButton>
             </>
           )}
+          {showMoreFiltre && (
+            <>
+              <TextTitle> {props.t("SearchItem.J'ai", "J'ai")}</TextTitle>
+              <SelectedFilter
+                toggleShowModal={toggleShowModal}
+                otherFilterSelected={ageSelected}
+                type="age"
+                t={props.t}
+                title={"SearchItem.choisir mon âge"}
+                defaultTitle={"choisir mon âge"}
+                setState={setAgeSelected}
+                desactiver={props.desactiver}
+                recherche={props.recherche}
+              />
 
-          <TextTitle> {props.t("SearchItem.J'ai", "J'ai")}</TextTitle>
-          <SelectedFilter
-            toggleShowModal={toggleShowModal}
-            otherFilterSelected={ageSelected}
-            type="age"
-            t={props.t}
-            title={"SearchItem.choisir mon âge"}
-            defaultTitle={"choisir mon âge"}
-            setState={setAgeSelected}
-            desactiver={props.desactiver}
-            recherche={props.recherche}
-          />
-
-          <TextTitle> {props.t("SearchItem.Je parle", "Je parle")}</TextTitle>
-          <SelectedFilter
-            toggleShowModal={toggleShowModal}
-            otherFilterSelected={frenchSelected}
-            type="french"
-            t={props.t}
-            title={"Tags.niveau de français"}
-            defaultTitle={"niveau de français"}
-            setState={setFrenchSelected}
-            desactiver={props.desactiver}
-            recherche={props.recherche}
-          />
-
+              <TextTitle>
+                {" "}
+                {props.t("SearchItem.Je parle", "Je parle")}
+              </TextTitle>
+              <SelectedFilter
+                toggleShowModal={toggleShowModal}
+                otherFilterSelected={frenchSelected}
+                type="french"
+                t={props.t}
+                title={"Tags.niveau de français"}
+                defaultTitle={"niveau de français"}
+                setState={setFrenchSelected}
+                desactiver={props.desactiver}
+                recherche={props.recherche}
+              />
+            </>
+          )}
+          <ShowMoreFiltreTextContainer onClick={toggleShowFiltre}>
+            {showMoreFiltre
+              ? props.t(
+                  "AdvancedSearch.Voir moins de filtres",
+                  "Voir moins de filtres"
+                )
+              : props.t(
+                  "AdvancedSearch.Voir plus de filtres",
+                  "Voir plus de filtres"
+                )}
+          </ShowMoreFiltreTextContainer>
           {showTagModal && (
             <MobileSearchFilterModal
               t={props.t}
@@ -359,7 +389,9 @@ export const MobileAdvancedSearch = (props: Props) => {
         />
         <SearchTitle>
           {isUrlEmpty
-            ? props.t("Rechercher", "Rechercher")
+            ? isSearchButtonDisabled
+              ? props.t("Sélectionnez un filtre !", "Sélectionnez un filtre !")
+              : props.t("Rechercher", "Rechercher")
             : props.t(
                 "AdvancedSearch.Modifier ma recherche",
                 "Modifier ma recherche"
