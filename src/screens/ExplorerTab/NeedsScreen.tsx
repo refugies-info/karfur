@@ -12,7 +12,7 @@ import { View, Animated } from "react-native";
 import { needsSelector } from "../../services/redux/Needs/needs.selectors";
 import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
-import { RTLTouchableOpacity } from "../../components/BasicComponents";
+import { RTLTouchableOpacity, RTLView } from "../../components/BasicComponents";
 import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import { ObjectId, Need } from "../../types/interface";
 import { ScrollView } from "react-native-gesture-handler";
@@ -62,7 +62,7 @@ const StyledText = styled(TextSmallBold)`
   color: ${(props: { color: string }) => props.color};
 `;
 
-const IndicatorContainer = styled.View`
+const IndicatorContainer = styled(RTLView)`
   background-color: ${(props: { backgroundColor: string }) =>
     props.backgroundColor};
   padding: ${theme.margin}px;
@@ -77,6 +77,14 @@ const IndicatorContainer = styled.View`
 
 const IndicatorText = styled(TextVerySmallNormal)`
   color: ${theme.colors.white};
+`;
+
+const IndicatorNumber = styled(TextVerySmallNormal)`
+  color: ${theme.colors.white};
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? 0 : theme.margin / 2}px;
+  margin-left: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? theme.margin / 2 : 0}px;
 `;
 
 export const NeedsScreen = ({
@@ -275,8 +283,8 @@ export const NeedsScreen = ({
               : need.fr.text;
           const indicatorText =
             need.nbContents < 2
-              ? need.nbContents + " " + t("NeedsScreen.fiche", "fiche")
-              : need.nbContents + " " + t("NeedsScreen.fiches", "fiches");
+              ? t("NeedsScreen.fiche", "fiche")
+              : t("NeedsScreen.fiches", "fiches");
           return (
             <NeedContainer
               key={need._id}
@@ -293,6 +301,9 @@ export const NeedsScreen = ({
             >
               <StyledText color={tagDarkColor}>{needText}</StyledText>
               <IndicatorContainer backgroundColor={tagLightColor} isRTL={isRTL}>
+                <IndicatorNumber isRTL={isRTL}>
+                  {need.nbContents}
+                </IndicatorNumber>
                 <IndicatorText>{indicatorText}</IndicatorText>
               </IndicatorContainer>
             </NeedContainer>
