@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { Col, Row, Spinner } from "reactstrap";
@@ -148,6 +147,7 @@ export class Dispositif extends Component {
     showShareContentOnMobileModal: false,
     showSpinnerPrint: false,
     showSpinnerBookmark: false,
+    showAlertBoxLanguage: true,
     suggestion: "",
     mail: "",
     tKeyValue: -1,
@@ -556,6 +556,10 @@ export class Dispositif extends Component {
 
   toggleGeolocModal = (show) => {
     this.setState({ showGeolocModal: show });
+  };
+
+  toggleAlertBoxLanguage = () => {
+    this.setState({ showAlertBoxLanguage: !this.state.showAlertBoxLanguage });
   };
 
   toggleShowPdfModal = () => {
@@ -1675,7 +1679,18 @@ export class Dispositif extends Component {
       type: "error",
       timer: 1500,
     });
-
+  createPossibleLanguagesObject = (avancement, langues) => {
+    let possibleLanguages = [];
+    if (avancement) {
+      Object.keys(avancement).forEach((item) => {
+        let lng = langues.find(
+          (langue) => langue.i18nCode === item && item !== "fr"
+        );
+        if (lng) possibleLanguages.push(lng);
+      });
+    }
+    return possibleLanguages;
+  };
   render() {
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     const { t, translating, windowWidth } = this.props;
@@ -1691,22 +1706,17 @@ export class Dispositif extends Component {
     const tag =
       mainTag && mainTag.short ? mainTag.short.split(" ").join("-") : "noImage";
 
-    let langues = this.props.langues;
-
-    let langSelected = langues.find(
-      (item) => item.i18nCode === this.props.languei18nCode
+    let possibleLanguages = this.createPossibleLanguagesObject(
+      this.state.dispositif.avancement,
+      this.props.langues
     );
 
     const isTranslated =
       (this.state.dispositif.avancement &&
-        langSelected &&
-        this.state.dispositif.avancement[langSelected.i18nCode] &&
-        this.state.dispositif.avancement[langSelected.i18nCode] === 1) ||
-      langSelected === "fr";
-    console.log("avancement", this.state.dispositif.avancement);
-    console.log("langues", langues);
-    console.log("langSelected", langSelected);
-    console.log("isTranslated", isTranslated);
+        this.state.dispositif.avancement[this.props.languei18nCode] &&
+        this.state.dispositif.avancement[this.props.languei18nCode] === 1) ||
+      this.props.languei18nCode === "fr";
+
     return (
       <div
         id="dispositif"
@@ -1997,7 +2007,7 @@ export class Dispositif extends Component {
                     </FButton>
                   </div>
                 )}
-                {!isTranslated && (
+                {!isTranslated && this.state.showAlertBoxLanguage && (
                   <InfoBoxLanguageContainer>
                     <EVAIcon
                       name={"alert-triangle"}
@@ -2005,13 +2015,22 @@ export class Dispositif extends Component {
                       className="mr-10"
                     ></EVAIcon>
                     <div>
-                      {t(
-                        "",
-                        "Cette fiche n'est pas encore disponible en français. Vous pouvez la lire en français"
-                      )}
-                      {t("", " ou sélectionner une autre langue ")}
-                      {t("", "ci-dessous. ")}
+                      {possibleLanguages.length
+                        ? t(
+                            "Cette fiche n'est pas dispo",
+                            "Cette fiche n'est pas encore disponible en (langue). Vous pouvez la lire en français ou sélectionner une autre langue ci-dessous."
+                          )
+                        : t(
+                            "Cette fiche n'est pas dispo only french",
+                            "Cette fiche n'est pas encore disponible en langue. Vous pouvez la lire en français ci-dessous"
+                          )}
                     </div>
+                    <EVAIcon
+                      onClick={this.toggleAlertBoxLanguage}
+                      name={"close"}
+                      fill={colors.blanc}
+                      className="ml-10"
+                    ></EVAIcon>
                   </InfoBoxLanguageContainer>
                 )}
                 {disableEdit && this.state.dispositif.lastModificationDate && (

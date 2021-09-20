@@ -282,6 +282,8 @@
   },
   "Dispositifs": {
     "Header": "Construire sa vie en France",
+    "Cette fiche n'est pas dispo only french": "Cette fiche n'est pas encore disponible en (langue). Vous pouvez la lire en français ci-dessous.",
+    "Cette fiche n'est pas dispo": "Cette fiche n'est pas encore disponible en (langue). Vous pouvez la lire en français ou sélectionner une autre langue ci-dessous.",
     "Subheader": "Ici, vous pourrez comprendre comment ouvrir vos droits sociaux, trouver un emploi, trouver des cours de français"
   },
   "Tags": {
