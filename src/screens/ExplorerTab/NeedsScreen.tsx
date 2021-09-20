@@ -102,7 +102,7 @@ export const NeedsScreen = ({
   const toggleSimplifiedHeader = (displayHeader: boolean) => {
     if (displayHeader && !showSimplifiedHeader) {
       Animated.timing(animatedController, {
-        duration: 400,
+        duration: 200,
         toValue: 1,
         useNativeDriver: false,
       }).start();
@@ -112,7 +112,7 @@ export const NeedsScreen = ({
 
     if (!displayHeader && showSimplifiedHeader) {
       Animated.timing(animatedController, {
-        duration: 400,
+        duration: 200,
         toValue: 0,
         useNativeDriver: false,
       }).start();
@@ -122,11 +122,11 @@ export const NeedsScreen = ({
   };
 
   const handleScroll = (event: any) => {
-    if (event.nativeEvent.contentOffset.y > 30) {
+    if (event.nativeEvent.contentOffset.y > 10) {
       toggleSimplifiedHeader(true);
       return;
     }
-    if (event.nativeEvent.contentOffset.y < 30) {
+    if (event.nativeEvent.contentOffset.y < 10) {
       toggleSimplifiedHeader(false);
       return;
     }
@@ -271,6 +271,7 @@ export const NeedsScreen = ({
         }}
         onScroll={handleScroll}
         scrollEventThrottle={16}
+        alwaysBounceVertical={false}
       >
         {needsToDisplay.map((need) => {
           const needText =
