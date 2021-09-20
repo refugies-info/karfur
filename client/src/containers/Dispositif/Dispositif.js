@@ -94,6 +94,13 @@ const InfoBoxLanguageContainer = styled.div`
   margin: ${isMobile ? "16px" : "40px"};
 `;
 
+const TextOtherLanguageContainer = styled.p`
+  display: flex;
+  color: ${colors.grisFonce};
+  font-size: 18px;
+  text-align: center;
+`;
+
 const sponsorsData = [];
 const uiElement = {
   isHover: false,
@@ -2008,30 +2015,35 @@ export class Dispositif extends Component {
                   </div>
                 )}
                 {!isTranslated && this.state.showAlertBoxLanguage && (
-                  <InfoBoxLanguageContainer>
-                    <EVAIcon
-                      name={"alert-triangle"}
-                      fill={colors.blanc}
-                      className="mr-10"
-                    ></EVAIcon>
-                    <div>
-                      {possibleLanguages.length
-                        ? t(
-                            "Cette fiche n'est pas dispo",
-                            "Cette fiche n'est pas encore disponible en (langue). Vous pouvez la lire en français ou sélectionner une autre langue ci-dessous."
-                          )
-                        : t(
-                            "Cette fiche n'est pas dispo only french",
-                            "Cette fiche n'est pas encore disponible en langue. Vous pouvez la lire en français ci-dessous"
-                          )}
-                    </div>
-                    <EVAIcon
-                      onClick={this.toggleAlertBoxLanguage}
-                      name={"close"}
-                      fill={colors.blanc}
-                      className="ml-10"
-                    ></EVAIcon>
-                  </InfoBoxLanguageContainer>
+                  <>
+                    <InfoBoxLanguageContainer>
+                      <EVAIcon
+                        name={"alert-triangle"}
+                        fill={colors.blanc}
+                        className="mr-10"
+                      ></EVAIcon>
+                      <div>
+                        {possibleLanguages.length
+                          ? t(
+                              "Cette fiche n'est pas dispo",
+                              "Cette fiche n'est pas encore disponible dans la langue choisie. Vous pouvez la lire en français ou sélectionner une autre langue ci-dessous."
+                            )
+                          : t(
+                              "Cette fiche n'est pas dispo only french",
+                              "Cette fiche n'est pas encore disponible dans la langue choisie. Vous pouvez la lire en français ci-dessous"
+                            )}
+                      </div>
+                      <EVAIcon
+                        onClick={this.toggleAlertBoxLanguage}
+                        name={"close"}
+                        fill={colors.blanc}
+                        className="ml-10"
+                      ></EVAIcon>
+                    </InfoBoxLanguageContainer>
+                    <TextOtherLanguageContainer>
+                      {t("Lire en : ", "Lire en :")}
+                    </TextOtherLanguageContainer>
+                  </>
                 )}
                 {disableEdit && this.state.dispositif.lastModificationDate && (
                   // Part about last update
