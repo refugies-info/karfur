@@ -100,11 +100,11 @@ export const ContentsScreen = ({
     // if (event.nativeEvent.contentOffset.y - scrollPos < 5) {
     //   setScrollPos(event.nativeEvent.contentOffset.y);
     // }
-    // if (event.nativeEvent.contentOffset.y <) {
-    //   toggleSimplifiedHeader(true);
-    //   return;
-    // }
-    if (event.nativeEvent.contentOffset.y < 0.01) {
+    if (event.nativeEvent.contentOffset.y > 10) {
+      toggleSimplifiedHeader(true);
+      return;
+    }
+    if (event.nativeEvent.contentOffset.y < 10) {
       toggleSimplifiedHeader(false);
       return;
     }
@@ -112,9 +112,9 @@ export const ContentsScreen = ({
   };
 
   const onScrollBeginDrag = () => {
-    if (!showSimplifiedHeader) {
-      toggleSimplifiedHeader(true);
-    }
+    // if (!showSimplifiedHeader) {
+    //   toggleSimplifiedHeader(true);
+    // }
   };
 
   const headerBottomRadius = animatedController.interpolate({
