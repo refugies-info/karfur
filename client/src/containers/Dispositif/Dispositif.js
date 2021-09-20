@@ -98,7 +98,10 @@ const TextOtherLanguageContainer = styled.p`
   display: flex;
   color: ${colors.grisFonce};
   font-size: 18px;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 16px;
 `;
 
 const sponsorsData = [];
@@ -1718,6 +1721,11 @@ export class Dispositif extends Component {
       this.props.langues
     );
 
+    let langueSelected = this.props.langues.find(
+      (item) => item.i18nCode === this.props.languei18nCode
+    );
+    // eslint-disable-next-line no-console
+    console.log("langueSelected", langueSelected);
     const isTranslated =
       (this.state.dispositif.avancement &&
         this.state.dispositif.avancement[this.props.languei18nCode] &&
@@ -2042,6 +2050,55 @@ export class Dispositif extends Component {
                     </InfoBoxLanguageContainer>
                     <TextOtherLanguageContainer>
                       {t("Lire en : ", "Lire en :")}
+                      {langueSelected && isMobile ? (
+                        <FButton
+                          type="white"
+                          className="ml-10"
+                          onClick={() => {}}
+                        >
+                          <i
+                            className={
+                              "flag-icon flag-icon-" + langueSelected.langueCode
+                            }
+                            title={langueSelected.langueCode}
+                            id={langueSelected.langueCode}
+                          />
+
+                          <span className="ml-10 language-name">
+                            {langueSelected.langueLoc || "Langue"}
+                          </span>
+                          <EVAIcon
+                            name={"chevron-down-outline"}
+                            fill={colors.noir}
+                            className="ml-10"
+                            size="xlarge"
+                          ></EVAIcon>
+                        </FButton>
+                      ) : langueSelected ? (
+                        possibleLanguages.map((langue) => {
+                          if (langue.i18nCode !== langueSelected.i18nCode) {
+                            return (
+                              <FButton
+                                type="white"
+                                className="ml-10"
+                                onClick={() => {}}
+                              >
+                                <i
+                                  className={
+                                    "flag-icon flag-icon-" + langue.langueCode
+                                  }
+                                  title={langue.langueCode}
+                                  id={langue.langueCode}
+                                />
+
+                                <span className="ml-10 language-name">
+                                  {langue.langueLoc || "Langue"}
+                                </span>
+                              </FButton>
+                            );
+                          }
+                        })
+                      ) : null}
                     </TextOtherLanguageContainer>
                   </>
                 )}
