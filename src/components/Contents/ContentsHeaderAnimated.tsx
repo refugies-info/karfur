@@ -93,17 +93,32 @@ export const ContentsHeaderAnimated = (props: Props) => {
           height: props.tagHeight,
         }}
       >
-        <ThemeContainer onPress={props.navigation.goBack}>
-          <ThemeText isRTL={isRTL}>
-            {firstLetterUpperCase(t("Tags." + props.tagName, props.tagName)) ||
-              ""}
-          </ThemeText>
-          {!props.showSimplifiedHeader && (
-            <StreamlineIcon name={props.iconName} width={16} height={16} />
-          )}
-        </ThemeContainer>
+        {!props.showSimplifiedHeader && (
+          <ThemeContainer onPress={props.navigation.goBack}>
+            <ThemeText isRTL={isRTL}>
+              {firstLetterUpperCase(
+                t("Tags." + props.tagName, props.tagName)
+              ) || ""}
+            </ThemeText>
+            {!props.showSimplifiedHeader && (
+              <StreamlineIcon name={props.iconName} width={16} height={16} />
+            )}
+          </ThemeContainer>
+        )}
       </Animated.View>
-
+      {/* <Text
+        style={[
+          styles.headerText,
+          {
+            textAlign: isRTL ? "right" : "left",
+            marginRight: isRTL ? 0 : theme.margin,
+            marginLeft: isRTL ? theme.margin : 0,
+            fontSize: props.showSimplifiedHeader ? 16 : 25,
+          },
+        ]}
+      >
+        {props.needName}
+      </Text> */}
       <Animated.Text
         style={[
           styles.headerText,

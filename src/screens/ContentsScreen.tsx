@@ -76,7 +76,7 @@ export const ContentsScreen = ({
   const toggleSimplifiedHeader = (displayHeader: boolean) => {
     if (displayHeader && !showSimplifiedHeader) {
       Animated.timing(animatedController, {
-        duration: 600,
+        duration: 200,
         toValue: 1,
         useNativeDriver: false,
       }).start();
@@ -86,7 +86,7 @@ export const ContentsScreen = ({
 
     if (!displayHeader && showSimplifiedHeader) {
       Animated.timing(animatedController, {
-        duration: 600,
+        duration: 200,
         toValue: 0,
         useNativeDriver: false,
       }).start();
@@ -96,15 +96,25 @@ export const ContentsScreen = ({
   };
 
   const handleScroll = (event: any) => {
-    if (event.nativeEvent.contentOffset.y > 10) {
-      toggleSimplifiedHeader(true);
-      return;
-    }
-    if (event.nativeEvent.contentOffset.y < 10) {
+    // console.log("scrollPos", scrollPos);
+    // if (event.nativeEvent.contentOffset.y - scrollPos < 5) {
+    //   setScrollPos(event.nativeEvent.contentOffset.y);
+    // }
+    // if (event.nativeEvent.contentOffset.y <) {
+    //   toggleSimplifiedHeader(true);
+    //   return;
+    // }
+    if (event.nativeEvent.contentOffset.y < 0.01) {
       toggleSimplifiedHeader(false);
       return;
     }
     return;
+  };
+
+  const onScrollBeginDrag = () => {
+    if (!showSimplifiedHeader) {
+      toggleSimplifiedHeader(true);
+    }
   };
 
   const headerBottomRadius = animatedController.interpolate({
@@ -222,6 +232,8 @@ export const ContentsScreen = ({
         }}
         onScroll={handleScroll}
         scrollEventThrottle={16}
+        alwaysBounceVertical={false}
+        onScrollBeginDrag={onScrollBeginDrag}
       >
         {contentsToDisplay.map((content, index) => {
           if (!content)
