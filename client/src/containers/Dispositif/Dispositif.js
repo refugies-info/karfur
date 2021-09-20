@@ -91,7 +91,7 @@ const InfoBoxLanguageContainer = styled.div`
   background-color: ${colors.focus};
   border-radius: 12px;
   padding: 16px;
-  margin: 40px;
+  margin: ${isMobile ? "16px" : "40px"};
 `;
 
 const sponsorsData = [];
