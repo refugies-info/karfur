@@ -30,6 +30,7 @@ interface Props {
   setShowChangeStructureModal: (arg: boolean) => void;
   toggleImprovementsMailModal: () => void;
   toggleNeedsChoiceModal: () => void;
+  setSelectedUserIdAndToggleModal: (element: any) => void;
 }
 
 const LeftPart = styled.div`
@@ -123,14 +124,10 @@ export const DetailsModal = (props: Props) => {
 
   const [modifiedStatus, setModifiedStatus] = useState<string | null>(null);
   const [adminComments, setAdminComments] = useState<string>("");
-  const [
-    adminProgressionStatusGroup1,
-    setAdminProgressionStatusGroup1,
-  ] = useState<string | null>(null);
-  const [
-    adminProgressionStatusGroup2,
-    setAdminProgressionStatusGroup2,
-  ] = useState<string | null>(null);
+  const [adminProgressionStatusGroup1, setAdminProgressionStatusGroup1] =
+    useState<string | null>(null);
+  const [adminProgressionStatusGroup2, setAdminProgressionStatusGroup2] =
+    useState<string | null>(null);
 
   const dispatch = useDispatch();
 
@@ -291,7 +288,12 @@ export const DetailsModal = (props: Props) => {
                 dispositif.created_at
               ).fromNow()}`}
               <Title>Créateur</Title>
-              <CreatorContainer>
+              <CreatorContainer
+                onClick={() => {
+                  props.toggleModal();
+                  props.setSelectedUserIdAndToggleModal(dispositif.creatorId);
+                }}
+              >
                 <img
                   className="creator-img"
                   src={getCreatorImage(dispositif)}

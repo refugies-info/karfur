@@ -481,6 +481,7 @@ export const AdminUsers = () => {
           show={showContentDetailsModal}
           toggleModal={() => setSelectedContentIdAndToggleModal(null)}
           selectedDispositifId={selectedContentId}
+          setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
           onDeleteClick={() =>
             prepareDeleteContrib(
               setSelectedContentId,
