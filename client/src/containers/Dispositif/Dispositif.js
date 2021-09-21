@@ -2118,36 +2118,35 @@ export class Dispositif extends Component {
                         ></EVAIcon>
                       </FButton>
                     ) : langueSelected ? (
-                      possibleLanguages.map((langue) => {
-                        if (langue.i18nCode !== langueSelected.i18nCode) {
-                          return (
-                            <FButton
-                              type="white"
-                              className="ml-10"
-                              onClick={() => {
-                                initGA();
-                                Event(
-                                  "CHANGE_LANGUAGE",
-                                  langue.i18nCode,
-                                  "label"
-                                );
-                                this.props.changeLanguage(langue.i18nCode);
-                              }}
-                            >
-                              <i
-                                className={
-                                  "flag-icon flag-icon-" + langue.langueCode
-                                }
-                                title={langue.langueCode}
-                                id={langue.langueCode}
-                              />
+                      possibleLanguages.map((langue, index) => {
+                        return (
+                          <FButton
+                            key={index}
+                            type="white"
+                            className="ml-10"
+                            onClick={() => {
+                              initGA();
+                              Event(
+                                "CHANGE_LANGUAGE",
+                                langue.i18nCode,
+                                "label"
+                              );
+                              this.props.changeLanguage(langue.i18nCode);
+                            }}
+                          >
+                            <i
+                              className={
+                                "flag-icon flag-icon-" + langue.langueCode
+                              }
+                              title={langue.langueCode}
+                              id={langue.langueCode}
+                            />
 
-                              <span className="ml-10 language-name">
-                                {langue.langueLoc || "Langue"}
-                              </span>
-                            </FButton>
-                          );
-                        }
+                            <span className="ml-10 language-name">
+                              {langue.langueLoc || "Langue"}
+                            </span>
+                          </FButton>
+                        );
                       })
                     ) : null}
                   </TextOtherLanguageContainer>
