@@ -3,6 +3,9 @@ import { asyncForEach } from "../../../libs/asyncForEach";
 import logger from "../../../logger";
 import { getStructuresFromDB } from "../../../modules/structure/structure.repository";
 import { getUserById } from "../../../modules/users/users.repository";
+import { ObjectId } from "mongoose";
+import { StructureDoc } from "../../../schema/schemaStructure.js";
+import { DispositifDoc } from "../../../schema/schemaDispositif.js";
 
 export const getAllStructures = async (req: {}, res: Res) => {
   try {
@@ -20,7 +23,8 @@ export const getAllStructures = async (req: {}, res: Res) => {
     };
     const structures = await getStructuresFromDB({}, neededFields, true);
     const simplifiedStructures = structures.map((structure) => {
-      const jsonStructure = structure.toJSON();
+      // @ts-ignore
+      const jsonStructure: StructureDoc = structure.toJSON();
       const nbMembres = jsonStructure.membres
         ? jsonStructure.membres.length
         : 0;
@@ -33,12 +37,16 @@ export const getAllStructures = async (req: {}, res: Res) => {
       const responsableId =
         responsablesArray.length > 0 ? responsablesArray[0].userId : null;
 
-      const dispositifsIds: any[] = [];
-      jsonStructure.dispositifsAssocies.forEach((dispositif: any) => {
+      const dispositifsIds: ObjectId[] = [];
+
+      // @ts-ignore
+      jsonStructure.dispositifsAssocies.forEach((dispositif: DispositifDoc) => {
         if (!["Supprimé"].includes(dispositif.status)) {
           dispositifsIds.push(dispositif._id);
         }
       });
+
+      // @ts-ignore
       const dispositifsAssocies = jsonStructure.dispositifsAssocies.filter(
         (dispo: any) => {
           return (

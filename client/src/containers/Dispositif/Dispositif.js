@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import ContentEditable from "react-contenteditable";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import htmlToDraft from "html-to-draftjs";
+import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import {
   EditorState,
   convertToRaw,
@@ -40,6 +41,7 @@ import {
 } from "../../components/Modals/index";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import { Tags } from "./Tags";
+import { LanguageToReadModal } from "./LanguageToReadModal/LanguagetoReadModal";
 import { LeftSideDispositif } from "../../components/Frontend/Dispositif/LeftSideDispositif";
 import { BandeauEdition } from "../../components/Frontend/Dispositif/BandeauEdition";
 import { TopRightHeader } from "../../components/Frontend/Dispositif/TopRightHeader";
@@ -79,8 +81,29 @@ import { fetchActiveStructuresActionCreator } from "../../services/ActiveStructu
 import { logger } from "../../logger";
 import { isMobile } from "react-device-detect";
 import { PdfCreateModal } from "../../components/Modals/PdfCreateModal/PdfCreateModal";
+import styled from "styled-components";
 
 moment.locale("fr");
+
+const InfoBoxLanguageContainer = styled.div`
+  display: flex;
+  max-width: 1002px;
+  color: ${colors.blanc};
+  background-color: ${colors.focus};
+  border-radius: 12px;
+  padding: 16px;
+  margin: ${isMobile ? "16px" : "40px"};
+`;
+
+const TextOtherLanguageContainer = styled.p`
+  display: flex;
+  color: ${colors.grisFonce};
+  font-size: 18px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 16px;
+`;
 
 const sponsorsData = [];
 const uiElement = {
@@ -128,6 +151,7 @@ export class Dispositif extends Component {
     showDispositifCreateModal: false,
     showDispositifValidateModal: false,
     showGeolocModal: false,
+    showLanguageToReadModal: false,
     showTagsModal: false,
     showPdfModal: false,
     showTutorielModal: false,
@@ -135,6 +159,7 @@ export class Dispositif extends Component {
     showShareContentOnMobileModal: false,
     showSpinnerPrint: false,
     showSpinnerBookmark: false,
+    showAlertBoxLanguage: true,
     suggestion: "",
     mail: "",
     tKeyValue: -1,
@@ -545,8 +570,18 @@ export class Dispositif extends Component {
     this.setState({ showGeolocModal: show });
   };
 
+  toggleAlertBoxLanguage = () => {
+    this.setState({ showAlertBoxLanguage: !this.state.showAlertBoxLanguage });
+  };
+
   toggleShowPdfModal = () => {
     this.setState({ showPdfModal: !this.state.showPdfModal });
+  };
+
+  toggleShowLanguageModal = () => {
+    this.setState({
+      showLanguageToReadModal: !this.state.showLanguageToReadModal,
+    });
   };
 
   handleModalChange = (ev) =>
@@ -1662,7 +1697,18 @@ export class Dispositif extends Component {
       type: "error",
       timer: 1500,
     });
-
+  createPossibleLanguagesObject = (avancement, langues) => {
+    let possibleLanguages = [];
+    if (avancement) {
+      Object.keys(avancement).forEach((item) => {
+        let lng = langues.find(
+          (langue) => langue.i18nCode === item && item !== "fr"
+        );
+        if (lng) possibleLanguages.push(lng);
+      });
+    }
+    return possibleLanguages;
+  };
   render() {
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     const { t, translating, windowWidth } = this.props;
@@ -1678,6 +1724,20 @@ export class Dispositif extends Component {
     const tag =
       mainTag && mainTag.short ? mainTag.short.split(" ").join("-") : "noImage";
 
+    let possibleLanguages = this.createPossibleLanguagesObject(
+      this.state.dispositif.avancement,
+      this.props.langues
+    );
+
+    let langueSelected = this.props.langues.find(
+      (item) => item.i18nCode === this.props.languei18nCode
+    );
+
+    const isTranslated =
+      (this.state.dispositif.avancement &&
+        this.state.dispositif.avancement[this.props.languei18nCode] &&
+        this.state.dispositif.avancement[this.props.languei18nCode] === 1) ||
+      this.props.languei18nCode === "fr";
     return (
       <div
         id="dispositif"
@@ -1968,6 +2028,40 @@ export class Dispositif extends Component {
                     </FButton>
                   </div>
                 )}
+
+                {!isTranslated && this.state.showAlertBoxLanguage && (
+                  <InfoBoxLanguageContainer>
+                    <EVAIcon
+                      name={"alert-triangle"}
+                      fill={colors.blanc}
+                      className="mr-10"
+                    ></EVAIcon>
+                    <div>
+                      {t(
+                        "Dispositifs.Cette fiche n'est pas dispo",
+                        "Cette fiche n'est pas encore disponible en :"
+                      )}
+                      {langueSelected
+                        ? " " + langueSelected.langueLoc + "."
+                        : ""}
+                      {possibleLanguages.length
+                        ? t(
+                            "Dispositifs.Vous pouvez la lire en plusieurs langues",
+                            " Vous pouvez la lire en français ou sélectionner une autre langue ci-dessous."
+                          )
+                        : t(
+                            "Dispositifs.Vous pouvez la lire en français",
+                            " Vous pouvez la lire en français ci-dessous"
+                          )}
+                    </div>
+                    <EVAIcon
+                      onClick={this.toggleAlertBoxLanguage}
+                      name={"close"}
+                      fill={colors.blanc}
+                      className="ml-10"
+                    ></EVAIcon>
+                  </InfoBoxLanguageContainer>
+                )}
                 {disableEdit && this.state.dispositif.lastModificationDate && (
                   // Part about last update
                   <Row className="fiabilite-row">
@@ -1995,6 +2089,68 @@ export class Dispositif extends Component {
                     </Col>
                   </Row>
                 )}
+                {!isTranslated && possibleLanguages.length ? (
+                  <TextOtherLanguageContainer>
+                    {t("Dispositif.Lire en", "Lire en :")}
+                    {langueSelected && isMobile ? (
+                      <FButton
+                        type="white"
+                        className="ml-10"
+                        onClick={this.toggleShowLanguageModal}
+                      >
+                        <i
+                          className={
+                            "flag-icon flag-icon-" +
+                            possibleLanguages[0].langueCode
+                          }
+                          title={possibleLanguages[0].langueCode}
+                          id={possibleLanguages[0].langueCode}
+                        />
+
+                        <span className="ml-10 language-name">
+                          {possibleLanguages[0].langueLoc || "Langue"}
+                        </span>
+                        <EVAIcon
+                          name={"chevron-down-outline"}
+                          fill={colors.noir}
+                          className="ml-10"
+                          size="xlarge"
+                        ></EVAIcon>
+                      </FButton>
+                    ) : langueSelected ? (
+                      possibleLanguages.map((langue, index) => {
+                        return (
+                          <FButton
+                            key={index}
+                            type="white"
+                            className="ml-10"
+                            onClick={() => {
+                              initGA();
+                              Event(
+                                "CHANGE_LANGUAGE",
+                                langue.i18nCode,
+                                "label"
+                              );
+                              this.props.changeLanguage(langue.i18nCode);
+                            }}
+                          >
+                            <i
+                              className={
+                                "flag-icon flag-icon-" + langue.langueCode
+                              }
+                              title={langue.langueCode}
+                              id={langue.langueCode}
+                            />
+
+                            <span className="ml-10 language-name">
+                              {langue.langueLoc || "Langue"}
+                            </span>
+                          </FButton>
+                        );
+                      })
+                    ) : null}
+                  </TextOtherLanguageContainer>
+                ) : null}
 
                 <ContenuDispositif
                   showMapButton={this.showMapButton}
@@ -2209,6 +2365,13 @@ export class Dispositif extends Component {
               toggle={this.toggleTutorielModal}
               section={this.state.tutorielSection}
             />
+            <LanguageToReadModal
+              show={this.state.showLanguageToReadModal}
+              toggle={this.toggleShowLanguageModal}
+              t={this.props.t}
+              languages={possibleLanguages}
+              changeLanguage={this.props.changeLanguage}
+            />
 
             <DraftModal
               show={this.state.showDraftModal}
@@ -2251,6 +2414,7 @@ const mapStateToProps = (state) => {
     userId: state.user.userId,
     admin: state.user.admin,
     userFetched: state.user.userFetched,
+    langues: state.langue.langues,
   };
 };
 
