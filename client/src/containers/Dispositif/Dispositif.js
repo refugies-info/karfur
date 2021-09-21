@@ -2028,103 +2028,39 @@ export class Dispositif extends Component {
                     </FButton>
                   </div>
                 )}
+
                 {!isTranslated && this.state.showAlertBoxLanguage && (
-                  <>
-                    <InfoBoxLanguageContainer>
-                      <EVAIcon
-                        name={"alert-triangle"}
-                        fill={colors.blanc}
-                        className="mr-10"
-                      ></EVAIcon>
-                      <div>
-                        {t(
-                          "Dispositifs.Cette fiche n'est pas dispo",
-                          "Cette fiche n'est pas encore disponible en :"
-                        )}
-                        {langueSelected
-                          ? " " + langueSelected.langueLoc + "."
-                          : ""}
-                        {possibleLanguages.length
-                          ? t(
-                              "Dispositifs.Vous pouvez la lire en plusieurs langues",
-                              " Vous pouvez la lire en français ou sélectionner une autre langue ci-dessous."
-                            )
-                          : t(
-                              "Dispositifs.Vous pouvez la lire en français",
-                              " Vous pouvez la lire en français ci-dessous"
-                            )}
-                      </div>
-                      <EVAIcon
-                        onClick={this.toggleAlertBoxLanguage}
-                        name={"close"}
-                        fill={colors.blanc}
-                        className="ml-10"
-                      ></EVAIcon>
-                    </InfoBoxLanguageContainer>
-                    {possibleLanguages.length ? (
-                      <TextOtherLanguageContainer>
-                        {t("Dispositif.Lire en", "Lire en :")}
-                        {langueSelected && isMobile ? (
-                          <FButton
-                            type="white"
-                            className="ml-10"
-                            onClick={this.toggleShowLanguageModal}
-                          >
-                            <i
-                              className={
-                                "flag-icon flag-icon-" +
-                                possibleLanguages[0].langueCode
-                              }
-                              title={possibleLanguages[0].langueCode}
-                              id={possibleLanguages[0].langueCode}
-                            />
-
-                            <span className="ml-10 language-name">
-                              {possibleLanguages[0].langueLoc || "Langue"}
-                            </span>
-                            <EVAIcon
-                              name={"chevron-down-outline"}
-                              fill={colors.noir}
-                              className="ml-10"
-                              size="xlarge"
-                            ></EVAIcon>
-                          </FButton>
-                        ) : langueSelected ? (
-                          possibleLanguages.map((langue) => {
-                            if (langue.i18nCode !== langueSelected.i18nCode) {
-                              return (
-                                <FButton
-                                  type="white"
-                                  className="ml-10"
-                                  onClick={() => {
-                                    initGA();
-                                    Event(
-                                      "CHANGE_LANGUAGE",
-                                      langue.i18nCode,
-                                      "label"
-                                    );
-                                    this.props.changeLanguage(langue.i18nCode);
-                                  }}
-                                >
-                                  <i
-                                    className={
-                                      "flag-icon flag-icon-" + langue.langueCode
-                                    }
-                                    title={langue.langueCode}
-                                    id={langue.langueCode}
-                                  />
-
-                                  <span className="ml-10 language-name">
-                                    {langue.langueLoc || "Langue"}
-                                  </span>
-                                </FButton>
-                              );
-                            }
-                          })
-                        ) : null}
-                      </TextOtherLanguageContainer>
-                    ) : null}
-                  </>
+                  <InfoBoxLanguageContainer>
+                    <EVAIcon
+                      name={"alert-triangle"}
+                      fill={colors.blanc}
+                      className="mr-10"
+                    ></EVAIcon>
+                    <div>
+                      {t(
+                        "Dispositifs.Cette fiche n'est pas dispo",
+                        "Cette fiche n'est pas encore disponible en :"
+                      )}
+                      {langueSelected
+                        ? " " + langueSelected.langueLoc + "."
+                        : ""}
+                      {possibleLanguages.length
+                        ? t(
+                            "Dispositifs.Vous pouvez la lire en plusieurs langues",
+                            " Vous pouvez la lire en français ou sélectionner une autre langue ci-dessous."
+                          )
+                        : t(
+                            "Dispositifs.Vous pouvez la lire en français",
+                            " Vous pouvez la lire en français ci-dessous"
+                          )}
+                    </div>
+                    <EVAIcon
+                      onClick={this.toggleAlertBoxLanguage}
+                      name={"close"}
+                      fill={colors.blanc}
+                      className="ml-10"
+                    ></EVAIcon>
+                  </InfoBoxLanguageContainer>
                 )}
                 {disableEdit && this.state.dispositif.lastModificationDate && (
                   // Part about last update
@@ -2153,6 +2089,69 @@ export class Dispositif extends Component {
                     </Col>
                   </Row>
                 )}
+                {!isTranslated && possibleLanguages.length ? (
+                  <TextOtherLanguageContainer>
+                    {t("Dispositif.Lire en", "Lire en :")}
+                    {langueSelected && isMobile ? (
+                      <FButton
+                        type="white"
+                        className="ml-10"
+                        onClick={this.toggleShowLanguageModal}
+                      >
+                        <i
+                          className={
+                            "flag-icon flag-icon-" +
+                            possibleLanguages[0].langueCode
+                          }
+                          title={possibleLanguages[0].langueCode}
+                          id={possibleLanguages[0].langueCode}
+                        />
+
+                        <span className="ml-10 language-name">
+                          {possibleLanguages[0].langueLoc || "Langue"}
+                        </span>
+                        <EVAIcon
+                          name={"chevron-down-outline"}
+                          fill={colors.noir}
+                          className="ml-10"
+                          size="xlarge"
+                        ></EVAIcon>
+                      </FButton>
+                    ) : langueSelected ? (
+                      possibleLanguages.map((langue) => {
+                        if (langue.i18nCode !== langueSelected.i18nCode) {
+                          return (
+                            <FButton
+                              type="white"
+                              className="ml-10"
+                              onClick={() => {
+                                initGA();
+                                Event(
+                                  "CHANGE_LANGUAGE",
+                                  langue.i18nCode,
+                                  "label"
+                                );
+                                this.props.changeLanguage(langue.i18nCode);
+                              }}
+                            >
+                              <i
+                                className={
+                                  "flag-icon flag-icon-" + langue.langueCode
+                                }
+                                title={langue.langueCode}
+                                id={langue.langueCode}
+                              />
+
+                              <span className="ml-10 language-name">
+                                {langue.langueLoc || "Langue"}
+                              </span>
+                            </FButton>
+                          );
+                        }
+                      })
+                    ) : null}
+                  </TextOtherLanguageContainer>
+                ) : null}
 
                 <ContenuDispositif
                   showMapButton={this.showMapButton}
