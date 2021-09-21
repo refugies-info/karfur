@@ -178,6 +178,7 @@ export class Layout extends Component {
                           <route.component
                             socket={this.props.socket}
                             socketFn={this.props.socketFn}
+                            changeLanguage={this.changeLanguage}
                             {...props}
                           />
                         )}
