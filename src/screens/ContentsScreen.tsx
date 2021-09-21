@@ -5,7 +5,7 @@ import { TextNormal, TextNormalBold } from "../components/StyledText";
 import { useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
 import { contentsSelector } from "../services/redux/Contents/contents.selectors";
-import { ScrollView, View, Animated } from "react-native";
+import { ScrollView, View, Animated, Platform } from "react-native";
 import styled from "styled-components/native";
 import { theme } from "../theme";
 import { needNameSelector } from "../services/redux/Needs/needs.selectors";
@@ -96,25 +96,16 @@ export const ContentsScreen = ({
   };
 
   const handleScroll = (event: any) => {
-    // console.log("scrollPos", scrollPos);
-    // if (event.nativeEvent.contentOffset.y - scrollPos < 5) {
-    //   setScrollPos(event.nativeEvent.contentOffset.y);
-    // }
     if (event.nativeEvent.contentOffset.y > 10) {
       toggleSimplifiedHeader(true);
       return;
     }
-    if (event.nativeEvent.contentOffset.y < 10) {
+
+    if (Platform.OS === "ios" && event.nativeEvent.contentOffset.y < 10) {
       toggleSimplifiedHeader(false);
       return;
     }
     return;
-  };
-
-  const onScrollBeginDrag = () => {
-    // if (!showSimplifiedHeader) {
-    //   toggleSimplifiedHeader(true);
-    // }
   };
 
   const headerBottomRadius = animatedController.interpolate({
@@ -233,7 +224,6 @@ export const ContentsScreen = ({
         onScroll={handleScroll}
         scrollEventThrottle={16}
         alwaysBounceVertical={false}
-        onScrollBeginDrag={onScrollBeginDrag}
       >
         {contentsToDisplay.map((content, index) => {
           if (!content)
