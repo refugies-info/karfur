@@ -231,6 +231,26 @@ export const MobileAdvancedSearch = (props: Props) => {
 
   return (
     <MainContainer>
+      {!isUrlEmpty && (
+        <SearchBoutton
+          isDisabled={isSearchButtonDisabled}
+          isUrlEmpty={isUrlEmpty}
+          tagSelected={tagSelected}
+          onClick={onSearchClick}
+        >
+          <EVAIcon
+            name={isSearchButtonDisabled ? "search" : "options-2"}
+            fill="#FFFFFF"
+            size="large"
+          />
+          <SearchTitle>
+            {props.t(
+              "AdvancedSearch.Modifier ma recherche",
+              "Modifier ma recherche"
+            )}
+          </SearchTitle>
+        </SearchBoutton>
+      )}
       {isUrlEmpty ? (
         <>
           <TextTitle>
@@ -370,34 +390,25 @@ export const MobileAdvancedSearch = (props: Props) => {
           history={props.history}
         />
       )}
-      <SearchBoutton
-        isDisabled={isSearchButtonDisabled}
-        isUrlEmpty={isUrlEmpty}
-        tagSelected={tagSelected}
-        onClick={onSearchClick}
-      >
-        <EVAIcon
-          name={
-            isSearchButtonDisabled
-              ? "search"
-              : isUrlEmpty
-              ? "checkmark"
-              : "options-2"
-          }
-          fill="#FFFFFF"
-          size="large"
-        />
-        <SearchTitle>
-          {isUrlEmpty
-            ? isSearchButtonDisabled
+      {isUrlEmpty && (
+        <SearchBoutton
+          isDisabled={isSearchButtonDisabled}
+          isUrlEmpty={isUrlEmpty}
+          tagSelected={tagSelected}
+          onClick={onSearchClick}
+        >
+          <EVAIcon
+            name={isSearchButtonDisabled ? "search" : "checkmark"}
+            fill="#FFFFFF"
+            size="large"
+          />
+          <SearchTitle>
+            {isSearchButtonDisabled
               ? props.t("Sélectionnez un filtre !", "Sélectionnez un filtre !")
-              : props.t("Rechercher", "Rechercher")
-            : props.t(
-                "AdvancedSearch.Modifier ma recherche",
-                "Modifier ma recherche"
-              )}
-        </SearchTitle>
-      </SearchBoutton>
+              : props.t("Rechercher", "Rechercher")}
+          </SearchTitle>
+        </SearchBoutton>
+      )}
     </MainContainer>
   );
 };
