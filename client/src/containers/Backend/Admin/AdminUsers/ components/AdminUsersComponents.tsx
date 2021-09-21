@@ -66,6 +66,7 @@ interface StructureProps {
   nom: string;
   picture: Picture | null;
   role: string | null;
+  onClick: () => void;
 }
 export const Structure = (props: StructureProps) => (
   <div style={{ marginTop: "4px", marginBottom: "12px" }}>
@@ -73,7 +74,7 @@ export const Structure = (props: StructureProps) => (
       {props.picture && props.picture.secure_url && (
         <img className="sponsor-img mr-8" src={props.picture.secure_url} />
       )}
-      <StructureName>{props.nom}</StructureName>
+      <StructureName onClick={props.onClick}>{props.nom}</StructureName>
       {props.role && <RoleDetail>{props.role}</RoleDetail>}
     </RowContainer>
   </div>

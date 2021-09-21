@@ -570,6 +570,9 @@ export const AdminContenu = () => {
         show={showUserDetailsModal}
         toggleModal={() => setSelectedUserIdAndToggleModal(null)}
         selectedUserId={selectedUserId}
+        setSelectedStructureIdAndToggleModal={
+          setSelectedStructureIdAndToggleModal
+        }
       />
 
       <ChangeStructureModal
@@ -585,6 +588,7 @@ export const AdminContenu = () => {
           toggleModal={() => setSelectedStructureIdAndToggleModal(null)}
           selectedStructureId={selectedStructureId}
           toggleRespoModal={() => setSelectFirstRespoModal(true)}
+          setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
         />
       )}
       {selectedStructureId && (

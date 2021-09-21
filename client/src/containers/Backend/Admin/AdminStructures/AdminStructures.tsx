@@ -420,6 +420,9 @@ export const AdminStructures = () => {
           show={showUserDetailsModal}
           toggleModal={() => setSelectedUserIdAndToggleModal(null)}
           selectedUserId={selectedUserId}
+          setSelectedStructureIdAndToggleModal={
+            setSelectedStructureIdAndToggleModal
+          }
         />
       )}
 
