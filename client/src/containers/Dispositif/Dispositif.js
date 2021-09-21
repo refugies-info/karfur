@@ -2031,14 +2031,21 @@ export class Dispositif extends Component {
                         className="mr-10"
                       ></EVAIcon>
                       <div>
+                        {t(
+                          "Dispositifs.Cette fiche n'est pas dispo",
+                          "Cette fiche n'est pas encore disponible en :"
+                        )}
+                        {langueSelected
+                          ? " " + langueSelected.langueLoc + "."
+                          : ""}
                         {possibleLanguages.length
                           ? t(
-                              "Cette fiche n'est pas dispo",
-                              "Cette fiche n'est pas encore disponible dans la langue choisie. Vous pouvez la lire en français ou sélectionner une autre langue ci-dessous."
+                              "Dispositifs.Vous pouvez la lire en plusieurs langues",
+                              " Vous pouvez la lire en français ou sélectionner une autre langue ci-dessous."
                             )
                           : t(
-                              "Cette fiche n'est pas dispo only french",
-                              "Cette fiche n'est pas encore disponible dans la langue choisie. Vous pouvez la lire en français ci-dessous"
+                              "Dispositifs.Vous pouvez la lire en français",
+                              " Vous pouvez la lire en français ci-dessous"
                             )}
                       </div>
                       <EVAIcon
