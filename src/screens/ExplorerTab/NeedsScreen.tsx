@@ -55,7 +55,8 @@ const NeedContainer = styled(RTLTouchableOpacity)`
   border-radius: ${theme.radius * 2}px;
   box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
   justify-content:space-between;
-  align-items :center
+  align-items :center;
+  elevation:2;
 `;
 
 const StyledText = styled(TextSmallBold)`
@@ -65,7 +66,6 @@ const StyledText = styled(TextSmallBold)`
 const IndicatorContainer = styled(RTLView)`
   background-color: ${(props: { backgroundColor: string }) =>
     props.backgroundColor};
-  padding: ${theme.margin}px;
   align-self: center;
   border-radius: 8px;
   height: 32px;
@@ -73,6 +73,11 @@ const IndicatorContainer = styled(RTLView)`
     props.isRTL ? 0 : theme.margin}px;
   margin-right: ${(props: { isRTL: boolean }) =>
     props.isRTL ? theme.margin : 0}px;
+  width: 64px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
 
 const IndicatorText = styled(TextVerySmallNormal)`
@@ -301,7 +306,7 @@ export const NeedsScreen = ({
               }
             >
               <StyledText color={tagDarkColor}>{needText}</StyledText>
-              <IndicatorContainer backgroundColor={tagLightColor} isRTL={isRTL}>
+              <IndicatorContainer backgroundColor={tagDarkColor} isRTL={isRTL}>
                 <IndicatorNumber isRTL={isRTL}>
                   {need.nbContents}
                 </IndicatorNumber>
