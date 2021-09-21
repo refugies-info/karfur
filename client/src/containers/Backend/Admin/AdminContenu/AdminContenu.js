@@ -537,6 +537,9 @@ export const AdminContenu = () => {
       <DetailsModal
         show={showDetailsModal}
         toggleModal={() => setSelectedDispositifAndToggleModal(null)}
+        setSelectedStructureIdAndToggleModal={
+          setSelectedStructureIdAndToggleModal
+        }
         selectedDispositifId={
           selectedDispositif ? selectedDispositif._id : null
         }

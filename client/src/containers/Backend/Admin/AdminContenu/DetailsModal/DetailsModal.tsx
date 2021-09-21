@@ -10,7 +10,10 @@ import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 import { correspondingStatus, progressionData } from "../data";
 import { compare } from "../AdminContenu";
 import moment from "moment/min/moment-with-locales";
-import { SimplifiedDispositif } from "../../../../../types/interface";
+import {
+  SimplifiedDispositif,
+  SimplifiedStructureForAdmin,
+} from "../../../../../types/interface";
 import { colors } from "colors";
 import marioProfile from "../../../../../assets/mario-profile.jpg";
 import noStructure from "../../../../../assets/noStructure.png";
@@ -31,6 +34,9 @@ interface Props {
   toggleImprovementsMailModal: () => void;
   toggleNeedsChoiceModal: () => void;
   setSelectedUserIdAndToggleModal: (element: any) => void;
+  setSelectedStructureIdAndToggleModal: (
+    element: SimplifiedStructureForAdmin | null
+  ) => void;
 }
 
 const LeftPart = styled.div`
@@ -90,6 +96,7 @@ const StructureContainer = styled.div`
   font-size: 16px;
   line-height: 20px;
   padding: 16px;
+  cursor: pointer;
 `;
 
 const MainContainer = styled.div`
@@ -356,7 +363,14 @@ export const DetailsModal = (props: Props) => {
                 : "Non disponible"}
               <Title>Structure responsable</Title>
               {dispositif.mainSponsor && (
-                <StructureContainer>
+                <StructureContainer
+                  onClick={() =>
+                    props.setSelectedStructureIdAndToggleModal(
+                      //@ts-ignore
+                      dispositif.mainSponsor
+                    )
+                  }
+                >
                   {dispositif.mainSponsor.nom}
                   <LogoContainer spaceBetween={true}>
                     {dispositif.mainSponsor &&
@@ -374,7 +388,10 @@ export const DetailsModal = (props: Props) => {
                       <FButton
                         name="edit-outline"
                         type="outline-black"
-                        onClick={() => props.setShowChangeStructureModal(true)}
+                        onClick={(e: any) => {
+                          e.stopPropagation();
+                          props.setShowChangeStructureModal(true);
+                        }}
                       >
                         Modifier
                       </FButton>

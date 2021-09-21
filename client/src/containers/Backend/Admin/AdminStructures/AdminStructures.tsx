@@ -426,6 +426,9 @@ export const AdminStructures = () => {
       {selectedContentId && (
         <DetailsModal
           show={showContentDetailsModal}
+          setSelectedStructureIdAndToggleModal={
+            setSelectedStructureIdAndToggleModal
+          }
           toggleModal={() => setSelectedContentIdAndToggleModal(null)}
           selectedDispositifId={selectedContentId}
           setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
