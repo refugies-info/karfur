@@ -132,40 +132,40 @@ export const ContentsHeaderAnimated = (props: Props) => {
       >
         {props.needName}
       </Animated.Text>
-      {props.isLoading ? (
-        <SkeletonContent
-          containerStyle={{
-            marginTop: theme.margin * 2,
-            marginBottom: theme.margin * 4,
-            alignSelf: isRTL ? "flex-end" : "flex-start",
-          }}
-          isLoading={true}
-          layout={[
-            {
-              key: "SectionHeader",
-              width: 62,
-              height: 32,
-            },
-          ]}
-          boneColor={theme.colors.grey}
-          highlightColor={theme.colors.lightGrey}
-        />
-      ) : (
-        !props.showSimplifiedHeader && (
-          <Animated.View
-            style={{
-              display: "flex",
-              height: props.tagHeight,
-              marginTop: theme.margin * 2,
-              marginBottom: theme.margin * 4,
-            }}
-          >
-            <IndicatorContainer isRTL={isRTL}>
-              <IndicatorText>{indicatorText}</IndicatorText>
-            </IndicatorContainer>
-          </Animated.View>
-        )
-      )}
+      {props.isLoading
+        ? !props.showSimplifiedHeader && (
+            <SkeletonContent
+              containerStyle={{
+                marginTop: theme.margin * 2,
+                marginBottom: theme.margin * 4,
+                alignSelf: isRTL ? "flex-end" : "flex-start",
+              }}
+              isLoading={true}
+              layout={[
+                {
+                  key: "SectionHeader",
+                  width: 62,
+                  height: 32,
+                },
+              ]}
+              boneColor={theme.colors.grey}
+              highlightColor={theme.colors.lightGrey}
+            />
+          )
+        : !props.showSimplifiedHeader && (
+            <Animated.View
+              style={{
+                display: "flex",
+                height: props.tagHeight,
+                marginTop: theme.margin * 2,
+                marginBottom: theme.margin * 4,
+              }}
+            >
+              <IndicatorContainer isRTL={isRTL}>
+                <IndicatorText>{indicatorText}</IndicatorText>
+              </IndicatorContainer>
+            </Animated.View>
+          )}
     </Animated.View>
   );
 };
