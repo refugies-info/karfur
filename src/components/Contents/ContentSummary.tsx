@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { theme } from "../../theme";
 import { ObjectId } from "../../types/interface";
 import { TextNormalBold, TextSmallNormal } from "../StyledText";
-import { RTLTouchableOpacity } from "../BasicComponents";
+import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import { Image, View } from "react-native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import NoLogo from "../../theme/images/contents/structure_no_logo.png";
@@ -17,7 +17,6 @@ const ContentContainer = styled(RTLTouchableOpacity)`
   box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
   elevation: 2;
   display: flex;
-  flex-direction: row;
 `;
 
 const StructureImageContainer = styled.View`
@@ -38,14 +37,13 @@ const TitreMarqueText = styled(TextSmallNormal)`
 `;
 
 const TitlesContainer = styled.View`
-  margin-left: 20px;
+  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : 20)}px;
+  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? 20 : 0)}px;
+
   display: flex;
   flex: 1;
-`;
-
-const RowContainer = styled.View`
-  display: flex;
-  flex-direction: row;
+  align-items: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? "flex-end" : "flex-start"};
 `;
 
 interface Props {
@@ -94,20 +92,30 @@ export const ContentSummary = (props: Props) => {
             <Image source={NoLogo} style={{ height: 48, width: 48 }} />
           </StructureImageContainer>
         )}
-        <TitlesContainer>
+        <TitlesContainer isRTL={isRTL}>
           <TitreInfoText color={props.tagDarkColor}>
             {props.titreInfo}
           </TitreInfoText>
           {!!props.titreMarque && (
-            <RowContainer>
-              <TitreMarqueText
-                color={props.tagDarkColor}
-                style={{ marginRight: 4 }}
-              >
-                {t("ContentsScreen.avec", "avec") + " "}
-                {props.titreMarque}
+            <RTLView style={{ marginLeft: 4, alignItems: "flex-start" }}>
+              <TitreMarqueText color={props.tagDarkColor}>
+                {t("ContentsScreen.avec", "avec") + " " + props.titreMarque}
               </TitreMarqueText>
-            </RowContainer>
+
+              {/* <TitreMarqueText
+                color={props.tagDarkColor}
+                style={{
+                  marginLeft: isRTL ? 4 : 0,
+                  marginRight: isRTL ? 0 : 4,
+                  alignItems: "flex-start",
+                }}
+              >
+                {t("ContentsScreen.avec", "avec")}
+              </TitreMarqueText>
+              <TitreMarqueText color={props.tagDarkColor}>
+                {props.titreMarque}
+              </TitreMarqueText> */}
+            </RTLView>
           )}
         </TitlesContainer>
       </ContentContainer>
