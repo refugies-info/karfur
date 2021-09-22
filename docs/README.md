@@ -1,3 +1,17 @@
+# Install
+
+## Requirements
+
+- node version 12
+- package manager : yarn
+
+## Installation
+
+- create `.env` file
+- add private keys
+- run `yarn`
+- run `yarn start`
+
 # Environments flow
 
 We are going to work with 2 environments, staging and prod :
@@ -13,7 +27,7 @@ We are going to work with 2 environments, staging and prod :
 
 ## How to deploy to staging ?
 
-- run : ` expo publish --release-channel staging`
+- run : `expo publish --release-channel staging`
 - in `getEnvironnement.ts` the bdd url is defined
 - env variable are in .env file (like in dev)
 
@@ -24,4 +38,4 @@ We are going to work with 2 environments, staging and prod :
 
 ## Font
 
-We use a non open source font that must not be stored in github. As long as we deploy from local we can store the font locally.
+We use a non open source font. The repo is private so that we can commit the font in the repo.
