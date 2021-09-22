@@ -143,5 +143,6 @@
   "NeedsScreen": {
     "fiches": "fiches",
     "fiche": "fiche"
-  }
+  },
+  "ContentsScreen": { "avec": "avec" }
 }

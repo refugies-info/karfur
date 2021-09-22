@@ -1,12 +1,10 @@
 import * as React from "react";
 import { ExplorerParamList } from "../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { TextNormal, TextNormalBold } from "../components/StyledText";
 import { useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
 import { contentsSelector } from "../services/redux/Contents/contents.selectors";
 import { ScrollView, View, Animated, Platform } from "react-native";
-import styled from "styled-components/native";
 import { theme } from "../theme";
 import { needNameSelector } from "../services/redux/Needs/needs.selectors";
 import { groupedContentsSelector } from "../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
@@ -16,12 +14,7 @@ import { HeaderWithBackForWrapper } from "../components/HeaderWithLogo";
 import SkeletonContent from "react-native-skeleton-content";
 import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
 import { ContentsHeaderAnimated } from "../components/Contents/ContentsHeaderAnimated";
-
-const ContentContainer = styled.TouchableOpacity`
-  background-color: ${theme.colors.grey60};
-  margin-bottom: ${theme.margin * 3}px;
-  padding: 16px;
-`;
+import { ContentSummary } from "../components/Contents/ContentSummary";
 
 export const ContentsScreen = ({
   navigation,
@@ -225,31 +218,22 @@ export const ContentsScreen = ({
         scrollEventThrottle={16}
         alwaysBounceVertical={false}
       >
-        {contentsToDisplay.map((content, index) => {
-          if (!content)
-            return (
-              <View>
-                <TextNormalBold>Erreur</TextNormalBold>
-              </View>
-            );
+        {contentsToDisplay.map((content) => {
+          if (!content) return <View />;
           return (
-            <ContentContainer
-              key={index}
-              onPress={() =>
-                navigation.navigate("ContentScreen", {
-                  contentId: content._id,
-                  tagDarkColor,
-                  tagVeryLightColor,
-                  tagName,
-                  tagLightColor,
-                })
-              }
-            >
-              <TextNormal>{content.titreInformatif}</TextNormal>
-              {!!content.titreMarque && (
-                <TextNormal>{" - " + content.titreMarque}</TextNormal>
-              )}
-            </ContentContainer>
+            <ContentSummary
+              key={content._id}
+              navigation={navigation}
+              tagDarkColor={tagDarkColor}
+              tagVeryLightColor={tagVeryLightColor}
+              tagName={tagName}
+              tagLightColor={tagLightColor}
+              contentId={content._id}
+              titreInfo={content.titreInformatif}
+              titreMarque={content.titreMarque}
+              typeContenu={content.typeContenu}
+              sponsorUrl={content.sponsorUrl}
+            />
           );
         })}
       </ScrollView>

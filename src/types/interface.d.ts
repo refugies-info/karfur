@@ -18,6 +18,9 @@ export interface SimplifiedContent {
   titreMarque?: string;
   tags: Tag[];
   needs?: ObjectId[];
+  typeContenu: "dispositif" | "demarche";
+  nbVues: number;
+  sponsorUrl: string | null;
 }
 
 export type AvailableLanguageI18nCode =
