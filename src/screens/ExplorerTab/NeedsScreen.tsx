@@ -75,7 +75,6 @@ const IndicatorContainer = styled(RTLView)`
     props.isRTL ? theme.margin : 0}px;
   width: 64px;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
 `;
