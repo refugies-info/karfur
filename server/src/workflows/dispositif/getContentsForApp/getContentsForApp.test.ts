@@ -25,6 +25,8 @@ describe("getDispositifsWithTranslationAvancement", () => {
     contenu: 1,
     tags: 1,
     needs: 1,
+    typeContenu: 1,
+    nbVues: 1,
   };
 
   it("should return 405 if not from site", async () => {
@@ -46,7 +48,18 @@ describe("getDispositifsWithTranslationAvancement", () => {
   });
 
   it("should return 200 when locale not fr", async () => {
-    const contents = [{ titreInformatif: "ti", titreMarque: "TM" }];
+    const content1 = {
+      titreInformatif: "ti",
+      titreMarque: "TM",
+      _id: "_id",
+      nbVues: 2,
+      needs: [],
+      tags: [],
+      typeContenu: "dispositif",
+    };
+    const contents = [
+      { ...content1, mainSponsor: { picture: { secure_url: "url" } } },
+    ];
     getActiveContentsFiltered.mockResolvedValueOnce(contents);
     const req = { fromSite: true, query: { locale: "ar" } };
     await getContentsForApp(req, res);
@@ -56,18 +69,23 @@ describe("getDispositifsWithTranslationAvancement", () => {
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       text: "Succès",
-      data: contents,
-      dataFr: contents,
+      data: [{ ...content1, sponsorUrl: "url" }],
+      dataFr: [{ ...content1, sponsorUrl: "url" }],
     });
   });
 
+  const contentsInput = [
+    {
+      titreInformatif: { ar: "tI_ar", fr: "ti" },
+      titreMarque: { ar: "TM_ar", fr: "tm" },
+      nbVues: 2,
+      needs: [],
+      tags: [],
+      typeContenu: "dispositif",
+      mainSponsor: { picture: { secure_url: "url" } },
+    },
+  ];
   it("should return 200 when locale is ar", async () => {
-    const contentsInput = [
-      {
-        titreInformatif: { ar: "tI_ar", fr: "ti" },
-        titreMarque: { ar: "TM_ar", fr: "tm" },
-      },
-    ];
     getActiveContentsFiltered.mockResolvedValueOnce(contentsInput);
     const req = { fromSite: true, query: { locale: "ar" } };
     await getContentsForApp(req, res);
@@ -77,18 +95,32 @@ describe("getDispositifsWithTranslationAvancement", () => {
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       text: "Succès",
-      data: [{ titreInformatif: "tI_ar", titreMarque: "TM_ar" }],
-      dataFr: [{ titreInformatif: "ti", titreMarque: "tm" }],
+      data: [
+        {
+          titreInformatif: "tI_ar",
+          titreMarque: "TM_ar",
+          nbVues: 2,
+          needs: [],
+          tags: [],
+          typeContenu: "dispositif",
+          sponsorUrl: "url",
+        },
+      ],
+      dataFr: [
+        {
+          titreInformatif: "ti",
+          titreMarque: "tm",
+          nbVues: 2,
+          needs: [],
+          tags: [],
+          typeContenu: "dispositif",
+          sponsorUrl: "url",
+        },
+      ],
     });
   });
 
   it("should return 200 when locale is fr", async () => {
-    const contentsInput = [
-      {
-        titreInformatif: { ar: "tI_ar", fr: "ti" },
-        titreMarque: { ar: "TM_ar", fr: "tm" },
-      },
-    ];
     getActiveContentsFiltered.mockResolvedValueOnce(contentsInput);
     const req = { fromSite: true, query: { locale: "fr" } };
     await getContentsForApp(req, res);
@@ -98,7 +130,17 @@ describe("getDispositifsWithTranslationAvancement", () => {
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       text: "Succès",
-      dataFr: [{ titreInformatif: "ti", titreMarque: "tm" }],
+      dataFr: [
+        {
+          titreInformatif: "ti",
+          titreMarque: "tm",
+          nbVues: 2,
+          needs: [],
+          tags: [],
+          typeContenu: "dispositif",
+          sponsorUrl: "url",
+        },
+      ],
     });
   });
 
@@ -196,6 +238,12 @@ describe("getDispositifsWithTranslationAvancement", () => {
             ],
           },
         ],
+        nbVues: 2,
+        needs: [],
+        mainSponsor: { picture: { secure_url: "url" } },
+
+        tags: [],
+        typeContenu: "dispositif",
       },
 
       {
@@ -219,6 +267,12 @@ describe("getDispositifsWithTranslationAvancement", () => {
             ],
           },
         ],
+        nbVues: 2,
+        needs: [],
+        mainSponsor: { picture: { secure_url: "url" } },
+
+        tags: [],
+        typeContenu: "dispositif",
       },
       {
         _id: "id4",
@@ -241,6 +295,12 @@ describe("getDispositifsWithTranslationAvancement", () => {
             ],
           },
         ],
+        nbVues: 2,
+        needs: [],
+        mainSponsor: { picture: { secure_url: "url" } },
+
+        tags: [],
+        typeContenu: "dispositif",
       },
     ];
     getActiveContentsFiltered.mockResolvedValueOnce(data);
@@ -264,11 +324,21 @@ describe("getDispositifsWithTranslationAvancement", () => {
           _id: "id3",
           titreInformatif: "TI3",
           titreMarque: "",
+          nbVues: 2,
+          needs: [],
+          sponsorUrl: "url",
+          tags: [],
+          typeContenu: "dispositif",
         },
         {
           _id: "id4",
           titreInformatif: "TI4",
           titreMarque: "",
+          nbVues: 2,
+          needs: [],
+          sponsorUrl: "url",
+          tags: [],
+          typeContenu: "dispositif",
         },
       ],
     });
