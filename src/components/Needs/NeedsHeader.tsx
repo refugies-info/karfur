@@ -15,9 +15,11 @@ interface Props {
 const MainContainer = styled.View`
   background-color: ${(props: { color: string }) => props.color};
   width: 100%;
+  height: 90px;
   display: flex;
   flex-direction: column;
-  padding: ${theme.margin * 3}px;
+  padding-horizontal: ${theme.margin * 3}px;
+  padding-bottom: ${theme.margin * 3}px;
   justify-content: flex-end;
   border-bottom-left-radius: ${theme.radius * 2}px;
   border-bottom-right-radius: ${theme.radius * 2}px;

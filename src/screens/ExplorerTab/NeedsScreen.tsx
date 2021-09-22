@@ -2,28 +2,26 @@ import * as React from "react";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
 import {
-  TextNormal,
   TextSmallBold,
   TextVerySmallNormal,
 } from "../../components/StyledText";
 import { ExplorerParamList } from "../../../types";
 import { useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { View } from "react-native";
+import { View, Animated } from "react-native";
 import { needsSelector } from "../../services/redux/Needs/needs.selectors";
 import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
-import { RTLTouchableOpacity } from "../../components/BasicComponents";
+import { RTLTouchableOpacity, RTLView } from "../../components/BasicComponents";
 import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import { ObjectId, Need } from "../../types/interface";
 import { ScrollView } from "react-native-gesture-handler";
 import { StackScreenProps } from "@react-navigation/stack";
-import { firstLetterUpperCase } from "../../libs";
-import { NeedsHeader } from "../../components/Needs/NeedsHeader";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import SkeletonContent from "react-native-skeleton-content";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 import { HeaderWithBackForWrapper } from "../../components/HeaderWithLogo";
+import { NeedsHeaderAnimated } from "../../components/Needs/NeedsHeaderAnimated";
 
 const computeNeedsToDisplay = (
   allNeeds: Need[],
@@ -56,24 +54,18 @@ const NeedContainer = styled(RTLTouchableOpacity)`
   margin-bottom: ${theme.margin * 3}px;
   border-radius: ${theme.radius * 2}px;
   box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
-  
   justify-content:space-between;
-  align-items :center
-`;
-
-const Header = styled(TextNormal)`
-  margin-left: 24px;
-  margin-top: 8px;
+  align-items :center;
+  elevation:2;
 `;
 
 const StyledText = styled(TextSmallBold)`
   color: ${(props: { color: string }) => props.color};
 `;
 
-const IndicatorContainer = styled.View`
+const IndicatorContainer = styled(RTLView)`
   background-color: ${(props: { backgroundColor: string }) =>
     props.backgroundColor};
-  padding: ${theme.margin}px;
   align-self: center;
   border-radius: 8px;
   height: 32px;
@@ -81,10 +73,23 @@ const IndicatorContainer = styled.View`
     props.isRTL ? 0 : theme.margin}px;
   margin-right: ${(props: { isRTL: boolean }) =>
     props.isRTL ? theme.margin : 0}px;
+  width: 64px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
 
 const IndicatorText = styled(TextVerySmallNormal)`
   color: ${theme.colors.white};
+`;
+
+const IndicatorNumber = styled(TextVerySmallNormal)`
+  color: ${theme.colors.white};
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? 0 : theme.margin / 2}px;
+  margin-left: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? theme.margin / 2 : 0}px;
 `;
 
 export const NeedsScreen = ({
@@ -96,6 +101,62 @@ export const NeedsScreen = ({
   );
 
   const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
+
+  const animatedController = React.useRef(new Animated.Value(0)).current;
+
+  const toggleSimplifiedHeader = (displayHeader: boolean) => {
+    if (displayHeader && !showSimplifiedHeader) {
+      Animated.timing(animatedController, {
+        duration: 200,
+        toValue: 1,
+        useNativeDriver: false,
+      }).start();
+      setShowSimplifiedHeader(true);
+      return;
+    }
+
+    if (!displayHeader && showSimplifiedHeader) {
+      Animated.timing(animatedController, {
+        duration: 200,
+        toValue: 0,
+        useNativeDriver: false,
+      }).start();
+      setShowSimplifiedHeader(false);
+      return;
+    }
+  };
+
+  const handleScroll = (event: any) => {
+    if (event.nativeEvent.contentOffset.y > 10) {
+      toggleSimplifiedHeader(true);
+      return;
+    }
+    if (event.nativeEvent.contentOffset.y < 10) {
+      toggleSimplifiedHeader(false);
+      return;
+    }
+    return;
+  };
+
+  const headerHeight = animatedController.interpolate({
+    inputRange: [0, 1],
+    outputRange: [90, 40],
+  });
+
+  const headerBottomRadius = animatedController.interpolate({
+    inputRange: [0, 1],
+    outputRange: [12, 0],
+  });
+
+  const headerPaddingTop = animatedController.interpolate({
+    inputRange: [0, 1],
+    outputRange: [32, 0],
+  });
+
+  const headerFontSize = animatedController.interpolate({
+    inputRange: [0, 1],
+    outputRange: [25, 16],
+  });
 
   const toggleLanguageModal = () =>
     setLanguageModalVisible(!isLanguageModalVisible);
@@ -137,18 +198,23 @@ export const NeedsScreen = ({
             navigation={navigation}
           />
         </View>
-        <NeedsHeader
-          text={firstLetterUpperCase(t("Tags." + tagName, tagName)) || ""}
-          color={tagDarkColor}
-          isRTL={isRTL}
+        <NeedsHeaderAnimated
+          tagDarkColor={tagDarkColor}
+          headerBottomRadius={headerBottomRadius}
+          headerHeight={headerHeight}
+          headerPaddingTop={headerPaddingTop}
+          tagName={tagName}
+          headerFontSize={headerFontSize}
           iconName={iconName}
+          showSimplifiedHeader={showSimplifiedHeader}
         />
+
         <SkeletonContent
           containerStyle={{
             display: "flex",
             flex: 1,
-            marginTop: 110,
-            marginHorizontal: 24,
+            marginTop: theme.margin * 3,
+            marginHorizontal: theme.margin * 3,
           }}
           isLoading={true}
           layout={[
@@ -190,30 +256,16 @@ export const NeedsScreen = ({
           navigation={navigation}
         />
       </View>
-      <NeedsHeader
-        text={firstLetterUpperCase(t("Tags." + tagName, tagName)) || ""}
-        color={tagDarkColor}
-        isRTL={isRTL}
+      <NeedsHeaderAnimated
+        tagDarkColor={tagDarkColor}
+        headerBottomRadius={headerBottomRadius}
+        headerHeight={headerHeight}
+        headerPaddingTop={headerPaddingTop}
+        tagName={tagName}
+        headerFontSize={headerFontSize}
         iconName={iconName}
+        showSimplifiedHeader={showSimplifiedHeader}
       />
-
-      {/* <Animated.View
-          style={[
-            styles.bodyBackground,
-            { height: bodyHeight, backgroundColor: boxInterpolation },
-          ]}
-        >
-          <SimplifiedHeaderContainer
-            onLayout={(event: any) =>
-              setBodySectionHeight(event.nativeEvent.layout.height)
-            }
-            style={styles.bodyContainer}
-          >
-            <TextSmallNormal style={{ color: theme.colors.white }}>
-              {selectedContent.titreInformatif}
-            </TextSmallNormal>
-          </SimplifiedHeaderContainer>
-        </Animated.View> */}
 
       <ScrollView
         scrollIndicatorInsets={{ right: 1 }}
@@ -222,6 +274,9 @@ export const NeedsScreen = ({
           paddingTop: theme.margin * 3,
           paddingBottom: theme.margin * 3,
         }}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+        alwaysBounceVertical={false}
       >
         {needsToDisplay.map((need) => {
           const needText =
@@ -234,8 +289,8 @@ export const NeedsScreen = ({
               : need.fr.text;
           const indicatorText =
             need.nbContents < 2
-              ? need.nbContents + " " + t("NeedsScreen.fiche", "fiche")
-              : need.nbContents + " " + t("NeedsScreen.fiches", "fiches");
+              ? t("NeedsScreen.fiche", "fiche")
+              : t("NeedsScreen.fiches", "fiches");
           return (
             <NeedContainer
               key={need._id}
@@ -246,11 +301,15 @@ export const NeedsScreen = ({
                   tagVeryLightColor,
                   tagLightColor,
                   needId: need._id,
+                  iconName,
                 })
               }
             >
               <StyledText color={tagDarkColor}>{needText}</StyledText>
-              <IndicatorContainer backgroundColor={tagLightColor} isRTL={isRTL}>
+              <IndicatorContainer backgroundColor={tagDarkColor} isRTL={isRTL}>
+                <IndicatorNumber isRTL={isRTL}>
+                  {need.nbContents}
+                </IndicatorNumber>
                 <IndicatorText>{indicatorText}</IndicatorText>
               </IndicatorContainer>
             </NeedContainer>
