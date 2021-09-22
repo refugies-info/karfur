@@ -136,6 +136,8 @@ export const ContentsHeaderAnimated = (props: Props) => {
         <SkeletonContent
           containerStyle={{
             marginTop: theme.margin * 2,
+            marginBottom: theme.margin * 4,
+            alignSelf: isRTL ? "flex-end" : "flex-start",
           }}
           isLoading={true}
           layout={[
