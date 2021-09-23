@@ -147,7 +147,7 @@ export const LeftSideDispositif = (props: Props) => {
                     name="external-link-outline"
                     onClick={onLinkClicked}
                   >
-                    {t("Dispositif.Voir le site", "Voir le site")}
+                    {t("Dispositif.Ajouter votre site", "Ajouter votre site")}
                   </FButton>
                 )}
                 {!props.disableEdit && props.displayTuto && (
