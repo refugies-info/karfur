@@ -1,4 +1,4 @@
-import OfficeFolder from "../theme/images/streamlineIcons/streamline-icon-office-folder@140x140.svg";
+import OfficeFolder from "../theme/images/streamlineIcons/office-folder.svg";
 import Elearning from "../theme/images/streamlineIcons/e-learning-book-laptop.svg";
 import House from "../theme/images/streamlineIcons/house-1.svg";
 import Briefcase from "../theme/images/streamlineIcons/briefcase.svg";
@@ -17,35 +17,36 @@ interface Props {
   name: string;
   width: number;
   height: number;
+  stroke?: string;
 }
-export const StreamlineIcon = ({ name, ...props }: Props) => {
+export const StreamlineIcon = ({ name, stroke = "white", ...props }: Props) => {
   switch (name) {
     case "house":
-      return <House {...props} />;
+      return <House {...props} style={{ stroke }} />;
     case "elearning":
-      return <Elearning {...props} />;
+      return <Elearning {...props} style={{ stroke }} />;
     case "briefcase":
-      return <Briefcase {...props} />;
+      return <Briefcase {...props} style={{ stroke }} />;
     case "measure":
-      return <Measure {...props} />;
+      return <Measure {...props} style={{ stroke }} />;
     case "glasses":
-      return <Glasses {...props} />;
+      return <Glasses {...props} style={{ stroke }} />;
     case "bus":
-      return <Bus {...props} />;
+      return <Bus {...props} style={{ stroke }} />;
     case "triumph":
-      return <Triumph {...props} />;
+      return <Triumph {...props} style={{ stroke }} />;
     case "heartBeat":
-      return <HeartBeat {...props} />;
+      return <HeartBeat {...props} style={{ stroke }} />;
     case "couple":
-      return <Couple {...props} />;
+      return <Couple {...props} style={{ stroke }} />;
     case "soccer":
-      return <Soccer {...props} />;
+      return <Soccer {...props} style={{ stroke }} />;
     case "flag":
-      return <Flag {...props} />;
+      return <Flag {...props} style={{ stroke }} />;
     case "office":
-      return <OfficeFolder {...props} />;
+      return <OfficeFolder {...props} style={{ stroke }} />;
 
     default:
-      return <OfficeFolder {...props} />;
+      return <OfficeFolder {...props} style={{ stroke }} />;
   }
 };
