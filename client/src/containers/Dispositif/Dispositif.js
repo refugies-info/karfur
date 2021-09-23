@@ -1481,7 +1481,8 @@ export class Dispositif extends Component {
     status = "En attente",
     auto = false,
     sauvegarde = false,
-    saveAndEdit = false
+    saveAndEdit = false,
+    continueEditing = true
   ) => {
     this.setState({ isDispositifLoading: !auto });
     let content = { ...this.state.content };
@@ -1654,10 +1655,21 @@ export class Dispositif extends Component {
       }
     }
     dispositif.lastModificationDate = Date.now();
-
     logger.info("[valider_dispositif] dispositif before call", { dispositif });
     API.addDispositif(dispositif).then((data) => {
       const newDispo = data.data.data;
+      if (!continueEditing) {
+        let text =
+          dispositif.status === "Brouillon"
+            ? "Retrouvez votre fiche dans votre espace « Mes Fiches ». Attention, votre fiche va rester en brouillon. Pour la publier, cliquez sur le bouton valider en vert, plutôt que sur enregistrer."
+            : "Retrouvez votre fiche dans votre espace « Mes Fiches ».";
+
+        Swal.fire({
+          title: "Fiche enregistrée",
+          text: text,
+          type: "success",
+        });
+      }
       if (!auto && this._isMounted) {
         Swal.fire("Yay...", "Enregistrement réussi !", "success").then(() => {
           this.props.fetchUser();

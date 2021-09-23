@@ -5,7 +5,6 @@ import Icon from "react-eva-icons";
 import "./DraftModal.scss";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import FButton from "../../FigmaUI/FButton/FButton";
-
 import imageGreen from "../../../assets/illu_bonasavoir.svg";
 import imageViolet from "../../../assets/illu_pasdepanique.svg";
 
@@ -16,7 +15,8 @@ interface Props {
     arg: string,
     arg1: boolean,
     arg2: boolean,
-    arg3: boolean
+    arg3: boolean,
+    arg4: boolean
   ) => void;
   navigateToMiddleOffice: () => void;
   status: "string";
@@ -107,7 +107,7 @@ const InfoFooterRight = styled.div`
 const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
 `;
 interface InfoProps {
   title: string;
@@ -184,6 +184,7 @@ export const DraftModal = (props: Props) => (
               props.status || "Brouillon",
               false,
               true,
+              false,
               false
             );
             props.toggle();
@@ -192,7 +193,7 @@ export const DraftModal = (props: Props) => (
             props.navigateToMiddleOffice();
           }}
         >
-          Sauvegarder et quitter
+          Finir plus tard
         </FButton>
         <FButton
           type="validate"
@@ -202,6 +203,7 @@ export const DraftModal = (props: Props) => (
               props.status || "Brouillon",
               false,
               true,
+              true,
               true
             );
             props.toggleIsModified(false);
@@ -209,7 +211,7 @@ export const DraftModal = (props: Props) => (
             props.toggle();
           }}
         >
-          Sauvegarder et continuer
+          Sauvegarder et continuer à rédiger
         </FButton>
       </ButtonsContainer>
     </MainContainer>
