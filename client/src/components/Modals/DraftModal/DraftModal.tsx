@@ -20,6 +20,8 @@ interface Props {
   ) => void;
   navigateToMiddleOffice: () => void;
   status: "string";
+  toggleIsModified: (arg: boolean) => void;
+  toggleIsSaved: (arg: boolean) => void;
 }
 
 const IconContainer = styled.div`
@@ -185,6 +187,8 @@ export const DraftModal = (props: Props) => (
               false
             );
             props.toggle();
+            props.toggleIsModified(false);
+            props.toggleIsSaved(true);
             props.navigateToMiddleOffice();
           }}
         >
@@ -200,6 +204,8 @@ export const DraftModal = (props: Props) => (
               true,
               true
             );
+            props.toggleIsModified(false);
+            props.toggleIsSaved(true);
             props.toggle();
           }}
         >

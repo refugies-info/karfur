@@ -145,6 +145,8 @@ export class Dispositif extends Component {
     accordion: new Array(1).fill(false),
     dropdown: new Array(5).fill(false),
     disableEdit: true,
+    isModified: false,
+    isSaved: false,
     tooltipOpen: false,
     showBookmarkModal: false,
     isAuth: false,
@@ -519,6 +521,13 @@ export class Dispositif extends Component {
     });
   };
 
+  toggleIsModified = (newState) => {
+    this.setState({ isModified: newState });
+  };
+  toggleIsSaved = (newState) => {
+    this.setState({ isSaved: newState });
+  };
+
   onInputClicked = (ev) => {
     // when clicking on titreInformatif or titreMarque (name of asso)
     // if titre informatif is 'Titre informatif' we store "" instead of titre informatif
@@ -550,6 +559,7 @@ export class Dispositif extends Component {
         ...this.state.content,
         [ev.currentTarget.id]: value,
       },
+      isModified: true,
     });
   };
 
@@ -1710,6 +1720,8 @@ export class Dispositif extends Component {
     return possibleLanguages;
   };
   render() {
+    // eslint-disable-next-line no-console
+    console.log("isModified", this.state.isModified);
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     const { t, translating, windowWidth } = this.props;
     const {
@@ -1798,6 +1810,8 @@ export class Dispositif extends Component {
                   toggleDispositifValidateModal={
                     this.toggleDispositifValidateModal
                   }
+                  isModified={this.state.isModified}
+                  isSaved={this.state.isSaved}
                   toggleDraftModal={this.toggleDraftModal}
                   tKeyValue={this.state.tKeyValue}
                   toggleDispositifCreateModal={this.toggleDispositifCreateModal}
@@ -2381,6 +2395,8 @@ export class Dispositif extends Component {
                 this.props.history.push("/backend/user-dash-contrib")
               }
               status={this.state.status}
+              toggleIsModified={this.toggleIsModified}
+              toggleIsSaved={this.toggleIsSaved}
             />
             <ShareContentOnMobileModal
               show={this.state.showShareContentOnMobileModal}

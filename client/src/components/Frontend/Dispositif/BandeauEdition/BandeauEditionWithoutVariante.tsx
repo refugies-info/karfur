@@ -11,6 +11,8 @@ interface Props {
   toggleDraftModal: () => void;
   tKeyValue: number;
   toggleDispositifCreateModal: () => void;
+  isModified: boolean;
+  isSaved: boolean;
 }
 
 const ContentTypeContainer = styled.div`
@@ -229,12 +231,20 @@ export const BandeauEditionWithoutVariante = (props: Props) => {
             </FButton>
           )}
           <FButton
-            type="light-action"
+            type={
+              props.isModified
+                ? "modified"
+                : props.isSaved
+                ? "saved"
+                : "light-action"
+            }
             name="save-outline"
             className="mr-10"
             onClick={props.toggleDraftModal}
           >
-            Sauvegarder
+            {props.isSaved && !props.isModified
+              ? "Sauvegardé !"
+              : "Sauvegarder"}
           </FButton>
           <FButton
             className="mr-15"
