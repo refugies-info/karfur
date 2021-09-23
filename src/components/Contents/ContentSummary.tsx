@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { theme } from "../../theme";
 import { ObjectId } from "../../types/interface";
 import { TextNormalBold, TextSmallNormal } from "../StyledText";
-import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
+import { RTLTouchableOpacity } from "../BasicComponents";
 import { Image } from "react-native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import NoLogo from "../../theme/images/contents/structure_no_logo.png";
@@ -116,29 +116,13 @@ export const ContentSummary = (props: Props) => {
           </StructureImageContainer>
         )}
         <TitlesContainer isRTL={isRTL}>
-          <TitreInfoText color={props.tagDarkColor}>
+          <TitreInfoText color={props.tagDarkColor} isDispo={true}>
             {props.titreInfo}
           </TitreInfoText>
           {!!props.titreMarque && (
-            <RTLView style={{ alignItems: "flex-start" }}>
-              <TitreMarqueText color={props.tagDarkColor}>
-                {t("ContentsScreen.avec", "avec") + " " + props.titreMarque}
-              </TitreMarqueText>
-
-              {/* <TitreMarqueText
-                color={props.tagDarkColor}
-                style={{
-                  marginLeft: isRTL ? 4 : 0,
-                  marginRight: isRTL ? 0 : 4,
-                  alignItems: "flex-start",
-                }}
-              >
-                {t("ContentsScreen.avec", "avec")}
-              </TitreMarqueText>
-              <TitreMarqueText color={props.tagDarkColor}>
-                {props.titreMarque}
-              </TitreMarqueText> */}
-            </RTLView>
+            <TitreMarqueText color={props.tagDarkColor}>
+              {props.titreMarque}
+            </TitreMarqueText>
           )}
         </TitlesContainer>
       </ContentContainer>
