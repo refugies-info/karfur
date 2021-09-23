@@ -7,6 +7,7 @@ import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import { Image } from "react-native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import NoLogo from "../../theme/images/contents/structure_no_logo.png";
+import { StreamlineIcon } from "../StreamlineIcon";
 
 const ContentContainer = styled(RTLTouchableOpacity)`
   background-color: ${theme.colors.white};
@@ -17,6 +18,7 @@ const ContentContainer = styled(RTLTouchableOpacity)`
   elevation: 2;
   display: flex;
   align-items: center;
+  flex: 1;
 `;
 
 const StructureImageContainer = styled.View`
@@ -35,7 +37,6 @@ const DemarcheIconContainer = styled.View`
   width: 72px;
   align-items: center;
   background-color: ${(props: { lightColor: boolean }) => props.lightColor};
-  height: 100%;
   border-top-left-radius: ${(props: { isRTL: boolean }) =>
     props.isRTL ? 0 : theme.radius * 2}px;
   border-bottom-left-radius: ${(props: { isRTL: boolean }) =>
@@ -44,6 +45,7 @@ const DemarcheIconContainer = styled.View`
     props.isRTL ? theme.radius * 2 : 0}px;
   border-bottom-right-radius: ${(props: { isRTL: boolean }) =>
     props.isRTL ? theme.radius * 2 : 0}px;
+  height: 100%;
 `;
 
 const TitreInfoText = styled(TextNormalBold)`
@@ -77,6 +79,7 @@ interface Props {
   titreMarque: string | undefined;
   typeContenu: "dispositif" | "demarche";
   sponsorUrl: string | null;
+  iconName: string;
 }
 export const ContentSummary = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
@@ -154,10 +157,9 @@ export const ContentSummary = (props: Props) => {
       }
       isDispo={false}
     >
-      <DemarcheIconContainer
-        lightColor={props.tagVeryLightColor}
-        isRTL={isRTL}
-      ></DemarcheIconContainer>
+      <DemarcheIconContainer lightColor={props.tagLightColor} isRTL={isRTL}>
+        <StreamlineIcon name={props.iconName} width={24} height={24} />
+      </DemarcheIconContainer>
 
       <TitlesContainer isRTL={isRTL}>
         <TitreInfoText color={props.tagDarkColor}>

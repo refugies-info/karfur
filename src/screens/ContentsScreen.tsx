@@ -233,6 +233,7 @@ export const ContentsScreen = ({
               titreMarque={content.titreMarque}
               typeContenu={content.typeContenu}
               sponsorUrl={content.sponsorUrl}
+              iconName={iconName}
             />
           );
         })}
