@@ -18,35 +18,41 @@ interface Props {
   width: number;
   height: number;
   stroke?: string;
+  strokeWidth?: number;
 }
-export const StreamlineIcon = ({ name, stroke = "white", ...props }: Props) => {
+export const StreamlineIcon = ({
+  name,
+  stroke = "white",
+  strokeWidth = 2,
+  ...props
+}: Props) => {
   switch (name) {
     case "house":
-      return <House {...props} style={{ stroke }} />;
+      return <House {...props} style={{ stroke, strokeWidth }} />;
     case "elearning":
-      return <Elearning {...props} style={{ stroke }} />;
+      return <Elearning {...props} style={{ stroke, strokeWidth }} />;
     case "briefcase":
-      return <Briefcase {...props} style={{ stroke }} />;
+      return <Briefcase {...props} style={{ stroke, strokeWidth }} />;
     case "measure":
-      return <Measure {...props} style={{ stroke }} />;
+      return <Measure {...props} style={{ stroke, strokeWidth }} />;
     case "glasses":
-      return <Glasses {...props} style={{ stroke }} />;
+      return <Glasses {...props} style={{ stroke, strokeWidth }} />;
     case "bus":
-      return <Bus {...props} style={{ stroke }} />;
+      return <Bus {...props} style={{ stroke, strokeWidth }} />;
     case "triumph":
-      return <Triumph {...props} style={{ stroke }} />;
+      return <Triumph {...props} style={{ stroke, strokeWidth }} />;
     case "heartBeat":
-      return <HeartBeat {...props} style={{ stroke }} />;
+      return <HeartBeat {...props} style={{ stroke, strokeWidth }} />;
     case "couple":
-      return <Couple {...props} style={{ stroke }} />;
+      return <Couple {...props} style={{ stroke, strokeWidth }} />;
     case "soccer":
-      return <Soccer {...props} style={{ stroke }} />;
+      return <Soccer {...props} style={{ stroke, strokeWidth }} />;
     case "flag":
-      return <Flag {...props} style={{ stroke }} />;
+      return <Flag {...props} style={{ stroke, strokeWidth }} />;
     case "office":
-      return <OfficeFolder {...props} style={{ stroke }} />;
+      return <OfficeFolder {...props} style={{ stroke, strokeWidth }} />;
 
     default:
-      return <OfficeFolder {...props} style={{ stroke }} />;
+      return <OfficeFolder {...props} style={{ stroke, strokeWidth }} />;
   }
 };

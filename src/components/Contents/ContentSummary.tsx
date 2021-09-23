@@ -142,8 +142,13 @@ export const ContentSummary = (props: Props) => {
       }
       isDispo={false}
     >
-      <DemarcheIconContainer lightColor={props.tagLightColor} isRTL={isRTL}>
-        <StreamlineIcon name={props.iconName} width={24} height={24} />
+      <DemarcheIconContainer lightColor={props.tagVeryLightColor} isRTL={isRTL}>
+        <StreamlineIcon
+          name={props.iconName}
+          width={24}
+          height={24}
+          stroke={props.tagDarkColor}
+        />
       </DemarcheIconContainer>
 
       <TitlesContainer isRTL={isRTL}>
