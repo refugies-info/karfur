@@ -40,6 +40,8 @@ import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureMod
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { ImprovementsMailModal } from "./ImprovementsMailModal/ImprovementsMailModal";
+import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
+
 import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
 import styled from "styled-components";
 import { needsSelector } from "../../../../services/Needs/needs.selectors";
@@ -73,6 +75,8 @@ export const AdminContenu = () => {
     useState(false);
   const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
   const [isExportLoading, setIsExportLoading] = useState(false);
+  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState(null);
 
   const [selectedDispositif, setSelectedDispositif] = useState(null);
   const [showChangeStructureModal, setShowChangeStructureModal] =
@@ -96,6 +100,14 @@ export const AdminContenu = () => {
 
   const toggleImprovementsMailModal = () =>
     setShowImprovementsMailModal(!showImprovementsMailModal);
+
+  const toggleUserDetailsModal = () =>
+    setShowUserDetailsModal(!showUserDetailsModal);
+
+  const setSelectedUserIdAndToggleModal = (element) => {
+    setSelectedUserId(element ? element._id : null);
+    toggleUserDetailsModal();
+  };
 
   const setSelectedDispositifAndToggleModal = (element) => {
     setSelectedDispositif(element);
@@ -525,6 +537,9 @@ export const AdminContenu = () => {
       <DetailsModal
         show={showDetailsModal}
         toggleModal={() => setSelectedDispositifAndToggleModal(null)}
+        setSelectedStructureIdAndToggleModal={
+          setSelectedStructureIdAndToggleModal
+        }
         selectedDispositifId={
           selectedDispositif ? selectedDispositif._id : null
         }
@@ -537,6 +552,7 @@ export const AdminContenu = () => {
             selectedDispositif
           )
         }
+        setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
         setShowChangeStructureModal={setShowChangeStructureModal}
         toggleImprovementsMailModal={toggleImprovementsMailModal}
         toggleNeedsChoiceModal={toggleNeedsChoiceModal}
@@ -550,6 +566,15 @@ export const AdminContenu = () => {
           }
         />
       )}
+      <UserDetailsModal
+        show={showUserDetailsModal}
+        toggleModal={() => setSelectedUserIdAndToggleModal(null)}
+        selectedUserId={selectedUserId}
+        setSelectedStructureIdAndToggleModal={
+          setSelectedStructureIdAndToggleModal
+        }
+      />
+
       <ChangeStructureModal
         show={showChangeStructureModal}
         toggle={toggleShowChangeStructureModal}
@@ -563,6 +588,7 @@ export const AdminContenu = () => {
           toggleModal={() => setSelectedStructureIdAndToggleModal(null)}
           selectedStructureId={selectedStructureId}
           toggleRespoModal={() => setSelectFirstRespoModal(true)}
+          setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
         />
       )}
       {selectedStructureId && (

@@ -42,6 +42,8 @@ export const getContentsForApp = async (
       contenu: 1,
       tags: 1,
       needs: 1,
+      typeContenu: 1,
+      nbVues: 1,
     };
 
     const initialQuery = {
@@ -69,6 +71,12 @@ export const getContentsForApp = async (
         content.titreMarque,
         "fr"
       );
+      const sponsorUrl =
+        content.mainSponsor &&
+        content.mainSponsor.picture &&
+        content.mainSponsor.picture.secure_url
+          ? content.mainSponsor.picture.secure_url
+          : null;
 
       return {
         _id: content._id,
@@ -76,6 +84,9 @@ export const getContentsForApp = async (
         titreMarque,
         tags: content.tags,
         needs: content.needs,
+        nbVues: content.nbVues,
+        typeContenu: content.typeContenu,
+        sponsorUrl,
       };
     });
 
@@ -96,12 +107,22 @@ export const getContentsForApp = async (
         locale
       );
 
+      const sponsorUrl =
+        content.mainSponsor &&
+        content.mainSponsor.picture &&
+        content.mainSponsor.picture.secure_url
+          ? content.mainSponsor.picture.secure_url
+          : null;
+
       return {
         _id: content._id,
         titreInformatif,
         titreMarque,
         tags: content.tags,
         needs: content.needs,
+        nbVues: content.nbVues,
+        typeContenu: content.typeContenu,
+        sponsorUrl,
       };
     });
 

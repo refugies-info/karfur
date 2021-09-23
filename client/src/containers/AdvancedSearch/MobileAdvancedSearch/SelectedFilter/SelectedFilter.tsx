@@ -34,6 +34,7 @@ export const SelectedFilter = (props: Props) => {
     margin: 5px 0;
     display: flex;
     justify-content: space-between;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
   `;
   const FilterButton = styled.div`
     padding: 16px;
@@ -49,6 +50,7 @@ export const SelectedFilter = (props: Props) => {
     margin: 10px 0;
     display: flex;
     justify-content: space-between;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
   `;
 
   const defineIndex = () => {
