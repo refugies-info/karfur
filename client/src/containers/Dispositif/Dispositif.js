@@ -833,7 +833,7 @@ export class Dispositif extends Component {
         state[key].isFakeContent = false;
         state[key].content = content;
       }
-      this.setState({ menu: state });
+      this.setState({ menu: state, isModified: true });
     }
   };
 
@@ -1720,8 +1720,6 @@ export class Dispositif extends Component {
     return possibleLanguages;
   };
   render() {
-    // eslint-disable-next-line no-console
-    console.log("isModified", this.state.isModified);
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     const { t, translating, windowWidth } = this.props;
     const {
