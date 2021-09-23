@@ -29,8 +29,8 @@ import { compare } from "../AdminContenu/AdminContenu";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import {
   SimplifiedUser,
-  SimplifiedStructure,
   Responsable,
+  SimplifiedStructureForAdmin,
 } from "../../../../types/interface";
 import { prepareDeleteContrib } from "../Needs/lib";
 import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
@@ -42,7 +42,6 @@ import { UserDetailsModal } from "./UserDetailsModal/UserDetailsModal";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
-
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import API from "../../../../utils/API";
 import Swal from "sweetalert2";
@@ -140,7 +139,7 @@ export const AdminUsers = () => {
     setShowStructureDetailsModal(!showStructureDetailsModal);
 
   const setSelectedStructureIdAndToggleModal = (
-    element: SimplifiedStructure | null
+    element: SimplifiedStructureForAdmin | null
   ) => {
     setSelectedStructureId(element ? element._id : null);
     toggleStructureDetailsModal();
@@ -405,6 +404,7 @@ export const AdminUsers = () => {
                     className={"align-middle "}
                     onClick={() =>
                       setSelectedStructureIdAndToggleModal(
+                        //@ts-ignore
                         element.structures.length > 0
                           ? element.structures[0]
                           : null
@@ -455,6 +455,9 @@ export const AdminUsers = () => {
         show={showUserDetailsModal}
         toggleModal={() => setSelectedUserIdAndToggleModal(null)}
         selectedUserId={selectedUserId}
+        setSelectedStructureIdAndToggleModal={
+          setSelectedStructureIdAndToggleModal
+        }
       />
 
       {selectedStructureId && (
@@ -479,8 +482,12 @@ export const AdminUsers = () => {
       {selectedContentId && (
         <DetailsModal
           show={showContentDetailsModal}
+          setSelectedStructureIdAndToggleModal={
+            setSelectedStructureIdAndToggleModal
+          }
           toggleModal={() => setSelectedContentIdAndToggleModal(null)}
           selectedDispositifId={selectedContentId}
+          setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
           onDeleteClick={() =>
             prepareDeleteContrib(
               setSelectedContentId,

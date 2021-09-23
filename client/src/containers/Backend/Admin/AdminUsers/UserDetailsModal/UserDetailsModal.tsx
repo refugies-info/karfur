@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Event, Indicators } from "types/interface";
+import {
+  Event,
+  Indicators,
+  SimplifiedStructureForAdmin,
+} from "types/interface";
 import { Modal, Spinner } from "reactstrap";
 import "./UserDetailsModal.scss";
 import moment from "moment/min/moment-with-locales";
@@ -64,6 +68,9 @@ interface Props {
   show: boolean;
   toggleModal: () => void;
   selectedUserId: ObjectId | null;
+  setSelectedStructureIdAndToggleModal: (
+    element: SimplifiedStructureForAdmin | null
+  ) => void;
 }
 
 export const UserDetailsModal: React.FunctionComponent<Props> = (
@@ -241,6 +248,11 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
             nom={structure.nom}
             picture={structure.picture}
             role={structure.role ? structure.role[0] : null}
+            onClick={() => {
+              //@ts-ignore
+              props.setSelectedStructureIdAndToggleModal(structure);
+              props.toggleModal();
+            }}
           />
         ))}
       <Title>Rôles</Title>

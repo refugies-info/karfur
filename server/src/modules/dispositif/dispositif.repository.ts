@@ -158,7 +158,7 @@ export const getActiveContents = async (neededFields: Record<string, number>) =>
 export const getActiveContentsFiltered = async (
   neededFields: Record<string, number>,
   query: any
-) => await Dispositif.find(query, neededFields);
+) => await Dispositif.find(query, neededFields).populate("mainSponsor");
 
 export const getDispositifByIdWithAllFields = async (id: ObjectId) =>
   await Dispositif.findOne({ _id: id });
