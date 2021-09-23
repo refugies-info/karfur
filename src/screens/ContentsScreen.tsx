@@ -127,10 +127,7 @@ export const ContentsScreen = ({
 
   const sortedTranslatedContents = sortContents(translatedContents);
   const sortedNonTranslatedContents = sortContents(nonTranslatedContents);
-  console.log(
-    "sortedNonTranslatedContents.length",
-    sortedNonTranslatedContents.length
-  );
+
   const needName = useSelector(
     needNameSelector(needId, currentLanguageI18nCode)
   );
