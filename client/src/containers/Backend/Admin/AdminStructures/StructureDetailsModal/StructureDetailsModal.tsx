@@ -319,7 +319,12 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
           </LogoContainer>
           <Title>Premier responsable</Title>
           {!isLoading && (
-            <div style={{ marginBottom: "8px" }}>
+            <div
+              onClick={() =>
+                props.setSelectedUserIdAndToggleModal(structure.responsable)
+              }
+              style={{ cursor: "pointer", marginBottom: "8px" }}
+            >
               <ResponsableComponent
                 responsable={structure.responsable}
                 canModifyRespo={true}
