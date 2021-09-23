@@ -21,6 +21,7 @@ export interface SimplifiedContent {
   typeContenu: "dispositif" | "demarche";
   nbVues: number;
   sponsorUrl: string | null;
+  avancement: number | Record<AvailableLanguageI18nCode, string>;
 }
 
 export type AvailableLanguageI18nCode =

@@ -15,14 +15,27 @@ import SkeletonContent from "react-native-skeleton-content";
 import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
 import { ContentsHeaderAnimated } from "../components/Contents/ContentsHeaderAnimated";
 import { ContentSummary } from "../components/Contents/ContentSummary";
-import { SimplifiedContent } from "../types/interface";
+import {
+  SimplifiedContent,
+  AvailableLanguageI18nCode,
+  ObjectId,
+} from "../types/interface";
+import { TextBigBold } from "../components/StyledText";
+import styled from "styled-components/native";
+import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 
-const sortByNbVues = (data: (SimplifiedContent | null)[]) =>
+const SectionHeaderText = styled(TextBigBold)`
+  color: ${(props: { color: string }) => props.color};
+  margin-top: ${theme.margin * 6}px;
+  margin-bottom: ${theme.margin * 3}px;
+`;
+
+const sortByNbVues = (data: SimplifiedContent[]) =>
   data.sort((a, b) => {
     if (a && b && a.nbVues > b.nbVues) return -1;
     return 1;
   });
-const sortContents = (contents: (SimplifiedContent | null)[]) => {
+const sortContents = (contents: SimplifiedContent[]) => {
   const dispositifs = contents.filter(
     (content) => content && content.typeContenu === "dispositif"
   );
@@ -34,10 +47,55 @@ const sortContents = (contents: (SimplifiedContent | null)[]) => {
   return sortByNbVues(demarches).concat(sortByNbVues(dispositifs));
 };
 
+const getTranslatedContents = (
+  contents: SimplifiedContent[],
+  currentLanguage: AvailableLanguageI18nCode | null
+) => {
+  if (!currentLanguage || currentLanguage === "fr")
+    return { translatedContents: contents, nonTranslatedContents: [] };
+  let translatedContents: SimplifiedContent[] = [];
+  let nonTranslatedContents: SimplifiedContent[] = [];
+  contents.forEach((content) => {
+    if (!content) return;
+    if (
+      content.avancement &&
+      // @ts-ignore
+      content.avancement[currentLanguage] &&
+      // @ts-ignore
+      content.avancement[currentLanguage] === 1
+    ) {
+      translatedContents.push(content);
+      return;
+    }
+    nonTranslatedContents.push(content);
+  });
+  return { translatedContents, nonTranslatedContents };
+};
+
+const getContentsToDisplay = (
+  contentsId: ObjectId[],
+  contents: SimplifiedContent[]
+) => {
+  let result: SimplifiedContent[] = [];
+
+  contentsId.forEach((contentId: ObjectId) => {
+    const contentWithInfosArray = contents.filter(
+      (content) => content._id === contentId
+    );
+    if (contentWithInfosArray.length > 0) {
+      result.push(contentWithInfosArray[0]);
+      return;
+    }
+    return;
+  });
+  return result;
+};
+
 export const ContentsScreen = ({
   navigation,
   route,
 }: StackScreenProps<ExplorerParamList, "ContentsScreen">) => {
+  const { t } = useTranslationWithRTL();
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
   );
@@ -60,16 +118,19 @@ export const ContentsScreen = ({
   const groupedContents = useSelector(groupedContentsSelector);
   const contentsId = groupedContents[needId];
 
-  const contentsToDisplay = contentsId.map((contentId: any) => {
-    const contentWithInfosArray = contents.filter(
-      (content) => content._id === contentId
-    );
-    if (contentWithInfosArray.length > 0) return contentWithInfosArray[0];
-    return null;
-  });
+  const contentsToDisplay = getContentsToDisplay(contentsId, contents);
 
-  const sortedContents = sortContents(contentsToDisplay);
+  const { translatedContents, nonTranslatedContents } = getTranslatedContents(
+    contentsToDisplay,
+    currentLanguageI18nCode
+  );
 
+  const sortedTranslatedContents = sortContents(translatedContents);
+  const sortedNonTranslatedContents = sortContents(nonTranslatedContents);
+  console.log(
+    "sortedNonTranslatedContents.length",
+    sortedNonTranslatedContents.length
+  );
   const needName = useSelector(
     needNameSelector(needId, currentLanguageI18nCode)
   );
@@ -238,8 +299,7 @@ export const ContentsScreen = ({
         scrollEventThrottle={16}
         alwaysBounceVertical={false}
       >
-        {sortedContents.map((content) => {
-          if (!content) return <View />;
+        {sortedTranslatedContents.map((content) => {
           return (
             <ContentSummary
               key={content._id}
@@ -258,6 +318,33 @@ export const ContentsScreen = ({
             />
           );
         })}
+
+        {sortedNonTranslatedContents.length > 0 && (
+          <View>
+            <SectionHeaderText color={tagDarkColor}>
+              {t("ContentsScreen.fiches non trad", "Fiches non traduites")}
+            </SectionHeaderText>
+            {sortedNonTranslatedContents.map((content) => {
+              return (
+                <ContentSummary
+                  key={content._id}
+                  navigation={navigation}
+                  tagDarkColor={tagDarkColor}
+                  tagVeryLightColor={tagVeryLightColor}
+                  tagName={tagName}
+                  tagLightColor={tagLightColor}
+                  contentId={content._id}
+                  titreInfo={content.titreInformatif}
+                  titreMarque={content.titreMarque}
+                  typeContenu={content.typeContenu}
+                  sponsorUrl={content.sponsorUrl}
+                  iconName={iconName}
+                  nbVues={content.nbVues}
+                />
+              );
+            })}
+          </View>
+        )}
       </ScrollView>
       <LanguageChoiceModal
         isModalVisible={isLanguageModalVisible}

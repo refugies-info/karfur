@@ -143,5 +143,8 @@
   "NeedsScreen": {
     "fiches": "fiches",
     "fiche": "fiche"
+  },
+  "ContentsScreen": {
+    "fiches non trad": "Fiches non traduites"
   }
 }
