@@ -15,6 +15,24 @@ import SkeletonContent from "react-native-skeleton-content";
 import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
 import { ContentsHeaderAnimated } from "../components/Contents/ContentsHeaderAnimated";
 import { ContentSummary } from "../components/Contents/ContentSummary";
+import { SimplifiedContent } from "../types/interface";
+
+const sortByNbVues = (data: (SimplifiedContent | null)[]) =>
+  data.sort((a, b) => {
+    if (a && b && a.nbVues > b.nbVues) return -1;
+    return 1;
+  });
+const sortContents = (contents: (SimplifiedContent | null)[]) => {
+  const dispositifs = contents.filter(
+    (content) => content && content.typeContenu === "dispositif"
+  );
+
+  const demarches = contents.filter(
+    (content) => content && content.typeContenu === "demarche"
+  );
+
+  return sortByNbVues(demarches).concat(sortByNbVues(dispositifs));
+};
 
 export const ContentsScreen = ({
   navigation,
@@ -49,6 +67,8 @@ export const ContentsScreen = ({
     if (contentWithInfosArray.length > 0) return contentWithInfosArray[0];
     return null;
   });
+
+  const sortedContents = sortContents(contentsToDisplay);
 
   const needName = useSelector(
     needNameSelector(needId, currentLanguageI18nCode)
@@ -218,7 +238,7 @@ export const ContentsScreen = ({
         scrollEventThrottle={16}
         alwaysBounceVertical={false}
       >
-        {contentsToDisplay.map((content) => {
+        {sortedContents.map((content) => {
           if (!content) return <View />;
           return (
             <ContentSummary
@@ -234,6 +254,7 @@ export const ContentsScreen = ({
               typeContenu={content.typeContenu}
               sponsorUrl={content.sponsorUrl}
               iconName={iconName}
+              nbVues={content.nbVues}
             />
           );
         })}
