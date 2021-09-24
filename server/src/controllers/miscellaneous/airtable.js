@@ -98,7 +98,7 @@ const addOrUpdateDispositifInContenusAirtable = async (
   locale,
   hasContentBeenDeleted
 ) => {
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV === "dev") {
     logger.info(
       "[addOrUpdateDispositifInContenusAirtable] env is not production, do not send content to airtable",
       {
