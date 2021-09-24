@@ -23,9 +23,8 @@ const ContentContainer = styled(RTLTouchableOpacity)`
 
 const StructureImageContainer = styled.View`
   justify-content: center;
-  width: 72px;
+  width: 56px;
   align-items: center;
-  background-color: ${theme.colors.white};
   margin-left: ${(props: { isRTL: boolean }) =>
     props.isRTL ? 0 : theme.margin * 2}px;
   margin-right: ${(props: { isRTL: boolean }) =>
@@ -106,14 +105,14 @@ export const ContentSummary = (props: Props) => {
               }}
               resizeMode={"contain"}
               style={{
-                height: 65,
-                width: 65,
+                height: 56,
+                width: 56,
               }}
             />
           </StructureImageContainer>
         ) : (
           <StructureImageContainer isRTL={isRTL}>
-            <Image source={NoLogo} style={{ height: 48, width: 48 }} />
+            <Image source={NoLogo} style={{ height: 58, width: 58 }} />
           </StructureImageContainer>
         )}
         <TitlesContainer isRTL={isRTL}>
