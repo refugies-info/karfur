@@ -7,7 +7,7 @@ import { RTLTouchableOpacity } from "../BasicComponents";
 import { Image } from "react-native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import NoLogo from "../../theme/images/contents/structure_no_logo.png";
-import { StreamlineIcon } from "../StreamlineIcon";
+import { DemarcheImage } from "./DemarcheImage";
 
 const ContentContainer = styled(RTLTouchableOpacity)`
   background-color: ${theme.colors.white};
@@ -143,11 +143,10 @@ export const ContentSummary = (props: Props) => {
       isDispo={false}
     >
       <DemarcheIconContainer lightColor={props.tagVeryLightColor} isRTL={isRTL}>
-        <StreamlineIcon
+        <DemarcheImage
           name={props.iconName}
-          width={24}
-          height={24}
           stroke={props.tagDarkColor}
+          contentId={props.contentId}
         />
       </DemarcheIconContainer>
 
