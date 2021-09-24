@@ -11,7 +11,7 @@ export const needNameSelector = (id: ObjectId, locale: string | null) => (
   if (filteredNeeds.length > 0) {
     // @ts-ignore
     if (filteredNeeds[0][locale]) return filteredNeeds[0][locale].text;
-    filteredNeeds[0]["fr"].text;
+    return filteredNeeds[0]["fr"].text;
   }
   return "";
 };

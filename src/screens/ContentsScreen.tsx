@@ -1,12 +1,10 @@
 import * as React from "react";
 import { ExplorerParamList } from "../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { TextNormal, TextNormalBold } from "../components/StyledText";
 import { useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
 import { contentsSelector } from "../services/redux/Contents/contents.selectors";
 import { ScrollView, View, Animated, Platform } from "react-native";
-import styled from "styled-components/native";
 import { theme } from "../theme";
 import { needNameSelector } from "../services/redux/Needs/needs.selectors";
 import { groupedContentsSelector } from "../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
@@ -16,17 +14,88 @@ import { HeaderWithBackForWrapper } from "../components/HeaderWithLogo";
 import SkeletonContent from "react-native-skeleton-content";
 import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
 import { ContentsHeaderAnimated } from "../components/Contents/ContentsHeaderAnimated";
+import { ContentSummary } from "../components/Contents/ContentSummary";
+import {
+  SimplifiedContent,
+  AvailableLanguageI18nCode,
+  ObjectId,
+} from "../types/interface";
+import { TextBigBold } from "../components/StyledText";
+import styled from "styled-components/native";
+import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 
-const ContentContainer = styled.TouchableOpacity`
-  background-color: ${theme.colors.grey60};
+const SectionHeaderText = styled(TextBigBold)`
+  color: ${(props: { color: string }) => props.color};
+  margin-top: ${theme.margin * 6}px;
   margin-bottom: ${theme.margin * 3}px;
-  padding: 16px;
 `;
+
+const sortByNbVues = (data: SimplifiedContent[]) =>
+  data.sort((a, b) => {
+    if (a && b && a.nbVues > b.nbVues) return -1;
+    return 1;
+  });
+const sortContents = (contents: SimplifiedContent[]) => {
+  const dispositifs = contents.filter(
+    (content) => content && content.typeContenu === "dispositif"
+  );
+
+  const demarches = contents.filter(
+    (content) => content && content.typeContenu === "demarche"
+  );
+
+  return sortByNbVues(demarches).concat(sortByNbVues(dispositifs));
+};
+
+const getTranslatedContents = (
+  contents: SimplifiedContent[],
+  currentLanguage: AvailableLanguageI18nCode | null
+) => {
+  if (!currentLanguage || currentLanguage === "fr")
+    return { translatedContents: contents, nonTranslatedContents: [] };
+  let translatedContents: SimplifiedContent[] = [];
+  let nonTranslatedContents: SimplifiedContent[] = [];
+  contents.forEach((content) => {
+    if (!content) return;
+    if (
+      content.avancement &&
+      // @ts-ignore
+      content.avancement[currentLanguage] &&
+      // @ts-ignore
+      content.avancement[currentLanguage] === 1
+    ) {
+      translatedContents.push(content);
+      return;
+    }
+    nonTranslatedContents.push(content);
+  });
+  return { translatedContents, nonTranslatedContents };
+};
+
+const getContentsToDisplay = (
+  contentsId: ObjectId[],
+  contents: SimplifiedContent[]
+) => {
+  let result: SimplifiedContent[] = [];
+
+  contentsId.forEach((contentId: ObjectId) => {
+    const contentWithInfosArray = contents.filter(
+      (content) => content._id === contentId
+    );
+    if (contentWithInfosArray.length > 0) {
+      result.push(contentWithInfosArray[0]);
+      return;
+    }
+    return;
+  });
+  return result;
+};
 
 export const ContentsScreen = ({
   navigation,
   route,
 }: StackScreenProps<ExplorerParamList, "ContentsScreen">) => {
+  const { t } = useTranslationWithRTL();
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
   );
@@ -49,13 +118,15 @@ export const ContentsScreen = ({
   const groupedContents = useSelector(groupedContentsSelector);
   const contentsId = groupedContents[needId];
 
-  const contentsToDisplay = contentsId.map((contentId: any) => {
-    const contentWithInfosArray = contents.filter(
-      (content) => content._id === contentId
-    );
-    if (contentWithInfosArray.length > 0) return contentWithInfosArray[0];
-    return null;
-  });
+  const contentsToDisplay = getContentsToDisplay(contentsId, contents);
+
+  const { translatedContents, nonTranslatedContents } = getTranslatedContents(
+    contentsToDisplay,
+    currentLanguageI18nCode
+  );
+
+  const sortedTranslatedContents = sortContents(translatedContents);
+  const sortedNonTranslatedContents = sortContents(nonTranslatedContents);
 
   const needName = useSelector(
     needNameSelector(needId, currentLanguageI18nCode)
@@ -225,33 +296,52 @@ export const ContentsScreen = ({
         scrollEventThrottle={16}
         alwaysBounceVertical={false}
       >
-        {contentsToDisplay.map((content, index) => {
-          if (!content)
-            return (
-              <View>
-                <TextNormalBold>Erreur</TextNormalBold>
-              </View>
-            );
+        {sortedTranslatedContents.map((content) => {
           return (
-            <ContentContainer
-              key={index}
-              onPress={() =>
-                navigation.navigate("ContentScreen", {
-                  contentId: content._id,
-                  tagDarkColor,
-                  tagVeryLightColor,
-                  tagName,
-                  tagLightColor,
-                })
-              }
-            >
-              <TextNormal>{content.titreInformatif}</TextNormal>
-              {!!content.titreMarque && (
-                <TextNormal>{" - " + content.titreMarque}</TextNormal>
-              )}
-            </ContentContainer>
+            <ContentSummary
+              key={content._id}
+              navigation={navigation}
+              tagDarkColor={tagDarkColor}
+              tagVeryLightColor={tagVeryLightColor}
+              tagName={tagName}
+              tagLightColor={tagLightColor}
+              contentId={content._id}
+              titreInfo={content.titreInformatif}
+              titreMarque={content.titreMarque}
+              typeContenu={content.typeContenu}
+              sponsorUrl={content.sponsorUrl}
+              iconName={iconName}
+              nbVues={content.nbVues}
+            />
           );
         })}
+
+        {sortedNonTranslatedContents.length > 0 && (
+          <View>
+            <SectionHeaderText color={tagDarkColor}>
+              {t("ContentsScreen.fiches non trad", "Fiches non traduites")}
+            </SectionHeaderText>
+            {sortedNonTranslatedContents.map((content) => {
+              return (
+                <ContentSummary
+                  key={content._id}
+                  navigation={navigation}
+                  tagDarkColor={tagDarkColor}
+                  tagVeryLightColor={tagVeryLightColor}
+                  tagName={tagName}
+                  tagLightColor={tagLightColor}
+                  contentId={content._id}
+                  titreInfo={content.titreInformatif}
+                  titreMarque={content.titreMarque}
+                  typeContenu={content.typeContenu}
+                  sponsorUrl={content.sponsorUrl}
+                  iconName={iconName}
+                  nbVues={content.nbVues}
+                />
+              );
+            })}
+          </View>
+        )}
       </ScrollView>
       <LanguageChoiceModal
         isModalVisible={isLanguageModalVisible}

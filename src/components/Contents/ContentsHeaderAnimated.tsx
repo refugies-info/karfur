@@ -2,7 +2,7 @@ import { Animated, StyleSheet } from "react-native";
 import React from "react";
 import { theme } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { RTLTouchableOpacity } from "../BasicComponents";
+import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import { firstLetterUpperCase } from "../../libs";
 import { StreamlineIcon } from "../StreamlineIcon";
 import { TextSmallNormal, TextVerySmallNormal } from "../StyledText";
@@ -22,7 +22,7 @@ const ThemeContainer = styled(RTLTouchableOpacity)`
   align-items: center;
 `;
 
-const IndicatorContainer = styled.View`
+const IndicatorContainer = styled(RTLView)`
   background-color: ${theme.colors.white};
   padding: ${theme.margin}px;
   align-self: center;
@@ -30,10 +30,21 @@ const IndicatorContainer = styled.View`
   height: 32px;
   align-self: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "flex-end" : "flex-start"};
+  width: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const IndicatorText = styled(TextVerySmallNormal)`
   color: ${theme.colors.black};
+`;
+
+const IndicatorNumber = styled(TextVerySmallNormal)`
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? 0 : theme.margin / 2}px;
+  margin-left: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? theme.margin / 2 : 0}px;
 `;
 
 interface Props {
@@ -74,8 +85,8 @@ export const ContentsHeaderAnimated = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
   const indicatorText =
     props.nbContents < 2
-      ? props.nbContents + " " + t("NeedsScreen.fiche", "fiche")
-      : props.nbContents + " " + t("NeedsScreen.fiches", "fiches");
+      ? t("NeedsScreen.fiche", "fiche")
+      : t("NeedsScreen.fiches", "fiches");
   return (
     <Animated.View
       style={[
@@ -132,38 +143,43 @@ export const ContentsHeaderAnimated = (props: Props) => {
       >
         {props.needName}
       </Animated.Text>
-      {props.isLoading ? (
-        <SkeletonContent
-          containerStyle={{
-            marginTop: theme.margin * 2,
-          }}
-          isLoading={true}
-          layout={[
-            {
-              key: "SectionHeader",
-              width: 62,
-              height: 32,
-            },
-          ]}
-          boneColor={theme.colors.grey}
-          highlightColor={theme.colors.lightGrey}
-        />
-      ) : (
-        !props.showSimplifiedHeader && (
-          <Animated.View
-            style={{
-              display: "flex",
-              height: props.tagHeight,
-              marginTop: theme.margin * 2,
-              marginBottom: theme.margin * 4,
-            }}
-          >
-            <IndicatorContainer isRTL={isRTL}>
-              <IndicatorText>{indicatorText}</IndicatorText>
-            </IndicatorContainer>
-          </Animated.View>
-        )
-      )}
+      {props.isLoading
+        ? !props.showSimplifiedHeader && (
+            <SkeletonContent
+              containerStyle={{
+                marginTop: theme.margin * 2,
+                marginBottom: theme.margin * 4,
+                alignSelf: isRTL ? "flex-end" : "flex-start",
+              }}
+              isLoading={true}
+              layout={[
+                {
+                  key: "SectionHeader",
+                  width: 62,
+                  height: 32,
+                },
+              ]}
+              boneColor={theme.colors.grey}
+              highlightColor={theme.colors.lightGrey}
+            />
+          )
+        : !props.showSimplifiedHeader && (
+            <Animated.View
+              style={{
+                display: "flex",
+                height: props.tagHeight,
+                marginTop: theme.margin * 2,
+                marginBottom: theme.margin * 4,
+              }}
+            >
+              <IndicatorContainer isRTL={isRTL}>
+                <IndicatorNumber isRTL={isRTL}>
+                  {props.nbContents}
+                </IndicatorNumber>
+                <IndicatorText>{indicatorText}</IndicatorText>
+              </IndicatorContainer>
+            </Animated.View>
+          )}
     </Animated.View>
   );
 };
