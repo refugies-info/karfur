@@ -12,7 +12,8 @@ import passeport from "../../theme/images/demarche/passeport.png";
 import poleEmploi from "../../theme/images/demarche/poleEmploi.png";
 import titreSejour from "../../theme/images/demarche/titreSejour.png";
 
-import { Image } from "react-native";
+import { Image, View } from "react-native";
+import { theme } from "../../theme";
 
 interface Props {
   name: string;
@@ -32,11 +33,22 @@ export const DemarcheImage = (props: Props) => {
   }
   if (props.contentId === "604794f9b898f10014c9892b") {
     return (
-      <Image
-        source={carteVitale}
-        resizeMode="cover"
-        style={{ width: 68, height: 48 }}
-      />
+      <View
+        style={{
+          backgroundColor: theme.colors.white,
+          width: 52,
+          height: 34,
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: 3,
+        }}
+      >
+        <Image
+          source={carteVitale}
+          resizeMode="cover"
+          style={{ width: 48, height: 30 }}
+        />
+      </View>
     );
   }
 
