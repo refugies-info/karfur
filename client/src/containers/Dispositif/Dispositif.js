@@ -92,7 +92,7 @@ const InfoBoxLanguageContainer = styled.div`
   background-color: ${colors.focus};
   border-radius: 12px;
   padding: 16px;
-  margin: ${isMobile ? "16px" : "40px"};
+  margin: ${isMobile ? "16px" : "0px 0px 20px 40px"};
 `;
 
 const TextOtherLanguageContainer = styled.p`
@@ -101,8 +101,8 @@ const TextOtherLanguageContainer = styled.p`
   font-size: 18px;
   justify-content: center;
   align-items: center;
-  margin: auto;
-  padding: 16px;
+  margin: ${isMobile ? "auto" : "auto 0"};
+  padding: ${isMobile ? "16px" : 0};
 `;
 
 const sponsorsData = [];
@@ -1083,15 +1083,10 @@ export class Dispositif extends Component {
     this.setState((prevState) => ({ displayTuto: !prevState.displayTuto }));
 
   toggleDispositifValidateModal = () => {
-    if (_.isEmpty(this.state.mainSponsor)) {
-      this.setState({ finalValidation: true });
-      this.sponsors.current.toggleModal("responsabilite");
-    } else {
-      this.setState((prevState) => ({
-        showDispositifValidateModal: !prevState.showDispositifValidateModal,
-        finalValidation: false,
-      }));
-    }
+    this.setState((prevState) => ({
+      showDispositifValidateModal: !prevState.showDispositifValidateModal,
+      finalValidation: false,
+    }));
   };
   toggleDispositifValidateModalFinal = () => {
     this.setState((prevState) => ({
@@ -2057,7 +2052,6 @@ export class Dispositif extends Component {
                     </FButton>
                   </div>
                 )}
-
                 {!isTranslated && this.state.showAlertBoxLanguage && (
                   <InfoBoxLanguageContainer>
                     <EVAIcon
@@ -2091,95 +2085,103 @@ export class Dispositif extends Component {
                     ></EVAIcon>
                   </InfoBoxLanguageContainer>
                 )}
-                {disableEdit && this.state.dispositif.lastModificationDate && (
-                  // Part about last update
-                  <Row className="fiabilite-row">
-                    <Col
-                      lg="auto"
-                      md="auto"
-                      sm="auto"
-                      xs="auto"
-                      className="col align-right"
-                    >
-                      {t(
-                        "Dispositif.Dernière mise à jour",
-                        "Dernière mise à jour"
-                      )}{" "}
-                      :&nbsp;
-                      <span className="date-maj">
-                        {moment(
-                          _.get(
-                            this.state,
-                            "dispositif.lastModificationDate",
-                            0
-                          )
-                        ).format("ll")}
-                      </span>
-                    </Col>
-                  </Row>
-                )}
-                {!isTranslated && possibleLanguages.length ? (
-                  <TextOtherLanguageContainer>
-                    {t("Dispositif.Lire en", "Lire en :")}
-                    {langueSelected && isMobile ? (
-                      <FButton
-                        type="white"
-                        className="ml-10"
-                        onClick={this.toggleShowLanguageModal}
+                <div
+                  style={
+                    isMobile
+                      ? {}
+                      : { display: "flex", justifyContent: "flex-start" }
+                  }
+                >
+                  {disableEdit && this.state.dispositif.lastModificationDate && (
+                    // Part about last update
+                    <Row className="fiabilite-row">
+                      <Col
+                        lg="auto"
+                        md="auto"
+                        sm="auto"
+                        xs="auto"
+                        className="col align-right"
                       >
-                        <i
-                          className={
-                            "flag-icon flag-icon-" +
-                            possibleLanguages[0].langueCode
-                          }
-                          title={possibleLanguages[0].langueCode}
-                          id={possibleLanguages[0].langueCode}
-                        />
-
-                        <span className="ml-10 language-name">
-                          {possibleLanguages[0].langueLoc || "Langue"}
+                        {t(
+                          "Dispositif.Dernière mise à jour",
+                          "Dernière mise à jour"
+                        )}{" "}
+                        :&nbsp;
+                        <span className="date-maj">
+                          {moment(
+                            _.get(
+                              this.state,
+                              "dispositif.lastModificationDate",
+                              0
+                            )
+                          ).format("ll")}
                         </span>
-                        <EVAIcon
-                          name={"chevron-down-outline"}
-                          fill={colors.noir}
+                      </Col>
+                    </Row>
+                  )}
+                  {!isTranslated && possibleLanguages.length ? (
+                    <TextOtherLanguageContainer>
+                      {t("Dispositif.Lire en", "Lire en :")}
+                      {langueSelected && isMobile ? (
+                        <FButton
+                          type="white"
                           className="ml-10"
-                          size="xlarge"
-                        ></EVAIcon>
-                      </FButton>
-                    ) : langueSelected ? (
-                      possibleLanguages.map((langue, index) => {
-                        return (
-                          <FButton
-                            key={index}
-                            type="white"
-                            className="ml-10"
-                            onClick={() => {
-                              initGA();
-                              Event(
-                                "CHANGE_LANGUAGE",
-                                langue.i18nCode,
-                                "label"
-                              );
-                              this.props.changeLanguage(langue.i18nCode);
-                            }}
-                          >
-                            <i
-                              className={
-                                "flag-icon flag-icon-" + langue.langueCode
-                              }
-                              title={langue.langueCode}
-                              id={langue.langueCode}
-                            />
+                          onClick={this.toggleShowLanguageModal}
+                        >
+                          <i
+                            className={
+                              "flag-icon flag-icon-" +
+                              possibleLanguages[0].langueCode
+                            }
+                            title={possibleLanguages[0].langueCode}
+                            id={possibleLanguages[0].langueCode}
+                          />
 
-                            <span className="ml-10 language-name">
-                              {langue.langueLoc || "Langue"}
-                            </span>
-                          </FButton>
-                        );
-                      })
-                    ) : null}
-                  </TextOtherLanguageContainer>
-                ) : null}
+                          <span className="ml-10 language-name">
+                            {possibleLanguages[0].langueLoc || "Langue"}
+                          </span>
+                          <EVAIcon
+                            name={"chevron-down-outline"}
+                            fill={colors.noir}
+                            className="ml-10"
+                            size="xlarge"
+                          ></EVAIcon>
+                        </FButton>
+                      ) : langueSelected ? (
+                        possibleLanguages.map((langue, index) => {
+                          return (
+                            <FButton
+                              key={index}
+                              type="white"
+                              className="ml-10"
+                              onClick={() => {
+                                initGA();
+                                Event(
+                                  "CHANGE_LANGUAGE",
+                                  langue.i18nCode,
+                                  "label"
+                                );
+                                this.props.changeLanguage(langue.i18nCode);
+                              }}
+                            >
+                              <i
+                                className={
+                                  "flag-icon flag-icon-" + langue.langueCode
+                                }
+                                title={langue.langueCode}
+                                id={langue.langueCode}
+                              />
+
+                              <span className="ml-10 language-name">
+                                {langue.langueLoc || "Langue"}
+                              </span>
+                            </FButton>
+                          );
+                        })
+                      ) : null}
+                    </TextOtherLanguageContainer>
+                  ) : null}
+                </div>
 
                 <ContenuDispositif
                   showMapButton={this.showMapButton}
@@ -2279,6 +2281,9 @@ export class Dispositif extends Component {
                   updateUIArray={this.updateUIArray}
                   dispositif={this.state.dispositif}
                   typeContenu={typeContenu}
+                  toggleDispositifValidateModal={
+                    this.toggleDispositifValidateModal
+                  }
                 />
               </Col>
               {!isMobile && (

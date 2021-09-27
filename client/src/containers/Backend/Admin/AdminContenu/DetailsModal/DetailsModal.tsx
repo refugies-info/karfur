@@ -97,6 +97,7 @@ const StructureContainer = styled.div`
   line-height: 20px;
   padding: 16px;
   cursor: pointer;
+  text-decoration: underline;
 `;
 
 const MainContainer = styled.div`
@@ -175,7 +176,6 @@ export const DetailsModal = (props: Props) => {
       return setModifiedStatus(newStatus);
     }
   };
-
   const onNotesChange = (e: any) => setAdminComments(e.target.value);
 
   const modifyProgressionStatus = (status: any) => {
@@ -294,6 +294,21 @@ export const DetailsModal = (props: Props) => {
               {`${moment(dispositif.created_at).format("LLL")} soit ${moment(
                 dispositif.created_at
               ).fromNow()}`}
+              {dispositif.status === "Actif" && (
+                <>
+                  {" "}
+                  <Title>Envoi relance mise à jour</Title>
+                  {dispositif.lastReminderMailSentToUpdateContentDate
+                    ? moment(
+                        dispositif.lastReminderMailSentToUpdateContentDate
+                      ).format("LLL") +
+                      " soit " +
+                      moment(
+                        dispositif.lastReminderMailSentToUpdateContentDate
+                      ).fromNow()
+                    : "Non envoyé"}
+                </>
+              )}
               <Title>Créateur</Title>
               <CreatorContainer
                 onClick={() => {
@@ -364,12 +379,13 @@ export const DetailsModal = (props: Props) => {
               <Title>Structure responsable</Title>
               {dispositif.mainSponsor && (
                 <StructureContainer
-                  onClick={() =>
+                  onClick={() => {
                     props.setSelectedStructureIdAndToggleModal(
                       //@ts-ignore
                       dispositif.mainSponsor
-                    )
-                  }
+                    );
+                    props.toggleModal();
+                  }}
                 >
                   {dispositif.mainSponsor.nom}
                   <LogoContainer spaceBetween={true}>
