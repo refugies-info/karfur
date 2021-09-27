@@ -44,6 +44,7 @@ export const updateDispositifStatus = async (
         creatorId: 1,
         mainSponsor: 1,
         status: 1,
+        typeContenu: 1,
       };
 
       const dispositif = await getDispositifByIdWithMainSponsor(

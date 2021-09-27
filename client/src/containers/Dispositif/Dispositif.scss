@@ -758,11 +758,10 @@ $imgHeight: 350px;
 
   .fiabilite-row {
     margin-left: 0px;
-    margin-right: 40px;
-    margin-bottom: 20px;
+
     padding: 0 40px;
     @include media-max("tablet-up") {
-      padding: 0 16px;
+      text-align: center;
     }
 
     .col {
