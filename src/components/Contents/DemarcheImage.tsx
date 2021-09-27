@@ -13,7 +13,7 @@ import poleEmploi from "../../theme/images/demarche/poleEmploi.png";
 import titreSejour from "../../theme/images/demarche/titreSejour.png";
 import permisConduire from "../../theme/images/demarche/permisConduire.png";
 
-import { Image } from "react-native";
+import { Image, View } from "react-native";
 import { theme } from "../../theme";
 import styled from "styled-components/native";
 
@@ -34,6 +34,7 @@ const CardsContainer = styled.View`
 
 const CARD_WIDTH = 48;
 const CARD_HEIGHT = 30;
+
 export const DemarcheImage = (props: Props) => {
   if (props.contentId === "6051e8eebf0a6d0014ee6809") {
     return (
@@ -102,11 +103,22 @@ export const DemarcheImage = (props: Props) => {
 
   if (props.contentId === "5dc2e40c2e9859001680b916") {
     return (
-      <Image
-        source={passeport}
-        resizeMode="cover"
-        style={{ width: 48, height: 68 }}
-      />
+      <View
+        style={{
+          backgroundColor: theme.colors.white,
+          width: 38,
+          height: 52,
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: 3,
+        }}
+      >
+        <Image
+          source={passeport}
+          resizeMode="cover"
+          style={{ width: 34, height: 48 }}
+        />
+      </View>
     );
   }
 
