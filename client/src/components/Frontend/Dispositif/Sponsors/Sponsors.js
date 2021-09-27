@@ -904,7 +904,7 @@ class Sponsors extends Component {
           toggleModal={this.toggleModal}
           modal={{ name: "envoye" }}
           keyValue={3}
-          title="C’est envoyé !"
+          title={selected.nom ? "C’est envoyé !" : "Chouette !"}
           lowerRightBtn={
             <FButton
               type="validate"
@@ -914,11 +914,30 @@ class Sponsors extends Component {
                 if (this.props.finalValidation) {
                   this.props.validate();
                 }
+                if (!selected.nom) {
+                  this.props.toggleDispositifValidateModal();
+                }
               }}
               className="push-right"
             >
-              Ok !
+              {selected.nom ? "Ok !" : "Je termine ma fiche"}
             </FButton>
+          }
+          lowerLeftBtn={
+            !selected.nom ? (
+              <FButton
+                type="dark"
+                name="edit-outline"
+                onClick={() => {
+                  this.toggleModal("envoye");
+                  if (this.props.finalValidation) {
+                    this.props.validate();
+                  }
+                }}
+              >
+                Je continue ma rédaction
+              </FButton>
+            ) : null
           }
         >
           <div className="envoye-content center-text">
@@ -987,17 +1006,12 @@ class Sponsors extends Component {
               )
             ) : (
               <>
-                <h5 className="mb-10">
-                  Votre structure est en cours de création
-                </h5>
+                <h5 className="mb-10">La structure est en cours de création</h5>
                 <div className="contenu mb-10">
                   <b>
-                    L’équipe Réfugiés.info va prendre contact avec vous sous 7
-                    jours pour vérifier vos informations.
+                    Nous allons faire le nécessaire pour activer votre structure
+                    à partir des informations que vous avez renseignées.
                   </b>
-                </div>
-                <div className="contenu">
-                  <b>Merci de rejoindre l’aventure !</b>
                 </div>
               </>
             )}

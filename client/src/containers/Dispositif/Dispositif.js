@@ -2286,6 +2286,9 @@ export class Dispositif extends Component {
                   updateUIArray={this.updateUIArray}
                   dispositif={this.state.dispositif}
                   typeContenu={typeContenu}
+                  toggleDispositifValidateModal={
+                    this.toggleDispositifValidateModal
+                  }
                 />
               </Col>
               {!isMobile && (
