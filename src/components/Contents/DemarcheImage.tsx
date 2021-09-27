@@ -142,11 +142,13 @@ export const DemarcheImage = (props: Props) => {
     )
   ) {
     return (
-      <Image
-        source={titreSejour}
-        resizeMode="cover"
-        style={{ width: 68, height: 48 }}
-      />
+      <CardsContainer>
+        <Image
+          source={titreSejour}
+          resizeMode="cover"
+          style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
+        />
+      </CardsContainer>
     );
   }
 
@@ -156,11 +158,13 @@ export const DemarcheImage = (props: Props) => {
     )
   ) {
     return (
-      <Image
-        source={carteBancaire}
-        resizeMode="cover"
-        style={{ width: 68, height: 48 }}
-      />
+      <CardsContainer>
+        <Image
+          source={carteBancaire}
+          resizeMode="cover"
+          style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
+        />
+      </CardsContainer>
     );
   }
 
