@@ -143,6 +143,7 @@ describe("updateDispositifStatus", () => {
     creatorId: 1,
     mainSponsor: 1,
     status: 1,
+    typeContenu: 1,
   };
   it("should return a 200 when new status is supprimé and user authorized and demarche", async () => {
     updateDispositifInDB.mockResolvedValueOnce({ typeContenu: "demarche" });
