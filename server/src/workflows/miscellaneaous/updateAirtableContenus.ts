@@ -129,6 +129,7 @@ const exportDispositifInAirtable = (
     });
 };
 
+// route one shot to resynchronize airtable contents with data base
 export const updateAirtableContenus = async (
   req: RequestFromClient<{}>,
   res: Res
