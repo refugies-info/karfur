@@ -142,7 +142,8 @@
   },
   "NeedsScreen": {
     "fiches": "fiches",
-    "fiche": "fiche"
+    "fiche": "fiche",
+    "no result": "Nous sommes désolés, nous n'avons pas de fiche ici."
   },
   "ContentsScreen": {
     "fiches non trad": "Fiches non traduites"

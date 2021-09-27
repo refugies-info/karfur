@@ -11,14 +11,29 @@ import OFPRA from "../../theme/images/demarche/OFPRA.png";
 import passeport from "../../theme/images/demarche/passeport.png";
 import poleEmploi from "../../theme/images/demarche/poleEmploi.png";
 import titreSejour from "../../theme/images/demarche/titreSejour.png";
+import permisConduire from "../../theme/images/demarche/permisConduire.png";
 
-import { Image } from "react-native";
+import { Image, View } from "react-native";
+import { theme } from "../../theme";
+import styled from "styled-components/native";
 
 interface Props {
   name: string;
   stroke: string;
   contentId: ObjectId;
 }
+
+const CardContainer = styled.View`
+  background-color: ${theme.colors.white};
+  width: 52px;
+  height: 34px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+`;
+
+const CARD_WIDTH = 48;
+const CARD_HEIGHT = 30;
 
 export const DemarcheImage = (props: Props) => {
   if (props.contentId === "6051e8eebf0a6d0014ee6809") {
@@ -32,11 +47,13 @@ export const DemarcheImage = (props: Props) => {
   }
   if (props.contentId === "604794f9b898f10014c9892b") {
     return (
-      <Image
-        source={carteVitale}
-        resizeMode="cover"
-        style={{ width: 68, height: 48 }}
-      />
+      <CardContainer>
+        <Image
+          source={carteVitale}
+          resizeMode="cover"
+          style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
+        />
+      </CardContainer>
     );
   }
 
@@ -74,21 +91,34 @@ export const DemarcheImage = (props: Props) => {
 
   if (props.contentId === "5dc53daebceb3c004fc43060") {
     return (
-      <Image
-        source={carteVitale}
-        resizeMode="cover"
-        style={{ width: 68, height: 48 }}
-      />
+      <CardContainer>
+        <Image
+          source={permisConduire}
+          resizeMode="cover"
+          style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
+        />
+      </CardContainer>
     );
   }
 
   if (props.contentId === "5dc2e40c2e9859001680b916") {
     return (
-      <Image
-        source={passeport}
-        resizeMode="cover"
-        style={{ width: 48, height: 68 }}
-      />
+      <View
+        style={{
+          backgroundColor: theme.colors.white,
+          width: 38,
+          height: 52,
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: 3,
+        }}
+      >
+        <Image
+          source={passeport}
+          resizeMode="cover"
+          style={{ width: 34, height: 48 }}
+        />
+      </View>
     );
   }
 
@@ -112,11 +142,13 @@ export const DemarcheImage = (props: Props) => {
     )
   ) {
     return (
-      <Image
-        source={titreSejour}
-        resizeMode="cover"
-        style={{ width: 68, height: 48 }}
-      />
+      <CardContainer>
+        <Image
+          source={titreSejour}
+          resizeMode="cover"
+          style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
+        />
+      </CardContainer>
     );
   }
 
@@ -126,11 +158,13 @@ export const DemarcheImage = (props: Props) => {
     )
   ) {
     return (
-      <Image
-        source={carteBancaire}
-        resizeMode="cover"
-        style={{ width: 68, height: 48 }}
-      />
+      <CardContainer>
+        <Image
+          source={carteBancaire}
+          resizeMode="cover"
+          style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
+        />
+      </CardContainer>
     );
   }
 
@@ -153,11 +187,13 @@ export const DemarcheImage = (props: Props) => {
 
   if (props.contentId === "5e189ed30742580052a332b6") {
     return (
-      <Image
-        source={carteIdentite}
-        resizeMode="cover"
-        style={{ width: 68, height: 48 }}
-      />
+      <CardContainer>
+        <Image
+          source={carteIdentite}
+          resizeMode="cover"
+          style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
+        />
+      </CardContainer>
     );
   }
   return (

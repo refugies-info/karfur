@@ -22,6 +22,7 @@ import SkeletonContent from "react-native-skeleton-content";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 import { HeaderWithBackForWrapper } from "../../components/HeaderWithLogo";
 import { NeedsHeaderAnimated } from "../../components/Needs/NeedsHeaderAnimated";
+import { ErrorScreen } from "../../components/ErrorScreen";
 
 const computeNeedsToDisplay = (
   allNeeds: Need[],
@@ -242,6 +243,38 @@ export const NeedsScreen = ({
         <LanguageChoiceModal
           isModalVisible={isLanguageModalVisible}
           toggleModal={toggleLanguageModal}
+        />
+      </View>
+    );
+  }
+
+  if (needsToDisplay.length === 0) {
+    return (
+      <View style={{ display: "flex", flex: 1 }}>
+        <View style={{ backgroundColor: tagDarkColor }}>
+          <HeaderWithBackForWrapper
+            onLongPressSwitchLanguage={toggleLanguageModal}
+            navigation={navigation}
+          />
+        </View>
+        <NeedsHeaderAnimated
+          tagDarkColor={tagDarkColor}
+          headerBottomRadius={headerBottomRadius}
+          headerHeight={headerHeight}
+          headerPaddingTop={headerPaddingTop}
+          tagName={tagName}
+          headerFontSize={headerFontSize}
+          iconName={iconName}
+          showSimplifiedHeader={showSimplifiedHeader}
+        />
+        <ErrorScreen
+          buttonText={t("tabBar.Explorer")}
+          text={t(
+            "NeedsScreen.no result",
+            "Nous sommes désolés, nous n'avons pas de fiche ici"
+          )}
+          onButtonClick={navigation.goBack}
+          buttonIcon="compass-outline"
         />
       </View>
     );
