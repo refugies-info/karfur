@@ -1,6 +1,8 @@
 var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(
-  process.env.airtableBase
+  process.env.NODE_ENV === "staging"
+    ? process.env.AIRTABLE_BASE_DIAIR_TEST
+    : process.env.airtableBase
 );
 const logger = require("../../logger");
 
@@ -98,7 +100,7 @@ const addOrUpdateDispositifInContenusAirtable = async (
   locale,
   hasContentBeenDeleted
 ) => {
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV === "dev") {
     logger.info(
       "[addOrUpdateDispositifInContenusAirtable] env is not production, do not send content to airtable",
       {
