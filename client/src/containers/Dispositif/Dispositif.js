@@ -1083,15 +1083,10 @@ export class Dispositif extends Component {
     this.setState((prevState) => ({ displayTuto: !prevState.displayTuto }));
 
   toggleDispositifValidateModal = () => {
-    if (_.isEmpty(this.state.mainSponsor)) {
-      this.setState({ finalValidation: true });
-      this.sponsors.current.toggleModal("responsabilite");
-    } else {
-      this.setState((prevState) => ({
-        showDispositifValidateModal: !prevState.showDispositifValidateModal,
-        finalValidation: false,
-      }));
-    }
+    this.setState((prevState) => ({
+      showDispositifValidateModal: !prevState.showDispositifValidateModal,
+      finalValidation: false,
+    }));
   };
   toggleDispositifValidateModalFinal = () => {
     this.setState((prevState) => ({
