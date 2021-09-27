@@ -1016,7 +1016,7 @@ export class Dispositif extends Component {
 
   deleteCard = (key, subkey, type) => {
     if (type === "map") {
-      this.setState({ addMapBtn: true });
+      this.setState({ addMapBtn: true, isModified: true });
     }
     const prevState = [...this.state.menu];
     prevState[key].children = prevState[key].children.filter(
@@ -1025,6 +1025,7 @@ export class Dispositif extends Component {
     this.setState(
       {
         menu: prevState,
+        isModified: true,
       },
       () => this.setColors()
     );
