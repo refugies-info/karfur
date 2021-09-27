@@ -187,11 +187,13 @@ export const DemarcheImage = (props: Props) => {
 
   if (props.contentId === "5e189ed30742580052a332b6") {
     return (
-      <Image
-        source={carteIdentite}
-        resizeMode="cover"
-        style={{ width: 68, height: 48 }}
-      />
+      <CardsContainer>
+        <Image
+          source={carteIdentite}
+          resizeMode="cover"
+          style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
+        />
+      </CardsContainer>
     );
   }
   return (
