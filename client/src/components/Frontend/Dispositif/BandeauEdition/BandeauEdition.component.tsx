@@ -13,6 +13,8 @@ export interface PropsBeforeInjection {
   toggleDraftModal: () => void;
   tKeyValue: number;
   toggleDispositifCreateModal: () => void;
+  isModified: boolean;
+  isSaved: boolean;
 }
 export class BandeauEdition extends React.Component<
   Props,
@@ -52,6 +54,8 @@ export class BandeauEdition extends React.Component<
         visible={this.state.visible}
         typeContenu={props.typeContenu}
         toggleTutoriel={props.toggleTutoriel}
+        isModified={props.isModified}
+        isSaved={props.isSaved}
         displayTuto={props.displayTuto}
         toggleDispositifValidateModal={props.toggleDispositifValidateModal}
         toggleDraftModal={props.toggleDraftModal}
