@@ -23,7 +23,7 @@ interface Props {
   contentId: ObjectId;
 }
 
-const CardsContainer = styled.View`
+const CardContainer = styled.View`
   background-color: ${theme.colors.white};
   width: 52px;
   height: 34px;
@@ -47,13 +47,13 @@ export const DemarcheImage = (props: Props) => {
   }
   if (props.contentId === "604794f9b898f10014c9892b") {
     return (
-      <CardsContainer>
+      <CardContainer>
         <Image
           source={carteVitale}
           resizeMode="cover"
           style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
         />
-      </CardsContainer>
+      </CardContainer>
     );
   }
 
@@ -91,13 +91,13 @@ export const DemarcheImage = (props: Props) => {
 
   if (props.contentId === "5dc53daebceb3c004fc43060") {
     return (
-      <CardsContainer>
+      <CardContainer>
         <Image
           source={permisConduire}
           resizeMode="cover"
           style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
         />
-      </CardsContainer>
+      </CardContainer>
     );
   }
 
@@ -142,13 +142,13 @@ export const DemarcheImage = (props: Props) => {
     )
   ) {
     return (
-      <CardsContainer>
+      <CardContainer>
         <Image
           source={titreSejour}
           resizeMode="cover"
           style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
         />
-      </CardsContainer>
+      </CardContainer>
     );
   }
 
@@ -158,13 +158,13 @@ export const DemarcheImage = (props: Props) => {
     )
   ) {
     return (
-      <CardsContainer>
+      <CardContainer>
         <Image
           source={carteBancaire}
           resizeMode="cover"
           style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
         />
-      </CardsContainer>
+      </CardContainer>
     );
   }
 
@@ -187,13 +187,13 @@ export const DemarcheImage = (props: Props) => {
 
   if (props.contentId === "5e189ed30742580052a332b6") {
     return (
-      <CardsContainer>
+      <CardContainer>
         <Image
           source={carteIdentite}
           resizeMode="cover"
           style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
         />
-      </CardsContainer>
+      </CardContainer>
     );
   }
   return (
