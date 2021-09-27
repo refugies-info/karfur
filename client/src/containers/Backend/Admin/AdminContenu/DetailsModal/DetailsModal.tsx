@@ -176,7 +176,8 @@ export const DetailsModal = (props: Props) => {
       return setModifiedStatus(newStatus);
     }
   };
-
+  // eslint-disable-next-line no-console
+  console.log("dispo", dispositif);
   const onNotesChange = (e: any) => setAdminComments(e.target.value);
 
   const modifyProgressionStatus = (status: any) => {
@@ -295,6 +296,21 @@ export const DetailsModal = (props: Props) => {
               {`${moment(dispositif.created_at).format("LLL")} soit ${moment(
                 dispositif.created_at
               ).fromNow()}`}
+              {dispositif.status === "Actif" && (
+                <>
+                  {" "}
+                  <Title>Envoi relance mise à jour</Title>
+                  {dispositif.lastReminderMailSentToUpdateContentDate
+                    ? moment(
+                        dispositif.lastReminderMailSentToUpdateContentDate
+                      ).format("LLL") +
+                      " soit " +
+                      moment(
+                        dispositif.lastReminderMailSentToUpdateContentDate
+                      ).fromNow()
+                    : "Non envoyé"}
+                </>
+              )}
               <Title>Créateur</Title>
               <CreatorContainer
                 onClick={() => {

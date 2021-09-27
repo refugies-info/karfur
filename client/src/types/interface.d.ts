@@ -59,6 +59,7 @@ export interface SimplifiedDispositif {
   adminProgressionStatus?: string;
   adminPercentageProgressionStatus?: string;
   lastAdminUpdate?: Moment;
+  lastReminderMailSentToUpdateContentDate?: Moment;
   draftReminderMailSentDate?: Moment;
   lastModificationDate?: Moment;
   needs?: ObjectId[];
