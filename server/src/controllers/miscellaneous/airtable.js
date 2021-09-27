@@ -1,6 +1,8 @@
 var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(
-  process.env.AIRTABLE_BASE_DIAIR
+  process.env.NODE_ENV === "staging"
+    ? process.env.AIRTABLE_BASE_DIAIR_TEST
+    : process.env.airtableBase
 );
 const logger = require("../../logger");
 
