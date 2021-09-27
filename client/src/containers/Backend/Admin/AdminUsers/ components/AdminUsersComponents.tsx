@@ -69,7 +69,14 @@ interface StructureProps {
   onClick: () => void;
 }
 export const Structure = (props: StructureProps) => (
-  <div style={{ marginTop: "4px", marginBottom: "12px" }}>
+  <div
+    style={{
+      marginTop: "4px",
+      marginBottom: "12px",
+      cursor: "pointer",
+      textDecoration: "underline",
+    }}
+  >
     <RowContainer>
       {props.picture && props.picture.secure_url && (
         <img className="sponsor-img mr-8" src={props.picture.secure_url} />

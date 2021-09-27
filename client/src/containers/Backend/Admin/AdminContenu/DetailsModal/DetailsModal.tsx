@@ -97,6 +97,7 @@ const StructureContainer = styled.div`
   line-height: 20px;
   padding: 16px;
   cursor: pointer;
+  text-decoration: underline;
 `;
 
 const MainContainer = styled.div`
@@ -364,12 +365,13 @@ export const DetailsModal = (props: Props) => {
               <Title>Structure responsable</Title>
               {dispositif.mainSponsor && (
                 <StructureContainer
-                  onClick={() =>
+                  onClick={() => {
                     props.setSelectedStructureIdAndToggleModal(
                       //@ts-ignore
                       dispositif.mainSponsor
-                    )
-                  }
+                    );
+                    props.toggleModal();
+                  }}
                 >
                   {dispositif.mainSponsor.nom}
                   <LogoContainer spaceBetween={true}>
