@@ -168,7 +168,9 @@
 }
 
 .toolbar-hidden {
-  top: -100px !important;
+  @include media-min("desktop-up") {
+    top: -100px !important;
+  }
 }
 
 .isRTL {
