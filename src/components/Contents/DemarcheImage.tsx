@@ -11,9 +11,11 @@ import OFPRA from "../../theme/images/demarche/OFPRA.png";
 import passeport from "../../theme/images/demarche/passeport.png";
 import poleEmploi from "../../theme/images/demarche/poleEmploi.png";
 import titreSejour from "../../theme/images/demarche/titreSejour.png";
+import permisConduire from "../../theme/images/demarche/permisConduire.png";
 
-import { Image, View } from "react-native";
+import { Image } from "react-native";
 import { theme } from "../../theme";
+import styled from "styled-components/native";
 
 interface Props {
   name: string;
@@ -21,6 +23,17 @@ interface Props {
   contentId: ObjectId;
 }
 
+const CardsContainer = styled.View`
+  background-color: ${theme.colors.white};
+  width: 52px;
+  height: 34px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+`;
+
+const CARD_WIDTH = 48;
+const CARD_HEIGHT = 30;
 export const DemarcheImage = (props: Props) => {
   if (props.contentId === "6051e8eebf0a6d0014ee6809") {
     return (
@@ -33,22 +46,13 @@ export const DemarcheImage = (props: Props) => {
   }
   if (props.contentId === "604794f9b898f10014c9892b") {
     return (
-      <View
-        style={{
-          backgroundColor: theme.colors.white,
-          width: 52,
-          height: 34,
-          justifyContent: "center",
-          alignItems: "center",
-          borderRadius: 3,
-        }}
-      >
+      <CardsContainer>
         <Image
           source={carteVitale}
           resizeMode="cover"
-          style={{ width: 48, height: 30 }}
+          style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
         />
-      </View>
+      </CardsContainer>
     );
   }
 
@@ -86,11 +90,13 @@ export const DemarcheImage = (props: Props) => {
 
   if (props.contentId === "5dc53daebceb3c004fc43060") {
     return (
-      <Image
-        source={carteVitale}
-        resizeMode="cover"
-        style={{ width: 68, height: 48 }}
-      />
+      <CardsContainer>
+        <Image
+          source={permisConduire}
+          resizeMode="cover"
+          style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
+        />
+      </CardsContainer>
     );
   }
 
