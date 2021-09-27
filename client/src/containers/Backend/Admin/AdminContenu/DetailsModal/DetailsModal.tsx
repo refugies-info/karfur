@@ -176,8 +176,6 @@ export const DetailsModal = (props: Props) => {
       return setModifiedStatus(newStatus);
     }
   };
-  // eslint-disable-next-line no-console
-  console.log("dispo", dispositif);
   const onNotesChange = (e: any) => setAdminComments(e.target.value);
 
   const modifyProgressionStatus = (status: any) => {
