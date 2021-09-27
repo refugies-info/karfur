@@ -644,7 +644,7 @@ export class Dispositif extends Component {
         }),
     };
 
-    return this.setState({ menu: state });
+    return this.setState({ menu: state, isModified: true });
   };
 
   handleContentClick = (key, editable, subkey = undefined) => {
@@ -1140,6 +1140,7 @@ export class Dispositif extends Component {
             }
           : x
       ),
+      isModified: true,
     });
   changeDepartements = (departments, key, subkey) =>
     this.setState(
@@ -1156,6 +1157,7 @@ export class Dispositif extends Component {
               }
             : x
         ),
+        isModified: true,
       },
       () => this.setColors()
     );
@@ -1173,6 +1175,7 @@ export class Dispositif extends Component {
             }
           : x
       ),
+      isModified: true,
     });
   changeAge = (e, key, subkey, isBottom = true) =>
     this.setState({
@@ -1194,6 +1197,7 @@ export class Dispositif extends Component {
             }
           : x
       ),
+      isModified: true,
     });
   setMarkers = (markers, key, subkey) => {
     this.setState({
@@ -1255,7 +1259,7 @@ export class Dispositif extends Component {
     } else {
       prevState[key].children[subkey][node] = value;
     }
-    this.setState({ menu: prevState });
+    this.setState({ menu: prevState, isModified: true });
   };
 
   changeTag = (key, value) => {
