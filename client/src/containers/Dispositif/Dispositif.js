@@ -92,7 +92,7 @@ const InfoBoxLanguageContainer = styled.div`
   background-color: ${colors.focus};
   border-radius: 12px;
   padding: 16px;
-  margin: ${isMobile ? "16px" : "40px"};
+  margin: ${isMobile ? "16px" : "0px 0px 20px 40px"};
 `;
 
 const TextOtherLanguageContainer = styled.p`
@@ -2057,7 +2057,6 @@ export class Dispositif extends Component {
                     </FButton>
                   </div>
                 )}
-
                 {!isTranslated && this.state.showAlertBoxLanguage && (
                   <InfoBoxLanguageContainer>
                     <EVAIcon
