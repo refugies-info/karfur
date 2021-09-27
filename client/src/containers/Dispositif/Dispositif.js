@@ -145,6 +145,8 @@ export class Dispositif extends Component {
     accordion: new Array(1).fill(false),
     dropdown: new Array(5).fill(false),
     disableEdit: true,
+    isModified: false,
+    isSaved: false,
     tooltipOpen: false,
     showBookmarkModal: false,
     isAuth: false,
@@ -519,6 +521,13 @@ export class Dispositif extends Component {
     });
   };
 
+  toggleIsModified = (newState) => {
+    this.setState({ isModified: newState });
+  };
+  toggleIsSaved = (newState) => {
+    this.setState({ isSaved: newState });
+  };
+
   onInputClicked = (ev) => {
     // when clicking on titreInformatif or titreMarque (name of asso)
     // if titre informatif is 'Titre informatif' we store "" instead of titre informatif
@@ -550,6 +559,7 @@ export class Dispositif extends Component {
         ...this.state.content,
         [ev.currentTarget.id]: value,
       },
+      isModified: true,
     });
   };
 
@@ -634,7 +644,7 @@ export class Dispositif extends Component {
         }),
     };
 
-    return this.setState({ menu: state });
+    return this.setState({ menu: state, isModified: true });
   };
 
   handleContentClick = (key, editable, subkey = undefined) => {
@@ -823,7 +833,7 @@ export class Dispositif extends Component {
         state[key].isFakeContent = false;
         state[key].content = content;
       }
-      this.setState({ menu: state });
+      this.setState({ menu: state, isModified: true });
     }
   };
 
@@ -1006,7 +1016,7 @@ export class Dispositif extends Component {
 
   deleteCard = (key, subkey, type) => {
     if (type === "map") {
-      this.setState({ addMapBtn: true });
+      this.setState({ addMapBtn: true, isModified: true });
     }
     const prevState = [...this.state.menu];
     prevState[key].children = prevState[key].children.filter(
@@ -1015,6 +1025,7 @@ export class Dispositif extends Component {
     this.setState(
       {
         menu: prevState,
+        isModified: true,
       },
       () => this.setColors()
     );
@@ -1130,6 +1141,7 @@ export class Dispositif extends Component {
             }
           : x
       ),
+      isModified: true,
     });
   changeDepartements = (departments, key, subkey) =>
     this.setState(
@@ -1146,6 +1158,7 @@ export class Dispositif extends Component {
               }
             : x
         ),
+        isModified: true,
       },
       () => this.setColors()
     );
@@ -1163,6 +1176,7 @@ export class Dispositif extends Component {
             }
           : x
       ),
+      isModified: true,
     });
   changeAge = (e, key, subkey, isBottom = true) =>
     this.setState({
@@ -1184,6 +1198,7 @@ export class Dispositif extends Component {
             }
           : x
       ),
+      isModified: true,
     });
   setMarkers = (markers, key, subkey) => {
     this.setState({
@@ -1245,7 +1260,7 @@ export class Dispositif extends Component {
     } else {
       prevState[key].children[subkey][node] = value;
     }
-    this.setState({ menu: prevState });
+    this.setState({ menu: prevState, isModified: true });
   };
 
   changeTag = (key, value) => {
@@ -1471,7 +1486,8 @@ export class Dispositif extends Component {
     status = "En attente",
     auto = false,
     sauvegarde = false,
-    saveAndEdit = false
+    saveAndEdit = false,
+    continueEditing = true
   ) => {
     this.setState({ isDispositifLoading: !auto });
     let content = { ...this.state.content };
@@ -1644,10 +1660,21 @@ export class Dispositif extends Component {
       }
     }
     dispositif.lastModificationDate = Date.now();
-
     logger.info("[valider_dispositif] dispositif before call", { dispositif });
     API.addDispositif(dispositif).then((data) => {
       const newDispo = data.data.data;
+      if (!continueEditing) {
+        let text =
+          dispositif.status === "Brouillon"
+            ? "Retrouvez votre fiche dans votre espace « Mes Fiches ». Attention, votre fiche va rester en brouillon. Pour la publier, cliquez sur le bouton valider en vert, plutôt que sur enregistrer."
+            : "Retrouvez votre fiche dans votre espace « Mes Fiches ».";
+
+        Swal.fire({
+          title: "Fiche enregistrée",
+          text: text,
+          type: "success",
+        });
+      }
       if (!auto && this._isMounted) {
         Swal.fire("Yay...", "Enregistrement réussi !", "success").then(() => {
           this.props.fetchUser();
@@ -1798,6 +1825,8 @@ export class Dispositif extends Component {
                   toggleDispositifValidateModal={
                     this.toggleDispositifValidateModal
                   }
+                  isModified={this.state.isModified}
+                  isSaved={this.state.isSaved}
                   toggleDraftModal={this.toggleDraftModal}
                   tKeyValue={this.state.tKeyValue}
                   toggleDispositifCreateModal={this.toggleDispositifCreateModal}
@@ -2381,6 +2410,8 @@ export class Dispositif extends Component {
                 this.props.history.push("/backend/user-dash-contrib")
               }
               status={this.state.status}
+              toggleIsModified={this.toggleIsModified}
+              toggleIsSaved={this.toggleIsSaved}
             />
             <ShareContentOnMobileModal
               show={this.state.showShareContentOnMobileModal}

@@ -87,6 +87,7 @@ export const getContentsForApp = async (
         nbVues: content.nbVues,
         typeContenu: content.typeContenu,
         sponsorUrl,
+        avancement: content.avancement,
       };
     });
 
@@ -123,6 +124,7 @@ export const getContentsForApp = async (
         nbVues: content.nbVues,
         typeContenu: content.typeContenu,
         sponsorUrl,
+        avancement: content.avancement,
       };
     });
 
