@@ -194,6 +194,8 @@
       background: $blancSimple;
       border-radius: 12px;
       margin-top: 10px;
+      border: 0.5px solid $grisFonce;
+
       &:hover {
         background: $validation;
       }
