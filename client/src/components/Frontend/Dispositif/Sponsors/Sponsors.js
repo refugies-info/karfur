@@ -52,6 +52,18 @@ const SponsorTitle = styled.p`
   text-align: center;
 `;
 
+const MyStructureContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #bdf0c7;
+  border-radius: 12px;
+  padding: 18px;
+  color: black;
+  border: 0.5px solid #4caf50;
+  margin-bottom: 10px;
+`;
+
 const ImageLink = styled.a`
   background-color: white;
   width: 166px;
@@ -178,7 +190,7 @@ class Sponsors extends Component {
     sponsorLoading: false,
     edit: false,
     sponsorKey: null,
-
+    isMyStructureSelected: false,
     structure: {
       nom: "",
       acronyme: "",
@@ -233,7 +245,9 @@ class Sponsors extends Component {
     }));
   toggleTooltip = () =>
     this.setState((pS) => ({ tooltipOpen: !pS.tooltipOpen }));
-
+  toggleIsMyStructureSelected = () => {
+    this.setState({ isMyStructureSelected: !this.state.isMyStructureSelected });
+  };
   handleFileInputChange = (event) => {
     this.setState({ sponsorLoading: true });
     const formData = new FormData();
@@ -415,9 +429,14 @@ class Sponsors extends Component {
       deleteMainSponsor,
       user,
     } = this.props;
-    const { showModals, selected, authorBelongs, checked, mesStructures } =
-      this.state;
-
+    const {
+      showModals,
+      selected,
+      authorBelongs,
+      checked,
+      mesStructures,
+      isMyStructureSelected,
+    } = this.state;
     const sponsorsWithoutPicture = sponsors.filter(
       (sponsor) => !sponsor.picture && !sponsor._id
     );
@@ -704,7 +723,11 @@ class Sponsors extends Component {
                   (!checked || (!user.email && !user.phone)) &&
                   !mesStructures.some((x) => x.checked)
                 }
-                onClick={this.validerRespo}
+                onClick={() => {
+                  this.validerRespo();
+                  this.toggleIsMyStructureSelected();
+                  this.toggleModal("envoye");
+                }}
                 className="push-right"
               >
                 Valider
@@ -967,7 +990,33 @@ class Sponsors extends Component {
                 alt="illustration"
               />
             )}
-            {selected.nom ? (
+            {isMyStructureSelected ? (
+              <>
+                <h5 className="mb-10 green">
+                  Votre fiche va être transférée à la structure :
+                </h5>
+                <MyStructureContainer>
+                  {" "}
+                  {mainSponsor.picture && mainSponsor.picture.secure_url && (
+                    <img
+                      src={mainSponsor.picture.secure_url}
+                      className="selection-logo mr-10"
+                      alt="logo de structure"
+                    />
+                  )}
+                  <span>
+                    {mainSponsor.acronyme} - {mainSponsor.nom}
+                  </span>
+                </MyStructureContainer>
+                <div className="contenu mb-10">
+                  <b>
+                    Les responsables de la structure vont prendre le relais.
+                    N’hésitez pas à les joindre directement si vous les
+                    connaissez.
+                  </b>
+                </div>
+              </>
+            ) : selected.nom ? (
               authorBelongs ? (
                 <>
                   <h5 className="mb-10">
