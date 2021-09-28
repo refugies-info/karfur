@@ -677,24 +677,43 @@ class Sponsors extends Component {
           modal={modal}
           keyValue={0}
           title="Responsabilité de la fiche"
-          lowerRightBtn={
+          lowerLeftBtn={
             <FButton
-              type="dark"
-              name="paper-plane-outline"
-              fill={colors.noir}
-              disabled={
-                (!checked || (!user.email && !user.phone)) &&
-                !mesStructures.some((x) => x.checked)
-              }
-              onClick={this.validerRespo}
-              className="push-right"
+              type="tuto"
+              name={"play-circle-outline"}
+              onClick={() => {}}
             >
-              Valider
+              Tutoriel
             </FButton>
+          }
+          lowerRightBtn={
+            <div>
+              <FButton
+                type="white"
+                fill={colors.noir}
+                onClick={this.toggleModal}
+                className="push-right mr-8"
+              >
+                Quitter
+              </FButton>
+              <FButton
+                type="validate"
+                name="checkmark-outline"
+                fill={colors.noir}
+                disabled={
+                  (!checked || (!user.email && !user.phone)) &&
+                  !mesStructures.some((x) => x.checked)
+                }
+                onClick={this.validerRespo}
+                className="push-right"
+              >
+                Valider
+              </FButton>
+            </div>
           }
         >
           {this.state.banner ? (
-            <div className="warning-bloc bg-focus mt-16 mb-8">
+            <div className="warning-bloc bg-focus mt-16 mb-16">
               <EVAIcon name="info" fill={colors.blanc} className="info-icon" />
               <div
                 onClick={() => this.setState({ banner: false })}
@@ -711,14 +730,24 @@ class Sponsors extends Component {
           ) : (
             <div style={{ marginTop: 24 }} />
           )}
-
+          <SearchBar
+            isArray
+            structures
+            loupe
+            className="search-bar inner-addon right-addon mb-16 mt-8"
+            placeholder="Rechercher une structure..."
+            array={structuresArray}
+            createNewCta="Créer une nouvelle structure"
+            selectItem={this.selectItem}
+          />
           {mesStructures.length > 0 &&
             mesStructures.map((struct) => (
               <FormGroup check className="ma-structure mb-10" key={struct._id}>
-                <Label check>
+                <Label style={{ cursor: "pointer", fontWeight: "700" }} check>
                   <Input
-                    type="radio"
+                    type="checkbox"
                     checked={struct.checked}
+                    style={{ cursor: "pointer" }}
                     onChange={() => this.handleStructChange(struct._id)}
                   />{" "}
                   <b>Ma structure : </b>
@@ -726,17 +755,6 @@ class Sponsors extends Component {
                 </Label>
               </FormGroup>
             ))}
-
-          <SearchBar
-            isArray
-            structures
-            loupe
-            className="search-bar inner-addon right-addon"
-            placeholder="Rechercher ou créer une structure"
-            array={structuresArray}
-            createNewCta="Créer une nouvelle structure"
-            selectItem={this.selectItem}
-          />
         </CustomModal>
 
         <CustomModal
