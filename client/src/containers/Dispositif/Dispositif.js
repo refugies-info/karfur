@@ -2392,6 +2392,7 @@ export class Dispositif extends Component {
               toggle={this.toggleTagsModal}
               toggleTutorielModal={this.toggleTutorielModal}
               user={this.props.user}
+              history={this.props.history}
               dispositifId={this.state.dispositif._id}
             />
             <FrameModal
