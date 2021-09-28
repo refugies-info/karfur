@@ -676,7 +676,7 @@ class Sponsors extends Component {
           toggleModal={this.toggleModal}
           modal={modal}
           keyValue={0}
-          title="Responsabilité du dispositif"
+          title="Responsabilité de la fiche"
           lowerRightBtn={
             <FButton
               type="dark"
@@ -703,10 +703,9 @@ class Sponsors extends Component {
                 <EVAIcon name="close-outline" fill={colors.blanc} />
               </div>
               <p style={{ marginBottom: 0 }}>
-                Pour que la fiche soit correctement mise à jour au fil du temps,
-                nous allons la connecter à sa structure légale. Cherchez la
-                structure dans la barre de recherche ci-dessous, ou créez-en une
-                nouvelle si elle n’est pas présente dans la base de donnée.
+                Renseignez ci-dessous le nom de la structure responsable de
+                cette fiche pour qu’elle soit correctement mise à jour au fil du
+                temps.
               </p>
             </div>
           ) : (
