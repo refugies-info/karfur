@@ -1,12 +1,11 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { View } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { MarkerGoogle } from "../../types/interface";
 import { TextSmallNormal } from "../StyledText";
 import { RTLView } from "../BasicComponents";
 import { theme } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { MapContentFromHtml } from "./MapContentHtml";
 import { Icon } from "react-native-eva-icons";
 
