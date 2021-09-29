@@ -1,6 +1,5 @@
 .expo/
 .expo/packager-info.json
-src/theme/fonts
 node_modules/
 npm-debug.*
 *.jks

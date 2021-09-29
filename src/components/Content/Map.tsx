@@ -1,9 +1,9 @@
 import * as React from "react";
 import MapView, { Marker } from "react-native-maps";
-import { View, Dimensions } from "react-native";
+import { View, Dimensions, Modal } from "react-native";
 import { MapGoogle, MarkerGoogle } from "../../types/interface";
 import { Icon } from "react-native-eva-icons";
-import { MapSideBar } from "./MapSideBar";
+import { MapBottomBar } from "./MapBottomBar";
 
 interface PropsType {
   map: MapGoogle;
@@ -31,7 +31,7 @@ export class Map extends React.Component<PropsType, StateType> {
 
   render() {
     const markers = this.props.map.markers;
-    const mapHeight = Dimensions.get("window").height * 0.6;
+    const mapHeight = Dimensions.get("window").height;
     const mapWidth = Dimensions.get("window").width;
 
     return (
@@ -69,14 +69,21 @@ export class Map extends React.Component<PropsType, StateType> {
             );
           })}
         </MapView>
-        <MapSideBar
-          selectedMarker={this.state.markerOpen}
-          height={mapHeight}
-          width={0.8 * mapWidth}
-          textColor={this.props.markersColor}
-          hideSideBar={this.hideMarkerDetails}
-          windowWidth={this.props.windowWidth}
-        />
+        <Modal
+          visible={!!this.state.markerOpen}
+          animationType="slide"
+          transparent={true}
+          onRequestClose={this.hideMarkerDetails}
+        >
+          <MapBottomBar
+            selectedMarker={this.state.markerOpen}
+            height={0.8 * mapHeight}
+            width={mapWidth}
+            textColor={this.props.markersColor}
+            hideSideBar={this.hideMarkerDetails}
+            windowWidth={this.props.windowWidth}
+          />
+        </Modal>
       </View>
     );
   }

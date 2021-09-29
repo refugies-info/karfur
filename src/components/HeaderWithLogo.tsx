@@ -5,9 +5,8 @@ import Logo from "../theme/images/logo.svg";
 import { SmallButton } from "./SmallButton";
 import { RowContainer } from "./BasicComponents";
 import { LanguageSwitch } from "./Language/LanguageSwitch";
+import { FixSafeAreaView } from "./FixSafeAreaView";
 import { View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import * as Device from "expo-device";
 
 const MainContainer = styled(RowContainer)`
   padding-horizontal: ${theme.margin * 3}px;
@@ -15,12 +14,6 @@ const MainContainer = styled(RowContainer)`
   justify-content: space-between;
   display: flex;
   padding-top: ${theme.margin}px;
-`;
-
-const StyledSafeAreaView = styled(SafeAreaView)`
-  z-index: 2;
-  margin-bottom: ${(props: { isIPhone12: boolean }) =>
-    props.isIPhone12 ? "-25" : "0"}px;
 `;
 
 const LOGO_WIDTH = 58;
@@ -36,7 +29,7 @@ export const HeaderWithLogo = ({
   hideLanguageSwitch,
   hideLogo,
 }: Props) => (
-  <StyledSafeAreaView>
+  <FixSafeAreaView>
     <MainContainer isRTL={false}>
       {!hideLogo ? <Logo width={LOGO_WIDTH} height={LOGO_HEIGHT} /> : <View />}
       <RowContainer>
@@ -48,7 +41,7 @@ export const HeaderWithLogo = ({
         <SmallButton iconName="volume-up-outline" />
       </RowContainer>
     </MainContainer>
-  </StyledSafeAreaView>
+  </FixSafeAreaView>
 );
 
 interface PropsBack {
@@ -59,15 +52,8 @@ export const HeaderWithBackForWrapper = ({
   onLongPressSwitchLanguage,
   navigation,
 }: PropsBack) => {
-  // there is an issue with react-native-safe-area-context on iPhone12 height is too big. I have not found simple fix other than what is below
-  const isIPhone12 = [
-    "iPhone13,1",
-    "iPhone13,2",
-    "iPhone13,3",
-    "iPhone13,4",
-  ].includes(Device.modelId);
   return (
-    <StyledSafeAreaView isIPhone12={isIPhone12}>
+    <FixSafeAreaView>
       <MainContainer isRTL={false}>
         <SmallButton
           iconName="arrow-back-outline"
@@ -81,6 +67,6 @@ export const HeaderWithBackForWrapper = ({
           <SmallButton iconName="volume-up-outline" />
         </RowContainer>
       </MainContainer>
-    </StyledSafeAreaView>
+    </FixSafeAreaView>
   );
 };

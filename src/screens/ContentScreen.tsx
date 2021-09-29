@@ -7,6 +7,7 @@ import {
   Linking,
   StyleSheet,
   Animated,
+  Modal
 } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ExplorerParamList } from "../../types";
@@ -20,7 +21,6 @@ import { theme } from "../theme";
 import {
   TextBigBold,
   TextSmallNormal,
-  TextNormalBold,
 } from "../components/StyledText";
 import {
   selectedI18nCodeSelector,
@@ -36,13 +36,15 @@ import { LoadingStatusKey } from "../services/redux/LoadingStatus/loadingStatus.
 import SkeletonContent from "react-native-skeleton-content";
 import { CustomButton } from "../components/CustomButton";
 import { RTLView } from "../components/BasicComponents";
+import { SmallButton } from "../components/SmallButton";
 // @ts-ignore
 import moment from "moment/min/moment-with-locales";
-import { Icon } from "react-native-eva-icons";
 import { InfocardsSection } from "../components/Content/InfocardsSection";
 import { Map } from "../components/Content/Map";
+import { MiniMap } from "../components/Content/MiniMap";
 import { AccordionAnimated } from "../components/Content/AccordionAnimated";
 import { ErrorScreen } from "../components/ErrorScreen";
+import { FixSafeAreaView } from "../components/FixSafeAreaView";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -136,7 +138,7 @@ const StructureNameText = styled(TextSmallNormal)`
 `;
 
 const LastUpdateDateContainer = styled(RTLView)`
-  margin-top: ${theme.margin}px;
+  margin-top: ${theme.margin * 4}px;
   margin-bottom: ${theme.margin * 2}px;
   margin-horizontal: ${theme.margin * 3}px;
 `;
@@ -151,33 +153,18 @@ const LastUpdateText = styled(TextSmallNormal)`
   margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : 4)}px;
 `;
 
-const MapHeaderContainer = styled(RTLView)`
-  background-color: ${(props: { color: string }) => props.color};
-  padding-vertical: 30px;
-  padding-horizontal: ${theme.margin * 3}px;
-  display: flex;
-  justify-content: space-between;
-  margin-top: ${theme.margin}px;
-`;
-
-const MapHeaderText = styled(TextNormalBold)`
-  color: ${theme.colors.white};
-`;
-const PinContainer = styled.View`
-  width: 36px;
-  height: 36px;
-  background-color: ${theme.colors.white};
-  border-radius: 50px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
-
 const SimplifiedHeaderContainer = styled.View`
   padding-horizontal: ${theme.margin * 3}px;
   padding-vertical: ${theme.margin}px;
   box-shadow: 0px 0px 40px rgba(33, 33, 33, 0.1);
+`;
+const ModalContainer = styled.View`
+  display: flex;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  padding: ${theme.margin * 2}px;
+  zIndex: 2;
 `;
 
 const headersDispositif = [
@@ -256,6 +243,11 @@ export const ContentScreen = ({
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_CONTENT)
   );
+
+  const [mapModalVisible, setMapModalVisible] = React.useState(false);
+  const toggleMap = () => {
+    setMapModalVisible(!mapModalVisible);
+  };
 
   const toggleSimplifiedHeader = (displayHeader: boolean) => {
     if (displayHeader && !showSimplifiedHeader) {
@@ -612,6 +604,33 @@ export const ContentScreen = ({
               />
             </View>
           )}
+
+          {!!map && map.markers.length > 0 && (
+            <>
+              <HeaderText key={1} textColor={tagDarkColor}>
+                {t(
+                  "Content.Trouver un interlocuteur",
+                  "Trouver un interlocuteur"
+                )}
+              </HeaderText>
+              <MiniMap
+                map={map}
+                markersColor={tagDarkColor}
+              >
+                <CustomButton
+                  textColor={theme.colors.black}
+                  i18nKey="Content.Voir la carte"
+                  onPress={toggleMap}
+                  defaultText="Voir la carte"
+                  backgroundColor={theme.colors.white}
+                  iconName="expand-outline"
+                  iconFirst={true}
+                  notFullWidth={true}
+                />
+              </MiniMap>
+            </>
+          )}
+
           {formattedLastModifDate && (
             <LastUpdateDateContainer>
               <LastUpdateText isRTL={isRTL}>
@@ -622,34 +641,34 @@ export const ContentScreen = ({
               </LastUpdateDate>
             </LastUpdateDateContainer>
           )}
-
-          {!!map && map.markers.length > 0 && (
-            <>
-              <MapHeaderContainer color={tagDarkColor}>
-                <MapHeaderText>
-                  {t(
-                    "Content.Trouver un interlocuteur",
-                    "Trouver un interlocuteur"
-                  )}
-                </MapHeaderText>
-                <PinContainer>
-                  <Icon name="pin" width={20} height={20} fill={tagDarkColor} />
-                </PinContainer>
-              </MapHeaderContainer>
-
-              <Map
-                map={map}
-                markersColor={tagDarkColor}
-                windowWidth={windowWidth}
-              />
-            </>
-          )}
         </View>
       </ScrollView>
       <LanguageChoiceModal
         isModalVisible={isLanguageModalVisible}
         toggleModal={toggleLanguageModal}
       />
+      <Modal visible={mapModalVisible} animationType="slide">
+        <ModalContainer>
+          <FixSafeAreaView
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <SmallButton
+              iconName="arrow-back-outline"
+              onPress={toggleMap}
+            />
+            <SmallButton
+              iconName="close-outline"
+              onPress={toggleMap}
+              reversed={true}
+            />
+          </FixSafeAreaView>
+        </ModalContainer>
+        <Map
+          map={map}
+          markersColor={tagDarkColor}
+          windowWidth={windowWidth}
+        />
+      </Modal>
     </View>
   );
 };
