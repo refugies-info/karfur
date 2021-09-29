@@ -222,6 +222,7 @@ export const ContentScreen = ({
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
   );
+  console.log("test");
   const [nbLinesTitreInfo, setNbLinesTitreInfo] = React.useState(2);
   const [nbLinesTitreMarque, setNbLinesTitreMarque] = React.useState(1);
 
