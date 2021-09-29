@@ -79,7 +79,6 @@ interface Props {
   typeContenu: "dispositif" | "demarche";
   sponsorUrl: string | null;
   iconName: string;
-  nbVues: number;
 }
 export const ContentSummary = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
@@ -117,7 +116,7 @@ export const ContentSummary = (props: Props) => {
         )}
         <TitlesContainer isRTL={isRTL}>
           <TitreInfoText color={props.tagDarkColor} isDispo={true}>
-            {props.titreInfo + " " + props.nbVues}
+            {props.titreInfo}
           </TitreInfoText>
           {!!props.titreMarque && (
             <TitreMarqueText color={props.tagDarkColor}>
@@ -151,7 +150,7 @@ export const ContentSummary = (props: Props) => {
 
       <TitlesContainer isRTL={isRTL}>
         <TitreInfoText color={props.tagDarkColor}>
-          {props.titreInfo + " " + props.nbVues}
+          {props.titreInfo}
         </TitreInfoText>
       </TitlesContainer>
     </ContentContainer>
