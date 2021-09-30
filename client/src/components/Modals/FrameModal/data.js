@@ -42,7 +42,7 @@ export const sectionUrlCorrespondencies = [
   {
     section: "ResponsabilitéFiche",
     tutoUrl:
-      "https://help.refugies.info/fr/article/8-sur-10-structure-responsable-et-partenaires-5qxsto/",
+      "https://help.refugies.info/fr/article/8-sur-10-structure-responsable-et-partenaires-5qxsto",
   },
   {
     section: "WebsiteLink",
