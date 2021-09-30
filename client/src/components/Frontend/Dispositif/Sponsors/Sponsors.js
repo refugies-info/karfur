@@ -779,8 +779,26 @@ class Sponsors extends Component {
           />
           {mesStructures.length > 0 &&
             mesStructures.map((struct) => (
-              <FormGroup check className="ma-structure mb-10" key={struct._id}>
-                <Label style={{ cursor: "pointer", fontWeight: "700" }} check>
+              <FormGroup
+                check
+                className="ma-structure mb-10"
+                key={struct._id}
+                style={
+                  struct.checked
+                    ? {
+                        backgroundColor: colors.greenValidate,
+                        border: "0.5px solid" + colors.validationHover,
+                      }
+                    : {}
+                }
+              >
+                <Label
+                  style={{
+                    cursor: "pointer",
+                    fontWeight: "700",
+                  }}
+                  check
+                >
                   <Input
                     type="checkbox"
                     checked={struct.checked}

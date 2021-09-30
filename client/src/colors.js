@@ -17,6 +17,7 @@ export const colors = {
   attention: "#f9ef99",
   uiattention: "#ffeb3b",
   validation: "#def6c2",
+  greenValidate: "#BDF0C7",
   validationHover: "#4caf50",
   validationDefault: "#8bc34a",
   error: "#f44336",
