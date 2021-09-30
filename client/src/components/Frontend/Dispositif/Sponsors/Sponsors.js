@@ -448,7 +448,7 @@ class Sponsors extends Component {
     );
     const modal = { name: "responsabilite" };
     const structuresArray = this.props.structures
-      ? this.props.structures.concat([{ createNew: true }])
+      ? this.props.structures
       : [{ createNew: true }];
     const totalSponsor = this.createCarouselObject(
       mainSponsor,
@@ -762,6 +762,7 @@ class Sponsors extends Component {
             array={structuresArray}
             createNewCta="Créer une nouvelle structure"
             selectItem={this.selectItem}
+            toggleModal={this.toggleModal}
           />
           {mesStructures.length > 0 &&
             mesStructures.map((struct) => (
