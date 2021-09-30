@@ -18,7 +18,7 @@ import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import FInput from "../../../FigmaUI/FInput/FInput";
 import SearchBar from "../../../../containers/UI/SearchBar/SearchBar";
-import { sentIllu, structure_definie } from "../../../../assets/figma/index";
+import { structure_definie } from "../../../../assets/figma/index";
 import CreationContent from "../CreationContent/CreationContent";
 import { updateUserActionCreator } from "../../../../services/User/user.actions";
 import _ from "lodash";
@@ -406,6 +406,19 @@ class Sponsors extends Component {
     this.setState({ imgData: {} });
   };
 
+  setStructureContactAsMe = () => {
+    if (this.props.user) {
+      this.setState({
+        structure: {
+          ...this.state.structure,
+          contact: this.props.user.username,
+          phone_contact: this.props.user.phone,
+          mail_contact: this.props.user.email,
+        },
+      });
+    }
+  };
+
   editSponsor = (key) => {
     this.toggleModal();
     this.setState({ edit: false });
@@ -442,6 +455,7 @@ class Sponsors extends Component {
       deleteMainSponsor,
       user,
     } = this.props;
+
     const {
       showModals,
       selected,
@@ -844,7 +858,7 @@ class Sponsors extends Component {
                 fill={colors.noir}
                 onClick={() => {
                   this.props.addMainSponsor(this.state.selected);
-                  this.toggleModal();
+                  this.toggleModal("envoye");
                   this.setState({ imgData: {} });
                 }}
                 className="push-right"
@@ -937,6 +951,7 @@ class Sponsors extends Component {
           <CreationContent
             handleChange={this.handleChange}
             handleBelongsChange={this.handleBelongsChange}
+            setStructureContactAsMe={this.setStructureContactAsMe}
             {...this.state.structure}
           />
           <div className="form-field inline-div">
@@ -995,7 +1010,7 @@ class Sponsors extends Component {
               }}
               type="default"
               className="mr-8"
-              name="arrow-left-outline"
+              name="arrow-back-outline"
             >
               Retour
             </FButton>
@@ -1020,7 +1035,7 @@ class Sponsors extends Component {
           toggleModal={this.toggleModal}
           modal={{ name: "envoye" }}
           keyValue={3}
-          title={selected.nom ? "C’est envoyé !" : "Chouette !"}
+          title={"Chouette !"}
           lowerRightBtn={
             <FButton
               type="validate"
@@ -1030,42 +1045,31 @@ class Sponsors extends Component {
                 if (this.props.finalValidation) {
                   this.props.validate();
                 }
-                if (!selected.nom) {
-                  this.props.toggleDispositifValidateModal();
-                }
+                this.props.toggleDispositifValidateModal();
               }}
               className="push-right"
             >
-              {selected.nom ? "Ok !" : "Je termine ma fiche"}
+              Je termine ma fiche
             </FButton>
           }
           lowerLeftBtn={
-            !selected.nom ? (
-              <FButton
-                type="dark"
-                name="edit-outline"
-                onClick={() => {
-                  this.toggleModal("envoye");
-                  if (this.props.finalValidation) {
-                    this.props.validate();
-                  }
-                }}
-              >
-                Je continue ma rédaction
-              </FButton>
-            ) : null
+            <FButton
+              type="dark"
+              name="edit-outline"
+              onClick={() => {
+                this.toggleModal("envoye");
+                if (this.props.finalValidation) {
+                  this.props.validate();
+                }
+              }}
+            >
+              Je continue ma rédaction
+            </FButton>
           }
         >
           <div className="envoye-content center-text">
-            {selected.nom ? (
-              <img src={sentIllu} className="illu" alt="illustration" />
-            ) : (
-              <img
-                src={structure_definie}
-                className="illu"
-                alt="illustration"
-              />
-            )}
+            <img src={structure_definie} className="illu" alt="illustration" />
+
             {isMyStructureSelected ? (
               <>
                 <h5 className="mb-10 green">
@@ -1121,28 +1125,28 @@ class Sponsors extends Component {
                 </>
               ) : (
                 <>
-                  <h5 className="mb-10">
-                    Votre contenu va être transféré à la structure :
+                  <h5 className="mb-10 green">
+                    Votre fiche va être transférée à la structure :
                   </h5>
-                  <div className="selection-wrapper mb-10">
-                    {selected.picture && selected.picture.secure_url && (
+                  <MyStructureContainer>
+                    {" "}
+                    {mainSponsor.picture && mainSponsor.picture.secure_url && (
                       <img
-                        src={selected.picture.secure_url}
+                        src={mainSponsor.picture.secure_url}
                         className="selection-logo mr-10"
                         alt="logo de structure"
                       />
                     )}
                     <span>
-                      {selected.acronyme} - {selected.nom}
+                      {mainSponsor.acronyme} - {mainSponsor.nom}
                     </span>
-                  </div>
-                  <div className="contenu">
-                    Les responsables de la structure vont prendre le relais.
-                    <br />
-                    N’hésitez pas à les joindre directement si vous les
-                    connaissez.
-                    <br />
-                    <b>Merci infiniment pour votre contribution !</b>
+                  </MyStructureContainer>
+                  <div className="contenu mb-10">
+                    <b>
+                      Les responsables de la structure vont prendre le relais.
+                      N’hésitez pas à les joindre directement si vous les
+                      connaissez.
+                    </b>
                   </div>
                 </>
               )
