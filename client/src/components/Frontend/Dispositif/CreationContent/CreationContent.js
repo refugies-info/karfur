@@ -14,18 +14,16 @@ import FButton from "../../../FigmaUI/FButton/FButton";
 import FInput from "../../../FigmaUI/FInput/FInput";
 
 import "./CreationContent.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 
 const CreationContent = (props) => {
   const [banner, setBanner] = useState(true);
+  const [isChecked, setIsChecked] = useState(false);
+
   return (
     <div className="creation-content">
-      <span className="bg-attention2 compulsory">
-        <sup>*</sup> Champs obligatoires
-      </span>
       <div className="form-field">
-        <b>Nom de la structure à créer&#42;</b>
-
+        <b>Nom de la nouvelle structure</b>
         <Row>
           <Col lg="9" md="9" sm="12" xs="12">
             <InputGroup>
@@ -44,40 +42,10 @@ const CreationContent = (props) => {
               />
             </InputGroup>
           </Col>
-          {/*  <Col lg="3" md="3" sm="12" xs="12">
-          <InputGroup>
-            <EVAIcon
-              className="input-icon"
-              name="pricetags-outline"
-              fill={colors.noir}
-            />
-            <Input
-              id="acronyme"
-              placeholder="Acronyme"
-              value={props.acronyme}
-              onChange={props.handleChange}
-              name="structure"
-            />
-          </InputGroup>
-        </Col> */}
         </Row>
-        {/*  <InputGroup>
-        <EVAIcon
-          className="input-icon"
-          name="link-outline"
-          fill={colors.noir}
-        />
-        <Input
-          id="link"
-          placeholder="Site internet"
-          value={props.link}
-          onChange={props.handleChange}
-          name="structure"
-        />
-      </InputGroup> */}
       </div>
       <div className="form-field">
-        <b style={{ fontSize: "22px" }}>Personne responsable à contacter</b>
+        <b style={{ fontSize: "22px" }}>Responsable à contacter</b>
         {banner ? (
           <div className="warning-bloc bg-focus mt-16 mb-8">
             <EVAIcon name="info" fill={colors.blanc} className="info-icon" />
@@ -147,6 +115,39 @@ const CreationContent = (props) => {
             newSize={true}
           />
         </InputGroup>
+        <b style={{ marginTop: "16px" }}>Est-ce que c'est vous ?</b>
+        <FormGroup
+          check
+          className="ma-structure mb-10"
+          style={
+            isChecked
+              ? {
+                  backgroundColor: colors.greenValidate,
+                  border: "0.5px solid" + colors.validationHover,
+                  margin: "16px auto",
+                }
+              : { margin: "16px auto" }
+          }
+        >
+          <Label
+            style={{
+              cursor: "pointer",
+              fontWeight: "700",
+            }}
+            check
+          >
+            <Input
+              type="checkbox"
+              checked={isChecked}
+              style={{ cursor: "pointer" }}
+              onChange={() => {
+                props.setStructureContactAsMe();
+                setIsChecked(!isChecked);
+              }}
+            />{" "}
+            <b>Oui, je suis la personne à contacter</b>
+          </Label>
+        </FormGroup>
       </div>
       {/*     <div className="form-field belongs-wrapper">
       <b>
