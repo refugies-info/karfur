@@ -2,10 +2,12 @@
 
 exports[`HeaderWithLogo should render correctly with LTR 1`] = `
 <RNCSafeAreaView
+  isIPhone12={false}
   style={
     Array [
       Object {
         "marginBottom": 0,
+        "position": "relative",
         "zIndex": 2,
       },
     ]
@@ -149,10 +151,12 @@ exports[`HeaderWithLogo should render correctly with LTR 1`] = `
 
 exports[`HeaderWithLogo should render correctly with RTL 1`] = `
 <RNCSafeAreaView
+  isIPhone12={false}
   style={
     Array [
       Object {
         "marginBottom": 0,
+        "position": "relative",
         "zIndex": 2,
       },
     ]

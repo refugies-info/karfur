@@ -13,7 +13,8 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
   padding: ${theme.radius * 3}px;
   border-radius: ${theme.radius * 2}px;
   align-items: center;
-  width: 100%;
+  width: ${(props: { notFullWidth: boolean }) =>
+    props.notFullWidth ? "auto" : "100%"};
   height: 56px;
   box-shadow: ${(props: { isDisabled: boolean }) =>
     props.isDisabled
@@ -25,18 +26,18 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
 
 const ColoredTextBold = styled(StyledTextSmallBold)`
   color: ${(props: { textColor: string }) => props.textColor};
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin : 0}px;
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin}px;
+  margin-left: ${(props: { isRTL: boolean, iconFirst: boolean }) =>
+    (props.iconFirst || props.isRTL) && (props.isRTL !== props.iconFirst) ? theme.margin : 0}px;
+  margin-right: ${(props: { isRTL: boolean, iconFirst: boolean }) =>
+    props.isRTL === props.iconFirst ? theme.margin : 0}px;
 `;
 
 const ColoredTextNormal = styled(StyledTextSmall)`
   color: ${(props: { textColor: string }) => props.textColor};
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin : 0}px;
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin}px;
+  margin-left: ${(props: { isRTL: boolean, iconFirst: boolean }) =>
+    (props.iconFirst || props.isRTL) && (props.isRTL !== props.iconFirst) ? theme.margin : 0}px;
+  margin-right: ${(props: { isRTL: boolean, iconFirst: boolean }) =>
+    props.isRTL === props.iconFirst ? theme.margin : 0}px;
 `;
 
 interface Props {
@@ -48,36 +49,41 @@ interface Props {
   isTextNotBold?: boolean;
   backgroundColor?: string;
   isDisabled?: boolean;
+  iconFirst?: boolean;
+  notFullWidth?: boolean;
 }
 
 const ICON_SIZE = 24;
 
 export const CustomButton = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
+
+  const icon = <Icon
+    name={props.iconName}
+    width={ICON_SIZE}
+    height={ICON_SIZE}
+    fill={props.textColor}
+  />;
+
   return (
     <ButtonContainer
       onPress={props.onPress}
       backgroundColor={props.backgroundColor}
       isDisabled={props.isDisabled}
       testID={"test-custom-button-" + props.defaultText}
+      notFullWidth={props.notFullWidth}
     >
+      {props.iconName && props.iconFirst && icon}
       {props.isTextNotBold ? (
-        <ColoredTextNormal textColor={props.textColor} isRTL={isRTL}>
+        <ColoredTextNormal textColor={props.textColor} isRTL={isRTL} iconFirst={!!props.iconFirst}>
           {t(props.i18nKey, props.defaultText)}
         </ColoredTextNormal>
       ) : (
-        <ColoredTextBold textColor={props.textColor} isRTL={isRTL}>
+        <ColoredTextBold textColor={props.textColor} isRTL={isRTL} iconFirst={!!props.iconFirst}>
           {t(props.i18nKey, props.defaultText)}
         </ColoredTextBold>
       )}
-      {props.iconName && (
-        <Icon
-          name={props.iconName}
-          width={ICON_SIZE}
-          height={ICON_SIZE}
-          fill={props.textColor}
-        />
-      )}
+      {props.iconName && !props.iconFirst && icon}
     </ButtonContainer>
   );
 };

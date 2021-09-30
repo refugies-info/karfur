@@ -14,10 +14,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
   }
 >
   <RNCSafeAreaView
+    isIPhone12={false}
     style={
       Array [
         Object {
           "marginBottom": 0,
+          "position": "relative",
           "zIndex": 2,
         },
       ]

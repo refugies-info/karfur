@@ -5,7 +5,6 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 interface Props {
   htmlContent: string;
-  windowWidth: number;
   darkColor: string;
   isBold: boolean;
 }
@@ -14,7 +13,6 @@ export const MapContentFromHtml = (props: Props) => {
 
   return (
     <HTML
-      contentWidth={props.windowWidth}
       source={{ html: props.htmlContent }}
       baseFontStyle={{
         fontSize: theme.fonts.sizes.normal,
