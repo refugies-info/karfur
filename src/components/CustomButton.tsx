@@ -75,11 +75,11 @@ export const CustomButton = (props: Props) => {
     >
       {props.iconName && props.iconFirst && icon}
       {props.isTextNotBold ? (
-        <ColoredTextNormal textColor={props.textColor} isRTL={isRTL} iconFirst={props.iconFirst || false}>
+        <ColoredTextNormal textColor={props.textColor} isRTL={isRTL} iconFirst={!!props.iconFirst}>
           {t(props.i18nKey, props.defaultText)}
         </ColoredTextNormal>
       ) : (
-        <ColoredTextBold textColor={props.textColor} isRTL={isRTL} iconFirst={props.iconFirst || false}>
+        <ColoredTextBold textColor={props.textColor} isRTL={isRTL} iconFirst={!!props.iconFirst}>
           {t(props.i18nKey, props.defaultText)}
         </ColoredTextBold>
       )}

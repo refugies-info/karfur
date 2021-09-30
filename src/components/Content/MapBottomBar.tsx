@@ -116,9 +116,6 @@ export const MapBottomBar = (props: Props) => {
             </TextValue>
           </HTMLContainer>
         </ContentContainer>
-        {/* <TextValue color={props.textColor}>
-          {props.selectedMarker.vicinity}
-        </TextValue> */}
 
         <ContentContainer color={props.textColor} marginTop={0}>
           <TextIcon
