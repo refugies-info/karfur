@@ -92,7 +92,7 @@ const InfoBoxLanguageContainer = styled.div`
   background-color: ${colors.focus};
   border-radius: 12px;
   padding: 16px;
-  margin: ${isMobile ? "16px" : "0px 0px 20px 40px"};
+  margin: ${isMobile ? "16px" : "0px 20px 20px 40px"};
 `;
 
 const TextOtherLanguageContainer = styled.p`
@@ -101,7 +101,7 @@ const TextOtherLanguageContainer = styled.p`
   font-size: 18px;
   justify-content: center;
   align-items: center;
-  margin: ${isMobile ? "auto" : "auto 0"};
+  margin: ${isMobile ? "auto" : "auto 40px"};
   padding: ${isMobile ? "16px" : 0};
 `;
 
