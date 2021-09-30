@@ -6,7 +6,6 @@ import {
   ModalBody,
   ModalFooter,
   InputGroup,
-  Tooltip,
   FormGroup,
   Label,
   Spinner,
@@ -52,6 +51,16 @@ const SponsorTitle = styled.p`
   text-align: center;
 `;
 
+const ConfirmationStructureContainer = styled.div`
+  align-items: center;
+  background-color: #ffe2b8;
+  padding: 20px;
+  border-radius: 12px;
+  width: -webkit-fill-available;
+  margin-top: 16px;
+  margin-bottom: 16px;
+`;
+
 const MyStructureContainer = styled.div`
   display: flex;
   align-items: center;
@@ -72,6 +81,10 @@ const ImageLink = styled.a`
   justify-content: center;
   align-items: center;
   display: flex;
+`;
+const ConfirmationStructureTitleContainer = styled.div`
+  font-weight: 700;
+  font-size: 22px;
 `;
 
 const DeleteButtonFull = styled.div`
@@ -786,55 +799,73 @@ class Sponsors extends Component {
           toggleModal={this.toggleModal}
           modal={{ name: "etVous" }}
           keyValue={1}
-          title="Et vous ?"
-          lowerRightBtn={
+          title="Responsabilité de la fiche"
+          lowerLeftBtn={
             <FButton
-              type="dark"
-              name="paper-plane-outline"
-              fill={colors.noir}
-              onClick={() => {
-                this.props.addMainSponsor(this.state.selected);
-                this.toggleModal();
-                this.setState({ imgData: {} });
-              }}
-              className="push-right"
+              type="tuto"
+              name={"play-circle-outline"}
+              onClick={() => {}}
             >
-              Valider
+              Tutoriel
             </FButton>
           }
+          lowerRightBtn={
+            <div>
+              <FButton
+                type="white"
+                fill={colors.noir}
+                onClick={() => this.toggleModal("responsabilite")}
+                className="push-right mr-8"
+                name="arrow-back-outline"
+              >
+                Retour
+              </FButton>
+              <FButton
+                type="validate"
+                name="checkmark-outline"
+                fill={colors.noir}
+                onClick={() => {
+                  this.props.addMainSponsor(this.state.selected);
+                  this.toggleModal();
+                  this.setState({ imgData: {} });
+                }}
+                className="push-right"
+              >
+                Valider
+              </FButton>
+            </div>
+          }
         >
-          <p>
-            <span>Faites-vous partie de la structure suivante : </span>
-            <EVAIcon
-              className="float-right"
-              id="alt-tooltip"
-              name="info"
-              fill={colors.noir}
-            />
-            <Tooltip
-              placement="top"
-              isOpen={this.state.tooltipOpen}
-              target="alt-tooltip"
-              toggle={this.toggleTooltip}
-            >
-              Si oui, nous enverrons une demande d’ajout à un responsable de la
-              structure. Si non, la propriété de la page lui sera transférée
-              pour qu’il puisse vérifier les informations.
-            </Tooltip>
-          </p>
+          <ConfirmationStructureContainer>
+            <p>
+              <ConfirmationStructureTitleContainer>
+                Faites-vous partie de cette structure ?{" "}
+              </ConfirmationStructureTitleContainer>
+            </p>
 
-          <div className="selection-wrapper bg-validation mb-10">
-            {selected.picture && selected.picture.secure_url && (
-              <img
-                src={selected.picture.secure_url}
-                className="selection-logo mr-10"
-                alt="logo de structure"
-              />
-            )}
-            <span>
-              {selected.acronyme} - {selected.nom}
-            </span>
-          </div>
+            <div className="selection-wrapper bg-white mb-10">
+              {selected.picture && selected.picture.secure_url && (
+                <img
+                  src={selected.picture.secure_url}
+                  className="selection-logo mr-10"
+                  alt="logo de structure"
+                />
+              )}
+              <span>
+                {selected.acronyme} - {selected.nom}
+              </span>
+            </div>
+          </ConfirmationStructureContainer>
+          {/* <Tooltip
+            placement="top"
+            isOpen={this.state.tooltipOpen}
+            target="alt-tooltip"
+            toggle={this.toggleTooltip}
+          >
+            Si oui, nous enverrons une demande d’ajout à un responsable de la
+            structure. Si non, la propriété de la page lui sera transférée pour
+            qu’il puisse vérifier les informations.
+          </Tooltip> */}
 
           <FormGroup check className="author-choice mb-10">
             <Label check>
@@ -843,7 +874,7 @@ class Sponsors extends Component {
                 checked={this.state.authorBelongs}
                 onChange={this.handleBelongsSChange}
               />{" "}
-              <b>Oui !</b>
+              <b>Oui et je veux devenir rédacteur de cette structure</b>
             </Label>
           </FormGroup>
           <FormGroup check className="author-choice">
@@ -853,9 +884,28 @@ class Sponsors extends Component {
                 checked={!this.state.authorBelongs}
                 onChange={this.handleBelongsSChange}
               />{" "}
-              <b>Non et je renonce à mon droit d’édition</b>
+              <b>
+                Non et j'accepte que cette structure reprenne le droit d'édition
+              </b>
             </Label>
           </FormGroup>
+          <div className="warning-bloc bg-focus mt-16 mb-16">
+            <EVAIcon name="info" fill={colors.blanc} className="info-icon" />
+            <div
+              onClick={() => this.setState({ banner: false })}
+              className={"info-icon-close"}
+            >
+              <EVAIcon name="close-outline" fill={colors.blanc} />
+            </div>
+            <p style={{ marginBottom: 0 }}>
+              Si oui, le responsable de la structure sera notifié de votre
+              demande et pourra vous ajouter facilement.
+            </p>
+            <div>
+              Si non, vous ne pourrez plus éditer la fiche dès que la structure
+              en reprend la responsabilité.
+            </div>
+          </div>
         </CustomModal>
 
         <CustomModal

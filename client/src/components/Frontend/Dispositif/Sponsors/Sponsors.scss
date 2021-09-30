@@ -231,7 +231,8 @@ $tailleBig: 80px;
     padding: 10px 20px 10px 40px;
     border: 0.5px solid $noir;
     border-radius: 12px;
-    width: fit-content;
+    width: -webkit-fill-available;
+    background-color: $blanc;
   }
 
   .ma-structure {
