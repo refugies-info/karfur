@@ -14,10 +14,12 @@ exports[`Profil screen should render correctly when data in store 1`] = `
   }
 >
   <RNCSafeAreaView
+    isIPhone12={false}
     style={
       Array [
         Object {
           "marginBottom": 0,
+          "position": "relative",
           "zIndex": 2,
         },
       ]
@@ -169,6 +171,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
     }
   >
     <Text
+      isRTL={false}
       style={
         Array [
           Object {
@@ -229,6 +232,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           testID="test-profil-button-globe-2-outline"
         >
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -310,6 +314,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               </RNSVGSvgView>
             </View>
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -328,6 +333,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             </Text>
           </View>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -339,6 +345,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             }
           >
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -469,6 +476,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           testID="test-profil-button-pin-outline"
         >
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -546,6 +554,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               </RNSVGSvgView>
             </View>
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -564,6 +573,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             </Text>
           </View>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -575,6 +585,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             }
           >
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -705,6 +716,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           testID="test-profil-button-calendar-outline"
         >
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -787,6 +799,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               </RNSVGSvgView>
             </View>
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -805,6 +818,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             </Text>
           </View>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -816,6 +830,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             }
           >
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -946,6 +961,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           testID="test-profil-button-message-circle-outline"
         >
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -1035,6 +1051,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               </RNSVGSvgView>
             </View>
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -1053,6 +1070,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             </Text>
           </View>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -1064,6 +1082,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             }
           >
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -1199,6 +1218,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
       </Text>
     </View>
     <Text
+      isRTL={false}
       style={
         Array [
           Object {
@@ -1259,6 +1279,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           testID="test-profil-button-lock-outline"
         >
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -1336,6 +1357,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               </RNSVGSvgView>
             </View>
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -1354,6 +1376,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             </Text>
           </View>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -1645,6 +1668,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             testID="test-custom-button-Valider"
           >
             <Text
+              iconFirst={false}
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -1776,6 +1801,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           testID="test-custom-button-Annuler"
         >
           <Text
+            iconFirst={false}
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -1962,6 +1989,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             testID="test-custom-button-Valider"
           >
             <Text
+              iconFirst={false}
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -2093,6 +2122,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           testID="test-custom-button-Annuler"
         >
           <Text
+            iconFirst={false}
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -3212,6 +3243,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           testID="test-custom-button-Fermer"
         >
           <Text
+            iconFirst={false}
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -3250,10 +3283,12 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
   }
 >
   <RNCSafeAreaView
+    isIPhone12={false}
     style={
       Array [
         Object {
           "marginBottom": 0,
+          "position": "relative",
           "zIndex": 2,
         },
       ]
@@ -3405,6 +3440,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
     }
   >
     <Text
+      isRTL={false}
       style={
         Array [
           Object {
@@ -3465,6 +3501,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           testID="test-profil-button-globe-2-outline"
         >
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -3546,6 +3583,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               </RNSVGSvgView>
             </View>
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -3564,6 +3602,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             </Text>
           </View>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -3575,6 +3614,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             }
           >
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -3705,6 +3745,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           testID="test-profil-button-pin-outline"
         >
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -3782,6 +3823,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               </RNSVGSvgView>
             </View>
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -3800,6 +3842,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             </Text>
           </View>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -3811,6 +3854,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             }
           >
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -3941,6 +3985,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           testID="test-profil-button-calendar-outline"
         >
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -4023,6 +4068,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               </RNSVGSvgView>
             </View>
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -4041,6 +4087,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             </Text>
           </View>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -4052,6 +4099,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             }
           >
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -4182,6 +4230,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           testID="test-profil-button-message-circle-outline"
         >
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -4271,6 +4320,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               </RNSVGSvgView>
             </View>
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -4289,6 +4339,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             </Text>
           </View>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -4300,6 +4351,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             }
           >
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -4435,6 +4487,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
       </Text>
     </View>
     <Text
+      isRTL={false}
       style={
         Array [
           Object {
@@ -4495,6 +4548,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           testID="test-profil-button-lock-outline"
         >
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -4572,6 +4626,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               </RNSVGSvgView>
             </View>
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -4590,6 +4645,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             </Text>
           </View>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -4881,6 +4937,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             testID="test-custom-button-Valider"
           >
             <Text
+              iconFirst={false}
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -5012,6 +5070,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           testID="test-custom-button-Annuler"
         >
           <Text
+            iconFirst={false}
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -5198,6 +5258,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             testID="test-custom-button-Valider"
           >
             <Text
+              iconFirst={false}
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -5329,6 +5391,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           testID="test-custom-button-Annuler"
         >
           <Text
+            iconFirst={false}
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -6448,6 +6512,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           testID="test-custom-button-Fermer"
         >
           <Text
+            iconFirst={false}
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -6486,10 +6552,12 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
   }
 >
   <RNCSafeAreaView
+    isIPhone12={false}
     style={
       Array [
         Object {
           "marginBottom": 0,
+          "position": "relative",
           "zIndex": 2,
         },
       ]
@@ -6641,6 +6709,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
     }
   >
     <Text
+      isRTL={false}
       style={
         Array [
           Object {
@@ -6701,6 +6770,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           testID="test-profil-button-globe-2-outline"
         >
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -6782,6 +6852,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               </RNSVGSvgView>
             </View>
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -6800,6 +6871,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             </Text>
           </View>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -6811,6 +6883,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             }
           >
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -6941,6 +7014,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           testID="test-profil-button-pin-outline"
         >
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -7018,6 +7092,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               </RNSVGSvgView>
             </View>
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -7036,6 +7111,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             </Text>
           </View>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -7047,6 +7123,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             }
           >
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -7177,6 +7254,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           testID="test-profil-button-calendar-outline"
         >
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -7259,6 +7337,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               </RNSVGSvgView>
             </View>
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -7277,6 +7356,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             </Text>
           </View>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -7288,6 +7368,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             }
           >
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -7418,6 +7499,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           testID="test-profil-button-message-circle-outline"
         >
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -7507,6 +7589,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               </RNSVGSvgView>
             </View>
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -7525,6 +7608,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             </Text>
           </View>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -7536,6 +7620,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             }
           >
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -7671,6 +7756,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
       </Text>
     </View>
     <Text
+      isRTL={false}
       style={
         Array [
           Object {
@@ -7731,6 +7817,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           testID="test-profil-button-lock-outline"
         >
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -7808,6 +7895,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               </RNSVGSvgView>
             </View>
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -7826,6 +7914,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             </Text>
           </View>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -8117,6 +8206,8 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             testID="test-custom-button-Valider"
           >
             <Text
+              iconFirst={false}
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -8248,6 +8339,8 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           testID="test-custom-button-Annuler"
         >
           <Text
+            iconFirst={false}
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -8434,6 +8527,8 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             testID="test-custom-button-Valider"
           >
             <Text
+              iconFirst={false}
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -8565,6 +8660,8 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           testID="test-custom-button-Annuler"
         >
           <Text
+            iconFirst={false}
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -9684,6 +9781,8 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           testID="test-custom-button-Fermer"
         >
           <Text
+            iconFirst={false}
+            isRTL={false}
             style={
               Array [
                 Object {

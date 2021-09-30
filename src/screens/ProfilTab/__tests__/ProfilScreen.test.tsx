@@ -7,6 +7,7 @@ jest.mock("../../../hooks/useTranslationWithRTL", () => ({
   useTranslationWithRTL: jest.fn().mockReturnValue({
     i18n: { changeLanguage: jest.fn() },
     t: jest.fn().mockImplementation((_, arg2) => arg2),
+    isRTL: false,
   }),
 }));
 

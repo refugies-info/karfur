@@ -1099,6 +1099,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
         testID="test-custom-button-Fermer"
       >
         <Text
+          iconFirst={false}
           style={
             Array [
               Object {
@@ -1107,7 +1108,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                 "fontSize": 16,
                 "lineHeight": 20,
                 "marginLeft": 0,
-                "marginRight": 8,
+                "marginRight": 0,
                 "textAlign": "left",
               },
             ]
