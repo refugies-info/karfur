@@ -95,7 +95,8 @@
     "reinit_app2": "Es-tu sûr de vouloir réinitialiser ton application ?",
     "delete_data": "Es-tu sûr de vouloir supprimer les données de ton profil ?",
     "Ne pas filtrer selon mon niveau de français": "Ne pas filtrer selon mon niveau de français",
-    "Ne pas filtrer selon mon âge": "Ne pas filtrer selon mon âge"
+    "Ne pas filtrer selon mon âge": "Ne pas filtrer selon mon âge",
+    "choix langue": "Choisis la langue de l’application"
   },
   "Content": {
     "C'est quoi ?": "C'est quoi ?",
