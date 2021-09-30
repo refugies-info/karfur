@@ -4,6 +4,7 @@ import Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 import debounce from "lodash.debounce";
+import NoResultImage from "../../../assets/no_results.svg";
 import { withRouter } from "react-router-dom";
 import { withTranslation } from "react-i18next";
 
@@ -11,6 +12,26 @@ import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
 import "./SearchBar.scss";
 import { colors } from "colors";
+import FButton from "components/FigmaUI/FButton/FButton";
+import styled from "styled-components";
+
+const NoResultContainer = styled.div`
+  display: flex;
+  text-align: center;
+  align-items: center;
+  background-color: #ffe2b8;
+  padding: 20px 50px;
+  justify-content: space-between;
+  border-radius: 12px;
+  width: -webkit-fill-available;
+  margin-top: 16px;
+`;
+
+const NoResultTextContainer = styled.div`
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 20px;
+`;
 
 const escapeRegexCharacters = (str) =>
   str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -123,6 +144,7 @@ export class SearchBar extends React.Component {
   render() {
     const { isArray, structures, createNewCta, withEye, t } = this.props;
     const { value } = this.state;
+    const isNoResult = value !== "" && !this.state.suggestions.length;
 
     const renderSuggestion = (suggestion, { query }) => {
       if (suggestion.createNew) {
@@ -215,6 +237,28 @@ export class SearchBar extends React.Component {
           inputProps={inputProps}
           onSuggestionSelected={this.onSuggestionSelected}
         />
+        {isNoResult && (
+          <NoResultContainer>
+            {" "}
+            <img
+              src={NoResultImage}
+              style={{ height: "90px" }}
+              alt="no results"
+            />
+            <div>
+              <NoResultTextContainer>
+                Aucune structure trouvée...
+              </NoResultTextContainer>
+              <FButton
+                type="white"
+                name="folder-add-outline"
+                onClick={() => this.props.toggleModal("creation")}
+              >
+                Créer une nouvelle structure
+              </FButton>
+            </div>
+          </NoResultContainer>
+        )}
         {this.props.loupe && (
           <i className="fa fa-search text-grey loupe-btn" aria-hidden="true" />
         )}
