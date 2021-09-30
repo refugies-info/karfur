@@ -727,7 +727,9 @@ class Sponsors extends Component {
             <FButton
               type="tuto"
               name={"play-circle-outline"}
-              onClick={() => {}}
+              onClick={() =>
+                this.props.toggleTutorielModal("ResponsabilitéFiche")
+              }
             >
               Tutoriel
             </FButton>
@@ -836,7 +838,9 @@ class Sponsors extends Component {
             <FButton
               type="tuto"
               name={"play-circle-outline"}
-              onClick={() => {}}
+              onClick={() =>
+                this.props.toggleTutorielModal("ResponsabilitéFiche")
+              }
             >
               Tutoriel
             </FButton>
