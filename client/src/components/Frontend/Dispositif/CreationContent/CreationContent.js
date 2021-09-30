@@ -14,17 +14,14 @@ import FButton from "../../../FigmaUI/FButton/FButton";
 import FInput from "../../../FigmaUI/FInput/FInput";
 
 import "./CreationContent.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 
 const CreationContent = (props) => {
   const [banner, setBanner] = useState(true);
   return (
     <div className="creation-content">
-      <span className="bg-attention2 compulsory">
-        <sup>*</sup> Champs obligatoires
-      </span>
       <div className="form-field">
-        <b>Nom de la structure à créer&#42;</b>
+        <b>Nom de la nouvelle structure</b>
 
         <Row>
           <Col lg="9" md="9" sm="12" xs="12">
@@ -77,7 +74,7 @@ const CreationContent = (props) => {
       </InputGroup> */}
       </div>
       <div className="form-field">
-        <b style={{ fontSize: "22px" }}>Personne responsable à contacter</b>
+        <b style={{ fontSize: "22px" }}>Responsable à contacter</b>
         {banner ? (
           <div className="warning-bloc bg-focus mt-16 mb-8">
             <EVAIcon name="info" fill={colors.blanc} className="info-icon" />
@@ -147,6 +144,7 @@ const CreationContent = (props) => {
             newSize={true}
           />
         </InputGroup>
+        <b style={{ marginTop: "16px" }}>Est ce que c'est vous ?</b>
       </div>
       {/*     <div className="form-field belongs-wrapper">
       <b>

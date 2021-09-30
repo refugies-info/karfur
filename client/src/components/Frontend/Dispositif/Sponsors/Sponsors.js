@@ -864,7 +864,7 @@ class Sponsors extends Component {
           modal={{ name: "creation" }}
           keyValue={2}
           className="modal-sponsors"
-          title="Créer une structure"
+          title="Création d'une structure"
         >
           <CreationContent
             handleChange={this.handleChange}
@@ -921,8 +921,15 @@ class Sponsors extends Component {
             )}
           </div>
           <div className="btn-footer">
-            <FButton onClick={this.toggleModal} type="default" className="mr-8">
-              Annuler
+            <FButton
+              onClick={() => {
+                this.toggleModal("responsabilite");
+              }}
+              type="default"
+              className="mr-8"
+              name="arrow-left-outline"
+            >
+              Retour
             </FButton>
             <FButton
               disabled={
