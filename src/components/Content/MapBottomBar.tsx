@@ -98,6 +98,7 @@ export const MapBottomBar = (props: Props) => {
               htmlContent={formattedMarkerName}
               darkColor={props.textColor}
               isBold={true}
+              isLarge={true}
             />
           </HTMLContainer>
         </ContentContainer>

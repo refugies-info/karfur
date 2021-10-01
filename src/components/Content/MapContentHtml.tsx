@@ -6,6 +6,7 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 interface Props {
   htmlContent: string;
   darkColor: string;
+  isLarge?: boolean;
   isBold: boolean;
 }
 export const MapContentFromHtml = (props: Props) => {
@@ -15,12 +16,12 @@ export const MapContentFromHtml = (props: Props) => {
     <HTML
       source={{ html: props.htmlContent }}
       baseFontStyle={{
-        fontSize: theme.fonts.sizes.normal,
+        fontSize: props.isLarge ? theme.fonts.sizes.normal : theme.fonts.sizes.small,
         fontFamily: props.isBold
           ? theme.fonts.families.circularBold
           : theme.fonts.families.circularStandard,
         textAlign: isRTL ? "right" : "left",
-        lineHeight: 24,
+        lineHeight: props.isLarge ? 24 : 20,
         flexShrink: 1,
         color: props.darkColor,
       }}

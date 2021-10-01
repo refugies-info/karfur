@@ -4,6 +4,7 @@ import { View, Dimensions, Modal } from "react-native";
 import { MapGoogle, MarkerGoogle } from "../../types/interface";
 import { Icon } from "react-native-eva-icons";
 import { MapBottomBar } from "./MapBottomBar";
+import { theme } from "../../theme";
 
 interface PropsType {
   map: MapGoogle;
@@ -13,12 +14,15 @@ interface PropsType {
 
 interface StateType {
   markerOpen: MarkerGoogle | null;
+  maxZoom: number;
 }
 
 export class Map extends React.Component<PropsType, StateType> {
   state: StateType = {
     markerOpen: null,
+    maxZoom: 13, // fix for initial zoom
   };
+  map: MapView | null = null;
 
   onMarkerClick = (marker: MarkerGoogle, e: any) => {
     e.stopPropagation();
@@ -29,6 +33,20 @@ export class Map extends React.Component<PropsType, StateType> {
     this.setState({ markerOpen: null });
   };
 
+  fitAllMarkers = (markers: MarkerGoogle[]) => {
+    if (!this.map) return;
+    this.map.fitToCoordinates(markers, {
+      animated: false,
+      edgePadding: {
+        top: 50,
+        right: 50,
+        bottom: 50,
+        left: 50,
+      },
+    });
+    this.setState({ maxZoom: 20 }); // reset zoom to max level
+  }
+
   render() {
     const markers = this.props.map.markers;
     const mapHeight = Dimensions.get("window").height;
@@ -37,6 +55,7 @@ export class Map extends React.Component<PropsType, StateType> {
     return (
       <View>
         <MapView
+          ref={ref => this.map = ref}
           style={{
             width: mapWidth,
             height: mapHeight,
@@ -48,6 +67,8 @@ export class Map extends React.Component<PropsType, StateType> {
             longitudeDelta: 5,
           }}
           onPress={this.hideMarkerDetails}
+          onMapReady={() => this.fitAllMarkers(markers)}
+          maxZoomLevel={this.state.maxZoom}
         >
           {markers.map((marker, key) => {
             return (
@@ -61,7 +82,7 @@ export class Map extends React.Component<PropsType, StateType> {
               >
                 <Icon
                   name="pin"
-                  fill={this.props.markersColor}
+                  fill={this.state.markerOpen?.place_id === marker.place_id ? theme.colors.red : this.props.markersColor}
                   width={40}
                   height={40}
                 />
