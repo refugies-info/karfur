@@ -148,5 +148,8 @@
   },
   "ContentsScreen": {
     "fiches non trad": "Fiches non traduites"
+  },
+  "FavorisScreen": {
+    "Explorer": "Explorer"
   }
 }
