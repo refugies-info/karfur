@@ -4,7 +4,8 @@ import acte_naissance from "../../theme/images/infocards/acte_naissance.png";
 import duree from "../../theme/images/infocards/duree.png";
 import important from "../../theme/images/infocards/important.png";
 import localisation from "../../theme/images/infocards/localisation.png";
-import titreSejour from "../../theme/images/infocards/titreSejour.png";
+import titreSejour from "../../theme/images/demarche/titreSejour.png";
+
 import age from "../../theme/images/infocards/age.png";
 import francais from "../../theme/images/infocards/francais.png";
 
@@ -70,7 +71,11 @@ export const InfocardImage = ({ title, isFree }: Props) => {
       return (
         <Image
           source={titreSejour}
-          style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
+          style={{
+            height: IMAGE_SIZE,
+            width: IMAGE_SIZE,
+            resizeMode: "contain",
+          }}
         />
       );
     case "Âge requis":
