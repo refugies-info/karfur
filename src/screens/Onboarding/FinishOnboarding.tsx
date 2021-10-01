@@ -1,7 +1,7 @@
 import * as React from "react";
 import { OnboardingParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { saveHasUserSeenOnboardingActionCreator } from "../../services/redux/User/user.actions";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
@@ -12,6 +12,13 @@ import { StyledTextBigBold } from "../../components/StyledText";
 import LottieView from "lottie-react-native";
 import { fetchContentsActionCreator } from "../../services/redux/Contents/contents.actions";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
+import {
+  userLocationSelector,
+  userAgeSelector,
+  userFrenchLevelSelector,
+} from "../../services/redux/User/user.selectors";
+import noInfo from "../../theme/images/onboarding/onboarding_noinfo.png";
+import { Image, View, Dimensions } from "react-native";
 
 const MainView = styled(SafeAreaView)`
   display: flex;
@@ -26,7 +33,8 @@ const MainView = styled(SafeAreaView)`
 const StyledText = styled(StyledTextBigBold)`
   color: ${theme.colors.white};
   text-align: center;
-  margin-top: ${theme.margin * 2}px;
+  margin-top: ${(props: { marginTop: number | undefined }) =>
+    props.marginTop ? props.marginTop : theme.margin * 2}px;
   margin-bottom: ${theme.margin}px;
 `;
 
@@ -50,6 +58,16 @@ export const FinishOnboarding = ({
 }: StackScreenProps<OnboardingParamList, "FinishOnboarding">) => {
   const { t } = useTranslationWithRTL();
   const dispatch = useDispatch();
+
+  const location = useSelector(userLocationSelector);
+  const age = useSelector(userAgeSelector);
+  const frenchLevel = useSelector(userFrenchLevelSelector);
+
+  const hasUserEnteredInfos =
+    !!frenchLevel || !!age || !!location.city || !!location.department;
+
+  const windowWidth = Dimensions.get("window").width;
+
   const finishOnboarding = () => {
     try {
       dispatch(saveHasUserSeenOnboardingActionCreator());
@@ -61,19 +79,41 @@ export const FinishOnboarding = ({
       <HeaderWithBack navigation={navigation} />
 
       <ElementsContainer>
-        <LottieContainer>
-          <LottieView
-            source={require("../../theme/lottie/thumbs-up-emoji-animation.json")}
-            autoPlay
-            loop
-          />
-        </LottieContainer>
-        <StyledText>{t("Merci !", "Merci !")}</StyledText>
-        <StyledText>
-          {t(
-            "onboarding.end",
-            "L’application est maintenant adaptée à ton profil."
-          )}
+        {hasUserEnteredInfos ? (
+          <LottieContainer>
+            <LottieView
+              source={require("../../theme/lottie/thumbs-up-emoji-animation.json")}
+              autoPlay
+              loop
+            />
+          </LottieContainer>
+        ) : (
+          <View>
+            <Image
+              source={noInfo}
+              style={{
+                width: windowWidth,
+                resizeMode: "cover",
+                maxHeight: windowWidth / 2.7,
+              }}
+            />
+          </View>
+        )}
+        {hasUserEnteredInfos && (
+          <StyledText>{t("Merci !", "Merci !")}</StyledText>
+        )}
+        <StyledText
+          marginTop={hasUserEnteredInfos ? theme.margin * 2 : theme.margin * 6}
+        >
+          {hasUserEnteredInfos
+            ? t(
+                "Onboarding.end",
+                "L’application est maintenant adaptée à ton profil."
+              )
+            : t(
+                "Onboarding.end_noInfos",
+                "Tu pourras renseigner ces informations plus tard en cliquant sur « Moi »."
+              )}
         </StyledText>
       </ElementsContainer>
       <ButtonContainer>
