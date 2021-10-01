@@ -1,5 +1,6 @@
 import React from "react";
-import Step0 from "../../theme/images/onboarding/onboardingStep0_v1_opt.png";
+import Step0 from "../../theme/images/onboarding/illu-onboardingStep0.png";
+
 import { Image, StyleSheet } from "react-native";
 import Step1 from "../../theme/images/onboarding/onboardingStep1_opt.png";
 import Step2 from "../../theme/images/onboarding/onboardingStep2_opt.svg";
@@ -15,7 +16,7 @@ const styles = StyleSheet.create({
     height: 230,
   },
   step0: {
-    width: 200,
+    width: 250,
     resizeMode: "contain", // or 'stretch'
   },
 });
