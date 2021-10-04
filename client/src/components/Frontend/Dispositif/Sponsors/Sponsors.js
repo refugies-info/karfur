@@ -903,7 +903,7 @@ class Sponsors extends Component {
             </div>
           </ConfirmationStructureContainer>
           <FormGroup check className="author-choice mb-10">
-            <Label check>
+            <Label check style={{ cursor: "pointer" }}>
               <Input
                 type="checkbox"
                 checked={this.state.authorBelongs}
@@ -913,7 +913,7 @@ class Sponsors extends Component {
             </Label>
           </FormGroup>
           <FormGroup check className="author-choice">
-            <Label check>
+            <Label check style={{ cursor: "pointer" }}>
               <Input
                 type="checkbox"
                 checked={!this.state.authorBelongs}
