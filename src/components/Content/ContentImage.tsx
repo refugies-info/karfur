@@ -6,7 +6,34 @@ import { TextSmallNormal } from "../StyledText";
 import { StreamlineIcon } from "../StreamlineIcon";
 import { RTLView } from "../BasicComponents";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { getImageNameFromContentId } from "../Contents/contentsIdDemarcheImageCorrespondency";
+import { ObjectId } from "../../types/interface";
+import { DemarcheImage } from "../Contents/DemarcheImage";
 
+const getContainerDimensions = (imageName: string) => {
+  if (
+    [
+      "ameli",
+      "carteVitale",
+      "permisConduire",
+      "titreSejour",
+      "carteBancaire",
+      "carteIdentite",
+      "covid",
+      "poleEmploi",
+      "ofpra",
+      "caf",
+    ].includes(imageName)
+  ) {
+    return { width: 80, height: 50 };
+  }
+
+  if (imageName === "passeport") {
+    return { width: 80, height: 60 };
+  }
+
+  return { width: 80, height: 50 };
+};
 const StructureImageContainer = styled.View`
   background-color: ${theme.colors.white};
   display: flex;
@@ -49,10 +76,13 @@ interface Props {
   sponsorName: string;
   typeContenu: "dispositif" | "demarche";
   iconName: string;
+  contentId: ObjectId;
 }
 
 export const ContentImage = (props: Props) => {
   const { isRTL, t } = useTranslationWithRTL();
+
+  const imageName = getImageNameFromContentId(props.contentId);
 
   if (props.typeContenu === "dispositif") {
     if (props.sponsorPictureUrl) {
@@ -80,6 +110,20 @@ export const ContentImage = (props: Props) => {
             {props.sponsorName}
           </StructureNameText>
         </StructureNameContainer>
+      </SponsorImageContainer>
+    );
+  }
+
+  if (imageName) {
+    const { width, height } = getContainerDimensions(imageName);
+    return (
+      <SponsorImageContainer
+        width={width}
+        isRTL={isRTL}
+        style={{ justifyContent: "center", alignItems: "center" }}
+        height={height}
+      >
+        <DemarcheImage name="" stroke="" contentId={props.contentId} />
       </SponsorImageContainer>
     );
   }

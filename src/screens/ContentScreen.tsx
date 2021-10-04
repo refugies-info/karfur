@@ -445,6 +445,7 @@ export const ContentScreen = ({
               sponsorPictureUrl={sponsorPictureUrl}
               typeContenu={selectedContent.typeContenu}
               iconName={iconName}
+              contentId={selectedContent._id}
             />
           </>
         )}
