@@ -92,6 +92,7 @@ export const ContentSummary = (props: Props) => {
             tagVeryLightColor: props.tagVeryLightColor,
             tagName: props.tagName,
             tagLightColor: props.tagLightColor,
+            iconName: props.iconName,
           })
         }
         isDispo={true}
@@ -136,6 +137,7 @@ export const ContentSummary = (props: Props) => {
           tagVeryLightColor: props.tagVeryLightColor,
           tagName: props.tagName,
           tagLightColor: props.tagLightColor,
+          iconName: props.iconName,
         })
       }
       isDispo={false}

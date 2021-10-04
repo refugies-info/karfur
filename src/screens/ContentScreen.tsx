@@ -3,11 +3,10 @@ import styled from "styled-components/native";
 import {
   useWindowDimensions,
   View,
-  Image,
   Linking,
   StyleSheet,
   Animated,
-  Modal
+  Modal,
 } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ExplorerParamList } from "../../types";
@@ -18,10 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSelectedContentActionCreator } from "../services/redux/SelectedContent/selectedContent.actions";
 import { selectedContentSelector } from "../services/redux/SelectedContent/selectedContent.selectors";
 import { theme } from "../theme";
-import {
-  TextBigBold,
-  TextSmallNormal,
-} from "../components/StyledText";
+import { TextBigBold, TextSmallNormal } from "../components/StyledText";
 import {
   selectedI18nCodeSelector,
   currentI18nCodeSelector,
@@ -46,6 +42,7 @@ import { AccordionAnimated } from "../components/Content/AccordionAnimated";
 import { ErrorScreen } from "../components/ErrorScreen";
 import { FixSafeAreaView } from "../components/FixSafeAreaView";
 import { Portal } from "react-native-portalize";
+import { ContentImage } from "../components/Content/ContentImage";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -95,24 +92,6 @@ const HeaderText = styled(TextBigBold)`
   flex-shrink: 1;
   margin-horizontal: ${theme.margin * 3}px;
 `;
-const SponsorImageContainer = styled.View`
-  width: ${(props: { width: number }) => props.width}px;
-  height: 100px;
-  background-color: ${theme.colors.lightGrey};
-  z-index: 2;
-  margin-top: -50px;
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin * 3}px;
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin * 3 : 0}px;
-
-  border-radius: ${theme.radius * 2}px;
-  padding: 8px;
-  display: flex;
-  margin-bottom: ${theme.margin}px;
-  align-self: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "flex-end" : "flex-start"};
-`;
 
 const FixedContainerForHeader = styled.View`
   top: 0;
@@ -120,22 +99,6 @@ const FixedContainerForHeader = styled.View`
   position: absolute;
   z-index: 2;
   width: 100%;
-`;
-
-const StructureImageContainer = styled.View`
-  background-color: ${theme.colors.white};
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  border-radius: 8px;
-`;
-
-const StructureNameContainer = styled(StructureImageContainer)`
-  padding: 4px;
-`;
-
-const StructureNameText = styled(TextSmallNormal)`
-  text-align: center;
 `;
 
 const LastUpdateDateContainer = styled(RTLView)`
@@ -165,7 +128,7 @@ const ModalContainer = styled.View`
   width: 100%;
   top: 0;
   padding: ${theme.margin * 2}px;
-  zIndex: 2;
+  z-index: 2;
 `;
 
 const headersDispositif = [
@@ -238,6 +201,7 @@ export const ContentScreen = ({
     tagVeryLightColor,
     tagName,
     tagLightColor,
+    iconName,
   } = route.params;
 
   const windowWidth = useWindowDimensions().width;
@@ -476,31 +440,13 @@ export const ContentScreen = ({
               </TitlesContainer>
             </HeaderImageContainer>
 
-            <SponsorImageContainer
-              width={sponsorPictureUrl ? 100 : 160}
-              isRTL={isRTL}
-            >
-              {sponsorPictureUrl ? (
-                <StructureImageContainer>
-                  <Image
-                    source={{
-                      uri: sponsorPictureUrl,
-                    }}
-                    resizeMode={"contain"}
-                    style={{
-                      height: 84,
-                      width: 84,
-                    }}
-                  />
-                </StructureImageContainer>
-              ) : (
-                <StructureNameContainer>
-                  <StructureNameText numberOfLines={3}>
-                    {sponsor.nom}
-                  </StructureNameText>
-                </StructureNameContainer>
-              )}
-            </SponsorImageContainer>
+            <ContentImage
+              sponsorName={sponsor.nom}
+              sponsorPictureUrl={sponsorPictureUrl}
+              typeContenu={selectedContent.typeContenu}
+              iconName={iconName}
+              contentId={selectedContent._id}
+            />
           </>
         )}
         <View>
@@ -614,10 +560,7 @@ export const ContentScreen = ({
                   "Trouver un interlocuteur"
                 )}
               </HeaderText>
-              <MiniMap
-                map={map}
-                markersColor={tagDarkColor}
-              >
+              <MiniMap map={map} markersColor={tagDarkColor}>
                 <CustomButton
                   textColor={theme.colors.black}
                   i18nKey="Content.Voir la carte"
@@ -658,10 +601,7 @@ export const ContentScreen = ({
             <FixSafeAreaView
               style={{ flexDirection: "row", justifyContent: "space-between" }}
             >
-              <SmallButton
-                iconName="arrow-back-outline"
-                onPress={toggleMap}
-              />
+              <SmallButton iconName="arrow-back-outline" onPress={toggleMap} />
               <SmallButton
                 iconName="close-outline"
                 onPress={toggleMap}
@@ -669,10 +609,7 @@ export const ContentScreen = ({
               />
             </FixSafeAreaView>
           </ModalContainer>
-          <Map
-            map={map}
-            markersColor={tagDarkColor}
-          />
+          <Map map={map} markersColor={tagDarkColor} />
         </Modal>
       </Portal>
     </View>

@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useEffect} from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import MapView, { Marker } from "react-native-maps";
 import { Dimensions } from "react-native";
 import BottomSheet, {
@@ -9,7 +9,7 @@ import { MapGoogle, MarkerGoogle } from "../../types/interface";
 import { Icon } from "react-native-eva-icons";
 import { MapBottomBar } from "./MapBottomBar";
 import { theme } from "../../theme";
-import { GestureHandlerRootView } from "react-native-gesture-handler"
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 interface PropsType {
   map: MapGoogle;
@@ -27,22 +27,21 @@ export const Map = (props: PropsType) => {
     setMarkerOpen(marker);
   };
   const hideMarkerDetails = () => {
-    setMarkerOpen(null)
+    setMarkerOpen(null);
   };
   const onChange = (index: number) => {
-    if (index === -1) setMarkerOpen(null)
-  }
+    if (index === -1) setMarkerOpen(null);
+  };
 
   useEffect(() => {
     if (bottomSheet) {
       if (markerOpen === null) bottomSheet.close();
       else bottomSheet.expand();
     }
-  }, [markerOpen])
-
+  }, [markerOpen]);
 
   // Initial zoom
-  const [maxZoom, setMaxZoom] = useState(13);  // fix for initial zoom
+  const [maxZoom, setMaxZoom] = useState(13); // fix for initial zoom
   const fitAllMarkers = (markers: MarkerGoogle[]) => {
     if (!map) return;
     map.fitToCoordinates(markers, {
@@ -57,9 +56,10 @@ export const Map = (props: PropsType) => {
     setTimeout(() => {
       setMaxZoom(20); // reset zoom to max level
     }, 100);
-  }
+  };
 
   const initialSnapPoints = useMemo(() => ["CONTENT_HEIGHT"], []);
+
   const {
     animatedHandleHeight,
     animatedSnapPoints,
@@ -72,9 +72,9 @@ export const Map = (props: PropsType) => {
   const mapWidth = Dimensions.get("window").width;
 
   return (
-    <GestureHandlerRootView >
+    <GestureHandlerRootView>
       <MapView
-        ref={ref => map = ref}
+        ref={(ref) => (map = ref)}
         style={{
           width: mapWidth,
           height: mapHeight,
@@ -101,7 +101,11 @@ export const Map = (props: PropsType) => {
             >
               <Icon
                 name="pin"
-                fill={markerOpen?.place_id === marker.place_id ? theme.colors.red : props.markersColor}
+                fill={
+                  markerOpen?.place_id === marker.place_id
+                    ? theme.colors.red
+                    : props.markersColor
+                }
                 width={40}
                 height={40}
               />
@@ -111,7 +115,7 @@ export const Map = (props: PropsType) => {
       </MapView>
       <BottomSheet
         index={-1}
-        ref={ref => bottomSheet = ref}
+        ref={(ref) => (bottomSheet = ref)}
         enablePanDownToClose={true}
         snapPoints={animatedSnapPoints}
         handleHeight={animatedHandleHeight}
@@ -127,5 +131,5 @@ export const Map = (props: PropsType) => {
         </BottomSheetView>
       </BottomSheet>
     </GestureHandlerRootView>
-  )
-}
+  );
+};
