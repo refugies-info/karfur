@@ -248,7 +248,9 @@ class Sponsors extends Component {
       this.setState({ mesStructures: [structure] });
     }
   }
-
+  resetImg = () => {
+    this.setState({ imgData: {} });
+  };
   toggleModal = (name) =>
     this.setState((pS) => ({
       showModals: pS.showModals.map((x) => ({
@@ -954,6 +956,49 @@ class Sponsors extends Component {
           keyValue={2}
           className="modal-sponsors"
           title="Création d'une structure"
+          lowerLeftBtn={
+            <FButton
+              type="tuto"
+              name={"play-circle-outline"}
+              onClick={() =>
+                this.props.toggleTutorielModal("ResponsabilitéFiche")
+              }
+            >
+              Tutoriel
+            </FButton>
+          }
+          lowerRightBtn={
+            <div>
+              <FButton
+                type="white"
+                name="arrow-back-outline"
+                fill={colors.noir}
+                onClick={() => {
+                  this.toggleModal("responsabilite");
+                  this.handleChangeValueEntered("");
+                  this.resetImg();
+                }}
+                className="push-right mr-8"
+              >
+                Retour
+              </FButton>
+              <FButton
+                type="validate"
+                name="checkmark-outline"
+                fill={colors.noir}
+                disabled={
+                  !this.state.structure.nom ||
+                  !this.state.structure.contact ||
+                  !this.state.structure.mail_contact ||
+                  !this.state.structure.phone_contact
+                }
+                onClick={this.createStructure}
+                className="push-right"
+              >
+                Valider
+              </FButton>
+            </div>
+          }
         >
           <CreationContent
             handleChange={this.handleChange}
@@ -1009,31 +1054,6 @@ class Sponsors extends Component {
                 )}
               </FButton>
             )}
-          </div>
-          <div className="btn-footer">
-            <FButton
-              onClick={() => {
-                this.toggleModal("responsabilite");
-              }}
-              type="default"
-              className="mr-8"
-              name="arrow-back-outline"
-            >
-              Retour
-            </FButton>
-            <FButton
-              disabled={
-                !this.state.structure.nom ||
-                !this.state.structure.contact ||
-                !this.state.structure.mail_contact ||
-                !this.state.structure.phone_contact
-              }
-              onClick={this.createStructure}
-              type="validate"
-              name="checkmark-outline"
-            >
-              Valider
-            </FButton>
           </div>
         </CustomModal>
 
