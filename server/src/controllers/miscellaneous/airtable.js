@@ -37,7 +37,11 @@ const addDispositifInContenusAirtable = (title, link, tagsList) => {
   );
 };
 
-const removeTraductionDispositifInContenusAirtable = (recordId, title) => {
+const removeTraductionDispositifInContenusAirtable = (
+  recordId,
+  title,
+  tagsList
+) => {
   logger.info(
     "[removeTraductionDispositifInContenusAirtable] update line for record",
     {
@@ -47,7 +51,7 @@ const removeTraductionDispositifInContenusAirtable = (recordId, title) => {
   base("CONTENUS").update([
     {
       id: recordId,
-      fields: { "! Titre": title, "! Traduits ?": [] },
+      fields: { "! Titre": title, "! Traduits ?": [], "! Thèmes": tagsList },
     },
   ]);
 };
@@ -100,17 +104,17 @@ const addOrUpdateDispositifInContenusAirtable = async (
   locale,
   hasContentBeenDeleted
 ) => {
-  if (process.env.NODE_ENV === "dev") {
-    logger.info(
-      "[addOrUpdateDispositifInContenusAirtable] env is not production, do not send content to airtable",
-      {
-        env: process.env.NODE_ENV,
-        data: { titleInformatif, titreMarque, id, tags, locale },
-      }
-    );
+  // if (process.env.NODE_ENV === "dev") {
+  //   logger.info(
+  //     "[addOrUpdateDispositifInContenusAirtable] env is not production, do not send content to airtable",
+  //     {
+  //       env: process.env.NODE_ENV,
+  //       data: { titleInformatif, titreMarque, id, tags, locale },
+  //     }
+  //   );
 
-    return;
-  }
+  //   return;
+  // }
 
   const title = titreMarque + " - " + titleInformatif;
   logger.info("[addOrUpdateDispositifInContenusAirtable] received a new line", {
@@ -164,7 +168,11 @@ const addOrUpdateDispositifInContenusAirtable = async (
       }
       if (!locale) {
         // no locale and a record already in airtable ==> dispositif modified in french
-        removeTraductionDispositifInContenusAirtable(recordsList[0].id, title);
+        removeTraductionDispositifInContenusAirtable(
+          recordsList[0].id,
+          title,
+          tagsList
+        );
         return;
       }
       // dispositif has been translated
@@ -172,4 +180,5 @@ const addOrUpdateDispositifInContenusAirtable = async (
     });
 };
 
-exports.addOrUpdateDispositifInContenusAirtable = addOrUpdateDispositifInContenusAirtable;
+exports.addOrUpdateDispositifInContenusAirtable =
+  addOrUpdateDispositifInContenusAirtable;
