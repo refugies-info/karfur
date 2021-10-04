@@ -97,6 +97,8 @@ const StructureContainer = styled.div`
   line-height: 20px;
   padding: 16px;
   cursor: pointer;
+`;
+const TitleSponsorContainer = styled.div`
   text-decoration: underline;
 `;
 
@@ -387,7 +389,10 @@ export const DetailsModal = (props: Props) => {
                     props.toggleModal();
                   }}
                 >
-                  {dispositif.mainSponsor.nom}
+                  <TitleSponsorContainer>
+                    {dispositif.mainSponsor.nom}
+                  </TitleSponsorContainer>
+
                   <LogoContainer spaceBetween={true}>
                     {dispositif.mainSponsor &&
                       dispositif.mainSponsor.picture &&
