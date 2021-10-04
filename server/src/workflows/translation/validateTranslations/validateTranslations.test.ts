@@ -166,6 +166,7 @@ describe("validateTranslations", () => {
       "",
       "id_dispo",
       [],
+      "dispositif",
       "locale",
       false
     );
@@ -211,6 +212,7 @@ describe("validateTranslations", () => {
       "",
       "id_dispo",
       [],
+      "dispositif",
       "locale",
       false
     );
@@ -221,6 +223,7 @@ describe("validateTranslations", () => {
     );
     expect(sendPublishedTradMailToTraductors).toHaveBeenCalledWith(
       ["userId1", "userId2"],
+
       "locale",
       "dispositif",
       "TI",
@@ -251,11 +254,12 @@ describe("validateTranslations", () => {
       "locale",
       dispoFromDB
     );
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalled();
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToTraductors).toHaveBeenCalledWith(
       [],
+
       "locale",
       "dispositif",
       "TI",
@@ -286,7 +290,7 @@ describe("validateTranslations", () => {
       "locale",
       dispoFromDB
     );
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalled();
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(sendPublishedTradMailToStructure).not.toHaveBeenCalled();
     expect(sendPublishedTradMailToTraductors).toHaveBeenCalledWith(
@@ -384,6 +388,7 @@ describe("validateTranslations", () => {
       "",
       "id_dispo",
       [],
+      "dispositif",
       "locale",
       false
     );
@@ -450,6 +455,7 @@ describe("validateTranslations", () => {
     expect(getDispositifByIdWithAllFields).toHaveBeenCalledWith("articleId");
     expect(insertInDispositif).toHaveBeenCalledWith(
       req.body,
+
       "locale",
       dispoFromDB
     );
@@ -458,6 +464,7 @@ describe("validateTranslations", () => {
       "",
       "id_dispo",
       [],
+      "dispositif",
       "locale",
       false
     );
