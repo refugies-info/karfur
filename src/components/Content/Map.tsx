@@ -47,10 +47,10 @@ export const Map = (props: PropsType) => {
     map.fitToCoordinates(markers, {
       animated: false,
       edgePadding: {
-        top: 150,
-        right: 150,
-        bottom: 150,
-        left: 150,
+        top: 50,
+        right: 50,
+        bottom: 50,
+        left: 50,
       },
     });
     setTimeout(() => {
