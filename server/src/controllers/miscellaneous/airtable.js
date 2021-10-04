@@ -6,7 +6,7 @@ var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(
 );
 const logger = require("../../logger");
 
-const addDispositifInContenusAirtable = (title, link, tagsList) => {
+const addDispositifInContenusAirtable = (title, link, tagsList, type) => {
   logger.info("[addDispositifInContenusAirtable] adding a new line", {
     title,
     tagsList,
@@ -21,7 +21,8 @@ const addDispositifInContenusAirtable = (title, link, tagsList) => {
           "! Réfugiés.info": link,
           "! À traduire ?": true,
           "! Priorité": ["Normale"],
-          "! Type de contenus": ["Dispositif"],
+          "! Type de contenus":
+            type === "demarche" ? ["Démarche"] : ["Dispositif"],
         },
       },
     ],
@@ -37,7 +38,11 @@ const addDispositifInContenusAirtable = (title, link, tagsList) => {
   );
 };
 
-const removeTraductionDispositifInContenusAirtable = (recordId, title) => {
+const removeTraductionDispositifInContenusAirtable = (
+  recordId,
+  title,
+  tagsList
+) => {
   logger.info(
     "[removeTraductionDispositifInContenusAirtable] update line for record",
     {
@@ -47,7 +52,7 @@ const removeTraductionDispositifInContenusAirtable = (recordId, title) => {
   base("CONTENUS").update([
     {
       id: recordId,
-      fields: { "! Titre": title, "! Traduits ?": [] },
+      fields: { "! Titre": title, "! Traduits ?": [], "! Thèmes": tagsList },
     },
   ]);
 };
@@ -97,6 +102,7 @@ const addOrUpdateDispositifInContenusAirtable = async (
   titreMarque,
   id,
   tags,
+  type,
   locale,
   hasContentBeenDeleted
 ) => {
@@ -112,11 +118,14 @@ const addOrUpdateDispositifInContenusAirtable = async (
     return;
   }
 
-  const title = titreMarque + " - " + titleInformatif;
+  const title =
+    type === "dispositif"
+      ? titreMarque + " - " + titleInformatif
+      : titleInformatif;
   logger.info("[addOrUpdateDispositifInContenusAirtable] received a new line", {
     title,
   });
-  const link = "https://www.refugies.info/dispositif/" + id;
+  const link = "https://www.refugies.info/" + type + "/" + id;
 
   const tagsList = tags
     ? tags.filter((tag) => !!tag).map((tag) => tag.short)
@@ -155,7 +164,7 @@ const addOrUpdateDispositifInContenusAirtable = async (
           return;
         }
         // add content in airtable
-        addDispositifInContenusAirtable(title, link, tagsList);
+        addDispositifInContenusAirtable(title, link, tagsList, type);
         return;
       }
       if (hasContentBeenDeleted) {
@@ -164,7 +173,11 @@ const addOrUpdateDispositifInContenusAirtable = async (
       }
       if (!locale) {
         // no locale and a record already in airtable ==> dispositif modified in french
-        removeTraductionDispositifInContenusAirtable(recordsList[0].id, title);
+        removeTraductionDispositifInContenusAirtable(
+          recordsList[0].id,
+          title,
+          tagsList
+        );
         return;
       }
       // dispositif has been translated
@@ -172,4 +185,5 @@ const addOrUpdateDispositifInContenusAirtable = async (
     });
 };
 
-exports.addOrUpdateDispositifInContenusAirtable = addOrUpdateDispositifInContenusAirtable;
+exports.addOrUpdateDispositifInContenusAirtable =
+  addOrUpdateDispositifInContenusAirtable;
