@@ -1,6 +1,6 @@
 import React, {useState, useMemo, useEffect} from "react";
 import MapView, { Marker } from "react-native-maps";
-import { View, Dimensions } from "react-native";
+import { Dimensions } from "react-native";
 import BottomSheet, {
   BottomSheetView,
   useBottomSheetDynamicSnapPoints,
@@ -9,6 +9,8 @@ import { MapGoogle, MarkerGoogle } from "../../types/interface";
 import { Icon } from "react-native-eva-icons";
 import { MapBottomBar } from "./MapBottomBar";
 import { theme } from "../../theme";
+import { GestureHandlerRootView } from "react-native-gesture-handler"
+
 interface PropsType {
   map: MapGoogle;
   markersColor: string;
@@ -46,13 +48,15 @@ export const Map = (props: PropsType) => {
     map.fitToCoordinates(markers, {
       animated: false,
       edgePadding: {
-        top: 50,
-        right: 50,
-        bottom: 50,
-        left: 50,
+        top: 150,
+        right: 150,
+        bottom: 150,
+        left: 150,
       },
     });
-    setMaxZoom(20); // reset zoom to max level
+    setTimeout(() => {
+      setMaxZoom(20); // reset zoom to max level
+    }, 100);
   }
 
   const initialSnapPoints = useMemo(() => ["CONTENT_HEIGHT"], []);
@@ -68,7 +72,7 @@ export const Map = (props: PropsType) => {
   const mapWidth = Dimensions.get("window").width;
 
   return (
-    <View>
+    <GestureHandlerRootView >
       <MapView
         ref={ref => map = ref}
         style={{
@@ -122,6 +126,6 @@ export const Map = (props: PropsType) => {
           />
         </BottomSheetView>
       </BottomSheet>
-    </View>
+    </GestureHandlerRootView>
   )
 }

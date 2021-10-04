@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { store } from "./services/redux/store";
 import { StatusBar } from "expo-status-bar";
 import { View } from "react-native";
+import { Host } from "react-native-portalize";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -20,7 +21,13 @@ export default function App() {
     <Suspense fallback={<View>Chargement</View>}>
       <Provider store={store}>
         <SafeAreaProvider>
-          <RootNavigator />
+          {/*
+            TODO: Fix for https://github.com/software-mansion/react-native-gesture-handler/issues/139
+            Remove when this released https://github.com/software-mansion/react-native-gesture-handler/pull/1603
+          */}
+          <Host>
+            <RootNavigator />
+          </Host>
           <StatusBar />
         </SafeAreaProvider>
       </Provider>
