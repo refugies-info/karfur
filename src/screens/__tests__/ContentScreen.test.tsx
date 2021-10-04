@@ -14,7 +14,7 @@ jest.mock("../../hooks/useTranslationWithRTL", () => ({
 
 jest.mock("@gorhom/bottom-sheet", () => {
   const RN = require("react-native");
-  const { MockBottomSheet } = require("./MockBottomSheet");
+  const { MockBottomSheet } = require("../../jest/__mocks__/MockBottomSheet");
 
   return {
     __esModule: true,
