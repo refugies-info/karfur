@@ -774,7 +774,6 @@ $imgHeight: 350px;
       line-height: 35px;
       color: #828282;
       &.align-right {
-        margin-right: -50px;
         padding: 0;
       }
       @include media-max("tablet-up") {

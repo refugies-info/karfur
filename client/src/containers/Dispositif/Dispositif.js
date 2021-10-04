@@ -92,6 +92,7 @@ const InfoBoxLanguageContainer = styled.div`
   background-color: ${colors.focus};
   border-radius: 12px;
   padding: 16px;
+  justify-content: space-between;
   margin: ${isMobile ? "16px" : "0px 20px 20px 40px"};
 `;
 
@@ -2054,30 +2055,33 @@ export class Dispositif extends Component {
                 )}
                 {!isTranslated && this.state.showAlertBoxLanguage && (
                   <InfoBoxLanguageContainer>
-                    <EVAIcon
-                      name={"alert-triangle"}
-                      fill={colors.blanc}
-                      className="mr-10"
-                    ></EVAIcon>
-                    <div>
-                      {t(
-                        "Dispositifs.Cette fiche n'est pas dispo",
-                        "Cette fiche n'est pas encore disponible en :"
-                      )}
-                      {langueSelected
-                        ? " " + langueSelected.langueLoc + "."
-                        : ""}
-                      {possibleLanguages.length
-                        ? t(
-                            "Dispositifs.Vous pouvez la lire en plusieurs langues",
-                            " Vous pouvez la lire en français ou sélectionner une autre langue ci-dessous."
-                          )
-                        : t(
-                            "Dispositifs.Vous pouvez la lire en français",
-                            " Vous pouvez la lire en français ci-dessous"
-                          )}
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <EVAIcon
+                        name={"alert-triangle"}
+                        fill={colors.blanc}
+                        className="mr-10"
+                      ></EVAIcon>
+                      <div>
+                        {t(
+                          "Dispositifs.Cette fiche n'est pas dispo",
+                          "Cette fiche n'est pas encore disponible en :"
+                        )}
+                        {langueSelected
+                          ? " " + langueSelected.langueLoc + "."
+                          : ""}
+                        {possibleLanguages.length
+                          ? t(
+                              "Dispositifs.Vous pouvez la lire en plusieurs langues",
+                              " Vous pouvez la lire en français ou sélectionner une autre langue ci-dessous."
+                            )
+                          : t(
+                              "Dispositifs.Vous pouvez la lire en français",
+                              " Vous pouvez la lire en français ci-dessous"
+                            )}
+                      </div>
                     </div>
                     <EVAIcon
+                      style={{ cursor: "pointer" }}
                       onClick={this.toggleAlertBoxLanguage}
                       name={"close"}
                       fill={colors.blanc}
