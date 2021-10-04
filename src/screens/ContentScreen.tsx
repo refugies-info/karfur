@@ -45,6 +45,7 @@ import { MiniMap } from "../components/Content/MiniMap";
 import { AccordionAnimated } from "../components/Content/AccordionAnimated";
 import { ErrorScreen } from "../components/ErrorScreen";
 import { FixSafeAreaView } from "../components/FixSafeAreaView";
+import { Portal } from "react-native-portalize";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -647,28 +648,33 @@ export const ContentScreen = ({
         isModalVisible={isLanguageModalVisible}
         toggleModal={toggleLanguageModal}
       />
-      <Modal visible={mapModalVisible} animationType="slide">
-        <ModalContainer>
-          <FixSafeAreaView
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
-          >
-            <SmallButton
-              iconName="arrow-back-outline"
-              onPress={toggleMap}
-            />
-            <SmallButton
-              iconName="close-outline"
-              onPress={toggleMap}
-              reversed={true}
-            />
-          </FixSafeAreaView>
-        </ModalContainer>
-        <Map
-          map={map}
-          markersColor={tagDarkColor}
-          windowWidth={windowWidth}
-        />
-      </Modal>
+      {/*
+        TODO: Fix for https://github.com/software-mansion/react-native-gesture-handler/issues/139
+        Remove when this released https://github.com/software-mansion/react-native-gesture-handler/pull/1603
+       */}
+      <Portal>
+        <Modal visible={mapModalVisible} animationType="slide">
+          <ModalContainer>
+            <FixSafeAreaView
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <SmallButton
+                iconName="arrow-back-outline"
+                onPress={toggleMap}
+              />
+              <SmallButton
+                iconName="close-outline"
+                onPress={toggleMap}
+                reversed={true}
+              />
+            </FixSafeAreaView>
+          </ModalContainer>
+          <Map
+            map={map}
+            markersColor={tagDarkColor}
+          />
+        </Modal>
+      </Portal>
     </View>
   );
 };

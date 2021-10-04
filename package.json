@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.0",
+    "@gorhom/bottom-sheet": "^4",
     "@react-native-async-storage/async-storage": "^1.13.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "5.11.2",
@@ -47,6 +48,7 @@
     "react-native-gesture-handler": "~1.10.2",
     "react-native-maps": "0.27.1",
     "react-native-modal": "^11.10.0",
+    "react-native-portalize": "^1.0.7",
     "react-native-reanimated": "~2.1.0",
     "react-native-render-html": "^5.1.1",
     "react-native-safe-area-context": "3.2.0",

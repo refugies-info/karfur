@@ -90,6 +90,7 @@ export interface MarkerGoogle {
   telephone?: string;
   vicinity: string;
   description?: string;
+  place_id: string;
 }
 
 export interface MapGoogle {

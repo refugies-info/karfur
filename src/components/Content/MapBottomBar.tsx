@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import styled from "styled-components/native";
 import { View, TouchableOpacity } from "react-native";
 import { MarkerGoogle } from "../../types/interface";
@@ -11,30 +11,20 @@ import { Icon } from "react-native-eva-icons";
 
 interface Props {
   selectedMarker: MarkerGoogle | null;
-  height: number;
-  width: number;
   textColor: string;
   hideSideBar: () => void;
-  windowWidth: number;
 }
 
 const ICON_SIZE = 24;
 
 const MainContainer = styled.View`
-  background-color: ${theme.colors.white};
-  width: ${(props: { isSelected: boolean; width: number }) =>
-    props.isSelected ? props.width : 0}px;
-  max-height: ${(props: { height: number }) => props.height}px;
-  height: auto;
   display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
   flex-direction: column;
   justify-content: space-between;
-  position: absolute;
-  left: 0;
-  bottom: 0;
   padding: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.margin * 3 : 0}px;
-  border-radius: ${theme.radius * 2}px
 `;
 
 const ContentContainer = styled(RTLView)`
@@ -80,8 +70,6 @@ export const MapBottomBar = (props: Props) => {
     return (
       <MainContainer
         isSelected={false}
-        height={props.height}
-        width={props.width}
       />
     );
   }
@@ -90,14 +78,15 @@ export const MapBottomBar = (props: Props) => {
       ? props.selectedMarker.nom.replace("<br>", "")
       : "";
   return (
-    <MainContainer isSelected={true} height={props.height} width={props.width}>
+    <MainContainer isSelected={true}>
       <View>
-        <ContentContainer color={props.textColor} marginBottom={4} marginTop={2}>
+        <ContentContainer color={props.textColor} marginBottom={4} marginTop={0}>
           <HTMLContainer>
             <MapContentFromHtml
               htmlContent={formattedMarkerName}
               darkColor={props.textColor}
               isBold={true}
+              isLarge={true}
             />
           </HTMLContainer>
         </ContentContainer>
