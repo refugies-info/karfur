@@ -215,7 +215,6 @@ class Sponsors extends Component {
     },
     activeIndex: 0,
     animating: false,
-    value: "",
   };
 
   next = (totalSponsor) => {
