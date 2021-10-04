@@ -323,7 +323,11 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
               onClick={() =>
                 props.setSelectedUserIdAndToggleModal(structure.responsable)
               }
-              style={{ cursor: "pointer", marginBottom: "8px" }}
+              style={{
+                cursor: "pointer",
+                marginBottom: "8px",
+                textDecoration: "underline",
+              }}
             >
               <ResponsableComponent
                 responsable={structure.responsable}
