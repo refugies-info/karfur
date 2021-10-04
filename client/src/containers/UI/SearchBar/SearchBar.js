@@ -233,7 +233,6 @@ export class SearchBar extends React.Component {
           highlightFirstSuggestion
           suggestions={this.state.suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
           getSuggestionValue={(s) => getSuggestionValue(s, isArray, structures)}
           renderSuggestion={renderSuggestion}
           inputProps={inputProps}
