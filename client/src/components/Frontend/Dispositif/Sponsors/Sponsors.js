@@ -215,6 +215,7 @@ class Sponsors extends Component {
     },
     activeIndex: 0,
     animating: false,
+    value: "",
   };
 
   next = (totalSponsor) => {
@@ -290,6 +291,15 @@ class Sponsors extends Component {
         [ev.currentTarget.id]: ev.target.value,
       },
     });
+
+  handleChangeValueEntered = (newValue) => {
+    this.setState({
+      structure: {
+        ...this.state.structure,
+        nom: newValue,
+      },
+    });
+  };
   handleUserChange = (e) =>
     this.props.updateUserActionCreator({
       ...this.props.user,
@@ -481,7 +491,6 @@ class Sponsors extends Component {
       mainSponsor,
       deduplicatedSponsors
     );
-
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
 
     return (
@@ -791,6 +800,7 @@ class Sponsors extends Component {
             array={structuresArray}
             createNewCta="Créer une nouvelle structure"
             selectItem={this.selectItem}
+            handleChangeValueEntered={this.handleChangeValueEntered}
             toggleModal={this.toggleModal}
           />
           {mesStructures.length > 0 &&

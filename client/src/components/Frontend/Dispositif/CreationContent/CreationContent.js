@@ -19,7 +19,6 @@ import { colors } from "colors";
 const CreationContent = (props) => {
   const [banner, setBanner] = useState(true);
   const [isChecked, setIsChecked] = useState(false);
-
   return (
     <div className="creation-content">
       <div className="form-field">

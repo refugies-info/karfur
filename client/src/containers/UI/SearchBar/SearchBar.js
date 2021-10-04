@@ -69,7 +69,10 @@ export class SearchBar extends React.Component {
     isFocused: false,
   };
 
-  onChange = (_, { newValue }) => this.setState({ value: newValue });
+  onChange = (_, { newValue }) => {
+    this.setState({ value: newValue });
+    this.props.handleChangeValueEntered(newValue);
+  };
   onSuggestionsFetchRequested = debounce(
     ({ value }) => this.setState({ suggestions: this.getSuggestions(value) }),
     200
@@ -145,7 +148,6 @@ export class SearchBar extends React.Component {
     const { isArray, structures, createNewCta, withEye, t } = this.props;
     const { value } = this.state;
     const isNoResult = value !== "" && !this.state.suggestions.length;
-
     const renderSuggestion = (suggestion, { query }) => {
       if (suggestion.createNew) {
         return (
