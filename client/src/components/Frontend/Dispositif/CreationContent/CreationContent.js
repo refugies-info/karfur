@@ -19,7 +19,6 @@ import { colors } from "colors";
 const CreationContent = (props) => {
   const [banner, setBanner] = useState(true);
   const [isChecked, setIsChecked] = useState(false);
-
   return (
     <div className="creation-content">
       <div className="form-field">
@@ -149,35 +148,6 @@ const CreationContent = (props) => {
           </Label>
         </FormGroup>
       </div>
-      {/*     <div className="form-field belongs-wrapper">
-      <b>
-        {props.adminView
-          ? "Le créateur fait-il partie de la structure ?"
-          : "Faites-vous partie de cette structure ?"}
-      </b>
-      <div className="belongs-bloc">
-        <FormGroup check className="mr-10">
-          <Label check>
-            <Input
-              type="checkbox"
-              checked={props.authorBelongs}
-              onChange={props.handleBelongsChange}
-            />{" "}
-            <b>Oui</b>
-          </Label>
-        </FormGroup>
-        <FormGroup check>
-          <Label check>
-            <Input
-              type="checkbox"
-              checked={!props.authorBelongs}
-              onChange={props.handleBelongsChange}
-            />{" "}
-            <b>Non</b>
-          </Label>
-        </FormGroup>
-      </div>
-    </div> */}
 
       {props.adminView && (
         <>
