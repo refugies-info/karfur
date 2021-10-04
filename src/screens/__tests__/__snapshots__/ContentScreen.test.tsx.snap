@@ -434,6 +434,7 @@ exports[`ContentScreen should render correctly 1`] = `
         </View>
       </View>
       <View
+        height={100}
         isRTL={false}
         style={
           Array [
@@ -5670,6 +5671,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
         </View>
       </View>
       <View
+        height={100}
         isRTL={false}
         style={
           Array [

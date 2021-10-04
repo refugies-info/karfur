@@ -128,7 +128,7 @@ const ModalContainer = styled.View`
   width: 100%;
   top: 0;
   padding: ${theme.margin * 2}px;
-  zindex: 2;
+  z-index: 2;
 `;
 
 const headersDispositif = [
