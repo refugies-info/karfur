@@ -803,6 +803,7 @@ class Sponsors extends Component {
             toggleModal={this.toggleModal}
           />
           {mesStructures.length > 0 &&
+            this.state.structure.nom === "" &&
             mesStructures.map((struct) => (
               <FormGroup
                 check
