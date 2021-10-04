@@ -320,10 +320,15 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
           <Title>Premier responsable</Title>
           {!isLoading && (
             <div
-              onClick={() =>
-                props.setSelectedUserIdAndToggleModal(structure.responsable)
-              }
-              style={{ cursor: "pointer", marginBottom: "8px" }}
+              onClick={() => {
+                props.toggleModal();
+                props.setSelectedUserIdAndToggleModal(structure.responsable);
+              }}
+              style={{
+                cursor: "pointer",
+                marginBottom: "8px",
+                textDecoration: "underline",
+              }}
             >
               <ResponsableComponent
                 responsable={structure.responsable}

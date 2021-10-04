@@ -148,6 +148,7 @@ $tailleBig: 80px;
     background-color: $gris;
     padding: 20px;
     border: none;
+    min-height: 80vh;
   }
   .modal-footer {
     background: transparent;
@@ -177,6 +178,7 @@ $tailleBig: 80px;
       right: 10px;
       top: 20px;
       transform: translateY(-50%);
+      cursor: pointer;
     }
   }
 
@@ -200,7 +202,7 @@ $tailleBig: 80px;
       margin-top: 10px;
       input {
         border-radius: 12px;
-        border: none;
+        border: 0.5px solid gray;
         padding: 10px 10px 10px 40px;
       }
       .input-icon {
@@ -237,6 +239,7 @@ $tailleBig: 80px;
     border-radius: 12px;
     width: -webkit-fill-available;
     background-color: $blanc;
+    cursor: pointer;
   }
 
   .ma-structure {

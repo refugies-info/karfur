@@ -55,6 +55,8 @@ const StructureName = styled.div`
   margin-right: 8px;
   overflow: hidden;
   word-wrap: break-word;
+  text-decoration: underline;
+  cursor: pointer;
 `;
 
 const RoleDetail = styled.div`
@@ -73,8 +75,6 @@ export const Structure = (props: StructureProps) => (
     style={{
       marginTop: "4px",
       marginBottom: "12px",
-      cursor: "pointer",
-      textDecoration: "underline",
     }}
   >
     <RowContainer>

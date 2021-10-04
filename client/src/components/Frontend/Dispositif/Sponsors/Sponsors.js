@@ -248,7 +248,9 @@ class Sponsors extends Component {
       this.setState({ mesStructures: [structure] });
     }
   }
-
+  resetImg = () => {
+    this.setState({ imgData: {} });
+  };
   toggleModal = (name) =>
     this.setState((pS) => ({
       showModals: pS.showModals.map((x) => ({
@@ -290,6 +292,15 @@ class Sponsors extends Component {
         [ev.currentTarget.id]: ev.target.value,
       },
     });
+
+  handleChangeValueEntered = (newValue) => {
+    this.setState({
+      structure: {
+        ...this.state.structure,
+        nom: newValue,
+      },
+    });
+  };
   handleUserChange = (e) =>
     this.props.updateUserActionCreator({
       ...this.props.user,
@@ -481,7 +492,6 @@ class Sponsors extends Component {
       mainSponsor,
       deduplicatedSponsors
     );
-
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
 
     return (
@@ -791,9 +801,11 @@ class Sponsors extends Component {
             array={structuresArray}
             createNewCta="Créer une nouvelle structure"
             selectItem={this.selectItem}
+            handleChangeValueEntered={this.handleChangeValueEntered}
             toggleModal={this.toggleModal}
           />
           {mesStructures.length > 0 &&
+            this.state.structure.nom === "" &&
             mesStructures.map((struct) => (
               <FormGroup
                 check
@@ -892,19 +904,8 @@ class Sponsors extends Component {
               </span>
             </div>
           </ConfirmationStructureContainer>
-          {/* <Tooltip
-            placement="top"
-            isOpen={this.state.tooltipOpen}
-            target="alt-tooltip"
-            toggle={this.toggleTooltip}
-          >
-            Si oui, nous enverrons une demande d’ajout à un responsable de la
-            structure. Si non, la propriété de la page lui sera transférée pour
-            qu’il puisse vérifier les informations.
-          </Tooltip> */}
-
           <FormGroup check className="author-choice mb-10">
-            <Label check>
+            <Label check style={{ cursor: "pointer" }}>
               <Input
                 type="checkbox"
                 checked={this.state.authorBelongs}
@@ -914,7 +915,7 @@ class Sponsors extends Component {
             </Label>
           </FormGroup>
           <FormGroup check className="author-choice">
-            <Label check>
+            <Label check style={{ cursor: "pointer" }}>
               <Input
                 type="checkbox"
                 checked={!this.state.authorBelongs}
@@ -925,23 +926,27 @@ class Sponsors extends Component {
               </b>
             </Label>
           </FormGroup>
-          <div className="warning-bloc bg-focus mt-16 mb-16">
-            <EVAIcon name="info" fill={colors.blanc} className="info-icon" />
-            <div
-              onClick={() => this.setState({ banner: false })}
-              className={"info-icon-close"}
-            >
-              <EVAIcon name="close-outline" fill={colors.blanc} />
+          {this.state.banner ? (
+            <div className="warning-bloc bg-focus mt-16 mb-16">
+              <EVAIcon name="info" fill={colors.blanc} className="info-icon" />
+              <div
+                onClick={() => this.setState({ banner: false })}
+                className={"info-icon-close"}
+              >
+                <EVAIcon name="close-outline" fill={colors.blanc} />
+              </div>
+              <p style={{ marginBottom: 0 }}>
+                Si oui, le responsable de la structure sera notifié de votre
+                demande et pourra vous ajouter facilement.
+              </p>
+              <div>
+                Si non, vous ne pourrez plus éditer la fiche dès que la
+                structure en reprend la responsabilité.
+              </div>
             </div>
-            <p style={{ marginBottom: 0 }}>
-              Si oui, le responsable de la structure sera notifié de votre
-              demande et pourra vous ajouter facilement.
-            </p>
-            <div>
-              Si non, vous ne pourrez plus éditer la fiche dès que la structure
-              en reprend la responsabilité.
-            </div>
-          </div>
+          ) : (
+            <div style={{ marginTop: 24 }} />
+          )}
         </CustomModal>
 
         <CustomModal
@@ -951,6 +956,49 @@ class Sponsors extends Component {
           keyValue={2}
           className="modal-sponsors"
           title="Création d'une structure"
+          lowerLeftBtn={
+            <FButton
+              type="tuto"
+              name={"play-circle-outline"}
+              onClick={() =>
+                this.props.toggleTutorielModal("ResponsabilitéFiche")
+              }
+            >
+              Tutoriel
+            </FButton>
+          }
+          lowerRightBtn={
+            <div>
+              <FButton
+                type="white"
+                name="arrow-back-outline"
+                fill={colors.noir}
+                onClick={() => {
+                  this.toggleModal("responsabilite");
+                  this.handleChangeValueEntered("");
+                  this.resetImg();
+                }}
+                className="push-right mr-8"
+              >
+                Retour
+              </FButton>
+              <FButton
+                type="validate"
+                name="checkmark-outline"
+                fill={colors.noir}
+                disabled={
+                  !this.state.structure.nom ||
+                  !this.state.structure.contact ||
+                  !this.state.structure.mail_contact ||
+                  !this.state.structure.phone_contact
+                }
+                onClick={this.createStructure}
+                className="push-right"
+              >
+                Valider
+              </FButton>
+            </div>
+          }
         >
           <CreationContent
             handleChange={this.handleChange}
@@ -1006,31 +1054,6 @@ class Sponsors extends Component {
                 )}
               </FButton>
             )}
-          </div>
-          <div className="btn-footer">
-            <FButton
-              onClick={() => {
-                this.toggleModal("responsabilite");
-              }}
-              type="default"
-              className="mr-8"
-              name="arrow-back-outline"
-            >
-              Retour
-            </FButton>
-            <FButton
-              disabled={
-                !this.state.structure.nom ||
-                !this.state.structure.contact ||
-                !this.state.structure.mail_contact ||
-                !this.state.structure.phone_contact
-              }
-              onClick={this.createStructure}
-              type="validate"
-              name="checkmark-outline"
-            >
-              Valider
-            </FButton>
           </div>
         </CustomModal>
 
