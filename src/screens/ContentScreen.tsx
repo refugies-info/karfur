@@ -45,6 +45,7 @@ import { MiniMap } from "../components/Content/MiniMap";
 import { AccordionAnimated } from "../components/Content/AccordionAnimated";
 import { ErrorScreen } from "../components/ErrorScreen";
 import { FixSafeAreaView } from "../components/FixSafeAreaView";
+import { gestureHandlerRootHOC } from "react-native-gesture-handler"
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -201,6 +202,30 @@ const computeIfContentIsTranslatedInCurrentLanguage = (
   if (avancement === 1) return false;
   return avancement[currentLanguage] === 1;
 };
+
+const MapContentModal = gestureHandlerRootHOC((props: any) => (
+  <View>
+    <ModalContainer>
+      <FixSafeAreaView
+        style={{ flexDirection: "row", justifyContent: "space-between" }}
+      >
+        <SmallButton
+          iconName="arrow-back-outline"
+          onPress={props.toggleMap}
+        />
+        <SmallButton
+          iconName="close-outline"
+          onPress={props.toggleMap}
+          reversed={true}
+        />
+      </FixSafeAreaView>
+    </ModalContainer>
+    <Map
+      map={props.map}
+      markersColor={props.tagDarkColor}
+    />
+  </View>
+));
 
 export const ContentScreen = ({
   navigation,
@@ -648,26 +673,11 @@ export const ContentScreen = ({
         toggleModal={toggleLanguageModal}
       />
       <Modal visible={mapModalVisible} animationType="slide">
-        <ModalContainer>
-          <FixSafeAreaView
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
-          >
-            <SmallButton
-              iconName="arrow-back-outline"
-              onPress={toggleMap}
-            />
-            <SmallButton
-              iconName="close-outline"
-              onPress={toggleMap}
-              reversed={true}
-            />
-          </FixSafeAreaView>
-        </ModalContainer>
-        <Map
+        <MapContentModal
+          toggleMap={toggleMap}
           map={map}
-          markersColor={tagDarkColor}
-          windowWidth={windowWidth}
-        />
+          tagDarkColor={tagDarkColor}
+        ></MapContentModal>
       </Modal>
     </View>
   );

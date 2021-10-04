@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import React, { Suspense } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
