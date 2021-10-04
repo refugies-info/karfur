@@ -901,17 +901,6 @@ class Sponsors extends Component {
               </span>
             </div>
           </ConfirmationStructureContainer>
-          {/* <Tooltip
-            placement="top"
-            isOpen={this.state.tooltipOpen}
-            target="alt-tooltip"
-            toggle={this.toggleTooltip}
-          >
-            Si oui, nous enverrons une demande d’ajout à un responsable de la
-            structure. Si non, la propriété de la page lui sera transférée pour
-            qu’il puisse vérifier les informations.
-          </Tooltip> */}
-
           <FormGroup check className="author-choice mb-10">
             <Label check>
               <Input
@@ -934,23 +923,27 @@ class Sponsors extends Component {
               </b>
             </Label>
           </FormGroup>
-          <div className="warning-bloc bg-focus mt-16 mb-16">
-            <EVAIcon name="info" fill={colors.blanc} className="info-icon" />
-            <div
-              onClick={() => this.setState({ banner: false })}
-              className={"info-icon-close"}
-            >
-              <EVAIcon name="close-outline" fill={colors.blanc} />
+          {this.state.banner ? (
+            <div className="warning-bloc bg-focus mt-16 mb-16">
+              <EVAIcon name="info" fill={colors.blanc} className="info-icon" />
+              <div
+                onClick={() => this.setState({ banner: false })}
+                className={"info-icon-close"}
+              >
+                <EVAIcon name="close-outline" fill={colors.blanc} />
+              </div>
+              <p style={{ marginBottom: 0 }}>
+                Si oui, le responsable de la structure sera notifié de votre
+                demande et pourra vous ajouter facilement.
+              </p>
+              <div>
+                Si non, vous ne pourrez plus éditer la fiche dès que la
+                structure en reprend la responsabilité.
+              </div>
             </div>
-            <p style={{ marginBottom: 0 }}>
-              Si oui, le responsable de la structure sera notifié de votre
-              demande et pourra vous ajouter facilement.
-            </p>
-            <div>
-              Si non, vous ne pourrez plus éditer la fiche dès que la structure
-              en reprend la responsabilité.
-            </div>
-          </div>
+          ) : (
+            <div style={{ marginTop: 24 }} />
+          )}
         </CustomModal>
 
         <CustomModal
