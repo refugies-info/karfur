@@ -60,9 +60,8 @@ export const validateTranslations = async (
       await deleteTradsInDB(body.articleId, body.locale);
 
       // @ts-ignore
-      const dispositifFromDB: DispositifNotPopulateDoc = await getDispositifByIdWithAllFields(
-        body.articleId
-      );
+      const dispositifFromDB: DispositifNotPopulateDoc =
+        await getDispositifByIdWithAllFields(body.articleId);
 
       // !IMPORTANT We insert the validated translation in the dispositif
       const { insertedDispositif, traductorIdsList } = await insertInDispositif(
@@ -72,16 +71,15 @@ export const validateTranslations = async (
       );
 
       try {
-        if (insertedDispositif.typeContenu === "dispositif") {
-          addOrUpdateDispositifInContenusAirtable(
-            "",
-            "",
-            insertedDispositif.id,
-            [],
-            body.locale,
-            false
-          );
-        }
+        addOrUpdateDispositifInContenusAirtable(
+          "",
+          "",
+          insertedDispositif.id,
+          [],
+          insertedDispositif.typeContenu,
+          body.locale,
+          false
+        );
       } catch (error) {
         logger.error(
           "[validateTranslations] error while updating contenu in airtable",
