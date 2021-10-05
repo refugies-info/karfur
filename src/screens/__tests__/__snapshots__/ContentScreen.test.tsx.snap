@@ -1873,21 +1873,13 @@ exports[`ContentScreen should render correctly 1`] = `
               }
             >
               <View
-                isRTL={false}
                 onLayout={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                    Object {
-                      "bottom": 0,
-                      "position": "absolute",
-                      "width": "100%",
-                    },
-                  ]
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "width": "100%",
+                  }
                 }
               >
                 <View
@@ -2136,21 +2128,13 @@ exports[`ContentScreen should render correctly 1`] = `
               }
             >
               <View
-                isRTL={false}
                 onLayout={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                    Object {
-                      "bottom": 0,
-                      "position": "absolute",
-                      "width": "100%",
-                    },
-                  ]
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "width": "100%",
+                  }
                 }
               >
                 <View
@@ -2399,21 +2383,13 @@ exports[`ContentScreen should render correctly 1`] = `
               }
             >
               <View
-                isRTL={false}
                 onLayout={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                    Object {
-                      "bottom": 0,
-                      "position": "absolute",
-                      "width": "100%",
-                    },
-                  ]
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "width": "100%",
+                  }
                 }
               >
                 <View
@@ -2662,21 +2638,13 @@ exports[`ContentScreen should render correctly 1`] = `
               }
             >
               <View
-                isRTL={false}
                 onLayout={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                    Object {
-                      "bottom": 0,
-                      "position": "absolute",
-                      "width": "100%",
-                    },
-                  ]
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "width": "100%",
+                  }
                 }
               >
                 <View
@@ -2948,21 +2916,13 @@ exports[`ContentScreen should render correctly 1`] = `
               }
             >
               <View
-                isRTL={false}
                 onLayout={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                    Object {
-                      "bottom": 0,
-                      "position": "absolute",
-                      "width": "100%",
-                    },
-                  ]
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "width": "100%",
+                  }
                 }
               >
                 <View
@@ -3273,21 +3233,13 @@ exports[`ContentScreen should render correctly 1`] = `
               }
             >
               <View
-                isRTL={false}
                 onLayout={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                    Object {
-                      "bottom": 0,
-                      "position": "absolute",
-                      "width": "100%",
-                    },
-                  ]
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "width": "100%",
+                  }
                 }
               >
                 <View
@@ -7103,21 +7055,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
               }
             >
               <View
-                isRTL={false}
                 onLayout={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                    Object {
-                      "bottom": 0,
-                      "position": "absolute",
-                      "width": "100%",
-                    },
-                  ]
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "width": "100%",
+                  }
                 }
               >
                 <View
@@ -7366,21 +7310,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
               }
             >
               <View
-                isRTL={false}
                 onLayout={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                    Object {
-                      "bottom": 0,
-                      "position": "absolute",
-                      "width": "100%",
-                    },
-                  ]
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "width": "100%",
+                  }
                 }
               >
                 <View
@@ -7629,21 +7565,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
               }
             >
               <View
-                isRTL={false}
                 onLayout={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                    Object {
-                      "bottom": 0,
-                      "position": "absolute",
-                      "width": "100%",
-                    },
-                  ]
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "width": "100%",
+                  }
                 }
               >
                 <View
@@ -7892,21 +7820,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
               }
             >
               <View
-                isRTL={false}
                 onLayout={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                    Object {
-                      "bottom": 0,
-                      "position": "absolute",
-                      "width": "100%",
-                    },
-                  ]
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "width": "100%",
+                  }
                 }
               >
                 <View
@@ -8178,21 +8098,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
               }
             >
               <View
-                isRTL={false}
                 onLayout={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                    Object {
-                      "bottom": 0,
-                      "position": "absolute",
-                      "width": "100%",
-                    },
-                  ]
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "width": "100%",
+                  }
                 }
               >
                 <View
@@ -8503,21 +8415,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
               }
             >
               <View
-                isRTL={false}
                 onLayout={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                    Object {
-                      "bottom": 0,
-                      "position": "absolute",
-                      "width": "100%",
-                    },
-                  ]
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "width": "100%",
+                  }
                 }
               >
                 <View

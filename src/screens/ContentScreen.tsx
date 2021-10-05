@@ -417,7 +417,7 @@ export const ContentScreen = ({
         scrollEventThrottle={16}
         scrollIndicatorInsets={{ right: 1 }}
       >
-        {!showSimplifiedHeader && (
+        {
           <>
             <HeaderImage tagName={tagName} height={headerImageHeight} />
             <HeaderImageContainer height={headerImageHeight}>
@@ -448,7 +448,7 @@ export const ContentScreen = ({
               contentId={selectedContent._id}
             />
           </>
-        )}
+        }
         <View>
           {headers.map((header, index) => {
             if (
