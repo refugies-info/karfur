@@ -35,15 +35,36 @@ export const updateDispositifTagsOrNeeds = async (
     checkIfUserIsAdmin(req.user.roles);
 
     let newNeeds: ObjectId[] = [];
-    let originalDispositif: DispositifDoc;
     if (tags) {
-      originalDispositif = await getDispositifById(dispositifId, {
+      const originalDispositif = await getDispositifById(dispositifId, {
         needs: 1,
         titreMarque: 1,
         titreInformatif: 1,
         typeContenu: 1,
         status: 1,
       });
+
+      if (originalDispositif.status === "Actif") {
+        logger.info("[updateDispositifTagsOrNeeds] dispositif is Actif", {
+          dispositifId: dispositifId,
+        });
+        try {
+          await addOrUpdateDispositifInContenusAirtable(
+            originalDispositif.titreInformatif,
+            originalDispositif.titreMarque,
+            dispositifId,
+            tags,
+            originalDispositif.typeContenu,
+            null,
+            false
+          );
+        } catch (error) {
+          logger.error(
+            "[updateDispositifTagsOrNeeds] error while updating contenu in airtable",
+            { error: error.message }
+          );
+        }
+      }
       if (originalDispositif.needs) {
         // if a need of the content has a tag that is not a tag of the content we remove the need
         newNeeds = await computePossibleNeeds(originalDispositif.needs, tags);
@@ -52,27 +73,6 @@ export const updateDispositifTagsOrNeeds = async (
 
     const newDispositif = tags ? { tags, needs: newNeeds } : { needs };
 
-    if (originalDispositif.status === "Actif") {
-      logger.info("[addDispositif] dispositif is Actif", {
-        dispositifId: dispositifId,
-      });
-      try {
-        await addOrUpdateDispositifInContenusAirtable(
-          originalDispositif.titreInformatif,
-          originalDispositif.titreMarque,
-          dispositifId,
-          newDispositif.tags,
-          originalDispositif.typeContenu,
-          null,
-          false
-        );
-      } catch (error) {
-        logger.error(
-          "[addDispositif] error while updating contenu in airtable",
-          { error: error.message }
-        );
-      }
-    }
     await updateDispositifInDB(dispositifId, newDispositif);
     return res.status(200).json({ text: "OK" });
   } catch (error) {
