@@ -26,7 +26,6 @@ export const updateDispositifTagsOrNeeds = async (
     if (!req.body || !req.body.query) {
       throw new Error("INVALID_REQUEST");
     }
-
     const { dispositifId, tags, needs } = req.body.query;
     logger.info("[updateDispositifTagsOrNeeds]", { dispositifId, tags });
 
@@ -38,7 +37,6 @@ export const updateDispositifTagsOrNeeds = async (
       const originalDispositif = await getDispositifById(dispositifId, {
         needs: 1,
       });
-
       if (originalDispositif.needs) {
         // if a need of the content has a tag that is not a tag of the content we remove the need
         newNeeds = await computePossibleNeeds(originalDispositif.needs, tags);

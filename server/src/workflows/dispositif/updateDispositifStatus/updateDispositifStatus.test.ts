@@ -171,7 +171,7 @@ describe("updateDispositifStatus", () => {
     expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
       status: "Supprimé",
     });
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
+    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalled();
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
@@ -250,6 +250,7 @@ describe("updateDispositifStatus", () => {
       "TM",
       "id",
       [],
+      "dispositif",
       null,
       true
     );

@@ -106,7 +106,7 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -115,7 +115,6 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -155,7 +154,7 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -164,7 +163,6 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c2"
@@ -330,7 +328,7 @@ exports[`UserNotifications should render correctly when loading 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -339,7 +337,6 @@ exports[`UserNotifications should render correctly when loading 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -379,7 +376,7 @@ exports[`UserNotifications should render correctly when loading 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -388,7 +385,6 @@ exports[`UserNotifications should render correctly when loading 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c2"
@@ -701,7 +697,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -710,7 +706,6 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -750,7 +745,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -759,7 +754,6 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c2"

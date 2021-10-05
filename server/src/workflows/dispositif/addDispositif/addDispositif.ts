@@ -116,10 +116,7 @@ export const addDispositif = async (
       );
 
       // when publish or modify a dispositif, update table in airtable to follow the traduction
-      if (
-        dispResult.status === "Actif" &&
-        dispResult.typeContenu === "dispositif"
-      ) {
+      if (dispResult.status === "Actif") {
         logger.info("[addDispositif] dispositif is Actif", {
           dispositifId: dispResult._id,
         });
@@ -129,6 +126,7 @@ export const addDispositif = async (
             dispResult.titreMarque,
             dispResult._id,
             dispResult.tags,
+            dispResult.typeContenu,
             null,
             false
           );

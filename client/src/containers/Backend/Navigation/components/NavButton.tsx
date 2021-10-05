@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { colors } from "../../../../colors";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 import { SelectedPage } from "../Navigation.component";
@@ -101,24 +101,45 @@ const getIconName = (
   return iconName + "-outline";
 };
 export const NavButton = (props: NavButtonProps) => {
+  //@ts-ignore
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [hoverType, setHoverType] = useState<SelectedPage | "none">("none");
 
   const onMouseEnter = (type: SelectedPage) => setHoverType(type);
   const onMouseLeave = () => setHoverType("none");
 
+  const handleResize = () => {
+    //@ts-ignore
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    //@ts-ignore
+    window.addEventListener("resize", handleResize);
+    //@ts-ignore
+  }, [window]);
+
   const getTitle = (
     type: SelectedPage,
     title: string,
-    nbNewNotifications: number
+    nbNewNotifications: number,
+    isReductedSize: boolean
   ) => {
-    if (type === "admin") return title;
+    if (type === "admin" && !isReductedSize) return title;
     if (type === "notifications")
-      return (
-        props.t("Toolbar." + props.title, props.title) +
-        " (" +
-        nbNewNotifications +
-        ")"
-      );
+      if (isReductedSize) {
+        return " (" + nbNewNotifications + ")";
+      } else {
+        return (
+          props.t("Toolbar." + props.title, props.title) +
+          " (" +
+          nbNewNotifications +
+          ")"
+        );
+      }
+    if (isReductedSize) {
+      return null;
+    }
     return props.t("Toolbar." + props.title, props.title);
   };
 
@@ -135,6 +156,10 @@ export const NavButton = (props: NavButtonProps) => {
     props.type
   );
 
+  let isReductedSize =
+    ((props.type === "notifications" || props.type === "favoris") &&
+      windowWidth < 1300) ||
+    ((props.type === "admin" || props.type === "profil") && windowWidth < 1200);
   return (
     <NavButtonContainer
       backgroundColor={backgroundColor}
@@ -144,7 +169,13 @@ export const NavButton = (props: NavButtonProps) => {
       onClick={props.onClick}
     >
       {props.type !== "traductions" && (
-        <EVAIcon name={name} fill={textColor} className={"mr-10"} />
+        <EVAIcon
+          name={name}
+          fill={textColor}
+          className={
+            isReductedSize && props.type !== "notifications" ? "" : "mr-10"
+          }
+        />
       )}
       {props.type === "traductions" &&
         !props.isSelected &&
@@ -159,7 +190,12 @@ export const NavButton = (props: NavButtonProps) => {
             className={"icon-traduction"}
           />
         )}
-      {getTitle(props.type, props.title, props.nbNewNotifications)}
+      {getTitle(
+        props.type,
+        props.title,
+        props.nbNewNotifications,
+        isReductedSize
+      )}
     </NavButtonContainer>
   );
 };
