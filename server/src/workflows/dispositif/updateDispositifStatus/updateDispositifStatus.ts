@@ -57,16 +57,16 @@ export const updateDispositifStatus = async (
         // @ts-ignore : populate roles
         req.user.roles
       );
-      if (dispositif.typeContenu === "dispositif") {
-        await addOrUpdateDispositifInContenusAirtable(
-          dispositif.titreInformatif,
-          dispositif.titreMarque,
-          dispositif._id,
-          dispositif.tags,
-          null,
-          true
-        );
-      }
+
+      await addOrUpdateDispositifInContenusAirtable(
+        dispositif.titreInformatif,
+        dispositif.titreMarque,
+        dispositif._id,
+        dispositif.tags,
+        dispositif.typeContenu,
+        null,
+        true
+      );
     }
 
     newDispositif = { status };

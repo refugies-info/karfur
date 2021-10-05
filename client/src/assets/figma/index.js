@@ -6,7 +6,7 @@ import imgBtn from "./imgBtn.svg";
 import videoBtn from "./videoBtn.svg";
 import linkBtn from "./linkBtn.svg";
 import countrySide from "./countrySide.svg";
-import sentIllu from "./sentIllu.svg";
+
 import interieur_2 from "./interieur_2.svg";
 import interieur_3 from "./interieur_3.svg";
 import interieur_4 from "./interieur_4.svg";
@@ -39,7 +39,6 @@ export {
   videoBtn,
   linkBtn,
   countrySide,
-  sentIllu,
   interieur_2,
   interieur_3,
   interieur_4,

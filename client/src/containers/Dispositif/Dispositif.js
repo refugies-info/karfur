@@ -92,7 +92,8 @@ const InfoBoxLanguageContainer = styled.div`
   background-color: ${colors.focus};
   border-radius: 12px;
   padding: 16px;
-  margin: ${isMobile ? "16px" : "0px 0px 20px 40px"};
+  justify-content: space-between;
+  margin: ${isMobile ? "16px" : "0px 20px 20px 40px"};
 `;
 
 const TextOtherLanguageContainer = styled.p`
@@ -101,7 +102,7 @@ const TextOtherLanguageContainer = styled.p`
   font-size: 18px;
   justify-content: center;
   align-items: center;
-  margin: ${isMobile ? "auto" : "auto 0"};
+  margin: ${isMobile ? "auto" : "auto 40px"};
   padding: ${isMobile ? "16px" : 0};
 `;
 
@@ -2054,30 +2055,33 @@ export class Dispositif extends Component {
                 )}
                 {!isTranslated && this.state.showAlertBoxLanguage && (
                   <InfoBoxLanguageContainer>
-                    <EVAIcon
-                      name={"alert-triangle"}
-                      fill={colors.blanc}
-                      className="mr-10"
-                    ></EVAIcon>
-                    <div>
-                      {t(
-                        "Dispositifs.Cette fiche n'est pas dispo",
-                        "Cette fiche n'est pas encore disponible en :"
-                      )}
-                      {langueSelected
-                        ? " " + langueSelected.langueLoc + "."
-                        : ""}
-                      {possibleLanguages.length
-                        ? t(
-                            "Dispositifs.Vous pouvez la lire en plusieurs langues",
-                            " Vous pouvez la lire en français ou sélectionner une autre langue ci-dessous."
-                          )
-                        : t(
-                            "Dispositifs.Vous pouvez la lire en français",
-                            " Vous pouvez la lire en français ci-dessous"
-                          )}
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <EVAIcon
+                        name={"alert-triangle"}
+                        fill={colors.blanc}
+                        className="mr-10"
+                      ></EVAIcon>
+                      <div>
+                        {t(
+                          "Dispositifs.Cette fiche n'est pas dispo",
+                          "Cette fiche n'est pas encore disponible en :"
+                        )}
+                        {langueSelected
+                          ? " " + langueSelected.langueLoc + "."
+                          : ""}
+                        {possibleLanguages.length
+                          ? t(
+                              "Dispositifs.Vous pouvez la lire en plusieurs langues",
+                              " Vous pouvez la lire en français ou sélectionner une autre langue ci-dessous."
+                            )
+                          : t(
+                              "Dispositifs.Vous pouvez la lire en français",
+                              " Vous pouvez la lire en français ci-dessous"
+                            )}
+                      </div>
                     </div>
                     <EVAIcon
+                      style={{ cursor: "pointer" }}
                       onClick={this.toggleAlertBoxLanguage}
                       name={"close"}
                       fill={colors.blanc}
@@ -2392,6 +2396,7 @@ export class Dispositif extends Component {
               toggle={this.toggleTagsModal}
               toggleTutorielModal={this.toggleTutorielModal}
               user={this.props.user}
+              history={this.props.history}
               dispositifId={this.state.dispositif._id}
             />
             <FrameModal
