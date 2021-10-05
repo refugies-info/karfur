@@ -10,7 +10,7 @@ import {
   checkIfUserIsAdmin,
 } from "../../../libs/checkAuthorizations";
 import { computePossibleNeeds } from "../../../modules/needs/needs.service";
-import { addOrUpdateDispositifInContenusAirtable } from "src/controllers/miscellaneous/airtable";
+import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 
 interface QueryUpdate {
   dispositifId: ObjectId;
