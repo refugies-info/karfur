@@ -862,7 +862,10 @@ class Sponsors extends Component {
               <FButton
                 type="white"
                 fill={colors.noir}
-                onClick={() => this.toggleModal("responsabilite")}
+                onClick={() => {
+                  this.toggleModal("responsabilite");
+                  this.resetImg();
+                }}
                 className="push-right mr-8"
                 name="arrow-back-outline"
               >
