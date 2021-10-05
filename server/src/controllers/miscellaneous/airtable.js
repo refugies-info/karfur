@@ -106,17 +106,17 @@ const addOrUpdateDispositifInContenusAirtable = async (
   locale,
   hasContentBeenDeleted
 ) => {
-  if (process.env.NODE_ENV === "dev") {
-    logger.info(
-      "[addOrUpdateDispositifInContenusAirtable] env is not production, do not send content to airtable",
-      {
-        env: process.env.NODE_ENV,
-        data: { titleInformatif, titreMarque, id, tags, locale },
-      }
-    );
+  // if (process.env.NODE_ENV === "dev") {
+  //   logger.info(
+  //     "[addOrUpdateDispositifInContenusAirtable] env is not production, do not send content to airtable",
+  //     {
+  //       env: process.env.NODE_ENV,
+  //       data: { titleInformatif, titreMarque, id, tags, locale },
+  //     }
+  //   );
 
-    return;
-  }
+  //   return;
+  // }
 
   const title =
     type === "dispositif"
