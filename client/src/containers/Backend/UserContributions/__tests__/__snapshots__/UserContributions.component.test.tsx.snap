@@ -187,7 +187,7 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -196,7 +196,6 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c2"
@@ -236,7 +235,7 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -245,7 +244,6 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c3"
@@ -650,7 +648,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -659,7 +657,6 @@ exports[`userContributions should render correctly when click on delete 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c2"
@@ -699,7 +696,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -708,7 +705,6 @@ exports[`userContributions should render correctly when click on delete 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c3"
@@ -1445,7 +1441,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -1454,7 +1450,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c2"
@@ -1494,7 +1489,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -1503,7 +1498,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c3"
@@ -2860,7 +2854,7 @@ exports[`userContributions should render correctly when loading 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -2869,7 +2863,6 @@ exports[`userContributions should render correctly when loading 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c2"
@@ -2909,7 +2902,7 @@ exports[`userContributions should render correctly when loading 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -2918,7 +2911,6 @@ exports[`userContributions should render correctly when loading 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c3"

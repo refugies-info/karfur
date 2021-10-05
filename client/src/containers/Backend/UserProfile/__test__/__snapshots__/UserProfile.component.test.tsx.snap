@@ -212,7 +212,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -221,7 +221,6 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -261,7 +260,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person"
@@ -270,7 +269,6 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c3"
@@ -851,7 +849,7 @@ exports[`UserProfile should render correctly 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -860,7 +858,6 @@ exports[`UserProfile should render correctly 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -900,7 +897,7 @@ exports[`UserProfile should render correctly 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person"
@@ -909,7 +906,6 @@ exports[`UserProfile should render correctly 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c3"
@@ -1326,7 +1322,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -1335,7 +1331,6 @@ exports[`UserProfile should render correctly when changing password 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -1375,7 +1370,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person"
@@ -1384,7 +1379,6 @@ exports[`UserProfile should render correctly when changing password 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c3"
@@ -1902,7 +1896,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -1911,7 +1905,6 @@ exports[`UserProfile should render correctly when loading 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -1951,7 +1944,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person"
@@ -1960,7 +1953,6 @@ exports[`UserProfile should render correctly when loading 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c3"
