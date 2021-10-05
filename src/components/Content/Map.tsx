@@ -35,8 +35,28 @@ export const Map = (props: PropsType) => {
 
   useEffect(() => {
     if (bottomSheet) {
-      if (markerOpen === null) bottomSheet.close();
-      else bottomSheet.expand();
+      if (markerOpen === null) {
+        bottomSheet.close();
+      } else {
+        bottomSheet.expand();
+
+        if (map) {
+          map.fitToCoordinates([
+            { // use custom marker positions to set padding around real marker
+              latitude: markerOpen.latitude + 0.005,
+              longitude: markerOpen.longitude,
+            },
+            {
+              latitude: markerOpen.latitude,
+              longitude: markerOpen.longitude,
+            },
+            {
+              latitude: markerOpen.latitude - 0.02,
+              longitude: markerOpen.longitude,
+            }
+          ]);
+        }
+      }
     }
   }, [markerOpen]);
 
