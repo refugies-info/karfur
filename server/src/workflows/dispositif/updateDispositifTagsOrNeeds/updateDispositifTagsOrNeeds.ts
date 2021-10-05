@@ -11,7 +11,6 @@ import {
 } from "../../../libs/checkAuthorizations";
 import { computePossibleNeeds } from "../../../modules/needs/needs.service";
 import { addOrUpdateDispositifInContenusAirtable } from "src/controllers/miscellaneous/airtable";
-import { DispositifDoc } from "src/schema/schemaDispositif";
 
 interface QueryUpdate {
   dispositifId: ObjectId;
