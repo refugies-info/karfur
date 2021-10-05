@@ -10,7 +10,6 @@ import {
   checkIfUserIsAdmin,
 } from "../../../libs/checkAuthorizations";
 import { computePossibleNeeds } from "../../../modules/needs/needs.service";
-import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 
 interface QueryUpdate {
   dispositifId: ObjectId;
@@ -37,33 +36,7 @@ export const updateDispositifTagsOrNeeds = async (
     if (tags) {
       const originalDispositif = await getDispositifById(dispositifId, {
         needs: 1,
-        titreMarque: 1,
-        titreInformatif: 1,
-        typeContenu: 1,
-        status: 1,
       });
-
-      if (originalDispositif.status === "Actif") {
-        logger.info("[updateDispositifTagsOrNeeds] dispositif is Actif", {
-          dispositifId: dispositifId,
-        });
-        try {
-          await addOrUpdateDispositifInContenusAirtable(
-            originalDispositif.titreInformatif,
-            originalDispositif.titreMarque,
-            dispositifId,
-            tags,
-            originalDispositif.typeContenu,
-            null,
-            false
-          );
-        } catch (error) {
-          logger.error(
-            "[updateDispositifTagsOrNeeds] error while updating contenu in airtable",
-            { error: error.message }
-          );
-        }
-      }
       if (originalDispositif.needs) {
         // if a need of the content has a tag that is not a tag of the content we remove the need
         newNeeds = await computePossibleNeeds(originalDispositif.needs, tags);

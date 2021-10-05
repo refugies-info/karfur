@@ -333,7 +333,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -342,7 +342,6 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -382,7 +381,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -391,7 +390,6 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c2"
@@ -1206,7 +1204,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -1215,7 +1213,6 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -1255,7 +1252,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -1264,7 +1261,6 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c2"
@@ -2125,7 +2121,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -2134,7 +2130,6 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -2174,7 +2169,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -2183,7 +2178,6 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c2"
@@ -2819,7 +2813,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -2828,7 +2822,6 @@ exports[`UserStructure should render correctly when loading 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -2868,7 +2861,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -2877,7 +2870,6 @@ exports[`UserStructure should render correctly when loading 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c2"
@@ -3100,7 +3092,7 @@ exports[`UserStructure should render correctly when no structure 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -3109,7 +3101,6 @@ exports[`UserStructure should render correctly when no structure 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -3149,7 +3140,7 @@ exports[`UserStructure should render correctly when no structure 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -3158,7 +3149,6 @@ exports[`UserStructure should render correctly when no structure 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c2"
@@ -3439,7 +3429,7 @@ exports[`UserStructure should render correctly when structure with membres when 
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -3448,7 +3438,6 @@ exports[`UserStructure should render correctly when structure with membres when 
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -3488,7 +3477,7 @@ exports[`UserStructure should render correctly when structure with membres when 
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -3497,7 +3486,6 @@ exports[`UserStructure should render correctly when structure with membres when 
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c2"
@@ -4006,7 +3994,7 @@ exports[`UserStructure should render correctly when structure with membres when 
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -4015,7 +4003,6 @@ exports[`UserStructure should render correctly when structure with membres when 
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -4055,7 +4042,7 @@ exports[`UserStructure should render correctly when structure with membres when 
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -4064,7 +4051,6 @@ exports[`UserStructure should render correctly when structure with membres when 
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c2"
