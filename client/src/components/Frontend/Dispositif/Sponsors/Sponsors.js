@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import {
   Row,
@@ -245,7 +244,6 @@ class Sponsors extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.user && nextProps.userStructure) {
       const structure = nextProps.userStructure;
-      console.log("srructure update", structure);
       this.setState({ mesStructures: [structure] });
     }
   }
@@ -494,10 +492,6 @@ class Sponsors extends Component {
       deduplicatedSponsors
     );
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
-    // eslint-disable-next-line no-console
-    console.log("test", mesStructures.length > 0);
-    // eslint-disable-next-line no-console
-    console.log("test2", this.state.structure.nom === "");
     return (
       <div
         className={"sponsor-footer backgroundColor-darkColor"}
