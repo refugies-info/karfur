@@ -157,10 +157,6 @@ export class dispositifValidateModal extends Component {
     API.updateDispositifTagsOrNeeds({
       query: {
         dispositifId: this.props.dispositifId,
-        titreInformatif: this.props.titreInformatif,
-        titreMarque: this.props.titreMarque,
-        typeContenu: this.props.typeContenu,
-        status: this.props.status,
         tags: [this.state.tag1, this.state.tag2, this.state.tag3],
       },
     });

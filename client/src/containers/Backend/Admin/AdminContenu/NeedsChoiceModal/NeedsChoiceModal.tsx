@@ -144,10 +144,6 @@ export const NeedsChoiceModal = (props: Props) => {
     await API.updateDispositifTagsOrNeeds({
       query: {
         dispositifId: props.dispositifId,
-        titreInformatif: dispositif ? dispositif.titreInformatif : "",
-        titreMarque: dispositif ? dispositif.titreMarque : "",
-        typeContenu: dispositif ? dispositif.typeContenu : "",
-        status: dispositif ? dispositif.status : "",
         needs: selectedNeeds,
       },
     });

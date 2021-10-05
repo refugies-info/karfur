@@ -2398,10 +2398,6 @@ export class Dispositif extends Component {
               user={this.props.user}
               history={this.props.history}
               dispositifId={this.state.dispositif._id}
-              titreInformatif={this.state.content.titreInformatif}
-              titreMarque={this.state.content.titreMarque}
-              typeContenu={typeContenu}
-              status={this.state.status}
             />
             <FrameModal
               show={this.state.showTutorielModal}
