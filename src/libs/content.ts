@@ -58,7 +58,7 @@ export const getDescription = (infocard: DispositifContent, t: any) => {
         " " +
         infocard.bottomValue +
         " " +
-        t("Content.ans", " ans");
+        t("Content.ans", "ans");
 
       return result;
     }
@@ -69,7 +69,7 @@ export const getDescription = (infocard: DispositifContent, t: any) => {
         " " +
         infocard.topValue +
         " " +
-        t("Content.ans", " ans");
+        t("Content.ans", "ans");
 
       return result;
     }
