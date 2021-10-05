@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import { colors } from "../../../../colors";
@@ -156,8 +155,7 @@ export const NavButton = (props: NavButtonProps) => {
     hoverType,
     props.type
   );
-  console.log(windowWidth);
-  console.log(props.type);
+
   let isReductedSize =
     ((props.type === "notifications" || props.type === "favoris") &&
       windowWidth < 1300) ||
