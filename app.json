@@ -28,7 +28,10 @@
         "foregroundImage": "./src/theme/images/adaptive-icon.png",
         "backgroundColor": "#F6F6F6"
       },
-      "package": "com.agathek.refugiesinfoapp"
+      "package": "com.agathek.refugiesinfoapp",
+      "config": {
+        "googleMaps": { "apiKey": "AIzaSyBHhPwbMvJa3FOGg43E6FrgMOIZQyXcviY" }
+      }
     },
     "web": {
       "favicon": "./src/theme/images/icon-RI.png"

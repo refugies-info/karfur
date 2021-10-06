@@ -1,5 +1,6 @@
 import axios from "react-native-axios";
 import { getEnvironment } from "../libs/getEnvironment";
+import { ObjectId } from "../types/interface";
 
 const dbURL = getEnvironment().dbUrl;
 const siteSecret = getEnvironment().siteSecret;
@@ -54,5 +55,14 @@ export const getContentsForApp = ({
   return apiCaller.get(route);
 };
 
-export const get_dispositif = (params = {}) =>
-  apiCaller.post("/dispositifs/get_dispositif", params);
+export const getContentById = ({
+  locale,
+  contentId,
+}: {
+  locale: string;
+  contentId: ObjectId;
+}) => {
+  const route = `/dispositifs/getContentById?locale=${locale}&contentId=${contentId}`;
+
+  return apiCaller.get(route);
+};
