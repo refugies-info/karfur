@@ -244,7 +244,6 @@ class Sponsors extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.user && nextProps.userStructure) {
       const structure = nextProps.userStructure;
-
       this.setState({ mesStructures: [structure] });
     }
   }
@@ -493,7 +492,6 @@ class Sponsors extends Component {
       deduplicatedSponsors
     );
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
-
     return (
       <div
         className={"sponsor-footer backgroundColor-darkColor"}
@@ -804,6 +802,7 @@ class Sponsors extends Component {
             handleChangeValueEntered={this.handleChangeValueEntered}
             toggleModal={this.toggleModal}
           />
+
           {mesStructures.length > 0 &&
             this.state.structure.nom === "" &&
             mesStructures.map((struct) => (
@@ -864,6 +863,7 @@ class Sponsors extends Component {
                 fill={colors.noir}
                 onClick={() => {
                   this.toggleModal("responsabilite");
+                  this.handleChangeValueEntered("");
                   this.resetImg();
                 }}
                 className="push-right mr-8"
