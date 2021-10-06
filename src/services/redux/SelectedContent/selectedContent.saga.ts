@@ -5,7 +5,7 @@ import {
   finishLoading,
   LoadingStatusKey,
 } from "../LoadingStatus/loadingStatus.actions";
-import { get_dispositif } from "../../../utils/API";
+import { getContentById } from "../../../utils/API";
 import { logger } from "../../../logger";
 import {
   fetchSelectedContentActionCreator,
@@ -21,31 +21,23 @@ export function* fetchSelectedContent(
     logger.info("[fetchSelectedContent] saga", { contentId, locale });
     yield put(startLoading(LoadingStatusKey.FETCH_SELECTED_CONTENT));
 
-    const data = yield call(get_dispositif, {
-      query: { _id: contentId },
-      sort: {},
-      populate: "mainSponsor",
-
+    const data = yield call(getContentById, {
+      contentId,
       locale,
     });
     const contentLocale =
-      data && data.data && data.data.data && data.data.data.length > 0
-        ? data.data.data[0]
-        : null;
+      data && data.data && data.data.data ? data.data.data : null;
+
     yield put(
       setSelectedContentActionCreator({ content: contentLocale, locale })
     );
     if (locale !== "fr") {
-      const dataFr = yield call(get_dispositif, {
-        query: { _id: contentId },
-        sort: {},
-        populate: "mainSponsor",
+      const dataFr = yield call(getContentById, {
+        contentId,
         locale: "fr",
       });
       const contentFr =
-        dataFr && dataFr.data && dataFr.data.data && dataFr.data.data.length > 0
-          ? dataFr.data.data[0]
-          : null;
+        dataFr && dataFr.data && dataFr.data.data ? dataFr.data.data : null;
       yield put(
         setSelectedContentActionCreator({
           content: contentFr,
