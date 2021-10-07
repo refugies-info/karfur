@@ -10,6 +10,7 @@ export interface UserState {
   department: string | null;
   age: string | null;
   frenchLevel: string | null;
+  favorites: string[];
 }
 
 export const initialUserState = {
@@ -20,6 +21,7 @@ export const initialUserState = {
   department: null,
   age: null,
   frenchLevel: null,
+  favorites: []
 };
 
 export const userReducer = createReducer<UserState, UserActions>(
@@ -49,6 +51,10 @@ export const userReducer = createReducer<UserState, UserActions>(
     SET_USER_FRENCH_LEVEL: (state, action) => ({
       ...state,
       frenchLevel: action.payload,
+    }),
+    SET_USER_FAVORITES: (state, action) => ({
+      ...state,
+      favorites: action.payload,
     }),
   }
 );

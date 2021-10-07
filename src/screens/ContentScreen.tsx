@@ -25,7 +25,12 @@ import {
 import {
   selectedI18nCodeSelector,
   currentI18nCodeSelector,
+  isFavorite,
 } from "../services/redux/User/user.selectors";
+import {
+  addUserFavoriteActionCreator,
+  removeUserFavoriteActionCreator
+} from "../services/redux/User/user.actions";
 import { ContentFromHtml } from "../components/Content/ContentFromHtml";
 import { AvailableLanguageI18nCode, MapGoogle } from "../types/interface";
 import { HeaderImage } from "../components/Content/HeaderImage";
@@ -165,6 +170,14 @@ const ModalContainer = styled.View`
   top: 0;
   padding: ${theme.margin * 2}px;
   zIndex: 2;
+`;
+const TabBarContainer = styled.View`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 48px;
+  zIndex: 5;
+  background-color: ${theme.colors.black};
 `;
 
 const headersDispositif = [
@@ -310,6 +323,16 @@ export const ContentScreen = ({
     }
     return;
   };
+
+  // Favorites
+  const isContentFavorite = useSelector(isFavorite(contentId));
+  const toggleFavorites = () => {
+    if (isContentFavorite) {
+      dispatch(removeUserFavoriteActionCreator(contentId))
+    } else {
+      dispatch(addUserFavoriteActionCreator(contentId))
+    }
+  }
 
   if (isLoading) {
     return (
@@ -511,6 +534,7 @@ export const ContentScreen = ({
             )
               return (
                 <InfocardsSection
+                  key={index}
                   content={selectedContent.contenu[1].children.filter(
                     (element) => element.type === "card"
                   )}
@@ -520,8 +544,8 @@ export const ContentScreen = ({
               );
             if (index === 0 && selectedContent.contenu[0].content) {
               return (
-                <>
-                  <HeaderText key={header} textColor={tagDarkColor}>
+                <View key={index}>
+                  <HeaderText textColor={tagDarkColor}>
                     {t("Content." + header, header)}
                   </HeaderText>
                   <View style={{ marginHorizontal: theme.margin * 3 }}>
@@ -530,22 +554,22 @@ export const ContentScreen = ({
                       windowWidth={windowWidth}
                     />
                   </View>
-                </>
+                </View>
               );
             }
             if (index === 1) {
               return (
-                <>
-                  <HeaderText key={header} textColor={tagDarkColor}>
+                <View key={index}>
+                  <HeaderText textColor={tagDarkColor}>
                     {t("Content." + header, header)}
                   </HeaderText>
-                </>
+                </View>
               );
             }
 
             return (
-              <>
-                <HeaderText key={header} textColor={tagDarkColor}>
+              <View key={index}>
+                <HeaderText textColor={tagDarkColor}>
                   {t("Content." + header, header)}
                 </HeaderText>
                 {selectedContent &&
@@ -583,7 +607,7 @@ export const ContentScreen = ({
                       }
                     }
                   )}
-              </>
+              </View>
             );
           })}
           {!!selectedContent.externalLink && (
@@ -643,6 +667,18 @@ export const ContentScreen = ({
           )}
         </View>
       </ScrollView>
+
+      <TabBarContainer>
+        <CustomButton
+          onPress={toggleFavorites}
+          textColor={theme.colors.white}
+          i18nKey="Content.favorites"
+          defaultText=""
+          backgroundColor={tagDarkColor}
+          iconName={isContentFavorite ? "star" : "star-outline"}
+        ></CustomButton>
+      </TabBarContainer>
+
       <LanguageChoiceModal
         isModalVisible={isLanguageModalVisible}
         toggleModal={toggleLanguageModal}

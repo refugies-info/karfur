@@ -17,3 +17,10 @@ export const userLocationSelector = (state: RootState) => ({
 export const userAgeSelector = (state: RootState) => state.user.age;
 export const userFrenchLevelSelector = (state: RootState) =>
   state.user.frenchLevel;
+
+export const userFavorites = (state: RootState) =>
+  state.user.favorites;
+
+export const isFavorite = (contentId: string) => (state: RootState) => {
+  return state.user.favorites.includes(contentId);
+};
