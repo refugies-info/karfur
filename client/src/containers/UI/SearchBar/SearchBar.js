@@ -67,16 +67,22 @@ export class SearchBar extends React.Component {
     suggestions: [],
     selectedResult: {},
     isFocused: false,
+    isLoadingResults: false,
   };
 
   onChange = (_, { newValue }) => {
-    this.setState({ value: newValue });
+    this.setState({ value: newValue, isLoadingResults: true });
     if (this.props.structures) {
       this.props.handleChangeValueEntered(newValue);
     }
   };
+
   onSuggestionsFetchRequested = debounce(
-    ({ value }) => this.setState({ suggestions: this.getSuggestions(value) }),
+    ({ value }) =>
+      this.setState({
+        suggestions: this.getSuggestions(value),
+        isLoadingResults: false,
+      }),
     200
   );
   onSuggestionsClearRequested = () => this.setState({ suggestions: [] });
@@ -240,7 +246,7 @@ export class SearchBar extends React.Component {
           inputProps={inputProps}
           onSuggestionSelected={this.onSuggestionSelected}
         />
-        {isNoResult && structures && (
+        {isNoResult && structures && !this.state.isLoadingResults && (
           <NoResultContainer>
             {" "}
             <img
