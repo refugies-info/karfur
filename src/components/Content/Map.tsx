@@ -136,7 +136,7 @@ export const Map = (props: PropsType) => {
         })}
       </MapView>
       <BottomSheet
-        index={-1}
+        index={0}
         ref={(ref) => (bottomSheet = ref)}
         enablePanDownToClose={true}
         snapPoints={animatedSnapPoints}
