@@ -20,7 +20,10 @@
     "ios": {
       "supportsTablet": true,
       "userInterfaceStyle": "light",
-      "bundleIdentifier": "refugiesInfo"
+      "bundleIdentifier": "refugiesInfo",
+      "config": {
+        "googleMapsApiKey": "AIzaSyCMF4DMuY9t05jvfc98lr95jq5luRSU8_0"
+      }
     },
     "android": {
       "userInterfaceStyle": "light",

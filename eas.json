@@ -21,7 +21,7 @@
       },
       "ios": {
         "env": {
-          "API_URL": "https://api.new.refugies.info"
+          "API_URL": "https://api.staging.refugies.info"
         },
         "simulator": true
       }
