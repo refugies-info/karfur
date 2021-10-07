@@ -3515,47 +3515,8 @@ exports[`ContentScreen should render correctly 1`] = `
               </Text>
             </View>
           </View>
-          <AIRMap
-            handlePanDrag={false}
-            initialRegion={
-              Object {
-                "latitude": 47,
-                "latitudeDelta": 10,
-                "longitude": 2,
-                "longitudeDelta": 5,
-              }
-            }
-            onChange={[Function]}
-            onLayout={[Function]}
-            onMapReady={[Function]}
-            onMarkerPress={[Function]}
-            region={null}
-            style={
-              Object {
-                "height": 240,
-                "width": 702,
-              }
-            }
-          >
-            <AIRMapMarker
-              coordinate={
-                Object {
-                  "latitude": 45.1737353,
-                  "longitude": 5.7303066,
-                }
-              }
-              onPress={[Function]}
-              stopPropagation={false}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "position": "absolute",
-                  },
-                  undefined,
-                ]
-              }
-            >
+          <View>
+            <View>
               <View
                 style={
                   Object {
@@ -3624,8 +3585,8 @@ exports[`ContentScreen should render correctly 1`] = `
                   </RNSVGGroup>
                 </RNSVGSvgView>
               </View>
-            </AIRMapMarker>
-          </AIRMap>
+            </View>
+          </View>
         </View>
         <View
           isRTL={false}
@@ -5194,49 +5155,8 @@ exports[`ContentScreen should render correctly 1`] = `
         </RNCSafeAreaView>
       </View>
       <View>
-        <AIRMap
-          handlePanDrag={false}
-          initialRegion={
-            Object {
-              "latitude": 47,
-              "latitudeDelta": 10,
-              "longitude": 2,
-              "longitudeDelta": 5,
-            }
-          }
-          maxZoomLevel={13}
-          onChange={[Function]}
-          onLayout={[Function]}
-          onMapReady={[Function]}
-          onMarkerPress={[Function]}
-          onPress={[Function]}
-          region={null}
-          style={
-            Object {
-              "height": 1334,
-              "width": 750,
-            }
-          }
-        >
-          <AIRMapMarker
-            coordinate={
-              Object {
-                "latitude": 45.1737353,
-                "longitude": 5.7303066,
-              }
-            }
-            onPress={[Function]}
-            stopPropagation={false}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                  "position": "absolute",
-                },
-                undefined,
-              ]
-            }
-          >
+        <View>
+          <View>
             <View
               style={
                 Object {
@@ -5305,8 +5225,8 @@ exports[`ContentScreen should render correctly 1`] = `
                 </RNSVGGroup>
               </RNSVGSvgView>
             </View>
-          </AIRMapMarker>
-        </AIRMap>
+          </View>
+        </View>
         <View>
           <View
             onLayout={[MockFunction]}
@@ -8852,47 +8772,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
               </Text>
             </View>
           </View>
-          <AIRMap
-            handlePanDrag={false}
-            initialRegion={
-              Object {
-                "latitude": 47,
-                "latitudeDelta": 10,
-                "longitude": 2,
-                "longitudeDelta": 5,
-              }
-            }
-            onChange={[Function]}
-            onLayout={[Function]}
-            onMapReady={[Function]}
-            onMarkerPress={[Function]}
-            region={null}
-            style={
-              Object {
-                "height": 240,
-                "width": 702,
-              }
-            }
-          >
-            <AIRMapMarker
-              coordinate={
-                Object {
-                  "latitude": 45.1737353,
-                  "longitude": 5.7303066,
-                }
-              }
-              onPress={[Function]}
-              stopPropagation={false}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "position": "absolute",
-                  },
-                  undefined,
-                ]
-              }
-            >
+          <View>
+            <View>
               <View
                 style={
                   Object {
@@ -8961,8 +8842,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   </RNSVGGroup>
                 </RNSVGSvgView>
               </View>
-            </AIRMapMarker>
-          </AIRMap>
+            </View>
+          </View>
         </View>
         <View
           isRTL={false}
@@ -10531,49 +10412,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
         </RNCSafeAreaView>
       </View>
       <View>
-        <AIRMap
-          handlePanDrag={false}
-          initialRegion={
-            Object {
-              "latitude": 47,
-              "latitudeDelta": 10,
-              "longitude": 2,
-              "longitudeDelta": 5,
-            }
-          }
-          maxZoomLevel={13}
-          onChange={[Function]}
-          onLayout={[Function]}
-          onMapReady={[Function]}
-          onMarkerPress={[Function]}
-          onPress={[Function]}
-          region={null}
-          style={
-            Object {
-              "height": 1334,
-              "width": 750,
-            }
-          }
-        >
-          <AIRMapMarker
-            coordinate={
-              Object {
-                "latitude": 45.1737353,
-                "longitude": 5.7303066,
-              }
-            }
-            onPress={[Function]}
-            stopPropagation={false}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                  "position": "absolute",
-                },
-                undefined,
-              ]
-            }
-          >
+        <View>
+          <View>
             <View
               style={
                 Object {
@@ -10642,8 +10482,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 </RNSVGGroup>
               </RNSVGSvgView>
             </View>
-          </AIRMapMarker>
-        </AIRMap>
+          </View>
+        </View>
         <View>
           <View
             onLayout={[MockFunction]}
