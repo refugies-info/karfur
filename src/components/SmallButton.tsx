@@ -6,10 +6,22 @@ import { Icon } from "react-native-eva-icons";
 const ButtonContainer = styled.TouchableOpacity`
   background-color: ${(props: { reversed: boolean }) =>
     props.reversed ? theme.colors.black : theme.colors.white};
-  border-radius: ${theme.radius * 2}px;
+  border-radius: ${(props: { rounded: boolean }) =>
+    !props.rounded ? theme.radius * 2 : theme.radius * 10}px;
   padding: ${theme.radius * 2}px;
-  box-shadow: 0px 0px 40px rgba(33, 33, 33, 0.1);
+  ${(props: { bigShadow: boolean }) => props.bigShadow ? `
+  shadow-color: #212121;
+  shadow-offset: 0 8px;
+  shadow-opacity: 0.24;
+  shadow-radius: 16px;
+  elevation: 17;
+  ` : `
+  shadow-color: #212121;
+  shadow-offset: 0 0;
+  shadow-opacity: 0.1;
+  shadow-radius: 40px;
   elevation: 1;
+  `}
 `;
 
 const ICON_SIZE = 24;
@@ -18,11 +30,15 @@ interface Props {
   iconName: string;
   onPress?: () => void;
   reversed?: boolean;
+  rounded?: boolean;
+  bigShadow?: boolean;
 }
 export const SmallButton = (props: Props) => (
   <ButtonContainer
     onPress={props.onPress}
     reversed={props.reversed}
+    rounded={!!props.rounded}
+    bigShadow={!!props.bigShadow}
   >
     <Icon
       name={props.iconName}

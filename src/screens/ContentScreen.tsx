@@ -50,6 +50,7 @@ import { MiniMap } from "../components/Content/MiniMap";
 import { AccordionAnimated } from "../components/Content/AccordionAnimated";
 import { ErrorScreen } from "../components/ErrorScreen";
 import { FixSafeAreaView } from "../components/FixSafeAreaView";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -175,9 +176,13 @@ const TabBarContainer = styled.View`
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 48px;
   zIndex: 5;
-  background-color: ${theme.colors.black};
+  background-color: ${theme.colors.white};
+  shadow-color: #212121;
+  shadow-offset: 0 -1px;
+  shadow-opacity: 0.08;
+  shadow-radius: 24px;
+  elevation: 14;
 `;
 
 const headersDispositif = [
@@ -226,6 +231,8 @@ export const ContentScreen = ({
   const [nbLinesTitreMarque, setNbLinesTitreMarque] = React.useState(1);
 
   const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
+
+  const insets = useSafeAreaInsets();
 
   const toggleLanguageModal = () =>
     setLanguageModalVisible(!isLanguageModalVisible);
@@ -669,14 +676,21 @@ export const ContentScreen = ({
       </ScrollView>
 
       <TabBarContainer>
-        <CustomButton
-          onPress={toggleFavorites}
-          textColor={theme.colors.white}
-          i18nKey="Content.favorites"
-          defaultText=""
-          backgroundColor={tagDarkColor}
-          iconName={isContentFavorite ? "star" : "star-outline"}
-        ></CustomButton>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            paddingTop: theme.margin,
+            paddingBottom: insets.bottom || theme.margin
+          }}
+        >
+          <SmallButton
+            onPress={toggleFavorites}
+            iconName={isContentFavorite ? "star" : "star-outline"}
+            rounded={true}
+            bigShadow={true}
+          />
+        </View>
       </TabBarContainer>
 
       <LanguageChoiceModal
