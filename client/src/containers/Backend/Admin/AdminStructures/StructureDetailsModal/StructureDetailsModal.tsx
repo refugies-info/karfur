@@ -144,8 +144,10 @@ const getStructureWithAllInformationRequired = (
 const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   props: Props
 ) => {
-  const [structure, setStructure] =
-    useState<SimplifiedStructureForAdmin | null>(null);
+  const [
+    structure,
+    setStructure,
+  ] = useState<SimplifiedStructureForAdmin | null>(null);
   const [uploading, setUploading] = useState(false);
 
   const isLoadingStructures = useSelector(
@@ -241,11 +243,10 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
     structure && structure.picture && structure.picture.secure_url;
 
   if (structure) {
-    const dispositifsWithAllInformation =
-      getStructureWithAllInformationRequired(
-        structure.dispositifsIds,
-        allDispositifs
-      );
+    const dispositifsWithAllInformation = getStructureWithAllInformationRequired(
+      structure.dispositifsIds,
+      allDispositifs
+    );
     structure.dispositifsSimplified = dispositifsWithAllInformation;
   }
 
@@ -319,23 +320,15 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
           </LogoContainer>
           <Title>Premier responsable</Title>
           {!isLoading && (
-            <div
-              onClick={() => {
-                props.toggleModal();
-                props.setSelectedUserIdAndToggleModal(structure.responsable);
-              }}
-              style={{
-                cursor: "pointer",
-                marginBottom: "8px",
-                textDecoration: "underline",
-              }}
-            >
-              <ResponsableComponent
-                responsable={structure.responsable}
-                canModifyRespo={true}
-                onClick={props.toggleRespoModal}
-              />
-            </div>
+            <ResponsableComponent
+              responsable={structure.responsable}
+              canClickOnRespo={true}
+              toggleModal={props.toggleModal}
+              onUserNameClick={() =>
+                props.setSelectedUserIdAndToggleModal(structure.responsable)
+              }
+              onNewRespoClick={props.toggleRespoModal}
+            />
           )}
 
           {isLoading && (
@@ -459,8 +452,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                     >
                       <ResponsableComponent
                         responsable={dispositif.creator}
-                        canModifyRespo={false}
-                        onClick={() => {}}
+                        canClickOnRespo={false}
                       />
                     </div>
                   </DetailsFichesContainer>
