@@ -13,6 +13,7 @@ import { ObjectId } from "mongodb";
 import API from "../../../../../utils/API";
 import Swal from "sweetalert2";
 import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
+import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import { structureSelector } from "services/AllStructures/allStructures.selector";
 import { colors } from "colors";
 
@@ -88,6 +89,7 @@ export const SelectFirstResponsableModal = (props: Props) => {
       });
       props.toggleModal();
       dispatch(fetchAllStructuresActionsCreator());
+      dispatch(fetchAllUsersActionsCreator());
     } catch (error) {
       Swal.fire({
         title: "Oh non",
