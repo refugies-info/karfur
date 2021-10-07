@@ -71,7 +71,9 @@ export class SearchBar extends React.Component {
 
   onChange = (_, { newValue }) => {
     this.setState({ value: newValue });
-    this.props.handleChangeValueEntered(newValue);
+    if (this.props.structures) {
+      this.props.handleChangeValueEntered(newValue);
+    }
   };
   onSuggestionsFetchRequested = debounce(
     ({ value }) => this.setState({ suggestions: this.getSuggestions(value) }),
@@ -238,7 +240,7 @@ export class SearchBar extends React.Component {
           inputProps={inputProps}
           onSuggestionSelected={this.onSuggestionSelected}
         />
-        {isNoResult && (
+        {isNoResult && structures && (
           <NoResultContainer>
             {" "}
             <img
