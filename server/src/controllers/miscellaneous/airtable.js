@@ -1,8 +1,8 @@
 var Airtable = require("airtable");
-var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(
+var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY_APPLI }).base(
   process.env.NODE_ENV === "staging"
     ? process.env.AIRTABLE_BASE_DIAIR_TEST
-    : process.env.airtableBase
+    : process.env.AIRTABLE_BASE_TRAD
 );
 const logger = require("../../logger");
 
@@ -185,5 +185,4 @@ const addOrUpdateDispositifInContenusAirtable = async (
     });
 };
 
-exports.addOrUpdateDispositifInContenusAirtable =
-  addOrUpdateDispositifInContenusAirtable;
+exports.addOrUpdateDispositifInContenusAirtable = addOrUpdateDispositifInContenusAirtable;
