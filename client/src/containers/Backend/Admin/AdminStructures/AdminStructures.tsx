@@ -58,25 +58,32 @@ export const AdminStructures = () => {
   const [filter, setFilter] = useState("En attente");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
-  const [showStructureDetailsModal, setShowStructureDetailsModal] =
-    useState(false);
+  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
+    false
+  );
   const [showNewStructureModal, setShowNewStructureModal] = useState(false);
 
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
-  const [selectedStructureId, setSelectedStructureId] =
-    useState<ObjectId | null>(null);
+  const [
+    selectedStructureId,
+    setSelectedStructureId,
+  ] = useState<ObjectId | null>(null);
   const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(null);
   const [showContentDetailsModal, setShowContentDetailsModal] = useState(false);
-  const [selectedContentId, setSelectedContentId] =
-    useState<ObjectId | null>(null);
-  const [selectedContentStatus, setSelectedContentStatus] =
-    useState<string | null>(null);
-  const [showImprovementsMailModal, setShowImprovementsMailModal] =
-    useState(false);
+  const [selectedContentId, setSelectedContentId] = useState<ObjectId | null>(
+    null
+  );
+  const [selectedContentStatus, setSelectedContentStatus] = useState<
+    string | null
+  >(null);
+  const [showImprovementsMailModal, setShowImprovementsMailModal] = useState(
+    false
+  );
   const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
-  const [showChangeStructureModal, setShowChangeStructureModal] =
-    useState(false);
+  const [showChangeStructureModal, setShowChangeStructureModal] = useState(
+    false
+  );
   const dispatch = useDispatch();
 
   const isLoading = useSelector(
@@ -253,8 +260,9 @@ export const AdminStructures = () => {
       ? structures.filter((structure) => structure.status === status).length
       : 0;
 
-  const { structuresToDisplay, structuresForCount } =
-    filterAndSortStructures(structures);
+  const { structuresToDisplay, structuresForCount } = filterAndSortStructures(
+    structures
+  );
 
   const nbNonDeletedStructures = structures.filter(
     (structure) => structure.status !== "Supprimé"
@@ -373,8 +381,7 @@ export const AdminStructures = () => {
                 >
                   <ResponsableComponent
                     responsable={element.responsable}
-                    canModifyRespo={false}
-                    onClick={() => {}}
+                    canClickOnRespo={false}
                   />
                 </td>
                 <td
