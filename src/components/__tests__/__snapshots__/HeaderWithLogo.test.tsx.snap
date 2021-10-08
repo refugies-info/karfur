@@ -64,12 +64,12 @@ exports[`HeaderWithLogo should render correctly with LTR 1`] = `
             "paddingLeft": 12,
             "paddingRight": 12,
             "paddingTop": 12,
-            "shadowColor": "rgba(33, 33, 33, 0.1)",
+            "shadowColor": "#212121",
             "shadowOffset": Object {
               "height": 0,
               "width": 0,
             },
-            "shadowOpacity": 1,
+            "shadowOpacity": 0.1,
             "shadowRadius": 40,
           }
         }
@@ -213,12 +213,12 @@ exports[`HeaderWithLogo should render correctly with RTL 1`] = `
             "paddingLeft": 12,
             "paddingRight": 12,
             "paddingTop": 12,
-            "shadowColor": "rgba(33, 33, 33, 0.1)",
+            "shadowColor": "#212121",
             "shadowOffset": Object {
               "height": 0,
               "width": 0,
             },
-            "shadowOpacity": 1,
+            "shadowOpacity": 0.1,
             "shadowRadius": 40,
           }
         }

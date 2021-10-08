@@ -12,6 +12,15 @@ jest.mock("../../hooks/useTranslationWithRTL", () => ({
   }),
 }));
 
+jest.mock("react-native-safe-area-context", () => {
+  const { SafeAreaView } = jest.requireActual("react-native-safe-area-context");
+
+  return {
+    useSafeAreaInsets: () => ({ insets: { bottom: 0 } }),
+    SafeAreaView
+  }
+})
+
 jest.mock("@gorhom/bottom-sheet", () => {
   const RN = require("react-native");
   const { MockBottomSheet } = require("../../jest/__mocks__/MockBottomSheet");
@@ -58,6 +67,7 @@ describe("ContentScreen", () => {
         ...initialRootStateFactory(),
         user: {
           currentLanguagei18nCode: "fr",
+          favorites: []
         },
         selectedContent: {
           fr: selectedContent,
@@ -91,6 +101,7 @@ describe("ContentScreen", () => {
         ...initialRootStateFactory(),
         user: {
           currentLanguagei18nCode: "fr",
+          favorites: []
         },
         selectedContent: {
           fr: selectedContent,

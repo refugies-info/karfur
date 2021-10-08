@@ -82,8 +82,8 @@ export const InfocardsSection = (props: Props) => {
     <MainContainer>
       {formattedData.map((data, indexSection) => {
         return (
-          <>
-            <SectionContainer key={indexSection}>
+          <View key={indexSection}>
+            <SectionContainer>
               <TitleText color={props.color}>
                 {t("Content." + data.title, data.title)}
               </TitleText>
@@ -134,7 +134,7 @@ export const InfocardsSection = (props: Props) => {
               })}
             </SectionContainer>
             {indexSection !== formattedData.length - 1 && <Separator />}
-          </>
+          </View>
         );
       })}
     </MainContainer>

@@ -44,12 +44,12 @@ exports[`Filter city should render correctly when city selected 1`] = `
           "paddingLeft": 12,
           "paddingRight": 12,
           "paddingTop": 12,
-          "shadowColor": "rgba(33, 33, 33, 0.1)",
+          "shadowColor": "#212121",
           "shadowOffset": Object {
             "height": 0,
             "width": 0,
           },
-          "shadowOpacity": 1,
+          "shadowOpacity": 0.1,
           "shadowRadius": 40,
         }
       }
@@ -245,12 +245,12 @@ exports[`Filter city should render correctly when city selected 1`] = `
           "paddingLeft": 12,
           "paddingRight": 12,
           "paddingTop": 12,
-          "shadowColor": "rgba(33, 33, 33, 0.1)",
+          "shadowColor": "#212121",
           "shadowOffset": Object {
             "height": 0,
             "width": 0,
           },
-          "shadowOpacity": 1,
+          "shadowOpacity": 0.1,
           "shadowRadius": 40,
         }
       }
@@ -923,12 +923,12 @@ exports[`Filter city should render correctly when no city 1`] = `
           "paddingLeft": 12,
           "paddingRight": 12,
           "paddingTop": 12,
-          "shadowColor": "rgba(33, 33, 33, 0.1)",
+          "shadowColor": "#212121",
           "shadowOffset": Object {
             "height": 0,
             "width": 0,
           },
-          "shadowOpacity": 1,
+          "shadowOpacity": 0.1,
           "shadowRadius": 40,
         }
       }
@@ -1124,12 +1124,12 @@ exports[`Filter city should render correctly when no city 1`] = `
           "paddingLeft": 12,
           "paddingRight": 12,
           "paddingTop": 12,
-          "shadowColor": "rgba(33, 33, 33, 0.1)",
+          "shadowColor": "#212121",
           "shadowOffset": Object {
             "height": 0,
             "width": 0,
           },
-          "shadowOpacity": 1,
+          "shadowOpacity": 0.1,
           "shadowRadius": 40,
         }
       }

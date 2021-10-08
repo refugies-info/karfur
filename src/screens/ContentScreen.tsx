@@ -21,7 +21,12 @@ import { TextBigBold, TextSmallNormal } from "../components/StyledText";
 import {
   selectedI18nCodeSelector,
   currentI18nCodeSelector,
+  isFavorite,
 } from "../services/redux/User/user.selectors";
+import {
+  addUserFavoriteActionCreator,
+  removeUserFavoriteActionCreator
+} from "../services/redux/User/user.actions";
 import { ContentFromHtml } from "../components/Content/ContentFromHtml";
 import { AvailableLanguageI18nCode, MapGoogle } from "../types/interface";
 import { HeaderImage } from "../components/Content/HeaderImage";
@@ -41,6 +46,8 @@ import { MiniMap } from "../components/Content/MiniMap";
 import { AccordionAnimated } from "../components/Content/AccordionAnimated";
 import { ErrorScreen } from "../components/ErrorScreen";
 import { FixSafeAreaView } from "../components/FixSafeAreaView";
+import { Toast } from "../components/Toast";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Portal } from "react-native-portalize";
 import { ContentImage } from "../components/Content/ContentImage";
 
@@ -130,6 +137,18 @@ const ModalContainer = styled.View`
   padding: ${theme.margin * 2}px;
   z-index: 2;
 `;
+const TabBarContainer = styled.View`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: ${theme.colors.white};
+  shadow-color: #212121;
+  shadow-offset: 0 -1px;
+  shadow-opacity: 0.08;
+  shadow-radius: 24px;
+  z-index: 14;
+  elevation: 14;
+`;
 
 const headersDispositif = [
   "C'est quoi ?",
@@ -177,6 +196,8 @@ export const ContentScreen = ({
   const [nbLinesTitreMarque, setNbLinesTitreMarque] = React.useState(1);
 
   const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
+
+  const insets = useSafeAreaInsets();
 
   const toggleLanguageModal = () =>
     setLanguageModalVisible(!isLanguageModalVisible);
@@ -275,6 +296,30 @@ export const ContentScreen = ({
     }
     return;
   };
+
+  // Favorites
+  const [favoriteToast, setFavoriteToast] = React.useState<{text: string, link?: string}|null>(null);
+  const isContentFavorite = useSelector(isFavorite(contentId));
+  const toggleFavorites = () => {
+    if (isContentFavorite) {
+      dispatch(removeUserFavoriteActionCreator(contentId))
+      setFavoriteToast({
+        text: t(
+          "Content.favoris supprimé",
+          "Fiche supprimée de tes favoris"
+        )
+      })
+    } else {
+      dispatch(addUserFavoriteActionCreator(contentId))
+      setFavoriteToast({
+        text: t(
+          "Content.favoris ajouté",
+          "Fiche ajoutée à tes favoris"
+        ),
+        link: "Favoris"
+      })
+    }
+  }
 
   if (isLoading) {
     return (
@@ -384,7 +429,7 @@ export const ContentScreen = ({
   };
 
   return (
-    <View>
+    <View style={{ paddingBottom: 60 }}>
       <FixedContainerForHeader>
         <Animated.View style={{ backgroundColor: boxInterpolation }}>
           <HeaderWithBackForWrapper
@@ -458,6 +503,7 @@ export const ContentScreen = ({
             )
               return (
                 <InfocardsSection
+                  key={index}
                   content={selectedContent.contenu[1].children.filter(
                     (element) => element.type === "card"
                   )}
@@ -467,8 +513,8 @@ export const ContentScreen = ({
               );
             if (index === 0 && selectedContent.contenu[0].content) {
               return (
-                <>
-                  <HeaderText key={header} textColor={tagDarkColor}>
+                <View key={index}>
+                  <HeaderText textColor={tagDarkColor}>
                     {t("Content." + header, header)}
                   </HeaderText>
                   <View style={{ marginHorizontal: theme.margin * 3 }}>
@@ -477,22 +523,22 @@ export const ContentScreen = ({
                       windowWidth={windowWidth}
                     />
                   </View>
-                </>
+                </View>
               );
             }
             if (index === 1) {
               return (
-                <>
-                  <HeaderText key={header} textColor={tagDarkColor}>
+                <View key={index}>
+                  <HeaderText textColor={tagDarkColor}>
                     {t("Content." + header, header)}
                   </HeaderText>
-                </>
+                </View>
               );
             }
 
             return (
-              <>
-                <HeaderText key={header} textColor={tagDarkColor}>
+              <View key={index}>
+                <HeaderText textColor={tagDarkColor}>
                   {t("Content." + header, header)}
                 </HeaderText>
                 {selectedContent &&
@@ -530,7 +576,7 @@ export const ContentScreen = ({
                       }
                     }
                   )}
-              </>
+              </View>
             );
           })}
           {!!selectedContent.externalLink && (
@@ -587,10 +633,37 @@ export const ContentScreen = ({
           )}
         </View>
       </ScrollView>
+
+      <TabBarContainer>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            paddingTop: theme.margin,
+            paddingBottom: insets.bottom || theme.margin
+          }}
+        >
+          <SmallButton
+            onPress={toggleFavorites}
+            iconName={isContentFavorite ? "star" : "star-outline"}
+            rounded={true}
+            bigShadow={true}
+          />
+        </View>
+      </TabBarContainer>
+
       <LanguageChoiceModal
         isModalVisible={isLanguageModalVisible}
         toggleModal={toggleLanguageModal}
       />
+      {favoriteToast !== null &&
+        <Toast
+          text={favoriteToast.text}
+          textLink={favoriteToast.link}
+          navigation={navigation}
+          onClose={() => { setFavoriteToast(null) }}
+        />
+      }
       {/*
         TODO: Fix for https://github.com/software-mansion/react-native-gesture-handler/issues/139
         Remove when this released https://github.com/software-mansion/react-native-gesture-handler/pull/1603

@@ -7,7 +7,8 @@ export const saveItemInAsyncStorage = async (
     | "CITY"
     | "DEP"
     | "AGE"
-    | "FRENCH_LEVEL",
+    | "FRENCH_LEVEL"
+    | "FAVORITES",
   value: string
 ) => await AsyncStorage.setItem(item, value);
 
@@ -19,6 +20,7 @@ export const getItemInAsyncStorage = async (
     | "DEP"
     | "AGE"
     | "FRENCH_LEVEL"
+    | "FAVORITES"
 ) => await AsyncStorage.getItem(item);
 
 export const deleteItemInAsyncStorage = async (
@@ -29,4 +31,5 @@ export const deleteItemInAsyncStorage = async (
     | "DEP"
     | "AGE"
     | "FRENCH_LEVEL"
+    | "FAVORITES"
 ) => await AsyncStorage.removeItem(item);

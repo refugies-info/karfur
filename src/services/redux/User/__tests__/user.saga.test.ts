@@ -11,6 +11,8 @@ import latestActionsSaga, {
   removeUserAge,
   removeUserFrenchLevel,
   removeHasUserSeenOnboarding,
+  addUserFavorite,
+  removeUserFavorite
 } from "../user.saga";
 import {
   saveItemInAsyncStorage,
@@ -24,6 +26,7 @@ import {
   setUserFrenchLevelActionCreator,
   setUserAgeActionCreator,
   setUserLocationActionCreator,
+  setUserFavoritesActionCreator
 } from "../user.actions";
 import { fetchContentsActionCreator } from "../../Contents/contents.actions";
 import { hasUserSeenOnboardingSelector } from "../user.selectors";
@@ -57,6 +60,10 @@ describe("[Saga] user", () => {
           "REMOVE_USER_HAS_SEEN_ONBOARDING",
           removeHasUserSeenOnboarding
         )
+        .next()
+        .takeLatest("ADD_USER_FAVORITE", addUserFavorite)
+        .next()
+        .takeLatest("REMOVE_USER_FAVORITE", removeUserFavorite)
         .next()
         .isDone();
     });
@@ -284,6 +291,8 @@ describe("[Saga] user", () => {
         .next(null)
         .select(hasUserSeenOnboardingSelector)
         .next(false)
+        .call(getItemInAsyncStorage, "FAVORITES")
+        .next(null)
         .isDone();
     });
 
@@ -314,6 +323,10 @@ describe("[Saga] user", () => {
         .next(true)
         .put(fetchContentsActionCreator())
         .next()
+        .call(getItemInAsyncStorage, "FAVORITES")
+        .next("[\"5e7b292c1eaf4d0051d9efe2\"]")
+        .put(setUserFavoritesActionCreator(["5e7b292c1eaf4d0051d9efe2"]))
+        .next()
         .isDone();
     });
 
@@ -330,6 +343,8 @@ describe("[Saga] user", () => {
         .throw(new Error("error"))
         .select(hasUserSeenOnboardingSelector)
         .next(false)
+        .call(getItemInAsyncStorage, "FAVORITES")
+        .throw(new Error("error"))
         .isDone();
     });
   });
