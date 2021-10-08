@@ -168,7 +168,7 @@ export const AccordionAnimated = (props: Props) => {
             <Animated.View
               style={[styles.bodyBackground, { height: bodyHeight }]}
             >
-              <RTLView
+              <View
                 onLayout={(event: any) =>
                   setBodySectionHeight(event.nativeEvent.layout.height)
                 }
@@ -182,7 +182,7 @@ export const AccordionAnimated = (props: Props) => {
                     />
                   )}
                 </ExpandedContentContainer>
-              </RTLView>
+              </View>
             </Animated.View>
           }
         </View>

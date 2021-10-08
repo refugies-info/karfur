@@ -54,29 +54,37 @@ export const getDescription = (infocard: DispositifContent, t: any) => {
   if (infocard.title === "Âge requis") {
     if (infocard.contentTitle === "Plus de ** ans") {
       const result =
-        t("Content.Plus de", "Plus de ") +
+        t("Content.Plus de", "Plus de") +
+        " " +
         infocard.bottomValue +
-        t("Content.ans", " ans");
+        " " +
+        t("Content.ans", "ans");
 
       return result;
     }
 
     if (infocard.contentTitle === "Moins de ** ans") {
       const result =
-        t("Content.Moins de", "Moins de ") +
+        t("Content.Moins de", "Moins de") +
+        " " +
         infocard.topValue +
-        t("Content.ans", " ans");
+        " " +
+        t("Content.ans", "ans");
 
       return result;
     }
 
     if (infocard.contentTitle === "De ** à ** ans") {
       const result =
-        t("Content.De", "De ") +
+        t("Content.De", "De") +
+        " " +
         infocard.bottomValue +
-        t("Content.à", " à ") +
+        " " +
+        t("Content.à", "à") +
+        " " +
         infocard.topValue +
-        t("Content.ans", " ans");
+        " " +
+        t("Content.ans", "ans");
 
       return result;
     }

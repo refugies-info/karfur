@@ -55,12 +55,8 @@ export const OnboardingStart = ({
         resizeMode="cover"
       />
       <ElementsContainer>
-        <StyledText>{t("Onboarding.bonjour", "trad")}</StyledText>
-        <StyledText
-          marginBottom={`${theme.margin * 5}px`}
-          marginTop={`${theme.margin * 2}px`}
-        >
-          {t("Onboarding.bonjour_desc", "trad")}
+        <StyledText marginBottom={`${theme.margin * 8}px`}>
+          {t("Onboarding.bonjour", "trad")}
         </StyledText>
 
         <CustomButton

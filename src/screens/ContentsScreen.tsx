@@ -167,12 +167,12 @@ export const ContentsScreen = ({
   };
 
   const handleScroll = (event: any) => {
-    if (event.nativeEvent.contentOffset.y > 10) {
+    if (event.nativeEvent.contentOffset.y > 0) {
       toggleSimplifiedHeader(true);
       return;
     }
 
-    if (Platform.OS === "ios" && event.nativeEvent.contentOffset.y < 10) {
+    if (Platform.OS === "ios" && event.nativeEvent.contentOffset.y < 0) {
       toggleSimplifiedHeader(false);
       return;
     }

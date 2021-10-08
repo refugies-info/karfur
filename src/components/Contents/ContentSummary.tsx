@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
 import { ObjectId } from "../../types/interface";
-import { TextNormalBold, TextSmallNormal } from "../StyledText";
+import { TextSmallBold, TextVerySmallNormal } from "../StyledText";
 import { RTLTouchableOpacity } from "../BasicComponents";
 import { Image } from "react-native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -47,14 +47,14 @@ const DemarcheIconContainer = styled.View`
   height: 100%;
 `;
 
-const TitreInfoText = styled(TextNormalBold)`
+const TitreInfoText = styled(TextSmallBold)`
   color: ${(props: { color: string }) => props.color};
   margin-bottom: ${(props: { isDispo: boolean }) =>
     props.isDispo ? theme.margin : 0}px;
   flex-shrink: 1;
 `;
 
-const TitreMarqueText = styled(TextSmallNormal)`
+const TitreMarqueText = styled(TextVerySmallNormal)`
   color: ${(props: { color: string }) => props.color};
   flex-shrink: 1;
 `;
@@ -92,6 +92,7 @@ export const ContentSummary = (props: Props) => {
             tagVeryLightColor: props.tagVeryLightColor,
             tagName: props.tagName,
             tagLightColor: props.tagLightColor,
+            iconName: props.iconName,
           })
         }
         isDispo={true}
@@ -136,6 +137,7 @@ export const ContentSummary = (props: Props) => {
           tagVeryLightColor: props.tagVeryLightColor,
           tagName: props.tagName,
           tagLightColor: props.tagLightColor,
+          iconName: props.iconName,
         })
       }
       isDispo={false}

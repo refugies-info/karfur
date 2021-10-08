@@ -60,24 +60,20 @@ export interface DispositifContent {
   noContent?: boolean;
 }
 
+export interface Sponsor {
+  picture?: { secure_url: string };
+  nom: string;
+}
 export interface Content {
   _id: ObjectId;
-  abstract: string;
-  autoSave: boolean;
   avancement: Record<string, number>;
-  contact: string;
   contenu: DispositifContent[];
-  created_at: Moment;
   externalLink: string;
-  mainSponsor: any;
+  mainSponsor: Sponsor;
   tags: Tag[];
   titreInformatif: string;
   titreMarque: string;
-  traductions: ObjectId[];
   typeContenu: "dispositif" | "demarche";
-  updatedAt: Moment;
-  nbVues: number;
-  nbMercis: number;
   lastModificationDate: Moment | null;
 }
 
@@ -90,6 +86,7 @@ export interface MarkerGoogle {
   telephone?: string;
   vicinity: string;
   description?: string;
+  place_id: string;
 }
 
 export interface MapGoogle {

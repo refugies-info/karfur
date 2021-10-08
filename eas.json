@@ -1,33 +1,29 @@
 {
-  "builds": {
-    "ios": {
-      "release": {
-        "workflow": "generic",
+  "build": {
+    "release": {
+      "android": {
         "env": {
           "API_URL": "https://api.new.refugies.info"
         }
       },
-      "preview": {
-        "workflow": "managed",
-        "distribution": "simulator",
+      "ios": {
         "env": {
           "API_URL": "https://api.new.refugies.info"
         }
       }
     },
-    "android": {
-      "release": {
-        "workflow": "managed",
+    "preview": {
+      "android": {
         "env": {
-          "API_URL": "https://api.new.refugies.info"
-        }
+          "API_URL": "https://api.staging.refugies.info"
+        },
+        "buildType": "apk"
       },
-      "preview": {
-        "workflow": "managed",
-        "buildType": "apk",
+      "ios": {
         "env": {
           "API_URL": "https://api.new.refugies.info"
-        }
+        },
+        "simulator": true
       }
     }
   }

@@ -8,13 +8,37 @@ jest.mock("../../hooks/useTranslationWithRTL", () => ({
   useTranslationWithRTL: jest.fn().mockReturnValue({
     i18n: { changeLanguage: jest.fn() },
     t: jest.fn().mockImplementation((_, arg2) => arg2),
-    isRTL: false
+    isRTL: false,
   }),
 }));
 
 jest.mock("react-native-safe-area-context", () => ({
   useSafeAreaInsets: () => ({ insets: { bottom: 0 } }),
 }))
+
+jest.mock("@gorhom/bottom-sheet", () => {
+  const RN = require("react-native");
+  const { MockBottomSheet } = require("../../jest/__mocks__/MockBottomSheet");
+
+  return {
+    __esModule: true,
+    default: MockBottomSheet,
+    BottomSheetView: RN.View,
+    useBottomSheetDynamicSnapPoints: jest.fn().mockReturnValue({
+      animatedHandleHeight: 0,
+      animatedSnapPoints: 0,
+      animatedContentHeight: 0,
+      handleContentLayout: jest.fn(),
+    }),
+  };
+});
+
+jest.mock("react-native-portalize", () => {
+  const { View } = jest.requireActual("react-native");
+  return {
+    Portal: View,
+  };
+});
 
 describe("ContentScreen", () => {
   beforeEach(() => {
@@ -30,13 +54,14 @@ describe("ContentScreen", () => {
         tagDarkColor: "#3D2884",
         tagLightColor: "#705FA4",
         tagVeryLightColor: "#EFE8F4",
-    } };
+      },
+    };
     const component = wrapWithProvidersAndRender({
       Component: ContentScreen,
       reduxState: {
         ...initialRootStateFactory(),
         user: {
-          currentLanguagei18nCode: "fr"
+          currentLanguagei18nCode: "fr",
         },
         selectedContent: {
           fr: selectedContent,
@@ -46,7 +71,7 @@ describe("ContentScreen", () => {
           fa: null,
           "ti-ER": null,
           ru: null,
-        }
+        },
       },
       compProps: { navigation, route },
     });
@@ -62,13 +87,14 @@ describe("ContentScreen", () => {
         tagDarkColor: "#3D2884",
         tagLightColor: "#705FA4",
         tagVeryLightColor: "#EFE8F4",
-    } };
+      },
+    };
     const component = wrapWithProvidersAndRender({
       Component: ContentScreen,
       reduxState: {
         ...initialRootStateFactory(),
         user: {
-          currentLanguagei18nCode: "fr"
+          currentLanguagei18nCode: "fr",
         },
         selectedContent: {
           fr: selectedContent,
@@ -78,7 +104,7 @@ describe("ContentScreen", () => {
           fa: null,
           "ti-ER": null,
           ru: null,
-        }
+        },
       },
       compProps: { navigation, route },
     });
