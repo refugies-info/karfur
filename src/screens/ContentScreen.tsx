@@ -50,6 +50,7 @@ import { MiniMap } from "../components/Content/MiniMap";
 import { AccordionAnimated } from "../components/Content/AccordionAnimated";
 import { ErrorScreen } from "../components/ErrorScreen";
 import { FixSafeAreaView } from "../components/FixSafeAreaView";
+import { Toast } from "../components/Toast";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const getHeaderImageHeight = (nbLines: number) => {
@@ -176,12 +177,12 @@ const TabBarContainer = styled.View`
   position: absolute;
   bottom: 0;
   width: 100%;
-  zIndex: 5;
   background-color: ${theme.colors.white};
   shadow-color: #212121;
   shadow-offset: 0 -1px;
   shadow-opacity: 0.08;
   shadow-radius: 24px;
+  zIndex: 14;
   elevation: 14;
 `;
 
@@ -332,12 +333,26 @@ export const ContentScreen = ({
   };
 
   // Favorites
+  const [favoriteToast, setFavoriteToast] = React.useState<{text: string, link?: string}|null>(null);
   const isContentFavorite = useSelector(isFavorite(contentId));
   const toggleFavorites = () => {
     if (isContentFavorite) {
       dispatch(removeUserFavoriteActionCreator(contentId))
+      setFavoriteToast({
+        text: t(
+          "Content.favoris supprimé",
+          "Fiche supprimée de tes favoris"
+        )
+      })
     } else {
       dispatch(addUserFavoriteActionCreator(contentId))
+      setFavoriteToast({
+        text: t(
+          "Content.favoris ajouté",
+          "Fiche ajoutée à tes favoris"
+        ),
+        link: "Favoris"
+      })
     }
   }
 
@@ -449,7 +464,7 @@ export const ContentScreen = ({
   };
 
   return (
-    <View>
+    <View style={{ paddingBottom: 60 }}>
       <FixedContainerForHeader>
         <Animated.View style={{ backgroundColor: boxInterpolation }}>
           <HeaderWithBackForWrapper
@@ -697,6 +712,14 @@ export const ContentScreen = ({
         isModalVisible={isLanguageModalVisible}
         toggleModal={toggleLanguageModal}
       />
+      {favoriteToast !== null &&
+        <Toast
+          text={favoriteToast.text}
+          textLink={favoriteToast.link}
+          navigation={navigation}
+          onClose={() => { setFavoriteToast(null) }}
+        />
+      }
       <Modal visible={mapModalVisible} animationType="slide">
         <ModalContainer>
           <FixSafeAreaView

@@ -139,7 +139,9 @@
     "Numéro de téléphone": "Numéro de téléphone",
     "Informations pratiques": "Informations pratiques",
     "Non renseigné": "Non renseigné",
-    "Voir la carte": "Voir la carte"
+    "Voir la carte": "Voir la carte",
+    "favoris ajouté": "Fiche ajoutée à tes favoris",
+    "favoris supprimé": "Fiche supprimée de tes favoris"
   },
   "NeedsScreen": {
     "fiches": "fiches",
