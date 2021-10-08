@@ -9,6 +9,7 @@ export const StyledTextNormal = styled.Text`
   text-align: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "right" : "left"};
   line-height: 24px;
+  color: ${theme.colors.black};
 `;
 
 export const StyledTextNormalBold = styled.Text`
@@ -17,6 +18,7 @@ export const StyledTextNormalBold = styled.Text`
   font-size: ${theme.fonts.sizes.normal}px;
   font-family: ${theme.fonts.families.circularBold};
   line-height: 24px;
+  color: ${theme.colors.black};
 `;
 
 export const StyledTextSmall = styled.Text`
@@ -25,6 +27,7 @@ export const StyledTextSmall = styled.Text`
   text-align: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "right" : "left"};
   line-height: 20px;
+  color: ${theme.colors.black};
 `;
 
 export const StyledTextSmallBold = styled.Text`
@@ -34,6 +37,7 @@ export const StyledTextSmallBold = styled.Text`
     props.isRTL ? "right" : "left"};
   line-height: 20px;
   flex-shrink: 1;
+  color: ${theme.colors.black};
 `;
 
 export const StyledTextVerySmall = styled.Text`
@@ -42,6 +46,7 @@ export const StyledTextVerySmall = styled.Text`
   text-align: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "right" : "left"};
   line-height: 16px;
+  color: ${theme.colors.black};
 `;
 
 export const StyledTextVerySmallBold = styled.Text`
@@ -50,6 +55,7 @@ export const StyledTextVerySmallBold = styled.Text`
   text-align: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "right" : "left"};
   line-height: 16px;
+  color: ${theme.colors.black};
 `;
 
 export const StyledTextBig = styled.Text`
@@ -58,6 +64,7 @@ export const StyledTextBig = styled.Text`
   text-align: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "right" : "left"};
   line-height: 32px;
+  color: ${theme.colors.black};
 `;
 
 export const StyledTextBigBold = styled.Text`
@@ -66,6 +73,7 @@ export const StyledTextBigBold = styled.Text`
   text-align: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "right" : "left"};
   line-height: 32px;
+  color: ${theme.colors.black};
 `;
 
 export const TextNormal = (props: any) => {
