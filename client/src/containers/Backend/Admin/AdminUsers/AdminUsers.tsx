@@ -1,6 +1,7 @@
 import marioProfile from "assets/mario-profile.jpg";
 import React, { useState } from "react";
 import moment from "moment/min/moment-with-locales";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import {
   SearchBarContainer,
@@ -28,16 +29,23 @@ import { compare } from "../AdminContenu/AdminContenu";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import {
   SimplifiedUser,
-  SimplifiedStructure,
+  Responsable,
+  SimplifiedStructureForAdmin,
 } from "../../../../types/interface";
+import { prepareDeleteContrib } from "../Needs/lib";
+import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
+import { ChangeStructureModal } from "../AdminContenu/ChangeStructureModale/ChangeStructureModale";
+import { ImprovementsMailModal } from "../AdminContenu/ImprovementsMailModal/ImprovementsMailModal";
 import { removeAccents } from "../../../../lib";
 import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "./UserDetailsModal/UserDetailsModal";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
+import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import API from "../../../../utils/API";
 import Swal from "sweetalert2";
+import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
 
 moment.locale("fr");
 declare const window: Window;
@@ -68,15 +76,23 @@ export const AdminUsers = () => {
   const [search, setSearch] = useState("");
   const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(null);
-  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
-    false
-  );
+  const [showStructureDetailsModal, setShowStructureDetailsModal] =
+    useState(false);
   const [isExportLoading, setIsExportLoading] = useState(false);
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
-  const [
-    selectedStructureId,
-    setSelectedStructureId,
-  ] = useState<ObjectId | null>(null);
+  const [selectedStructureId, setSelectedStructureId] =
+    useState<ObjectId | null>(null);
+  const [showContentDetailsModal, setShowContentDetailsModal] = useState(false);
+  const [selectedContentId, setSelectedContentId] =
+    useState<ObjectId | null>(null);
+  const [selectedContentStatus, setSelectedContentStatus] =
+    useState<string | null>(null);
+  const [showImprovementsMailModal, setShowImprovementsMailModal] =
+    useState(false);
+  const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
+  const [showChangeStructureModal, setShowChangeStructureModal] =
+    useState(false);
+  const dispatch = useDispatch();
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
@@ -84,12 +100,34 @@ export const AdminUsers = () => {
 
   const handleChange = (e: any) => setSearch(e.target.value);
 
+  const toggleNeedsChoiceModal = () =>
+    setShowNeedsChoiceModal(!showNeedsChoiceModal);
+
+  const toggleShowChangeStructureModal = () =>
+    setShowChangeStructureModal(!showChangeStructureModal);
+  const toggleImprovementsMailModal = () =>
+    setShowImprovementsMailModal(!showImprovementsMailModal);
+
   const toggleUserDetailsModal = () =>
     setShowUserDetailsModal(!showUserDetailsModal);
 
-  const setSelectedUserIdAndToggleModal = (element: SimplifiedUser | null) => {
+  const toggleContentDetailsModal = () =>
+    setShowContentDetailsModal(!showContentDetailsModal);
+
+  const setSelectedUserIdAndToggleModal = (
+    element: SimplifiedUser | null | Responsable
+  ) => {
     setSelectedUserId(element ? element._id : null);
     toggleUserDetailsModal();
+  };
+
+  const setSelectedContentIdAndToggleModal = (
+    element: ObjectId | null,
+    status: string | null = null
+  ) => {
+    setSelectedContentId(element ? element : null);
+    if (status) setSelectedContentStatus(status);
+    toggleContentDetailsModal();
   };
 
   const onFilterClick = (status: string) => {
@@ -101,7 +139,7 @@ export const AdminUsers = () => {
     setShowStructureDetailsModal(!showStructureDetailsModal);
 
   const setSelectedStructureIdAndToggleModal = (
-    element: SimplifiedStructure | null
+    element: SimplifiedStructureForAdmin | null
   ) => {
     setSelectedStructureId(element ? element._id : null);
     toggleStructureDetailsModal();
@@ -366,6 +404,7 @@ export const AdminUsers = () => {
                     className={"align-middle "}
                     onClick={() =>
                       setSelectedStructureIdAndToggleModal(
+                        //@ts-ignore
                         element.structures.length > 0
                           ? element.structures[0]
                           : null
@@ -416,6 +455,9 @@ export const AdminUsers = () => {
         show={showUserDetailsModal}
         toggleModal={() => setSelectedUserIdAndToggleModal(null)}
         selectedUserId={selectedUserId}
+        setSelectedStructureIdAndToggleModal={
+          setSelectedStructureIdAndToggleModal
+        }
       />
 
       {selectedStructureId && (
@@ -424,6 +466,10 @@ export const AdminUsers = () => {
           toggleModal={() => setSelectedStructureIdAndToggleModal(null)}
           selectedStructureId={selectedStructureId}
           toggleRespoModal={() => setSelectFirstRespoModal(true)}
+          setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
+          setSelectedContentIdAndToggleModal={
+            setSelectedContentIdAndToggleModal
+          }
         />
       )}
       {selectedStructureId && (
@@ -433,6 +479,49 @@ export const AdminUsers = () => {
           selectedStructureId={selectedStructureId}
         />
       )}
+      {selectedContentId && (
+        <DetailsModal
+          show={showContentDetailsModal}
+          setSelectedStructureIdAndToggleModal={
+            setSelectedStructureIdAndToggleModal
+          }
+          toggleModal={() => setSelectedContentIdAndToggleModal(null)}
+          selectedDispositifId={selectedContentId}
+          setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
+          onDeleteClick={() =>
+            prepareDeleteContrib(
+              setSelectedContentId,
+              setShowContentDetailsModal,
+              fetchAllDispositifsActionsCreator,
+              dispatch,
+              selectedContentId
+            )
+          }
+          toggleNeedsChoiceModal={toggleNeedsChoiceModal}
+          toggleImprovementsMailModal={toggleImprovementsMailModal}
+          setShowChangeStructureModal={setShowChangeStructureModal}
+        />
+      )}
+      {showImprovementsMailModal && (
+        <ImprovementsMailModal
+          show={showImprovementsMailModal}
+          toggleModal={toggleImprovementsMailModal}
+          selectedDispositifId={selectedContentId}
+        />
+      )}
+      {showNeedsChoiceModal && (
+        <NeedsChoiceModal
+          show={showNeedsChoiceModal}
+          toggle={toggleNeedsChoiceModal}
+          dispositifId={selectedContentId}
+        />
+      )}
+      <ChangeStructureModal
+        show={showChangeStructureModal}
+        toggle={toggleShowChangeStructureModal}
+        dispositifId={selectedContentId}
+        dispositifStatus={selectedContentStatus}
+      />
     </div>
   );
 };

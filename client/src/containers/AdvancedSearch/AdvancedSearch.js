@@ -99,7 +99,7 @@ const FilterBar = styled.div`
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
   position: fixed;
   border-radius: 12px;
-  padding: 13px 16px 0px;
+  padding: 5px 16px 0px;
   margin-left: 68px;
   margin-right: 68px;
   z-index: 2;

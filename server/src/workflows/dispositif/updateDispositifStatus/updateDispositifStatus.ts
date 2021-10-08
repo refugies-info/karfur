@@ -44,6 +44,7 @@ export const updateDispositifStatus = async (
         creatorId: 1,
         mainSponsor: 1,
         status: 1,
+        typeContenu: 1,
       };
 
       const dispositif = await getDispositifByIdWithMainSponsor(
@@ -56,16 +57,16 @@ export const updateDispositifStatus = async (
         // @ts-ignore : populate roles
         req.user.roles
       );
-      if (dispositif.typeContenu === "dispositif") {
-        await addOrUpdateDispositifInContenusAirtable(
-          dispositif.titreInformatif,
-          dispositif.titreMarque,
-          dispositif._id,
-          dispositif.tags,
-          null,
-          true
-        );
-      }
+
+      await addOrUpdateDispositifInContenusAirtable(
+        dispositif.titreInformatif,
+        dispositif.titreMarque,
+        dispositif._id,
+        dispositif.tags,
+        dispositif.typeContenu,
+        null,
+        true
+      );
     }
 
     newDispositif = { status };

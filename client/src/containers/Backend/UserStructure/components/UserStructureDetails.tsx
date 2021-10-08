@@ -112,9 +112,9 @@ export const UserStructureDetails = (props: Props) => {
             type="dark"
             name="book-outline"
             tag={NavLink}
-            to="/annuaire-create"
+            to={"/annuaire/" + props.structureId}
           >
-            Modifier dans l'annuaire
+            Voir dans l'annuaire
           </FButton>
         )}
       </StructurePictureContainer>

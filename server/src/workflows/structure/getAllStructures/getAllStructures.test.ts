@@ -158,6 +158,7 @@ describe("getAllStructures", () => {
         phone_contact: "phone_contact",
         mail_contact: "mail_contact",
         created_at: 1500,
+        dispositifsIds: ["dispo1", "dispo2", "dispo2"],
         responsable: {
           _id: "id1",
           username: "respo",
@@ -198,6 +199,7 @@ describe("getAllStructures", () => {
         phone_contact: "phone_contact",
         mail_contact: "mail_contact",
         created_at: 1500,
+        dispositifsIds: ["dispo1", "dispo2", "dispo2"],
         responsable: null,
         nbFiches: 2,
         membres: [
@@ -234,6 +236,7 @@ describe("getAllStructures", () => {
         phone_contact: "phone_contact",
         mail_contact: "mail_contact",
         created_at: 1500,
+        dispositifsIds: ["dispo1", "dispo2", "dispo2"],
         responsable: null,
         nbFiches: 2,
         membres: [

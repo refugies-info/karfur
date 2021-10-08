@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import ContentEditable from "react-contenteditable";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import htmlToDraft from "html-to-draftjs";
+import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import {
   EditorState,
   convertToRaw,
@@ -40,6 +41,7 @@ import {
 } from "../../components/Modals/index";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import { Tags } from "./Tags";
+import { LanguageToReadModal } from "./LanguageToReadModal/LanguagetoReadModal";
 import { LeftSideDispositif } from "../../components/Frontend/Dispositif/LeftSideDispositif";
 import { BandeauEdition } from "../../components/Frontend/Dispositif/BandeauEdition";
 import { TopRightHeader } from "../../components/Frontend/Dispositif/TopRightHeader";
@@ -79,8 +81,30 @@ import { fetchActiveStructuresActionCreator } from "../../services/ActiveStructu
 import { logger } from "../../logger";
 import { isMobile } from "react-device-detect";
 import { PdfCreateModal } from "../../components/Modals/PdfCreateModal/PdfCreateModal";
+import styled from "styled-components";
 
 moment.locale("fr");
+
+const InfoBoxLanguageContainer = styled.div`
+  display: flex;
+  max-width: 1002px;
+  color: ${colors.blanc};
+  background-color: ${colors.focus};
+  border-radius: 12px;
+  padding: 16px;
+  justify-content: space-between;
+  margin: ${isMobile ? "16px" : "0px 20px 20px 40px"};
+`;
+
+const TextOtherLanguageContainer = styled.p`
+  display: flex;
+  color: ${colors.grisFonce};
+  font-size: 18px;
+  justify-content: center;
+  align-items: center;
+  margin: ${isMobile ? "auto" : "auto 40px"};
+  padding: ${isMobile ? "16px" : 0};
+`;
 
 const sponsorsData = [];
 const uiElement = {
@@ -122,12 +146,15 @@ export class Dispositif extends Component {
     accordion: new Array(1).fill(false),
     dropdown: new Array(5).fill(false),
     disableEdit: true,
+    isModified: false,
+    isSaved: false,
     tooltipOpen: false,
     showBookmarkModal: false,
     isAuth: false,
     showDispositifCreateModal: false,
     showDispositifValidateModal: false,
     showGeolocModal: false,
+    showLanguageToReadModal: false,
     showTagsModal: false,
     showPdfModal: false,
     showTutorielModal: false,
@@ -135,6 +162,7 @@ export class Dispositif extends Component {
     showShareContentOnMobileModal: false,
     showSpinnerPrint: false,
     showSpinnerBookmark: false,
+    showAlertBoxLanguage: true,
     suggestion: "",
     mail: "",
     tKeyValue: -1,
@@ -494,6 +522,13 @@ export class Dispositif extends Component {
     });
   };
 
+  toggleIsModified = (newState) => {
+    this.setState({ isModified: newState });
+  };
+  toggleIsSaved = (newState) => {
+    this.setState({ isSaved: newState });
+  };
+
   onInputClicked = (ev) => {
     // when clicking on titreInformatif or titreMarque (name of asso)
     // if titre informatif is 'Titre informatif' we store "" instead of titre informatif
@@ -525,6 +560,7 @@ export class Dispositif extends Component {
         ...this.state.content,
         [ev.currentTarget.id]: value,
       },
+      isModified: true,
     });
   };
 
@@ -545,8 +581,18 @@ export class Dispositif extends Component {
     this.setState({ showGeolocModal: show });
   };
 
+  toggleAlertBoxLanguage = () => {
+    this.setState({ showAlertBoxLanguage: !this.state.showAlertBoxLanguage });
+  };
+
   toggleShowPdfModal = () => {
     this.setState({ showPdfModal: !this.state.showPdfModal });
+  };
+
+  toggleShowLanguageModal = () => {
+    this.setState({
+      showLanguageToReadModal: !this.state.showLanguageToReadModal,
+    });
   };
 
   handleModalChange = (ev) =>
@@ -599,7 +645,7 @@ export class Dispositif extends Component {
         }),
     };
 
-    return this.setState({ menu: state });
+    return this.setState({ menu: state, isModified: true });
   };
 
   handleContentClick = (key, editable, subkey = undefined) => {
@@ -788,7 +834,7 @@ export class Dispositif extends Component {
         state[key].isFakeContent = false;
         state[key].content = content;
       }
-      this.setState({ menu: state });
+      this.setState({ menu: state, isModified: true });
     }
   };
 
@@ -971,7 +1017,7 @@ export class Dispositif extends Component {
 
   deleteCard = (key, subkey, type) => {
     if (type === "map") {
-      this.setState({ addMapBtn: true });
+      this.setState({ addMapBtn: true, isModified: true });
     }
     const prevState = [...this.state.menu];
     prevState[key].children = prevState[key].children.filter(
@@ -980,6 +1026,7 @@ export class Dispositif extends Component {
     this.setState(
       {
         menu: prevState,
+        isModified: true,
       },
       () => this.setColors()
     );
@@ -1037,15 +1084,10 @@ export class Dispositif extends Component {
     this.setState((prevState) => ({ displayTuto: !prevState.displayTuto }));
 
   toggleDispositifValidateModal = () => {
-    if (_.isEmpty(this.state.mainSponsor)) {
-      this.setState({ finalValidation: true });
-      this.sponsors.current.toggleModal("responsabilite");
-    } else {
-      this.setState((prevState) => ({
-        showDispositifValidateModal: !prevState.showDispositifValidateModal,
-        finalValidation: false,
-      }));
-    }
+    this.setState((prevState) => ({
+      showDispositifValidateModal: !prevState.showDispositifValidateModal,
+      finalValidation: false,
+    }));
   };
   toggleDispositifValidateModalFinal = () => {
     this.setState((prevState) => ({
@@ -1095,6 +1137,7 @@ export class Dispositif extends Component {
             }
           : x
       ),
+      isModified: true,
     });
   changeDepartements = (departments, key, subkey) =>
     this.setState(
@@ -1111,6 +1154,7 @@ export class Dispositif extends Component {
               }
             : x
         ),
+        isModified: true,
       },
       () => this.setColors()
     );
@@ -1128,6 +1172,7 @@ export class Dispositif extends Component {
             }
           : x
       ),
+      isModified: true,
     });
   changeAge = (e, key, subkey, isBottom = true) =>
     this.setState({
@@ -1149,6 +1194,7 @@ export class Dispositif extends Component {
             }
           : x
       ),
+      isModified: true,
     });
   setMarkers = (markers, key, subkey) => {
     this.setState({
@@ -1210,7 +1256,7 @@ export class Dispositif extends Component {
     } else {
       prevState[key].children[subkey][node] = value;
     }
-    this.setState({ menu: prevState });
+    this.setState({ menu: prevState, isModified: true });
   };
 
   changeTag = (key, value) => {
@@ -1436,7 +1482,8 @@ export class Dispositif extends Component {
     status = "En attente",
     auto = false,
     sauvegarde = false,
-    saveAndEdit = false
+    saveAndEdit = false,
+    continueEditing = true
   ) => {
     this.setState({ isDispositifLoading: !auto });
     let content = { ...this.state.content };
@@ -1609,10 +1656,21 @@ export class Dispositif extends Component {
       }
     }
     dispositif.lastModificationDate = Date.now();
-
     logger.info("[valider_dispositif] dispositif before call", { dispositif });
     API.addDispositif(dispositif).then((data) => {
       const newDispo = data.data.data;
+      if (!continueEditing) {
+        let text =
+          dispositif.status === "Brouillon"
+            ? "Retrouvez votre fiche dans votre espace « Mes Fiches ». Attention, votre fiche va rester en brouillon. Pour la publier, cliquez sur le bouton valider en vert, plutôt que sur enregistrer."
+            : "Retrouvez votre fiche dans votre espace « Mes Fiches ».";
+
+        Swal.fire({
+          title: "Fiche enregistrée",
+          text: text,
+          type: "success",
+        });
+      }
       if (!auto && this._isMounted) {
         Swal.fire("Yay...", "Enregistrement réussi !", "success").then(() => {
           this.props.fetchUser();
@@ -1662,7 +1720,18 @@ export class Dispositif extends Component {
       type: "error",
       timer: 1500,
     });
-
+  createPossibleLanguagesObject = (avancement, langues) => {
+    let possibleLanguages = [];
+    if (avancement) {
+      Object.keys(avancement).forEach((item) => {
+        let lng = langues.find(
+          (langue) => langue.i18nCode === item && item !== "fr"
+        );
+        if (lng) possibleLanguages.push(lng);
+      });
+    }
+    return possibleLanguages;
+  };
   render() {
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     const { t, translating, windowWidth } = this.props;
@@ -1678,6 +1747,20 @@ export class Dispositif extends Component {
     const tag =
       mainTag && mainTag.short ? mainTag.short.split(" ").join("-") : "noImage";
 
+    let possibleLanguages = this.createPossibleLanguagesObject(
+      this.state.dispositif.avancement,
+      this.props.langues
+    );
+
+    let langueSelected = this.props.langues.find(
+      (item) => item.i18nCode === this.props.languei18nCode
+    );
+
+    const isTranslated =
+      (this.state.dispositif.avancement &&
+        this.state.dispositif.avancement[this.props.languei18nCode] &&
+        this.state.dispositif.avancement[this.props.languei18nCode] === 1) ||
+      this.props.languei18nCode === "fr";
     return (
       <div
         id="dispositif"
@@ -1738,6 +1821,8 @@ export class Dispositif extends Component {
                   toggleDispositifValidateModal={
                     this.toggleDispositifValidateModal
                   }
+                  isModified={this.state.isModified}
+                  isSaved={this.state.isSaved}
                   toggleDraftModal={this.toggleDraftModal}
                   tKeyValue={this.state.tKeyValue}
                   toggleDispositifCreateModal={this.toggleDispositifCreateModal}
@@ -1968,33 +2053,139 @@ export class Dispositif extends Component {
                     </FButton>
                   </div>
                 )}
-                {disableEdit && this.state.dispositif.lastModificationDate && (
-                  // Part about last update
-                  <Row className="fiabilite-row">
-                    <Col
-                      lg="auto"
-                      md="auto"
-                      sm="auto"
-                      xs="auto"
-                      className="col align-right"
-                    >
-                      {t(
-                        "Dispositif.Dernière mise à jour",
-                        "Dernière mise à jour"
-                      )}{" "}
-                      :&nbsp;
-                      <span className="date-maj">
-                        {moment(
-                          _.get(
-                            this.state,
-                            "dispositif.lastModificationDate",
-                            0
-                          )
-                        ).format("ll")}
-                      </span>
-                    </Col>
-                  </Row>
+                {!isTranslated && this.state.showAlertBoxLanguage && (
+                  <InfoBoxLanguageContainer>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <EVAIcon
+                        name={"alert-triangle"}
+                        fill={colors.blanc}
+                        className="mr-10"
+                      ></EVAIcon>
+                      <div>
+                        {t(
+                          "Dispositifs.Cette fiche n'est pas dispo",
+                          "Cette fiche n'est pas encore disponible en :"
+                        )}
+                        {langueSelected
+                          ? " " + langueSelected.langueLoc + "."
+                          : ""}
+                        {possibleLanguages.length
+                          ? t(
+                              "Dispositifs.Vous pouvez la lire en plusieurs langues",
+                              " Vous pouvez la lire en français ou sélectionner une autre langue ci-dessous."
+                            )
+                          : t(
+                              "Dispositifs.Vous pouvez la lire en français",
+                              " Vous pouvez la lire en français ci-dessous"
+                            )}
+                      </div>
+                    </div>
+                    <EVAIcon
+                      style={{ cursor: "pointer" }}
+                      onClick={this.toggleAlertBoxLanguage}
+                      name={"close"}
+                      fill={colors.blanc}
+                      className="ml-10"
+                    ></EVAIcon>
+                  </InfoBoxLanguageContainer>
                 )}
+                <div
+                  style={
+                    isMobile
+                      ? {}
+                      : { display: "flex", justifyContent: "flex-start" }
+                  }
+                >
+                  {disableEdit && this.state.dispositif.lastModificationDate && (
+                    // Part about last update
+                    <Row className="fiabilite-row">
+                      <Col
+                        lg="auto"
+                        md="auto"
+                        sm="auto"
+                        xs="auto"
+                        className="col align-right"
+                      >
+                        {t(
+                          "Dispositif.Dernière mise à jour",
+                          "Dernière mise à jour"
+                        )}{" "}
+                        :&nbsp;
+                        <span className="date-maj">
+                          {moment(
+                            _.get(
+                              this.state,
+                              "dispositif.lastModificationDate",
+                              0
+                            )
+                          ).format("ll")}
+                        </span>
+                      </Col>
+                    </Row>
+                  )}
+                  {!isTranslated && possibleLanguages.length ? (
+                    <TextOtherLanguageContainer>
+                      {t("Dispositif.Lire en", "Lire en :")}
+                      {langueSelected && isMobile ? (
+                        <FButton
+                          type="white"
+                          className="ml-10"
+                          onClick={this.toggleShowLanguageModal}
+                        >
+                          <i
+                            className={
+                              "flag-icon flag-icon-" +
+                              possibleLanguages[0].langueCode
+                            }
+                            title={possibleLanguages[0].langueCode}
+                            id={possibleLanguages[0].langueCode}
+                          />
+
+                          <span className="ml-10 language-name">
+                            {possibleLanguages[0].langueLoc || "Langue"}
+                          </span>
+                          <EVAIcon
+                            name={"chevron-down-outline"}
+                            fill={colors.noir}
+                            className="ml-10"
+                            size="xlarge"
+                          ></EVAIcon>
+                        </FButton>
+                      ) : langueSelected ? (
+                        possibleLanguages.map((langue, index) => {
+                          return (
+                            <FButton
+                              key={index}
+                              type="white"
+                              className="ml-10"
+                              onClick={() => {
+                                initGA();
+                                Event(
+                                  "CHANGE_LANGUAGE",
+                                  langue.i18nCode,
+                                  "label"
+                                );
+                                this.props.changeLanguage(langue.i18nCode);
+                              }}
+                            >
+                              <i
+                                className={
+                                  "flag-icon flag-icon-" + langue.langueCode
+                                }
+                                title={langue.langueCode}
+                                id={langue.langueCode}
+                              />
+
+                              <span className="ml-10 language-name">
+                                {langue.langueLoc || "Langue"}
+                              </span>
+                            </FButton>
+                          );
+                        })
+                      ) : null}
+                    </TextOtherLanguageContainer>
+                  ) : null}
+                </div>
 
                 <ContenuDispositif
                   showMapButton={this.showMapButton}
@@ -2046,6 +2237,7 @@ export class Dispositif extends Component {
                         pushReaction={this.pushReaction}
                         didThank={didThank}
                         window={window}
+                        color={this.state.mainTag.darkColor}
                         nbThanks={
                           this.state.dispositif.merci
                             ? this.state.dispositif.merci.length
@@ -2093,6 +2285,9 @@ export class Dispositif extends Component {
                   updateUIArray={this.updateUIArray}
                   dispositif={this.state.dispositif}
                   typeContenu={typeContenu}
+                  toggleDispositifValidateModal={
+                    this.toggleDispositifValidateModal
+                  }
                 />
               </Col>
               {!isMobile && (
@@ -2201,12 +2396,20 @@ export class Dispositif extends Component {
               toggle={this.toggleTagsModal}
               toggleTutorielModal={this.toggleTutorielModal}
               user={this.props.user}
+              history={this.props.history}
               dispositifId={this.state.dispositif._id}
             />
             <FrameModal
               show={this.state.showTutorielModal}
               toggle={this.toggleTutorielModal}
               section={this.state.tutorielSection}
+            />
+            <LanguageToReadModal
+              show={this.state.showLanguageToReadModal}
+              toggle={this.toggleShowLanguageModal}
+              t={this.props.t}
+              languages={possibleLanguages}
+              changeLanguage={this.props.changeLanguage}
             />
 
             <DraftModal
@@ -2217,6 +2420,8 @@ export class Dispositif extends Component {
                 this.props.history.push("/backend/user-dash-contrib")
               }
               status={this.state.status}
+              toggleIsModified={this.toggleIsModified}
+              toggleIsSaved={this.toggleIsSaved}
             />
             <ShareContentOnMobileModal
               show={this.state.showShareContentOnMobileModal}
@@ -2250,6 +2455,7 @@ const mapStateToProps = (state) => {
     userId: state.user.userId,
     admin: state.user.admin,
     userFetched: state.user.userFetched,
+    langues: state.langue.langues,
   };
 };
 

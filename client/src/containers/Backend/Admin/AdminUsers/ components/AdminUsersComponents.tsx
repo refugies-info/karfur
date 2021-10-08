@@ -55,6 +55,8 @@ const StructureName = styled.div`
   margin-right: 8px;
   overflow: hidden;
   word-wrap: break-word;
+  text-decoration: underline;
+  cursor: pointer;
 `;
 
 const RoleDetail = styled.div`
@@ -66,14 +68,20 @@ interface StructureProps {
   nom: string;
   picture: Picture | null;
   role: string | null;
+  onClick: () => void;
 }
 export const Structure = (props: StructureProps) => (
-  <div style={{ marginTop: "4px", marginBottom: "12px" }}>
+  <div
+    style={{
+      marginTop: "4px",
+      marginBottom: "12px",
+    }}
+  >
     <RowContainer>
       {props.picture && props.picture.secure_url && (
         <img className="sponsor-img mr-8" src={props.picture.secure_url} />
       )}
-      <StructureName>{props.nom}</StructureName>
+      <StructureName onClick={props.onClick}>{props.nom}</StructureName>
       {props.role && <RoleDetail>{props.role}</RoleDetail>}
     </RowContainer>
   </div>

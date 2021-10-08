@@ -10,7 +10,10 @@ import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 import { correspondingStatus, progressionData } from "../data";
 import { compare } from "../AdminContenu";
 import moment from "moment/min/moment-with-locales";
-import { SimplifiedDispositif } from "../../../../../types/interface";
+import {
+  SimplifiedDispositif,
+  SimplifiedStructureForAdmin,
+} from "../../../../../types/interface";
 import { colors } from "colors";
 import marioProfile from "../../../../../assets/mario-profile.jpg";
 import noStructure from "../../../../../assets/noStructure.png";
@@ -30,6 +33,10 @@ interface Props {
   setShowChangeStructureModal: (arg: boolean) => void;
   toggleImprovementsMailModal: () => void;
   toggleNeedsChoiceModal: () => void;
+  setSelectedUserIdAndToggleModal: (element: any) => void;
+  setSelectedStructureIdAndToggleModal: (
+    element: SimplifiedStructureForAdmin | null
+  ) => void;
 }
 
 const LeftPart = styled.div`
@@ -89,6 +96,10 @@ const StructureContainer = styled.div`
   font-size: 16px;
   line-height: 20px;
   padding: 16px;
+  cursor: pointer;
+`;
+const TitleSponsorContainer = styled.div`
+  text-decoration: underline;
 `;
 
 const MainContainer = styled.div`
@@ -123,14 +134,10 @@ export const DetailsModal = (props: Props) => {
 
   const [modifiedStatus, setModifiedStatus] = useState<string | null>(null);
   const [adminComments, setAdminComments] = useState<string>("");
-  const [
-    adminProgressionStatusGroup1,
-    setAdminProgressionStatusGroup1,
-  ] = useState<string | null>(null);
-  const [
-    adminProgressionStatusGroup2,
-    setAdminProgressionStatusGroup2,
-  ] = useState<string | null>(null);
+  const [adminProgressionStatusGroup1, setAdminProgressionStatusGroup1] =
+    useState<string | null>(null);
+  const [adminProgressionStatusGroup2, setAdminProgressionStatusGroup2] =
+    useState<string | null>(null);
 
   const dispatch = useDispatch();
 
@@ -171,7 +178,6 @@ export const DetailsModal = (props: Props) => {
       return setModifiedStatus(newStatus);
     }
   };
-
   const onNotesChange = (e: any) => setAdminComments(e.target.value);
 
   const modifyProgressionStatus = (status: any) => {
@@ -290,8 +296,28 @@ export const DetailsModal = (props: Props) => {
               {`${moment(dispositif.created_at).format("LLL")} soit ${moment(
                 dispositif.created_at
               ).fromNow()}`}
+              {dispositif.status === "Actif" && (
+                <>
+                  {" "}
+                  <Title>Envoi relance mise à jour</Title>
+                  {dispositif.lastReminderMailSentToUpdateContentDate
+                    ? moment(
+                        dispositif.lastReminderMailSentToUpdateContentDate
+                      ).format("LLL") +
+                      " soit " +
+                      moment(
+                        dispositif.lastReminderMailSentToUpdateContentDate
+                      ).fromNow()
+                    : "Non envoyé"}
+                </>
+              )}
               <Title>Créateur</Title>
-              <CreatorContainer>
+              <CreatorContainer
+                onClick={() => {
+                  props.toggleModal();
+                  props.setSelectedUserIdAndToggleModal(dispositif.creatorId);
+                }}
+              >
                 <img
                   className="creator-img"
                   src={getCreatorImage(dispositif)}
@@ -354,8 +380,19 @@ export const DetailsModal = (props: Props) => {
                 : "Non disponible"}
               <Title>Structure responsable</Title>
               {dispositif.mainSponsor && (
-                <StructureContainer>
-                  {dispositif.mainSponsor.nom}
+                <StructureContainer
+                  onClick={() => {
+                    props.setSelectedStructureIdAndToggleModal(
+                      //@ts-ignore
+                      dispositif.mainSponsor
+                    );
+                    props.toggleModal();
+                  }}
+                >
+                  <TitleSponsorContainer>
+                    {dispositif.mainSponsor.nom}
+                  </TitleSponsorContainer>
+
                   <LogoContainer spaceBetween={true}>
                     {dispositif.mainSponsor &&
                       dispositif.mainSponsor.picture &&
@@ -372,7 +409,10 @@ export const DetailsModal = (props: Props) => {
                       <FButton
                         name="edit-outline"
                         type="outline-black"
-                        onClick={() => props.setShowChangeStructureModal(true)}
+                        onClick={(e: any) => {
+                          e.stopPropagation();
+                          props.setShowChangeStructureModal(true);
+                        }}
                       >
                         Modifier
                       </FButton>

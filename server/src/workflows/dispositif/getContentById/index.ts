@@ -1,0 +1,1 @@
+export { getContentById } from "./getContentById";

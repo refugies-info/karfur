@@ -19,8 +19,12 @@ import { FrameModal } from "../../../components/Modals";
 import { CompleteProfilModal } from "../../../components/Modals/CompleteProfilModal/CompleteProfilModal";
 
 import API from "../../../utils/API";
-import { Indicators } from "../../../types/interface";
+import { Indicators, UserLanguage } from "../../../types/interface";
 import { Navigation } from "../Navigation";
+import { TranslationNeedsModal } from "./components/TranslationNeedsModal";
+import { OneNeedTranslationModal } from "./components/OneNeedTranslationModal";
+import { ObjectId } from "mongodb";
+import { needsSelector } from "../../../services/Needs/needs.selectors";
 
 declare const window: Window;
 export interface PropsBeforeInjection {
@@ -36,10 +40,37 @@ const MainContainer = styled.div`
 `;
 
 const availableLanguages = ["fa", "en", "ru", "ps", "ar", "ti-ER"];
+const getLangueName = (
+  langueId: ObjectId | null,
+  userTradLanguages: UserLanguage[]
+) => {
+  if (!langueId) return { langueSelectedFr: null, langueI18nCode: null };
+
+  const langueArray = userTradLanguages.filter(
+    (langue) => langue._id === langueId
+  );
+  if (langueArray.length > 0)
+    return {
+      langueSelectedFr: langueArray[0].langueFr,
+      langueI18nCode: langueArray[0].i18nCode,
+    };
+  return { langueSelectedFr: null, langueI18nCode: null };
+};
 
 export const UserTranslationComponent = (props: Props) => {
+  const [
+    showOneNeedTranslationModal,
+    setShowOneNeedTranslationModal,
+  ] = useState(false);
   const [showTraducteurModal, setShowTraducteurModal] = useState(false);
+  const [showNeedsModal, setShowNeedsModal] = useState(false);
   const [showCompleteProfilModal, setShowCompleteProfilModal] = useState(false);
+  const [selectedNeedId, setSelectedNeedId] = useState<ObjectId | null>(null);
+
+  const toggleOneNeedTranslationModal = () =>
+    setShowOneNeedTranslationModal(!showOneNeedTranslationModal);
+
+  const toggleNeedsModal = () => setShowNeedsModal(!showNeedsModal);
   const toggleTraducteurModal = () =>
     setShowTraducteurModal(!showTraducteurModal);
   const toggleCompleteProfilModal = () =>
@@ -82,6 +113,8 @@ export const UserTranslationComponent = (props: Props) => {
     if (langueArray.length > 0) return langueArray[0]._id;
     return null;
   };
+
+  const needs = useSelector(needsSelector);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -131,6 +164,21 @@ export const UserTranslationComponent = (props: Props) => {
     indicators.totalIndicator[0].timeSpent
       ? Math.floor(indicators.totalIndicator[0].timeSpent / 1000 / 60)
       : 0;
+
+  const langueId = getLangueId();
+  const { langueSelectedFr, langueI18nCode } = getLangueName(
+    langueId,
+    userTradLanguages
+  );
+
+  const isOneNeedNonTranslated =
+    needs.filter((need) => {
+      // @ts-ignore
+      if (!need[langueI18nCode] || !need[langueI18nCode].text) {
+        return true;
+      }
+      return false;
+    }).length > 0;
 
   if (isLoading)
     return (
@@ -220,11 +268,24 @@ export const UserTranslationComponent = (props: Props) => {
           setElementToTranslate={setElementToTranslate}
           user={user.user}
           getLangueId={getLangueId}
+          toggleNeedsModal={toggleNeedsModal}
+          isOneNeedNonTranslated={isOneNeedNonTranslated}
         />
         {showTraducteurModal && (
           <TranslationLanguagesChoiceModal
             show={showTraducteurModal}
             toggle={toggleTraducteurModal}
+          />
+        )}
+
+        {showNeedsModal && (
+          <TranslationNeedsModal
+            show={showNeedsModal}
+            toggle={toggleNeedsModal}
+            toggleOneNeedTranslationModal={toggleOneNeedTranslationModal}
+            setSelectedNeedId={setSelectedNeedId}
+            langueSelectedFr={langueSelectedFr}
+            langueI18nCode={langueI18nCode}
           />
         )}
         {showTutoModal && (
@@ -244,6 +305,14 @@ export const UserTranslationComponent = (props: Props) => {
             element={elementToTranslate}
             isExpert={user.expertTrad}
             langueId={getLangueId()}
+          />
+        )}
+        {showOneNeedTranslationModal && (
+          <OneNeedTranslationModal
+            show={showOneNeedTranslationModal}
+            toggle={toggleOneNeedTranslationModal}
+            selectedNeedId={selectedNeedId}
+            langueI18nCode={langueInUrl}
           />
         )}
       </MainContainer>

@@ -758,11 +758,10 @@ $imgHeight: 350px;
 
   .fiabilite-row {
     margin-left: 0px;
-    margin-right: 40px;
-    margin-bottom: 20px;
+
     padding: 0 40px;
     @include media-max("tablet-up") {
-      padding: 0 16px;
+      text-align: center;
     }
 
     .col {
@@ -775,7 +774,6 @@ $imgHeight: 350px;
       line-height: 35px;
       color: #828282;
       &.align-right {
-        margin-right: 15px;
         padding: 0;
       }
       @include media-max("tablet-up") {
@@ -854,7 +852,7 @@ $imgHeight: 350px;
 
   .feedback-footer {
     background: $blanc;
-    color: $darkOrange;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -862,7 +860,6 @@ $imgHeight: 350px;
     font-size: 18px;
 
     h5 {
-      color: $darkOrange;
       @include media-max("tablet-up") {
         font-size: 22px;
         text-align: center;

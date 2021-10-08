@@ -179,6 +179,11 @@ var dispositifSchema = new mongoose.Schema(
       unique: false,
       required: false,
     },
+    lastReminderMailSentToUpdateContentDate: {
+      type: Date,
+      unique: false,
+      required: false,
+    },
     needs: [{ type: mongoose.Types.ObjectId, ref: "Needs" }],
   },
   // @ts-ignore
@@ -225,6 +230,7 @@ export interface DispositifDoc extends mongoose.Document {
   lastModificationDate?: number;
   updatedAt: number;
   draftReminderMailSentDate?: number;
+  lastReminderMailSentToUpdateContentDate?: number;
   status: string;
   needs?: ObjectId[];
 }

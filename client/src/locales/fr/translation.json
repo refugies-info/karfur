@@ -67,6 +67,8 @@
     "Trier par n": "Trier par",
     "Filtrer par n": "Filtrer par",
     "Plus de filtres": "Plus de filtres",
+    "Voir plus de filtres": "Voir plus de filtres",
+    "Voir moins de filtres": "Voir moins de filtres",
     "Dispositifs": "Dispositifs",
     "Démarches": "Démarches",
     "Créer une fiche": "Créer une fiche",
@@ -280,6 +282,9 @@
   },
   "Dispositifs": {
     "Header": "Construire sa vie en France",
+    "Cette fiche n'est pas dispo": "Cette fiche n'est pas encore disponible en :",
+    "Vous pouvez la lire en français": " Vous pouvez la lire en français ci-dessous.",
+    "Vous pouvez la lire en plusieurs langues": " Vous pouvez la lire en français ou sélectionner une autre langue ci-dessous.",
     "Subheader": "Ici, vous pourrez comprendre comment ouvrir vos droits sociaux, trouver un emploi, trouver des cours de français"
   },
   "Tags": {
@@ -460,6 +465,7 @@
     "Et après ?": "Et après ?",
     "Comment je m'engage ?": "Comment je m'engage ?",
     "Voir le site": "Voir le site",
+    "Ajouter votre site": "Ajouter votre site",
     "Télécharger en PDF": "Télécharger en PDF",
     "Télécharger la fiche en PDF": "Télécharger la fiche en PDF",
     "Télécharger": "Télécharger",
@@ -546,6 +552,7 @@
     "réfugié": "réfugié",
     "tout public": "tout public",
     "En savoir plus": "En savoir plus",
+    "Lire en": "Lire en : ",
     "Tiennent la page": "Tiennent la page à jour et répondent à vos questions",
     "Évaluer mon niveau": "Évaluer mon niveau",
     "Réagir": "Réagir",
@@ -665,6 +672,7 @@
   "Rechercher un utilisateur": "Rechercher un utilisateur",
   "CMU-C, demande de logement social, solidarité transport": "CMU-C, demande de logement social, solidarité transport",
   "Rechercher": "Rechercher",
+  "Sélectionnez un filtre !": "Sélectionnez un filtre !",
   "Rechercher2": "Rechercher...",
   "Qui sommes-nous ?": "Qui sommes-nous ?",
   "Comment contribuer ?": "Comment contribuer ?",

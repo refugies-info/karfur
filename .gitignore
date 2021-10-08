@@ -69,3 +69,6 @@ token.json
 *.mobileprovision
 *.orig.*
 /refugies-info-app/web-build/
+/refugies-info-app/src/translations/scripts/csvAfterTrad
+/refugies-info-app/src/translations/scripts/csvBeforeTrad
+

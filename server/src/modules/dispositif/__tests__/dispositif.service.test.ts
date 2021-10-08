@@ -38,8 +38,8 @@ describe("publish dispositif", () => {
       publishedAt: date,
     });
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
-    expect(sendMailWhenDispositifPublished).not.toHaveBeenCalled();
+    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalled();
+    expect(sendMailWhenDispositifPublished).toHaveBeenCalled();
   });
 
   const dispositif = {
@@ -68,6 +68,7 @@ describe("publish dispositif", () => {
       "tm",
       "id",
       [],
+      "dispositif",
       null,
       false
     );
@@ -90,6 +91,7 @@ describe("publish dispositif", () => {
       "tm",
       "id",
       [],
+      "dispositif",
       null,
       false
     );
@@ -110,7 +112,7 @@ describe("publish dispositif", () => {
       publishedAt: date,
     });
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
-    expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
-    expect(sendMailWhenDispositifPublished).not.toHaveBeenCalled();
+    expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalled();
+    expect(sendMailWhenDispositifPublished).toHaveBeenCalled();
   });
 });

@@ -16,7 +16,9 @@ import { addDispositif } from "../workflows/dispositif/addDispositif";
 import { exportDispositifsGeolocalisation } from "../workflows/dispositif/exportDispositifsGeolocalisation";
 import { getContentsForApp } from "../workflows/dispositif/getContentsForApp";
 import { updateDispositifTagsOrNeeds } from "../workflows/dispositif/updateDispositifTagsOrNeeds";
-import { addNeedsFromAirtable } from "../workflows/dispositif/addNeedsFromAirtable";
+import { getContentById } from "../workflows/dispositif/getContentById";
+
+// import { addNeedsFromAirtable } from "../workflows/dispositif/addNeedsFromAirtable";
 
 // import { fixAudienceAgeOnContents } from "../workflows/dispositif/fixAudienceAgeOnContents";
 
@@ -69,7 +71,8 @@ module.exports = function (app) {
     checkToken.check,
     updateDispositifTagsOrNeeds
   );
-  app.post("/addNeedsFromAirtable", addNeedsFromAirtable);
+  app.get("/getContentById", getContentById);
+  // app.post("/addNeedsFromAirtable", addNeedsFromAirtable);
 
   // app.post("/fixAudienceAgeOnContents", fixAudienceAgeOnContents);
 };
