@@ -44,12 +44,12 @@ exports[`Filter french level should render correctly when french level selected 
           "paddingLeft": 12,
           "paddingRight": 12,
           "paddingTop": 12,
-          "shadowColor": "rgba(33, 33, 33, 0.1)",
+          "shadowColor": "#212121",
           "shadowOffset": Object {
             "height": 0,
             "width": 0,
           },
-          "shadowOpacity": 1,
+          "shadowOpacity": 0.1,
           "shadowRadius": 40,
         }
       }
@@ -245,12 +245,12 @@ exports[`Filter french level should render correctly when french level selected 
           "paddingLeft": 12,
           "paddingRight": 12,
           "paddingTop": 12,
-          "shadowColor": "rgba(33, 33, 33, 0.1)",
+          "shadowColor": "#212121",
           "shadowOffset": Object {
             "height": 0,
             "width": 0,
           },
-          "shadowOpacity": 1,
+          "shadowOpacity": 0.1,
           "shadowRadius": 40,
         }
       }
@@ -1226,12 +1226,12 @@ exports[`Filter french level should render correctly when no french level select
           "paddingLeft": 12,
           "paddingRight": 12,
           "paddingTop": 12,
-          "shadowColor": "rgba(33, 33, 33, 0.1)",
+          "shadowColor": "#212121",
           "shadowOffset": Object {
             "height": 0,
             "width": 0,
           },
-          "shadowOpacity": 1,
+          "shadowOpacity": 0.1,
           "shadowRadius": 40,
         }
       }
@@ -1427,12 +1427,12 @@ exports[`Filter french level should render correctly when no french level select
           "paddingLeft": 12,
           "paddingRight": 12,
           "paddingTop": 12,
-          "shadowColor": "rgba(33, 33, 33, 0.1)",
+          "shadowColor": "#212121",
           "shadowOffset": Object {
             "height": 0,
             "width": 0,
           },
-          "shadowOpacity": 1,
+          "shadowOpacity": 0.1,
           "shadowRadius": 40,
         }
       }
@@ -2408,12 +2408,12 @@ exports[`Filter french level should select level when click on it 1`] = `
           "paddingLeft": 12,
           "paddingRight": 12,
           "paddingTop": 12,
-          "shadowColor": "rgba(33, 33, 33, 0.1)",
+          "shadowColor": "#212121",
           "shadowOffset": Object {
             "height": 0,
             "width": 0,
           },
-          "shadowOpacity": 1,
+          "shadowOpacity": 0.1,
           "shadowRadius": 40,
         }
       }
@@ -2609,12 +2609,12 @@ exports[`Filter french level should select level when click on it 1`] = `
           "paddingLeft": 12,
           "paddingRight": 12,
           "paddingTop": 12,
-          "shadowColor": "rgba(33, 33, 33, 0.1)",
+          "shadowColor": "#212121",
           "shadowOffset": Object {
             "height": 0,
             "width": 0,
           },
-          "shadowOpacity": 1,
+          "shadowOpacity": 0.1,
           "shadowRadius": 40,
         }
       }
