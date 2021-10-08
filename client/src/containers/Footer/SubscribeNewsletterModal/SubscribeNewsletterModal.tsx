@@ -107,6 +107,7 @@ export const SubscribeNewsletterModal = (props: Props) => {
     const regex = /^\S+@\S+\.\S+$/;
     const isEmail = !!email.match(regex);
     if (isEmail) {
+      props.toggle();
       API.set_mail({ mail: email })
         .then(() => {
           Swal.fire({
@@ -116,7 +117,6 @@ export const SubscribeNewsletterModal = (props: Props) => {
             timer: 1500,
           });
           setEmail("");
-          props.toggle();
         })
         .catch(() => {
           Swal.fire("Oh non...", "Une erreur s'est produite", "error");

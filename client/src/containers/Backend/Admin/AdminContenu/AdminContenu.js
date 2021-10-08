@@ -5,7 +5,7 @@ import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
 import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
 import { fetchActiveDispositifsActionsCreator } from "../../../../services/ActiveDispositifs/activeDispositifs.actions";
-
+import { prepareDeleteContrib } from "../Needs/lib";
 import { table_contenu, correspondingStatus } from "./data";
 import API from "../../../../utils/API";
 import {
@@ -31,6 +31,7 @@ import {
   DeleteButton,
   FilterButton,
   TabHeader,
+  ColoredRound,
 } from "../sharedComponents/SubComponents";
 import { CustomSearchBar } from "../../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
@@ -39,9 +40,19 @@ import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureMod
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { ImprovementsMailModal } from "./ImprovementsMailModal/ImprovementsMailModal";
+import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
+
 import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
+import styled from "styled-components";
+import { needsSelector } from "../../../../services/Needs/needs.selectors";
 
 moment.locale("fr");
+
+const RowContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
 
 export const compare = (a, b) => {
   const orderA = a.order;
@@ -60,19 +71,18 @@ export const AdminContenu = () => {
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
   const [showDetailsModal, setShowDetailsModal] = useState(false);
-  const [showImprovementsMailModal, setShowImprovementsMailModal] = useState(
-    false
-  );
+  const [showImprovementsMailModal, setShowImprovementsMailModal] =
+    useState(false);
   const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
   const [isExportLoading, setIsExportLoading] = useState(false);
+  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState(null);
 
   const [selectedDispositif, setSelectedDispositif] = useState(null);
-  const [showChangeStructureModal, setShowChangeStructureModal] = useState(
-    false
-  );
-  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
-    false
-  );
+  const [showChangeStructureModal, setShowChangeStructureModal] =
+    useState(false);
+  const [showStructureDetailsModal, setShowStructureDetailsModal] =
+    useState(false);
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
   const [selectedStructureId, setSelectedStructureId] = useState(null);
 
@@ -91,10 +101,19 @@ export const AdminContenu = () => {
   const toggleImprovementsMailModal = () =>
     setShowImprovementsMailModal(!showImprovementsMailModal);
 
+  const toggleUserDetailsModal = () =>
+    setShowUserDetailsModal(!showUserDetailsModal);
+
+  const setSelectedUserIdAndToggleModal = (element) => {
+    setSelectedUserId(element ? element._id : null);
+    toggleUserDetailsModal();
+  };
+
   const setSelectedDispositifAndToggleModal = (element) => {
     setSelectedDispositif(element);
     toggleDetailsModal();
   };
+  const allNeeds = useSelector(needsSelector);
 
   if (isLoading || dispositifs.length === 0) {
     return (
@@ -185,10 +204,8 @@ export const AdminContenu = () => {
       dispositifsForCount: dispositifsFilteredBySearch,
     };
   };
-  const {
-    dispositifsToDisplay,
-    dispositifsForCount,
-  } = filterAndSortDispositifs(dispositifs);
+  const { dispositifsToDisplay, dispositifsForCount } =
+    filterAndSortDispositifs(dispositifs);
 
   const reorder = (element) => {
     if (sortedHeader.name === element.name) {
@@ -226,47 +243,6 @@ export const AdminContenu = () => {
   };
 
   const dispatch = useDispatch();
-
-  const prepareDeleteContrib = (dispositif) => {
-    Swal.fire({
-      title: "Êtes-vous sûr ?",
-      text: "La suppression d'un dispositif est irréversible",
-      type: "question",
-      showCancelButton: true,
-      confirmButtonColor: colors.rouge,
-      cancelButtonColor: colors.vert,
-      confirmButtonText: "Oui, le supprimer",
-      cancelButtonText: "Annuler",
-    }).then((result) => {
-      if (result.value) {
-        const newDispositif = {
-          dispositifId: dispositif._id,
-          status: "Supprimé",
-        };
-
-        API.updateDispositifStatus({ query: newDispositif })
-          .then(() => {
-            Swal.fire({
-              title: "Yay...",
-              text: "Suppression effectuée",
-              type: "success",
-              timer: 1500,
-            });
-            setSelectedDispositif(null);
-            setShowDetailsModal(false);
-            dispatch(fetchAllDispositifsActionsCreator());
-          })
-          .catch(() => {
-            Swal.fire({
-              title: "Oh non!",
-              text: "Something went wrong",
-              type: "error",
-              timer: 1500,
-            });
-          });
-      }
-    });
-  };
 
   const onFilterClick = (status) => {
     setFilter(status);
@@ -328,6 +304,32 @@ export const AdminContenu = () => {
         });
       }
     }
+  };
+
+  const checkIfNeedsAreCompatibleWithTags = (element) => {
+    if (allNeeds.length === 0) {
+      return false;
+    }
+    if (
+      !element.needs ||
+      element.needs.length === 0 ||
+      !element.tags ||
+      element.tags.length === 0
+    )
+      return false;
+
+    const formattedNeedsTheme = element.needs.map((needId) => {
+      const needArray = allNeeds.filter((need) => need._id === needId);
+      const needTheme = needArray.length > 0 ? needArray[0].tagName : null;
+      return needTheme;
+    });
+
+    const uniqueNeedsTheme = [...new Set(formattedNeedsTheme)];
+    const uniqueTags = element.tags
+      .filter((tag) => !!tag)
+      .map((tag) => tag.name);
+
+    return uniqueNeedsTheme.sort().join(",") === uniqueTags.sort().join(",");
   };
   const nbNonDeletedDispositifs =
     dispositifs.length > 0
@@ -421,6 +423,10 @@ export const AdminContenu = () => {
                 element.status === "Actif" ||
                 !element.mainSponsor ||
                 element.mainSponsor.status !== "Actif";
+
+              const areNeedsCompatibleWithTags =
+                checkIfNeedsAreCompatibleWithTags(element);
+
               return (
                 <tr key={key}>
                   <td
@@ -433,7 +439,16 @@ export const AdminContenu = () => {
                     />
                   </td>
                   <td className="align-middle">
-                    {element.needs ? element.needs.length : 0}
+                    <RowContainer>
+                      <ColoredRound
+                        color={
+                          areNeedsCompatibleWithTags
+                            ? colors.validationHover
+                            : colors.error
+                        }
+                      />
+                      {element.needs ? element.needs.length : 0}
+                    </RowContainer>
                   </td>
                   <td
                     className="align-middle"
@@ -500,7 +515,15 @@ export const AdminContenu = () => {
                         hoverColor={colors.validationHover}
                       />
                       <DeleteButton
-                        onClick={() => prepareDeleteContrib(element)}
+                        onClick={() =>
+                          prepareDeleteContrib(
+                            setSelectedDispositif,
+                            setShowDetailsModal,
+                            fetchAllDispositifsActionsCreator,
+                            dispatch,
+                            element
+                          )
+                        }
                         disabled={element.status === "Supprimé"}
                       />
                     </div>
@@ -514,10 +537,22 @@ export const AdminContenu = () => {
       <DetailsModal
         show={showDetailsModal}
         toggleModal={() => setSelectedDispositifAndToggleModal(null)}
+        setSelectedStructureIdAndToggleModal={
+          setSelectedStructureIdAndToggleModal
+        }
         selectedDispositifId={
           selectedDispositif ? selectedDispositif._id : null
         }
-        onDeleteClick={() => prepareDeleteContrib(selectedDispositif)}
+        onDeleteClick={() =>
+          prepareDeleteContrib(
+            setSelectedDispositif,
+            setShowDetailsModal,
+            fetchAllDispositifsActionsCreator,
+            dispatch,
+            selectedDispositif
+          )
+        }
+        setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
         setShowChangeStructureModal={setShowChangeStructureModal}
         toggleImprovementsMailModal={toggleImprovementsMailModal}
         toggleNeedsChoiceModal={toggleNeedsChoiceModal}
@@ -531,6 +566,15 @@ export const AdminContenu = () => {
           }
         />
       )}
+      <UserDetailsModal
+        show={showUserDetailsModal}
+        toggleModal={() => setSelectedUserIdAndToggleModal(null)}
+        selectedUserId={selectedUserId}
+        setSelectedStructureIdAndToggleModal={
+          setSelectedStructureIdAndToggleModal
+        }
+      />
+
       <ChangeStructureModal
         show={showChangeStructureModal}
         toggle={toggleShowChangeStructureModal}
@@ -544,6 +588,7 @@ export const AdminContenu = () => {
           toggleModal={() => setSelectedStructureIdAndToggleModal(null)}
           selectedStructureId={selectedStructureId}
           toggleRespoModal={() => setSelectFirstRespoModal(true)}
+          setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
         />
       )}
       {selectedStructureId && (

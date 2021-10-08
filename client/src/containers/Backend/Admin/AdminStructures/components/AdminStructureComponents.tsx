@@ -19,8 +19,10 @@ export const StructureName = styled.div`
 
 interface Props {
   responsable: Responsable | null;
-  canModifyRespo: boolean;
-  onClick: () => void;
+  canClickOnRespo: boolean;
+  toggleModal?: () => void;
+  onUserNameClick?: () => void;
+  onNewRespoClick?: () => void;
 }
 
 export const ResponsableComponent = (props: Props) => {
@@ -31,25 +33,45 @@ export const ResponsableComponent = (props: Props) => {
       ? props.responsable.picture.secure_url
       : marioProfile;
 
-  if (props.canModifyRespo)
+  if (props.canClickOnRespo) {
     return (
-      <RowContainer>
+      <RowContainer style={{ marginBottom: "8px" }}>
         {props.responsable && (
           <img className="respo-img mr-8" src={responsableSecureUrl} />
         )}
         {props.responsable ? (
-          props.responsable.username
+          <div
+            onClick={() => {
+              if (props.toggleModal) {
+                props.toggleModal();
+              }
+              if (props.onUserNameClick) {
+                props.onUserNameClick();
+              }
+            }}
+            style={{
+              cursor: "pointer",
+              textDecoration: "underline",
+            }}
+          >
+            {props.responsable.username}
+          </div>
         ) : (
           <FButton
             type="white"
             name="person-add-outline"
-            onClick={props.onClick}
+            onClick={() => {
+              if (props.onNewRespoClick) {
+                props.onNewRespoClick();
+              }
+            }}
           >
             Choisir un responsable
           </FButton>
         )}
       </RowContainer>
     );
+  }
 
   return (
     <RowContainer>

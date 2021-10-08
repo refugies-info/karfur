@@ -174,7 +174,7 @@ exports[`user translation should redirect if user has language but not langue in
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -183,7 +183,6 @@ exports[`user translation should redirect if user has language but not langue in
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -223,7 +222,7 @@ exports[`user translation should redirect if user has language but not langue in
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -232,7 +231,6 @@ exports[`user translation should redirect if user has language but not langue in
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c3"
@@ -488,7 +486,7 @@ exports[`user translation should redirect if user has no language but langue in 
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -497,7 +495,6 @@ exports[`user translation should redirect if user has no language but langue in 
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -537,7 +534,7 @@ exports[`user translation should redirect if user has no language but langue in 
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -546,7 +543,6 @@ exports[`user translation should redirect if user has no language but langue in 
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c3"
@@ -1130,7 +1126,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -1139,7 +1135,6 @@ exports[`user translation should render correctly with expert, admin 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -1179,7 +1174,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -1188,7 +1183,6 @@ exports[`user translation should render correctly with expert, admin 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c3"
@@ -1197,7 +1191,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="shield-outline"
@@ -1206,7 +1200,6 @@ exports[`user translation should render correctly with expert, admin 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Admin
     </div>
     <div
       className="c4"
@@ -1278,6 +1271,12 @@ exports[`user translation should render correctly with expert, admin 1`] = `
               />
             </span>
             Explications
+          </button>
+          <button
+            className="figma-btn dark mr-8"
+            onClick={[Function]}
+          >
+            Besoins
           </button>
           <button
             className="figma-btn dark "
@@ -2162,7 +2161,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -2171,7 +2170,6 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -2211,7 +2209,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -2220,7 +2218,6 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c3"
@@ -2292,6 +2289,12 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
               />
             </span>
             Explications
+          </button>
+          <button
+            className="figma-btn dark mr-8"
+            onClick={[Function]}
+          >
+            Besoins
           </button>
           <button
             className="figma-btn dark "
@@ -3104,7 +3107,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -3113,7 +3116,6 @@ exports[`user translation should render correctly with non expert, non admin 1`]
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -3153,7 +3155,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -3162,7 +3164,6 @@ exports[`user translation should render correctly with non expert, non admin 1`]
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c3"
@@ -3234,6 +3235,12 @@ exports[`user translation should render correctly with non expert, non admin 1`]
               />
             </span>
             Explications
+          </button>
+          <button
+            className="figma-btn dark mr-8"
+            onClick={[Function]}
+          >
+            Besoins
           </button>
           <button
             className="figma-btn dark "
@@ -3921,7 +3928,7 @@ exports[`user translation should return loader langue in url = first selected la
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="star-outline"
@@ -3930,7 +3937,6 @@ exports[`user translation should return loader langue in url = first selected la
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mes favoris
     </div>
     <div
       className="c1"
@@ -3970,7 +3976,7 @@ exports[`user translation should return loader langue in url = first selected la
       onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className=""
       >
         <i
           data-eva="person-outline"
@@ -3979,7 +3985,6 @@ exports[`user translation should return loader langue in url = first selected la
           data-eva-width="20px"
         />
       </span>
-      Toolbar.Mon profil
     </div>
     <div
       className="c3"

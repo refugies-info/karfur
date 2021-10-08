@@ -275,7 +275,7 @@ const dispositifValidateModal = (props) => {
       toggle={props.toggle}
       className="dispositif-validate-modal"
     >
-      <ModalHeader toggle={props.toggle}>Vous y êtes presque !</ModalHeader>
+      <ModalHeader toggle={props.toggle}>Dernières vérifications</ModalHeader>
       <div>
         {props.typeContenu !== "demarche" ? (
           <Check

@@ -40,6 +40,11 @@ export const sectionUrlCorrespondencies = [
       "https://help.refugies.info/fr/article/definir-une-structure-responsable-et-des-partenaires-creer-une-fiche-dispositif-810-5qxsto",
   },
   {
+    section: "ResponsabilitéFiche",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/8-sur-10-structure-responsable-et-partenaires-5qxsto",
+  },
+  {
     section: "WebsiteLink",
     tutoUrl:
       "https://help.refugies.info/fr/article/ajouter-un-lien-vers-votre-site-creer-une-fiche-dispositif-910-edwpwk",
@@ -73,5 +78,10 @@ export const sectionUrlCorrespondencies = [
     section: "Traduction",
     tutoUrl:
       "https://help.refugies.info/fr/article/comment-traduire-une-page-sur-refugiesinfo-1nnffof",
+  },
+  {
+    section: "Traduction besoin",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/experts-traduire-les-besoins-pour-lapplication-mobile-1fpz5wg",
   },
 ];

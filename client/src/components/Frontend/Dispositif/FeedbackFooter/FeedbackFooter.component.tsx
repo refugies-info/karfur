@@ -8,6 +8,7 @@ import { colors } from "../../../../colors";
 const FeedbackContainer = styled.div`
   display: flex;
   flex-direction: ${isMobile ? "column" : "row"};
+  color: ${(props) => props.color};
 `;
 const ButtonContainer = styled.div`
   display: flex;
@@ -38,12 +39,14 @@ export interface PropsBeforeInjection {
   didThank: boolean;
   nbThanks: number;
   window: any;
+  color: string;
 }
 
 export const FeedbackFooter = (props: Props) => {
   const { nbThanks, t, pushReaction, didThank } = props;
+
   return (
-    <FeedbackContainer className="feedback-footer">
+    <FeedbackContainer color={props.color} className="feedback-footer">
       <TextContainer>
         <h5>
           {t(

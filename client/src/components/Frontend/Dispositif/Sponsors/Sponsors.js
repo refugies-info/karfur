@@ -6,7 +6,6 @@ import {
   ModalBody,
   ModalFooter,
   InputGroup,
-  Tooltip,
   FormGroup,
   Label,
   Spinner,
@@ -19,7 +18,7 @@ import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import FInput from "../../../FigmaUI/FInput/FInput";
 import SearchBar from "../../../../containers/UI/SearchBar/SearchBar";
-import { sentIllu, structure_definie } from "../../../../assets/figma/index";
+import { structure_definie } from "../../../../assets/figma/index";
 import CreationContent from "../CreationContent/CreationContent";
 import { updateUserActionCreator } from "../../../../services/User/user.actions";
 import _ from "lodash";
@@ -52,6 +51,28 @@ const SponsorTitle = styled.p`
   text-align: center;
 `;
 
+const ConfirmationStructureContainer = styled.div`
+  align-items: center;
+  background-color: #ffe2b8;
+  padding: 20px;
+  border-radius: 12px;
+  width: -webkit-fill-available;
+  margin-top: 16px;
+  margin-bottom: 16px;
+`;
+
+const MyStructureContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #bdf0c7;
+  border-radius: 12px;
+  padding: 18px;
+  color: black;
+  border: 0.5px solid #4caf50;
+  margin-bottom: 10px;
+`;
+
 const ImageLink = styled.a`
   background-color: white;
   width: 166px;
@@ -60,6 +81,10 @@ const ImageLink = styled.a`
   justify-content: center;
   align-items: center;
   display: flex;
+`;
+const ConfirmationStructureTitleContainer = styled.div`
+  font-weight: 700;
+  font-size: 22px;
 `;
 
 const DeleteButtonFull = styled.div`
@@ -178,7 +203,7 @@ class Sponsors extends Component {
     sponsorLoading: false,
     edit: false,
     sponsorKey: null,
-
+    isMyStructureSelected: false,
     structure: {
       nom: "",
       acronyme: "",
@@ -219,11 +244,12 @@ class Sponsors extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.user && nextProps.userStructure) {
       const structure = nextProps.userStructure;
-
       this.setState({ mesStructures: [structure] });
     }
   }
-
+  resetImg = () => {
+    this.setState({ imgData: {} });
+  };
   toggleModal = (name) =>
     this.setState((pS) => ({
       showModals: pS.showModals.map((x) => ({
@@ -233,7 +259,9 @@ class Sponsors extends Component {
     }));
   toggleTooltip = () =>
     this.setState((pS) => ({ tooltipOpen: !pS.tooltipOpen }));
-
+  toggleIsMyStructureSelected = () => {
+    this.setState({ isMyStructureSelected: !this.state.isMyStructureSelected });
+  };
   handleFileInputChange = (event) => {
     this.setState({ sponsorLoading: true });
     const formData = new FormData();
@@ -263,6 +291,15 @@ class Sponsors extends Component {
         [ev.currentTarget.id]: ev.target.value,
       },
     });
+
+  handleChangeValueEntered = (newValue) => {
+    this.setState({
+      structure: {
+        ...this.state.structure,
+        nom: newValue,
+      },
+    });
+  };
   handleUserChange = (e) =>
     this.props.updateUserActionCreator({
       ...this.props.user,
@@ -379,6 +416,19 @@ class Sponsors extends Component {
     this.setState({ imgData: {} });
   };
 
+  setStructureContactAsMe = () => {
+    if (this.props.user) {
+      this.setState({
+        structure: {
+          ...this.state.structure,
+          contact: this.props.user.username,
+          phone_contact: this.props.user.phone,
+          mail_contact: this.props.user.email,
+        },
+      });
+    }
+  };
+
   editSponsor = (key) => {
     this.toggleModal();
     this.setState({ edit: false });
@@ -415,9 +465,15 @@ class Sponsors extends Component {
       deleteMainSponsor,
       user,
     } = this.props;
-    const { showModals, selected, authorBelongs, checked, mesStructures } =
-      this.state;
 
+    const {
+      showModals,
+      selected,
+      authorBelongs,
+      checked,
+      mesStructures,
+      isMyStructureSelected,
+    } = this.state;
     const sponsorsWithoutPicture = sponsors.filter(
       (sponsor) => !sponsor.picture && !sponsor._id
     );
@@ -429,15 +485,13 @@ class Sponsors extends Component {
     );
     const modal = { name: "responsabilite" };
     const structuresArray = this.props.structures
-      ? this.props.structures.concat([{ createNew: true }])
+      ? this.props.structures
       : [{ createNew: true }];
     const totalSponsor = this.createCarouselObject(
       mainSponsor,
       deduplicatedSponsors
     );
-
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
-
     return (
       <div
         className={"sponsor-footer backgroundColor-darkColor"}
@@ -676,25 +730,50 @@ class Sponsors extends Component {
           toggleModal={this.toggleModal}
           modal={modal}
           keyValue={0}
-          title="Responsabilité du dispositif"
-          lowerRightBtn={
+          title="Responsabilité de la fiche"
+          lowerLeftBtn={
             <FButton
-              type="dark"
-              name="paper-plane-outline"
-              fill={colors.noir}
-              disabled={
-                (!checked || (!user.email && !user.phone)) &&
-                !mesStructures.some((x) => x.checked)
+              type="tuto"
+              name={"play-circle-outline"}
+              onClick={() =>
+                this.props.toggleTutorielModal("ResponsabilitéFiche")
               }
-              onClick={this.validerRespo}
-              className="push-right"
             >
-              Valider
+              Tutoriel
             </FButton>
+          }
+          lowerRightBtn={
+            <div>
+              <FButton
+                type="white"
+                fill={colors.noir}
+                onClick={this.toggleModal}
+                className="push-right mr-8"
+              >
+                Quitter
+              </FButton>
+              <FButton
+                type="validate"
+                name="checkmark-outline"
+                fill={colors.noir}
+                disabled={
+                  (!checked || (!user.email && !user.phone)) &&
+                  !mesStructures.some((x) => x.checked)
+                }
+                onClick={() => {
+                  this.validerRespo();
+                  this.toggleIsMyStructureSelected();
+                  this.toggleModal("envoye");
+                }}
+                className="push-right"
+              >
+                Valider
+              </FButton>
+            </div>
           }
         >
           {this.state.banner ? (
-            <div className="warning-bloc bg-focus mt-16 mb-8">
+            <div className="warning-bloc bg-focus mt-16 mb-16">
               <EVAIcon name="info" fill={colors.blanc} className="info-icon" />
               <div
                 onClick={() => this.setState({ banner: false })}
@@ -703,23 +782,54 @@ class Sponsors extends Component {
                 <EVAIcon name="close-outline" fill={colors.blanc} />
               </div>
               <p style={{ marginBottom: 0 }}>
-                Pour que la fiche soit correctement mise à jour au fil du temps,
-                nous allons la connecter à sa structure légale. Cherchez la
-                structure dans la barre de recherche ci-dessous, ou créez-en une
-                nouvelle si elle n’est pas présente dans la base de donnée.
+                Renseignez ci-dessous le nom de la structure responsable de
+                cette fiche pour qu’elle soit correctement mise à jour au fil du
+                temps.
               </p>
             </div>
           ) : (
             <div style={{ marginTop: 24 }} />
           )}
+          <SearchBar
+            isArray
+            structures
+            loupe
+            className="search-bar inner-addon right-addon mb-16 mt-8"
+            placeholder="Rechercher une structure..."
+            array={structuresArray}
+            createNewCta="Créer une nouvelle structure"
+            selectItem={this.selectItem}
+            handleChangeValueEntered={this.handleChangeValueEntered}
+            toggleModal={this.toggleModal}
+          />
 
           {mesStructures.length > 0 &&
+            this.state.structure.nom === "" &&
             mesStructures.map((struct) => (
-              <FormGroup check className="ma-structure mb-10" key={struct._id}>
-                <Label check>
+              <FormGroup
+                check
+                className="ma-structure mb-10"
+                key={struct._id}
+                style={
+                  struct.checked
+                    ? {
+                        backgroundColor: colors.greenValidate,
+                        border: "0.5px solid" + colors.validationHover,
+                      }
+                    : {}
+                }
+              >
+                <Label
+                  style={{
+                    cursor: "pointer",
+                    fontWeight: "700",
+                  }}
+                  check
+                >
                   <Input
-                    type="radio"
+                    type="checkbox"
                     checked={struct.checked}
+                    style={{ cursor: "pointer" }}
                     onChange={() => this.handleStructChange(struct._id)}
                   />{" "}
                   <b>Ma structure : </b>
@@ -727,17 +837,6 @@ class Sponsors extends Component {
                 </Label>
               </FormGroup>
             ))}
-
-          <SearchBar
-            isArray
-            structures
-            loupe
-            className="search-bar inner-addon right-addon"
-            placeholder="Rechercher ou créer une structure"
-            array={structuresArray}
-            createNewCta="Créer une nouvelle structure"
-            selectItem={this.selectItem}
-          />
         </CustomModal>
 
         <CustomModal
@@ -745,76 +844,112 @@ class Sponsors extends Component {
           toggleModal={this.toggleModal}
           modal={{ name: "etVous" }}
           keyValue={1}
-          title="Et vous ?"
-          lowerRightBtn={
+          title="Responsabilité de la fiche"
+          lowerLeftBtn={
             <FButton
-              type="dark"
-              name="paper-plane-outline"
-              fill={colors.noir}
-              onClick={() => {
-                this.props.addMainSponsor(this.state.selected);
-                this.toggleModal();
-                this.setState({ imgData: {} });
-              }}
-              className="push-right"
+              type="tuto"
+              name={"play-circle-outline"}
+              onClick={() =>
+                this.props.toggleTutorielModal("ResponsabilitéFiche")
+              }
             >
-              Valider
+              Tutoriel
             </FButton>
           }
+          lowerRightBtn={
+            <div>
+              <FButton
+                type="white"
+                fill={colors.noir}
+                onClick={() => {
+                  this.toggleModal("responsabilite");
+                  this.handleChangeValueEntered("");
+                  this.resetImg();
+                }}
+                className="push-right mr-8"
+                name="arrow-back-outline"
+              >
+                Retour
+              </FButton>
+              <FButton
+                type="validate"
+                name="checkmark-outline"
+                fill={colors.noir}
+                onClick={() => {
+                  this.props.addMainSponsor(this.state.selected);
+                  this.toggleModal("envoye");
+                  this.setState({ imgData: {} });
+                }}
+                className="push-right"
+              >
+                Valider
+              </FButton>
+            </div>
+          }
         >
-          <p>
-            <span>Faites-vous partie de la structure suivante : </span>
-            <EVAIcon
-              className="float-right"
-              id="alt-tooltip"
-              name="info"
-              fill={colors.noir}
-            />
-            <Tooltip
-              placement="top"
-              isOpen={this.state.tooltipOpen}
-              target="alt-tooltip"
-              toggle={this.toggleTooltip}
-            >
-              Si oui, nous enverrons une demande d’ajout à un responsable de la
-              structure. Si non, la propriété de la page lui sera transférée
-              pour qu’il puisse vérifier les informations.
-            </Tooltip>
-          </p>
+          <ConfirmationStructureContainer>
+            <p>
+              <ConfirmationStructureTitleContainer>
+                Faites-vous partie de cette structure ?{" "}
+              </ConfirmationStructureTitleContainer>
+            </p>
 
-          <div className="selection-wrapper bg-validation mb-10">
-            {selected.picture && selected.picture.secure_url && (
-              <img
-                src={selected.picture.secure_url}
-                className="selection-logo mr-10"
-                alt="logo de structure"
-              />
-            )}
-            <span>
-              {selected.acronyme} - {selected.nom}
-            </span>
-          </div>
-
+            <div className="selection-wrapper bg-white mb-10">
+              {selected.picture && selected.picture.secure_url && (
+                <img
+                  src={selected.picture.secure_url}
+                  className="selection-logo mr-10"
+                  alt="logo de structure"
+                />
+              )}
+              <span>
+                {selected.acronyme} - {selected.nom}
+              </span>
+            </div>
+          </ConfirmationStructureContainer>
           <FormGroup check className="author-choice mb-10">
-            <Label check>
+            <Label check style={{ cursor: "pointer" }}>
               <Input
                 type="checkbox"
                 checked={this.state.authorBelongs}
                 onChange={this.handleBelongsSChange}
               />{" "}
-              <b>Oui !</b>
+              <b>Oui et je veux devenir rédacteur de cette structure</b>
             </Label>
           </FormGroup>
           <FormGroup check className="author-choice">
-            <Label check>
+            <Label check style={{ cursor: "pointer" }}>
               <Input
                 type="checkbox"
                 checked={!this.state.authorBelongs}
                 onChange={this.handleBelongsSChange}
               />{" "}
-              <b>Non et je renonce à mon droit d’édition</b>
+              <b>
+                Non et j'accepte que cette structure reprenne le droit d'édition
+              </b>
             </Label>
           </FormGroup>
+          {this.state.banner ? (
+            <div className="warning-bloc bg-focus mt-16 mb-16">
+              <EVAIcon name="info" fill={colors.blanc} className="info-icon" />
+              <div
+                onClick={() => this.setState({ banner: false })}
+                className={"info-icon-close"}
+              >
+                <EVAIcon name="close-outline" fill={colors.blanc} />
+              </div>
+              <p style={{ marginBottom: 0 }}>
+                Si oui, le responsable de la structure sera notifié de votre
+                demande et pourra vous ajouter facilement.
+              </p>
+              <div>
+                Si non, vous ne pourrez plus éditer la fiche dès que la
+                structure en reprend la responsabilité.
+              </div>
+            </div>
+          ) : (
+            <div style={{ marginTop: 24 }} />
+          )}
         </CustomModal>
 
         <CustomModal
@@ -823,11 +958,55 @@ class Sponsors extends Component {
           modal={{ name: "creation" }}
           keyValue={2}
           className="modal-sponsors"
-          title="Créer une structure"
+          title="Création d'une structure"
+          lowerLeftBtn={
+            <FButton
+              type="tuto"
+              name={"play-circle-outline"}
+              onClick={() =>
+                this.props.toggleTutorielModal("ResponsabilitéFiche")
+              }
+            >
+              Tutoriel
+            </FButton>
+          }
+          lowerRightBtn={
+            <div>
+              <FButton
+                type="white"
+                name="arrow-back-outline"
+                fill={colors.noir}
+                onClick={() => {
+                  this.toggleModal("responsabilite");
+                  this.handleChangeValueEntered("");
+                  this.resetImg();
+                }}
+                className="push-right mr-8"
+              >
+                Retour
+              </FButton>
+              <FButton
+                type="validate"
+                name="checkmark-outline"
+                fill={colors.noir}
+                disabled={
+                  !this.state.structure.nom ||
+                  !this.state.structure.contact ||
+                  !this.state.structure.mail_contact ||
+                  !this.state.structure.phone_contact
+                }
+                onClick={this.createStructure}
+                className="push-right"
+              >
+                Valider
+              </FButton>
+            </div>
+          }
         >
           <CreationContent
             handleChange={this.handleChange}
             handleBelongsChange={this.handleBelongsChange}
+            setStructureContactAsMe={this.setStructureContactAsMe}
             {...this.state.structure}
           />
           <div className="form-field inline-div">
@@ -879,24 +1058,6 @@ class Sponsors extends Component {
               </FButton>
             )}
           </div>
-          <div className="btn-footer">
-            <FButton onClick={this.toggleModal} type="default" className="mr-8">
-              Annuler
-            </FButton>
-            <FButton
-              disabled={
-                !this.state.structure.nom ||
-                !this.state.structure.contact ||
-                !this.state.structure.mail_contact ||
-                !this.state.structure.phone_contact
-              }
-              onClick={this.createStructure}
-              type="validate"
-              name="checkmark-outline"
-            >
-              Valider
-            </FButton>
-          </div>
         </CustomModal>
 
         <CustomModal
@@ -904,7 +1065,7 @@ class Sponsors extends Component {
           toggleModal={this.toggleModal}
           modal={{ name: "envoye" }}
           keyValue={3}
-          title="C’est envoyé !"
+          title={"Chouette !"}
           lowerRightBtn={
             <FButton
               type="validate"
@@ -914,24 +1075,58 @@ class Sponsors extends Component {
                 if (this.props.finalValidation) {
                   this.props.validate();
                 }
+                this.props.toggleDispositifValidateModal();
               }}
               className="push-right"
             >
-              Ok !
+              Je termine ma fiche
+            </FButton>
+          }
+          lowerLeftBtn={
+            <FButton
+              type="dark"
+              name="edit-outline"
+              onClick={() => {
+                this.toggleModal("envoye");
+                if (this.props.finalValidation) {
+                  this.props.validate();
+                }
+              }}
+            >
+              Je continue ma rédaction
             </FButton>
           }
         >
           <div className="envoye-content center-text">
-            {selected.nom ? (
-              <img src={sentIllu} className="illu" alt="illustration" />
-            ) : (
-              <img
-                src={structure_definie}
-                className="illu"
-                alt="illustration"
-              />
-            )}
-            {selected.nom ? (
+            <img src={structure_definie} className="illu" alt="illustration" />
+
+            {isMyStructureSelected ? (
+              <>
+                <h5 className="mb-10 green">
+                  Votre fiche va être transférée à la structure :
+                </h5>
+                <MyStructureContainer>
+                  {" "}
+                  {mainSponsor.picture && mainSponsor.picture.secure_url && (
+                    <img
+                      src={mainSponsor.picture.secure_url}
+                      className="selection-logo mr-10"
+                      alt="logo de structure"
+                    />
+                  )}
+                  <span>
+                    {mainSponsor.acronyme} - {mainSponsor.nom}
+                  </span>
+                </MyStructureContainer>
+                <div className="contenu mb-10">
+                  <b>
+                    Les responsables de la structure vont prendre le relais.
+                    N’hésitez pas à les joindre directement si vous les
+                    connaissez.
+                  </b>
+                </div>
+              </>
+            ) : selected.nom ? (
               authorBelongs ? (
                 <>
                   <h5 className="mb-10">
@@ -960,44 +1155,39 @@ class Sponsors extends Component {
                 </>
               ) : (
                 <>
-                  <h5 className="mb-10">
-                    Votre contenu va être transféré à la structure :
+                  <h5 className="mb-10 green">
+                    Votre fiche va être transférée à la structure :
                   </h5>
-                  <div className="selection-wrapper mb-10">
-                    {selected.picture && selected.picture.secure_url && (
+                  <MyStructureContainer>
+                    {" "}
+                    {mainSponsor.picture && mainSponsor.picture.secure_url && (
                       <img
-                        src={selected.picture.secure_url}
+                        src={mainSponsor.picture.secure_url}
                         className="selection-logo mr-10"
                         alt="logo de structure"
                       />
                     )}
                     <span>
-                      {selected.acronyme} - {selected.nom}
+                      {mainSponsor.acronyme} - {mainSponsor.nom}
                     </span>
-                  </div>
-                  <div className="contenu">
-                    Les responsables de la structure vont prendre le relais.
-                    <br />
-                    N’hésitez pas à les joindre directement si vous les
-                    connaissez.
-                    <br />
-                    <b>Merci infiniment pour votre contribution !</b>
+                  </MyStructureContainer>
+                  <div className="contenu mb-10">
+                    <b>
+                      Les responsables de la structure vont prendre le relais.
+                      N’hésitez pas à les joindre directement si vous les
+                      connaissez.
+                    </b>
                   </div>
                 </>
               )
             ) : (
               <>
-                <h5 className="mb-10">
-                  Votre structure est en cours de création
-                </h5>
+                <h5 className="mb-10">La structure est en cours de création</h5>
                 <div className="contenu mb-10">
                   <b>
-                    L’équipe Réfugiés.info va prendre contact avec vous sous 7
-                    jours pour vérifier vos informations.
+                    Nous allons faire le nécessaire pour activer votre structure
+                    à partir des informations que vous avez renseignées.
                   </b>
-                </div>
-                <div className="contenu">
-                  <b>Merci de rejoindre l’aventure !</b>
                 </div>
               </>
             )}

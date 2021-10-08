@@ -59,6 +59,7 @@ export interface SimplifiedDispositif {
   adminProgressionStatus?: string;
   adminPercentageProgressionStatus?: string;
   lastAdminUpdate?: Moment;
+  lastReminderMailSentToUpdateContentDate?: Moment;
   draftReminderMailSentDate?: Moment;
   lastModificationDate?: Moment;
   needs?: ObjectId[];
@@ -321,7 +322,16 @@ export interface SimplifiedStructureForAdmin {
   created_at: Moment;
   responsable: null | Responsable;
   membres: Membre[];
+  dispositifsIds: ObjectId[];
   nbFiches: number;
+  dispositifsSimplified?: {
+    titreInformatif: string | { fr: string };
+    creator: Responsable;
+    created_at: number;
+    _id: ObjectId;
+    status: string;
+    color: string;
+  }[];
 }
 
 export interface IUserFavorite {
@@ -388,3 +398,12 @@ export interface Need {
   created_at: Moment;
   updatedAt: Moment;
 }
+
+export type AvailableLanguageI18nCode =
+  | "fr"
+  | "en"
+  | "ps"
+  | "ar"
+  | "ti-ER"
+  | "ru"
+  | "fa";

@@ -1,6 +1,13 @@
 var Airtable = require("airtable");
-var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(
-  process.env.airtableBase
+var base = new Airtable({
+  apiKey:
+    process.env.NODE_ENV === "staging"
+      ? process.env.airtableApiKey
+      : process.env.AIRTABLE_API_KEY_APPLI,
+}).base(
+  process.env.NODE_ENV === "staging"
+    ? process.env.AIRTABLE_BASE_DIAIR_TEST
+    : process.env.AIRTABLE_BASE_TRAD
 );
 
 import logger from "../../logger";
@@ -129,6 +136,7 @@ const exportDispositifInAirtable = (
     });
 };
 
+// route one shot to resynchronize airtable contents with data base
 export const updateAirtableContenus = async (
   req: RequestFromClient<{}>,
   res: Res

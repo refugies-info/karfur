@@ -75,6 +75,22 @@ body .figma-btn {
     }
   }
 
+  &.saved {
+    background: $lightgreen;
+    color: $noir;
+    svg {
+      fill: $vert;
+    }
+  }
+
+  &.modified {
+    background: $lightOrange;
+    color: $noir;
+    svg {
+      fill: $orange;
+    }
+  }
+
   &.white {
     background: $blancSimple;
     color: $noir;

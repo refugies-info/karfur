@@ -117,13 +117,13 @@
 
   .react-autosuggest__container input {
     background: $blancSimple;
-    border: 0.5px solid $blancSimple;
+    border: 0.5px solid $grisFonce;
     border-radius: 12px;
     padding-right: 42px;
     padding-left: 15px;
     font-size: 16px;
     font-weight: 400;
-    height: 40px;
+    height: 50px;
     width: 100%;
     &:hover {
       background-color: $gris;
@@ -194,6 +194,8 @@
       background: $blancSimple;
       border-radius: 12px;
       margin-top: 10px;
+      border: 0.5px solid $grisFonce;
+
       &:hover {
         background: $validation;
       }
@@ -208,7 +210,7 @@
   }
   .suggestion-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
   }
   .oeil-btn {

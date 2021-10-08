@@ -125,6 +125,7 @@ export const adaptUsers = (users: UserDoc[]) =>
       picture: user.picture,
       status: user.status,
       created_at: user.created_at,
+      last_connected: user.last_connected,
       roles,
       email: user.email,
       langues,

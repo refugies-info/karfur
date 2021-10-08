@@ -34,12 +34,20 @@ const ButtonContainer = styled.div`
   justify-content: flex-end;
 `;
 
+const ErrorMessageContainer = styled.div`
+  color: ${colors.error};
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 16px;
+`;
+
 const ExplainationTitleContainer = styled.p`
   font-weight: 700;
 `;
 
 export const CompleteProfilModal = (props) => {
   const [email, setEmail] = useState("");
+  const [notEmailError, setNotEmailError] = useState(false);
 
   const onChange = (e) => {
     setEmail(e.target.value);
@@ -68,20 +76,26 @@ export const CompleteProfilModal = (props) => {
   const dispatch = useDispatch();
 
   const onEmailModificationValidate = () => {
-    dispatch(
-      saveUserActionCreator({
-        user: { email: email, _id: props.user._id },
-        type: "modify-my-details",
-      })
-    );
+    const regex = /^\S+@\S+\.\S+$/;
+    const isEmail = !!email.match(regex);
+    if (isEmail) {
+      dispatch(
+        saveUserActionCreator({
+          user: { email: email, _id: props.user._id },
+          type: "modify-my-details",
+        })
+      );
 
-    Swal.fire({
-      title: "Yay...",
-      text: "Votre email a bien été modifié",
-      type: "success",
-      timer: 1500,
-    });
-    redirect();
+      Swal.fire({
+        title: "Yay...",
+        text: "Votre email a bien été modifié",
+        type: "success",
+        timer: 1500,
+      });
+      redirect();
+    } else {
+      setNotEmailError(true);
+    }
   };
 
   return (
@@ -112,6 +126,11 @@ export const CompleteProfilModal = (props) => {
         </ul>
         Nous ne transmetterons jamais votre email à d’autres organisations.
       </ExplainationContainer>
+      {notEmailError && (
+        <ErrorMessageContainer>
+          Ceci n'est pas un email, vérifiez l'orthographe.
+        </ErrorMessageContainer>
+      )}
       <ButtonContainer>
         <FButton
           onClick={props.toggle}
@@ -120,13 +139,6 @@ export const CompleteProfilModal = (props) => {
         >
           {"Retour"}
         </FButton>{" "}
-        <FButton
-          onClick={redirect}
-          type="white mr-8"
-          name="arrowhead-right-outline"
-        >
-          {"Plus tard"}
-        </FButton>
         <FButton
           disabled={email === ""}
           onClick={onEmailModificationValidate}

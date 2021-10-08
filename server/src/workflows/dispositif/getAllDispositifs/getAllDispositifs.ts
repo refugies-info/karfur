@@ -53,6 +53,7 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
       adminPercentageProgressionStatus: 1,
       lastAdminUpdate: 1,
       draftReminderMailSentDate: 1,
+      lastReminderMailSentToUpdateContentDate: 1,
       lastModificationDate: 1,
       needs: 1,
       tags: 1,
@@ -61,9 +62,8 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
     const dispositifs = await getDispositifsFromDB(neededFields);
 
     // @ts-ignore
-    const adaptedDispositifs: DispositifMainInfo[] = adaptDispositifMainSponsorAndCreatorId(
-      dispositifs
-    );
+    const adaptedDispositifs: DispositifMainInfo[] =
+      adaptDispositifMainSponsorAndCreatorId(dispositifs);
 
     const array: string[] = [];
 

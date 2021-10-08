@@ -1153,11 +1153,10 @@ class SideTrad extends Component {
     await API.validateTranslations(newTrad).then(() => {
       Swal.fire({
         title: "Yay...",
-        text:
-          "Ce dispositif est maintenant intégralement validé et disponible à la lecture. Voir le questionnaire",
+        text: "Ce dispositif est maintenant intégralement validé et disponible à la lecture. Voir le questionnaire",
         type: "success",
         footer:
-          "<a target='_blank' href='https://airtable.com/shrISR1hRbTBX2pb7'>Répondre au questionnaire</a>",
+          "<a target='_blank' href='https://airtable.com/shr2i7HLU1eJSsznj'>Répondre au questionnaire</a>",
       }).then(() => {
         this.props.onSkip();
       });

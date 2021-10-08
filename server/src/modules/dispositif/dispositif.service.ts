@@ -23,29 +23,29 @@ export const publishDispositif = async (dispositifId: ObjectId) => {
       { error: error.message }
     );
   }
-  if (newDispo.typeContenu === "dispositif") {
-    try {
-      await addOrUpdateDispositifInContenusAirtable(
-        newDispo.titreInformatif,
-        newDispo.titreMarque,
-        newDispo._id,
-        newDispo.tags,
-        null,
-        false
-      );
-    } catch (error) {
-      logger.error(
-        "[publishDispositif] error while updating contenu in airtable",
-        { error: error.message }
-      );
-    }
 
-    try {
-      await sendMailWhenDispositifPublished(newDispo);
-    } catch (error) {
-      logger.error("[publishDispositif] error while sending email", {
-        error: error.message,
-      });
-    }
+  try {
+    await addOrUpdateDispositifInContenusAirtable(
+      newDispo.titreInformatif,
+      newDispo.titreMarque,
+      newDispo._id,
+      newDispo.tags,
+      newDispo.typeContenu,
+      null,
+      false
+    );
+  } catch (error) {
+    logger.error(
+      "[publishDispositif] error while updating contenu in airtable",
+      { error: error.message }
+    );
+  }
+
+  try {
+    await sendMailWhenDispositifPublished(newDispo);
+  } catch (error) {
+    logger.error("[publishDispositif] error while sending email", {
+      error: error.message,
+    });
   }
 };
