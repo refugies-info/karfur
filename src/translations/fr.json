@@ -148,6 +148,7 @@
     "fiches non trad": "Fiches non traduites"
   },
   "FavorisScreen": {
-    "Explorer": "Explorer"
+    "C'est vide": "C'est vide",
+    "Ajouter une fiche": "Pour ajouter une fiche dans tes favoris, clique sur l’étoile."
   }
 }

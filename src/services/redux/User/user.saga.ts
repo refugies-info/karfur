@@ -40,7 +40,7 @@ import {
   deleteItemInAsyncStorage,
 } from "./functions";
 import { fetchContentsActionCreator } from "../Contents/contents.actions";
-import { hasUserSeenOnboardingSelector } from "./user.selectors";
+import { hasUserSeenOnboardingSelector, userFavorites } from "./user.selectors";
 
 export function* saveSelectedLanguage(
   action: ReturnType<typeof saveSelectedLanguageActionCreator>
@@ -274,8 +274,8 @@ export function* addUserFavorite(
 ): SagaIterator {
   try {
     logger.info("[addFavorite] saga", action.payload);
-    const favorites = yield call(getItemInAsyncStorage, "FAVORITES");
-    const newFavorites = [...new Set([...JSON.parse(favorites || "[]"), action.payload])];
+    const favorites = yield select(userFavorites);
+    const newFavorites = [...(favorites || []), action.payload];
     yield call(saveItemInAsyncStorage, "FAVORITES", JSON.stringify(newFavorites));
     yield put(setUserFavoritesActionCreator(newFavorites));
   } catch (error) {
@@ -288,8 +288,8 @@ export function* removeUserFavorite(
 ): SagaIterator {
   try {
     logger.info("[removeFavorite] saga", action.payload);
-    const favorites = yield call(getItemInAsyncStorage, "FAVORITES");
-    const newFavorites = JSON.parse(favorites || "[]").filter((f: string) => f !== action.payload);
+    const favorites = yield select(userFavorites);
+    const newFavorites = (favorites || []).filter((f: string) => f !== action.payload);
     yield call(saveItemInAsyncStorage, "FAVORITES", JSON.stringify(newFavorites));
     yield put(setUserFavoritesActionCreator(newFavorites));
   } catch (error) {

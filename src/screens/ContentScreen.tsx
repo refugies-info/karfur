@@ -146,7 +146,7 @@ const TabBarContainer = styled.View`
   shadow-offset: 0 -1px;
   shadow-opacity: 0.08;
   shadow-radius: 24px;
-  zIndex: 14;
+  z-index: 14;
   elevation: 14;
 `;
 

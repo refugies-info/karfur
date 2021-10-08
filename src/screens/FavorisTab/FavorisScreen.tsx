@@ -3,6 +3,7 @@ import styled from "styled-components/native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { Image, Text } from "react-native"
 import { useSelector } from "react-redux";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal"
 import { StyledTextBigBold, StyledTextSmall } from "../../components/StyledText"
@@ -39,6 +40,7 @@ export const FavorisScreen = ({
 }: StackScreenProps<BottomTabParamList, "Favoris">) => {
 
   const favorites = useSelector(userFavorites);
+  const { t } = useTranslationWithRTL();
 
   return (
     <WrapperWithHeaderAndLanguageModal>
@@ -54,13 +56,18 @@ export const FavorisScreen = ({
               width={225}
               height={180}
             />
-            <EmptyTitle>C'est vide !</EmptyTitle>
+            <EmptyTitle>
+              {t("FavorisScreen.C'est vide", "C'est vide")}
+            </EmptyTitle>
             <EmptyText>
-              Pour ajouter une fiche dans tes favoris, clique sur l’étoile.
+              {t(
+                "FavorisScreen.Ajouter une fiche",
+                "Pour ajouter une fiche dans tes favoris, clique sur l’étoile."
+              )}
             </EmptyText>
             <CustomButton
               textColor={theme.colors.white}
-              i18nKey="FavorisScreen.Explorer"
+              i18nKey="tabBar.Explorer"
               onPress={() => navigation.navigate("Explorer")}
               defaultText="Explorer"
               backgroundColor={theme.colors.black}

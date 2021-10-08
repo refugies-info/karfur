@@ -6,6 +6,7 @@ import styled from "styled-components/native";
 import { theme } from "../theme";
 import { RTLView } from "./BasicComponents";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
+import { StyledTextVerySmallBold } from "./StyledText";
 
 interface Props {
   text: string;
@@ -18,7 +19,7 @@ const ToastContainer = styled(Animated.View)`
   position: absolute;
   left: 5%;
   bottom: 100px;
-  zIndex: 13;
+  z-index: 13;
 `;
 const ToastView = styled(RTLView)`
   background-color: ${theme.colors.lightBlue};
@@ -37,9 +38,8 @@ const TextIcon = styled(Icon)`
   marginLeft: ${(props: { isRTL: boolean }) =>
     props.isRTL ? theme.margin * 2 : 0}px;
 `;
-const StyledText = styled.Text`
+const StyledText = styled(StyledTextVerySmallBold)`
   color: ${theme.colors.darkBlue};
-  font-weight: bold;
   ${(props: { isLink: boolean }) => props.isLink ? `
   text-decoration: underline;
   text-decoration-color: ${theme.colors.darkBlue};
