@@ -211,6 +211,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
         style={
           Array [
             Object {
+              "color": "#212121",
               "flexShrink": 1,
               "fontFamily": "circularBold",
               "fontSize": 16,
@@ -350,6 +351,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
         style={
           Array [
             Object {
+              "color": "#212121",
               "fontFamily": "circularBold",
               "fontSize": 19,
               "lineHeight": 24,
@@ -727,6 +729,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "fontFamily": "circularBook",
                     "fontSize": 16,
                     "lineHeight": 20,
@@ -1090,6 +1093,7 @@ exports[`Filter city should render correctly when no city 1`] = `
         style={
           Array [
             Object {
+              "color": "#212121",
               "flexShrink": 1,
               "fontFamily": "circularBold",
               "fontSize": 16,
@@ -1229,6 +1233,7 @@ exports[`Filter city should render correctly when no city 1`] = `
         style={
           Array [
             Object {
+              "color": "#212121",
               "fontFamily": "circularBold",
               "fontSize": 19,
               "lineHeight": 24,
@@ -1370,6 +1375,7 @@ exports[`Filter city should render correctly when no city 1`] = `
             style={
               Array [
                 Object {
+                  "color": "#212121",
                   "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 16,
@@ -1617,6 +1623,7 @@ exports[`Filter city should render correctly when no city 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "fontFamily": "circularBook",
                     "fontSize": 16,
                     "lineHeight": 20,
