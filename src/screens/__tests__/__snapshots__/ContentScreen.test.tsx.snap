@@ -500,13 +500,13 @@ exports[`ContentScreen should render correctly 1`] = `
         </View>
       </View>
       <View>
-<<<<<<< HEAD
         <View>
           <Text
             isRTL={false}
             style={
               Array [
                 Object {
+                  "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 25,
                   "lineHeight": 32,
@@ -527,53 +527,20 @@ exports[`ContentScreen should render correctly 1`] = `
           </Text>
           <View
             style={
-=======
-        <Text
-          isRTL={false}
-          style={
-            Array [
-              Object {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "textAlign": "left",
-              },
->>>>>>> dbcb473 (:art: fix tests)
               Object {
                 "marginHorizontal": 24,
               }
             }
           >
-<<<<<<< HEAD
             <View
               style={Object {}}
-=======
-            <Text
-              isRTL={false}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "flexShrink": 1,
-                    "marginBottom": 8,
-                    "marginTop": 8,
-                  },
-                ]
-              }
->>>>>>> dbcb473 (:art: fix tests)
             >
               <Text
                 isRTL={false}
                 style={
                   Array [
                     Object {
+                      "color": "#212121",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -631,34 +598,12 @@ exports[`ContentScreen should render correctly 1`] = `
                   </Text>
                 </Text>
               </Text>
-<<<<<<< HEAD
-=======
-            </Text>
-            <Text
-              isRTL={false}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "flexShrink": 1,
-                    "marginBottom": 8,
-                    "marginTop": 8,
-                  },
-                ]
-              }
-            >
->>>>>>> dbcb473 (:art: fix tests)
               <Text
                 isRTL={false}
                 style={
                   Array [
                     Object {
+                      "color": "#212121",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -1160,40 +1105,7 @@ exports[`ContentScreen should render correctly 1`] = `
             ]
           }
         >
-<<<<<<< HEAD
           <View>
-=======
-          <View
-            style={
-              Array [
-                Object {
-                  "paddingHorizontal": 16,
-                },
-              ]
-            }
-          >
-            <Text
-              color="#3D2884"
-              isRTL={false}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#3D2884",
-                    "marginBottom": 12,
-                  },
-                ]
-              }
-            >
-              C'est où ?
-            </Text>
->>>>>>> dbcb473 (:art: fix tests)
             <View
               style={
                 Array [
@@ -1209,6 +1121,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 style={
                   Array [
                     Object {
+                      "color": "#212121",
                       "fontFamily": "circularBold",
                       "fontSize": 19,
                       "lineHeight": 24,
@@ -1253,23 +1166,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {
-<<<<<<< HEAD
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "flexShrink": 1,
                           "flexWrap": "wrap",
                           "marginLeft": 0,
                           "marginRight": 8,
-=======
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 13,
-                          "lineHeight": 16,
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#5E5E5E",
->>>>>>> dbcb473 (:art: fix tests)
                         },
                       ]
                     }
@@ -1299,6 +1201,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -1331,23 +1234,11 @@ exports[`ContentScreen should render correctly 1`] = `
               style={
                 Array [
                   Object {
-<<<<<<< HEAD
                     "backgroundColor": "#EDEBEB",
                     "height": 1,
                     "marginBottom": 24,
                     "marginTop": 8,
                     "width": "100%",
-=======
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#3D2884",
-                    "marginBottom": 12,
->>>>>>> dbcb473 (:art: fix tests)
                   },
                 ]
               }
@@ -1369,6 +1260,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 style={
                   Array [
                     Object {
+                      "color": "#212121",
                       "fontFamily": "circularBold",
                       "fontSize": 19,
                       "lineHeight": 24,
@@ -1413,23 +1305,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {
-<<<<<<< HEAD
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "flexShrink": 1,
                           "flexWrap": "wrap",
                           "marginLeft": 0,
                           "marginRight": 8,
-=======
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 13,
-                          "lineHeight": 16,
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#5E5E5E",
->>>>>>> dbcb473 (:art: fix tests)
                         },
                       ]
                     }
@@ -1459,6 +1340,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -1516,23 +1398,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {
-<<<<<<< HEAD
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "flexShrink": 1,
                           "flexWrap": "wrap",
                           "marginLeft": 0,
                           "marginRight": 8,
-=======
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 13,
-                          "lineHeight": 16,
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#5E5E5E",
->>>>>>> dbcb473 (:art: fix tests)
                         },
                       ]
                     }
@@ -1562,6 +1433,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -1594,23 +1466,11 @@ exports[`ContentScreen should render correctly 1`] = `
               style={
                 Array [
                   Object {
-<<<<<<< HEAD
                     "backgroundColor": "#EDEBEB",
                     "height": 1,
                     "marginBottom": 24,
                     "marginTop": 8,
                     "width": "100%",
-=======
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#3D2884",
-                    "marginBottom": 12,
->>>>>>> dbcb473 (:art: fix tests)
                   },
                 ]
               }
@@ -1632,6 +1492,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 style={
                   Array [
                     Object {
+                      "color": "#212121",
                       "fontFamily": "circularBold",
                       "fontSize": 19,
                       "lineHeight": 24,
@@ -1676,23 +1537,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {
-<<<<<<< HEAD
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "flexShrink": 1,
                           "flexWrap": "wrap",
                           "marginLeft": 0,
                           "marginRight": 8,
-=======
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 13,
-                          "lineHeight": 16,
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#5E5E5E",
->>>>>>> dbcb473 (:art: fix tests)
                         },
                       ]
                     }
@@ -1702,6 +1552,7 @@ exports[`ContentScreen should render correctly 1`] = `
                       style={
                         Array [
                           Object {
+                            "color": "#212121",
                             "fontFamily": "circularBook",
                             "fontSize": 13,
                             "lineHeight": 16,
@@ -1786,23 +1637,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {
-<<<<<<< HEAD
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "flexShrink": 1,
                           "flexWrap": "wrap",
                           "marginLeft": 0,
                           "marginRight": 8,
-=======
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 13,
-                          "lineHeight": 16,
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#5E5E5E",
->>>>>>> dbcb473 (:art: fix tests)
                         },
                       ]
                     }
@@ -1832,6 +1672,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -1862,13 +1703,13 @@ exports[`ContentScreen should render correctly 1`] = `
             </View>
           </View>
         </View>
-<<<<<<< HEAD
         <View>
           <Text
             isRTL={false}
             style={
               Array [
                 Object {
+                  "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 25,
                   "lineHeight": 32,
@@ -1887,43 +1728,6 @@ exports[`ContentScreen should render correctly 1`] = `
           >
             Pourquoi c'est intéressant ?
           </Text>
-=======
-        <Text
-          isRTL={false}
-          style={
-            Array [
-              Object {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "textAlign": "left",
-              },
-              Object {
-                "color": "#3D2884",
-                "flexShrink": 1,
-                "marginBottom": 16,
-                "marginHorizontal": 24,
-                "marginTop": 16,
-              },
-            ]
-          }
-          textColor="#3D2884"
-        >
-          Pourquoi c'est intéressant ?
-        </Text>
-        <View
-          style={
-            Array [
-              Object {
-                "marginBottom": 8,
-                "marginHorizontal": 24,
-                "marginTop": 8,
-              },
-            ]
-          }
-        >
->>>>>>> dbcb473 (:art: fix tests)
           <View
             style={
               Array [
@@ -1987,22 +1791,9 @@ exports[`ContentScreen should render correctly 1`] = `
                   style={
                     Array [
                       Object {
-<<<<<<< HEAD
                         "alignItems": "center",
                         "display": "flex",
                         "flexDirection": "row",
-=======
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#3D2884",
-                        "width": 630,
->>>>>>> dbcb473 (:art: fix tests)
                       },
                     ]
                   }
@@ -2013,6 +1804,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {
+                          "color": "#212121",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
@@ -2065,16 +1857,8 @@ exports[`ContentScreen should render correctly 1`] = `
                       style={
                         Array [
                           Object {
-<<<<<<< HEAD
                             "backgroundColor": "transparent",
                             "borderWidth": 0,
-=======
-                            "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
->>>>>>> dbcb473 (:art: fix tests)
                           },
                           Object {
                             "flex": 0,
@@ -2153,6 +1937,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -2263,22 +2048,9 @@ exports[`ContentScreen should render correctly 1`] = `
                   style={
                     Array [
                       Object {
-<<<<<<< HEAD
                         "alignItems": "center",
                         "display": "flex",
                         "flexDirection": "row",
-=======
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#3D2884",
-                        "width": 630,
->>>>>>> dbcb473 (:art: fix tests)
                       },
                     ]
                   }
@@ -2289,6 +2061,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {
+                          "color": "#212121",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
@@ -2341,16 +2114,8 @@ exports[`ContentScreen should render correctly 1`] = `
                       style={
                         Array [
                           Object {
-<<<<<<< HEAD
                             "backgroundColor": "transparent",
                             "borderWidth": 0,
-=======
-                            "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
->>>>>>> dbcb473 (:art: fix tests)
                           },
                           Object {
                             "flex": 0,
@@ -2429,6 +2194,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -2539,22 +2305,9 @@ exports[`ContentScreen should render correctly 1`] = `
                   style={
                     Array [
                       Object {
-<<<<<<< HEAD
                         "alignItems": "center",
                         "display": "flex",
                         "flexDirection": "row",
-=======
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#3D2884",
-                        "width": 630,
->>>>>>> dbcb473 (:art: fix tests)
                       },
                     ]
                   }
@@ -2565,6 +2318,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {
+                          "color": "#212121",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
@@ -2689,35 +2443,15 @@ exports[`ContentScreen should render correctly 1`] = `
                       ]
                     }
                   >
-<<<<<<< HEAD
                     <View
                       style={Object {}}
-=======
-                    <Text
-                      isRTL={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                          Object {
-                            "flexShrink": 1,
-                            "marginBottom": 8,
-                            "marginTop": 8,
-                          },
-                        ]
-                      }
->>>>>>> dbcb473 (:art: fix tests)
                     >
                       <Text
                         isRTL={false}
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -2828,22 +2562,9 @@ exports[`ContentScreen should render correctly 1`] = `
                   style={
                     Array [
                       Object {
-<<<<<<< HEAD
                         "alignItems": "center",
                         "display": "flex",
                         "flexDirection": "row",
-=======
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#3D2884",
-                        "width": 630,
->>>>>>> dbcb473 (:art: fix tests)
                       },
                     ]
                   }
@@ -2854,6 +2575,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {
+                          "color": "#212121",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
@@ -2978,35 +2700,15 @@ exports[`ContentScreen should render correctly 1`] = `
                       ]
                     }
                   >
-<<<<<<< HEAD
                     <View
                       style={Object {}}
-=======
-                    <Text
-                      isRTL={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                          Object {
-                            "flexShrink": 1,
-                            "marginBottom": 8,
-                            "marginTop": 8,
-                          },
-                        ]
-                      }
->>>>>>> dbcb473 (:art: fix tests)
                     >
                       <Text
                         isRTL={false}
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -3055,13 +2757,13 @@ exports[`ContentScreen should render correctly 1`] = `
             </View>
           </View>
         </View>
-<<<<<<< HEAD
         <View>
           <Text
             isRTL={false}
             style={
               Array [
                 Object {
+                  "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 25,
                   "lineHeight": 32,
@@ -3080,43 +2782,6 @@ exports[`ContentScreen should render correctly 1`] = `
           >
             Comment je m'engage ?
           </Text>
-=======
-        <Text
-          isRTL={false}
-          style={
-            Array [
-              Object {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "textAlign": "left",
-              },
-              Object {
-                "color": "#3D2884",
-                "flexShrink": 1,
-                "marginBottom": 16,
-                "marginHorizontal": 24,
-                "marginTop": 16,
-              },
-            ]
-          }
-          textColor="#3D2884"
-        >
-          Comment je m'engage ?
-        </Text>
-        <View
-          style={
-            Array [
-              Object {
-                "marginBottom": 8,
-                "marginHorizontal": 24,
-                "marginTop": 8,
-              },
-            ]
-          }
-        >
->>>>>>> dbcb473 (:art: fix tests)
           <View
             style={
               Array [
@@ -3180,22 +2845,9 @@ exports[`ContentScreen should render correctly 1`] = `
                   style={
                     Array [
                       Object {
-<<<<<<< HEAD
                         "alignItems": "center",
                         "display": "flex",
                         "flexDirection": "row",
-=======
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#3D2884",
-                        "width": 630,
->>>>>>> dbcb473 (:art: fix tests)
                       },
                     ]
                   }
@@ -3206,6 +2858,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {
+                          "color": "#212121",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
@@ -3330,74 +2983,20 @@ exports[`ContentScreen should render correctly 1`] = `
                       ]
                     }
                   >
-<<<<<<< HEAD
                     <View
                       style={Object {}}
-=======
-                    <Text
-                      isRTL={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                          Object {
-                            "flexShrink": 1,
-                            "marginBottom": 8,
-                            "marginTop": 8,
-                          },
-                        ]
-                      }
->>>>>>> dbcb473 (:art: fix tests)
                     >
                       <Text
                         isRTL={false}
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
                               "textAlign": "left",
-<<<<<<< HEAD
                             },
-=======
-                            }
-                          }
-                        >
-                          Pour avoir plus d'informations et pour accéder à un accompagnement, envoyer un mail : 
-                        </Text>
-                      </Text>
-                    </Text>
-                    <Text
-                      isRTL={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                          Object {
-                            "flexShrink": 1,
-                            "marginBottom": 8,
-                            "marginTop": 8,
-                          },
-                        ]
-                      }
-                    >
-                      <Text
-                        allowFontScaling={true}
-                        selectable={false}
-                        style={
-                          Array [
->>>>>>> dbcb473 (:art: fix tests)
                             Object {
                               "flexShrink": 1,
                               "marginBottom": 8,
@@ -3439,6 +3038,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -3565,22 +3165,9 @@ exports[`ContentScreen should render correctly 1`] = `
                   style={
                     Array [
                       Object {
-<<<<<<< HEAD
                         "alignItems": "center",
                         "display": "flex",
                         "flexDirection": "row",
-=======
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#3D2884",
-                        "width": 630,
->>>>>>> dbcb473 (:art: fix tests)
                       },
                     ]
                   }
@@ -3591,6 +3178,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {
+                          "color": "#212121",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
@@ -3715,35 +3303,15 @@ exports[`ContentScreen should render correctly 1`] = `
                       ]
                     }
                   >
-<<<<<<< HEAD
                     <View
                       style={Object {}}
-=======
-                    <Text
-                      isRTL={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                          Object {
-                            "flexShrink": 1,
-                            "marginBottom": 8,
-                            "marginTop": 8,
-                          },
-                        ]
-                      }
->>>>>>> dbcb473 (:art: fix tests)
                     >
                       <Text
                         isRTL={false}
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -6226,13 +5794,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
         </View>
       </View>
       <View>
-<<<<<<< HEAD
         <View>
           <Text
             isRTL={false}
             style={
               Array [
                 Object {
+                  "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 25,
                   "lineHeight": 32,
@@ -6253,53 +5821,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
           </Text>
           <View
             style={
-=======
-        <Text
-          isRTL={false}
-          style={
-            Array [
-              Object {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "textAlign": "left",
-              },
->>>>>>> dbcb473 (:art: fix tests)
               Object {
                 "marginHorizontal": 24,
               }
             }
           >
-<<<<<<< HEAD
             <View
               style={Object {}}
-=======
-            <Text
-              isRTL={false}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "flexShrink": 1,
-                    "marginBottom": 8,
-                    "marginTop": 8,
-                  },
-                ]
-              }
->>>>>>> dbcb473 (:art: fix tests)
             >
               <Text
                 isRTL={false}
                 style={
                   Array [
                     Object {
+                      "color": "#212121",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -6357,34 +5892,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   </Text>
                 </Text>
               </Text>
-<<<<<<< HEAD
-=======
-            </Text>
-            <Text
-              isRTL={false}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "flexShrink": 1,
-                    "marginBottom": 8,
-                    "marginTop": 8,
-                  },
-                ]
-              }
-            >
->>>>>>> dbcb473 (:art: fix tests)
               <Text
                 isRTL={false}
                 style={
                   Array [
                     Object {
+                      "color": "#212121",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
@@ -6886,40 +6399,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             ]
           }
         >
-<<<<<<< HEAD
           <View>
-=======
-          <View
-            style={
-              Array [
-                Object {
-                  "paddingHorizontal": 16,
-                },
-              ]
-            }
-          >
-            <Text
-              color="#3D2884"
-              isRTL={false}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#3D2884",
-                    "marginBottom": 12,
-                  },
-                ]
-              }
-            >
-              C'est où ?
-            </Text>
->>>>>>> dbcb473 (:art: fix tests)
             <View
               style={
                 Array [
@@ -6935,6 +6415,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 style={
                   Array [
                     Object {
+                      "color": "#212121",
                       "fontFamily": "circularBold",
                       "fontSize": 19,
                       "lineHeight": 24,
@@ -6979,23 +6460,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {
-<<<<<<< HEAD
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "flexShrink": 1,
                           "flexWrap": "wrap",
                           "marginLeft": 0,
                           "marginRight": 8,
-=======
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 13,
-                          "lineHeight": 16,
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#5E5E5E",
->>>>>>> dbcb473 (:art: fix tests)
                         },
                       ]
                     }
@@ -7025,6 +6495,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -7057,23 +6528,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
               style={
                 Array [
                   Object {
-<<<<<<< HEAD
                     "backgroundColor": "#EDEBEB",
                     "height": 1,
                     "marginBottom": 24,
                     "marginTop": 8,
                     "width": "100%",
-=======
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#3D2884",
-                    "marginBottom": 12,
->>>>>>> dbcb473 (:art: fix tests)
                   },
                 ]
               }
@@ -7095,6 +6554,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 style={
                   Array [
                     Object {
+                      "color": "#212121",
                       "fontFamily": "circularBold",
                       "fontSize": 19,
                       "lineHeight": 24,
@@ -7139,23 +6599,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {
-<<<<<<< HEAD
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "flexShrink": 1,
                           "flexWrap": "wrap",
                           "marginLeft": 0,
                           "marginRight": 8,
-=======
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 13,
-                          "lineHeight": 16,
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#5E5E5E",
->>>>>>> dbcb473 (:art: fix tests)
                         },
                       ]
                     }
@@ -7185,6 +6634,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -7242,23 +6692,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {
-<<<<<<< HEAD
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "flexShrink": 1,
                           "flexWrap": "wrap",
                           "marginLeft": 0,
                           "marginRight": 8,
-=======
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 13,
-                          "lineHeight": 16,
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#5E5E5E",
->>>>>>> dbcb473 (:art: fix tests)
                         },
                       ]
                     }
@@ -7288,6 +6727,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -7320,23 +6760,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
               style={
                 Array [
                   Object {
-<<<<<<< HEAD
                     "backgroundColor": "#EDEBEB",
                     "height": 1,
                     "marginBottom": 24,
                     "marginTop": 8,
                     "width": "100%",
-=======
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#3D2884",
-                    "marginBottom": 12,
->>>>>>> dbcb473 (:art: fix tests)
                   },
                 ]
               }
@@ -7358,6 +6786,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 style={
                   Array [
                     Object {
+                      "color": "#212121",
                       "fontFamily": "circularBold",
                       "fontSize": 19,
                       "lineHeight": 24,
@@ -7402,23 +6831,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {
-<<<<<<< HEAD
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "flexShrink": 1,
                           "flexWrap": "wrap",
                           "marginLeft": 0,
                           "marginRight": 8,
-=======
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 13,
-                          "lineHeight": 16,
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#5E5E5E",
->>>>>>> dbcb473 (:art: fix tests)
                         },
                       ]
                     }
@@ -7428,6 +6846,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       style={
                         Array [
                           Object {
+                            "color": "#212121",
                             "fontFamily": "circularBook",
                             "fontSize": 13,
                             "lineHeight": 16,
@@ -7512,23 +6931,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {
-<<<<<<< HEAD
                           "flexBasis": 0,
                           "flexGrow": 1,
                           "flexShrink": 1,
                           "flexWrap": "wrap",
                           "marginLeft": 0,
                           "marginRight": 8,
-=======
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 13,
-                          "lineHeight": 16,
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#5E5E5E",
->>>>>>> dbcb473 (:art: fix tests)
                         },
                       ]
                     }
@@ -7558,6 +6966,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -7588,13 +6997,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
             </View>
           </View>
         </View>
-<<<<<<< HEAD
         <View>
           <Text
             isRTL={false}
             style={
               Array [
                 Object {
+                  "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 25,
                   "lineHeight": 32,
@@ -7634,89 +7043,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
               onResponderTerminate={[Function]}
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
-=======
-        <Text
-          isRTL={false}
-          style={
-            Array [
-              Object {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "textAlign": "left",
-              },
-              Object {
-                "color": "#3D2884",
-                "flexShrink": 1,
-                "marginBottom": 16,
-                "marginHorizontal": 24,
-                "marginTop": 16,
-              },
-            ]
-          }
-          textColor="#3D2884"
-        >
-          Pourquoi c'est intéressant ?
-        </Text>
-        <View
-          style={
-            Array [
-              Object {
-                "marginBottom": 8,
-                "marginHorizontal": 24,
-                "marginTop": 8,
-              },
-            ]
-          }
-        >
-          <View
-            accessible={true}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-          >
-            <View
-              darkColor="#3D2884"
-              isExpanded={false}
-              isRTL={false}
-              lightColor="#EFE8F4"
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
-                    "flexDirection": "row",
-                  },
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderColor": "#FFFFFF",
-                    "borderRadius": 12,
-                    "borderStyle": "solid",
-                    "borderWidth": 2,
-                    "elevation": 1,
-                    "justifyContent": "space-between",
-                    "paddingBottom": 16,
-                    "paddingLeft": 16,
-                    "paddingRight": 16,
-                    "paddingTop": 16,
-                    "shadowColor": "rgba(33, 33, 33, 0.24)",
-                    "shadowOffset": Object {
-                      "height": 8,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 1,
-                    "shadowRadius": 16,
-                  },
-                ]
-              }
->>>>>>> dbcb473 (:art: fix tests)
             >
               <View
                 darkColor="#3D2884"
@@ -7759,22 +7085,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   style={
                     Array [
                       Object {
-<<<<<<< HEAD
                         "alignItems": "center",
                         "display": "flex",
                         "flexDirection": "row",
-=======
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#3D2884",
-                        "width": 630,
->>>>>>> dbcb473 (:art: fix tests)
                       },
                     ]
                   }
@@ -7785,6 +7098,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {
+                          "color": "#212121",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
@@ -7837,16 +7151,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       style={
                         Array [
                           Object {
-<<<<<<< HEAD
                             "backgroundColor": "transparent",
                             "borderWidth": 0,
-=======
-                            "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
->>>>>>> dbcb473 (:art: fix tests)
                           },
                           Object {
                             "flex": 0,
@@ -7888,40 +7194,10 @@ exports[`ContentScreen should toggle map modal 1`] = `
               </View>
               <View
                 style={
-<<<<<<< HEAD
                   Object {
                     "height": 0,
                     "overflow": "hidden",
                     "textAlign": "right",
-=======
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  darkColor="#3D2884"
-                  isRTL={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#3D2884",
-                        "width": 630,
-                      },
-                    ]
->>>>>>> dbcb473 (:art: fix tests)
                   }
                 }
               >
@@ -7947,96 +7223,15 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       ]
                     }
                   >
-<<<<<<< HEAD
                     <View
                       style={Object {}}
-=======
-                    <RNSVGGroup
-                      fill={4282198148}
-                      propList={
-                        Array [
-                          "fill",
-                        ]
-                      }
-                    >
-                      <RNSVGGroup>
-                        <RNSVGGroup>
-                          <RNSVGRect
-                            height="24"
-                            opacity={0}
-                            width="24"
-                            x={0}
-                            y={0}
-                          />
-                          <RNSVGPath
-                            d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"
-                          />
-                        </RNSVGGroup>
-                      </RNSVGGroup>
-                    </RNSVGGroup>
-                  </RNSVGSvgView>
-                </View>
-              </View>
-            </View>
-            <View
-              style={
-                Object {
-                  "height": 0,
-                  "overflow": "hidden",
-                  "textAlign": "right",
-                }
-              }
-            >
-              <View
-                onLayout={[Function]}
-                style={
-                  Object {
-                    "bottom": 0,
-                    "position": "absolute",
-                    "width": "100%",
-                  }
-                }
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "paddingBottom": 8,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 8,
-                      },
-                    ]
-                  }
-                >
-                  <View
-                    style={Object {}}
-                  >
-                    <Text
-                      isRTL={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                          Object {
-                            "flexShrink": 1,
-                            "marginBottom": 8,
-                            "marginTop": 8,
-                          },
-                        ]
-                      }
->>>>>>> dbcb473 (:art: fix tests)
                     >
                       <Text
                         isRTL={false}
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -8147,22 +7342,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   style={
                     Array [
                       Object {
-<<<<<<< HEAD
                         "alignItems": "center",
                         "display": "flex",
                         "flexDirection": "row",
-=======
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#3D2884",
-                        "width": 630,
->>>>>>> dbcb473 (:art: fix tests)
                       },
                     ]
                   }
@@ -8173,6 +7355,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {
+                          "color": "#212121",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
@@ -8225,16 +7408,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       style={
                         Array [
                           Object {
-<<<<<<< HEAD
                             "backgroundColor": "transparent",
                             "borderWidth": 0,
-=======
-                            "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
->>>>>>> dbcb473 (:art: fix tests)
                           },
                           Object {
                             "flex": 0,
@@ -8313,6 +7488,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -8423,18 +7599,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   style={
                     Array [
                       Object {
-<<<<<<< HEAD
                         "alignItems": "center",
                         "display": "flex",
                         "flexDirection": "row",
-=======
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
->>>>>>> dbcb473 (:art: fix tests)
                       },
                     ]
                   }
@@ -8445,6 +7612,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {
+                          "color": "#212121",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
@@ -8577,6 +7745,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -8700,6 +7869,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {
+                          "color": "#212121",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
@@ -8752,16 +7922,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       style={
                         Array [
                           Object {
-<<<<<<< HEAD
                             "backgroundColor": "transparent",
                             "borderWidth": 0,
-=======
-                            "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
->>>>>>> dbcb473 (:art: fix tests)
                           },
                           Object {
                             "flex": 0,
@@ -8840,6 +8002,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -8888,13 +8051,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
             </View>
           </View>
         </View>
-<<<<<<< HEAD
         <View>
           <Text
             isRTL={false}
             style={
               Array [
                 Object {
+                  "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 25,
                   "lineHeight": 32,
@@ -8913,43 +8076,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
           >
             Comment je m'engage ?
           </Text>
-=======
-        <Text
-          isRTL={false}
-          style={
-            Array [
-              Object {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 25,
-                "lineHeight": 32,
-                "textAlign": "left",
-              },
-              Object {
-                "color": "#3D2884",
-                "flexShrink": 1,
-                "marginBottom": 16,
-                "marginHorizontal": 24,
-                "marginTop": 16,
-              },
-            ]
-          }
-          textColor="#3D2884"
-        >
-          Comment je m'engage ?
-        </Text>
-        <View
-          style={
-            Array [
-              Object {
-                "marginBottom": 8,
-                "marginHorizontal": 24,
-                "marginTop": 8,
-              },
-            ]
-          }
-        >
->>>>>>> dbcb473 (:art: fix tests)
           <View
             style={
               Array [
@@ -9013,22 +8139,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   style={
                     Array [
                       Object {
-<<<<<<< HEAD
                         "alignItems": "center",
                         "display": "flex",
                         "flexDirection": "row",
-=======
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#3D2884",
-                        "width": 630,
->>>>>>> dbcb473 (:art: fix tests)
                       },
                     ]
                   }
@@ -9039,6 +8152,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {
+                          "color": "#212121",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
@@ -9163,35 +8277,15 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       ]
                     }
                   >
-<<<<<<< HEAD
                     <View
                       style={Object {}}
-=======
-                    <Text
-                      isRTL={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                          Object {
-                            "flexShrink": 1,
-                            "marginBottom": 8,
-                            "marginTop": 8,
-                          },
-                        ]
-                      }
->>>>>>> dbcb473 (:art: fix tests)
                     >
                       <Text
                         isRTL={false}
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -9233,34 +8327,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           </Text>
                         </Text>
                       </Text>
-<<<<<<< HEAD
-=======
-                    </Text>
-                    <Text
-                      isRTL={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                          Object {
-                            "flexShrink": 1,
-                            "marginBottom": 8,
-                            "marginTop": 8,
-                          },
-                        ]
-                      }
-                    >
->>>>>>> dbcb473 (:art: fix tests)
                       <Text
                         isRTL={false}
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
@@ -9387,22 +8459,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   style={
                     Array [
                       Object {
-<<<<<<< HEAD
                         "alignItems": "center",
                         "display": "flex",
                         "flexDirection": "row",
-=======
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#3D2884",
-                        "width": 630,
->>>>>>> dbcb473 (:art: fix tests)
                       },
                     ]
                   }
@@ -9413,6 +8472,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {
+                          "color": "#212121",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
@@ -9537,35 +8597,15 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       ]
                     }
                   >
-<<<<<<< HEAD
                     <View
                       style={Object {}}
-=======
-                    <Text
-                      isRTL={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": "#212121",
-                            "fontFamily": "circularBook",
-                            "fontSize": 16,
-                            "lineHeight": 20,
-                            "textAlign": "left",
-                          },
-                          Object {
-                            "flexShrink": 1,
-                            "marginBottom": 8,
-                            "marginTop": 8,
-                          },
-                        ]
-                      }
->>>>>>> dbcb473 (:art: fix tests)
                     >
                       <Text
                         isRTL={false}
                         style={
                           Array [
                             Object {
+                              "color": "#212121",
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
