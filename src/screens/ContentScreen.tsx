@@ -298,7 +298,7 @@ export const ContentScreen = ({
   };
 
   // Favorites
-  const [favoriteToast, setFavoriteToast] = React.useState<{text: string, link?: string}|null>(null);
+  const [favoriteToast, setFavoriteToast] = React.useState<{text: string, icon: string, link?: string}|null>(null);
   const isContentFavorite = useSelector(isFavorite(contentId));
   const toggleFavorites = () => {
     if (isContentFavorite) {
@@ -307,7 +307,8 @@ export const ContentScreen = ({
         text: t(
           "Content.favoris supprimé",
           "Fiche supprimée de tes favoris"
-        )
+        ),
+        icon: "trash-2-outline"
       })
     } else {
       dispatch(addUserFavoriteActionCreator(contentId))
@@ -316,7 +317,8 @@ export const ContentScreen = ({
           "Content.favoris ajouté",
           "Fiche ajoutée à tes favoris"
         ),
-        link: "Favoris"
+        link: "Favoris",
+        icon: "star"
       })
     }
   }
@@ -659,6 +661,7 @@ export const ContentScreen = ({
       {favoriteToast !== null &&
         <Toast
           text={favoriteToast.text}
+          icon={favoriteToast.icon}
           textLink={favoriteToast.link}
           navigation={navigation}
           onClose={() => { setFavoriteToast(null) }}

@@ -52,9 +52,9 @@ export const FavorisScreen = ({
           <>
             <Image
               source={EmptyIllu}
-              style={{ width: 225, height: 180 }}
-              width={225}
-              height={180}
+              style={{ width: 220, height: 278 }}
+              width={220}
+              height={278}
             />
             <EmptyTitle>
               {t("FavorisScreen.C'est vide", "C'est vide")}

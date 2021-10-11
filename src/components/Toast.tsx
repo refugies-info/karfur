@@ -10,22 +10,24 @@ import { StyledTextVerySmallBold } from "./StyledText";
 
 interface Props {
   text: string;
+  icon: string;
   textLink?: string;
   navigation?: any;
   onClose: () => void;
 }
 const ToastContainer = styled(Animated.View)`
-  width: 90%;
+  width: 100%;
   position: absolute;
-  left: 5%;
+  left: 0;
   bottom: 100px;
   z-index: 13;
 `;
 const ToastView = styled(RTLView)`
-  background-color: ${theme.colors.lightBlue};
+  background-color: ${theme.colors.black};
   border-radius: ${theme.radius * 2}px;
   justify-content: space-between;
   padding: ${theme.margin * 2}px;
+  margin-horizontal: ${theme.margin * 3}px;
   shadow-color: #212121;
   shadow-offset: 0 8px;
   shadow-opacity: 0.24;
@@ -39,10 +41,10 @@ const TextIcon = styled(Icon)`
     props.isRTL ? theme.margin * 2 : 0}px;
 `;
 const StyledText = styled(StyledTextVerySmallBold)`
-  color: ${theme.colors.darkBlue};
+  color: ${theme.colors.white};
   ${(props: { isLink: boolean }) => props.isLink ? `
   text-decoration: underline;
-  text-decoration-color: ${theme.colors.darkBlue};
+  text-decoration-color: ${theme.colors.white};
   `: ""}
 `;
 
@@ -72,10 +74,10 @@ export const Toast = (props: Props) => {
       <ToastView>
         <RTLView>
           <TextIcon
-            name="star"
+            name={props.icon}
             height={16}
             width={16}
-            fill={theme.colors.darkBlue}
+            fill={theme.colors.white}
             isRTL={isRTL}
           />
           {props.textLink ?
@@ -95,7 +97,7 @@ export const Toast = (props: Props) => {
             name="close"
             height={24}
             width={24}
-            fill={theme.colors.black}
+            fill={theme.colors.white}
           />
         </TouchableOpacity>
       </ToastView>
