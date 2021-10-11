@@ -23,6 +23,7 @@ export default {
     config: {
       googleMapsApiKey: process.env.GOOGLE_MAPS_KEY_IOS,
     },
+    googleServicesFile: "./src/utils/firebase/GoogleService-Info.plist",
   },
   android: {
     userInterfaceStyle: "light",
@@ -34,8 +35,20 @@ export default {
     config: {
       googleMaps: { apiKey: process.env.GOOGLE_MAPS_KEY_ANDROID },
     },
+    googleServicesFile: "./src/utils/firebase/google-services.json",
   },
   web: {
+    config: {
+      firebase: {
+        apiKey: process.env.FIREBASE_API_KEY,
+        authDomain: "refugies-info-beb2d.firebaseapp.com",
+        projectId: "refugies-info-beb2d",
+        storageBucket: "refugies-info-beb2d.appspot.com",
+        messagingSenderId: "1060316291598",
+        appId: "1:1060316291598:web:8ce140ad69d5951dd5925f",
+        measurementId: "G-31KEK3FGJ3",
+      },
+    },
     favicon: "./src/theme/images/icon-RI.png",
   },
   description: "",

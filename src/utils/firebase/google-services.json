@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1060316291598",
+    "project_id": "refugies-info-beb2d",
+    "storage_bucket": "refugies-info-beb2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060316291598:android:6d92f986dc2f2791d5925f",
+        "android_client_info": {
+          "package_name": "com.agathek.refugiesinfoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1060316291598-f92o8hbhrof3jei4sgpec7af20kac7rs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWgCsDeoHZK22ZdJy0jkqK85KZ6RI2ay8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1060316291598-f92o8hbhrof3jei4sgpec7af20kac7rs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
