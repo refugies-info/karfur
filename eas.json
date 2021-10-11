@@ -15,13 +15,13 @@
     "preview": {
       "android": {
         "env": {
-          "API_URL": "https://api.staging.refugies.info"
+          "API_URL": "https://api.new.refugies.info"
         },
         "buildType": "apk"
       },
       "ios": {
         "env": {
-          "API_URL": "https://api.staging.refugies.info"
+          "API_URL": "https://api.new.refugies.info"
         },
         "simulator": true
       }
