@@ -63,6 +63,28 @@ import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
 import { updateNbVuesOrFavoritesOnContent } from "../utils/API";
 import { Trans } from "react-i18next";
 
+/* UPDATE INDEX ENTRY
+import algoliasearch from "algoliasearch";
+
+const client = algoliasearch("L9HYT1676M", "b14b1dd48cb3299fbc01c3dea0350d09");
+const index = client.initIndex("staging_refugies");
+
+React.useEffect(() => {
+  if (selectedContent) {
+    const indexableContent = {
+      objectID: selectedContent._id,
+      titre: selectedContent.titreInformatif,
+      titreMarque: selectedContent.titreMarque,
+      type: selectedContent.typeContenu,
+      tags: selectedContent.tags.map(t => t ? t.name : "").filter(t => t !== ""),
+      tagsShort: selectedContent.tags.map(t => t ? t.short : "").filter(t => t !== ""),
+      abstract: selectedContent.abstract,
+    }
+    index.saveObject(indexableContent)
+  }
+}, [])
+*/
+
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
     return 290;
