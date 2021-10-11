@@ -106,6 +106,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
           Array [
             Object {
               "alignSelf": "center",
+              "color": "#212121",
               "fontFamily": "circularBold",
               "fontSize": 19,
               "lineHeight": 24,

@@ -175,6 +175,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
       style={
         Array [
           Object {
+            "color": "#212121",
             "fontFamily": "circularBook",
             "fontSize": 16,
             "lineHeight": 20,
@@ -318,6 +319,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
@@ -558,6 +560,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
@@ -803,6 +806,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
@@ -1055,6 +1059,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
@@ -1222,6 +1227,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
       style={
         Array [
           Object {
+            "color": "#212121",
             "fontFamily": "circularBook",
             "fontSize": 16,
             "lineHeight": 20,
@@ -1361,6 +1367,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
@@ -1609,6 +1616,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             Array [
               Object {
                 "alignSelf": "center",
+                "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 19,
                 "lineHeight": 24,
@@ -1930,6 +1938,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             Array [
               Object {
                 "alignSelf": "center",
+                "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 19,
                 "lineHeight": 24,
@@ -2250,6 +2259,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             Array [
               Object {
                 "alignSelf": "center",
+                "color": "#212121",
                 "fontFamily": "circularBold",
                 "fontSize": 19,
                 "lineHeight": 24,
@@ -3444,6 +3454,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
       style={
         Array [
           Object {
+            "color": "#212121",
             "fontFamily": "circularBook",
             "fontSize": 16,
             "lineHeight": 20,
@@ -3587,6 +3598,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
@@ -3827,6 +3839,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
@@ -4072,6 +4085,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
@@ -4324,6 +4338,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
@@ -4491,6 +4506,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
       style={
         Array [
           Object {
+            "color": "#212121",
             "fontFamily": "circularBook",
             "fontSize": 16,
             "lineHeight": 20,
@@ -4630,6 +4646,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
@@ -4878,6 +4895,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             Array [
               Object {
                 "alignSelf": "center",
+                "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 19,
                 "lineHeight": 24,
@@ -5199,6 +5217,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             Array [
               Object {
                 "alignSelf": "center",
+                "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 19,
                 "lineHeight": 24,
@@ -5519,6 +5538,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             Array [
               Object {
                 "alignSelf": "center",
+                "color": "#212121",
                 "fontFamily": "circularBold",
                 "fontSize": 19,
                 "lineHeight": 24,
@@ -6713,6 +6733,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
       style={
         Array [
           Object {
+            "color": "#212121",
             "fontFamily": "circularBook",
             "fontSize": 16,
             "lineHeight": 20,
@@ -6856,6 +6877,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
@@ -7096,6 +7118,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
@@ -7341,6 +7364,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
@@ -7593,6 +7617,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
@@ -7760,6 +7785,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
       style={
         Array [
           Object {
+            "color": "#212121",
             "fontFamily": "circularBook",
             "fontSize": 16,
             "lineHeight": 20,
@@ -7899,6 +7925,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
@@ -8147,6 +8174,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             Array [
               Object {
                 "alignSelf": "center",
+                "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 19,
                 "lineHeight": 24,
@@ -8468,6 +8496,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             Array [
               Object {
                 "alignSelf": "center",
+                "color": "#212121",
                 "fontFamily": "circularBook",
                 "fontSize": 19,
                 "lineHeight": 24,
@@ -8788,6 +8817,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             Array [
               Object {
                 "alignSelf": "center",
+                "color": "#212121",
                 "fontFamily": "circularBold",
                 "fontSize": 19,
                 "lineHeight": 24,

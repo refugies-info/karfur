@@ -3,6 +3,7 @@ import { ContentScreen } from "../ContentScreen";
 import { fireEvent, act } from "react-native-testing-library";
 import { initialRootStateFactory } from "../../services/redux/reducers";
 import { selectedContent } from "../../jest/__fixtures__/selectedContent";
+import React from "react";
 
 jest.mock("../../hooks/useTranslationWithRTL", () => ({
   useTranslationWithRTL: jest.fn().mockReturnValue({
@@ -17,9 +18,23 @@ jest.mock("react-native-safe-area-context", () => {
 
   return {
     useSafeAreaInsets: () => ({ insets: { bottom: 0 } }),
-    SafeAreaView
-  }
-})
+    SafeAreaView,
+  };
+});
+jest.mock("react-native-maps", () => {
+  const { View } = require("react-native");
+  const MockMapView = (props: any) => {
+    return <View>{props.children}</View>;
+  };
+  const MockMarker = (props: any) => {
+    return <View>{props.children}</View>;
+  };
+  return {
+    __esModule: true,
+    default: MockMapView,
+    Marker: MockMarker,
+  };
+});
 
 jest.mock("@gorhom/bottom-sheet", () => {
   const RN = require("react-native");
@@ -67,7 +82,7 @@ describe("ContentScreen", () => {
         ...initialRootStateFactory(),
         user: {
           currentLanguagei18nCode: "fr",
-          favorites: []
+          favorites: [],
         },
         selectedContent: {
           fr: selectedContent,
@@ -101,7 +116,7 @@ describe("ContentScreen", () => {
         ...initialRootStateFactory(),
         user: {
           currentLanguagei18nCode: "fr",
-          favorites: []
+          favorites: [],
         },
         selectedContent: {
           fr: selectedContent,

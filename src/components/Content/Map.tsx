@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { Dimensions } from "react-native";
 import BottomSheet, {
   BottomSheetView,
@@ -42,7 +42,8 @@ export const Map = (props: PropsType) => {
 
         if (map) {
           map.fitToCoordinates([
-            { // use custom marker positions to set padding around real marker
+            {
+              // use custom marker positions to set padding around real marker
               latitude: markerOpen.latitude + 0.005,
               longitude: markerOpen.longitude,
             },
@@ -53,7 +54,7 @@ export const Map = (props: PropsType) => {
             {
               latitude: markerOpen.latitude - 0.02,
               longitude: markerOpen.longitude,
-            }
+            },
           ]);
         }
       }
@@ -108,6 +109,7 @@ export const Map = (props: PropsType) => {
         onPress={hideMarkerDetails}
         onMapReady={() => fitAllMarkers(markers)}
         maxZoomLevel={maxZoom}
+        provider={PROVIDER_GOOGLE}
       >
         {markers.map((marker, key) => {
           return (
@@ -134,7 +136,7 @@ export const Map = (props: PropsType) => {
         })}
       </MapView>
       <BottomSheet
-        index={-1}
+        index={0}
         ref={(ref) => (bottomSheet = ref)}
         enablePanDownToClose={true}
         snapPoints={animatedSnapPoints}

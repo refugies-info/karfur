@@ -10,7 +10,9 @@ export const getEnvironment = () => {
   }
   return {
     envName: "DEVELOPMENT",
-    dbUrl: process.env.API_URL,
+    // dbUrl: process.env.API_URL,
+    dbUrl: "https://api.staging.refugies.info",
+
     siteSecret: process.env.SITE_SECRET,
   };
 };

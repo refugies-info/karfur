@@ -211,6 +211,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
         style={
           Array [
             Object {
+              "color": "#212121",
               "flexShrink": 1,
               "fontFamily": "circularBold",
               "fontSize": 16,
@@ -350,6 +351,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
         style={
           Array [
             Object {
+              "color": "#212121",
               "fontFamily": "circularBold",
               "fontSize": 19,
               "lineHeight": 24,
@@ -406,6 +408,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
           style={
             Array [
               Object {
+                "color": "#212121",
                 "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
@@ -474,6 +477,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
           style={
             Array [
               Object {
+                "color": "#212121",
                 "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
@@ -542,6 +546,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
           style={
             Array [
               Object {
+                "color": "#212121",
                 "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
@@ -798,6 +803,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "fontFamily": "circularBook",
                     "fontSize": 16,
                     "lineHeight": 20,
@@ -1161,6 +1167,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         style={
           Array [
             Object {
+              "color": "#212121",
               "flexShrink": 1,
               "fontFamily": "circularBold",
               "fontSize": 16,
@@ -1300,6 +1307,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         style={
           Array [
             Object {
+              "color": "#212121",
               "fontFamily": "circularBold",
               "fontSize": 19,
               "lineHeight": 24,
@@ -1356,6 +1364,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           style={
             Array [
               Object {
+                "color": "#212121",
                 "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
@@ -1424,6 +1433,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           style={
             Array [
               Object {
+                "color": "#212121",
                 "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
@@ -1492,6 +1502,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           style={
             Array [
               Object {
+                "color": "#212121",
                 "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
@@ -1748,6 +1759,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "fontFamily": "circularBook",
                     "fontSize": 16,
                     "lineHeight": 20,
@@ -2111,6 +2123,7 @@ exports[`Filter age should select age when click on it 1`] = `
         style={
           Array [
             Object {
+              "color": "#212121",
               "flexShrink": 1,
               "fontFamily": "circularBold",
               "fontSize": 16,
@@ -2250,6 +2263,7 @@ exports[`Filter age should select age when click on it 1`] = `
         style={
           Array [
             Object {
+              "color": "#212121",
               "fontFamily": "circularBold",
               "fontSize": 19,
               "lineHeight": 24,
@@ -2306,6 +2320,7 @@ exports[`Filter age should select age when click on it 1`] = `
           style={
             Array [
               Object {
+                "color": "#212121",
                 "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
@@ -2374,6 +2389,7 @@ exports[`Filter age should select age when click on it 1`] = `
           style={
             Array [
               Object {
+                "color": "#212121",
                 "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
@@ -2442,6 +2458,7 @@ exports[`Filter age should select age when click on it 1`] = `
           style={
             Array [
               Object {
+                "color": "#212121",
                 "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 16,
@@ -2698,6 +2715,7 @@ exports[`Filter age should select age when click on it 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#212121",
                     "fontFamily": "circularBook",
                     "fontSize": 16,
                     "lineHeight": 20,
