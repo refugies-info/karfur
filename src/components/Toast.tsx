@@ -10,6 +10,7 @@ import { StyledTextVerySmallBold } from "./StyledText";
 
 interface Props {
   text: string;
+  icon: string;
   textLink?: string;
   navigation?: any;
   onClose: () => void;
@@ -73,7 +74,7 @@ export const Toast = (props: Props) => {
       <ToastView>
         <RTLView>
           <TextIcon
-            name="star"
+            name={props.icon}
             height={16}
             width={16}
             fill={theme.colors.white}
