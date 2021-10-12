@@ -11,6 +11,9 @@ interface Props {
   toggleModal: () => void;
   text: string;
   onValidate: () => void;
+  iconValidateButton?: string;
+  i18nKeyValidateButton?: string;
+  defaultTextValidateButton?: string;
 }
 
 const styles = StyleSheet.create({
@@ -57,12 +60,12 @@ export const ConfirmationModal = (props: Props) => {
         <TitleText>{props.text}</TitleText>
         <TopButtonContainer>
           <CustomButton
-            i18nKey={"Valider"}
-            defaultText="Valider"
+            i18nKey={props.i18nKeyValidateButton || "Valider"}
+            defaultText={props.defaultTextValidateButton || "Valider"}
             textColor={theme.colors.white}
             onPress={onValidate}
             backgroundColor={theme.colors.darkBlue}
-            iconName="arrow-forward-outline"
+            iconName={props.iconValidateButton || "arrow-forward-outline"}
           />
         </TopButtonContainer>
 
