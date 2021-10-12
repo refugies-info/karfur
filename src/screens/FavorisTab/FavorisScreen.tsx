@@ -4,6 +4,7 @@ import { StackScreenProps } from "@react-navigation/stack"
 import { Image, ScrollView } from "react-native"
 import { useDispatch, useSelector } from "react-redux";
 
+import { getContentById } from "../../utils/API";
 import { SimplifiedContent, ObjectId } from "../../types/interface";
 import { BottomTabParamList } from "../../../types"
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -55,22 +56,32 @@ export const FavorisScreen = ({
    * @param contentsId - content ids to display
    * @param contents - list of all the content
    */
-  const getContentsToDisplay = (
+  const getContentsToDisplay = async (
     contentsId: ObjectId[],
     contents: SimplifiedContent[]
   ) => {
     let result: SimplifiedContent[] = [];
-
-    contentsId.forEach((contentId: ObjectId) => {
+    for (let contentId of contentsId) {
       const contentWithInfosArray = contents.filter(
         (content) => content._id === contentId
       );
-      if (contentWithInfosArray.length > 0) {
+      if (contentWithInfosArray.length > 0) { // result already in store
         result.push(contentWithInfosArray[0]);
-        return;
+      } else { // fetch result
+        await getContentById({
+          contentId: contentId,
+          locale: currentLanguageI18nCode || "fr"
+        }).then((response: any) => {
+          const data = response?.data?.data;
+          if (data) {
+            result.push({
+              ...data,
+              sponsorUrl: data.mainSponsor?.picture?.secure_url
+            });
+          }
+        })
       }
-      return;
-    });
+    }
     return result;
   };
 
@@ -101,7 +112,11 @@ export const FavorisScreen = ({
     }
   }
 
-  const contentsToDisplay = getContentsToDisplay(favorites, contents);
+  const [contentsToDisplay, setContentsToDisplay] = React.useState<SimplifiedContent[]>([]);
+  React.useEffect(() => {
+    getContentsToDisplay(favorites, contents)
+      .then(setContentsToDisplay)
+  }, [favorites, contents]);
 
   const dispatch = useDispatch();
   const [favoriteToDelete, setFavoriteToDelete] = React.useState("");
