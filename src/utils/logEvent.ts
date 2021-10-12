@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import * as Analytics from "expo-firebase-analytics";
+import { getEnvironment } from "../libs/getEnvironment";
 
-export const logEvent = async (
+export const logEventInFirebase = async (
   eventName: string,
   data: Record<string, any>
 ) => {
@@ -9,19 +10,18 @@ export const logEvent = async (
     "process.env.DEBUG_MODE_FIREBASE",
     process.env.DEBUG_MODE_FIREBASE
   );
-  if (process.env.NODE_ENV === "development") {
-    if (process.env.DEBUG_MODE_FIREBASE !== "activated") {
-      console.log(
-        "Environment is dev and debug mode is NOT activated for firebase"
-      );
-    } else {
+  const { envName, debugModeFirebase } = getEnvironment();
+  if (envName === "DEVELOPMENT") {
+    if (debugModeFirebase === "activated") {
       Analytics.setDebugModeEnabled(true);
       console.log(
         "Environment is dev and debug mode is activated for firebase"
       );
-
-      return;
+    } else {
+      console.log(
+        "Environment is dev and debug mode is NOT activated for firebase"
+      );
     }
   }
-  await Analytics.logEvent(eventName, data);
+  await Analytics.logEvent(eventName, { ...data, envName });
 };

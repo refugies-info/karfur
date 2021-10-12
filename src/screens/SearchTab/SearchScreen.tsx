@@ -2,12 +2,17 @@ import * as React from "react";
 import { TextNormal } from "../../components/StyledText";
 import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { logEvent } from "../../utils/logEvent";
+import { logEventInFirebase } from "../../utils/logEvent";
 
 export const SearchScreen = () => {
   return (
     <WrapperWithHeaderAndLanguageModal>
       <TextNormal>Search screen</TextNormal>
+      <TextNormal>{"env name : " + process.env.ENV_NAME}</TextNormal>
+      <TextNormal>
+        {"debug mode : " + process.env.DEBUG_MODE_FIREBASE}
+      </TextNormal>
+
       <TouchableOpacity
         style={{
           backgroundColor: "red",
@@ -16,7 +21,7 @@ export const SearchScreen = () => {
           margin: 16,
         }}
         onPress={async () => {
-          await logEvent("ButtonTaped", {
+          await logEventInFirebase("ButtonTaped", {
             name: "test",
             screen: "search",
           });

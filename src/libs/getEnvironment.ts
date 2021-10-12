@@ -6,11 +6,13 @@ export const getEnvironment = () => {
       envName: "STAGING",
       dbUrl: "https://api.new.refugies.info",
       siteSecret: process.env.SITE_SECRET,
+      debugModeFirebase: false,
     };
   }
   return {
-    envName: "DEVELOPMENT",
+    envName: process.env.ENV_NAME,
     dbUrl: process.env.API_URL,
     siteSecret: process.env.SITE_SECRET,
+    debugModeFirebase: process.env.DEBUG_MODE_FIREBASE,
   };
 };
