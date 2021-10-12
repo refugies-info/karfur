@@ -11,8 +11,8 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { contentsSelector } from "../../services/redux/Contents/contents.selectors";
 import { userFavorites } from "../../services/redux/User/user.selectors";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { removeUserFavoriteActionCreator } from "../../services/redux/User/user.actions";
-import { StyledTextBigBold, StyledTextSmall, TextBigBold } from "../../components/StyledText"
+import { removeUserFavoriteActionCreator, removeUserAllFavoritesActionCreator } from "../../services/redux/User/user.actions";
+import { StyledTextBigBold, StyledTextSmall, TextBigBold, StyledTextVerySmall } from "../../components/StyledText"
 import { CustomButton } from "../../components/CustomButton"
 import { ContentSummary } from "../../components/Contents/ContentSummary";
 import { ConfirmationModal } from "../../components/ConfirmationModal";
@@ -39,6 +39,13 @@ const EmptyText = styled(StyledTextSmall)`
 `;
 const Title = styled(TextBigBold)`
   margin-bottom: ${theme.margin * 3}px;
+`;
+const DeleteAllButton = styled.TouchableOpacity`
+  align-items: center;
+`;
+const DeleteAllButtonText = styled(StyledTextVerySmall)`
+  color: ${theme.colors.darkGrey};
+  margin-top: ${theme.margin * 3}px;
 `;
 
 export const FavorisScreen = ({
@@ -119,15 +126,19 @@ export const FavorisScreen = ({
   }, [favorites, contents]);
 
   const dispatch = useDispatch();
-  const [favoriteToDelete, setFavoriteToDelete] = React.useState("");
-  const showDeleteModal = (contentId: string) => {
+  const [favoriteToDelete, setFavoriteToDelete] = React.useState<string|"all">("");
+  const showDeleteModal = (contentId: string|"all") => {
     setFavoriteToDelete(contentId);
   }
   const hideDeleteModal = () => {
     if (favoriteToDelete !== "") setFavoriteToDelete("");
   }
-  const deleteFavorite = (contentId: string) => {
-    dispatch(removeUserFavoriteActionCreator(contentId))
+  const deleteFavorite = (contentId: string|"all") => {
+    if (contentId === "all") {
+      dispatch(removeUserAllFavoritesActionCreator())
+    } else {
+      dispatch(removeUserFavoriteActionCreator(contentId))
+    }
   }
 
   return (
@@ -165,6 +176,15 @@ export const FavorisScreen = ({
               />
             )
           })}
+
+          <DeleteAllButton onPress={() => showDeleteModal("all")}>
+            <DeleteAllButtonText>
+              {t(
+                "FavorisScreen.Supprimer toutes mes fiches",
+                "Supprimer toutes mes fiches"
+              )}
+            </DeleteAllButtonText>
+          </DeleteAllButton>
         </ScrollView> :
         <EmptyContainer>
           <Image
@@ -197,7 +217,10 @@ export const FavorisScreen = ({
       <ConfirmationModal
         isModalVisible={!!favoriteToDelete}
         toggleModal={hideDeleteModal}
-        text={t(
+        text={favoriteToDelete === "all" ? t(
+          "FavorisScreen.Supprimer tout",
+          "Veux-tu vraiment supprimer toutes les fiches de tes favoris ?"
+        ) : t(
           "FavorisScreen.Supprimer la fiche",
           "Veux-tu vraiment supprimer cette fiche de tes favoris ?"
         )}

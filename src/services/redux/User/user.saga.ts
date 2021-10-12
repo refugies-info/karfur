@@ -17,7 +17,7 @@ import {
   removeUserFrenchLevelActionCreator,
   setUserFavoritesActionCreator,
   addUserFavoriteActionCreator,
-  removeUserFavoriteActionCreator
+  removeUserFavoriteActionCreator,
 } from "./user.actions";
 import {
   SAVE_SELECTED_LANGUAGE,
@@ -33,6 +33,7 @@ import {
   REMOVE_USER_HAS_SEEN_ONBOARDING,
   ADD_USER_FAVORITE,
   REMOVE_USER_FAVORITE,
+  REMOVE_USER_ALL_FAVORITES,
 } from "./user.actionTypes";
 import {
   saveItemInAsyncStorage,
@@ -297,6 +298,16 @@ export function* removeUserFavorite(
   }
 }
 
+export function* removeUserAllFavorites(): SagaIterator {
+  try {
+    logger.info("[removeAllFavorites] saga");
+    yield call(saveItemInAsyncStorage, "FAVORITES", JSON.stringify([]));
+    yield put(setUserFavoritesActionCreator([]));
+  } catch (error) {
+    logger.error("Error while removing favorites", { error: error.message });
+  }
+}
+
 
 function* latestActionsSaga() {
   yield takeLatest(SAVE_SELECTED_LANGUAGE, saveSelectedLanguage);
@@ -315,6 +326,7 @@ function* latestActionsSaga() {
   );
   yield takeLatest(ADD_USER_FAVORITE, addUserFavorite);
   yield takeLatest(REMOVE_USER_FAVORITE, removeUserFavorite);
+  yield takeLatest(REMOVE_USER_ALL_FAVORITES, removeUserAllFavorites);
 
 }
 
