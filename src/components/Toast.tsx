@@ -52,8 +52,24 @@ const StyledText = styled(StyledTextVerySmallBold)`
 export const Toast = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
 
-  // entrance animation
+  // Animations
   let animation = React.useRef(new Animated.Value(0));
+
+  /**
+   * Hide toast
+   */
+  const hideToast = () => {
+    Animated.timing(animation.current, {
+      toValue: 0,
+      duration: 400,
+      useNativeDriver: true,
+      easing: Easing.out(Easing.exp)
+    }).start(props.onClose);
+  }
+
+  /**
+   * Show toast on mount
+   */
   React.useEffect(() => {
     Animated.timing(animation.current, {
       toValue: 100,
@@ -61,6 +77,12 @@ export const Toast = (props: Props) => {
       useNativeDriver: true,
       easing: Easing.out(Easing.exp)
     }).start();
+
+    const timer = setTimeout(() => {
+      hideToast()
+    }, 12000);
+
+    return () => { clearTimeout(timer) }
   }, []);
 
   const bottom = animation.current.interpolate({
@@ -92,7 +114,7 @@ export const Toast = (props: Props) => {
           }
         </RTLView>
 
-        <TouchableOpacity onPress={props.onClose}>
+        <TouchableOpacity onPress={hideToast}>
           <Icon
             name="close"
             height={24}
