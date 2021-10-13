@@ -161,6 +161,7 @@ export const FavorisScreen = ({
               <ContentSummary
                 key={content._id}
                 navigation={navigation}
+                route={"FavorisContentScreen"}
                 tagDarkColor={colors.tagDarkColor}
                 tagVeryLightColor={colors.tagVeryLightColor}
                 tagName={colors.tagName}

@@ -12,7 +12,8 @@ import latestActionsSaga, {
   removeUserFrenchLevel,
   removeHasUserSeenOnboarding,
   addUserFavorite,
-  removeUserFavorite
+  removeUserFavorite,
+  removeUserAllFavorites
 } from "../user.saga";
 import {
   saveItemInAsyncStorage,
@@ -64,6 +65,8 @@ describe("[Saga] user", () => {
         .takeLatest("ADD_USER_FAVORITE", addUserFavorite)
         .next()
         .takeLatest("REMOVE_USER_FAVORITE", removeUserFavorite)
+        .next()
+        .takeLatest("REMOVE_USER_ALL_FAVORITES", removeUserAllFavorites)
         .next()
         .isDone();
     });

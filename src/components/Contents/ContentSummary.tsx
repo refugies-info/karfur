@@ -86,6 +86,7 @@ interface Props {
   typeContenu: "dispositif" | "demarche";
   sponsorUrl: string | null;
   iconName: string;
+  route: string;
   actionPress?: any;
   actionIcon?: string;
 }
@@ -107,7 +108,7 @@ export const ContentSummary = (props: Props) => {
     return (
       <ContentContainer
         onPress={() =>
-          props.navigation.navigate("ContentScreen", {
+          props.navigation.navigate(props.route, {
             contentId: props.contentId,
             tagDarkColor: props.tagDarkColor,
             tagVeryLightColor: props.tagVeryLightColor,
@@ -153,7 +154,7 @@ export const ContentSummary = (props: Props) => {
   return (
     <ContentContainer
       onPress={() =>
-        props.navigation.navigate("ContentScreen", {
+        props.navigation.navigate(props.route, {
           contentId: props.contentId,
           tagDarkColor: props.tagDarkColor,
           tagVeryLightColor: props.tagVeryLightColor,

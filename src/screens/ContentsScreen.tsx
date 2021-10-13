@@ -311,6 +311,7 @@ export const ContentsScreen = ({
               typeContenu={content.typeContenu}
               sponsorUrl={content.sponsorUrl}
               iconName={iconName}
+              route={"ContentScreen"}
             />
           );
         })}
@@ -335,6 +336,7 @@ export const ContentsScreen = ({
                   typeContenu={content.typeContenu}
                   sponsorUrl={content.sponsorUrl}
                   iconName={iconName}
+                  route={"ContentScreen"}
                 />
               );
             })}
