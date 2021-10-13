@@ -78,46 +78,46 @@ export const StyledTextBigBold = styled.Text`
 
 export const TextNormal = (props: any) => {
   const { isRTL } = useTranslationWithRTL();
-  return <StyledTextNormal isRTL={isRTL} {...props} />;
+  return <StyledTextNormal isRTL={isRTL} selectable={true} {...props} />;
 };
 
 export const TextNormalBold = (props: any) => {
   const { isRTL } = useTranslationWithRTL();
 
-  return <StyledTextNormalBold isRTL={isRTL} {...props} />;
+  return <StyledTextNormalBold isRTL={isRTL} selectable={true} {...props} />;
 };
 
 export const TextBig = (props: any) => {
   const { isRTL } = useTranslationWithRTL();
-  return <StyledTextBig isRTL={isRTL} {...props} />;
+  return <StyledTextBig isRTL={isRTL} selectable={true} {...props} />;
 };
 
 export const TextBigBold = (props: any) => {
   const { isRTL } = useTranslationWithRTL();
 
-  return <StyledTextBigBold isRTL={isRTL} {...props} />;
+  return <StyledTextBigBold isRTL={isRTL} selectable={true} {...props} />;
 };
 
 export const TextVerySmallNormal = (props: any) => {
   const { isRTL } = useTranslationWithRTL();
 
-  return <StyledTextVerySmall isRTL={isRTL} {...props} />;
+  return <StyledTextVerySmall isRTL={isRTL} selectable={true} {...props} />;
 };
 
 export const TextVerySmallBold = (props: any) => {
   const { isRTL } = useTranslationWithRTL();
 
-  return <StyledTextVerySmallBold isRTL={isRTL} {...props} />;
+  return <StyledTextVerySmallBold isRTL={isRTL} selectable={true} {...props} />;
 };
 
 export const TextSmallNormal = (props: any) => {
   const { isRTL } = useTranslationWithRTL();
 
-  return <StyledTextSmall isRTL={isRTL} {...props} />;
+  return <StyledTextSmall isRTL={isRTL} selectable={true} {...props} />;
 };
 
 export const TextSmallBold = (props: any) => {
   const { isRTL } = useTranslationWithRTL();
 
-  return <StyledTextSmallBold isRTL={isRTL} {...props} />;
+  return <StyledTextSmallBold isRTL={isRTL} selectable={true} {...props} />;
 };
