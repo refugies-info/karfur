@@ -6,10 +6,6 @@ export const logEventInFirebase = async (
   eventName: string,
   data: Record<string, any>
 ) => {
-  console.log(
-    "process.env.DEBUG_MODE_FIREBASE",
-    process.env.DEBUG_MODE_FIREBASE
-  );
   const { envName, debugModeFirebase } = getEnvironment();
   if (envName === "DEVELOPMENT") {
     if (debugModeFirebase === "activated") {
@@ -24,5 +20,8 @@ export const logEventInFirebase = async (
       return;
     }
   }
-  await Analytics.logEvent(eventName, { ...data, envName });
+
+  if (envName && ["DEVELOPMENT", "STAGING", "PROD"].includes(envName)) {
+    await Analytics.logEvent(eventName, { ...data, envName });
+  }
 };
