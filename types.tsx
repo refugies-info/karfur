@@ -53,6 +53,14 @@ export type ExplorerParamList = {
 
 export type FavorisParamList = {
   FavorisScreen: undefined;
+  FavorisContentScreen: {
+    contentId: ObjectId;
+    tagDarkColor: string;
+    tagVeryLightColor: string;
+    tagName: string;
+    tagLightColor: string;
+    iconName: string;
+  };
 };
 
 export type SearchParamList = {

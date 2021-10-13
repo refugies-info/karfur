@@ -21,6 +21,7 @@
   },
   "Suivant": "Suivant",
   "Continuer": "Continuer",
+  "Supprimer": "Supprimer",
   "Ok": "Ok",
   "tabBar": {
     "Explorer": "Explorer",
@@ -148,7 +149,11 @@
     "fiches non trad": "Fiches non traduites"
   },
   "FavorisScreen": {
+    "Mes fiches": "Mes fiches",
     "C'est vide": "C'est vide",
-    "Ajouter une fiche": "Pour ajouter une fiche dans tes favoris, clique sur l’étoile."
+    "Ajouter une fiche": "Pour ajouter une fiche dans tes favoris, clique sur l’étoile.",
+    "Supprimer la fiche": "Veux-tu vraiment supprimer cette fiche de tes favoris ?",
+    "Supprimer tout": "Veux-tu vraiment supprimer toutes les fiches de tes favoris ?",
+    "Supprimer toutes mes fiches": "Supprimer toutes mes fiches"
   }
 }

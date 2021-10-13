@@ -19,7 +19,8 @@ import {
   REMOVE_USER_FRENCH_LEVEL,
   SET_USER_FAVORITES,
   ADD_USER_FAVORITE,
-  REMOVE_USER_FAVORITE
+  REMOVE_USER_FAVORITE,
+  REMOVE_USER_ALL_FAVORITES
 } from "./user.actionTypes";
 import { AvailableLanguageI18nCode } from "../../../types/interface";
 
@@ -99,6 +100,9 @@ export const removeUserFavoriteActionCreator = (
   contentId: string
 ) => action(REMOVE_USER_FAVORITE, contentId);
 
+export const removeUserAllFavoritesActionCreator = () =>
+  action(REMOVE_USER_ALL_FAVORITES);
+
 const actions = {
   setHasUserSeenOnboardingActionCreator,
   setSelectedLanguageActionCreator,
@@ -119,6 +123,7 @@ const actions = {
   removeUserLocationActionCreator,
   setUserFavoritesActionCreator,
   addUserFavoriteActionCreator,
-  removeUserFavoriteActionCreator
+  removeUserFavoriteActionCreator,
+  removeUserAllFavoritesActionCreator
 };
 export type UserActions = ActionType<typeof actions>;

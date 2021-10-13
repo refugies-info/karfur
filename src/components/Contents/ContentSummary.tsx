@@ -5,6 +5,7 @@ import { ObjectId } from "../../types/interface";
 import { TextSmallBold, TextVerySmallNormal } from "../StyledText";
 import { RTLTouchableOpacity } from "../BasicComponents";
 import { Image } from "react-native";
+import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import NoLogo from "../../theme/images/contents/structure_no_logo.png";
 import { DemarcheImage } from "./DemarcheImage";
@@ -67,6 +68,12 @@ const TitlesContainer = styled.View`
   padding: 16px;
 `;
 
+const ActionButton = styled.TouchableOpacity`
+  padding-horizontal: ${theme.margin * 2}px;
+  height: 100%;
+  justify-content: center;
+`;
+
 interface Props {
   navigation: any;
   tagDarkColor: string;
@@ -79,14 +86,29 @@ interface Props {
   typeContenu: "dispositif" | "demarche";
   sponsorUrl: string | null;
   iconName: string;
+  route: string;
+  actionPress?: any;
+  actionIcon?: string;
 }
 export const ContentSummary = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
+
+  const actionButton = (props.actionPress !== undefined) ?
+    <ActionButton onPress={props.actionPress}>
+      <Icon
+        name={props.actionIcon || ""}
+        width={16}
+        height={16}
+        fill={theme.colors.black}
+      />
+    </ActionButton>
+    : null;
+
   if (props.typeContenu === "dispositif") {
     return (
       <ContentContainer
         onPress={() =>
-          props.navigation.navigate("ContentScreen", {
+          props.navigation.navigate(props.route, {
             contentId: props.contentId,
             tagDarkColor: props.tagDarkColor,
             tagVeryLightColor: props.tagVeryLightColor,
@@ -125,13 +147,14 @@ export const ContentSummary = (props: Props) => {
             </TitreMarqueText>
           )}
         </TitlesContainer>
+        {actionButton}
       </ContentContainer>
     );
   }
   return (
     <ContentContainer
       onPress={() =>
-        props.navigation.navigate("ContentScreen", {
+        props.navigation.navigate(props.route, {
           contentId: props.contentId,
           tagDarkColor: props.tagDarkColor,
           tagVeryLightColor: props.tagVeryLightColor,
@@ -155,6 +178,7 @@ export const ContentSummary = (props: Props) => {
           {props.titreInfo}
         </TitreInfoText>
       </TitlesContainer>
+      {actionButton}
     </ContentContainer>
   );
 };
