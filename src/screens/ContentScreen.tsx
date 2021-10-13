@@ -22,10 +22,12 @@ import {
   selectedI18nCodeSelector,
   currentI18nCodeSelector,
   isFavorite,
+  userFavorites
 } from "../services/redux/User/user.selectors";
 import {
   addUserFavoriteActionCreator,
-  removeUserFavoriteActionCreator
+  removeUserFavoriteActionCreator,
+  saveUserHasNewFavoritesActionCreator
 } from "../services/redux/User/user.actions";
 import { ContentFromHtml } from "../components/Content/ContentFromHtml";
 import { AvailableLanguageI18nCode, MapGoogle } from "../types/interface";
@@ -298,6 +300,7 @@ export const ContentScreen = ({
   };
 
   // Favorites
+  const favorites = useSelector(userFavorites);
   const [favoriteToast, setFavoriteToast] = React.useState<{text: string, icon: string, link?: string}|null>(null);
   const isContentFavorite = useSelector(isFavorite(contentId));
   const toggleFavorites = () => {
@@ -311,6 +314,9 @@ export const ContentScreen = ({
         icon: "trash-2-outline"
       })
     } else {
+      if (favorites.length === 0) {
+        dispatch(saveUserHasNewFavoritesActionCreator());
+      }
       dispatch(addUserFavoriteActionCreator(contentId))
       setFavoriteToast({
         text: t(

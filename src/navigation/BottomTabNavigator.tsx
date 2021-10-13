@@ -5,12 +5,15 @@
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
+import { useSelector } from "react-redux";
+import { View } from "react-native";
 
 import { BottomTabParamList } from "../../types";
 import { ExplorerNavigator } from "./BottomTabBar/ExplorerNavigator";
 import { Icon } from "react-native-eva-icons";
 import { theme } from "../theme";
 import { useTranslation } from "react-i18next";
+import { hasUserNewFavoritesSelector } from "../services/redux/User/user.selectors";
 import {
   StyledTextVerySmallBold,
   StyledTextVerySmall,
@@ -26,16 +29,33 @@ const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 const renderTabBarIcon = (
   color: string,
   focused: boolean,
-  iconName: string
+  iconName: string,
+  badge?: boolean
 ) => {
   const iconNameWithFocus = focused ? iconName : iconName + "-outline";
   return (
-    <Icon
-      name={iconNameWithFocus}
-      width={ICON_SIZE}
-      height={ICON_SIZE}
-      fill={color}
-    />
+    <>
+      <Icon
+        name={iconNameWithFocus}
+        width={ICON_SIZE}
+        height={ICON_SIZE}
+        fill={color}
+      />
+      {badge &&
+      <View
+        style={{
+          width: theme.margin,
+          height: theme.margin,
+          position: "absolute",
+          top: 2,
+          left: "50%",
+          marginLeft: 10,
+          backgroundColor: theme.colors.darkBlue,
+          borderRadius: theme.margin / 2
+        }}
+      ></View>
+      }
+    </>
   );
 };
 
@@ -55,6 +75,8 @@ const renderTabBarLabel = (color: string, focused: boolean, name: string) => {
 };
 export default function BottomTabNavigator() {
   const { t } = useTranslation();
+  const hasUserNewFavorites = useSelector(hasUserNewFavoritesSelector);
+
   return (
     <BottomTab.Navigator
       initialRouteName="Explorer"
@@ -95,7 +117,7 @@ export default function BottomTabNavigator() {
           }: {
             color: string;
             focused: boolean;
-          }) => renderTabBarIcon(color, focused, "star"),
+          }) => renderTabBarIcon(color, focused, "star", hasUserNewFavorites),
           tabBarLabel: ({
             color,
             focused,

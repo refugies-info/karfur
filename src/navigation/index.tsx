@@ -16,7 +16,10 @@ import { getUserInfosActionCreator } from "../services/redux/User/user.actions";
 import { logger } from "../logger";
 import { OnboardingStackNavigator } from "./OnboardingNavigator";
 import { hasUserSeenOnboardingSelector } from "../services/redux/User/user.selectors";
-import { setHasUserSeenOnboardingActionCreator } from "../services/redux/User/user.actions";
+import {
+  setHasUserSeenOnboardingActionCreator,
+  setUserHasNewFavoritesActionCreator
+} from "../services/redux/User/user.actions";
 import { theme } from "../theme";
 import "../services/i18n";
 import { initReactI18next } from "react-i18next";
@@ -81,7 +84,21 @@ export const RootNavigator = () => {
         // error reading value
       }
     };
+
+    const checkIfUserHasNewFavorites = async () => {
+      try {
+        const value = await AsyncStorage.getItem("HAS_USER_NEW_FAVORITES");
+
+        const hasUserNewFavorites = value === "TRUE";
+        if (hasUserNewFavorites) {
+          dispatch(setUserHasNewFavoritesActionCreator(true));
+        }
+      } catch (e) {
+        // error reading value
+      }
+    };
     checkIfUserHasAlreadySeenOnboarding();
+    checkIfUserHasNewFavorites();
     setLanguage();
     dispatch(getUserInfosActionCreator());
     dispatch(fetchNeedsActionCreator());

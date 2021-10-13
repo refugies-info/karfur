@@ -11,8 +11,11 @@ import {
   SET_USER_FRENCH_LEVEL,
   SET_USER_HAS_SEEN_ONBOARDING,
   SAVE_USER_HAS_SEEN_ONBOARDING,
+  SET_USER_HAS_NEW_FAVORITES,
+  SAVE_USER_HAS_NEW_FAVORITES,
   GET_USER_INFOS,
   REMOVE_USER_HAS_SEEN_ONBOARDING,
+  REMOVE_USER_HAS_NEW_FAVORITES,
   REMOVE_SELECTED_LANGUAGE,
   REMOVE_USER_AGE,
   REMOVE_USER_LOCATION,
@@ -32,6 +35,15 @@ export const saveHasUserSeenOnboardingActionCreator = () =>
 
 export const removeHasUserSeenOnboardingActionCreator = () =>
   action(REMOVE_USER_HAS_SEEN_ONBOARDING);
+
+export const setUserHasNewFavoritesActionCreator = (value: boolean) =>
+  action(SET_USER_HAS_NEW_FAVORITES, value);
+
+export const saveUserHasNewFavoritesActionCreator = () =>
+  action(SAVE_USER_HAS_NEW_FAVORITES);
+
+export const removeUserHasNewFavoritesActionCreator = () =>
+  action(REMOVE_USER_HAS_NEW_FAVORITES);
 
 export const setSelectedLanguageActionCreator = (
   value: AvailableLanguageI18nCode | null
@@ -108,6 +120,7 @@ const actions = {
   setSelectedLanguageActionCreator,
   saveSelectedLanguageActionCreator,
   saveHasUserSeenOnboardingActionCreator,
+  setUserHasNewFavoritesActionCreator,
   setCurrentLanguageActionCreator,
   setUserAgeActionCreator,
   setUserLocationActionCreator,

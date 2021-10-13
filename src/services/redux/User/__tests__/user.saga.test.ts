@@ -13,7 +13,9 @@ import latestActionsSaga, {
   removeHasUserSeenOnboarding,
   addUserFavorite,
   removeUserFavorite,
-  removeUserAllFavorites
+  removeUserAllFavorites,
+  saveUserHasNewFavorites,
+  removeUserHasNewFavorites
 } from "../user.saga";
 import {
   saveItemInAsyncStorage,
@@ -27,7 +29,8 @@ import {
   setUserFrenchLevelActionCreator,
   setUserAgeActionCreator,
   setUserLocationActionCreator,
-  setUserFavoritesActionCreator
+  setUserFavoritesActionCreator,
+  setUserHasNewFavoritesActionCreator
 } from "../user.actions";
 import { fetchContentsActionCreator } from "../../Contents/contents.actions";
 import { hasUserSeenOnboardingSelector } from "../user.selectors";
@@ -40,6 +43,8 @@ describe("[Saga] user", () => {
         .takeLatest("SAVE_SELECTED_LANGUAGE", saveSelectedLanguage)
         .next()
         .takeLatest("SAVE_USER_HAS_SEEN_ONBOARDING", saveHasUserSeenOnboarding)
+        .next()
+        .takeLatest("SAVE_USER_HAS_NEW_FAVORITES", saveUserHasNewFavorites)
         .next()
         .takeLatest("SAVE_USER_LOCATION", saveUserLocation)
         .next()
@@ -60,6 +65,11 @@ describe("[Saga] user", () => {
         .takeLatest(
           "REMOVE_USER_HAS_SEEN_ONBOARDING",
           removeHasUserSeenOnboarding
+        )
+        .next()
+        .takeLatest(
+          "REMOVE_USER_HAS_NEW_FAVORITES",
+          removeUserHasNewFavorites
         )
         .next()
         .takeLatest("ADD_USER_FAVORITE", addUserFavorite)
@@ -512,6 +522,28 @@ describe("[Saga] user", () => {
         .next()
         .call(deleteItemInAsyncStorage, "HAS_USER_SEEN_ONBOARDING")
         .throw(new Error("error"))
+        .isDone();
+    });
+  });
+
+  describe("handle has new favorite async storage", () => {
+    it("should call functions and set token in localStorage", () => {
+      testSaga(saveUserHasNewFavorites)
+        .next()
+        .call(saveItemInAsyncStorage, "HAS_USER_NEW_FAVORITES", "TRUE")
+        .next()
+        .put(setUserHasNewFavoritesActionCreator(true))
+        .next()
+        .isDone();
+    });
+
+    it("should call functions and remove token in localStorage", () => {
+      testSaga(removeUserHasNewFavorites)
+        .next()
+        .call(deleteItemInAsyncStorage, "HAS_USER_NEW_FAVORITES")
+        .next()
+        .put(setUserHasNewFavoritesActionCreator(false))
+        .next()
         .isDone();
     });
   });

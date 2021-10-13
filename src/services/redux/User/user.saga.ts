@@ -5,6 +5,7 @@ import {
   saveSelectedLanguageActionCreator,
   setSelectedLanguageActionCreator,
   setHasUserSeenOnboardingActionCreator,
+  setUserHasNewFavoritesActionCreator,
   setCurrentLanguageActionCreator,
   saveUserLocationActionCreator,
   saveUserFrenchLevelActionCreator,
@@ -25,12 +26,14 @@ import {
   SAVE_USER_LOCATION,
   SAVE_USER_AGE,
   SAVE_USER_FRENCH_LEVEL,
+  SAVE_USER_HAS_NEW_FAVORITES,
   GET_USER_INFOS,
   REMOVE_SELECTED_LANGUAGE,
   REMOVE_USER_LOCATION,
   REMOVE_USER_FRENCH_LEVEL,
   REMOVE_USER_AGE,
   REMOVE_USER_HAS_SEEN_ONBOARDING,
+  REMOVE_USER_HAS_NEW_FAVORITES,
   ADD_USER_FAVORITE,
   REMOVE_USER_FAVORITE,
   REMOVE_USER_ALL_FAVORITES,
@@ -201,6 +204,30 @@ export function* removeHasUserSeenOnboarding(): SagaIterator {
   }
 }
 
+export function* saveUserHasNewFavorites(): SagaIterator {
+  try {
+    logger.info("[saveUserHasNewFavorites] saga");
+    yield call(saveItemInAsyncStorage, "HAS_USER_NEW_FAVORITES", "TRUE");
+    yield put(setUserHasNewFavoritesActionCreator(true));
+  } catch (error) {
+    logger.error("Error while saving user has new favorites", {
+      error: error.message,
+    });
+  }
+}
+
+export function* removeUserHasNewFavorites(): SagaIterator {
+  try {
+    logger.info("[removeUserHasNewFavorites] saga");
+    yield call(deleteItemInAsyncStorage, "HAS_USER_NEW_FAVORITES");
+    yield put(setUserHasNewFavoritesActionCreator(false));
+  } catch (error) {
+    logger.error("Error while removing has user new favorites", {
+      error: error.message,
+    });
+  }
+}
+
 export function* getUserInfos(): SagaIterator {
   try {
     logger.info("[getUserInfos] saga");
@@ -312,6 +339,7 @@ export function* removeUserAllFavorites(): SagaIterator {
 function* latestActionsSaga() {
   yield takeLatest(SAVE_SELECTED_LANGUAGE, saveSelectedLanguage);
   yield takeLatest(SAVE_USER_HAS_SEEN_ONBOARDING, saveHasUserSeenOnboarding);
+  yield takeLatest(SAVE_USER_HAS_NEW_FAVORITES, saveUserHasNewFavorites);
   yield takeLatest(SAVE_USER_LOCATION, saveUserLocation);
   yield takeLatest(SAVE_USER_FRENCH_LEVEL, saveUserFrenchLevel);
   yield takeLatest(SAVE_USER_AGE, saveUserAge);
@@ -324,6 +352,7 @@ function* latestActionsSaga() {
     REMOVE_USER_HAS_SEEN_ONBOARDING,
     removeHasUserSeenOnboarding
   );
+  yield takeLatest(REMOVE_USER_HAS_NEW_FAVORITES, removeUserHasNewFavorites);
   yield takeLatest(ADD_USER_FAVORITE, addUserFavorite);
   yield takeLatest(REMOVE_USER_FAVORITE, removeUserFavorite);
   yield takeLatest(REMOVE_USER_ALL_FAVORITES, removeUserAllFavorites);
