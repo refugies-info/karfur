@@ -1,21 +1,16 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import {
-  TouchableWithoutFeedback,
-  View,
-  StyleSheet,
-  Animated,
-} from "react-native";
+import { View, StyleSheet, Animated } from "react-native";
 import { AvailableLanguageI18nCode } from "../../types/interface";
 import { theme } from "../../theme";
-import { RTLView } from "../BasicComponents";
+import { RTLView, RTLTouchableOpacity } from "../BasicComponents";
 import { TextSmallBold } from "../StyledText";
 import { AccordionHeaderFromHtml } from "./AccordionHeaderFromHtml";
 import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ContentFromHtml } from "./ContentFromHtml";
 
-const TitleContainer = styled(RTLView)`
+const TitleContainer = styled(RTLTouchableOpacity)`
   background-color: ${(props: { isExpanded: boolean; lightColor: string }) =>
     props.isExpanded ? props.lightColor : theme.colors.white};
   padding:${theme.margin * 2}px;
@@ -129,64 +124,63 @@ export const AccordionAnimated = (props: Props) => {
 
   return (
     <AccordionContainer>
-      <TouchableWithoutFeedback onPress={() => toggleListItem()}>
-        <View>
-          <TitleContainer
-            isExpanded={isExpanded}
-            darkColor={props.darkColor}
-            lightColor={props.lightColor}
-          >
-            <RTLView>
-              {props.stepNumber && (
-                <StepContainer isRTL={isRTL} darkColor={props.darkColor}>
-                  <StepText>{props.stepNumber}</StepText>
-                </StepContainer>
-              )}
-              {!props.isContentTranslated ? (
-                <TitleText width={props.width} darkColor={props.darkColor}>
-                  {props.title}
-                </TitleText>
-              ) : (
-                <AccordionHeaderFromHtml
-                  htmlContent={props.title}
-                  width={props.width}
-                  windowWidth={props.windowWidth}
-                  darkColor={props.darkColor}
-                />
-              )}
-            </RTLView>
-            <IconContainer isRTL={isRTL}>
-              <Icon
-                name={isExpanded ? "chevron-up" : "chevron-down"}
-                height={24}
-                width={24}
-                fill={props.darkColor}
+      <View>
+        <TitleContainer
+          isExpanded={isExpanded}
+          darkColor={props.darkColor}
+          lightColor={props.lightColor}
+          onPress={() => toggleListItem()}
+        >
+          <RTLView>
+            {props.stepNumber && (
+              <StepContainer isRTL={isRTL} darkColor={props.darkColor}>
+                <StepText>{props.stepNumber}</StepText>
+              </StepContainer>
+            )}
+            {!props.isContentTranslated ? (
+              <TitleText width={props.width} darkColor={props.darkColor}>
+                {props.title}
+              </TitleText>
+            ) : (
+              <AccordionHeaderFromHtml
+                htmlContent={props.title}
+                width={props.width}
+                windowWidth={props.windowWidth}
+                darkColor={props.darkColor}
               />
-            </IconContainer>
-          </TitleContainer>
-          {
-            <Animated.View
-              style={[styles.bodyBackground, { height: bodyHeight }]}
+            )}
+          </RTLView>
+          <IconContainer isRTL={isRTL}>
+            <Icon
+              name={isExpanded ? "chevron-up" : "chevron-down"}
+              height={24}
+              width={24}
+              fill={props.darkColor}
+            />
+          </IconContainer>
+        </TitleContainer>
+        {
+          <Animated.View
+            style={[styles.bodyBackground, { height: bodyHeight }]}
+          >
+            <View
+              onLayout={(event: any) =>
+                setBodySectionHeight(event.nativeEvent.layout.height)
+              }
+              style={styles.bodyContainer}
             >
-              <View
-                onLayout={(event: any) =>
-                  setBodySectionHeight(event.nativeEvent.layout.height)
-                }
-                style={styles.bodyContainer}
-              >
-                <ExpandedContentContainer>
-                  {!!props.content && (
-                    <ContentFromHtml
-                      htmlContent={props.content}
-                      windowWidth={props.windowWidth}
-                    />
-                  )}
-                </ExpandedContentContainer>
-              </View>
-            </Animated.View>
-          }
-        </View>
-      </TouchableWithoutFeedback>
+              <ExpandedContentContainer>
+                {!!props.content && (
+                  <ContentFromHtml
+                    htmlContent={props.content}
+                    windowWidth={props.windowWidth}
+                  />
+                )}
+              </ExpandedContentContainer>
+            </View>
+          </Animated.View>
+        }
+      </View>
     </AccordionContainer>
   );
 };
