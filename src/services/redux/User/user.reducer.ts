@@ -4,6 +4,7 @@ import { AvailableLanguageI18nCode } from "../../../types/interface";
 
 export interface UserState {
   hasUserSeenOnboarding: boolean;
+  hasUserNewFavorites: boolean;
   selectedLanguagei18nCode: AvailableLanguageI18nCode | null;
   currentLanguagei18nCode: AvailableLanguageI18nCode | null;
   city: string | null;
@@ -15,6 +16,7 @@ export interface UserState {
 
 export const initialUserState = {
   hasUserSeenOnboarding: false,
+  hasUserNewFavorites: false,
   selectedLanguagei18nCode: null,
   currentLanguagei18nCode: null,
   city: null,
@@ -30,6 +32,10 @@ export const userReducer = createReducer<UserState, UserActions>(
     SET_USER_HAS_SEEN_ONBOARDING: (state, action) => ({
       ...state,
       hasUserSeenOnboarding: action.payload,
+    }),
+    SET_USER_HAS_NEW_FAVORITES: (state, action) => ({
+      ...state,
+      hasUserNewFavorites: action.payload,
     }),
     SET_SELECTED_LANGUAGE: (state, action) => ({
       ...state,

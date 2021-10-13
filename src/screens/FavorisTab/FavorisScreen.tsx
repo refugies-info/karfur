@@ -1,6 +1,8 @@
 import * as React from "react"
 import styled from "styled-components/native"
 import { StackScreenProps } from "@react-navigation/stack"
+import { useFocusEffect } from "@react-navigation/native";
+
 import { Image, ScrollView } from "react-native"
 import { useDispatch, useSelector } from "react-redux";
 
@@ -9,9 +11,16 @@ import { SimplifiedContent, ObjectId } from "../../types/interface";
 import { BottomTabParamList } from "../../../types"
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { contentsSelector } from "../../services/redux/Contents/contents.selectors";
-import { userFavorites } from "../../services/redux/User/user.selectors";
+import {
+  hasUserNewFavoritesSelector,
+  userFavorites
+} from "../../services/redux/User/user.selectors";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { removeUserFavoriteActionCreator, removeUserAllFavoritesActionCreator } from "../../services/redux/User/user.actions";
+import {
+  removeUserFavoriteActionCreator,
+  removeUserAllFavoritesActionCreator,
+  removeUserHasNewFavoritesActionCreator,
+} from "../../services/redux/User/user.actions";
 import { StyledTextBigBold, StyledTextSmall, TextBigBold, StyledTextVerySmall } from "../../components/StyledText"
 import { CustomButton } from "../../components/CustomButton"
 import { ContentSummary } from "../../components/Contents/ContentSummary";
@@ -57,6 +66,15 @@ export const FavorisScreen = ({
   const contents = currentLanguageI18nCode
   ? useSelector(contentsSelector(currentLanguageI18nCode)) : [];
   const { t } = useTranslationWithRTL();
+  const dispatch = useDispatch();
+
+  // When the screen has focus, remove "new favorite" badge
+  const hasNewFavorites = useSelector(hasUserNewFavoritesSelector)
+  useFocusEffect(React.useCallback(() => {
+    if (hasNewFavorites) {
+      dispatch(removeUserHasNewFavoritesActionCreator());
+    }
+  }, [hasNewFavorites]))
 
   /**
    * Return the contents to display
@@ -125,7 +143,6 @@ export const FavorisScreen = ({
       .then(setContentsToDisplay)
   }, [favorites, contents]);
 
-  const dispatch = useDispatch();
   const [favoriteToDelete, setFavoriteToDelete] = React.useState<string|"all">("");
   const showDeleteModal = (contentId: string|"all") => {
     setFavoriteToDelete(contentId);
