@@ -21,6 +21,7 @@ export const logEventInFirebase = async (
       console.log(
         "Environment is dev and debug mode is NOT activated for firebase"
       );
+      return;
     }
   }
   await Analytics.logEvent(eventName, { ...data, envName });

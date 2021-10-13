@@ -29,6 +29,38 @@ export const SearchScreen = () => {
       >
         <TextNormal>Test</TextNormal>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        style={{
+          backgroundColor: "red",
+          borderRadius: 8,
+          padding: 8,
+          margin: 16,
+        }}
+        onPress={async () => {
+          await logEventInFirebase("ChooseLanguage", {
+            langue: "fr",
+          });
+        }}
+      >
+        <TextNormal>Langue fr</TextNormal>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={{
+          backgroundColor: "red",
+          borderRadius: 8,
+          padding: 8,
+          margin: 16,
+        }}
+        onPress={async () => {
+          await logEventInFirebase("ChooseLanguage", {
+            langue: "en",
+          });
+        }}
+      >
+        <TextNormal>Langue en</TextNormal>
+      </TouchableOpacity>
     </WrapperWithHeaderAndLanguageModal>
   );
 };
