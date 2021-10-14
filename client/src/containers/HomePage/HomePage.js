@@ -209,7 +209,7 @@ export class HomePage extends Component {
             {this.state.parrainage ? (
               <ParrainageAlert>
                 <div style={{ padding: 10, alignSelf: "center" }}>
-                  <EVAIcon fill={"white"} name="alert-triangle" />
+                  <EVAIcon fill={"#2d9cdb"} name="alert-triangle" />
                 </div>
                 <div
                   style={{
