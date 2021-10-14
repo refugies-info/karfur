@@ -45,21 +45,22 @@ const CoronaAlert = styled.div`
 const ParrainageAlert = styled.div`
   display: flex;
   border-radius: 12px 12px 12px 12px;
-  background-color: #ffcecb;
+  background-color: #2d9cdb;
   flex-direction: row;
   padding: 15px;
   margin-top: -70px;
   width: 100%;
   justify-content: space-between;
+  box-shadow: 0px 10px 15px 0px #00000040;
 `;
 
 const AlertText = styled.div`
-  color: #f44336;
+  color: white;
   font-weight: bold;
 `;
 
 const AlertTextLink = styled.p`
-  color: #f44336;
+  color: white;
   font-weight: bold;
   text-decoration: underline;
   margin-bottom: 0px;
@@ -208,7 +209,7 @@ export class HomePage extends Component {
             {this.state.parrainage ? (
               <ParrainageAlert>
                 <div style={{ padding: 10, alignSelf: "center" }}>
-                  <EVAIcon fill={"#f44336"} name="alert-triangle" />
+                  <EVAIcon fill={"white"} name="alert-triangle" />
                 </div>
                 <div
                   style={{
@@ -233,7 +234,7 @@ export class HomePage extends Component {
                   </AlertText>
                 </div>
                 <CloseParrainage onClick={this.closeParrainage}>
-                  <EVAIcon fill={"#f44336"} name="close-outline" />
+                  <EVAIcon fill={"white"} name="close-outline" />
                 </CloseParrainage>
               </ParrainageAlert>
             ) : null}
