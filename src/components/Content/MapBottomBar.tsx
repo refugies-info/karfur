@@ -1,19 +1,42 @@
 import React from "react";
 import styled from "styled-components/native";
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, Platform, Alert } from "react-native";
 import { MarkerGoogle } from "../../types/interface";
-import { TextSmallNormal } from "../StyledText";
-import { RTLView } from "../BasicComponents";
+import { TextSmallNormal, TextNormal } from "../StyledText";
+import { RTLView, RTLTouchableOpacity } from "../BasicComponents";
 import { theme } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { MapContentFromHtml } from "./MapContentHtml";
 import { Icon } from "react-native-eva-icons";
+import * as Linking from "expo-linking";
 
 interface Props {
   selectedMarker: MarkerGoogle | null;
   textColor: string;
   hideSideBar: () => void;
 }
+
+export const callNumber = (phone: string) => {
+  console.log("callNumber ----> ", phone);
+  let phoneNumber = phone;
+  if (Platform.OS !== "android") {
+    phoneNumber = `tel:${phone}`;
+  } else {
+    phoneNumber = `tel:${phone}`;
+  }
+
+  phoneNumber = "+33628212246";
+  console.log("phonenumber", phoneNumber);
+  Linking.canOpenURL(phoneNumber)
+    .then((supported) => {
+      if (!supported) {
+        Alert.alert("Phone number is not available");
+      } else {
+        return Linking.openURL(phoneNumber);
+      }
+    })
+    .catch((err) => console.log(err));
+};
 
 const ICON_SIZE = 24;
 
@@ -28,11 +51,27 @@ const MainContainer = styled.View`
 `;
 
 const ContentContainer = styled(RTLView)`
-  margin-bottom:  ${(props: { marginBottom: number }) =>
-    props.marginBottom !== undefined ? theme.margin * props.marginBottom : theme.margin}px;
-  margin-top:  ${(props: { marginTop: number }) =>
-    props.marginTop !== undefined ? theme.margin * props.marginTop : theme.margin}px;
-    align-items: flex-start;
+  margin-bottom: ${(props: { marginBottom: number }) =>
+    props.marginBottom !== undefined
+      ? theme.margin * props.marginBottom
+      : theme.margin}px;
+  margin-top: ${(props: { marginTop: number }) =>
+    props.marginTop !== undefined
+      ? theme.margin * props.marginTop
+      : theme.margin}px;
+  align-items: flex-start;
+`;
+
+const ContentTouchableOpacity = styled(RTLTouchableOpacity)`
+  margin-bottom: ${(props: { marginBottom: number }) =>
+    props.marginBottom !== undefined
+      ? theme.margin * props.marginBottom
+      : theme.margin}px;
+  margin-top: ${(props: { marginTop: number }) =>
+    props.marginTop !== undefined
+      ? theme.margin * props.marginTop
+      : theme.margin}px;
+  align-items: flex-start;
 `;
 
 const TextValue = styled(TextSmallNormal)`
@@ -40,9 +79,9 @@ const TextValue = styled(TextSmallNormal)`
   color: ${(props: { color: string }) => props.color};
 `;
 const TextIcon = styled(Icon)`
-  marginRight: ${(props: { isRTL: boolean }) =>
+  margin-right: ${(props: { isRTL: boolean }) =>
     props.isRTL ? 0 : theme.margin * 2}px;
-  marginLeft: ${(props: { isRTL: boolean }) =>
+  margin-left: ${(props: { isRTL: boolean }) =>
     props.isRTL ? theme.margin * 2 : 0}px;
 `;
 
@@ -67,11 +106,7 @@ export const MapBottomBar = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
 
   if (!props.selectedMarker) {
-    return (
-      <MainContainer
-        isSelected={false}
-      />
-    );
+    return <MainContainer isSelected={false} />;
   }
   const formattedMarkerName =
     props.selectedMarker && props.selectedMarker.nom
@@ -80,7 +115,11 @@ export const MapBottomBar = (props: Props) => {
   return (
     <MainContainer isSelected={true}>
       <View>
-        <ContentContainer color={props.textColor} marginBottom={4} marginTop={0}>
+        <ContentContainer
+          color={props.textColor}
+          marginBottom={4}
+          marginTop={0}
+        >
           <HTMLContainer>
             <MapContentFromHtml
               htmlContent={formattedMarkerName}
@@ -127,10 +166,17 @@ export const MapBottomBar = (props: Props) => {
               </TextValue>
             )}
           </HTMLContainer>
-
         </ContentContainer>
 
-        <ContentContainer color={props.textColor} marginTop={0}>
+        <ContentTouchableOpacity
+          color={props.textColor}
+          marginTop={0}
+          onPress={() => {
+            if (props.selectedMarker && props.selectedMarker.telephone) {
+              callNumber(props.selectedMarker.telephone);
+            }
+          }}
+        >
           <TextIcon
             name="phone-outline"
             width={ICON_SIZE}
@@ -138,6 +184,7 @@ export const MapBottomBar = (props: Props) => {
             fill={props.textColor}
             isRTL={isRTL}
           />
+          <TextNormal>{props.selectedMarker.telephone}</TextNormal>
           <HTMLContainer>
             {props.selectedMarker.telephone ? (
               <MapContentFromHtml
@@ -145,13 +192,13 @@ export const MapBottomBar = (props: Props) => {
                 darkColor={props.textColor}
                 isBold={false}
               />
-              ) : (
-                <TextValue color={props.textColor}>
+            ) : (
+              <TextValue color={props.textColor}>
                 {t("Content.Non renseigné", "Non renseigné")}
               </TextValue>
             )}
           </HTMLContainer>
-        </ContentContainer>
+        </ContentTouchableOpacity>
 
         {!!props.selectedMarker.description && (
           <>
