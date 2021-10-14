@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components/native";
-import { View, TouchableOpacity, Platform, Alert } from "react-native";
+import { View, TouchableOpacity, Alert } from "react-native";
 import { MarkerGoogle } from "../../types/interface";
-import { TextSmallNormal, TextNormal } from "../StyledText";
+import { TextSmallNormal } from "../StyledText";
 import { RTLView, RTLTouchableOpacity } from "../BasicComponents";
 import { theme } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -17,25 +17,15 @@ interface Props {
 }
 
 export const callNumber = (phone: string) => {
-  console.log("callNumber ----> ", phone);
-  let phoneNumber = phone;
-  if (Platform.OS !== "android") {
-    phoneNumber = `tel:${phone}`;
-  } else {
-    phoneNumber = `tel:${phone}`;
-  }
+  let phoneNumber = `tel:${phone}`;
 
-  phoneNumber = "+33628212246";
-  console.log("phonenumber", phoneNumber);
-  Linking.canOpenURL(phoneNumber)
-    .then((supported) => {
-      if (!supported) {
-        Alert.alert("Phone number is not available");
-      } else {
-        return Linking.openURL(phoneNumber);
-      }
-    })
-    .catch((err) => console.log(err));
+  Linking.canOpenURL(phoneNumber).then((supported) => {
+    if (!supported) {
+      Alert.alert("Phone number is not available");
+    } else {
+      return Linking.openURL(phoneNumber);
+    }
+  });
 };
 
 const ICON_SIZE = 24;
@@ -184,7 +174,6 @@ export const MapBottomBar = (props: Props) => {
             fill={props.textColor}
             isRTL={isRTL}
           />
-          <TextNormal>{props.selectedMarker.telephone}</TextNormal>
           <HTMLContainer>
             {props.selectedMarker.telephone ? (
               <MapContentFromHtml
