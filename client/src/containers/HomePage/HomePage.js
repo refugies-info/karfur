@@ -42,15 +42,25 @@ const CoronaAlert = styled.div`
   margin-top: -70px;
 `;
 
+const ParrainageAlert = styled.div`
+  display: flex;
+  border-radius: 12px 12px 12px 12px;
+  background-color: #2d9cdb;
+  flex-direction: row;
+  padding: 15px;
+  margin-top: -70px;
+  width: 100%;
+  justify-content: space-between;
+  box-shadow: 0px 10px 15px 0px #00000040;
+`;
+
 const AlertText = styled.div`
-  color: #f44336;
+  color: white;
   font-weight: bold;
-  padding: 0px;
-  margin-bottom: 0px;
 `;
 
 const AlertTextLink = styled.p`
-  color: #f44336;
+  color: white;
   font-weight: bold;
   text-decoration: underline;
   margin-bottom: 0px;
@@ -59,6 +69,10 @@ const AlertTextLink = styled.p`
 const CloseCorona = styled.div`
   margin-right: 10px;
   margin-top: 10px;
+  cursor: pointer;
+`;
+
+const CloseParrainage = styled.div`
   cursor: pointer;
 `;
 
@@ -103,6 +117,7 @@ export class HomePage extends Component {
     showTagModal: false,
     showNewslettreModal: false,
     showBecomeTesterModal: false,
+    parrainage: true,
   };
   _isMounted = false;
 
@@ -149,6 +164,9 @@ export class HomePage extends Component {
   closeCorona = () => {
     this.setState({ corona: false });
   };
+  closeParrainage = () => {
+    this.setState({ parrainage: false });
+  };
 
   toggleOverlay = () => {
     this.setState({ overlay: !this.state.overlay });
@@ -187,6 +205,38 @@ export class HomePage extends Component {
                   <EVAIcon fill={"#f44336"} name="close-outline" />
                 </CloseCorona>
               </CoronaAlert>
+            ) : null}
+            {this.state.parrainage ? (
+              <ParrainageAlert>
+                <div style={{ padding: 10, alignSelf: "center" }}>
+                  <EVAIcon fill={"white"} name="alert-triangle" />
+                </div>
+                <div
+                  style={{
+                    padding: 10,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <AlertText>
+                    Parrainez une personne réfugiée !
+                    <Link
+                      to={{
+                        pathname: "dispositif/616581b863933e00148153fe",
+                      }}
+                    >
+                      <AlertTextLink>
+                        Cliquez ici pour découvrir les actions de parrainage
+                        citoyen.
+                      </AlertTextLink>
+                    </Link>
+                  </AlertText>
+                </div>
+                <CloseParrainage onClick={this.closeParrainage}>
+                  <EVAIcon fill={"white"} name="close-outline" />
+                </CloseParrainage>
+              </ParrainageAlert>
             ) : null}
             <MainTitleContainer>
               {t("Dispositifs.Header", "Construire sa vie en France")}
