@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
-import { View, TouchableOpacity, Alert } from "react-native";
+import { View, TouchableOpacity, Alert, Clipboard } from "react-native";
 import { MarkerGoogle } from "../../types/interface";
 import { TextSmallNormal } from "../StyledText";
 import { RTLView, RTLTouchableOpacity } from "../BasicComponents";
@@ -21,10 +21,12 @@ export const callNumber = (phone: string) => {
 
   Linking.canOpenURL(phoneNumber).then((supported) => {
     if (!supported) {
-      Alert.alert("Phone number is not available");
-    } else {
-      return Linking.openURL(phoneNumber);
+      // @ts-ignore
+      Clipboard.setString(phoneNumber);
+      Alert.alert("Numéro copié");
+      return;
     }
+    return Linking.openURL(phoneNumber);
   });
 };
 
@@ -188,6 +190,9 @@ export const MapBottomBar = (props: Props) => {
             )}
           </HTMLContainer>
         </ContentTouchableOpacity>
+        <TouchableOpacity onPress={() => callNumber("0033179360176")}>
+          <TextSmallNormal>Test</TextSmallNormal>
+        </TouchableOpacity>
 
         {!!props.selectedMarker.description && (
           <>
