@@ -560,8 +560,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 }
               >
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {
@@ -574,8 +573,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {},
@@ -584,8 +582,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Object {
                           "fontFamily": "circularBold",
@@ -624,8 +621,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 }
               >
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {},
@@ -634,8 +630,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Object {
                         "fontFamily": "circularBook",
@@ -651,8 +646,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   </Text>
                 </Text>
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {
@@ -665,8 +659,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {},
@@ -675,8 +668,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Object {
                           "fontFamily": "circularBold",
@@ -694,8 +686,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   </Text>
                 </Text>
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {},
@@ -704,8 +695,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Object {
                         "fontFamily": "circularBook",
@@ -721,8 +711,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   </Text>
                 </Text>
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {
@@ -735,8 +724,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {},
@@ -745,8 +733,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Object {
                           "fontFamily": "circularBold",
@@ -816,8 +803,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {},
@@ -828,8 +814,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {},
@@ -838,8 +823,7 @@ exports[`ContentScreen should render correctly 1`] = `
                       }
                     >
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Object {
                             "alignItems": "center",
@@ -893,8 +877,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {
@@ -908,8 +891,7 @@ exports[`ContentScreen should render correctly 1`] = `
                       }
                     >
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {},
@@ -918,8 +900,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Object {
                               "alignItems": "center",
@@ -946,8 +927,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     </Text>
                   </View>
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Object {
                         "color": "#212121",
@@ -956,13 +936,11 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={Object {}}
                     >
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {},
@@ -971,8 +949,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Object {
                               "alignItems": "center",
@@ -996,8 +973,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         </Text>
                       </Text>
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -1010,8 +986,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -1020,8 +995,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "alignItems": "center",
@@ -1047,8 +1021,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         </Text>
                       </Text>
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {},
@@ -1057,8 +1030,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Object {
                               "alignItems": "center",
@@ -1586,8 +1558,7 @@ exports[`ContentScreen should render correctly 1`] = `
                       style={Object {}}
                     >
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {},
@@ -1596,8 +1567,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Object {
                               "fontFamily": "circularBook",
@@ -1964,8 +1934,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -1974,8 +1943,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -2214,8 +2182,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -2224,8 +2191,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -2464,8 +2430,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -2474,8 +2439,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -2714,8 +2678,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -2724,8 +2687,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -2991,8 +2953,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -3001,8 +2962,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -3039,8 +2999,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {
@@ -3053,8 +3012,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Array [
                                 Object {},
@@ -3063,8 +3021,7 @@ exports[`ContentScreen should render correctly 1`] = `
                             }
                           >
                             <Text
-                              allowFontScaling={true}
-                              selectable={false}
+                              selectable={true}
                               style={
                                 Object {
                                   "fontFamily": "circularBold",
@@ -3305,8 +3262,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -3315,8 +3271,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -5836,8 +5791,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 }
               >
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {
@@ -5850,8 +5804,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {},
@@ -5860,8 +5813,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Object {
                           "fontFamily": "circularBold",
@@ -5900,8 +5852,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 }
               >
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {},
@@ -5910,8 +5861,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Object {
                         "fontFamily": "circularBook",
@@ -5927,8 +5877,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   </Text>
                 </Text>
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {
@@ -5941,8 +5890,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {},
@@ -5951,8 +5899,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Object {
                           "fontFamily": "circularBold",
@@ -5970,8 +5917,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   </Text>
                 </Text>
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {},
@@ -5980,8 +5926,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Object {
                         "fontFamily": "circularBook",
@@ -5997,8 +5942,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   </Text>
                 </Text>
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {
@@ -6011,8 +5955,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {},
@@ -6021,8 +5964,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Object {
                           "fontFamily": "circularBold",
@@ -6092,8 +6034,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {},
@@ -6104,8 +6045,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {},
@@ -6114,8 +6054,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       }
                     >
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Object {
                             "alignItems": "center",
@@ -6169,8 +6108,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {
@@ -6184,8 +6122,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       }
                     >
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {},
@@ -6194,8 +6131,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Object {
                               "alignItems": "center",
@@ -6222,8 +6158,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     </Text>
                   </View>
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Object {
                         "color": "#212121",
@@ -6232,13 +6167,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={Object {}}
                     >
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {},
@@ -6247,8 +6180,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Object {
                               "alignItems": "center",
@@ -6272,8 +6204,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         </Text>
                       </Text>
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -6286,8 +6217,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -6296,8 +6226,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "alignItems": "center",
@@ -6323,8 +6252,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         </Text>
                       </Text>
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {},
@@ -6333,8 +6261,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Object {
                               "alignItems": "center",
@@ -6862,8 +6789,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       style={Object {}}
                     >
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {},
@@ -6872,8 +6798,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Object {
                               "fontFamily": "circularBook",
@@ -7240,8 +7165,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -7250,8 +7174,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -7490,8 +7413,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -7500,8 +7422,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -7740,8 +7661,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -7750,8 +7670,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -7990,8 +7909,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -8000,8 +7918,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -8267,8 +8184,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -8277,8 +8193,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -8315,8 +8230,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {
@@ -8329,8 +8243,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Array [
                                 Object {},
@@ -8339,8 +8252,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             }
                           >
                             <Text
-                              allowFontScaling={true}
-                              selectable={false}
+                              selectable={true}
                               style={
                                 Object {
                                   "fontFamily": "circularBold",
@@ -8581,8 +8493,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -8591,8 +8502,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
