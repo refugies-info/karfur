@@ -46,7 +46,7 @@ import {
 import { fetchContentsActionCreator } from "../Contents/contents.actions";
 import { hasUserSeenOnboardingSelector, userFavorites } from "./user.selectors";
 import { logEventInFirebase } from "../../../utils/logEvent";
-import { events } from "../../../utils/eventsUsedInFirebase";
+import { FirebaseEvent } from "../../../utils/eventsUsedInFirebase";
 
 export function* saveSelectedLanguage(
   action: ReturnType<typeof saveSelectedLanguageActionCreator>
@@ -57,7 +57,7 @@ export function* saveSelectedLanguage(
     yield call(saveItemInAsyncStorage, "SELECTED_LANGUAGE", i18nCode);
     yield put(setSelectedLanguageActionCreator(i18nCode));
     yield put(setCurrentLanguageActionCreator(i18nCode));
-    yield call(logEventInFirebase, events.LANGUAGE_VALIDATE, {
+    yield call(logEventInFirebase, FirebaseEvent.VALIDATE_LANGUAGE, {
       langue: i18nCode,
     });
     if (shouldFetchContents) {
@@ -92,7 +92,7 @@ export function* saveUserLocation(
     yield call(saveItemInAsyncStorage, "CITY", city);
     yield call(saveItemInAsyncStorage, "DEP", dep);
     yield put(setUserLocationActionCreator({ city, dep }));
-    yield call(logEventInFirebase, events.LOCATION_VALIDATE, {
+    yield call(logEventInFirebase, FirebaseEvent.VALIDATE_LOCATION, {
       city: city.replace("-", "_"),
       dep: dep.replace("-", "_"),
     });
@@ -131,7 +131,7 @@ export function* saveUserFrenchLevel(
     logger.info("[saveUserFrenchLevel] saga", { frenchLevel });
     yield call(saveItemInAsyncStorage, "FRENCH_LEVEL", frenchLevel);
     yield put(setUserFrenchLevelActionCreator(frenchLevel));
-    yield call(logEventInFirebase, events.FRENCH_LEVEL_VALIDATE, {
+    yield call(logEventInFirebase, FirebaseEvent.VALIDATE_FRENCH_LEVEL, {
       level: frenchLevel,
     });
     if (shouldFetchContents) {
@@ -167,7 +167,7 @@ export function* saveUserAge(
     logger.info("[saveUserAge] saga", { age });
     yield call(saveItemInAsyncStorage, "AGE", age);
     yield put(setUserAgeActionCreator(age));
-    yield call(logEventInFirebase, events.AGE_VALIDATE, {
+    yield call(logEventInFirebase, FirebaseEvent.VALIDATE_AGE, {
       age,
     });
     if (shouldFetchContents) {

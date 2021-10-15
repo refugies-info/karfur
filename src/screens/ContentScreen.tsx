@@ -57,7 +57,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Portal } from "react-native-portalize";
 import { ContentImage } from "../components/Content/ContentImage";
 import { logEventInFirebase } from "../utils/logEvent";
-import { events } from "../utils/eventsUsedInFirebase";
+import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -451,7 +451,7 @@ export const ContentScreen = ({
 
   const handleScroll = (event: any) => {
     if (!hasSentEventBottomReached && isCloseToBottom(event.nativeEvent)) {
-      logEventInFirebase(events.REACHED_END_CONTENT, { contentId });
+      logEventInFirebase(FirebaseEvent.REACH_END_CONTENT, { contentId });
       setHasSentEventBottomReached(true);
     }
 
