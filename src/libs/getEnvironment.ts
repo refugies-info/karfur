@@ -4,7 +4,7 @@ export const getEnvironment = () => {
   if (Updates.releaseChannel.startsWith("staging")) {
     return {
       envName: "STAGING",
-      dbUrl: "https://api.new.refugies.info",
+      dbUrl: "https://api.staging.refugies.info",
       siteSecret: process.env.SITE_SECRET,
       debugModeFirebase: false,
     };
