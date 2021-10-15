@@ -10,6 +10,8 @@ import { StyleSheet } from "react-native";
 import { TagImage } from "./TagImage";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { logEventInFirebase } from "../../utils/logEvent";
+import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 
 interface Props {
   tagName: string;
@@ -57,15 +59,20 @@ export const CarousselCard = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
   return (
     <TouchableOpacity
-      onPress={() =>
+      onPress={() => {
+        logEventInFirebase(FirebaseEvent.CLIC_THEME, {
+          theme: props.tagName,
+          view: "carousel",
+        });
         props.navigation.navigate("NeedsScreen", {
           tagName: props.tagName,
           tagDarkColor: props.colorDark,
           tagVeryLightColor: props.color30,
           tagLightColor: props.lightColor,
           iconName: props.iconName,
-        })
-      }
+        });
+        return;
+      }}
     >
       <LinearGradient
         colors={[props.colorVeryLight, props.colorLight]}

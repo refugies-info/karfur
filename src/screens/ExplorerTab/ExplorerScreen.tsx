@@ -13,6 +13,8 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ScrollView } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ExplorerParamList } from "../../../types";
+import { logEventInFirebase } from "../../utils/logEvent";
+import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 
 const ViewChoiceContainer = styled(RTLView)`
   margin-top: ${theme.margin * 4}px;
@@ -45,13 +47,21 @@ export const ExplorerScreen = ({
           text={"Galerie"}
           isSelected={tabSelected === "galery"}
           iconName={"galery"}
-          onPress={() => setTabSelected("galery")}
+          onPress={() => {
+            logEventInFirebase(FirebaseEvent.CLIC_CAROUSEL, {});
+
+            setTabSelected("galery");
+          }}
         />
         <ViewChoice
           text={"Liste"}
           isSelected={tabSelected === "list"}
           iconName={"list"}
-          onPress={() => setTabSelected("list")}
+          onPress={() => {
+            logEventInFirebase(FirebaseEvent.CLIC_LIST, {});
+
+            setTabSelected("list");
+          }}
         />
       </ViewChoiceContainer>
       {tabSelected === "list" ? (
@@ -65,15 +75,22 @@ export const ExplorerScreen = ({
               tagName={tag.name}
               backgroundColor={tag.darkColor}
               iconName={tag.icon}
-              onPress={() =>
+              onPress={() => {
+                // eslint-disable-next-line no-undef
+                logEventInFirebase(FirebaseEvent.CLIC_THEME, {
+                  theme: tag.name,
+                  view: "list",
+                });
+
                 navigation.navigate("NeedsScreen", {
                   tagName: tag.name,
                   tagDarkColor: tag.darkColor,
                   tagVeryLightColor: tag.color30,
                   tagLightColor: tag.lightColor,
                   iconName: tag.icon,
-                })
-              }
+                });
+                return;
+              }}
             />
           ))}
         </ScrollView>

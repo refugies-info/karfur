@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components/native";
 import { View, StyleSheet, Animated } from "react-native";
-import { AvailableLanguageI18nCode } from "../../types/interface";
+import { AvailableLanguageI18nCode, ObjectId } from "../../types/interface";
 import { theme } from "../../theme";
 import { RTLView, RTLTouchableOpacity } from "../BasicComponents";
 import { TextSmallBold } from "../StyledText";
@@ -9,6 +9,8 @@ import { AccordionHeaderFromHtml } from "./AccordionHeaderFromHtml";
 import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ContentFromHtml } from "./ContentFromHtml";
+import { logEventInFirebase } from "../../utils/logEvent";
+import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 
 const TitleContainer = styled(RTLTouchableOpacity)`
   background-color: ${(props: { isExpanded: boolean; lightColor: string }) =>
@@ -90,6 +92,8 @@ interface Props {
   darkColor: string;
   lightColor: string;
   isContentTranslated: boolean;
+  shouldTriggerFirebaseEvent: boolean;
+  contentId: ObjectId;
 }
 
 export const AccordionAnimated = (props: Props) => {
@@ -97,6 +101,9 @@ export const AccordionAnimated = (props: Props) => {
   const toggleAccordion = () => setIsExpanded(!isExpanded);
   const animatedController = React.useRef(new Animated.Value(0)).current;
   const [bodySectionHeight, setBodySectionHeight] = React.useState(0);
+  const [hasSentEventInFirebase, setHasSentEventInFirebase] = React.useState(
+    false
+  );
 
   const bodyHeight = animatedController.interpolate({
     inputRange: [0, 1],
@@ -118,6 +125,13 @@ export const AccordionAnimated = (props: Props) => {
         toValue: 1,
         useNativeDriver: false,
       }).start();
+    }
+
+    if (!hasSentEventInFirebase && props.shouldTriggerFirebaseEvent) {
+      logEventInFirebase(FirebaseEvent.CLIC_ACCORDION_ENGAGEMENT, {
+        contentId: props.contentId,
+      });
+      setHasSentEventInFirebase(true);
     }
     toggleAccordion();
   };

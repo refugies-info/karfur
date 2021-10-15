@@ -15,7 +15,7 @@ import latestActionsSaga, {
   removeUserFavorite,
   removeUserAllFavorites,
   saveUserHasNewFavorites,
-  removeUserHasNewFavorites
+  removeUserHasNewFavorites,
 } from "../user.saga";
 import {
   saveItemInAsyncStorage,
@@ -30,10 +30,12 @@ import {
   setUserAgeActionCreator,
   setUserLocationActionCreator,
   setUserFavoritesActionCreator,
-  setUserHasNewFavoritesActionCreator
+  setUserHasNewFavoritesActionCreator,
 } from "../user.actions";
 import { fetchContentsActionCreator } from "../../Contents/contents.actions";
 import { hasUserSeenOnboardingSelector } from "../user.selectors";
+import { logEventInFirebase } from "../../../../utils/logEvent";
+import { FirebaseEvent } from "../../../../utils/eventsUsedInFirebase";
 
 describe("[Saga] user", () => {
   describe("pilot", () => {
@@ -67,10 +69,7 @@ describe("[Saga] user", () => {
           removeHasUserSeenOnboarding
         )
         .next()
-        .takeLatest(
-          "REMOVE_USER_HAS_NEW_FAVORITES",
-          removeUserHasNewFavorites
-        )
+        .takeLatest("REMOVE_USER_HAS_NEW_FAVORITES", removeUserHasNewFavorites)
         .next()
         .takeLatest("ADD_USER_FAVORITE", addUserFavorite)
         .next()
@@ -94,6 +93,10 @@ describe("[Saga] user", () => {
         .put(setSelectedLanguageActionCreator("en"))
         .next()
         .put(setCurrentLanguageActionCreator("en"))
+        .next()
+        .call(logEventInFirebase, FirebaseEvent.VALIDATE_LANGUAGE, {
+          language: "en",
+        })
         .next()
         .isDone();
     });
@@ -124,6 +127,10 @@ describe("[Saga] user", () => {
         .put(setSelectedLanguageActionCreator("en"))
         .next()
         .put(setCurrentLanguageActionCreator("en"))
+        .next()
+        .call(logEventInFirebase, FirebaseEvent.VALIDATE_LANGUAGE, {
+          language: "en",
+        })
         .next()
         .put(fetchContentsActionCreator())
         .next()
@@ -164,6 +171,10 @@ describe("[Saga] user", () => {
         .next()
         .put(setUserFrenchLevelActionCreator("level1"))
         .next()
+        .call(logEventInFirebase, FirebaseEvent.VALIDATE_FRENCH_LEVEL, {
+          level: "level1",
+        })
+        .next()
         .isDone();
     });
 
@@ -176,6 +187,10 @@ describe("[Saga] user", () => {
         .call(saveItemInAsyncStorage, "FRENCH_LEVEL", "level1")
         .next()
         .put(setUserFrenchLevelActionCreator("level1"))
+        .next()
+        .call(logEventInFirebase, FirebaseEvent.VALIDATE_FRENCH_LEVEL, {
+          level: "level1",
+        })
         .next()
         .put(fetchContentsActionCreator())
         .next()
@@ -208,6 +223,10 @@ describe("[Saga] user", () => {
         .next()
         .put(setUserAgeActionCreator("age"))
         .next()
+        .call(logEventInFirebase, FirebaseEvent.VALIDATE_AGE, {
+          age: "age",
+        })
+        .next()
         .put(fetchContentsActionCreator())
         .next()
         .isDone();
@@ -222,6 +241,10 @@ describe("[Saga] user", () => {
         .call(saveItemInAsyncStorage, "AGE", "age")
         .next()
         .put(setUserAgeActionCreator("age"))
+        .next()
+        .call(logEventInFirebase, FirebaseEvent.VALIDATE_AGE, {
+          age: "age",
+        })
         .next()
         .isDone();
     });
@@ -254,6 +277,11 @@ describe("[Saga] user", () => {
         .next()
         .put(setUserLocationActionCreator({ city: "city", dep: "dep" }))
         .next()
+        .call(logEventInFirebase, FirebaseEvent.VALIDATE_LOCATION, {
+          city: "city",
+          dep: "dep",
+        })
+        .next()
         .isDone();
     });
 
@@ -268,6 +296,11 @@ describe("[Saga] user", () => {
         .call(saveItemInAsyncStorage, "DEP", "dep")
         .next()
         .put(setUserLocationActionCreator({ city: "city", dep: "dep" }))
+        .next()
+        .call(logEventInFirebase, FirebaseEvent.VALIDATE_LOCATION, {
+          city: "city",
+          dep: "dep",
+        })
         .next()
         .put(fetchContentsActionCreator())
         .next()
@@ -337,7 +370,8 @@ describe("[Saga] user", () => {
         .put(fetchContentsActionCreator())
         .next()
         .call(getItemInAsyncStorage, "FAVORITES")
-        .next("[\"5e7b292c1eaf4d0051d9efe2\"]")
+        // eslint-disable-next-line quotes
+        .next('["5e7b292c1eaf4d0051d9efe2"]')
         .put(setUserFavoritesActionCreator(["5e7b292c1eaf4d0051d9efe2"]))
         .next()
         .isDone();

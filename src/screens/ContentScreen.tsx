@@ -22,12 +22,12 @@ import {
   selectedI18nCodeSelector,
   currentI18nCodeSelector,
   isFavorite,
-  userFavorites
+  userFavorites,
 } from "../services/redux/User/user.selectors";
 import {
   addUserFavoriteActionCreator,
   removeUserFavoriteActionCreator,
-  saveUserHasNewFavoritesActionCreator
+  saveUserHasNewFavoritesActionCreator,
 } from "../services/redux/User/user.actions";
 import { ContentFromHtml } from "../components/Content/ContentFromHtml";
 import { AvailableLanguageI18nCode, MapGoogle } from "../types/interface";
@@ -52,6 +52,8 @@ import { Toast } from "../components/Toast";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Portal } from "react-native-portalize";
 import { ContentImage } from "../components/Content/ContentImage";
+import { logEventInFirebase } from "../utils/logEvent";
+import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -178,6 +180,23 @@ const styles = StyleSheet.create({
   },
 });
 
+const isCloseToBottom = ({
+  layoutMeasurement,
+  contentOffset,
+  contentSize,
+}: {
+  layoutMeasurement: any;
+  contentOffset: any;
+  contentSize: any;
+}) => {
+  if (!layoutMeasurement) return false;
+  const paddingToBottom = 20;
+  return (
+    layoutMeasurement.height + contentOffset.y >=
+    contentSize.height - paddingToBottom
+  );
+};
+
 const computeIfContentIsTranslatedInCurrentLanguage = (
   avancement: 1 | Record<AvailableLanguageI18nCode, number>,
   currentLanguage: AvailableLanguageI18nCode
@@ -198,6 +217,10 @@ export const ContentScreen = ({
   const [nbLinesTitreMarque, setNbLinesTitreMarque] = React.useState(1);
 
   const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
+  const [
+    hasSentEventBottomReached,
+    setHasSentEventBottomReached,
+  ] = React.useState(false);
 
   const insets = useSafeAreaInsets();
 
@@ -233,9 +256,6 @@ export const ContentScreen = ({
   );
 
   const [mapModalVisible, setMapModalVisible] = React.useState(false);
-  const toggleMap = () => {
-    setMapModalVisible(!mapModalVisible);
-  };
 
   const toggleSimplifiedHeader = (displayHeader: boolean) => {
     if (displayHeader && !showSimplifiedHeader) {
@@ -301,33 +321,31 @@ export const ContentScreen = ({
 
   // Favorites
   const favorites = useSelector(userFavorites);
-  const [favoriteToast, setFavoriteToast] = React.useState<{text: string, icon: string, link?: string}|null>(null);
+  const [favoriteToast, setFavoriteToast] = React.useState<{
+    text: string;
+    icon: string;
+    link?: string;
+  } | null>(null);
   const isContentFavorite = useSelector(isFavorite(contentId));
   const toggleFavorites = () => {
     if (isContentFavorite) {
-      dispatch(removeUserFavoriteActionCreator(contentId))
+      dispatch(removeUserFavoriteActionCreator(contentId));
       setFavoriteToast({
-        text: t(
-          "Content.favoris supprimé",
-          "Fiche supprimée de tes favoris"
-        ),
-        icon: "trash-2-outline"
-      })
+        text: t("Content.favoris supprimé", "Fiche supprimée de tes favoris"),
+        icon: "trash-2-outline",
+      });
     } else {
       if (favorites.length === 0) {
         dispatch(saveUserHasNewFavoritesActionCreator());
       }
-      dispatch(addUserFavoriteActionCreator(contentId))
+      dispatch(addUserFavoriteActionCreator(contentId));
       setFavoriteToast({
-        text: t(
-          "Content.favoris ajouté",
-          "Fiche ajoutée à tes favoris"
-        ),
+        text: t("Content.favoris ajouté", "Fiche ajoutée à tes favoris"),
         link: "Favoris",
-        icon: "star"
-      })
+        icon: "star",
+      });
     }
-  }
+  };
 
   if (isLoading) {
     return (
@@ -388,7 +406,17 @@ export const ContentScreen = ({
     );
   }
 
+  const toggleMap = () => {
+    logEventInFirebase(FirebaseEvent.CLIC_SEE_MAP, {
+      contentId: selectedContent._id,
+    });
+    setMapModalVisible(!mapModalVisible);
+  };
+
   const handleClick = () => {
+    logEventInFirebase(FirebaseEvent.CLIC_SEE_WEBSITE, {
+      contentId: selectedContent._id,
+    });
     const url = !selectedContent.externalLink.includes("https://")
       ? "https://" + selectedContent.externalLink
       : selectedContent.externalLink;
@@ -425,6 +453,11 @@ export const ContentScreen = ({
     : null;
 
   const handleScroll = (event: any) => {
+    if (!hasSentEventBottomReached && isCloseToBottom(event.nativeEvent)) {
+      logEventInFirebase(FirebaseEvent.REACH_END_CONTENT, { contentId });
+      setHasSentEventBottomReached(true);
+    }
+
     if (event.nativeEvent.contentOffset.y > headerImageHeight * 0.7) {
       toggleSimplifiedHeader(true);
       return;
@@ -559,6 +592,11 @@ export const ContentScreen = ({
                         child.type === "accordion" ||
                         child.type === "etape"
                       ) {
+                        // trigger event firebase when user clic first accordion of Je m'engage section
+                        const shouldTriggerFirebaseEvent =
+                          selectedContent.typeContenu === "dispositif" &&
+                          index === 3 &&
+                          indexChild === 0;
                         return (
                           <AccordionAnimated
                             title={child.title}
@@ -579,6 +617,10 @@ export const ContentScreen = ({
                             isContentTranslated={
                               isContentTranslatedInCurrentLanguage
                             }
+                            shouldTriggerFirebaseEvent={
+                              shouldTriggerFirebaseEvent
+                            }
+                            contentId={selectedContent._id}
                           />
                         );
                       }
@@ -648,7 +690,7 @@ export const ContentScreen = ({
             flexDirection: "row",
             justifyContent: "center",
             paddingTop: theme.margin,
-            paddingBottom: insets.bottom || theme.margin
+            paddingBottom: insets.bottom || theme.margin,
           }}
         >
           <SmallButton
@@ -664,15 +706,17 @@ export const ContentScreen = ({
         isModalVisible={isLanguageModalVisible}
         toggleModal={toggleLanguageModal}
       />
-      {favoriteToast !== null &&
+      {favoriteToast !== null && (
         <Toast
           text={favoriteToast.text}
           icon={favoriteToast.icon}
           textLink={favoriteToast.link}
           navigation={navigation}
-          onClose={() => { setFavoriteToast(null) }}
+          onClose={() => {
+            setFavoriteToast(null);
+          }}
         />
-      }
+      )}
       {/*
         TODO: Fix for https://github.com/software-mansion/react-native-gesture-handler/issues/139
         Remove when this released https://github.com/software-mansion/react-native-gesture-handler/pull/1603
