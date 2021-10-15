@@ -93,8 +93,8 @@ export function* saveUserLocation(
     yield call(saveItemInAsyncStorage, "DEP", dep);
     yield put(setUserLocationActionCreator({ city, dep }));
     yield call(logEventInFirebase, events.LOCATION_VALIDATE, {
-      city: city.replace("-", "_").replace(" ", "_"),
-      dep: dep.replace("-", "_").replace(" ", "_"),
+      city: city.replace("-", "_"),
+      dep: dep.replace("-", "_"),
     });
 
     if (shouldFetchContents) {
@@ -131,6 +131,9 @@ export function* saveUserFrenchLevel(
     logger.info("[saveUserFrenchLevel] saga", { frenchLevel });
     yield call(saveItemInAsyncStorage, "FRENCH_LEVEL", frenchLevel);
     yield put(setUserFrenchLevelActionCreator(frenchLevel));
+    yield call(logEventInFirebase, events.FRENCH_LEVEL_VALIDATE, {
+      level: frenchLevel,
+    });
     if (shouldFetchContents) {
       yield put(fetchContentsActionCreator());
     }
@@ -164,6 +167,9 @@ export function* saveUserAge(
     logger.info("[saveUserAge] saga", { age });
     yield call(saveItemInAsyncStorage, "AGE", age);
     yield put(setUserAgeActionCreator(age));
+    yield call(logEventInFirebase, events.AGE_VALIDATE, {
+      age,
+    });
     if (shouldFetchContents) {
       yield put(fetchContentsActionCreator());
     }

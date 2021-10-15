@@ -19,6 +19,8 @@ import {
 } from "../../services/redux/User/user.selectors";
 import noInfo from "../../theme/images/onboarding/onboarding_noinfo.png";
 import { Image, View, Dimensions } from "react-native";
+import { logEventInFirebase } from "../../utils/logEvent";
+import { events } from "../../utils/eventsUsedInFirebase";
 
 const MainView = styled(SafeAreaView)`
   display: flex;
@@ -72,6 +74,12 @@ export const FinishOnboarding = ({
     try {
       dispatch(saveHasUserSeenOnboardingActionCreator());
       dispatch(fetchContentsActionCreator());
+      logEventInFirebase(
+        hasUserEnteredInfos
+          ? events.PROFILE_COMPLETED
+          : events.PROFILE_NOT_COMPLETED,
+        {}
+      );
     } catch (e) {}
   };
   return (
