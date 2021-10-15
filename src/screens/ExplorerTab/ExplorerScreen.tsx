@@ -47,13 +47,21 @@ export const ExplorerScreen = ({
           text={"Galerie"}
           isSelected={tabSelected === "galery"}
           iconName={"galery"}
-          onPress={() => setTabSelected("galery")}
+          onPress={() => {
+            logEventInFirebase(FirebaseEvent.CLIC_CAROUSEL, {});
+
+            setTabSelected("galery");
+          }}
         />
         <ViewChoice
           text={"Liste"}
           isSelected={tabSelected === "list"}
           iconName={"list"}
-          onPress={() => setTabSelected("list")}
+          onPress={() => {
+            logEventInFirebase(FirebaseEvent.CLIC_LIST, {});
+
+            setTabSelected("list");
+          }}
         />
       </ViewChoiceContainer>
       {tabSelected === "list" ? (
