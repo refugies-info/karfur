@@ -589,6 +589,11 @@ export const ContentScreen = ({
                         child.type === "accordion" ||
                         child.type === "etape"
                       ) {
+                        // trigger event firebase when user clic first accordion of Je m'engage section
+                        const shouldTriggerFirebaseEvent =
+                          selectedContent.typeContenu === "dispositif" &&
+                          index === 3 &&
+                          indexChild === 0;
                         return (
                           <AccordionAnimated
                             title={child.title}
@@ -609,6 +614,10 @@ export const ContentScreen = ({
                             isContentTranslated={
                               isContentTranslatedInCurrentLanguage
                             }
+                            shouldTriggerFirebaseEvent={
+                              shouldTriggerFirebaseEvent
+                            }
+                            contentId={selectedContent._id}
                           />
                         );
                       }
