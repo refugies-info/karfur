@@ -260,9 +260,6 @@ export const ContentScreen = ({
   );
 
   const [mapModalVisible, setMapModalVisible] = React.useState(false);
-  const toggleMap = () => {
-    setMapModalVisible(!mapModalVisible);
-  };
 
   const toggleSimplifiedHeader = (displayHeader: boolean) => {
     if (displayHeader && !showSimplifiedHeader) {
@@ -413,7 +410,17 @@ export const ContentScreen = ({
     );
   }
 
+  const toggleMap = () => {
+    logEventInFirebase(FirebaseEvent.CLIC_SEE_MAP, {
+      contentId: selectedContent._id,
+    });
+    setMapModalVisible(!mapModalVisible);
+  };
+
   const handleClick = () => {
+    logEventInFirebase(FirebaseEvent.CLIC_SEE_WEBSITE, {
+      contentId: selectedContent._id,
+    });
     const url = !selectedContent.externalLink.includes("https://")
       ? "https://" + selectedContent.externalLink
       : selectedContent.externalLink;

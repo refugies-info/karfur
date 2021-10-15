@@ -7,6 +7,8 @@ import { RowContainer } from "./BasicComponents";
 import { LanguageSwitch } from "./Language/LanguageSwitch";
 import { FixSafeAreaView } from "./FixSafeAreaView";
 import { View } from "react-native";
+import { logEventInFirebase } from "../utils/logEvent";
+import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
 
 const MainContainer = styled(RowContainer)`
   padding-horizontal: ${theme.margin * 3}px;
@@ -35,7 +37,12 @@ export const HeaderWithLogo = ({
       <RowContainer>
         {!hideLanguageSwitch && (
           <LanguageSwitch
-            onLongPressSwitchLanguage={onLongPressSwitchLanguage}
+            onLongPressSwitchLanguage={() => {
+              logEventInFirebase(FirebaseEvent.LONG_PRESS_CHANGE_LANGUAGE, {});
+              if (onLongPressSwitchLanguage) {
+                onLongPressSwitchLanguage();
+              }
+            }}
           />
         )}
         <SmallButton iconName="volume-up-outline" />
@@ -61,7 +68,12 @@ export const HeaderWithBackForWrapper = ({
         />
         <RowContainer>
           <LanguageSwitch
-            onLongPressSwitchLanguage={onLongPressSwitchLanguage}
+            onLongPressSwitchLanguage={() => {
+              logEventInFirebase(FirebaseEvent.LONG_PRESS_CHANGE_LANGUAGE, {});
+              if (onLongPressSwitchLanguage) {
+                onLongPressSwitchLanguage();
+              }
+            }}
           />
 
           <SmallButton iconName="volume-up-outline" />

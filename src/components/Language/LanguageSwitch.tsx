@@ -12,6 +12,8 @@ import {
 } from "../../services/redux/User/user.selectors";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { AvailableLanguageI18nCode } from "../../types/interface";
+import { logEventInFirebase } from "../../utils/logEvent";
+import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 
 const ButtonContainerCommon = styled.View`
   background-color: ${theme.colors.white};
@@ -101,7 +103,16 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
     i18n.changeLanguage("fr");
     return dispatch(setCurrentLanguageActionCreator("fr"));
   };
+
   if (!selectedLanguageI18nCode || !currentLanguageI18nCode) return <View />;
+
+  const onSwitchPress = () => {
+    logEventInFirebase(FirebaseEvent.SWITCH_LANGUE, {
+      newLanguage: isFrenchSelected ? selectedLanguageI18nCode : "fr",
+      oldLanguage: isFrenchSelected ? "fr" : selectedLanguageI18nCode,
+    });
+    changeLanguage(isFrenchSelected, selectedLanguageI18nCode);
+  };
 
   if (selectedLanguageI18nCode === "fr")
     return (
@@ -111,7 +122,7 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
     );
   return (
     <ButtonContainer
-      onPress={() => changeLanguage(isFrenchSelected, selectedLanguageI18nCode)}
+      onPress={onSwitchPress}
       isRTL={false}
       onLongPress={onLongPressSwitchLanguage}
     >
