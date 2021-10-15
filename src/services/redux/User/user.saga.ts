@@ -45,6 +45,8 @@ import {
 } from "./functions";
 import { fetchContentsActionCreator } from "../Contents/contents.actions";
 import { hasUserSeenOnboardingSelector, userFavorites } from "./user.selectors";
+import { logEventInFirebase } from "../../../utils/logEvent";
+import { events } from "../../../utils/eventsUsedInFirebase";
 
 export function* saveSelectedLanguage(
   action: ReturnType<typeof saveSelectedLanguageActionCreator>
@@ -55,6 +57,9 @@ export function* saveSelectedLanguage(
     yield call(saveItemInAsyncStorage, "SELECTED_LANGUAGE", i18nCode);
     yield put(setSelectedLanguageActionCreator(i18nCode));
     yield put(setCurrentLanguageActionCreator(i18nCode));
+    yield call(logEventInFirebase, events.LANGUAGE_VALIDATE, {
+      langue: i18nCode,
+    });
     if (shouldFetchContents) {
       yield put(fetchContentsActionCreator());
     }
@@ -87,6 +92,11 @@ export function* saveUserLocation(
     yield call(saveItemInAsyncStorage, "CITY", city);
     yield call(saveItemInAsyncStorage, "DEP", dep);
     yield put(setUserLocationActionCreator({ city, dep }));
+    yield call(logEventInFirebase, events.LOCATION_VALIDATE, {
+      city: city.replace("-", "_").replace(" ", "_"),
+      dep: dep.replace("-", "_").replace(" ", "_"),
+    });
+
     if (shouldFetchContents) {
       yield put(fetchContentsActionCreator());
     }
@@ -283,7 +293,7 @@ export function* getUserInfos(): SagaIterator {
     try {
       const favorites = yield call(getItemInAsyncStorage, "FAVORITES");
       if (favorites) {
-        yield put(setUserFavoritesActionCreator(JSON.parse(favorites || "[]")));
+        yield put(setUserFavoritesActionCreator(JSON.parse(favorites || "[]")));
       }
     } catch (error) {
       logger.error("Error while getting user favorites", {
@@ -304,7 +314,11 @@ export function* addUserFavorite(
     logger.info("[addFavorite] saga", action.payload);
     const favorites = yield select(userFavorites);
     const newFavorites = [...(favorites || []), action.payload];
-    yield call(saveItemInAsyncStorage, "FAVORITES", JSON.stringify(newFavorites));
+    yield call(
+      saveItemInAsyncStorage,
+      "FAVORITES",
+      JSON.stringify(newFavorites)
+    );
     yield put(setUserFavoritesActionCreator(newFavorites));
   } catch (error) {
     logger.error("Error while adding favorite", { error: error.message });
@@ -317,8 +331,14 @@ export function* removeUserFavorite(
   try {
     logger.info("[removeFavorite] saga", action.payload);
     const favorites = yield select(userFavorites);
-    const newFavorites = (favorites || []).filter((f: string) => f !== action.payload);
-    yield call(saveItemInAsyncStorage, "FAVORITES", JSON.stringify(newFavorites));
+    const newFavorites = (favorites || []).filter(
+      (f: string) => f !== action.payload
+    );
+    yield call(
+      saveItemInAsyncStorage,
+      "FAVORITES",
+      JSON.stringify(newFavorites)
+    );
     yield put(setUserFavoritesActionCreator(newFavorites));
   } catch (error) {
     logger.error("Error while removing favorite", { error: error.message });
@@ -334,7 +354,6 @@ export function* removeUserAllFavorites(): SagaIterator {
     logger.error("Error while removing favorites", { error: error.message });
   }
 }
-
 
 function* latestActionsSaga() {
   yield takeLatest(SAVE_SELECTED_LANGUAGE, saveSelectedLanguage);
@@ -356,7 +375,6 @@ function* latestActionsSaga() {
   yield takeLatest(ADD_USER_FAVORITE, addUserFavorite);
   yield takeLatest(REMOVE_USER_FAVORITE, removeUserFavorite);
   yield takeLatest(REMOVE_USER_ALL_FAVORITES, removeUserAllFavorites);
-
 }
 
 export default latestActionsSaga;
