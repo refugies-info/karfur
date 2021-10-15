@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
-import { View, TouchableOpacity, Alert, Clipboard } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { MarkerGoogle } from "../../types/interface";
 import { TextSmallNormal } from "../StyledText";
 import { RTLView, RTLTouchableOpacity } from "../BasicComponents";
@@ -16,14 +16,11 @@ interface Props {
   hideSideBar: () => void;
 }
 
-export const callNumber = (phone: string, t: any) => {
+export const callNumber = (phone: string) => {
   let phoneNumber = `tel:${phone}`;
 
   Linking.canOpenURL(phoneNumber).then((supported) => {
     if (!supported) {
-      // @ts-ignore
-      Clipboard.setString(phoneNumber);
-      Alert.alert(t("Content.Numéro copié", "Numéro copié"));
       return;
     }
     return Linking.openURL(phoneNumber);
@@ -165,7 +162,7 @@ export const MapBottomBar = (props: Props) => {
           marginTop={0}
           onPress={() => {
             if (props.selectedMarker && props.selectedMarker.telephone) {
-              callNumber(props.selectedMarker.telephone, t);
+              callNumber(props.selectedMarker.telephone);
             }
           }}
         >
