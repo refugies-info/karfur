@@ -348,6 +348,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
     <View>
       <Text
         isRTL={false}
+        selectable={true}
         style={
           Array [
             Object {
@@ -1230,6 +1231,7 @@ exports[`Filter city should render correctly when no city 1`] = `
     <View>
       <Text
         isRTL={false}
+        selectable={true}
         style={
           Array [
             Object {
@@ -1372,6 +1374,7 @@ exports[`Filter city should render correctly when no city 1`] = `
           </View>
           <Text
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {

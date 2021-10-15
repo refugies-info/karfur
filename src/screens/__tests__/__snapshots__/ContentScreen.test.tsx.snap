@@ -309,6 +309,7 @@ exports[`ContentScreen should render correctly 1`] = `
       >
         <Text
           isRTL={false}
+          selectable={true}
           style={
             Array [
               Object {
@@ -388,6 +389,7 @@ exports[`ContentScreen should render correctly 1`] = `
           <Text
             isRTL={false}
             onLayout={[Function]}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -416,6 +418,7 @@ exports[`ContentScreen should render correctly 1`] = `
           <Text
             isRTL={false}
             onLayout={[Function]}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -503,6 +506,7 @@ exports[`ContentScreen should render correctly 1`] = `
         <View>
           <Text
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -537,6 +541,7 @@ exports[`ContentScreen should render correctly 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -555,8 +560,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 }
               >
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {
@@ -569,8 +573,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {},
@@ -579,8 +582,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Object {
                           "fontFamily": "circularBold",
@@ -600,6 +602,7 @@ exports[`ContentScreen should render correctly 1`] = `
               </Text>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -618,8 +621,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 }
               >
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {},
@@ -628,8 +630,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Object {
                         "fontFamily": "circularBook",
@@ -645,8 +646,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   </Text>
                 </Text>
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {
@@ -659,8 +659,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {},
@@ -669,8 +668,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Object {
                           "fontFamily": "circularBold",
@@ -688,8 +686,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   </Text>
                 </Text>
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {},
@@ -698,8 +695,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Object {
                         "fontFamily": "circularBook",
@@ -715,8 +711,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   </Text>
                 </Text>
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {
@@ -729,8 +724,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {},
@@ -739,8 +733,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Object {
                           "fontFamily": "circularBold",
@@ -810,8 +803,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {},
@@ -822,8 +814,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {},
@@ -832,8 +823,7 @@ exports[`ContentScreen should render correctly 1`] = `
                       }
                     >
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Object {
                             "alignItems": "center",
@@ -887,8 +877,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {
@@ -902,8 +891,7 @@ exports[`ContentScreen should render correctly 1`] = `
                       }
                     >
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {},
@@ -912,8 +900,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Object {
                               "alignItems": "center",
@@ -940,8 +927,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     </Text>
                   </View>
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Object {
                         "color": "#212121",
@@ -950,13 +936,11 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={Object {}}
                     >
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {},
@@ -965,8 +949,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Object {
                               "alignItems": "center",
@@ -990,8 +973,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         </Text>
                       </Text>
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -1004,8 +986,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -1014,8 +995,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "alignItems": "center",
@@ -1041,8 +1021,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         </Text>
                       </Text>
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {},
@@ -1051,8 +1030,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Object {
                               "alignItems": "center",
@@ -1118,6 +1096,7 @@ exports[`ContentScreen should render correctly 1`] = `
               <Text
                 color="#3D2884"
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -1178,6 +1157,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   >
                     <Text
                       isRTL={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {
@@ -1198,6 +1178,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     <View>
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -1257,6 +1238,7 @@ exports[`ContentScreen should render correctly 1`] = `
               <Text
                 color="#3D2884"
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -1317,6 +1299,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   >
                     <Text
                       isRTL={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {
@@ -1337,6 +1320,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     <View>
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -1410,6 +1394,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   >
                     <Text
                       isRTL={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {
@@ -1430,6 +1415,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     <View>
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -1489,6 +1475,7 @@ exports[`ContentScreen should render correctly 1`] = `
               <Text
                 color="#3D2884"
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -1549,6 +1536,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   >
                     <Text
                       isRTL={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {
@@ -1570,8 +1558,7 @@ exports[`ContentScreen should render correctly 1`] = `
                       style={Object {}}
                     >
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {},
@@ -1580,8 +1567,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Object {
                               "fontFamily": "circularBook",
@@ -1649,6 +1635,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   >
                     <Text
                       isRTL={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {
@@ -1669,6 +1656,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     <View>
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -1706,6 +1694,7 @@ exports[`ContentScreen should render correctly 1`] = `
         <View>
           <Text
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -1739,51 +1728,42 @@ exports[`ContentScreen should render correctly 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-            >
+            <View>
               <View
-                darkColor="#3D2884"
-                isExpanded={false}
-                isRTL={false}
-                lightColor="#EFE8F4"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderStyle": "solid",
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                    "shadowColor": "rgba(33, 33, 33, 0.24)",
+                    "shadowOffset": Object {
+                      "height": 8,
+                      "width": 0,
                     },
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#FFFFFF",
-                      "borderColor": "#FFFFFF",
-                      "borderRadius": 12,
-                      "borderStyle": "solid",
-                      "borderWidth": 2,
-                      "elevation": 1,
-                      "justifyContent": "space-between",
-                      "paddingBottom": 16,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 16,
-                      "shadowColor": "rgba(33, 33, 33, 0.24)",
-                      "shadowOffset": Object {
-                        "height": 8,
-                        "width": 0,
-                      },
-                      "shadowOpacity": 1,
-                      "shadowRadius": 16,
-                    },
-                  ]
+                    "shadowOpacity": 1,
+                    "shadowRadius": 16,
+                  }
                 }
               >
                 <View
@@ -1801,6 +1781,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   <Text
                     darkColor="#3D2884"
                     isRTL={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {
@@ -1934,6 +1915,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -1952,8 +1934,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -1962,8 +1943,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -1996,51 +1976,42 @@ exports[`ContentScreen should render correctly 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-            >
+            <View>
               <View
-                darkColor="#3D2884"
-                isExpanded={false}
-                isRTL={false}
-                lightColor="#EFE8F4"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderStyle": "solid",
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                    "shadowColor": "rgba(33, 33, 33, 0.24)",
+                    "shadowOffset": Object {
+                      "height": 8,
+                      "width": 0,
                     },
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#FFFFFF",
-                      "borderColor": "#FFFFFF",
-                      "borderRadius": 12,
-                      "borderStyle": "solid",
-                      "borderWidth": 2,
-                      "elevation": 1,
-                      "justifyContent": "space-between",
-                      "paddingBottom": 16,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 16,
-                      "shadowColor": "rgba(33, 33, 33, 0.24)",
-                      "shadowOffset": Object {
-                        "height": 8,
-                        "width": 0,
-                      },
-                      "shadowOpacity": 1,
-                      "shadowRadius": 16,
-                    },
-                  ]
+                    "shadowOpacity": 1,
+                    "shadowRadius": 16,
+                  }
                 }
               >
                 <View
@@ -2058,6 +2029,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   <Text
                     darkColor="#3D2884"
                     isRTL={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {
@@ -2191,6 +2163,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -2209,8 +2182,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -2219,8 +2191,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -2253,51 +2224,42 @@ exports[`ContentScreen should render correctly 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-            >
+            <View>
               <View
-                darkColor="#3D2884"
-                isExpanded={false}
-                isRTL={false}
-                lightColor="#EFE8F4"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderStyle": "solid",
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                    "shadowColor": "rgba(33, 33, 33, 0.24)",
+                    "shadowOffset": Object {
+                      "height": 8,
+                      "width": 0,
                     },
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#FFFFFF",
-                      "borderColor": "#FFFFFF",
-                      "borderRadius": 12,
-                      "borderStyle": "solid",
-                      "borderWidth": 2,
-                      "elevation": 1,
-                      "justifyContent": "space-between",
-                      "paddingBottom": 16,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 16,
-                      "shadowColor": "rgba(33, 33, 33, 0.24)",
-                      "shadowOffset": Object {
-                        "height": 8,
-                        "width": 0,
-                      },
-                      "shadowOpacity": 1,
-                      "shadowRadius": 16,
-                    },
-                  ]
+                    "shadowOpacity": 1,
+                    "shadowRadius": 16,
+                  }
                 }
               >
                 <View
@@ -2315,6 +2277,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   <Text
                     darkColor="#3D2884"
                     isRTL={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {
@@ -2448,6 +2411,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -2466,8 +2430,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -2476,8 +2439,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -2510,51 +2472,42 @@ exports[`ContentScreen should render correctly 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-            >
+            <View>
               <View
-                darkColor="#3D2884"
-                isExpanded={false}
-                isRTL={false}
-                lightColor="#EFE8F4"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderStyle": "solid",
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                    "shadowColor": "rgba(33, 33, 33, 0.24)",
+                    "shadowOffset": Object {
+                      "height": 8,
+                      "width": 0,
                     },
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#FFFFFF",
-                      "borderColor": "#FFFFFF",
-                      "borderRadius": 12,
-                      "borderStyle": "solid",
-                      "borderWidth": 2,
-                      "elevation": 1,
-                      "justifyContent": "space-between",
-                      "paddingBottom": 16,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 16,
-                      "shadowColor": "rgba(33, 33, 33, 0.24)",
-                      "shadowOffset": Object {
-                        "height": 8,
-                        "width": 0,
-                      },
-                      "shadowOpacity": 1,
-                      "shadowRadius": 16,
-                    },
-                  ]
+                    "shadowOpacity": 1,
+                    "shadowRadius": 16,
+                  }
                 }
               >
                 <View
@@ -2572,6 +2525,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   <Text
                     darkColor="#3D2884"
                     isRTL={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {
@@ -2705,6 +2659,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -2723,8 +2678,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -2733,8 +2687,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -2760,6 +2713,7 @@ exports[`ContentScreen should render correctly 1`] = `
         <View>
           <Text
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -2793,51 +2747,42 @@ exports[`ContentScreen should render correctly 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-            >
+            <View>
               <View
-                darkColor="#3D2884"
-                isExpanded={false}
-                isRTL={false}
-                lightColor="#EFE8F4"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderStyle": "solid",
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                    "shadowColor": "rgba(33, 33, 33, 0.24)",
+                    "shadowOffset": Object {
+                      "height": 8,
+                      "width": 0,
                     },
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#FFFFFF",
-                      "borderColor": "#FFFFFF",
-                      "borderRadius": 12,
-                      "borderStyle": "solid",
-                      "borderWidth": 2,
-                      "elevation": 1,
-                      "justifyContent": "space-between",
-                      "paddingBottom": 16,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 16,
-                      "shadowColor": "rgba(33, 33, 33, 0.24)",
-                      "shadowOffset": Object {
-                        "height": 8,
-                        "width": 0,
-                      },
-                      "shadowOpacity": 1,
-                      "shadowRadius": 16,
-                    },
-                  ]
+                    "shadowOpacity": 1,
+                    "shadowRadius": 16,
+                  }
                 }
               >
                 <View
@@ -2855,6 +2800,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   <Text
                     darkColor="#3D2884"
                     isRTL={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {
@@ -2988,6 +2934,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -3006,8 +2953,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -3016,8 +2962,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -3035,6 +2980,7 @@ exports[`ContentScreen should render correctly 1`] = `
                       </Text>
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -3053,8 +2999,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {
@@ -3067,8 +3012,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Array [
                                 Object {},
@@ -3077,8 +3021,7 @@ exports[`ContentScreen should render correctly 1`] = `
                             }
                           >
                             <Text
-                              allowFontScaling={true}
-                              selectable={false}
+                              selectable={true}
                               style={
                                 Object {
                                   "fontFamily": "circularBold",
@@ -3113,51 +3056,42 @@ exports[`ContentScreen should render correctly 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-            >
+            <View>
               <View
-                darkColor="#3D2884"
-                isExpanded={false}
-                isRTL={false}
-                lightColor="#EFE8F4"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderStyle": "solid",
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                    "shadowColor": "rgba(33, 33, 33, 0.24)",
+                    "shadowOffset": Object {
+                      "height": 8,
+                      "width": 0,
                     },
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#FFFFFF",
-                      "borderColor": "#FFFFFF",
-                      "borderRadius": 12,
-                      "borderStyle": "solid",
-                      "borderWidth": 2,
-                      "elevation": 1,
-                      "justifyContent": "space-between",
-                      "paddingBottom": 16,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 16,
-                      "shadowColor": "rgba(33, 33, 33, 0.24)",
-                      "shadowOffset": Object {
-                        "height": 8,
-                        "width": 0,
-                      },
-                      "shadowOpacity": 1,
-                      "shadowRadius": 16,
-                    },
-                  ]
+                    "shadowOpacity": 1,
+                    "shadowRadius": 16,
+                  }
                 }
               >
                 <View
@@ -3175,6 +3109,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   <Text
                     darkColor="#3D2884"
                     isRTL={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {
@@ -3308,6 +3243,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     >
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -3326,8 +3262,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -3336,8 +3271,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -3362,6 +3296,7 @@ exports[`ContentScreen should render correctly 1`] = `
         </View>
         <Text
           isRTL={false}
+          selectable={true}
           style={
             Array [
               Object {
@@ -3641,6 +3576,7 @@ exports[`ContentScreen should render correctly 1`] = `
         >
           <Text
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -3662,6 +3598,7 @@ exports[`ContentScreen should render correctly 1`] = `
           </Text>
           <Text
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -5603,6 +5540,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
       >
         <Text
           isRTL={false}
+          selectable={true}
           style={
             Array [
               Object {
@@ -5682,6 +5620,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
           <Text
             isRTL={false}
             onLayout={[Function]}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -5710,6 +5649,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
           <Text
             isRTL={false}
             onLayout={[Function]}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -5797,6 +5737,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
         <View>
           <Text
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -5831,6 +5772,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -5849,8 +5791,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 }
               >
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {
@@ -5863,8 +5804,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {},
@@ -5873,8 +5813,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Object {
                           "fontFamily": "circularBold",
@@ -5894,6 +5833,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
               </Text>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -5912,8 +5852,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 }
               >
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {},
@@ -5922,8 +5861,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Object {
                         "fontFamily": "circularBook",
@@ -5939,8 +5877,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   </Text>
                 </Text>
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {
@@ -5953,8 +5890,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {},
@@ -5963,8 +5899,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Object {
                           "fontFamily": "circularBold",
@@ -5982,8 +5917,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   </Text>
                 </Text>
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {},
@@ -5992,8 +5926,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Object {
                         "fontFamily": "circularBook",
@@ -6009,8 +5942,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   </Text>
                 </Text>
                 <Text
-                  allowFontScaling={true}
-                  selectable={false}
+                  selectable={true}
                   style={
                     Array [
                       Object {
@@ -6023,8 +5955,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {},
@@ -6033,8 +5964,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Object {
                           "fontFamily": "circularBold",
@@ -6104,8 +6034,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   }
                 >
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {},
@@ -6116,8 +6045,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {},
@@ -6126,8 +6054,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       }
                     >
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Object {
                             "alignItems": "center",
@@ -6181,8 +6108,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {
@@ -6196,8 +6122,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       }
                     >
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {},
@@ -6206,8 +6131,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Object {
                               "alignItems": "center",
@@ -6234,8 +6158,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     </Text>
                   </View>
                   <Text
-                    allowFontScaling={true}
-                    selectable={false}
+                    selectable={true}
                     style={
                       Object {
                         "color": "#212121",
@@ -6244,13 +6167,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <Text
-                      allowFontScaling={true}
-                      selectable={false}
+                      selectable={true}
                       style={Object {}}
                     >
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {},
@@ -6259,8 +6180,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Object {
                               "alignItems": "center",
@@ -6284,8 +6204,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         </Text>
                       </Text>
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -6298,8 +6217,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -6308,8 +6226,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "alignItems": "center",
@@ -6335,8 +6252,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         </Text>
                       </Text>
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {},
@@ -6345,8 +6261,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Object {
                               "alignItems": "center",
@@ -6412,6 +6327,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
               <Text
                 color="#3D2884"
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -6472,6 +6388,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   >
                     <Text
                       isRTL={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {
@@ -6492,6 +6409,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     <View>
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -6551,6 +6469,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
               <Text
                 color="#3D2884"
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -6611,6 +6530,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   >
                     <Text
                       isRTL={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {
@@ -6631,6 +6551,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     <View>
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -6704,6 +6625,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   >
                     <Text
                       isRTL={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {
@@ -6724,6 +6646,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     <View>
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -6783,6 +6706,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
               <Text
                 color="#3D2884"
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -6843,6 +6767,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   >
                     <Text
                       isRTL={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {
@@ -6864,8 +6789,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       style={Object {}}
                     >
                       <Text
-                        allowFontScaling={true}
-                        selectable={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {},
@@ -6874,8 +6798,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Object {
                               "fontFamily": "circularBook",
@@ -6943,6 +6866,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   >
                     <Text
                       isRTL={false}
+                      selectable={true}
                       style={
                         Array [
                           Object {
@@ -6963,6 +6887,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     <View>
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -7000,6 +6925,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
         <View>
           <Text
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -7033,51 +6959,42 @@ exports[`ContentScreen should toggle map modal 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-            >
+            <View>
               <View
-                darkColor="#3D2884"
-                isExpanded={false}
-                isRTL={false}
-                lightColor="#EFE8F4"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderStyle": "solid",
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                    "shadowColor": "rgba(33, 33, 33, 0.24)",
+                    "shadowOffset": Object {
+                      "height": 8,
+                      "width": 0,
                     },
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#FFFFFF",
-                      "borderColor": "#FFFFFF",
-                      "borderRadius": 12,
-                      "borderStyle": "solid",
-                      "borderWidth": 2,
-                      "elevation": 1,
-                      "justifyContent": "space-between",
-                      "paddingBottom": 16,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 16,
-                      "shadowColor": "rgba(33, 33, 33, 0.24)",
-                      "shadowOffset": Object {
-                        "height": 8,
-                        "width": 0,
-                      },
-                      "shadowOpacity": 1,
-                      "shadowRadius": 16,
-                    },
-                  ]
+                    "shadowOpacity": 1,
+                    "shadowRadius": 16,
+                  }
                 }
               >
                 <View
@@ -7095,6 +7012,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   <Text
                     darkColor="#3D2884"
                     isRTL={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {
@@ -7228,6 +7146,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -7246,8 +7165,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -7256,8 +7174,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -7290,51 +7207,42 @@ exports[`ContentScreen should toggle map modal 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-            >
+            <View>
               <View
-                darkColor="#3D2884"
-                isExpanded={false}
-                isRTL={false}
-                lightColor="#EFE8F4"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderStyle": "solid",
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                    "shadowColor": "rgba(33, 33, 33, 0.24)",
+                    "shadowOffset": Object {
+                      "height": 8,
+                      "width": 0,
                     },
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#FFFFFF",
-                      "borderColor": "#FFFFFF",
-                      "borderRadius": 12,
-                      "borderStyle": "solid",
-                      "borderWidth": 2,
-                      "elevation": 1,
-                      "justifyContent": "space-between",
-                      "paddingBottom": 16,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 16,
-                      "shadowColor": "rgba(33, 33, 33, 0.24)",
-                      "shadowOffset": Object {
-                        "height": 8,
-                        "width": 0,
-                      },
-                      "shadowOpacity": 1,
-                      "shadowRadius": 16,
-                    },
-                  ]
+                    "shadowOpacity": 1,
+                    "shadowRadius": 16,
+                  }
                 }
               >
                 <View
@@ -7352,6 +7260,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   <Text
                     darkColor="#3D2884"
                     isRTL={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {
@@ -7485,6 +7394,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -7503,8 +7413,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -7513,8 +7422,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -7547,51 +7455,42 @@ exports[`ContentScreen should toggle map modal 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-            >
+            <View>
               <View
-                darkColor="#3D2884"
-                isExpanded={false}
-                isRTL={false}
-                lightColor="#EFE8F4"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderStyle": "solid",
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                    "shadowColor": "rgba(33, 33, 33, 0.24)",
+                    "shadowOffset": Object {
+                      "height": 8,
+                      "width": 0,
                     },
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#FFFFFF",
-                      "borderColor": "#FFFFFF",
-                      "borderRadius": 12,
-                      "borderStyle": "solid",
-                      "borderWidth": 2,
-                      "elevation": 1,
-                      "justifyContent": "space-between",
-                      "paddingBottom": 16,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 16,
-                      "shadowColor": "rgba(33, 33, 33, 0.24)",
-                      "shadowOffset": Object {
-                        "height": 8,
-                        "width": 0,
-                      },
-                      "shadowOpacity": 1,
-                      "shadowRadius": 16,
-                    },
-                  ]
+                    "shadowOpacity": 1,
+                    "shadowRadius": 16,
+                  }
                 }
               >
                 <View
@@ -7609,6 +7508,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   <Text
                     darkColor="#3D2884"
                     isRTL={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {
@@ -7742,6 +7642,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -7760,8 +7661,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -7770,8 +7670,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -7804,51 +7703,42 @@ exports[`ContentScreen should toggle map modal 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-            >
+            <View>
               <View
-                darkColor="#3D2884"
-                isExpanded={false}
-                isRTL={false}
-                lightColor="#EFE8F4"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderStyle": "solid",
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                    "shadowColor": "rgba(33, 33, 33, 0.24)",
+                    "shadowOffset": Object {
+                      "height": 8,
+                      "width": 0,
                     },
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#FFFFFF",
-                      "borderColor": "#FFFFFF",
-                      "borderRadius": 12,
-                      "borderStyle": "solid",
-                      "borderWidth": 2,
-                      "elevation": 1,
-                      "justifyContent": "space-between",
-                      "paddingBottom": 16,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 16,
-                      "shadowColor": "rgba(33, 33, 33, 0.24)",
-                      "shadowOffset": Object {
-                        "height": 8,
-                        "width": 0,
-                      },
-                      "shadowOpacity": 1,
-                      "shadowRadius": 16,
-                    },
-                  ]
+                    "shadowOpacity": 1,
+                    "shadowRadius": 16,
+                  }
                 }
               >
                 <View
@@ -7866,6 +7756,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   <Text
                     darkColor="#3D2884"
                     isRTL={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {
@@ -7999,6 +7890,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -8017,8 +7909,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -8027,8 +7918,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -8054,6 +7944,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
         <View>
           <Text
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -8087,51 +7978,42 @@ exports[`ContentScreen should toggle map modal 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-            >
+            <View>
               <View
-                darkColor="#3D2884"
-                isExpanded={false}
-                isRTL={false}
-                lightColor="#EFE8F4"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderStyle": "solid",
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                    "shadowColor": "rgba(33, 33, 33, 0.24)",
+                    "shadowOffset": Object {
+                      "height": 8,
+                      "width": 0,
                     },
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#FFFFFF",
-                      "borderColor": "#FFFFFF",
-                      "borderRadius": 12,
-                      "borderStyle": "solid",
-                      "borderWidth": 2,
-                      "elevation": 1,
-                      "justifyContent": "space-between",
-                      "paddingBottom": 16,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 16,
-                      "shadowColor": "rgba(33, 33, 33, 0.24)",
-                      "shadowOffset": Object {
-                        "height": 8,
-                        "width": 0,
-                      },
-                      "shadowOpacity": 1,
-                      "shadowRadius": 16,
-                    },
-                  ]
+                    "shadowOpacity": 1,
+                    "shadowRadius": 16,
+                  }
                 }
               >
                 <View
@@ -8149,6 +8031,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   <Text
                     darkColor="#3D2884"
                     isRTL={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {
@@ -8282,6 +8165,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -8300,8 +8184,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -8310,8 +8193,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -8329,6 +8211,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </Text>
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -8347,8 +8230,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {
@@ -8361,8 +8243,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Array [
                                 Object {},
@@ -8371,8 +8252,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             }
                           >
                             <Text
-                              allowFontScaling={true}
-                              selectable={false}
+                              selectable={true}
                               style={
                                 Object {
                                   "fontFamily": "circularBold",
@@ -8407,51 +8287,42 @@ exports[`ContentScreen should toggle map modal 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-            >
+            <View>
               <View
-                darkColor="#3D2884"
-                isExpanded={false}
-                isRTL={false}
-                lightColor="#EFE8F4"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderStyle": "solid",
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                    "shadowColor": "rgba(33, 33, 33, 0.24)",
+                    "shadowOffset": Object {
+                      "height": 8,
+                      "width": 0,
                     },
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#FFFFFF",
-                      "borderColor": "#FFFFFF",
-                      "borderRadius": 12,
-                      "borderStyle": "solid",
-                      "borderWidth": 2,
-                      "elevation": 1,
-                      "justifyContent": "space-between",
-                      "paddingBottom": 16,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 16,
-                      "shadowColor": "rgba(33, 33, 33, 0.24)",
-                      "shadowOffset": Object {
-                        "height": 8,
-                        "width": 0,
-                      },
-                      "shadowOpacity": 1,
-                      "shadowRadius": 16,
-                    },
-                  ]
+                    "shadowOpacity": 1,
+                    "shadowRadius": 16,
+                  }
                 }
               >
                 <View
@@ -8469,6 +8340,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   <Text
                     darkColor="#3D2884"
                     isRTL={false}
+                    selectable={true}
                     style={
                       Array [
                         Object {
@@ -8602,6 +8474,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     >
                       <Text
                         isRTL={false}
+                        selectable={true}
                         style={
                           Array [
                             Object {
@@ -8620,8 +8493,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       >
                         <Text
-                          allowFontScaling={true}
-                          selectable={false}
+                          selectable={true}
                           style={
                             Array [
                               Object {},
@@ -8630,8 +8502,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <Text
-                            allowFontScaling={true}
-                            selectable={false}
+                            selectable={true}
                             style={
                               Object {
                                 "fontFamily": "circularBook",
@@ -8656,6 +8527,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
         </View>
         <Text
           isRTL={false}
+          selectable={true}
           style={
             Array [
               Object {
@@ -8935,6 +8807,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
         >
           <Text
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -8956,6 +8829,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
           </Text>
           <Text
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {

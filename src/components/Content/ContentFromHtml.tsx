@@ -18,6 +18,7 @@ export const ContentFromHtml = (props: Props) => {
     <HTML
       contentWidth={props.windowWidth}
       source={{ html: props.htmlContent }}
+      defaultTextProps={{ selectable: true }}
       classesStyles={{
         "bloc-rouge": {
           backgroundColor: theme.colors.lightRed,

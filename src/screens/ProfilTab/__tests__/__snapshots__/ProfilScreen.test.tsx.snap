@@ -172,6 +172,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
   >
     <Text
       isRTL={false}
+      selectable={true}
       style={
         Array [
           Object {
@@ -1224,6 +1225,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
     </View>
     <Text
       isRTL={false}
+      selectable={true}
       style={
         Array [
           Object {
@@ -3451,6 +3453,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
   >
     <Text
       isRTL={false}
+      selectable={true}
       style={
         Array [
           Object {
@@ -4503,6 +4506,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
     </View>
     <Text
       isRTL={false}
+      selectable={true}
       style={
         Array [
           Object {
@@ -6730,6 +6734,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
   >
     <Text
       isRTL={false}
+      selectable={true}
       style={
         Array [
           Object {
@@ -7782,6 +7787,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
     </View>
     <Text
       isRTL={false}
+      selectable={true}
       style={
         Array [
           Object {

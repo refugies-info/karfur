@@ -15,8 +15,11 @@ export const MapContentFromHtml = (props: Props) => {
   return (
     <HTML
       source={{ html: props.htmlContent }}
+      defaultTextProps={{ selectable: true }}
       baseFontStyle={{
-        fontSize: props.isLarge ? theme.fonts.sizes.normal : theme.fonts.sizes.small,
+        fontSize: props.isLarge
+          ? theme.fonts.sizes.normal
+          : theme.fonts.sizes.small,
         fontFamily: props.isBold
           ? theme.fonts.families.circularBold
           : theme.fonts.families.circularStandard,

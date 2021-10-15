@@ -13,6 +13,7 @@ export const TextFromHtml = (props: Props) => {
   return (
     <HTML
       source={{ html: props.htmlContent }}
+      defaultTextProps={{ selectable: true }}
       baseFontStyle={{
         fontSize: theme.fonts.sizes.small,
         fontFamily: theme.fonts.families.circularStandard,
