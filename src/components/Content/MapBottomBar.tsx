@@ -16,14 +16,14 @@ interface Props {
   hideSideBar: () => void;
 }
 
-export const callNumber = (phone: string) => {
+export const callNumber = (phone: string, t: any) => {
   let phoneNumber = `tel:${phone}`;
 
   Linking.canOpenURL(phoneNumber).then((supported) => {
     if (!supported) {
       // @ts-ignore
       Clipboard.setString(phoneNumber);
-      Alert.alert("Numéro copié");
+      Alert.alert(t("Content.Numéro copié", "Numéro copié"));
       return;
     }
     return Linking.openURL(phoneNumber);
@@ -165,7 +165,7 @@ export const MapBottomBar = (props: Props) => {
           marginTop={0}
           onPress={() => {
             if (props.selectedMarker && props.selectedMarker.telephone) {
-              callNumber(props.selectedMarker.telephone);
+              callNumber(props.selectedMarker.telephone, t);
             }
           }}
         >
@@ -190,9 +190,6 @@ export const MapBottomBar = (props: Props) => {
             )}
           </HTMLContainer>
         </ContentTouchableOpacity>
-        <TouchableOpacity onPress={() => callNumber("0033179360176")}>
-          <TextSmallNormal>Test</TextSmallNormal>
-        </TouchableOpacity>
 
         {!!props.selectedMarker.description && (
           <>
