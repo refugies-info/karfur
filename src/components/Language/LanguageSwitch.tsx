@@ -107,7 +107,7 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
   if (!selectedLanguageI18nCode || !currentLanguageI18nCode) return <View />;
 
   const onSwitchPress = () => {
-    logEventInFirebase(FirebaseEvent.SWITCH_LANGUE, {
+    logEventInFirebase(FirebaseEvent.SWITCH_LANGUAGE, {
       newLanguage: isFrenchSelected ? selectedLanguageI18nCode : "fr",
       oldLanguage: isFrenchSelected ? "fr" : selectedLanguageI18nCode,
     });

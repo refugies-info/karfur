@@ -17,11 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSelectedContentActionCreator } from "../services/redux/SelectedContent/selectedContent.actions";
 import { selectedContentSelector } from "../services/redux/SelectedContent/selectedContent.selectors";
 import { theme } from "../theme";
-import {
-  TextBigBold,
-  TextSmallNormal,
-  TextNormal,
-} from "../components/StyledText";
+import { TextBigBold, TextSmallNormal } from "../components/StyledText";
 import {
   selectedI18nCodeSelector,
   currentI18nCodeSelector,

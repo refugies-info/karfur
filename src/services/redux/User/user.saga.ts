@@ -58,7 +58,7 @@ export function* saveSelectedLanguage(
     yield put(setSelectedLanguageActionCreator(i18nCode));
     yield put(setCurrentLanguageActionCreator(i18nCode));
     yield call(logEventInFirebase, FirebaseEvent.VALIDATE_LANGUAGE, {
-      langue: i18nCode,
+      language: i18nCode,
     });
     if (shouldFetchContents) {
       yield put(fetchContentsActionCreator());

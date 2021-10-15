@@ -20,7 +20,7 @@ import {
 import noInfo from "../../theme/images/onboarding/onboarding_noinfo.png";
 import { Image, View, Dimensions } from "react-native";
 import { logEventInFirebase } from "../../utils/logEvent";
-import { events } from "../../utils/eventsUsedInFirebase";
+import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 
 const MainView = styled(SafeAreaView)`
   display: flex;
@@ -76,8 +76,8 @@ export const FinishOnboarding = ({
       dispatch(fetchContentsActionCreator());
       logEventInFirebase(
         hasUserEnteredInfos
-          ? events.PROFILE_COMPLETED
-          : events.PROFILE_NOT_COMPLETED,
+          ? FirebaseEvent.PROFILE_COMPLETED
+          : FirebaseEvent.PROFILE_NOT_COMPLETED,
         {}
       );
     } catch (e) {}
