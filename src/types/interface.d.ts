@@ -75,6 +75,8 @@ export interface Content {
   titreMarque: string;
   typeContenu: "dispositif" | "demarche";
   lastModificationDate: Moment | null;
+  nbVuesMobile?: number;
+  nbFavoritesMobile?: number;
 }
 
 export interface MarkerGoogle {

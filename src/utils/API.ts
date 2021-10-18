@@ -4,7 +4,6 @@ import { ObjectId } from "../types/interface";
 
 const dbURL = getEnvironment().dbUrl;
 const siteSecret = getEnvironment().siteSecret;
-
 const apiCaller = axios.create({
   baseURL: dbURL,
   headers: {
@@ -66,3 +65,9 @@ export const getContentById = ({
 
   return apiCaller.get(route);
 };
+
+export const updateNbVuesOrFavoritesOnContent = (
+  params:
+    | { query: { id: ObjectId; nbVuesMobile: number } }
+    | { query: { id: ObjectId; nbFavoritesMobile: number } }
+) => apiCaller.post("/dispositifs/updateNbVuesOrFavoritesOnContent", params);
