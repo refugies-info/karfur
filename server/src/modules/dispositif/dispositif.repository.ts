@@ -51,6 +51,8 @@ export const updateDispositifInDB = async (
     | { $pull: { [x: string]: { suggestionId: string } } }
     | { tags: any }
     | { needs: any }
+    | { nbVuesMobile: number }
+    | { nbFavoritesMobile: number }
 ) =>
   await Dispositif.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
     upsert: true,
