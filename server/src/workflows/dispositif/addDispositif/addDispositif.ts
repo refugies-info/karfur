@@ -175,6 +175,9 @@ export const addDispositif = async (
       logger.info("[addDispositif] creating a new dispositif", {
         title: dispositif.titreInformatif,
       });
+      if (dispositif.status === "Actif") {
+        throw new Error("NOT_AUTHORIZED");
+      }
       // @ts-ignore
       dispositif.creatorId = req.userId;
       // @ts-ignore

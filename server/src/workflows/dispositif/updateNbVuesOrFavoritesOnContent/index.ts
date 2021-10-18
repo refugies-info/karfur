@@ -1,0 +1,1 @@
+export { updateNbVuesOrFavoritesOnContent } from "./updateNbVuesOrFavoritesOnContent";
