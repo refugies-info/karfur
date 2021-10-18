@@ -270,7 +270,7 @@ export class Dispositif extends Component {
           }
           if (dispositif.status === "Actif" && !props.translating) {
             const nbVues = dispositif.nbVues ? dispositif.nbVues + 1 : 1;
-            API.updateNbVuesOnDispositif({
+            API.updateNbVuesOrFavoritesOnContent({
               query: { id: dispositif._id, nbVues },
             });
           }

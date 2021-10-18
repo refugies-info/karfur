@@ -1,7 +1,7 @@
 const dispositif = require("./dispositif/lib.js");
 const checkToken = require("./account/checkToken");
 
-import { updateNbVuesOnDispositif } from "../workflows/dispositif/updateNbVuesOnDispositif";
+import { updateNbVuesOrFavoritesOnContent } from "../workflows/dispositif/updateNbVuesOrFavoritesOnContent";
 import { getDispositifs } from "../workflows/dispositif/getDispositifs";
 import { getAllDispositifs } from "../workflows/dispositif/getAllDispositifs";
 import { updateDispositifStatus } from "../workflows/dispositif/updateDispositifStatus";
@@ -48,7 +48,10 @@ module.exports = function (app) {
   app.post("/modifyDispositifMainSponsor", modifyDispositifMainSponsor);
   app.post("/updateDispositifAdminComments", updateDispositifAdminComments);
   app.get("/getNbDispositifsByRegion", getNbDispositifsByRegion);
-  app.post("/updateNbVuesOnDispositif", updateNbVuesOnDispositif);
+  app.post(
+    "/updateNbVuesOrFavoritesOnContent",
+    updateNbVuesOrFavoritesOnContent
+  );
   app.post(
     "/updateDispositifReactions",
     checkToken.getId,

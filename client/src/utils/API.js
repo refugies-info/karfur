@@ -247,8 +247,8 @@ export default {
     return axios.post(burl + "/dispositifs/getDispositifs", params);
   },
 
-  updateNbVuesOnDispositif: (params) =>
-    axios.post(burl + "/dispositifs/updateNbVuesOnDispositif", params, {
+  updateNbVuesOrFavoritesOnContent: (params) =>
+    axios.post(burl + "/dispositifs/updateNbVuesOrFavoritesOnContent", params, {
       headers,
     }),
 
