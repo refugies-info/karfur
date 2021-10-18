@@ -54,6 +54,7 @@ import { Portal } from "react-native-portalize";
 import { ContentImage } from "../components/Content/ContentImage";
 import { logEventInFirebase } from "../utils/logEvent";
 import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
+import { updateNbVuesOrFavoritesOnContent } from "../utils/API";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -296,6 +297,19 @@ export const ContentScreen = ({
   }, [selectedLanguage]);
 
   const selectedContent = useSelector(selectedContentSelector(currentLanguage));
+  React.useEffect(() => {
+    if (selectedContent) {
+      const nbVuesMobile = selectedContent.nbVuesMobile
+        ? selectedContent.nbVuesMobile + 1
+        : 1;
+      updateNbVuesOrFavoritesOnContent({
+        query: {
+          id: selectedContent._id,
+          nbVuesMobile,
+        },
+      });
+    }
+  }, [selectedContent]);
 
   const onLayoutTitre = (e: any, titre: string) => {
     const { height } = e.nativeEvent.layout;
@@ -536,6 +550,12 @@ export const ContentScreen = ({
           </>
         }
         <View>
+          <TextSmallNormal>
+            {"nb vues mobile  : " +
+              (selectedContent.nbVuesMobile
+                ? selectedContent.nbVuesMobile
+                : "0")}
+          </TextSmallNormal>
           {headers.map((header, index) => {
             if (
               index === 1 &&
