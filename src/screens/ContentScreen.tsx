@@ -358,6 +358,17 @@ export const ContentScreen = ({
         link: "Favoris",
         icon: "star",
       });
+      if (selectedContent) {
+        const nbFavoritesMobile = selectedContent.nbFavoritesMobile
+          ? selectedContent.nbFavoritesMobile + 1
+          : 1;
+        updateNbVuesOrFavoritesOnContent({
+          query: {
+            id: selectedContent._id,
+            nbFavoritesMobile,
+          },
+        });
+      }
     }
   };
 
@@ -554,6 +565,12 @@ export const ContentScreen = ({
             {"nb vues mobile  : " +
               (selectedContent.nbVuesMobile
                 ? selectedContent.nbVuesMobile
+                : "0")}
+          </TextSmallNormal>
+          <TextSmallNormal>
+            {"nb favorites mobile  : " +
+              (selectedContent.nbFavoritesMobile
+                ? selectedContent.nbFavoritesMobile
                 : "0")}
           </TextSmallNormal>
           {headers.map((header, index) => {

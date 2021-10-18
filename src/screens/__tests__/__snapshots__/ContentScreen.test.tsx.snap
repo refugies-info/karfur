@@ -520,6 +520,23 @@ exports[`ContentScreen should render correctly 1`] = `
         >
           nb vues mobile  : 0
         </Text>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+          nb favorites mobile  : 0
+        </Text>
         <View>
           <Text
             isRTL={false}
@@ -5767,6 +5784,23 @@ exports[`ContentScreen should toggle map modal 1`] = `
           }
         >
           nb vues mobile  : 0
+        </Text>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+          nb favorites mobile  : 0
         </Text>
         <View>
           <Text
