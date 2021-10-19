@@ -561,18 +561,7 @@ export const ContentScreen = ({
           </>
         }
         <View>
-          <TextSmallNormal>
-            {"nb vues mobile  : " +
-              (selectedContent.nbVuesMobile
-                ? selectedContent.nbVuesMobile
-                : "0")}
-          </TextSmallNormal>
-          <TextSmallNormal>
-            {"nb favorites mobile  : " +
-              (selectedContent.nbFavoritesMobile
-                ? selectedContent.nbFavoritesMobile
-                : "0")}
-          </TextSmallNormal>
+     
           {headers.map((header, index) => {
             if (
               index === 1 &&
