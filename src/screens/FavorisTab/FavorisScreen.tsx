@@ -158,9 +158,8 @@ export const FavorisScreen = ({
   }
   const hideDeleteModal = () => {
     if (favoriteToDelete !== "") {
-      const refSwipeable = favoriteToDelete + (isRTL ? "rtl" : "ltr");
-      if (swipeableRefs[refSwipeable]) { // close swipeable if open
-        swipeableRefs[refSwipeable].close();
+      if (swipeableRefs[favoriteToDelete]) { // close swipeable if open
+        swipeableRefs[favoriteToDelete].close();
       }
       setFavoriteToDelete("");
     }
@@ -179,7 +178,7 @@ export const FavorisScreen = ({
         style={{
           backgroundColor: theme.colors.red,
           justifyContent: "center",
-          alignItems: "flex-end",
+          alignItems: !isRTL ? "flex-end" : "flex-start",
           flex: 1,
           paddingHorizontal: theme.margin * 2,
           marginHorizontal:  theme.margin * 3,
@@ -213,44 +212,37 @@ export const FavorisScreen = ({
           <View style={{ marginHorizontal: -theme.margin * 3 }}>
             {contentsToDisplay.map((content: SimplifiedContent) => {
               const colors = getCardColors(content);
-              const contentSummary = <ContentSummary
-                navigation={navigation}
-                route={"FavorisContentScreen"}
-                tagDarkColor={colors.tagDarkColor}
-                tagVeryLightColor={colors.tagVeryLightColor}
-                tagName={colors.tagName}
-                tagLightColor={colors.tagLightColor}
-                iconName={colors.iconName}
-                contentId={content._id}
-                titreInfo={content.titreInformatif}
-                titreMarque={content.titreMarque}
-                typeContenu={content.typeContenu}
-                sponsorUrl={content.sponsorUrl}
-                actionPress={() => showDeleteModal(content._id)}
-                actionIcon={"trash-2-outline"}
-                noShadow={true}
-                style={{ marginHorizontal: theme.margin * 3 }}
-              />;
               return (
                 <CardItem key={content._id}>
-                  {!isRTL ?
                     <Swipeable
-                      ref={ref => swipeableRefs[content._id+"ltr"] = ref}
-                      renderRightActions={renderActions}
-                      onSwipeableRightOpen={() => showDeleteModal(content._id)}
+                      ref={ref => swipeableRefs[content._id] = ref}
+                      renderRightActions={!isRTL ? renderActions : undefined}
+                      renderLeftActions={isRTL ? renderActions : undefined}
+                      leftThreshold={!isRTL ? 9999 : 0}
+                      rightThreshold={isRTL ? 9999 : 0}
+                      onSwipeableRightOpen={!isRTL ? () => showDeleteModal(content._id) : undefined}
+                      onSwipeableLeftOpen={isRTL ? () => showDeleteModal(content._id) : undefined}
                       overshootFriction={8}
                     >
-                      {contentSummary}
-                    </Swipeable> :
-                    <Swipeable
-                      ref={ref => swipeableRefs[content._id+"rtl"] = ref}
-                      renderLeftActions={renderActions}
-                      onSwipeableLeftOpen={() => showDeleteModal(content._id)}
-                      overshootFriction={8}
-                    >
-                      {contentSummary}
+                      <ContentSummary
+                        navigation={navigation}
+                        route={"FavorisContentScreen"}
+                        tagDarkColor={colors.tagDarkColor}
+                        tagVeryLightColor={colors.tagVeryLightColor}
+                        tagName={colors.tagName}
+                        tagLightColor={colors.tagLightColor}
+                        iconName={colors.iconName}
+                        contentId={content._id}
+                        titreInfo={content.titreInformatif}
+                        titreMarque={content.titreMarque}
+                        typeContenu={content.typeContenu}
+                        sponsorUrl={content.sponsorUrl}
+                        actionPress={() => showDeleteModal(content._id)}
+                        actionIcon={"trash-2-outline"}
+                        noShadow={true}
+                        style={{ marginHorizontal: theme.margin * 3 }}
+                      />
                     </Swipeable>
-                }
                 </CardItem>
               )
             })}
