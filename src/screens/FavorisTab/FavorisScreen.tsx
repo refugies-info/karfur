@@ -218,8 +218,8 @@ export const FavorisScreen = ({
                       ref={ref => swipeableRefs[content._id] = ref}
                       renderRightActions={!isRTL ? renderActions : undefined}
                       renderLeftActions={isRTL ? renderActions : undefined}
-                      leftThreshold={!isRTL ? 9999 : 0}
-                      rightThreshold={isRTL ? 9999 : 0}
+                      leftThreshold={!isRTL ? 9999 : 120}
+                      rightThreshold={isRTL ? 9999 : 120}
                       onSwipeableRightOpen={!isRTL ? () => showDeleteModal(content._id) : undefined}
                       onSwipeableLeftOpen={isRTL ? () => showDeleteModal(content._id) : undefined}
                       overshootFriction={8}
