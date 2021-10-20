@@ -73,7 +73,7 @@ export const FavorisScreen = ({
   const favorites = useSelector(userFavorites);
   const contents = currentLanguageI18nCode
   ? useSelector(contentsSelector(currentLanguageI18nCode)) : [];
-  const { t } = useTranslationWithRTL();
+  const { t, isRTL } = useTranslationWithRTL();
   const dispatch = useDispatch();
   let swipeableRefs: any = {};
 
@@ -158,8 +158,9 @@ export const FavorisScreen = ({
   }
   const hideDeleteModal = () => {
     if (favoriteToDelete !== "") {
-      if (swipeableRefs[favoriteToDelete]) { // close swipeable if open
-        swipeableRefs[favoriteToDelete].close();
+      const refSwipeable = favoriteToDelete + (isRTL ? "rtl" : "ltr");
+      if (swipeableRefs[refSwipeable]) { // close swipeable if open
+        swipeableRefs[refSwipeable].close();
       }
       setFavoriteToDelete("");
     }
@@ -212,33 +213,44 @@ export const FavorisScreen = ({
           <View style={{ marginHorizontal: -theme.margin * 3 }}>
             {contentsToDisplay.map((content: SimplifiedContent) => {
               const colors = getCardColors(content);
+              const contentSummary = <ContentSummary
+                navigation={navigation}
+                route={"FavorisContentScreen"}
+                tagDarkColor={colors.tagDarkColor}
+                tagVeryLightColor={colors.tagVeryLightColor}
+                tagName={colors.tagName}
+                tagLightColor={colors.tagLightColor}
+                iconName={colors.iconName}
+                contentId={content._id}
+                titreInfo={content.titreInformatif}
+                titreMarque={content.titreMarque}
+                typeContenu={content.typeContenu}
+                sponsorUrl={content.sponsorUrl}
+                actionPress={() => showDeleteModal(content._id)}
+                actionIcon={"trash-2-outline"}
+                noShadow={true}
+                style={{ marginHorizontal: theme.margin * 3 }}
+              />;
               return (
                 <CardItem key={content._id}>
-                  <Swipeable
-                    ref={ref => swipeableRefs[content._id] = ref}
-                    renderRightActions={renderActions}
-                    onSwipeableRightOpen={() => showDeleteModal(content._id)}
-                    overshootFriction={8}
-                  >
-                    <ContentSummary
-                      navigation={navigation}
-                      route={"FavorisContentScreen"}
-                      tagDarkColor={colors.tagDarkColor}
-                      tagVeryLightColor={colors.tagVeryLightColor}
-                      tagName={colors.tagName}
-                      tagLightColor={colors.tagLightColor}
-                      iconName={colors.iconName}
-                      contentId={content._id}
-                      titreInfo={content.titreInformatif}
-                      titreMarque={content.titreMarque}
-                      typeContenu={content.typeContenu}
-                      sponsorUrl={content.sponsorUrl}
-                      actionPress={() => showDeleteModal(content._id)}
-                      actionIcon={"trash-2-outline"}
-                      noShadow={true}
-                      style={{marginHorizontal: theme.margin * 3}}
-                    />
-                  </Swipeable>
+                  {!isRTL ?
+                    <Swipeable
+                      ref={ref => swipeableRefs[content._id+"ltr"] = ref}
+                      renderRightActions={renderActions}
+                      onSwipeableRightOpen={() => showDeleteModal(content._id)}
+                      overshootFriction={8}
+                    >
+                      {contentSummary}
+                    </Swipeable> :
+                    <Swipeable
+                      ref={ref => swipeableRefs[content._id+"rtl"] = ref}
+                      renderLeftActions={renderActions}
+                      onSwipeableLeftOpen={() => showDeleteModal(content._id)}
+                      overshootFriction={8}
+                    >
+                      {contentSummary}
+                    </Swipeable>
+                }
                 </CardItem>
               )
             })}
