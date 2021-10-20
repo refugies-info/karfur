@@ -312,6 +312,7 @@ export const ContentsScreen = ({
               sponsorUrl={content.sponsorUrl}
               iconName={iconName}
               route={"ContentScreen"}
+              style={{marginBottom: theme.margin * 3}}
             />
           );
         })}
@@ -337,6 +338,7 @@ export const ContentsScreen = ({
                   sponsorUrl={content.sponsorUrl}
                   iconName={iconName}
                   route={"ContentScreen"}
+                  style={{marginBottom: theme.margin * 3}}
                 />
               );
             })}

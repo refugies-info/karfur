@@ -2,8 +2,10 @@ import * as React from "react"
 import styled from "styled-components/native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { useFocusEffect } from "@react-navigation/native";
+import Swipeable from "react-native-gesture-handler/Swipeable";
+import { Icon } from "react-native-eva-icons";
 
-import { Image, ScrollView } from "react-native"
+import { Image, ScrollView, View } from "react-native"
 import { useDispatch, useSelector } from "react-redux";
 
 import { getContentById } from "../../utils/API";
@@ -49,6 +51,12 @@ const EmptyText = styled(StyledTextSmall)`
 const Title = styled(TextBigBold)`
   margin-bottom: ${theme.margin * 3}px;
 `;
+const CardItem = styled.View`
+  box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
+  elevation: 17;
+  marginBottom: ${theme.margin * 3}px;
+  flex: 1;
+`;
 const DeleteAllButton = styled.TouchableOpacity`
   align-items: center;
 `;
@@ -65,8 +73,9 @@ export const FavorisScreen = ({
   const favorites = useSelector(userFavorites);
   const contents = currentLanguageI18nCode
   ? useSelector(contentsSelector(currentLanguageI18nCode)) : [];
-  const { t } = useTranslationWithRTL();
+  const { t, isRTL } = useTranslationWithRTL();
   const dispatch = useDispatch();
+  let swipeableRefs: any = {};
 
   // When the screen has focus, remove "new favorite" badge
   const hasNewFavorites = useSelector(hasUserNewFavoritesSelector)
@@ -148,7 +157,12 @@ export const FavorisScreen = ({
     setFavoriteToDelete(contentId);
   }
   const hideDeleteModal = () => {
-    if (favoriteToDelete !== "") setFavoriteToDelete("");
+    if (favoriteToDelete !== "") {
+      if (swipeableRefs[favoriteToDelete]) { // close swipeable if open
+        swipeableRefs[favoriteToDelete].close();
+      }
+      setFavoriteToDelete("");
+    }
   }
   const deleteFavorite = (contentId: string|"all") => {
     if (contentId === "all") {
@@ -156,6 +170,29 @@ export const FavorisScreen = ({
     } else {
       dispatch(removeUserFavoriteActionCreator(contentId))
     }
+  }
+
+  const renderActions = () => {
+    return (
+      <View
+        style={{
+          backgroundColor: theme.colors.red,
+          justifyContent: "center",
+          alignItems: !isRTL ? "flex-end" : "flex-start",
+          flex: 1,
+          paddingHorizontal: theme.margin * 2,
+          marginHorizontal:  theme.margin * 3,
+          borderRadius: theme.radius * 2
+        }}
+      >
+        <Icon
+          name="trash-2-outline"
+          width={24}
+          height={24}
+          fill={theme.colors.white}
+        ></Icon>
+      </View>
+    )
   }
 
   return (
@@ -172,28 +209,44 @@ export const FavorisScreen = ({
           }}
         >
           <Title>{t("FavorisScreen.Mes fiches", "Mes fiches")}</Title>
-          {contentsToDisplay.map((content: SimplifiedContent) => {
-            const colors = getCardColors(content);
-            return (
-              <ContentSummary
-                key={content._id}
-                navigation={navigation}
-                route={"FavorisContentScreen"}
-                tagDarkColor={colors.tagDarkColor}
-                tagVeryLightColor={colors.tagVeryLightColor}
-                tagName={colors.tagName}
-                tagLightColor={colors.tagLightColor}
-                iconName={colors.iconName}
-                contentId={content._id}
-                titreInfo={content.titreInformatif}
-                titreMarque={content.titreMarque}
-                typeContenu={content.typeContenu}
-                sponsorUrl={content.sponsorUrl}
-                actionPress={() => showDeleteModal(content._id)}
-                actionIcon={"trash-2-outline"}
-              />
-            )
-          })}
+          <View style={{ marginHorizontal: -theme.margin * 3 }}>
+            {contentsToDisplay.map((content: SimplifiedContent) => {
+              const colors = getCardColors(content);
+              return (
+                <CardItem key={content._id}>
+                    <Swipeable
+                      ref={ref => swipeableRefs[content._id] = ref}
+                      renderRightActions={!isRTL ? renderActions : undefined}
+                      renderLeftActions={isRTL ? renderActions : undefined}
+                      leftThreshold={!isRTL ? 9999 : 0}
+                      rightThreshold={isRTL ? 9999 : 0}
+                      onSwipeableRightOpen={!isRTL ? () => showDeleteModal(content._id) : undefined}
+                      onSwipeableLeftOpen={isRTL ? () => showDeleteModal(content._id) : undefined}
+                      overshootFriction={8}
+                    >
+                      <ContentSummary
+                        navigation={navigation}
+                        route={"FavorisContentScreen"}
+                        tagDarkColor={colors.tagDarkColor}
+                        tagVeryLightColor={colors.tagVeryLightColor}
+                        tagName={colors.tagName}
+                        tagLightColor={colors.tagLightColor}
+                        iconName={colors.iconName}
+                        contentId={content._id}
+                        titreInfo={content.titreInformatif}
+                        titreMarque={content.titreMarque}
+                        typeContenu={content.typeContenu}
+                        sponsorUrl={content.sponsorUrl}
+                        actionPress={() => showDeleteModal(content._id)}
+                        actionIcon={"trash-2-outline"}
+                        noShadow={true}
+                        style={{ marginHorizontal: theme.margin * 3 }}
+                      />
+                    </Swipeable>
+                </CardItem>
+              )
+            })}
+          </View>
 
           <DeleteAllButton onPress={() => showDeleteModal("all")}>
             <DeleteAllButtonText>

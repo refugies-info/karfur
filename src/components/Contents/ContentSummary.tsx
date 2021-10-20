@@ -12,12 +12,11 @@ import { DemarcheImage } from "./DemarcheImage";
 
 const ContentContainer = styled(RTLTouchableOpacity)`
   background-color: ${theme.colors.white};
-  margin-bottom: ${theme.margin * 3}px;
   min-height: ${(props: { isDispo: boolean }) => (props.isDispo ? 80 : 72)}px;
   border-radius: ${theme.radius * 2}px;
-  box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
+  ${(props: { noShadow: boolean }) => props.noShadow ? "" : `
+  box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);`}
   elevation: 2;
-  display: flex;
   align-items: center;
   flex: 1;
 `;
@@ -87,6 +86,8 @@ interface Props {
   sponsorUrl: string | null;
   iconName: string;
   route: string;
+  noShadow?: boolean;
+  style?: any;
   actionPress?: any;
   actionIcon?: string;
 }
@@ -118,6 +119,9 @@ export const ContentSummary = (props: Props) => {
           })
         }
         isDispo={true}
+        noShadow={!!props.noShadow}
+        style={props.style || {}}
+        activeOpacity={0.8}
       >
         {props.sponsorUrl ? (
           <StructureImageContainer isRTL={isRTL}>
@@ -164,6 +168,9 @@ export const ContentSummary = (props: Props) => {
         })
       }
       isDispo={false}
+      noShadow={!!props.noShadow}
+      style={props.style || {}}
+      activeOpacity={0.8}
     >
       <DemarcheIconContainer lightColor={props.tagVeryLightColor} isRTL={isRTL}>
         <DemarcheImage
