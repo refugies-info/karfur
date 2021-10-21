@@ -105,6 +105,10 @@ export const FilterFrenchLevel = ({
               "Quel est ton niveau en français ?"
             )}
           </Title>
+          <Explaination
+            step={3}
+            defaultText="C’est pour te montrer les formations faites pour ton niveau de français."
+          />
           {frenchLevelFilters.map((frenchLevel) => (
             <FilterButton
               key={frenchLevel.name}
@@ -117,10 +121,6 @@ export const FilterFrenchLevel = ({
               details={frenchLevel.cecrCorrespondency}
             />
           ))}
-          <Explaination
-            step={3}
-            defaultText="C’est pour te montrer les formations faites pour ton niveau de français."
-          />
         </ScrollView>
         <BottomContainer>
           <OnboardingProgressBar step={3} />

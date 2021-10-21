@@ -17,13 +17,13 @@ const MainContainer = styled(RTLTouchableOpacity)`
     props.isSelected ? theme.colors.black : theme.colors.white};
   padding: ${theme.margin * 2}px;
   box-shadow: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? "none" : "0px 8px 16px rgba(33, 33, 33, 0.24)"};
+   props.isSelected ? "none" : "1px 1px 8px rgba(33, 33, 33, 0.24)"};
   border-radius: ${theme.radius * 2}px;
-  margin-bottom: ${theme.margin * 2}px;
+  margin-bottom: ${theme.margin * 3}px;
   justify-content: space-between;
   flex-wrap: wrap;
   elevation: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? 0 : 1}; ;
+    props.isSelected ? 0 : 2}; ;
 `;
 
 const StyledText = styled(TextSmallBold)`
@@ -33,7 +33,7 @@ const StyledText = styled(TextSmallBold)`
 
 const DetailContainer = styled.View`
   background-color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? theme.colors.white : theme.colors.grey60};
+    props.isSelected ? theme.colors.white : theme.colors.grey70};
   margin-left: ${theme.margin}px;
   padding-vertical: 4px;
   border-radius: ${theme.margin}px;
@@ -45,8 +45,7 @@ const DetailContainer = styled.View`
 `;
 
 const TextVerySmall = styled(StyledTextVerySmallBold)`
-  color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? theme.colors.black : theme.colors.white};
+  color: ${theme.colors.black};
 `;
 
 const Detail = (props: { text: string; isSelected: boolean }) => (

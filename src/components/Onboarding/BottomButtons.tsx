@@ -3,24 +3,23 @@ import styled from "styled-components/native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { theme } from "../../theme";
 import { RowTouchableOpacity, RTLTouchableOpacity } from "../BasicComponents";
-import { StyledTextSmallBold, StyledTextSmall } from "../StyledText";
+import { StyledTextSmallBold } from "../StyledText";
 import { Icon } from "react-native-eva-icons";
 import { View } from "react-native";
 
 const LeftButtonContainer = styled.TouchableOpacity`
-  background-color: ${theme.colors.white};
-  padding: ${theme.radius * 3}px;
+  padding-vertical: ${theme.radius * 3}px;
   border-radius: ${theme.radius * 2}px;
   height: 56px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
 `;
 
 const RightButtonContainer = styled(RTLTouchableOpacity)`
-  background-color: ${(props: { isDisabled: boolean }) =>
-    props.isDisabled ? theme.colors.grey60 : theme.colors.darkBlue};
+  background-color: ${theme.colors.darkBlue};
+  opacity: ${(props: { isDisabled: boolean }) =>
+    props.isDisabled ? 0.4 : 1};
   border-radius: ${theme.radius * 2}px;
   display: flex;
   flex-direction: row;
@@ -42,6 +41,10 @@ const TextBold = styled(StyledTextSmallBold)`
   margin-right: ${theme.margin}px;
   color: ${(props: { color: string }) => props.color};
   align-items: center;
+  margin-left: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? 0 : theme.margin}px;
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? theme.margin : 0}px;
 `;
 
 const ICON_SIZE = 24;
@@ -58,9 +61,9 @@ export const BottomButtons = (props: Props) => {
     <BottomButtonsContainer>
       <View style={{ paddingRight: 4, width: "50%" }}>
         <LeftButtonContainer onPress={props.onLeftButtonClick}>
-          <StyledTextSmall>
+          <StyledTextSmallBold style={{color: theme.colors.darkBlue}}>
             {t("Passer l'étape", "Passer l'étape")}
-          </StyledTextSmall>
+          </StyledTextSmallBold>
         </LeftButtonContainer>
       </View>
       <View style={{ paddingLeft: 4, width: "50%" }}>
@@ -70,25 +73,15 @@ export const BottomButtons = (props: Props) => {
           disabled={props.isRightButtonDisabled}
           testID="test-validate-button"
         >
-          <TextBold
-            color={
-              props.isRightButtonDisabled
-                ? theme.colors.black
-                : theme.colors.white
-            }
-          >
-            {t("Valider", "Valider")}
-          </TextBold>
           <Icon
-            name={"arrow-forward-outline"}
+            name={"checkmark-outline"}
             width={ICON_SIZE}
             height={ICON_SIZE}
-            fill={
-              props.isRightButtonDisabled
-                ? theme.colors.black
-                : theme.colors.white
-            }
+            fill={theme.colors.white}
           />
+          <TextBold color={theme.colors.white}>
+            {t("Valider", "Valider")}
+          </TextBold>
         </RightButtonContainer>
       </View>
     </BottomButtonsContainer>
