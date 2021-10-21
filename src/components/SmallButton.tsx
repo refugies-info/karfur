@@ -32,6 +32,7 @@ interface Props {
   reversed?: boolean;
   rounded?: boolean;
   bigShadow?: boolean;
+  style?: any;
 }
 export const SmallButton = (props: Props) => (
   <ButtonContainer
@@ -39,6 +40,7 @@ export const SmallButton = (props: Props) => (
     reversed={props.reversed}
     rounded={!!props.rounded}
     bigShadow={!!props.bigShadow}
+    style={props.style || {}}
   >
     <Icon
       name={props.iconName}

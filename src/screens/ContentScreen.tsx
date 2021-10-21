@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Animated,
   Modal,
+  Share
 } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ExplorerParamList } from "../../types";
@@ -29,6 +30,7 @@ import {
   removeUserFavoriteActionCreator,
   saveUserHasNewFavoritesActionCreator,
 } from "../services/redux/User/user.actions";
+import { Content } from "../types/interface";
 import { ContentFromHtml } from "../components/Content/ContentFromHtml";
 import { AvailableLanguageI18nCode, MapGoogle } from "../types/interface";
 import { HeaderImage } from "../components/Content/HeaderImage";
@@ -494,6 +496,26 @@ export const ContentScreen = ({
     return;
   };
 
+  const shareContent = async (content: Content) => {
+    try {
+      const result = await Share.share({
+        message: `${content.titreInformatif} avec Réfugiés.info`,
+        url: `https://staging.refugies.info/dispositif/${content._id}`
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <View style={{ paddingBottom: 60 }}>
       <FixedContainerForHeader>
@@ -724,6 +746,14 @@ export const ContentScreen = ({
             iconName={isContentFavorite ? "star" : "star-outline"}
             rounded={true}
             bigShadow={true}
+            style={{marginHorizontal: theme.margin}}
+          />
+          <SmallButton
+            onPress={() => shareContent(selectedContent)}
+            iconName="share-outline"
+            rounded={true}
+            bigShadow={true}
+            style={{marginHorizontal: theme.margin}}
           />
         </View>
       </TabBarContainer>
