@@ -10,12 +10,15 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
   background-color: ${(props: { backgroundColor: string }) =>
     props.backgroundColor || theme.colors.white};
   justify-content: center;
-  padding: ${theme.radius * 3}px;
-  border-radius: ${theme.radius * 2}px;
+  padding: ${(props: { isSmall: boolean }) =>
+    !props.isSmall ? theme.margin * 3 : theme.margin}px;
+  border-radius: ${(props: { isSmall: boolean }) =>
+    !props.isSmall ? theme.radius * 2 : theme.radius * 4}px;
   align-items: center;
   width: ${(props: { notFullWidth: boolean }) =>
     props.notFullWidth ? "auto" : "100%"};
-  height: 56px;
+  height: ${(props: { isSmall: boolean }) =>
+    !props.isSmall ? 56 : 40}px;
   box-shadow: ${(props: { isDisabled: boolean }) =>
     props.isDisabled
       ? `0px 0px 0px ${theme.colors.grey}`
@@ -51,8 +54,11 @@ interface Props {
   isTextNotBold?: boolean;
   backgroundColor?: string;
   isDisabled?: boolean;
+  isSmall?: boolean;
   iconFirst?: boolean;
   notFullWidth?: boolean;
+  style?: any;
+  iconStyle?: any;
 }
 
 const ICON_SIZE = 24;
@@ -65,6 +71,7 @@ export const CustomButton = (props: Props) => {
     width={ICON_SIZE}
     height={ICON_SIZE}
     fill={props.textColor}
+    style={props.iconStyle || {}}
   />;
 
   return (
@@ -73,8 +80,10 @@ export const CustomButton = (props: Props) => {
       backgroundColor={props.backgroundColor}
       isDisabled={props.isDisabled}
       disabled={props.isDisabled}
+      isSmall={props.isSmall}
       testID={"test-custom-button-" + props.defaultText}
       notFullWidth={props.notFullWidth}
+      style={props.style || {}}
     >
       {props.iconName && props.iconFirst && icon}
       {props.isTextNotBold ? (

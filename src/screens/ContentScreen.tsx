@@ -7,7 +7,8 @@ import {
   StyleSheet,
   Animated,
   Modal,
-  Share
+  Share,
+  Platform
 } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ExplorerParamList } from "../../types";
@@ -498,19 +499,14 @@ export const ContentScreen = ({
 
   const shareContent = async (content: Content) => {
     try {
-      const result = await Share.share({
-        message: `${content.titreInformatif} avec Réfugiés.info`,
-        url: `https://staging.refugies.info/dispositif/${content._id}`
-      });
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
+      const shareData = (Platform.OS === "ios") ? {
+        message: `Partagez la fiche ${content.titreInformatif}`,
+        url: `https://staging.refugies.info/dispositif/${content._id}`,
+      } : {
+        message: `https://staging.refugies.info/dispositif/${content._id}`,
+        title: `${content.titreInformatif} avec Réfugiés.info`
+      };
+      await Share.share(shareData);
     } catch (error) {
       alert(error.message);
     }
@@ -741,19 +737,32 @@ export const ContentScreen = ({
             paddingBottom: insets.bottom || theme.margin,
           }}
         >
-          <SmallButton
+          <CustomButton
             onPress={toggleFavorites}
             iconName={isContentFavorite ? "star" : "star-outline"}
-            rounded={true}
-            bigShadow={true}
-            style={{marginHorizontal: theme.margin}}
+            i18nKey={"Mes fiches"}
+            defaultText={"Mes fiches"}
+            textColor={theme.colors.black}
+            backgroundColor={theme.colors.white}
+            notFullWidth={true}
+            iconFirst={true}
+            isTextNotBold={true}
+            isSmall={true}
+            style={{ marginHorizontal: theme.margin }}
           />
-          <SmallButton
+          <CustomButton
             onPress={() => shareContent(selectedContent)}
-            iconName="share-outline"
-            rounded={true}
-            bigShadow={true}
-            style={{marginHorizontal: theme.margin}}
+            iconName="undo-outline"
+            i18nKey={"Partager"}
+            defaultText={"Partager"}
+            textColor={theme.colors.black}
+            backgroundColor={theme.colors.white}
+            notFullWidth={true}
+            iconStyle={{transform: [{scaleX: -1}]}}
+            iconFirst={true}
+            isTextNotBold={true}
+            isSmall={true}
+            style={{ marginHorizontal: theme.margin }}
           />
         </View>
       </TabBarContainer>

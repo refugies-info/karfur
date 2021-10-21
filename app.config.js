@@ -36,22 +36,6 @@ export default {
       googleMaps: { apiKey: process.env.GOOGLE_MAPS_KEY_ANDROID },
     },
     googleServicesFile: "./src/utils/firebase/google-services.json",
-    intentFilters: [
-      {
-        "action": "VIEW",
-        "data": [
-          {
-            "scheme": "https",
-            "host": "*.refugies.info",
-            "pathPrefix": "/dispositif"
-          },
-        ],
-        "category": [
-          "BROWSABLE",
-          "DEFAULT"
-        ]
-      }
-    ]
   },
   web: {
     config: {
