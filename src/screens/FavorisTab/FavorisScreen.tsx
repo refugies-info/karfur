@@ -75,7 +75,6 @@ export const FavorisScreen = ({
   ? useSelector(contentsSelector(currentLanguageI18nCode)) : [];
   const { t, isRTL } = useTranslationWithRTL();
   const dispatch = useDispatch();
-  let swipeableRefs: any = {};
 
   // When the screen has focus, remove "new favorite" badge
   const hasNewFavorites = useSelector(hasUserNewFavoritesSelector)
@@ -158,9 +157,6 @@ export const FavorisScreen = ({
   }
   const hideDeleteModal = () => {
     if (favoriteToDelete !== "") {
-      if (swipeableRefs[favoriteToDelete]) { // close swipeable if open
-        swipeableRefs[favoriteToDelete].close();
-      }
       setFavoriteToDelete("");
     }
   }
@@ -215,13 +211,12 @@ export const FavorisScreen = ({
               return (
                 <CardItem key={content._id}>
                     <Swipeable
-                      ref={ref => swipeableRefs[content._id] = ref}
                       renderRightActions={!isRTL ? renderActions : undefined}
                       renderLeftActions={isRTL ? renderActions : undefined}
                       leftThreshold={!isRTL ? 9999 : 120}
                       rightThreshold={isRTL ? 9999 : 120}
-                      onSwipeableRightOpen={!isRTL ? () => showDeleteModal(content._id) : undefined}
-                      onSwipeableLeftOpen={isRTL ? () => showDeleteModal(content._id) : undefined}
+                      onSwipeableRightOpen={!isRTL ? () => deleteFavorite(content._id) : undefined}
+                      onSwipeableLeftOpen={isRTL ? () => deleteFavorite(content._id) : undefined}
                       overshootFriction={8}
                     >
                       <ContentSummary
