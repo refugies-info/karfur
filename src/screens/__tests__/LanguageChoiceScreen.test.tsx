@@ -8,6 +8,7 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 jest.mock("../../hooks/useTranslationWithRTL", () => ({
   useTranslationWithRTL: jest.fn().mockReturnValue({
     i18n: { changeLanguage: jest.fn() },
+    t: jest.fn().mockImplementation((_, arg2) => arg2),
   }),
 }));
 
@@ -29,6 +30,7 @@ describe("LanguageChoiceScreen", () => {
     const changeLanguage = jest.fn();
     (useTranslationWithRTL as jest.Mock).mockReturnValueOnce({
       i18n: { changeLanguage },
+      t: jest.fn().mockImplementationOnce((arg1, _) => arg1),
     });
     const navigation = { navigate: jest.fn() };
     const component = wrapWithProvidersAndRender({
