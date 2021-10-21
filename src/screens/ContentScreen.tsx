@@ -729,9 +729,8 @@ export const ContentScreen = ({
       </ScrollView>
 
       <TabBarContainer>
-        <View
+        <RTLView
           style={{
-            flexDirection: "row",
             justifyContent: "center",
             paddingTop: theme.margin,
             paddingBottom: insets.bottom || theme.margin,
@@ -740,7 +739,7 @@ export const ContentScreen = ({
           <CustomButton
             onPress={toggleFavorites}
             iconName={isContentFavorite ? "star" : "star-outline"}
-            i18nKey={"Mes fiches"}
+            i18nKey={"FavorisScreen.Mes fiches"}
             defaultText={"Mes fiches"}
             textColor={theme.colors.black}
             backgroundColor={theme.colors.white}
@@ -764,7 +763,7 @@ export const ContentScreen = ({
             isSmall={true}
             style={{ marginHorizontal: theme.margin }}
           />
-        </View>
+        </RTLView>
       </TabBarContainer>
 
       <LanguageChoiceModal

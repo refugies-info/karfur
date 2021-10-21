@@ -11,7 +11,7 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
     props.backgroundColor || theme.colors.white};
   justify-content: center;
   padding: ${(props: { isSmall: boolean }) =>
-    !props.isSmall ? theme.margin * 3 : theme.margin}px;
+    !props.isSmall ? theme.radius * 3 : theme.margin}px;
   border-radius: ${(props: { isSmall: boolean }) =>
     !props.isSmall ? theme.radius * 2 : theme.radius * 4}px;
   align-items: center;
