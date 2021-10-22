@@ -8,10 +8,12 @@ import {
   Animated,
   Modal,
   Share,
-  Platform
+  Platform,
 } from "react-native";
+import { CompositeNavigationProp } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
-import { ExplorerParamList } from "../../types";
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { ExplorerParamList, BottomTabParamList } from "../../types";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { WrapperWithHeaderAndLanguageModal } from "./WrapperWithHeaderAndLanguageModal";
 import { ScrollView } from "react-native-gesture-handler";
@@ -20,7 +22,7 @@ import { fetchSelectedContentActionCreator } from "../services/redux/SelectedCon
 import { selectedContentSelector } from "../services/redux/SelectedContent/selectedContent.selectors";
 import { theme } from "../theme";
 import { getEnvironment } from "../libs/getEnvironment";
-import { TextBigBold, TextSmallNormal } from "../components/StyledText";
+import { TextBigBold, TextSmallNormal, TextSmallBold } from "../components/StyledText";
 import {
   selectedI18nCodeSelector,
   currentI18nCodeSelector,
@@ -59,6 +61,7 @@ import { ContentImage } from "../components/Content/ContentImage";
 import { logEventInFirebase } from "../utils/logEvent";
 import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
 import { updateNbVuesOrFavoritesOnContent } from "../utils/API";
+import { Trans } from "react-i18next";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -158,6 +161,12 @@ const TabBarContainer = styled.View`
   z-index: 14;
   elevation: 14;
 `;
+const ToastText = styled(TextSmallNormal)`
+  color: ${theme.colors.white};
+`;
+const ToastTextBold = styled(TextSmallBold)`
+  color: ${theme.colors.white};
+`;
 
 const headersDispositif = [
   "C'est quoi ?",
@@ -211,10 +220,16 @@ const computeIfContentIsTranslatedInCurrentLanguage = (
   return avancement[currentLanguage] === 1;
 };
 
+type ContentScreenType = CompositeNavigationProp<
+  //@ts-ignore
+  StackScreenProps<ExplorerParamList, "ContentScreen">,
+  BottomTabScreenProps<BottomTabParamList>
+>;
+
 export const ContentScreen = ({
   navigation,
   route,
-}: StackScreenProps<ExplorerParamList, "ContentScreen">) => {
+}: ContentScreenType) => {
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
   );
@@ -339,29 +354,18 @@ export const ContentScreen = ({
 
   // Favorites
   const favorites = useSelector(userFavorites);
-  const [favoriteToast, setFavoriteToast] = React.useState<{
-    text: string;
-    icon: string;
-    link?: string;
-  } | null>(null);
+  const [favoriteToast, setFavoriteToast] = React.useState("");
   const isContentFavorite = useSelector(isFavorite(contentId));
   const toggleFavorites = () => {
     if (isContentFavorite) {
       dispatch(removeUserFavoriteActionCreator(contentId));
-      setFavoriteToast({
-        text: t("Content.favoris supprimé", "Fiche supprimée de tes favoris"),
-        icon: "trash-2-outline",
-      });
+      setFavoriteToast("removed");
     } else {
       if (favorites.length === 0) {
         dispatch(saveUserHasNewFavoritesActionCreator());
       }
       dispatch(addUserFavoriteActionCreator(contentId));
-      setFavoriteToast({
-        text: t("Content.favoris ajouté", "Fiche ajoutée à tes favoris"),
-        link: "Favoris",
-        icon: "star",
-      });
+      setFavoriteToast("added");
       if (selectedContent) {
         const nbFavoritesMobile = selectedContent.nbFavoritesMobile
           ? selectedContent.nbFavoritesMobile + 1
@@ -773,16 +777,33 @@ export const ContentScreen = ({
         isModalVisible={isLanguageModalVisible}
         toggleModal={toggleLanguageModal}
       />
-      {favoriteToast !== null && (
+
+      {favoriteToast !== "" && (
         <Toast
-          text={favoriteToast.text}
-          icon={favoriteToast.icon}
-          textLink={favoriteToast.link}
-          navigation={navigation}
-          onClose={() => {
-            setFavoriteToast(null);
-          }}
-        />
+          icon={favoriteToast === "added" ? "star-outline" : "trash-2-outline"}
+          onClose={() => setFavoriteToast("")}
+        >
+          {favoriteToast === "removed" ?
+            <ToastText>
+              {t("Content.favoris supprimé", "Fiche supprimée de tes favoris")}
+            </ToastText> :
+            <View>
+              <ToastText>
+                <Trans i18nKey="Content.favoris ajouté">
+                  Ajouté à
+                  <ToastTextBold
+                    onPress={() => navigation.navigate("Favoris")}
+                    style={{
+                      textDecorationLine: "underline",
+                      textDecorationColor: theme.colors.white,
+                      marginHorizontal: theme.margin
+                    }}
+                  >Mes fiches</ToastTextBold>
+                </Trans>
+              </ToastText>
+            </View>
+          }
+        </Toast>
       )}
       {/*
         TODO: Fix for https://github.com/software-mansion/react-native-gesture-handler/issues/139
