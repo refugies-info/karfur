@@ -21,7 +21,7 @@ import {
   saveUserLocationActionCreator,
   removeUserLocationActionCreator,
 } from "../../services/redux/User/user.actions";
-import { ContentContainer, Title } from "../Onboarding/SharedStyledComponents";
+import { ContentContainer, Title, Label } from "../Onboarding/SharedStyledComponents";
 import { View, ActivityIndicator } from "react-native";
 import { SearchBarCity } from "../Onboarding/SearchBarCity";
 import { Icon } from "react-native-eva-icons";
@@ -32,14 +32,21 @@ import { BottomButtons } from "../Onboarding/BottomButtons";
 import { CustomButton } from "../CustomButton";
 
 const GeolocContainer = styled(RTLTouchableOpacity)`
-  background-color: ${theme.colors.white};
+  background-color: ${theme.colors.lightBlue};
   margin-vertical: ${theme.margin * 2}px;
   border-radius: ${theme.radius * 2}px;
   padding: ${theme.margin * 2}px;
   align-items: center;
+  box-shadow: 1px 1px 2px rgba(0.33, 0.33, 0.33, 0.4);
+  elevation: 2;
+  border-width: 2px;
+  border-style: solid;
+  border-color: ${(props: { hasError: boolean }) =>
+    props.hasError ? theme.colors.red : "transparent"};
 `;
 
 const GeolocText = styled(TextSmallBold)`
+  color: ${theme.colors.darkBlue};
   margin-left: ${(props: { isRTL: boolean }) =>
     props.isRTL ? 0 : theme.margin}px;
   margin-right: ${(props: { isRTL: boolean }) =>
@@ -254,7 +261,12 @@ export const FilterCityComponent = (props: Props) => {
   return (
     <ContentContainer>
       <View>
-        <Title>{t("Onboarding.ville", "Dans quelle ville habites-tu ?")}</Title>
+        <Title>{t("Onboarding.ville", "Tu habites dans quelle ville ?")}</Title>
+        <Explaination
+          step={1}
+          defaultText="C’est pour te montrer les associations et les activités dans ta ville."
+        />
+        <Label>{t("Onboarding.Ta ville", "Ta ville")}</Label>
         {!selectedCity && !isGeolocLoading && (
           <View>
             <SearchBarCity
@@ -264,12 +276,12 @@ export const FilterCityComponent = (props: Props) => {
               selectSuggestion={onSelectSuggestion}
             />
             {!enteredText && (
-              <GeolocContainer onPress={useGeoloc}>
+              <GeolocContainer onPress={useGeoloc} hasError={!!error}>
                 <Icon
-                  name="navigation-2-outline"
+                  name="pin"
                   width={ICON_SIZE}
                   height={ICON_SIZE}
-                  fill={theme.colors.black}
+                  fill={theme.colors.darkBlue}
                 />
                 <GeolocText isRTL={isRTL}>
                   {t("Onboarding.position", "Utiliser ma position")}
@@ -294,16 +306,9 @@ export const FilterCityComponent = (props: Props) => {
             </SelectedCityContainer>
           </RTLView>
         )}
-
-        {!enteredText && !isGeolocLoading && (
-          <Explaination
-            step={1}
-            defaultText="C’est pour te montrer les associations et les activités dans ta ville."
-          />
-        )}
+        {!!error && <ErrorComponent text={error} />}
       </View>
       <View>
-        {!!error && <ErrorComponent text={error} />}
 
         {props.isOnboardingScreen ? (
           <>
@@ -320,20 +325,15 @@ export const FilterCityComponent = (props: Props) => {
               <CustomButton
                 i18nKey={"Valider"}
                 defaultText="Valider"
-                textColor={
-                  isOnValidateDisabled ? theme.colors.black : theme.colors.white
-                }
+                textColor={theme.colors.white}
                 onPress={() => {
                   if (isOnValidateDisabled) return;
                   onValidate();
                 }}
-                backgroundColor={
-                  isOnValidateDisabled
-                    ? theme.colors.grey60
-                    : theme.colors.darkBlue
-                }
-                iconName="arrow-forward-outline"
+                backgroundColor={theme.colors.darkBlue}
+                iconName="checkmark-outline"
                 isDisabled={isOnValidateDisabled}
+                iconFirst={true}
               />
             </ValidateButtonContainer>
 
@@ -343,7 +343,7 @@ export const FilterCityComponent = (props: Props) => {
               textColor={theme.colors.black}
               onPress={props.navigation.goBack}
               isTextNotBold={true}
-              isDisabled={true}
+              isDisabled={isOnValidateDisabled}
             />
           </BottomButtonsContainer>
         )}

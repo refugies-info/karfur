@@ -21,7 +21,9 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
       ? `0px 0px 0px ${theme.colors.grey}`
       : "0px 8px 16px rgba(33, 33, 33, 0.24)"};
   elevation: ${(props: { isDisabled: boolean }) =>
-    props.isDisabled ? 0 : 1}; ;
+    props.isDisabled ? 0 : 1};
+  opacity: ${(props: { isDisabled: boolean }) =>
+    props.isDisabled ? 0.4 : 1};
 `;
 
 const ColoredTextBold = styled(StyledTextSmallBold)`
@@ -70,6 +72,7 @@ export const CustomButton = (props: Props) => {
       onPress={props.onPress}
       backgroundColor={props.backgroundColor}
       isDisabled={props.isDisabled}
+      disabled={props.isDisabled}
       testID={"test-custom-button-" + props.defaultText}
       notFullWidth={props.notFullWidth}
     >

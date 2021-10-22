@@ -19,7 +19,7 @@ const MainView = styled.View`
 export const LanguageChoiceScreen = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "OnboardingSteps">) => {
-  const { i18n } = useTranslationWithRTL();
+  const { i18n, t } = useTranslationWithRTL();
   const dispatch = useDispatch();
 
   const changeLanguage = (ln: AvailableLanguageI18nCode) => {
@@ -35,7 +35,11 @@ export const LanguageChoiceScreen = ({
   };
   return (
     <MainView>
-      <HeaderWithLogo hideLanguageSwitch={true} />
+      <HeaderWithLogo
+        hideLanguageSwitch={true}
+        iconName="globe-2-outline"
+        text={t("Langue app", "Langue")}
+      />
       <ScrollView
         scrollIndicatorInsets={{ right: 1 }}
         contentContainerStyle={{
@@ -43,7 +47,8 @@ export const LanguageChoiceScreen = ({
           paddingBottom: theme.margin * 3,
           paddingTop: theme.margin,
 
-          justifyContent: "center",
+
+          justifyContent: "flex-start",
           flexGrow: 1,
           flexDirection: "column",
         }}

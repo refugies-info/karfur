@@ -1,9 +1,9 @@
 import * as React from "react";
 import {
   TextSmallNormal,
-  StyledTextVerySmall,
+  StyledTextSmall,
 } from "../../components/StyledText";
-import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal";
+import { View } from "react-native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
@@ -16,6 +16,7 @@ import {
   removeSelectedLanguageActionCreator,
 } from "../../services/redux/User/user.actions";
 import { ProfilDetailButton } from "../../components/Profil/ProfilDetailButton";
+import { HeaderAnimated } from "../../components/HeaderAnimated";
 import {
   selectedI18nCodeSelector,
   userLocationSelector,
@@ -26,24 +27,28 @@ import { getSelectedLanguageFromI18nCode } from "../../libs/language";
 import { RootStackParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ConfirmationModal } from "../../components/ConfirmationModal";
+import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 
 const DeleteDataContainer = styled.TouchableOpacity`
   align-items: center;
-  padding: ${theme.margin * 3}px;
-  margin-horizontal: ${theme.margin * 3}px;
+  padding: ${theme.margin * 2}px;
+  margin-top: ${theme.margin * 5}px;
+  margin-bottom: ${theme.margin * 7}px;
+  background-color: ${theme.colors.grey60};
+  border-radius: ${theme.radius * 2}px;
 `;
 
-const DeleteDataText = styled(StyledTextVerySmall)`
-  color: ${theme.colors.darkGrey};
+const DeleteDataText = styled(StyledTextSmall)`
+  color: ${theme.colors.black};
 `;
 
-const ContentContainer = styled.View`
+const ContentContainer = styled.ScrollView`
   padding-horizontal: ${theme.margin * 3}px;
   padding-bottom: ${theme.margin * 3}px;
-  padding-top: ${theme.margin * 3}px;
+  padding-top: ${theme.margin * 2}px;
 `;
 const StyledText = styled(TextSmallNormal)`
-  margin-bottom: ${theme.margin * 2}px;
+  margin-bottom: ${theme.margin * 3}px;
 `;
 
 const ProfilButtonsContainer = styled.View`
@@ -62,12 +67,18 @@ export const ProfilScreen = ({
   const [isReinitAppModalVisible, setReinitAppModalVisible] = React.useState(
     false
   );
+  const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
+    false
+  );
 
   const toggleDeleteDataModal = () =>
     setDeleteDataModalVisible(!isDeleteDataModalVisible);
 
   const toggleReinitAppModal = () =>
     setReinitAppModalVisible(!isReinitAppModalVisible);
+
+  const toggleLanguageModal = () =>
+    setLanguageModalVisible(!isLanguageModalVisible);
 
   const { t, isRTL } = useTranslationWithRTL();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
@@ -94,9 +105,32 @@ export const ProfilScreen = ({
     dispatch(removeHasUserSeenOnboardingActionCreator());
   };
 
+  // Header animation
+  const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
+  const handleScroll = (event: any) => {
+    if (event.nativeEvent.contentOffset.y > 5 && !showSimplifiedHeader) {
+      setShowSimplifiedHeader(true);
+      return;
+    }
+    if (event.nativeEvent.contentOffset.y < 5 && showSimplifiedHeader) {
+      setShowSimplifiedHeader(false);
+      return;
+    }
+    return;
+  };
+
   return (
-    <WrapperWithHeaderAndLanguageModal>
-      <ContentContainer>
+    <View style={{flex: 1}}>
+      <HeaderAnimated
+        title={t("Profil.Paramètres", "Paramètres")}
+        showSimplifiedHeader={showSimplifiedHeader}
+        onLongPressSwitchLanguage={toggleLanguageModal}
+      />
+
+      <ContentContainer
+        onScroll={handleScroll}
+        scrollEventThrottle={5}
+      >
         <StyledText>{t("Profil.Mon profil", "Mon profil")}</StyledText>
         <ProfilButtonsContainer>
           <ProfilDetailButton
@@ -155,19 +189,33 @@ export const ProfilScreen = ({
             {t("Profil.supprimer_data", "Supprimer les données de mon profil")}
           </DeleteDataText>
         </DeleteDataContainer>
-        <StyledText>{t("Profil.Paramètres", "Paramètres")}</StyledText>
+        <StyledText>{t("Profil.Informations sur l'application", "Informations sur l'application")}</StyledText>
         <ProfilButtonsContainer>
           <ProfilDetailButton
-            iconName="lock-outline"
-            category={t("Profil.Confidentialité", "Confidentialité")}
+            iconName="question-mark-circle-outline"
+            category={t("Profil.Qui sommes-nous ?", "Qui sommes-nous ?")}
             isFirst={true}
+            isLast={false}
+            isRTL={isRTL}
+          />
+          <ProfilDetailButton
+            iconName="lock-outline"
+            category={t("Profil.Confidentialité", "Politique de confidentialité")}
+            isFirst={false}
+            isLast={false}
+            isRTL={isRTL}
+          />
+          <ProfilDetailButton
+            iconName="file-text-outline"
+            category={t("Profil.Mentions légales", "Mentions légales")}
+            isFirst={false}
             isLast={true}
             isRTL={isRTL}
           />
         </ProfilButtonsContainer>
         <DeleteDataContainer onPress={toggleReinitAppModal}>
           <DeleteDataText>
-            {t("Profil.reinit_app", "Réinitialiser mon application")}
+            {t("Profil.reinit_app", "Réinitialiser l'application")}
           </DeleteDataText>
         </DeleteDataContainer>
       </ContentContainer>
@@ -189,6 +237,10 @@ export const ProfilScreen = ({
         )}
         onValidate={reinitializeApp}
       />
-    </WrapperWithHeaderAndLanguageModal>
+      <LanguageChoiceModal
+        isModalVisible={isLanguageModalVisible}
+        toggleModal={toggleLanguageModal}
+      />
+    </View>
   );
 };

@@ -354,18 +354,55 @@ exports[`Filter city should render correctly when city selected 1`] = `
             Object {
               "color": "#212121",
               "fontFamily": "circularBold",
-              "fontSize": 19,
-              "lineHeight": 24,
+              "fontSize": 25,
+              "lineHeight": 32,
               "textAlign": "left",
             },
             Object {
-              "marginBottom": 32,
-              "marginTop": 16,
+              "marginBottom": 16,
             },
           ]
         }
       >
-        Dans quelle ville habites-tu ?
+        Tu habites dans quelle ville ?
+      </Text>
+      <Text
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "color": "#5E5E5E",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 48,
+              "textAlign": "left",
+            },
+          ]
+        }
+      >
+        C’est pour te montrer les associations et les activités dans ta ville.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 13,
+              "lineHeight": 16,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 16,
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        Ta ville
       </Text>
       <View
         isRTL={false}
@@ -500,174 +537,67 @@ exports[`Filter city should render correctly when city selected 1`] = `
           </View>
         </View>
       </View>
-      <View
-        isRTL={false}
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "display": "flex",
-              "flexDirection": "row",
-            },
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 8,
-              "display": "flex",
-              "marginTop": 8,
-              "paddingVertical": 16,
-              "width": "100%",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "display": "flex",
-                "flexDirection": "row",
-                "justifyContent": "center",
-                "position": "absolute",
-                "top": -10,
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <react-native-svg />
-        </View>
-        <View
-          isRTL={false}
-          style={
-            Array [
-              Object {
-                "marginLeft": 16,
-                "marginRight": 0,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "transform": Array [
-                  Object {
-                    "scale": 1,
-                  },
-                ],
-              }
-            }
-          >
-            <RNSVGSvgView
-              align="xMidYMid"
-              bbHeight={24}
-              bbWidth={24}
-              fill="#2D9CDB"
-              focusable={false}
-              height={24}
-              meetOrSlice={0}
-              minX={0}
-              minY={0}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 24,
-                    "width": 24,
-                  },
-                ]
-              }
-              vbHeight={24}
-              vbWidth={24}
-              width={24}
-            >
-              <RNSVGGroup
-                fill={4281179355}
-                propList={
-                  Array [
-                    "fill",
-                  ]
-                }
-              >
-                <RNSVGGroup>
-                  <RNSVGGroup>
-                    <RNSVGRect
-                      height="24"
-                      matrix={
-                        Array [
-                          -1,
-                          1.2246467991473532e-16,
-                          -1.2246467991473532e-16,
-                          -1,
-                          24,
-                          24,
-                        ]
-                      }
-                      opacity={0}
-                      width="24"
-                      x={0}
-                      y={0}
-                    />
-                    <RNSVGPath
-                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
-                    />
-                  </RNSVGGroup>
-                </RNSVGGroup>
-              </RNSVGGroup>
-            </RNSVGSvgView>
-          </View>
-        </View>
-        <Text
-          isRTL={false}
-          style={
-            Array [
-              Object {
-                "color": "#2D9CDB",
-                "flexShrink": 1,
-                "fontFamily": "circularBook",
-                "fontSize": 13,
-                "lineHeight": 16,
-                "marginLeft": 8,
-                "marginRight": 16,
-                "textAlign": "left",
-              },
-            ]
-          }
-        >
-          C’est pour te montrer les associations et les activités dans ta ville.
-        </Text>
-      </View>
     </View>
     <View>
       <View
         style={
           Array [
             Object {
-              "backgroundColor": "#C6C6C6",
-              "borderRadius": 12,
-              "height": 4,
-              "width": "100%",
+              "flexDirection": "row",
+              "marginHorizontal": -6,
             },
           ]
         }
       >
         <View
+          isDone={true}
           style={
-            Object {
-              "backgroundColor": "#0421B1",
-              "borderRadius": 12,
-              "bottom": 0,
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "width": "0%",
-            }
+            Array [
+              Object {
+                "backgroundColor": "#0421B1",
+                "borderRadius": 12,
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "height": 4,
+                "marginHorizontal": 6,
+                "width": "100%",
+              },
+            ]
+          }
+        />
+        <View
+          isDone={false}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C6C6C6",
+                "borderRadius": 12,
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "height": 4,
+                "marginHorizontal": 6,
+                "width": "100%",
+              },
+            ]
+          }
+        />
+        <View
+          isDone={false}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C6C6C6",
+                "borderRadius": 12,
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "height": 4,
+                "marginHorizontal": 6,
+                "width": "100%",
+              },
+            ]
           }
         />
       </View>
@@ -712,17 +642,12 @@ exports[`Filter city should render correctly when city selected 1`] = `
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
                 "borderRadius": 12,
                 "display": "flex",
                 "flexDirection": "row",
                 "height": 56,
-                "justifyContent": "center",
                 "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 18,
-                "paddingRight": 18,
-                "paddingTop": 18,
+                "paddingVertical": 18,
               }
             }
           >
@@ -731,10 +656,14 @@ exports[`Filter city should render correctly when city selected 1`] = `
                 Array [
                   Object {
                     "color": "#212121",
-                    "fontFamily": "circularBook",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
                     "fontSize": 16,
                     "lineHeight": 20,
                     "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#0421B1",
                   },
                 ]
               }
@@ -771,7 +700,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
                 "flexDirection": "row",
                 "height": 56,
                 "justifyContent": "center",
-                "opacity": 1,
+                "opacity": 0.4,
                 "shadowColor": "rgba(33, 33, 33, 0.24)",
                 "shadowOffset": Object {
                   "height": 8,
@@ -783,25 +712,6 @@ exports[`Filter city should render correctly when city selected 1`] = `
             }
             testID="test-validate-button"
           >
-            <Text
-              color="#FFFFFF"
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "color": "#FFFFFF",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginRight": 8,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              Valider
-            </Text>
             <View
               style={
                 Object {
@@ -852,29 +762,39 @@ exports[`Filter city should render correctly when city selected 1`] = `
                     <RNSVGGroup>
                       <RNSVGRect
                         height="24"
-                        matrix={
-                          Array [
-                            6.123233995736766e-17,
-                            -1,
-                            1,
-                            6.123233995736766e-17,
-                            0,
-                            24,
-                          ]
-                        }
                         opacity={0}
                         width="24"
                         x={0}
                         y={0}
                       />
                       <RNSVGPath
-                        d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                        d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
                       />
                     </RNSVGGroup>
                   </RNSVGGroup>
                 </RNSVGGroup>
               </RNSVGSvgView>
             </View>
+            <Text
+              color="#FFFFFF"
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "color": "#FFFFFF",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              Valider
+            </Text>
           </View>
         </View>
       </View>
@@ -1237,18 +1157,55 @@ exports[`Filter city should render correctly when no city 1`] = `
             Object {
               "color": "#212121",
               "fontFamily": "circularBold",
-              "fontSize": 19,
-              "lineHeight": 24,
+              "fontSize": 25,
+              "lineHeight": 32,
               "textAlign": "left",
             },
             Object {
-              "marginBottom": 32,
-              "marginTop": 16,
+              "marginBottom": 16,
             },
           ]
         }
       >
-        Dans quelle ville habites-tu ?
+        Tu habites dans quelle ville ?
+      </Text>
+      <Text
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "color": "#5E5E5E",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "marginBottom": 48,
+              "textAlign": "left",
+            },
+          ]
+        }
+      >
+        C’est pour te montrer les associations et les activités dans ta ville.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 13,
+              "lineHeight": 16,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 16,
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        Ta ville
       </Text>
       <View>
         <View>
@@ -1296,9 +1253,13 @@ exports[`Filter city should render correctly when no city 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
+              "backgroundColor": "#DAE0FB",
+              "borderColor": "transparent",
               "borderRadius": 12,
+              "borderStyle": "solid",
+              "borderWidth": 2,
               "display": "flex",
+              "elevation": 2,
               "flexDirection": "row",
               "marginVertical": 16,
               "opacity": 1,
@@ -1306,6 +1267,13 @@ exports[`Filter city should render correctly when no city 1`] = `
               "paddingLeft": 16,
               "paddingRight": 16,
               "paddingTop": 16,
+              "shadowColor": "rgba(0.33, 0.33, 0.33, 0.4)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 2,
             }
           }
         >
@@ -1324,7 +1292,7 @@ exports[`Filter city should render correctly when no city 1`] = `
               align="xMidYMid"
               bbHeight={24}
               bbWidth={24}
-              fill="#212121"
+              fill="#0421B1"
               focusable={false}
               height={24}
               meetOrSlice={0}
@@ -1348,7 +1316,7 @@ exports[`Filter city should render correctly when no city 1`] = `
               width={24}
             >
               <RNSVGGroup
-                fill={4280361249}
+                fill={4278460849}
                 propList={
                   Array [
                     "fill",
@@ -1364,8 +1332,13 @@ exports[`Filter city should render correctly when no city 1`] = `
                       x={0}
                       y={0}
                     />
+                    <RNSVGCircle
+                      cx="12"
+                      cy="9.5"
+                      r="1.5"
+                    />
                     <RNSVGPath
-                      d="M13.67 22h-.06a1 1 0 0 1-.92-.8L11 13l-8.2-1.69a1 1 0 0 1-.12-1.93l16-5.33A1 1 0 0 1 20 5.32l-5.33 16a1 1 0 0 1-1 .68zm-6.8-11.9l5.19 1.06a1 1 0 0 1 .79.78l1.05 5.19 3.52-10.55z"
+                      d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 11a3.5 3.5 0 1 1 3.5-3.5A3.5 3.5 0 0 1 12 13z"
                     />
                   </RNSVGGroup>
                 </RNSVGGroup>
@@ -1386,6 +1359,7 @@ exports[`Filter city should render correctly when no city 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "color": "#0421B1",
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -1396,174 +1370,67 @@ exports[`Filter city should render correctly when no city 1`] = `
           </Text>
         </View>
       </View>
-      <View
-        isRTL={false}
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "display": "flex",
-              "flexDirection": "row",
-            },
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 8,
-              "display": "flex",
-              "marginTop": 8,
-              "paddingVertical": 16,
-              "width": "100%",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "display": "flex",
-                "flexDirection": "row",
-                "justifyContent": "center",
-                "position": "absolute",
-                "top": -10,
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <react-native-svg />
-        </View>
-        <View
-          isRTL={false}
-          style={
-            Array [
-              Object {
-                "marginLeft": 16,
-                "marginRight": 0,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "transform": Array [
-                  Object {
-                    "scale": 1,
-                  },
-                ],
-              }
-            }
-          >
-            <RNSVGSvgView
-              align="xMidYMid"
-              bbHeight={24}
-              bbWidth={24}
-              fill="#2D9CDB"
-              focusable={false}
-              height={24}
-              meetOrSlice={0}
-              minX={0}
-              minY={0}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 24,
-                    "width": 24,
-                  },
-                ]
-              }
-              vbHeight={24}
-              vbWidth={24}
-              width={24}
-            >
-              <RNSVGGroup
-                fill={4281179355}
-                propList={
-                  Array [
-                    "fill",
-                  ]
-                }
-              >
-                <RNSVGGroup>
-                  <RNSVGGroup>
-                    <RNSVGRect
-                      height="24"
-                      matrix={
-                        Array [
-                          -1,
-                          1.2246467991473532e-16,
-                          -1.2246467991473532e-16,
-                          -1,
-                          24,
-                          24,
-                        ]
-                      }
-                      opacity={0}
-                      width="24"
-                      x={0}
-                      y={0}
-                    />
-                    <RNSVGPath
-                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14a1 1 0 0 1-2 0v-5a1 1 0 0 1 2 0zm-1-7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"
-                    />
-                  </RNSVGGroup>
-                </RNSVGGroup>
-              </RNSVGGroup>
-            </RNSVGSvgView>
-          </View>
-        </View>
-        <Text
-          isRTL={false}
-          style={
-            Array [
-              Object {
-                "color": "#2D9CDB",
-                "flexShrink": 1,
-                "fontFamily": "circularBook",
-                "fontSize": 13,
-                "lineHeight": 16,
-                "marginLeft": 8,
-                "marginRight": 16,
-                "textAlign": "left",
-              },
-            ]
-          }
-        >
-          C’est pour te montrer les associations et les activités dans ta ville.
-        </Text>
-      </View>
     </View>
     <View>
       <View
         style={
           Array [
             Object {
-              "backgroundColor": "#C6C6C6",
-              "borderRadius": 12,
-              "height": 4,
-              "width": "100%",
+              "flexDirection": "row",
+              "marginHorizontal": -6,
             },
           ]
         }
       >
         <View
+          isDone={true}
           style={
-            Object {
-              "backgroundColor": "#0421B1",
-              "borderRadius": 12,
-              "bottom": 0,
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-              "width": "0%",
-            }
+            Array [
+              Object {
+                "backgroundColor": "#0421B1",
+                "borderRadius": 12,
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "height": 4,
+                "marginHorizontal": 6,
+                "width": "100%",
+              },
+            ]
+          }
+        />
+        <View
+          isDone={false}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C6C6C6",
+                "borderRadius": 12,
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "height": 4,
+                "marginHorizontal": 6,
+                "width": "100%",
+              },
+            ]
+          }
+        />
+        <View
+          isDone={false}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C6C6C6",
+                "borderRadius": 12,
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "height": 4,
+                "marginHorizontal": 6,
+                "width": "100%",
+              },
+            ]
           }
         />
       </View>
@@ -1608,17 +1475,12 @@ exports[`Filter city should render correctly when no city 1`] = `
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
                 "borderRadius": 12,
                 "display": "flex",
                 "flexDirection": "row",
                 "height": 56,
-                "justifyContent": "center",
                 "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 18,
-                "paddingRight": 18,
-                "paddingTop": 18,
+                "paddingVertical": 18,
               }
             }
           >
@@ -1627,10 +1489,14 @@ exports[`Filter city should render correctly when no city 1`] = `
                 Array [
                   Object {
                     "color": "#212121",
-                    "fontFamily": "circularBook",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
                     "fontSize": 16,
                     "lineHeight": 20,
                     "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#0421B1",
                   },
                 ]
               }
@@ -1660,14 +1526,14 @@ exports[`Filter city should render correctly when no city 1`] = `
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#C6C6C6",
+                "backgroundColor": "#0421B1",
                 "borderRadius": 12,
                 "display": "flex",
                 "elevation": 0,
                 "flexDirection": "row",
                 "height": 56,
                 "justifyContent": "center",
-                "opacity": 1,
+                "opacity": 0.4,
                 "shadowColor": "#EDEBEB",
                 "shadowOffset": Object {
                   "height": 8,
@@ -1679,25 +1545,6 @@ exports[`Filter city should render correctly when no city 1`] = `
             }
             testID="test-validate-button"
           >
-            <Text
-              color="#212121"
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginRight": 8,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              Valider
-            </Text>
             <View
               style={
                 Object {
@@ -1713,7 +1560,7 @@ exports[`Filter city should render correctly when no city 1`] = `
                 align="xMidYMid"
                 bbHeight={24}
                 bbWidth={24}
-                fill="#212121"
+                fill="#FFFFFF"
                 focusable={false}
                 height={24}
                 meetOrSlice={0}
@@ -1737,7 +1584,7 @@ exports[`Filter city should render correctly when no city 1`] = `
                 width={24}
               >
                 <RNSVGGroup
-                  fill={4280361249}
+                  fill={4294967295}
                   propList={
                     Array [
                       "fill",
@@ -1748,29 +1595,39 @@ exports[`Filter city should render correctly when no city 1`] = `
                     <RNSVGGroup>
                       <RNSVGRect
                         height="24"
-                        matrix={
-                          Array [
-                            6.123233995736766e-17,
-                            -1,
-                            1,
-                            6.123233995736766e-17,
-                            0,
-                            24,
-                          ]
-                        }
                         opacity={0}
                         width="24"
                         x={0}
                         y={0}
                       />
                       <RNSVGPath
-                        d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                        d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
                       />
                     </RNSVGGroup>
                   </RNSVGGroup>
                 </RNSVGGroup>
               </RNSVGSvgView>
             </View>
+            <Text
+              color="#FFFFFF"
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "color": "#FFFFFF",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              Valider
+            </Text>
           </View>
         </View>
       </View>

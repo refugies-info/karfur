@@ -10,19 +10,19 @@ const MainContainer = styled.TouchableOpacity`
     props.isSelected ? theme.colors.black : theme.colors.white};
   border-radius: ${theme.radius * 2}px;
   padding: ${theme.margin * 2}px;
-  margin-vertical: ${theme.margin}px;
+  margin-vertical: ${theme.margin * 1.5}px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  elevation: 1;
-  box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
+  elevation: 2;
+  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
 `;
 
 const StyledTextBold = styled(StyledTextSmallBold)`
   text-align: left;
-  margin-left: ${theme.margin}px;
+  margin-left: ${theme.margin * 2}px;
   color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.white : theme.colors.black};
 `;
@@ -31,6 +31,7 @@ const StyledText = styled(StyledTextSmall)`
   text-align: left;
   color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.white : theme.colors.black};
+  margin-left: ${theme.margin}px;
 `;
 
 const FlagBackground = styled.View`
@@ -42,6 +43,8 @@ const FlagBackground = styled.View`
   justify-content: center;
   align-items: center;
   border-radius: 4px;
+  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
+  elevation: 2;
 `;
 
 interface Props {
@@ -60,16 +63,15 @@ export const LanguageDetailsButton = (props: Props) => (
       <FlagBackground>
         <Flag langueFr={props.langueFr} />
       </FlagBackground>
-      <StyledTextBold isSelected={props.isSelected}>
-        {props.langueFr}
-      </StyledTextBold>
+      <RowContainer>
+        <StyledTextBold isSelected={props.isSelected}>
+          {props.langueLoc}
+        </StyledTextBold>
+      </RowContainer>
       {props.langueFr !== "Français" && (
-        <RowContainer>
-          <StyledText isSelected={props.isSelected}>{" - "}</StyledText>
-          <StyledText isSelected={props.isSelected}>
-            {props.langueLoc}
-          </StyledText>
-        </RowContainer>
+        <StyledText isSelected={props.isSelected}>
+          ({props.langueFr})
+        </StyledText>
       )}
     </RowContainer>
   </MainContainer>

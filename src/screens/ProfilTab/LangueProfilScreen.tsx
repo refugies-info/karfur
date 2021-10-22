@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { TextNormalBold } from "../../components/StyledText";
+import { TextBigBold } from "../../components/StyledText";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { RootStackParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -23,10 +23,9 @@ const MainContainer = styled.View`
   flex-direction: column;
 `;
 
-const HeaderText = styled(TextNormalBold)`
+const HeaderText = styled(TextBigBold)`
   margin-horizontal: ${theme.margin * 3}px;
   margin-top: ${theme.margin * 3}px;
-  margin-bottom: ${theme.margin}px;
 `;
 
 export const LangueProfilScreen = ({

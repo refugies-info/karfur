@@ -74,6 +74,10 @@ export const FilterAge = ({
       <ContentContainer>
         <View>
           <Title>{t("Onboarding.age", "Quel âge as-tu ?")}</Title>
+          <Explaination
+            step={2}
+            defaultText="C’est pour te montrer les démarches et les activités pour ton âge."
+          />
           {ageFilters.map((age) => (
             <FilterButton
               key={age}
@@ -82,10 +86,6 @@ export const FilterAge = ({
               onPress={() => onAgeClick(age)}
             />
           ))}
-          <Explaination
-            step={2}
-            defaultText="C’est pour te montrer les démarches et les activités pour ton âge."
-          />
         </View>
         <View>
           <OnboardingProgressBar step={2} />

@@ -1,59 +1,28 @@
 import * as React from "react";
 
 import styled from "styled-components/native";
-import { RTLView } from "./BasicComponents";
 import { theme } from "../theme";
-import { StyledTextVerySmall } from "./StyledText";
-import { Icon } from "react-native-eva-icons";
+import { StyledTextSmall } from "./StyledText";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 
-const MainContainer = styled(RTLView)`
-  background-color: ${theme.colors.white};
-  margin-bottom: ${theme.margin * 3}px;
-  border-radius: ${theme.radius * 2}px;
-  align-items: center;
-`;
-
 const RedContainer = styled.View`
-  width: 56px;
   background-color: ${theme.colors.red};
   padding: ${theme.margin * 2}px;
-  border-top-left-radius: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.radius * 2}px;
-  border-bottom-left-radius: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.radius * 2}px;
-  border-top-right-radius: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.radius * 2 : 0}px;
-  border-bottom-right-radius: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.radius * 2 : 0}px;
-  height: 100%;
-  display:flex;
-  flex-direction:row
+  border-radius: ${theme.radius * 2}px;
   align-items: center;
   justify-content: center;
-
+  margin-top: ${theme.margin}px;
 `;
 
-const TextContainer = styled.View`
-  padding: ${theme.margin * 2}px;
-  flex-shrink: 1;
+const StyledText = styled(StyledTextSmall)`
+  color: ${theme.colors.white};
 `;
 
 export const ErrorComponent = (props: { text: string }) => {
   const { isRTL } = useTranslationWithRTL();
   return (
-    <MainContainer>
-      <RedContainer isRTL={isRTL}>
-        <Icon
-          name="alert-triangle"
-          height={24}
-          width={24}
-          fill={theme.colors.white}
-        />
-      </RedContainer>
-      <TextContainer>
-        <StyledTextVerySmall>{props.text}</StyledTextVerySmall>
-      </TextContainer>
-    </MainContainer>
+    <RedContainer isRTL={isRTL}>
+      <StyledText>{props.text}</StyledText>
+    </RedContainer>
   );
 };
