@@ -143,8 +143,8 @@
     "Informations pratiques": "Informations pratiques",
     "Non renseigné": "Non renseigné",
     "Voir la carte": "Voir la carte",
-    "favoris ajouté": "Fiche ajoutée à tes favoris",
-    "favoris supprimé": "Fiche supprimée de tes favoris"
+    "favoris ajouté": "Ajouté à \"<1>Mes fiches</1>\"",
+    "favoris supprimé": "Enlevé de \"Mes fiches\""
   },
   "NeedsScreen": {
     "fiches": "fiches",

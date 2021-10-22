@@ -9,11 +9,10 @@ import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { StyledTextVerySmallBold } from "./StyledText";
 
 interface Props {
-  text: string;
+  text?: string;
   icon: string;
-  textLink?: string;
-  navigation?: any;
   onClose: () => void;
+  children?: any;
 }
 const ToastContainer = styled(Animated.View)`
   width: 100%;
@@ -42,10 +41,6 @@ const TextIcon = styled(Icon)`
 `;
 const StyledText = styled(StyledTextVerySmallBold)`
   color: ${theme.colors.white};
-  ${(props: { isLink: boolean }) => props.isLink ? `
-  text-decoration: underline;
-  text-decoration-color: ${theme.colors.white};
-  `: ""}
 `;
 
 
@@ -102,15 +97,9 @@ export const Toast = (props: Props) => {
             fill={theme.colors.white}
             isRTL={isRTL}
           />
-          {props.textLink ?
-            <TouchableOpacity onPress={() => props.navigation.navigate(props.textLink)}>
-              <StyledText isLink={!!props.textLink}>
-                {props.text}
-              </StyledText>
-            </TouchableOpacity> :
-            <StyledText isLink={!!props.textLink}>
-              {props.text}
-            </StyledText>
+          {props.text ?
+            <StyledText>{props.text}</StyledText> :
+            props.children
           }
         </RTLView>
 
