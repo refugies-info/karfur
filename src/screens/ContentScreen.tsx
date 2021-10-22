@@ -7,6 +7,8 @@ import {
   StyleSheet,
   Animated,
   Modal,
+  Share,
+  Platform
 } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ExplorerParamList } from "../../types";
@@ -17,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSelectedContentActionCreator } from "../services/redux/SelectedContent/selectedContent.actions";
 import { selectedContentSelector } from "../services/redux/SelectedContent/selectedContent.selectors";
 import { theme } from "../theme";
+import { getEnvironment } from "../libs/getEnvironment";
 import { TextBigBold, TextSmallNormal } from "../components/StyledText";
 import {
   selectedI18nCodeSelector,
@@ -29,6 +32,7 @@ import {
   removeUserFavoriteActionCreator,
   saveUserHasNewFavoritesActionCreator,
 } from "../services/redux/User/user.actions";
+import { Content } from "../types/interface";
 import { ContentFromHtml } from "../components/Content/ContentFromHtml";
 import { AvailableLanguageI18nCode, MapGoogle } from "../types/interface";
 import { HeaderImage } from "../components/Content/HeaderImage";
@@ -494,6 +498,23 @@ export const ContentScreen = ({
     return;
   };
 
+  // SHARE
+  const shareContent = async (content: Content) => {
+    const siteUrl = getEnvironment().siteUrl;
+    try {
+      const shareData = (Platform.OS === "ios") ? {
+        message: `${content.titreInformatif}`,
+        url: `${siteUrl}/dispositif/${content._id}`,
+      } : {
+        title: `${content.titreInformatif}`,
+        message: `${siteUrl}/dispositif/${content._id}`,
+      };
+      await Share.share(shareData);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <View style={{ paddingBottom: 60 }}>
       <FixedContainerForHeader>
@@ -711,21 +732,41 @@ export const ContentScreen = ({
       </ScrollView>
 
       <TabBarContainer>
-        <View
+        <RTLView
           style={{
-            flexDirection: "row",
             justifyContent: "center",
             paddingTop: theme.margin,
             paddingBottom: insets.bottom || theme.margin,
           }}
         >
-          <SmallButton
+          <CustomButton
             onPress={toggleFavorites}
             iconName={isContentFavorite ? "star" : "star-outline"}
-            rounded={true}
-            bigShadow={true}
+            i18nKey={"FavorisScreen.Mes fiches"}
+            defaultText={"Mes fiches"}
+            textColor={theme.colors.black}
+            backgroundColor={theme.colors.white}
+            notFullWidth={true}
+            iconFirst={true}
+            isTextNotBold={true}
+            isSmall={true}
+            style={{ marginHorizontal: theme.margin }}
           />
-        </View>
+          <CustomButton
+            onPress={() => shareContent(selectedContent)}
+            iconName="undo-outline"
+            i18nKey={"Partager"}
+            defaultText={"Partager"}
+            textColor={theme.colors.black}
+            backgroundColor={theme.colors.white}
+            notFullWidth={true}
+            iconStyle={{transform: [{scaleX: -1}]}}
+            iconFirst={true}
+            isTextNotBold={true}
+            isSmall={true}
+            style={{ marginHorizontal: theme.margin }}
+          />
+        </RTLView>
       </TabBarContainer>
 
       <LanguageChoiceModal

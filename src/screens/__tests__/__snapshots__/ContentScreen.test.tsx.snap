@@ -3412,6 +3412,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         "backgroundColor": "transparent",
                         "borderWidth": 0,
                       },
+                      Object {},
                       Object {
                         "flex": 0,
                         "height": 24,
@@ -3642,13 +3643,20 @@ exports[`ContentScreen should render correctly 1`] = `
     }
   >
     <View
+      isRTL={false}
       style={
-        Object {
-          "flexDirection": "row",
-          "justifyContent": "center",
-          "paddingBottom": 8,
-          "paddingTop": 8,
-        }
+        Array [
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "flexDirection": "row",
+          },
+          Object {
+            "justifyContent": "center",
+            "paddingBottom": 8,
+            "paddingTop": 8,
+          },
+        ]
       }
     >
       <View
@@ -3663,23 +3671,31 @@ exports[`ContentScreen should render correctly 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "alignItems": "center",
             "backgroundColor": "#FFFFFF",
-            "borderRadius": 60,
-            "elevation": 17,
+            "borderRadius": 24,
+            "display": "flex",
+            "elevation": 1,
+            "flexDirection": "row",
+            "height": 40,
+            "justifyContent": "center",
+            "marginHorizontal": 8,
             "opacity": 1,
-            "paddingBottom": 12,
-            "paddingLeft": 12,
-            "paddingRight": 12,
-            "paddingTop": 12,
-            "shadowColor": "#212121",
+            "paddingBottom": 8,
+            "paddingLeft": 8,
+            "paddingRight": 8,
+            "paddingTop": 8,
+            "shadowColor": "rgba(33, 33, 33, 0.24)",
             "shadowOffset": Object {
               "height": 8,
               "width": 0,
             },
-            "shadowOpacity": 0.24,
+            "shadowOpacity": 1,
             "shadowRadius": 16,
+            "width": "auto",
           }
         }
+        testID="test-custom-button-Mes fiches"
       >
         <View
           style={
@@ -3708,6 +3724,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   "backgroundColor": "transparent",
                   "borderWidth": 0,
                 },
+                Object {},
                 Object {
                   "flex": 0,
                   "height": 24,
@@ -3754,6 +3771,175 @@ exports[`ContentScreen should render correctly 1`] = `
             </RNSVGGroup>
           </RNSVGSvgView>
         </View>
+        <Text
+          iconFirst={true}
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "marginLeft": 8,
+                "marginRight": 0,
+                "textAlign": "left",
+              },
+            ]
+          }
+          textColor="#212121"
+        >
+          Mes fiches
+        </Text>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 24,
+            "display": "flex",
+            "elevation": 1,
+            "flexDirection": "row",
+            "height": 40,
+            "justifyContent": "center",
+            "marginHorizontal": 8,
+            "opacity": 1,
+            "paddingBottom": 8,
+            "paddingLeft": 8,
+            "paddingRight": 8,
+            "paddingTop": 8,
+            "shadowColor": "rgba(33, 33, 33, 0.24)",
+            "shadowOffset": Object {
+              "height": 8,
+              "width": 0,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 16,
+            "width": "auto",
+          }
+        }
+        testID="test-custom-button-Partager"
+      >
+        <View
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={24}
+            bbWidth={24}
+            fill="#212121"
+            focusable={false}
+            height={24}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "transform": Array [
+                    Object {
+                      "scaleX": -1,
+                    },
+                  ],
+                },
+                Object {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width={24}
+          >
+            <RNSVGGroup
+              fill={4280361249}
+              matrix={
+                Array [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                ]
+              }
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGGroup>
+                <RNSVGGroup>
+                  <RNSVGRect
+                    height="24"
+                    matrix={
+                      Array [
+                        6.123233995736766e-17,
+                        -1,
+                        1,
+                        6.123233995736766e-17,
+                        0,
+                        24,
+                      ]
+                    }
+                    opacity={0}
+                    width="24"
+                    x={0}
+                    y={0}
+                  />
+                  <RNSVGPath
+                    d="M20.22 21a1 1 0 0 1-1-.76 8.91 8.91 0 0 0-7.8-6.69v1.12a1.78 1.78 0 0 1-1.09 1.64A2 2 0 0 1 8.18 16l-5.06-4.41a1.76 1.76 0 0 1 0-2.68l5.06-4.42a2 2 0 0 1 2.18-.3 1.78 1.78 0 0 1 1.09 1.64V7A10.89 10.89 0 0 1 21.5 17.75a10.29 10.29 0 0 1-.31 2.49 1 1 0 0 1-1 .76zm-9.77-9.5a11.07 11.07 0 0 1 8.81 4.26A9 9 0 0 0 10.45 9a1 1 0 0 1-1-1V6.08l-4.82 4.17 4.82 4.21v-2a1 1 0 0 1 1-.96z"
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          iconFirst={true}
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "marginLeft": 8,
+                "marginRight": 0,
+                "textAlign": "left",
+              },
+            ]
+          }
+          textColor="#212121"
+        >
+          Partager
+        </Text>
       </View>
     </View>
   </View>
@@ -8643,6 +8829,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         "backgroundColor": "transparent",
                         "borderWidth": 0,
                       },
+                      Object {},
                       Object {
                         "flex": 0,
                         "height": 24,
@@ -8873,13 +9060,20 @@ exports[`ContentScreen should toggle map modal 1`] = `
     }
   >
     <View
+      isRTL={false}
       style={
-        Object {
-          "flexDirection": "row",
-          "justifyContent": "center",
-          "paddingBottom": 8,
-          "paddingTop": 8,
-        }
+        Array [
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "flexDirection": "row",
+          },
+          Object {
+            "justifyContent": "center",
+            "paddingBottom": 8,
+            "paddingTop": 8,
+          },
+        ]
       }
     >
       <View
@@ -8894,23 +9088,31 @@ exports[`ContentScreen should toggle map modal 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "alignItems": "center",
             "backgroundColor": "#FFFFFF",
-            "borderRadius": 60,
-            "elevation": 17,
+            "borderRadius": 24,
+            "display": "flex",
+            "elevation": 1,
+            "flexDirection": "row",
+            "height": 40,
+            "justifyContent": "center",
+            "marginHorizontal": 8,
             "opacity": 1,
-            "paddingBottom": 12,
-            "paddingLeft": 12,
-            "paddingRight": 12,
-            "paddingTop": 12,
-            "shadowColor": "#212121",
+            "paddingBottom": 8,
+            "paddingLeft": 8,
+            "paddingRight": 8,
+            "paddingTop": 8,
+            "shadowColor": "rgba(33, 33, 33, 0.24)",
             "shadowOffset": Object {
               "height": 8,
               "width": 0,
             },
-            "shadowOpacity": 0.24,
+            "shadowOpacity": 1,
             "shadowRadius": 16,
+            "width": "auto",
           }
         }
+        testID="test-custom-button-Mes fiches"
       >
         <View
           style={
@@ -8939,6 +9141,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   "backgroundColor": "transparent",
                   "borderWidth": 0,
                 },
+                Object {},
                 Object {
                   "flex": 0,
                   "height": 24,
@@ -8985,6 +9188,175 @@ exports[`ContentScreen should toggle map modal 1`] = `
             </RNSVGGroup>
           </RNSVGSvgView>
         </View>
+        <Text
+          iconFirst={true}
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "marginLeft": 8,
+                "marginRight": 0,
+                "textAlign": "left",
+              },
+            ]
+          }
+          textColor="#212121"
+        >
+          Mes fiches
+        </Text>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 24,
+            "display": "flex",
+            "elevation": 1,
+            "flexDirection": "row",
+            "height": 40,
+            "justifyContent": "center",
+            "marginHorizontal": 8,
+            "opacity": 1,
+            "paddingBottom": 8,
+            "paddingLeft": 8,
+            "paddingRight": 8,
+            "paddingTop": 8,
+            "shadowColor": "rgba(33, 33, 33, 0.24)",
+            "shadowOffset": Object {
+              "height": 8,
+              "width": 0,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 16,
+            "width": "auto",
+          }
+        }
+        testID="test-custom-button-Partager"
+      >
+        <View
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={24}
+            bbWidth={24}
+            fill="#212121"
+            focusable={false}
+            height={24}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "transform": Array [
+                    Object {
+                      "scaleX": -1,
+                    },
+                  ],
+                },
+                Object {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width={24}
+          >
+            <RNSVGGroup
+              fill={4280361249}
+              matrix={
+                Array [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                ]
+              }
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGGroup>
+                <RNSVGGroup>
+                  <RNSVGRect
+                    height="24"
+                    matrix={
+                      Array [
+                        6.123233995736766e-17,
+                        -1,
+                        1,
+                        6.123233995736766e-17,
+                        0,
+                        24,
+                      ]
+                    }
+                    opacity={0}
+                    width="24"
+                    x={0}
+                    y={0}
+                  />
+                  <RNSVGPath
+                    d="M20.22 21a1 1 0 0 1-1-.76 8.91 8.91 0 0 0-7.8-6.69v1.12a1.78 1.78 0 0 1-1.09 1.64A2 2 0 0 1 8.18 16l-5.06-4.41a1.76 1.76 0 0 1 0-2.68l5.06-4.42a2 2 0 0 1 2.18-.3 1.78 1.78 0 0 1 1.09 1.64V7A10.89 10.89 0 0 1 21.5 17.75a10.29 10.29 0 0 1-.31 2.49 1 1 0 0 1-1 .76zm-9.77-9.5a11.07 11.07 0 0 1 8.81 4.26A9 9 0 0 0 10.45 9a1 1 0 0 1-1-1V6.08l-4.82 4.17 4.82 4.21v-2a1 1 0 0 1 1-.96z"
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          iconFirst={true}
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "marginLeft": 8,
+                "marginRight": 0,
+                "textAlign": "left",
+              },
+            ]
+          }
+          textColor="#212121"
+        >
+          Partager
+        </Text>
       </View>
     </View>
   </View>
