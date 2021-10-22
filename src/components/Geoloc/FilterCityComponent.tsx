@@ -266,9 +266,9 @@ export const FilterCityComponent = (props: Props) => {
           step={1}
           defaultText="C’est pour te montrer les associations et les activités dans ta ville."
         />
+        <Label>{t("Onboarding.Ta ville", "Ta ville")}</Label>
         {!selectedCity && !isGeolocLoading && (
           <View>
-            <Label>{t("Onboarding.Ta ville", "Ta ville")}</Label>
             <SearchBarCity
               enteredText={enteredText}
               onChangeText={onChangeText}
@@ -325,20 +325,15 @@ export const FilterCityComponent = (props: Props) => {
               <CustomButton
                 i18nKey={"Valider"}
                 defaultText="Valider"
-                textColor={
-                  isOnValidateDisabled ? theme.colors.black : theme.colors.white
-                }
+                textColor={theme.colors.white}
                 onPress={() => {
                   if (isOnValidateDisabled) return;
                   onValidate();
                 }}
-                backgroundColor={
-                  isOnValidateDisabled
-                    ? theme.colors.grey60
-                    : theme.colors.darkBlue
-                }
-                iconName="arrow-forward-outline"
+                backgroundColor={theme.colors.darkBlue}
+                iconName="checkmark-outline"
                 isDisabled={isOnValidateDisabled}
+                iconFirst={true}
               />
             </ValidateButtonContainer>
 
@@ -348,7 +343,7 @@ export const FilterCityComponent = (props: Props) => {
               textColor={theme.colors.black}
               onPress={props.navigation.goBack}
               isTextNotBold={true}
-              isDisabled={true}
+              isDisabled={isOnValidateDisabled}
             />
           </BottomButtonsContainer>
         )}

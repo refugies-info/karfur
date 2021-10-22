@@ -3,7 +3,7 @@ import { TextBigBold, TextVerySmallBold } from "../../components/StyledText";
 import { theme } from "../../theme";
 
 export const Title = styled(TextBigBold)`
-  margin-vertical: ${theme.margin * 2}px;
+  margin-bottom: ${theme.margin * 2}px;
 `;
 
 export const Label = styled(TextVerySmallBold)`
