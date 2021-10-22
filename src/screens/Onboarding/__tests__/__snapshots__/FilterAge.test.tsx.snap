@@ -359,7 +359,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
               "textAlign": "left",
             },
             Object {
-              "marginVertical": 16,
+              "marginBottom": 16,
             },
           ]
         }
@@ -1218,7 +1218,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               "textAlign": "left",
             },
             Object {
-              "marginVertical": 16,
+              "marginBottom": 16,
             },
           ]
         }
@@ -2077,7 +2077,7 @@ exports[`Filter age should select age when click on it 1`] = `
               "textAlign": "left",
             },
             Object {
-              "marginVertical": 16,
+              "marginBottom": 16,
             },
           ]
         }

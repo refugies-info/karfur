@@ -368,7 +368,7 @@ exports[`Filter french level should render correctly when french level selected 
                 "textAlign": "left",
               },
               Object {
-                "marginVertical": 16,
+                "marginBottom": 16,
               },
             ]
           }
@@ -1459,7 +1459,7 @@ exports[`Filter french level should render correctly when no french level select
                 "textAlign": "left",
               },
               Object {
-                "marginVertical": 16,
+                "marginBottom": 16,
               },
             ]
           }
@@ -2550,7 +2550,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                 "textAlign": "left",
               },
               Object {
-                "marginVertical": 16,
+                "marginBottom": 16,
               },
             ]
           }

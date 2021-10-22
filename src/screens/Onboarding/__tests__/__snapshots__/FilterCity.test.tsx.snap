@@ -359,7 +359,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
               "textAlign": "left",
             },
             Object {
-              "marginVertical": 16,
+              "marginBottom": 16,
             },
           ]
         }
@@ -382,6 +382,27 @@ exports[`Filter city should render correctly when city selected 1`] = `
         }
       >
         C’est pour te montrer les associations et les activités dans ta ville.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 13,
+              "lineHeight": 16,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 16,
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        Ta ville
       </Text>
       <View
         isRTL={false}
@@ -1141,7 +1162,7 @@ exports[`Filter city should render correctly when no city 1`] = `
               "textAlign": "left",
             },
             Object {
-              "marginVertical": 16,
+              "marginBottom": 16,
             },
           ]
         }
@@ -1165,28 +1186,28 @@ exports[`Filter city should render correctly when no city 1`] = `
       >
         C’est pour te montrer les associations et les activités dans ta ville.
       </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 13,
+              "lineHeight": 16,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 16,
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        Ta ville
+      </Text>
       <View>
-        <Text
-          isRTL={false}
-          selectable={true}
-          style={
-            Array [
-              Object {
-                "color": "#212121",
-                "fontFamily": "circularBold",
-                "fontSize": 13,
-                "lineHeight": 16,
-                "textAlign": "left",
-              },
-              Object {
-                "marginBottom": 16,
-                "textTransform": "uppercase",
-              },
-            ]
-          }
-        >
-          Ta ville
-        </Text>
         <View>
           <TextInput
             allowFontScaling={true}
