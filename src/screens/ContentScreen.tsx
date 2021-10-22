@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSelectedContentActionCreator } from "../services/redux/SelectedContent/selectedContent.actions";
 import { selectedContentSelector } from "../services/redux/SelectedContent/selectedContent.selectors";
 import { theme } from "../theme";
+import { getEnvironment } from "../libs/getEnvironment";
 import { TextBigBold, TextSmallNormal } from "../components/StyledText";
 import {
   selectedI18nCodeSelector,
@@ -497,14 +498,16 @@ export const ContentScreen = ({
     return;
   };
 
+  // SHARE
   const shareContent = async (content: Content) => {
+    const siteUrl = getEnvironment().siteUrl;
     try {
       const shareData = (Platform.OS === "ios") ? {
-        message: `Partagez la fiche ${content.titreInformatif}`,
-        url: `https://staging.refugies.info/dispositif/${content._id}`,
+        message: `${content.titreInformatif}`,
+        url: `${siteUrl}/dispositif/${content._id}`,
       } : {
-        message: `https://staging.refugies.info/dispositif/${content._id}`,
-        title: `${content.titreInformatif} avec Réfugiés.info`
+        title: `${content.titreInformatif}`,
+        message: `${siteUrl}/dispositif/${content._id}`,
       };
       await Share.share(shareData);
     } catch (error) {
