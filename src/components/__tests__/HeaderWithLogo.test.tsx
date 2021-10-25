@@ -7,6 +7,15 @@ jest.mock("../../services/i18n", () => ({
   default: { isRTL: jest.fn() },
 }));
 
+jest.mock("react-native-safe-area-context", () => {
+  const { SafeAreaView } = jest.requireActual("react-native-safe-area-context");
+
+  return {
+    useSafeAreaInsets: () => ({ insets: { bottom: 0 } }),
+    SafeAreaView,
+  };
+});
+
 describe("HeaderWithLogo", () => {
   it("should render correctly with LTR", () => {
     i18n.isRTL.mockReturnValueOnce(false);

@@ -1,16 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HeaderWithLogo should render correctly with LTR 1`] = `
-<RNCSafeAreaView
-  isIPhone12={false}
+<View
   style={
-    Array [
-      Object {
-        "marginBottom": 0,
-        "position": "relative",
-        "zIndex": 2,
-      },
-    ]
+    Object {
+      "paddingBottom": 8,
+      "paddingTop": undefined,
+    }
   }
 >
   <View
@@ -146,20 +142,16 @@ exports[`HeaderWithLogo should render correctly with LTR 1`] = `
       </View>
     </View>
   </View>
-</RNCSafeAreaView>
+</View>
 `;
 
 exports[`HeaderWithLogo should render correctly with RTL 1`] = `
-<RNCSafeAreaView
-  isIPhone12={false}
+<View
   style={
-    Array [
-      Object {
-        "marginBottom": 0,
-        "position": "relative",
-        "zIndex": 2,
-      },
-    ]
+    Object {
+      "paddingBottom": 8,
+      "paddingTop": undefined,
+    }
   }
 >
   <View
@@ -295,5 +287,5 @@ exports[`HeaderWithLogo should render correctly with RTL 1`] = `
       </View>
     </View>
   </View>
-</RNCSafeAreaView>
+</View>
 `;
