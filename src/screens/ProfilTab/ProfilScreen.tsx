@@ -122,7 +122,7 @@ export const ProfilScreen = ({
   return (
     <View style={{flex: 1}}>
       <HeaderAnimated
-        title={t("Profil.Paramètres", "Paramètres")}
+        title={t("tabBar.Profil", "Profil")}
         showSimplifiedHeader={showSimplifiedHeader}
         onLongPressSwitchLanguage={toggleLanguageModal}
       />
