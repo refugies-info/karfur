@@ -43,7 +43,7 @@ export const LanguageChoiceScreen = ({
         scrollIndicatorInsets={{ right: 1 }}
         contentContainerStyle={{
           paddingHorizontal: theme.margin * 3,
-          paddingBottom: theme.margin * 3,
+          paddingBottom: theme.margin * 4,
           paddingTop: theme.margin,
 
           justifyContent: "center",
