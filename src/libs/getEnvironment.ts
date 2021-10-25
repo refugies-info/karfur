@@ -6,7 +6,7 @@ export const getEnvironment = () => {
       envName: "STAGING",
       dbUrl: "https://api.new.refugies.info",
       siteSecret: process.env.SITE_SECRET,
-      siteUrl: process.env.SITE_URL,
+      siteUrl: "https://refugies.info",
       debugModeFirebase: false,
     };
   }
