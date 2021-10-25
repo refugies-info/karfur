@@ -15,12 +15,14 @@ const styles = StyleSheet.create({
   bodyBackground: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingBottom: theme.margin
+    paddingBottom: theme.margin,
   },
   headerText: {
     fontSize: theme.fonts.sizes.big,
     fontFamily: theme.fonts.families.circularBold,
     lineHeight: 32,
+    position: "absolute",
+    left: theme.margin * 3
   },
 });
 
@@ -58,6 +60,7 @@ export const HeaderAnimated = (props: Props) => {
             [{
               justifyContent: "flex-end",
               paddingLeft: theme.margin * 3,
+              position: "relative"
             },
             { height: headerHeight }
           ]}
@@ -78,10 +81,10 @@ export const HeaderAnimated = (props: Props) => {
           </Animated.Text>
         </Animated.View>
       </FixSafeAreaView>
-        <HeaderWithLogo
-          onLongPressSwitchLanguage={props.onLongPressSwitchLanguage}
-          hideLogo={true}
-        />
+      <HeaderWithLogo
+        onLongPressSwitchLanguage={props.onLongPressSwitchLanguage}
+        hideLogo={true}
+      />
     </View>
   );
 };
