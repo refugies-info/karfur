@@ -1,40 +1,49 @@
 import React, { useState, useRef } from "react";
-import { View, TextInput } from "react-native";
+import { View, TextInput, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
+import { Icon } from "react-native-eva-icons";
 import { theme } from "../../theme";
 import { GoogleAPISuggestion } from "../../../types";
 import { StyledTextSmall } from "../StyledText";
-import { RTLTouchableOpacity } from "../BasicComponents";
+import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import Modal from "react-native-modal";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { FixSafeAreaView } from "../FixSafeAreaView";
 
+const InputContainer = styled(RTLView)`
+  height:56px;
+  width 100%;
+  border-radius:${theme.radius * 2}px;
+  padding:${theme.margin * 2}px;
+  background-color : ${theme.colors.white};
+  border: 1px solid ${theme.colors.darkGrey};
+  flex: 1;
+  margin-left: ${theme.margin}px;
+`
 const StyledInput = styled.TextInput`
- height:56px;
- width 100%;
- border-radius:${theme.radius * 2}px;
- padding:${theme.margin * 2}px;
- background-color : ${theme.colors.white};
- text-align :${(props: { isRTL: boolean }) => (props.isRTL ? "right" : "left")};
- border :${(props: { value: string; isFocused: boolean }) =>
-   props.value || props.isFocused
-     ? `2px solid ${theme.colors.blue}`
-     : `1px solid ${theme.colors.darkGrey}`};
+  height:100%;
+  width 100%;
+  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : theme.margin)}px;
+  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? theme.margin : 0)}px;
+  text-align: ${(props: { isRTL: boolean }) => (props.isRTL ? "right" : "left")};
+  flex: 1;
 `;
-const FakeInput = styled.TouchableOpacity`
+const FakeInput = styled(RTLTouchableOpacity)`
   height:56px;
   width 100%;
   border-radius:${theme.radius * 2}px;
   padding:${theme.margin * 2}px;
   background-color: ${theme.colors.white};
-  border : 1px solid ${theme.colors.darkGrey};
-  justify-content: center;
+  border: 1px solid ${theme.colors.darkGrey};
+  justify-content: flex-start;
+  align-items: center;
 `;
 const FakeInputText = styled.Text`
   color: ${theme.colors.grey60};
+  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : theme.margin)}px;
+  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? theme.margin : 0)}px;
 `;
 const SuggestionsContainer = styled.ScrollView`
-  background-color: ${theme.colors.white};
   margin-top: ${theme.margin}px;
 `;
 const SuggestionContainer = styled(RTLTouchableOpacity)`
@@ -59,7 +68,6 @@ interface Props {
 
 export const SearchBarCity = (props: Props) => {
   const input = useRef<TextInput>();
-  const [isFocused, setIsFocused] = useState(false);
   const [modalOpened, setModalOpened] = useState(false);
   const { t, isRTL } = useTranslationWithRTL();
 
@@ -69,29 +77,64 @@ export const SearchBarCity = (props: Props) => {
     }, 100);
   }, [modalOpened])
 
+  const clearInput = () => props.onChangeText("");
+
   return (
     <View>
       <FakeInput onPress={() => setModalOpened(true)}>
-        <FakeInputText>{t("Onboarding.placeholder", "Exemple : Paris")}</FakeInputText>
+        <Icon
+          name="search-outline"
+          height={24}
+          width={24}
+          fill={theme.colors.darkGrey}
+        />
+        <FakeInputText isRTL={isRTL}>
+          {t("Onboarding.placeholder", "Exemple : Paris")}
+        </FakeInputText>
       </FakeInput>
 
       <TextModal
         isVisible={modalOpened}
         onBackdropPress={() => setModalOpened(false)}
         statusBarTranslucent={true}
+        backdropColor={theme.colors.greyF7}
+        backdropOpacity={1}
       >
         <FixSafeAreaView>
-          <StyledInput
-            ref={input}
-            value={props.enteredText}
-            placeholder={t("Onboarding.placeholder", "Exemple : Paris")}
-            onChangeText={props.onChangeText}
-            isRTL={isRTL}
-            testID="test-city-input"
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            isFocused={isFocused}
-          />
+          <RTLView>
+            <TouchableOpacity onPress={() => setModalOpened(false)}>
+              <Icon
+                name="arrow-back-outline"
+                height={24}
+                width={24}
+                fill={theme.colors.darkGrey}
+              />
+            </TouchableOpacity>
+            <InputContainer>
+              <Icon
+                name="search-outline"
+                height={24}
+                width={24}
+                fill={theme.colors.darkGrey}
+              />
+              <StyledInput
+                ref={input}
+                value={props.enteredText}
+                placeholder={t("Onboarding.placeholder", "Exemple : Paris")}
+                onChangeText={props.onChangeText}
+                isRTL={isRTL}
+                testID="test-city-input"
+              />
+              <TouchableOpacity onPress={clearInput}>
+                <Icon
+                  name="close-outline"
+                  height={24}
+                  width={24}
+                  fill={theme.colors.darkGrey}
+                />
+              </TouchableOpacity>
+            </InputContainer>
+          </RTLView>
           {props.suggestions.length > 0 && (
             <SuggestionsContainer
               keyboardShouldPersistTaps={"handled"}
