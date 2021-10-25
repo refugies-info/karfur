@@ -5,7 +5,6 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
   style={
     Array [
       Object {
-        "display": "flex",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
@@ -264,9 +263,9 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
       Object {
         "flexDirection": "column",
         "flexGrow": 1,
-        "justifyContent": "flex-start",
+        "justifyContent": "center",
         "paddingBottom": 24,
-        "paddingHorizontal": 16,
+        "paddingHorizontal": 24,
         "paddingTop": 8,
       }
     }

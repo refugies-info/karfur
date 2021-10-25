@@ -35,6 +35,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             "height": 100,
             "justifyContent": "flex-end",
             "paddingLeft": 24,
+            "position": "relative",
           }
         }
       >
@@ -44,14 +45,16 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               "color": "#212121",
               "fontFamily": "circularBold",
               "fontSize": 25,
+              "left": 24,
               "lineHeight": 32,
               "marginLeft": 0,
               "marginRight": 8,
+              "position": "absolute",
               "textAlign": "left",
             }
           }
         >
-          Paramètres
+          Profil
         </Text>
       </View>
     </RNCSafeAreaView>
@@ -3828,6 +3831,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             "height": 100,
             "justifyContent": "flex-end",
             "paddingLeft": 24,
+            "position": "relative",
           }
         }
       >
@@ -3837,14 +3841,16 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               "color": "#212121",
               "fontFamily": "circularBold",
               "fontSize": 25,
+              "left": 24,
               "lineHeight": 32,
               "marginLeft": 0,
               "marginRight": 8,
+              "position": "absolute",
               "textAlign": "left",
             }
           }
         >
-          Paramètres
+          Profil
         </Text>
       </View>
     </RNCSafeAreaView>
@@ -7621,6 +7627,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             "height": 100,
             "justifyContent": "flex-end",
             "paddingLeft": 24,
+            "position": "relative",
           }
         }
       >
@@ -7630,14 +7637,16 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               "color": "#212121",
               "fontFamily": "circularBold",
               "fontSize": 25,
+              "left": 24,
               "lineHeight": 32,
               "marginLeft": 0,
               "marginRight": 8,
+              "position": "absolute",
               "textAlign": "left",
             }
           }
         >
-          Paramètres
+          Profil
         </Text>
       </View>
     </RNCSafeAreaView>

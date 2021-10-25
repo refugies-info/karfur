@@ -606,41 +606,6 @@ exports[`Filter age should render correctly when age selected 1`] = `
         }
       >
         <View
-          isDone={true}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#0421B1",
-                "borderRadius": 12,
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "height": 4,
-                "marginHorizontal": 6,
-                "width": "100%",
-              },
-            ]
-          }
-        />
-        <View
-          isDone={true}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#0421B1",
-                "borderRadius": 12,
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "height": 4,
-                "marginHorizontal": 6,
-                "width": "100%",
-              },
-            ]
-          }
-        />
-        <View
-          isDone={false}
           style={
             Array [
               Object {
@@ -651,11 +616,88 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 "flexShrink": 1,
                 "height": 4,
                 "marginHorizontal": 6,
+                "overflow": "hidden",
                 "width": "100%",
               },
             ]
           }
-        />
+        >
+          <View
+            isDone={true}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C6C6C6",
+                "borderRadius": 12,
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "height": 4,
+                "marginHorizontal": 6,
+                "overflow": "hidden",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            isDone={true}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": "0%",
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C6C6C6",
+                "borderRadius": 12,
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "height": 4,
+                "marginHorizontal": 6,
+                "overflow": "hidden",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            isDone={false}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": 0,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         accessible={true}
@@ -1465,41 +1507,6 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         }
       >
         <View
-          isDone={true}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#0421B1",
-                "borderRadius": 12,
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "height": 4,
-                "marginHorizontal": 6,
-                "width": "100%",
-              },
-            ]
-          }
-        />
-        <View
-          isDone={true}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#0421B1",
-                "borderRadius": 12,
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "height": 4,
-                "marginHorizontal": 6,
-                "width": "100%",
-              },
-            ]
-          }
-        />
-        <View
-          isDone={false}
           style={
             Array [
               Object {
@@ -1510,11 +1517,88 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 "flexShrink": 1,
                 "height": 4,
                 "marginHorizontal": 6,
+                "overflow": "hidden",
                 "width": "100%",
               },
             ]
           }
-        />
+        >
+          <View
+            isDone={true}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C6C6C6",
+                "borderRadius": 12,
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "height": 4,
+                "marginHorizontal": 6,
+                "overflow": "hidden",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            isDone={true}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": "0%",
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C6C6C6",
+                "borderRadius": 12,
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "height": 4,
+                "marginHorizontal": 6,
+                "overflow": "hidden",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            isDone={false}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": 0,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         accessible={true}
@@ -2324,41 +2408,6 @@ exports[`Filter age should select age when click on it 1`] = `
         }
       >
         <View
-          isDone={true}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#0421B1",
-                "borderRadius": 12,
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "height": 4,
-                "marginHorizontal": 6,
-                "width": "100%",
-              },
-            ]
-          }
-        />
-        <View
-          isDone={true}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#0421B1",
-                "borderRadius": 12,
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "height": 4,
-                "marginHorizontal": 6,
-                "width": "100%",
-              },
-            ]
-          }
-        />
-        <View
-          isDone={false}
           style={
             Array [
               Object {
@@ -2369,11 +2418,88 @@ exports[`Filter age should select age when click on it 1`] = `
                 "flexShrink": 1,
                 "height": 4,
                 "marginHorizontal": 6,
+                "overflow": "hidden",
                 "width": "100%",
               },
             ]
           }
-        />
+        >
+          <View
+            isDone={true}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C6C6C6",
+                "borderRadius": 12,
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "height": 4,
+                "marginHorizontal": 6,
+                "overflow": "hidden",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            isDone={true}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": "0%",
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C6C6C6",
+                "borderRadius": 12,
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "height": 4,
+                "marginHorizontal": 6,
+                "overflow": "hidden",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            isDone={false}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": 0,
+              }
+            }
+          />
+        </View>
       </View>
       <View
         accessible={true}

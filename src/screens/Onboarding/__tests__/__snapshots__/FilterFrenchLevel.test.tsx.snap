@@ -838,56 +838,98 @@ exports[`Filter french level should render correctly when french level selected 
         }
       >
         <View
-          isDone={true}
           style={
             Array [
               Object {
-                "backgroundColor": "#0421B1",
+                "backgroundColor": "#C6C6C6",
                 "borderRadius": 12,
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "flexShrink": 1,
                 "height": 4,
                 "marginHorizontal": 6,
+                "overflow": "hidden",
                 "width": "100%",
               },
             ]
           }
-        />
+        >
+          <View
+            isDone={true}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>
         <View
-          isDone={true}
           style={
             Array [
               Object {
-                "backgroundColor": "#0421B1",
+                "backgroundColor": "#C6C6C6",
                 "borderRadius": 12,
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "flexShrink": 1,
                 "height": 4,
                 "marginHorizontal": 6,
+                "overflow": "hidden",
                 "width": "100%",
               },
             ]
           }
-        />
+        >
+          <View
+            isDone={true}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>
         <View
-          isDone={true}
           style={
             Array [
               Object {
-                "backgroundColor": "#0421B1",
+                "backgroundColor": "#C6C6C6",
                 "borderRadius": 12,
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "flexShrink": 1,
                 "height": 4,
                 "marginHorizontal": 6,
+                "overflow": "hidden",
                 "width": "100%",
               },
             ]
           }
-        />
+        >
+          <View
+            isDone={true}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": "0%",
+              }
+            }
+          />
+        </View>
       </View>
       <View
         accessible={true}
@@ -1929,56 +1971,98 @@ exports[`Filter french level should render correctly when no french level select
         }
       >
         <View
-          isDone={true}
           style={
             Array [
               Object {
-                "backgroundColor": "#0421B1",
+                "backgroundColor": "#C6C6C6",
                 "borderRadius": 12,
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "flexShrink": 1,
                 "height": 4,
                 "marginHorizontal": 6,
+                "overflow": "hidden",
                 "width": "100%",
               },
             ]
           }
-        />
+        >
+          <View
+            isDone={true}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>
         <View
-          isDone={true}
           style={
             Array [
               Object {
-                "backgroundColor": "#0421B1",
+                "backgroundColor": "#C6C6C6",
                 "borderRadius": 12,
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "flexShrink": 1,
                 "height": 4,
                 "marginHorizontal": 6,
+                "overflow": "hidden",
                 "width": "100%",
               },
             ]
           }
-        />
+        >
+          <View
+            isDone={true}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>
         <View
-          isDone={true}
           style={
             Array [
               Object {
-                "backgroundColor": "#0421B1",
+                "backgroundColor": "#C6C6C6",
                 "borderRadius": 12,
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "flexShrink": 1,
                 "height": 4,
                 "marginHorizontal": 6,
+                "overflow": "hidden",
                 "width": "100%",
               },
             ]
           }
-        />
+        >
+          <View
+            isDone={true}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": "0%",
+              }
+            }
+          />
+        </View>
       </View>
       <View
         accessible={true}
@@ -3020,56 +3104,98 @@ exports[`Filter french level should select level when click on it 1`] = `
         }
       >
         <View
-          isDone={true}
           style={
             Array [
               Object {
-                "backgroundColor": "#0421B1",
+                "backgroundColor": "#C6C6C6",
                 "borderRadius": 12,
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "flexShrink": 1,
                 "height": 4,
                 "marginHorizontal": 6,
+                "overflow": "hidden",
                 "width": "100%",
               },
             ]
           }
-        />
+        >
+          <View
+            isDone={true}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>
         <View
-          isDone={true}
           style={
             Array [
               Object {
-                "backgroundColor": "#0421B1",
+                "backgroundColor": "#C6C6C6",
                 "borderRadius": 12,
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "flexShrink": 1,
                 "height": 4,
                 "marginHorizontal": 6,
+                "overflow": "hidden",
                 "width": "100%",
               },
             ]
           }
-        />
+        >
+          <View
+            isDone={true}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": "100%",
+              }
+            }
+          />
+        </View>
         <View
-          isDone={true}
           style={
             Array [
               Object {
-                "backgroundColor": "#0421B1",
+                "backgroundColor": "#C6C6C6",
                 "borderRadius": 12,
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "flexShrink": 1,
                 "height": 4,
                 "marginHorizontal": 6,
+                "overflow": "hidden",
                 "width": "100%",
               },
             ]
           }
-        />
+        >
+          <View
+            isDone={true}
+            style={
+              Object {
+                "backgroundColor": "#0421B1",
+                "height": "100%",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": "0%",
+              }
+            }
+          />
+        </View>
       </View>
       <View
         accessible={true}
