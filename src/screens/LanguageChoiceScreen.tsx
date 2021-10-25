@@ -13,7 +13,6 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { ScrollView } from "react-native-gesture-handler";
 
 const MainView = styled.View`
-  display: flex;
   flex: 1;
 `;
 export const LanguageChoiceScreen = ({
@@ -43,12 +42,11 @@ export const LanguageChoiceScreen = ({
       <ScrollView
         scrollIndicatorInsets={{ right: 1 }}
         contentContainerStyle={{
-          paddingHorizontal: theme.margin * 2,
+          paddingHorizontal: theme.margin * 3,
           paddingBottom: theme.margin * 3,
           paddingTop: theme.margin,
 
-
-          justifyContent: "flex-start",
+          justifyContent: "center",
           flexGrow: 1,
           flexDirection: "column",
         }}
