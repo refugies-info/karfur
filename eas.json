@@ -3,25 +3,29 @@
     "release": {
       "android": {
         "env": {
-          "API_URL": "https://api.new.refugies.info"
+          "API_URL": "https://api.new.refugies.info",
+          "SITE_URL": "https://refugies.info"
         }
       },
       "ios": {
         "env": {
-          "API_URL": "https://api.new.refugies.info"
+          "API_URL": "https://api.new.refugies.info",
+          "SITE_URL": "https://refugies.info"
         }
       }
     },
     "preview": {
       "android": {
         "env": {
-          "API_URL": "https://api.new.refugies.info"
+          "API_URL": "https://api.new.refugies.info",
+          "SITE_URL": "https://refugies.info"
         },
         "buildType": "apk"
       },
       "ios": {
         "env": {
-          "API_URL": "https://api.new.refugies.info"
+          "API_URL": "https://api.new.refugies.info",
+          "SITE_URL": "https://refugies.info"
         },
         "simulator": true
       }
