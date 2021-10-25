@@ -5,13 +5,13 @@ import Logo from "../theme/images/logo.svg";
 import { SmallButton } from "./SmallButton";
 import { RowContainer, RTLView } from "./BasicComponents";
 import { LanguageSwitch } from "./Language/LanguageSwitch";
-import { FixSafeAreaView } from "./FixSafeAreaView";
 import { View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import { logEventInFirebase } from "../utils/logEvent";
 import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { StyledTextSmallBold } from "./StyledText";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const MainContainer = styled(RowContainer)`
   padding-horizontal: ${theme.margin * 3}px;
@@ -46,8 +46,10 @@ export const HeaderWithLogo = ({
   iconName
 }: Props) => {
   const { isRTL } = useTranslationWithRTL();
+  const insets = useSafeAreaInsets();
+
   return (
-    <FixSafeAreaView>
+    <View style={{ paddingTop: insets.top, paddingBottom: theme.margin }}>
       <MainContainer isRTL={false}>
         {!hideLogo ? <Logo width={LOGO_WIDTH} height={LOGO_HEIGHT} /> : <View />}
         {text &&
@@ -76,7 +78,7 @@ export const HeaderWithLogo = ({
           <SmallButton iconName="volume-up-outline" />
         </RowContainer>
       </MainContainer>
-    </FixSafeAreaView>
+    </View>
   )
 }
 
@@ -88,8 +90,10 @@ export const HeaderWithBackForWrapper = ({
   onLongPressSwitchLanguage,
   navigation,
 }: PropsBack) => {
+  const insets = useSafeAreaInsets();
+
   return (
-    <FixSafeAreaView>
+    <View style={{ paddingTop: insets.top }}>
       <MainContainer isRTL={false}>
         <SmallButton
           iconName="arrow-back-outline"
@@ -108,6 +112,6 @@ export const HeaderWithBackForWrapper = ({
           <SmallButton iconName="volume-up-outline" />
         </RowContainer>
       </MainContainer>
-    </FixSafeAreaView>
+    </View>
   );
 };

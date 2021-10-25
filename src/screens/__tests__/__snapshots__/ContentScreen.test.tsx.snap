@@ -28,16 +28,11 @@ exports[`ContentScreen should render correctly 1`] = `
         }
       }
     >
-      <RNCSafeAreaView
-        isIPhone12={false}
+      <View
         style={
-          Array [
-            Object {
-              "marginBottom": 0,
-              "position": "relative",
-              "zIndex": 2,
-            },
-          ]
+          Object {
+            "paddingTop": undefined,
+          }
         }
       >
         <View
@@ -273,7 +268,7 @@ exports[`ContentScreen should render correctly 1`] = `
             </View>
           </View>
         </View>
-      </RNCSafeAreaView>
+      </View>
     </View>
     <View
       style={
@@ -5445,16 +5440,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
         }
       }
     >
-      <RNCSafeAreaView
-        isIPhone12={false}
+      <View
         style={
-          Array [
-            Object {
-              "marginBottom": 0,
-              "position": "relative",
-              "zIndex": 2,
-            },
-          ]
+          Object {
+            "paddingTop": undefined,
+          }
         }
       >
         <View
@@ -5690,7 +5680,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             </View>
           </View>
         </View>
-      </RNCSafeAreaView>
+      </View>
     </View>
     <View
       style={

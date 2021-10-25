@@ -17,16 +17,11 @@ exports[`Profil screen should render correctly when data in store 1`] = `
       }
     }
   >
-    <RNCSafeAreaView
-      isIPhone12={false}
+    <View
       style={
-        Array [
-          Object {
-            "marginBottom": 0,
-            "position": "relative",
-            "zIndex": 2,
-          },
-        ]
+        Object {
+          "paddingTop": undefined,
+        }
       }
     >
       <View
@@ -57,17 +52,13 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           Profil
         </Text>
       </View>
-    </RNCSafeAreaView>
-    <RNCSafeAreaView
-      isIPhone12={false}
+    </View>
+    <View
       style={
-        Array [
-          Object {
-            "marginBottom": 0,
-            "position": "relative",
-            "zIndex": 2,
-          },
-        ]
+        Object {
+          "paddingBottom": 8,
+          "paddingTop": undefined,
+        }
       }
     >
       <View
@@ -200,7 +191,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           </View>
         </View>
       </View>
-    </RNCSafeAreaView>
+    </View>
   </View>
   <RCTScrollView
     onScroll={[Function]}
@@ -3813,16 +3804,11 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
       }
     }
   >
-    <RNCSafeAreaView
-      isIPhone12={false}
+    <View
       style={
-        Array [
-          Object {
-            "marginBottom": 0,
-            "position": "relative",
-            "zIndex": 2,
-          },
-        ]
+        Object {
+          "paddingTop": undefined,
+        }
       }
     >
       <View
@@ -3853,17 +3839,13 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           Profil
         </Text>
       </View>
-    </RNCSafeAreaView>
-    <RNCSafeAreaView
-      isIPhone12={false}
+    </View>
+    <View
       style={
-        Array [
-          Object {
-            "marginBottom": 0,
-            "position": "relative",
-            "zIndex": 2,
-          },
-        ]
+        Object {
+          "paddingBottom": 8,
+          "paddingTop": undefined,
+        }
       }
     >
       <View
@@ -3996,7 +3978,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           </View>
         </View>
       </View>
-    </RNCSafeAreaView>
+    </View>
   </View>
   <RCTScrollView
     onScroll={[Function]}
@@ -7609,16 +7591,11 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
       }
     }
   >
-    <RNCSafeAreaView
-      isIPhone12={false}
+    <View
       style={
-        Array [
-          Object {
-            "marginBottom": 0,
-            "position": "relative",
-            "zIndex": 2,
-          },
-        ]
+        Object {
+          "paddingTop": undefined,
+        }
       }
     >
       <View
@@ -7649,17 +7626,13 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           Profil
         </Text>
       </View>
-    </RNCSafeAreaView>
-    <RNCSafeAreaView
-      isIPhone12={false}
+    </View>
+    <View
       style={
-        Array [
-          Object {
-            "marginBottom": 0,
-            "position": "relative",
-            "zIndex": 2,
-          },
-        ]
+        Object {
+          "paddingBottom": 8,
+          "paddingTop": undefined,
+        }
       }
     >
       <View
@@ -7792,7 +7765,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           </View>
         </View>
       </View>
-    </RNCSafeAreaView>
+    </View>
   </View>
   <RCTScrollView
     onScroll={[Function]}

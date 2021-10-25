@@ -12,16 +12,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
     ]
   }
 >
-  <RNCSafeAreaView
-    isIPhone12={false}
+  <View
     style={
-      Array [
-        Object {
-          "marginBottom": 0,
-          "position": "relative",
-          "zIndex": 2,
-        },
-      ]
+      Object {
+        "paddingBottom": 8,
+        "paddingTop": undefined,
+      }
     }
   >
     <View
@@ -256,7 +252,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         </View>
       </View>
     </View>
-  </RNCSafeAreaView>
+  </View>
   <RCTScrollView
     collapsable={false}
     contentContainerStyle={
@@ -264,7 +260,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         "flexDirection": "column",
         "flexGrow": 1,
         "justifyContent": "center",
-        "paddingBottom": 24,
+        "paddingBottom": 32,
         "paddingHorizontal": 24,
         "paddingTop": 8,
       }

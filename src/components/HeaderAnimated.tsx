@@ -3,7 +3,7 @@ import { Animated, StyleSheet, View } from "react-native";
 import { theme } from "../theme";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { HeaderWithLogo } from "./HeaderWithLogo";
-import { FixSafeAreaView } from "./FixSafeAreaView";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
   title: string;
@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
 
 export const HeaderAnimated = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
+  const insets = useSafeAreaInsets();
+
   const animatedController = React.useRef(new Animated.Value(0)).current;
 
   const toggleSimplifiedHeader = (displayHeader: boolean) => {
@@ -54,7 +56,7 @@ export const HeaderAnimated = (props: Props) => {
 
   return (
     <View style={styles.bodyBackground}>
-      <FixSafeAreaView>
+      <View style={{ paddingTop: insets.top }}>
         <Animated.View
           style={
             [{
@@ -80,7 +82,7 @@ export const HeaderAnimated = (props: Props) => {
             {props.title}
           </Animated.Text>
         </Animated.View>
-      </FixSafeAreaView>
+      </View>
       <HeaderWithLogo
         onLongPressSwitchLanguage={props.onLongPressSwitchLanguage}
         hideLogo={true}

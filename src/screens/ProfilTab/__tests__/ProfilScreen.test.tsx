@@ -11,6 +11,15 @@ jest.mock("../../../hooks/useTranslationWithRTL", () => ({
   }),
 }));
 
+jest.mock("react-native-safe-area-context", () => {
+  const { SafeAreaView } = jest.requireActual("react-native-safe-area-context");
+
+  return {
+    useSafeAreaInsets: () => ({ insets: { bottom: 0 } }),
+    SafeAreaView,
+  };
+});
+
 describe("Profil screen", () => {
   beforeEach(() => {
     jest.clearAllMocks();

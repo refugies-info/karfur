@@ -21,6 +21,15 @@ jest.mock("../../services/redux/User/user.actions", () => {
   };
 });
 
+jest.mock("react-native-safe-area-context", () => {
+  const { SafeAreaView } = jest.requireActual("react-native-safe-area-context");
+
+  return {
+    useSafeAreaInsets: () => ({ insets: { bottom: 0 } }),
+    SafeAreaView,
+  };
+});
+
 describe("LanguageChoiceScreen", () => {
   beforeEach(() => {
     jest.clearAllMocks();

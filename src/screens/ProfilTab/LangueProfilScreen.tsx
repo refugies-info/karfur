@@ -64,6 +64,10 @@ export const LangueProfilScreen = ({
       <ScrollView
         contentContainerStyle={{
           paddingTop: theme.margin * 2,
+          paddingBottom: theme.margin * 3,
+          justifyContent: "center",
+          flexGrow: 1,
+          flexDirection: "column",
         }}
         scrollIndicatorInsets={{ right: 1 }}
       >
