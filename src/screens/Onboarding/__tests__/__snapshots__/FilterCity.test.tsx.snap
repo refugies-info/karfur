@@ -1263,13 +1263,16 @@ exports[`Filter city should render correctly when no city 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
+                "alignItems": "center",
                 "backgroundColor": "#FFFFFF",
                 "borderColor": "#5E5E5E",
                 "borderRadius": 12,
                 "borderStyle": "solid",
                 "borderWidth": 1,
+                "display": "flex",
+                "flexDirection": "row",
                 "height": 56,
-                "justifyContent": "center",
+                "justifyContent": "flex-start",
                 "opacity": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -1278,11 +1281,77 @@ exports[`Filter city should render correctly when no city 1`] = `
               }
             }
           >
+            <View
+              style={
+                Object {
+                  "transform": Array [
+                    Object {
+                      "scale": 1,
+                    },
+                  ],
+                }
+              }
+            >
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={24}
+                bbWidth={24}
+                fill="#5E5E5E"
+                focusable={false}
+                height={24}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 24,
+                      "width": 24,
+                    },
+                  ]
+                }
+                vbHeight={24}
+                vbWidth={24}
+                width={24}
+              >
+                <RNSVGGroup
+                  fill={4284374622}
+                  propList={
+                    Array [
+                      "fill",
+                    ]
+                  }
+                >
+                  <RNSVGGroup>
+                    <RNSVGGroup>
+                      <RNSVGRect
+                        height="24"
+                        opacity={0}
+                        width="24"
+                        x={0}
+                        y={0}
+                      />
+                      <RNSVGPath
+                        d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"
+                      />
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGSvgView>
+            </View>
             <Text
+              isRTL={false}
               style={
                 Array [
                   Object {
                     "color": "#C6C6C6",
+                    "marginLeft": 8,
+                    "marginRight": 0,
                   },
                 ]
               }
@@ -1330,7 +1399,7 @@ exports[`Filter city should render correctly when no city 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Object {
-                  "backgroundColor": "black",
+                  "backgroundColor": "#F7F7F7",
                   "bottom": 0,
                   "height": 1334,
                   "left": 0,
@@ -1391,36 +1460,314 @@ exports[`Filter city should render correctly when no city 1`] = `
                   ]
                 }
               >
-                <TextInput
-                  allowFontScaling={true}
-                  isFocused={false}
+                <View
                   isRTL={false}
-                  onBlur={[Function]}
-                  onChangeText={[Function]}
-                  onFocus={[Function]}
-                  placeholder="Exemple : Paris"
-                  rejectResponderTermination={true}
                   style={
                     Array [
                       Object {
-                        "backgroundColor": "#FFFFFF",
-                        "borderColor": "#5E5E5E",
-                        "borderRadius": 12,
-                        "borderStyle": "solid",
-                        "borderWidth": 1,
-                        "height": 56,
-                        "paddingBottom": 16,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 16,
-                        "textAlign": "left",
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
                       },
                     ]
                   }
-                  testID="test-city-input"
-                  underlineColorAndroid="transparent"
-                  value=""
-                />
+                >
+                  <View
+                    accessible={true}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "opacity": 1,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "transform": Array [
+                            Object {
+                              "scale": 1,
+                            },
+                          ],
+                        }
+                      }
+                    >
+                      <RNSVGSvgView
+                        align="xMidYMid"
+                        bbHeight={24}
+                        bbWidth={24}
+                        fill="#5E5E5E"
+                        focusable={false}
+                        height={24}
+                        meetOrSlice={0}
+                        minX={0}
+                        minY={0}
+                        style={
+                          Array [
+                            Object {
+                              "backgroundColor": "transparent",
+                              "borderWidth": 0,
+                            },
+                            Object {
+                              "flex": 0,
+                              "height": 24,
+                              "width": 24,
+                            },
+                          ]
+                        }
+                        vbHeight={24}
+                        vbWidth={24}
+                        width={24}
+                      >
+                        <RNSVGGroup
+                          fill={4284374622}
+                          propList={
+                            Array [
+                              "fill",
+                            ]
+                          }
+                        >
+                          <RNSVGGroup>
+                            <RNSVGGroup>
+                              <RNSVGRect
+                                height="24"
+                                matrix={
+                                  Array [
+                                    6.123233995736766e-17,
+                                    1,
+                                    -1,
+                                    6.123233995736766e-17,
+                                    24,
+                                    0,
+                                  ]
+                                }
+                                opacity={0}
+                                width="24"
+                                x={0}
+                                y={0}
+                              />
+                              <RNSVGPath
+                                d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
+                              />
+                            </RNSVGGroup>
+                          </RNSVGGroup>
+                        </RNSVGGroup>
+                      </RNSVGSvgView>
+                    </View>
+                  </View>
+                  <View
+                    isRTL={false}
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "display": "flex",
+                          "flexDirection": "row",
+                        },
+                        Object {
+                          "backgroundColor": "#FFFFFF",
+                          "borderColor": "#5E5E5E",
+                          "borderRadius": 12,
+                          "borderStyle": "solid",
+                          "borderWidth": 1,
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                          "flexShrink": 1,
+                          "height": 56,
+                          "marginLeft": 8,
+                          "paddingBottom": 16,
+                          "paddingLeft": 16,
+                          "paddingRight": 16,
+                          "paddingTop": 16,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "transform": Array [
+                            Object {
+                              "scale": 1,
+                            },
+                          ],
+                        }
+                      }
+                    >
+                      <RNSVGSvgView
+                        align="xMidYMid"
+                        bbHeight={24}
+                        bbWidth={24}
+                        fill="#5E5E5E"
+                        focusable={false}
+                        height={24}
+                        meetOrSlice={0}
+                        minX={0}
+                        minY={0}
+                        style={
+                          Array [
+                            Object {
+                              "backgroundColor": "transparent",
+                              "borderWidth": 0,
+                            },
+                            Object {
+                              "flex": 0,
+                              "height": 24,
+                              "width": 24,
+                            },
+                          ]
+                        }
+                        vbHeight={24}
+                        vbWidth={24}
+                        width={24}
+                      >
+                        <RNSVGGroup
+                          fill={4284374622}
+                          propList={
+                            Array [
+                              "fill",
+                            ]
+                          }
+                        >
+                          <RNSVGGroup>
+                            <RNSVGGroup>
+                              <RNSVGRect
+                                height="24"
+                                opacity={0}
+                                width="24"
+                                x={0}
+                                y={0}
+                              />
+                              <RNSVGPath
+                                d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"
+                              />
+                            </RNSVGGroup>
+                          </RNSVGGroup>
+                        </RNSVGGroup>
+                      </RNSVGSvgView>
+                    </View>
+                    <TextInput
+                      allowFontScaling={true}
+                      isRTL={false}
+                      onChangeText={[Function]}
+                      placeholder="Exemple : Paris"
+                      rejectResponderTermination={true}
+                      style={
+                        Array [
+                          Object {
+                            "flexBasis": 0,
+                            "flexGrow": 1,
+                            "flexShrink": 1,
+                            "height": "100%",
+                            "marginLeft": 8,
+                            "marginRight": 0,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                      testID="test-city-input"
+                      underlineColorAndroid="transparent"
+                      value=""
+                    />
+                    <View
+                      accessible={true}
+                      focusable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        Object {
+                          "opacity": 1,
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "transform": Array [
+                              Object {
+                                "scale": 1,
+                              },
+                            ],
+                          }
+                        }
+                      >
+                        <RNSVGSvgView
+                          align="xMidYMid"
+                          bbHeight={24}
+                          bbWidth={24}
+                          fill="#5E5E5E"
+                          focusable={false}
+                          height={24}
+                          meetOrSlice={0}
+                          minX={0}
+                          minY={0}
+                          style={
+                            Array [
+                              Object {
+                                "backgroundColor": "transparent",
+                                "borderWidth": 0,
+                              },
+                              Object {
+                                "flex": 0,
+                                "height": 24,
+                                "width": 24,
+                              },
+                            ]
+                          }
+                          vbHeight={24}
+                          vbWidth={24}
+                          width={24}
+                        >
+                          <RNSVGGroup
+                            fill={4284374622}
+                            propList={
+                              Array [
+                                "fill",
+                              ]
+                            }
+                          >
+                            <RNSVGGroup>
+                              <RNSVGGroup>
+                                <RNSVGRect
+                                  height="24"
+                                  matrix={
+                                    Array [
+                                      -1,
+                                      1.2246467991473532e-16,
+                                      -1.2246467991473532e-16,
+                                      -1,
+                                      24,
+                                      24,
+                                    ]
+                                  }
+                                  opacity={0}
+                                  width="24"
+                                  x={0}
+                                  y={0}
+                                />
+                                <RNSVGPath
+                                  d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
+                                />
+                              </RNSVGGroup>
+                            </RNSVGGroup>
+                          </RNSVGGroup>
+                        </RNSVGSvgView>
+                      </View>
+                    </View>
+                  </View>
+                </View>
               </RNCSafeAreaView>
             </View>
           </Modal>
