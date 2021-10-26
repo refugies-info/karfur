@@ -33,11 +33,6 @@ module.exports = function (app) {
   app.post("/get_dispositif", dispositif.get_dispositif);
   app.post("/count_dispositifs", dispositif.count_dispositifs);
   app.post(
-    "/update_dispositif",
-    checkToken.getId,
-    dispositif.update_dispositif
-  );
-  app.post(
     "/get_dispo_progression",
     checkToken.check,
     dispositif.get_dispo_progression

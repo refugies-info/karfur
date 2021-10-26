@@ -139,12 +139,6 @@ export default {
       headers: headers,
     });
   },
-  update_dispositif: (query) => {
-    return axios.post(burl + "/dispositifs/update_dispositif", query, {
-      headers: headers,
-    });
-  },
-
   updateDispositifReactions: (query) =>
     axios.post(burl + "/dispositifs/updateDispositifReactions", query, {
       headers,
