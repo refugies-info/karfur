@@ -79,6 +79,7 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
         throw new Error("USER_NOT_AUTHORIZED");
       }
       try {
+        delete user.roles; // for security purposes, do not use roles sent by the client
         if (user.selectedLanguages) {
           const traducteurRole = await getRoleByName("Trad");
           const userFromDB = await getUserById(user._id, { roles: 1 });
