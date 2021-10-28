@@ -96,9 +96,8 @@ export class Tags extends Component<Props> {
           if (tag) {
             var tagIcon = filtres.tags.find((elem) => elem.name === tag.name);
             return (
-              <div>
+              <div key={key}>
                 <TagButton
-                  key={key}
                   className={"mr-10 color" + (tag.short ? "" : " full")}
                   color={(tag.short || "").replace(/ /g, "-")}
                   noHover

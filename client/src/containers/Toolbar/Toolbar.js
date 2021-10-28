@@ -291,7 +291,7 @@ export class Toolbar extends React.Component {
                       className="user-picture-with-overlay"
                       alt="user"
                     />
-                    <div class="middle">{nbNewNotifications}</div>
+                    <div className="middle">{nbNewNotifications}</div>
                   </div>
                 ) : (
                   <img src={userImg} className="user-picture" alt="user" />
