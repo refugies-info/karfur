@@ -144,12 +144,6 @@ export default {
       headers,
     }),
 
-  get_dispo_progression: (query) => {
-    return axios.post(burl + "/dispositifs/get_dispo_progression", query, {
-      headers: headers,
-    });
-  },
-
   updateDispositifStatus: (query) =>
     axios.post(burl + "/dispositifs/updateDispositifStatus", query, {
       headers,

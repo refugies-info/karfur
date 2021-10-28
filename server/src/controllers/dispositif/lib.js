@@ -153,6 +153,7 @@ async function get_dispositif(req, res) {
   }
 }
 
+/* NOT USED
 const _errorHandler = (error, res) => {
   switch (error) {
     case 500:
@@ -216,6 +217,7 @@ function get_dispo_progression(req, res) {
     (e) => _errorHandler(e, res)
   );
 }
+*/
 
 function count_dispositifs(req, res) {
   Dispositif.count(req.body, (err, count) => {
@@ -231,4 +233,3 @@ function count_dispositifs(req, res) {
 exports.add_dispositif_infocards = add_dispositif_infocards;
 exports.get_dispositif = get_dispositif;
 exports.count_dispositifs = count_dispositifs;
-exports.get_dispo_progression = get_dispo_progression;
