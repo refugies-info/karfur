@@ -27,7 +27,10 @@ mongoose.set("debug", false);
 let db_path = MONGODB_URI;
 
 mongoose
-  .connect(db_path, { useNewUrlParser: true })
+  .connect(db_path, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
   .then(() => {
     logger.info("Connected to mongoDB");
   })
@@ -53,7 +56,10 @@ app.use(function (_, res, next) {
     "Access-Control-Allow-Headers",
     "X-Requested-With,content-type"
   );
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    process.env.FRONT_SITE_URL
+  );
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
