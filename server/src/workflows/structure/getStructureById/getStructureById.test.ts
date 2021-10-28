@@ -259,7 +259,7 @@ describe("getStructureById", () => {
   const user1 = { username: "username1", _id: "id1", userId: "userId1" };
   const user2 = { username: "username2", _id: "id2", userId: "userId2" };
 
-  it("should call turnToLocalized and getUserById when withDisposAssocies and withMembres ", async () => {
+  it("should call turnToLocalized and getUserById when withDisposAssocies and withMembres and user is admin", async () => {
     getUserById.mockResolvedValueOnce({ toJSON: () => user1 });
     getUserById.mockResolvedValueOnce({ toJSON: () => user2 });
 
@@ -277,6 +277,8 @@ describe("getStructureById", () => {
     const res = mockResponse();
     await getStructureById(
       {
+        user: { roles: [{ nom: "Admin" }] },
+        userId: "userId",
         query: {
           id: "id",
           withDisposAssocies: "true",
@@ -306,6 +308,126 @@ describe("getStructureById", () => {
     });
   });
 
+  it("should return members when user is member of structure", async () => {
+    getUserById.mockResolvedValueOnce({ toJSON: () => user1 });
+    getUserById.mockResolvedValueOnce({ toJSON: () => user2 });
+
+    getStructureFromDB.mockResolvedValueOnce({
+      toJSON: () => ({
+        ...structure1,
+        membres: [
+          { userId: "userId1", roles: ["contributeur"] },
+          { userId: "userId2", roles: ["administrateur"] },
+        ],
+      }),
+    });
+
+    const res = mockResponse();
+    await getStructureById(
+      {
+        user: { roles: [{ nom: "Contributeur" }] },
+        userId: "userId1",
+        query: {
+          id: "id",
+          withDisposAssocies: "true",
+          localeOfLocalizedDispositifsAssocies: "en",
+          withMembres: "true",
+        },
+      },
+      res
+    );
+    expect(getStructureFromDB).toHaveBeenCalledWith("id", true, "all");
+    expect(turnToLocalized).toHaveBeenCalledWith(dispositif1, "en");
+    expect(turnToLocalized).toHaveBeenCalledWith(dispositif2, "en");
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "Succès",
+      data: {
+        id: "id",
+        dispositifsAssocies: [simplifiedDispo1, simplifiedDispo2],
+        membres: [
+          { ...user1, roles: ["contributeur"] },
+          { ...user2, roles: ["administrateur"] },
+        ],
+      },
+    });
+  });
+
+  it("should not return membre array when user not in structure", async () => {
+    getStructureFromDB.mockResolvedValueOnce({
+      toJSON: () => ({
+        ...structure1,
+        membres: [
+          { roles: ["admin"] },
+          { userId: "userId2", roles: ["contributeur"] },
+        ],
+      }),
+    });
+
+    const res = mockResponse();
+    await getStructureById(
+      {
+        user: { roles: [{ nom: "Contributeur" }] },
+        userId: "userId1",
+        query: {
+          id: "id",
+          withDisposAssocies: "true",
+          localeOfLocalizedDispositifsAssocies: "en",
+          withMembres: "true",
+        },
+      },
+      res
+    );
+    expect(getStructureFromDB).toHaveBeenCalledWith("id", true, "all");
+
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "Succès",
+      data: {
+        id: "id",
+        dispositifsAssocies: [simplifiedDispo1, simplifiedDispo2],
+      },
+    });
+  });
+
+  it("should not return membres array when no user ", async () => {
+    getStructureFromDB.mockResolvedValueOnce({
+      toJSON: () => ({
+        ...structure1,
+        membres: [
+          { roles: ["admin"] },
+          { userId: "userId1", roles: ["contributeur"] },
+        ],
+      }),
+    });
+
+    const res = mockResponse();
+    await getStructureById(
+      {
+        query: {
+          id: "id",
+          withDisposAssocies: "false",
+          localeOfLocalizedDispositifsAssocies: "en",
+          withMembres: "true",
+        },
+      },
+      res
+    );
+    expect(getStructureFromDB).toHaveBeenCalledWith("id", true, "all");
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "Succès",
+      data: {
+        id: "id",
+        dispositifsAssocies: [simplifiedDispo1, simplifiedDispo2],
+      },
+    });
+  });
+
+
   it("should return empty membre array when getUserById throws ", async () => {
     getUserById.mockRejectedValueOnce(new Error("erreur"));
 
@@ -322,6 +444,8 @@ describe("getStructureById", () => {
     const res = mockResponse();
     await getStructureById(
       {
+        user: { roles: [{ nom: "Admin" }] },
+        userId: "userId",
         query: {
           id: "id",
           withDisposAssocies: "false",

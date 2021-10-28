@@ -157,8 +157,17 @@ export const getStructureById = async (
       structure,
       localeOfLocalizedDispositifsAssocies
     );
+
+    // @ts-ignore
+    const isAdmin = !!(req.user ? req.user.roles.find((x) => x.nom === "Admin") : false);
+    const isMember = !!(req.userId ? (structureWithDisposAssocies.membres || []).find(m => {
+      if (!m.userId) return false;
+      return m.userId.toString() === req.userId.toString()
+    }) : false);
+    const shouldIncludeMembers = (isAdmin || isMember) && withMembresBoolean;
+
     const structureWithMembres = await addMembresIfNeeded(
-      withMembresBoolean,
+      shouldIncludeMembers,
       // @ts-ignore
       structureWithDisposAssocies
     );

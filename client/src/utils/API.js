@@ -197,6 +197,7 @@ export default {
         localeOfLocalizedDispositifsAssocies,
         withMembres,
       },
+      headers,
     }),
 
   getUserFavoritesInLocale: (locale) =>

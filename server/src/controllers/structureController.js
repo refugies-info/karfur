@@ -9,7 +9,7 @@ import { modifyUserRoleInStructure } from "../workflows/structure/modifyUserRole
 import { modifyMembreRoleInStructures } from "../workflows/structure/modifyMembreRoleInStructures";
 
 module.exports = function (app) {
-  app.get("/getStructureById", getStructureById);
+  app.get("/getStructureById", checkToken.getId, checkToken.getRoles, getStructureById);
   app.post(
     "/targetErrosOnDispositifsAssociesInStructures",
     targetErrosOnDispositifsAssociesInStructures
