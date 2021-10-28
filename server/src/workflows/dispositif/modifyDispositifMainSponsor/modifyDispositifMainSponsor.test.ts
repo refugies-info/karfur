@@ -18,6 +18,10 @@ jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   updateDispositifInDB: jest.fn(),
 }));
 
+jest.mock("../../../libs/checkAuthorizations", () => ({
+  checkIfUserIsAdmin: jest.fn(),
+}));
+
 describe("modifyDispositifMainSponsor", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -86,6 +90,7 @@ describe("modifyDispositifMainSponsor", () => {
   it("should call updateDispositifInDB and updateAssociatedDispositifsInStructure and return a 200 ", async () => {
     const req = {
       fromSite: true,
+      user: { roles: [{ nom: "Admin" }] },
       body: {
         query: {
           dispositifId: "dispositifId",
@@ -115,6 +120,7 @@ describe("modifyDispositifMainSponsor", () => {
 
     const req = {
       fromSite: true,
+      user: {roles: [{nom: "Admin"}]},
       body: {
         query: {
           dispositifId: "dispositifId",
@@ -143,6 +149,7 @@ describe("modifyDispositifMainSponsor", () => {
 
     const req = {
       fromSite: true,
+      user: {roles: [{nom: "Admin"}]},
       body: {
         query: {
           dispositifId: "dispositifId",
@@ -170,6 +177,7 @@ describe("modifyDispositifMainSponsor", () => {
   it("should call updateDispositifInDB and updateAssociatedDispositifsInStructure and return a 200 ", async () => {
     const req = {
       fromSite: true,
+      user: {roles: [{nom: "Admin"}]},
       body: {
         query: {
           dispositifId: "dispositifId",
