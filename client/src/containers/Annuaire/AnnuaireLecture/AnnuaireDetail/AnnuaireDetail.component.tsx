@@ -87,7 +87,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
   }, [dispatch, structureId, locale]);
 
   const isMember =
-    structure && structure.membres.find((el: any) => el._id === user.userId)
+    structure && structure.membres && structure.membres.find((el: any) => el._id === user.userId)
       ? true
       : false;
 

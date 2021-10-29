@@ -1,1 +1,1 @@
-export { modifyMembreRoleInStructures } from "./modifyMembreRoleInStructures";
+// export { modifyMembreRoleInStructures } from "./modifyMembreRoleInStructures";

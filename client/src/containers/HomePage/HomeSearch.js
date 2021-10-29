@@ -154,6 +154,7 @@ export class SearchItem extends Component {
                 if (idx === this.state.indexF) {
                   return (
                     <button
+                      key={idx}
                       onClick={this.open}
                       className={
                         "search-home " +
@@ -201,6 +202,7 @@ export class SearchItem extends Component {
                 if (idx === this.state.indexB) {
                   return (
                     <button
+                      key={idx}
                       onClick={this.open}
                       className={
                         "search-home " +

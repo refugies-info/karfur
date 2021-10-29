@@ -95,6 +95,27 @@ describe("addDispositif", () => {
     expect(res.status).toHaveBeenCalledWith(400);
   });
 
+  it("should return 403 if user is self-validating", async () => {
+    getDispositifByIdWithMainSponsor.mockResolvedValueOnce({
+      _id: "disp_1",
+      titreInformatif: "TI",
+      status: "Brouillon",
+      dispositifId: "disp_1"
+    });
+
+    const req = {
+      body: {
+        dispositifId: "disp_1",
+        titreInformatif: "TI",
+        status: "Actif",
+      },
+      userId: "userId",
+      user: { roles: [] },
+    };
+    await addDispositif(req, res);
+    expect(res.status).toHaveBeenCalledWith(403);
+  });
+
   it("should return 200 if new dispositif without mainSponsor", async () => {
     getRoleByName.mockResolvedValueOnce({ _id: "idContrib" });
     createDispositifInDB.mockResolvedValueOnce({ _id: "dispoId" });
@@ -328,7 +349,7 @@ describe("addDispositif", () => {
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
-  it("should return 500 if existing dispositif and not authorized", async () => {
+  it("should return 403 if existing dispositif and not authorized", async () => {
     checkUserIsAuthorizedToModifyDispositif.mockImplementationOnce(() => {
       throw new Error("NOT_AUTHORIZED");
     });
@@ -342,6 +363,7 @@ describe("addDispositif", () => {
       fromSite: true,
       body: dispositif,
       userId: "userId",
+      user: {roles: []}
     };
     await addDispositif(req, res);
     expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith(
@@ -352,6 +374,6 @@ describe("addDispositif", () => {
       sendMailToStructureMembersWhenDispositifEnAttente
     ).not.toHaveBeenCalled();
 
-    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.status).toHaveBeenCalledWith(403);
   });
 });
