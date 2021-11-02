@@ -3,7 +3,9 @@ import { RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
 import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import { updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
-
+import {
+  checkIfUserIsAdmin,
+} from "../../../libs/checkAuthorizations";
 interface QueryModify {
   dispositifId: ObjectId | null;
   sponsorId: ObjectId;
@@ -26,6 +28,9 @@ export const modifyDispositifMainSponsor = async (
     ) {
       return res.status(400).json({ text: "Requête invalide" });
     }
+
+    // @ts-ignore : populate roles
+    checkIfUserIsAdmin(req.user.roles)
 
     const { dispositifId, sponsorId, status } = req.body.query;
     logger.info("[modifyDispositifMainSponsor]", {

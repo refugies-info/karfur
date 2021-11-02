@@ -1,3 +1,4 @@
+/* NOT USED
 import { RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
 import { checkRequestIsFromPostman } from "../../../libs/checkAuthorizations";
@@ -87,3 +88,4 @@ export const modifyMembreRoleInStructures = async (
     }
   }
 };
+*/
