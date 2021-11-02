@@ -18,13 +18,8 @@ import { getContentsForApp } from "../workflows/dispositif/getContentsForApp";
 import { updateDispositifTagsOrNeeds } from "../workflows/dispositif/updateDispositifTagsOrNeeds";
 import { getContentById } from "../workflows/dispositif/getContentById";
 
-// import { addNeedsFromAirtable } from "../workflows/dispositif/addNeedsFromAirtable";
-
-// import { fixAudienceAgeOnContents } from "../workflows/dispositif/fixAudienceAgeOnContents";
-
 module.exports = function (app) {
   app.post("/addDispositif", checkToken.check, addDispositif);
-
   app.post(
     "/add_dispositif_infocards",
     checkToken.check,
@@ -32,20 +27,10 @@ module.exports = function (app) {
   );
   app.post("/get_dispositif", dispositif.get_dispositif);
   app.post("/count_dispositifs", dispositif.count_dispositifs);
-  app.post(
-    "/update_dispositif",
-    checkToken.getId,
-    dispositif.update_dispositif
-  );
-  app.post(
-    "/get_dispo_progression",
-    checkToken.check,
-    dispositif.get_dispo_progression
-  );
   app.post("/getDispositifs", getDispositifs);
   app.get("/getAllDispositifs", getAllDispositifs);
   app.post("/updateDispositifStatus", checkToken.check, updateDispositifStatus);
-  app.post("/modifyDispositifMainSponsor", modifyDispositifMainSponsor);
+  app.post("/modifyDispositifMainSponsor", checkToken.check, modifyDispositifMainSponsor);
   app.post("/updateDispositifAdminComments", updateDispositifAdminComments);
   app.get("/getNbDispositifsByRegion", getNbDispositifsByRegion);
   app.post(
@@ -75,7 +60,13 @@ module.exports = function (app) {
     updateDispositifTagsOrNeeds
   );
   app.get("/getContentById", getContentById);
-  // app.post("/addNeedsFromAirtable", addNeedsFromAirtable);
-
-  // app.post("/fixAudienceAgeOnContents", fixAudienceAgeOnContents);
+  /* NOT USED
+  app.post("/addNeedsFromAirtable", addNeedsFromAirtable);
+  app.post("/fixAudienceAgeOnContents", fixAudienceAgeOnContents);
+  app.post(
+    "/get_dispo_progression",
+    checkToken.check,
+    dispositif.get_dispo_progression
+  );
+  */
 };

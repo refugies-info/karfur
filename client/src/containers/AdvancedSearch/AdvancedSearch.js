@@ -1255,10 +1255,11 @@ export class AdvancedSearch extends Component {
                         style={{ display: "flex", flexDirection: "row" }}
                         ref={this.setWrapperRef}
                       >
-                        {this.props.langues.map((elem) => {
+                        {this.props.langues.map((elem, idx) => {
                           if (elem.avancement > 0 && elem.langueCode !== "fr") {
                             return (
                               <div
+                                key={idx}
                                 className={"language-filter-button"}
                                 onClick={() => this.selectLanguage(elem)}
                               >
