@@ -9,6 +9,7 @@ import { store } from "./services/redux/store";
 import { StatusBar } from "expo-status-bar";
 import { View } from "react-native";
 import { Host } from "react-native-portalize";
+import { ConnexionTest } from "./components/ConnexionTest";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -27,6 +28,7 @@ export default function App() {
           */}
           <Host>
             <RootNavigator />
+            <ConnexionTest />
           </Host>
           <StatusBar />
         </SafeAreaProvider>

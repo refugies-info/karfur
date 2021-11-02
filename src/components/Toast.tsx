@@ -9,7 +9,8 @@ import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { StyledTextVerySmallBold } from "./StyledText";
 
 interface Props {
-  text?: string;
+  i18nKey?: string;
+  defaultText?: string;
   icon: string;
   onClose: () => void;
   children?: any;
@@ -45,7 +46,7 @@ const StyledText = styled(StyledTextVerySmallBold)`
 
 
 export const Toast = (props: Props) => {
-  const { isRTL } = useTranslationWithRTL();
+  const { t, isRTL } = useTranslationWithRTL();
 
   // Animations
   let animation = React.useRef(new Animated.Value(0));
@@ -53,14 +54,14 @@ export const Toast = (props: Props) => {
   /**
    * Hide toast
    */
-  const hideToast = () => {
+  const hideToast = React.useCallback(() => {
     Animated.timing(animation.current, {
       toValue: 0,
       duration: 400,
       useNativeDriver: true,
       easing: Easing.out(Easing.exp)
     }).start(props.onClose);
-  }
+  }, [props.onClose])
 
   /**
    * Show toast on mount
@@ -82,7 +83,7 @@ export const Toast = (props: Props) => {
 
   const bottom = animation.current.interpolate({
     inputRange: [0, 100],
-    outputRange: [100, 0],
+    outputRange: [180, 0],
     extrapolate: "clamp",
   });
 
@@ -97,8 +98,8 @@ export const Toast = (props: Props) => {
             fill={theme.colors.white}
             isRTL={isRTL}
           />
-          {props.text ?
-            <StyledText>{props.text}</StyledText> :
+          {props.i18nKey ?
+            <StyledText>{t(props.i18nKey, props.defaultText || "")}</StyledText> :
             props.children
           }
         </RTLView>
