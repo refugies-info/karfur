@@ -93,6 +93,7 @@ app.use("/miscellaneous", router);
 app.use("/indicator", router);
 app.use("/mail", router);
 app.use("/needs", router);
+app.use("/search", router);
 require(__dirname + "/controllers/userController")(router);
 require(__dirname + "/controllers/translateController")(router);
 require(__dirname + "/controllers/languesController")(router);
@@ -106,6 +107,7 @@ require(__dirname + "/controllers/miscellaneousController")(router);
 require(__dirname + "/controllers/indicatorController")(router);
 require(__dirname + "/controllers/mailController")(router);
 require(__dirname + "/controllers/needsController")(router);
+require(__dirname + "/controllers/searchController")(router);
 
 var port = process.env.PORT;
 app.get("*", (req, res) => {
