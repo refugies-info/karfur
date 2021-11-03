@@ -9,8 +9,8 @@ import { tags } from "../../data/tagData";
 interface Props {
   hits: any[]
   hasMore: boolean
-  refineNext: any,
-  navigation: any,
+  refineNext: any
+  navigation: any
 }
 
 const InfiniteHits = ({ hits, hasMore, refineNext, navigation }: Props) => {
@@ -54,7 +54,6 @@ const InfiniteHits = ({ hits, hasMore, refineNext, navigation }: Props) => {
             key={item.objectID}
             style={{
               flex: 1,
-              marginHorizontal: theme.margin * 2,
               marginBottom: theme.margin * 2
             }}
           >
