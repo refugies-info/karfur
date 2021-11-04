@@ -117,21 +117,20 @@ export const ContentSummary = (props: Props) => {
       <ContentContainer
         isDispo={true}
         noShadow={!!props.noShadow}
-        style={props.style || {}}
+        style={props.style || {}}
+        onPress={() =>
+          props.navigation.navigate(props.route, {
+            contentId: props.contentId,
+            tagDarkColor: props.tagDarkColor,
+            tagVeryLightColor: props.tagVeryLightColor,
+            tagName: props.tagName,
+            tagLightColor: props.tagLightColor,
+            iconName: props.iconName,
+          })
+        }
+        activeOpacity={0.8}
       >
-        <TitleContainer
-          onPress={() =>
-            props.navigation.navigate(props.route, {
-              contentId: props.contentId,
-              tagDarkColor: props.tagDarkColor,
-              tagVeryLightColor: props.tagVeryLightColor,
-              tagName: props.tagName,
-              tagLightColor: props.tagLightColor,
-              iconName: props.iconName,
-            })
-          }
-          activeOpacity={0.8}
-        >
+        <TitleContainer>
           {props.sponsorUrl ? (
             <StructureImageContainer isRTL={isRTL}>
               <Image
@@ -162,14 +161,14 @@ export const ContentSummary = (props: Props) => {
                 {props.titreMarque}
               </TitreMarqueText>
             )}
-            </TitlesContainer>
+          </TitlesContainer>
+          {actionButton}
         </TitleContainer>
         {props.showAbstract &&
           <DescInfoText color={props.tagDarkColor}>
             <Highlight hit={props.searchItem} attribute={"abstract_fr"} />
           </DescInfoText>
         }
-        {actionButton}
       </ContentContainer>
     );
   }
@@ -179,20 +178,19 @@ export const ContentSummary = (props: Props) => {
       color={props.tagDarkColor}
       noShadow={!!props.noShadow}
       style={props.style || {}}
+      onPress={() =>
+        props.navigation.navigate(props.route, {
+          contentId: props.contentId,
+          tagDarkColor: props.tagDarkColor,
+          tagVeryLightColor: props.tagVeryLightColor,
+          tagName: props.tagName,
+          tagLightColor: props.tagLightColor,
+          iconName: props.iconName,
+        })
+      }
+      activeOpacity={0.8}
     >
-      <TitleContainer
-        onPress={() =>
-          props.navigation.navigate(props.route, {
-            contentId: props.contentId,
-            tagDarkColor: props.tagDarkColor,
-            tagVeryLightColor: props.tagVeryLightColor,
-            tagName: props.tagName,
-            tagLightColor: props.tagLightColor,
-            iconName: props.iconName,
-          })
-        }
-        activeOpacity={0.8}
-      >
+      <TitleContainer>
         <DemarcheIconContainer lightColor={props.tagVeryLightColor} isRTL={isRTL}>
           <DemarcheImage
             name={props.iconName}
@@ -209,13 +207,13 @@ export const ContentSummary = (props: Props) => {
             }
           </TitreInfoText>
         </TitlesContainer>
+        {actionButton}
       </TitleContainer>
       {props.showAbstract &&
         <DescInfoText color={props.tagDarkColor}>
           <Highlight hit={props.searchItem} attribute={"abstract_fr"} />
         </DescInfoText>
       }
-      {actionButton}
     </ContentContainer>
   );
 };
