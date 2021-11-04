@@ -1,8 +1,8 @@
+/* NOT USED : only to find user without role hasStructure but with a structure
 import logger from "../../../logger";
 import { User } from "../../../schema/schemaUser";
 import { Res } from "../../../types/interface";
 
-// NOT USED : only to find user without role hasStructure but with a structure
 export const findBuggedUsers = async (_: any, res: Res) => {
   try {
     logger.info("findBuggedUsers");
@@ -37,3 +37,4 @@ export const findBuggedUsers = async (_: any, res: Res) => {
     res.status(500).json({ data: "KO" });
   }
 };
+*/

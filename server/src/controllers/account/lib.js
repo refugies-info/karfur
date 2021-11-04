@@ -162,18 +162,23 @@ function set_user_info(req, res) {
 
     _checkAndNotifyAdmin(user, req.roles, req.user, false); //Si on lui donne un role admin, je notifie tous les autres admin
 
+    // keep only needed properties
+    let userToSave = {
+      _id: user._id,
+    };
+    if (user.email) userToSave.email = user.email;
+    if (user.phone) userToSave.phone = user.phone;
+    if (user.last_connected) userToSave.last_connected = user.last_connected;
+    if (user.cookies) userToSave.cookies = user.cookies;
     if (user.traducteur) {
-      user = {
-        ...user,
-        $addToSet: { roles: req.roles.find((x) => x.nom === "Trad")._id },
-      };
-      delete user.traducteur;
+      userToSave["$addToSet"] = { roles: req.roles.find((x) => x.nom === "Trad")._id };
     }
+
     User.findByIdAndUpdate(
       {
         _id: user._id,
       },
-      user,
+      userToSave,
       { new: true },
       function (error, result) {
         if (error) {

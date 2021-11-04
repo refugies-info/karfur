@@ -42,6 +42,8 @@ export const getContentById = async (
       typeContenu: 1,
       externalLink: 1,
       lastModificationDate: 1,
+      nbVuesMobile: 1,
+      nbFavoritesMobile: 1,
     };
 
     // @ts-ignore

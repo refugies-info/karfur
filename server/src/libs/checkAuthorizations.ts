@@ -83,7 +83,7 @@ const isUserAuthorizedToModifyDispositif = (
   const sponsor: StructureDoc = dispositif.mainSponsor;
 
   const isUserMembre =
-    sponsor.membres.filter(
+    sponsor && sponsor.membres.filter(
       (membre) =>
         membre.userId && membre.userId.toString() === userId.toString()
     ).length > 0;

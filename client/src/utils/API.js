@@ -139,22 +139,10 @@ export default {
       headers: headers,
     });
   },
-  update_dispositif: (query) => {
-    return axios.post(burl + "/dispositifs/update_dispositif", query, {
-      headers: headers,
-    });
-  },
-
   updateDispositifReactions: (query) =>
     axios.post(burl + "/dispositifs/updateDispositifReactions", query, {
       headers,
     }),
-
-  get_dispo_progression: (query) => {
-    return axios.post(burl + "/dispositifs/get_dispo_progression", query, {
-      headers: headers,
-    });
-  },
 
   updateDispositifStatus: (query) =>
     axios.post(burl + "/dispositifs/updateDispositifStatus", query, {
@@ -203,6 +191,7 @@ export default {
         localeOfLocalizedDispositifsAssocies,
         withMembres,
       },
+      headers,
     }),
 
   getUserFavoritesInLocale: (locale) =>
@@ -247,8 +236,8 @@ export default {
     return axios.post(burl + "/dispositifs/getDispositifs", params);
   },
 
-  updateNbVuesOnDispositif: (params) =>
-    axios.post(burl + "/dispositifs/updateNbVuesOnDispositif", params, {
+  updateNbVuesOrFavoritesOnContent: (params) =>
+    axios.post(burl + "/dispositifs/updateNbVuesOrFavoritesOnContent", params, {
       headers,
     }),
 

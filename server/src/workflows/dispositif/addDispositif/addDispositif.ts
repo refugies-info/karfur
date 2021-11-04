@@ -79,6 +79,11 @@ export const addDispositif = async (
         req.user.roles
       );
 
+      // Prevent auto validation
+      if (dispositif.status === "Actif" && originalDispositif.status !== "Actif") {
+        throw new Error("NOT_AUTHORIZED")
+      }
+
       logger.info("[addDispositif] updating a dispositif", {
         dispositifId: dispositif.dispositifId,
       });
@@ -175,6 +180,9 @@ export const addDispositif = async (
       logger.info("[addDispositif] creating a new dispositif", {
         title: dispositif.titreInformatif,
       });
+      if (dispositif.status === "Actif") {
+        throw new Error("NOT_AUTHORIZED");
+      }
       // @ts-ignore
       dispositif.creatorId = req.userId;
       // @ts-ignore
@@ -245,6 +253,8 @@ export const addDispositif = async (
         return res.status(405).json({ text: "Requête bloquée par API" });
       case "INVALID_REQUEST":
         return res.status(400).json({ text: "Requête invalide" });
+      case "NOT_AUTHORIZED":
+        return res.status(403).json({ text: "Modification interdite" });
       default:
         return res.status(500).json({ text: "Erreur interne" });
     }
