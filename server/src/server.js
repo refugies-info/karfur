@@ -58,7 +58,7 @@ app.use(function (_, res, next) {
   );
   res.setHeader(
     "Access-Control-Allow-Origin",
-    process.env.FRONT_SITE_URL
+    "*" // process.env.FRONT_SITE_URL
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
