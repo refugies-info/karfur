@@ -1,5 +1,4 @@
-const Role = require("../../schema/schemaRole.js");
-
+/* NOT USED
 function get_role(req, res) {
   const { query, sort } = req.body;
   var findRole = new Promise(function (resolve, reject) {
@@ -46,27 +45,24 @@ function get_role(req, res) {
   );
 }
 
-//Cette fonction n'est pas exportée, utilisée en interne uniquement
-// function set_role(req, res) {
-//   if (!req.body || !req.body.nom) {
-//     res.status(400).json({ text: "Requête invalide" });
-//   } else {
-//     var role = req.body;
-//     var _u = new Role(role);
-//     _u.save(function (err, data) {
-//       if (err) {
-//         res.status(500).json({
-//           text: "Erreur interne",
-//         });
-//       } else {
-//         res.status(200).json({
-//           text: "Succès",
-//           data: data,
-//         });
-//       }
-//     });
-//   }
-// }
-
-//On exporte notre fonction
-exports.get_role = get_role;
+function set_role(req, res) {
+  if (!req.body || !req.body.nom) {
+    res.status(400).json({ text: "Requête invalide" });
+  } else {
+    var role = req.body;
+    var _u = new Role(role);
+    _u.save(function (err, data) {
+      if (err) {
+        res.status(500).json({
+          text: "Erreur interne",
+        });
+      } else {
+        res.status(200).json({
+          text: "Succès",
+          data: data,
+        });
+      }
+    });
+  }
+}
+*/

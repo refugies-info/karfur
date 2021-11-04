@@ -185,6 +185,16 @@ var dispositifSchema = new mongoose.Schema(
       required: false,
     },
     needs: [{ type: mongoose.Types.ObjectId, ref: "Needs" }],
+    nbVuesMobile: {
+      type: Number,
+      unique: false,
+      required: false,
+    },
+    nbFavoritesMobile: {
+      type: Number,
+      unique: false,
+      required: false,
+    },
   },
   // @ts-ignore
   { timestamps: { createdAt: "created_at" } }
@@ -233,6 +243,8 @@ export interface DispositifDoc extends mongoose.Document {
   lastReminderMailSentToUpdateContentDate?: number;
   status: string;
   needs?: ObjectId[];
+  nbVuesMobile?: number;
+  nbFavoritesMobile?: number;
 }
 
 export interface DispositifNotPopulateDoc extends DispositifDoc {

@@ -1,7 +1,5 @@
 const { Dispositif } = require("../../schema/schemaDispositif");
 
-var uniqid = require("uniqid");
-
 const { turnToLocalized, turnJSONtoHTML } = require("./functions");
 const logger = require("../../logger");
 
@@ -155,55 +153,7 @@ async function get_dispositif(req, res) {
   }
 }
 
-function update_dispositif(req, res) {
-  if (!req.fromSite) {
-    return res.status(405).json({ text: "Requête bloquée par API" });
-  } else if (!req.body || !req.body.dispositifId || !req.body.fieldName) {
-    res.status(400).json({ text: "Requête invalide" });
-  } else {
-    let {
-      dispositifId,
-      fieldName,
-      suggestionId,
-      type,
-      ...dispositif
-    } = req.body;
-    let update = null,
-      query = { _id: dispositifId };
-    if (type === "pull") {
-      update = { $pull: { [fieldName]: { suggestionId: suggestionId } } };
-    } else if (type === "set") {
-      query = { ...query, "suggestions.suggestionId": suggestionId };
-      update = { $set: { [fieldName]: true } };
-    } else {
-      update = {
-        $push: {
-          [fieldName]: {
-            ...(req.userId && { userId: req.userId }),
-            ...(req.user && {
-              username: req.user.username,
-              picture: req.user.picture,
-            }),
-            ...dispositif,
-            createdAt: new Date(),
-            suggestionId: uniqid("feedback_"),
-          },
-        },
-      };
-    }
-    Dispositif.findOneAndUpdate(query, update, { new: true }, (err, data) => {
-      if (err) {
-        res.status(404).json({ text: "Pas de résultat", error: err });
-      } else {
-        res.status(200).json({
-          text: "Succès",
-          data: data,
-        });
-      }
-    });
-  }
-}
-
+/* NOT USED
 const _errorHandler = (error, res) => {
   switch (error) {
     case 500:
@@ -267,6 +217,7 @@ function get_dispo_progression(req, res) {
     (e) => _errorHandler(e, res)
   );
 }
+*/
 
 function count_dispositifs(req, res) {
   Dispositif.count(req.body, (err, count) => {
@@ -282,5 +233,3 @@ function count_dispositifs(req, res) {
 exports.add_dispositif_infocards = add_dispositif_infocards;
 exports.get_dispositif = get_dispositif;
 exports.count_dispositifs = count_dispositifs;
-exports.update_dispositif = update_dispositif;
-exports.get_dispo_progression = get_dispo_progression;

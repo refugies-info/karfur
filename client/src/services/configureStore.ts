@@ -21,8 +21,9 @@ export const store = createStore(
   appReducer(history),
   compose(
     applyMiddleware(...middlewares),
-    // @ts-ignore : TO DO type window
-    (window.__REDUX_DEVTOOLS_EXTENSION__ &&
+    (process.env.REACT_APP_ENV === "development" &&
+      // @ts-ignore : TO DO type window
+      window.__REDUX_DEVTOOLS_EXTENSION__ &&
       // @ts-ignore
       window.__REDUX_DEVTOOLS_EXTENSION__()) ||
       compose

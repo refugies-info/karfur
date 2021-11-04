@@ -412,6 +412,29 @@ describe("updateUser", () => {
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });
 
+  it("should return 200 but no role saved if user himself and type modify-my-details", async () => {
+    await updateUser(
+      {
+        fromSite: true,
+        body: {
+          query: {
+            user: { _id: "userId", email: "email", roles: ["test"] },
+            action: "modify-my-details",
+          },
+        },
+        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        userId: "userId",
+      },
+      res
+    );
+    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
+      _id: "userId",
+      email: "email",
+    });
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+
   it("should return 401 if user himself but pseudo exists and type modify-my-details", async () => {
     updateUserInDB.mockRejectedValueOnce(new Error("erreur"));
     await updateUser(

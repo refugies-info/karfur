@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { updateNbVuesOnDispositif } from "./updateNbVuesOnDispositif";
+import { updateNbVuesOrFavoritesOnContent } from "./updateNbVuesOrFavoritesOnContent";
 import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
@@ -14,14 +14,14 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-describe("updateNbVuesOnDispositif", () => {
+describe("updateNbVuesOrFavoritesOnContent", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
   it("should return 500 if not from site", async () => {
     const res = mockResponse();
 
-    await updateNbVuesOnDispositif(
+    await updateNbVuesOrFavoritesOnContent(
       {
         body: { query: { id: "id", nbVues: 2 } },
       },
@@ -33,7 +33,7 @@ describe("updateNbVuesOnDispositif", () => {
   it("should return 200 and callupdateDispositifInDB ", async () => {
     const res = mockResponse();
 
-    await updateNbVuesOnDispositif(
+    await updateNbVuesOrFavoritesOnContent(
       {
         body: { query: { id: "id", nbVues: 2 } },
         fromSite: true,

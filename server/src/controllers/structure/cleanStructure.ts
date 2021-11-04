@@ -1,3 +1,4 @@
+/* NOT USED
 import { Dispositif } from "../../schema/schemaDispositif";
 import { Structure } from "../../schema/schemaStructure";
 
@@ -5,27 +6,26 @@ import logger from "../../logger";
 import { Res } from "../../types/interface";
 import { asyncForEach } from "../../libs/asyncForEach";
 
-// const correctStructure = async (
-//   dispositifId: string,
-//   structureIdOfDispo: string,
-//   wrongStructureId: string
-// ) => {
-//   /** we need to
-//    * - remove dispositifId in dispositifAssocies of wrongStructureId
-//    * - add dispositifId in dispositifAssocies of structureIdOfDispo
-//    */
+const correctStructure = async (
+  dispositifId: string,
+  structureIdOfDispo: string,
+  wrongStructureId: string
+) => {
+  // we need to
+  // remove dispositifId in dispositifAssocies of wrongStructureId
+  // add dispositifId in dispositifAssocies of structureIdOfDispo
 
-//   await Structure.findByIdAndUpdate(
-//     { _id: wrongStructureId },
-//     {
-//       $removeToSet: {
-//         dispositifsAssocies: dispositifId,
-//       },
-//     },
-//     { upsert: true, new: true },
-//     () => {}
-//   );
-// };
+  await Structure.findByIdAndUpdate(
+    { _id: wrongStructureId },
+    {
+      $removeToSet: {
+        dispositifsAssocies: dispositifId,
+      },
+    },
+    { upsert: true, new: true },
+    () => {}
+  );
+};
 
 interface Error {
   dispositifId: string;
@@ -109,66 +109,67 @@ export const targetErrosOnDispositifsAssociesInStructures = async (
   }
 };
 
-// interface Query {
-//   token: string;
-// }
+interface Query {
+  token: string;
+}
 
-// interface Result {
-//   _id: ObjectId;
-//   nom: string;
-//   responsable: { username: string; email?: string; _id: ObjectId };
-//   contact: string;
-//   mail_contact: string;
-//   phone_contact: string;
-// }
-// export const getResponsableOfStructure = async (
-//   req: RequestFromClient<Query>,
-//   res: Res
-// ) => {
-//   try {
-//     if (!req.query || !req.query.token) {
-//       return res.status(400).json({ text: "Requête invalide" });
-//     }
-//     const splittedEnv = process.env.REACT_APP_SITE_SECRET.split("&");
-//     if (req.query.token !== splittedEnv[0]) {
-//       return res.status(400).json({ text: "Requête invalide" });
-//     }
-//     const neededFields = {
-//       nom: 1,
-//       membres: 1,
-//       contact: 1,
-//       mail_contact: 1,
-//       phone_contact: 1,
-//     };
-//     const structures = await Structure.find({ status: "Actif" }, neededFields);
-//     const result: Result[] = [];
-//     await asyncForEach(structures, async (structure) => {
-//       const responsables = structure.membres.filter((membre) =>
-//         membre.roles.includes("administrateur")
-//       );
-//       await asyncForEach(responsables, async (responsable) => {
-//         if (responsable.userId) {
-//           const user = await User.findOne(
-//             { _id: responsable.userId },
-//             { username: 1, email: 1 }
-//           );
+interface Result {
+  _id: ObjectId;
+  nom: string;
+  responsable: { username: string; email?: string; _id: ObjectId };
+  contact: string;
+  mail_contact: string;
+  phone_contact: string;
+}
+export const getResponsableOfStructure = async (
+  req: RequestFromClient<Query>,
+  res: Res
+) => {
+  try {
+    if (!req.query || !req.query.token) {
+      return res.status(400).json({ text: "Requête invalide" });
+    }
+    const splittedEnv = process.env.REACT_APP_SITE_SECRET.split("&");
+    if (req.query.token !== splittedEnv[0]) {
+      return res.status(400).json({ text: "Requête invalide" });
+    }
+    const neededFields = {
+      nom: 1,
+      membres: 1,
+      contact: 1,
+      mail_contact: 1,
+      phone_contact: 1,
+    };
+    const structures = await Structure.find({ status: "Actif" }, neededFields);
+    const result: Result[] = [];
+    await asyncForEach(structures, async (structure) => {
+      const responsables = structure.membres.filter((membre) =>
+        membre.roles.includes("administrateur")
+      );
+      await asyncForEach(responsables, async (responsable) => {
+        if (responsable.userId) {
+          const user = await User.findOne(
+            { _id: responsable.userId },
+            { username: 1, email: 1 }
+          );
 
-//           if (user && user.email) {
-//             result.push({
-//               _id: structure._id,
-//               nom: structure.nom,
-//               contact: structure.contact,
-//               mail_contact: structure.mail_contact,
-//               phone_contact: structure.phone_contact,
-//               responsable: user,
-//             });
-//           }
-//         }
-//       });
-//     });
+          if (user && user.email) {
+            result.push({
+              _id: structure._id,
+              nom: structure.nom,
+              contact: structure.contact,
+              mail_contact: structure.mail_contact,
+              phone_contact: structure.phone_contact,
+              responsable: user,
+            });
+          }
+        }
+      });
+    });
 
-//     return res.status(200).json({ text: `OK ${result.length}`, data: result });
-//   } catch (error) {
-//     logger.error("[getResponsableOfStructure] error", { error });
-//   }
-// };
+    return res.status(200).json({ text: `OK ${result.length}`, data: result });
+  } catch (error) {
+    logger.error("[getResponsableOfStructure] error", { error });
+  }
+};
+*/
