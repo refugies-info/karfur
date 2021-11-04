@@ -36,6 +36,7 @@ const FakeInputText = styled.Text`
   margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? theme.margin : 0)}px;
 `;
 const SearchModal = styled(Modal)`
+  margin-horizontal: 0;
   justify-content: flex-start;
   padding-top: ${theme.margin * 6}px;
 `;
@@ -57,19 +58,19 @@ export const SearchScreen = ({
     setLanguageModalVisible(!isLanguageModalVisible);
 
 
-    // Header animation
-    const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
-    const handleScroll = (event: any) => {
-      if (event.nativeEvent.contentOffset.y > 5 && !showSimplifiedHeader) {
-        setShowSimplifiedHeader(true);
-        return;
-      }
-      if (event.nativeEvent.contentOffset.y < 5 && showSimplifiedHeader) {
-        setShowSimplifiedHeader(false);
-        return;
-      }
+  // Header animation
+  const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
+  const handleScroll = (event: any) => {
+    if (event.nativeEvent.contentOffset.y > 5 && !showSimplifiedHeader) {
+      setShowSimplifiedHeader(true);
       return;
-    };
+    }
+    if (event.nativeEvent.contentOffset.y < 5 && showSimplifiedHeader) {
+      setShowSimplifiedHeader(false);
+      return;
+    }
+    return;
+  };
 
   return (
     <ScrollView
@@ -94,7 +95,6 @@ export const SearchScreen = ({
           Rechercher
         </FakeInputText>
       </FakeInput>
-
 
       <SearchModal
         isVisible={modalOpened}
@@ -127,16 +127,3 @@ export const SearchScreen = ({
     </ScrollView>
   );
 };
-
-/* FORMATTING FOR INITIAL INDEXING
-JSON.stringify(content.map(content  => ({
-    objectID: content._id,
-    titreInformatif: content.titreInformatif,
-    titreMarque: content.titreMarque,
-    typeContenu: content.typeContenu,
-    sponsorUrl: content.sponsorUrl,
-    tags: content.tags.map(t => t ? t.name : "").filter(t => t !== ""),
-    tagsShort: content.tags.map(t => t ? t.short : "").filter(t => t !== ""),
-    abstract: content.abstract,
-  })))
-*/

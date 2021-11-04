@@ -6,12 +6,14 @@ import { theme } from "../../theme";
 import { firstLetterUpperCase } from "../../libs";
 import { StreamlineIcon } from "../StreamlineIcon";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import Highlight from "../Search/Highlight";
 
 interface Props {
   tagName: string;
   backgroundColor: string;
   iconName: string;
   onPress: () => void;
+  searchItem?: any;
 }
 
 const StyledContainer = styled(RTLTouchableOpacity)`
@@ -43,7 +45,13 @@ export const TagButton = (props: Props) => {
       onPress={props.onPress}
     >
       <StyledText isRTL={isRTL}>
-        {firstLetterUpperCase(t("Tags." + props.tagName, props.tagName))}
+        {props.searchItem ?
+          <Highlight
+            hit={props.searchItem}
+            attribute={"title_fr"}
+          /> :
+          firstLetterUpperCase(t("Tags." + props.tagName, props.tagName))
+        }
       </StyledText>
       <StreamlineIcon name={props.iconName} width={20} height={20} />
     </StyledContainer>

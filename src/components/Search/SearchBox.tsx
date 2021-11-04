@@ -42,7 +42,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
   }, [])
 
   return (
-    <RTLView>
+    <RTLView style={{ marginHorizontal: theme.margin * 3 }}>
       <TouchableOpacity onPress={backCallback}>
         <Icon
           name="arrow-back-outline"
