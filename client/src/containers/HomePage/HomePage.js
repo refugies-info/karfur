@@ -204,7 +204,7 @@ export class HomePage extends Component {
                       <AlertTextLink>Rencontres et loisirs</AlertTextLink>
                     </Link>
                     <span> / </span>
-                    <Link to={{ pathname: "dispositif/1680552e389a200141c1c44" }}>
+                    <Link to={{ pathname: "dispositif/61680552e389a200141c1c44" }}>
                       <AlertTextLink>Éducation</AlertTextLink>
                     </Link>
                     <span> / </span>
