@@ -42,26 +42,12 @@ const CoronaAlert = styled.div`
   margin-top: -70px;
 `;
 
-const ParrainageAlert = styled.div`
-  display: flex;
-  border-radius: 12px 12px 12px 12px;
-  background-color: #2d9cdb;
-  flex-direction: row;
-  padding: 15px;
-  margin-top: -70px;
-  width: 100%;
-  justify-content: space-between;
-  box-shadow: 0px 10px 15px 0px #00000040;
-`;
-
 const AlertText = styled.div`
   color: white;
-  font-weight: bold;
 `;
 
-const AlertTextLink = styled.p`
+const AlertTextLink = styled.span`
   color: white;
-  font-weight: bold;
   text-decoration: underline;
   margin-bottom: 0px;
 `;
@@ -74,6 +60,9 @@ const CloseCorona = styled.div`
 
 const CloseParrainage = styled.div`
   cursor: pointer;
+  position: absolute;
+  top: 16px;
+  right: 16px;
 `;
 
 const CardContainer = styled.div`
@@ -207,36 +196,31 @@ export class HomePage extends Component {
               </CoronaAlert>
             ) : null}
             {this.state.parrainage ? (
-              <ParrainageAlert>
-                <div style={{ padding: 10, alignSelf: "center" }}>
-                  <EVAIcon fill={"#2d9cdb"} name="alert-triangle" />
-                </div>
-                <div
-                  style={{
-                    padding: 10,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                  }}
-                >
-                  <AlertText>
-                    Parrainez une personne réfugiée !
-                    <Link
-                      to={{
-                        pathname: "dispositif/616581b863933e00148153fe",
-                      }}
-                    >
-                      <AlertTextLink>
-                        Cliquez ici pour découvrir les actions de parrainage
-                        citoyen.
-                      </AlertTextLink>
+              <div className="parrainage-alert">
+                <AlertText>
+                  <span style={{ fontWeight: "bold" }}>Parrainez une personne réfugiée&nbsp;!</span> Découvrez les actions par thématique&nbsp;:
+                  <div style={{ flexDirection: "row" }}>
+                    <Link to={{ pathname: "dispositif/616581b863933e00148153fe" }}>
+                      <AlertTextLink>Rencontres et loisirs</AlertTextLink>
                     </Link>
-                  </AlertText>
-                </div>
+                    <span> / </span>
+                    <Link to={{ pathname: "dispositif/61680552e389a200141c1c44" }}>
+                      <AlertTextLink>Éducation</AlertTextLink>
+                    </Link>
+                    <span> / </span>
+                    <Link to={{ pathname: "dispositif/61681cafe389a200141c27e3" }}>
+                      <AlertTextLink>Hébergement citoyen</AlertTextLink>
+                    </Link>
+                    <span> / </span>
+                    <Link to={{ pathname: "dispositif/616ec622c8e422001419a0cd" }}>
+                      <AlertTextLink>Insertion professionnelle</AlertTextLink>
+                    </Link>
+                  </div>
+                </AlertText>
                 <CloseParrainage onClick={this.closeParrainage}>
                   <EVAIcon fill={"white"} name="close-outline" />
                 </CloseParrainage>
-              </ParrainageAlert>
+              </div>
             ) : null}
             <MainTitleContainer>
               {t("Dispositifs.Header", "Construire sa vie en France")}
