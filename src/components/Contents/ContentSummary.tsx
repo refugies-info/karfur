@@ -164,7 +164,7 @@ export const ContentSummary = (props: Props) => {
                 props.titreInfo
               }
             </TitreInfoText>
-            {!!props.titreMarque && (
+            {(!!props.titreMarque || !!props?.searchItem[`titreMarque_${props.searchLanguageMatch||"fr"}`]) && (
               <TitreMarqueText color={props.tagDarkColor}>
                  {props.searchItem ?
                     <Highlight hit={props.searchItem} attribute={`titreMarque_${props.searchLanguageMatch||"fr"}`} /> :
