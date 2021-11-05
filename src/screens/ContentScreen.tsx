@@ -792,7 +792,7 @@ export const ContentScreen = ({
                 <Trans i18nKey="Content.favoris ajouté">
                   Ajouté à
                   <ToastTextBold
-                    onPress={() => navigation.navigate("Favoris")}
+                    onPress={() => navigation.navigate("Favoris", { screen: "FavorisScreen" })}
                     style={{
                       textDecorationLine: "underline",
                       textDecorationColor: theme.colors.white,
