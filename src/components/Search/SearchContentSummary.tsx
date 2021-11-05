@@ -10,6 +10,7 @@ import { tags } from "../../data/tagData";
 interface Props {
   navigation: any;
   item: any;
+  callbackCloseModal: any;
 }
 
 
@@ -35,10 +36,9 @@ const getColors = (tagName: string, tagProperty: "name"|"short") => {
 }
 
 export const SearchContentSummary = (props: Props) => {
-
   if (props.item.typeContenu === "besoin") {
     const colors = getColors(props.item.tagName, "name");
-    return (
+    return ( // BESOIN
       <NeedsSummary
         id={props.item.objectID}
         needText={props.item.title_fr}
@@ -50,15 +50,18 @@ export const SearchContentSummary = (props: Props) => {
         tagLightColor={colors.tagLightColor}
         iconName={colors.iconName}
         searchItem={props.item}
+        backScreen="Search"
+        onPressCallback={props.callbackCloseModal}
       />
     )
-  } else if (props.item.typeContenu === "dispositif" || props.item.typeContenu === "demarche") {
+  } else if (
+    props.item.typeContenu === "dispositif" || props.item.typeContenu === "demarche"
+  ) { // DISPOSITIF & DEMARCHE
     const primaryTagName = props.item.tags.length > 0 ? props.item.tags[0] : null;
     const colors = getColors(primaryTagName, "name");
     return (
       <ContentSummary
         navigation={props.navigation}
-        route="SearchContentScreen"
         tagDarkColor={colors.tagDarkColor}
         tagVeryLightColor={colors.tagVeryLightColor}
         tagName={colors.tagName}
@@ -71,14 +74,16 @@ export const SearchContentSummary = (props: Props) => {
         sponsorUrl={props.item.sponsorUrl}
         showAbstract={true}
         searchItem={props.item}
+        backScreen="Search"
+        onPressCallback={props.callbackCloseModal}
       />
     );
   }
   const colors = getColors(props.item.name_fr, "name");
-  return ( // theme
+  return ( // THEME
     <TagButton
       key={props.item.objectID}
-      tagName={props.item.title_fr}
+      tagName={props.item.name_fr}
       backgroundColor={colors.tagDarkColor}
       iconName={colors.iconName}
       onPress={() => {
@@ -87,13 +92,18 @@ export const SearchContentSummary = (props: Props) => {
           view: "list",
         });
 
-        props.navigation.navigate("NeedsScreen", {
-          tagName: props.item.title_fr,
-          tagDarkColor: colors.tagDarkColor,
-          tagVeryLightColor: colors.tagVeryLightColor,
-          tagLightColor: colors.tagLightColor,
-          iconName: colors.iconName,
+        props.navigation.navigate("Explorer", {
+          screen: "NeedsScreen",
+          params: {
+            tagName: props.item.name_fr,
+            tagDarkColor: colors.tagDarkColor,
+            tagVeryLightColor: colors.tagVeryLightColor,
+            tagLightColor: colors.tagLightColor,
+            iconName: colors.iconName,
+            backScreen: "Search"
+          }
         });
+        props.callbackCloseModal();
         return;
       }}
       searchItem={props.item}

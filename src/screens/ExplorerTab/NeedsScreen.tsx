@@ -131,6 +131,7 @@ export const NeedsScreen = ({
     tagVeryLightColor,
     tagLightColor,
     iconName,
+    backScreen
   } = route.params;
 
   const allNeeds = useSelector(needsSelector);
@@ -149,6 +150,7 @@ export const NeedsScreen = ({
           <HeaderWithBackForWrapper
             onLongPressSwitchLanguage={toggleLanguageModal}
             navigation={navigation}
+            backScreen={backScreen}
           />
         </View>
         <NeedsHeaderAnimated
@@ -208,6 +210,7 @@ export const NeedsScreen = ({
           <HeaderWithBackForWrapper
             onLongPressSwitchLanguage={toggleLanguageModal}
             navigation={navigation}
+            backScreen={backScreen}
           />
         </View>
         <NeedsHeaderAnimated
@@ -239,6 +242,7 @@ export const NeedsScreen = ({
         <HeaderWithBackForWrapper
           onLongPressSwitchLanguage={toggleLanguageModal}
           navigation={navigation}
+          backScreen={backScreen}
         />
       </View>
       <NeedsHeaderAnimated

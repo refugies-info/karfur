@@ -65,6 +65,8 @@ interface Props {
   iconName: string;
   searchItem?: any;
   style?: any;
+  backScreen?: string;
+  onPressCallback?: () => void;
 }
 
 export const NeedsSummary = (props: Props) => {
@@ -80,14 +82,19 @@ export const NeedsSummary = (props: Props) => {
         logEventInFirebase(FirebaseEvent.CLIC_NEED, {
           need: props.needTextFr,
         });
+        if (props.onPressCallback) props.onPressCallback()
 
-        props.navigation.navigate("ContentsScreen", {
-          tagName: props.tagName,
-          tagDarkColor: props.tagDarkColor,
-          tagVeryLightColor: props.tagVeryLightColor,
-          tagLightColor: props.tagLightColor,
-          needId: props.id,
-          iconName: props.iconName,
+        props.navigation.navigate("Explorer", {
+          screen: "ContentsScreen",
+          params: {
+            tagName: props.tagName,
+            tagDarkColor: props.tagDarkColor,
+            tagVeryLightColor: props.tagVeryLightColor,
+            tagLightColor: props.tagLightColor,
+            needId: props.id,
+            iconName: props.iconName,
+            backScreen: props.backScreen
+          }
         });
         return;
       }}

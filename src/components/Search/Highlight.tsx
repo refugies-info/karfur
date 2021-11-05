@@ -4,11 +4,10 @@ import { connectHighlight } from "react-instantsearch-native";
 import { theme } from "../../theme";
 
 interface Props {
-  hit: any[]
-  attribute: any
-  highlight: any
+  hit: any[];
+  attribute: any;
+  highlight: any;
 }
-
 
 const Highlight = ({ attribute, hit, highlight }: Props) => {
   const highlights = highlight({

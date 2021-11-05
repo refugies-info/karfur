@@ -221,7 +221,6 @@ export const FavorisScreen = ({
                     >
                       <ContentSummary
                         navigation={navigation}
-                        route={"FavorisContentScreen"}
                         tagDarkColor={colors.tagDarkColor}
                         tagVeryLightColor={colors.tagVeryLightColor}
                         tagName={colors.tagName}
@@ -236,6 +235,7 @@ export const FavorisScreen = ({
                         actionIcon={"trash-2-outline"}
                         noShadow={true}
                         style={{ marginHorizontal: theme.margin * 3 }}
+                        backScreen="Favoris"
                       />
                     </Swipeable>
                 </CardItem>

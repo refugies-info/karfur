@@ -48,7 +48,7 @@ export const TagButton = (props: Props) => {
         {props.searchItem ?
           <Highlight
             hit={props.searchItem}
-            attribute={"title_fr"}
+            attribute={"name_fr"}
           /> :
           firstLetterUpperCase(t("Tags." + props.tagName, props.tagName))
         }

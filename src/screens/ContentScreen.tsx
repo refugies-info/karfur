@@ -290,6 +290,7 @@ export const ContentScreen = ({
     tagName,
     tagLightColor,
     iconName,
+    backScreen,
   } = route.params;
 
   const windowWidth = useWindowDimensions().width;
@@ -407,6 +408,7 @@ export const ContentScreen = ({
       <WrapperWithHeaderAndLanguageModal
         showSwitch={true}
         navigation={navigation}
+        backScreen={backScreen}
       >
         <SkeletonContent
           containerStyle={{
@@ -447,6 +449,7 @@ export const ContentScreen = ({
       <WrapperWithHeaderAndLanguageModal
         showSwitch={true}
         navigation={navigation}
+        backScreen={backScreen}
       >
         <ErrorScreen
           onButtonClick={refetchContent}
@@ -548,6 +551,7 @@ export const ContentScreen = ({
           <HeaderWithBackForWrapper
             onLongPressSwitchLanguage={toggleLanguageModal}
             navigation={navigation}
+            backScreen={backScreen}
           />
         </Animated.View>
 
@@ -814,7 +818,10 @@ export const ContentScreen = ({
                 <Trans i18nKey="Content.favoris ajouté">
                   Ajouté à
                   <ToastTextBold
-                    onPress={() => navigation.navigate("Favoris")}
+                    onPress={() => {
+                      navigation.popToTop();
+                      navigation.navigate("Favoris");
+                    }}
                     style={{
                       textDecorationLine: "underline",
                       textDecorationColor: theme.colors.white,

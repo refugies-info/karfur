@@ -26,9 +26,9 @@ const StyledInput = styled.TextInput`
   flex: 1;
 `;
 interface Props {
-  currentRefinement: string
-  refine: any,
-  backCallback: any
+  currentRefinement: string;
+  refine: any;
+  backCallback: () => void;
 }
 
 const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
@@ -59,6 +59,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
           fill={theme.colors.darkGrey}
         />
         <StyledInput
+          ref={input}
           onChangeText={(value: string) => refine(value)}
           value={currentRefinement}
           placeholder="Rechercher"

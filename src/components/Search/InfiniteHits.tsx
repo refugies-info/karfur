@@ -9,15 +9,17 @@ interface Props {
   hasMore: boolean
   refineNext: any
   navigation: any
+  callbackCloseModal: any
 }
 
-const InfiniteHits = ({ hits, hasMore, refineNext, navigation }: Props) => {
+const InfiniteHits = ({ hits, hasMore, refineNext, navigation, callbackCloseModal }: Props) => {
   return (
     <FlatList
       data={hits}
       keyExtractor={item => item.objectID}
       onEndReached={() => hasMore && refineNext()}
-      style={{paddingTop: theme.margin * 2}}
+      style={{ paddingTop: theme.margin * 2 }}
+      contentContainerStyle={{ paddingBottom: theme.margin * 6 }}
       renderItem={({ item }) => {
 
         return (
@@ -32,6 +34,7 @@ const InfiniteHits = ({ hits, hasMore, refineNext, navigation }: Props) => {
             <SearchContentSummary
               navigation={navigation}
               item={item}
+              callbackCloseModal={callbackCloseModal}
             />
           </View>
         )

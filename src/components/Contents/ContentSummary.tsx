@@ -89,7 +89,6 @@ interface Props {
   typeContenu: "dispositif" | "demarche";
   sponsorUrl: string | null;
   iconName: string;
-  route: string;
   searchItem?: any;
   isTextNotBold?: boolean;
   showAbstract?: boolean;
@@ -97,6 +96,8 @@ interface Props {
   style?: any;
   actionPress?: any;
   actionIcon?: string;
+  backScreen?: string;
+  onPressCallback?: () => void;
 }
 export const ContentSummary = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
@@ -118,16 +119,22 @@ export const ContentSummary = (props: Props) => {
         isDispo={true}
         noShadow={!!props.noShadow}
         style={props.style || {}}
-        onPress={() =>
-          props.navigation.navigate(props.route, {
-            contentId: props.contentId,
-            tagDarkColor: props.tagDarkColor,
-            tagVeryLightColor: props.tagVeryLightColor,
-            tagName: props.tagName,
-            tagLightColor: props.tagLightColor,
-            iconName: props.iconName,
-          })
-        }
+        onPress={() => {
+          if (props.onPressCallback) props.onPressCallback()
+
+          props.navigation.navigate("Explorer", {
+            screen: "ContentScreen",
+            params: {
+              contentId: props.contentId,
+              tagDarkColor: props.tagDarkColor,
+              tagVeryLightColor: props.tagVeryLightColor,
+              tagName: props.tagName,
+              tagLightColor: props.tagLightColor,
+              iconName: props.iconName,
+              backScreen: props.backScreen
+            }
+          });
+        }}
         activeOpacity={0.8}
       >
         <TitleContainer>
@@ -178,16 +185,22 @@ export const ContentSummary = (props: Props) => {
       color={props.tagDarkColor}
       noShadow={!!props.noShadow}
       style={props.style || {}}
-      onPress={() =>
-        props.navigation.navigate(props.route, {
-          contentId: props.contentId,
-          tagDarkColor: props.tagDarkColor,
-          tagVeryLightColor: props.tagVeryLightColor,
-          tagName: props.tagName,
-          tagLightColor: props.tagLightColor,
-          iconName: props.iconName,
+      onPress={() => {
+        if (props.onPressCallback) props.onPressCallback()
+
+        props.navigation.navigate("Explorer", {
+          screen: "ContentScreen",
+          params: {
+            contentId: props.contentId,
+            tagDarkColor: props.tagDarkColor,
+            tagVeryLightColor: props.tagVeryLightColor,
+            tagName: props.tagName,
+            tagLightColor: props.tagLightColor,
+            iconName: props.iconName,
+            backScreen: props.backScreen
+          }
         })
-      }
+      }}
       activeOpacity={0.8}
     >
       <TitleContainer>

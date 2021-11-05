@@ -33,6 +33,7 @@ export type ExplorerParamList = {
     tagLightColor: string;
     needId: ObjectId;
     iconName: string;
+    backScreen?: string
   };
   ContentScreen: {
     contentId: ObjectId;
@@ -41,6 +42,7 @@ export type ExplorerParamList = {
     tagName: string;
     tagLightColor: string;
     iconName: string;
+    backScreen?: string
   };
   NeedsScreen: {
     tagDarkColor: string;
@@ -48,19 +50,12 @@ export type ExplorerParamList = {
     tagName: string;
     tagLightColor: string;
     iconName: string;
+    backScreen?: string
   };
 };
 
 export type FavorisParamList = {
   FavorisScreen: undefined;
-  FavorisContentScreen: {
-    contentId: ObjectId;
-    tagDarkColor: string;
-    tagVeryLightColor: string;
-    tagName: string;
-    tagLightColor: string;
-    iconName: string;
-  };
 };
 
 export type SearchParamList = {

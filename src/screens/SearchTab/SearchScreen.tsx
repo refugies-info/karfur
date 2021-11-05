@@ -57,7 +57,6 @@ export const SearchScreen = ({
   const toggleLanguageModal = () =>
     setLanguageModalVisible(!isLanguageModalVisible);
 
-
   // Header animation
   const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
   const handleScroll = (event: any) => {
@@ -114,6 +113,7 @@ export const SearchScreen = ({
             {searchState.query !== "" &&
             <InfiniteHits
               navigation={navigation}
+              callbackCloseModal={() => setModalOpened(false)}
             />
             }
           </InstantSearch>

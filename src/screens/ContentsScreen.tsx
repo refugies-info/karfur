@@ -113,11 +113,11 @@ export const ContentsScreen = ({
     tagLightColor,
     needId,
     iconName,
+    backScreen
   } = route.params;
 
   const groupedContents = useSelector(groupedContentsSelector);
   const contentsId = groupedContents[needId];
-
   const contentsToDisplay = getContentsToDisplay(contentsId, contents);
 
   const { translatedContents, nonTranslatedContents } = getTranslatedContents(
@@ -206,6 +206,7 @@ export const ContentsScreen = ({
           <HeaderWithBackForWrapper
             onLongPressSwitchLanguage={toggleLanguageModal}
             navigation={navigation}
+            backScreen={backScreen}
           />
         </View>
         <ContentsHeaderAnimated
@@ -268,6 +269,7 @@ export const ContentsScreen = ({
         <HeaderWithBackForWrapper
           onLongPressSwitchLanguage={toggleLanguageModal}
           navigation={navigation}
+          backScreen={backScreen}
         />
       </View>
       <ContentsHeaderAnimated
@@ -311,7 +313,6 @@ export const ContentsScreen = ({
               typeContenu={content.typeContenu}
               sponsorUrl={content.sponsorUrl}
               iconName={iconName}
-              route={"ContentScreen"}
               style={{marginBottom: theme.margin * 3}}
             />
           );
@@ -337,7 +338,6 @@ export const ContentsScreen = ({
                   typeContenu={content.typeContenu}
                   sponsorUrl={content.sponsorUrl}
                   iconName={iconName}
-                  route={"ContentScreen"}
                   style={{marginBottom: theme.margin * 3}}
                 />
               );
