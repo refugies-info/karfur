@@ -10,6 +10,7 @@ import {
   Share,
   Platform,
 } from "react-native";
+import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
 import { CompositeNavigationProp } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
@@ -304,14 +305,33 @@ export const ContentScreen = ({
     outputRange: ["transparent", tagLightColor],
   });
 
+  // Load content
+  let unsubscribeConnectionListener: any;
+  const fetchContent = (contentId: string, selectedLanguage: AvailableLanguageI18nCode) => {
+    dispatch(
+      fetchSelectedContentActionCreator({
+        contentId: contentId,
+        locale: selectedLanguage,
+      })
+    );
+  }
+  const handleFindConnection = (connectionInfo: NetInfoState) => {
+    if (connectionInfo.isConnected) {
+      if (contentId && selectedLanguage) {
+        unsubscribeConnectionListener();
+        return fetchContent(contentId, selectedLanguage);
+      }
+    }
+  }
   React.useEffect(() => {
     if (contentId && selectedLanguage) {
-      dispatch(
-        fetchSelectedContentActionCreator({
-          contentId: contentId,
-          locale: selectedLanguage,
-        })
-      );
+      NetInfo.fetch().then(connectionInfo => {
+        if (connectionInfo.isConnected) {
+          fetchContent(contentId, selectedLanguage);
+        } else {
+          unsubscribeConnectionListener = NetInfo.addEventListener(handleFindConnection);
+        }
+      });
     }
   }, [selectedLanguage]);
 
