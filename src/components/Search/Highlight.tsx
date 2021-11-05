@@ -2,14 +2,16 @@ import React from "react";
 import { Text } from "react-native";
 import { connectHighlight } from "react-instantsearch-native";
 import { theme } from "../../theme";
+import { firstLetterUpperCase } from "../../libs";
 
 interface Props {
   hit: any[];
   attribute: any;
   highlight: any;
+  capitalize?: boolean;
 }
 
-const Highlight = ({ attribute, hit, highlight }: Props) => {
+const Highlight = ({ attribute, hit, highlight, capitalize }: Props) => {
   const highlights = highlight({
     highlightProperty: "_highlightResult",
     attribute,
@@ -30,7 +32,7 @@ const Highlight = ({ attribute, hit, highlight }: Props) => {
 
         return (
           <Text key={index} style={style}>
-            {value}
+            {index === 0 && !!capitalize ? firstLetterUpperCase(value) : value}
           </Text>
         );
       })}

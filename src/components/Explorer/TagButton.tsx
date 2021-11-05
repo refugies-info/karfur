@@ -9,11 +9,12 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import Highlight from "../Search/Highlight";
 
 interface Props {
-  tagName: string;
+  tagName?: string;
   backgroundColor: string;
   iconName: string;
   onPress: () => void;
   searchItem?: any;
+  searchLanguageMatch?: string;
 }
 
 const StyledContainer = styled(RTLTouchableOpacity)`
@@ -48,7 +49,9 @@ export const TagButton = (props: Props) => {
         {props.searchItem ?
           <Highlight
             hit={props.searchItem}
-            attribute={"name_fr"}
+            attribute={`name_${props.searchLanguageMatch || "fr"}`}
+            //@ts-ignore
+            capitalize={true}
           /> :
           firstLetterUpperCase(t("Tags." + props.tagName, props.tagName))
         }

@@ -5,14 +5,25 @@ import { SearchContentSummary } from "../Search/SearchContentSummary";
 import { theme } from "../../theme"
 
 interface Props {
-  hits: any[]
-  hasMore: boolean
-  refineNext: any
-  navigation: any
-  callbackCloseModal: any
+  hits: any[];
+  hasMore: boolean;
+  refineNext: any;
+  navigation: any;
+  callbackCloseModal: any;
+  selectedLanguage: string|null;
 }
 
-const InfiniteHits = ({ hits, hasMore, refineNext, navigation, callbackCloseModal }: Props) => {
+const getLanguageMatch = (hit: any, selectedLanguage: string) => {
+  const props = Object.keys(hit._highlightResult);
+  for (const prop of props) {
+    if (hit._highlightResult[prop].matchLevel === "full") {
+      return prop.split("_")[1];
+    }
+  }
+  return selectedLanguage;
+}
+
+const InfiniteHits = ({ hits, hasMore, refineNext, navigation, callbackCloseModal, selectedLanguage }: Props) => {
   return (
     <FlatList
       data={hits}
@@ -35,6 +46,7 @@ const InfiniteHits = ({ hits, hasMore, refineNext, navigation, callbackCloseModa
               navigation={navigation}
               item={item}
               callbackCloseModal={callbackCloseModal}
+              languageMatch={getLanguageMatch(item, selectedLanguage || "fr")}
             />
           </View>
         )

@@ -54,9 +54,10 @@ const StyledText = styled(TextSmallBold)`
 
 interface Props {
   id: string
-  needText: string
+  needText?: string
   needTextFr: string
   nbContents?: number
+  searchLanguageMatch?: string;
   navigation: any;
   tagName: string;
   tagDarkColor: string;
@@ -104,7 +105,7 @@ export const NeedsSummary = (props: Props) => {
         {props.searchItem ?
           <Highlight
             hit={props.searchItem}
-            attribute={"title_fr"}
+            attribute={`title_${props.searchLanguageMatch || "fr"}`}
           /> :
           props.needText
         }

@@ -11,6 +11,7 @@ interface Props {
   navigation: any;
   item: any;
   callbackCloseModal: any;
+  languageMatch: string;
 }
 
 
@@ -41,8 +42,8 @@ export const SearchContentSummary = (props: Props) => {
     return ( // BESOIN
       <NeedsSummary
         id={props.item.objectID}
-        needText={props.item.title_fr}
         needTextFr={props.item.title_fr}
+        searchLanguageMatch={props.languageMatch}
         navigation={props.navigation}
         tagName={props.item.tagName}
         tagDarkColor={colors.tagDarkColor}
@@ -68,8 +69,7 @@ export const SearchContentSummary = (props: Props) => {
         tagLightColor={colors.tagLightColor}
         iconName={colors.iconName}
         contentId={props.item.objectID}
-        titreInfo={props.item.title_fr}
-        titreMarque={props.item.titreMarque_fr}
+        searchLanguageMatch={props.languageMatch}
         typeContenu={props.item.typeContenu}
         sponsorUrl={props.item.sponsorUrl}
         showAbstract={true}
@@ -83,7 +83,7 @@ export const SearchContentSummary = (props: Props) => {
   return ( // THEME
     <TagButton
       key={props.item.objectID}
-      tagName={props.item.name_fr}
+      searchLanguageMatch={props.languageMatch}
       backgroundColor={colors.tagDarkColor}
       iconName={colors.iconName}
       onPress={() => {

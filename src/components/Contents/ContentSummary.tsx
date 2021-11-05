@@ -84,12 +84,13 @@ interface Props {
   tagName: string;
   tagLightColor: string;
   contentId: ObjectId;
-  titreInfo: string;
-  titreMarque: string | undefined;
+  titreInfo?: string;
+  titreMarque?: string | undefined;
   typeContenu: "dispositif" | "demarche";
   sponsorUrl: string | null;
   iconName: string;
   searchItem?: any;
+  searchLanguageMatch?: string;
   isTextNotBold?: boolean;
   showAbstract?: boolean;
   noShadow?: boolean;
@@ -159,13 +160,16 @@ export const ContentSummary = (props: Props) => {
           <TitlesContainer isRTL={isRTL}>
             <TitreInfoText color={props.tagDarkColor} isDispo={true}>
               {props.searchItem ?
-                <Highlight hit={props.searchItem} attribute={"title_fr"} /> :
+                <Highlight hit={props.searchItem} attribute={`title_${props.searchLanguageMatch||"fr"}`} /> :
                 props.titreInfo
               }
             </TitreInfoText>
             {!!props.titreMarque && (
               <TitreMarqueText color={props.tagDarkColor}>
-                {props.titreMarque}
+                 {props.searchItem ?
+                    <Highlight hit={props.searchItem} attribute={`titreMarque_${props.searchLanguageMatch||"fr"}`} /> :
+                    props.titreMarque
+                  }
               </TitreMarqueText>
             )}
           </TitlesContainer>
@@ -173,7 +177,7 @@ export const ContentSummary = (props: Props) => {
         </TitleContainer>
         {props.showAbstract &&
           <DescInfoText color={props.tagDarkColor}>
-            <Highlight hit={props.searchItem} attribute={"abstract_fr"} />
+            <Highlight hit={props.searchItem} attribute={`abstract_${props.searchLanguageMatch||"fr"}`} />
           </DescInfoText>
         }
       </ContentContainer>
@@ -215,7 +219,7 @@ export const ContentSummary = (props: Props) => {
         <TitlesContainer isRTL={isRTL}>
           <TitreInfoText color={props.tagDarkColor}>
             {props.searchItem ?
-              <Highlight hit={props.searchItem} attribute={"title_fr"} /> :
+              <Highlight hit={props.searchItem} attribute={`title_${props.searchLanguageMatch||"fr"}`} /> :
               props.titreInfo
             }
           </TitreInfoText>
@@ -224,7 +228,7 @@ export const ContentSummary = (props: Props) => {
       </TitleContainer>
       {props.showAbstract &&
         <DescInfoText color={props.tagDarkColor}>
-          <Highlight hit={props.searchItem} attribute={"abstract_fr"} />
+          <Highlight hit={props.searchItem} attribute={`abstract_${props.searchLanguageMatch||"fr"}`} />
         </DescInfoText>
       }
     </ContentContainer>

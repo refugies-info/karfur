@@ -1,12 +1,15 @@
 import * as React from "react";
 import { ScrollView } from "react-native";
-import { InstantSearch } from "react-instantsearch-native";
+import { useSelector } from "react-redux";
+import { InstantSearch, Configure } from "react-instantsearch-native";
 import { StackScreenProps } from "@react-navigation/stack"
 import algoliasearch from "algoliasearch/lite";
 import styled from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
 import Modal from "react-native-modal";
-
+import {
+  selectedI18nCodeSelector,
+} from "../../services/redux/User/user.selectors";
 import { RTLTouchableOpacity } from "../../components/BasicComponents";
 import { BottomTabParamList } from "../../../types"
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -16,7 +19,7 @@ import { HeaderAnimated } from "../../components/HeaderAnimated";
 import { FixSafeAreaView } from "../../components/FixSafeAreaView";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 import { theme } from "../../theme";
-
+import { getSearchableAttributes } from "../../libs/search";
 
 const FakeInput = styled(RTLTouchableOpacity)`
   height:56px;
@@ -49,6 +52,14 @@ export const SearchScreen = ({
   const { t, isRTL } = useTranslationWithRTL();
   const [searchState, setSearchState] = React.useState({query: ""});
   const [modalOpened, setModalOpened] = React.useState(false);
+
+  // Search parameters
+  const selectedLanguage = useSelector(selectedI18nCodeSelector);
+  const [searchableAttributes, setSearchableAttributes] = React.useState<string[]>([]);
+
+  React.useEffect(() => {
+    setSearchableAttributes(getSearchableAttributes(selectedLanguage));
+  }, [selectedLanguage])
 
   // Language modal
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
@@ -109,11 +120,16 @@ export const SearchScreen = ({
             searchState={searchState}
             onSearchStateChange={setSearchState}
           >
+            <Configure
+              restrictSearchableAttributes={searchableAttributes}
+              queryLanguages={["fr", selectedLanguage]}
+            />
             <SearchBox backCallback={() => setModalOpened(false)} />
             {searchState.query !== "" &&
             <InfiniteHits
               navigation={navigation}
               callbackCloseModal={() => setModalOpened(false)}
+              selectedLanguage={selectedLanguage}
             />
             }
           </InstantSearch>
