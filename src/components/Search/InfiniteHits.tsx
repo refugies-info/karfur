@@ -1,8 +1,16 @@
 import React from "react";
+import styled from "styled-components/native";
 import { View, FlatList } from "react-native";
 import { connectInfiniteHits } from "react-instantsearch-native";
 import { SearchContentSummary } from "../Search/SearchContentSummary";
+import { TextNormalBold } from "../StyledText";
 import { theme } from "../../theme"
+
+const StyledTextBold = styled(TextNormalBold)`
+  margin-top: ${theme.margin * 8}px;
+  margin-bottom: ${theme.margin * 3}px;
+  padding-horizontal: ${theme.margin * 3}px;
+`;
 
 interface Props {
   hits: any[];
@@ -24,13 +32,15 @@ const getLanguageMatch = (hit: any, selectedLanguage: string) => {
 }
 
 const InfiniteHits = ({ hits, hasMore, refineNext, navigation, callbackCloseModal, selectedLanguage }: Props) => {
+  const resultsNumber = <StyledTextBold>{hits.length} résultats</StyledTextBold>;
+
   return (
     <FlatList
       data={hits}
       keyExtractor={item => item.objectID}
       onEndReached={() => hasMore && refineNext()}
-      style={{ paddingTop: theme.margin * 2 }}
       contentContainerStyle={{ paddingBottom: theme.margin * 6 }}
+      ListHeaderComponent={resultsNumber}
       renderItem={({ item }) => {
 
         return (
