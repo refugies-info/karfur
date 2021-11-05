@@ -19,7 +19,9 @@ export type RootStackParamList = {
 
 export type BottomTabParamList = {
   Explorer: undefined;
-  Favoris: undefined;
+  Favoris: {
+    screen?: string
+  }
   Profil: undefined;
   Search: undefined;
 };
