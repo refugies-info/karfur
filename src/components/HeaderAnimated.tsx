@@ -9,6 +9,7 @@ interface Props {
   title: string;
   onLongPressSwitchLanguage: () => void;
   showSimplifiedHeader: boolean;
+  extraHeight?: number;
 }
 
 const styles = StyleSheet.create({
@@ -46,12 +47,17 @@ export const HeaderAnimated = (props: Props) => {
 
   const headerHeight = animatedController.interpolate({
     inputRange: [0, 1],
-    outputRange: [100, 50],
+    outputRange: [100 + (props.extraHeight || 0), 50],
   });
 
   const headerFontSize = animatedController.interpolate({
     inputRange: [0, 1],
     outputRange: [25, 16],
+  });
+
+  const textPaddingBottom = animatedController.interpolate({
+    inputRange: [0, 1],
+    outputRange: [(props.extraHeight || 0), 0],
   });
 
   return (
@@ -75,6 +81,7 @@ export const HeaderAnimated = (props: Props) => {
                 marginRight: isRTL ? 0 : theme.margin,
                 marginLeft: isRTL ? theme.margin : 0,
                 fontSize: headerFontSize,
+                paddingBottom: textPaddingBottom,
                 color: theme.colors.black,
               },
             ]}

@@ -18,7 +18,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 const SearchBoxContainer = styled.View`
   padding-bottom: ${theme.margin * 3}px;
   box-shadow: 0px -1px 8px rgba(33, 33, 33, 0.08);
-  elevation: 1;
+  elevation: 4;
   background-color: ${theme.colors.lightGrey};
 `;
 
