@@ -60,7 +60,6 @@ const colors = {
   red: "#B01917",
   lightRed: "#ffcecb",
   greyF7: "#F7F7F7",
-  yellow: "#FFEB3B",
 };
 
 const images = {};

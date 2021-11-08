@@ -106,6 +106,8 @@ export const NeedsSummary = (props: Props) => {
           <Highlight
             hit={props.searchItem}
             attribute={`title_${props.searchLanguageMatch || "fr"}`}
+            //@ts-ignore
+            color={props.tagDarkColor}
           /> :
           props.needText
         }

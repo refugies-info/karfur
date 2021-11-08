@@ -9,9 +9,11 @@ interface Props {
   attribute: any;
   highlight: any;
   capitalize?: boolean;
+  color?: string;
+  colorNotHighlighted?: string;
 }
 
-const Highlight = ({ attribute, hit, highlight, capitalize }: Props) => {
+const Highlight = ({ attribute, hit, highlight, capitalize, color, colorNotHighlighted }: Props) => {
   const highlights = highlight({
     highlightProperty: "_highlightResult",
     attribute,
@@ -21,14 +23,17 @@ const Highlight = ({ attribute, hit, highlight, capitalize }: Props) => {
   return (
     <Text>
       {highlights.map(({ value, isHighlighted }: any, index: number) => {
-        const style = isHighlighted ? {
-          backgroundColor: theme.colors.yellow,
+        const style: any = isHighlighted ? {
+          backgroundColor: theme.colors.lightBlue,
           fontFamily:theme.fonts.families.circularBold,
-          color:  theme.colors.black,
         } : {
           backgroundColor: "transparent",
           fontFamily: theme.fonts.families.circularStandard,
         };
+
+        if (color) {
+          style.color = isHighlighted ? color : `${colorNotHighlighted || color}B3`;
+        }
 
         return (
           <Text key={index} style={style}>

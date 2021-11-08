@@ -52,6 +52,10 @@ export const TagButton = (props: Props) => {
             attribute={`name_${props.searchLanguageMatch || "fr"}`}
             //@ts-ignore
             capitalize={true}
+            //@ts-ignore
+            color={props.backgroundColor}
+            //@ts-ignore
+            colorNotHighlighted={theme.colors.white}
           /> :
           firstLetterUpperCase(t("Tags." + props.tagName, props.tagName))
         }
