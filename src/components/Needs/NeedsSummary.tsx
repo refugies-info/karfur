@@ -67,7 +67,6 @@ interface Props {
   searchItem?: any;
   style?: any;
   backScreen?: string;
-  onPressCallback?: () => void;
 }
 
 export const NeedsSummary = (props: Props) => {
@@ -83,7 +82,6 @@ export const NeedsSummary = (props: Props) => {
         logEventInFirebase(FirebaseEvent.CLIC_NEED, {
           need: props.needTextFr,
         });
-        if (props.onPressCallback) props.onPressCallback()
 
         props.navigation.navigate("Explorer", {
           screen: "ContentsScreen",

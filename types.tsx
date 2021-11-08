@@ -60,14 +60,7 @@ export type FavorisParamList = {
 
 export type SearchParamList = {
   SearchScreen: undefined;
-  SearchContentScreen: {
-    contentId: ObjectId;
-    tagDarkColor: string;
-    tagVeryLightColor: string;
-    tagName: string;
-    tagLightColor: string;
-    iconName: string;
-  };
+  SearchResultsScreen: undefined;
 };
 
 export type OnboardingParamList = {

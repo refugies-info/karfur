@@ -9,10 +9,12 @@ import { TextBigBold, TextSmallNormal, TextSmallBold } from "./StyledText";
 import { Icon } from "react-native-eva-icons";
 
 interface Props {
-  onButtonClick: () => void;
+  onButtonClick?: () => void;
   text: string;
-  buttonText: string;
-  buttonIcon: string;
+  title?: string;
+  buttonText?: string;
+  buttonIcon?: string;
+  imageLast?: boolean;
 }
 
 const ErrorContainer = styled.View`
@@ -31,39 +33,47 @@ const RestartButton = styled(RTLTouchableOpacity)`
 
 export const ErrorScreen = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
+  const image = <Image
+    source={ErrorImage}
+    style={{
+      width: 240,
+      height: 160,
+      marginBottom: theme.margin * 4
+    }}
+    width={240}
+    height={160}
+  />;
   return (
     <ErrorContainer>
-      <Image
-        source={ErrorImage}
-        style={{ width: 240, height: 160, marginBottom: theme.margin * 4 }}
-        width={240}
-        height={160}
-      />
-      <TextBigBold style={{ marginBottom: theme.margin * 2 }}>
-        {t("Content.Oups", "Oups !")}
+      {!props.imageLast && image}
+      <TextBigBold style={{ marginBottom: theme.margin * 2, textAlign: "center" }}>
+        {props.title || t("Content.Oups", "Oups !")}
       </TextBigBold>
       <TextSmallNormal
         style={{ textAlign: "center", marginBottom: theme.margin * 4 }}
       >
         {props.text}
       </TextSmallNormal>
-      <RestartButton onPress={props.onButtonClick}>
-        <Icon
-          name={props.buttonIcon}
-          height={20}
-          width={20}
-          fill={theme.colors.white}
-        />
-        <TextSmallBold
-          style={{
-            color: theme.colors.white,
-            marginLeft: isRTL ? 0 : theme.margin,
-            marginRight: isRTL ? theme.margin : 0,
-          }}
-        >
-          {props.buttonText}
-        </TextSmallBold>
-      </RestartButton>
+      {props.imageLast && image}
+      {!!props.onButtonClick && !!props.buttonIcon && props.buttonText &&
+        <RestartButton onPress={props.onButtonClick}>
+          <Icon
+            name={props.buttonIcon}
+            height={20}
+            width={20}
+            fill={theme.colors.white}
+          />
+          <TextSmallBold
+            style={{
+              color: theme.colors.white,
+              marginLeft: isRTL ? 0 : theme.margin,
+              marginRight: isRTL ? theme.margin : 0,
+            }}
+          >
+            {props.buttonText}
+          </TextSmallBold>
+        </RestartButton>
+      }
     </ErrorContainer>
   );
 };

@@ -33,7 +33,7 @@ interface Props {
 
 const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
   const input = React.useRef<TextInput>();
-  const { isRTL } = useTranslationWithRTL();
+  const { t, isRTL } = useTranslationWithRTL();
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -62,7 +62,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
           ref={input}
           onChangeText={(value: string) => refine(value)}
           value={currentRefinement}
-          placeholder="Rechercher"
+          placeholder={t("SearchScreeen.Rechercher", "Rechercher")}
           isRTL={isRTL}
           testID="test-city-search"
         />

@@ -10,7 +10,6 @@ import { tags } from "../../data/tagData";
 interface Props {
   navigation: any;
   item: any;
-  callbackCloseModal: any;
   languageMatch: string;
 }
 
@@ -52,7 +51,6 @@ export const SearchContentSummary = (props: Props) => {
         iconName={colors.iconName}
         searchItem={props.item}
         backScreen="Search"
-        onPressCallback={props.callbackCloseModal}
       />
     )
   } else if (
@@ -75,7 +73,6 @@ export const SearchContentSummary = (props: Props) => {
         showAbstract={true}
         searchItem={props.item}
         backScreen="Search"
-        onPressCallback={props.callbackCloseModal}
       />
     );
   }
@@ -103,7 +100,6 @@ export const SearchContentSummary = (props: Props) => {
             backScreen: "Search"
           }
         });
-        props.callbackCloseModal();
         return;
       }}
       searchItem={props.item}

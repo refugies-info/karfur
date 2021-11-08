@@ -98,7 +98,6 @@ interface Props {
   actionPress?: any;
   actionIcon?: string;
   backScreen?: string;
-  onPressCallback?: () => void;
 }
 export const ContentSummary = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
@@ -121,8 +120,6 @@ export const ContentSummary = (props: Props) => {
         noShadow={!!props.noShadow}
         style={props.style || {}}
         onPress={() => {
-          if (props.onPressCallback) props.onPressCallback()
-
           props.navigation.navigate("Explorer", {
             screen: "ContentScreen",
             params: {
@@ -205,8 +202,6 @@ export const ContentSummary = (props: Props) => {
       noShadow={!!props.noShadow}
       style={props.style || {}}
       onPress={() => {
-        if (props.onPressCallback) props.onPressCallback()
-
         props.navigation.navigate("Explorer", {
           screen: "ContentScreen",
           params: {

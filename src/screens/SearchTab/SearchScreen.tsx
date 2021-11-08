@@ -1,25 +1,15 @@
 import * as React from "react";
 import { ScrollView } from "react-native";
-import { useSelector } from "react-redux";
-import { InstantSearch, Configure } from "react-instantsearch-native";
 import { StackScreenProps } from "@react-navigation/stack"
-import algoliasearch from "algoliasearch/lite";
 import styled from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
-import Modal from "react-native-modal";
-import {
-  selectedI18nCodeSelector,
-} from "../../services/redux/User/user.selectors";
+
 import { RTLTouchableOpacity } from "../../components/BasicComponents";
-import { BottomTabParamList } from "../../../types"
+import { SearchParamList } from "../../../types"
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import SearchBox from "../../components/Search/SearchBox";
-import InfiniteHits from "../../components/Search/InfiniteHits";
 import { HeaderAnimated } from "../../components/HeaderAnimated";
-import { FixSafeAreaView } from "../../components/FixSafeAreaView";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 import { theme } from "../../theme";
-import { getSearchableAttributes } from "../../libs/search";
 
 const FakeInput = styled(RTLTouchableOpacity)`
   height:56px;
@@ -38,28 +28,11 @@ const FakeInputText = styled.Text`
   margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : theme.margin)}px;
   margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? theme.margin : 0)}px;
 `;
-const SearchModal = styled(Modal)`
-  margin-horizontal: 0;
-  justify-content: flex-start;
-  padding-top: ${theme.margin * 6}px;
-`;
-
-const searchClient = algoliasearch("L9HYT1676M", "3cb0d298b348e76675f4166741a45599");
 
 export const SearchScreen = ({
   navigation
-}:StackScreenProps<BottomTabParamList, "Search">) => {
+}:StackScreenProps<SearchParamList, "SearchScreen">) => {
   const { t, isRTL } = useTranslationWithRTL();
-  const [searchState, setSearchState] = React.useState({query: ""});
-  const [modalOpened, setModalOpened] = React.useState(false);
-
-  // Search parameters
-  const selectedLanguage = useSelector(selectedI18nCodeSelector);
-  const [searchableAttributes, setSearchableAttributes] = React.useState<string[]>([]);
-
-  React.useEffect(() => {
-    setSearchableAttributes(getSearchableAttributes(selectedLanguage));
-  }, [selectedLanguage])
 
   // Language modal
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
@@ -94,7 +67,7 @@ export const SearchScreen = ({
         onLongPressSwitchLanguage={toggleLanguageModal}
       />
 
-      <FakeInput onPress={() => setModalOpened(true)}>
+      <FakeInput onPress={() => navigation.navigate("SearchResultsScreen")}>
         <Icon
           name="search-outline"
           height={24}
@@ -102,39 +75,9 @@ export const SearchScreen = ({
           fill={theme.colors.darkGrey}
         />
         <FakeInputText isRTL={isRTL}>
-          Rechercher
+          {t("SearchScreeen.Rechercher", "Rechercher")}
         </FakeInputText>
       </FakeInput>
-
-      <SearchModal
-        isVisible={modalOpened}
-        onBackdropPress={() => setModalOpened(false)}
-        statusBarTranslucent={true}
-        backdropColor={theme.colors.greyF7}
-        backdropOpacity={1}
-      >
-        <FixSafeAreaView>
-          <InstantSearch
-            searchClient={searchClient}
-            indexName="staging_refugies"
-            searchState={searchState}
-            onSearchStateChange={setSearchState}
-          >
-            <Configure
-              restrictSearchableAttributes={searchableAttributes}
-              queryLanguages={["fr", selectedLanguage]}
-            />
-            <SearchBox backCallback={() => setModalOpened(false)} />
-            {searchState.query !== "" &&
-            <InfiniteHits
-              navigation={navigation}
-              callbackCloseModal={() => setModalOpened(false)}
-              selectedLanguage={selectedLanguage}
-            />
-            }
-          </InstantSearch>
-        </FixSafeAreaView>
-      </SearchModal>
 
       <LanguageChoiceModal
         isModalVisible={isLanguageModalVisible}
