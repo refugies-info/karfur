@@ -31,12 +31,17 @@ const TitleContainer = styled(RTLView)`
 
 const ImageContainer = styled.View`
   justify-content: center;
-  width: 56px;
+  width: 64px;
+  height: 64px;
   align-items: center;
   margin-left: ${(props: { isRTL: boolean }) =>
     props.isRTL ? 0 : theme.margin * 2}px;
   margin-right: ${(props: { isRTL: boolean }) =>
     props.isRTL ? theme.margin * 2 : 0}px;
+  border-width: 6px;
+  border-color: ${(props: { hasMatch: boolean }) =>
+    props.hasMatch ? theme.colors.lightBlue : "transparent"};
+  border-radius: ${theme.radius * 2}px;
 `;
 
 const TitreInfoText = styled(TextSmallBold)`
@@ -91,6 +96,7 @@ interface Props {
   actionPress?: any;
   actionIcon?: string;
   backScreen?: string;
+  hasSponsorMatch?: boolean;
 }
 export const ContentSummary = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
@@ -130,20 +136,21 @@ export const ContentSummary = (props: Props) => {
       >
         <TitleContainer>
           {props.sponsorUrl ? (
-            <ImageContainer isRTL={isRTL}>
+            <ImageContainer isRTL={isRTL} hasMatch={props.hasSponsorMatch}>
               <Image
                 source={{
                   uri: props.sponsorUrl,
                 }}
                 resizeMode={"contain"}
                 style={{
-                  height: 56,
-                  width: 56,
+                  height: 58,
+                  width: 58,
+                  maxWidth: "100%"
                 }}
               />
             </ImageContainer>
           ) : (
-            <ImageContainer isRTL={isRTL}>
+            <ImageContainer isRTL={isRTL} hasMatch={props.hasSponsorMatch}>
               <Image source={NoLogo} style={{ height: 58, width: 58 }} />
             </ImageContainer>
           )}

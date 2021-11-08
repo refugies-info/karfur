@@ -1,7 +1,5 @@
 export const commonSearchableAttributes = [
-  // "tags",
-  // "tagName",
-  // "tagsShort"
+  "sponsorName"
 ];
 
 export const localizedSearchableAttributes = [

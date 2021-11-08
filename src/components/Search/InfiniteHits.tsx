@@ -34,6 +34,10 @@ const getLanguageMatch = (hit: any, selectedLanguage: string) => {
   return selectedLanguage;
 }
 
+const hasSponsorMatch = (hit: any) => {
+  return hit._highlightResult?.sponsorName?.matchLevel === "full"
+}
+
 const InfiniteHits = ({
   hits,
   hasMore,
@@ -88,6 +92,7 @@ const InfiniteHits = ({
                 navigation={navigation}
                 item={item}
                 languageMatch={getLanguageMatch(item, selectedLanguage || "fr")}
+                hasSponsorMatch={hasSponsorMatch(item)}
                 nbContents={item.typeContenu === "besoin" ? nbContents[item.objectID] : null}
               />
             </View>

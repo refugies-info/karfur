@@ -11,11 +11,12 @@ interface Props {
   navigation: any;
   item: any;
   languageMatch: string;
+  hasSponsorMatch: boolean;
   nbContents?: number|null;
 }
 
 
-const getColors = (tagName: string, tagProperty: "name"|"short") => {
+const getColors = (tagName: string) => {
   const defaultColors = {
     tagDarkColor: theme.colors.black,
     tagVeryLightColor: theme.colors.white,
@@ -24,7 +25,7 @@ const getColors = (tagName: string, tagProperty: "name"|"short") => {
     iconName: ""
   };
 
-  const currentTag = tags.find(t => tagName === t[tagProperty]);
+  const currentTag = tags.find(t => tagName === t.name);
   if (!currentTag) return defaultColors;
 
   return {
@@ -38,7 +39,7 @@ const getColors = (tagName: string, tagProperty: "name"|"short") => {
 
 export const SearchContentSummary = (props: Props) => {
   if (props.item.typeContenu === "besoin") {
-    const colors = getColors(props.item.tagName, "name");
+    const colors = getColors(props.item.tagName);
     return ( // BESOIN
       <NeedsSummary
         id={props.item.objectID}
@@ -59,7 +60,7 @@ export const SearchContentSummary = (props: Props) => {
     props.item.typeContenu === "dispositif" || props.item.typeContenu === "demarche"
   ) { // DISPOSITIF & DEMARCHE
     const primaryTagName = props.item.tags.length > 0 ? props.item.tags[0] : null;
-    const colors = getColors(primaryTagName, "name");
+    const colors = getColors(primaryTagName);
     return (
       <ContentSummary
         navigation={props.navigation}
@@ -73,12 +74,13 @@ export const SearchContentSummary = (props: Props) => {
         typeContenu={props.item.typeContenu}
         sponsorUrl={props.item.sponsorUrl}
         showAbstract={true}
+        hasSponsorMatch={props.hasSponsorMatch}
         searchItem={props.item}
         backScreen="Search"
       />
     );
   }
-  const colors = getColors(props.item.name_fr, "name");
+  const colors = getColors(props.item.name_fr);
   return ( // THEME
     <TagButton
       key={props.item.objectID}
