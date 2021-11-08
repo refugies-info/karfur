@@ -19,7 +19,7 @@ const SearchBoxContainer = styled.View`
   padding-bottom: ${theme.margin * 3}px;
   box-shadow: 0px -1px 8px rgba(33, 33, 33, 0.08);
   elevation: 1;
-  background-color: ${theme.colors.greyF7};
+  background-color: ${theme.colors.lightGrey};
 `;
 
 const searchClient = algoliasearch("L9HYT1676M", "3cb0d298b348e76675f4166741a45599");

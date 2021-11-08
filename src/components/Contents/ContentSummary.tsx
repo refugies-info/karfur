@@ -13,11 +13,11 @@ import Highlight from "../Search/Highlight";
 
 const ContentContainer = styled.TouchableOpacity`
   background-color: ${(props: { isDispo: boolean }) => (props.isDispo ?
-    theme.colors.white : "transparent")};
+    theme.colors.white : theme.colors.lightGrey)};
   min-height: ${(props: { isDispo: boolean }) => (props.isDispo ? 80 : 72)}px;
   border-radius: ${theme.radius * 2}px;
   ${(props: { noShadow: boolean }) => props.noShadow ? "" : `
-  box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);`}
+  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);`}
   elevation: 2;
   border-width: ${(props: { isDispo: boolean }) => (!props.isDispo ? 2 : 0)}px;
   border-color: ${(props: { color: string }) => props.color || "transparent"};
