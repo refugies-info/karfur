@@ -165,6 +165,7 @@
   "SearchScreen": {
     "Rechercher": "Rechercher",
     "Les fiches les plus recherchées": "Les fiches les plus recherchées",
+    "Les thèmes": "Les thèmes",
     "résultats": "{{nbResults}} résultats",
     "Impossible de trouver": "Impossible de trouver",
     "Essaie une nouvelle recherche": "Essaie encore, vérifie l’orthographe ou utilise un autre mot-clé."

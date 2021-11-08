@@ -21,6 +21,7 @@ interface Props {
   navigation: any;
   selectedLanguage: string | null;
   query: string;
+  nbContents: any;
 }
 
 const getLanguageMatch = (hit: any, selectedLanguage: string) => {
@@ -33,7 +34,15 @@ const getLanguageMatch = (hit: any, selectedLanguage: string) => {
   return selectedLanguage;
 }
 
-const InfiniteHits = ({ hits, hasMore, refineNext, navigation, selectedLanguage, query }: Props) => {
+const InfiniteHits = ({
+  hits,
+  hasMore,
+  refineNext,
+  navigation,
+  selectedLanguage,
+  query,
+  nbContents
+}: Props) => {
   const { t } = useTranslationWithRTL();
 
   if (hits.length === 0) {
@@ -78,7 +87,8 @@ const InfiniteHits = ({ hits, hasMore, refineNext, navigation, selectedLanguage,
               <SearchContentSummary
                 navigation={navigation}
                 item={item}
-                languageMatch={getLanguageMatch(item, selectedLanguage || "fr")}
+                languageMatch={getLanguageMatch(item, selectedLanguage || "fr")}
+                nbContents={item.typeContenu === "besoin" ? nbContents[item.objectID] : null}
               />
             </View>
           )

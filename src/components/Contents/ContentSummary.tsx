@@ -29,7 +29,7 @@ const TitleContainer = styled(RTLView)`
   flex: 1;
 `;
 
-const StructureImageContainer = styled.View`
+const ImageContainer = styled.View`
   justify-content: center;
   width: 56px;
   align-items: center;
@@ -37,13 +37,6 @@ const StructureImageContainer = styled.View`
     props.isRTL ? 0 : theme.margin * 2}px;
   margin-right: ${(props: { isRTL: boolean }) =>
     props.isRTL ? theme.margin * 2 : 0}px;
-`;
-
-const DemarcheIconContainer = styled.View`
-  justify-content: center;
-  width: 72px;
-  align-items: center;
-  height: 100%;
 `;
 
 const TitreInfoText = styled(TextSmallBold)`
@@ -137,7 +130,7 @@ export const ContentSummary = (props: Props) => {
       >
         <TitleContainer>
           {props.sponsorUrl ? (
-            <StructureImageContainer isRTL={isRTL}>
+            <ImageContainer isRTL={isRTL}>
               <Image
                 source={{
                   uri: props.sponsorUrl,
@@ -148,11 +141,11 @@ export const ContentSummary = (props: Props) => {
                   width: 56,
                 }}
               />
-            </StructureImageContainer>
+            </ImageContainer>
           ) : (
-            <StructureImageContainer isRTL={isRTL}>
+            <ImageContainer isRTL={isRTL}>
               <Image source={NoLogo} style={{ height: 58, width: 58 }} />
-            </StructureImageContainer>
+            </ImageContainer>
           )}
           <TitlesContainer isRTL={isRTL}>
             <TitreInfoText color={props.tagDarkColor} isDispo={true}>
@@ -218,13 +211,13 @@ export const ContentSummary = (props: Props) => {
       activeOpacity={0.8}
     >
       <TitleContainer>
-        <DemarcheIconContainer lightColor={props.tagVeryLightColor} isRTL={isRTL}>
+        <ImageContainer lightColor={props.tagVeryLightColor} isRTL={isRTL}>
           <DemarcheImage
             name={props.iconName}
             stroke={props.tagDarkColor}
             contentId={props.contentId}
           />
-        </DemarcheIconContainer>
+        </ImageContainer>
 
         <TitlesContainer isRTL={isRTL}>
           <TitreInfoText color={props.tagDarkColor}>

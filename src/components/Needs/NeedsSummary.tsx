@@ -111,7 +111,7 @@ export const NeedsSummary = (props: Props) => {
         }
       </StyledText>
 
-      {props.nbContents &&
+      {!!props.nbContents &&
         <IndicatorContainer backgroundColor={props.tagDarkColor} isRTL={isRTL}>
           <IndicatorNumber isRTL={isRTL}>
             {props.nbContents}

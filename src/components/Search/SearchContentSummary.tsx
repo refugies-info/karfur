@@ -11,6 +11,7 @@ interface Props {
   navigation: any;
   item: any;
   languageMatch: string;
+  nbContents?: number|null;
 }
 
 
@@ -50,6 +51,7 @@ export const SearchContentSummary = (props: Props) => {
         tagLightColor={colors.tagLightColor}
         iconName={colors.iconName}
         searchItem={props.item}
+        nbContents={props.nbContents || 0}
         backScreen="Search"
       />
     )

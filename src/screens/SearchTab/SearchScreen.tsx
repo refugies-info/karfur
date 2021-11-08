@@ -1,24 +1,19 @@
 import * as React from "react";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack"
 import styled from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
 import { useSelector } from "react-redux";
 
-import {
-  currentI18nCodeSelector,
-} from "../../services/redux/User/user.selectors";
-import { RTLTouchableOpacity } from "../../components/BasicComponents";
 import { SearchParamList } from "../../../types"
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { HeaderAnimated } from "../../components/HeaderAnimated";
-import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
-import { ContentSummary } from "../../components/Contents/ContentSummary";
-import { theme } from "../../theme";
+import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import { mostViewedContentsSelector } from "../../services/redux/Contents/contents.selectors";
-import { SimplifiedContent } from "../../types/interface";
-import { getCardColors } from "../../libs/content";
-import { StyledTextNormalBold } from "../../components/StyledText";
+import { RTLTouchableOpacity } from "../../components/BasicComponents";
+import { HeaderAnimated } from "../../components/HeaderAnimated";
+import SearchSuggestions from "../../components/Search/SearchSuggestions";
+import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
+import { theme } from "../../theme";
 
 const FakeInput = styled(RTLTouchableOpacity)`
   height:56px;
@@ -44,10 +39,6 @@ const ShadowView = styled.View`
   box-shadow: 0px -1px 8px rgba(33, 33, 33, 0.08);
   elevation: 4;
   ` : "")}
-`;
-const ListSubtitle = styled(StyledTextNormalBold)`
-  margin-top: ${theme.margin * 7}px;
-  margin-bottom: ${theme.margin * 3}px;
 `;
 
 export const SearchScreen = ({
@@ -101,44 +92,15 @@ export const SearchScreen = ({
         </FakeInput>
       </ShadowView>
 
-      <ScrollView
-        style={{ flex: 1 }}
-        onScroll={handleScroll}
-        scrollEventThrottle={5}
-      >
-        <View style={{ marginHorizontal: theme.margin * 3 }}>
-          <ListSubtitle>
-            {t("SearchScreeen.Les fiches les plus recherchées", "Les fiches les plus recherchées")}
-          </ListSubtitle>
-
-          {(mostViewedContents || []).map((content: SimplifiedContent) => {
-            const colors = getCardColors(content)
-            return (
-              <ContentSummary
-                key={content._id}
-                navigation={navigation}
-                tagDarkColor={colors.tagDarkColor}
-                tagVeryLightColor={colors.tagVeryLightColor}
-                tagName={colors.tagName}
-                tagLightColor={colors.tagLightColor}
-                iconName={colors.iconName}
-                contentId={content._id}
-                titreInfo={content.titreInformatif}
-                titreMarque={content.titreMarque}
-                typeContenu={content.typeContenu}
-                sponsorUrl={content.sponsorUrl}
-                style={{ marginBottom: theme.margin * 3 }}
-                backScreen="Search"
-              />
-            )
-          })}
-        </View>
-
-        <LanguageChoiceModal
-          isModalVisible={isLanguageModalVisible}
-          toggleModal={toggleLanguageModal}
-        />
-      </ScrollView>
+      <SearchSuggestions
+        handleScroll={handleScroll}
+        contents={mostViewedContents}
+        navigation={navigation}
+      />
+      <LanguageChoiceModal
+        isModalVisible={isLanguageModalVisible}
+        toggleModal={toggleLanguageModal}
+      />
     </View>
   );
 };

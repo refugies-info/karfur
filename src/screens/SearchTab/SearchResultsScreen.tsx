@@ -2,18 +2,20 @@ import * as React from "react";
 import styled from "styled-components/native";
 import { useSelector } from "react-redux";
 import { View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { InstantSearch, Configure } from "react-instantsearch-native";
 import { StackScreenProps } from "@react-navigation/stack"
 import algoliasearch from "algoliasearch/lite";
-import {
-  selectedI18nCodeSelector,
-} from "../../services/redux/User/user.selectors";
 import { SearchParamList } from "../../../types"
+import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
+import { mostViewedContentsSelector } from "../../services/redux/Contents/contents.selectors";
+import { needsSelector } from "../../services/redux/Needs/needs.selectors";
+import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import SearchBox from "../../components/Search/SearchBox";
 import InfiniteHits from "../../components/Search/InfiniteHits";
+import SearchSuggestions from "../../components/Search/SearchSuggestions";
 import { getSearchableAttributes } from "../../libs/search";
 import { theme } from "../../theme";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SearchBoxContainer = styled.View`
   padding-bottom: ${theme.margin * 3}px;
@@ -28,18 +30,43 @@ export const SearchResultsScreen = ({
   navigation
 }:StackScreenProps<SearchParamList, "SearchResultsScreen">) => {
   const insets = useSafeAreaInsets();
-  const [searchState, setSearchState] = React.useState({query: ""});
+  const [searchState, setSearchState] = React.useState({ query: "" });
+  const currentI18nCode = useSelector(currentI18nCodeSelector);
+  const mostViewedContents = useSelector(mostViewedContentsSelector(currentI18nCode || "fr"));
+  const groupedContents = useSelector(groupedContentsSelector);
+  const allNeeds = useSelector(needsSelector);
+
+  // Calculate nb contents per need
+  const nbContents = React.useMemo(() => {
+    const nbContents: any = {};
+    for (const need of allNeeds) {
+      nbContents[need._id] = groupedContents[need._id]?.length || 0;
+    }
+    return nbContents;
+  }, [])
 
   // Search parameters
-  const selectedLanguage = useSelector(selectedI18nCodeSelector);
   const [searchableAttributes, setSearchableAttributes] = React.useState<string[]>([]);
-
   React.useEffect(() => {
-    setSearchableAttributes(getSearchableAttributes(selectedLanguage));
-  }, [selectedLanguage])
+    setSearchableAttributes(getSearchableAttributes(currentI18nCode));
+  }, [currentI18nCode])
+
+  // Header animation
+  const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
+  const handleScroll = (event: any) => {
+    if (event.nativeEvent.contentOffset.y > 5 && !showSimplifiedHeader) {
+      setShowSimplifiedHeader(true);
+      return;
+    }
+    if (event.nativeEvent.contentOffset.y < 5 && showSimplifiedHeader) {
+      setShowSimplifiedHeader(false);
+      return;
+    }
+    return;
+  };
 
   return (
-    <View style={{ paddingBottom: insets.bottom + 100, flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <InstantSearch
         searchClient={searchClient}
         indexName="staging_refugies"
@@ -48,17 +75,25 @@ export const SearchResultsScreen = ({
       >
         <Configure
           restrictSearchableAttributes={searchableAttributes}
-          queryLanguages={["fr", selectedLanguage]}
+          queryLanguages={["fr", currentI18nCode]}
         />
         <SearchBoxContainer style={{ paddingTop: (insets.top + theme.margin * 3) }}>
           <SearchBox backCallback={() => navigation.navigate("SearchScreen")} />
         </SearchBoxContainer>
-        {searchState.query !== "" &&
-        <InfiniteHits
-          navigation={navigation}
-          selectedLanguage={selectedLanguage}
-          query={searchState.query}
-        />
+        {searchState.query !== "" ?
+          <View style={{ paddingBottom: insets.bottom + 100 }}>
+            <InfiniteHits
+              navigation={navigation}
+              selectedLanguage={currentI18nCode}
+              query={searchState.query}
+              nbContents={nbContents}
+            />
+          </View> :
+          <SearchSuggestions
+            handleScroll={handleScroll}
+            contents={mostViewedContents}
+            navigation={navigation}
+          />
         }
       </InstantSearch>
     </View>
