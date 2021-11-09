@@ -1,1 +1,0 @@
-export { getNeeds } from "./getNeeds";
