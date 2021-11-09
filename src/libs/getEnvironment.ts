@@ -8,6 +8,7 @@ export const getEnvironment = () => {
       siteSecret: process.env.SITE_SECRET,
       siteUrl: "https://refugies.info",
       debugModeFirebase: false,
+      algoliaIndex: "prod_refugies",
     };
   }
   return {
@@ -16,5 +17,6 @@ export const getEnvironment = () => {
     siteSecret: process.env.SITE_SECRET,
     siteUrl: process.env.SITE_URL,
     debugModeFirebase: process.env.DEBUG_MODE_FIREBASE,
+    algoliaIndex: process.env.ALGOLIA_INDEX || "",
   };
 };

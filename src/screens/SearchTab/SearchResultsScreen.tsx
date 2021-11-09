@@ -15,6 +15,7 @@ import SearchBox from "../../components/Search/SearchBox";
 import InfiniteHits from "../../components/Search/InfiniteHits";
 import SearchSuggestions from "../../components/Search/SearchSuggestions";
 import { getSearchableAttributes } from "../../libs/search";
+import { getEnvironment } from "../../libs/getEnvironment";
 import { theme } from "../../theme";
 
 const SearchBoxContainer = styled.View`
@@ -24,7 +25,7 @@ const SearchBoxContainer = styled.View`
   background-color: ${theme.colors.lightGrey};
 `;
 
-const searchClient = algoliasearch("L9HYT1676M", "3cb0d298b348e76675f4166741a45599");
+const searchClient = algoliasearch("L9HYT1676M", process.env.ALGOLIA_API_KEY || "");
 
 export const SearchResultsScreen = ({
   navigation
@@ -69,7 +70,7 @@ export const SearchResultsScreen = ({
     <View style={{ flex: 1 }}>
       <InstantSearch
         searchClient={searchClient}
-        indexName="staging_refugies"
+        indexName={getEnvironment().algoliaIndex}
         searchState={searchState}
         onSearchStateChange={setSearchState}
       >
