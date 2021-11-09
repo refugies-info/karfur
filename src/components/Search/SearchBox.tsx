@@ -39,7 +39,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
   React.useEffect(() => { // set focus when component mounts
     setTimeout(() => {
       if (input && input.current) input.current.focus()
-    }, 100);
+    }, 500);
   }, [])
 
   return (
