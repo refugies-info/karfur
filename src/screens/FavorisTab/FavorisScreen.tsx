@@ -52,7 +52,7 @@ const Title = styled(TextBigBold)`
   margin-bottom: ${theme.margin * 3}px;
 `;
 const CardItem = styled.View`
-  marginBottom: ${theme.margin * 2}px;
+  marginBottom: ${theme.margin * 1}px;
   flex: 1;
 `;
 const DeleteAllButton = styled.TouchableOpacity`
@@ -150,7 +150,7 @@ export const FavorisScreen = ({
           paddingHorizontal: theme.margin * 2,
           marginHorizontal:  theme.margin * 3,
           borderRadius: theme.radius * 2,
-          marginBottom: theme.margin
+          marginBottom: theme.margin * 2,
         }}
       >
         <Icon
@@ -190,7 +190,7 @@ export const FavorisScreen = ({
                     onSwipeableRightOpen={!isRTL ? () => deleteFavorite(content._id) : undefined}
                     onSwipeableLeftOpen={isRTL ? () => deleteFavorite(content._id) : undefined}
                     overshootFriction={8}
-                    childrenContainerStyle={{ paddingBottom: theme.margin }}
+                    childrenContainerStyle={{ paddingBottom: theme.margin * 2 }}
                   >
                     <ContentSummary
                       navigation={navigation}
