@@ -15,7 +15,6 @@ interface Props {
   nbContents?: number|null;
 }
 
-
 const getColors = (tagName: string) => {
   const defaultColors = {
     tagDarkColor: theme.colors.black,
@@ -87,6 +86,7 @@ export const SearchContentSummary = (props: Props) => {
       searchLanguageMatch={props.languageMatch}
       backgroundColor={colors.tagDarkColor}
       iconName={colors.iconName}
+      searchItem={props.item}
       onPress={() => {
         logEventInFirebase(FirebaseEvent.CLIC_THEME, {
           theme: colors.tagName,
@@ -106,7 +106,6 @@ export const SearchContentSummary = (props: Props) => {
         });
         return;
       }}
-      searchItem={props.item}
     />
   )
 };

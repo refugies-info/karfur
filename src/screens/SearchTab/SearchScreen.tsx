@@ -43,7 +43,7 @@ const ShadowView = styled.View`
 
 export const SearchScreen = ({
   navigation
-}:StackScreenProps<SearchParamList, "SearchScreen">) => {
+}: StackScreenProps<SearchParamList, "SearchScreen">) => {
   const { t, isRTL } = useTranslationWithRTL();
   const currentI18nCode = useSelector(currentI18nCodeSelector);
   const mostViewedContents = useSelector(mostViewedContentsSelector(currentI18nCode || "fr"));

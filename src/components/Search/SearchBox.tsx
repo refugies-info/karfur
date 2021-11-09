@@ -25,6 +25,7 @@ const StyledInput = styled.TextInput`
   text-align: ${(props: { isRTL: boolean }) => (props.isRTL ? "right" : "left")};
   flex: 1;
 `;
+
 interface Props {
   currentRefinement: string;
   refine: any;
@@ -35,7 +36,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
   const input = React.useRef<TextInput>();
   const { t, isRTL } = useTranslationWithRTL();
 
-  React.useEffect(() => {
+  React.useEffect(() => { // set focus when component mounts
     setTimeout(() => {
       if (input && input.current) input.current.focus()
     }, 100);

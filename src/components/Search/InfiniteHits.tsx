@@ -8,6 +8,11 @@ import { TextNormalBold } from "../StyledText";
 import { theme } from "../../theme"
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
+const ErrorContainer = styled.View`
+  justifyContent: center;
+  flex-grow: 1;
+`;
+
 const StyledTextBold = styled(TextNormalBold)`
   margin-top: ${theme.margin * 5}px;
   margin-bottom: ${theme.margin * 3}px;
@@ -34,9 +39,7 @@ const getLanguageMatch = (hit: any, selectedLanguage: string) => {
   return selectedLanguage;
 }
 
-const hasSponsorMatch = (hit: any) => {
-  return hit._highlightResult?.sponsorName?.matchLevel === "full"
-}
+const hasSponsorMatch = (hit: any) => hit._highlightResult?.sponsorName?.matchLevel === "full";
 
 const InfiniteHits = ({
   hits,
@@ -51,7 +54,7 @@ const InfiniteHits = ({
 
   if (hits.length === 0) {
     return (
-      <View style={{ justifyContent: "center", flexGrow: 1 }}>
+      <ErrorContainer>
         <ErrorScreen
           title={t(
             "SearchScreen.Impossible de trouver",
@@ -63,7 +66,7 @@ const InfiniteHits = ({
           )}
           imageLast={true}
         />
-      </View>
+      </ErrorContainer>
     )
   }
 
@@ -78,7 +81,6 @@ const InfiniteHits = ({
           <StyledTextBold>{t("SearchScreen.résultats", "résultats", {nbResults: hits.length})}</StyledTextBold>
         }
         renderItem={({ item }) => {
-
           return (
             <View
               key={item.objectID}

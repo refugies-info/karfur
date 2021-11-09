@@ -76,6 +76,7 @@ const getContentsToDisplay = (
   contentsId: ObjectId[],
   contents: SimplifiedContent[]
 ) => {
+  if (!contentsId) return [];
   let result: SimplifiedContent[] = [];
 
   contentsId.forEach((contentId: ObjectId) => {

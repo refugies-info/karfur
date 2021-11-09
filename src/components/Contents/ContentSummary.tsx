@@ -118,6 +118,7 @@ export const ContentSummary = (props: Props) => {
         isDispo={true}
         noShadow={!!props.noShadow}
         style={props.style || {}}
+        activeOpacity={0.8}
         onPress={() => {
           props.navigation.navigate("Explorer", {
             screen: "ContentScreen",
@@ -132,21 +133,14 @@ export const ContentSummary = (props: Props) => {
             }
           });
         }}
-        activeOpacity={0.8}
       >
         <TitleContainer>
           {props.sponsorUrl ? (
             <ImageContainer isRTL={isRTL} hasMatch={props.hasSponsorMatch}>
               <Image
-                source={{
-                  uri: props.sponsorUrl,
-                }}
+                source={{ uri: props.sponsorUrl }}
                 resizeMode={"contain"}
-                style={{
-                  height: 58,
-                  width: 58,
-                  maxWidth: "100%"
-                }}
+                style={{ height: 58, width: 58, maxWidth: "100%" }}
               />
             </ImageContainer>
           ) : (
@@ -154,6 +148,7 @@ export const ContentSummary = (props: Props) => {
               <Image source={NoLogo} style={{ height: 58, width: 58 }} />
             </ImageContainer>
           )}
+
           <TitlesContainer isRTL={isRTL}>
             <TitreInfoText color={props.tagDarkColor} isDispo={true}>
               {props.searchItem ?
@@ -182,6 +177,7 @@ export const ContentSummary = (props: Props) => {
           </TitlesContainer>
           {actionButton}
         </TitleContainer>
+
         {props.showAbstract &&
           <DescInfoText color={props.tagDarkColor}>
             <Highlight
@@ -192,6 +188,7 @@ export const ContentSummary = (props: Props) => {
             />
           </DescInfoText>
         }
+
       </ContentContainer>
     );
   }
@@ -201,6 +198,7 @@ export const ContentSummary = (props: Props) => {
       color={props.tagDarkColor}
       noShadow={!!props.noShadow}
       style={props.style || {}}
+      activeOpacity={0.8}
       onPress={() => {
         props.navigation.navigate("Explorer", {
           screen: "ContentScreen",
@@ -215,7 +213,6 @@ export const ContentSummary = (props: Props) => {
           }
         })
       }}
-      activeOpacity={0.8}
     >
       <TitleContainer>
         <ImageContainer lightColor={props.tagVeryLightColor} isRTL={isRTL}>
@@ -241,6 +238,7 @@ export const ContentSummary = (props: Props) => {
         </TitlesContainer>
         {actionButton}
       </TitleContainer>
+
       {props.showAbstract &&
         <DescInfoText color={props.tagDarkColor}>
           <Highlight
@@ -251,6 +249,7 @@ export const ContentSummary = (props: Props) => {
           />
         </DescInfoText>
       }
+
     </ContentContainer>
   );
 };

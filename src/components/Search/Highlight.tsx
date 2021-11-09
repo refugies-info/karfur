@@ -6,7 +6,7 @@ import { firstLetterUpperCase } from "../../libs";
 
 interface Props {
   hit: any[];
-  attribute: any;
+  attribute: string;
   highlight: any;
   capitalize?: boolean;
   color?: string;
