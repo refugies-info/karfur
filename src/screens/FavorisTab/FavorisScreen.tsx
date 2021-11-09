@@ -28,7 +28,7 @@ import { CustomButton } from "../../components/CustomButton"
 import { ContentSummary } from "../../components/Contents/ContentSummary";
 import { ConfirmationModal } from "../../components/ConfirmationModal";
 import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal"
-import { tags } from "../../data/tagData";
+import { getCardColors } from "../../libs/content";
 import { theme } from "../../theme"
 import EmptyIllu from "../../theme/images/favoris/illu-empty-fav.png"
 
@@ -118,33 +118,6 @@ export const FavorisScreen = ({
     return result;
   };
 
-  /**
-   * Return colors of the ContentSummary card
-   * @param content
-   */
-  const getCardColors = (content: SimplifiedContent) => {
-    const defaultColors = {
-      tagDarkColor: theme.colors.black,
-      tagVeryLightColor: theme.colors.white,
-      tagName: "",
-      tagLightColor: theme.colors.white,
-      iconName: ""
-    };
-
-    const primaryTagName = content.tags.length > 0 ? content.tags[0] : null;
-    if (!primaryTagName) return defaultColors;
-    const currentTag = tags.find(t => primaryTagName.short === t.short);
-    if (!currentTag) return defaultColors;
-
-    return {
-      tagDarkColor: currentTag.darkColor,
-      tagVeryLightColor: currentTag.veryLightColor,
-      tagName: currentTag.name,
-      tagLightColor: currentTag.lightColor,
-      iconName: currentTag.icon
-    }
-  }
-
   const [contentsToDisplay, setContentsToDisplay] = React.useState<SimplifiedContent[]>([]);
   React.useEffect(() => {
     getContentsToDisplay(favorites, contents)
@@ -221,7 +194,6 @@ export const FavorisScreen = ({
                     >
                       <ContentSummary
                         navigation={navigation}
-                        route={"FavorisContentScreen"}
                         tagDarkColor={colors.tagDarkColor}
                         tagVeryLightColor={colors.tagVeryLightColor}
                         tagName={colors.tagName}
@@ -236,6 +208,7 @@ export const FavorisScreen = ({
                         actionIcon={"trash-2-outline"}
                         noShadow={true}
                         style={{ marginHorizontal: theme.margin * 3 }}
+                        backScreen="Favoris"
                       />
                     </Swipeable>
                 </CardItem>

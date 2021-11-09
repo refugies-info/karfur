@@ -1,10 +1,5 @@
 import * as React from "react";
-import styled from "styled-components/native";
 import { theme } from "../../theme";
-import {
-  TextSmallBold,
-  TextVerySmallNormal,
-} from "../../components/StyledText";
 import { ExplorerParamList } from "../../../types";
 import { useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
@@ -12,7 +7,6 @@ import { View, Animated } from "react-native";
 import { needsSelector } from "../../services/redux/Needs/needs.selectors";
 import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
-import { RTLTouchableOpacity, RTLView } from "../../components/BasicComponents";
 import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import { ObjectId, Need } from "../../types/interface";
 import { ScrollView } from "react-native-gesture-handler";
@@ -23,8 +17,7 @@ import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 import { HeaderWithBackForWrapper } from "../../components/HeaderWithLogo";
 import { NeedsHeaderAnimated } from "../../components/Needs/NeedsHeaderAnimated";
 import { ErrorScreen } from "../../components/ErrorScreen";
-import { logEventInFirebase } from "../../utils/logEvent";
-import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
+import { NeedsSummary } from "../../components/Needs/NeedsSummary";
 
 const computeNeedsToDisplay = (
   allNeeds: Need[],
@@ -51,48 +44,6 @@ const computeNeedsToDisplay = (
     });
 };
 
-const NeedContainer = styled(RTLTouchableOpacity)`
-  padding:${theme.margin * 2}px
-  background-color: ${theme.colors.white};
-  margin-bottom: ${theme.margin * 3}px;
-  border-radius: ${theme.radius * 2}px;
-  box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
-  justify-content:space-between;
-  align-items :center;
-  elevation:2;
-`;
-
-const StyledText = styled(TextSmallBold)`
-  color: ${(props: { color: string }) => props.color};
-`;
-
-const IndicatorContainer = styled(RTLView)`
-  background-color: ${(props: { backgroundColor: string }) =>
-    props.backgroundColor};
-  align-self: center;
-  border-radius: 8px;
-  height: 32px;
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin}px;
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin : 0}px;
-  width: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const IndicatorText = styled(TextVerySmallNormal)`
-  color: ${theme.colors.white};
-`;
-
-const IndicatorNumber = styled(TextVerySmallNormal)`
-  color: ${theme.colors.white};
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin / 2}px;
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin / 2 : 0}px;
-`;
 
 export const NeedsScreen = ({
   navigation,
@@ -163,7 +114,7 @@ export const NeedsScreen = ({
   const toggleLanguageModal = () =>
     setLanguageModalVisible(!isLanguageModalVisible);
 
-  const { t, isRTL } = useTranslationWithRTL();
+  const { t } = useTranslationWithRTL();
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
   const isLoadingContents = useSelector(
@@ -180,6 +131,7 @@ export const NeedsScreen = ({
     tagVeryLightColor,
     tagLightColor,
     iconName,
+    backScreen
   } = route.params;
 
   const allNeeds = useSelector(needsSelector);
@@ -198,6 +150,7 @@ export const NeedsScreen = ({
           <HeaderWithBackForWrapper
             onLongPressSwitchLanguage={toggleLanguageModal}
             navigation={navigation}
+            backScreen={backScreen}
           />
         </View>
         <NeedsHeaderAnimated
@@ -257,6 +210,7 @@ export const NeedsScreen = ({
           <HeaderWithBackForWrapper
             onLongPressSwitchLanguage={toggleLanguageModal}
             navigation={navigation}
+            backScreen={backScreen}
           />
         </View>
         <NeedsHeaderAnimated
@@ -288,6 +242,7 @@ export const NeedsScreen = ({
         <HeaderWithBackForWrapper
           onLongPressSwitchLanguage={toggleLanguageModal}
           navigation={navigation}
+          backScreen={backScreen}
         />
       </View>
       <NeedsHeaderAnimated
@@ -315,44 +270,27 @@ export const NeedsScreen = ({
         {needsToDisplay.map((need) => {
           const needText =
             currentLanguageI18nCode &&
-            need[currentLanguageI18nCode] &&
-            // @ts-ignore
-            need[currentLanguageI18nCode].text
-              ? // @ts-ignore
+            need[currentLanguageI18nCode]?.text
+              ? //@ts-ignore
                 need[currentLanguageI18nCode].text
               : need.fr.text;
-          const indicatorText =
-            need.nbContents < 2
-              ? t("NeedsScreen.fiche", "fiche")
-              : t("NeedsScreen.fiches", "fiches");
-          return (
-            <NeedContainer
-              key={need._id}
-              onPress={() => {
-                logEventInFirebase(FirebaseEvent.CLIC_NEED, {
-                  need: need.fr.text,
-                });
 
-                navigation.navigate("ContentsScreen", {
-                  tagName,
-                  tagDarkColor,
-                  tagVeryLightColor,
-                  tagLightColor,
-                  needId: need._id,
-                  iconName,
-                });
-                return;
-              }}
-            >
-              <StyledText color={tagDarkColor}>{needText}</StyledText>
-              <IndicatorContainer backgroundColor={tagDarkColor} isRTL={isRTL}>
-                <IndicatorNumber isRTL={isRTL}>
-                  {need.nbContents}
-                </IndicatorNumber>
-                <IndicatorText>{indicatorText}</IndicatorText>
-              </IndicatorContainer>
-            </NeedContainer>
-          );
+          return (
+            <NeedsSummary
+              key={need._id}
+              id={need._id}
+              needText={needText}
+              needTextFr={need.fr.text}
+              nbContents={need.nbContents}
+              navigation={navigation}
+              tagName={tagName}
+              tagDarkColor={tagDarkColor}
+              tagVeryLightColor={tagVeryLightColor}
+              tagLightColor={tagLightColor}
+              iconName={iconName}
+              style={{ marginBottom: theme.margin * 3 }}
+            />
+          )
         })}
       </ScrollView>
       <LanguageChoiceModal

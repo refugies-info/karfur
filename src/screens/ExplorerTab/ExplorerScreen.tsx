@@ -76,7 +76,6 @@ export const ExplorerScreen = ({
               backgroundColor={tag.darkColor}
               iconName={tag.icon}
               onPress={() => {
-                // eslint-disable-next-line no-undef
                 logEventInFirebase(FirebaseEvent.CLIC_THEME, {
                   theme: tag.name,
                   view: "list",

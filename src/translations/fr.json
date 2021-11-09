@@ -161,5 +161,13 @@
     "Supprimer la fiche": "Veux-tu vraiment supprimer cette fiche de tes favoris ?",
     "Supprimer tout": "Veux-tu vraiment supprimer toutes les fiches de tes favoris ?",
     "Supprimer toutes mes fiches": "Supprimer toutes mes fiches"
+  },
+  "SearchScreen": {
+    "Rechercher": "Rechercher",
+    "Les fiches les plus recherchées": "Les fiches les plus recherchées",
+    "Les thèmes": "Les thèmes",
+    "résultats": "{{nbResults}} résultats",
+    "Impossible de trouver": "Impossible de trouver",
+    "Essaie une nouvelle recherche": "Essaie encore, vérifie l’orthographe ou utilise un autre mot-clé."
   }
 }

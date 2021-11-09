@@ -44,6 +44,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               "lineHeight": 32,
               "marginLeft": 0,
               "marginRight": 8,
+              "paddingBottom": 0,
               "position": "absolute",
               "textAlign": "left",
             }
@@ -3831,6 +3832,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               "lineHeight": 32,
               "marginLeft": 0,
               "marginRight": 8,
+              "paddingBottom": 0,
               "position": "absolute",
               "textAlign": "left",
             }
@@ -7618,6 +7620,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               "lineHeight": 32,
               "marginLeft": 0,
               "marginRight": 8,
+              "paddingBottom": 0,
               "position": "absolute",
               "textAlign": "left",
             }

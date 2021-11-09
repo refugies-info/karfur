@@ -85,10 +85,12 @@ export const HeaderWithLogo = ({
 interface PropsBack {
   onLongPressSwitchLanguage?: () => void;
   navigation: any;
+  backScreen?: string
 }
 export const HeaderWithBackForWrapper = ({
   onLongPressSwitchLanguage,
   navigation,
+  backScreen
 }: PropsBack) => {
   const insets = useSafeAreaInsets();
 
@@ -97,7 +99,13 @@ export const HeaderWithBackForWrapper = ({
       <MainContainer isRTL={false}>
         <SmallButton
           iconName="arrow-back-outline"
-          onPress={navigation.goBack}
+          onPress={!!backScreen ?
+            () => {
+              navigation.popToTop()
+              navigation.navigate(backScreen)
+            } :
+            navigation.goBack
+          }
         />
         <RowContainer>
           <LanguageSwitch

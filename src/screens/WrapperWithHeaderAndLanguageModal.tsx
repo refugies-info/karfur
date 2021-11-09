@@ -10,6 +10,7 @@ interface Props {
   children: any;
   navigation?: any;
   showSwitch?: boolean;
+  backScreen?: string;
 }
 
 const StyledView = styled.View`
@@ -30,6 +31,7 @@ export const WrapperWithHeaderAndLanguageModal = (props: Props) => {
         <HeaderWithBackForWrapper
           onLongPressSwitchLanguage={toggleLanguageModal}
           navigation={props.navigation}
+          backScreen={props.backScreen}
         />
       ) : (
         <HeaderWithLogo onLongPressSwitchLanguage={toggleLanguageModal} />
