@@ -62,6 +62,7 @@ import { ContentImage } from "../components/Content/ContentImage";
 import { logEventInFirebase } from "../utils/logEvent";
 import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
 import { updateNbVuesOrFavoritesOnContent } from "../utils/API";
+import { registerBackButton } from "../libs/backButton";
 import { Trans } from "react-i18next";
 
 const getHeaderImageHeight = (nbLines: number) => {
@@ -276,6 +277,9 @@ export const ContentScreen = ({
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_CONTENT)
   );
+
+  // Back button
+  React.useEffect(() => registerBackButton(backScreen, navigation), []);
 
   const [mapModalVisible, setMapModalVisible] = React.useState(false);
 

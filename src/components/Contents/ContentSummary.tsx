@@ -16,8 +16,7 @@ const ContentContainer = styled.TouchableOpacity`
     theme.colors.white : theme.colors.lightGrey)};
   min-height: ${(props: { isDispo: boolean }) => (props.isDispo ? 80 : 72)}px;
   border-radius: ${theme.radius * 2}px;
-  ${(props: { noShadow: boolean }) => props.noShadow ? "" : `
-  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);`}
+  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
   elevation: 2;
   border-width: ${(props: { isDispo: boolean }) => (!props.isDispo ? 2 : 0)}px;
   border-color: ${(props: { color: string }) => props.color || "transparent"};
@@ -91,7 +90,6 @@ interface Props {
   searchLanguageMatch?: string;
   isTextNotBold?: boolean;
   showAbstract?: boolean;
-  noShadow?: boolean;
   style?: any;
   actionPress?: any;
   actionIcon?: string;
@@ -116,7 +114,6 @@ export const ContentSummary = (props: Props) => {
     return (
       <ContentContainer
         isDispo={true}
-        noShadow={!!props.noShadow}
         style={props.style || {}}
         activeOpacity={0.8}
         onPress={() => {
@@ -196,7 +193,6 @@ export const ContentSummary = (props: Props) => {
     <ContentContainer
       isDispo={false}
       color={props.tagDarkColor}
-      noShadow={!!props.noShadow}
       style={props.style || {}}
       activeOpacity={0.8}
       onPress={() => {

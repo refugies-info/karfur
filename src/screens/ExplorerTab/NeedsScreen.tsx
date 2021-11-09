@@ -18,6 +18,7 @@ import { HeaderWithBackForWrapper } from "../../components/HeaderWithLogo";
 import { NeedsHeaderAnimated } from "../../components/Needs/NeedsHeaderAnimated";
 import { ErrorScreen } from "../../components/ErrorScreen";
 import { NeedsSummary } from "../../components/Needs/NeedsSummary";
+import { registerBackButton } from "../../libs/backButton";
 
 const computeNeedsToDisplay = (
   allNeeds: Need[],
@@ -136,6 +137,9 @@ export const NeedsScreen = ({
 
   const allNeeds = useSelector(needsSelector);
   const groupedContents = useSelector(groupedContentsSelector);
+
+  // Back button
+  React.useEffect(() => registerBackButton(backScreen, navigation), []);
 
   const needsToDisplay = computeNeedsToDisplay(
     allNeeds,

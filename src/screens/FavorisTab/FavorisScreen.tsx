@@ -52,9 +52,7 @@ const Title = styled(TextBigBold)`
   margin-bottom: ${theme.margin * 3}px;
 `;
 const CardItem = styled.View`
-  box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
-  elevation: 17;
-  marginBottom: ${theme.margin * 3}px;
+  marginBottom: ${theme.margin * 1}px;
   flex: 1;
 `;
 const DeleteAllButton = styled.TouchableOpacity`
@@ -151,7 +149,8 @@ export const FavorisScreen = ({
           flex: 1,
           paddingHorizontal: theme.margin * 2,
           marginHorizontal:  theme.margin * 3,
-          borderRadius: theme.radius * 2
+          borderRadius: theme.radius * 2,
+          marginBottom: theme.margin * 2,
         }}
       >
         <Icon
@@ -183,34 +182,34 @@ export const FavorisScreen = ({
               const colors = getCardColors(content);
               return (
                 <CardItem key={content._id}>
-                    <Swipeable
-                      renderRightActions={!isRTL ? renderActions : undefined}
-                      renderLeftActions={isRTL ? renderActions : undefined}
-                      leftThreshold={!isRTL ? 9999 : 120}
-                      rightThreshold={isRTL ? 9999 : 120}
-                      onSwipeableRightOpen={!isRTL ? () => deleteFavorite(content._id) : undefined}
-                      onSwipeableLeftOpen={isRTL ? () => deleteFavorite(content._id) : undefined}
-                      overshootFriction={8}
-                    >
-                      <ContentSummary
-                        navigation={navigation}
-                        tagDarkColor={colors.tagDarkColor}
-                        tagVeryLightColor={colors.tagVeryLightColor}
-                        tagName={colors.tagName}
-                        tagLightColor={colors.tagLightColor}
-                        iconName={colors.iconName}
-                        contentId={content._id}
-                        titreInfo={content.titreInformatif}
-                        titreMarque={content.titreMarque}
-                        typeContenu={content.typeContenu}
-                        sponsorUrl={content.sponsorUrl}
-                        actionPress={() => showDeleteModal(content._id)}
-                        actionIcon={"trash-2-outline"}
-                        noShadow={true}
-                        style={{ marginHorizontal: theme.margin * 3 }}
-                        backScreen="Favoris"
-                      />
-                    </Swipeable>
+                  <Swipeable
+                    renderRightActions={!isRTL ? renderActions : undefined}
+                    renderLeftActions={isRTL ? renderActions : undefined}
+                    leftThreshold={!isRTL ? 9999 : 120}
+                    rightThreshold={isRTL ? 9999 : 120}
+                    onSwipeableRightOpen={!isRTL ? () => deleteFavorite(content._id) : undefined}
+                    onSwipeableLeftOpen={isRTL ? () => deleteFavorite(content._id) : undefined}
+                    overshootFriction={8}
+                    childrenContainerStyle={{ paddingBottom: theme.margin * 2 }}
+                  >
+                    <ContentSummary
+                      navigation={navigation}
+                      tagDarkColor={colors.tagDarkColor}
+                      tagVeryLightColor={colors.tagVeryLightColor}
+                      tagName={colors.tagName}
+                      tagLightColor={colors.tagLightColor}
+                      iconName={colors.iconName}
+                      contentId={content._id}
+                      titreInfo={content.titreInformatif}
+                      titreMarque={content.titreMarque}
+                      typeContenu={content.typeContenu}
+                      sponsorUrl={content.sponsorUrl}
+                      actionPress={() => showDeleteModal(content._id)}
+                      actionIcon={"trash-2-outline"}
+                      style={{ marginHorizontal: theme.margin * 3 }}
+                      backScreen="Favoris"
+                    />
+                  </Swipeable>
                 </CardItem>
               )
             })}

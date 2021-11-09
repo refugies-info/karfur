@@ -22,6 +22,7 @@ import {
 } from "../types/interface";
 import { TextBigBold } from "../components/StyledText";
 import styled from "styled-components/native";
+import { registerBackButton } from "../libs/backButton";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 
 const SectionHeaderText = styled(TextBigBold)`
@@ -140,6 +141,9 @@ export const ContentsScreen = ({
     isLoadingSelector(LoadingStatusKey.FETCH_NEEDS)
   );
   const isLoading = isLoadingContents || isLoadingNeeds;
+
+  // Back button
+  React.useEffect(() => registerBackButton(backScreen, navigation), []);
 
   const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
 
