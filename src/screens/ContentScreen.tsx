@@ -331,9 +331,8 @@ export const ContentScreen = ({
   React.useEffect(() => {
     if (contentId && selectedLanguage) {
       NetInfo.fetch().then(connectionInfo => {
-        if (connectionInfo.isConnected) {
-          fetchContent(contentId, selectedLanguage);
-        } else {
+        fetchContent(contentId, selectedLanguage); // fetch in any case, to reset if needed
+        if (!connectionInfo.isConnected) {
           unsubscribeConnectionListener = NetInfo.addEventListener(handleFindConnection);
         }
       });
