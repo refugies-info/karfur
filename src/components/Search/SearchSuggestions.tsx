@@ -23,7 +23,16 @@ interface Props {
 }
 
 const SearchSuggestions = (props: Props) => {
-  const { t } = useTranslationWithRTL();
+  const { t, isRTL } = useTranslationWithRTL();
+  const scrollview = React.useRef<ScrollView>(null);
+
+  React.useLayoutEffect(() => {
+    if (isRTL) {
+      scrollview.current?.scrollToEnd({ animated: false });
+    } else {
+      scrollview.current?.scrollTo({ x: 0, y: 0, animated: false });
+    }
+  }, [isRTL])
 
   return (
     <ScrollView
@@ -32,7 +41,7 @@ const SearchSuggestions = (props: Props) => {
       scrollEventThrottle={20}
     >
       <View style={{ marginHorizontal: theme.margin * 3 }}>
-        <ListSubtitle>
+        <ListSubtitle isRTL={isRTL}>
           {t("SearchScreeen.Les fiches les plus recherchées", "Les fiches les plus recherchées")}
         </ListSubtitle>
 
@@ -59,12 +68,13 @@ const SearchSuggestions = (props: Props) => {
         })}
       </View>
       <View>
-        <ListSubtitle style={{ marginHorizontal: theme.margin * 3 }}>
+        <ListSubtitle style={{ marginHorizontal: theme.margin * 3 }} isRTL={isRTL}>
           {t("SearchScreeen.Les thèmes", "Les thèmes")}
         </ListSubtitle>
         <ScrollView
+          ref={scrollview}
           contentContainerStyle={{
-            flexDirection: "row",
+            flexDirection: !isRTL ? "row" : "row-reverse",
             flexWrap: "wrap",
             width: 1100,
             paddingHorizontal: theme.margin * 3,

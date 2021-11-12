@@ -7,6 +7,11 @@ import {  RTLView } from "../BasicComponents";
 import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
+const MainContainer = styled.View`
+  margin-horizontal: ${theme.margin * 3}px;
+  flex-direction: row;
+  align-items: center;
+`;
 const InputContainer = styled(RTLView)`
   height:56px;
   width 100%;
@@ -15,7 +20,6 @@ const InputContainer = styled(RTLView)`
   background-color : ${theme.colors.white};
   border: 1px solid ${theme.colors.darkGrey};
   flex: 1;
-  margin-left: ${theme.margin}px;
 `;
 const StyledInput = styled.TextInput`
   height:100%;
@@ -43,8 +47,11 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
   }, [])
 
   return (
-    <RTLView style={{ marginHorizontal: theme.margin * 3 }}>
-      <TouchableOpacity onPress={backCallback}>
+    <MainContainer>
+      <TouchableOpacity
+        onPress={backCallback}
+        style={{ marginRight: theme.margin }}
+      >
         <Icon
           name="arrow-back-outline"
           height={24}
@@ -76,7 +83,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
           />
         </TouchableOpacity>
       </InputContainer>
-    </RTLView>
+    </MainContainer>
   )
 }
 

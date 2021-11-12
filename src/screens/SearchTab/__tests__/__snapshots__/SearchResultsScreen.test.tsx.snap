@@ -30,15 +30,11 @@ exports[`Search results screen should render correctly 1`] = `
     }
   >
     <View
-      isRTL={false}
       style={
         Array [
           Object {
             "alignItems": "center",
-            "display": "flex",
             "flexDirection": "row",
-          },
-          Object {
             "marginHorizontal": 24,
           },
         ]
@@ -56,6 +52,7 @@ exports[`Search results screen should render correctly 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "marginRight": 8,
             "opacity": 1,
           }
         }
@@ -153,7 +150,6 @@ exports[`Search results screen should render correctly 1`] = `
               "flexGrow": 1,
               "flexShrink": 1,
               "height": 56,
-              "marginLeft": 8,
               "paddingBottom": 16,
               "paddingLeft": 16,
               "paddingRight": 16,
@@ -359,6 +355,7 @@ exports[`Search results screen should render correctly 1`] = `
         }
       >
         <Text
+          isRTL={false}
           style={
             Array [
               Object {
@@ -378,6 +375,7 @@ exports[`Search results screen should render correctly 1`] = `
       </View>
       <View>
         <Text
+          isRTL={false}
           style={
             Array [
               Object {

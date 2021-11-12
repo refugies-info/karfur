@@ -1461,12 +1461,10 @@ exports[`Filter city should render correctly when no city 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
                         "alignItems": "center",
-                        "display": "flex",
                         "flexDirection": "row",
                       },
                     ]
@@ -1484,6 +1482,7 @@ exports[`Filter city should render correctly when no city 1`] = `
                     onStartShouldSetResponder={[Function]}
                     style={
                       Object {
+                        "marginRight": 8,
                         "opacity": 1,
                       }
                     }
@@ -1581,7 +1580,6 @@ exports[`Filter city should render correctly when no city 1`] = `
                           "flexGrow": 1,
                           "flexShrink": 1,
                           "height": 56,
-                          "marginLeft": 8,
                           "paddingBottom": 16,
                           "paddingLeft": 16,
                           "paddingRight": 16,
