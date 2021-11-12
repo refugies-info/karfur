@@ -31,7 +31,8 @@ const IndicatorContainer = styled(RTLView)`
     props.isRTL ? 0 : theme.margin}px;
   margin-right: ${(props: { isRTL: boolean }) =>
     props.isRTL ? theme.margin : 0}px;
-  width: 64px;
+  minWidth: 64px;
+  paddingHorizontal: ${theme.margin}px;
   display: flex;
   align-items: center;
   justify-content: center;
