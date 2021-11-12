@@ -8,6 +8,7 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
 import { useDispatch, useSelector } from "react-redux";
+import * as Analytics from "expo-firebase-analytics";
 import {
   removeUserFrenchLevelActionCreator,
   removeUserAgeActionCreator,
@@ -100,9 +101,11 @@ export const ProfilScreen = ({
   };
 
   const reinitializeApp = () => {
-    dispatch(removeSelectedLanguageActionCreator());
-    deleteUserData();
-    dispatch(removeHasUserSeenOnboardingActionCreator());
+    Analytics.resetAnalyticsData().then(() => {
+      dispatch(removeSelectedLanguageActionCreator());
+      deleteUserData();
+      dispatch(removeHasUserSeenOnboardingActionCreator());
+    })
   };
 
   // Header animation
