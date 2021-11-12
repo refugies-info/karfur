@@ -10,6 +10,10 @@ import Modal from "react-native-modal";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { FixSafeAreaView } from "../FixSafeAreaView";
 
+const MainContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
 const InputContainer = styled(RTLView)`
   height:56px;
   width 100%;
@@ -18,8 +22,7 @@ const InputContainer = styled(RTLView)`
   background-color : ${theme.colors.white};
   border: 1px solid ${theme.colors.darkGrey};
   flex: 1;
-  margin-left: ${theme.margin}px;
-`
+`;
 const StyledInput = styled.TextInput`
   height:100%;
   width 100%;
@@ -101,8 +104,11 @@ export const SearchBarCity = (props: Props) => {
         backdropOpacity={1}
       >
         <FixSafeAreaView>
-          <RTLView>
-            <TouchableOpacity onPress={() => setModalOpened(false)}>
+          <MainContainer>
+            <TouchableOpacity
+              onPress={() => setModalOpened(false)}
+              style={{marginRight: theme.margin}}
+            >
               <Icon
                 name="arrow-back-outline"
                 height={24}
@@ -134,7 +140,7 @@ export const SearchBarCity = (props: Props) => {
                 />
               </TouchableOpacity>
             </InputContainer>
-          </RTLView>
+          </MainContainer>
           {props.suggestions.length > 0 && (
             <SuggestionsContainer
               keyboardShouldPersistTaps={"handled"}
