@@ -4,19 +4,13 @@ import { View, FlatList, Platform, Keyboard } from "react-native";
 import { connectInfiniteHits } from "react-instantsearch-native";
 import { SearchContentSummary } from "../Search/SearchContentSummary";
 import { ErrorScreen } from "../ErrorScreen";
-import { TextNormalBold } from "../StyledText";
+import NbResults from "./NbResults";
 import { theme } from "../../theme"
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 const ErrorContainer = styled.View`
   justifyContent: center;
   flex-grow: 1;
-`;
-
-const StyledTextBold = styled(TextNormalBold)`
-  margin-top: ${theme.margin * 5}px;
-  margin-bottom: ${theme.margin * 3}px;
-  padding-horizontal: ${theme.margin * 3}px;
 `;
 
 interface Props {
@@ -82,9 +76,7 @@ const InfiniteHits = ({
         onEndReached={() => hasMore && refineNext()}
         contentContainerStyle={{ paddingBottom: theme.margin * 6 }}
         {...keyboardDismissProp}
-        ListHeaderComponent={
-          <StyledTextBold>{t("SearchScreen.résultats", "résultats", {nbResults: hits.length})}</StyledTextBold>
-        }
+        ListHeaderComponent={<NbResults />}
         renderItem={({ item }) => {
           return (
             <View
