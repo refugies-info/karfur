@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
-import { View, FlatList } from "react-native";
+import { View, FlatList, Platform, Keyboard } from "react-native";
 import { connectInfiniteHits } from "react-instantsearch-native";
 import { SearchContentSummary } from "../Search/SearchContentSummary";
 import { ErrorScreen } from "../ErrorScreen";
@@ -51,6 +51,10 @@ const InfiniteHits = ({
   nbContents
 }: Props) => {
   const { t } = useTranslationWithRTL();
+  const dismissMode: "on-drag"|"none" = "on-drag";
+  const keyboardDismissProp = Platform.OS === "ios" ?
+    { keyboardDismissMode: dismissMode } :
+    { onScrollBeginDrag: Keyboard.dismiss };
 
   if (hits.length === 0) {
     return (
@@ -77,6 +81,7 @@ const InfiniteHits = ({
         keyExtractor={item => item.objectID}
         onEndReached={() => hasMore && refineNext()}
         contentContainerStyle={{ paddingBottom: theme.margin * 6 }}
+        {...keyboardDismissProp}
         ListHeaderComponent={
           <StyledTextBold>{t("SearchScreen.résultats", "résultats", {nbResults: hits.length})}</StyledTextBold>
         }
