@@ -334,6 +334,7 @@ exports[`Search Screen should render correctly 1`] = `
         }
       >
         <Text
+          isRTL={false}
           style={
             Array [
               Object {
@@ -353,6 +354,7 @@ exports[`Search Screen should render correctly 1`] = `
       </View>
       <View>
         <Text
+          isRTL={false}
           style={
             Array [
               Object {
