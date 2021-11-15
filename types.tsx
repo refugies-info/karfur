@@ -10,11 +10,6 @@ export type RootStackParamList = {
   Root: undefined;
   OnboardingNavigator: undefined;
   LanguageChoiceNavigator: undefined;
-  ProfilScreen: undefined;
-  LangueProfilScreen: undefined;
-  AgeProfilScreen: undefined;
-  FrenchLevelProfilScreen: undefined;
-  CityProfilScreen: undefined;
 };
 
 export type BottomTabParamList = {
@@ -73,6 +68,15 @@ export type OnboardingParamList = {
   FilterFrenchLevel: undefined;
   FinishOnboarding: undefined;
   LanguageChoice: undefined;
+};
+
+export type ProfileParamList = {
+  ProfilScreen: undefined;
+  LangueProfilScreen: undefined;
+  AgeProfilScreen: undefined;
+  CityProfilScreen: undefined;
+  FrenchLevelProfilScreen: undefined;
+  PrivacyPolicyScreen: undefined;
 };
 
 export type LanguageChoiceParamList = {

@@ -65,7 +65,6 @@ const Separator = styled.View`
 `;
 
 const InfocardTextContainer = styled.View`
-  flex-wrap: wrap;
   flex: 1;
   margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : 8)}px;
   margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 8 : 0)}px;

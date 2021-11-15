@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextBigBold } from "../../components/StyledText";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
-import { RootStackParamList } from "../../../types";
+import { ProfileParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { theme } from "../../theme";
@@ -27,7 +27,7 @@ const Title = styled(TextBigBold)`
 
 export const AgeProfilScreen = ({
   navigation,
-}: StackScreenProps<RootStackParamList, "AgeProfilScreen">) => {
+}: StackScreenProps<ProfileParamList, "AgeProfilScreen">) => {
   const [selectedAge, setSelectedAge] = React.useState<string | null>(null);
 
   const dispatch = useDispatch();
