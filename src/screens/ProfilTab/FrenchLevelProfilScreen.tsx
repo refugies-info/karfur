@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextBigBold } from "../../components/StyledText";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
-import { RootStackParamList, FrenchLevel } from "../../../types";
+import { ProfileParamList, FrenchLevel } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { theme } from "../../theme";
@@ -24,7 +24,7 @@ const Title = styled(TextBigBold)`
 
 export const FrenchLevelProfilScreen = ({
   navigation,
-}: StackScreenProps<RootStackParamList, "FrenchLevelProfilScreen">) => {
+}: StackScreenProps<ProfileParamList, "FrenchLevelProfilScreen">) => {
   const [
     selectedFrenchLevel,
     setSelectedFrenchLevel,

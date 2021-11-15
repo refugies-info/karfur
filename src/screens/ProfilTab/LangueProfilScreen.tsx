@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextBigBold } from "../../components/StyledText";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
-import { RootStackParamList } from "../../../types";
+import { ProfileParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
@@ -30,7 +30,7 @@ const HeaderText = styled(TextBigBold)`
 
 export const LangueProfilScreen = ({
   navigation,
-}: StackScreenProps<RootStackParamList, "LangueProfilScreen">) => {
+}: StackScreenProps<ProfileParamList, "LangueProfilScreen">) => {
   const { t, i18n } = useTranslationWithRTL();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
   const dispatch = useDispatch();

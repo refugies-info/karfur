@@ -10,7 +10,7 @@ import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
-import { RootStackParamList } from "../../../types";
+import { ProfileParamList } from "../../../types";
 import { HeaderWithBackAnimated } from "../../components/HeaderAnimated";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 import { ContentCard } from "../../components/Profil/PrivacyPolicy/ContentCard";
@@ -50,7 +50,7 @@ const LinkBold = styled(TextSmallBold)`
 
 export const PrivacyPolicyScreen = ({
   navigation,
-}: StackScreenProps<RootStackParamList, "PrivacyPolicyScreen">) => {
+}: StackScreenProps<ProfileParamList, "PrivacyPolicyScreen">) => {
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
   );
