@@ -27,11 +27,13 @@ const SearchSuggestions = (props: Props) => {
   const scrollview = React.useRef<ScrollView>(null);
 
   React.useLayoutEffect(() => {
-    if (isRTL) {
-      scrollview.current?.scrollToEnd({ animated: false });
-    } else {
-      scrollview.current?.scrollTo({ x: 0, y: 0, animated: false });
-    }
+    setTimeout(() => {
+      if (isRTL) {
+        scrollview.current?.scrollToEnd({ animated: false });
+      } else {
+        scrollview.current?.scrollTo({ x: 0, y: 0, animated: false });
+      }
+    });
   }, [isRTL])
 
   return (
