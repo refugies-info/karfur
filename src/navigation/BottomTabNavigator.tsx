@@ -10,6 +10,7 @@ import { View } from "react-native";
 
 import { BottomTabParamList } from "../../types";
 import { ExplorerNavigator } from "./BottomTabBar/ExplorerNavigator";
+import { ProfileNavigator } from "./BottomTabBar/ProfileNavigator";
 import { Icon } from "react-native-eva-icons";
 import { theme } from "../theme";
 import { useTranslation } from "react-i18next";
@@ -21,7 +22,6 @@ import {
 import styled from "styled-components/native";
 import { FavorisNavigator } from "./BottomTabBar/FavorisNavigator";
 import { SearchNavigator } from "./BottomTabBar/SearchNavigator";
-import { ProfilScreen } from "../screens/ProfilTab/ProfilScreen";
 
 const ICON_SIZE = 24;
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -151,7 +151,7 @@ export default function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Profil"
-        component={ProfilScreen}
+        component={ProfileNavigator}
         options={{
           tabBarIcon: ({
             color,

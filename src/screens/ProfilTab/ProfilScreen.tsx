@@ -25,7 +25,7 @@ import {
   userFrenchLevelSelector,
 } from "../../services/redux/User/user.selectors";
 import { getSelectedLanguageFromI18nCode } from "../../libs/language";
-import { RootStackParamList } from "../../../types";
+import { ProfileParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ConfirmationModal } from "../../components/ConfirmationModal";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
@@ -61,7 +61,7 @@ const ProfilButtonsContainer = styled.View`
 
 export const ProfilScreen = ({
   navigation,
-}: StackScreenProps<RootStackParamList, "ProfilScreen">) => {
+}: StackScreenProps<ProfileParamList, "ProfilScreen">) => {
   const [isDeleteDataModalVisible, setDeleteDataModalVisible] = React.useState(
     false
   );
@@ -207,6 +207,7 @@ export const ProfilScreen = ({
             isFirst={false}
             isLast={false}
             isRTL={isRTL}
+            onPress={() => navigation.navigate("PrivacyPolicyScreen")}
           />
           <ProfilDetailButton
             iconName="file-text-outline"

@@ -1,8 +1,9 @@
 import React from "react";
 import { Animated, StyleSheet, View } from "react-native";
+import styled from "styled-components/native";
 import { theme } from "../theme";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
-import { HeaderWithLogo } from "./HeaderWithLogo";
+import { HeaderWithLogo, HeaderWithBackForWrapper } from "./HeaderWithLogo";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
@@ -13,7 +14,7 @@ interface Props {
 }
 
 const styles = StyleSheet.create({
-  bodyBackground: {
+  simpleHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     paddingBottom: theme.margin,
@@ -61,7 +62,7 @@ export const HeaderAnimated = (props: Props) => {
   });
 
   return (
-    <View style={styles.bodyBackground}>
+    <View style={styles.simpleHeader}>
       <View style={{ paddingTop: insets.top }}>
         <Animated.View
           style={
@@ -95,5 +96,79 @@ export const HeaderAnimated = (props: Props) => {
         hideLogo={true}
       />
     </View>
+  );
+};
+
+interface HeaderBackProps {
+  title: string;
+  onLongPressSwitchLanguage: () => void;
+  showSimplifiedHeader: boolean;
+  navigation: any;
+}
+
+const MainContainer = styled.View`
+  background-color: ${theme.colors.lightGrey};
+  padding-bottom: ${theme.margin}px;
+  z-index: 4;
+  ${(props: { showShadow: boolean }) => (props.showShadow ? `
+  box-shadow: 0px -1px 8px rgba(33, 33, 33, 0.08);
+  elevation: 4;
+  ` : "")}
+`;
+
+export const HeaderWithBackAnimated = (props: HeaderBackProps) => {
+  const { isRTL } = useTranslationWithRTL();
+
+  const animatedController = React.useRef(new Animated.Value(0)).current;
+
+  const toggleSimplifiedHeader = (displayHeader: boolean) => {
+    Animated.timing(animatedController, {
+      duration: 200,
+      toValue: displayHeader ? 1 : 0, // show or hide header
+      useNativeDriver: false,
+    }).start();
+  };
+
+  React.useEffect(() => {
+    toggleSimplifiedHeader(props.showSimplifiedHeader)
+  }, [props.showSimplifiedHeader])
+
+  const headerFontSize = animatedController.interpolate({
+    inputRange: [0, 1],
+    outputRange: [25, 16],
+  });
+
+  const headerTop = animatedController.interpolate({
+    inputRange: [0, 1],
+    outputRange: [theme.margin * 4, theme.margin],
+  });
+
+  return (
+    <MainContainer showShadow={props.showSimplifiedHeader}>
+      <HeaderWithBackForWrapper
+        onLongPressSwitchLanguage={props.onLongPressSwitchLanguage}
+        navigation={props.navigation}
+      />
+      <View style={{
+        paddingLeft: !isRTL ? theme.margin * 3 : 0,
+        paddingRight: isRTL ? theme.margin * 3 : 0,
+      }}>
+        <Animated.Text
+          style={[
+            {
+              fontFamily: theme.fonts.families.circularBold,
+              textAlign: isRTL ? "right" : "left",
+              color: theme.colors.black,
+            },
+            {
+              fontSize: headerFontSize,
+              marginTop: headerTop
+            },
+          ]}
+        >
+          {props.title}
+        </Animated.Text>
+      </View>
+    </MainContainer>
   );
 };
