@@ -36,6 +36,14 @@ export default {
       googleMaps: { apiKey: process.env.GOOGLE_MAPS_KEY_ANDROID },
     },
     googleServicesFile: "./src/utils/firebase/google-services.json",
+    splash: {
+      backgroundColor: "#F6F6F6",
+      mdpi: "./src/theme/images/splash/splash_mdpi.png",
+      hdpi: "./src/theme/images/splash/splash_hdpi.png",
+      xhdpi: "./src/theme/images/splash/splash_xhdpi.png",
+      xxhdpi: "./src/theme/images/splash/splash_xxhdpi.png",
+      xxxhdpi: "./src/theme/images/splash/splash_xxxhdpi.png"
+    }
   },
   web: {
     config: {

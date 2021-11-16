@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View } from "react-native";
 import { TextBigBold } from "../../components/StyledText";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { ProfileParamList } from "../../../types";
@@ -14,6 +14,7 @@ import { activatedLanguages } from "../../data/languagesData";
 import { LanguageDetailsButton } from "../../components/Language/LanguageDetailsButton";
 import { theme } from "../../theme";
 import { ScrollView } from "react-native-gesture-handler";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const MainContainer = styled.View`
   padding-horizontal: ${theme.margin * 3}px;
@@ -34,6 +35,7 @@ export const LangueProfilScreen = ({
   const { t, i18n } = useTranslationWithRTL();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
   const dispatch = useDispatch();
+  const insets = useSafeAreaInsets();
 
   const changeLanguage = (ln: AvailableLanguageI18nCode) => {
     i18n.changeLanguage(ln);
@@ -47,10 +49,10 @@ export const LangueProfilScreen = ({
   };
 
   return (
-    <SafeAreaView
+    <View
       style={{
-        display: "flex",
         flex: 1,
+        paddingTop: insets.top
       }}
     >
       <HeaderWithBack
@@ -83,6 +85,6 @@ export const LangueProfilScreen = ({
           ))}
         </MainContainer>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };

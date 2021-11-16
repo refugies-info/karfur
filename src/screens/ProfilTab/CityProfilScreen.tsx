@@ -1,5 +1,6 @@
 import * as React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { ProfileParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -10,11 +11,13 @@ export const CityProfilScreen = ({
   navigation,
 }: StackScreenProps<ProfileParamList, "CityProfilScreen">) => {
   const { t } = useTranslationWithRTL();
+  const insets = useSafeAreaInsets();
+
   return (
-    <SafeAreaView
+    <View
       style={{
-        display: "flex",
         flex: 1,
+        paddingTop: insets.top
       }}
     >
       <HeaderWithBack
@@ -23,6 +26,6 @@ export const CityProfilScreen = ({
         iconName="pin-outline"
       />
       <FilterCityComponent navigation={navigation} isOnboardingScreen={false} />
-    </SafeAreaView>
+    </View>
   );
 };

@@ -1,5 +1,6 @@
 import * as Location from "expo-location";
 import styled from "styled-components/native";
+import { ScrollView } from "react-native";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import { theme } from "../../theme";
 import { TextSmallBold, StyledTextSmallBold } from "../StyledText";
@@ -21,7 +22,7 @@ import {
   saveUserLocationActionCreator,
   removeUserLocationActionCreator,
 } from "../../services/redux/User/user.actions";
-import { ContentContainer, Title, Label } from "../Onboarding/SharedStyledComponents";
+import { Title, Label } from "../Onboarding/SharedStyledComponents";
 import { View, ActivityIndicator } from "react-native";
 import { SearchBarCity } from "../Onboarding/SearchBarCity";
 import { Icon } from "react-native-eva-icons";
@@ -259,7 +260,13 @@ export const FilterCityComponent = (props: Props) => {
   const isOnValidateDisabled =
     userLocation.city === selectedCity || (!userLocation.city && !selectedCity);
   return (
-    <ContentContainer>
+    <ScrollView
+      contentContainerStyle={{
+        justifyContent: "space-between",
+        padding: theme.margin * 3,
+        flexGrow: 1
+      }}
+    >
       <View>
         <Title>{t("Onboarding.ville", "Tu habites dans quelle ville ?")}</Title>
         <Explaination
@@ -275,7 +282,7 @@ export const FilterCityComponent = (props: Props) => {
               suggestions={suggestions}
               selectSuggestion={onSelectSuggestion}
             />
-            {!enteredText && (
+            {!selectedCity && (
               <GeolocContainer onPress={useGeoloc} hasError={!!error}>
                 <Icon
                   name="pin"
@@ -306,7 +313,11 @@ export const FilterCityComponent = (props: Props) => {
             </SelectedCityContainer>
           </RTLView>
         )}
-        {!!error && <ErrorComponent text={error} />}
+        {!!error &&
+          <View style={{ marginBottom: theme.margin * 3 }}>
+            <ErrorComponent text={error} />
+          </View>
+        }
       </View>
       <View>
 
@@ -348,6 +359,6 @@ export const FilterCityComponent = (props: Props) => {
           </BottomButtonsContainer>
         )}
       </View>
-    </ContentContainer>
+    </ScrollView>
   );
 };
