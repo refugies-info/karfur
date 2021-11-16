@@ -77,6 +77,7 @@ export type ProfileParamList = {
   CityProfilScreen: undefined;
   FrenchLevelProfilScreen: undefined;
   PrivacyPolicyScreen: undefined;
+  AboutScreen: undefined;
 };
 
 export type LanguageChoiceParamList = {

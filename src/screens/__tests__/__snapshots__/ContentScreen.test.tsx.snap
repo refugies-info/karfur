@@ -3453,6 +3453,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 </RNSVGSvgView>
               </View>
               <Text
+                hasIcon={true}
                 iconFirst={true}
                 isRTL={false}
                 style={
@@ -3762,6 +3763,7 @@ exports[`ContentScreen should render correctly 1`] = `
           </RNSVGSvgView>
         </View>
         <Text
+          hasIcon={true}
           iconFirst={true}
           isRTL={false}
           style={
@@ -3911,6 +3913,7 @@ exports[`ContentScreen should render correctly 1`] = `
           </RNSVGSvgView>
         </View>
         <Text
+          hasIcon={true}
           iconFirst={true}
           isRTL={false}
           style={
@@ -5032,6 +5035,7 @@ exports[`ContentScreen should render correctly 1`] = `
           testID="test-custom-button-Fermer"
         >
           <Text
+            hasIcon={false}
             iconFirst={false}
             isRTL={false}
             style={
@@ -5042,7 +5046,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   "fontSize": 16,
                   "lineHeight": 20,
                   "marginLeft": 0,
-                  "marginRight": 8,
+                  "marginRight": 0,
                   "textAlign": "left",
                 },
               ]
@@ -8860,6 +8864,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 </RNSVGSvgView>
               </View>
               <Text
+                hasIcon={true}
                 iconFirst={true}
                 isRTL={false}
                 style={
@@ -9169,6 +9174,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
           </RNSVGSvgView>
         </View>
         <Text
+          hasIcon={true}
           iconFirst={true}
           isRTL={false}
           style={
@@ -9318,6 +9324,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
           </RNSVGSvgView>
         </View>
         <Text
+          hasIcon={true}
           iconFirst={true}
           isRTL={false}
           style={
@@ -10439,6 +10446,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
           testID="test-custom-button-Fermer"
         >
           <Text
+            hasIcon={false}
             iconFirst={false}
             isRTL={false}
             style={
@@ -10449,7 +10457,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   "fontSize": 16,
                   "lineHeight": 20,
                   "marginLeft": 0,
-                  "marginRight": 8,
+                  "marginRight": 0,
                   "textAlign": "left",
                 },
               ]

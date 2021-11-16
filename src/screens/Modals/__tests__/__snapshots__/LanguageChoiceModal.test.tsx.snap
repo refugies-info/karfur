@@ -1100,6 +1100,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
         testID="test-custom-button-Fermer"
       >
         <Text
+          hasIcon={false}
           iconFirst={false}
           style={
             Array [

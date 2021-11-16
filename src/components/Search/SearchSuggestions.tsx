@@ -10,6 +10,7 @@ import { TagButton } from "../Explorer/TagButton";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { tags } from "../../data/tagData";
 import { StyledTextNormalBold } from "../StyledText";
+import { initHorizontalScroll } from "../../libs/rtlHorizontalScroll";
 
 const ListSubtitle = styled(StyledTextNormalBold)`
   margin-top: ${theme.margin * 7}px;
@@ -27,13 +28,7 @@ const SearchSuggestions = (props: Props) => {
   const scrollview = React.useRef<ScrollView>(null);
 
   React.useLayoutEffect(() => {
-    setTimeout(() => {
-      if (isRTL) {
-        scrollview.current?.scrollToEnd({ animated: false });
-      } else {
-        scrollview.current?.scrollTo({ x: 0, y: 0, animated: false });
-      }
-    });
+    initHorizontalScroll(scrollview, isRTL)
   }, [isRTL])
 
   return (
