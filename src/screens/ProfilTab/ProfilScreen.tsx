@@ -200,6 +200,7 @@ export const ProfilScreen = ({
             isFirst={true}
             isLast={false}
             isRTL={isRTL}
+            onPress={() => navigation.navigate("AboutScreen")}
           />
           <ProfilDetailButton
             iconName="lock-outline"

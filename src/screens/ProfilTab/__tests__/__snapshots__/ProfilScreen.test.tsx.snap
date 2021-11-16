@@ -1305,7 +1305,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         <View>
           <View
             accessible={true}
-            focusable={false}
+            focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -2183,6 +2183,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             testID="test-custom-button-Valider"
           >
             <Text
+              hasIcon={true}
               iconFirst={false}
               isRTL={false}
               style={
@@ -2317,6 +2318,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           testID="test-custom-button-Annuler"
         >
           <Text
+            hasIcon={false}
             iconFirst={false}
             isRTL={false}
             style={
@@ -2327,7 +2329,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   "fontSize": 16,
                   "lineHeight": 20,
                   "marginLeft": 0,
-                  "marginRight": 8,
+                  "marginRight": 0,
                   "textAlign": "left",
                 },
               ]
@@ -2506,6 +2508,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             testID="test-custom-button-Valider"
           >
             <Text
+              hasIcon={true}
               iconFirst={false}
               isRTL={false}
               style={
@@ -2640,6 +2643,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           testID="test-custom-button-Annuler"
         >
           <Text
+            hasIcon={false}
             iconFirst={false}
             isRTL={false}
             style={
@@ -2650,7 +2654,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   "fontSize": 16,
                   "lineHeight": 20,
                   "marginLeft": 0,
-                  "marginRight": 8,
+                  "marginRight": 0,
                   "textAlign": "left",
                 },
               ]
@@ -3762,6 +3766,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           testID="test-custom-button-Fermer"
         >
           <Text
+            hasIcon={false}
             iconFirst={false}
             isRTL={false}
             style={
@@ -3772,7 +3777,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   "fontSize": 16,
                   "lineHeight": 20,
                   "marginLeft": 0,
-                  "marginRight": 8,
+                  "marginRight": 0,
                   "textAlign": "left",
                 },
               ]
@@ -5093,7 +5098,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         <View>
           <View
             accessible={true}
-            focusable={false}
+            focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -5971,6 +5976,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             testID="test-custom-button-Valider"
           >
             <Text
+              hasIcon={true}
               iconFirst={false}
               isRTL={false}
               style={
@@ -6105,6 +6111,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           testID="test-custom-button-Annuler"
         >
           <Text
+            hasIcon={false}
             iconFirst={false}
             isRTL={false}
             style={
@@ -6115,7 +6122,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   "fontSize": 16,
                   "lineHeight": 20,
                   "marginLeft": 0,
-                  "marginRight": 8,
+                  "marginRight": 0,
                   "textAlign": "left",
                 },
               ]
@@ -6294,6 +6301,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             testID="test-custom-button-Valider"
           >
             <Text
+              hasIcon={true}
               iconFirst={false}
               isRTL={false}
               style={
@@ -6428,6 +6436,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           testID="test-custom-button-Annuler"
         >
           <Text
+            hasIcon={false}
             iconFirst={false}
             isRTL={false}
             style={
@@ -6438,7 +6447,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   "fontSize": 16,
                   "lineHeight": 20,
                   "marginLeft": 0,
-                  "marginRight": 8,
+                  "marginRight": 0,
                   "textAlign": "left",
                 },
               ]
@@ -7550,6 +7559,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           testID="test-custom-button-Fermer"
         >
           <Text
+            hasIcon={false}
             iconFirst={false}
             isRTL={false}
             style={
@@ -7560,7 +7570,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   "fontSize": 16,
                   "lineHeight": 20,
                   "marginLeft": 0,
-                  "marginRight": 8,
+                  "marginRight": 0,
                   "textAlign": "left",
                 },
               ]
@@ -8881,7 +8891,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
         <View>
           <View
             accessible={true}
-            focusable={false}
+            focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -9759,6 +9769,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             testID="test-custom-button-Valider"
           >
             <Text
+              hasIcon={true}
               iconFirst={false}
               isRTL={false}
               style={
@@ -9893,6 +9904,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           testID="test-custom-button-Annuler"
         >
           <Text
+            hasIcon={false}
             iconFirst={false}
             isRTL={false}
             style={
@@ -9903,7 +9915,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   "fontSize": 16,
                   "lineHeight": 20,
                   "marginLeft": 0,
-                  "marginRight": 8,
+                  "marginRight": 0,
                   "textAlign": "left",
                 },
               ]
@@ -10082,6 +10094,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             testID="test-custom-button-Valider"
           >
             <Text
+              hasIcon={true}
               iconFirst={false}
               isRTL={false}
               style={
@@ -10216,6 +10229,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           testID="test-custom-button-Annuler"
         >
           <Text
+            hasIcon={false}
             iconFirst={false}
             isRTL={false}
             style={
@@ -10226,7 +10240,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   "fontSize": 16,
                   "lineHeight": 20,
                   "marginLeft": 0,
-                  "marginRight": 8,
+                  "marginRight": 0,
                   "textAlign": "left",
                 },
               ]
@@ -11338,6 +11352,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           testID="test-custom-button-Fermer"
         >
           <Text
+            hasIcon={false}
             iconFirst={false}
             isRTL={false}
             style={
@@ -11348,7 +11363,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   "fontSize": 16,
                   "lineHeight": 20,
                   "marginLeft": 0,
-                  "marginRight": 8,
+                  "marginRight": 0,
                   "textAlign": "left",
                 },
               ]

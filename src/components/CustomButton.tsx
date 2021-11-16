@@ -31,18 +31,18 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
 
 const ColoredTextBold = styled(StyledTextSmallBold)`
   color: ${(props: { textColor: string }) => props.textColor};
-  margin-left: ${(props: { isRTL: boolean, iconFirst: boolean }) =>
-    (props.iconFirst || props.isRTL) && (props.isRTL !== props.iconFirst) ? theme.margin : 0}px;
-  margin-right: ${(props: { isRTL: boolean, iconFirst: boolean }) =>
-    props.isRTL === props.iconFirst ? theme.margin : 0}px;
+  margin-left: ${(props: { isRTL: boolean, iconFirst: boolean, hasIcon: boolean }) =>
+    props.hasIcon && (props.iconFirst || props.isRTL) && (props.isRTL !== props.iconFirst) ? theme.margin : 0}px;
+  margin-right: ${(props: { isRTL: boolean, iconFirst: boolean, hasIcon: boolean }) =>
+    props.hasIcon && props.isRTL === props.iconFirst ? theme.margin : 0}px;
 `;
 
 const ColoredTextNormal = styled(StyledTextSmall)`
   color: ${(props: { textColor: string }) => props.textColor};
-  margin-left: ${(props: { isRTL: boolean, iconFirst: boolean }) =>
-    (props.iconFirst || props.isRTL) && (props.isRTL !== props.iconFirst) ? theme.margin : 0}px;
-  margin-right: ${(props: { isRTL: boolean, iconFirst: boolean }) =>
-    props.isRTL === props.iconFirst ? theme.margin : 0}px;
+  margin-left: ${(props: { isRTL: boolean, iconFirst: boolean, hasIcon: boolean }) =>
+    props.hasIcon && (props.iconFirst || props.isRTL) && (props.isRTL !== props.iconFirst) ? theme.margin : 0}px;
+  margin-right: ${(props: { isRTL: boolean, iconFirst: boolean, hasIcon: boolean }) =>
+    props.hasIcon && props.isRTL === props.iconFirst ? theme.margin : 0}px;
 `;
 
 interface Props {
@@ -87,11 +87,21 @@ export const CustomButton = (props: Props) => {
     >
       {props.iconName && props.iconFirst && icon}
       {props.isTextNotBold ? (
-        <ColoredTextNormal textColor={props.textColor} isRTL={isRTL} iconFirst={!!props.iconFirst}>
+        <ColoredTextNormal
+          textColor={props.textColor}
+          isRTL={isRTL}
+          iconFirst={!!props.iconFirst}
+          hasIcon={!!props.iconName}
+        >
           {t(props.i18nKey, props.defaultText)}
         </ColoredTextNormal>
       ) : (
-        <ColoredTextBold textColor={props.textColor} isRTL={isRTL} iconFirst={!!props.iconFirst}>
+        <ColoredTextBold
+          textColor={props.textColor}
+          isRTL={isRTL}
+          iconFirst={!!props.iconFirst}
+          hasIcon={!!props.iconName}
+        >
           {t(props.i18nKey, props.defaultText)}
         </ColoredTextBold>
       )}
