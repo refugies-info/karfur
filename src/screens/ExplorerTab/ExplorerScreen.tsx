@@ -2,8 +2,11 @@ import * as React from "react";
 import { ScrollView } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import styled from "styled-components/native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
+import {
+  saveUserLocalizedWarningHiddenActionCreator
+} from "../../services/redux/User/user.actions";
 import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal";
 import { RTLView } from "../../components/BasicComponents";
 import { ViewChoice } from "../../components/Explorer/ViewChoice";
@@ -12,7 +15,7 @@ import { TagButton } from "../../components/Explorer/TagButton";
 import { TagsCaroussel } from "../../components/Explorer/TagsCaroussel";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { nbContentsSelector } from "../../services/redux/Contents/contents.selectors";
-import { userLocationSelector } from "../../services/redux/User/user.selectors";
+import { userLocationSelector, isLocalizedWarningHiddenSelector } from "../../services/redux/User/user.selectors";
 import { ExplorerParamList } from "../../../types";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
@@ -44,30 +47,41 @@ export const ExplorerScreen = ({
   navigation,
 }: StackScreenProps<ExplorerParamList, "ExplorerScreen">) => {
   const { isRTL } = useTranslationWithRTL();
+  const dispatch = useDispatch();
+
   const [tabSelected, setTabSelected] = React.useState("galery");
   const selectedLocation = useSelector(userLocationSelector);
   const nbContents = useSelector(nbContentsSelector);
+  const isLocalizedWarningHidden = useSelector(isLocalizedWarningHiddenSelector);
 
   const [isLocalizedModalVisible, setIsLocalizedModalVisible] = React.useState(false);
   const [totalContent, setTotalContent] = React.useState(0);
-
   React.useEffect(() => {
     setTotalContent(
       (nbContents.nbGlobalContent || 0) + (nbContents.nbLocalizedContent || 0)
     );
   }, [nbContents]);
 
+  const [isLocalizedWarningVisible, setIsLocalizedWarningVisible] = React.useState(false);
+  React.useEffect(() => {
+    const isWarningVisible = !!(
+      !isLocalizedWarningHidden &&
+      selectedLocation.city &&
+      nbContents.nbLocalizedContent !== null &&
+      nbContents.nbLocalizedContent < MAX_CONTENT_LOCALIZED
+    );
+    setIsLocalizedWarningVisible(isWarningVisible);
+  }, [isLocalizedWarningHidden, selectedLocation, nbContents]);
+
 
   return (
     <WrapperWithHeaderAndLanguageModal>
-      {(selectedLocation.city &&
-        nbContents.nbLocalizedContent !== null &&
-        nbContents.nbLocalizedContent < MAX_CONTENT_LOCALIZED
-      ) &&
+      {isLocalizedWarningVisible &&
         <LocalizedWarningMessage
           totalContent={totalContent}
-          city={selectedLocation.city}
+          city={selectedLocation.city || ""}
           openModal={() => { setIsLocalizedModalVisible(true) }}
+          onClose={() => dispatch(saveUserLocalizedWarningHiddenActionCreator())}
         />
       }
 
@@ -130,16 +144,13 @@ export const ExplorerScreen = ({
         </CenteredView>
         )}
 
-      {(nbContents.nbGlobalContent !== null &&
-        nbContents.nbLocalizedContent !== null &&
-        selectedLocation.city
-      ) &&
+      {isLocalizedWarningVisible &&
         <LocalizedWarningModal
           isVisible={isLocalizedModalVisible}
           closeModal={() => setIsLocalizedModalVisible(false)}
-          nbGlobalContent={nbContents.nbGlobalContent}
-          nbLocalizedContent={nbContents.nbLocalizedContent}
-          city={selectedLocation.city}
+          nbGlobalContent={nbContents.nbGlobalContent || 0}
+          nbLocalizedContent={nbContents.nbLocalizedContent || 0}
+          city={selectedLocation.city || ""}
         />
       }
     </WrapperWithHeaderAndLanguageModal>

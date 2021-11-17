@@ -12,6 +12,7 @@ export interface UserState {
   age: string | null;
   frenchLevel: string | null;
   favorites: string[];
+  localizedWarningHidden: boolean;
 }
 
 export const initialUserState = {
@@ -23,7 +24,8 @@ export const initialUserState = {
   department: null,
   age: null,
   frenchLevel: null,
-  favorites: []
+  favorites: [],
+  localizedWarningHidden: false,
 };
 
 export const userReducer = createReducer<UserState, UserActions>(
@@ -61,6 +63,10 @@ export const userReducer = createReducer<UserState, UserActions>(
     SET_USER_FAVORITES: (state, action) => ({
       ...state,
       favorites: action.payload,
+    }),
+    SET_USER_LOCALIZED_WARNING_HIDDEN: (state, action) => ({
+      ...state,
+      localizedWarningHidden: action.payload,
     }),
   }
 );

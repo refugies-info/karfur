@@ -27,3 +27,5 @@ export const userFavorites = (state: RootState) =>
 export const isFavorite = (contentId: string) => (state: RootState) => {
   return state.user.favorites.includes(contentId);
 };
+export const isLocalizedWarningHiddenSelector = (state: RootState) =>
+  state.user.localizedWarningHidden;

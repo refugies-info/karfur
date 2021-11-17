@@ -9,7 +9,8 @@ export const saveItemInAsyncStorage = async (
     | "DEP"
     | "AGE"
     | "FRENCH_LEVEL"
-    | "FAVORITES",
+    | "FAVORITES"
+    | "LOCALIZED_WARNING_HIDDEN",
   value: string
 ) => await AsyncStorage.setItem(item, value);
 
@@ -23,6 +24,7 @@ export const getItemInAsyncStorage = async (
     | "AGE"
     | "FRENCH_LEVEL"
     | "FAVORITES"
+    | "LOCALIZED_WARNING_HIDDEN"
 ) => await AsyncStorage.getItem(item);
 
 export const deleteItemInAsyncStorage = async (
@@ -35,4 +37,5 @@ export const deleteItemInAsyncStorage = async (
     | "AGE"
     | "FRENCH_LEVEL"
     | "FAVORITES"
+    | "LOCALIZED_WARNING_HIDDEN"
 ) => await AsyncStorage.removeItem(item);

@@ -13,6 +13,8 @@ import {
   SAVE_USER_HAS_SEEN_ONBOARDING,
   SET_USER_HAS_NEW_FAVORITES,
   SAVE_USER_HAS_NEW_FAVORITES,
+  SET_USER_LOCALIZED_WARNING_HIDDEN,
+  SAVE_USER_LOCALIZED_WARNING_HIDDEN,
   GET_USER_INFOS,
   REMOVE_USER_HAS_SEEN_ONBOARDING,
   REMOVE_USER_HAS_NEW_FAVORITES,
@@ -23,7 +25,8 @@ import {
   SET_USER_FAVORITES,
   ADD_USER_FAVORITE,
   REMOVE_USER_FAVORITE,
-  REMOVE_USER_ALL_FAVORITES
+  REMOVE_USER_ALL_FAVORITES,
+  REMOVE_USER_LOCALIZED_WARNING_HIDDEN
 } from "./user.actionTypes";
 import { AvailableLanguageI18nCode } from "../../../types/interface";
 
@@ -44,6 +47,15 @@ export const saveUserHasNewFavoritesActionCreator = () =>
 
 export const removeUserHasNewFavoritesActionCreator = () =>
   action(REMOVE_USER_HAS_NEW_FAVORITES);
+
+export const setUserLocalizedWarningHiddenActionCreator = (value: boolean) =>
+  action(SET_USER_LOCALIZED_WARNING_HIDDEN, value);
+
+export const saveUserLocalizedWarningHiddenActionCreator = () =>
+  action(SAVE_USER_LOCALIZED_WARNING_HIDDEN);
+
+export const removeUserLocalizedWarningHiddenActionCreator = () =>
+  action(REMOVE_USER_LOCALIZED_WARNING_HIDDEN);
 
 export const setSelectedLanguageActionCreator = (
   value: AvailableLanguageI18nCode | null
@@ -121,6 +133,7 @@ const actions = {
   saveSelectedLanguageActionCreator,
   saveHasUserSeenOnboardingActionCreator,
   setUserHasNewFavoritesActionCreator,
+  setUserLocalizedWarningHiddenActionCreator,
   setCurrentLanguageActionCreator,
   setUserAgeActionCreator,
   setUserLocationActionCreator,
@@ -128,12 +141,14 @@ const actions = {
   saveUserAgeActionCreator,
   saveUserLocationActionCreator,
   saveUserFrenchLevelActionCreator,
+  saveUserLocalizedWarningHiddenActionCreator,
   getUserInfosActionCreator,
   removeHasUserSeenOnboardingActionCreator,
   removeSelectedLanguageActionCreator,
   removeUserAgeActionCreator,
   removeUserFrenchLevelActionCreator,
   removeUserLocationActionCreator,
+  removeUserLocalizedWarningHiddenActionCreator,
   setUserFavoritesActionCreator,
   addUserFavoriteActionCreator,
   removeUserFavoriteActionCreator,

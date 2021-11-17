@@ -28,6 +28,7 @@ interface Props {
   totalContent: number;
   city: string;
   openModal: any;
+  onClose: any;
 }
 
 export const LocalizedWarningMessage = (props: Props) => {
@@ -50,7 +51,7 @@ export const LocalizedWarningMessage = (props: Props) => {
           Pourquoi ?
         </Text>
       </InfoMessageText>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={props.onClose}>
         <Icon
           name="close-outline"
           height={24}
