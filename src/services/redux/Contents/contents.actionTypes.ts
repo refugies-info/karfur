@@ -1,2 +1,3 @@
 export const SET_CONTENTS = "SET_CONTENTS";
+export const SET_NB_CONTENTS = "SET_NB_CONTENTS";
 export const FETCH_CONTENTS = "FETCH_CONTENTS";
