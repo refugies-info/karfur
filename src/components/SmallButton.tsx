@@ -9,19 +9,8 @@ const ButtonContainer = styled.TouchableOpacity`
   border-radius: ${(props: { rounded: boolean }) =>
     !props.rounded ? theme.radius * 2 : theme.radius * 10}px;
   padding: ${theme.radius * 2}px;
-  ${(props: { bigShadow: boolean }) => props.bigShadow ? `
-  shadow-color: #212121;
-  shadow-offset: 0 8px;
-  shadow-opacity: 0.24;
-  shadow-radius: 16px;
-  elevation: 17;
-  ` : `
-  shadow-color: #212121;
-  shadow-offset: 0 0;
-  shadow-opacity: 0.1;
-  shadow-radius: 40px;
-  elevation: 1;
-  `}
+  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
+  elevation: 7;
 `;
 
 const ICON_SIZE = 24;
@@ -31,7 +20,6 @@ interface Props {
   onPress?: () => void;
   reversed?: boolean;
   rounded?: boolean;
-  bigShadow?: boolean;
   style?: any;
   label?: string;
 }
@@ -40,7 +28,6 @@ export const SmallButton = (props: Props) => (
     onPress={props.onPress}
     reversed={props.reversed}
     rounded={!!props.rounded}
-    bigShadow={!!props.bigShadow}
     style={props.style || {}}
     accessibilityRole="button"
     accessible={true}

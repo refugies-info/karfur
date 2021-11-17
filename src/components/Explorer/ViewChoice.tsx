@@ -19,15 +19,18 @@ const ChoiceTextBold = styled(TextVerySmallBold)`
 const ChoiceText = styled(TextVerySmallNormal)`
   margin-left: ${theme.margin}px;
   margin-right: ${theme.margin}px;
-  color: ${theme.colors.darkGrey};
 `;
 
 const StyledButton = styled(RTLTouchableOpacity)`
   padding-horizontal: ${theme.margin * 3}px;
-  padding-top: ${theme.margin * 3}px;
-  padding-bottom: ${theme.margin * 2}px;
-  margin-right: 2px;
-  margin-left: 2px;
+  padding-vertical: ${theme.margin * 2}px;
+  background-color: ${(props: { isSelected: boolean }) =>
+    props.isSelected ? theme.colors.white : "transparent" };
+  border-radius: ${theme.radius * 2}px;
+  ${(props: { isSelected: boolean }) => props.isSelected ? `
+  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
+  elevation: 7;
+  ` : "" };
 `;
 interface Props {
   text: string;
@@ -58,6 +61,7 @@ export const ViewChoice = (props: Props) => {
     <StyledButton
       onPress={props.onPress}
       accessibilityRole="button"
+      isSelected={props.isSelected}
     >
       <StreamlineIcon name={props.iconName} isSelected={props.isSelected} />
       {props.isSelected ? (

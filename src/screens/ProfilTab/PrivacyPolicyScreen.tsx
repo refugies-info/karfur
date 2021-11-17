@@ -377,7 +377,7 @@ export const PrivacyPolicyScreen = ({
         <Title>Qui sommes-nous ?</Title>
         <PText style={{ marginBottom: 0 }}>
           Nous sommes Réfugiés.info, une plateforme numérique qui propose de l’information simple et traduite sur 12 thématiques de l’intégration.
-          Visite la page <LinkBold accessibilityRole="link" onPress={() => { }}>Qui sommes nous ?</LinkBold> pour plus d'informations.
+          Visite la page <LinkBold accessibilityRole="link" onPress={() => { navigation.navigate("AboutScreen") }}>Qui sommes nous ?</LinkBold> pour plus d'informations.
         </PText>
 
         <Title>Il te reste des questions ?</Title>

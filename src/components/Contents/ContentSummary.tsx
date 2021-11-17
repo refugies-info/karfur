@@ -17,7 +17,7 @@ const ContentContainer = styled.TouchableOpacity`
   min-height: ${(props: { isDispo: boolean }) => (props.isDispo ? 80 : 72)}px;
   border-radius: ${theme.radius * 2}px;
   box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
-  elevation: 2;
+  elevation: 7;
   border-width: ${(props: { isDispo: boolean }) => (!props.isDispo ? 2 : 0)}px;
   border-color: ${(props: { color: string }) => props.color || "transparent"};
   border-style: solid;

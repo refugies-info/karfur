@@ -28,8 +28,12 @@ const MAX_CONTENT_LOCALIZED = 10;
 
 const ViewChoiceContainer = styled(RTLView)`
   margin-top: ${theme.margin * 4}px;
+  background-color: ${theme.colors.grey60};
+  border-radius: ${theme.radius * 2}px;
   justify-content: center;
-  align-items: center;
+  align-self: center;
+  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
+  elevation: 7;
 `;
 const CarousselContainer = styled.View`
   display: flex;

@@ -30,7 +30,7 @@ const ButtonContainer = styled.TouchableOpacity`
     props.isRTL ? 0 : theme.margin}px;
   margin-left: ${(props: { isRTL: any }) => (props.isRTL ? theme.margin : 0)}px;
 
-  background-color: ${theme.colors.white};
+  background-color: ${theme.colors.grey60};
   border-radius: ${theme.radius * 2}px;
   height: 48px;
   display: flex;
@@ -51,14 +51,19 @@ const ButtonContainerFixedWidth = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 0px 40px rgba(33, 33, 33, 0.1);
-  elevation: 1;
+  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
+  elevation: 7;
 `;
 
 const LanguageContainer = styled(ButtonContainerCommon)`
-  background-color: ${(props: { backgroundColor: string }) =>
-    props.backgroundColor};
+  background-color: ${(props: { isSelected: boolean }) =>
+    props.isSelected ? theme.colors.white : theme.colors.grey60 };
   width: 48px;
+  ${(props: { isSelected: boolean }) => props.isSelected ? `
+  box-shadow: 8px 0px 16px rgba(33, 33, 33, 0.24);
+  z-index: 3;
+  elevation: 9;
+  ` : "" }
 `;
 
 const FlagBackground = styled.View`
@@ -119,6 +124,7 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
     return (
       <ButtonContainerFixedWidth
         onPress={onLongPressSwitchLanguage}
+        activeOpacity={0.8}
         accessibilityRole="button"
         accessibilityLabel={t("Changer la langue")}
       >
@@ -132,20 +138,17 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
       onLongPress={onLongPressSwitchLanguage}
       accessibilityRole="button"
       accessibilityLabel={t("Changer la langue")}
+      activeOpacity={0.8}
     >
       <LanguageContainer
-        backgroundColor={
-          isFrenchSelected ? theme.colors.darkBlue : theme.colors.white
-        }
+        isSelected={isFrenchSelected}
       >
         <FlagBackground>
           <Flag langueFr={"Français"} />
         </FlagBackground>
       </LanguageContainer>
       <LanguageContainer
-        backgroundColor={
-          isFrenchSelected ? theme.colors.white : theme.colors.darkBlue
-        }
+        isSelected={!isFrenchSelected}
       >
         <FlagBackground>
           <Flag langueFr={selectedLanguage.langueFr} />

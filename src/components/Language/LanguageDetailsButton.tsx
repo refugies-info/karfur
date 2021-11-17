@@ -16,8 +16,8 @@ const MainContainer = styled.TouchableOpacity`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  elevation: 2;
   box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
+  elevation: 7;
 `;
 
 const StyledTextBold = styled(StyledTextSmallBold)`
@@ -44,7 +44,7 @@ const FlagBackground = styled.View`
   align-items: center;
   border-radius: 4px;
   box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
-  elevation: 2;
+  elevation: 7;
 `;
 
 interface Props {
