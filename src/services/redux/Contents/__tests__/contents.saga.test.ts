@@ -1,12 +1,12 @@
 import { testSaga } from "redux-saga-test-plan";
 import latestActionsSaga, { fetchContents } from "../contents.saga";
-import { setContentsActionCreator } from "../contents.actions";
+import { setContentsActionCreator, setNbContentsActionCreator } from "../contents.actions";
 import {
   startLoading,
   LoadingStatusKey,
   finishLoading,
 } from "../../LoadingStatus/loadingStatus.actions";
-import { getContentsForApp } from "../../../../utils/API";
+import { getContentsForApp, getNbContents } from "../../../../utils/API";
 import {
   selectedI18nCodeSelector,
   userAgeSelector,
@@ -40,6 +40,10 @@ describe("[Saga] contents", () => {
         .select(userLocationSelector)
         .next({ department: null })
         .select(userFrenchLevelSelector)
+        .next(null)
+        .put(setNbContentsActionCreator({
+          nbGlobalContent: null, nbLocalizedContent: null
+        }))
         .next(null)
         .put(finishLoading(LoadingStatusKey.FETCH_CONTENTS))
         .next()
@@ -101,6 +105,12 @@ describe("[Saga] contents", () => {
         ])
         .next({ idFr: [], id1Fr: [] })
         .put(setGroupedContentsActionCreator({ idFr: [], id1Fr: [] }))
+        .next()
+        .call(getNbContents, {department: "dep"})
+        .next()
+        .put(setNbContentsActionCreator({
+          nbGlobalContent: null, nbLocalizedContent: null
+        }))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_CONTENTS))
         .next()
@@ -184,6 +194,10 @@ describe("[Saga] contents", () => {
         ])
         .next({ idFr: [], id1Fr: [] })
         .put(setGroupedContentsActionCreator({ idFr: [], id1Fr: [] }))
+        .next()
+        .put(setNbContentsActionCreator({
+          nbGlobalContent: null, nbLocalizedContent: null
+        }))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_CONTENTS))
         .next()

@@ -51,6 +51,8 @@ exports[`ContentScreen should render correctly 1`] = `
           }
         >
           <View
+            accessibilityLabel=""
+            accessibilityRole="button"
             accessible={true}
             focusable={false}
             onClick={[Function]}
@@ -167,6 +169,8 @@ exports[`ContentScreen should render correctly 1`] = `
           >
             <View />
             <View
+              accessibilityLabel=""
+              accessibilityRole="button"
               accessible={true}
               focusable={false}
               onClick={[Function]}
@@ -5099,6 +5103,8 @@ exports[`ContentScreen should render correctly 1`] = `
           }
         >
           <View
+            accessibilityLabel=""
+            accessibilityRole="button"
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -5203,6 +5209,8 @@ exports[`ContentScreen should render correctly 1`] = `
             </View>
           </View>
           <View
+            accessibilityLabel=""
+            accessibilityRole="button"
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -5462,6 +5470,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
           }
         >
           <View
+            accessibilityLabel=""
+            accessibilityRole="button"
             accessible={true}
             focusable={false}
             onClick={[Function]}
@@ -5578,6 +5588,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
           >
             <View />
             <View
+              accessibilityLabel=""
+              accessibilityRole="button"
               accessible={true}
               focusable={false}
               onClick={[Function]}
@@ -10510,6 +10522,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
           }
         >
           <View
+            accessibilityLabel=""
+            accessibilityRole="button"
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -10614,6 +10628,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
             </View>
           </View>
           <View
+            accessibilityLabel=""
+            accessibilityRole="button"
             accessible={true}
             focusable={true}
             onClick={[Function]}

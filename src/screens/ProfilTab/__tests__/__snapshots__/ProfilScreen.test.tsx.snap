@@ -91,6 +91,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         >
           <View />
           <View
+            accessibilityLabel=""
+            accessibilityRole="button"
             accessible={true}
             focusable={false}
             onClick={[Function]}
@@ -3884,6 +3886,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         >
           <View />
           <View
+            accessibilityLabel=""
+            accessibilityRole="button"
             accessible={true}
             focusable={false}
             onClick={[Function]}
@@ -7677,6 +7681,8 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
         >
           <View />
           <View
+            accessibilityLabel=""
+            accessibilityRole="button"
             accessible={true}
             focusable={false}
             onClick={[Function]}

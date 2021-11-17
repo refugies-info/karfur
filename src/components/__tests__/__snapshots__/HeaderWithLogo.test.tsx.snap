@@ -41,6 +41,8 @@ exports[`HeaderWithLogo should render correctly with LTR 1`] = `
     >
       <View />
       <View
+        accessibilityLabel=""
+        accessibilityRole="button"
         accessible={true}
         focusable={false}
         onClick={[Function]}
@@ -186,6 +188,8 @@ exports[`HeaderWithLogo should render correctly with RTL 1`] = `
     >
       <View />
       <View
+        accessibilityLabel=""
+        accessibilityRole="button"
         accessible={true}
         focusable={false}
         onClick={[Function]}
