@@ -1,13 +1,14 @@
 import * as React from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
 import { RTLView } from "../BasicComponents";
 import { theme } from "../../theme";
 import {
-  TextSmallNormal
+  TextSmallNormal,
+  TextSmallBold,
 } from "../StyledText";
-// import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 const InfoMessage = styled(RTLView)`
   background-color: ${theme.colors.lightBlue};
@@ -23,6 +24,10 @@ const InfoMessageText = styled(TextSmallNormal)`
   margin-horizontal: ${theme.margin}px;
   flex-shrink: 1;
 `;
+const InfoMessageLink = styled(TextSmallBold)`
+  color: ${theme.colors.darkBlue};
+  text-decoration-line: underline;
+`;
 
 interface Props {
   totalContent: number;
@@ -32,6 +37,8 @@ interface Props {
 }
 
 export const LocalizedWarningMessage = (props: Props) => {
+  const { t } = useTranslationWithRTL();
+
   return (
     <InfoMessage>
       <Icon
@@ -43,15 +50,19 @@ export const LocalizedWarningMessage = (props: Props) => {
       <InfoMessageText>
         Tu peux voir {props.totalContent} fiches en tout,
         mais peu de fiches pour {props.city}.{" "}
-        <Text
+        <InfoMessageLink
           onPress={props.openModal}
-          style={{ textDecorationLine: "underline" }}
           accessibilityRole="button"
         >
           Pourquoi ?
-        </Text>
+        </InfoMessageLink>
       </InfoMessageText>
-      <TouchableOpacity onPress={props.onClose}>
+      <TouchableOpacity
+        onPress={props.onClose}
+        accessibilityRole="button"
+        accessible={true}
+        accessibilityLabel={t("Fermer", "Fermer")}
+      >
         <Icon
           name="close-outline"
           height={24}

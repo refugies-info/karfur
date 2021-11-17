@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View } from "react-native";
+import { Linking, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import Modal from "react-native-modal";
 import { StyleSheet } from "react-native";
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 });
 
 export const LocalizedWarningModal = (props: Props) => {
-  const { isRTL } = useTranslationWithRTL();
+  const { t, isRTL } = useTranslationWithRTL();
 
   return (
     <Modal
@@ -54,6 +54,7 @@ export const LocalizedWarningModal = (props: Props) => {
             top: theme.margin * 3,
             ...(!isRTL ? {right: 0} : {left: 0})
           }}
+          label={t("Fermer", "Fermer")}
         />
         <RTLView style={{ justifyContent: "center", alignItems: "flex-end" }}>
           <View>
@@ -92,7 +93,11 @@ export const LocalizedWarningModal = (props: Props) => {
                 ...(!isRTL ? { marginRight: theme.margin } : { marginLeft: theme.margin })
               }}
             />
-            <TextNormalBold style={styles.centerText}>
+            <TextNormalBold
+              style={styles.centerText}
+              onPress={() => Linking.openURL("https://www.refugies.info")}
+              accessibilityRole="link"
+            >
               www.refugies.info
             </TextNormalBold>
           </RTLView>
