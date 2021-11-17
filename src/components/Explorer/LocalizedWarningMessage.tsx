@@ -48,13 +48,15 @@ export const LocalizedWarningMessage = (props: Props) => {
         fill={theme.colors.darkBlue}
       />
       <InfoMessageText>
-        Tu peux voir {props.totalContent} fiches en tout,
-        mais peu de fiches pour {props.city}.{" "}
+        {t("ExplorerScreen.Tu vois peu de fiches pour ta ville", {
+          nbContent: props.totalContent,
+          city: props.city
+        })}{" "}
         <InfoMessageLink
           onPress={props.openModal}
           accessibilityRole="button"
         >
-          Pourquoi ?
+          {t("ExplorerScreen.Pourquoi")}
         </InfoMessageLink>
       </InfoMessageText>
       <TouchableOpacity

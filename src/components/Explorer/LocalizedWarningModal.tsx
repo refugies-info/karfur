@@ -59,8 +59,14 @@ export const LocalizedWarningModal = (props: Props) => {
         <RTLView style={{ justifyContent: "center", alignItems: "flex-end" }}>
           <View>
             <Map width={102} height={104} style={{ marginBottom: theme.margin }} />
-            <TextNormalBold style={styles.subtitle}>{props.nbGlobalContent} fiches</TextNormalBold>
-            <TextSmallBold style={styles.subtitle}>nationales</TextSmallBold>
+            <TextNormalBold style={styles.subtitle}>
+              {t("ExplorerScreen.nb fiches", {
+                nbContent: props.nbGlobalContent
+              })}
+            </TextNormalBold>
+            <TextSmallBold style={styles.subtitle}>
+              {t("ExplorerScreen.nationales")}
+            </TextSmallBold>
           </View>
           <Icon
             name="plus-outline"
@@ -71,17 +77,27 @@ export const LocalizedWarningModal = (props: Props) => {
           />
           <View>
             <Pin width={114} height={104} style={{ marginBottom: theme.margin }} />
-            <TextNormalBold style={styles.subtitle}>{props.nbLocalizedContent} fiches</TextNormalBold>
-            <TextSmallBold style={styles.subtitle}>pour {props.city}</TextSmallBold>
+            <TextNormalBold style={styles.subtitle}>
+              {t("ExplorerScreen.nb fiches", {
+                nbContent: props.nbLocalizedContent
+              })}
+            </TextNormalBold>
+            <TextSmallBold style={styles.subtitle}>
+              {t("ExplorerScreen.pour ta ville", {
+                city: props.city
+              })}
+            </TextSmallBold>
           </View>
         </RTLView>
 
         <View style={{ marginTop: theme.margin * 5 }}>
-          <TextBigBold style={styles.centerText}>Réfugiés.info est en cours de développement</TextBigBold>
+          <TextBigBold style={styles.centerText}>
+            {t("ExplorerScreen.Réfugiés.info est en cours de développement")}
+          </TextBigBold>
           <TextNormal
             style={{ ...styles.centerText, marginVertical: theme.margin * 2 }}
           >
-            Nous ajoutons de nouvelles fiches chaque semaine. Rendez-vous sur votre ordinateur pour nous aider à écrire et à traduire des fiches !
+            {t("ExplorerScreen.Nous ajoutons de nouvelles fiches chaque semaine")}
           </TextNormal>
           <RTLView style={{justifyContent: "center"}}>
             <Icon
