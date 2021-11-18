@@ -8,7 +8,7 @@ import { SmallButton } from "../SmallButton";
 import styled from "styled-components/native";
 import { onboardingCarouselData } from "./OnboardingCarouselData";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { t } from "react-i18next";
+import { withTranslation } from "react-i18next";
 
 const { width: viewportWidth } = Dimensions.get("window");
 
@@ -37,7 +37,7 @@ const NextButtonContainer = styled.View`
 `;
 
 const carouselItems = onboardingCarouselData;
-export class OnboardingCarousel extends React.Component {
+class OnboardingCarousel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -88,6 +88,7 @@ export class OnboardingCarousel extends React.Component {
   }
   render() {
     const { activeIndex } = this.state;
+    const { t } = this.props;
 
     return (
       <View>
@@ -139,3 +140,5 @@ export class OnboardingCarousel extends React.Component {
     );
   }
 }
+
+export default withTranslation()(OnboardingCarousel)
