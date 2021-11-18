@@ -113,7 +113,7 @@ export const FavorisScreen = ({
         })
       }
     }
-    return result;
+    return result.reverse();
   };
 
   const [contentsToDisplay, setContentsToDisplay] = React.useState<SimplifiedContent[]>([]);
