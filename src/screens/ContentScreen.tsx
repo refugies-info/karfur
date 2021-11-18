@@ -129,7 +129,7 @@ const LastUpdateDateContainer = styled(RTLView)`
 `;
 
 const LastUpdateDate = styled(TextSmallNormal)`
-  color: ${theme.colors.formation80};
+  color: ${theme.colors.green};
 `;
 
 const LastUpdateText = styled(TextSmallNormal)`
