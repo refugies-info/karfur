@@ -102,7 +102,7 @@ class OnboardingCarousel extends React.Component {
               }
               this.carousel.snapToPrev();
             }}
-            label={t("Retour")}
+            label={t("Onboarding.Retour vers la page précédente")}
           />
           <SmallButton iconName="volume-up-outline" />
         </TopButtonsContainer>

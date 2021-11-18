@@ -82,7 +82,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
           onPress={() => refine("")}
           accessibilityRole="button"
           accessible={true}
-          accessibilityLabel={t("Réinitialiser")}
+          accessibilityLabel={t("Effacer la sélection")}
         >
           <Icon
             name="close-outline"

@@ -79,7 +79,7 @@ interface Props {
 }
 
 export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
-  const { i18n } = useTranslationWithRTL();
+  const { t, i18n } = useTranslationWithRTL();
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
 
@@ -117,7 +117,11 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
 
   if (selectedLanguageI18nCode === "fr")
     return (
-      <ButtonContainerFixedWidth onPress={onLongPressSwitchLanguage}>
+      <ButtonContainerFixedWidth
+        onPress={onLongPressSwitchLanguage}
+        accessibilityRole="button"
+        accessibilityLabel={t("Changer la langue")}
+      >
         <Flag langueFr={"Français"} />
       </ButtonContainerFixedWidth>
     );
@@ -126,6 +130,8 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
       onPress={onSwitchPress}
       isRTL={false}
       onLongPress={onLongPressSwitchLanguage}
+      accessibilityRole="button"
+      accessibilityLabel={t("Changer la langue")}
     >
       <LanguageContainer
         backgroundColor={

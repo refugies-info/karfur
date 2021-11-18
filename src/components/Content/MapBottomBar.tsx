@@ -126,6 +126,7 @@ export const MapBottomBar = (props: Props) => {
             height={ICON_SIZE}
             fill={props.textColor}
             isRTL={isRTL}
+            accessibilityLabel={t("Content.Adresse")}
           />
           <HTMLContainer>
             <TextValue color={props.textColor}>
@@ -141,6 +142,7 @@ export const MapBottomBar = (props: Props) => {
             height={ICON_SIZE}
             fill={props.textColor}
             isRTL={isRTL}
+            accessibilityLabel={t("Content.Email de contact")}
           />
           <HTMLContainer>
             {props.selectedMarker.email ? (
@@ -173,6 +175,7 @@ export const MapBottomBar = (props: Props) => {
             height={ICON_SIZE}
             fill={props.textColor}
             isRTL={isRTL}
+            accessibilityLabel={t("Content.Numéro de téléphone")}
           />
           <HTMLContainer>
             {props.selectedMarker.telephone ? (
@@ -214,7 +217,7 @@ export const MapBottomBar = (props: Props) => {
         onPress={props.hideSideBar}
         accessibilityRole="button"
         accessible={true}
-        accessibilityLabel={t("Fermer")}
+        accessibilityLabel={t("Content.Fermer l'onglet")}
       >
         <Icon
           name={"close-outline"}

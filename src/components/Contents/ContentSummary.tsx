@@ -93,18 +93,19 @@ interface Props {
   style?: any;
   actionPress?: any;
   actionIcon?: string;
+  actionLabel?: string;
   backScreen?: string;
   hasSponsorMatch?: boolean;
 }
 export const ContentSummary = (props: Props) => {
-  const { t, isRTL } = useTranslationWithRTL();
+  const { isRTL } = useTranslationWithRTL();
 
   const actionButton = (props.actionPress !== undefined) ?
     <ActionButton
       onPress={props.actionPress}
       accessibilityRole="button"
       accessible={true}
-      accessibilityLabel={t("Supprimer")}
+      accessibilityLabel={props.actionLabel}
     >
       <Icon
         name={props.actionIcon || ""}

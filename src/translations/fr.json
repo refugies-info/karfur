@@ -18,14 +18,19 @@
     "age": "Tu as quel âge ?",
     "niveauFrancais": "C'est quoi ton niveau de français ?",
     "end": "L'application va te montrer des informations intéressantes pour toi.",
-    "error_geoloc_acces": "Oh non, il y a un problème. Vérifie dans les paramètres de ton téléphone que tu as autorisé la localisation."
+    "error_geoloc_acces": "Oh non, il y a un problème. Vérifie dans les paramètres de ton téléphone que tu as autorisé la localisation.",
+    "Retour vers la page précédente": "Retour vers la page précédente"
   },
   "Retour": "Retour",
+  "Retour à la page précédente": "Retour à la page précédente",
   "Suivant": "Suivant",
   "Continuer": "Continuer",
   "Supprimer": "Supprimer",
   "Partager": "Partager",
   "Réinitialiser": "Réinitialiser",
+  "Fermer la fenêtre": "Fermer la fenêtre",
+  "Changer la langue": "Changer la langue",
+  "Effacer la sélection": "Effacer la sélection",
   "Ok": "Ok",
   "Aucune connexion internet": "Aucune connexion internet !",
   "tabBar": {
@@ -119,6 +124,7 @@
     "Comment faire ?": "Comment faire ?",
     "Et après ?": "Et après ?",
     "Voir le site": "Aller sur le site internet",
+    "Voir le site_accessibilityLabel": "Aller sur le site internet, s'ouvre dans le navigateur",
     "last_update": "Dernière mise à jour :",
     "Oups": "Oh non !",
     "error": "Tu es bien connecté à internet ? Vérifie et essaie encore.",
@@ -156,7 +162,14 @@
     "Non renseigné": "Non renseigné",
     "Voir la carte": "Voir la carte",
     "favoris ajouté": "Ajouté à \"<1>Mes fiches</1>\"",
-    "favoris supprimé": "Enlevé de \"Mes fiches\""
+    "favoris supprimé": "Enlevé de \"Mes fiches\"",
+    "Retour à la fiche": "Retour à la fiche",
+    "Fermer la carte": "Fermer la carte",
+    "Voir les informations du lieu": "Voir les informations du lieu",
+    "Fermer l'onglet": "Fermer l'onglet, retour à la carte",
+    "Ajouter à mes fiches": "Ajouter à mes fiches",
+    "Retirer de mes fiches": "Retirer de mes fiches",
+    "Partager la fiche": "Partager la fiche"
   },
   "NeedsScreen": {
     "fiches": "fiches",
@@ -171,6 +184,7 @@
     "C'est vide": "C'est vide",
     "Ajouter une fiche": "Pour ajouter une fiche dans tes favoris, clique sur l’étoile.",
     "Supprimer la fiche": "Veux-tu vraiment supprimer cette fiche de tes favoris ?",
+    "Supprimer la fiche de mes favoris": "Supprimer la fiche de mes favoris",
     "Supprimer tout": "Veux-tu vraiment supprimer toutes les fiches de tes favoris ?",
     "Supprimer toutes mes fiches": "Supprimer toutes mes fiches"
   },

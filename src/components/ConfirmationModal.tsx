@@ -65,7 +65,7 @@ export const ConfirmationModal = (props: Props) => {
         <TouchableWithoutFeedback
           onPress={props.toggleModal}
           accessibilityRole="button"
-          accessibilityLabel={t("Fermer")}
+          accessibilityLabel={t("Fermer la fenêtre")}
         >
           <Backdrop />
         </TouchableWithoutFeedback>

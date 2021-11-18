@@ -206,6 +206,7 @@ export const FavorisScreen = ({
                       sponsorUrl={content.sponsorUrl}
                       actionPress={() => showDeleteModal(content._id)}
                       actionIcon={"trash-2-outline"}
+                      actionLabel={t("FavorisScreen.Supprimer la fiche de mes favoris")}
                       style={{ marginHorizontal: theme.margin * 3 }}
                       backScreen="Favoris"
                     />

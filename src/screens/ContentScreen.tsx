@@ -722,6 +722,7 @@ export const ContentScreen = ({
                 defaultText="Voir le site"
                 backgroundColor={tagDarkColor}
                 iconName="external-link-outline"
+                accessibilityLabel={t("Content.Voir le site_accessibilityLabel")}
               />
             </View>
           )}
@@ -744,6 +745,7 @@ export const ContentScreen = ({
                   iconName="expand-outline"
                   iconFirst={true}
                   notFullWidth={true}
+                  accessibilityLabel={t("Content.Voir la carte")}
                 />
               </MiniMap>
             </>
@@ -782,6 +784,10 @@ export const ContentScreen = ({
             isTextNotBold={true}
             isSmall={true}
             style={{ marginHorizontal: theme.margin }}
+            accessibilityLabel={isContentFavorite ?
+              t("Content.Retirer de mes fiches") :
+              t("Content.Ajouter à mes fiches")
+            }
           />
           <CustomButton
             onPress={() => shareContent(selectedContent)}
@@ -791,11 +797,12 @@ export const ContentScreen = ({
             textColor={theme.colors.black}
             backgroundColor={theme.colors.white}
             notFullWidth={true}
-            iconStyle={{transform: [{scaleX: -1}]}}
+            iconStyle={{ transform: [{ scaleX: -1 }] }}
             iconFirst={true}
             isTextNotBold={true}
             isSmall={true}
             style={{ marginHorizontal: theme.margin }}
+            accessibilityLabel={ t("Partager la fiche")}
           />
         </RTLView>
       </TabBarContainer>
@@ -848,13 +855,13 @@ export const ContentScreen = ({
               <SmallButton
                 iconName="arrow-back-outline"
                 onPress={toggleMap}
-                label={t("Retour")}
+                label={t("Content.Retour à la fiche")}
               />
               <SmallButton
                 iconName="close-outline"
                 onPress={toggleMap}
                 reversed={true}
-                label={t("Fermer")}
+                label={t("Content.Fermer la carte")}
               />
             </FixSafeAreaView>
           </ModalContainer>

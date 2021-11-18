@@ -31,7 +31,11 @@ export const CarouselStepImage = ({ step }: Props) => {
     case 1:
       return <Image source={Step1} style={styles.step1} />;
     case 2:
-      return <Image source={Step2} style={styles.step2} />;
+      return <Image
+        source={Step2}
+        style={styles.step2}
+        accessibilityLabel="Gouvernement Liberté Egalité Fraternité. Délégation interministérielle à l'accueil et à l'intégration des réfugiés."
+      />;
     case 3:
       return <Step3 width={160} height={160} />;
 
