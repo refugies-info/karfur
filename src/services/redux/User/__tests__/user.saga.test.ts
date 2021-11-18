@@ -16,6 +16,8 @@ import latestActionsSaga, {
   removeUserAllFavorites,
   saveUserHasNewFavorites,
   removeUserHasNewFavorites,
+  saveUserLocalizedWarningHidden,
+  removeUserLocalizedWarningHidden,
 } from "../user.saga";
 import {
   saveItemInAsyncStorage,
@@ -31,6 +33,7 @@ import {
   setUserLocationActionCreator,
   setUserFavoritesActionCreator,
   setUserHasNewFavoritesActionCreator,
+  setUserLocalizedWarningHiddenActionCreator,
 } from "../user.actions";
 import { fetchContentsActionCreator } from "../../Contents/contents.actions";
 import { hasUserSeenOnboardingSelector } from "../user.selectors";
@@ -47,6 +50,8 @@ describe("[Saga] user", () => {
         .takeLatest("SAVE_USER_HAS_SEEN_ONBOARDING", saveHasUserSeenOnboarding)
         .next()
         .takeLatest("SAVE_USER_HAS_NEW_FAVORITES", saveUserHasNewFavorites)
+        .next()
+        .takeLatest("SAVE_USER_LOCALIZED_WARNING_HIDDEN", saveUserLocalizedWarningHidden)
         .next()
         .takeLatest("SAVE_USER_LOCATION", saveUserLocation)
         .next()
@@ -70,6 +75,8 @@ describe("[Saga] user", () => {
         )
         .next()
         .takeLatest("REMOVE_USER_HAS_NEW_FAVORITES", removeUserHasNewFavorites)
+        .next()
+        .takeLatest("REMOVE_USER_LOCALIZED_WARNING_HIDDEN", removeUserLocalizedWarningHidden)
         .next()
         .takeLatest("ADD_USER_FAVORITE", addUserFavorite)
         .next()
@@ -116,7 +123,7 @@ describe("[Saga] user", () => {
         .isDone();
     });
 
-    it("should call functions and set data and fetch contents when shouldFetchCOntents is true", () => {
+    it("should call functions and set data and fetch contents when shouldFetchContents is true", () => {
       testSaga(saveSelectedLanguage, {
         type: "SAVE_SELECTED_LANGUAGE",
         payload: { langue: "en", shouldFetchContents: true },
@@ -338,6 +345,8 @@ describe("[Saga] user", () => {
         .select(hasUserSeenOnboardingSelector)
         .next(false)
         .call(getItemInAsyncStorage, "FAVORITES")
+        .next(false)
+        .call(getItemInAsyncStorage, "LOCALIZED_WARNING_HIDDEN")
         .next(null)
         .isDone();
     });
@@ -374,6 +383,8 @@ describe("[Saga] user", () => {
         .next('["5e7b292c1eaf4d0051d9efe2"]')
         .put(setUserFavoritesActionCreator(["5e7b292c1eaf4d0051d9efe2"]))
         .next()
+        .call(getItemInAsyncStorage, "LOCALIZED_WARNING_HIDDEN")
+        .next("")
         .isDone();
     });
 
@@ -391,6 +402,8 @@ describe("[Saga] user", () => {
         .select(hasUserSeenOnboardingSelector)
         .next(false)
         .call(getItemInAsyncStorage, "FAVORITES")
+        .throw(new Error("error"))
+        .call(getItemInAsyncStorage, "LOCALIZED_WARNING_HIDDEN")
         .throw(new Error("error"))
         .isDone();
     });
@@ -577,6 +590,28 @@ describe("[Saga] user", () => {
         .call(deleteItemInAsyncStorage, "HAS_USER_NEW_FAVORITES")
         .next()
         .put(setUserHasNewFavoritesActionCreator(false))
+        .next()
+        .isDone();
+    });
+  });
+
+  describe("handle localized warning hidden async storage", () => {
+    it("should call functions and set token in localStorage", () => {
+      testSaga(saveUserLocalizedWarningHidden)
+        .next()
+        .call(saveItemInAsyncStorage, "LOCALIZED_WARNING_HIDDEN", "TRUE")
+        .next()
+        .put(setUserLocalizedWarningHiddenActionCreator(true))
+        .next()
+        .isDone();
+    });
+
+    it("should call functions and remove token in localStorage", () => {
+      testSaga(removeUserLocalizedWarningHidden)
+        .next()
+        .call(deleteItemInAsyncStorage, "LOCALIZED_WARNING_HIDDEN")
+        .next()
+        .put(setUserLocalizedWarningHiddenActionCreator(false))
         .next()
         .isDone();
     });

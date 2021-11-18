@@ -25,6 +25,8 @@ exports[`Filter city should render correctly when city selected 1`] = `
     }
   >
     <View
+      accessibilityLabel=""
+      accessibilityRole="button"
       accessible={true}
       focusable={true}
       onClick={[Function]}
@@ -227,6 +229,8 @@ exports[`Filter city should render correctly when city selected 1`] = `
       </Text>
     </View>
     <View
+      accessibilityLabel=""
+      accessibilityRole="button"
       accessible={true}
       focusable={false}
       onClick={[Function]}
@@ -863,6 +867,8 @@ exports[`Filter city should render correctly when no city 1`] = `
     }
   >
     <View
+      accessibilityLabel=""
+      accessibilityRole="button"
       accessible={true}
       focusable={true}
       onClick={[Function]}
@@ -1065,6 +1071,8 @@ exports[`Filter city should render correctly when no city 1`] = `
       </Text>
     </View>
     <View
+      accessibilityLabel=""
+      accessibilityRole="button"
       accessible={true}
       focusable={false}
       onClick={[Function]}

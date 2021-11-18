@@ -54,6 +54,13 @@ export const getContentsForApp = ({
   return apiCaller.get(route);
 };
 
+export const getNbContents = ({ department }: {
+  department: string | null;
+}) => {
+  const route = `/dispositifs/getNbContents?department=${department}`;
+  return apiCaller.get(route);
+};
+
 export const getContentById = ({
   locale,
   contentId,

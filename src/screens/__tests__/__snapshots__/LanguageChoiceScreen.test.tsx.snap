@@ -151,6 +151,8 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         }
       >
         <View
+          accessibilityLabel=""
+          accessibilityRole="button"
           accessible={true}
           focusable={false}
           onClick={[Function]}

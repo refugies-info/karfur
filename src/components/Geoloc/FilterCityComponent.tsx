@@ -21,6 +21,7 @@ import {
 import {
   saveUserLocationActionCreator,
   removeUserLocationActionCreator,
+  removeUserLocalizedWarningHiddenActionCreator
 } from "../../services/redux/User/user.actions";
 import { Title, Label } from "../Onboarding/SharedStyledComponents";
 import { View, ActivityIndicator } from "react-native";
@@ -249,11 +250,12 @@ export const FilterCityComponent = (props: Props) => {
           shouldFetchContents: props.isOnboardingScreen ? false : true,
         })
       );
-      return navigateToNextScreen();
+    } else {
+      dispatch(
+        removeUserLocationActionCreator(props.isOnboardingScreen ? false : true)
+      );
     }
-    dispatch(
-      removeUserLocationActionCreator(props.isOnboardingScreen ? false : true)
-    );
+    dispatch(removeUserLocalizedWarningHiddenActionCreator());
     return navigateToNextScreen();
   };
 

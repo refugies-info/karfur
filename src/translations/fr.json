@@ -34,7 +34,17 @@
   },
   "Langue app": "Langue",
   "Erreur": "Oh non, il y a un problème. Essaie encore.",
-  "ExplorerScreen": { "Liste": "Liste", "Galerie": "Images" },
+  "ExplorerScreen": {
+    "Liste": "Liste",
+    "Galerie": "Images",
+    "Tu vois peu de fiches pour ta ville": "Tu peux voir {{nbContent}} fiches en tout, mais peu de fiches pour {{city}}.",
+    "Pourquoi": "Pourquoi ?",
+    "nb fiches": "{{nbContent}} fiches",
+    "nationales": "nationales",
+    "pour ta ville": "pour {{city}}",
+    "Réfugiés.info est en cours de développement": "Réfugiés.info est en cours de développement",
+    "Nous ajoutons de nouvelles fiches chaque semaine": "Nous ajoutons de nouvelles fiches chaque semaine. Rendez-vous sur votre ordinateur pour nous aider à écrire et à traduire des fiches !"
+  },
   "Tags": {
     "Français": "Français",
     "Logement": "Logement",

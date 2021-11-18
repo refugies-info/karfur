@@ -6,9 +6,9 @@ import {
   LoadingStatusKey,
 } from "../LoadingStatus/loadingStatus.actions";
 import { logger } from "../../../logger";
-import { setContentsActionCreator } from "./contents.actions";
+import { setContentsActionCreator, setNbContentsActionCreator } from "./contents.actions";
 import { FETCH_CONTENTS } from "./contents.actionTypes";
-import { getContentsForApp } from "../../../utils/API";
+import { getContentsForApp, getNbContents } from "../../../utils/API";
 import {
   selectedI18nCodeSelector,
   userAgeSelector,
@@ -55,6 +55,20 @@ export function* fetchContents(): SagaIterator {
         yield put(setGroupedContentsActionCreator(groupedResults));
       }
     }
+
+    // Nb Content
+    let nbGlobalContent: number | null = null;
+    let nbLocalizedContent: number | null = null;
+    if (department) {
+      const nbContent = yield call(getNbContents, { department });
+      if (nbContent?.data?.data) {
+        nbGlobalContent = nbContent.data.data.nbGlobalContent;
+        nbLocalizedContent = nbContent.data.data.nbLocalizedContent;
+      }
+    }
+    yield put(
+      setNbContentsActionCreator({ nbGlobalContent, nbLocalizedContent})
+    );
 
     yield put(finishLoading(LoadingStatusKey.FETCH_CONTENTS));
   } catch (error) {
