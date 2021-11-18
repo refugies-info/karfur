@@ -39,7 +39,8 @@
     "production": {
       "android": {
         "serviceAccountKeyPath": "./refugies-info-appkey.json",
-        "track": "internal"
+        "track": "internal",
+        "releaseStatus": "draft"
       },
       "ios": {
         "appleId": "matthieu.fesselier@gmail.com",
