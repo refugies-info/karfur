@@ -42,7 +42,7 @@ const FakeInput = styled(RTLTouchableOpacity)`
   align-items: center;
 `;
 const FakeInputText = styled.Text`
-  color: ${theme.colors.grey60};
+  color: ${theme.colors.darkGrey};
   margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : theme.margin)}px;
   margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? theme.margin : 0)}px;
 `;
@@ -133,6 +133,7 @@ export const SearchBarCity = (props: Props) => {
                 ref={input}
                 value={props.enteredText}
                 placeholder={t("Onboarding.placeholder", "Exemple : Paris")}
+                placeholderTextColor={theme.colors.darkGrey}
                 onChangeText={props.onChangeText}
                 isRTL={isRTL}
                 testID="test-city-input"
