@@ -227,6 +227,7 @@ exports[`Search results screen should render correctly 1`] = `
           isRTL={false}
           onChangeText={[Function]}
           placeholder="Rechercher"
+          placeholderTextColor="#5E5E5E"
           rejectResponderTermination={true}
           style={
             Array [

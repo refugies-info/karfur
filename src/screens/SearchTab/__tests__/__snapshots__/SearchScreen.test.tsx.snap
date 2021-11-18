@@ -308,7 +308,7 @@ exports[`Search Screen should render correctly 1`] = `
         style={
           Array [
             Object {
-              "color": "#C6C6C6",
+              "color": "#5E5E5E",
               "marginLeft": 8,
               "marginRight": 0,
             },

@@ -1338,7 +1338,7 @@ exports[`Filter city should render correctly when no city 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#C6C6C6",
+                      "color": "#5E5E5E",
                       "marginLeft": 8,
                       "marginRight": 0,
                     },
@@ -1646,6 +1646,7 @@ exports[`Filter city should render correctly when no city 1`] = `
                         isRTL={false}
                         onChangeText={[Function]}
                         placeholder="Exemple : Paris"
+                        placeholderTextColor="#5E5E5E"
                         rejectResponderTermination={true}
                         style={
                           Array [

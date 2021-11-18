@@ -3648,7 +3648,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
-                  "color": "#26B759",
+                  "color": "#008205",
                 },
               ]
             }
@@ -9120,7 +9120,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   "textAlign": "left",
                 },
                 Object {
-                  "color": "#26B759",
+                  "color": "#008205",
                 },
               ]
             }
