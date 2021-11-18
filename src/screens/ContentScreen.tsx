@@ -129,7 +129,7 @@ const LastUpdateDateContainer = styled(RTLView)`
 `;
 
 const LastUpdateDate = styled(TextSmallNormal)`
-  color: ${theme.colors.formation80};
+  color: ${theme.colors.green};
 `;
 
 const LastUpdateText = styled(TextSmallNormal)`
@@ -722,6 +722,7 @@ export const ContentScreen = ({
                 defaultText="Voir le site"
                 backgroundColor={tagDarkColor}
                 iconName="external-link-outline"
+                accessibilityLabel={t("Content.Voir le site_accessibilityLabel")}
               />
             </View>
           )}
@@ -744,6 +745,7 @@ export const ContentScreen = ({
                   iconName="expand-outline"
                   iconFirst={true}
                   notFullWidth={true}
+                  accessibilityLabel={t("Content.Voir la carte")}
                 />
               </MiniMap>
             </>
@@ -782,6 +784,10 @@ export const ContentScreen = ({
             isTextNotBold={true}
             isSmall={true}
             style={{ marginHorizontal: theme.margin }}
+            accessibilityLabel={isContentFavorite ?
+              t("Content.Retirer de mes fiches") :
+              t("Content.Ajouter à mes fiches")
+            }
           />
           <CustomButton
             onPress={() => shareContent(selectedContent)}
@@ -791,11 +797,12 @@ export const ContentScreen = ({
             textColor={theme.colors.black}
             backgroundColor={theme.colors.white}
             notFullWidth={true}
-            iconStyle={{transform: [{scaleX: -1}]}}
+            iconStyle={{ transform: [{ scaleX: -1 }] }}
             iconFirst={true}
             isTextNotBold={true}
             isSmall={true}
             style={{ marginHorizontal: theme.margin }}
+            accessibilityLabel={ t("Partager la fiche")}
           />
         </RTLView>
       </TabBarContainer>
@@ -845,11 +852,16 @@ export const ContentScreen = ({
             <FixSafeAreaView
               style={{ flexDirection: "row", justifyContent: "space-between" }}
             >
-              <SmallButton iconName="arrow-back-outline" onPress={toggleMap} />
+              <SmallButton
+                iconName="arrow-back-outline"
+                onPress={toggleMap}
+                label={t("Content.Retour à la fiche")}
+              />
               <SmallButton
                 iconName="close-outline"
                 onPress={toggleMap}
                 reversed={true}
+                label={t("Content.Fermer la carte")}
               />
             </FixSafeAreaView>
           </ModalContainer>

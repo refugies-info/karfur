@@ -104,7 +104,12 @@ export const Toast = (props: Props) => {
           }
         </RTLView>
 
-        <TouchableOpacity onPress={hideToast}>
+        <TouchableOpacity
+          onPress={hideToast}
+          accessibilityRole="button"
+          accessible={true}
+          accessibilityLabel={t("Fermer")}
+        >
           <Icon
             name="close"
             height={24}

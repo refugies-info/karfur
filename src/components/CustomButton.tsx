@@ -59,6 +59,7 @@ interface Props {
   notFullWidth?: boolean;
   style?: any;
   iconStyle?: any;
+  accessibilityLabel?: string;
 }
 
 const ICON_SIZE = 24;
@@ -84,6 +85,8 @@ export const CustomButton = (props: Props) => {
       testID={"test-custom-button-" + props.defaultText}
       notFullWidth={props.notFullWidth}
       style={props.style || {}}
+      accessibilityRole="button"
+      accessibilityLabel={props.accessibilityLabel}
     >
       {props.iconName && props.iconFirst && icon}
       {props.isTextNotBold ? (

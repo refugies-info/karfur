@@ -42,7 +42,7 @@ const FakeInput = styled(RTLTouchableOpacity)`
   align-items: center;
 `;
 const FakeInputText = styled.Text`
-  color: ${theme.colors.grey60};
+  color: ${theme.colors.darkGrey};
   margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : theme.margin)}px;
   margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? theme.margin : 0)}px;
 `;
@@ -84,7 +84,10 @@ export const SearchBarCity = (props: Props) => {
 
   return (
     <View>
-      <FakeInput onPress={() => setModalOpened(true)}>
+      <FakeInput
+        onPress={() => setModalOpened(true)}
+        accessibilityRole="button"
+      >
         <Icon
           name="search-outline"
           height={24}
@@ -107,7 +110,10 @@ export const SearchBarCity = (props: Props) => {
           <MainContainer>
             <TouchableOpacity
               onPress={() => setModalOpened(false)}
-              style={{marginRight: theme.margin}}
+              style={{ marginRight: theme.margin }}
+              accessibilityRole="button"
+              accessible={true}
+              accessibilityLabel={t("Retour")}
             >
               <Icon
                 name="arrow-back-outline"
@@ -127,11 +133,17 @@ export const SearchBarCity = (props: Props) => {
                 ref={input}
                 value={props.enteredText}
                 placeholder={t("Onboarding.placeholder", "Exemple : Paris")}
+                placeholderTextColor={theme.colors.darkGrey}
                 onChangeText={props.onChangeText}
                 isRTL={isRTL}
                 testID="test-city-input"
               />
-              <TouchableOpacity onPress={clearInput}>
+              <TouchableOpacity
+                onPress={clearInput}
+                accessibilityRole="button"
+                accessible={true}
+                accessibilityLabel={t("Effacer la sélection")}
+              >
                 <Icon
                   name="close-outline"
                   height={24}
@@ -150,6 +162,7 @@ export const SearchBarCity = (props: Props) => {
                 <View key={suggestion.place_id}>
                   <SuggestionContainer
                     onPress={() => props.selectSuggestion(suggestion)}
+                    accessibilityRole="button"
                   >
                     <StyledTextSmall>
                       {suggestion &&

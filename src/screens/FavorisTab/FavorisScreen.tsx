@@ -113,7 +113,7 @@ export const FavorisScreen = ({
         })
       }
     }
-    return result;
+    return result.reverse();
   };
 
   const [contentsToDisplay, setContentsToDisplay] = React.useState<SimplifiedContent[]>([]);
@@ -206,6 +206,7 @@ export const FavorisScreen = ({
                       sponsorUrl={content.sponsorUrl}
                       actionPress={() => showDeleteModal(content._id)}
                       actionIcon={"trash-2-outline"}
+                      actionLabel={t("FavorisScreen.Supprimer la fiche de mes favoris")}
                       style={{ marginHorizontal: theme.margin * 3 }}
                       backScreen="Favoris"
                     />
@@ -215,7 +216,10 @@ export const FavorisScreen = ({
             })}
           </View>
 
-          <DeleteAllButton onPress={() => showDeleteModal("all")}>
+          <DeleteAllButton
+            onPress={() => showDeleteModal("all")}
+            accessibilityRole="button"
+          >
             <DeleteAllButtonText>
               {t(
                 "FavorisScreen.Supprimer toutes mes fiches",

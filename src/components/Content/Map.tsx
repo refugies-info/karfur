@@ -10,6 +10,7 @@ import { Icon } from "react-native-eva-icons";
 import { MapBottomBar } from "./MapBottomBar";
 import { theme } from "../../theme";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 interface PropsType {
   map: MapGoogle;
@@ -19,6 +20,8 @@ interface PropsType {
 export const Map = (props: PropsType) => {
   let map: MapView | null = null;
   let bottomSheet: BottomSheet | null = null;
+
+  const { t } = useTranslationWithRTL();
 
   // Bottom sheet
   const [markerOpen, setMarkerOpen] = useState<MarkerGoogle | null>(null);
@@ -120,6 +123,8 @@ export const Map = (props: PropsType) => {
                 longitude: marker.longitude,
               }}
               onPress={(e: any) => onMarkerClick(marker, e)}
+              accessibilityRole="button"
+              accessibilityLabel={t("Content.Voir les informations du lieu")}
             >
               <Icon
                 name="pin"

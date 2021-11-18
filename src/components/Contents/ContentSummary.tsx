@@ -93,6 +93,7 @@ interface Props {
   style?: any;
   actionPress?: any;
   actionIcon?: string;
+  actionLabel?: string;
   backScreen?: string;
   hasSponsorMatch?: boolean;
 }
@@ -100,7 +101,12 @@ export const ContentSummary = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
 
   const actionButton = (props.actionPress !== undefined) ?
-    <ActionButton onPress={props.actionPress}>
+    <ActionButton
+      onPress={props.actionPress}
+      accessibilityRole="button"
+      accessible={true}
+      accessibilityLabel={props.actionLabel}
+    >
       <Icon
         name={props.actionIcon || ""}
         width={16}
@@ -116,6 +122,7 @@ export const ContentSummary = (props: Props) => {
         isDispo={true}
         style={props.style || {}}
         activeOpacity={0.8}
+        accessibilityRole="button"
         onPress={() => {
           props.navigation.navigate("Explorer", {
             screen: "ContentScreen",
@@ -195,6 +202,7 @@ export const ContentSummary = (props: Props) => {
       color={props.tagDarkColor}
       style={props.style || {}}
       activeOpacity={0.8}
+      accessibilityRole="button"
       onPress={() => {
         props.navigation.navigate("Explorer", {
           screen: "ContentScreen",

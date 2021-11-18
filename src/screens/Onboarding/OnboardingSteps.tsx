@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import * as React from "react";
-import { OnboardingCarousel } from "../../components/Onboarding/OnboardingCarousel";
+import OnboardingCarousel from "../../components/Onboarding/OnboardingCarousel";
 import { OnboardingParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 

@@ -105,7 +105,10 @@ export const ContentsHeaderAnimated = (props: Props) => {
         }}
       >
         {!props.showSimplifiedHeader && (
-          <ThemeContainer onPress={props.navigation.goBack}>
+          <ThemeContainer
+            onPress={props.navigation.goBack}
+            accessibilityRole="button"
+          >
             <ThemeText isRTL={isRTL}>
               {firstLetterUpperCase(
                 t("Tags." + props.tagName, props.tagName)

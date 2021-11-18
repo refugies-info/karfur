@@ -285,7 +285,11 @@ export const FilterCityComponent = (props: Props) => {
               selectSuggestion={onSelectSuggestion}
             />
             {!selectedCity && (
-              <GeolocContainer onPress={useGeoloc} hasError={!!error}>
+              <GeolocContainer
+                onPress={useGeoloc}
+                hasError={!!error}
+                accessibilityRole="button"
+              >
                 <Icon
                   name="pin"
                   width={ICON_SIZE}
@@ -302,7 +306,12 @@ export const FilterCityComponent = (props: Props) => {
         {isGeolocLoading && <ActivityIndicator color={theme.colors.grey60} />}
         {!!selectedCity && !!selectedDepartment && (
           <RTLView>
-            <SelectedCityContainer onPress={resetData}>
+            <SelectedCityContainer
+              onPress={resetData}
+              accessibilityRole="button"
+              accessible={true}
+              accessibilityLabel={t("Réinitialiser")}
+            >
               <SelectedCityText isRTL={isRTL}>
                 {selectedCity + " (" + selectedDepartment + ")"}
               </SelectedCityText>

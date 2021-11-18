@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 import { OnboardingParamList, FrenchLevel } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
@@ -109,18 +109,20 @@ export const FilterFrenchLevel = ({
             step={3}
             defaultText="C’est pour te montrer les formations faites pour ton niveau de français."
           />
-          {frenchLevelFilters.map((frenchLevel) => (
-            <FilterButton
-              key={frenchLevel.name}
-              text={frenchLevel.name}
-              isSelected={
-                !!selectedFrenchLevel &&
-                frenchLevel.name === selectedFrenchLevel.name
-              }
-              onPress={() => onSelectFrenchLevel(frenchLevel)}
-              details={frenchLevel.cecrCorrespondency}
-            />
-          ))}
+          <View accessibilityRole="radiogroup">
+            {frenchLevelFilters.map((frenchLevel) => (
+              <FilterButton
+                key={frenchLevel.name}
+                text={frenchLevel.name}
+                isSelected={
+                  !!selectedFrenchLevel &&
+                  frenchLevel.name === selectedFrenchLevel.name
+                }
+                onPress={() => onSelectFrenchLevel(frenchLevel)}
+                details={frenchLevel.cecrCorrespondency}
+              />
+            ))}
+          </View>
         </ScrollView>
         <BottomContainer>
           <OnboardingProgressBar step={3} />

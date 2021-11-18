@@ -56,6 +56,7 @@ export const ProfilDetailButton = (props: Props) => (
     <ButtonContainer
       onPress={props.onPress}
       testID={"test-profil-button-" + props.iconName}
+      accessibilityRole="button"
     >
       <RTLView>
         <Icon

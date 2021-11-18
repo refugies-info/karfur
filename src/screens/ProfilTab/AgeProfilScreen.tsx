@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components/native";
+import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextBigBold } from "../../components/StyledText";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
@@ -66,19 +67,21 @@ export const AgeProfilScreen = ({
           step={2}
           defaultText="C’est pour te montrer les démarches et les activités pour ton âge."
         />
-        {ageFilters.map((age) => (
+        <View accessibilityRole="radiogroup">
+          {ageFilters.map((age) => (
+            <FilterButton
+              key={age}
+              text={age}
+              isSelected={age === selectedAge}
+              onPress={() => onValidateAge(age)}
+            />
+          ))}
           <FilterButton
-            key={age}
-            text={age}
-            isSelected={age === selectedAge}
-            onPress={() => onValidateAge(age)}
+            text={"Ne pas filtrer selon mon âge"}
+            isSelected={!selectedAge}
+            onPress={removeAge}
           />
-        ))}
-        <FilterButton
-          text={"Ne pas filtrer selon mon âge"}
-          isSelected={!selectedAge}
-          onPress={removeAge}
-        />
+        </View>
       </ContentContainer>
     </SafeAreaView>
   );

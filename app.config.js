@@ -3,7 +3,7 @@ export default {
   slug: "refugies-info-app",
   version: "1.0.0",
   orientation: "portrait",
-  icon: "./src/theme/images/icon-RI.png",
+  icon: "./src/theme/images/app-icon-ri.png",
   scheme: "myapp",
   userInterfaceStyle: "automatic",
   splash: {
@@ -28,8 +28,8 @@ export default {
   android: {
     userInterfaceStyle: "light",
     adaptiveIcon: {
-      foregroundImage: "./src/theme/images/adaptive-icon.png",
-      backgroundColor: "#F6F6F6",
+      foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",
+      backgroundColor: "#0421B1",
     },
     package: "com.agathek.refugiesinfoapp",
     config: {
@@ -57,7 +57,7 @@ export default {
         measurementId: "G-31KEK3FGJ3",
       },
     },
-    favicon: "./src/theme/images/icon-RI.png",
+    favicon: "./src/theme/images/app-icon-ri.png",
   },
   description: "",
   plugins: ["./src/utils/withSimulatorExcludedArchitectures.js"],

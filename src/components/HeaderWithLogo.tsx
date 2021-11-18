@@ -51,7 +51,14 @@ export const HeaderWithLogo = ({
   return (
     <View style={{ paddingTop: insets.top, paddingBottom: theme.margin }}>
       <MainContainer isRTL={false}>
-        {!hideLogo ? <Logo width={LOGO_WIDTH} height={LOGO_HEIGHT} /> : <View />}
+        {!hideLogo ?
+          <Logo
+            width={LOGO_WIDTH}
+            height={LOGO_HEIGHT}
+            accessibilityLabel="Réfugiés point info"
+          /> :
+          <View />
+        }
         {text &&
           <RTLView>
             {iconName &&
@@ -93,6 +100,7 @@ export const HeaderWithBackForWrapper = ({
   backScreen
 }: PropsBack) => {
   const insets = useSafeAreaInsets();
+  const { t } = useTranslationWithRTL();
 
   return (
     <View style={{ paddingTop: insets.top }}>
@@ -106,6 +114,7 @@ export const HeaderWithBackForWrapper = ({
             } :
             navigation.goBack
           }
+          label={t("Retour à la page précédente")}
         />
         <RowContainer>
           <LanguageSwitch

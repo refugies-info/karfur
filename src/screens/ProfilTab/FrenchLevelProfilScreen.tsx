@@ -94,23 +94,25 @@ export const FrenchLevelProfilScreen = ({
           }}
           scrollIndicatorInsets={{ right: 1 }}
         >
-          {frenchLevelFilters.map((frenchLevel) => (
+          <View accessibilityRole="radiogroup">
+            {frenchLevelFilters.map((frenchLevel) => (
+              <FilterButton
+                key={frenchLevel.name}
+                text={frenchLevel.name}
+                isSelected={
+                  !!selectedFrenchLevel &&
+                  frenchLevel.name === selectedFrenchLevel.name
+                }
+                onPress={() => onValidateFrenchLevel(frenchLevel.name)}
+                details={frenchLevel.cecrCorrespondency}
+              />
+            ))}
             <FilterButton
-              key={frenchLevel.name}
-              text={frenchLevel.name}
-              isSelected={
-                !!selectedFrenchLevel &&
-                frenchLevel.name === selectedFrenchLevel.name
-              }
-              onPress={() => onValidateFrenchLevel(frenchLevel.name)}
-              details={frenchLevel.cecrCorrespondency}
+              text="Ne pas filtrer selon mon niveau de français"
+              isSelected={!selectedFrenchLevel}
+              onPress={removeFrenchLevel}
             />
-          ))}
-          <FilterButton
-            text="Ne pas filtrer selon mon niveau de français"
-            isSelected={!selectedFrenchLevel}
-            onPress={removeFrenchLevel}
-          />
+          </View>
         </ScrollView>
       </View>
     </SafeAreaView>

@@ -41,6 +41,7 @@ exports[`Search results screen should render correctly 1`] = `
       }
     >
       <View
+        accessibilityRole="button"
         accessible={true}
         focusable={true}
         onClick={[Function]}
@@ -226,6 +227,7 @@ exports[`Search results screen should render correctly 1`] = `
           isRTL={false}
           onChangeText={[Function]}
           placeholder="Rechercher"
+          placeholderTextColor="#5E5E5E"
           rejectResponderTermination={true}
           style={
             Array [
@@ -245,6 +247,7 @@ exports[`Search results screen should render correctly 1`] = `
           value=""
         />
         <View
+          accessibilityRole="button"
           accessible={true}
           focusable={true}
           onClick={[Function]}
@@ -410,6 +413,7 @@ exports[`Search results screen should render correctly 1`] = `
         >
           <View>
             <View
+              accessibilityRole="button"
               accessible={true}
               focusable={true}
               onClick={[Function]}
@@ -476,6 +480,7 @@ exports[`Search results screen should render correctly 1`] = `
               />
             </View>
             <View
+              accessibilityRole="button"
               accessible={true}
               focusable={true}
               onClick={[Function]}
@@ -542,6 +547,7 @@ exports[`Search results screen should render correctly 1`] = `
               />
             </View>
             <View
+              accessibilityRole="button"
               accessible={true}
               focusable={true}
               onClick={[Function]}
@@ -608,6 +614,7 @@ exports[`Search results screen should render correctly 1`] = `
               />
             </View>
             <View
+              accessibilityRole="button"
               accessible={true}
               focusable={true}
               onClick={[Function]}
@@ -674,6 +681,7 @@ exports[`Search results screen should render correctly 1`] = `
               />
             </View>
             <View
+              accessibilityRole="button"
               accessible={true}
               focusable={true}
               onClick={[Function]}
@@ -740,6 +748,7 @@ exports[`Search results screen should render correctly 1`] = `
               />
             </View>
             <View
+              accessibilityRole="button"
               accessible={true}
               focusable={true}
               onClick={[Function]}
@@ -806,6 +815,7 @@ exports[`Search results screen should render correctly 1`] = `
               />
             </View>
             <View
+              accessibilityRole="button"
               accessible={true}
               focusable={true}
               onClick={[Function]}
@@ -872,6 +882,7 @@ exports[`Search results screen should render correctly 1`] = `
               />
             </View>
             <View
+              accessibilityRole="button"
               accessible={true}
               focusable={true}
               onClick={[Function]}
@@ -938,6 +949,7 @@ exports[`Search results screen should render correctly 1`] = `
               />
             </View>
             <View
+              accessibilityRole="button"
               accessible={true}
               focusable={true}
               onClick={[Function]}
@@ -1004,6 +1016,7 @@ exports[`Search results screen should render correctly 1`] = `
               />
             </View>
             <View
+              accessibilityRole="button"
               accessible={true}
               focusable={true}
               onClick={[Function]}
@@ -1070,6 +1083,7 @@ exports[`Search results screen should render correctly 1`] = `
               />
             </View>
             <View
+              accessibilityRole="button"
               accessible={true}
               focusable={true}
               onClick={[Function]}
@@ -1136,6 +1150,7 @@ exports[`Search results screen should render correctly 1`] = `
               />
             </View>
             <View
+              accessibilityRole="button"
               accessible={true}
               focusable={true}
               onClick={[Function]}

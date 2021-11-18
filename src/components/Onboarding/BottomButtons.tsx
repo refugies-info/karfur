@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { theme } from "../../theme";
-import { RowTouchableOpacity, RTLTouchableOpacity } from "../BasicComponents";
+import { RowContainer, RTLTouchableOpacity } from "../BasicComponents";
 import { StyledTextSmallBold } from "../StyledText";
 import { Icon } from "react-native-eva-icons";
 import { View } from "react-native";
@@ -33,7 +33,7 @@ const RightButtonContainer = styled(RTLTouchableOpacity)`
   elevation: ${(props: { isDisabled: boolean }) => (props.isDisabled ? 0 : 1)};
 `;
 
-const BottomButtonsContainer = styled(RowTouchableOpacity)`
+const BottomButtonsContainer = styled(RowContainer)`
   margin-top: ${theme.margin * 3}px;
 `;
 
@@ -60,7 +60,10 @@ export const BottomButtons = (props: Props) => {
   return (
     <BottomButtonsContainer>
       <View style={{ paddingRight: 4, width: "50%" }}>
-        <LeftButtonContainer onPress={props.onLeftButtonClick}>
+        <LeftButtonContainer
+          onPress={props.onLeftButtonClick}
+          accessibilityRole="button"
+        >
           <StyledTextSmallBold style={{color: theme.colors.darkBlue}}>
             {t("Passer l'étape", "Passer l'étape")}
           </StyledTextSmallBold>
@@ -72,6 +75,7 @@ export const BottomButtons = (props: Props) => {
           onPress={props.onRightButtonClick}
           disabled={props.isRightButtonDisabled}
           testID="test-validate-button"
+          accessibilityRole="button"
         >
           <Icon
             name={"checkmark-outline"}

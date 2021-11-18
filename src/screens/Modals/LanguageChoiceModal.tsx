@@ -121,6 +121,7 @@ export const LanguageChoiceModal = (props: Props) => {
                   onPress={() => changeLanguage(language.i18nCode)}
                   testID={"test-language-button-" + language.langueFr}
                   isSelected={isSelected}
+                  accessibilityRole="button"
                 >
                   <RowContainer>
                     <FlagBackground>

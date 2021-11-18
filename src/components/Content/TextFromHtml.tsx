@@ -22,8 +22,9 @@ export const TextFromHtml = (props: Props) => {
       }}
       renderers={{
         // eslint-disable-next-line react/display-name
-        p: (_, children) => (
+        p: (_, children, _cssStyles, passProps) => (
           <TextSmallNormal
+            key={passProps.key}
             style={{
               flexShrink: 1,
               marginBottom: 0,

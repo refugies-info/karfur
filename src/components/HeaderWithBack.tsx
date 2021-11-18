@@ -30,13 +30,14 @@ interface Props {
 }
 
 export const HeaderWithBack = (props: Props) => {
-  const { isRTL } = useTranslationWithRTL();
+  const { t, isRTL } = useTranslationWithRTL();
 
   return (
     <TopButtonsContainer>
       <SmallButton
         iconName="arrow-back-outline"
         onPress={props.navigation.goBack}
+        label={t("Retour à la page précédente")}
       />
       {props.iconName && props.text && (
         <RTLView>

@@ -51,6 +51,9 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
       <TouchableOpacity
         onPress={backCallback}
         style={{ marginRight: theme.margin }}
+        accessibilityRole="button"
+        accessible={true}
+        accessibilityLabel={t("Retour")}
       >
         <Icon
           name="arrow-back-outline"
@@ -71,10 +74,16 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
           onChangeText={(value: string) => refine(value)}
           value={currentRefinement}
           placeholder={t("SearchScreeen.Rechercher", "Rechercher")}
+          placeholderTextColor={theme.colors.darkGrey}
           isRTL={isRTL}
           testID="test-city-search"
         />
-        <TouchableOpacity onPress={() => refine("")}>
+        <TouchableOpacity
+          onPress={() => refine("")}
+          accessibilityRole="button"
+          accessible={true}
+          accessibilityLabel={t("Effacer la sélection")}
+        >
           <Icon
             name="close-outline"
             height={24}

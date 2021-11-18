@@ -397,425 +397,432 @@ exports[`Filter french level should render correctly when french level selected 
           C’est pour te montrer les formations faites pour ton niveau de français.
         </Text>
         <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 12,
-              "display": "flex",
-              "elevation": 2,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 16,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 16,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 8,
-            }
-          }
-          testID="test-filter-Je parle un peu"
+          accessibilityRole="radiogroup"
         >
-          <Text
-            isRTL={false}
-            isSelected={false}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#212121",
-                },
-              ]
-            }
-          >
-            Je parle un peu
-          </Text>
           <View
+            accessibilityRole="radio"
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "display": "flex",
+                "elevation": 2,
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "justifyContent": "space-between",
+                "marginBottom": 24,
+                "opacity": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 16,
+                "shadowColor": "rgba(33, 33, 33, 0.24)",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 1,
                 },
-              ]
+                "shadowOpacity": 1,
+                "shadowRadius": 8,
+              }
             }
+            testID="test-filter-Je parle un peu"
           >
-            <View
+            <Text
+              isRTL={false}
               isSelected={false}
+              selectable={true}
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#ABABAB",
-                    "borderRadius": 8,
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#212121",
                   },
                 ]
               }
             >
-              <Text
-                isSelected={false}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                A1
-              </Text>
-            </View>
+              Je parle un peu
+            </Text>
             <View
-              isSelected={false}
               style={
                 Array [
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "#ABABAB",
-                    "borderRadius": 8,
                     "display": "flex",
                     "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
                   },
                 ]
               }
             >
-              <Text
+              <View
                 isSelected={false}
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
+                      "alignItems": "center",
+                      "backgroundColor": "#ABABAB",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
                     },
                   ]
                 }
               >
-                A2
-              </Text>
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  A1
+                </Text>
+              </View>
+              <View
+                isSelected={false}
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ABABAB",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  A2
+                </Text>
+              </View>
             </View>
           </View>
-        </View>
-        <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "backgroundColor": "#212121",
-              "borderRadius": 12,
-              "display": "flex",
-              "elevation": 0,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 16,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 16,
-              "shadowColor": "black",
-              "shadowOffset": Object {
-                "height": 0,
-                "width": 0,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 0,
-            }
-          }
-          testID="test-filter-Je parle bien"
-        >
-          <Text
-            isRTL={false}
-            isSelected={true}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#FFFFFF",
-                },
-              ]
-            }
-          >
-            Je parle bien
-          </Text>
           <View
+            accessibilityRole="radio"
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+              Object {
+                "backgroundColor": "#212121",
+                "borderRadius": 12,
+                "display": "flex",
+                "elevation": 0,
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "justifyContent": "space-between",
+                "marginBottom": 24,
+                "opacity": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 16,
+                "shadowColor": "black",
+                "shadowOffset": Object {
+                  "height": 0,
+                  "width": 0,
                 },
-              ]
+                "shadowOpacity": 1,
+                "shadowRadius": 0,
+              }
             }
+            testID="test-filter-Je parle bien"
           >
-            <View
+            <Text
+              isRTL={false}
               isSelected={true}
+              selectable={true}
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 8,
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#FFFFFF",
                   },
                 ]
               }
             >
-              <Text
+              Je parle bien
+            </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                ]
+              }
+            >
+              <View
                 isSelected={true}
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
+                      "alignItems": "center",
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
                     },
                   ]
                 }
               >
-                B1
-              </Text>
-            </View>
-            <View
-              isSelected={true}
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 8,
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
-                  },
-                ]
-              }
-            >
-              <Text
+                <Text
+                  isSelected={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  B1
+                </Text>
+              </View>
+              <View
                 isSelected={true}
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
+                      "alignItems": "center",
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
                     },
                   ]
                 }
               >
-                B2
-              </Text>
+                <Text
+                  isSelected={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  B2
+                </Text>
+              </View>
             </View>
           </View>
-        </View>
-        <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 12,
-              "display": "flex",
-              "elevation": 2,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 16,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 16,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 8,
-            }
-          }
-          testID="test-filter-Je parle couramment"
-        >
-          <Text
-            isRTL={false}
-            isSelected={false}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#212121",
-                },
-              ]
-            }
-          >
-            Je parle couramment
-          </Text>
           <View
+            accessibilityRole="radio"
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "display": "flex",
+                "elevation": 2,
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "justifyContent": "space-between",
+                "marginBottom": 24,
+                "opacity": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 16,
+                "shadowColor": "rgba(33, 33, 33, 0.24)",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 1,
                 },
-              ]
+                "shadowOpacity": 1,
+                "shadowRadius": 8,
+              }
             }
+            testID="test-filter-Je parle couramment"
           >
-            <View
+            <Text
+              isRTL={false}
               isSelected={false}
+              selectable={true}
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#ABABAB",
-                    "borderRadius": 8,
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#212121",
                   },
                 ]
               }
             >
-              <Text
-                isSelected={false}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                C1
-              </Text>
-            </View>
+              Je parle couramment
+            </Text>
             <View
-              isSelected={false}
               style={
                 Array [
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "#ABABAB",
-                    "borderRadius": 8,
                     "display": "flex",
                     "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
                   },
                 ]
               }
             >
-              <Text
+              <View
                 isSelected={false}
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
+                      "alignItems": "center",
+                      "backgroundColor": "#ABABAB",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
                     },
                   ]
                 }
               >
-                C2
-              </Text>
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  C1
+                </Text>
+              </View>
+              <View
+                isSelected={false}
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ABABAB",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  C2
+                </Text>
+              </View>
             </View>
           </View>
         </View>
@@ -936,23 +943,15 @@ exports[`Filter french level should render correctly when french level selected 
         </View>
       </View>
       <View
-        accessible={true}
-        focusable={false}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
-          Object {
-            "alignItems": "center",
-            "display": "flex",
-            "flexDirection": "row",
-            "marginTop": 24,
-            "opacity": 1,
-          }
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+              "marginTop": 24,
+            },
+          ]
         }
       >
         <View
@@ -964,6 +963,7 @@ exports[`Filter french level should render correctly when french level selected 
           }
         >
           <View
+            accessibilityRole="button"
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -1015,6 +1015,7 @@ exports[`Filter french level should render correctly when french level selected 
           }
         >
           <View
+            accessibilityRole="button"
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -1534,425 +1535,432 @@ exports[`Filter french level should render correctly when no french level select
           C’est pour te montrer les formations faites pour ton niveau de français.
         </Text>
         <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 12,
-              "display": "flex",
-              "elevation": 2,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 16,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 16,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 8,
-            }
-          }
-          testID="test-filter-Je parle un peu"
+          accessibilityRole="radiogroup"
         >
-          <Text
-            isRTL={false}
-            isSelected={false}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#212121",
-                },
-              ]
-            }
-          >
-            Je parle un peu
-          </Text>
           <View
+            accessibilityRole="radio"
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "display": "flex",
+                "elevation": 2,
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "justifyContent": "space-between",
+                "marginBottom": 24,
+                "opacity": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 16,
+                "shadowColor": "rgba(33, 33, 33, 0.24)",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 1,
                 },
-              ]
+                "shadowOpacity": 1,
+                "shadowRadius": 8,
+              }
             }
+            testID="test-filter-Je parle un peu"
           >
-            <View
+            <Text
+              isRTL={false}
               isSelected={false}
+              selectable={true}
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#ABABAB",
-                    "borderRadius": 8,
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#212121",
                   },
                 ]
               }
             >
-              <Text
-                isSelected={false}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                A1
-              </Text>
-            </View>
+              Je parle un peu
+            </Text>
             <View
-              isSelected={false}
               style={
                 Array [
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "#ABABAB",
-                    "borderRadius": 8,
                     "display": "flex",
                     "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
                   },
                 ]
               }
             >
-              <Text
+              <View
                 isSelected={false}
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
+                      "alignItems": "center",
+                      "backgroundColor": "#ABABAB",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
                     },
                   ]
                 }
               >
-                A2
-              </Text>
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  A1
+                </Text>
+              </View>
+              <View
+                isSelected={false}
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ABABAB",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  A2
+                </Text>
+              </View>
             </View>
           </View>
-        </View>
-        <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 12,
-              "display": "flex",
-              "elevation": 2,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 16,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 16,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 8,
-            }
-          }
-          testID="test-filter-Je parle bien"
-        >
-          <Text
-            isRTL={false}
-            isSelected={false}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#212121",
-                },
-              ]
-            }
-          >
-            Je parle bien
-          </Text>
           <View
+            accessibilityRole="radio"
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "display": "flex",
+                "elevation": 2,
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "justifyContent": "space-between",
+                "marginBottom": 24,
+                "opacity": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 16,
+                "shadowColor": "rgba(33, 33, 33, 0.24)",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 1,
                 },
-              ]
+                "shadowOpacity": 1,
+                "shadowRadius": 8,
+              }
             }
+            testID="test-filter-Je parle bien"
           >
-            <View
+            <Text
+              isRTL={false}
               isSelected={false}
+              selectable={true}
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#ABABAB",
-                    "borderRadius": 8,
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#212121",
                   },
                 ]
               }
             >
-              <Text
-                isSelected={false}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                B1
-              </Text>
-            </View>
+              Je parle bien
+            </Text>
             <View
-              isSelected={false}
               style={
                 Array [
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "#ABABAB",
-                    "borderRadius": 8,
                     "display": "flex",
                     "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
                   },
                 ]
               }
             >
-              <Text
+              <View
                 isSelected={false}
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
+                      "alignItems": "center",
+                      "backgroundColor": "#ABABAB",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
                     },
                   ]
                 }
               >
-                B2
-              </Text>
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  B1
+                </Text>
+              </View>
+              <View
+                isSelected={false}
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ABABAB",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  B2
+                </Text>
+              </View>
             </View>
           </View>
-        </View>
-        <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 12,
-              "display": "flex",
-              "elevation": 2,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 16,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 16,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 8,
-            }
-          }
-          testID="test-filter-Je parle couramment"
-        >
-          <Text
-            isRTL={false}
-            isSelected={false}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#212121",
-                },
-              ]
-            }
-          >
-            Je parle couramment
-          </Text>
           <View
+            accessibilityRole="radio"
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "display": "flex",
+                "elevation": 2,
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "justifyContent": "space-between",
+                "marginBottom": 24,
+                "opacity": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 16,
+                "shadowColor": "rgba(33, 33, 33, 0.24)",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 1,
                 },
-              ]
+                "shadowOpacity": 1,
+                "shadowRadius": 8,
+              }
             }
+            testID="test-filter-Je parle couramment"
           >
-            <View
+            <Text
+              isRTL={false}
               isSelected={false}
+              selectable={true}
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#ABABAB",
-                    "borderRadius": 8,
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#212121",
                   },
                 ]
               }
             >
-              <Text
-                isSelected={false}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                C1
-              </Text>
-            </View>
+              Je parle couramment
+            </Text>
             <View
-              isSelected={false}
               style={
                 Array [
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "#ABABAB",
-                    "borderRadius": 8,
                     "display": "flex",
                     "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
                   },
                 ]
               }
             >
-              <Text
+              <View
                 isSelected={false}
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
+                      "alignItems": "center",
+                      "backgroundColor": "#ABABAB",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
                     },
                   ]
                 }
               >
-                C2
-              </Text>
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  C1
+                </Text>
+              </View>
+              <View
+                isSelected={false}
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ABABAB",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  C2
+                </Text>
+              </View>
             </View>
           </View>
         </View>
@@ -2073,23 +2081,15 @@ exports[`Filter french level should render correctly when no french level select
         </View>
       </View>
       <View
-        accessible={true}
-        focusable={false}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
-          Object {
-            "alignItems": "center",
-            "display": "flex",
-            "flexDirection": "row",
-            "marginTop": 24,
-            "opacity": 1,
-          }
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+              "marginTop": 24,
+            },
+          ]
         }
       >
         <View
@@ -2101,6 +2101,7 @@ exports[`Filter french level should render correctly when no french level select
           }
         >
           <View
+            accessibilityRole="button"
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -2152,6 +2153,7 @@ exports[`Filter french level should render correctly when no french level select
           }
         >
           <View
+            accessibilityRole="button"
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -2671,425 +2673,432 @@ exports[`Filter french level should select level when click on it 1`] = `
           C’est pour te montrer les formations faites pour ton niveau de français.
         </Text>
         <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 12,
-              "display": "flex",
-              "elevation": 2,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 16,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 16,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 8,
-            }
-          }
-          testID="test-filter-Je parle un peu"
+          accessibilityRole="radiogroup"
         >
-          <Text
-            isRTL={false}
-            isSelected={false}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#212121",
-                },
-              ]
-            }
-          >
-            Je parle un peu
-          </Text>
           <View
+            accessibilityRole="radio"
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "display": "flex",
+                "elevation": 2,
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "justifyContent": "space-between",
+                "marginBottom": 24,
+                "opacity": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 16,
+                "shadowColor": "rgba(33, 33, 33, 0.24)",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 1,
                 },
-              ]
+                "shadowOpacity": 1,
+                "shadowRadius": 8,
+              }
             }
+            testID="test-filter-Je parle un peu"
           >
-            <View
+            <Text
+              isRTL={false}
               isSelected={false}
+              selectable={true}
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#ABABAB",
-                    "borderRadius": 8,
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#212121",
                   },
                 ]
               }
             >
-              <Text
-                isSelected={false}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                A1
-              </Text>
-            </View>
+              Je parle un peu
+            </Text>
             <View
-              isSelected={false}
               style={
                 Array [
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "#ABABAB",
-                    "borderRadius": 8,
                     "display": "flex",
                     "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
                   },
                 ]
               }
             >
-              <Text
+              <View
                 isSelected={false}
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
+                      "alignItems": "center",
+                      "backgroundColor": "#ABABAB",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
                     },
                   ]
                 }
               >
-                A2
-              </Text>
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  A1
+                </Text>
+              </View>
+              <View
+                isSelected={false}
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ABABAB",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  A2
+                </Text>
+              </View>
             </View>
           </View>
-        </View>
-        <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "backgroundColor": "#212121",
-              "borderRadius": 12,
-              "display": "flex",
-              "elevation": 0,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 16,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 16,
-              "shadowColor": "black",
-              "shadowOffset": Object {
-                "height": 0,
-                "width": 0,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 0,
-            }
-          }
-          testID="test-filter-Je parle bien"
-        >
-          <Text
-            isRTL={false}
-            isSelected={true}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#FFFFFF",
-                },
-              ]
-            }
-          >
-            Je parle bien
-          </Text>
           <View
+            accessibilityRole="radio"
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+              Object {
+                "backgroundColor": "#212121",
+                "borderRadius": 12,
+                "display": "flex",
+                "elevation": 0,
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "justifyContent": "space-between",
+                "marginBottom": 24,
+                "opacity": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 16,
+                "shadowColor": "black",
+                "shadowOffset": Object {
+                  "height": 0,
+                  "width": 0,
                 },
-              ]
+                "shadowOpacity": 1,
+                "shadowRadius": 0,
+              }
             }
+            testID="test-filter-Je parle bien"
           >
-            <View
+            <Text
+              isRTL={false}
               isSelected={true}
+              selectable={true}
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 8,
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#FFFFFF",
                   },
                 ]
               }
             >
-              <Text
+              Je parle bien
+            </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                ]
+              }
+            >
+              <View
                 isSelected={true}
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
+                      "alignItems": "center",
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
                     },
                   ]
                 }
               >
-                B1
-              </Text>
-            </View>
-            <View
-              isSelected={true}
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 8,
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
-                  },
-                ]
-              }
-            >
-              <Text
+                <Text
+                  isSelected={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  B1
+                </Text>
+              </View>
+              <View
                 isSelected={true}
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
+                      "alignItems": "center",
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
                     },
                   ]
                 }
               >
-                B2
-              </Text>
+                <Text
+                  isSelected={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  B2
+                </Text>
+              </View>
             </View>
           </View>
-        </View>
-        <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 12,
-              "display": "flex",
-              "elevation": 2,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 16,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 16,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 1,
-              "shadowRadius": 8,
-            }
-          }
-          testID="test-filter-Je parle couramment"
-        >
-          <Text
-            isRTL={false}
-            isSelected={false}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#212121",
-                },
-              ]
-            }
-          >
-            Je parle couramment
-          </Text>
           <View
+            accessibilityRole="radio"
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 12,
+                "display": "flex",
+                "elevation": 2,
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "justifyContent": "space-between",
+                "marginBottom": 24,
+                "opacity": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 16,
+                "shadowColor": "rgba(33, 33, 33, 0.24)",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 1,
                 },
-              ]
+                "shadowOpacity": 1,
+                "shadowRadius": 8,
+              }
             }
+            testID="test-filter-Je parle couramment"
           >
-            <View
+            <Text
+              isRTL={false}
               isSelected={false}
+              selectable={true}
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#ABABAB",
-                    "borderRadius": 8,
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#212121",
                   },
                 ]
               }
             >
-              <Text
-                isSelected={false}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                C1
-              </Text>
-            </View>
+              Je parle couramment
+            </Text>
             <View
-              isSelected={false}
               style={
                 Array [
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "#ABABAB",
-                    "borderRadius": 8,
                     "display": "flex",
                     "flexDirection": "row",
-                    "justifyContent": "center",
-                    "marginLeft": 8,
-                    "paddingVertical": 4,
-                    "width": 32,
                   },
                 ]
               }
             >
-              <Text
+              <View
                 isSelected={false}
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 13,
-                      "lineHeight": 16,
-                      "textAlign": "left",
+                      "alignItems": "center",
+                      "backgroundColor": "#ABABAB",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
                     },
                   ]
                 }
               >
-                C2
-              </Text>
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  C1
+                </Text>
+              </View>
+              <View
+                isSelected={false}
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ABABAB",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "marginLeft": 8,
+                      "paddingVertical": 4,
+                      "width": 32,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 13,
+                        "lineHeight": 16,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  C2
+                </Text>
+              </View>
             </View>
           </View>
         </View>
@@ -3210,23 +3219,15 @@ exports[`Filter french level should select level when click on it 1`] = `
         </View>
       </View>
       <View
-        accessible={true}
-        focusable={false}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
-          Object {
-            "alignItems": "center",
-            "display": "flex",
-            "flexDirection": "row",
-            "marginTop": 24,
-            "opacity": 1,
-          }
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+              "marginTop": 24,
+            },
+          ]
         }
       >
         <View
@@ -3238,6 +3239,7 @@ exports[`Filter french level should select level when click on it 1`] = `
           }
         >
           <View
+            accessibilityRole="button"
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -3289,6 +3291,7 @@ exports[`Filter french level should select level when click on it 1`] = `
           }
         >
           <View
+            accessibilityRole="button"
             accessible={true}
             focusable={true}
             onClick={[Function]}

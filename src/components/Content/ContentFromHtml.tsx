@@ -72,8 +72,9 @@ export const ContentFromHtml = (props: Props) => {
       }}
       renderers={{
         // eslint-disable-next-line react/display-name
-        ul: (_, children) => (
+        ul: (_, children, _cssStyles, passProps) => (
           <View
+            key={passProps.key}
             style={{
               display: "flex",
               flexDirection: "column",
@@ -85,8 +86,9 @@ export const ContentFromHtml = (props: Props) => {
           </View>
         ),
         // eslint-disable-next-line react/display-name
-        li: (_, children) => (
+        li: (_, children, _cssStyles, passProps) => (
           <RTLView
+            key={passProps.key}
             style={{
               marginBottom: theme.margin,
               alignItems: "flex-start",
@@ -112,8 +114,9 @@ export const ContentFromHtml = (props: Props) => {
           </RTLView>
         ),
         // eslint-disable-next-line react/display-name
-        p: (_, children) => (
+        p: (_, children, _cssStyles, passProps) => (
           <TextSmallNormal
+            key={passProps.key}
             style={{
               marginBottom: theme.margin,
               marginTop: theme.margin,

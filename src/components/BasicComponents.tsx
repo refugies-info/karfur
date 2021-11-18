@@ -8,12 +8,6 @@ export const RowContainer = styled.View`
   align-items: center;
 `;
 
-export const RowTouchableOpacity = styled.TouchableOpacity`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
 const RTLViewContainer = styled.View`
   display: flex;
   flex-direction: ${(props: { isRTL: boolean }) =>

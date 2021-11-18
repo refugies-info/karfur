@@ -61,6 +61,7 @@ export const FilterButton = (props: Props) => {
       onPress={props.onPress}
       isSelected={props.isSelected}
       testID={`test-filter-${props.text}`}
+      accessibilityRole="radio"
     >
       <StyledText isSelected={props.isSelected}>
         {t("Filter." + props.text, props.text)}
