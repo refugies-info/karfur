@@ -3,7 +3,7 @@
 ## Requirements
 
 - node version 12
-- package manager : yarn
+- package manager: yarn
 
 ## Installation
 
@@ -12,29 +12,50 @@
 - run `yarn`
 - run `yarn start`
 
-# Environments flow
+# Environments
 
-We are going to work with 2 environments, staging and prod :
+We are going to work with 2 environments, `staging` and `prod`:
 
-- staging :
+- `staging`:
   - test app
-  - linked to the backend staging
-  - accessible via expo Go with a link
-- prod :
-  - app that will be in prod
+  - linked to the prod backend (for user tests purposes)
+  - accessible via Expo Go with a link
+
+- `prod`:
+  - app used by real users
   - linked to the prod backend
   - accessible in the stores (and via internal distribution before it is on the stores)
 
-## How to deploy to staging ?
+# Deploy
+## Staging
 
-- run : `expo publish --release-channel staging`
-- in `getEnvironnement.ts` the bdd url is defined
-- env variable are in .env file (like in dev)
+Notes:
+- The API url is defined in `getEnvironnement.ts`
+- Environment variables are in `.env` file (like in dev)
 
-## How to deploy to prod ? (IN PROGRESS)
+```
+$ expo publish --release-channel staging
+```
 
-- use EAS build from expo
+## Production
+
+Notes:
 - secrets are stored in expo directly
+
+1. Start a build which will be executed on expo servers. You can follow the process [here](https://expo.dev/accounts/refugies-info/projects/refugies-info-app/builds)
+```
+$ eas build --platform all
+```
+
+2. Submit the app on the Play Store
+```
+$ eas submit -p android
+```
+
+3. Submit the app on the App Store
+```
+$ eas submit -p ios
+```
 
 ## Font
 
