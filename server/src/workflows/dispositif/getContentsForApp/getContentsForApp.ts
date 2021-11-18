@@ -60,7 +60,7 @@ export const getContentsForApp = async (
       queryWithAgeAndFrenchLevel
     );
 
-    const filteredContents = filterContentsOnGeoloc(contentsArray, department);
+    const filteredContents = filterContentsOnGeoloc(contentsArray, department, false);
 
     const contentsArrayFr = filteredContents.map((content) => {
       const titreInformatif = getTitreInfoOrMarqueInLocale(
