@@ -313,7 +313,7 @@ export const PrivacyPolicyScreen = ({
               <TextSmallNormal>{"\u2022"}</TextSmallNormal>
               <ListItem>
                 Politique de données personnelles :{" "}
-                <Link accessibilityRole="link" onPress={() => { Linking.openURL("https://policies.google.com/privacy") }}>ici</Link>
+                <Link accessibilityRole="link" onPress={() => { Linking.openURL("https://firebase.google.com/support/privacy") }}>ici</Link>
               </ListItem>
             </RTLView>
 
@@ -353,7 +353,7 @@ export const PrivacyPolicyScreen = ({
               <TextSmallNormal>{"\u2022"}</TextSmallNormal>
               <ListItem>
                 Politique de données personnelles :{" "}
-                <Link accessibilityRole="link" onPress={() => { Linking.openURL("https://policies.google.com/privacy") }}>ici</Link>
+                <Link accessibilityRole="link" onPress={() => { Linking.openURL("https://support.google.com/analytics/answer/6004245") }}>ici</Link>
               </ListItem>
             </RTLView>
 

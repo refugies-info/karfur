@@ -211,17 +211,6 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
               />
             <CardTitle>{t("QuiSommesNous.Mission_3_header")}</CardTitle>
             <TextSmallNormal>{t("QuiSommesNous.Mission_3_subheader")}</TextSmallNormal>
-            <RTLView>
-              <CustomButton
-                i18nKey={"QuiSommesNous.Explorer les fiches"}
-                defaultText="Explorer les fiches"
-                backgroundColor={theme.colors.black}
-                textColor={theme.colors.white}
-                onPress={() => { navigation.navigate("Explorer") }}
-                notFullWidth={true}
-                style={{marginTop: theme.margin * 2}}
-              />
-            </RTLView>
           </Card>
           <Card style={{
             marginRight: !isRTL ? theme.margin * 3 : 0,
@@ -235,17 +224,6 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
               />
             <CardTitle>{t("QuiSommesNous.Mission_2_header")}</CardTitle>
             <TextSmallNormal>{t("QuiSommesNous.Mission_2_subheader")}</TextSmallNormal>
-            <RTLView>
-              <CustomButton
-                i18nKey={"QuiSommesNous.Explorer les fiches"}
-                defaultText="Explorer les fiches"
-                backgroundColor={theme.colors.black}
-                textColor={theme.colors.white}
-                onPress={() => { navigation.navigate("Explorer") }}
-                notFullWidth={true}
-                style={{marginTop: theme.margin * 2}}
-              />
-            </RTLView>
           </Card>
           <Card>
             <CardImage
@@ -328,17 +306,6 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
               <CardTitle>{t("QuiSommesNous.contributive_1_header2")}</CardTitle>
               <TextSmallNormal>{t("QuiSommesNous.contributive_1_subheader")}</TextSmallNormal>
             </View>
-            <RTLView>
-              <CustomButton
-                i18nKey={"QuiSommesNous.Voir le code source"}
-                defaultText="Voir le code source"
-                backgroundColor={theme.colors.black}
-                textColor={theme.colors.white}
-                onPress={() => { Linking.openURL("https://github.com/refugies-info") }}
-                notFullWidth={true}
-                style={{marginTop: theme.margin * 2}}
-              />
-            </RTLView>
           </Card>
           <Card style={{
             marginRight: !isRTL ? theme.margin * 3 : 0,
@@ -354,17 +321,6 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
               <CardTitle>{t("QuiSommesNous.contributive_2_header")}</CardTitle>
               <TextSmallNormal>{t("QuiSommesNous.contributive_2_subheader")}</TextSmallNormal>
             </View>
-            <RTLView>
-              <CustomButton
-                i18nKey={"QuiSommesNous.réseau"}
-                defaultText="Rejoindre le réseau des contributeurs"
-                backgroundColor={theme.colors.black}
-                textColor={theme.colors.white}
-                onPress={() => { }}
-                notFullWidth={true}
-                style={{marginTop: theme.margin * 2}}
-              />
-            </RTLView>
           </Card>
           <Card style={{ justifyContent: "space-between" }}>
             <View>
@@ -376,17 +332,6 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
               <CardTitle>{t("QuiSommesNous.contributive_3_header")}</CardTitle>
               <TextSmallNormal>{t("QuiSommesNous.contributive_3_subheader")}</TextSmallNormal>
             </View>
-            <RTLView>
-              <CustomButton
-                i18nKey={"QuiSommesNous.contribuer"}
-                defaultText="Contribuer"
-                backgroundColor={theme.colors.black}
-                textColor={theme.colors.white}
-                onPress={() => { }}
-                notFullWidth={true}
-                style={{marginTop: theme.margin * 2}}
-              />
-            </RTLView>
           </Card>
         </ScrollView>
 
