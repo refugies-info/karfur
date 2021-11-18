@@ -93,6 +93,7 @@ export const HeaderWithBackForWrapper = ({
   backScreen
 }: PropsBack) => {
   const insets = useSafeAreaInsets();
+  const { t } = useTranslationWithRTL();
 
   return (
     <View style={{ paddingTop: insets.top }}>
@@ -106,6 +107,7 @@ export const HeaderWithBackForWrapper = ({
             } :
             navigation.goBack
           }
+          label={t("Retour")}
         />
         <RowContainer>
           <LanguageSwitch

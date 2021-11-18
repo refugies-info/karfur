@@ -845,11 +845,16 @@ export const ContentScreen = ({
             <FixSafeAreaView
               style={{ flexDirection: "row", justifyContent: "space-between" }}
             >
-              <SmallButton iconName="arrow-back-outline" onPress={toggleMap} />
+              <SmallButton
+                iconName="arrow-back-outline"
+                onPress={toggleMap}
+                label={t("Retour")}
+              />
               <SmallButton
                 iconName="close-outline"
                 onPress={toggleMap}
                 reversed={true}
+                label={t("Fermer")}
               />
             </FixSafeAreaView>
           </ModalContainer>

@@ -187,6 +187,7 @@ export const ProfilScreen = ({
         <DeleteDataContainer
           onPress={toggleDeleteDataModal}
           testID="test-delete-data"
+          accessibilityRole="button"
         >
           <DeleteDataText>
             {t("Profil.supprimer_data", "Supprimer les données de mon profil")}
@@ -218,7 +219,10 @@ export const ProfilScreen = ({
             isRTL={isRTL}
           />
         </ProfilButtonsContainer>
-        <DeleteDataContainer onPress={toggleReinitAppModal}>
+        <DeleteDataContainer
+          onPress={toggleReinitAppModal}
+          accessibilityRole="button"
+        >
           <DeleteDataText>
             {t("Profil.reinit_app", "Réinitialiser l'application")}
           </DeleteDataText>

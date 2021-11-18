@@ -91,6 +91,9 @@ export const Accordion = (props: Props) => {
         isExpanded={props.isExpanded}
         darkColor={props.darkColor}
         lightColor={props.lightColor}
+        accessibilityRole="button"
+        accessibilityLabel={props.title}
+        accessibilityState={{expanded: props.isExpanded}}
       >
         <RTLView>
           {props.stepNumber && (

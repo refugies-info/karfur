@@ -165,6 +165,7 @@ export const MapBottomBar = (props: Props) => {
               callNumber(props.selectedMarker.telephone);
             }
           }}
+          accessibilityRole="button"
         >
           <TextIcon
             name="phone-outline"
@@ -209,7 +210,12 @@ export const MapBottomBar = (props: Props) => {
           </>
         )}
       </View>
-      <CloseContainer onPress={props.hideSideBar}>
+      <CloseContainer
+        onPress={props.hideSideBar}
+        accessibilityRole="button"
+        accessible={true}
+        accessibilityLabel={t("Fermer")}
+      >
         <Icon
           name={"close-outline"}
           height={24}

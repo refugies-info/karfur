@@ -63,24 +63,26 @@ export const ErrorScreen = (props: Props) => {
       {props.imageLast && image}
 
       {!!props.onButtonClick && !!props.buttonIcon && props.buttonText &&
-        <RestartButton onPress={props.onButtonClick}>
-          <Icon
-            name={props.buttonIcon}
-            height={20}
-            width={20}
-            fill={theme.colors.white}
-          />
-          <TextSmallBold
-            style={{
-              color: theme.colors.white,
-              marginLeft: isRTL ? 0 : theme.margin,
-              marginRight: isRTL ? theme.margin : 0,
-            }}
-          >
-            {props.buttonText}
-          </TextSmallBold>
-        </RestartButton>
-      }
+      <RestartButton
+        onPress={props.onButtonClick}
+        accessibilityRole="button"
+      >
+        <Icon
+          name={props.buttonIcon}
+          height={20}
+          width={20}
+          fill={theme.colors.white}
+        />
+        <TextSmallBold
+          style={{
+            color: theme.colors.white,
+            marginLeft: isRTL ? 0 : theme.margin,
+            marginRight: isRTL ? theme.margin : 0,
+          }}
+        >
+          {props.buttonText}
+        </TextSmallBold>
+      </RestartButton>}
     </ErrorContainer>
   );
 };

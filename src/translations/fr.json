@@ -20,10 +20,12 @@
     "end": "L'application va te montrer des informations intéressantes pour toi.",
     "error_geoloc_acces": "Oh non, il y a un problème. Vérifie dans les paramètres de ton téléphone que tu as autorisé la localisation."
   },
+  "Retour": "Retour",
   "Suivant": "Suivant",
   "Continuer": "Continuer",
   "Supprimer": "Supprimer",
   "Partager": "Partager",
+  "Réinitialiser": "Réinitialiser",
   "Ok": "Ok",
   "Aucune connexion internet": "Aucune connexion internet !",
   "tabBar": {

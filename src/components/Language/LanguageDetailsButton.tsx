@@ -58,6 +58,7 @@ export const LanguageDetailsButton = (props: Props) => (
     onPress={props.onPress}
     testID={"test-language-button-" + props.langueFr}
     isSelected={props.isSelected}
+    accessibilityRole="button"
   >
     <RowContainer>
       <FlagBackground>

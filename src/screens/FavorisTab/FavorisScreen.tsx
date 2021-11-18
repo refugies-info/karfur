@@ -215,7 +215,10 @@ export const FavorisScreen = ({
             })}
           </View>
 
-          <DeleteAllButton onPress={() => showDeleteModal("all")}>
+          <DeleteAllButton
+            onPress={() => showDeleteModal("all")}
+            accessibilityRole="button"
+          >
             <DeleteAllButtonText>
               {t(
                 "FavorisScreen.Supprimer toutes mes fiches",

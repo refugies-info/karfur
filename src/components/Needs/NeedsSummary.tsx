@@ -79,6 +79,7 @@ export const NeedsSummary = (props: Props) => {
 
   return (
     <NeedContainer
+      accessibilityRole="button"
       onPress={() => {
         logEventInFirebase(FirebaseEvent.CLIC_NEED, {
           need: props.needTextFr,

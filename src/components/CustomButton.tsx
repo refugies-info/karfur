@@ -84,6 +84,7 @@ export const CustomButton = (props: Props) => {
       testID={"test-custom-button-" + props.defaultText}
       notFullWidth={props.notFullWidth}
       style={props.style || {}}
+      accessibilityRole="button"
     >
       {props.iconName && props.iconFirst && icon}
       {props.isTextNotBold ? (

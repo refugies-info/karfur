@@ -2142,6 +2142,7 @@ exports[`About screen should render correctly 1`] = `
         }
       >
         <View
+          accessibilityRole="button"
           accessible={true}
           focusable={true}
           onClick={[Function]}
@@ -3533,6 +3534,7 @@ exports[`About screen should render correctly 1`] = `
           <View>
             <View>
               <View
+                accessibilityRole="button"
                 accessible={true}
                 focusable={true}
                 onClick={[Function]}
@@ -3630,6 +3632,7 @@ exports[`About screen should render correctly 1`] = `
             </View>
             <View>
               <View
+                accessibilityRole="button"
                 accessible={true}
                 focusable={true}
                 onClick={[Function]}
@@ -3771,6 +3774,7 @@ exports[`About screen should render correctly 1`] = `
             </View>
             <View>
               <View
+                accessibilityRole="button"
                 accessible={true}
                 focusable={true}
                 onClick={[Function]}
@@ -3912,6 +3916,7 @@ exports[`About screen should render correctly 1`] = `
             </View>
             <View>
               <View
+                accessibilityRole="button"
                 accessible={true}
                 focusable={true}
                 onClick={[Function]}
@@ -4053,6 +4058,7 @@ exports[`About screen should render correctly 1`] = `
             </View>
             <View>
               <View
+                accessibilityRole="button"
                 accessible={true}
                 focusable={true}
                 onClick={[Function]}
@@ -4194,6 +4200,7 @@ exports[`About screen should render correctly 1`] = `
             </View>
             <View>
               <View
+                accessibilityRole="button"
                 accessible={true}
                 focusable={true}
                 onClick={[Function]}
@@ -4335,6 +4342,7 @@ exports[`About screen should render correctly 1`] = `
             </View>
             <View>
               <View
+                accessibilityRole="button"
                 accessible={true}
                 focusable={true}
                 onClick={[Function]}
@@ -4465,6 +4473,7 @@ exports[`About screen should render correctly 1`] = `
           </View>
         </RCTScrollView>
         <View
+          accessibilityRole="button"
           accessible={true}
           focusable={true}
           onClick={[Function]}

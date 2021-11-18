@@ -79,7 +79,10 @@ export const SearchScreen = ({
           extraHeight={theme.margin * 3}
         />
 
-        <FakeInput onPress={() => navigation.navigate("SearchResultsScreen")}>
+        <FakeInput
+          onPress={() => navigation.navigate("SearchResultsScreen")}
+          accessibilityRole="button"
+        >
           <Icon
             name="search-outline"
             height={24}

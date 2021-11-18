@@ -55,7 +55,10 @@ export const ViewChoice = (props: Props) => {
   const { t } = useTranslation();
 
   return (
-    <StyledButton onPress={props.onPress}>
+    <StyledButton
+      onPress={props.onPress}
+      accessibilityRole="button"
+    >
       <StreamlineIcon name={props.iconName} isSelected={props.isSelected} />
       {props.isSelected ? (
         <ChoiceTextBold>

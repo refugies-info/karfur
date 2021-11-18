@@ -84,7 +84,10 @@ export const SearchBarCity = (props: Props) => {
 
   return (
     <View>
-      <FakeInput onPress={() => setModalOpened(true)}>
+      <FakeInput
+        onPress={() => setModalOpened(true)}
+        accessibilityRole="button"
+      >
         <Icon
           name="search-outline"
           height={24}
@@ -107,7 +110,10 @@ export const SearchBarCity = (props: Props) => {
           <MainContainer>
             <TouchableOpacity
               onPress={() => setModalOpened(false)}
-              style={{marginRight: theme.margin}}
+              style={{ marginRight: theme.margin }}
+              accessibilityRole="button"
+              accessible={true}
+              accessibilityLabel={t("Retour")}
             >
               <Icon
                 name="arrow-back-outline"
@@ -131,7 +137,12 @@ export const SearchBarCity = (props: Props) => {
                 isRTL={isRTL}
                 testID="test-city-input"
               />
-              <TouchableOpacity onPress={clearInput}>
+              <TouchableOpacity
+                onPress={clearInput}
+                accessibilityRole="button"
+                accessible={true}
+                accessibilityLabel={t("Réinitialiser")}
+              >
                 <Icon
                   name="close-outline"
                   height={24}
@@ -150,6 +161,7 @@ export const SearchBarCity = (props: Props) => {
                 <View key={suggestion.place_id}>
                   <SuggestionContainer
                     onPress={() => props.selectSuggestion(suggestion)}
+                    accessibilityRole="button"
                   >
                     <StyledTextSmall>
                       {suggestion &&

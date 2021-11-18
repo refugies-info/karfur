@@ -50,6 +50,7 @@ export const TagButton = (props: Props) => {
       backgroundColor={props.backgroundColor}
       inline={props.inline}
       onPress={props.onPress}
+      accessibilityRole="button"
     >
       <StyledText isRTL={isRTL}>
         {props.searchItem ?

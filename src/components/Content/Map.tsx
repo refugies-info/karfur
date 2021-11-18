@@ -120,6 +120,7 @@ export const Map = (props: PropsType) => {
                 longitude: marker.longitude,
               }}
               onPress={(e: any) => onMarkerClick(marker, e)}
+              accessibilityRole="button"
             >
               <Icon
                 name="pin"

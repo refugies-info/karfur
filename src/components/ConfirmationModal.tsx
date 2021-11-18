@@ -1,10 +1,11 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableWithoutFeedback } from "react-native";
 import Modal from "react-native-modal";
 import React from "react";
 import styled from "styled-components/native";
 import { theme } from "../theme";
 import { StyledTextNormal } from "./StyledText";
 import { CustomButton } from "./CustomButton";
+import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 
 interface Props {
   isModalVisible: boolean;
@@ -44,8 +45,14 @@ const TitleText = styled(StyledTextNormal)`
 const TopButtonContainer = styled.View`
   margin-bottom: ${theme.margin * 2}px;
 `;
+const Backdrop = styled.View`
+  flex: 1;
+  background-color: ${theme.colors.black};
+`;
 
 export const ConfirmationModal = (props: Props) => {
+  const { t } = useTranslationWithRTL();
+
   const onValidate = () => {
     props.onValidate();
     props.toggleModal();
@@ -54,7 +61,15 @@ export const ConfirmationModal = (props: Props) => {
     <Modal
       isVisible={props.isModalVisible}
       style={styles.view}
-      onBackdropPress={props.toggleModal}
+      customBackdrop={
+        <TouchableWithoutFeedback
+          onPress={props.toggleModal}
+          accessibilityRole="button"
+          accessibilityLabel={t("Fermer")}
+        >
+          <Backdrop />
+        </TouchableWithoutFeedback>
+      }
     >
       <ModalView>
         <TitleText>{props.text}</TitleText>

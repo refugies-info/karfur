@@ -59,6 +59,7 @@ export const CarousselCard = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
   return (
     <TouchableOpacity
+      accessibilityRole="button"
       onPress={() => {
         logEventInFirebase(FirebaseEvent.CLIC_THEME, {
           theme: props.tagName,

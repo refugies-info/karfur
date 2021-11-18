@@ -144,6 +144,9 @@ export const AccordionAnimated = (props: Props) => {
           darkColor={props.darkColor}
           lightColor={props.lightColor}
           onPress={() => toggleListItem()}
+          accessibilityRole="button"
+          accessibilityLabel={props.title}
+          accessibilityState={{expanded: isExpanded}}
         >
           <RTLView>
             {props.stepNumber && (

@@ -78,14 +78,16 @@ export const FilterAge = ({
             step={2}
             defaultText="C’est pour te montrer les démarches et les activités pour ton âge."
           />
-          {ageFilters.map((age) => (
-            <FilterButton
-              key={age}
-              text={age}
-              isSelected={age === selectedAge}
-              onPress={() => onAgeClick(age)}
-            />
-          ))}
+          <View accessibilityRole="radiogroup">
+            {ageFilters.map((age) => (
+              <FilterButton
+                key={age}
+                text={age}
+                isSelected={age === selectedAge}
+                onPress={() => onAgeClick(age)}
+              />
+            ))}
+          </View>
         </View>
         <View>
           <OnboardingProgressBar step={2} />
