@@ -42,17 +42,19 @@ $ expo publish --release-channel staging
 Notes:
 - secrets are stored in expo directly
 
-1. Start a build which will be executed on expo servers. You can follow the process [here](https://expo.dev/accounts/refugies-info/projects/refugies-info-app/builds)
+1. Increment `version` number in `app.config.js`
+
+2. Start a build which will be executed on expo servers. You can follow the process [here](https://expo.dev/accounts/refugies-info/projects/refugies-info-app/builds)
 ```
 $ eas build --platform all
 ```
 
-2. Submit the app on the Play Store
+3. Submit the app on the Play Store
 ```
 $ eas submit -p android
 ```
 
-3. Submit the app on the App Store
+4. Submit the app on the App Store
 ```
 $ eas submit -p ios
 ```

@@ -1,7 +1,7 @@
 export default {
   name: "refugies-info-app",
   slug: "refugies-info-app",
-  version: "1.0.0",
+  version: "1.0.1",
   orientation: "portrait",
   icon: "./src/theme/images/app-icon-ri.png",
   scheme: "myapp",

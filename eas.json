@@ -37,6 +37,9 @@
   },
   "submit": {
     "production": {
+      "android": {
+        "track": "internal"
+      },
       "ios": {
         "appleId": "matthieu.fesselier@gmail.com",
         "ascAppId": "1595597429",
