@@ -28,8 +28,9 @@ export const AccordionHeaderFromHtml = (props: Props) => {
       }}
       renderers={{
         // eslint-disable-next-line react/display-name
-        p: (_, children) => (
+        p: (_, children, _cssStyles, passProps) => (
           <TextSmallBold
+            key={passProps.key}
             style={{
               flexShrink: 1,
               width: props.width,
