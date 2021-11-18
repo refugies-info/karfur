@@ -36,6 +36,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
       }
     >
       <react-native-svg
+        accessibilityLabel="Réfugiés point info"
         height={40}
         width={58}
       />
