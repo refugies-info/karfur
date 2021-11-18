@@ -58,7 +58,7 @@ export const PrivacyPolicyScreen = ({
   const toggleLanguageModal = () =>
     setLanguageModalVisible(!isLanguageModalVisible);
 
-  const { isRTL } = useTranslationWithRTL();
+  const { t, isRTL } = useTranslationWithRTL();
 
   // Header animation
   const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
@@ -77,7 +77,7 @@ export const PrivacyPolicyScreen = ({
   return (
     <View style={{flex: 1}}>
       <HeaderWithBackAnimated
-        title="Tes données, pour quoi faire ?"
+        title={t("Profil.Confidentialité")}
         showSimplifiedHeader={showSimplifiedHeader}
         onLongPressSwitchLanguage={toggleLanguageModal}
         navigation={navigation}
