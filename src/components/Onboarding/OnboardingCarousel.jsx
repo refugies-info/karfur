@@ -104,7 +104,6 @@ class OnboardingCarousel extends React.Component {
             }}
             label={t("Onboarding.Retour vers la page précédente")}
           />
-          <SmallButton iconName="volume-up-outline" />
         </TopButtonsContainer>
         <Carousel
           layout={"default"}

@@ -31,7 +31,6 @@ const StyledText = styled(StyledTextSmall)`
   text-align: left;
   color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.white : theme.colors.black};
-  margin-left: ${theme.margin}px;
 `;
 
 const FlagBackground = styled.View`
@@ -71,7 +70,7 @@ export const LanguageDetailsButton = (props: Props) => (
       </RowContainer>
       {props.langueFr !== "Français" && (
         <StyledText isSelected={props.isSelected}>
-          ({props.langueFr})
+          {" - "}{props.langueFr}
         </StyledText>
       )}
     </RowContainer>

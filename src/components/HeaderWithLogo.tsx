@@ -82,7 +82,6 @@ export const HeaderWithLogo = ({
               }}
             />
           )}
-          <SmallButton iconName="volume-up-outline" />
         </RowContainer>
       </MainContainer>
     </View>
@@ -126,7 +125,6 @@ export const HeaderWithBackForWrapper = ({
             }}
           />
 
-          <SmallButton iconName="volume-up-outline" />
         </RowContainer>
       </MainContainer>
     </View>

@@ -3,6 +3,7 @@ import Modal from "react-native-modal";
 import React from "react";
 import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
 import { theme } from "../../theme";
 import {
@@ -88,11 +89,14 @@ const FlagBackground = styled.View`
   justify-content: center;
   align-items: center;
   border-radius: 4px;
+  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
+  elevation: 7;
 `;
 export const LanguageChoiceModal = (props: Props) => {
   const { t, i18n } = useTranslationWithRTL();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
   const dispatch = useDispatch();
+  const insets = useSafeAreaInsets();
 
   const changeLanguage = (ln: AvailableLanguageI18nCode) => {
     i18n.changeLanguage(ln);
@@ -110,7 +114,7 @@ export const LanguageChoiceModal = (props: Props) => {
       style={styles.view}
       onBackdropPress={props.toggleModal}
     >
-      <ModalView>
+      <ModalView style={{ paddingBottom: insets.bottom }}>
         <TitleText>{t("Langue app", "Langue de l'application")}</TitleText>
         <LanguagesContainer>
           {activatedLanguages.map((language, index) => {
@@ -128,13 +132,12 @@ export const LanguageChoiceModal = (props: Props) => {
                       <Flag langueFr={language.langueFr} />
                     </FlagBackground>
                     <StyledTextBold isSelected={isSelected}>
-                      {language.langueFr}
+                      {language.langueLoc}
                     </StyledTextBold>
                     {language.langueFr !== "Français" && (
                       <RowContainer>
-                        <StyledText isSelected={isSelected}>{" - "}</StyledText>
                         <StyledText isSelected={isSelected}>
-                          {language.langueLoc}
+                          {" - "}{language.langueFr}
                         </StyledText>
                       </RowContainer>
                     )}
@@ -148,6 +151,8 @@ export const LanguageChoiceModal = (props: Props) => {
         <CustomButton
           i18nKey={"Fermer"}
           defaultText="Fermer"
+          iconName="close-outline"
+          iconFirst={true}
           textColor={theme.colors.black}
           onPress={props.toggleModal}
           isTextNotBold={true}

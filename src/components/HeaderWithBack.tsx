@@ -50,7 +50,6 @@ export const HeaderWithBack = (props: Props) => {
           <StyledText isRTL={isRTL}>{props.text}</StyledText>
         </RTLView>
       )}
-      <SmallButton iconName="volume-up-outline" />
     </TopButtonsContainer>
   );
 };
