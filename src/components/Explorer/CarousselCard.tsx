@@ -1,4 +1,5 @@
 import * as React from "react";
+import { View } from "react-native";
 import styled from "styled-components/native";
 import { RTLView } from "../BasicComponents";
 import { theme } from "../../theme";
@@ -6,31 +7,38 @@ import { StyledTextSmallBold } from "../StyledText";
 import { firstLetterUpperCase } from "../../libs";
 import { StreamlineIcon } from "../StreamlineIcon";
 import { LinearGradient } from "expo-linear-gradient";
-import { StyleSheet } from "react-native";
 import { TagImage } from "./TagImage";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
+import { ExpandedTag } from "../../types/interface";
 
 interface Props {
-  tagName: string;
-  colorLight: string;
-  colorVeryLight: string;
-  iconName: string;
+  tag: ExpandedTag;
   navigation: any;
-  colorDark: string;
-  color30: string;
-  lightColor: string;
+  cardWidth: number;
+  cardHeight: number;
 }
 
+const ButtonContainer = styled.TouchableOpacity`
+  padding-vertical: ${theme.margin}px;
+  box-shadow: 1px 1px 2px rgba(33, 33, 33, 0.4);
+  elevation: 2;
+`;
 const StyledContainer = styled(RTLView)`
-  padding-bottom: ${theme.margin * 2}px;
-  margin-horizontal: ${theme.margin}px;
+  margin-horizontal: ${theme.margin * 2}px;
+  margin-bottom: ${theme.margin * 2}px;
+  margin-top: ${theme.margin * 3}px;
+  padding-vertical: ${theme.margin * 2}px;
+  padding-horizontal: ${theme.margin}px;
   align-items: center;
-  margin-top: ${theme.margin * 5}px;
-  align-self: center;
+  align-self: stretch;
   justify-content: center;
+  border-radius: ${theme.radius * 2}px;
+  background-color: ${(props: { backgroundColor: string }) =>
+    props.backgroundColor};
+  box-shadow: 1px 1px 2px rgba(33, 33, 33, 0.4);
+  elevation: 2;
 `;
 const StyledText = styled(StyledTextSmallBold)`
   color: ${theme.colors.white};
@@ -39,64 +47,69 @@ const StyledText = styled(StyledTextSmallBold)`
   margin-right: ${(props: { isRTL: boolean }) =>
     props.isRTL ? 0 : theme.margin}px;
   flex-shrink: 1;
+  flex-grow: 0;
 `;
-
-const CARD_HEIGHT = 320;
-const CARD_WIDTH = 234;
-
-const styles = StyleSheet.create({
-  card: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-end",
-    height: CARD_HEIGHT,
-    width: CARD_WIDTH,
-    borderRadius: theme.radius * 2,
-  },
-});
+const CardGradient = styled(LinearGradient)`
+  justify-content: flex-end;
+  align-items: center;
+  width: ${(props: { width: number }) => props.width}px;
+  height: ${(props: { height: number }) => props.height}px;
+  borderRadius: ${theme.radius * 2}px;
+`;
 
 export const CarousselCard = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
+
+  const getIconHorizontalAlignment = (iconName: string) => {
+    if (["measure"].includes(iconName)) return "flex-start";
+    if (["glasses", "flag"].includes(iconName)) return "flex-end";
+    return "center";
+  };
+
+  const getIconVerticalAlignment = (iconName: string) => {
+    if (["house", "glasses"].includes(iconName)) return "space-between";
+    return "flex-end";
+  };
+
   return (
-    <TouchableOpacity
+    <ButtonContainer
       accessibilityRole="button"
+      accessibilityLabel={t("Tags." + props.tag.name)}
+      activeOpacity={0.7}
       onPress={() => {
         logEventInFirebase(FirebaseEvent.CLIC_THEME, {
-          theme: props.tagName,
+          theme: props.tag.name,
           view: "carousel",
         });
         props.navigation.navigate("NeedsScreen", {
-          tagName: props.tagName,
-          tagDarkColor: props.colorDark,
-          tagVeryLightColor: props.color30,
-          tagLightColor: props.lightColor,
-          iconName: props.iconName,
+          tagName: props.tag.name,
+          tagDarkColor: props.tag.darkColor,
+          tagVeryLightColor: props.tag.color30,
+          tagLightColor: props.tag.lightColor,
+          iconName: props.tag.icon,
         });
         return;
       }}
     >
-      <LinearGradient
-        colors={[props.colorVeryLight, props.colorLight]}
-        // @ts-ignore
-        style={[
-          styles.card,
-          {
-            alignItems: ["briefcase", "soccer"].includes(props.iconName)
-              ? "center"
-              : props.iconName === "glasses"
-              ? "flex-end"
-              : "flex-start",
-          },
-        ]}
+      <CardGradient
+        colors={[props.tag.mdLightColor, props.tag.lightColor]}
+        style={{
+          alignItems: getIconHorizontalAlignment(props.tag.icon),
+          justifyContent: getIconVerticalAlignment(props.tag.icon)
+        }}
+        width={props.cardWidth}
+        height={props.cardHeight}
       >
-        <TagImage name={props.iconName} />
-        <StyledContainer>
+        <View style={{ flexShrink: 1 }}>
+          <TagImage name={props.tag.icon} />
+        </View>
+        <StyledContainer backgroundColor={props.tag.darkColor}>
           <StyledText isRTL={isRTL}>
-            {firstLetterUpperCase(t("Tags." + props.tagName, props.tagName))}
+            {firstLetterUpperCase(t("Tags." + props.tag.name, props.tag.name))}
           </StyledText>
-          <StreamlineIcon name={props.iconName} width={20} height={20} />
+          <StreamlineIcon name={props.tag.icon} width={20} height={20} />
         </StyledContainer>
-      </LinearGradient>
-    </TouchableOpacity>
+      </CardGradient>
+    </ButtonContainer>
   );
 };

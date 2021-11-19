@@ -1,16 +1,17 @@
-import Admin from "../../theme/images/Tags/admin.svg";
-import Francais from "../../theme/images/Tags/francais.svg";
-import Travail from "../../theme/images/Tags/travail.svg";
-import Metier from "../../theme/images/Tags/illu_metier.svg";
-import Logement from "../../theme/images/Tags/logement.svg";
-import Mobilite from "../../theme/images/Tags/deplacer.svg";
-import Soin from "../../theme/images/Tags/soin.svg";
-import Etudes from "../../theme/images/Tags/etudes.svg";
-import Culture from "../../theme/images/Tags/culture.svg";
-import Rencontre from "../../theme/images/Tags/rencontre.svg";
-import Benevolat from "../../theme/images/Tags/benevolat.svg";
-import Soccer from "../../theme/images/Tags/loisirs.svg";
 import React from "react";
+import Admin from "../../theme/images/tags-illus/admin.svg";
+import Francais from "../../theme/images/tags-illus/francais.svg";
+import Travail from "../../theme/images/tags-illus/travail.svg";
+import Metier from "../../theme/images/tags-illus/metier.svg";
+import Logement from "../../theme/images/tags-illus/logement.svg";
+import Mobilite from "../../theme/images/tags-illus/transport.svg";
+import Soin from "../../theme/images/tags-illus/sante.svg";
+import Etudes from "../../theme/images/tags-illus/etudes.svg";
+import Culture from "../../theme/images/tags-illus/culture.svg";
+import Rencontre from "../../theme/images/tags-illus/rencontres.svg";
+import Benevolat from "../../theme/images/tags-illus/benevolat.svg";
+import Soccer from "../../theme/images/tags-illus/loisirs.svg";
+import { theme } from "../../theme";
 
 interface Props {
   name: string;
@@ -26,13 +27,13 @@ export const TagImage = ({ name }: Props) => {
     case "measure":
       return <Metier />;
     case "glasses":
-      return <Etudes width={212} height={215} />;
+      return <Etudes />;
     case "bus":
       return <Mobilite />;
     case "triumph":
       return <Culture />;
     case "heartBeat":
-      return <Soin />;
+      return <Soin style={{ marginBottom: theme.margin * 2 }} />;
     case "couple":
       return <Rencontre />;
     case "soccer":

@@ -12,6 +12,17 @@ interface Tag {
   short: string;
   name: string;
 }
+interface ExpandedTag {
+  short: string;
+  icon: string;
+  name: string;
+  darkColor: string;
+  lightColor: string;
+  mdLightColor: string;
+  veryLightColor: string;
+  color30: string;
+  order: number;
+}
 export interface SimplifiedContent {
   _id: ObjectId;
   titreInformatif: string;

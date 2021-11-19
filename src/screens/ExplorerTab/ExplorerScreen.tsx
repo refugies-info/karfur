@@ -12,8 +12,7 @@ import { RTLView } from "../../components/BasicComponents";
 import { ViewChoice } from "../../components/Explorer/ViewChoice";
 import { tags } from "../../data/tagData";
 import { TagButton } from "../../components/Explorer/TagButton";
-import { TagsCaroussel } from "../../components/Explorer/TagsCaroussel";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { TagsCarousel } from "../../components/Explorer/TagsCarousel";
 import { nbContentsSelector } from "../../services/redux/Contents/contents.selectors";
 import { userLocationSelector, isLocalizedWarningHiddenSelector } from "../../services/redux/User/user.selectors";
 import { ExplorerParamList } from "../../../types";
@@ -51,7 +50,6 @@ const CenteredView = styled.View`
 export const ExplorerScreen = ({
   navigation,
 }: StackScreenProps<ExplorerParamList, "ExplorerScreen">) => {
-  const { isRTL } = useTranslationWithRTL();
   const dispatch = useDispatch();
 
   const [tabSelected, setTabSelected] = React.useState("galery");
@@ -151,7 +149,7 @@ export const ExplorerScreen = ({
       ) : (
         <CenteredView>
           <CarousselContainer>
-            <TagsCaroussel isRTL={isRTL} navigation={navigation} />
+            <TagsCarousel navigation={navigation} />
           </CarousselContainer>
         </CenteredView>
         )}
