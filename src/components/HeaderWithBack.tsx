@@ -8,7 +8,7 @@ import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 
 const TopButtonsContainer = styled(RowContainer)`
-  justify-content: space-between;
+  justify-content: flex-start;
   padding-horizontal: ${theme.margin * 3}px;
   z-index: 2;
   padding-top: ${theme.margin}px;
@@ -40,7 +40,11 @@ export const HeaderWithBack = (props: Props) => {
         label={t("Retour à la page précédente")}
       />
       {props.iconName && props.text && (
-        <RTLView>
+        <RTLView style={{
+          flex: 1,
+          marginRight: theme.margin * 5,
+          justifyContent: "center",
+        }}>
           <Icon
             name={props.iconName}
             width={ICON_SIZE}
