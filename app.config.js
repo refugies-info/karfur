@@ -1,7 +1,7 @@
 export default {
   name: "refugies-info-app",
   slug: "refugies-info-app",
-  version: "1.0.2",
+  version: "1.0.3",
   orientation: "portrait",
   icon: "./src/theme/images/app-icon-ri.png",
   scheme: "myapp",
@@ -17,8 +17,8 @@ export default {
   },
   assetBundlePatterns: ["**/*"],
   ios: {
-    buildNumber: "1.0.2",
-    supportsTablet: true,
+    buildNumber: "1.0.3",
+    supportsTablet: false,
     userInterfaceStyle: "light",
     bundleIdentifier: "refugiesInfo",
     config: {
@@ -27,7 +27,7 @@ export default {
     googleServicesFile: "./src/utils/firebase/GoogleService-Info.plist",
   },
   android: {
-    versionCode: 3,
+    versionCode: 4,
     userInterfaceStyle: "light",
     adaptiveIcon: {
       foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",
