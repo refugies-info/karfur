@@ -560,73 +560,6 @@ exports[`Search results screen should render correctly 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#055E5A",
-                  "borderRadius": 12,
-                  "display": "flex",
-                  "elevation": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "marginRight": 16,
-                  "marginVertical": 8,
-                  "opacity": 1,
-                  "paddingBottom": 16,
-                  "paddingLeft": 16,
-                  "paddingRight": 16,
-                  "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.4)",
-                  "shadowOffset": Object {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 1,
-                  "shadowRadius": 2,
-                }
-              }
-            >
-              <Text
-                isRTL={false}
-                style={
-                  Array [
-                    Object {
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 19,
-                      "lineHeight": 24,
-                      "marginLeft": 0,
-                      "marginRight": 8,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                Trouver un travail
-              </Text>
-              <react-native-svg
-                height={20}
-                style={
-                  Object {
-                    "stroke": "white",
-                    "strokeWidth": 2,
-                  }
-                }
-                width={20}
-              />
-            </View>
-            <View
-              accessibilityRole="button"
-              accessible={true}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "alignItems": "center",
                   "backgroundColor": "#095411",
                   "borderRadius": 12,
                   "display": "flex",
@@ -668,6 +601,73 @@ exports[`Search results screen should render correctly 1`] = `
                 }
               >
                 Apprendre un métier
+              </Text>
+              <react-native-svg
+                height={20}
+                style={
+                  Object {
+                    "stroke": "white",
+                    "strokeWidth": 2,
+                  }
+                }
+                width={20}
+              />
+            </View>
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#055E5A",
+                  "borderRadius": 12,
+                  "display": "flex",
+                  "elevation": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "marginRight": 16,
+                  "marginVertical": 8,
+                  "opacity": 1,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 16,
+                  "shadowColor": "rgba(33, 33, 33, 0.4)",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
+                  },
+                  "shadowOpacity": 1,
+                  "shadowRadius": 2,
+                }
+              }
+            >
+              <Text
+                isRTL={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                Trouver un travail
               </Text>
               <react-native-svg
                 height={20}

@@ -98,6 +98,9 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
             "paddingHorizontal": 24,
             "paddingVertical": 8,
           },
+          Object {
+            "paddingBottom": undefined,
+          },
         ]
       }
     >
@@ -178,12 +181,20 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         "backgroundColor": "#FFFFFF",
                         "borderRadius": 4,
                         "display": "flex",
+                        "elevation": 7,
                         "height": 17,
                         "justifyContent": "center",
                         "marginBottom": 4,
                         "marginLeft": 4,
                         "marginRight": 4,
                         "marginTop": 4,
+                        "shadowColor": "rgba(33, 33, 33, 0.24)",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 1,
+                        "shadowRadius": 8,
                         "width": 22,
                       },
                     ]
@@ -276,12 +287,20 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         "backgroundColor": "#FFFFFF",
                         "borderRadius": 4,
                         "display": "flex",
+                        "elevation": 7,
                         "height": 17,
                         "justifyContent": "center",
                         "marginBottom": 4,
                         "marginLeft": 4,
                         "marginRight": 4,
                         "marginTop": 4,
+                        "shadowColor": "rgba(33, 33, 33, 0.24)",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 1,
+                        "shadowRadius": 8,
                         "width": 22,
                       },
                     ]
@@ -308,7 +327,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     ]
                   }
                 >
-                  Persan/Dari
+                  فارسی/ دری
                 </Text>
                 <View
                   style={
@@ -336,22 +355,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     }
                   >
                      - 
-                  </Text>
-                  <Text
-                    isSelected={false}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 16,
-                          "lineHeight": 20,
-                          "textAlign": "left",
-                        },
-                      ]
-                    }
-                  >
-                    فارسی/ دری
+                    Persan/Dari
                   </Text>
                 </View>
               </View>
@@ -418,12 +422,20 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         "backgroundColor": "#FFFFFF",
                         "borderRadius": 4,
                         "display": "flex",
+                        "elevation": 7,
                         "height": 17,
                         "justifyContent": "center",
                         "marginBottom": 4,
                         "marginLeft": 4,
                         "marginRight": 4,
                         "marginTop": 4,
+                        "shadowColor": "rgba(33, 33, 33, 0.24)",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 1,
+                        "shadowRadius": 8,
                         "width": 22,
                       },
                     ]
@@ -450,7 +462,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     ]
                   }
                 >
-                  Arabe
+                  العربية
                 </Text>
                 <View
                   style={
@@ -478,22 +490,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     }
                   >
                      - 
-                  </Text>
-                  <Text
-                    isSelected={false}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 16,
-                          "lineHeight": 20,
-                          "textAlign": "left",
-                        },
-                      ]
-                    }
-                  >
-                    العربية
+                    Arabe
                   </Text>
                 </View>
               </View>
@@ -560,12 +557,20 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         "backgroundColor": "#FFFFFF",
                         "borderRadius": 4,
                         "display": "flex",
+                        "elevation": 7,
                         "height": 17,
                         "justifyContent": "center",
                         "marginBottom": 4,
                         "marginLeft": 4,
                         "marginRight": 4,
                         "marginTop": 4,
+                        "shadowColor": "rgba(33, 33, 33, 0.24)",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 1,
+                        "shadowRadius": 8,
                         "width": 22,
                       },
                     ]
@@ -592,7 +597,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     ]
                   }
                 >
-                  Anglais
+                  English
                 </Text>
                 <View
                   style={
@@ -620,22 +625,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     }
                   >
                      - 
-                  </Text>
-                  <Text
-                    isSelected={false}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 16,
-                          "lineHeight": 20,
-                          "textAlign": "left",
-                        },
-                      ]
-                    }
-                  >
-                    English
+                    Anglais
                   </Text>
                 </View>
               </View>
@@ -702,12 +692,20 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         "backgroundColor": "#FFFFFF",
                         "borderRadius": 4,
                         "display": "flex",
+                        "elevation": 7,
                         "height": 17,
                         "justifyContent": "center",
                         "marginBottom": 4,
                         "marginLeft": 4,
                         "marginRight": 4,
                         "marginTop": 4,
+                        "shadowColor": "rgba(33, 33, 33, 0.24)",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 1,
+                        "shadowRadius": 8,
                         "width": 22,
                       },
                     ]
@@ -734,7 +732,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     ]
                   }
                 >
-                  Pachto
+                  پښتو
                 </Text>
                 <View
                   style={
@@ -762,22 +760,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     }
                   >
                      - 
-                  </Text>
-                  <Text
-                    isSelected={false}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 16,
-                          "lineHeight": 20,
-                          "textAlign": "left",
-                        },
-                      ]
-                    }
-                  >
-                    پښتو
+                    Pachto
                   </Text>
                 </View>
               </View>
@@ -844,12 +827,20 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         "backgroundColor": "#FFFFFF",
                         "borderRadius": 4,
                         "display": "flex",
+                        "elevation": 7,
                         "height": 17,
                         "justifyContent": "center",
                         "marginBottom": 4,
                         "marginLeft": 4,
                         "marginRight": 4,
                         "marginTop": 4,
+                        "shadowColor": "rgba(33, 33, 33, 0.24)",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 1,
+                        "shadowRadius": 8,
                         "width": 22,
                       },
                     ]
@@ -876,7 +867,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     ]
                   }
                 >
-                  Russe
+                  Русский
                 </Text>
                 <View
                   style={
@@ -904,22 +895,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     }
                   >
                      - 
-                  </Text>
-                  <Text
-                    isSelected={false}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 16,
-                          "lineHeight": 20,
-                          "textAlign": "left",
-                        },
-                      ]
-                    }
-                  >
-                    Русский
+                    Russe
                   </Text>
                 </View>
               </View>
@@ -986,12 +962,20 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                         "backgroundColor": "#FFFFFF",
                         "borderRadius": 4,
                         "display": "flex",
+                        "elevation": 7,
                         "height": 17,
                         "justifyContent": "center",
                         "marginBottom": 4,
                         "marginLeft": 4,
                         "marginRight": 4,
                         "marginTop": 4,
+                        "shadowColor": "rgba(33, 33, 33, 0.24)",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 1,
+                        "shadowRadius": 8,
                         "width": 22,
                       },
                     ]
@@ -1018,7 +1002,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     ]
                   }
                 >
-                  Tigrinya
+                  ትግርኛ
                 </Text>
                 <View
                   style={
@@ -1046,22 +1030,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                     }
                   >
                      - 
-                  </Text>
-                  <Text
-                    isSelected={false}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#212121",
-                          "fontFamily": "circularBook",
-                          "fontSize": 16,
-                          "lineHeight": 20,
-                          "textAlign": "left",
-                        },
-                      ]
-                    }
-                  >
-                    ትግርኛ
+                    Tigrinya
                   </Text>
                 </View>
               </View>
@@ -1107,9 +1076,83 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
         }
         testID="test-custom-button-Fermer"
       >
+        <View
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={24}
+            bbWidth={24}
+            fill="#212121"
+            focusable={false}
+            height={24}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {},
+                Object {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width={24}
+          >
+            <RNSVGGroup
+              fill={4280361249}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGGroup>
+                <RNSVGGroup>
+                  <RNSVGRect
+                    height="24"
+                    matrix={
+                      Array [
+                        -1,
+                        1.2246467991473532e-16,
+                        -1.2246467991473532e-16,
+                        -1,
+                        24,
+                        24,
+                      ]
+                    }
+                    opacity={0}
+                    width="24"
+                    x={0}
+                    y={0}
+                  />
+                  <RNSVGPath
+                    d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
         <Text
-          hasIcon={false}
-          iconFirst={false}
+          hasIcon={true}
+          iconFirst={true}
           style={
             Array [
               Object {
@@ -1117,7 +1160,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "marginLeft": 0,
+                "marginLeft": 8,
                 "marginRight": 0,
                 "textAlign": "left",
               },
