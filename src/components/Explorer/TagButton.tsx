@@ -1,4 +1,5 @@
 import * as React from "react";
+import { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { RTLTouchableOpacity } from "../BasicComponents";
 import { StyledTextNormalBold } from "../StyledText";
@@ -16,6 +17,7 @@ interface Props {
   inline?: boolean;
   searchItem?: any;
   searchLanguageMatch?: string;
+  style?: StyleProp<ViewStyle>;
 }
 
 const StyledContainer = styled(RTLTouchableOpacity)`
@@ -51,6 +53,7 @@ export const TagButton = (props: Props) => {
       inline={props.inline}
       onPress={props.onPress}
       accessibilityRole="button"
+      style={props.style || {}}
     >
       <StyledText isRTL={isRTL}>
         {props.searchItem ?

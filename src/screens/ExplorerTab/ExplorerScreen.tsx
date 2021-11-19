@@ -29,6 +29,7 @@ const MAX_CONTENT_LOCALIZED = 10;
 const ViewChoiceContainer = styled(RTLView)`
   margin-top: ${theme.margin * 4}px;
   background-color: ${theme.colors.grey60};
+  margin-bottom: ${theme.margin * 3}px;
   border-radius: ${theme.radius * 2}px;
   justify-content: center;
   align-self: center;
@@ -113,7 +114,10 @@ export const ExplorerScreen = ({
       </ViewChoiceContainer>
       {tabSelected === "list" ? (
         <ScrollView
-          contentContainerStyle={{ padding: theme.margin * 3 }}
+          contentContainerStyle={{
+            paddingHorizontal: theme.margin * 3,
+            paddingBottom: theme.margin * 3
+          }}
           scrollIndicatorInsets={{ right: 1 }}
         >
           {tags.sort(sortByOrder).map((tag, index) => (
@@ -136,6 +140,10 @@ export const ExplorerScreen = ({
                   iconName: tag.icon,
                 });
                 return;
+              }}
+              style={{
+                marginBottom: theme.margin * 3,
+                marginTop: 0
               }}
             />
           ))}

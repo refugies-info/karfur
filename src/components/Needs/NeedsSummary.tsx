@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
+import { StyleProp, ViewStyle } from "react-native";
 import { theme } from "../../theme";
 import {
   TextVerySmallNormal,
@@ -66,7 +67,7 @@ interface Props {
   tagLightColor: string;
   iconName: string;
   searchItem?: any;
-  style?: any;
+  style?: StyleProp<ViewStyle>;
   backScreen?: string;
 }
 

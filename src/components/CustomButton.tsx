@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components/native";
+import { StyleProp, ViewStyle } from "react-native";
 import { RTLTouchableOpacity } from "./BasicComponents";
 import { theme } from "../theme";
 import { StyledTextSmallBold, StyledTextSmall } from "./StyledText";
@@ -57,8 +58,8 @@ interface Props {
   isSmall?: boolean;
   iconFirst?: boolean;
   notFullWidth?: boolean;
-  style?: any;
-  iconStyle?: any;
+  style?: StyleProp<ViewStyle>;
+  iconStyle?: StyleProp<ViewStyle>;
   accessibilityLabel?: string;
 }
 

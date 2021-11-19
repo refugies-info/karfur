@@ -1,7 +1,8 @@
 import React from "react";
-import { theme } from "../theme";
+import { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
+import { theme } from "../theme";
 
 const ButtonContainer = styled.TouchableOpacity`
   background-color: ${(props: { reversed: boolean }) =>
@@ -20,7 +21,7 @@ interface Props {
   onPress?: () => void;
   reversed?: boolean;
   rounded?: boolean;
-  style?: any;
+  style?: StyleProp<ViewStyle>;
   label?: string;
 }
 export const SmallButton = (props: Props) => (
