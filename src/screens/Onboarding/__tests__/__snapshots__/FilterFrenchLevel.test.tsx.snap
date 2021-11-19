@@ -16,7 +16,7 @@ exports[`Filter french level should render correctly when french level selected 
           "alignItems": "center",
           "display": "flex",
           "flexDirection": "row",
-          "justifyContent": "space-between",
+          "justifyContent": "flex-start",
           "paddingHorizontal": 24,
           "paddingTop": 8,
           "zIndex": 2,
@@ -138,6 +138,11 @@ exports[`Filter french level should render correctly when french level selected 
             "alignItems": "center",
             "display": "flex",
             "flexDirection": "row",
+          },
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+            "marginRight": 40,
           },
         ]
       }
@@ -1052,7 +1057,7 @@ exports[`Filter french level should render correctly when no french level select
           "alignItems": "center",
           "display": "flex",
           "flexDirection": "row",
-          "justifyContent": "space-between",
+          "justifyContent": "flex-start",
           "paddingHorizontal": 24,
           "paddingTop": 8,
           "zIndex": 2,
@@ -1174,6 +1179,11 @@ exports[`Filter french level should render correctly when no french level select
             "alignItems": "center",
             "display": "flex",
             "flexDirection": "row",
+          },
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+            "marginRight": 40,
           },
         ]
       }
@@ -2088,7 +2098,7 @@ exports[`Filter french level should select level when click on it 1`] = `
           "alignItems": "center",
           "display": "flex",
           "flexDirection": "row",
-          "justifyContent": "space-between",
+          "justifyContent": "flex-start",
           "paddingHorizontal": 24,
           "paddingTop": 8,
           "zIndex": 2,
@@ -2210,6 +2220,11 @@ exports[`Filter french level should select level when click on it 1`] = `
             "alignItems": "center",
             "display": "flex",
             "flexDirection": "row",
+          },
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+            "marginRight": 40,
           },
         ]
       }

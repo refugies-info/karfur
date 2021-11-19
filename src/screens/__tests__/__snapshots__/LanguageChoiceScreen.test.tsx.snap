@@ -48,6 +48,11 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               "display": "flex",
               "flexDirection": "row",
             },
+            Object {
+              "flex": 1,
+              "justifyContent": "center",
+              "marginRight": 40,
+            },
           ]
         }
       >
