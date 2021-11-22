@@ -67,11 +67,12 @@ export class Layout extends Component {
         }
       });
     }
-    if (localStorage.getItem("languei18nCode")
-      && isMobileOnly
+    if (isMobileOnly
+      && !localStorage.getItem("hideMobileAppModal")
+      && localStorage.getItem("languei18nCode")
       && this.state.showMobileModal === null
-      && this.props.location.pathname === "/"
     ) {
+      localStorage.setItem("hideMobileAppModal", "true");
       this.toggleMobileAppModal();
     }
   }
