@@ -1,7 +1,7 @@
 export default {
   name: "refugies-info-app",
   slug: "refugies-info-app",
-  version: "1.0.3",
+  version: "1.0.4",
   orientation: "portrait",
   icon: "./src/theme/images/app-icon-ri.png",
   scheme: "myapp",
@@ -17,12 +17,16 @@ export default {
   },
   assetBundlePatterns: ["**/*"],
   ios: {
-    buildNumber: "1.0.3",
+    buildNumber: "1.0.4",
     supportsTablet: false,
     userInterfaceStyle: "light",
     bundleIdentifier: "refugiesInfo",
     config: {
       googleMapsApiKey: process.env.GOOGLE_MAPS_KEY_IOS,
+    },
+    infoPlist: {
+      NSLocationWhenInUseUsageDescription: "This is only used to show you initiatives and associations close to you. This is not mandatory, the information will stay on your phone and we cannot use it.",
+      NSLocationUsageDescription: "This is only used to show you initiatives and associations close to you. This is not mandatory, the information will stay on your phone and we cannot use it.",
     },
     googleServicesFile: "./src/utils/firebase/GoogleService-Info.plist",
   },
