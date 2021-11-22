@@ -1,7 +1,7 @@
 export default {
   name: "refugies-info-app",
   slug: "refugies-info-app",
-  version: "1.0.4",
+  version: "1.0.5",
   orientation: "portrait",
   icon: "./src/theme/images/app-icon-ri.png",
   scheme: "myapp",
@@ -17,7 +17,7 @@ export default {
   },
   assetBundlePatterns: ["**/*"],
   ios: {
-    buildNumber: "1.0.4",
+    buildNumber: "1.0.5",
     supportsTablet: false,
     userInterfaceStyle: "light",
     bundleIdentifier: "refugiesInfo",
@@ -31,13 +31,13 @@ export default {
     googleServicesFile: "./src/utils/firebase/GoogleService-Info.plist",
   },
   android: {
-    versionCode: 4,
+    versionCode: 5,
     userInterfaceStyle: "light",
     adaptiveIcon: {
       foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",
       backgroundColor: "#0421B1",
     },
-    package: "com.agathek.refugiesinfoapp",
+    package: "com.refugiesinfo.app",
     config: {
       googleMaps: { apiKey: process.env.GOOGLE_MAPS_KEY_ANDROID },
     },

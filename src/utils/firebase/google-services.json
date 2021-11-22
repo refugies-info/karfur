@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1060316291598:android:6d92f986dc2f2791d5925f",
+        "mobilesdk_app_id": "1:1060316291598:android:6a5f595e40a92406d5925f",
         "android_client_info": {
-          "package_name": "com.agathek.refugiesinfoapp"
+          "package_name": "com.refugiesinfo.app"
         }
       },
       "oauth_client": [
@@ -29,6 +29,13 @@
             {
               "client_id": "1060316291598-f92o8hbhrof3jei4sgpec7af20kac7rs.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1060316291598-n4jasvtm9on9h9ts1m6piop9cqdnl5u8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "refugiesInfo"
+              }
             }
           ]
         }
