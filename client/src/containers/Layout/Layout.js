@@ -19,6 +19,7 @@ import {
 import { setUserStructureActionCreator } from "../../services/UserStructure/userStructure.actions";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
+import MobileAppModal from "../../components/Modals/MobileAppModal/MobileAppModal";
 import { readAudio } from "./functions";
 import routes from "../../routes";
 import Footer from "../Footer/Footer";
@@ -26,6 +27,7 @@ import { toggleSpinner } from "../../services/Tts/tts.actions";
 
 import "./Layout.scss";
 import { LoadingStatusKey } from "../../services/LoadingStatus/loadingStatus.actions";
+import { isMobileOnly } from "react-device-detect";
 
 export class Layout extends Component {
   constructor(props) {
@@ -36,6 +38,7 @@ export class Layout extends Component {
   state = {
     showSideDrawer: { left: false, right: false },
     traducteur: false,
+    showMobileModal: null
   };
   audio = new Audio();
 
@@ -63,6 +66,13 @@ export class Layout extends Component {
           document.title = item.name;
         }
       });
+    }
+    if (localStorage.getItem("languei18nCode")
+      && isMobileOnly
+      && this.state.showMobileModal === null
+      && this.props.location.pathname === "/"
+    ) {
+      this.toggleMobileAppModal();
     }
   }
 
@@ -136,6 +146,10 @@ export class Layout extends Component {
     }
   };
 
+  toggleMobileAppModal = () => {
+    this.setState({ showMobileModal: !this.state.showMobileModal })
+  }
+
   render() {
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
 
@@ -200,6 +214,10 @@ export class Layout extends Component {
             changeLanguage={this.changeLanguage}
             langues={this.props.langues}
             isLanguagesLoading={this.props.isLanguagesLoading}
+          />
+          <MobileAppModal
+            show={this.state.showMobileModal}
+            toggle={this.toggleMobileAppModal}
           />
         </div>
       </DirectionProvider>
