@@ -13,15 +13,8 @@ import { isIOS } from "react-device-detect";
 
 const languageModal = (props) => {
   const { t } = props;
+  const storeLink = isIOS ? "" : "";
 
-  const openStore = () => {
-    if (isIOS) {
-      // window.open("", "_blank");
-      // TODO: open app store
-    } else {
-      // TODO: open play store
-    }
-  }
 
   if (props.show) {
     return (
@@ -32,11 +25,13 @@ const languageModal = (props) => {
       >
         <ModalBody>
           <section>
-            <img
-              src={illuMobileApp}
-              width={268}
-              height={232}
-            />
+            <a href={storeLink}>
+              <img
+                src={illuMobileApp}
+                width={268}
+                height={232}
+              />
+            </a>
             <h1>{t("MobileAppModal.Application mobile disponible", "Application mobile disponible !")}</h1>
             <p>{t("MobileAppModal.Gratuite et plus facile à utiliser", "Gratuite et plus facile à utiliser :")}</p>
             <div className="close-button">
@@ -54,7 +49,7 @@ const languageModal = (props) => {
               name="external-link-outline"
               fill={colors.blancSimple}
               color={colors.validationDefault}
-              onClick={openStore}
+              onClick={() => window.open(storeLink, "_blank")}
               t={t}
               title="MobileAppModal.Télécharger l'application"
               defaultTitle="Télécharger l'application"
