@@ -1,9 +1,10 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { RTLTouchableOpacity, RowContainer } from "../BasicComponents";
+import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import { theme } from "../../theme";
-import { TextSmallBold, StyledTextVerySmallBold } from "../StyledText";
+import { TextSmallBold } from "../StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { Icon } from "react-native-eva-icons";
 
 interface Props {
   text: string;
@@ -14,7 +15,7 @@ interface Props {
 
 const MainContainer = styled(RTLTouchableOpacity)`
   background-color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? theme.colors.black : theme.colors.white};
+    props.isSelected ? theme.colors.lightBlue : theme.colors.white};
   padding: ${theme.margin * 2}px;
   box-shadow: ${(props: { isSelected: boolean }) =>
    props.isSelected ? "none" : "1px 1px 8px rgba(33, 33, 33, 0.24)"};
@@ -23,36 +24,29 @@ const MainContainer = styled(RTLTouchableOpacity)`
   justify-content: space-between;
   flex-wrap: wrap;
   elevation: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? 0 : 2}; ;
+  props.isSelected ? 0 : 2};
+  border-width: 2px;
+  border-color: ${(props: { isSelected: boolean }) =>
+  props.isSelected ? theme.colors.darkBlue : "transparent"};
 `;
 
 const StyledText = styled(TextSmallBold)`
   color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? theme.colors.white : theme.colors.black};
+    props.isSelected ? theme.colors.darkBlue : theme.colors.black};
 `;
 
-const DetailContainer = styled.View`
+const RadioButton = styled.View`
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  border-width: 1px;
+  border-color: ${(props: { isSelected: boolean }) =>
+  props.isSelected ? "transparent" : theme.colors.darkGrey};
   background-color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? theme.colors.white : theme.colors.grey70};
-  margin-left: ${theme.margin}px;
-  padding-vertical: 4px;
-  border-radius: ${theme.margin}px;
-  width: 32px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  !props.isSelected ? "transparent" : theme.colors.darkBlue};
   align-items: center;
+  justify-content: center;
 `;
-
-const TextVerySmall = styled(StyledTextVerySmallBold)`
-  color: ${theme.colors.black};
-`;
-
-const Detail = (props: { text: string; isSelected: boolean }) => (
-  <DetailContainer isSelected={props.isSelected}>
-    <TextVerySmall isSelected={props.isSelected}>{props.text}</TextVerySmall>
-  </DetailContainer>
-);
 
 export const FilterButton = (props: Props) => {
   const { t } = useTranslationWithRTL();
@@ -63,19 +57,26 @@ export const FilterButton = (props: Props) => {
       testID={`test-filter-${props.text}`}
       accessibilityRole="radio"
     >
-      <StyledText isSelected={props.isSelected}>
-        {t("Filter." + props.text, props.text)}
-      </StyledText>
-      <RowContainer>
-        {props.details &&
-          props.details.map((element) => (
-            <Detail
-              key={element}
-              isSelected={props.isSelected}
-              text={element}
+      <RTLView style={{ justifyContent: "space-between", flex: 1 }}>
+        <StyledText isSelected={props.isSelected}>
+          {t("Filter." + props.text, props.text)}
+          {props.details &&
+            <StyledText isSelected={props.isSelected}>
+            {" "}({props.details.join("/")})
+            </StyledText>
+          }
+        </StyledText>
+        <RadioButton isSelected={props.isSelected}>
+          {props.isSelected &&
+            <Icon
+              name="checkmark-outline"
+              width={16}
+              height={16}
+              fill={theme.colors.white}
             />
-          ))}
-      </RowContainer>
+          }
+        </RadioButton>
+      </RTLView>
     </MainContainer>
   );
 };
