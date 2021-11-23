@@ -306,8 +306,10 @@ exports[`Filter age should render correctly when age selected 1`] = `
           onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "backgroundColor": "#212121",
+              "backgroundColor": "#DAE0FB",
+              "borderColor": "#0421B1",
               "borderRadius": 12,
+              "borderWidth": 2,
               "display": "flex",
               "elevation": 0,
               "flexDirection": "row",
@@ -330,29 +332,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
           }
           testID="test-filter-0 à 17 ans"
         >
-          <Text
-            isRTL={false}
-            isSelected={true}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#FFFFFF",
-                },
-              ]
-            }
-          >
-            0 à 17 ans
-          </Text>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -360,9 +341,117 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   "display": "flex",
                   "flexDirection": "row",
                 },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "space-between",
+                },
               ]
             }
-          />
+          >
+            <Text
+              isRTL={false}
+              isSelected={true}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#0421B1",
+                  },
+                ]
+              }
+            >
+              0 à 17 ans
+            </Text>
+            <View
+              isSelected={true}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#0421B1",
+                    "borderColor": "transparent",
+                    "borderRadius": 12,
+                    "borderWidth": 1,
+                    "height": 24,
+                    "justifyContent": "center",
+                    "width": 24,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight={16}
+                  bbWidth={16}
+                  fill="#FFFFFF"
+                  focusable={false}
+                  height={16}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 16,
+                        "width": 16,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={16}
+                >
+                  <RNSVGGroup
+                    fill={4294967295}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
+                        <RNSVGRect
+                          height="24"
+                          opacity={0}
+                          width="24"
+                          x={0}
+                          y={0}
+                        />
+                        <RNSVGPath
+                          d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
         </View>
         <View
           accessibilityRole="radio"
@@ -378,7 +467,9 @@ exports[`Filter age should render correctly when age selected 1`] = `
           style={
             Object {
               "backgroundColor": "#FFFFFF",
+              "borderColor": "transparent",
               "borderRadius": 12,
+              "borderWidth": 2,
               "display": "flex",
               "elevation": 2,
               "flexDirection": "row",
@@ -401,29 +492,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
           }
           testID="test-filter-18 à 25 ans"
         >
-          <Text
-            isRTL={false}
-            isSelected={false}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#212121",
-                },
-              ]
-            }
-          >
-            18 à 25 ans
-          </Text>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -431,9 +501,53 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   "display": "flex",
                   "flexDirection": "row",
                 },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "space-between",
+                },
               ]
             }
-          />
+          >
+            <Text
+              isRTL={false}
+              isSelected={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#212121",
+                  },
+                ]
+              }
+            >
+              18 à 25 ans
+            </Text>
+            <View
+              isSelected={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#5E5E5E",
+                    "borderRadius": 12,
+                    "borderWidth": 1,
+                    "height": 24,
+                    "justifyContent": "center",
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
         </View>
         <View
           accessibilityRole="radio"
@@ -449,7 +563,9 @@ exports[`Filter age should render correctly when age selected 1`] = `
           style={
             Object {
               "backgroundColor": "#FFFFFF",
+              "borderColor": "transparent",
               "borderRadius": 12,
+              "borderWidth": 2,
               "display": "flex",
               "elevation": 2,
               "flexDirection": "row",
@@ -472,29 +588,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
           }
           testID="test-filter-26 ans et plus"
         >
-          <Text
-            isRTL={false}
-            isSelected={false}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#212121",
-                },
-              ]
-            }
-          >
-            26 ans et plus
-          </Text>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -502,9 +597,53 @@ exports[`Filter age should render correctly when age selected 1`] = `
                   "display": "flex",
                   "flexDirection": "row",
                 },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "space-between",
+                },
               ]
             }
-          />
+          >
+            <Text
+              isRTL={false}
+              isSelected={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#212121",
+                  },
+                ]
+              }
+            >
+              26 ans et plus
+            </Text>
+            <View
+              isSelected={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#5E5E5E",
+                    "borderRadius": 12,
+                    "borderWidth": 1,
+                    "height": 24,
+                    "justifyContent": "center",
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
         </View>
       </View>
     </View>
@@ -1116,7 +1255,9 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           style={
             Object {
               "backgroundColor": "#FFFFFF",
+              "borderColor": "transparent",
               "borderRadius": 12,
+              "borderWidth": 2,
               "display": "flex",
               "elevation": 2,
               "flexDirection": "row",
@@ -1139,29 +1280,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           }
           testID="test-filter-0 à 17 ans"
         >
-          <Text
-            isRTL={false}
-            isSelected={false}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#212121",
-                },
-              ]
-            }
-          >
-            0 à 17 ans
-          </Text>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -1169,9 +1289,53 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   "display": "flex",
                   "flexDirection": "row",
                 },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "space-between",
+                },
               ]
             }
-          />
+          >
+            <Text
+              isRTL={false}
+              isSelected={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#212121",
+                  },
+                ]
+              }
+            >
+              0 à 17 ans
+            </Text>
+            <View
+              isSelected={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#5E5E5E",
+                    "borderRadius": 12,
+                    "borderWidth": 1,
+                    "height": 24,
+                    "justifyContent": "center",
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
         </View>
         <View
           accessibilityRole="radio"
@@ -1187,7 +1351,9 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           style={
             Object {
               "backgroundColor": "#FFFFFF",
+              "borderColor": "transparent",
               "borderRadius": 12,
+              "borderWidth": 2,
               "display": "flex",
               "elevation": 2,
               "flexDirection": "row",
@@ -1210,29 +1376,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           }
           testID="test-filter-18 à 25 ans"
         >
-          <Text
-            isRTL={false}
-            isSelected={false}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#212121",
-                },
-              ]
-            }
-          >
-            18 à 25 ans
-          </Text>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -1240,9 +1385,53 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   "display": "flex",
                   "flexDirection": "row",
                 },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "space-between",
+                },
               ]
             }
-          />
+          >
+            <Text
+              isRTL={false}
+              isSelected={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#212121",
+                  },
+                ]
+              }
+            >
+              18 à 25 ans
+            </Text>
+            <View
+              isSelected={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#5E5E5E",
+                    "borderRadius": 12,
+                    "borderWidth": 1,
+                    "height": 24,
+                    "justifyContent": "center",
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
         </View>
         <View
           accessibilityRole="radio"
@@ -1258,7 +1447,9 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           style={
             Object {
               "backgroundColor": "#FFFFFF",
+              "borderColor": "transparent",
               "borderRadius": 12,
+              "borderWidth": 2,
               "display": "flex",
               "elevation": 2,
               "flexDirection": "row",
@@ -1281,29 +1472,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           }
           testID="test-filter-26 ans et plus"
         >
-          <Text
-            isRTL={false}
-            isSelected={false}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#212121",
-                },
-              ]
-            }
-          >
-            26 ans et plus
-          </Text>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -1311,9 +1481,53 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                   "display": "flex",
                   "flexDirection": "row",
                 },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "space-between",
+                },
               ]
             }
-          />
+          >
+            <Text
+              isRTL={false}
+              isSelected={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#212121",
+                  },
+                ]
+              }
+            >
+              26 ans et plus
+            </Text>
+            <View
+              isSelected={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#5E5E5E",
+                    "borderRadius": 12,
+                    "borderWidth": 1,
+                    "height": 24,
+                    "justifyContent": "center",
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
         </View>
       </View>
     </View>
@@ -1925,7 +2139,9 @@ exports[`Filter age should select age when click on it 1`] = `
           style={
             Object {
               "backgroundColor": "#FFFFFF",
+              "borderColor": "transparent",
               "borderRadius": 12,
+              "borderWidth": 2,
               "display": "flex",
               "elevation": 2,
               "flexDirection": "row",
@@ -1948,29 +2164,8 @@ exports[`Filter age should select age when click on it 1`] = `
           }
           testID="test-filter-0 à 17 ans"
         >
-          <Text
-            isRTL={false}
-            isSelected={false}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#212121",
-                },
-              ]
-            }
-          >
-            0 à 17 ans
-          </Text>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -1978,9 +2173,53 @@ exports[`Filter age should select age when click on it 1`] = `
                   "display": "flex",
                   "flexDirection": "row",
                 },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "space-between",
+                },
               ]
             }
-          />
+          >
+            <Text
+              isRTL={false}
+              isSelected={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#212121",
+                  },
+                ]
+              }
+            >
+              0 à 17 ans
+            </Text>
+            <View
+              isSelected={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#5E5E5E",
+                    "borderRadius": 12,
+                    "borderWidth": 1,
+                    "height": 24,
+                    "justifyContent": "center",
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
         </View>
         <View
           accessibilityRole="radio"
@@ -1996,7 +2235,9 @@ exports[`Filter age should select age when click on it 1`] = `
           style={
             Object {
               "backgroundColor": "#FFFFFF",
+              "borderColor": "transparent",
               "borderRadius": 12,
+              "borderWidth": 2,
               "display": "flex",
               "elevation": 2,
               "flexDirection": "row",
@@ -2019,29 +2260,8 @@ exports[`Filter age should select age when click on it 1`] = `
           }
           testID="test-filter-18 à 25 ans"
         >
-          <Text
-            isRTL={false}
-            isSelected={false}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#212121",
-                },
-              ]
-            }
-          >
-            18 à 25 ans
-          </Text>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -2049,9 +2269,53 @@ exports[`Filter age should select age when click on it 1`] = `
                   "display": "flex",
                   "flexDirection": "row",
                 },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "space-between",
+                },
               ]
             }
-          />
+          >
+            <Text
+              isRTL={false}
+              isSelected={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#212121",
+                  },
+                ]
+              }
+            >
+              18 à 25 ans
+            </Text>
+            <View
+              isSelected={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "transparent",
+                    "borderColor": "#5E5E5E",
+                    "borderRadius": 12,
+                    "borderWidth": 1,
+                    "height": 24,
+                    "justifyContent": "center",
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
         </View>
         <View
           accessibilityRole="radio"
@@ -2066,8 +2330,10 @@ exports[`Filter age should select age when click on it 1`] = `
           onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "backgroundColor": "#212121",
+              "backgroundColor": "#DAE0FB",
+              "borderColor": "#0421B1",
               "borderRadius": 12,
+              "borderWidth": 2,
               "display": "flex",
               "elevation": 0,
               "flexDirection": "row",
@@ -2090,29 +2356,8 @@ exports[`Filter age should select age when click on it 1`] = `
           }
           testID="test-filter-26 ans et plus"
         >
-          <Text
-            isRTL={false}
-            isSelected={true}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#FFFFFF",
-                },
-              ]
-            }
-          >
-            26 ans et plus
-          </Text>
           <View
+            isRTL={false}
             style={
               Array [
                 Object {
@@ -2120,9 +2365,117 @@ exports[`Filter age should select age when click on it 1`] = `
                   "display": "flex",
                   "flexDirection": "row",
                 },
+                Object {
+                  "flex": 1,
+                  "justifyContent": "space-between",
+                },
               ]
             }
-          />
+          >
+            <Text
+              isRTL={false}
+              isSelected={true}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#0421B1",
+                  },
+                ]
+              }
+            >
+              26 ans et plus
+            </Text>
+            <View
+              isSelected={true}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#0421B1",
+                    "borderColor": "transparent",
+                    "borderRadius": 12,
+                    "borderWidth": 1,
+                    "height": 24,
+                    "justifyContent": "center",
+                    "width": 24,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight={16}
+                  bbWidth={16}
+                  fill="#FFFFFF"
+                  focusable={false}
+                  height={16}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 16,
+                        "width": 16,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={16}
+                >
+                  <RNSVGGroup
+                    fill={4294967295}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
+                        <RNSVGRect
+                          height="24"
+                          opacity={0}
+                          width="24"
+                          x={0}
+                          y={0}
+                        />
+                        <RNSVGPath
+                          d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
         </View>
       </View>
     </View>

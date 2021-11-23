@@ -316,7 +316,9 @@ exports[`Filter french level should render correctly when french level selected 
             style={
               Object {
                 "backgroundColor": "#FFFFFF",
+                "borderColor": "transparent",
                 "borderRadius": 12,
+                "borderWidth": 2,
                 "display": "flex",
                 "elevation": 2,
                 "flexDirection": "row",
@@ -339,29 +341,8 @@ exports[`Filter french level should render correctly when french level selected 
             }
             testID="test-filter-Je parle un peu"
           >
-            <Text
-              isRTL={false}
-              isSelected={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#212121",
-                  },
-                ]
-              }
-            >
-              Je parle un peu
-            </Text>
             <View
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -369,79 +350,77 @@ exports[`Filter french level should render correctly when french level selected 
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flex": 1,
+                    "justifyContent": "space-between",
+                  },
                 ]
               }
             >
+              <Text
+                isRTL={false}
+                isSelected={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#212121",
+                    },
+                  ]
+                }
+              >
+                Je parle un peu
+                <Text
+                  isRTL={false}
+                  isSelected={false}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "color": "#212121",
+                      },
+                    ]
+                  }
+                >
+                   
+                  (
+                  A1/A2
+                  )
+                </Text>
+              </Text>
               <View
                 isSelected={false}
                 style={
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "#ABABAB",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
+                      "backgroundColor": "transparent",
+                      "borderColor": "#5E5E5E",
+                      "borderRadius": 12,
+                      "borderWidth": 1,
+                      "height": 24,
                       "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
+                      "width": 24,
                     },
                   ]
                 }
-              >
-                <Text
-                  isSelected={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  A1
-                </Text>
-              </View>
-              <View
-                isSelected={false}
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ABABAB",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  isSelected={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  A2
-                </Text>
-              </View>
+              />
             </View>
           </View>
           <View
@@ -457,8 +436,10 @@ exports[`Filter french level should render correctly when french level selected 
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "backgroundColor": "#212121",
+                "backgroundColor": "#DAE0FB",
+                "borderColor": "#0421B1",
                 "borderRadius": 12,
+                "borderWidth": 2,
                 "display": "flex",
                 "elevation": 0,
                 "flexDirection": "row",
@@ -481,29 +462,8 @@ exports[`Filter french level should render correctly when french level selected 
             }
             testID="test-filter-Je parle bien"
           >
-            <Text
-              isRTL={false}
-              isSelected={true}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#FFFFFF",
-                  },
-                ]
-              }
-            >
-              Je parle bien
-            </Text>
             <View
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -511,78 +471,140 @@ exports[`Filter french level should render correctly when french level selected 
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flex": 1,
+                    "justifyContent": "space-between",
+                  },
                 ]
               }
             >
+              <Text
+                isRTL={false}
+                isSelected={true}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#0421B1",
+                    },
+                  ]
+                }
+              >
+                Je parle bien
+                <Text
+                  isRTL={false}
+                  isSelected={true}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "color": "#0421B1",
+                      },
+                    ]
+                  }
+                >
+                   
+                  (
+                  B1/B2
+                  )
+                </Text>
+              </Text>
               <View
                 isSelected={true}
                 style={
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "#FFFFFF",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
+                      "backgroundColor": "#0421B1",
+                      "borderColor": "transparent",
+                      "borderRadius": 12,
+                      "borderWidth": 1,
+                      "height": 24,
                       "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
+                      "width": 24,
                     },
                   ]
                 }
               >
-                <Text
-                  isSelected={true}
+                <View
                   style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  B1
-                </Text>
-              </View>
-              <View
-                isSelected={true}
-                style={
-                  Array [
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#FFFFFF",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  isSelected={true}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
+                      "transform": Array [
+                        Object {
+                          "scale": 1,
+                        },
+                      ],
+                    }
                   }
                 >
-                  B2
-                </Text>
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={16}
+                    bbWidth={16}
+                    fill="#FFFFFF"
+                    focusable={false}
+                    height={16}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 16,
+                          "width": 16,
+                        },
+                      ]
+                    }
+                    vbHeight={24}
+                    vbWidth={24}
+                    width={16}
+                  >
+                    <RNSVGGroup
+                      fill={4294967295}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                    >
+                      <RNSVGGroup>
+                        <RNSVGGroup>
+                          <RNSVGRect
+                            height="24"
+                            opacity={0}
+                            width="24"
+                            x={0}
+                            y={0}
+                          />
+                          <RNSVGPath
+                            d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                          />
+                        </RNSVGGroup>
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                </View>
               </View>
             </View>
           </View>
@@ -600,7 +622,9 @@ exports[`Filter french level should render correctly when french level selected 
             style={
               Object {
                 "backgroundColor": "#FFFFFF",
+                "borderColor": "transparent",
                 "borderRadius": 12,
+                "borderWidth": 2,
                 "display": "flex",
                 "elevation": 2,
                 "flexDirection": "row",
@@ -623,29 +647,8 @@ exports[`Filter french level should render correctly when french level selected 
             }
             testID="test-filter-Je parle couramment"
           >
-            <Text
-              isRTL={false}
-              isSelected={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#212121",
-                  },
-                ]
-              }
-            >
-              Je parle couramment
-            </Text>
             <View
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -653,79 +656,77 @@ exports[`Filter french level should render correctly when french level selected 
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flex": 1,
+                    "justifyContent": "space-between",
+                  },
                 ]
               }
             >
+              <Text
+                isRTL={false}
+                isSelected={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#212121",
+                    },
+                  ]
+                }
+              >
+                Je parle couramment
+                <Text
+                  isRTL={false}
+                  isSelected={false}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "color": "#212121",
+                      },
+                    ]
+                  }
+                >
+                   
+                  (
+                  C1/C2
+                  )
+                </Text>
+              </Text>
               <View
                 isSelected={false}
                 style={
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "#ABABAB",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
+                      "backgroundColor": "transparent",
+                      "borderColor": "#5E5E5E",
+                      "borderRadius": 12,
+                      "borderWidth": 1,
+                      "height": 24,
                       "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
+                      "width": 24,
                     },
                   ]
                 }
-              >
-                <Text
-                  isSelected={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  C1
-                </Text>
-              </View>
-              <View
-                isSelected={false}
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ABABAB",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  isSelected={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  C2
-                </Text>
-              </View>
+              />
             </View>
           </View>
         </View>
@@ -1357,7 +1358,9 @@ exports[`Filter french level should render correctly when no french level select
             style={
               Object {
                 "backgroundColor": "#FFFFFF",
+                "borderColor": "transparent",
                 "borderRadius": 12,
+                "borderWidth": 2,
                 "display": "flex",
                 "elevation": 2,
                 "flexDirection": "row",
@@ -1380,29 +1383,8 @@ exports[`Filter french level should render correctly when no french level select
             }
             testID="test-filter-Je parle un peu"
           >
-            <Text
-              isRTL={false}
-              isSelected={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#212121",
-                  },
-                ]
-              }
-            >
-              Je parle un peu
-            </Text>
             <View
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -1410,79 +1392,77 @@ exports[`Filter french level should render correctly when no french level select
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flex": 1,
+                    "justifyContent": "space-between",
+                  },
                 ]
               }
             >
+              <Text
+                isRTL={false}
+                isSelected={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#212121",
+                    },
+                  ]
+                }
+              >
+                Je parle un peu
+                <Text
+                  isRTL={false}
+                  isSelected={false}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "color": "#212121",
+                      },
+                    ]
+                  }
+                >
+                   
+                  (
+                  A1/A2
+                  )
+                </Text>
+              </Text>
               <View
                 isSelected={false}
                 style={
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "#ABABAB",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
+                      "backgroundColor": "transparent",
+                      "borderColor": "#5E5E5E",
+                      "borderRadius": 12,
+                      "borderWidth": 1,
+                      "height": 24,
                       "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
+                      "width": 24,
                     },
                   ]
                 }
-              >
-                <Text
-                  isSelected={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  A1
-                </Text>
-              </View>
-              <View
-                isSelected={false}
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ABABAB",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  isSelected={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  A2
-                </Text>
-              </View>
+              />
             </View>
           </View>
           <View
@@ -1499,7 +1479,9 @@ exports[`Filter french level should render correctly when no french level select
             style={
               Object {
                 "backgroundColor": "#FFFFFF",
+                "borderColor": "transparent",
                 "borderRadius": 12,
+                "borderWidth": 2,
                 "display": "flex",
                 "elevation": 2,
                 "flexDirection": "row",
@@ -1522,29 +1504,8 @@ exports[`Filter french level should render correctly when no french level select
             }
             testID="test-filter-Je parle bien"
           >
-            <Text
-              isRTL={false}
-              isSelected={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#212121",
-                  },
-                ]
-              }
-            >
-              Je parle bien
-            </Text>
             <View
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -1552,79 +1513,77 @@ exports[`Filter french level should render correctly when no french level select
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flex": 1,
+                    "justifyContent": "space-between",
+                  },
                 ]
               }
             >
+              <Text
+                isRTL={false}
+                isSelected={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#212121",
+                    },
+                  ]
+                }
+              >
+                Je parle bien
+                <Text
+                  isRTL={false}
+                  isSelected={false}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "color": "#212121",
+                      },
+                    ]
+                  }
+                >
+                   
+                  (
+                  B1/B2
+                  )
+                </Text>
+              </Text>
               <View
                 isSelected={false}
                 style={
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "#ABABAB",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
+                      "backgroundColor": "transparent",
+                      "borderColor": "#5E5E5E",
+                      "borderRadius": 12,
+                      "borderWidth": 1,
+                      "height": 24,
                       "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
+                      "width": 24,
                     },
                   ]
                 }
-              >
-                <Text
-                  isSelected={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  B1
-                </Text>
-              </View>
-              <View
-                isSelected={false}
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ABABAB",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  isSelected={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  B2
-                </Text>
-              </View>
+              />
             </View>
           </View>
           <View
@@ -1641,7 +1600,9 @@ exports[`Filter french level should render correctly when no french level select
             style={
               Object {
                 "backgroundColor": "#FFFFFF",
+                "borderColor": "transparent",
                 "borderRadius": 12,
+                "borderWidth": 2,
                 "display": "flex",
                 "elevation": 2,
                 "flexDirection": "row",
@@ -1664,29 +1625,8 @@ exports[`Filter french level should render correctly when no french level select
             }
             testID="test-filter-Je parle couramment"
           >
-            <Text
-              isRTL={false}
-              isSelected={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#212121",
-                  },
-                ]
-              }
-            >
-              Je parle couramment
-            </Text>
             <View
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -1694,79 +1634,77 @@ exports[`Filter french level should render correctly when no french level select
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flex": 1,
+                    "justifyContent": "space-between",
+                  },
                 ]
               }
             >
+              <Text
+                isRTL={false}
+                isSelected={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#212121",
+                    },
+                  ]
+                }
+              >
+                Je parle couramment
+                <Text
+                  isRTL={false}
+                  isSelected={false}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "color": "#212121",
+                      },
+                    ]
+                  }
+                >
+                   
+                  (
+                  C1/C2
+                  )
+                </Text>
+              </Text>
               <View
                 isSelected={false}
                 style={
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "#ABABAB",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
+                      "backgroundColor": "transparent",
+                      "borderColor": "#5E5E5E",
+                      "borderRadius": 12,
+                      "borderWidth": 1,
+                      "height": 24,
                       "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
+                      "width": 24,
                     },
                   ]
                 }
-              >
-                <Text
-                  isSelected={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  C1
-                </Text>
-              </View>
-              <View
-                isSelected={false}
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ABABAB",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  isSelected={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  C2
-                </Text>
-              </View>
+              />
             </View>
           </View>
         </View>
@@ -2398,7 +2336,9 @@ exports[`Filter french level should select level when click on it 1`] = `
             style={
               Object {
                 "backgroundColor": "#FFFFFF",
+                "borderColor": "transparent",
                 "borderRadius": 12,
+                "borderWidth": 2,
                 "display": "flex",
                 "elevation": 2,
                 "flexDirection": "row",
@@ -2421,29 +2361,8 @@ exports[`Filter french level should select level when click on it 1`] = `
             }
             testID="test-filter-Je parle un peu"
           >
-            <Text
-              isRTL={false}
-              isSelected={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#212121",
-                  },
-                ]
-              }
-            >
-              Je parle un peu
-            </Text>
             <View
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -2451,79 +2370,77 @@ exports[`Filter french level should select level when click on it 1`] = `
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flex": 1,
+                    "justifyContent": "space-between",
+                  },
                 ]
               }
             >
+              <Text
+                isRTL={false}
+                isSelected={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#212121",
+                    },
+                  ]
+                }
+              >
+                Je parle un peu
+                <Text
+                  isRTL={false}
+                  isSelected={false}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "color": "#212121",
+                      },
+                    ]
+                  }
+                >
+                   
+                  (
+                  A1/A2
+                  )
+                </Text>
+              </Text>
               <View
                 isSelected={false}
                 style={
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "#ABABAB",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
+                      "backgroundColor": "transparent",
+                      "borderColor": "#5E5E5E",
+                      "borderRadius": 12,
+                      "borderWidth": 1,
+                      "height": 24,
                       "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
+                      "width": 24,
                     },
                   ]
                 }
-              >
-                <Text
-                  isSelected={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  A1
-                </Text>
-              </View>
-              <View
-                isSelected={false}
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ABABAB",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  isSelected={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  A2
-                </Text>
-              </View>
+              />
             </View>
           </View>
           <View
@@ -2539,8 +2456,10 @@ exports[`Filter french level should select level when click on it 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "backgroundColor": "#212121",
+                "backgroundColor": "#DAE0FB",
+                "borderColor": "#0421B1",
                 "borderRadius": 12,
+                "borderWidth": 2,
                 "display": "flex",
                 "elevation": 0,
                 "flexDirection": "row",
@@ -2563,29 +2482,8 @@ exports[`Filter french level should select level when click on it 1`] = `
             }
             testID="test-filter-Je parle bien"
           >
-            <Text
-              isRTL={false}
-              isSelected={true}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#FFFFFF",
-                  },
-                ]
-              }
-            >
-              Je parle bien
-            </Text>
             <View
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -2593,78 +2491,140 @@ exports[`Filter french level should select level when click on it 1`] = `
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flex": 1,
+                    "justifyContent": "space-between",
+                  },
                 ]
               }
             >
+              <Text
+                isRTL={false}
+                isSelected={true}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#0421B1",
+                    },
+                  ]
+                }
+              >
+                Je parle bien
+                <Text
+                  isRTL={false}
+                  isSelected={true}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "color": "#0421B1",
+                      },
+                    ]
+                  }
+                >
+                   
+                  (
+                  B1/B2
+                  )
+                </Text>
+              </Text>
               <View
                 isSelected={true}
                 style={
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "#FFFFFF",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
+                      "backgroundColor": "#0421B1",
+                      "borderColor": "transparent",
+                      "borderRadius": 12,
+                      "borderWidth": 1,
+                      "height": 24,
                       "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
+                      "width": 24,
                     },
                   ]
                 }
               >
-                <Text
-                  isSelected={true}
+                <View
                   style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  B1
-                </Text>
-              </View>
-              <View
-                isSelected={true}
-                style={
-                  Array [
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#FFFFFF",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  isSelected={true}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
+                      "transform": Array [
+                        Object {
+                          "scale": 1,
+                        },
+                      ],
+                    }
                   }
                 >
-                  B2
-                </Text>
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={16}
+                    bbWidth={16}
+                    fill="#FFFFFF"
+                    focusable={false}
+                    height={16}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 16,
+                          "width": 16,
+                        },
+                      ]
+                    }
+                    vbHeight={24}
+                    vbWidth={24}
+                    width={16}
+                  >
+                    <RNSVGGroup
+                      fill={4294967295}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                    >
+                      <RNSVGGroup>
+                        <RNSVGGroup>
+                          <RNSVGRect
+                            height="24"
+                            opacity={0}
+                            width="24"
+                            x={0}
+                            y={0}
+                          />
+                          <RNSVGPath
+                            d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                          />
+                        </RNSVGGroup>
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                </View>
               </View>
             </View>
           </View>
@@ -2682,7 +2642,9 @@ exports[`Filter french level should select level when click on it 1`] = `
             style={
               Object {
                 "backgroundColor": "#FFFFFF",
+                "borderColor": "transparent",
                 "borderRadius": 12,
+                "borderWidth": 2,
                 "display": "flex",
                 "elevation": 2,
                 "flexDirection": "row",
@@ -2705,29 +2667,8 @@ exports[`Filter french level should select level when click on it 1`] = `
             }
             testID="test-filter-Je parle couramment"
           >
-            <Text
-              isRTL={false}
-              isSelected={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#212121",
-                  },
-                ]
-              }
-            >
-              Je parle couramment
-            </Text>
             <View
+              isRTL={false}
               style={
                 Array [
                   Object {
@@ -2735,79 +2676,77 @@ exports[`Filter french level should select level when click on it 1`] = `
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flex": 1,
+                    "justifyContent": "space-between",
+                  },
                 ]
               }
             >
+              <Text
+                isRTL={false}
+                isSelected={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#212121",
+                    },
+                  ]
+                }
+              >
+                Je parle couramment
+                <Text
+                  isRTL={false}
+                  isSelected={false}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "color": "#212121",
+                      },
+                    ]
+                  }
+                >
+                   
+                  (
+                  C1/C2
+                  )
+                </Text>
+              </Text>
               <View
                 isSelected={false}
                 style={
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "#ABABAB",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
+                      "backgroundColor": "transparent",
+                      "borderColor": "#5E5E5E",
+                      "borderRadius": 12,
+                      "borderWidth": 1,
+                      "height": 24,
                       "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
+                      "width": 24,
                     },
                   ]
                 }
-              >
-                <Text
-                  isSelected={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  C1
-                </Text>
-              </View>
-              <View
-                isSelected={false}
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ABABAB",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "justifyContent": "center",
-                      "marginLeft": 8,
-                      "paddingVertical": 4,
-                      "width": 32,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  isSelected={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBold",
-                        "fontSize": 13,
-                        "lineHeight": 16,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                  C2
-                </Text>
-              </View>
+              />
             </View>
           </View>
         </View>
