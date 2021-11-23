@@ -72,7 +72,7 @@ export const FrenchLevelProfilScreen = ({
         text={t("Profil.Niveau de français", "Niveau de français")}
         iconName="message-circle-outline"
       />
-      <View>
+      <View style={{ flex: 1 }}>
         <View
           style={{
             marginHorizontal: theme.margin * 3,
@@ -88,6 +88,7 @@ export const FrenchLevelProfilScreen = ({
           />
         </View>
         <ScrollView
+           style={{ flex: 1 }}
           contentContainerStyle={{
             paddingTop: theme.margin * 2,
             paddingHorizontal: theme.margin * 3,
