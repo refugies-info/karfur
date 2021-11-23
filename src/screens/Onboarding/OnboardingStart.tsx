@@ -64,6 +64,7 @@ export const OnboardingStart = ({
           defaultText="C'est parti"
           textColor={theme.colors.darkBlue}
           onPress={() => navigation.navigate("OnboardingSteps")}
+          iconName="arrow-forward-outline"
         />
       </ElementsContainer>
     </MainView>

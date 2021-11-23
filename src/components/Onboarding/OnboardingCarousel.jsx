@@ -25,7 +25,7 @@ const TopButtonsContainer = styled(SafeAreaView)`
   padding-top: ${theme.margin}px;
 `;
 
-const NextButtonContainer = styled.View`
+const NextButtonContainer = styled(SafeAreaView)`
   position: absolute;
   bottom: ${theme.margin * 3}px;
   z-index: 2;
@@ -81,7 +81,7 @@ class OnboardingCarousel extends React.Component {
           flexDirection: "row",
           justifyContent: "center",
           width: "100%",
-          bottom: 90,
+          bottom: 115,
         }}
       />
     );
@@ -92,7 +92,7 @@ class OnboardingCarousel extends React.Component {
 
     return (
       <View>
-        <TopButtonsContainer>
+        <TopButtonsContainer edges={["right", "top", "left"]}>
           <SmallButton
             iconName="arrow-back-outline"
             onPress={() => {
@@ -120,7 +120,7 @@ class OnboardingCarousel extends React.Component {
           inactiveSlideScale={1}
         />
         {this.pagination}
-        <NextButtonContainer>
+        <NextButtonContainer edges={["right", "bottom", "left"]}>
           <CustomButton
             i18nKey={activeIndex !== 3 ? "Suivant" : "Continuer"}
             defaultText={activeIndex !== 3 ? "Suivant" : "Continuer"}
@@ -132,7 +132,7 @@ class OnboardingCarousel extends React.Component {
               }
               this.carousel.snapToNext();
             }}
-            iconName={activeIndex !== 3 ? "arrow-forward-outline" : null}
+            iconName="arrow-forward-outline"
           />
         </NextButtonContainer>
       </View>

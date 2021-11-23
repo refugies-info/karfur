@@ -17,12 +17,14 @@ const StyledText = styled(TextBigBold)`
   color: ${theme.colors.white};
   margin-bottom: ${theme.margin * 25}px;
   margin-top: ${theme.margin * 3}px;
+  width: 100%;
 `;
 const ImagesContainer = styled.View`
   display: flex;
   flex: 1;
   align-items: center;
   justify-content: center;
+  margin-top: ${theme.margin * 5}px;
 `;
 const styles = StyleSheet.create({
   card: {
