@@ -31,9 +31,11 @@ const ViewChoiceContainer = styled(RTLView)`
   margin-bottom: ${theme.margin * 3}px;
   border-radius: ${theme.radius * 2}px;
   justify-content: center;
+  align-items: center;
   align-self: center;
   box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
   elevation: 7;
+  width: 270px;
 `;
 const CarousselContainer = styled.View`
   display: flex;
@@ -114,7 +116,8 @@ export const ExplorerScreen = ({
         <ScrollView
           contentContainerStyle={{
             paddingHorizontal: theme.margin * 3,
-            paddingBottom: theme.margin * 3
+            paddingBottom: theme.margin * 3,
+            paddingTop: theme.margin,
           }}
           scrollIndicatorInsets={{ right: 1 }}
         >
