@@ -1,11 +1,12 @@
 export default {
-  name: "refugies-info-app",
+  name: "Réfugiés.info",
   slug: "refugies-info-app",
   version: "1.0.5",
   orientation: "portrait",
   icon: "./src/theme/images/app-icon-ri.png",
-  scheme: "myapp",
-  userInterfaceStyle: "automatic",
+  scheme: "refugies",
+  userInterfaceStyle: "light",
+  backgroundColor: "#F6F6F6",
   splash: {
     image: "./src/theme/images/splash-screen-RI.png",
     resizeMode: "contain",
