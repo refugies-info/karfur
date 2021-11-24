@@ -1,0 +1,1 @@
+export { getNbContents } from "./getNbContents";
