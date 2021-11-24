@@ -51,7 +51,7 @@ const languageModal = (props) => {
               name="external-link-outline"
               fill={colors.blancSimple}
               color={colors.validationDefault}
-              onClick={() => window.open(storeLink, "_blank")}
+              onClick={() => window.open(storeLink)}
               t={t}
               title="MobileAppModal.Télécharger l'application"
               defaultTitle="Télécharger l'application"
