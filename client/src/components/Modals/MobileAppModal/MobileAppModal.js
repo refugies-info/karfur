@@ -13,7 +13,9 @@ import { isIOS } from "react-device-detect";
 
 const languageModal = (props) => {
   const { t } = props;
-  const storeLink = isIOS ? "" : "";
+  const storeLink = isIOS ?
+    "https://apps.apple.com/app/id1595597429" :
+    "https://play.google.com/store/apps/details?id=com.refugiesinfo.app";
 
 
   if (props.show) {
