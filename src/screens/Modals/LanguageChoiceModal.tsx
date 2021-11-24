@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableWithoutFeedback } from "react-native";
 import Modal from "react-native-modal";
 import React from "react";
 import styled from "styled-components/native";
@@ -92,6 +92,11 @@ const FlagBackground = styled.View`
   box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
   elevation: 7;
 `;
+const Backdrop = styled.View`
+  flex: 1;
+  background-color: ${theme.colors.black};
+`;
+
 export const LanguageChoiceModal = (props: Props) => {
   const { t, i18n } = useTranslationWithRTL();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
@@ -113,6 +118,15 @@ export const LanguageChoiceModal = (props: Props) => {
       isVisible={props.isModalVisible}
       style={styles.view}
       onBackdropPress={props.toggleModal}
+      customBackdrop={
+        <TouchableWithoutFeedback
+          onPress={props.toggleModal}
+          accessibilityRole="button"
+          accessibilityLabel={t("Fermer la fenêtre")}
+        >
+          <Backdrop />
+        </TouchableWithoutFeedback>
+      }
     >
       <ModalView style={{ paddingBottom: insets.bottom }}>
         <TitleText>{t("Langue app", "Langue de l'application")}</TitleText>

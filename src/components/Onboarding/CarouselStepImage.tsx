@@ -34,6 +34,7 @@ export const CarouselStepImage = ({ step }: Props) => {
       return <Image
         source={Step2}
         style={styles.step2}
+        accessible={true}
         accessibilityLabel="Gouvernement Liberté Egalité Fraternité. Délégation interministérielle à l'accueil et à l'intégration des réfugiés."
       />;
     case 3:

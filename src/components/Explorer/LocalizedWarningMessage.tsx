@@ -55,6 +55,7 @@ export const LocalizedWarningMessage = (props: Props) => {
         <InfoMessageLink
           onPress={props.openModal}
           accessibilityRole="button"
+          accessible={true}
         >
           {t("ExplorerScreen.Pourquoi")}
         </InfoMessageLink>

@@ -835,6 +835,7 @@ export const ContentScreen = ({
                       textDecorationColor: theme.colors.white,
                       marginHorizontal: theme.margin
                     }}
+                    accessibilityRole="button"
                   >Mes fiches</ToastTextBold>
                 </Trans>
               </ToastText>

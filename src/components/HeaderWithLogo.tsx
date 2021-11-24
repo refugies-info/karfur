@@ -55,6 +55,7 @@ export const HeaderWithLogo = ({
           <Logo
             width={LOGO_WIDTH}
             height={LOGO_HEIGHT}
+            accessible={true}
             accessibilityLabel="Réfugiés point info"
           /> :
           <View />
