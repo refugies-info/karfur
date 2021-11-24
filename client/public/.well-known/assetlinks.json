@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.refugiesinfo.app",
+    "sha256_cert_fingerprints":
+    ["55:23:FF:F2:CF:18:3B:F3:76:BC:CC:58:37:C4:15:45:C8:F6:BE:13:B9:69:D9:AB:52:47:D5:8E:58:EC:20:FD"]
+  }
+}]

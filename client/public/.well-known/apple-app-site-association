@@ -1,0 +1,25 @@
+{
+	"applinks": {
+		"apps": [],
+		"details": [
+			{
+				"appIDs": [ "98K762J2MM.refugiesInfo" ],
+				"components": [
+					{
+						"/": "/*",
+						"comment": "All pages"
+					}
+				]
+			},
+			{
+				"appID": "98K762J2MM.refugiesInfo",
+				"paths": [ "/*" ]
+			}
+		]
+	},
+	"activitycontinuation": {
+		"apps": [
+			"98K762J2MM.refugiesInfo"
+		]
+	}
+}
