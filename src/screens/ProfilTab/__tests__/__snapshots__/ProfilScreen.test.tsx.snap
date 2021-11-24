@@ -1670,7 +1670,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           <View
             accessibilityRole="button"
             accessible={true}
-            focusable={false}
+            focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -5469,7 +5469,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           <View
             accessibilityRole="button"
             accessible={true}
-            focusable={false}
+            focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -9268,7 +9268,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           <View
             accessibilityRole="button"
             accessible={true}
-            focusable={false}
+            focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
