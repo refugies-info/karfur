@@ -26,6 +26,7 @@ exports[`HeaderWithLogo should render correctly with LTR 1`] = `
   >
     <react-native-svg
       accessibilityLabel="Réfugiés point info"
+      accessible={true}
       height={40}
       width={58}
     />
@@ -72,6 +73,7 @@ exports[`HeaderWithLogo should render correctly with RTL 1`] = `
   >
     <react-native-svg
       accessibilityLabel="Réfugiés point info"
+      accessible={true}
       height={40}
       width={58}
     />

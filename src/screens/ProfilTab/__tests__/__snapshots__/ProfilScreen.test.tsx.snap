@@ -2635,19 +2635,10 @@ exports[`Profil screen should render correctly when data in store 1`] = `
     visible={false}
   >
     <View
-      accessible={true}
-      focusable={true}
       forwardedRef={[Function]}
-      onClick={[Function]}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "backgroundColor": "black",
+          "backgroundColor": "transparent",
           "bottom": 0,
           "height": 1334,
           "left": 0,
@@ -2658,7 +2649,30 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           "width": 750,
         }
       }
-    />
+    >
+      <View
+        accessibilityRole="button"
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#212121",
+              "flexBasis": 0,
+              "flexGrow": 1,
+              "flexShrink": 1,
+            },
+          ]
+        }
+      />
+    </View>
     <View
       deviceHeight={null}
       deviceWidth={null}
@@ -6420,19 +6434,10 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
     visible={false}
   >
     <View
-      accessible={true}
-      focusable={true}
       forwardedRef={[Function]}
-      onClick={[Function]}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "backgroundColor": "black",
+          "backgroundColor": "transparent",
           "bottom": 0,
           "height": 1334,
           "left": 0,
@@ -6443,7 +6448,30 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           "width": 750,
         }
       }
-    />
+    >
+      <View
+        accessibilityRole="button"
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#212121",
+              "flexBasis": 0,
+              "flexGrow": 1,
+              "flexShrink": 1,
+            },
+          ]
+        }
+      />
+    </View>
     <View
       deviceHeight={null}
       deviceWidth={null}
@@ -10205,19 +10233,10 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
     visible={false}
   >
     <View
-      accessible={true}
-      focusable={true}
       forwardedRef={[Function]}
-      onClick={[Function]}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "backgroundColor": "black",
+          "backgroundColor": "transparent",
           "bottom": 0,
           "height": 1334,
           "left": 0,
@@ -10228,7 +10247,30 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           "width": 750,
         }
       }
-    />
+    >
+      <View
+        accessibilityRole="button"
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#212121",
+              "flexBasis": 0,
+              "flexGrow": 1,
+              "flexShrink": 1,
+            },
+          ]
+        }
+      />
+    </View>
     <View
       deviceHeight={null}
       deviceWidth={null}
