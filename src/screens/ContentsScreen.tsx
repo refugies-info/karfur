@@ -105,9 +105,7 @@ export const ContentsScreen = ({
   const toggleLanguageModal = () =>
     setLanguageModalVisible(!isLanguageModalVisible);
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
-  const contents = currentLanguageI18nCode
-    ? useSelector(contentsSelector(currentLanguageI18nCode))
-    : [];
+  const contents = useSelector(contentsSelector);
   const {
     tagName,
     tagDarkColor,

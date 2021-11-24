@@ -69,8 +69,7 @@ export const FavorisScreen = ({
 
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const favorites = useSelector(userFavorites);
-  const contents = currentLanguageI18nCode
-  ? useSelector(contentsSelector(currentLanguageI18nCode)) : [];
+  const contents = useSelector(contentsSelector);
   const { t, isRTL } = useTranslationWithRTL();
   const dispatch = useDispatch();
 

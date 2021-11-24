@@ -1,9 +1,11 @@
 import { RootState } from "../reducers";
 import { AvailableLanguageI18nCode } from "../../../types/interface";
 
-export const contentsSelector = (langue: AvailableLanguageI18nCode) => (
+export const contentsSelector = (
   state: RootState
-) => state.contents[langue];
+) => state.user.currentLanguagei18nCode
+    ? state.contents[state.user.currentLanguagei18nCode]
+    : [];
 
 export const mostViewedContentsSelector = (langue: AvailableLanguageI18nCode) => (
   state: RootState

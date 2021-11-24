@@ -15,6 +15,9 @@ import {
   removeUserLocationActionCreator,
   removeHasUserSeenOnboardingActionCreator,
   removeSelectedLanguageActionCreator,
+  removeUserHasNewFavoritesActionCreator,
+  removeUserLocalizedWarningHiddenActionCreator,
+  removeUserAllFavoritesActionCreator
 } from "../../services/redux/User/user.actions";
 import { ProfilDetailButton } from "../../components/Profil/ProfilDetailButton";
 import { HeaderAnimated } from "../../components/HeaderAnimated";
@@ -104,6 +107,9 @@ export const ProfilScreen = ({
     Analytics.resetAnalyticsData().then(() => {
       dispatch(removeSelectedLanguageActionCreator());
       deleteUserData();
+      dispatch(removeUserHasNewFavoritesActionCreator());
+      dispatch(removeUserLocalizedWarningHiddenActionCreator());
+      dispatch(removeUserAllFavoritesActionCreator());
       dispatch(removeHasUserSeenOnboardingActionCreator());
     })
   };
