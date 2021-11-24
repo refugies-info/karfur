@@ -217,6 +217,7 @@ export const ProfilScreen = ({
             isFirst={false}
             isLast={true}
             isRTL={isRTL}
+            onPress={() => navigation.navigate("LegalNoticeScreen")}
           />
         </ProfilButtonsContainer>
         <DeleteDataContainer

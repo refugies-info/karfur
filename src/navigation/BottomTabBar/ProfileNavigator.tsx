@@ -7,6 +7,7 @@ import { AgeProfilScreen } from "../../screens/ProfilTab/AgeProfilScreen";
 import { CityProfilScreen } from "../../screens/ProfilTab/CityProfilScreen";
 import { FrenchLevelProfilScreen } from "../../screens/ProfilTab/FrenchLevelProfilScreen";
 import { PrivacyPolicyScreen } from "../../screens/ProfilTab/PrivacyPolicyScreen";
+import { LegalNoticeScreen } from "../../screens/ProfilTab/LegalNoticeScreen";
 import { AboutScreen } from "../../screens/ProfilTab/AboutScreen";
 
 const ProfileStack = createStackNavigator<ProfileParamList>();
@@ -36,6 +37,10 @@ export const ProfileNavigator = () => (
     <ProfileStack.Screen
       name="PrivacyPolicyScreen"
       component={PrivacyPolicyScreen}
+    />
+    <ProfileStack.Screen
+      name="LegalNoticeScreen"
+      component={LegalNoticeScreen}
     />
     <ProfileStack.Screen
       name="AboutScreen"

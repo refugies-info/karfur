@@ -37,9 +37,9 @@ const Title = styled(TextBigBold)`
 `;
 const ListItem = styled(TextSmallNormal)`
   margin-right: ${(props: { isRTL: boolean }) =>
-  !props.isRTL ? theme.margin : 0}px;
-  margin-left: ${(props: { isRTL: boolean }) =>
   props.isRTL ? theme.margin : 0}px;
+  margin-left: ${(props: { isRTL: boolean }) =>
+  !props.isRTL ? theme.margin : 0}px;
 `;
 const Link = styled(TextSmallBold)`
   text-decoration: underline;
@@ -284,31 +284,31 @@ export const PrivacyPolicyScreen = ({
 
             <RTLView style={{ alignItems: "flex-start"}}>
               <TextSmallNormal>{"\u2022"}</TextSmallNormal>
-              <ListItem>
+              <ListItem isRTL={isRTL}>
                 Attribue un numéro à chaque installation de l’application (ce numéro ne permet pas d’identifier l’utilisateur)
               </ListItem>
             </RTLView>
             <RTLView style={{ alignItems: "flex-start"}}>
               <TextSmallNormal>{"\u2022"}</TextSmallNormal>
-              <ListItem>
+              <ListItem isRTL={isRTL}>
                 Trace des événements dans l’application
               </ListItem>
             </RTLView>
             <RTLView style={{ alignItems: "flex-start"}}>
               <TextSmallNormal>{"\u2022"}</TextSmallNormal>
-              <ListItem>
+              <ListItem isRTL={isRTL}>
                 Agrège ces événements pour nous fournir des statistiques servant à améliorer l’application Réfugiés.info
               </ListItem>
             </RTLView>
             <RTLView style={{ alignItems: "flex-start"}}>
               <TextSmallNormal>{"\u2022"}</TextSmallNormal>
-              <ListItem>
+              <ListItem isRTL={isRTL}>
                 Garde tes données 26 mois
               </ListItem>
             </RTLView>
             <RTLView style={{ alignItems: "flex-start"}}>
               <TextSmallNormal>{"\u2022"}</TextSmallNormal>
-              <ListItem>
+              <ListItem isRTL={isRTL}>
                 Politique de données personnelles :{" "}
                 <Link accessibilityRole="link" onPress={() => { Linking.openURL("https://firebase.google.com/support/privacy") }}>ici</Link>
               </ListItem>
@@ -330,25 +330,25 @@ export const PrivacyPolicyScreen = ({
             </RTLView>
             <RTLView style={{ alignItems: "flex-start"}}>
               <TextSmallNormal>{"\u2022"}</TextSmallNormal>
-              <ListItem>
+              <ListItem isRTL={isRTL}>
                 Trace des événements dans l’application
               </ListItem>
             </RTLView>
             <RTLView style={{ alignItems: "flex-start"}}>
               <TextSmallNormal>{"\u2022"}</TextSmallNormal>
-              <ListItem>
+              <ListItem isRTL={isRTL}>
                 Agrège ces événements pour nous fournir des statistiques servant à améliorer l’application Réfugiés.info
               </ListItem>
             </RTLView>
             <RTLView style={{ alignItems: "flex-start"}}>
               <TextSmallNormal>{"\u2022"}</TextSmallNormal>
-              <ListItem>
+              <ListItem isRTL={isRTL}>
                 Garde tes données 26 mois
               </ListItem>
             </RTLView>
             <RTLView style={{ alignItems: "flex-start"}}>
               <TextSmallNormal>{"\u2022"}</TextSmallNormal>
-              <ListItem>
+              <ListItem isRTL={isRTL}>
                 Politique de données personnelles :{" "}
                 <Link accessibilityRole="link" onPress={() => { Linking.openURL("https://support.google.com/analytics/answer/6004245") }}>ici</Link>
               </ListItem>
