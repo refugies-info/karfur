@@ -4,6 +4,7 @@ import Alice from "../theme/images/aboutUs/team/alice.png";
 import Andressa from "../theme/images/aboutUs/team/andressa.png";
 import Caroline from "../theme/images/aboutUs/team/caroline.png";
 import Claudia from "../theme/images/aboutUs/team/claudia.png";
+import Claire from "../theme/images/aboutUs/team/claire.png";
 import Hugo from "../theme/images/aboutUs/team/hugo.png";
 import Margot from "../theme/images/aboutUs/team/margot.png";
 import Matthieu from "../theme/images/aboutUs/team/matthieu.png";
@@ -170,6 +171,11 @@ export const membres = [
     name: "Agathe Kieny",
     roleName: "Lead développeuse",
     photo: Agathe,
+  },
+  {
+    name: "Claire Listre",
+    roleName: "Responsable de la communication",
+    photo: Claire,
   },
   {
     name: "Claudia Meleghi",
