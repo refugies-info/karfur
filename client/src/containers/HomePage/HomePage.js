@@ -417,11 +417,11 @@ export class HomePage extends Component {
             </section>
             <section
               id="deployer"
-              style={{
-                backgroundImage: `url(${assetsOnServer.homepage.CarteDeploiement})`,
-              }}
             >
-              <div className="section-container half-width left-side">
+                <div
+                  className="section-container half-width left-side"
+                  style={{zIndex: 2, position: "relative"}}
+                >
                 <div className="section-body">
                   <h2>{t("Homepage.Déployez")}</h2>
                   <p className="texte-normal">
@@ -462,6 +462,12 @@ export class HomePage extends Component {
                   </ButtonContainerRow>
                 </footer>
               </div>
+              <div
+                class="deployer_map"
+                style={{
+                  backgroundImage: `url(${assetsOnServer.homepage.CarteDeploiement})`,
+                }}
+              ></div>
             </section>
             <section id="smartphone">
               <img src={iphone} />
