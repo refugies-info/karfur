@@ -31,7 +31,8 @@ export default {
     },
     googleServicesFile: "./src/utils/firebase/GoogleService-Info.plist",
     associatedDomains: [
-      "applinks:refugies.info"
+      "applinks:refugies.info",
+      "applinks:www.refugies.info"
     ]
   },
   android: {
@@ -61,7 +62,11 @@ export default {
         data: [
           {
             scheme: "https",
-            host: "*.refugies.info",
+            host: "www.refugies.info",
+          },
+          {
+            scheme: "https",
+            host: "refugies.info",
           },
         ],
         category: [
