@@ -10,8 +10,8 @@ let Config = {
 };
 
 // PROD VARIABLES
-if (Updates.releaseChannel === "staging" || Updates.releaseChannel === "production") {
-  Config.envName = Updates.releaseChannel === "staging" ? "STAGING" : "PROD";
+if (/* Updates.releaseChannel === "staging" ||  */Updates.releaseChannel === "production") {
+  Config.envName =/*  Updates.releaseChannel === "staging" ? "STAGING" : */ "PROD";
   Config.siteUrl = "https://refugies.info";
   Config.dbUrl = "https://api.new.refugies.info";
   Config.debugModeFirebase = false;
