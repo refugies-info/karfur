@@ -13,7 +13,7 @@ export const getEnvironment = () => {
   }
   return {
     envName: process.env.ENV_NAME,
-    dbUrl: process.env.API_URL,
+    dbUrl: "https://api.new.refugies.info",
     siteSecret: process.env.SITE_SECRET,
     siteUrl: process.env.SITE_URL,
     debugModeFirebase: process.env.DEBUG_MODE_FIREBASE,
