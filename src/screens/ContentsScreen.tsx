@@ -107,12 +107,8 @@ export const ContentsScreen = ({
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const contents = useSelector(contentsSelector);
   const {
-    tagName,
-    tagDarkColor,
-    tagVeryLightColor,
-    tagLightColor,
+    colors,
     needId,
-    iconName,
     backScreen
   } = route.params;
 
@@ -205,7 +201,7 @@ export const ContentsScreen = ({
   if (isLoading) {
     return (
       <View>
-        <View style={{ backgroundColor: tagDarkColor }}>
+        <View style={{ backgroundColor: colors.tagDarkColor }}>
           <HeaderWithBackForWrapper
             onLongPressSwitchLanguage={toggleLanguageModal}
             navigation={navigation}
@@ -213,12 +209,12 @@ export const ContentsScreen = ({
           />
         </View>
         <ContentsHeaderAnimated
-          tagDarkColor={tagDarkColor}
+          tagDarkColor={colors.tagDarkColor}
           headerBottomRadius={headerBottomRadius}
           headerPaddingTop={headerPaddingTop}
-          tagName={tagName}
+          tagName={colors.tagName}
           headerFontSize={headerFontSize}
-          iconName={iconName}
+          iconName={colors.iconName}
           showSimplifiedHeader={showSimplifiedHeader}
           navigation={navigation}
           needName={needName}
@@ -268,7 +264,7 @@ export const ContentsScreen = ({
 
   return (
     <View style={{ display: "flex", flex: 1 }}>
-      <View style={{ backgroundColor: tagDarkColor }}>
+      <View style={{ backgroundColor: colors.tagDarkColor }}>
         <HeaderWithBackForWrapper
           onLongPressSwitchLanguage={toggleLanguageModal}
           navigation={navigation}
@@ -276,12 +272,12 @@ export const ContentsScreen = ({
         />
       </View>
       <ContentsHeaderAnimated
-        tagDarkColor={tagDarkColor}
+        tagDarkColor={colors.tagDarkColor}
         headerBottomRadius={headerBottomRadius}
         headerPaddingTop={headerPaddingTop}
-        tagName={tagName}
+        tagName={colors.tagName}
         headerFontSize={headerFontSize}
-        iconName={iconName}
+        iconName={colors.iconName}
         showSimplifiedHeader={showSimplifiedHeader}
         navigation={navigation}
         needName={needName}
@@ -306,16 +302,12 @@ export const ContentsScreen = ({
             <ContentSummary
               key={content._id}
               navigation={navigation}
-              tagDarkColor={tagDarkColor}
-              tagVeryLightColor={tagVeryLightColor}
-              tagName={tagName}
-              tagLightColor={tagLightColor}
+              themeTag={colors}
               contentId={content._id}
               titreInfo={content.titreInformatif}
               titreMarque={content.titreMarque}
               typeContenu={content.typeContenu}
               sponsorUrl={content.sponsorUrl}
-              iconName={iconName}
               style={{marginBottom: theme.margin * 3}}
             />
           );
@@ -323,7 +315,7 @@ export const ContentsScreen = ({
 
         {sortedNonTranslatedContents.length > 0 && (
           <View>
-            <SectionHeaderText color={tagDarkColor}>
+            <SectionHeaderText color={colors.tagDarkColor}>
               {t("ContentsScreen.fiches non trad", "Fiches non traduites")}
             </SectionHeaderText>
             {sortedNonTranslatedContents.map((content) => {
@@ -331,16 +323,12 @@ export const ContentsScreen = ({
                 <ContentSummary
                   key={content._id}
                   navigation={navigation}
-                  tagDarkColor={tagDarkColor}
-                  tagVeryLightColor={tagVeryLightColor}
-                  tagName={tagName}
-                  tagLightColor={tagLightColor}
+                  themeTag={colors}
                   contentId={content._id}
                   titreInfo={content.titreInformatif}
                   titreMarque={content.titreMarque}
                   typeContenu={content.typeContenu}
                   sponsorUrl={content.sponsorUrl}
-                  iconName={iconName}
                   style={{marginBottom: theme.margin * 3}}
                 />
               );

@@ -1,6 +1,4 @@
-import { DispositifContent, SimplifiedContent } from "../types/interface";
-import { tags } from "../data/tagData";
-import { theme } from "../theme";
+import { DispositifContent } from "../types/interface"
 
 const sectionsDispositif = [
   { title: "C'est où ?", filters: ["Zone d'action"] },
@@ -128,30 +126,3 @@ export const getDescription = (infocard: DispositifContent, t: any) => {
     return t("Content.Titre de séjour", "Le titre de séjour");
   return null;
 };
-
-/**
- * Return colors of the ContentSummary card
- * @param content
- */
-export const getCardColors = (content: SimplifiedContent) => {
-  const defaultColors = {
-    tagDarkColor: theme.colors.black,
-    tagVeryLightColor: theme.colors.white,
-    tagName: "",
-    tagLightColor: theme.colors.white,
-    iconName: ""
-  };
-
-  const primaryTagName = content.tags.length > 0 ? content.tags[0] : null;
-  if (!primaryTagName) return defaultColors;
-  const currentTag = tags.find(t => primaryTagName.short === t.short);
-  if (!currentTag) return defaultColors;
-
-  return {
-    tagDarkColor: currentTag.darkColor,
-    tagVeryLightColor: currentTag.veryLightColor,
-    tagName: currentTag.name,
-    tagLightColor: currentTag.lightColor,
-    iconName: currentTag.icon
-  }
-}

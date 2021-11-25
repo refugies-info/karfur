@@ -28,7 +28,7 @@ import { CustomButton } from "../../components/CustomButton"
 import { ContentSummary } from "../../components/Contents/ContentSummary";
 import { ConfirmationModal } from "../../components/ConfirmationModal";
 import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal"
-import { getCardColors } from "../../libs/content";
+import { getThemeTag } from "../../libs/getThemeTag";
 import { theme } from "../../theme"
 import EmptyIllu from "../../theme/images/favoris/illu-empty-fav.png"
 
@@ -178,7 +178,8 @@ export const FavorisScreen = ({
           <Title>{t("FavorisScreen.Mes fiches", "Mes fiches")}</Title>
           <View style={{ marginHorizontal: -theme.margin * 3 }}>
             {contentsToDisplay.map((content: SimplifiedContent) => {
-              const colors = getCardColors(content);
+              const tagName = content.tags.length > 0 ? content.tags[0].name : "";
+              const colors = getThemeTag(tagName);
               return (
                 <CardItem key={content._id}>
                   <Swipeable
@@ -193,11 +194,7 @@ export const FavorisScreen = ({
                   >
                     <ContentSummary
                       navigation={navigation}
-                      tagDarkColor={colors.tagDarkColor}
-                      tagVeryLightColor={colors.tagVeryLightColor}
-                      tagName={colors.tagName}
-                      tagLightColor={colors.tagLightColor}
-                      iconName={colors.iconName}
+                      themeTag={colors}
                       contentId={content._id}
                       titreInfo={content.titreInformatif}
                       titreMarque={content.titreMarque}

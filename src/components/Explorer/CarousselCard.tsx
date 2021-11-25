@@ -82,11 +82,13 @@ export const CarousselCard = (props: Props) => {
           view: "carousel",
         });
         props.navigation.navigate("NeedsScreen", {
-          tagName: props.tag.name,
-          tagDarkColor: props.tag.darkColor,
-          tagVeryLightColor: props.tag.color30,
-          tagLightColor: props.tag.lightColor,
-          iconName: props.tag.icon,
+          colors: {
+            tagName: props.tag.name,
+            tagDarkColor: props.tag.darkColor,
+            tagVeryLightColor: props.tag.color30,
+            tagLightColor: props.tag.lightColor,
+            iconName: props.tag.icon,
+          }
         });
         return;
       }}

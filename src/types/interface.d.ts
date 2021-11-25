@@ -35,6 +35,14 @@ export interface SimplifiedContent {
   avancement: number | Record<AvailableLanguageI18nCode, string>;
 }
 
+export interface ThemeTag {
+  tagName: string;
+  iconName: string;
+  tagDarkColor: string;
+  tagLightColor: string;
+  tagVeryLightColor: string;
+}
+
 export type AvailableLanguageI18nCode =
   | "fr"
   | "en"

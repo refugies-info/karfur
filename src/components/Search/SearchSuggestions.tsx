@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { ScrollView, View } from "react-native";
 import { theme } from "../../theme";
 import { SimplifiedContent } from "../../types/interface";
-import { getCardColors } from "../../libs/content";
+import { getThemeTag } from "../../libs/getThemeTag";
 import { sortByOrder } from "../../libs";
 import { ContentSummary } from "../Contents/ContentSummary";
 import { TagButton } from "../Explorer/TagButton";
@@ -43,16 +43,13 @@ const SearchSuggestions = (props: Props) => {
         </ListSubtitle>
 
         {(props.contents || []).map((content: SimplifiedContent) => {
-          const colors = getCardColors(content)
+          const tagName = content.tags.length > 0 ? content.tags[0].name : "";
+          const colors = getThemeTag(tagName)
           return (
             <ContentSummary
               key={content._id}
               navigation={props.navigation}
-              tagDarkColor={colors.tagDarkColor}
-              tagVeryLightColor={colors.tagVeryLightColor}
-              tagName={colors.tagName}
-              tagLightColor={colors.tagLightColor}
-              iconName={colors.iconName}
+              themeTag={colors}
               contentId={content._id}
               titreInfo={content.titreInformatif}
               titreMarque={content.titreMarque}
@@ -89,11 +86,13 @@ const SearchSuggestions = (props: Props) => {
               inline={true}
               onPress={() => {
                 props.navigation.navigate("NeedsScreen", {
-                  tagName: tag.name,
-                  tagDarkColor: tag.darkColor,
-                  tagVeryLightColor: tag.color30,
-                  tagLightColor: tag.lightColor,
-                  iconName: tag.icon,
+                  colors: {
+                    tagName: tag.name,
+                    tagDarkColor: tag.darkColor,
+                    tagVeryLightColor: tag.color30,
+                    tagLightColor: tag.lightColor,
+                    iconName: tag.icon,
+                  },
                   backScreen: "Search"
                 });
                 return;

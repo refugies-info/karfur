@@ -127,11 +127,7 @@ export const NeedsScreen = ({
   const isLoading = isLoadingContents || isLoadingNeeds;
 
   const {
-    tagName,
-    tagDarkColor,
-    tagVeryLightColor,
-    tagLightColor,
-    iconName,
+    colors,
     backScreen
   } = route.params;
 
@@ -144,13 +140,13 @@ export const NeedsScreen = ({
   const needsToDisplay = computeNeedsToDisplay(
     allNeeds,
     groupedContents,
-    tagName
+    colors.tagName
   );
 
   if (isLoading) {
     return (
       <View>
-        <View style={{ backgroundColor: tagDarkColor }}>
+        <View style={{ backgroundColor: colors.tagDarkColor }}>
           <HeaderWithBackForWrapper
             onLongPressSwitchLanguage={toggleLanguageModal}
             navigation={navigation}
@@ -158,13 +154,13 @@ export const NeedsScreen = ({
           />
         </View>
         <NeedsHeaderAnimated
-          tagDarkColor={tagDarkColor}
+          tagDarkColor={colors.tagDarkColor}
           headerBottomRadius={headerBottomRadius}
           headerHeight={headerHeight}
           headerPaddingTop={headerPaddingTop}
-          tagName={tagName}
+          tagName={colors.tagName}
           headerFontSize={headerFontSize}
-          iconName={iconName}
+          iconName={colors.iconName}
           showSimplifiedHeader={showSimplifiedHeader}
         />
 
@@ -210,7 +206,7 @@ export const NeedsScreen = ({
   if (needsToDisplay.length === 0) {
     return (
       <View style={{ display: "flex", flex: 1 }}>
-        <View style={{ backgroundColor: tagDarkColor }}>
+        <View style={{ backgroundColor: colors.tagDarkColor }}>
           <HeaderWithBackForWrapper
             onLongPressSwitchLanguage={toggleLanguageModal}
             navigation={navigation}
@@ -218,13 +214,13 @@ export const NeedsScreen = ({
           />
         </View>
         <NeedsHeaderAnimated
-          tagDarkColor={tagDarkColor}
+          tagDarkColor={colors.tagDarkColor}
           headerBottomRadius={headerBottomRadius}
           headerHeight={headerHeight}
           headerPaddingTop={headerPaddingTop}
-          tagName={tagName}
+          tagName={colors.tagName}
           headerFontSize={headerFontSize}
-          iconName={iconName}
+          iconName={colors.iconName}
           showSimplifiedHeader={showSimplifiedHeader}
         />
         <ErrorScreen
@@ -242,7 +238,7 @@ export const NeedsScreen = ({
 
   return (
     <View style={{ display: "flex", flex: 1 }}>
-      <View style={{ backgroundColor: tagDarkColor }}>
+      <View style={{ backgroundColor: colors.tagDarkColor }}>
         <HeaderWithBackForWrapper
           onLongPressSwitchLanguage={toggleLanguageModal}
           navigation={navigation}
@@ -250,13 +246,13 @@ export const NeedsScreen = ({
         />
       </View>
       <NeedsHeaderAnimated
-        tagDarkColor={tagDarkColor}
+        tagDarkColor={colors.tagDarkColor}
         headerBottomRadius={headerBottomRadius}
         headerHeight={headerHeight}
         headerPaddingTop={headerPaddingTop}
-        tagName={tagName}
+        tagName={colors.tagName}
         headerFontSize={headerFontSize}
-        iconName={iconName}
+        iconName={colors.iconName}
         showSimplifiedHeader={showSimplifiedHeader}
       />
 
@@ -287,11 +283,7 @@ export const NeedsScreen = ({
               needTextFr={need.fr.text}
               nbContents={need.nbContents}
               navigation={navigation}
-              tagName={tagName}
-              tagDarkColor={tagDarkColor}
-              tagVeryLightColor={tagVeryLightColor}
-              tagLightColor={tagLightColor}
-              iconName={iconName}
+              themeTag={colors}
               style={{ marginBottom: theme.margin * 3 }}
             />
           )

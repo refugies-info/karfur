@@ -2,7 +2,7 @@ import React from "react";
 import { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
-import { ObjectId } from "../../types/interface";
+import { ThemeTag, ObjectId } from "../../types/interface";
 import { TextSmallBold, TextSmallNormal, TextVerySmallNormal } from "../StyledText";
 import { RTLView } from "../BasicComponents";
 import { Image } from "react-native";
@@ -77,16 +77,12 @@ const ActionButton = styled.TouchableOpacity`
 
 interface Props {
   navigation: any;
-  tagDarkColor: string;
-  tagVeryLightColor: string;
-  tagName: string;
-  tagLightColor: string;
   contentId: ObjectId;
+  themeTag: ThemeTag;
   titreInfo?: string;
   titreMarque?: string | undefined;
   typeContenu: "dispositif" | "demarche";
   sponsorUrl: string | null;
-  iconName: string;
   searchItem?: any;
   searchLanguageMatch?: string;
   isTextNotBold?: boolean;
@@ -129,11 +125,7 @@ export const ContentSummary = (props: Props) => {
             screen: "ContentScreen",
             params: {
               contentId: props.contentId,
-              tagDarkColor: props.tagDarkColor,
-              tagVeryLightColor: props.tagVeryLightColor,
-              tagName: props.tagName,
-              tagLightColor: props.tagLightColor,
-              iconName: props.iconName,
+              colors: props.themeTag,
               backScreen: props.backScreen
             }
           });
@@ -155,7 +147,7 @@ export const ContentSummary = (props: Props) => {
           )}
 
           <TitlesContainer isRTL={isRTL}>
-            <TitreInfoText color={props.tagDarkColor} isDispo={true}>
+            <TitreInfoText color={props.themeTag.tagDarkColor} isDispo={true}>
               {props.searchItem ?
                 <Highlight
                   hit={props.searchItem}
@@ -167,7 +159,7 @@ export const ContentSummary = (props: Props) => {
               }
             </TitreInfoText>
             {(!!props.titreMarque || !!props?.searchItem[`titreMarque_${props.searchLanguageMatch||"fr"}`]) && (
-              <TitreMarqueText color={props.tagDarkColor}>
+              <TitreMarqueText color={props.themeTag.tagDarkColor}>
                  {props.searchItem ?
                     <Highlight
                       hit={props.searchItem}
@@ -184,7 +176,7 @@ export const ContentSummary = (props: Props) => {
         </TitleContainer>
 
         {props.showAbstract &&
-          <DescInfoText color={props.tagDarkColor}>
+          <DescInfoText color={props.themeTag.tagDarkColor}>
             <Highlight
               hit={props.searchItem}
               attribute={`abstract_${props.searchLanguageMatch||"fr"}`}
@@ -200,7 +192,7 @@ export const ContentSummary = (props: Props) => {
   return (
     <ContentContainer
       isDispo={false}
-      color={props.tagDarkColor}
+      color={props.themeTag.tagDarkColor}
       style={props.style || {}}
       activeOpacity={0.8}
       accessibilityRole="button"
@@ -209,27 +201,23 @@ export const ContentSummary = (props: Props) => {
           screen: "ContentScreen",
           params: {
             contentId: props.contentId,
-            tagDarkColor: props.tagDarkColor,
-            tagVeryLightColor: props.tagVeryLightColor,
-            tagName: props.tagName,
-            tagLightColor: props.tagLightColor,
-            iconName: props.iconName,
+            colors: props.themeTag,
             backScreen: props.backScreen
           }
         })
       }}
     >
       <TitleContainer>
-        <ImageContainer lightColor={props.tagVeryLightColor} isRTL={isRTL}>
+        <ImageContainer lightColor={props.themeTag.tagVeryLightColor} isRTL={isRTL}>
           <DemarcheImage
-            name={props.iconName}
-            stroke={props.tagDarkColor}
+            name={props.themeTag.iconName}
+            stroke={props.themeTag.tagDarkColor}
             contentId={props.contentId}
           />
         </ImageContainer>
 
         <TitlesContainer isRTL={isRTL}>
-          <TitreInfoText color={props.tagDarkColor}>
+          <TitreInfoText color={props.themeTag.tagDarkColor}>
             {props.searchItem ?
               <Highlight
                 hit={props.searchItem}
@@ -245,7 +233,7 @@ export const ContentSummary = (props: Props) => {
       </TitleContainer>
 
       {props.showAbstract &&
-        <DescInfoText color={props.tagDarkColor}>
+        <DescInfoText color={props.themeTag.tagDarkColor}>
           <Highlight
             hit={props.searchItem}
             attribute={`abstract_${props.searchLanguageMatch||"fr"}`}

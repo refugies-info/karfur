@@ -4,8 +4,7 @@ import { NeedsSummary } from "../Needs/NeedsSummary";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { TagButton } from "../Explorer/TagButton";
-import { theme } from "../../theme"
-import { tags } from "../../data/tagData";
+import { getThemeTag } from "../../libs/getThemeTag"
 
 interface Props {
   navigation: any;
@@ -15,41 +14,16 @@ interface Props {
   nbContents?: number|null;
 }
 
-const getColors = (tagName: string) => {
-  const defaultColors = {
-    tagDarkColor: theme.colors.black,
-    tagVeryLightColor: theme.colors.white,
-    tagName: "",
-    tagLightColor: theme.colors.white,
-    iconName: ""
-  };
-
-  const currentTag = tags.find(t => tagName === t.name);
-  if (!currentTag) return defaultColors;
-
-  return {
-    tagDarkColor: currentTag.darkColor,
-    tagVeryLightColor: currentTag.veryLightColor,
-    tagName: currentTag.name,
-    tagLightColor: currentTag.lightColor,
-    iconName: currentTag.icon
-  }
-}
-
 export const SearchContentSummary = (props: Props) => {
   if (props.item.typeContenu === "besoin") {
-    const colors = getColors(props.item.tagName);
+    const colors = getThemeTag(props.item.tagName);
     return ( // BESOIN
       <NeedsSummary
         id={props.item.objectID}
         needTextFr={props.item.title_fr}
         searchLanguageMatch={props.languageMatch}
         navigation={props.navigation}
-        tagName={props.item.tagName}
-        tagDarkColor={colors.tagDarkColor}
-        tagVeryLightColor={colors.tagVeryLightColor}
-        tagLightColor={colors.tagLightColor}
-        iconName={colors.iconName}
+        themeTag={colors}
         searchItem={props.item}
         nbContents={props.nbContents || 0}
         backScreen="Search"
@@ -59,15 +33,11 @@ export const SearchContentSummary = (props: Props) => {
     props.item.typeContenu === "dispositif" || props.item.typeContenu === "demarche"
   ) { // DISPOSITIF & DEMARCHE
     const primaryTagName = props.item.tags.length > 0 ? props.item.tags[0] : null;
-    const colors = getColors(primaryTagName);
+    const colors = getThemeTag(primaryTagName);
     return (
       <ContentSummary
         navigation={props.navigation}
-        tagDarkColor={colors.tagDarkColor}
-        tagVeryLightColor={colors.tagVeryLightColor}
-        tagName={colors.tagName}
-        tagLightColor={colors.tagLightColor}
-        iconName={colors.iconName}
+        themeTag={colors}
         contentId={props.item.objectID}
         searchLanguageMatch={props.languageMatch}
         typeContenu={props.item.typeContenu}
@@ -79,7 +49,7 @@ export const SearchContentSummary = (props: Props) => {
       />
     );
   }
-  const colors = getColors(props.item.name_fr);
+  const colors = getThemeTag(props.item.name_fr);
   return ( // THEME
     <TagButton
       key={props.item.objectID}
@@ -96,11 +66,7 @@ export const SearchContentSummary = (props: Props) => {
         props.navigation.navigate("Explorer", {
           screen: "NeedsScreen",
           params: {
-            tagName: props.item.name_fr,
-            tagDarkColor: colors.tagDarkColor,
-            tagVeryLightColor: colors.tagVeryLightColor,
-            tagLightColor: colors.tagLightColor,
-            iconName: colors.iconName,
+            colors: colors,
             backScreen: "Search"
           }
         });

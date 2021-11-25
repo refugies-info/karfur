@@ -1,4 +1,4 @@
-import { ObjectId } from "./src/types/interface";
+import { ThemeTag, ObjectId } from "./src/types/interface";
 
 /**
  * Learn more about using TypeScript with React Navigation:
@@ -24,29 +24,17 @@ export type BottomTabParamList = {
 export type ExplorerParamList = {
   ExplorerScreen: undefined;
   ContentsScreen: {
-    tagName: string;
-    tagDarkColor: string;
-    tagVeryLightColor: string;
-    tagLightColor: string;
+    colors: ThemeTag;
     needId: ObjectId;
-    iconName: string;
     backScreen?: string
   };
   ContentScreen: {
     contentId: ObjectId;
-    tagDarkColor: string;
-    tagVeryLightColor: string;
-    tagName: string;
-    tagLightColor: string;
-    iconName: string;
+    colors: ThemeTag;
     backScreen?: string
   };
   NeedsScreen: {
-    tagDarkColor: string;
-    tagVeryLightColor: string;
-    tagName: string;
-    tagLightColor: string;
-    iconName: string;
+    colors: ThemeTag;
     backScreen?: string
   };
 };

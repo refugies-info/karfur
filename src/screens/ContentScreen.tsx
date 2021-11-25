@@ -64,6 +64,7 @@ import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
 import { updateNbVuesOrFavoritesOnContent } from "../utils/API";
 import { registerBackButton } from "../libs/backButton";
 import { Trans } from "react-i18next";
+import { getThemeTag, defaultColors } from "../libs/getThemeTag";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -232,11 +233,17 @@ export const ContentScreen = ({
   navigation,
   route,
 }: ContentScreenType) => {
+  const {
+    contentId,
+    backScreen,
+  } = route.params;
+
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
   );
   const [nbLinesTitreInfo, setNbLinesTitreInfo] = React.useState(2);
   const [nbLinesTitreMarque, setNbLinesTitreMarque] = React.useState(1);
+  const [themeTag, setThemeTag] = React.useState(route.params.colors || defaultColors);
 
   const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
   const [
@@ -263,15 +270,6 @@ export const ContentScreen = ({
 
   const selectedLanguage = useSelector(selectedI18nCodeSelector);
   const currentLanguage = useSelector(currentI18nCodeSelector);
-  const {
-    contentId,
-    tagDarkColor,
-    tagVeryLightColor,
-    tagName,
-    tagLightColor,
-    iconName,
-    backScreen,
-  } = route.params;
 
   const windowWidth = useWindowDimensions().width;
   const isLoading = useSelector(
@@ -307,7 +305,7 @@ export const ContentScreen = ({
 
   const boxInterpolation = animatedController.interpolate({
     inputRange: [0, 1],
-    outputRange: ["transparent", tagLightColor],
+    outputRange: ["transparent", themeTag.tagLightColor],
   });
 
   // Load content
@@ -351,6 +349,14 @@ export const ContentScreen = ({
           nbVuesMobile,
         },
       });
+
+      // Load colors if not available
+      if (!themeTag) {
+        const primaryTagName = selectedContent.tags.length > 0
+          ? selectedContent.tags[0].name
+          : "";
+        setThemeTag(getThemeTag(primaryTagName));
+      }
     }
   }, [selectedContent]);
 
@@ -582,7 +588,7 @@ export const ContentScreen = ({
       >
         {
           <>
-            <HeaderImage tagName={tagName} height={headerImageHeight} />
+            <HeaderImage tagName={themeTag.tagName} height={headerImageHeight} />
             <HeaderImageContainer height={headerImageHeight}>
               <TitlesContainer width={windowWidth - 2 * 24} isRTL={isRTL}>
                 <TitreInfoText
@@ -607,7 +613,7 @@ export const ContentScreen = ({
               sponsorName={sponsor.nom}
               sponsorPictureUrl={sponsorPictureUrl}
               typeContenu={selectedContent.typeContenu}
-              iconName={iconName}
+              iconName={themeTag.iconName}
               contentId={selectedContent._id}
             />
           </>
@@ -626,14 +632,14 @@ export const ContentScreen = ({
                   content={selectedContent.contenu[1].children.filter(
                     (element) => element.type === "card"
                   )}
-                  color={tagDarkColor}
+                  color={themeTag.tagDarkColor}
                   typeContenu={selectedContent.typeContenu}
                 />
               );
             if (index === 0 && selectedContent.contenu[0].content) {
               return (
                 <View key={index}>
-                  <HeaderText textColor={tagDarkColor}>
+                  <HeaderText textColor={themeTag.tagDarkColor}>
                     {t("Content." + header, header)}
                   </HeaderText>
                   <View style={{ marginHorizontal: theme.margin * 3 }}>
@@ -648,7 +654,7 @@ export const ContentScreen = ({
             if (index === 1) {
               return (
                 <View key={index}>
-                  <HeaderText textColor={tagDarkColor}>
+                  <HeaderText textColor={themeTag.tagDarkColor}>
                     {t("Content." + header, header)}
                   </HeaderText>
                 </View>
@@ -657,7 +663,7 @@ export const ContentScreen = ({
 
             return (
               <View key={index}>
-                <HeaderText textColor={tagDarkColor}>
+                <HeaderText textColor={themeTag.tagDarkColor}>
                   {t("Content." + header, header)}
                 </HeaderText>
                 {selectedContent &&
@@ -690,8 +696,8 @@ export const ContentScreen = ({
                             }
                             currentLanguage={currentLanguage}
                             windowWidth={windowWidth}
-                            darkColor={tagDarkColor}
-                            lightColor={tagVeryLightColor}
+                            darkColor={themeTag.tagDarkColor}
+                            lightColor={themeTag.tagVeryLightColor}
                             isContentTranslated={
                               isContentTranslatedInCurrentLanguage
                             }
@@ -720,7 +726,7 @@ export const ContentScreen = ({
                 i18nKey="Content.Voir le site"
                 onPress={handleClick}
                 defaultText="Voir le site"
-                backgroundColor={tagDarkColor}
+                backgroundColor={themeTag.tagDarkColor}
                 iconName="external-link-outline"
                 accessibilityLabel={t("Content.Voir le site_accessibilityLabel")}
               />
@@ -729,13 +735,13 @@ export const ContentScreen = ({
 
           {!!map && map.markers.length > 0 && (
             <>
-              <HeaderText key={1} textColor={tagDarkColor}>
+              <HeaderText key={1} textColor={themeTag.tagDarkColor}>
                 {t(
                   "Content.Trouver un interlocuteur",
                   "Trouver un interlocuteur"
                 )}
               </HeaderText>
-              <MiniMap map={map} markersColor={tagDarkColor}>
+              <MiniMap map={map} markersColor={themeTag.tagDarkColor}>
                 <CustomButton
                   textColor={theme.colors.black}
                   i18nKey="Content.Voir la carte"
@@ -866,7 +872,7 @@ export const ContentScreen = ({
               />
             </FixSafeAreaView>
           </ModalContainer>
-          <Map map={map} markersColor={tagDarkColor} />
+          <Map map={map} markersColor={themeTag.tagDarkColor} />
         </Modal>
       </Portal>
     </View>
