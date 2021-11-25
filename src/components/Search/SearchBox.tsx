@@ -73,7 +73,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
           ref={input}
           onChangeText={(value: string) => refine(value)}
           value={currentRefinement}
-          placeholder={t("SearchScreeen.Rechercher", "Rechercher")}
+          placeholder={t("SearchScreen.Rechercher", "Rechercher")}
           placeholderTextColor={theme.colors.darkGrey}
           isRTL={isRTL}
           testID="test-city-search"

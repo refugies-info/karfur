@@ -11,17 +11,32 @@
     "help_2": "This is to show you the formalities and activities for your age group.",
     "help_3": "This is to show you the courses according to your level of French.",
     "ville": "Where do you live?",
+    "Ta ville": "Your city",
     "error_geoloc": "Oh no! There's a problem. Please write the name of your town.",
     "position": "Use my location",
     "placeholder": "Example: Paris",
     "age": "How old are you?",
     "niveauFrancais": "What is your level of French?",
-    "end": "The application will show you information that may interest you.",
-    "error_geoloc_acces": "Oh no! There's a problem. Check your phone settings to make sure you have enabled location."
+    "error_geoloc_acces": "Oh no! There's a problem. Check your phone settings to make sure you have enabled location.",
+    "end": "The application is ready. Now you can search for information."
   },
+  "Supprimer": "Delete",
   "Suivant": "Next",
   "Continuer": "Continue",
+  "Partager": "Share",
+  "Aucune connexion internet": "No internet connection!",
   "Ok": "Ok",
+  "ExplorerScreen": {
+    "Tu vois peu de fiches pour ta ville": " You can see {{nbContent}} card, but not many for {{city}}",
+    "Liste": "List",
+    "Galerie": "Images",
+    "Pourquoi": "Why?",
+    "nb fiches": "{{nbContent}} cards",
+    "nationales": "national",
+    "pour ta ville": "for {{city}}",
+    "Réfugiés.info est en cours de développement": "Refugees.info is under development",
+    "Nous ajoutons de nouvelles fiches chaque semaine": "New cards are added every week. Get on a computer and help us write and translate cards!"
+  },
   "tabBar": {
     "Explorer": "Explore",
     "Favoris": "My cards",
@@ -30,7 +45,25 @@
   },
   "Langue app": "Language",
   "Erreur": "Oh no! There's a problem. Please try again.",
-  "ExplorerScreen": { "Liste": "List", "Galerie": "Images" },
+  "Profil": {
+    "Informations sur l'application": "Information on the application",
+    "Qui sommes-nous ?": "Who are we?",
+    "supprimer_data": "Delete my information",
+    "reinit_app": "Delete my information and start again",
+    "Mentions légales": "Legal information",
+    "Langue choisie": "Language",
+    "Ville": "Town",
+    "Âge": "Age",
+    "Niveau de français": "Level of French",
+    "Confidentialité": "What is your data for?",
+    "Français": "French",
+    "Tous les niveaux": "All levels",
+    "Tous les âges": "All ages",
+    "choix langue": "Which language do you prefer?",
+    "Mon profil": "My information",
+    "reinit_app2": "Your information to filter the cards will be deleted. The application will then start again from the start.",
+    "delete_data": "Your information (language, city, age and level of French) will be removed."
+  },
   "Tags": {
     "Français": "French",
     "Logement": "Housing",
@@ -64,9 +97,10 @@
     "26 ans et plus": "26-100 years",
     "Je parle un peu": "I speak a little French",
     "Je parle bien": "I speak French fairly well",
-    "Je parle couramment": "I speak French fluently"
+    "Je parle couramment": "I speak French fluently",
+    "Ne pas filtrer selon mon niveau de français": "See cards for all levels of French",
+    "Ne pas filtrer selon mon âge": "See cards for all ages"
   },
-  "Démarrer": "Start my search",
   "Merci !": "Merci !",
   "Passer l'étape": "Not now",
   "Valider": "Ok",
@@ -75,24 +109,9 @@
   "Toute la France": "All of France",
   "Pour tout âge": "All ages",
   "Pour tout niveau de français": "All levels",
-  "Profil": {
-    "supprimer_data": "Delete my information",
-    "reinit_app": "Delete my information and start again",
-    "Mon profil": "Me",
-    "Langue choisie": "Language",
-    "Ville": "Town",
-    "Âge": "Age",
-    "Niveau de français": "Level of French",
-    "Français": "French",
-    "Tous les niveaux": "All levels",
-    "Tous les âges": "All ages",
-    "reinit_app2": "Your information (language, city, age and level of French) will be deleted and the application will start from the beginning.",
-    "delete_data": "Your information (language, city, age and level of French) will be removed.",
-    "Ne pas filtrer selon mon niveau de français": "See cards for all levels of French",
-    "Ne pas filtrer selon mon âge": "See cards for all ages",
-    "choix langue": "Which language do you prefer?"
-  },
   "Content": {
+    "favoris ajouté": "Add « <1> my cards </1> »",
+    "favoris supprimé": "Deleted from \"My cards\".",
     "C'est quoi ?": "What is it?",
     "Pourquoi c'est intéressant ?": "Why is this interesting?",
     "Comment je m'engage ?": "How do I get involved?",
@@ -133,8 +152,23 @@
     "Email de contact": "Contact email",
     "Numéro de téléphone": "Phone number",
     "Informations pratiques": "Practical information",
-    "Non renseigné": "Not known",
-    "Voir la carte": "See map"
+    "Voir la carte": "See map",
+    "Non renseigné": "Not known"
+  },
+  "FavorisScreen": {
+    "Mes fiches": "My cards",
+    "C'est vide": "0 card",
+    "Ajouter une fiche": "When you are on an interesting card, click on the star.",
+    "Supprimer la fiche": "Please note that this card will be deleted from \"My cards\".",
+    "Supprimer tout": "Please note that all records will be deleted from \"My records\"."
+  },
+  "SearchScreen": {
+    "Rechercher": "Search",
+    "Les fiches les plus recherchées": "Most searched files",
+    "Les thèmes": "Themes",
+    "résultats": "{{nbResults}} results",
+    "Impossible de trouver": "Impossible to find",
+    "Essaie une nouvelle recherche": "Try again, check the spelling or use another keyword."
   },
   "NeedsScreen": {
     "fiches": "cards",
@@ -142,6 +176,7 @@
     "no result": "Sorry, we don't have any cards here yet."
   },
   "ContentsScreen": { "fiches non trad": "Cards not translated" },
+  "Démarrer": "Start my search",
   "QuiSommesNous": {
     "Qui sommes-nous": "Who are we?",
     "Missions": "Missions",

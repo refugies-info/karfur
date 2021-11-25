@@ -58,7 +58,7 @@ export const ProfilDetailButton = (props: Props) => (
       testID={"test-profil-button-" + props.iconName}
       accessibilityRole="button"
     >
-      <RTLView>
+      <RTLView style={{ flexGrow: 0, flexShrink: 1 }}>
         <Icon
           name={props.iconName}
           width={ICON_SIZE}

@@ -85,7 +85,9 @@
     "26 ans et plus": "26–100 ans",
     "Je parle un peu": "Je parle un peu",
     "Je parle bien": "Je parle bien",
-    "Je parle couramment": "Je parle couramment"
+    "Je parle couramment": "Je parle couramment",
+    "Ne pas filtrer selon mon niveau de français": "Voir les fiches pour tous les niveaux de français",
+    "Ne pas filtrer selon mon âge": "Voir les fiches pour tous les âges"
   },
   "Démarrer": "Commencer à chercher",
   "Merci !": "Merci !",
@@ -113,8 +115,6 @@
     "Tous les âges": "Tous les âges",
     "reinit_app2": "Tes informations pour filtrer les fiches vont être supprimées. L'application va ensuite recommencer comme la première fois.",
     "delete_data": "Tes informations pour filtrer les fiches vont être supprimées. Tu pouras voir toutes les fiches sans personnalisation.",
-    "Ne pas filtrer selon mon niveau de français": "Voir les fiches pour tous les niveaux de français",
-    "Ne pas filtrer selon mon âge": "Voir les fiches pour tous les âges",
     "choix langue": "Quelle langue tu préfères ?"
   },
   "Content": {

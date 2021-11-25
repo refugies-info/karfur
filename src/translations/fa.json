@@ -11,17 +11,32 @@
     "help_2": "این به منظور نشان دادن مراحل و فعالیت های مربوط به سن شما است.",
     "help_3": "این به منظور نشان دادن دوره های آموزشی با توجه به سطح فرانسوی شما است.",
     "ville": "کدام شهر زندگی می کنید ؟",
+    "Ta ville": "شهر شما",
     "error_geoloc": "اشتباه، مشکلی وجود دارد نام شهر خود را بنویسید.",
     "position": "از موقعیت من استفاده کنید",
     "placeholder": "مثال: پاریس",
     "age": "شما چند سال دارید ؟",
     "niveauFrancais": "سطح فرانسوی شما چقدر است؟",
-    "end": "برنامه آماده است. اکنون می توانید اطلاعات را جستجو کنید.",
-    "error_geoloc_acces": "اشتباه، مشکلی وجود دارد تنظیمات تلفن خود را بررسی کنید که موقعیت را مجاز کند."
+    "error_geoloc_acces": "اشتباه، مشکلی وجود دارد تنظیمات تلفن خود را بررسی کنید که موقعیت را مجاز کند.",
+    "end": "برنامه آماده است. اکنون می توانید اطلاعات را جستجو کنید."
   },
+  "Supprimer": "حذف",
   "Suivant": "بعدی",
   "Continuer": "ادامه دهید",
+  "Partager": "به اشتراک بگذارید",
+  "Aucune connexion internet": "بدون اتصال به اینترنت!",
   "Ok": "تایید",
+  "ExplorerScreen": {
+    "Tu vois peu de fiches pour ta ville": "شما می توانید برگه های {{nbContent}} را ببینید، اما برای شهر {city}} زیاد نیست.",
+    "Liste": "فهرست",
+    "Galerie": "تصاویر",
+    "Pourquoi": "چرا ؟",
+    "nb fiches": "{{nbContent}} برگه ها",
+    "nationales": "ملی",
+    "pour ta ville": "{{city}} برای",
+    "Réfugiés.info est en cours de développement": "Refugies.info در حال توسعه است",
+    "Nous ajoutons de nouvelles fiches chaque semaine": "ما هر هفته  برگه های جدید اضافه می کنیم. به رایانه ای بروید تا به ما در نوشتن و ترجمه برگه های فهرست کمک کنید!"
+  },
   "tabBar": {
     "Explorer": "صفحه نخست",
     "Favoris": "صفحه برگزیده",
@@ -30,7 +45,25 @@
   },
   "Langue app": "زبان",
   "Erreur": "اشتباه، مشکلی وجود دارد دوباره امتحان کنید.",
-  "ExplorerScreen": { "Liste": "فهرست", "Galerie": "تصاویر" },
+  "Profil": {
+    "Informations sur l'application": "اطلاعات درباره نرم افزار",
+    "Qui sommes-nous ?": "ما کی هستیم ؟",
+    "supprimer_data": "حذف اطلاعات",
+    "reinit_app": "حذف اطلاعات و اغاز دوباره",
+    "Mentions légales": "سیاست حفظ اطلاعات",
+    "Langue choisie": "زبان",
+    "Ville": "شهر",
+    "Âge": "سن",
+    "Niveau de français": "سطح فرانسوی",
+    "Confidentialité": "جمع آوری اطلاعات و استفاده از آن‌ها",
+    "Français": "فرانسوی",
+    "Tous les niveaux": "همه سطوح",
+    "Tous les âges": "همه سنین",
+    "choix langue": "زبان برنامه را انتخاب کنید",
+    "Mon profil": "من",
+    "reinit_app2": "اطلاعات شما (زبان، شهر، سن و سطح فرانسوی) حذف می شود و برنامه از ابتدا شروع می شود.",
+    "delete_data": "اطلاعات شما (زبان، شهر، سن و سطح فرانسوی) حذف می شود."
+  },
   "Tags": {
     "Français": "فرانسوی",
     "Logement": "مسکن",
@@ -64,9 +97,10 @@
     "26 ans et plus": "26-100 سال",
     "Je parle un peu": "سطح مبتدی",
     "Je parle bien": "سطح متوسط",
-    "Je parle couramment": "سطح پیشرفته"
+    "Je parle couramment": "سطح پیشرفته",
+    "Ne pas filtrer selon mon niveau de français": "مراجعه به برگه های اطلاعاتی راجع به همه سطوح زبان",
+    "Ne pas filtrer selon mon âge": "مشاهده برگه ها برای همه سنین"
   },
-  "Démarrer": "جستجو خود را شروع کنید",
   "Merci !": "تشکر!",
   "Passer l'étape": "الان نه",
   "Valider": "تایید",
@@ -75,24 +109,9 @@
   "Toute la France": "سراسر فرانسه",
   "Pour tout âge": "همه سنین",
   "Pour tout niveau de français": "همه سطوح",
-  "Profil": {
-    "supprimer_data": "حذف اطلاعات",
-    "reinit_app": "حذف اطلاعات و اغاز دوباره",
-    "Mon profil": "من",
-    "Langue choisie": "زبان",
-    "Ville": "شهر",
-    "Âge": "سن",
-    "Niveau de français": "سطح فرانسوی",
-    "Français": "فرانسوی",
-    "Tous les niveaux": "همه سطوح",
-    "Tous les âges": "همه سنین",
-    "reinit_app2": "اطلاعات شما (زبان، شهر، سن و سطح فرانسوی) حذف می شود و برنامه از ابتدا شروع می شود.",
-    "delete_data": "اطلاعات شما (زبان، شهر، سن و سطح فرانسوی) حذف می شود.",
-    "Ne pas filtrer selon mon niveau de français": "مراجعه به برگه های اطلاعاتی راجع به همه سطوح زبان",
-    "Ne pas filtrer selon mon âge": "مشاهده برگه ها برای همه سنین",
-    "choix langue": "زبان برنامه را انتخاب کنید"
-  },
   "Content": {
+    "favoris ajouté": "به  « <1> صفحه برگزیده </1> »  اضافه شد",
+    "favoris supprimé": "از « صفحه برگزیده » حذف شد",
     "C'est quoi ?": "این چی هست ؟",
     "Pourquoi c'est intéressant ?": "چرا این جالب است؟",
     "Comment je m'engage ?": "چگونه می توانم شرکت کنم؟",
@@ -133,8 +152,23 @@
     "Email de contact": "ایمیل ارتباط",
     "Numéro de téléphone": "شماره تلفن",
     "Informations pratiques": "اطلاعات مفید",
-    "Non renseigné": "مشخص نشده",
-    "Voir la carte": "روی نقشه پیدا کنید"
+    "Voir la carte": "روی نقشه پیدا کنید",
+    "Non renseigné": "مشخص نشده"
+  },
+  "FavorisScreen": {
+    "Mes fiches": "صفحه برگزیده",
+    "C'est vide": "0 برگه",
+    "Ajouter une fiche": "وقتی روی یک برگه جالب هستید، روی ستاره کلیک کنید.",
+    "Supprimer la fiche": "لطفا توجه داشته باشید، این برگه از « صفحه برگزیده » حذف خواهد شد.",
+    "Supprimer tout": "لطفا توجه داشته باشید، تمام برگه ها از « صفحه برگزیده » حذف خواهند شد."
+  },
+  "SearchScreen": {
+    "Rechercher": "جستجو",
+    "Les fiches les plus recherchées": "بیشترین برگه های جستجو شده",
+    "Les thèmes": "موضوعات",
+    "résultats": "{{nbResults}} نتایج",
+    "Impossible de trouver": "پیدا نشد",
+    "Essaie une nouvelle recherche": "دوباره امتحان کنید، املای خود را بررسی کنید یا از کلمه کلیدی دیگری استفاده کنید."
   },
   "NeedsScreen": {
     "fiches": "برگه ها",
@@ -142,6 +176,7 @@
     "no result": "متأسفانه، هنوز چیزی در اینجا وجود ندارد."
   },
   "ContentsScreen": { "fiches non trad": "برگه ها ترجمه نشده" },
+  "Démarrer": "جستجو خود را شروع کنید",
   "QuiSommesNous": {
     "Qui sommes-nous": "ما کی هستیم ؟",
     "Missions": "مأموریت ها",

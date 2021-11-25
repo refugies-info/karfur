@@ -149,10 +149,7 @@ export const HeaderWithBackAnimated = (props: HeaderBackProps) => {
         onLongPressSwitchLanguage={props.onLongPressSwitchLanguage}
         navigation={props.navigation}
       />
-      <View style={{
-        paddingLeft: !isRTL ? theme.margin * 3 : 0,
-        paddingRight: isRTL ? theme.margin * 3 : 0,
-      }}>
+      <View style={{ paddingHorizontal:theme.margin * 3 }}>
         <Animated.Text
           style={[
             {
