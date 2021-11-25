@@ -3,7 +3,8 @@ import { BackHandler } from "react-native";
 export const registerBackButton = (backScreen: string | undefined, navigation: any) => {
   if (!!backScreen) {
     const backAction = () => {
-      navigation.popToTop();
+      try { navigation.popToTop() }
+      catch(e) { }
       navigation.navigate(backScreen);
       return true;
     };

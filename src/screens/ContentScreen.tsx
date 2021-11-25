@@ -303,10 +303,17 @@ export const ContentScreen = ({
     }
   };
 
-  const boxInterpolation = animatedController.interpolate({
-    inputRange: [0, 1],
-    outputRange: ["transparent", themeTag.tagLightColor],
-  });
+  // Header color
+  const getInterpolation = (color: string) => {
+    return animatedController.interpolate({
+      inputRange: [0, 1],
+      outputRange: ["transparent", color],
+    });
+  }
+  const [boxInterpolation, setBoxInterpolation] = React.useState(getInterpolation(themeTag.tagLightColor));
+  React.useEffect(() => {
+    setBoxInterpolation(getInterpolation(themeTag.tagLightColor));
+  }, [themeTag.tagLightColor]);
 
   // Load content
   let unsubscribeConnectionListener: any;
@@ -350,8 +357,8 @@ export const ContentScreen = ({
         },
       });
 
-      // Load colors if not available
-      if (!themeTag) {
+      // Load colors if not available in route
+      if (!route.params.colors) {
         const primaryTagName = selectedContent.tags.length > 0
           ? selectedContent.tags[0].name
           : "";
