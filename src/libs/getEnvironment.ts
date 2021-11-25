@@ -1,26 +1,21 @@
 import * as Updates from "expo-updates";
 
 let Config = {
-  envName: "DEVELOPMENT",
-  dbUrl: "https://api.staging.refugies.info",
-  siteUrl: "https://staging.refugies.info",
+  envName: process.env.ENV_NAME || "",
+  dbUrl: process.env.API_URL || "",
+  siteUrl: process.env.SITE_URL || "",
   siteSecret: process.env.SITE_SECRET,
   debugModeFirebase: true,
-  algoliaIndex: "staging_refugies",
+  algoliaIndex: process.env.ALGOLIA_INDEX || ""
 };
 
-if (Updates.releaseChannel === "production") {
-  Config.envName = "PROD";
+// PROD VARIABLES
+if (Updates.releaseChannel === "staging" || Updates.releaseChannel === "production") {
+  Config.envName = Updates.releaseChannel === "staging" ? "STAGING" : "PROD";
   Config.siteUrl = "https://refugies.info";
   Config.dbUrl = "https://api.new.refugies.info";
   Config.debugModeFirebase = false;
   Config.algoliaIndex = "prod_refugies";
-} else if (Updates.releaseChannel === "staging") {
-  Config.envName = process.env.ENV_NAME || "";
-  Config.siteUrl = process.env.SITE_URL || "";
-  Config.dbUrl = process.env.API_URL || "";
-  Config.debugModeFirebase = false;
-  Config.algoliaIndex = process.env.ALGOLIA_INDEX || "";
 }
 
 export default Config;

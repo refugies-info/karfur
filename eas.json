@@ -2,35 +2,25 @@
   "build": {
     "production": {
       "releaseChannel": "production",
-      "android": {
-        "env": {
-          "API_URL": "https://api.new.refugies.info",
-          "SITE_URL": "https://refugies.info"
-        }
-      },
-      "ios": {
-        "env": {
-          "API_URL": "https://api.new.refugies.info",
-          "SITE_URL": "https://refugies.info"
-        }
+      "env": {
+        "API_URL": "https://api.new.refugies.info",
+        "SITE_URL": "https://refugies.info",
+        "ALGOLIA_INDEX": "prod_refugies",
+        "ENV_NAME": "PROD"
       }
     },
     "preview": {
       "releaseChannel": "staging",
+      "env": {
+        "API_URL": "https://api.new.refugies.info",
+        "SITE_URL": "https://refugies.info",
+        "ALGOLIA_INDEX": "prod_refugies",
+        "ENV_NAME": "STAGING"
+      },
       "android": {
-        "env": {
-          "API_URL": "https://api.new.refugies.info",
-          "SITE_URL": "https://refugies.info",
-          "ALGOLIA_INDEX": "prod_refugies"
-        },
         "buildType": "apk"
       },
       "ios": {
-        "env": {
-          "API_URL": "https://api.new.refugies.info",
-          "SITE_URL": "https://refugies.info",
-          "ALGOLIA_INDEX": "prod_refugies"
-        },
         "simulator": true
       }
     }
