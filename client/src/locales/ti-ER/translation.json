@@ -25,7 +25,7 @@
     "creer parcours": "ብሕታዊ ህወትካ ፍጠር",
     "Je contribue": "ኣነ እጽንበር / ኣነ እካፈል",
     "Lire le lexique": "መዝገብ ቃላት ኣንብብ\\ቢ  መታን ከብድቲ ቃላት ንምርዳእ ፣",
-    "Construis ta vie en France": "ናብራ ሂወትካ መስርት ኣብ ሃገረ ፈርንሳይ",
+    "Construis ta vie en France": "ምምስራት ናብራይ ኣብ ሃገረ ፈረንሳ",
     "Explique les mots difficiles": "Réfugiés.info ከብድ ቃል ይሕብር",
     "Trouver une démarche": "ሓደ መሳለጢ ምርካብ",
     "Choisir une langue": "ሓደ ቃንቃ ምረጽ",
@@ -67,6 +67,8 @@
     "Trier par n": "በዚ ምስሓብ",
     "Filtrer par n": "በዚ ምጽራይ",
     "Plus de filtres": "ተውሳኺ መጻረዪ",
+    "Voir plus de filtres": "ተወሰኽቲ ምርጫታት ንምውካስ፣",
+    "Voir moins de filtres": "ናብ ሒደት ምርጫታት ንምምላስ፣",
     "Dispositifs": "ዕዮ ፣ ኣብርክቶ",
     "Démarches": "ዝቕጽል",
     "Créer une fiche": "ሓደ ገጽ ፍጠር",
@@ -278,7 +280,10 @@
     "Suggestion explications": "ሓደ ሓድሽ ፎርም ናይ ሕጡብ ጽሑፍ ኣቅርብ\\ቢ  ንኩሉ ኣብርከቲ መታን ክጥዕምን ክቃለልን ፣፤ እዚ ዓምዲ ሕጡብ ናይ ጽሑፍ ብቡዙሓት ተፈላለዩ ሰባት ክጽሓፍ ኢዩ ፤፣"
   },
   "Dispositifs": {
-    "Header": "ምምስራት ሂወትካ ኣብ ሃገረ ፍርናስ",
+    "Header": "ምምስራት ናብራይ ኣብ ሃገረ ፈረንሳ",
+    "Cette fiche n'est pas dispo": "እዚ ሰደቓ ሓበሬታ እዚ ብፈረንሳ፣ እንግሊዝን፣ ዓረብን፣ ካል ኦት ቋንቋታትን ተዳልዩ ኣሎ።",
+    "Vous pouvez la lire en français": "ዝስዕብ ትርጉም ብቋንቋ ፈረንሳ ክትውከሱ ትኽእሉ ኢኹም፣",
+    "Vous pouvez la lire en plusieurs langues": "ዝስዕብ ብቋንቋ ፈረንሳ ወይ ብኻልኦት ቋንቋታት ዝተተርጎመ ክትውከሱ ትኽእሉ ኢኹም፣",
     "Subheader": "ኣብዚ ክትርድኡ ኢኹም ከምይ ጌርኩም መሰልኩም ናይ ሕብረተ ሰብ ትረክቡ ፣ ስራሕ ከመይ ጌርኩም ትረክቡ ፣ ከመይ ጌርኩም ትምህርቲ ቃንቃ ፈረንሳይ ትርክቡ"
   },
   "Tags": {
@@ -459,6 +464,7 @@
     "Et après ?": "ብድሕሪኡ ዝቅጽል",
     "Comment je m'engage ?": "ብ ኸመይ ኣብርክቶይ ይሳተፍ",
     "Voir le site": "ኣብ ዌብ ሳይት ተዓዘብ",
+    "Ajouter votre site": "ናታትኩም መርበብ ሓበሬታ  ጸዓኑ፣",
     "Télécharger en PDF": "ፔዲፍ መውረዲ",
     "Télécharger la fiche en PDF": "ሰነድ\\ፋይል ፔዲ ኤፍ ጌርካ'ኪ ምውራድ",
     "Télécharger": "ምጽዓን ወይ ምውራድ",
@@ -545,6 +551,7 @@
     "réfugié": "ስደቴኛ",
     "tout public": "ኩሉ ህዝቢ",
     "En savoir plus": "ብብዝሒ ምፍላጥ",
+    "Lire en": "ንምንባብ ብ",
     "Tiennent la page": "እዛ ገጽ ጹቡቅ ጌርካ ኣጽናዓያ መታን ን ሕቶታት ምምላጽስ ክትጠቅመካ",
     "Évaluer mon niveau": "ናተይ ዓቐን ደረጃ  ምግምጋም",
     "Réagir": "ግብረ መልሲ",
@@ -625,8 +632,8 @@
     "Inscrivez-vous à notre lettre": "ኣብ ክፍሊ ናይ ሓበሬታ ተምዝገቡ\\ ባ ፣መታን ዝተፈላልዩ መዓልታዊ ሓድሽቲ ምዕባለ ሓበሬታት መደብ ናይ ረፍጂ ኣንፎ ክፍሊ ሓበሬታት ክትረኸቡ\\ባ፤፣",
     "Vous cherchez ?": "ዝኾነ ነገር ትድሊ ዲኻ ?",
     "Centre d'aide": "ማእከል መሕገዚ",
-    "description": " ረፍጂ ኣንፎ ሓደ ማዕጾ ክፍሊ  መርበብ ሓበሬታት መሻርክትን ምትሕባርን  ኢዩ ፣ ",
-    "description_suite": " ከምኡ`ውን ንምምዕባል ን "
+    "description": "ረፍጂ ኣንፎ ሓደ ማዕጾ ክፍሊ  መርበብ ሓበሬታት መሻርክትን ምትሕባርን  ኢዩ ፣",
+    "description_suite": "ከምኡ`ውን ንምምዕባል ን"
   },
   "Retour à la recherche": "በዚ ትምለስ ንምድላይ",
   "ou": "ኣበይ",
@@ -664,6 +671,7 @@
   "Rechercher un utilisateur": "መድለዪ ናይ መሳርሒ",
   "CMU-C, demande de logement social, solidarité transport": "CMU-C ، ምሕታት ገዛ ናይ ሶሺል, መጋዓዚያ ብዝተሓተ ዋጋ  ሶልዳሪተ ትርንስፖርት",
   "Rechercher": "ምድላይ",
+  "Sélectionnez un filtre !": "ምርጫ ሕረይ፣",
   "Rechercher2": "ምድላይ ወይ ሓበሬታ ምርካብ",
   "Qui sommes-nous ?": "መን ኢና ንሕና ?",
   "Comment contribuer ?": "ብኸመይ እሳተፍ ንምብርካት",
@@ -698,8 +706,11 @@
   "manger, me doucher": "ምብላዕ ፣ ነብስይ ምሕጻብ",
   "Annuaire": {
     "Annuaire": "ሓፈሻዊ ተሌፎን",
+    "Rechercher par": "በብኣስማቱ ድለይዎ፣",
     "Association": "ማሕበር",
     "Entreprise": "ትካል",
+    "Cette structure n'accueille pas de public.": "እዚ ትካላዊ ኣተሃናንጻ እዚ ንኹሉ ህዝቢ ኣየአንግድን፣",
+    "Uniquement sur rendez-vous": "ብቖጸራ ጥራይ፣",
     "École": "ቤት ትምህርቲ",
     "Université": "ዩንቨርስቲ",
     "Opérateur": "ኦፒትተር",
@@ -781,6 +792,16 @@
     "Aides financières": "ሓገዝ ናይ ፋይናንስ",
     "Cours de conduite": "ኮርስ ናይ ማንጃ ፍቃድ",
     "Formation au code": "ፎርማሶን  ትምህርት ኮድ",
-    "Intermédiation locative": "ክራይ ብመንጎኛ"
+    "Intermédiation locative": "ክራይ ብመንጎኛ",
+    "Retour à l'annuaire": "ናብ መወከሲ  ምምላስ",
+    "Thèmes & activités": "ኣርእስቲን ንጥፈታት፣",
+    "Type de structure": "ዓይነት ትካል፣",
+    "Rechercher par nom...": "በብኣስማቱ ድለይዎ"
+  },
+  "MobileAppModal": {
+    "Application mobile disponible": "ኣብ ስልክኹም ዝጸዓን መርበብ ሓበሬታ ወይ ኣፕሌኬሽን፣",
+    "Gratuite et plus facile à utiliser": "ናይ ነጻን ንኽትጥቀመሉ ድማ ቀሊልን፣",
+    "Rester sur le navigateur": "ኣብዚ መርበብ ሓበሬታ ጽንሑ፣",
+    "Télécharger l'application": "እዚ መርበብ ሓበሬታ ወይ ኣፕሌኬሽን ኣብ ስልክኹም ጸዓንዎ፣"
   }
 }
