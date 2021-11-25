@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
 import * as Analytics from "expo-firebase-analytics";
-import { getEnvironment } from "../libs/getEnvironment";
+import Config from "../libs/getEnvironment";
 import { FirebaseEvent } from "./eventsUsedInFirebase";
 
 export const logEventInFirebase = async (
   eventName: FirebaseEvent,
   data: Record<string, any>
 ) => {
-  const { envName, debugModeFirebase } = getEnvironment();
+  const { envName, debugModeFirebase } = Config;
   if (envName === "DEVELOPMENT") {
     if (debugModeFirebase) {
       Analytics.setDebugModeEnabled(true);

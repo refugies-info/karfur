@@ -1,6 +1,7 @@
 {
   "build": {
-    "release": {
+    "production": {
+      "releaseChannel": "production",
       "android": {
         "env": {
           "API_URL": "https://api.new.refugies.info",
@@ -15,6 +16,7 @@
       }
     },
     "preview": {
+      "releaseChannel": "staging",
       "android": {
         "env": {
           "API_URL": "https://api.new.refugies.info",

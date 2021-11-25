@@ -22,7 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSelectedContentActionCreator } from "../services/redux/SelectedContent/selectedContent.actions";
 import { selectedContentSelector } from "../services/redux/SelectedContent/selectedContent.selectors";
 import { theme } from "../theme";
-import { getEnvironment } from "../libs/getEnvironment";
+import Config from "../libs/getEnvironment";
 import { TextBigBold, TextSmallNormal, TextSmallBold } from "../components/StyledText";
 import {
   selectedI18nCodeSelector,
@@ -530,7 +530,7 @@ export const ContentScreen = ({
 
   // SHARE
   const shareContent = async (content: Content) => {
-    const siteUrl = getEnvironment().siteUrl;
+    const siteUrl = Config.siteUrl;
     try {
       const shareData = (Platform.OS === "ios") ? {
         message: `${content.titreInformatif}`,

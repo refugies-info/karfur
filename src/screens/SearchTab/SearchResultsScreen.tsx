@@ -15,7 +15,7 @@ import SearchBox from "../../components/Search/SearchBox";
 import InfiniteHits from "../../components/Search/InfiniteHits";
 import SearchSuggestions from "../../components/Search/SearchSuggestions";
 import { getSearchableAttributes } from "../../libs/search";
-import { getEnvironment } from "../../libs/getEnvironment";
+import Config from "../../libs/getEnvironment";
 import { theme } from "../../theme";
 
 const SearchBoxContainer = styled.View`
@@ -70,7 +70,7 @@ export const SearchResultsScreen = ({
     <View style={{ flex: 1 }}>
       <InstantSearch
         searchClient={searchClient}
-        indexName={getEnvironment().algoliaIndex}
+        indexName={Config.algoliaIndex}
         searchState={searchState}
         onSearchStateChange={setSearchState}
       >

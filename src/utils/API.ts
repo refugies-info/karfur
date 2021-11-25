@@ -1,9 +1,9 @@
 import axios from "react-native-axios";
-import { getEnvironment } from "../libs/getEnvironment";
+import Config from "../libs/getEnvironment";
 import { ObjectId } from "../types/interface";
 
-const dbURL = getEnvironment().dbUrl;
-const siteSecret = getEnvironment().siteSecret;
+const dbURL = Config.dbUrl;
+const siteSecret = Config.siteSecret;
 const apiCaller = axios.create({
   baseURL: dbURL,
   headers: {
