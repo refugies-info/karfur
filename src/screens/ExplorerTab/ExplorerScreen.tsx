@@ -1,5 +1,5 @@
 import * as React from "react";
-import { /* Linking,  */ScrollView } from "react-native";
+import { Linking, ScrollView } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,11 +19,11 @@ import { ExplorerParamList } from "../../../types";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { sortByOrder } from "../../libs";
-// import { getScreenFromUrl } from "../../libs/getScreenFromUrl";
+import { getScreenFromUrl } from "../../libs/getScreenFromUrl";
 import { theme } from "../../theme";
 import { LocalizedWarningModal } from "../../components/Explorer/LocalizedWarningModal";
 import { LocalizedWarningMessage } from "../../components/Explorer/LocalizedWarningMessage";
-// import { logger } from "../../logger";
+import { logger } from "../../logger";
 
 const MAX_CONTENT_LOCALIZED = 10;
 
@@ -64,19 +64,25 @@ export const ExplorerScreen = ({
   const [isLocalizedModalVisible, setIsLocalizedModalVisible] = React.useState(false);
   const [totalContent, setTotalContent] = React.useState(0);
 
-/*   React.useEffect(() => {
-    Linking.getInitialURL().then(url => {
-      if (url) {
-        logger.info("[initial url]", url)
-        const screen = getScreenFromUrl(url);
-        if (screen) {
-          //@ts-ignore
-          navigation.navigate(screen.screenName, screen.params);
-        }
+  // Handle share link
+  const handleOpenUrl = (event: { url: string }|string|null) => {
+    if (event) {
+      let url = typeof event === "object" ? event.url : event;
+      logger.info("[initial url]", url)
+      const screen = getScreenFromUrl(url);
+      if (screen) {
+        navigation.navigate(screen.screenName, screen.params);
       }
-    })
-  }, []) */
+    }
+  }
+  React.useEffect(() => {
+    Linking.addEventListener("url", handleOpenUrl);
+    Linking.getInitialURL().then(handleOpenUrl);
 
+    return Linking.removeEventListener("url", handleOpenUrl)
+  }, []);
+
+  // Calculate total content for warning
   React.useEffect(() => {
     setTotalContent(
       (nbContents.nbGlobalContent || 0) + (nbContents.nbLocalizedContent || 0)
