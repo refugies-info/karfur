@@ -12,11 +12,11 @@ export const getEnvironment = () => {
     };
   }
   return {
-    envName: process.env.ENV_NAME,
+    envName: "PROD",
     dbUrl: "https://api.new.refugies.info",
     siteSecret: process.env.SITE_SECRET,
-    siteUrl: process.env.SITE_URL,
-    debugModeFirebase: process.env.DEBUG_MODE_FIREBASE,
-    algoliaIndex: process.env.ALGOLIA_INDEX || "",
+    siteUrl: "https://refugies.info",
+    debugModeFirebase: false,
+    algoliaIndex: "prod_refugies",
   };
 };
