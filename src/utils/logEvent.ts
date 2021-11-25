@@ -9,7 +9,7 @@ export const logEventInFirebase = async (
 ) => {
   const { envName, debugModeFirebase } = getEnvironment();
   if (envName === "DEVELOPMENT") {
-    if (debugModeFirebase === "activated") {
+    if (debugModeFirebase) {
       Analytics.setDebugModeEnabled(true);
       console.log(
         "Environment is dev and debug mode is activated for firebase"
