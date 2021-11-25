@@ -20,14 +20,16 @@
       "android": {
         "env": {
           "API_URL": "https://api.new.refugies.info",
-          "SITE_URL": "https://refugies.info"
+          "SITE_URL": "https://refugies.info",
+          "ALGOLIA_INDEX": "prod_refugies"
         },
         "buildType": "apk"
       },
       "ios": {
         "env": {
           "API_URL": "https://api.new.refugies.info",
-          "SITE_URL": "https://refugies.info"
+          "SITE_URL": "https://refugies.info",
+          "ALGOLIA_INDEX": "prod_refugies"
         },
         "simulator": true
       }

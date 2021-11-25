@@ -16,11 +16,11 @@ if (Updates.releaseChannel === "production") {
   Config.debugModeFirebase = false;
   Config.algoliaIndex = "prod_refugies";
 } else if (Updates.releaseChannel === "staging") {
-  Config.envName = "STAGING";
-  Config.siteUrl = "https://staging.refugies.info";
-  Config.dbUrl = "https://api.staging.refugies.info";
+  Config.envName = process.env.ENV_NAME || "";
+  Config.siteUrl = process.env.SITE_URL || "";
+  Config.dbUrl = process.env.API_URL || "";
   Config.debugModeFirebase = false;
-  Config.algoliaIndex = "staging_refugies";
+  Config.algoliaIndex = process.env.ALGOLIA_INDEX || "";
 }
 
 export default Config;
