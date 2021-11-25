@@ -293,7 +293,8 @@ export const getTitreInfoOrMarqueInLocale = (
 
 export const filterContentsOnGeoloc = (
   contentsArray: IDispositif[],
-  department: string | null
+  department: string | null,
+  strict: boolean = false
 ) => {
   if (!department) return contentsArray;
   return contentsArray.filter((content) => {
@@ -308,7 +309,7 @@ export const filterContentsOnGeoloc = (
       );
       if (geolocInfocard && geolocInfocard.departments) {
         for (var i = 0; i < geolocInfocard.departments.length; i++) {
-          if (geolocInfocard.departments[i] === "All") {
+          if (!strict && geolocInfocard.departments[i] === "All") {
             return true;
           }
           if (geolocInfocard.departments[i].split(" - ")[1] === department) {
