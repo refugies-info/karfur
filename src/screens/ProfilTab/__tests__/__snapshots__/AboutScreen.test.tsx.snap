@@ -166,8 +166,7 @@ exports[`About screen should render correctly 1`] = `
     <View
       style={
         Object {
-          "paddingLeft": 24,
-          "paddingRight": 0,
+          "paddingHorizontal": 24,
         }
       }
     >

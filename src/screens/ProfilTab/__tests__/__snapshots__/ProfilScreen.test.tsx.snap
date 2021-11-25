@@ -181,6 +181,10 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                  },
                 ]
               }
             >
@@ -427,6 +431,10 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                  },
                 ]
               }
             >
@@ -668,6 +676,10 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
+                  },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
                   },
                 ]
               }
@@ -915,6 +927,10 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
+                  },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
                   },
                 ]
               }
@@ -1242,6 +1258,10 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                  },
                 ]
               }
             >
@@ -1479,6 +1499,10 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                  },
                 ]
               }
             >
@@ -1700,6 +1724,10 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
+                  },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
                   },
                 ]
               }
@@ -3980,6 +4008,10 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                  },
                 ]
               }
             >
@@ -4226,6 +4258,10 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                  },
                 ]
               }
             >
@@ -4467,6 +4503,10 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
+                  },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
                   },
                 ]
               }
@@ -4714,6 +4754,10 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
+                  },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
                   },
                 ]
               }
@@ -5041,6 +5085,10 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                  },
                 ]
               }
             >
@@ -5278,6 +5326,10 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                  },
                 ]
               }
             >
@@ -5499,6 +5551,10 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
+                  },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
                   },
                 ]
               }
@@ -7779,6 +7835,10 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                  },
                 ]
               }
             >
@@ -8025,6 +8085,10 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                  },
                 ]
               }
             >
@@ -8266,6 +8330,10 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
+                  },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
                   },
                 ]
               }
@@ -8513,6 +8581,10 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
+                  },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
                   },
                 ]
               }
@@ -8840,6 +8912,10 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                  },
                 ]
               }
             >
@@ -9077,6 +9153,10 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                     "display": "flex",
                     "flexDirection": "row",
                   },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                  },
                 ]
               }
             >
@@ -9298,6 +9378,10 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                     "alignItems": "center",
                     "display": "flex",
                     "flexDirection": "row",
+                  },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
                   },
                 ]
               }
