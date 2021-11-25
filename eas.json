@@ -1,22 +1,10 @@
 {
   "build": {
     "production": {
-      "releaseChannel": "production",
-      "env": {
-        "API_URL": "https://api.new.refugies.info",
-        "SITE_URL": "https://refugies.info",
-        "ALGOLIA_INDEX": "prod_refugies",
-        "ENV_NAME": "PROD"
-      }
+      "releaseChannel": "production"
     },
     "preview": {
       "releaseChannel": "staging",
-      "env": {
-        "API_URL": "https://api.new.refugies.info",
-        "SITE_URL": "https://refugies.info",
-        "ALGOLIA_INDEX": "prod_refugies",
-        "ENV_NAME": "STAGING"
-      },
       "android": {
         "buildType": "apk"
       },
