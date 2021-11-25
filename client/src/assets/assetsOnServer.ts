@@ -19,7 +19,7 @@ export const assetsOnServer = {
     terrain: bucketUrlQSN + "QuiSommesNous_terrain.svg",
   },
   homepage: {
-    CarteDeploiement: bucketUrl + "home/Carte_deploiement.svg",
+    CarteDeploiement: bucketUrl + "home/Carte_deploiement_nov2021.svg",
   },
   commentContribuer: {
     traduction: bucketUrlCC + "CommentContribuer_imageTrad.svg",

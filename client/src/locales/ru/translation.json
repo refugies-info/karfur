@@ -67,6 +67,8 @@
     "Trier par n": "Сортировать по:",
     "Filtrer par n": "Фильтр",
     "Plus de filtres": "Больше фильтров",
+    "Voir plus de filtres": "Показать больше фильтров",
+    "Voir moins de filtres": "Скрыть часть фильтров",
     "Dispositifs": "Программы",
     "Démarches": "Процедуры",
     "Créer une fiche": "Создать карточку информации",
@@ -279,6 +281,9 @@
   },
   "Dispositifs": {
     "Header": "Построй свою жизнь во Франции",
+    "Cette fiche n'est pas dispo": "Эта страница пока не доступна на:",
+    "Vous pouvez la lire en français": "Ниже вы можете почитать на французском",
+    "Vous pouvez la lire en plusieurs langues": "Вы можете прочитать на французском или выбрать другой язык ниже.",
     "Subheader": "Здесь вы сможете разобраться как получить доступ к вашим социальным правам, найти работу, а также найти курсы французского языка"
   },
   "Tags": {
@@ -459,6 +464,7 @@
     "Et après ?": "Что дальше?",
     "Comment je m'engage ?": "Как принять участие?",
     "Voir le site": "Website",
+    "Ajouter votre site": "Добавить ваш сайт",
     "Télécharger en PDF": "Скачать в формате PDF",
     "Télécharger la fiche en PDF": "Скачать страницу в PDF",
     "Télécharger": "Скачать",
@@ -545,6 +551,7 @@
     "réfugié": "беженец",
     "tout public": "для всех",
     "En savoir plus": "Узнать больше",
+    "Lire en": "Читать на",
     "Tiennent la page": "Обеспечивают актуальность информации и отвечают на ваши вопросы",
     "Évaluer mon niveau": "Оценить мой уровень",
     "Réagir": "Оставить комментарий",
@@ -625,8 +632,8 @@
     "Inscrivez-vous à notre lettre": "Подпишитесь на наши обновления, чтобы следить за развитием проекта Réfugiés.info",
     "Vous cherchez ?": "Что вы ищете?",
     "Centre d'aide": "Помощь",
-    "description": "Réfugiés.info является совместным информационным порталом ",
-    "description_suite": " разработанным "
+    "description": "Réfugiés.info является совместным информационным порталом",
+    "description_suite": "разработанным"
   },
   "Retour à la recherche": "Вернуться к поиску",
   "ou": "или",
@@ -664,6 +671,7 @@
   "Rechercher un utilisateur": "Найти пользователя",
   "CMU-C, demande de logement social, solidarité transport": "Дополнительная медицинская страховка (CMU-C), запрос на социальное жилье, оплата проезда",
   "Rechercher": "Поиск",
+  "Sélectionnez un filtre !": "Выберите фильтр",
   "Rechercher2": "Найти",
   "Qui sommes-nous ?": "Кто мы?",
   "Comment contribuer ?": "Принять участие в развитии",
@@ -698,8 +706,11 @@
   "manger, me doucher": "поесть, принять душ",
   "Annuaire": {
     "Annuaire": "Каталог",
+    "Rechercher par": "Искать по названию",
     "Association": "Ассоциация",
     "Entreprise": "Компания",
+    "Cette structure n'accueille pas de public.": "Данная структура не принимает посетителей.",
+    "Uniquement sur rendez-vous": "Строго по записи",
     "École": "Школа",
     "Université": "Университет",
     "Opérateur": "Оператор",
@@ -781,6 +792,16 @@
     "Aides financières": "Материальная помощь",
     "Cours de conduite": "Курсы вождения",
     "Formation au code": "Курс программирования",
-    "Intermédiation locative": "Посредничество в аренде"
+    "Intermédiation locative": "Посредничество в аренде",
+    "Retour à l'annuaire": "Вернуться в каталог",
+    "Thèmes & activités": "Темы и активности",
+    "Type de structure": "Тип структуры",
+    "Rechercher par nom...": "Искать по названию"
+  },
+  "MobileAppModal": {
+    "Application mobile disponible": "Доступно в мобильном приложении",
+    "Gratuite et plus facile à utiliser": "Бесплатно и просто использовать",
+    "Rester sur le navigateur": "Продолжить в браузере",
+    "Télécharger l'application": "Скачать мобильное приложение"
   }
 }
