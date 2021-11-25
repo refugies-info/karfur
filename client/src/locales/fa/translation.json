@@ -67,6 +67,8 @@
     "Trier par n": "ترتیب بر اساس :",
     "Filtrer par n": "فیلتر بر اساس :",
     "Plus de filtres": "فیلترهای بیشتر",
+    "Voir plus de filtres": "فیلترهای بیشتر",
+    "Voir moins de filtres": "فیلتر کمتر",
     "Dispositifs": "برنامه ها",
     "Démarches": "مراحل",
     "Créer une fiche": "یک موضوع/ سوژه (فرم ایجاد کنید) بسازید",
@@ -279,6 +281,9 @@
   },
   "Dispositifs": {
     "Header": "زندگی خود را در فرانسه عیار سازید",
+    "Cette fiche n'est pas dispo": "این برگه هنوز در دسترس نیست به:",
+    "Vous pouvez la lire en français": "در زیر می توانید اطلاعات را به زبان فرانسوی بخوانید",
+    "Vous pouvez la lire en plusieurs langues": "می توانید این برگه را به زبان فرانسوی بخوانید یا زبان دیگری را در زیر انتخاب کنید",
     "Subheader": "در اینجا شما میتوانید که چگونه حقوق اجتماعی خود را بفهمید، شغلی پیدا کنید و کلاسهای زبان فرانسوی را پیدا کنید."
   },
   "Tags": {
@@ -459,6 +464,7 @@
     "Et après ?": "و بعد؟",
     "Comment je m'engage ?": "چگونه می توانم خود را شریک بسازم؟",
     "Voir le site": "ویب سایت را مشاهده کنید",
+    "Ajouter votre site": "سایت خود را اضافه کنید",
     "Télécharger en PDF": "بارگیری (بصورت) بصورت PDF",
     "Télécharger la fiche en PDF": "فایل PDF را بارگیری کنید",
     "Télécharger": "دانلود",
@@ -545,6 +551,7 @@
     "réfugié": "مهاجر",
     "tout public": "همه مردم",
     "En savoir plus": "بیشتر بدانید",
+    "Lire en": "بخوانید به :",
     "Tiennent la page": "صفحه را مطابق به روز (à jour) نگه دارید و به سوالات خود پاسخ دهید",
     "Évaluer mon niveau": "ارزیابی کردن سطح خود",
     "Réagir": "واکنش نشان دادن",
@@ -625,8 +632,8 @@
     "Inscrivez-vous à notre lettre": "برای پیگیری روند تکامل پروژه Refugies.info ، در خبرنامه ما شریک شوید",
     "Vous cherchez ?": "شما در جستجوی چه هستید؟",
     "Centre d'aide": "مرکز پشتیبانی و کمک",
-    "description": "Réfugiés.info یک پورتال اطلاعاتی مشترک است توسط ",
-    "description_suite": " و توسعه یافته توسط "
+    "description": "Réfugiés.info یک پورتال اطلاعاتی مشترک است توسط",
+    "description_suite": "و توسعه یافته توسط"
   },
   "Retour à la recherche": "بازگشت به جستجو",
   "ou": "یا",
@@ -664,6 +671,7 @@
   "Rechercher un utilisateur": "پیدا کردن یک کاربر",
   "CMU-C, demande de logement social, solidarité transport": "CMU-C بیمه ، درخواست مسکن اجتماعی و تقاضای تخفیف ترانسپورت",
   "Rechercher": "جستجو",
+  "Sélectionnez un filtre !": "یک فیلتر انتخاب کنید!",
   "Rechercher2": "جستجو ...",
   "Qui sommes-nous ?": "ما کی هستیم؟",
   "Comment contribuer ?": "چگونه مشارکت کرد؟",
@@ -698,8 +706,11 @@
   "manger, me doucher": "خوردن ، دوش گرفتن (حمام کردن) ...",
   "Annuaire": {
     "Annuaire": "دفترچه",
+    "Rechercher par": "جستجو براساس نام ...",
     "Association": "انجمن",
     "Entreprise": "شرکت",
+    "Cette structure n'accueille pas de public.": "این ساختار افراد عموم  را نمی پذیرد",
+    "Uniquement sur rendez-vous": "فقط با قرار ملاقات",
     "École": "مدرسه (مکتب)",
     "Université": "دانشگاه",
     "Opérateur": "گرداننده (عملگر)",
@@ -781,6 +792,16 @@
     "Aides financières": "کمک های مالی",
     "Cours de conduite": "درس (کورس) رانندگی",
     "Formation au code": "آموزش قوانین ترافیک (code de la route)",
-    "Intermédiation locative": "میانجیگری اجاره"
+    "Intermédiation locative": "میانجیگری اجاره",
+    "Retour à l'annuaire": "بازگشت به فهرست",
+    "Thèmes & activités": "موضوعات و فعالیت ها",
+    "Type de structure": "نوع ساختار",
+    "Rechercher par nom...": "جستجو براساس نام ..."
+  },
+  "MobileAppModal": {
+    "Application mobile disponible": "نرم افزار موبایل در دسترس است!",
+    "Gratuite et plus facile à utiliser": "رایگان و ساده برای استفاده:",
+    "Rester sur le navigateur": "در مرورگر بمانید",
+    "Télécharger l'application": "برنامه را دانلود کنید"
   }
 }
