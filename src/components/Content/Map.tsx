@@ -43,20 +43,27 @@ export const Map = (props: PropsType) => {
       } else {
         bottomSheet.expand();
 
+        const lat = typeof markerOpen.latitude === "string"
+          ? parseFloat(markerOpen.latitude)
+          : markerOpen.latitude;
+        const lng = typeof markerOpen.longitude === "string"
+          ? parseFloat(markerOpen.longitude)
+          : markerOpen.longitude;
+
         if (map) {
           map.fitToCoordinates([
             {
               // use custom marker positions to set padding around real marker
-              latitude: markerOpen.latitude + 0.005,
-              longitude: markerOpen.longitude,
+              latitude: lat + 0.005,
+              longitude: lng,
             },
             {
-              latitude: markerOpen.latitude,
-              longitude: markerOpen.longitude,
+              latitude: lat,
+              longitude: lng,
             },
             {
-              latitude: markerOpen.latitude - 0.02,
-              longitude: markerOpen.longitude,
+              latitude: lat - 0.02,
+              longitude: lng,
             },
           ]);
         }
@@ -115,12 +122,18 @@ export const Map = (props: PropsType) => {
         provider={PROVIDER_GOOGLE}
       >
         {markers.map((marker, key) => {
+          const lat = typeof marker.latitude === "string"
+            ? parseFloat(marker.latitude)
+            : marker.latitude;
+          const lng = typeof marker.longitude === "string"
+            ? parseFloat(marker.longitude)
+            : marker.longitude;
           return (
             <Marker
               key={key}
               coordinate={{
-                latitude: marker.latitude,
-                longitude: marker.longitude,
+                latitude: lat,
+                longitude: lng,
               }}
               onPress={(e: any) => onMarkerClick(marker, e)}
               accessibilityRole="button"

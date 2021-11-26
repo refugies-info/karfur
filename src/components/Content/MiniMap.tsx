@@ -54,12 +54,18 @@ export class MiniMap extends React.Component<PropsType, StateType> {
           }}
         >
           {markers.map((marker, key) => {
+            const lat = typeof marker.latitude === "string"
+              ? parseFloat(marker.latitude)
+              : marker.latitude;
+            const lng = typeof marker.longitude === "string"
+              ? parseFloat(marker.longitude)
+              : marker.longitude;
             return (
               <Marker
                 key={key}
                 coordinate={{
-                  latitude: marker.latitude,
-                  longitude: marker.longitude,
+                  latitude: lat,
+                  longitude: lng
                 }}
               >
                 <Icon
