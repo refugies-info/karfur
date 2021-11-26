@@ -62,11 +62,90 @@ export default {
         data: [
           {
             scheme: "https",
-            host: "www.refugies.info",
+            host: "refugies.info",
+            path: ""
           },
           {
             scheme: "https",
+            host: "www.refugies.info",
+            path: ""
+          },
+
+          {
+            scheme: "https",
             host: "refugies.info",
+            path: "/"
+          },
+          {
+            scheme: "https",
+            host: "www.refugies.info",
+            path: "/"
+          },
+
+          {
+            scheme: "https",
+            host: "refugies.info",
+            pathPrefix: "/dispositif/"
+          },
+          {
+            scheme: "https",
+            host: "www.refugies.info",
+            pathPrefix: "/dispositif/"
+          },
+
+          {
+            scheme: "https",
+            host: "refugies.info",
+            pathPrefix: "/demarche/"
+          },
+          {
+            scheme: "https",
+            host: "www.refugies.info",
+            pathPrefix: "/demarche/"
+          },
+
+          {
+            scheme: "https",
+            host: "refugies.info",
+            pathPrefix: "/advanced-search"
+          },
+          {
+            scheme: "https",
+            host: "www.refugies.info",
+            pathPrefix: "/advanced-search"
+          },
+
+          {
+            scheme: "https",
+            host: "refugies.info",
+            pathPrefix: "/qui-sommes-nous"
+          },
+          {
+            scheme: "https",
+            host: "www.refugies.info",
+            pathPrefix: "/qui-sommes-nous"
+          },
+
+          {
+            scheme: "https",
+            host: "refugies.info",
+            pathPrefix: "/mentions-legales"
+          },
+          {
+            scheme: "https",
+            host: "www.refugies.info",
+            pathPrefix: "/mentions-legales"
+          },
+
+          {
+            scheme: "https",
+            host: "refugies.info",
+            pathPrefix: "/politique-de-confidentialite"
+          },
+          {
+            scheme: "https",
+            host: "www.refugies.info",
+            pathPrefix: "/politique-de-confidentialite"
           },
         ],
         category: [
