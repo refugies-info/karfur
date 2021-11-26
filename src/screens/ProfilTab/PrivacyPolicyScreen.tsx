@@ -1,5 +1,6 @@
 import * as React from "react";
-import { View, Text, Image, Linking } from "react-native";
+import { View, Text, Image } from "react-native";
+import * as Linking from "expo-linking";
 import {
   TextBigBold,
   TextSmallNormal,

@@ -1,5 +1,6 @@
 import * as React from "react";
-import { View, Linking, ScrollView, StyleSheet, Image } from "react-native";
+import { View, ScrollView, StyleSheet, Image } from "react-native";
+import * as Linking from "expo-linking";
 import {
   TextBigBold,
   TextNormal,

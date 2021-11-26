@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Linking, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
+import * as Linking from "expo-linking";
 import { StackScreenProps } from "@react-navigation/stack";
 import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
@@ -58,31 +59,33 @@ export const ExplorerScreen = ({
 
   const [tabSelected, setTabSelected] = React.useState("galery");
   const selectedLocation = useSelector(userLocationSelector);
-  const nbContents = useSelector(nbContentsSelector);
-  const isLocalizedWarningHidden = useSelector(isLocalizedWarningHiddenSelector);
-
-  const [isLocalizedModalVisible, setIsLocalizedModalVisible] = React.useState(false);
-  const [totalContent, setTotalContent] = React.useState(0);
 
   // Handle share link
-  const handleOpenUrl = (event: { url: string }|string|null) => {
+  const handleOpenUrl = (event: Linking.EventType|string|null) => {
     if (event) {
       let url = typeof event === "object" ? event.url : event;
-      logger.info("[initial url]", url)
+      logger.info("[initialUrl]", url);
+      if (!url.includes("refugies.info")) return;
       const screen = getScreenFromUrl(url);
       if (screen) {
-        navigation.navigate(screen.screenName, screen.params);
+        //@ts-ignore
+        navigation.navigate(screen.rootNavigator, screen.screenParams);
       }
     }
   }
   React.useEffect(() => {
-    Linking.addEventListener("url", handleOpenUrl);
+    Linking.addEventListener("url", (event) => handleOpenUrl(event));
     Linking.getInitialURL().then(handleOpenUrl);
 
-    return Linking.removeEventListener("url", handleOpenUrl)
+    return Linking.removeEventListener("url", handleOpenUrl);
   }, []);
 
   // Calculate total content for warning
+  const nbContents = useSelector(nbContentsSelector);
+  const isLocalizedWarningHidden = useSelector(isLocalizedWarningHiddenSelector);
+  const [isLocalizedModalVisible, setIsLocalizedModalVisible] = React.useState(false);
+  const [totalContent, setTotalContent] = React.useState(0);
+
   React.useEffect(() => {
     setTotalContent(
       (nbContents.nbGlobalContent || 0) + (nbContents.nbLocalizedContent || 0)

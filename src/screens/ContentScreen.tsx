@@ -3,13 +3,13 @@ import styled from "styled-components/native";
 import {
   useWindowDimensions,
   View,
-  Linking,
   StyleSheet,
   Animated,
   Modal,
   Share,
   Platform,
 } from "react-native";
+import * as Linking from "expo-linking";
 import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
 import { CompositeNavigationProp } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";

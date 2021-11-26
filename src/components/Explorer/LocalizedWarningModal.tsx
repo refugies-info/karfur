@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Linking, View } from "react-native";
+import { View } from "react-native";
+import * as Linking from "expo-linking";
 import { Icon } from "react-native-eva-icons";
 import Modal from "react-native-modal";
 import { StyleSheet } from "react-native";
