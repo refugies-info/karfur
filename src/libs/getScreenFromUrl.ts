@@ -3,15 +3,30 @@ export const getScreenFromUrl = (url: string): {
   screenParams: any
 }|null => {
   // Dispositif
-  const rx = /dispositif\/[a-z|0-9]*/g;
-  const res = rx.exec(url);
-  if (res && res[0]) {
+  const rxDispositif = /dispositif\/[a-z|0-9]*/g;
+  const resDispositif = rxDispositif.exec(url);
+  if (resDispositif && resDispositif[0]) {
     return {
       rootNavigator: "Explorer",
       screenParams: {
         screen: "ContentScreen",
         params: {
-          contentId: res[0].replace("dispositif/", "")
+          contentId: resDispositif[0].replace("dispositif/", "")
+        }
+      }
+    }
+  }
+
+  // Demarche
+  const rxDemarche = /demarche\/[a-z|0-9]*/g;
+  const resDemarche = rxDemarche.exec(url);
+  if (resDemarche && resDemarche[0]) {
+    return {
+      rootNavigator: "Explorer",
+      screenParams: {
+        screen: "ContentScreen",
+        params: {
+          contentId: resDemarche[0].replace("demarche/", "")
         }
       }
     }

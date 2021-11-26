@@ -70,10 +70,13 @@ describe("ContentScreen", () => {
     const route = {
       params: {
         contentId: "",
-        tagName: "",
-        tagDarkColor: "#3D2884",
-        tagLightColor: "#705FA4",
-        tagVeryLightColor: "#EFE8F4",
+        colors: {
+          tagName: "",
+          iconName: "",
+          tagDarkColor: "#3D2884",
+          tagLightColor: "#705FA4",
+          tagVeryLightColor: "#EFE8F4",
+        }
       },
     };
     const component = wrapWithProvidersAndRender({
@@ -104,10 +107,13 @@ describe("ContentScreen", () => {
     const route = {
       params: {
         contentId: "",
-        tagName: "",
-        tagDarkColor: "#3D2884",
-        tagLightColor: "#705FA4",
-        tagVeryLightColor: "#EFE8F4",
+        colors: {
+          tagName: "",
+          iconName: "",
+          tagDarkColor: "#3D2884",
+          tagLightColor: "#705FA4",
+          tagVeryLightColor: "#EFE8F4",
+        }
       },
     };
     const component = wrapWithProvidersAndRender({
