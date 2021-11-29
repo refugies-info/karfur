@@ -9,40 +9,78 @@
 
 - create `.env` file
 - add private keys
-- run `yarn`
+- run `yarn` to install dependencies
 - run `yarn start`
 
 # Environments
 
-We are going to work with 2 environments, `staging` and `prod`:
+We are going to work with 2 environments, `staging` and `production`:
 
 - `staging`:
   - test app
   - linked to the prod backend (for user tests purposes)
   - accessible via Expo Go with a link
 
-- `prod`:
+- `production`:
   - app used by real users
   - linked to the prod backend
-  - accessible in the stores (and via internal distribution before it is on the stores)
+  - accessible in the stores (and via internal distribution)
+
+
+## Variables
+
+The environment variables are defined at 2 different places:
+- For **development**, in `.env` file.
+  If you change a variable here, rebuild the project after emptying the cache (`expo r -c`)
+- For **staging** and **production**:
+  - in `src/libs/getEnvironment.ts` for non-sensitive variables
+    We need a unique place to define these variables so they are accessible after a build (`eas build`) and a publication (`expo submit`). See [expo documentation](https://docs.expo.dev/build-reference/variables/#can-i-share-environment-variables-defined-in).
+  - in Expo Go for sensitive variables (API keys, secrets ...)
+
+
+# Workflow
+
+1. Develop all the features on a specific branch.
+2. When done, merge your changes to `dev` branch.
+3. Publish on `staging` for tests.
+4. When validated, merge your changes to `main` branch.
+5. For deployment in `production`, 2 options:
+  - For bug fixes or minor updates, **publish** changes to update apps automatically.
+    On iOS, the update is downloaded before the app is launched. On Android, it's downloaded in the background and installed the second time the app is opened.
+  - For config changes or major updates, create a **build** and submit on the stores.
+
 
 # Deploy
 ## Staging
 
-Notes:
-- The API url is defined in `getEnvironnement.ts`
-- Environment variables are in `.env` file (like in dev)
+Deploy on staging to test features via Expo Go.
 
 ```
 $ expo publish --release-channel staging
 ```
 
+It is also possible to build the app to test it on real devices (or on a simulator for iOS). For this, use the `preview` channel of eas.
+
+```
+$ eas build -p android --profile preview
+```
+
+Then, download the bundle on Expo Go.
+
 ## Production
 
-Notes:
-- secrets are stored in expo directly
+### Publish changes
 
-1. Increment `version` number in `app.config.js`
+It is possible to publish an update which will be automatically downloaded when the app is launched.
+It should be used for bug fixes and minor updates.
+
+```
+$ expo publish --release-channel production
+```
+
+### Build app
+
+1. Increment `version` number in `app.config.js`: `version`, `ios.buildNumber` and `android.versionCode`.
 
 2. Start a build which will be executed on expo servers. You can follow the process [here](https://expo.dev/accounts/refugies-info/projects/refugies-info-app/builds)
 ```
@@ -58,6 +96,11 @@ $ eas submit -p android
 ```
 $ eas submit -p ios
 ```
+On iOS, you need to fill a declaration before sending for validation. Choose **Yes** for the first question, and **No** for the following ones.
+
+
+Notes:
+- updates takes usually 2-3 days to be validated by the stores
 
 ## Font
 
