@@ -69,7 +69,7 @@ export const FrenchLevelProfilScreen = ({
     <SafeAreaView style={{ flex: 1 }}>
       <HeaderWithBack
         navigation={navigation}
-        text={t("Profil.Niveau de français", "Niveau de français")}
+        text={t("Profil.french_level", "Niveau de français")}
         iconName="message-circle-outline"
       />
       <View style={{ flex: 1 }}>
@@ -80,7 +80,7 @@ export const FrenchLevelProfilScreen = ({
           }}
         >
           <Title>
-            {t("Onboarding.niveauFrancais", "Quel est ton niveau en français ?")}
+            {t("Onboarding.french_level", "Quel est ton niveau en français ?")}
           </Title>
           <Explaination
             step={3}
@@ -109,7 +109,7 @@ export const FrenchLevelProfilScreen = ({
               />
             ))}
             <FilterButton
-              text="Ne pas filtrer selon mon niveau de français"
+              text="no_french_level_filter"
               isSelected={!selectedFrenchLevel}
               onPress={removeFrenchLevel}
             />

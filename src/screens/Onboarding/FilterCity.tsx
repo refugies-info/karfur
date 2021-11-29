@@ -23,7 +23,7 @@ export const FilterCity = ({
       <HeaderWithBack
         navigation={navigation}
         iconName={"person-outline"}
-        text={t("Onboarding.Créer mon profil", "Créer mon profil")}
+        text={t("Onboarding.me", "Créer mon profil")}
       />
       <FilterCityComponent navigation={navigation} isOnboardingScreen={true} />
     </SafeAreaView>

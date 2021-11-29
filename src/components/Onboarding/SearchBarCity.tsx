@@ -113,7 +113,7 @@ export const SearchBarCity = (props: Props) => {
               style={{ marginRight: theme.margin }}
               accessibilityRole="button"
               accessible={true}
-              accessibilityLabel={t("Retour")}
+              accessibilityLabel={t("back")}
             >
               <Icon
                 name="arrow-back-outline"
@@ -142,7 +142,7 @@ export const SearchBarCity = (props: Props) => {
                 onPress={clearInput}
                 accessibilityRole="button"
                 accessible={true}
-                accessibilityLabel={t("Effacer la sélection")}
+                accessibilityLabel={t("clear_selection_accessibility")}
               >
                 <Icon
                   name="close-outline"

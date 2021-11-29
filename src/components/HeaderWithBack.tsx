@@ -37,7 +37,7 @@ export const HeaderWithBack = (props: Props) => {
       <SmallButton
         iconName="arrow-back-outline"
         onPress={props.navigation.goBack}
-        label={t("Retour à la page précédente")}
+        label={t("back_button_accessibility")}
       />
       {props.iconName && props.text && (
         <RTLView style={{

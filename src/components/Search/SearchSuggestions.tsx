@@ -39,7 +39,7 @@ const SearchSuggestions = (props: Props) => {
     >
       <View style={{ marginHorizontal: theme.margin * 3 }}>
         <ListSubtitle isRTL={isRTL}>
-          {t("SearchScreen.Les fiches les plus recherchées", "Les fiches les plus recherchées")}
+          {t("SearchScreen.most_searched_content", "Les fiches les plus recherchées")}
         </ListSubtitle>
 
         {(props.contents || []).map((content: SimplifiedContent) => {
@@ -63,7 +63,7 @@ const SearchSuggestions = (props: Props) => {
       </View>
       <View>
         <ListSubtitle style={{ marginHorizontal: theme.margin * 3 }} isRTL={isRTL}>
-          {t("SearchScreen.Les thèmes", "Les thèmes")}
+          {t("SearchScreen.themes", "Les thèmes")}
         </ListSubtitle>
         <ScrollView
           ref={scrollview}

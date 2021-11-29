@@ -144,7 +144,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             ]
           }
         >
-          Langue app
+          language
         </Text>
       </View>
       <View

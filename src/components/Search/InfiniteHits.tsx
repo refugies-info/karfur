@@ -55,11 +55,11 @@ const InfiniteHits = ({
       <ErrorContainer>
         <ErrorScreen
           title={t(
-            "SearchScreen.Impossible de trouver",
+            "SearchScreen.no_result",
             "Impossible de trouver"
           ) + `\n"${query}"`}
           text={t(
-            "SearchScreen.Essaie une nouvelle recherche",
+            "SearchScreen.try_new_search",
             "Essaie encore, vérifie l’orthographe ou utilise un autre mot-clé."
           )}
           imageLast={true}

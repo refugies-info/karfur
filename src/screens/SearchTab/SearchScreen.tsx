@@ -90,7 +90,7 @@ export const SearchScreen = ({
             fill={theme.colors.darkGrey}
           />
           <FakeInputText isRTL={isRTL}>
-            {t("SearchScreen.Rechercher", "Rechercher")}
+            {t("SearchScreen.search", "Rechercher")}
           </FakeInputText>
         </FakeInput>
       </ShadowView>

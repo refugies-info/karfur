@@ -58,7 +58,7 @@ export const AgeProfilScreen = ({
     <SafeAreaView style={{ flex: 1 }}>
       <HeaderWithBack
         navigation={navigation}
-        text={t("Profil.Âge", "Âge")}
+        text={t("Profil.age", "Âge")}
         iconName="calendar-outline"
       />
       <ContentContainer>
@@ -77,7 +77,7 @@ export const AgeProfilScreen = ({
             />
           ))}
           <FilterButton
-            text={"Ne pas filtrer selon mon âge"}
+            text={"no_age_filter"}
             isSelected={!selectedAge}
             onPress={removeAge}
           />

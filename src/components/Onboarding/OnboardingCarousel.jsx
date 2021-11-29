@@ -102,7 +102,7 @@ class OnboardingCarousel extends React.Component {
               }
               this.carousel.snapToPrev();
             }}
-            label={t("Onboarding.Retour vers la page précédente")}
+            label={t("Onboarding.back_button_accessibility")}
           />
         </TopButtonsContainer>
         <Carousel
@@ -122,7 +122,7 @@ class OnboardingCarousel extends React.Component {
         {this.pagination}
         <NextButtonContainer edges={["right", "bottom", "left"]}>
           <CustomButton
-            i18nKey={activeIndex !== 3 ? "Suivant" : "Continuer"}
+            i18nKey={activeIndex !== 3 ? "next" : "continue"}
             defaultText={activeIndex !== 3 ? "Suivant" : "Continuer"}
             textColor={theme.colors.black}
             onPress={() => {

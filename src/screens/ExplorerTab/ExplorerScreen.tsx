@@ -117,7 +117,7 @@ export const ExplorerScreen = ({
 
       <ViewChoiceContainer>
         <ViewChoice
-          text={"Galerie"}
+          text={"gallery"}
           isSelected={tabSelected === "galery"}
           iconName={"galery"}
           onPress={() => {
@@ -127,7 +127,7 @@ export const ExplorerScreen = ({
           }}
         />
         <ViewChoice
-          text={"Liste"}
+          text={"list"}
           isSelected={tabSelected === "list"}
           iconName={"list"}
           onPress={() => {

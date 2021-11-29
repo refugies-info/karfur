@@ -55,18 +55,18 @@ export const LocalizedWarningModal = (props: Props) => {
             top: theme.margin * 3,
             ...(!isRTL ? {right: 0} : {left: 0})
           }}
-          label={t("Fermer", "Fermer")}
+          label={t("close", "Fermer")}
         />
         <RTLView style={{ justifyContent: "center", alignItems: "flex-end" }}>
           <View>
             <Map width={102} height={104} style={{ marginBottom: theme.margin }} />
             <TextNormalBold style={styles.subtitle}>
-              {t("ExplorerScreen.nb fiches", {
+              {t("ExplorerScreen.nb_content", {
                 nbContent: props.nbGlobalContent
               })}
             </TextNormalBold>
             <TextSmallBold style={styles.subtitle}>
-              {t("ExplorerScreen.nationales")}
+              {t("ExplorerScreen.country_content")}
             </TextSmallBold>
           </View>
           <Icon
@@ -79,12 +79,12 @@ export const LocalizedWarningModal = (props: Props) => {
           <View>
             <Pin width={114} height={104} style={{ marginBottom: theme.margin }} />
             <TextNormalBold style={styles.subtitle}>
-              {t("ExplorerScreen.nb fiches", {
+              {t("ExplorerScreen.nb_content", {
                 nbContent: props.nbLocalizedContent
               })}
             </TextNormalBold>
             <TextSmallBold style={styles.subtitle}>
-              {t("ExplorerScreen.pour ta ville", {
+              {t("ExplorerScreen.city_content", {
                 city: props.city
               })}
             </TextSmallBold>
@@ -93,12 +93,12 @@ export const LocalizedWarningModal = (props: Props) => {
 
         <View style={{ marginTop: theme.margin * 5 }}>
           <TextBigBold style={styles.centerText}>
-            {t("ExplorerScreen.Réfugiés.info est en cours de développement")}
+            {t("ExplorerScreen.development_in_progress")}
           </TextBigBold>
           <TextNormal
             style={{ ...styles.centerText, marginVertical: theme.margin * 2 }}
           >
-            {t("ExplorerScreen.Nous ajoutons de nouvelles fiches chaque semaine")}
+            {t("ExplorerScreen.adding_new_content")}
           </TextNormal>
           <RTLView style={{justifyContent: "center"}}>
             <Icon

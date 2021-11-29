@@ -75,7 +75,7 @@ export const PrivacyPolicyScreen = ({
   return (
     <View style={{flex: 1}}>
       <HeaderWithBackAnimated
-        title={t("Profil.Confidentialité")}
+        title={t("Profil.privacy_policy")}
         showSimplifiedHeader={showSimplifiedHeader}
         onLongPressSwitchLanguage={toggleLanguageModal}
         navigation={navigation}

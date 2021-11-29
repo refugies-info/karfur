@@ -108,7 +108,7 @@ export const FinishOnboarding = ({
           </View>
         )}
         {hasUserEnteredInfos && (
-          <StyledText>{t("Merci !", "Merci !")}</StyledText>
+          <StyledText>{t("thank_you", "Merci !")}</StyledText>
         )}
         <StyledText
           marginTop={hasUserEnteredInfos ? theme.margin * 2 : theme.margin * 6}
@@ -119,14 +119,14 @@ export const FinishOnboarding = ({
                 "L’application est maintenant adaptée à ton profil."
               )
             : t(
-                "Onboarding.end_noInfos",
+                "Onboarding.end_no_info",
                 "Tu pourras renseigner ces informations plus tard en cliquant sur « Moi »."
               )}
         </StyledText>
       </ElementsContainer>
       <ButtonContainer>
         <CustomButton
-          i18nKey="Démarrer"
+          i18nKey="start_searching"
           defaultText="Démarrer"
           textColor={theme.colors.darkBlue}
           onPress={finishOnboarding}

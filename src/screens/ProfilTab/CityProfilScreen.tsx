@@ -22,7 +22,7 @@ export const CityProfilScreen = ({
     >
       <HeaderWithBack
         navigation={navigation}
-        text={t("Profil.Ville", "Ville")}
+        text={t("Profil.city", "Ville")}
         iconName="pin-outline"
       />
       <FilterCityComponent navigation={navigation} isOnboardingScreen={false} />

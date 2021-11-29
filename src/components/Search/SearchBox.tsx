@@ -53,7 +53,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
         style={{ marginRight: theme.margin }}
         accessibilityRole="button"
         accessible={true}
-        accessibilityLabel={t("Retour")}
+        accessibilityLabel={t("back")}
       >
         <Icon
           name="arrow-back-outline"
@@ -73,7 +73,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
           ref={input}
           onChangeText={(value: string) => refine(value)}
           value={currentRefinement}
-          placeholder={t("SearchScreen.Rechercher", "Rechercher")}
+          placeholder={t("SearchScreen.search", "Rechercher")}
           placeholderTextColor={theme.colors.darkGrey}
           isRTL={isRTL}
           testID="test-city-search"
@@ -82,7 +82,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
           onPress={() => refine("")}
           accessibilityRole="button"
           accessible={true}
-          accessibilityLabel={t("Effacer la sélection")}
+          accessibilityLabel={t("clear_selection_accessibility")}
         >
           <Icon
             name="close-outline"

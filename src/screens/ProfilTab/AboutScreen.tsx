@@ -176,7 +176,7 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
   return (
     <View style={{ flex: 1 }}>
       <HeaderWithBackAnimated
-        title={t("QuiSommesNous.Qui sommes-nous")}
+        title={t("QuiSommesNous.about_us")}
         showSimplifiedHeader={showSimplifiedHeader}
         onLongPressSwitchLanguage={toggleLanguageModal}
         navigation={navigation}
@@ -191,7 +191,7 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
         </TextNormal>
 
         {/* MISSIONS */}
-        <Title>{t("QuiSommesNous.Missions")}</Title>
+        <Title>{t("QuiSommesNous.missions")}</Title>
         <ScrollView
           ref={scrollviewMissions}
           contentContainerStyle={{
@@ -210,8 +210,8 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
               width={248}
               height={176}
               />
-            <CardTitle>{t("QuiSommesNous.Mission_3_header")}</CardTitle>
-            <TextSmallNormal>{t("QuiSommesNous.Mission_3_subheader")}</TextSmallNormal>
+            <CardTitle>{t("QuiSommesNous.mission_3_header")}</CardTitle>
+            <TextSmallNormal>{t("QuiSommesNous.mission_3_subheader")}</TextSmallNormal>
           </Card>
           <Card style={{
             marginRight: !isRTL ? theme.margin * 3 : 0,
@@ -223,8 +223,8 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
               width={248}
               height={176}
               />
-            <CardTitle>{t("QuiSommesNous.Mission_2_header")}</CardTitle>
-            <TextSmallNormal>{t("QuiSommesNous.Mission_2_subheader")}</TextSmallNormal>
+            <CardTitle>{t("QuiSommesNous.mission_2_header")}</CardTitle>
+            <TextSmallNormal>{t("QuiSommesNous.mission_2_subheader")}</TextSmallNormal>
           </Card>
           <Card>
             <CardImage
@@ -232,13 +232,13 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
               width={248}
               height={176}
               />
-            <CardTitle>{t("QuiSommesNous.Mission_1_header")}</CardTitle>
-            <TextSmallNormal>{t("QuiSommesNous.Mission_1_subheader")}</TextSmallNormal>
+            <CardTitle>{t("QuiSommesNous.mission_1_header")}</CardTitle>
+            <TextSmallNormal>{t("QuiSommesNous.mission_1_subheader")}</TextSmallNormal>
           </Card>
         </ScrollView>
 
         {/* PROBLEMATIQUES */}
-        <Title>{t("QuiSommesNous.Problématiques")}</Title>
+        <Title>{t("QuiSommesNous.issues")}</Title>
         <ScrollView
           ref={scrollviewProblematiques}
           contentContainerStyle={{
@@ -283,7 +283,7 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
         </ScrollView>
 
         {/* CONTRIBUTIF */}
-        <Title>{t("QuiSommesNous.Approche contributive")}</Title>
+        <Title>{t("QuiSommesNous.contributive_approach")}</Title>
         <ScrollView
           ref={scrollviewContributif}
           contentContainerStyle={{
@@ -338,10 +338,10 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
 
         {/* PARTENAIRES */}
         <Title style={{ marginBottom: theme.margin * 3 }}>
-          {t("QuiSommesNous.Partenaires")}
+          {t("QuiSommesNous.partners")}
         </Title>
         <TextSmallBold style={{ marginHorizontal: theme.margin * 3 }}>
-          {t("QuiSommesNous.appel-a-manifestation1")}
+          {t("QuiSommesNous.call_1")}
         </TextSmallBold>
 
         <ScrollView
@@ -365,11 +365,11 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
         </ScrollView>
 
         <TextSmallNormal style={{ marginHorizontal: theme.margin * 3 }}>
-          {t("QuiSommesNous.appel-a-manifestation2")}
+          {t("QuiSommesNous.call_2")}
         </TextSmallNormal>
         <RTLView>
           <CustomButton
-            i18nKey={"QuiSommesNous.telechargerAppel"}
+            i18nKey={"QuiSommesNous.download_call"}
             defaultText="Télécharger l’appel [PDF]"
             backgroundColor={theme.colors.black}
             iconName="download-outline"
@@ -383,7 +383,7 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
 
         {/* L'ÉQUIPE */}
         <Title style={{ marginBottom: theme.margin * 3 }}>
-          {t("QuiSommesNous.L'équipe")}
+          {t("QuiSommesNous.team")}
         </Title>
         <TeamContainer>
           {membres.map((membre, index) => (

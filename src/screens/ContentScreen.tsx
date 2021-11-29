@@ -788,7 +788,7 @@ export const ContentScreen = ({
           <CustomButton
             onPress={toggleFavorites}
             iconName={isContentFavorite ? "star" : "star-outline"}
-            i18nKey={"FavorisScreen.Mes fiches"}
+            i18nKey={"FavorisScreen.my_content"}
             defaultText={"Mes fiches"}
             textColor={theme.colors.black}
             backgroundColor={theme.colors.white}
@@ -805,7 +805,7 @@ export const ContentScreen = ({
           <CustomButton
             onPress={() => shareContent(selectedContent)}
             iconName="undo-outline"
-            i18nKey={"Partager"}
+            i18nKey={"share"}
             defaultText={"Partager"}
             textColor={theme.colors.black}
             backgroundColor={theme.colors.white}

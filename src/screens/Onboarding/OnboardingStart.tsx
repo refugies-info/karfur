@@ -60,7 +60,7 @@ export const OnboardingStart = ({
         </StyledText>
 
         <CustomButton
-          i18nKey={"Onboarding.parti"}
+          i18nKey={"Onboarding.start"}
           defaultText="C'est parti"
           textColor={theme.colors.darkBlue}
           onPress={() => navigation.navigate("OnboardingSteps")}

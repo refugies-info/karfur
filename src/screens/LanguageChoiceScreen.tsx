@@ -37,7 +37,7 @@ export const LanguageChoiceScreen = ({
       <HeaderWithLogo
         hideLanguageSwitch={true}
         iconName="globe-2-outline"
-        text={t("Langue app", "Langue")}
+        text={t("language", "Langue")}
       />
       <ScrollView
         scrollIndicatorInsets={{ right: 1 }}
