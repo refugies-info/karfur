@@ -142,7 +142,8 @@ exports[`Filter french level should render correctly when french level selected 
           Object {
             "flex": 1,
             "justifyContent": "center",
-            "marginRight": 40,
+            "marginLeft": 0,
+            "marginRight": 56,
           },
         ]
       }
@@ -1184,7 +1185,8 @@ exports[`Filter french level should render correctly when no french level select
           Object {
             "flex": 1,
             "justifyContent": "center",
-            "marginRight": 40,
+            "marginLeft": 0,
+            "marginRight": 56,
           },
         ]
       }
@@ -2162,7 +2164,8 @@ exports[`Filter french level should select level when click on it 1`] = `
           Object {
             "flex": 1,
             "justifyContent": "center",
-            "marginRight": 40,
+            "marginLeft": 0,
+            "marginRight": 56,
           },
         ]
       }

@@ -42,7 +42,8 @@ export const HeaderWithBack = (props: Props) => {
       {props.iconName && props.text && (
         <RTLView style={{
           flex: 1,
-          marginRight: theme.margin * 5,
+          marginRight: !isRTL ? theme.margin * 7 : 0,
+          marginLeft: isRTL ? theme.margin * 7 : 0,
           justifyContent: "center",
         }}>
           <Icon

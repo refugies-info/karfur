@@ -63,7 +63,8 @@ export const HeaderWithLogo = ({
         {text &&
           <RTLView style={{
             flex: 1,
-            marginRight: hideLanguageSwitch ? theme.margin * 5 : 0,
+            marginRight: hideLanguageSwitch && !isRTL ? theme.margin * 7 : 0,
+            marginLeft: hideLanguageSwitch && isRTL ? theme.margin * 7 : 0,
             justifyContent: "center",
           }}>
             {iconName &&
