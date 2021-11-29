@@ -30,11 +30,12 @@ We are going to work with 2 environments, `staging` and `production`:
 ## Variables
 
 The environment variables are defined at 2 different places:
-- For **development**, in `.env` file.
+- For **development**, in `.env` file.  
   If you change a variable here, rebuild the project after emptying the cache (`expo r -c`)
 - For **staging** and **production**:
-  - in `src/libs/getEnvironment.ts` for non-sensitive variables
-    We need a unique place to define these variables so they are accessible after a build (`eas build`) and a publication (`expo submit`). See [expo documentation](https://docs.expo.dev/build-reference/variables/#can-i-share-environment-variables-defined-in).
+  - in `src/libs/getEnvironment.ts` for non-sensitive variables.  
+    We need a unique place to define these variables so they are accessible after a build (`eas build`) and a publication (`expo submit`).  
+    See [expo documentation](https://docs.expo.dev/build-reference/variables/#can-i-share-environment-variables-defined-in).
   - in Expo Go for sensitive variables (API keys, secrets ...)
 
 
@@ -45,9 +46,9 @@ The environment variables are defined at 2 different places:
 3. Publish on `staging` for tests.
 4. When validated, merge your changes to `main` branch.
 5. For deployment in `production`, 2 options:
-  - For bug fixes or minor updates, **publish** changes to update apps automatically.
-    On iOS, the update is downloaded before the app is launched. On Android, it's downloaded in the background and installed the second time the app is opened.
-  - For config changes or major updates, create a **build** and submit on the stores.
+    - For bug fixes or minor updates, **publish** changes to update apps automatically.  
+      On iOS, the update is downloaded before the app is launched. On Android, it's downloaded in the background and installed the second time the app is opened.
+    - For config changes or major updates, create a **build** and submit on the stores.
 
 
 # Deploy
@@ -72,7 +73,6 @@ Then, download the bundle on Expo Go.
 ### Publish changes
 
 It is possible to publish an update which will be automatically downloaded when the app is launched.
-It should be used for bug fixes and minor updates.
 
 ```
 $ expo publish --release-channel production
@@ -83,20 +83,21 @@ $ expo publish --release-channel production
 1. Increment `version` number in `app.config.js`: `version`, `ios.buildNumber` and `android.versionCode`.
 
 2. Start a build which will be executed on expo servers. You can follow the process [here](https://expo.dev/accounts/refugies-info/projects/refugies-info-app/builds)
-```
-$ eas build --platform all
-```
+  ```
+  $ eas build --platform all
+  ```
 
 3. Submit the app on the Play Store
-```
-$ eas submit -p android
-```
+  ```
+  $ eas submit -p android
+  ```
 
 4. Submit the app on the App Store
-```
-$ eas submit -p ios
-```
-On iOS, you need to fill a declaration before sending for validation. Choose **Yes** for the first question, and **No** for the following ones.
+  ```
+  $ eas submit -p ios
+  ```
+  Note: On iOS, you need to fill a declaration before sending for validation. Choose **Yes** for the first question, and **No** for the following ones.
+
 
 
 Notes:
