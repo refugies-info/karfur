@@ -805,7 +805,7 @@ export const ContentScreen = ({
           <CustomButton
             onPress={() => shareContent(selectedContent)}
             iconName="undo-outline"
-            i18nKey={"share"}
+            i18nKey={"content_screen.share"}
             defaultText={"Partager"}
             textColor={theme.colors.black}
             backgroundColor={theme.colors.white}

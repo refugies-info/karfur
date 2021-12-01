@@ -104,7 +104,7 @@ export default function BottomTabNavigator() {
             color: string;
             focused: boolean;
           }) =>
-            renderTabBarLabel(color, focused, t("tabBar.Explorer", "Explorer")),
+            renderTabBarLabel(color, focused, t("tab_bar.explorer", "Explorer")),
         }}
       />
       <BottomTab.Screen
@@ -125,7 +125,7 @@ export default function BottomTabNavigator() {
             color: string;
             focused: boolean;
           }) =>
-            renderTabBarLabel(color, focused, t("tabBar.Favoris", "Favoris")),
+            renderTabBarLabel(color, focused, t("tab_bar.favorites", "Favoris")),
         }}
       />
       <BottomTab.Screen
@@ -146,7 +146,7 @@ export default function BottomTabNavigator() {
             color: string;
             focused: boolean;
           }) =>
-            renderTabBarLabel(color, focused, t("tabBar.Search", "Rechercher")),
+            renderTabBarLabel(color, focused, t("tab_bar.search", "Rechercher")),
         }}
       />
       <BottomTab.Screen
@@ -166,7 +166,7 @@ export default function BottomTabNavigator() {
           }: {
             color: string;
             focused: boolean;
-          }) => renderTabBarLabel(color, focused, t("tabBar.Profil", "Moi")),
+          }) => renderTabBarLabel(color, focused, t("tab_bar.profile", "Moi")),
         }}
       />
     </BottomTab.Navigator>

@@ -73,7 +73,7 @@ export const SearchScreen = ({
     <View style={{ flex: 1 }}>
       <ShadowView showShadow={showSimplifiedHeader}>
         <HeaderAnimated
-          title={t("tabBar.Search", "Rechercher")}
+          title={t("tab_bar.search", "Rechercher")}
           showSimplifiedHeader={showSimplifiedHeader}
           onLongPressSwitchLanguage={toggleLanguageModal}
           extraHeight={theme.margin * 3}

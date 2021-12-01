@@ -224,7 +224,7 @@ export const NeedsScreen = ({
           showSimplifiedHeader={showSimplifiedHeader}
         />
         <ErrorScreen
-          buttonText={t("tabBar.Explorer")}
+          buttonText={t("tab_bar.explorer")}
           text={t(
             "needs_screen.no_result",
             "Nous sommes désolés, nous n'avons pas de fiche ici"

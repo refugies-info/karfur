@@ -53,7 +53,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
         style={{ marginRight: theme.margin }}
         accessibilityRole="button"
         accessible={true}
-        accessibilityLabel={t("back")}
+        accessibilityLabel={t("global.back")}
       >
         <Icon
           name="arrow-back-outline"
@@ -82,7 +82,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
           onPress={() => refine("")}
           accessibilityRole="button"
           accessible={true}
-          accessibilityLabel={t("clear_selection_accessibility")}
+          accessibilityLabel={t("global.clear_selection_accessibility")}
         >
           <Icon
             name="close-outline"

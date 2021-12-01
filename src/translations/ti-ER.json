@@ -18,14 +18,13 @@
     "age": "ናትካ\\ኪ ዕድመ ክንደይ ኢዩ ?",
     "french_level": "ኣበየናይ ደረጃ ትምህርቲ ናይ ቃንቃ ፈረንሳይ በጽሒካ\\ኪ",
     "error_geoloc_acces": "ኦው ኖኖ ጸገም ኣለዎ ፣ ናትካ\\ኪ  ሰቲንግ መሳርሒ ተሌፎንካ\\ኪ ኣረጋግጽ\\ጺ  ፍቃድ ከም ዝሃብካ\\ኪ ናይ`ቲ  ዘለኻ\\ኺ\\ዮ ቦታ::",
-    "end": "እዛ መሳርሒ ኣፕሊኬሽን ተዳሊያ ኣላ ፣ ኣብዛ ኣፕሊኬሽን ሓበሬታት ክትረኽቡ\\ባ ትኽእሉ\\ላ::"
+    "end": "እዛ መሳርሒ ኣፕሊኬሽን ተዳሊያ ኣላ ፣ ኣብዛ ኣፕሊኬሽን ሓበሬታት ክትረኽቡ\\ባ ትኽእሉ\\ላ::",
+    "thank_you": "የቐነለይ !",
+    "start_searching": "ኣብዚ ቦታ ምድላይ ይጅምር",
+    "skip_step": "ን ሕጂ ኣይኮነን",
+    "next": "ዝ\\ት\\ቕጽል",
+    "continue": "ምቅጻል"
   },
-  "delete": "ምድምሳስ",
-  "next": "ዝ\\ት\\ቕጽል",
-  "continue": "ምቅጻል",
-  "share": "ኣመሓላልፎ",
-  "no_connection": "መስመር መርበብ ሓበሬታ የለን",
-  "ok": "ሕራይ",
   "explorer_screen": {
     "warning_nb_contents": "ሰነዳት ክትርእዩ ትኽእሉ {{nbContent}}    {{city}}ኣይኮነን ን",
     "list": "ዝርዝር",
@@ -37,14 +36,12 @@
     "development_in_progress": "ረፍዩጂ ኣንፎ ኣብ ጽገና ኣሎ",
     "adding_new_content": "ነፍስ ወከፍ ሰሙን ሃደሽቲ ሰነዳት ንጽዕን ኢና፣ ስለዚ ሰነዳቅት ንምጽሓፍን ንምትርጓም ንኽትተሓጋገዙና ኣብ ኮምፒተርኩም የራኽበና፣"
   },
-  "tabBar": {
-    "Explorer": "ምድህሳስ",
-    "Favoris": "ናተይ ሰነዳት",
-    "Profil": "ኣነ",
-    "Search": "ምድላይ"
+  "tab_bar": {
+    "explorer": "ምድህሳስ",
+    "favorites": "ናተይ ሰነዳት",
+    "profile": "ኣነ",
+    "search": "ምድላይ"
   },
-  "language": "ቃንቃ",
-  "error": "ኦው ሓደ ጸገም ከም እንደገና ክፍትን ኢየ",
   "profile_screens": {
     "app_informations": "ኣብቲ ኣብ ስልክኹም ዝጸዓንክሙዎ መርበብ ሓበሬታና ማለት ኣፕሊኬሽን",
     "about_us": "ንሕና ኢና ንሕና፧",
@@ -102,10 +99,6 @@
     "no_french_level_filter": "ሰነዳት ብዛዕባ ደረጃ ቃንቃ ፈረንሳይ ኣብዚ ረኣይ\\ዪ",
     "no_age_filter": "ሰነዳት ንኵሉ ዕድመ ዝምልከት ኣብዚ ረኣይ\\ዪ"
   },
-  "thank_you": "የቐነለይ !",
-  "skip_step": "ን ሕጂ ኣይኮነን",
-  "Valider": "ሕራይ",
-  "cancel": "ተሰሪዙ",
   "content_screen": {
     "favorite_added": "ምጽዓን ኣብ « <1> ሰነዳተይ </1> »",
     "favorite_deleted": "ምድምሳስ ካብ « ሰነዳተይ  »",
@@ -142,7 +135,8 @@
     "contact_email_accessibility": "ኢመይል ኣድረስ",
     "phone_number_accessibility": "ቁጽሪ ተሌፎን",
     "see_map": "ካርት ምርኣይ",
-    "not_set": "ሓበሬታት ዘምፍላጥ \\ዘይምርካብ"
+    "not_set": "ሓበሬታት ዘምፍላጥ \\ዘይምርካብ",
+    "share": "ኣመሓላልፎ"
   },
   "favorites_screen": {
     "my_content": "ሰነዳተይ",
@@ -167,7 +161,6 @@
   "contents_screen": {
     "non_translated_content": "ዘይተተርጎሙ ሰናዳት"
   },
-  "start_searching": "ኣብዚ ቦታ ምድላይ ይጅምር",
   "about_screen": {
     "about_us": "መን ኢና ንሕና ?",
     "missions": "መደብ",
@@ -200,6 +193,13 @@
     "download_call": "ብመንገዲ ናይ  ፔዲ ኤፍ ጌርና ከንውርድ ን ጻውዒት ከንውርድ  ንክእል"
   },
   "global": {
-    "close": "ተዓጽዩ"
+    "close": "ተዓጽዩ",
+    "ok": "ሕራይ",
+    "no_connection": "መስመር መርበብ ሓበሬታ የለን",
+    "language": "ቃንቃ",
+    "error": "ኦው ሓደ ጸገም ከም እንደገና ክፍትን ኢየ",
+    "delete": "ምድምሳስ",
+    "cancel": "ተሰሪዙ",
+    "validate": "ሕራይ"
   }
 }

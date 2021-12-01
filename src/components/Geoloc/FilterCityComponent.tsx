@@ -96,7 +96,7 @@ export const FilterCityComponent = (props: Props) => {
   const [isGeolocLoading, setIsGeolocLoading] = React.useState(false);
   const { t, isRTL } = useTranslationWithRTL();
 
-  const defaultError = t("error", "Une erreur est survenue, réessaie.");
+  const defaultError = t("global.error", "Une erreur est survenue, réessaie.");
 
   const dispatch = useDispatch();
 
@@ -310,7 +310,7 @@ export const FilterCityComponent = (props: Props) => {
               onPress={resetData}
               accessibilityRole="button"
               accessible={true}
-              accessibilityLabel={t("reinitialize")}
+              accessibilityLabel={t("global.reinitialize")}
             >
               <SelectedCityText isRTL={isRTL}>
                 {selectedCity + " (" + selectedDepartment + ")"}
@@ -345,7 +345,7 @@ export const FilterCityComponent = (props: Props) => {
           <BottomButtonsContainer>
             <ValidateButtonContainer>
               <CustomButton
-                i18nKey={"Valider"}
+                i18nKey={"global.validate"}
                 defaultText="Valider"
                 textColor={theme.colors.white}
                 onPress={() => {
@@ -360,7 +360,7 @@ export const FilterCityComponent = (props: Props) => {
             </ValidateButtonContainer>
 
             <CustomButton
-              i18nKey={"cancel"}
+              i18nKey={"global.cancel"}
               defaultText="Annuler"
               textColor={theme.colors.black}
               onPress={props.navigation.goBack}

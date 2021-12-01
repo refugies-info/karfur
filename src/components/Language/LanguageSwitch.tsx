@@ -126,7 +126,7 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
         onPress={onLongPressSwitchLanguage}
         activeOpacity={0.8}
         accessibilityRole="button"
-        accessibilityLabel={t("change_language_accessibility")}
+        accessibilityLabel={t("global.change_language_accessibility")}
       >
         <Flag langueFr={"Français"} />
       </ButtonContainerFixedWidth>
@@ -137,7 +137,7 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
       isRTL={false}
       onLongPress={onLongPressSwitchLanguage}
       accessibilityRole="button"
-      accessibilityLabel={t("change_language_accessibility")}
+      accessibilityLabel={t("global.change_language_accessibility")}
       activeOpacity={0.8}
     >
       <LanguageContainer

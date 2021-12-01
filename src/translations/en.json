@@ -18,14 +18,13 @@
     "age": "How old are you?",
     "french_level": "What is your level of French?",
     "error_geoloc_acces": "Oh no! There's a problem. Check your phone settings to make sure you have enabled location.",
-    "end": "The application is ready. Now you can search for information."
+    "end": "The application is ready. Now you can search for information.",
+    "thank_you": "Merci !",
+    "start_searching": "Start my search",
+    "skip_step": "Not now",
+    "next": "Next",
+    "continue": "Continue"
   },
-  "delete": "Delete",
-  "next": "Next",
-  "continue": "Continue",
-  "share": "Share",
-  "no_connection": "No internet connection!",
-  "ok": "Ok",
   "explorer_screen": {
     "warning_nb_contents": " You can see {{nbContent}} card, but not many for {{city}}",
     "list": "List",
@@ -37,14 +36,12 @@
     "development_in_progress": "Refugees.info is under development",
     "adding_new_content": "New cards are added every week. Get on a computer and help us write and translate cards!"
   },
-  "tabBar": {
-    "Explorer": "Explore",
-    "Favoris": "My cards",
-    "Profil": "Me",
-    "Search": "Search"
+  "tab_bar": {
+    "explorer": "Explore",
+    "favorites": "My cards",
+    "profile": "Me",
+    "search": "Search"
   },
-  "language": "Language",
-  "error": "Oh no! There's a problem. Please try again.",
   "profile_screens": {
     "app_informations": "Information on the application",
     "about_us": "Who are we?",
@@ -102,10 +99,6 @@
     "no_french_level_filter": "See cards for all levels of French",
     "no_age_filter": "See cards for all ages"
   },
-  "thank_you": "Merci !",
-  "skip_step": "Not now",
-  "Valider": "Ok",
-  "cancel": "Cancel",
   "content_screen": {
     "favorite_added": "Add « <1> my cards </1> »",
     "favorite_deleted": "Deleted from \"My cards\".",
@@ -142,7 +135,8 @@
     "contact_email_accessibility": "Contact email",
     "phone_number_accessibility": "Phone number",
     "see_map": "See map",
-    "not_set": "Not known"
+    "not_set": "Not known",
+    "share": "Share"
   },
   "favorites_screen": {
     "my_content": "My cards",
@@ -167,7 +161,6 @@
   "contents_screen": {
     "non_translated_content": "Cards not translated"
   },
-  "start_searching": "Start my search",
   "about_screen": {
     "about_us": "Who are we?",
     "missions": "Missions",
@@ -200,6 +193,13 @@
     "download_call": "Download the call  [PDF]"
   },
   "global": {
-    "close": "Close"
+    "close": "Close",
+    "ok": "Ok",
+    "no_connection": "No internet connection!",
+    "language": "Language",
+    "error": "Oh no! There's a problem. Please try again.",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "validate": "Ok"
   }
 }

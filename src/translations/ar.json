@@ -18,14 +18,13 @@
     "age": "كم عمرك ؟",
     "french_level": "ما هو مستواك باللغة الفرنسية ؟",
     "error_geoloc_acces": "للأسف، هناك مشكلة. يرجى التحقق من اعدادات هاتفك و تفعيل تحديد الموقع.",
-    "end": "التطبيق جاهز للاستخدام، يمكنك البدء بالبحث وتصفّح المعلومات المفيدة."
+    "end": "التطبيق جاهز للاستخدام، يمكنك البدء بالبحث وتصفّح المعلومات المفيدة.",
+    "thank_you": "شكراً",
+    "start_searching": "إبدأ البحث",
+    "skip_step": "ليس الآن",
+    "next": "التالي",
+    "continue": "أَكمِل"
   },
-  "delete": "حذف",
-  "next": "التالي",
-  "continue": "أَكمِل",
-  "share": "مشاركة",
-  "no_connection": "الاتصال غير متاح",
-  "ok": "موافق",
   "explorer_screen": {
     "warning_nb_contents": "{{nbContent}} نتيجة متوفّرة لكم، لكن ليس الكثير ل {{city}} بالتحديد",
     "list": "اللائحة",
@@ -37,14 +36,12 @@
     "development_in_progress": "منصة Réfugiés.info قيد التطوير",
     "adding_new_content": "كل أسبوع هناك صفحات معلومات جديدة. عن طريق الكمبيوتر يمكنك المشاركة معنا في كتابة و ترجمة صفحات المعلومات لزيادة النتائج لك و للآخرين."
   },
-  "tabBar": {
-    "Explorer": "اكتشف",
-    "Favoris": "مفضلاتي",
-    "Profil": "معلوماتي",
-    "Search": "ابحث"
+  "tab_bar": {
+    "explorer": "اكتشف",
+    "favorites": "مفضلاتي",
+    "profile": "معلوماتي",
+    "search": "ابحث"
   },
-  "language": "لغة",
-  "error": "للأسف، هناك مشكلة. حاول مرّة أخرى.",
   "profile_screens": {
     "app_informations": "معلومات عن التطبيق",
     "about_us": "من نحن ؟",
@@ -102,10 +99,6 @@
     "no_french_level_filter": "رؤية كلّ النتائج بغض النظر عن المستوى اللغوي",
     "no_age_filter": "رؤية النتائج المطابقة لكل الأعمار"
   },
-  "thank_you": "شكراً",
-  "skip_step": "ليس الآن",
-  "Valider": "موافق",
-  "cancel": "ألغي",
   "content_screen": {
     "favorite_deleted": "تم الحذف من « مفضّلاتي »",
     "what": "ما هو العَرض ؟",
@@ -141,7 +134,8 @@
     "contact_email_accessibility": "البريد الالكتروني",
     "phone_number_accessibility": "رقم الهاتف",
     "see_map": "رؤية الخريطة",
-    "not_set": "غير معلوم"
+    "not_set": "غير معلوم",
+    "share": "مشاركة"
   },
   "favorites_screen": {
     "my_content": "قائمة مفضّلاتي",
@@ -166,7 +160,6 @@
   "contents_screen": {
     "non_translated_content": "نتائج غير مترجمة"
   },
-  "start_searching": "إبدأ البحث",
   "about_screen": {
     "about_us": "من نحن ؟",
     "missions": "مهمّات",
@@ -199,6 +192,13 @@
     "download_call": "حمّل من هنا اعلان المساهمة بصيغة PDF"
   },
   "global": {
-    "close": "أغلق"
+    "close": "أغلق",
+    "ok": "موافق",
+    "no_connection": "الاتصال غير متاح",
+    "language": "لغة",
+    "error": "للأسف، هناك مشكلة. حاول مرّة أخرى.",
+    "delete": "حذف",
+    "cancel": "ألغي",
+    "validate": "موافق"
   }
 }

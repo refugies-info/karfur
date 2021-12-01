@@ -65,7 +65,7 @@ export const BottomButtons = (props: Props) => {
           accessibilityRole="button"
         >
           <StyledTextSmallBold style={{color: theme.colors.darkBlue}}>
-            {t("skip_step", "Passer l'étape")}
+            {t("onboarding_screens.skip_step", "Passer l'étape")}
           </StyledTextSmallBold>
         </LeftButtonContainer>
       </View>
@@ -84,7 +84,7 @@ export const BottomButtons = (props: Props) => {
             fill={theme.colors.white}
           />
           <TextBold color={theme.colors.white}>
-            {t("Valider", "Valider")}
+            {t("global.validate", "Valider")}
           </TextBold>
         </RightButtonContainer>
       </View>

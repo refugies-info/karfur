@@ -17,7 +17,7 @@ export const ConnexionTest = () => {
     <Toast
       icon="alert-triangle"
       onClose={() => { setNoInternet(false) }}
-      i18nKey="no_connection"
+      i18nKey="global.no_connection"
       defaultText="Aucune connexion internet !"
     />;
 

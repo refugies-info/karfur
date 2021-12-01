@@ -20,28 +20,19 @@
     "french_level": "C'est quoi ton niveau de français ?",
     "end": "L’application est prête. Maintenant, tu peux chercher des informations.",
     "error_geoloc_acces": "Oh non, il y a un problème. Vérifie dans les paramètres de ton téléphone que tu as autorisé la localisation.",
-    "back_button_accessibility": "Retour vers la page précédente"
+    "back_button_accessibility": "Retour vers la page précédente",
+    "thank_you": "Merci !",
+    "start_searching": "Commencer à chercher",
+    "skip_step": "Passer l'étape",
+    "next": "Suivant",
+    "continue": "Continuer"
   },
-  "back": "Retour",
-  "back_button_accessibility": "Retour vers la page précédente",
-  "next": "Suivant",
-  "continue": "Continuer",
-  "delete": "Supprimer",
-  "share": "Partager",
-  "reinitialize": "Réinitialiser",
-  "close_window_accessibility": "Fermer la fenêtre",
-  "change_language_accessibility": "Changer la langue",
-  "clear_selection_accessibility": "Effacer la sélection",
-  "ok": "Ok",
-  "no_connection": "Aucune connexion internet !",
-  "tabBar": {
-    "Explorer": "Explorer",
-    "Favoris": "Mes fiches",
-    "Profil": "Moi",
-    "Search": "Rechercher"
+  "tab_bar": {
+    "explorer": "Explorer",
+    "favorites": "Mes fiches",
+    "profile": "Moi",
+    "search": "Rechercher"
   },
-  "language": "Langue",
-  "error": "Oh non, il y a un problème. Essaie encore.",
   "explorer_screen": {
     "list": "list",
     "gallery": "Images",
@@ -90,11 +81,6 @@
     "no_french_level_filter": "Voir les fiches pour tous les niveaux de français",
     "no_age_filter": "Voir les fiches pour tous les âges"
   },
-  "start_searching": "Commencer à chercher",
-  "thank_you": "Merci !",
-  "skip_step": "Passer l'étape",
-  "Valider": "Ok",
-  "cancel": "Annuler",
   "profile_screens": {
     "delete_informations": "Supprimer mes informations",
     "reinit_app": "Réinitialiser l'application",
@@ -159,7 +145,8 @@
     "close_details_accessibility": "Fermer l'onglet, retour à la carte",
     "add_button_accessibility": "Ajouter à mes fiches",
     "remove_button_accessibility": "Supprimer de mes fiches",
-    "share_button_accessibility": "Partager la fiche"
+    "share_button_accessibility": "Partager la fiche",
+    "share": "Partager"
   },
   "needs_screen": {
     "fiches": "fiches",
@@ -218,6 +205,19 @@
     "download_call": "Télécharger l’appel [PDF]"
   },
   "global": {
-    "close": "Fermer"
+    "ok": "Ok",
+    "close": "Fermer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "back": "Retour",
+    "reinitialize": "Réinitialiser",
+    "language": "Langue",
+    "no_connection": "Aucune connexion internet !",
+    "error": "Oh non, il y a un problème. Essaie encore.",
+    "close_window_accessibility": "Fermer la fenêtre",
+    "clear_selection_accessibility": "Effacer la sélection",
+    "change_language_accessibility": "Changer la langue",
+    "back_button_accessibility": "Retour vers la page précédente",
+    "validate": "Ok"
   }
 }

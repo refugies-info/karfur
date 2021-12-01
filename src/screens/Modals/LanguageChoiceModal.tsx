@@ -122,14 +122,14 @@ export const LanguageChoiceModal = (props: Props) => {
         <TouchableWithoutFeedback
           onPress={props.toggleModal}
           accessibilityRole="button"
-          accessibilityLabel={t("close_window_accessibility")}
+          accessibilityLabel={t("global.close_window_accessibility")}
         >
           <Backdrop />
         </TouchableWithoutFeedback>
       }
     >
       <ModalView style={{ paddingBottom: insets.bottom }}>
-        <TitleText>{t("language", "Langue de l'application")}</TitleText>
+        <TitleText>{t("global.language", "Langue de l'application")}</TitleText>
         <LanguagesContainer>
           {activatedLanguages.map((language, index) => {
             const isSelected = selectedLanguageI18nCode === language.i18nCode;

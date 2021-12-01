@@ -119,7 +119,7 @@ export const HeaderWithBackForWrapper = ({
             } :
             navigation.goBack
           }
-          label={t("back_button_accessibility")}
+          label={t("global.back_button_accessibility")}
         />
         <RowContainer>
           <LanguageSwitch

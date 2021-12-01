@@ -65,7 +65,7 @@ export const ConfirmationModal = (props: Props) => {
         <TouchableWithoutFeedback
           onPress={props.toggleModal}
           accessibilityRole="button"
-          accessibilityLabel={t("close_window_accessibility")}
+          accessibilityLabel={t("global.close_window_accessibility")}
         >
           <Backdrop />
         </TouchableWithoutFeedback>
@@ -75,7 +75,7 @@ export const ConfirmationModal = (props: Props) => {
         <TitleText>{props.text}</TitleText>
         <TopButtonContainer>
           <CustomButton
-            i18nKey={props.i18nKeyValidateButton || "Valider"}
+            i18nKey={props.i18nKeyValidateButton || "global.validate"}
             defaultText={props.defaultTextValidateButton || "Valider"}
             textColor={theme.colors.white}
             onPress={onValidate}
@@ -85,7 +85,7 @@ export const ConfirmationModal = (props: Props) => {
         </TopButtonContainer>
 
         <CustomButton
-          i18nKey={"cancel"}
+          i18nKey={"global.cancel"}
           defaultText="Annuler"
           textColor={theme.colors.black}
           onPress={props.toggleModal}

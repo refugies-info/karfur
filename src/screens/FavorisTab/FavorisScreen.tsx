@@ -242,7 +242,7 @@ export const FavorisScreen = ({
           </EmptyText>
           <CustomButton
             textColor={theme.colors.white}
-            i18nKey="tabBar.Explorer"
+            i18nKey="tab_bar.explorer"
             onPress={() => navigation.navigate("Explorer")}
             defaultText="Explorer"
             backgroundColor={theme.colors.black}
@@ -263,7 +263,7 @@ export const FavorisScreen = ({
           "Veux-tu vraiment supprimer cette fiche de tes favoris ?"
         )}
         onValidate={() => deleteFavorite(favoriteToDelete)}
-        i18nKeyValidateButton={"delete"}
+        i18nKeyValidateButton={"global.delete"}
         defaultTextValidateButton={"Supprimer"}
         iconValidateButton={"trash-2-outline"}
       />

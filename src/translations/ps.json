@@ -18,14 +18,13 @@
     "age": "تاسو څو کلن یاست؟",
     "french_level": "ستاسو د فرانسوې ژبې کچه څه ده؟",
     "error_geoloc_acces": "او نه، یوه ستونزه ده. د خپل تلیفون تنظیماتو کې چیک کړئ چې تاسو د موقعیت ځای اختیار کړی دی.",
-    "end": "اپلیکیشن اماده دی. اوس تاسو کولای شئ معلومات ولټوئ."
+    "end": "اپلیکیشن اماده دی. اوس تاسو کولای شئ معلومات ولټوئ.",
+    "thank_you": "مننه !",
+    "start_searching": "لټون پیل کړئ",
+    "skip_step": "اوس نه",
+    "next": "مخکي لاړ شئ",
+    "continue": "ادامه ورکړئ"
   },
-  "delete": "حذفول",
-  "next": "مخکي لاړ شئ",
-  "continue": "ادامه ورکړئ",
-  "share": "شریکول",
-  "no_connection": "د انټرنیټ اتصال نشته!",
-  "ok": "اوکې",
   "explorer_screen": {
     "warning_nb_contents": "تاسو کولای شئ {{nbContent}} فایلونه وګورئ، ولې د {{city}} لپاره زیات فایلونه نشته.",
     "list": "لست",
@@ -37,14 +36,12 @@
     "development_in_progress": "ریفیوجي.انفو د پراختیا په حال کې ده",
     "adding_new_content": "موږ هره اونۍ نوي فایلونه اضافه کوو. د کمپيوټر په کارولو سره له موږ سره د فایلونو په لیکلو او ژباړلو کې مرسته وکړي!"
   },
-  "tabBar": {
-    "Explorer": "کورپاڼه",
-    "Favoris": "زمافایلونه",
-    "Profil": "زه",
-    "Search": "لټون"
+  "tab_bar": {
+    "explorer": "کورپاڼه",
+    "favorites": "زمافایلونه",
+    "profile": "زه",
+    "search": "لټون"
   },
-  "language": "ژبه",
-  "error": "او نه، یوه ستونزه ده. بیا هڅه وکړئ.",
   "profile_screens": {
     "app_informations": "د اپلیکیشن په اړه معلومات",
     "about_us": "مونږ څوک یو؟",
@@ -102,10 +99,6 @@
     "no_french_level_filter": "د فرانسوي ژبې اړوند ټولو کچو معلوماتي فایلونه وګورئ",
     "no_age_filter": "د هر عمر سره سم معلوماتي فایلونه وګورئ"
   },
-  "thank_you": "مننه !",
-  "skip_step": "اوس نه",
-  "Valider": "اوکې",
-  "cancel": "لغوه يي کړئ",
   "content_screen": {
     "favorite_added": "اضافه شوي « <1>  فایلونه </1> »",
     "favorite_deleted": "حذف شوي « فایلونه »",
@@ -142,7 +135,8 @@
     "contact_email_accessibility": "بریښنالیک",
     "phone_number_accessibility": "د تلیفون شمیره",
     "see_map": "نقشه وګورئ",
-    "not_set": "-"
+    "not_set": "-",
+    "share": "شریکول"
   },
   "favorites_screen": {
     "my_content": "زمافایلونه",
@@ -167,7 +161,6 @@
   "contents_screen": {
     "non_translated_content": "معلوماتي فایلونه نه دې ژباړل شوي"
   },
-  "start_searching": "لټون پیل کړئ",
   "about_screen": {
     "about_us": "موږ څوک یو؟",
     "missions": "ماموریتونه",
@@ -200,6 +193,13 @@
     "download_call": "غوښتنلیک (appel) ډاونلوډ کړئ [PDF]"
   },
   "global": {
-    "close": "بند یې کړئ"
+    "close": "بند یې کړئ",
+    "ok": "اوکې",
+    "no_connection": "د انټرنیټ اتصال نشته!",
+    "language": "ژبه",
+    "error": "او نه، یوه ستونزه ده. بیا هڅه وکړئ.",
+    "delete": "حذفول",
+    "cancel": "لغوه يي کړئ",
+    "validate": "اوکې"
   }
 }
