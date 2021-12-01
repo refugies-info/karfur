@@ -77,7 +77,7 @@ export const AgeProfilScreen = ({
             />
           ))}
           <FilterButton
-            text="filters.no_age_filter"
+            text="no_age_filter"
             isSelected={!selectedAge}
             onPress={removeAge}
           />

@@ -109,7 +109,7 @@ export const FrenchLevelProfilScreen = ({
               />
             ))}
             <FilterButton
-              text="filters.no_french_level_filter"
+              text="no_french_level_filter"
               isSelected={!selectedFrenchLevel}
               onPress={removeFrenchLevel}
             />

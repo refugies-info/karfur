@@ -34,7 +34,7 @@
     "search": "Rechercher"
   },
   "explorer_screen": {
-    "list": "list",
+    "list": "Liste",
     "gallery": "Images",
     "warning_nb_contents": "Tu peux voir {{nbContent}} fiches, mais pas beaucoup pour {{city}}.",
     "why_link": "Pourquoi ?",
