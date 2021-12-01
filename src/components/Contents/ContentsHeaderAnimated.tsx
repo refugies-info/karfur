@@ -85,8 +85,8 @@ export const ContentsHeaderAnimated = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
   const indicatorText =
     props.nbContents < 2
-      ? t("NeedsScreen.fiche", "fiche")
-      : t("NeedsScreen.fiches", "fiches");
+      ? t("needs_screen.fiche", "fiche")
+      : t("needs_screen.fiches", "fiches");
   return (
     <Animated.View
       style={[
@@ -111,7 +111,7 @@ export const ContentsHeaderAnimated = (props: Props) => {
           >
             <ThemeText isRTL={isRTL}>
               {firstLetterUpperCase(
-                t("Tags." + props.tagName, props.tagName)
+                t("tags." + props.tagName, props.tagName)
               ) || ""}
             </ThemeText>
             {!props.showSimplifiedHeader && (

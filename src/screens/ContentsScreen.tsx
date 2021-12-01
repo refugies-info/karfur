@@ -316,7 +316,7 @@ export const ContentsScreen = ({
         {sortedNonTranslatedContents.length > 0 && (
           <View>
             <SectionHeaderText color={colors.tagDarkColor}>
-              {t("ContentsScreen.non_translated_content", "Fiches non traduites")}
+              {t("contents_screen.non_translated_content", "Fiches non traduites")}
             </SectionHeaderText>
             {sortedNonTranslatedContents.map((content) => {
               return (

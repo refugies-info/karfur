@@ -55,18 +55,18 @@ export const LocalizedWarningModal = (props: Props) => {
             top: theme.margin * 3,
             ...(!isRTL ? {right: 0} : {left: 0})
           }}
-          label={t("close", "Fermer")}
+          label={t("global.close", "Fermer")}
         />
         <RTLView style={{ justifyContent: "center", alignItems: "flex-end" }}>
           <View>
             <Map width={102} height={104} style={{ marginBottom: theme.margin }} />
             <TextNormalBold style={styles.subtitle}>
-              {t("ExplorerScreen.nb_content", {
+              {t("explorer_screen.nb_content", {
                 nbContent: props.nbGlobalContent
               })}
             </TextNormalBold>
             <TextSmallBold style={styles.subtitle}>
-              {t("ExplorerScreen.country_content")}
+              {t("explorer_screen.country_content")}
             </TextSmallBold>
           </View>
           <Icon
@@ -79,12 +79,12 @@ export const LocalizedWarningModal = (props: Props) => {
           <View>
             <Pin width={114} height={104} style={{ marginBottom: theme.margin }} />
             <TextNormalBold style={styles.subtitle}>
-              {t("ExplorerScreen.nb_content", {
+              {t("explorer_screen.nb_content", {
                 nbContent: props.nbLocalizedContent
               })}
             </TextNormalBold>
             <TextSmallBold style={styles.subtitle}>
-              {t("ExplorerScreen.city_content", {
+              {t("explorer_screen.city_content", {
                 city: props.city
               })}
             </TextSmallBold>
@@ -93,12 +93,12 @@ export const LocalizedWarningModal = (props: Props) => {
 
         <View style={{ marginTop: theme.margin * 5 }}>
           <TextBigBold style={styles.centerText}>
-            {t("ExplorerScreen.development_in_progress")}
+            {t("explorer_screen.development_in_progress")}
           </TextBigBold>
           <TextNormal
             style={{ ...styles.centerText, marginVertical: theme.margin * 2 }}
           >
-            {t("ExplorerScreen.adding_new_content")}
+            {t("explorer_screen.adding_new_content")}
           </TextNormal>
           <RTLView style={{justifyContent: "center"}}>
             <Icon

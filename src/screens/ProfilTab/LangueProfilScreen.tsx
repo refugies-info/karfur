@@ -57,11 +57,11 @@ export const LangueProfilScreen = ({
     >
       <HeaderWithBack
         navigation={navigation}
-        text={t("Profil.my_language", "Langue choisie")}
+        text={t("profile_screens.my_language", "Langue choisie")}
         iconName="globe-2-outline"
       />
       <HeaderText>
-        {t("Profil.language_choice", "Choisis la langue de l’application")}
+        {t("profile_screens.language_choice", "Choisis la langue de l’application")}
       </HeaderText>
       <ScrollView
         contentContainerStyle={{

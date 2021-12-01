@@ -126,7 +126,7 @@ export const MapBottomBar = (props: Props) => {
             height={ICON_SIZE}
             fill={props.textColor}
             isRTL={isRTL}
-            accessibilityLabel={t("Content.address")}
+            accessibilityLabel={t("content_screen.address")}
           />
           <HTMLContainer>
             <TextValue color={props.textColor}>
@@ -142,7 +142,7 @@ export const MapBottomBar = (props: Props) => {
             height={ICON_SIZE}
             fill={props.textColor}
             isRTL={isRTL}
-            accessibilityLabel={t("Content.contact_email_accessibility")}
+            accessibilityLabel={t("content_screen.contact_email_accessibility")}
           />
           <HTMLContainer>
             {props.selectedMarker.email ? (
@@ -153,7 +153,7 @@ export const MapBottomBar = (props: Props) => {
               />
             ) : (
               <TextValue color={props.textColor}>
-                {t("Content.not_set", "-")}
+                {t("content_screen.not_set", "-")}
               </TextValue>
             )}
           </HTMLContainer>
@@ -175,7 +175,7 @@ export const MapBottomBar = (props: Props) => {
             height={ICON_SIZE}
             fill={props.textColor}
             isRTL={isRTL}
-            accessibilityLabel={t("Content.phone_number_accessibility")}
+            accessibilityLabel={t("content_screen.phone_number_accessibility")}
           />
           <HTMLContainer>
             {props.selectedMarker.telephone ? (
@@ -186,7 +186,7 @@ export const MapBottomBar = (props: Props) => {
               />
             ) : (
               <TextValue color={props.textColor}>
-                {t("Content.not_set", "-")}
+                {t("content_screen.not_set", "-")}
               </TextValue>
             )}
           </HTMLContainer>
@@ -217,7 +217,7 @@ export const MapBottomBar = (props: Props) => {
         onPress={props.hideSideBar}
         accessibilityRole="button"
         accessible={true}
-        accessibilityLabel={t("Content.close_details_accessibility")}
+        accessibilityLabel={t("content_screen.close_details_accessibility")}
       >
         <Icon
           name={"close-outline"}

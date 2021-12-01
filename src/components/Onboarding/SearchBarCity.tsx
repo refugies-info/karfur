@@ -95,7 +95,7 @@ export const SearchBarCity = (props: Props) => {
           fill={theme.colors.darkGrey}
         />
         <FakeInputText isRTL={isRTL}>
-          {t("Onboarding.placeholder", "Exemple : Paris")}
+          {t("onboarding_screens.placeholder", "Exemple : Paris")}
         </FakeInputText>
       </FakeInput>
 
@@ -132,7 +132,7 @@ export const SearchBarCity = (props: Props) => {
               <StyledInput
                 ref={input}
                 value={props.enteredText}
-                placeholder={t("Onboarding.placeholder", "Exemple : Paris")}
+                placeholder={t("onboarding_screens.placeholder", "Exemple : Paris")}
                 placeholderTextColor={theme.colors.darkGrey}
                 onChangeText={props.onChangeText}
                 isRTL={isRTL}

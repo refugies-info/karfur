@@ -175,7 +175,7 @@ export const FavorisScreen = ({
             paddingBottom: theme.margin * 3,
           }}
         >
-          <Title>{t("FavorisScreen.my_content", "Mes fiches")}</Title>
+          <Title>{t("favorites_screen.my_content", "Mes fiches")}</Title>
           <View style={{ marginHorizontal: -theme.margin * 3 }}>
             {contentsToDisplay.map((content: SimplifiedContent) => {
               const tagName = content.tags.length > 0 ? content.tags[0].name : "";
@@ -202,7 +202,7 @@ export const FavorisScreen = ({
                       sponsorUrl={content.sponsorUrl}
                       actionPress={() => showDeleteModal(content._id)}
                       actionIcon={"trash-2-outline"}
-                      actionLabel={t("FavorisScreen.delete_content_accessibility")}
+                      actionLabel={t("favorites_screen.delete_content_accessibility")}
                       style={{ marginHorizontal: theme.margin * 3 }}
                       backScreen="Favoris"
                     />
@@ -218,7 +218,7 @@ export const FavorisScreen = ({
           >
             <DeleteAllButtonText>
               {t(
-                "FavorisScreen.delete_all_accessibility",
+                "favorites_screen.delete_all_accessibility",
                 "Supprimer toutes mes fiches"
               )}
             </DeleteAllButtonText>
@@ -232,11 +232,11 @@ export const FavorisScreen = ({
             height={278}
           />
           <EmptyTitle>
-            {t("FavorisScreen.empty", "C'est vide")}
+            {t("favorites_screen.empty", "C'est vide")}
           </EmptyTitle>
           <EmptyText>
             {t(
-              "FavorisScreen.add_content",
+              "favorites_screen.add_content",
               "Pour ajouter une fiche dans tes favoris, clique sur l’étoile."
             )}
           </EmptyText>
@@ -256,10 +256,10 @@ export const FavorisScreen = ({
         isModalVisible={!!favoriteToDelete}
         toggleModal={hideDeleteModal}
         text={favoriteToDelete === "all" ? t(
-          "FavorisScreen.delete_all",
+          "favorites_screen.delete_all",
           "Veux-tu vraiment supprimer toutes les fiches de tes favoris ?"
         ) : t(
-          "FavorisScreen.delete_content",
+          "favorites_screen.delete_content",
           "Veux-tu vraiment supprimer cette fiche de tes favoris ?"
         )}
         onValidate={() => deleteFavorite(favoriteToDelete)}

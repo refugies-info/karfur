@@ -41,7 +41,7 @@ export const getDescription = (infocard: DispositifContent, t: any) => {
   if (infocard.title === "Zone d'action") {
     if (!infocard.departments) return "";
     if (infocard.departments.includes("All")) {
-      return t("Content.whole_country", "Toute la France");
+      return t("content_screen.whole_country", "Toute la France");
     }
     let result = "";
     infocard.departments.forEach((dep) => {
@@ -54,37 +54,37 @@ export const getDescription = (infocard: DispositifContent, t: any) => {
   if (infocard.title === "Âge requis") {
     if (infocard.contentTitle === "Plus de ** ans") {
       const result =
-        t("Content.more_than", "Plus de") +
+        t("content_screen.more_than", "Plus de") +
         " " +
         infocard.bottomValue +
         " " +
-        t("Content.years", "ans");
+        t("content_screen.years", "ans");
 
       return result;
     }
 
     if (infocard.contentTitle === "Moins de ** ans") {
       const result =
-        t("Content.less_than", "Moins de") +
+        t("content_screen.less_than", "Moins de") +
         " " +
         infocard.topValue +
         " " +
-        t("Content.years", "ans");
+        t("content_screen.years", "ans");
 
       return result;
     }
 
     if (infocard.contentTitle === "De ** à ** ans") {
       const result =
-        t("Content.from", "De") +
+        t("content_screen.from", "De") +
         " " +
         infocard.bottomValue +
         " " +
-        t("Content.to", "à") +
+        t("content_screen.to", "à") +
         " " +
         infocard.topValue +
         " " +
-        t("Content.years", "ans");
+        t("content_screen.years", "ans");
 
       return result;
     }
@@ -98,18 +98,18 @@ export const getDescription = (infocard: DispositifContent, t: any) => {
       });
 
       return (
-        t("Content." + infocard.contentTitle, infocard.contentTitle) +
+        t("content_screen." + infocard.contentTitle, infocard.contentTitle) +
         " : " +
         levels
       );
     }
 
-    return t("Content." + infocard.contentTitle, infocard.contentTitle);
+    return t("content_screen." + infocard.contentTitle, infocard.contentTitle);
   }
 
   if (infocard.title === "Combien ça coûte ?") {
     if (infocard.free) {
-      return t("Content.free", "Gratuit");
+      return t("content_screen.free", "Gratuit");
     }
     return infocard.price + "€ " + infocard.contentTitle;
   }
@@ -119,10 +119,10 @@ export const getDescription = (infocard: DispositifContent, t: any) => {
   }
 
   if (infocard.title === "Acte de naissance OFPRA") {
-    return t("Content.ofpra_birth_act", "L'acte de naissance OFPRA");
+    return t("content_screen.ofpra_birth_act", "L'acte de naissance OFPRA");
   }
 
   if (infocard.title === "Titre de séjour")
-    return t("Content.residence_permit", "Le titre de séjour");
+    return t("content_screen.residence_permit", "Le titre de séjour");
   return null;
 };

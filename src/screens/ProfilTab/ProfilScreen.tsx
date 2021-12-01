@@ -140,11 +140,11 @@ export const ProfilScreen = ({
         onScroll={handleScroll}
         scrollEventThrottle={5}
       >
-        <StyledText>{t("Profil.my_profile", "Mon profil")}</StyledText>
+        <StyledText>{t("profile_screens.my_profile", "Mon profil")}</StyledText>
         <ProfilButtonsContainer>
           <ProfilDetailButton
             iconName="globe-2-outline"
-            category={t("Profil.my_language", "Langue choisie")}
+            category={t("profile_screens.my_language", "Langue choisie")}
             userChoice={selectedLanguage.langueLoc}
             isFirst={true}
             isLast={false}
@@ -153,9 +153,9 @@ export const ProfilScreen = ({
           />
           <ProfilDetailButton
             iconName="pin-outline"
-            category={t("Profil.city", "Ville")}
+            category={t("profile_screens.city", "Ville")}
             userChoice={
-              selectedLocation.city || t("Profil.whole_country", "Toute la France")
+              selectedLocation.city || t("profile_screens.whole_country", "Toute la France")
             }
             isFirst={false}
             isLast={false}
@@ -164,11 +164,11 @@ export const ProfilScreen = ({
           />
           <ProfilDetailButton
             iconName="calendar-outline"
-            category={t("Profil.age", "age")}
+            category={t("profile_screens.age", "age")}
             userChoice={
               selectedAge
-                ? t("Filter." + selectedAge, selectedAge)
-                : t("Profil.all_ages", "Tous les âges")
+                ? t("filters." + selectedAge, selectedAge)
+                : t("profile_screens.all_ages", "Tous les âges")
             }
             isFirst={false}
             isLast={false}
@@ -177,11 +177,11 @@ export const ProfilScreen = ({
           />
           <ProfilDetailButton
             iconName="message-circle-outline"
-            category={t("Profil.french", "Français")}
+            category={t("profile_screens.french", "Français")}
             userChoice={
               selectedFrenchLevel
-                ? t("Filter." + selectedFrenchLevel, selectedFrenchLevel)
-                : t("Profil.all_levels", "Tous les niveaux")
+                ? t("filters." + selectedFrenchLevel, selectedFrenchLevel)
+                : t("profile_screens.all_levels", "Tous les niveaux")
             }
             isFirst={false}
             isLast={true}
@@ -196,14 +196,14 @@ export const ProfilScreen = ({
           accessibilityRole="button"
         >
           <DeleteDataText>
-            {t("Profil.delete_informations", "Supprimer les données de mon profil")}
+            {t("profile_screens.delete_informations", "Supprimer les données de mon profil")}
           </DeleteDataText>
         </DeleteDataContainer>
-        <StyledText>{t("Profil.app_informations", "Informations sur l'application")}</StyledText>
+        <StyledText>{t("profile_screens.app_informations", "Informations sur l'application")}</StyledText>
         <ProfilButtonsContainer>
           <ProfilDetailButton
             iconName="question-mark-circle-outline"
-            category={t("Profil.about_us", "Qui sommes-nous ?")}
+            category={t("profile_screens.about_us", "Qui sommes-nous ?")}
             isFirst={true}
             isLast={false}
             isRTL={isRTL}
@@ -211,7 +211,7 @@ export const ProfilScreen = ({
           />
           <ProfilDetailButton
             iconName="lock-outline"
-            category={t("Profil.privacy_policy", "Politique de confidentialité")}
+            category={t("profile_screens.privacy_policy", "Politique de confidentialité")}
             isFirst={false}
             isLast={false}
             isRTL={isRTL}
@@ -219,7 +219,7 @@ export const ProfilScreen = ({
           />
           <ProfilDetailButton
             iconName="file-text-outline"
-            category={t("Profil.legal_notice", "Mentions légales")}
+            category={t("profile_screens.legal_notice", "Mentions légales")}
             isFirst={false}
             isLast={true}
             isRTL={isRTL}
@@ -231,7 +231,7 @@ export const ProfilScreen = ({
           accessibilityRole="button"
         >
           <DeleteDataText>
-            {t("Profil.reinit_app", "Réinitialiser l'application")}
+            {t("profile_screens.reinit_app", "Réinitialiser l'application")}
           </DeleteDataText>
         </DeleteDataContainer>
       </ContentContainer>
@@ -239,7 +239,7 @@ export const ProfilScreen = ({
         isModalVisible={isDeleteDataModalVisible}
         toggleModal={toggleDeleteDataModal}
         text={t(
-          "Profil.delete_data",
+          "profile_screens.delete_data",
           "Es-tu sûr de vouloir supprimer les données de ton profil ?"
         )}
         onValidate={deleteUserData}
@@ -248,7 +248,7 @@ export const ProfilScreen = ({
         isModalVisible={isReinitAppModalVisible}
         toggleModal={toggleReinitAppModal}
         text={t(
-          "Profil.reinit_app2",
+          "profile_screens.reinit_app2",
           "Es-tu sûr de vouloir réinitialiser ton application ?"
         )}
         onValidate={reinitializeApp}

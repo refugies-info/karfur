@@ -467,9 +467,9 @@ export const ContentScreen = ({
       >
         <ErrorScreen
           onButtonClick={refetchContent}
-          buttonText={t("Content.start_again", "Recommencer")}
+          buttonText={t("content_screen.start_again", "Recommencer")}
           text={t(
-            "Content.error",
+            "content_screen.error",
             "Une erreur est survenue. Vérifie que tu es bien connecté à internet. Sinon, réessaie plus tard."
           )}
           buttonIcon="refresh-outline"
@@ -647,7 +647,7 @@ export const ContentScreen = ({
               return (
                 <View key={index}>
                   <HeaderText textColor={themeTag.tagDarkColor}>
-                    {t("Content." + header, header)}
+                    {t("content_screen." + header, header)}
                   </HeaderText>
                   <View style={{ marginHorizontal: theme.margin * 3 }}>
                     <ContentFromHtml
@@ -662,7 +662,7 @@ export const ContentScreen = ({
               return (
                 <View key={index}>
                   <HeaderText textColor={themeTag.tagDarkColor}>
-                    {t("Content." + header, header)}
+                    {t("content_screen." + header, header)}
                   </HeaderText>
                 </View>
               );
@@ -671,7 +671,7 @@ export const ContentScreen = ({
             return (
               <View key={index}>
                 <HeaderText textColor={themeTag.tagDarkColor}>
-                  {t("Content." + header, header)}
+                  {t("content_screen." + header, header)}
                 </HeaderText>
                 {selectedContent &&
                   selectedContent.contenu[index] &&
@@ -730,12 +730,12 @@ export const ContentScreen = ({
             >
               <CustomButton
                 textColor={theme.colors.white}
-                i18nKey="Content.go_website"
+                i18nKey="content_screen.go_website"
                 onPress={handleClick}
                 defaultText="Voir le site"
                 backgroundColor={themeTag.tagDarkColor}
                 iconName="external-link-outline"
-                accessibilityLabel={t("Content.go_website_accessibility")}
+                accessibilityLabel={t("content_screen.go_website_accessibility")}
               />
             </View>
           )}
@@ -744,21 +744,21 @@ export const ContentScreen = ({
             <>
               <HeaderText key={1} textColor={themeTag.tagDarkColor}>
                 {t(
-                  "Content.where",
+                  "content_screen.where",
                   "Trouver un interlocuteur"
                 )}
               </HeaderText>
               <MiniMap map={map} markersColor={themeTag.tagDarkColor}>
                 <CustomButton
                   textColor={theme.colors.black}
-                  i18nKey="Content.see_map"
+                  i18nKey="content_screen.see_map"
                   onPress={toggleMap}
                   defaultText="Voir la carte"
                   backgroundColor={theme.colors.white}
                   iconName="expand-outline"
                   iconFirst={true}
                   notFullWidth={true}
-                  accessibilityLabel={t("Content.see_map")}
+                  accessibilityLabel={t("content_screen.see_map")}
                 />
               </MiniMap>
             </>
@@ -767,7 +767,7 @@ export const ContentScreen = ({
           {formattedLastModifDate && (
             <LastUpdateDateContainer>
               <LastUpdateText isRTL={isRTL}>
-                {t("Content.last_update", "Dernière mise à jour :")}
+                {t("content_screen.last_update", "Dernière mise à jour :")}
               </LastUpdateText>
               <LastUpdateDate>
                 {formattedLastModifDate.format("ll")}
@@ -788,7 +788,7 @@ export const ContentScreen = ({
           <CustomButton
             onPress={toggleFavorites}
             iconName={isContentFavorite ? "star" : "star-outline"}
-            i18nKey={"FavorisScreen.my_content"}
+            i18nKey={"favorites_screen.my_content"}
             defaultText={"Mes fiches"}
             textColor={theme.colors.black}
             backgroundColor={theme.colors.white}
@@ -798,8 +798,8 @@ export const ContentScreen = ({
             isSmall={true}
             style={{ marginHorizontal: theme.margin }}
             accessibilityLabel={isContentFavorite ?
-              t("Content.remove_button_accessibility") :
-              t("Content.add_button_accessibility")
+              t("content_screen.remove_button_accessibility") :
+              t("content_screen.add_button_accessibility")
             }
           />
           <CustomButton
@@ -815,7 +815,7 @@ export const ContentScreen = ({
             isTextNotBold={true}
             isSmall={true}
             style={{ marginHorizontal: theme.margin }}
-            accessibilityLabel={ t("Content.share_button_accessibility")}
+            accessibilityLabel={ t("content_screen.share_button_accessibility")}
           />
         </RTLView>
       </TabBarContainer>
@@ -832,11 +832,11 @@ export const ContentScreen = ({
         >
           {favoriteToast === "removed" ?
             <ToastText>
-              {t("Content.favorite_deleted", "Fiche supprimée de tes favoris")}
+              {t("content_screen.favorite_deleted", "Fiche supprimée de tes favoris")}
             </ToastText> :
             <View>
               <ToastText>
-                <Trans i18nKey="Content.favorite_added">
+                <Trans i18nKey="content_screen.favorite_added">
                   Ajouté à
                   <ToastTextBold
                     onPress={() => {
@@ -869,13 +869,13 @@ export const ContentScreen = ({
               <SmallButton
                 iconName="arrow-back-outline"
                 onPress={toggleMap}
-                label={t("Content.back_content_accessibility")}
+                label={t("content_screen.back_content_accessibility")}
               />
               <SmallButton
                 iconName="close-outline"
                 onPress={toggleMap}
                 reversed={true}
-                label={t("Content.close_map_accessibility")}
+                label={t("content_screen.close_map_accessibility")}
               />
             </FixSafeAreaView>
           </ModalContainer>

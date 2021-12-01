@@ -67,7 +67,7 @@ export const TagButton = (props: Props) => {
             //@ts-ignore
             colorNotHighlighted={theme.colors.white}
           /> :
-          firstLetterUpperCase(t("Tags." + props.tagName, props.tagName))
+          firstLetterUpperCase(t("tags." + props.tagName, props.tagName))
         }
       </StyledText>
       <StreamlineIcon name={props.iconName} width={20} height={20} />

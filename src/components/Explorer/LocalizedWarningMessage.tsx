@@ -48,7 +48,7 @@ export const LocalizedWarningMessage = (props: Props) => {
         fill={theme.colors.darkBlue}
       />
       <InfoMessageText>
-        {t("ExplorerScreen.warning_nb_contents", {
+        {t("explorer_screen.warning_nb_contents", {
           nbContent: props.totalContent,
           city: props.city
         })}{" "}
@@ -57,14 +57,14 @@ export const LocalizedWarningMessage = (props: Props) => {
           accessibilityRole="button"
           accessible={true}
         >
-          {t("ExplorerScreen.why_link")}
+          {t("explorer_screen.why_link")}
         </InfoMessageLink>
       </InfoMessageText>
       <TouchableOpacity
         onPress={props.onClose}
         accessibilityRole="button"
         accessible={true}
-        accessibilityLabel={t("close", "Fermer")}
+        accessibilityLabel={t("global.close", "Fermer")}
       >
         <Icon
           name="close-outline"

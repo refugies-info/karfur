@@ -68,10 +68,10 @@ export const ViewChoice = (props: Props) => {
       <StreamlineIcon name={props.iconName} isSelected={props.isSelected} />
       {props.isSelected ? (
         <ChoiceTextBold>
-          {t("ExplorerScreen." + props.text, props.text)}
+          {t("explorer_screen." + props.text, props.text)}
         </ChoiceTextBold>
       ) : (
-        <ChoiceText>{t("ExplorerScreen." + props.text, props.text)}</ChoiceText>
+        <ChoiceText>{t("explorer_screen." + props.text, props.text)}</ChoiceText>
       )}
     </StyledButton>
   );

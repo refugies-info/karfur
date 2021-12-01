@@ -74,7 +74,7 @@ export const CarousselCard = (props: Props) => {
   return (
     <ButtonContainer
       accessibilityRole="button"
-      accessibilityLabel={t("Tags." + props.tag.name)}
+      accessibilityLabel={t("tags." + props.tag.name)}
       activeOpacity={0.7}
       onPress={() => {
         logEventInFirebase(FirebaseEvent.CLIC_THEME, {
@@ -107,7 +107,7 @@ export const CarousselCard = (props: Props) => {
         </View>
         <StyledContainer backgroundColor={props.tag.darkColor}>
           <StyledText isRTL={isRTL}>
-            {firstLetterUpperCase(t("Tags." + props.tag.name, props.tag.name))}
+            {firstLetterUpperCase(t("tags." + props.tag.name, props.tag.name))}
           </StyledText>
           <StreamlineIcon name={props.tag.icon} width={20} height={20} />
         </StyledContainer>

@@ -70,7 +70,7 @@ export const LegalNoticeScreen = ({
   return (
     <View style={{flex: 1}}>
       <HeaderWithBackAnimated
-        title={t("Profil.legal_notice")}
+        title={t("profile_screens.legal_notice")}
         showSimplifiedHeader={showSimplifiedHeader}
         onLongPressSwitchLanguage={toggleLanguageModal}
         navigation={navigation}

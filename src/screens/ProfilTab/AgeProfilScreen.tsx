@@ -58,11 +58,11 @@ export const AgeProfilScreen = ({
     <SafeAreaView style={{ flex: 1 }}>
       <HeaderWithBack
         navigation={navigation}
-        text={t("Profil.age", "Âge")}
+        text={t("profile_screens.age", "Âge")}
         iconName="calendar-outline"
       />
       <ContentContainer>
-        <Title>{t("Onboarding.age", "Quel âge as-tu ?")}</Title>
+        <Title>{t("onboarding_screens.age", "Quel âge as-tu ?")}</Title>
         <Explaination
           step={2}
           defaultText="C’est pour te montrer les démarches et les activités pour ton âge."

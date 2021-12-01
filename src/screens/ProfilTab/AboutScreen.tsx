@@ -176,7 +176,7 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
   return (
     <View style={{ flex: 1 }}>
       <HeaderWithBackAnimated
-        title={t("QuiSommesNous.about_us")}
+        title={t("about_screen.about_us")}
         showSimplifiedHeader={showSimplifiedHeader}
         onLongPressSwitchLanguage={toggleLanguageModal}
         navigation={navigation}
@@ -187,11 +187,11 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
         scrollEventThrottle={5}
       >
         <TextNormal style={{ marginHorizontal: theme.margin * 3 }}>
-          {t("QuiSommesNous.subheader1")} {t("QuiSommesNous.subheader2")}
+          {t("about_screen.subheader1")} {t("about_screen.subheader2")}
         </TextNormal>
 
         {/* MISSIONS */}
-        <Title>{t("QuiSommesNous.missions")}</Title>
+        <Title>{t("about_screen.missions")}</Title>
         <ScrollView
           ref={scrollviewMissions}
           contentContainerStyle={{
@@ -210,8 +210,8 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
               width={248}
               height={176}
               />
-            <CardTitle>{t("QuiSommesNous.mission_3_header")}</CardTitle>
-            <TextSmallNormal>{t("QuiSommesNous.mission_3_subheader")}</TextSmallNormal>
+            <CardTitle>{t("about_screen.mission_3_header")}</CardTitle>
+            <TextSmallNormal>{t("about_screen.mission_3_subheader")}</TextSmallNormal>
           </Card>
           <Card style={{
             marginRight: !isRTL ? theme.margin * 3 : 0,
@@ -223,8 +223,8 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
               width={248}
               height={176}
               />
-            <CardTitle>{t("QuiSommesNous.mission_2_header")}</CardTitle>
-            <TextSmallNormal>{t("QuiSommesNous.mission_2_subheader")}</TextSmallNormal>
+            <CardTitle>{t("about_screen.mission_2_header")}</CardTitle>
+            <TextSmallNormal>{t("about_screen.mission_2_subheader")}</TextSmallNormal>
           </Card>
           <Card>
             <CardImage
@@ -232,13 +232,13 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
               width={248}
               height={176}
               />
-            <CardTitle>{t("QuiSommesNous.mission_1_header")}</CardTitle>
-            <TextSmallNormal>{t("QuiSommesNous.mission_1_subheader")}</TextSmallNormal>
+            <CardTitle>{t("about_screen.mission_1_header")}</CardTitle>
+            <TextSmallNormal>{t("about_screen.mission_1_subheader")}</TextSmallNormal>
           </Card>
         </ScrollView>
 
         {/* PROBLEMATIQUES */}
-        <Title>{t("QuiSommesNous.issues")}</Title>
+        <Title>{t("about_screen.issues")}</Title>
         <ScrollView
           ref={scrollviewProblematiques}
           contentContainerStyle={{
@@ -256,8 +256,8 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
               width={248}
               height={176}
               />
-            <CardTitle>{t("QuiSommesNous.problem_1_header")}</CardTitle>
-            <TextSmallNormal>{t("QuiSommesNous.problem_1_subheader")}</TextSmallNormal>
+            <CardTitle>{t("about_screen.problem_1_header")}</CardTitle>
+            <TextSmallNormal>{t("about_screen.problem_1_subheader")}</TextSmallNormal>
           </Card>
           <Card style={{
             marginRight: !isRTL ? theme.margin * 3 : 0,
@@ -268,8 +268,8 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
               width={248}
               height={176}
               />
-            <CardTitle>{t("QuiSommesNous.problem_2_header")}</CardTitle>
-            <TextSmallNormal>{t("QuiSommesNous.problem_2_subheader")}</TextSmallNormal>
+            <CardTitle>{t("about_screen.problem_2_header")}</CardTitle>
+            <TextSmallNormal>{t("about_screen.problem_2_subheader")}</TextSmallNormal>
           </Card>
           <Card>
             <CardImage
@@ -277,13 +277,13 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
               width={248}
               height={176}
               />
-            <CardTitle>{t("QuiSommesNous.problem_3_header2")}</CardTitle>
-            <TextSmallNormal>{t("QuiSommesNous.problem_3_subheader2")}</TextSmallNormal>
+            <CardTitle>{t("about_screen.problem_3_header2")}</CardTitle>
+            <TextSmallNormal>{t("about_screen.problem_3_subheader2")}</TextSmallNormal>
           </Card>
         </ScrollView>
 
         {/* CONTRIBUTIF */}
-        <Title>{t("QuiSommesNous.contributive_approach")}</Title>
+        <Title>{t("about_screen.contributive_approach")}</Title>
         <ScrollView
           ref={scrollviewContributif}
           contentContainerStyle={{
@@ -304,8 +304,8 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
                 width={248}
                 height={176}
                 />
-              <CardTitle>{t("QuiSommesNous.contributive_1_header2")}</CardTitle>
-              <TextSmallNormal>{t("QuiSommesNous.contributive_1_subheader")}</TextSmallNormal>
+              <CardTitle>{t("about_screen.contributive_1_header2")}</CardTitle>
+              <TextSmallNormal>{t("about_screen.contributive_1_subheader")}</TextSmallNormal>
             </View>
           </Card>
           <Card style={{
@@ -319,8 +319,8 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
                 width={248}
                 height={176}
                 />
-              <CardTitle>{t("QuiSommesNous.contributive_2_header")}</CardTitle>
-              <TextSmallNormal>{t("QuiSommesNous.contributive_2_subheader")}</TextSmallNormal>
+              <CardTitle>{t("about_screen.contributive_2_header")}</CardTitle>
+              <TextSmallNormal>{t("about_screen.contributive_2_subheader")}</TextSmallNormal>
             </View>
           </Card>
           <Card style={{ justifyContent: "space-between" }}>
@@ -330,18 +330,18 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
                 width={248}
                 height={176}
                 />
-              <CardTitle>{t("QuiSommesNous.contributive_3_header")}</CardTitle>
-              <TextSmallNormal>{t("QuiSommesNous.contributive_3_subheader")}</TextSmallNormal>
+              <CardTitle>{t("about_screen.contributive_3_header")}</CardTitle>
+              <TextSmallNormal>{t("about_screen.contributive_3_subheader")}</TextSmallNormal>
             </View>
           </Card>
         </ScrollView>
 
         {/* PARTENAIRES */}
         <Title style={{ marginBottom: theme.margin * 3 }}>
-          {t("QuiSommesNous.partners")}
+          {t("about_screen.partners")}
         </Title>
         <TextSmallBold style={{ marginHorizontal: theme.margin * 3 }}>
-          {t("QuiSommesNous.call_1")}
+          {t("about_screen.call_1")}
         </TextSmallBold>
 
         <ScrollView
@@ -365,11 +365,11 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
         </ScrollView>
 
         <TextSmallNormal style={{ marginHorizontal: theme.margin * 3 }}>
-          {t("QuiSommesNous.call_2")}
+          {t("about_screen.call_2")}
         </TextSmallNormal>
         <RTLView>
           <CustomButton
-            i18nKey={"QuiSommesNous.download_call"}
+            i18nKey={"about_screen.download_call"}
             defaultText="Télécharger l’appel [PDF]"
             backgroundColor={theme.colors.black}
             iconName="download-outline"
@@ -383,7 +383,7 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
 
         {/* L'ÉQUIPE */}
         <Title style={{ marginBottom: theme.margin * 3 }}>
-          {t("QuiSommesNous.team")}
+          {t("about_screen.team")}
         </Title>
         <TeamContainer>
           {membres.map((membre, index) => (

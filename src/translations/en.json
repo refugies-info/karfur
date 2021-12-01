@@ -1,5 +1,5 @@
 {
-  "Onboarding": {
+  "onboarding_screens": {
     "start": "Get started",
     "bonjour": "Hello and welcome to Refugees.info!",
     "step1": "Here you can find information on how to proceed.",
@@ -26,7 +26,7 @@
   "share": "Share",
   "no_connection": "No internet connection!",
   "ok": "Ok",
-  "ExplorerScreen": {
+  "explorer_screen": {
     "warning_nb_contents": " You can see {{nbContent}} card, but not many for {{city}}",
     "list": "List",
     "gallery": "Images",
@@ -45,7 +45,7 @@
   },
   "language": "Language",
   "error": "Oh no! There's a problem. Please try again.",
-  "Profil": {
+  "profile_screens": {
     "app_informations": "Information on the application",
     "about_us": "Who are we?",
     "delete_informations": "Delete my information",
@@ -65,7 +65,7 @@
     "reinit_app2": "Your information to filter the cards will be deleted. The application will then start again from the start.",
     "delete_data": "Your information (language, city, age and level of French) will be removed."
   },
-  "Tags": {
+  "tags": {
     "Français": "French",
     "Logement": "Housing",
     "Insertion pro": "Job hunting",
@@ -92,7 +92,7 @@
     "me soigner": "get medical care",
     "gérer mes papiers": "manage my paperwork"
   },
-  "Filter": {
+  "filters": {
     "age_10_17": "10-17 years",
     "age_18_25": "18-25 years",
     "age_26_100": "26-100 years",
@@ -105,9 +105,8 @@
   "thank_you": "Merci !",
   "skip_step": "Not now",
   "Valider": "Ok",
-  "close": "Close",
   "cancel": "Cancel",
-  "Content": {
+  "content_screen": {
     "favorite_added": "Add « <1> my cards </1> »",
     "favorite_deleted": "Deleted from \"My cards\".",
     "what": "What is it?",
@@ -145,14 +144,14 @@
     "see_map": "See map",
     "not_set": "Not known"
   },
-  "FavorisScreen": {
+  "favorites_screen": {
     "my_content": "My cards",
     "empty": "0 card",
     "add_content": "When you are on an interesting card, click on the star.",
     "delete_content": "Please note that this card will be deleted from \"My cards\".",
     "delete_all": "Please note that all records will be deleted from \"My records\"."
   },
-  "SearchScreen": {
+  "search_screen": {
     "search": "Search",
     "most_searched_content": "Most searched files",
     "themes": "Themes",
@@ -160,14 +159,16 @@
     "no_result": "Impossible to find",
     "try_new_search": "Try again, check the spelling or use another keyword."
   },
-  "NeedsScreen": {
+  "needs_screen": {
     "fiches": "cards",
     "fiche": "cards",
     "no_result": "Sorry, we don't have any cards here yet."
   },
-  "ContentsScreen": { "non_translated_content": "Cards not translated" },
+  "contents_screen": {
+    "non_translated_content": "Cards not translated"
+  },
   "start_searching": "Start my search",
-  "QuiSommesNous": {
+  "about_screen": {
     "about_us": "Who are we?",
     "missions": "Missions",
     "mission_1_header": "Create customized integration paths",
@@ -197,5 +198,8 @@
     "call_1": "These organisations have signed a Call for Expression of Interest and participate in the evolution of the platform.",
     "call_2": "If you represent an organisation linked to the integration of refugees and wish to join the adventure, download the call below and send it to nour@refugies.info. We will contact you to define the terms of our partnership.",
     "download_call": "Download the call  [PDF]"
+  },
+  "global": {
+    "close": "Close"
   }
 }

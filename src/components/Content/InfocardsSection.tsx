@@ -84,7 +84,7 @@ export const InfocardsSection = (props: Props) => {
           <View key={indexSection}>
             <SectionContainer>
               <TitleText color={props.color}>
-                {t("Content." + data.title, data.title)}
+                {t("content_screen." + data.title, data.title)}
               </TitleText>
               {data.filteredData.map((infocard, key) => {
                 const displayedName =
@@ -106,7 +106,7 @@ export const InfocardsSection = (props: Props) => {
                       <InfocardTextContainer isRTL={isRTL}>
                         {!!displayedName && (
                           <SubtitleText>
-                            {t("Content." + displayedName, displayedName)}
+                            {t("content_screen." + displayedName, displayedName)}
                           </SubtitleText>
                         )}
                         {!!description && (

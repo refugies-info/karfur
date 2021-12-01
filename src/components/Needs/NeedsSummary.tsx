@@ -72,8 +72,8 @@ export const NeedsSummary = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
 
   const indicatorText = props.nbContents && props.nbContents < 2
-    ? t("NeedsScreen.fiche", "fiche")
-    : t("NeedsScreen.fiches", "fiches");
+    ? t("needs_screen.fiche", "fiche")
+    : t("needs_screen.fiches", "fiches");
 
   return (
     <NeedContainer

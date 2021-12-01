@@ -13,7 +13,7 @@ export const Explaination = (props: { step: number; defaultText: string }) => {
   const { t, isRTL } = useTranslationWithRTL();
   return (
     <StyledText isRTL={isRTL}>
-      {t("Onboarding.help_" + props.step, props.defaultText)}
+      {t("onboarding_screens.help_" + props.step, props.defaultText)}
     </StyledText>
   );
 };

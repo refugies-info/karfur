@@ -59,7 +59,7 @@ export const FilterButton = (props: Props) => {
     >
       <RTLView style={{ justifyContent: "space-between", flex: 1 }}>
         <StyledText isSelected={props.isSelected}>
-          {t("Filter." + props.text, props.text)}
+          {t("filters." + props.text, props.text)}
           {props.details &&
             <StyledText isSelected={props.isSelected}>
             {" "}({props.details.join("/")})

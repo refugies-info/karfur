@@ -69,11 +69,11 @@ export const FilterAge = ({
       <HeaderWithBack
         navigation={navigation}
         iconName={"person-outline"}
-        text={t("Onboarding.me", "Créer mon profil")}
+        text={t("onboarding_screens.me", "Créer mon profil")}
       />
       <ContentContainer>
         <View>
-          <Title>{t("Onboarding.age", "Quel âge as-tu ?")}</Title>
+          <Title>{t("onboarding_screens.age", "Quel âge as-tu ?")}</Title>
           <Explaination
             step={2}
             defaultText="C’est pour te montrer les démarches et les activités pour ton âge."

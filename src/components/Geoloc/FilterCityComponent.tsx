@@ -219,14 +219,14 @@ export const FilterCityComponent = (props: Props) => {
       if (error.message === "ERREUR_NOT_GRANTED") {
         setError(
           t(
-            "Onboarding.error_geoloc_acces",
+            "onboarding_screens.error_geoloc_acces",
             "Une erreur est survenue lors de la géolocalisation. Vérifie dans tes réglages que tu as bien activé la géolocalisation."
           )
         );
       } else {
         setError(
           t(
-            "Onboarding.error_geoloc",
+            "onboarding_screens.error_geoloc",
             "Une erreur est survenue lors de la géolocalisation. Entre ta ville manuellement."
           )
         );
@@ -270,12 +270,12 @@ export const FilterCityComponent = (props: Props) => {
       }}
     >
       <View>
-        <Title>{t("Onboarding.ville", "Tu habites dans quelle ville ?")}</Title>
+        <Title>{t("onboarding_screens.ville", "Tu habites dans quelle ville ?")}</Title>
         <Explaination
           step={1}
           defaultText="C’est pour te montrer les associations et les activités dans ta ville."
         />
-        <Label>{t("Onboarding.city_label", "Ta ville")}</Label>
+        <Label>{t("onboarding_screens.city_label", "Ta ville")}</Label>
         {!selectedCity && !isGeolocLoading && (
           <View>
             <SearchBarCity
@@ -297,7 +297,7 @@ export const FilterCityComponent = (props: Props) => {
                   fill={theme.colors.darkBlue}
                 />
                 <GeolocText isRTL={isRTL}>
-                  {t("Onboarding.position", "Utiliser ma position")}
+                  {t("onboarding_screens.position", "Utiliser ma position")}
                 </GeolocText>
               </GeolocContainer>
             )}

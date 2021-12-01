@@ -102,7 +102,7 @@ class OnboardingCarousel extends React.Component {
               }
               this.carousel.snapToPrev();
             }}
-            label={t("Onboarding.back_button_accessibility")}
+            label={t("onboarding_screens.back_button_accessibility")}
           />
         </TopButtonsContainer>
         <Carousel

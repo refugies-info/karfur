@@ -1,5 +1,5 @@
 {
-  "Onboarding": {
+  "onboarding_screens": {
     "start": "ምጅማር",
     "bonjour": "ሰላም  እንቃዕ ብደሓን መጻኹም\\ኽን ናብ ክፍሊ ሓበሬታ ረፍጂ ኣንፎ",
     "step1": "ኣብዚ ቦታ ኵሉ ዝግበር ኣስራርሓ መስርሕ ናይ ምስላጥ ሓበሬታት ክትረክብ\\ቢ ትኽእል\\ሊ::",
@@ -26,7 +26,7 @@
   "share": "ኣመሓላልፎ",
   "no_connection": "መስመር መርበብ ሓበሬታ የለን",
   "ok": "ሕራይ",
-  "ExplorerScreen": {
+  "explorer_screen": {
     "warning_nb_contents": "ሰነዳት ክትርእዩ ትኽእሉ {{nbContent}}    {{city}}ኣይኮነን ን",
     "list": "ዝርዝር",
     "gallery": "ስእሊ",
@@ -45,7 +45,7 @@
   },
   "language": "ቃንቃ",
   "error": "ኦው ሓደ ጸገም ከም እንደገና ክፍትን ኢየ",
-  "Profil": {
+  "profile_screens": {
     "app_informations": "ኣብቲ ኣብ ስልክኹም ዝጸዓንክሙዎ መርበብ ሓበሬታና ማለት ኣፕሊኬሽን",
     "about_us": "ንሕና ኢና ንሕና፧",
     "delete_informations": "ናተይ ሓበሬታት ይስርዝ",
@@ -65,7 +65,7 @@
     "reinit_app2": "ዝተወሃቡ ናትካ\\ኪ  ሓበሬታት ብዛዕባ  ፣ ቃንቃ ፣ ከተማ፣ ዕድመ ፣ ደረጃ ቃንቃ ፈረንሳይ፣ ኣብዛ ኣፕኪኬሽን ክስረዙ ኢዮም፣ እዛ ኣፕሊኬሽን ከም ብሓድሽ ክትጅምር ኢያ ::",
     "delete_data": "ኩሎም ዝተወሃቡ ሓበሬታት ብዛዕባ  (ቃንቃ ፣ ከተማ፣ ዕድመ ፣ ደረጃ ቃንቃ ፈረንሳይ )  ክስረዙ ኢዮም ::"
   },
-  "Tags": {
+  "tags": {
     "Français": "ፈረንሳይ",
     "Logement": "መንበሪ ገዛ",
     "Insertion pro": "ምትእትታው ሞያ ብውሕልልነት",
@@ -92,7 +92,7 @@
     "me soigner": "ኣነ ክሕከም",
     "gérer mes papiers": "ባዕለይ የሳልጥ  ወረቃቕተይ"
   },
-  "Filter": {
+  "filters": {
     "age_10_17": "ዕድመ ካብ 10 ክሳብ 17",
     "age_18_25": "ዕድመ ካብ 18 ክሳብ 25",
     "age_26_100": "ዕድመ ካብ 26 ክሳብ 100",
@@ -105,9 +105,8 @@
   "thank_you": "የቐነለይ !",
   "skip_step": "ን ሕጂ ኣይኮነን",
   "Valider": "ሕራይ",
-  "close": "ተዓጽዩ",
   "cancel": "ተሰሪዙ",
-  "Content": {
+  "content_screen": {
     "favorite_added": "ምጽዓን ኣብ « <1> ሰነዳተይ </1> »",
     "favorite_deleted": "ምድምሳስ ካብ « ሰነዳተይ  »",
     "what": "እንታይ ኢዩ ?",
@@ -145,14 +144,14 @@
     "see_map": "ካርት ምርኣይ",
     "not_set": "ሓበሬታት ዘምፍላጥ \\ዘይምርካብ"
   },
-  "FavorisScreen": {
+  "favorites_screen": {
     "my_content": "ሰነዳተይ",
     "empty": "ዜሮ ሰነድ",
     "add_content": "ሓንቲ ሰነድ ኣገድሲት ኮይና እንተረኺብኩማ ኣብታ ምልክት ኮኾብ ጠውቑ",
     "delete_content": "እዛ ሰነድ ካብ « ሰነዳተይ » ክትድምሰስ ስለ እትኽእል ተጠንቀቑ ፣",
     "delete_all": "ኩለን እዘን ሰነድ ካብ « ሰነዳተይ » ክድምሰሳ ስለ ዝኽእላ ተጠንቀቑ ፣"
   },
-  "SearchScreen": {
+  "search_screen": {
     "search": "ድለይ",
     "most_searched_content": "ኣዝዮም ተደለይቲ ሰነዳት",
     "themes": "ኣርእስትታት",
@@ -160,14 +159,16 @@
     "no_result": "ክርከብ ዘይከኣል",
     "try_new_search": "እንደገና ፈትን ኣጸሓሕፋኻ ኣረጋግጽ ወይ ካልእ ቁልፊ ዝኾነ ቃል ተጠቒምካ አጊምካ ድለ"
   },
-  "NeedsScreen": {
+  "needs_screen": {
     "fiches": "ሰነዳት",
     "fiche": "ሰነድ",
     "no_result": "ይቕረታ ኣብዚ ገጽ   ክሳብ ሕጂ ሰነዳት  የብልናን"
   },
-  "ContentsScreen": { "non_translated_content": "ዘይተተርጎሙ ሰናዳት" },
+  "contents_screen": {
+    "non_translated_content": "ዘይተተርጎሙ ሰናዳት"
+  },
   "start_searching": "ኣብዚ ቦታ ምድላይ ይጅምር",
-  "QuiSommesNous": {
+  "about_screen": {
     "about_us": "መን ኢና ንሕና ?",
     "missions": "መደብ",
     "mission_1_header": "ፈጠራ ግበር ኣብ ሂወትካ ኣባል ማሕበር ንምኻን",
@@ -197,5 +198,8 @@
     "call_1": "እዘን ማሕበራት ጻውዒት ናይ ውዕል ጌረን ኣብ ምምዕባልን ምስታፍን  ናይዚ ዓምዲ ፕላር ፎርም ፤፣",
     "call_2": "ሓንቲ ማሕበር ንስዴተኛታት ኣብ ምትሕጋዝን ኣብ ምውህሃድን ትነጥፉ እንተ ኮንኩም\\ክን፤ ናብዚ ናትና መደብ ክትሳተፍ ምስ እተደልዩ ነዚ ኣፕልኬሽን ኣውሪድኩም\\ክን  በዚ ዝስዕብ ኢመይል ለኣኹ\\ኻ ፤፣  nour@refugies.info.",
     "download_call": "ብመንገዲ ናይ  ፔዲ ኤፍ ጌርና ከንውርድ ን ጻውዒት ከንውርድ  ንክእል"
+  },
+  "global": {
+    "close": "ተዓጽዩ"
   }
 }

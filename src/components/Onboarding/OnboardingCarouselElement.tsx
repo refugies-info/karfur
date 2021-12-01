@@ -52,7 +52,7 @@ export const OnboardingCarouselElement = (props: Props) => {
         <CarouselStepImage step={props.step} />
       </ImagesContainer>
       <StyledText>
-        {t("Onboarding." + correspondingData.text, correspondingData.text)}
+        {t("onboarding_screens." + correspondingData.text, correspondingData.text)}
       </StyledText>
     </LinearGradient>
   );

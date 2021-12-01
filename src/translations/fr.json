@@ -1,5 +1,5 @@
 {
-  "Onboarding": {
+  "onboarding_screens": {
     "start": "Commencer",
     "bonjour": "Bonjour et bienvenue sur Réfugiés.info !",
     "step1": "Ici, tu trouves des informations pour tes démarches administratives.",
@@ -42,7 +42,7 @@
   },
   "language": "Langue",
   "error": "Oh non, il y a un problème. Essaie encore.",
-  "ExplorerScreen": {
+  "explorer_screen": {
     "list": "list",
     "gallery": "Images",
     "warning_nb_contents": "Tu peux voir {{nbContent}} fiches, mais pas beaucoup pour {{city}}.",
@@ -53,7 +53,7 @@
     "development_in_progress": "Réfugiés.info est en cours de développement",
     "adding_new_content": "On ajoute de nouvelles fiches chaque semaine. Rendez-vous sur un ordinateur pour nous aider à écrire et à traduire des fiches !"
   },
-  "Tags": {
+  "tags": {
     "Français": "Français",
     "Logement": "Logement",
     "Insertion pro": "Insertion pro",
@@ -80,7 +80,7 @@
     "me soigner": "me soigner",
     "gérer mes papiers": "gérer mes papiers"
   },
-  "Filter": {
+  "filters": {
     "age_10_17": "10–17 ans",
     "age_18_25": "18–25 ans",
     "age_26_100": "26–100 ans",
@@ -94,9 +94,8 @@
   "thank_you": "Merci !",
   "skip_step": "Passer l'étape",
   "Valider": "Ok",
-  "close": "Fermer",
   "cancel": "Annuler",
-  "Profil": {
+  "profile_screens": {
     "delete_informations": "Supprimer mes informations",
     "reinit_app": "Réinitialiser l'application",
     "my_profile": "Mes informations",
@@ -116,7 +115,7 @@
     "delete_data": "Tes informations pour filtrer les fiches vont être supprimées. Tu pouras voir toutes les fiches sans personnalisation.",
     "language_choice": "Quelle langue tu préfères ?"
   },
-  "Content": {
+  "content_screen": {
     "what": "C'est quoi ?",
     "why": "Pourquoi c'est intéressant ?",
     "how_involved": "Comment je m'engage ?",
@@ -162,13 +161,15 @@
     "remove_button_accessibility": "Supprimer de mes fiches",
     "share_button_accessibility": "Partager la fiche"
   },
-  "NeedsScreen": {
+  "needs_screen": {
     "fiches": "fiches",
     "fiche": "fiche",
     "no_result": "Désolés, nous n'avons pas encore de fiches ici."
   },
-  "ContentsScreen": { "non_translated_content": "Fiches non traduites" },
-  "FavorisScreen": {
+  "contents_screen": {
+    "non_translated_content": "Fiches non traduites"
+  },
+  "favorites_screen": {
     "my_content": "Mes fiches",
     "empty": "0 fiche",
     "add_content": "Quand tu es sur une fiche intéressante, clique sur l'étoile.",
@@ -177,7 +178,7 @@
     "delete_all": "Attention, toutes les fiches vont être supprimées de « Mes fiches ».",
     "delete_all_accessibility": "Supprimer toutes mes fiches"
   },
-  "SearchScreen": {
+  "search_screen": {
     "search": "Rechercher",
     "most_searched_content": "Les fiches les plus recherchées",
     "themes": "Les thèmes",
@@ -185,7 +186,7 @@
     "no_result": "Impossible de trouver",
     "try_new_search": "Essaie encore, vérifie l’orthographe ou utilise un autre mot-clé."
   },
-  "QuiSommesNous": {
+  "about_screen": {
     "about_us": "Qui sommes-nous ?",
     "missions": "Les missions",
     "mission_1_header": "Créer des parcours personnalisés d’intégration",
@@ -215,5 +216,8 @@
     "call_1": "Ces organisations ont signé un Appel à manifestation d’intérêt et participent à l’évolution de la plateforme.",
     "call_2": "Vous représentez une organisation liée à l’intégration des personnes réfugiées et souhaitez rejoindre l’aventure ? Téléchargez l’appel ci-dessous et envoyez-le à nour@refugies.info. Nous prendrons contact avec vous pour définir les modalités de notre partenariat.",
     "download_call": "Télécharger l’appel [PDF]"
+  },
+  "global": {
+    "close": "Fermer"
   }
 }

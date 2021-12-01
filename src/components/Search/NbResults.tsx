@@ -20,7 +20,7 @@ const NbResults = ({ nbHits }: Props) => {
 
   return (
     <StyledTextBold>
-      {t("SearchScreen.results", "résultats", { nbResults: nbHits })}
+      {t("search_screen.results", "résultats", { nbResults: nbHits })}
     </StyledTextBold>
   )
 }

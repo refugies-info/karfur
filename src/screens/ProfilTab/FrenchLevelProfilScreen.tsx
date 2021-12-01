@@ -69,7 +69,7 @@ export const FrenchLevelProfilScreen = ({
     <SafeAreaView style={{ flex: 1 }}>
       <HeaderWithBack
         navigation={navigation}
-        text={t("Profil.french_level", "Niveau de français")}
+        text={t("profile_screens.french_level", "Niveau de français")}
         iconName="message-circle-outline"
       />
       <View style={{ flex: 1 }}>
@@ -80,7 +80,7 @@ export const FrenchLevelProfilScreen = ({
           }}
         >
           <Title>
-            {t("Onboarding.french_level", "Quel est ton niveau en français ?")}
+            {t("onboarding_screens.french_level", "Quel est ton niveau en français ?")}
           </Title>
           <Explaination
             step={3}

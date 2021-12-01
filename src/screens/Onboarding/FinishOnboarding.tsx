@@ -115,11 +115,11 @@ export const FinishOnboarding = ({
         >
           {hasUserEnteredInfos
             ? t(
-                "Onboarding.end",
+                "onboarding_screens.end",
                 "L’application est maintenant adaptée à ton profil."
               )
             : t(
-                "Onboarding.end_no_info",
+                "onboarding_screens.end_no_info",
                 "Tu pourras renseigner ces informations plus tard en cliquant sur « Moi »."
               )}
         </StyledText>

@@ -108,7 +108,7 @@ export const Toast = (props: Props) => {
           onPress={hideToast}
           accessibilityRole="button"
           accessible={true}
-          accessibilityLabel={t("close")}
+          accessibilityLabel={t("global.close")}
         >
           <Icon
             name="close"

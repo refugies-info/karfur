@@ -163,7 +163,7 @@ export const LanguageChoiceModal = (props: Props) => {
           })}
         </LanguagesContainer>
         <CustomButton
-          i18nKey={"close"}
+          i18nKey={"global.close"}
           defaultText="Fermer"
           iconName="close-outline"
           iconFirst={true}

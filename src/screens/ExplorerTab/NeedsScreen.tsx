@@ -226,7 +226,7 @@ export const NeedsScreen = ({
         <ErrorScreen
           buttonText={t("tabBar.Explorer")}
           text={t(
-            "NeedsScreen.no_result",
+            "needs_screen.no_result",
             "Nous sommes désolés, nous n'avons pas de fiche ici"
           )}
           onButtonClick={navigation.goBack}

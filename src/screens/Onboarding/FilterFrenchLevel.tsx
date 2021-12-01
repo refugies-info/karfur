@@ -92,7 +92,7 @@ export const FilterFrenchLevel = ({
       <HeaderWithBack
         navigation={navigation}
         iconName={"person-outline"}
-        text={t("Onboarding.me", "Créer mon profil")}
+        text={t("onboarding_screens.me", "Créer mon profil")}
       />
       <ContentContainer>
         <ScrollView
@@ -101,7 +101,7 @@ export const FilterFrenchLevel = ({
         >
           <Title>
             {t(
-              "Onboarding.french_level",
+              "onboarding_screens.french_level",
               "Quel est ton niveau en français ?"
             )}
           </Title>
