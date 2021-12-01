@@ -44,7 +44,7 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
     }
   >
     <View
-      accessibilityLabel="Fermer la fenêtre"
+      accessibilityLabel="global.close_window_accessibility"
       accessibilityRole="button"
       accessible={true}
       focusable={true}

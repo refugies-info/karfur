@@ -772,7 +772,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   ]
                 }
               >
-                Âge
+                age
               </Text>
             </View>
             <View
@@ -805,7 +805,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   ]
                 }
               >
-                0 à 17 ans
+                age_10_17
               </Text>
               <View
                 style={
@@ -4599,7 +4599,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   ]
                 }
               >
-                Âge
+                age
               </Text>
             </View>
             <View
@@ -8426,7 +8426,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   ]
                 }
               >
-                Âge
+                age
               </Text>
             </View>
             <View

@@ -424,7 +424,7 @@ exports[`ContentScreen should render correctly 1`] = `
             }
             textColor="#3D2884"
           >
-            C'est quoi ?
+            what
           </Text>
           <View
             style={
@@ -1010,7 +1010,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   ]
                 }
               >
-                C'est où ?
+                where
               </Text>
               <View
                 isDuree={false}
@@ -1069,7 +1069,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         ]
                       }
                     >
-                      Départements
+                      departments
                     </Text>
                     <View>
                       <Text
@@ -1151,7 +1151,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   ]
                 }
               >
-                C'est pour qui ?
+                who
               </Text>
               <View
                 isDuree={false}
@@ -1210,7 +1210,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         ]
                       }
                     >
-                      Âge
+                      age
                     </Text>
                     <View>
                       <Text
@@ -1304,7 +1304,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         ]
                       }
                     >
-                      Niveau de français
+                      french_level
                     </Text>
                     <View>
                       <Text
@@ -1386,7 +1386,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   ]
                 }
               >
-                Comment ça marche ?
+                how_it_works
               </Text>
               <View
                 isDuree={true}
@@ -1445,7 +1445,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         ]
                       }
                     >
-                      Durée
+                      duration
                     </Text>
                     <View
                       style={Object {}}
@@ -1543,7 +1543,7 @@ exports[`ContentScreen should render correctly 1`] = `
                         ]
                       }
                     >
-                      Prix
+                      price
                     </Text>
                     <View>
                       <Text
@@ -1607,7 +1607,7 @@ exports[`ContentScreen should render correctly 1`] = `
             }
             textColor="#3D2884"
           >
-            Pourquoi c'est intéressant ?
+            why
           </Text>
           <View
             style={
@@ -2654,7 +2654,7 @@ exports[`ContentScreen should render correctly 1`] = `
             }
             textColor="#3D2884"
           >
-            Comment je m'engage ?
+            how_involved
           </Text>
           <View
             style={
@@ -5851,7 +5851,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             }
             textColor="#3D2884"
           >
-            C'est quoi ?
+            what
           </Text>
           <View
             style={
@@ -6437,7 +6437,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   ]
                 }
               >
-                C'est où ?
+                where
               </Text>
               <View
                 isDuree={false}
@@ -6496,7 +6496,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         ]
                       }
                     >
-                      Départements
+                      departments
                     </Text>
                     <View>
                       <Text
@@ -6578,7 +6578,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   ]
                 }
               >
-                C'est pour qui ?
+                who
               </Text>
               <View
                 isDuree={false}
@@ -6637,7 +6637,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         ]
                       }
                     >
-                      Âge
+                      age
                     </Text>
                     <View>
                       <Text
@@ -6731,7 +6731,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         ]
                       }
                     >
-                      Niveau de français
+                      french_level
                     </Text>
                     <View>
                       <Text
@@ -6813,7 +6813,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   ]
                 }
               >
-                Comment ça marche ?
+                how_it_works
               </Text>
               <View
                 isDuree={true}
@@ -6872,7 +6872,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         ]
                       }
                     >
-                      Durée
+                      duration
                     </Text>
                     <View
                       style={Object {}}
@@ -6970,7 +6970,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         ]
                       }
                     >
-                      Prix
+                      price
                     </Text>
                     <View>
                       <Text
@@ -7034,7 +7034,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             }
             textColor="#3D2884"
           >
-            Pourquoi c'est intéressant ?
+            why
           </Text>
           <View
             style={
@@ -8081,7 +8081,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             }
             textColor="#3D2884"
           >
-            Comment je m'engage ?
+            how_involved
           </Text>
           <View
             style={

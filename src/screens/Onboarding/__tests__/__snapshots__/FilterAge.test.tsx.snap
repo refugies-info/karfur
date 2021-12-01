@@ -369,7 +369,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 ]
               }
             >
-              0 à 17 ans
+              age_10_17
             </Text>
             <View
               isSelected={true}
@@ -1318,7 +1318,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 ]
               }
             >
-              0 à 17 ans
+              age_10_17
             </Text>
             <View
               isSelected={false}
@@ -2203,7 +2203,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 ]
               }
             >
-              0 à 17 ans
+              age_10_17
             </Text>
             <View
               isSelected={false}
