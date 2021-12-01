@@ -263,7 +263,7 @@ export const FavorisScreen = ({
           "Veux-tu vraiment supprimer cette fiche de tes favoris ?"
         )}
         onValidate={() => deleteFavorite(favoriteToDelete)}
-        i18nKeyValidateButton={"global.delete"}
+        i18nKeyValidateButton="global.delete"
         defaultTextValidateButton={"Supprimer"}
         iconValidateButton={"trash-2-outline"}
       />

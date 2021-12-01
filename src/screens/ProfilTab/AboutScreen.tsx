@@ -369,7 +369,7 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
         </TextSmallNormal>
         <RTLView>
           <CustomButton
-            i18nKey={"about_screen.download_call"}
+            i18nKey="about_screen.download_call"
             defaultText="Télécharger l’appel [PDF]"
             backgroundColor={theme.colors.black}
             iconName="download-outline"

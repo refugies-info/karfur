@@ -345,7 +345,7 @@ export const FilterCityComponent = (props: Props) => {
           <BottomButtonsContainer>
             <ValidateButtonContainer>
               <CustomButton
-                i18nKey={"global.validate"}
+                i18nKey="global.validate"
                 defaultText="Valider"
                 textColor={theme.colors.white}
                 onPress={() => {
@@ -360,7 +360,7 @@ export const FilterCityComponent = (props: Props) => {
             </ValidateButtonContainer>
 
             <CustomButton
-              i18nKey={"global.cancel"}
+              i18nKey="global.cancel"
               defaultText="Annuler"
               textColor={theme.colors.black}
               onPress={props.navigation.goBack}

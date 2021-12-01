@@ -145,7 +145,7 @@ export const ContentImage = (props: Props) => {
         <TextSmallNormal
           style={{ marginLeft: isRTL ? 0 : 8, marginRight: isRTL ? 8 : 0 }}
         >
-          {t("content_screen.Démarche", "Démarche")}
+          {t("content_screen.procedure", "Démarche")}
         </TextSmallNormal>
       </IconTextContainer>
     </SponsorImageContainer>

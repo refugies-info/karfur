@@ -85,7 +85,7 @@ export const ConfirmationModal = (props: Props) => {
         </TopButtonContainer>
 
         <CustomButton
-          i18nKey={"global.cancel"}
+          i18nKey="global.cancel"
           defaultText="Annuler"
           textColor={theme.colors.black}
           onPress={props.toggleModal}
