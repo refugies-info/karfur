@@ -54,7 +54,7 @@ export const ErrorScreen = (props: Props) => {
       {!props.imageLast && image}
 
       <TextBigBold style={{ marginBottom: theme.margin * 2, textAlign: "center" }}>
-        {props.title || t("Content.Oups", "Oups !")}
+        {props.title || t("Content.error_title", "Oh non !")}
       </TextBigBold>
       <TextSmallNormal style={{ textAlign: "center", marginBottom: theme.margin * 4 }}>
         {props.text}

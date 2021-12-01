@@ -137,7 +137,7 @@ export const Map = (props: PropsType) => {
               }}
               onPress={(e: any) => onMarkerClick(marker, e)}
               accessibilityRole="button"
-              accessibilityLabel={t("Content.Voir les informations du lieu")}
+              accessibilityLabel={t("Content.place_informations_accessibility")}
             >
               <Icon
                 name="pin"

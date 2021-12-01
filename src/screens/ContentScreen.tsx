@@ -172,17 +172,17 @@ const ToastTextBold = styled(TextSmallBold)`
 `;
 
 const headersDispositif = [
-  "C'est quoi ?",
-  "C'est pour qui ?",
-  "Pourquoi c'est intéressant ?",
-  "Comment je m'engage ?",
+  "what",
+  "who",
+  "why",
+  "how_involved",
 ];
 
 const headersDemarche = [
-  "C'est quoi ?",
-  "C'est pour qui ?",
-  "Comment faire ?",
-  "Et après ?",
+  "what",
+  "who",
+  "how_to_do",
+  "what_next",
 ];
 
 const styles = StyleSheet.create({
@@ -467,7 +467,7 @@ export const ContentScreen = ({
       >
         <ErrorScreen
           onButtonClick={refetchContent}
-          buttonText={t("Content.recommencer", "Recommencer")}
+          buttonText={t("Content.start_again", "Recommencer")}
           text={t(
             "Content.error",
             "Une erreur est survenue. Vérifie que tu es bien connecté à internet. Sinon, réessaie plus tard."
@@ -730,12 +730,12 @@ export const ContentScreen = ({
             >
               <CustomButton
                 textColor={theme.colors.white}
-                i18nKey="Content.Voir le site"
+                i18nKey="Content.go_website"
                 onPress={handleClick}
                 defaultText="Voir le site"
                 backgroundColor={themeTag.tagDarkColor}
                 iconName="external-link-outline"
-                accessibilityLabel={t("Content.Voir le site_accessibilityLabel")}
+                accessibilityLabel={t("Content.go_website_accessibility")}
               />
             </View>
           )}
@@ -744,21 +744,21 @@ export const ContentScreen = ({
             <>
               <HeaderText key={1} textColor={themeTag.tagDarkColor}>
                 {t(
-                  "Content.Trouver un interlocuteur",
+                  "Content.where",
                   "Trouver un interlocuteur"
                 )}
               </HeaderText>
               <MiniMap map={map} markersColor={themeTag.tagDarkColor}>
                 <CustomButton
                   textColor={theme.colors.black}
-                  i18nKey="Content.Voir la carte"
+                  i18nKey="Content.see_map"
                   onPress={toggleMap}
                   defaultText="Voir la carte"
                   backgroundColor={theme.colors.white}
                   iconName="expand-outline"
                   iconFirst={true}
                   notFullWidth={true}
-                  accessibilityLabel={t("Content.Voir la carte")}
+                  accessibilityLabel={t("Content.see_map")}
                 />
               </MiniMap>
             </>
@@ -798,8 +798,8 @@ export const ContentScreen = ({
             isSmall={true}
             style={{ marginHorizontal: theme.margin }}
             accessibilityLabel={isContentFavorite ?
-              t("Content.Retirer de mes fiches") :
-              t("Content.Ajouter à mes fiches")
+              t("Content.remove_button_accessibility") :
+              t("Content.add_button_accessibility")
             }
           />
           <CustomButton
@@ -815,7 +815,7 @@ export const ContentScreen = ({
             isTextNotBold={true}
             isSmall={true}
             style={{ marginHorizontal: theme.margin }}
-            accessibilityLabel={ t("Partager la fiche")}
+            accessibilityLabel={ t("Content.share_button_accessibility")}
           />
         </RTLView>
       </TabBarContainer>
@@ -832,11 +832,11 @@ export const ContentScreen = ({
         >
           {favoriteToast === "removed" ?
             <ToastText>
-              {t("Content.favoris supprimé", "Fiche supprimée de tes favoris")}
+              {t("Content.favorite_deleted", "Fiche supprimée de tes favoris")}
             </ToastText> :
             <View>
               <ToastText>
-                <Trans i18nKey="Content.favoris ajouté">
+                <Trans i18nKey="Content.favorite_added">
                   Ajouté à
                   <ToastTextBold
                     onPress={() => {
@@ -869,13 +869,13 @@ export const ContentScreen = ({
               <SmallButton
                 iconName="arrow-back-outline"
                 onPress={toggleMap}
-                label={t("Content.Retour à la fiche")}
+                label={t("Content.back_content_accessibility")}
               />
               <SmallButton
                 iconName="close-outline"
                 onPress={toggleMap}
                 reversed={true}
-                label={t("Content.Fermer la carte")}
+                label={t("Content.close_map_accessibility")}
               />
             </FixSafeAreaView>
           </ModalContainer>

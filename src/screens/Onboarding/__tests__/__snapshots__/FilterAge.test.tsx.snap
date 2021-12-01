@@ -331,7 +331,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
               "shadowRadius": 0,
             }
           }
-          testID="test-filter-0 à 17 ans"
+          testID="test-filter-age_10_17"
         >
           <View
             isRTL={false}
@@ -491,7 +491,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
               "shadowRadius": 8,
             }
           }
-          testID="test-filter-18 à 25 ans"
+          testID="test-filter-age_18_25"
         >
           <View
             isRTL={false}
@@ -529,7 +529,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 ]
               }
             >
-              18 à 25 ans
+              age_18_25
             </Text>
             <View
               isSelected={false}
@@ -587,7 +587,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
               "shadowRadius": 8,
             }
           }
-          testID="test-filter-26 ans et plus"
+          testID="test-filter-age_26_100"
         >
           <View
             isRTL={false}
@@ -625,7 +625,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 ]
               }
             >
-              26 ans et plus
+              age_26_100
             </Text>
             <View
               isSelected={false}
@@ -1280,7 +1280,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               "shadowRadius": 8,
             }
           }
-          testID="test-filter-0 à 17 ans"
+          testID="test-filter-age_10_17"
         >
           <View
             isRTL={false}
@@ -1376,7 +1376,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               "shadowRadius": 8,
             }
           }
-          testID="test-filter-18 à 25 ans"
+          testID="test-filter-age_18_25"
         >
           <View
             isRTL={false}
@@ -1414,7 +1414,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 ]
               }
             >
-              18 à 25 ans
+              age_18_25
             </Text>
             <View
               isSelected={false}
@@ -1472,7 +1472,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               "shadowRadius": 8,
             }
           }
-          testID="test-filter-26 ans et plus"
+          testID="test-filter-age_26_100"
         >
           <View
             isRTL={false}
@@ -1510,7 +1510,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                 ]
               }
             >
-              26 ans et plus
+              age_26_100
             </Text>
             <View
               isSelected={false}
@@ -2165,7 +2165,7 @@ exports[`Filter age should select age when click on it 1`] = `
               "shadowRadius": 8,
             }
           }
-          testID="test-filter-0 à 17 ans"
+          testID="test-filter-age_10_17"
         >
           <View
             isRTL={false}
@@ -2261,7 +2261,7 @@ exports[`Filter age should select age when click on it 1`] = `
               "shadowRadius": 8,
             }
           }
-          testID="test-filter-18 à 25 ans"
+          testID="test-filter-age_18_25"
         >
           <View
             isRTL={false}
@@ -2299,7 +2299,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 ]
               }
             >
-              18 à 25 ans
+              age_18_25
             </Text>
             <View
               isSelected={false}
@@ -2357,7 +2357,7 @@ exports[`Filter age should select age when click on it 1`] = `
               "shadowRadius": 0,
             }
           }
-          testID="test-filter-26 ans et plus"
+          testID="test-filter-age_26_100"
         >
           <View
             isRTL={false}
@@ -2395,7 +2395,7 @@ exports[`Filter age should select age when click on it 1`] = `
                 ]
               }
             >
-              26 ans et plus
+              age_26_100
             </Text>
             <View
               isSelected={true}

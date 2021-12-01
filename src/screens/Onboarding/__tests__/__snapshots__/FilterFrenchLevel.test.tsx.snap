@@ -340,7 +340,7 @@ exports[`Filter french level should render correctly when french level selected 
                 "shadowRadius": 8,
               }
             }
-            testID="test-filter-Je parle un peu"
+            testID="test-filter-french_level_a"
           >
             <View
               isRTL={false}
@@ -378,7 +378,7 @@ exports[`Filter french level should render correctly when french level selected 
                   ]
                 }
               >
-                Je parle un peu
+                french_level_a
                 <Text
                   isRTL={false}
                   isSelected={false}
@@ -461,7 +461,7 @@ exports[`Filter french level should render correctly when french level selected 
                 "shadowRadius": 0,
               }
             }
-            testID="test-filter-Je parle bien"
+            testID="test-filter-french_level_b"
           >
             <View
               isRTL={false}
@@ -499,7 +499,7 @@ exports[`Filter french level should render correctly when french level selected 
                   ]
                 }
               >
-                Je parle bien
+                french_level_b
                 <Text
                   isRTL={false}
                   isSelected={true}
@@ -646,7 +646,7 @@ exports[`Filter french level should render correctly when french level selected 
                 "shadowRadius": 8,
               }
             }
-            testID="test-filter-Je parle couramment"
+            testID="test-filter-french_level_c"
           >
             <View
               isRTL={false}
@@ -684,7 +684,7 @@ exports[`Filter french level should render correctly when french level selected 
                   ]
                 }
               >
-                Je parle couramment
+                french_level_c
                 <Text
                   isRTL={false}
                   isSelected={false}
@@ -1383,7 +1383,7 @@ exports[`Filter french level should render correctly when no french level select
                 "shadowRadius": 8,
               }
             }
-            testID="test-filter-Je parle un peu"
+            testID="test-filter-french_level_a"
           >
             <View
               isRTL={false}
@@ -1421,7 +1421,7 @@ exports[`Filter french level should render correctly when no french level select
                   ]
                 }
               >
-                Je parle un peu
+                french_level_a
                 <Text
                   isRTL={false}
                   isSelected={false}
@@ -1504,7 +1504,7 @@ exports[`Filter french level should render correctly when no french level select
                 "shadowRadius": 8,
               }
             }
-            testID="test-filter-Je parle bien"
+            testID="test-filter-french_level_b"
           >
             <View
               isRTL={false}
@@ -1542,7 +1542,7 @@ exports[`Filter french level should render correctly when no french level select
                   ]
                 }
               >
-                Je parle bien
+                french_level_b
                 <Text
                   isRTL={false}
                   isSelected={false}
@@ -1625,7 +1625,7 @@ exports[`Filter french level should render correctly when no french level select
                 "shadowRadius": 8,
               }
             }
-            testID="test-filter-Je parle couramment"
+            testID="test-filter-french_level_c"
           >
             <View
               isRTL={false}
@@ -1663,7 +1663,7 @@ exports[`Filter french level should render correctly when no french level select
                   ]
                 }
               >
-                Je parle couramment
+                french_level_c
                 <Text
                   isRTL={false}
                   isSelected={false}
@@ -2362,7 +2362,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                 "shadowRadius": 8,
               }
             }
-            testID="test-filter-Je parle un peu"
+            testID="test-filter-french_level_a"
           >
             <View
               isRTL={false}
@@ -2400,7 +2400,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   ]
                 }
               >
-                Je parle un peu
+                french_level_a
                 <Text
                   isRTL={false}
                   isSelected={false}
@@ -2483,7 +2483,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                 "shadowRadius": 0,
               }
             }
-            testID="test-filter-Je parle bien"
+            testID="test-filter-french_level_b"
           >
             <View
               isRTL={false}
@@ -2521,7 +2521,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   ]
                 }
               >
-                Je parle bien
+                french_level_b
                 <Text
                   isRTL={false}
                   isSelected={true}
@@ -2668,7 +2668,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                 "shadowRadius": 8,
               }
             }
-            testID="test-filter-Je parle couramment"
+            testID="test-filter-french_level_c"
           >
             <View
               isRTL={false}
@@ -2706,7 +2706,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   ]
                 }
               >
-                Je parle couramment
+                french_level_c
                 <Text
                   isRTL={false}
                   isSelected={false}
