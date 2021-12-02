@@ -20,12 +20,8 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
     props.notFullWidth ? "auto" : "100%"};
   height: ${(props: { isSmall: boolean }) =>
     !props.isSmall ? 56 : 40}px;
-  box-shadow: ${(props: { isDisabled: boolean }) =>
-    props.isDisabled
-      ? `0px 0px 0px ${theme.colors.grey}`
-      : "0px 8px 16px rgba(33, 33, 33, 0.24)"};
-  elevation: ${(props: { isDisabled: boolean }) =>
-    props.isDisabled ? 0 : 1};
+  ${(props: { isDisabled: boolean }) =>
+    props.isDisabled ? "" : theme.shadows.lg};
   opacity: ${(props: { isDisabled: boolean }) =>
     props.isDisabled ? 0.4 : 1};
 `;

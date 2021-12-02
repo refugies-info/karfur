@@ -37,8 +37,7 @@ const ButtonContainer = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 0px 40px rgba(33, 33, 33, 0.1);
-  elevation: 1;
+  ${theme.shadows.sm}
 `;
 
 const ButtonContainerFixedWidth = styled.TouchableOpacity`
@@ -51,8 +50,7 @@ const ButtonContainerFixedWidth = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
-  elevation: 7;
+  ${theme.shadows.sm}
 `;
 
 const LanguageContainer = styled(ButtonContainerCommon)`
@@ -60,9 +58,7 @@ const LanguageContainer = styled(ButtonContainerCommon)`
     props.isSelected ? theme.colors.white : theme.colors.grey60 };
   width: 48px;
   ${(props: { isSelected: boolean }) => props.isSelected ? `
-  box-shadow: 8px 0px 16px rgba(33, 33, 33, 0.24);
   z-index: 3;
-  elevation: 9;
   ` : "" }
 `;
 

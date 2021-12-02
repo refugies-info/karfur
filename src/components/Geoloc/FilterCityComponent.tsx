@@ -39,8 +39,7 @@ const GeolocContainer = styled(RTLTouchableOpacity)`
   border-radius: ${theme.radius * 2}px;
   padding: ${theme.margin * 2}px;
   align-items: center;
-  box-shadow: 1px 1px 2px rgba(0.33, 0.33, 0.33, 0.4);
-  elevation: 2;
+  ${theme.shadows.sm}
   border-width: 2px;
   border-style: solid;
   border-color: ${(props: { hasError: boolean }) =>

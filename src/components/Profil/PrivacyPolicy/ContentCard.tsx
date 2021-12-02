@@ -9,8 +9,7 @@ const ContentCardContainer = styled.View`
   padding: ${theme.margin * 3}px;
   margin-bottom: ${theme.margin * 3}px;
   border-radius: ${theme.radius * 2}px;
-  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
-  elevation: 4;
+  ${theme.shadows.sm}
 `;
 const ContentCardTitle = styled.View`
   flex-direction: ${(props: { isRTL: boolean }) =>

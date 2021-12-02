@@ -27,8 +27,7 @@ const MainContainer = styled.View`
   background-color: ${theme.colors.white};
   border-radius: ${theme.radius * 2}px;
   padding-top: ${theme.margin * 2}px;
-  box-shadow: 0px 0px 40px rgba(33, 33, 33, 0.1);
-  elevation: 1;
+  ${theme.shadows.lg}
   margin-top: ${theme.margin}px;
   margin-horizontal: ${theme.margin * 3}px;
 `;

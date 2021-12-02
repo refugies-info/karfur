@@ -44,8 +44,7 @@ const Card = styled.View`
   padding: ${theme.margin * 2}px;
   background-color: ${theme.colors.white};
   border-radius: ${theme.radius * 2}px;
-  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
-  elevation: 4;
+  ${theme.shadows.sm}
 `;
 const CardImage = styled.Image`
   width: 248px;

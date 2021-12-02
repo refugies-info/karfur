@@ -28,11 +28,7 @@ const ToastView = styled(RTLView)`
   justify-content: space-between;
   padding: ${theme.margin * 2}px;
   margin-horizontal: ${theme.margin * 3}px;
-  shadow-color: #212121;
-  shadow-offset: 0 8px;
-  shadow-opacity: 0.24;
-  shadow-radius: 16px;
-  elevation: 13;
+  ${theme.shadows.lg}
 `;
 const TextIcon = styled(Icon)`
   marginRight: ${(props: { isRTL: boolean }) =>

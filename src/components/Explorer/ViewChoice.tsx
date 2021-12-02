@@ -29,10 +29,6 @@ const StyledButton = styled(RTLTouchableOpacity)`
   border-radius: ${theme.radius * 2}px;
   flex-basis: 50%;
   justify-content: center;
-  ${(props: { isSelected: boolean }) => props.isSelected ? `
-  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
-  elevation: 7;
-  ` : "" };
 `;
 interface Props {
   text: string;

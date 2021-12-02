@@ -20,8 +20,7 @@ import { theme } from "../../theme";
 
 const SearchBoxContainer = styled.View`
   padding-bottom: ${theme.margin * 3}px;
-  box-shadow: 0px -1px 8px rgba(33, 33, 33, 0.08);
-  elevation: 4;
+  ${theme.shadows.xs}
   background-color: ${theme.colors.lightGrey};
 `;
 

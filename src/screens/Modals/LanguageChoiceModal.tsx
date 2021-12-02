@@ -89,8 +89,7 @@ const FlagBackground = styled.View`
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
-  elevation: 7;
+  ${theme.shadows.sm}
 `;
 const Backdrop = styled.View`
   flex: 1;

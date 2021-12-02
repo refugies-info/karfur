@@ -36,8 +36,7 @@ const ViewChoiceContainer = styled(RTLView)`
   justify-content: center;
   align-items: center;
   align-self: center;
-  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
-  elevation: 7;
+  ${theme.shadows.sm}
   width: 270px;
 `;
 const CarousselContainer = styled.View`

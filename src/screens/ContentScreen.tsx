@@ -142,7 +142,7 @@ const LastUpdateText = styled(TextSmallNormal)`
 const SimplifiedHeaderContainer = styled.View`
   padding-horizontal: ${theme.margin * 3}px;
   padding-vertical: ${theme.margin}px;
-  box-shadow: 0px 0px 40px rgba(33, 33, 33, 0.1);
+  ${theme.shadows.sm}
 `;
 const ModalContainer = styled.View`
   display: flex;
@@ -157,12 +157,8 @@ const TabBarContainer = styled.View`
   bottom: 0;
   width: 100%;
   background-color: ${theme.colors.white};
-  shadow-color: #212121;
-  shadow-offset: 0 -1px;
-  shadow-opacity: 0.08;
-  shadow-radius: 24px;
+  ${theme.shadows.xs}
   z-index: 14;
-  elevation: 14;
 `;
 const ToastText = styled(TextSmallNormal)`
   color: ${theme.colors.white};

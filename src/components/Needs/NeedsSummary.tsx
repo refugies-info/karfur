@@ -17,10 +17,9 @@ const NeedContainer = styled(RTLTouchableOpacity)`
   padding:${theme.margin * 2}px
   background-color: ${theme.colors.white};
   border-radius: ${theme.radius * 2}px;
-  box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
+  ${theme.shadows.lg}
   justify-content:space-between;
   align-items :center;
-  elevation:2;
 `;
 
 const IndicatorContainer = styled(RTLView)`

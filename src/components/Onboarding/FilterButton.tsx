@@ -17,8 +17,8 @@ const MainContainer = styled(RTLTouchableOpacity)`
   background-color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.lightBlue : theme.colors.white};
   padding: ${theme.margin * 2}px;
-  box-shadow: ${(props: { isSelected: boolean }) =>
-   props.isSelected ? "none" : "1px 1px 8px rgba(33, 33, 33, 0.24)"};
+  ${(props: { isSelected: boolean }) =>
+    props.isSelected ? "" : theme.shadows.sm};
   border-radius: ${theme.radius * 2}px;
   margin-bottom: ${theme.margin * 3}px;
   justify-content: space-between;

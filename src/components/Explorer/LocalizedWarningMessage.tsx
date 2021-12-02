@@ -13,8 +13,7 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 const InfoMessage = styled(RTLView)`
   background-color: ${theme.colors.lightBlue};
   border-radius: ${theme.radius}px;
-  box-shadow: 1px 1px 2px rgba(33, 33, 33, 0.4);
-  elevation: 2;
+  ${theme.shadows.sm}
   margin-top: ${theme.margin * 2}px;
   margin-horizontal: ${theme.margin * 3}px;
   padding: ${theme.margin}px;

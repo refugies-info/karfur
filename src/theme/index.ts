@@ -91,10 +91,26 @@ const fonts = {
   },
 };
 
+const shadows = {
+  xs: `
+  box-shadow: 0px -1px 8px rgba(33, 33, 33, 0.08);
+  elevation: 4;
+  `,
+  sm: `
+  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
+  elevation: 7;
+  `,
+  lg: `
+  box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
+  elevation: 12;
+  `
+}
+
 export const theme = {
   colors,
   images,
   margin: 8,
   fonts,
   radius: 6,
+  shadows
 };

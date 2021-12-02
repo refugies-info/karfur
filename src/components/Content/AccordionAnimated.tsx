@@ -17,10 +17,8 @@ const TitleContainer = styled(RTLTouchableOpacity)`
     props.isExpanded ? props.lightColor : theme.colors.white};
   padding:${theme.margin * 2}px;
   border-radius:${theme.radius * 2}px
-  box-shadow: ${(props: { isExpanded: boolean }) =>
-    props.isExpanded
-      ? `0px 0px 0px ${theme.colors.white}`
-      : "0px 8px 16px rgba(33, 33, 33, 0.24)"};
+  ${(props: { isExpanded: boolean }) =>
+    !props.isExpanded ? theme.shadows.lg : ""};
   elevation: ${(props: { isExpanded: boolean }) => (props.isExpanded ? 0 : 1)};
   justify-content:space-between;
   border: ${(props: { isExpanded: boolean; darkColor: string }) =>

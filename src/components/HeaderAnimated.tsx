@@ -110,10 +110,8 @@ const MainContainer = styled.View`
   background-color: ${theme.colors.lightGrey};
   padding-bottom: ${theme.margin}px;
   z-index: 4;
-  ${(props: { showShadow: boolean }) => (props.showShadow ? `
-  box-shadow: 0px -1px 8px rgba(33, 33, 33, 0.08);
-  elevation: 4;
-  ` : "")}
+  ${(props: { showShadow: boolean }) =>
+    props.showShadow ? theme.shadows.xs : ""}
 `;
 
 export const HeaderWithBackAnimated = (props: HeaderBackProps) => {

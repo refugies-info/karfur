@@ -10,8 +10,7 @@ const ButtonContainer = styled.TouchableOpacity`
   border-radius: ${(props: { rounded: boolean }) =>
     !props.rounded ? theme.radius * 2 : theme.radius * 10}px;
   padding: ${theme.radius * 2}px;
-  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
-  elevation: 7;
+  ${theme.shadows.sm}
 `;
 
 const ICON_SIZE = 24;
