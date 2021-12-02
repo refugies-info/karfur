@@ -467,7 +467,7 @@ export const ContentScreen = ({
       >
         <ErrorScreen
           onButtonClick={refetchContent}
-          buttonText={t("content_screen.start_again", "Recommencer")}
+          buttonText={t("content_screen.start_again_button", "Recommencer")}
           text={t(
             "content_screen.error",
             "Une erreur est survenue. Vérifie que tu es bien connecté à internet. Sinon, réessaie plus tard."
@@ -730,7 +730,7 @@ export const ContentScreen = ({
             >
               <CustomButton
                 textColor={theme.colors.white}
-                i18nKey="content_screen.go_website"
+                i18nKey="content_screen.go_website_button"
                 onPress={handleClick}
                 defaultText="Voir le site"
                 backgroundColor={themeTag.tagDarkColor}
@@ -751,14 +751,14 @@ export const ContentScreen = ({
               <MiniMap map={map} markersColor={themeTag.tagDarkColor}>
                 <CustomButton
                   textColor={theme.colors.black}
-                  i18nKey="content_screen.see_map"
+                  i18nKey="content_screen.see_map_button"
                   onPress={toggleMap}
                   defaultText="Voir la carte"
                   backgroundColor={theme.colors.white}
                   iconName="expand-outline"
                   iconFirst={true}
                   notFullWidth={true}
-                  accessibilityLabel={t("content_screen.see_map")}
+                  accessibilityLabel={t("content_screen.see_map_button")}
                 />
               </MiniMap>
             </>
@@ -805,7 +805,7 @@ export const ContentScreen = ({
           <CustomButton
             onPress={() => shareContent(selectedContent)}
             iconName="undo-outline"
-            i18nKey="content_screen.share"
+            i18nKey="content_screen.share_button"
             defaultText={"Partager"}
             textColor={theme.colors.black}
             backgroundColor={theme.colors.white}

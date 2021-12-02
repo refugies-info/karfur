@@ -1,6 +1,6 @@
 {
   "onboarding_screens": {
-    "start": "Get started",
+    "start_button": "Get started",
     "bonjour": "Hello and welcome to Refugees.info!",
     "step1": "Here you can find information on how to proceed.",
     "step2": "You can also find associations and activities near your home.",
@@ -13,17 +13,17 @@
     "ville": "Where do you live?",
     "city_label": "Your city",
     "error_geoloc": "Oh no! There's a problem. Please write the name of your town.",
-    "position": "Use my location",
+    "position_button": "Use my location",
     "placeholder": "Example: Paris",
     "age": "How old are you?",
     "french_level": "What is your level of French?",
     "error_geoloc_acces": "Oh no! There's a problem. Check your phone settings to make sure you have enabled location.",
     "end": "The application is ready. Now you can search for information.",
     "thank_you": "Merci !",
-    "start_searching": "Start my search",
-    "skip_step": "Not now",
-    "next": "Next",
-    "continue": "Continue"
+    "start_searching_button": "Start my search",
+    "skip_step_button": "Not now",
+    "next_button": "Next",
+    "continue_button": "Continue"
   },
   "explorer_screen": {
     "warning_nb_contents": " You can see {{nbContent}} card, but not many for {{city}}",
@@ -45,8 +45,8 @@
   "profile_screens": {
     "app_informations": "Information on the application",
     "about_us": "Who are we?",
-    "delete_informations": "Delete my information",
-    "reinit_app": "Delete my information and start again",
+    "delete_informations_button": "Delete my information",
+    "reinit_app_button": "Delete my information and start again",
     "legal_notice": "Legal information",
     "my_language": "Language",
     "city": "Town",
@@ -107,11 +107,11 @@
     "how_involved": "How do I get involved?",
     "how_to_do": "How can this be done?",
     "what_next": "What next?",
-    "go_website": "Go to the website",
+    "go_website_button": "Go to the website",
     "last_update": "Last update :",
     "error_title": "Oh no!",
     "error": "Are you connected to the internet? Check and try again.",
-    "start_again": "Start again",
+    "start_again_button": "Start again",
     "where": "Where is it?",
     "who": "Who is it for?",
     "how_it_works": "How does it work?",
@@ -134,9 +134,9 @@
     "address": "Address",
     "contact_email_accessibility": "Contact email",
     "phone_number_accessibility": "Phone number",
-    "see_map": "See map",
+    "see_map_button": "See map",
     "not_set": "Not known",
-    "share": "Share"
+    "share_button": "Share"
   },
   "favorites_screen": {
     "my_content": "My cards",
@@ -190,7 +190,7 @@
     "partners": "Partners",
     "call_1": "These organisations have signed a Call for Expression of Interest and participate in the evolution of the platform.",
     "call_2": "If you represent an organisation linked to the integration of refugees and wish to join the adventure, download the call below and send it to nour@refugies.info. We will contact you to define the terms of our partnership.",
-    "download_call": "Download the call  [PDF]"
+    "download_call_button": "Download the call  [PDF]"
   },
   "global": {
     "close": "Close",

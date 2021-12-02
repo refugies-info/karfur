@@ -126,7 +126,7 @@ export const FinishOnboarding = ({
       </ElementsContainer>
       <ButtonContainer>
         <CustomButton
-          i18nKey="onboarding_screens.start_searching"
+          i18nKey="onboarding_screens.start_searching_button"
           defaultText="Démarrer"
           textColor={theme.colors.darkBlue}
           onPress={finishOnboarding}

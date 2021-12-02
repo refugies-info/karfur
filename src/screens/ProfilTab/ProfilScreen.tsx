@@ -196,7 +196,7 @@ export const ProfilScreen = ({
           accessibilityRole="button"
         >
           <DeleteDataText>
-            {t("profile_screens.delete_informations", "Supprimer les données de mon profil")}
+            {t("profile_screens.delete_informations_button", "Supprimer les données de mon profil")}
           </DeleteDataText>
         </DeleteDataContainer>
         <StyledText>{t("profile_screens.app_informations", "Informations sur l'application")}</StyledText>
@@ -231,7 +231,7 @@ export const ProfilScreen = ({
           accessibilityRole="button"
         >
           <DeleteDataText>
-            {t("profile_screens.reinit_app", "Réinitialiser l'application")}
+            {t("profile_screens.reinit_app_button", "Réinitialiser l'application")}
           </DeleteDataText>
         </DeleteDataContainer>
       </ContentContainer>

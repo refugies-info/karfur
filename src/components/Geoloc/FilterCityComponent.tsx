@@ -297,7 +297,7 @@ export const FilterCityComponent = (props: Props) => {
                   fill={theme.colors.darkBlue}
                 />
                 <GeolocText isRTL={isRTL}>
-                  {t("onboarding_screens.position", "Utiliser ma position")}
+                  {t("onboarding_screens.position_button", "Utiliser ma position")}
                 </GeolocText>
               </GeolocContainer>
             )}

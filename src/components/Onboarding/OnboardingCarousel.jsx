@@ -122,7 +122,7 @@ class OnboardingCarousel extends React.Component {
         {this.pagination}
         <NextButtonContainer edges={["right", "bottom", "left"]}>
           <CustomButton
-            i18nKey={activeIndex !== 3 ? "onboarding_screens.next" : "onboarding_screens.continue"}
+            i18nKey={activeIndex !== 3 ? "onboarding_screens.next_button" : "onboarding_screens.continue_button"}
             defaultText={activeIndex !== 3 ? "Suivant" : "Continuer"}
             textColor={theme.colors.black}
             onPress={() => {

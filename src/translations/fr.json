@@ -1,11 +1,11 @@
 {
   "onboarding_screens": {
-    "start": "Commencer",
+    "start_button": "Commencer",
     "bonjour": "Bonjour et bienvenue sur Réfugiés.info !",
     "step1": "Ici, tu trouves des informations pour tes démarches administratives.",
     "step2": "Tu trouves aussi les associations et les activités à côté de chez toi.",
     "step3": "C'est une application officielle, soutenue par le gouvernement.",
-    "step4": "step4",
+    "step4": "Toute l'application est gratuite ! Pas besoin de payer.",
     "end_no_info": "Tu pourras renseigner ces informations plus tard en cliquant sur « Moi ».",
     "me": "Moi",
     "help_1": "C’est pour te montrer les associations et les activités à côté de chez toi.",
@@ -14,7 +14,7 @@
     "ville": "Tu habites dans quelle ville ?",
     "city_label": "Ta ville",
     "error_geoloc": "Oh non, il y a un problème. Écris le nom de ta ville.",
-    "position": "Utiliser ma position",
+    "position_button": "Utiliser ma position",
     "placeholder": "Exemple : Paris",
     "age": "Tu as quel âge ?",
     "french_level": "C'est quoi ton niveau de français ?",
@@ -22,10 +22,10 @@
     "error_geoloc_acces": "Oh non, il y a un problème. Vérifie dans les paramètres de ton téléphone que tu as autorisé la localisation.",
     "back_button_accessibility": "Retour vers la page précédente",
     "thank_you": "Merci !",
-    "start_searching": "Commencer à chercher",
-    "skip_step": "Passer l'étape",
-    "next": "Suivant",
-    "continue": "Continuer"
+    "start_searching_button": "Commencer à chercher",
+    "skip_step_button": "Passer l'étape",
+    "next_button": "Suivant",
+    "continue_button": "Continuer"
   },
   "tab_bar": {
     "explorer": "Explorer",
@@ -82,8 +82,8 @@
     "no_age_filter": "Voir les fiches pour tous les âges"
   },
   "profile_screens": {
-    "delete_informations": "Supprimer mes informations",
-    "reinit_app": "Réinitialiser l'application",
+    "delete_informations_button": "Supprimer mes informations",
+    "reinit_app_button": "Réinitialiser l'application",
     "my_profile": "Mes informations",
     "my_language": "Langue",
     "city": "Ville",
@@ -107,12 +107,12 @@
     "how_involved": "Comment je m'engage ?",
     "how_to_do": "Comment faire ?",
     "what_next": "Et après ?",
-    "go_website": "Aller sur le site internet",
+    "go_website_button": "Aller sur le site internet",
     "go_website_accessibility": "Aller sur le site internet, s'ouvre dans le navigateur",
     "last_update": "Dernière mise à jour :",
     "error_title": "Oh non !",
     "error": "Tu es bien connecté à internet ? Vérifie et essaie encore.",
-    "start_again": "Recommencer",
+    "start_again_button": "Recommencer",
     "where": "C'est où ?",
     "who": "C'est pour qui ?",
     "how_it_works": "Comment ça marche ?",
@@ -137,7 +137,7 @@
     "contact_email_accessibility": "Email de contact",
     "phone_number_accessibility": "Numéro de téléphone",
     "not_set": "–",
-    "see_map": "Voir la carte",
+    "see_map_button": "Voir la carte",
     "favorite_added": "Ajouté à « <1>Mes fiches</1> »",
     "favorite_deleted": "Supprimé de « Mes fiches »",
     "back_content_accessibility": "Retour à la fiche",
@@ -147,7 +147,7 @@
     "add_button_accessibility": "Ajouter à mes fiches",
     "remove_button_accessibility": "Supprimer de mes fiches",
     "share_button_accessibility": "Partager la fiche",
-    "share": "Partager"
+    "share_button": "Partager"
   },
   "needs_screen": {
     "fiches": "fiches",
@@ -203,7 +203,7 @@
     "partners": "Les partenaires",
     "call_1": "Ces organisations ont signé un Appel à manifestation d’intérêt et participent à l’évolution de la plateforme.",
     "call_2": "Vous représentez une organisation liée à l’intégration des personnes réfugiées et souhaitez rejoindre l’aventure ? Téléchargez l’appel ci-dessous et envoyez-le à nour@refugies.info. Nous prendrons contact avec vous pour définir les modalités de notre partenariat.",
-    "download_call": "Télécharger l’appel [PDF]"
+    "download_call_button": "Télécharger l’appel [PDF]"
   },
   "global": {
     "ok": "Ok",

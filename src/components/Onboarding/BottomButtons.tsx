@@ -65,7 +65,7 @@ export const BottomButtons = (props: Props) => {
           accessibilityRole="button"
         >
           <StyledTextSmallBold style={{color: theme.colors.darkBlue}}>
-            {t("onboarding_screens.skip_step", "Passer l'étape")}
+            {t("onboarding_screens.skip_step_button", "Passer l'étape")}
           </StyledTextSmallBold>
         </LeftButtonContainer>
       </View>
