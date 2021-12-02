@@ -186,15 +186,16 @@ exports[`ContentScreen should render correctly 1`] = `
         style={
           Array [
             Object {
+              "elevation": 7,
               "paddingHorizontal": 24,
               "paddingVertical": 8,
-              "shadowColor": "rgba(33, 33, 33, 0.1)",
+              "shadowColor": "rgba(33, 33, 33, 0.24)",
               "shadowOffset": Object {
-                "height": 0,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 40,
+              "shadowRadius": 8,
             },
             Object {
               "bottom": 0,
@@ -964,18 +965,18 @@ exports[`ContentScreen should render correctly 1`] = `
                 "backgroundColor": "#FFFFFF",
                 "borderRadius": 12,
                 "display": "flex",
-                "elevation": 1,
+                "elevation": 7,
                 "flexDirection": "column",
                 "marginHorizontal": 24,
                 "marginTop": 8,
                 "paddingTop": 16,
-                "shadowColor": "rgba(33, 33, 33, 0.1)",
+                "shadowColor": "rgba(33, 33, 33, 0.24)",
                 "shadowOffset": Object {
-                  "height": 0,
-                  "width": 0,
+                  "height": 1,
+                  "width": 1,
                 },
                 "shadowOpacity": 1,
-                "shadowRadius": 40,
+                "shadowRadius": 8,
               },
             ]
           }
@@ -1647,7 +1648,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     "borderStyle": "solid",
                     "borderWidth": 2,
                     "display": "flex",
-                    "elevation": 1,
+                    "elevation": 7,
                     "flexDirection": "row",
                     "justifyContent": "space-between",
                     "opacity": 1,
@@ -1657,11 +1658,11 @@ exports[`ContentScreen should render correctly 1`] = `
                     "paddingTop": 16,
                     "shadowColor": "rgba(33, 33, 33, 0.24)",
                     "shadowOffset": Object {
-                      "height": 8,
-                      "width": 0,
+                      "height": 1,
+                      "width": 1,
                     },
                     "shadowOpacity": 1,
-                    "shadowRadius": 16,
+                    "shadowRadius": 8,
                   }
                 }
               >
@@ -1902,7 +1903,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     "borderStyle": "solid",
                     "borderWidth": 2,
                     "display": "flex",
-                    "elevation": 1,
+                    "elevation": 7,
                     "flexDirection": "row",
                     "justifyContent": "space-between",
                     "opacity": 1,
@@ -1912,11 +1913,11 @@ exports[`ContentScreen should render correctly 1`] = `
                     "paddingTop": 16,
                     "shadowColor": "rgba(33, 33, 33, 0.24)",
                     "shadowOffset": Object {
-                      "height": 8,
-                      "width": 0,
+                      "height": 1,
+                      "width": 1,
                     },
                     "shadowOpacity": 1,
-                    "shadowRadius": 16,
+                    "shadowRadius": 8,
                   }
                 }
               >
@@ -2157,7 +2158,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     "borderStyle": "solid",
                     "borderWidth": 2,
                     "display": "flex",
-                    "elevation": 1,
+                    "elevation": 7,
                     "flexDirection": "row",
                     "justifyContent": "space-between",
                     "opacity": 1,
@@ -2167,11 +2168,11 @@ exports[`ContentScreen should render correctly 1`] = `
                     "paddingTop": 16,
                     "shadowColor": "rgba(33, 33, 33, 0.24)",
                     "shadowOffset": Object {
-                      "height": 8,
-                      "width": 0,
+                      "height": 1,
+                      "width": 1,
                     },
                     "shadowOpacity": 1,
-                    "shadowRadius": 16,
+                    "shadowRadius": 8,
                   }
                 }
               >
@@ -2412,7 +2413,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     "borderStyle": "solid",
                     "borderWidth": 2,
                     "display": "flex",
-                    "elevation": 1,
+                    "elevation": 7,
                     "flexDirection": "row",
                     "justifyContent": "space-between",
                     "opacity": 1,
@@ -2422,11 +2423,11 @@ exports[`ContentScreen should render correctly 1`] = `
                     "paddingTop": 16,
                     "shadowColor": "rgba(33, 33, 33, 0.24)",
                     "shadowOffset": Object {
-                      "height": 8,
-                      "width": 0,
+                      "height": 1,
+                      "width": 1,
                     },
                     "shadowOpacity": 1,
-                    "shadowRadius": 16,
+                    "shadowRadius": 8,
                   }
                 }
               >
@@ -2694,7 +2695,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     "borderStyle": "solid",
                     "borderWidth": 2,
                     "display": "flex",
-                    "elevation": 1,
+                    "elevation": 7,
                     "flexDirection": "row",
                     "justifyContent": "space-between",
                     "opacity": 1,
@@ -2704,11 +2705,11 @@ exports[`ContentScreen should render correctly 1`] = `
                     "paddingTop": 16,
                     "shadowColor": "rgba(33, 33, 33, 0.24)",
                     "shadowOffset": Object {
-                      "height": 8,
-                      "width": 0,
+                      "height": 1,
+                      "width": 1,
                     },
                     "shadowOpacity": 1,
-                    "shadowRadius": 16,
+                    "shadowRadius": 8,
                   }
                 }
               >
@@ -3010,7 +3011,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     "borderStyle": "solid",
                     "borderWidth": 2,
                     "display": "flex",
-                    "elevation": 1,
+                    "elevation": 7,
                     "flexDirection": "row",
                     "justifyContent": "space-between",
                     "opacity": 1,
@@ -3020,11 +3021,11 @@ exports[`ContentScreen should render correctly 1`] = `
                     "paddingTop": 16,
                     "shadowColor": "rgba(33, 33, 33, 0.24)",
                     "shadowOffset": Object {
-                      "height": 8,
-                      "width": 0,
+                      "height": 1,
+                      "width": 1,
                     },
                     "shadowOpacity": 1,
-                    "shadowRadius": 16,
+                    "shadowRadius": 8,
                   }
                 }
               >
@@ -3257,9 +3258,15 @@ exports[`ContentScreen should render correctly 1`] = `
           style={
             Array [
               Object {
-                "borderRadius": 12,
+                "elevation": 7,
                 "marginHorizontal": 24,
-                "overflow": "hidden",
+                "shadowColor": "rgba(33, 33, 33, 0.24)",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 1,
+                },
+                "shadowOpacity": 1,
+                "shadowRadius": 8,
               },
             ]
           }
@@ -3270,7 +3277,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 Object {
                   "alignItems": "center",
                   "bottom": 0,
-                  "elevation": 2,
+                  "elevation": 8,
                   "flexDirection": "row",
                   "justifyContent": "center",
                   "left": 0,
@@ -3299,7 +3306,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 12,
                   "display": "flex",
-                  "elevation": 1,
+                  "elevation": 2,
                   "flexDirection": "row",
                   "height": 56,
                   "justifyContent": "center",
@@ -3308,13 +3315,13 @@ exports[`ContentScreen should render correctly 1`] = `
                   "paddingLeft": 18,
                   "paddingRight": 18,
                   "paddingTop": 18,
-                  "shadowColor": "rgba(33, 33, 33, 0.24)",
+                  "shadowColor": "rgba(33, 33, 33, 0.4)",
                   "shadowOffset": Object {
-                    "height": 8,
-                    "width": 0,
+                    "height": 1,
+                    "width": 1,
                   },
                   "shadowOpacity": 1,
-                  "shadowRadius": 16,
+                  "shadowRadius": 2,
                   "width": "auto",
                 }
               }
@@ -3421,75 +3428,94 @@ exports[`ContentScreen should render correctly 1`] = `
               </Text>
             </View>
           </View>
-          <View>
+          <View
+            style={
+              Array [
+                Object {
+                  "borderRadius": 12,
+                  "elevation": 7,
+                  "overflow": "hidden",
+                  "shadowColor": "rgba(33, 33, 33, 0.24)",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
+                  },
+                  "shadowOpacity": 1,
+                  "shadowRadius": 8,
+                },
+              ]
+            }
+          >
             <View>
-              <View
-                style={
-                  Object {
-                    "transform": Array [
-                      Object {
-                        "scale": 1,
-                      },
-                    ],
-                  }
-                }
-              >
-                <RNSVGSvgView
-                  align="xMidYMid"
-                  bbHeight={40}
-                  bbWidth={40}
-                  fill="#3D2884"
-                  focusable={false}
-                  height={40}
-                  meetOrSlice={0}
-                  minX={0}
-                  minY={0}
+              <View>
+                <View
                   style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      Object {
-                        "flex": 0,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
+                    Object {
+                      "transform": Array [
+                        Object {
+                          "scale": 1,
+                        },
+                      ],
+                    }
                   }
-                  vbHeight={24}
-                  vbWidth={24}
-                  width={40}
                 >
-                  <RNSVGGroup
-                    fill={4282198148}
-                    propList={
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={40}
+                    bbWidth={40}
+                    fill="#3D2884"
+                    focusable={false}
+                    height={40}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
                       Array [
-                        "fill",
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 40,
+                          "width": 40,
+                        },
                       ]
                     }
+                    vbHeight={24}
+                    vbWidth={24}
+                    width={40}
                   >
-                    <RNSVGGroup>
+                    <RNSVGGroup
+                      fill={4282198148}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                    >
                       <RNSVGGroup>
-                        <RNSVGRect
-                          height="24"
-                          opacity={0}
-                          width="24"
-                          x={0}
-                          y={0}
-                        />
-                        <RNSVGCircle
-                          cx="12"
-                          cy="9.5"
-                          r="1.5"
-                        />
-                        <RNSVGPath
-                          d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 11a3.5 3.5 0 1 1 3.5-3.5A3.5 3.5 0 0 1 12 13z"
-                        />
+                        <RNSVGGroup>
+                          <RNSVGRect
+                            height="24"
+                            opacity={0}
+                            width="24"
+                            x={0}
+                            y={0}
+                          />
+                          <RNSVGCircle
+                            cx="12"
+                            cy="9.5"
+                            r="1.5"
+                          />
+                          <RNSVGPath
+                            d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 11a3.5 3.5 0 1 1 3.5-3.5A3.5 3.5 0 0 1 12 13z"
+                          />
+                        </RNSVGGroup>
                       </RNSVGGroup>
                     </RNSVGGroup>
-                  </RNSVGGroup>
-                </RNSVGSvgView>
+                  </RNSVGSvgView>
+                </View>
               </View>
             </View>
           </View>
@@ -3563,15 +3589,15 @@ exports[`ContentScreen should render correctly 1`] = `
         Object {
           "backgroundColor": "#FFFFFF",
           "bottom": 0,
-          "elevation": 14,
+          "elevation": 4,
           "position": "absolute",
-          "shadowColor": "#212121",
+          "shadowColor": "rgba(33, 33, 33, 0.08)",
           "shadowOffset": Object {
             "height": -1,
             "width": 0,
           },
-          "shadowOpacity": 0.08,
-          "shadowRadius": 24,
+          "shadowOpacity": 1,
+          "shadowRadius": 8,
           "width": "100%",
           "zIndex": 14,
         },
@@ -3610,9 +3636,9 @@ exports[`ContentScreen should render correctly 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#FFFFFF",
-            "borderRadius": 24,
+            "borderRadius": 8,
             "display": "flex",
-            "elevation": 1,
+            "elevation": 7,
             "flexDirection": "row",
             "height": 40,
             "justifyContent": "center",
@@ -3624,11 +3650,11 @@ exports[`ContentScreen should render correctly 1`] = `
             "paddingTop": 8,
             "shadowColor": "rgba(33, 33, 33, 0.24)",
             "shadowOffset": Object {
-              "height": 8,
-              "width": 0,
+              "height": 1,
+              "width": 1,
             },
             "shadowOpacity": 1,
-            "shadowRadius": 16,
+            "shadowRadius": 8,
             "width": "auto",
           }
         }
@@ -3745,9 +3771,9 @@ exports[`ContentScreen should render correctly 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#FFFFFF",
-            "borderRadius": 24,
+            "borderRadius": 8,
             "display": "flex",
-            "elevation": 1,
+            "elevation": 7,
             "flexDirection": "row",
             "height": 40,
             "justifyContent": "center",
@@ -3759,11 +3785,11 @@ exports[`ContentScreen should render correctly 1`] = `
             "paddingTop": 8,
             "shadowColor": "rgba(33, 33, 33, 0.24)",
             "shadowOffset": Object {
-              "height": 8,
-              "width": 0,
+              "height": 1,
+              "width": 1,
             },
             "shadowOpacity": 1,
-            "shadowRadius": 16,
+            "shadowRadius": 8,
             "width": "auto",
           }
         }
@@ -4951,7 +4977,7 @@ exports[`ContentScreen should render correctly 1`] = `
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
-              "elevation": 1,
+              "elevation": 2,
               "flexDirection": "row",
               "height": 56,
               "justifyContent": "center",
@@ -4960,13 +4986,13 @@ exports[`ContentScreen should render correctly 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
               "shadowOffset": Object {
-                "height": 8,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 2,
               "width": "100%",
             }
           }
@@ -5230,7 +5256,7 @@ exports[`ContentScreen should render correctly 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "backgroundColor": "#212121",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 12,
                 "elevation": 7,
                 "opacity": 1,
@@ -5263,7 +5289,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 align="xMidYMid"
                 bbHeight={24}
                 bbWidth={24}
-                fill="#FFFFFF"
+                fill="#212121"
                 focusable={false}
                 height={24}
                 meetOrSlice={0}
@@ -5287,7 +5313,7 @@ exports[`ContentScreen should render correctly 1`] = `
                 width={24}
               >
                 <RNSVGGroup
-                  fill={4294967295}
+                  fill={4280361249}
                   propList={
                     Array [
                       "fill",
@@ -5613,15 +5639,16 @@ exports[`ContentScreen should toggle map modal 1`] = `
         style={
           Array [
             Object {
+              "elevation": 7,
               "paddingHorizontal": 24,
               "paddingVertical": 8,
-              "shadowColor": "rgba(33, 33, 33, 0.1)",
+              "shadowColor": "rgba(33, 33, 33, 0.24)",
               "shadowOffset": Object {
-                "height": 0,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 40,
+              "shadowRadius": 8,
             },
             Object {
               "bottom": 0,
@@ -6391,18 +6418,18 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 "backgroundColor": "#FFFFFF",
                 "borderRadius": 12,
                 "display": "flex",
-                "elevation": 1,
+                "elevation": 7,
                 "flexDirection": "column",
                 "marginHorizontal": 24,
                 "marginTop": 8,
                 "paddingTop": 16,
-                "shadowColor": "rgba(33, 33, 33, 0.1)",
+                "shadowColor": "rgba(33, 33, 33, 0.24)",
                 "shadowOffset": Object {
-                  "height": 0,
-                  "width": 0,
+                  "height": 1,
+                  "width": 1,
                 },
                 "shadowOpacity": 1,
-                "shadowRadius": 40,
+                "shadowRadius": 8,
               },
             ]
           }
@@ -7074,7 +7101,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "borderStyle": "solid",
                     "borderWidth": 2,
                     "display": "flex",
-                    "elevation": 1,
+                    "elevation": 7,
                     "flexDirection": "row",
                     "justifyContent": "space-between",
                     "opacity": 1,
@@ -7084,11 +7111,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "paddingTop": 16,
                     "shadowColor": "rgba(33, 33, 33, 0.24)",
                     "shadowOffset": Object {
-                      "height": 8,
-                      "width": 0,
+                      "height": 1,
+                      "width": 1,
                     },
                     "shadowOpacity": 1,
-                    "shadowRadius": 16,
+                    "shadowRadius": 8,
                   }
                 }
               >
@@ -7329,7 +7356,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "borderStyle": "solid",
                     "borderWidth": 2,
                     "display": "flex",
-                    "elevation": 1,
+                    "elevation": 7,
                     "flexDirection": "row",
                     "justifyContent": "space-between",
                     "opacity": 1,
@@ -7339,11 +7366,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "paddingTop": 16,
                     "shadowColor": "rgba(33, 33, 33, 0.24)",
                     "shadowOffset": Object {
-                      "height": 8,
-                      "width": 0,
+                      "height": 1,
+                      "width": 1,
                     },
                     "shadowOpacity": 1,
-                    "shadowRadius": 16,
+                    "shadowRadius": 8,
                   }
                 }
               >
@@ -7584,7 +7611,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "borderStyle": "solid",
                     "borderWidth": 2,
                     "display": "flex",
-                    "elevation": 1,
+                    "elevation": 7,
                     "flexDirection": "row",
                     "justifyContent": "space-between",
                     "opacity": 1,
@@ -7594,11 +7621,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "paddingTop": 16,
                     "shadowColor": "rgba(33, 33, 33, 0.24)",
                     "shadowOffset": Object {
-                      "height": 8,
-                      "width": 0,
+                      "height": 1,
+                      "width": 1,
                     },
                     "shadowOpacity": 1,
-                    "shadowRadius": 16,
+                    "shadowRadius": 8,
                   }
                 }
               >
@@ -7839,7 +7866,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "borderStyle": "solid",
                     "borderWidth": 2,
                     "display": "flex",
-                    "elevation": 1,
+                    "elevation": 7,
                     "flexDirection": "row",
                     "justifyContent": "space-between",
                     "opacity": 1,
@@ -7849,11 +7876,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "paddingTop": 16,
                     "shadowColor": "rgba(33, 33, 33, 0.24)",
                     "shadowOffset": Object {
-                      "height": 8,
-                      "width": 0,
+                      "height": 1,
+                      "width": 1,
                     },
                     "shadowOpacity": 1,
-                    "shadowRadius": 16,
+                    "shadowRadius": 8,
                   }
                 }
               >
@@ -8121,7 +8148,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "borderStyle": "solid",
                     "borderWidth": 2,
                     "display": "flex",
-                    "elevation": 1,
+                    "elevation": 7,
                     "flexDirection": "row",
                     "justifyContent": "space-between",
                     "opacity": 1,
@@ -8131,11 +8158,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "paddingTop": 16,
                     "shadowColor": "rgba(33, 33, 33, 0.24)",
                     "shadowOffset": Object {
-                      "height": 8,
-                      "width": 0,
+                      "height": 1,
+                      "width": 1,
                     },
                     "shadowOpacity": 1,
-                    "shadowRadius": 16,
+                    "shadowRadius": 8,
                   }
                 }
               >
@@ -8437,7 +8464,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "borderStyle": "solid",
                     "borderWidth": 2,
                     "display": "flex",
-                    "elevation": 1,
+                    "elevation": 7,
                     "flexDirection": "row",
                     "justifyContent": "space-between",
                     "opacity": 1,
@@ -8447,11 +8474,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "paddingTop": 16,
                     "shadowColor": "rgba(33, 33, 33, 0.24)",
                     "shadowOffset": Object {
-                      "height": 8,
-                      "width": 0,
+                      "height": 1,
+                      "width": 1,
                     },
                     "shadowOpacity": 1,
-                    "shadowRadius": 16,
+                    "shadowRadius": 8,
                   }
                 }
               >
@@ -8684,9 +8711,15 @@ exports[`ContentScreen should toggle map modal 1`] = `
           style={
             Array [
               Object {
-                "borderRadius": 12,
+                "elevation": 7,
                 "marginHorizontal": 24,
-                "overflow": "hidden",
+                "shadowColor": "rgba(33, 33, 33, 0.24)",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 1,
+                },
+                "shadowOpacity": 1,
+                "shadowRadius": 8,
               },
             ]
           }
@@ -8697,7 +8730,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 Object {
                   "alignItems": "center",
                   "bottom": 0,
-                  "elevation": 2,
+                  "elevation": 8,
                   "flexDirection": "row",
                   "justifyContent": "center",
                   "left": 0,
@@ -8726,7 +8759,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 12,
                   "display": "flex",
-                  "elevation": 1,
+                  "elevation": 2,
                   "flexDirection": "row",
                   "height": 56,
                   "justifyContent": "center",
@@ -8735,13 +8768,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   "paddingLeft": 18,
                   "paddingRight": 18,
                   "paddingTop": 18,
-                  "shadowColor": "rgba(33, 33, 33, 0.24)",
+                  "shadowColor": "rgba(33, 33, 33, 0.4)",
                   "shadowOffset": Object {
-                    "height": 8,
-                    "width": 0,
+                    "height": 1,
+                    "width": 1,
                   },
                   "shadowOpacity": 1,
-                  "shadowRadius": 16,
+                  "shadowRadius": 2,
                   "width": "auto",
                 }
               }
@@ -8848,75 +8881,94 @@ exports[`ContentScreen should toggle map modal 1`] = `
               </Text>
             </View>
           </View>
-          <View>
+          <View
+            style={
+              Array [
+                Object {
+                  "borderRadius": 12,
+                  "elevation": 7,
+                  "overflow": "hidden",
+                  "shadowColor": "rgba(33, 33, 33, 0.24)",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
+                  },
+                  "shadowOpacity": 1,
+                  "shadowRadius": 8,
+                },
+              ]
+            }
+          >
             <View>
-              <View
-                style={
-                  Object {
-                    "transform": Array [
-                      Object {
-                        "scale": 1,
-                      },
-                    ],
-                  }
-                }
-              >
-                <RNSVGSvgView
-                  align="xMidYMid"
-                  bbHeight={40}
-                  bbWidth={40}
-                  fill="#3D2884"
-                  focusable={false}
-                  height={40}
-                  meetOrSlice={0}
-                  minX={0}
-                  minY={0}
+              <View>
+                <View
                   style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      Object {
-                        "flex": 0,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
+                    Object {
+                      "transform": Array [
+                        Object {
+                          "scale": 1,
+                        },
+                      ],
+                    }
                   }
-                  vbHeight={24}
-                  vbWidth={24}
-                  width={40}
                 >
-                  <RNSVGGroup
-                    fill={4282198148}
-                    propList={
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={40}
+                    bbWidth={40}
+                    fill="#3D2884"
+                    focusable={false}
+                    height={40}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
                       Array [
-                        "fill",
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 40,
+                          "width": 40,
+                        },
                       ]
                     }
+                    vbHeight={24}
+                    vbWidth={24}
+                    width={40}
                   >
-                    <RNSVGGroup>
+                    <RNSVGGroup
+                      fill={4282198148}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                    >
                       <RNSVGGroup>
-                        <RNSVGRect
-                          height="24"
-                          opacity={0}
-                          width="24"
-                          x={0}
-                          y={0}
-                        />
-                        <RNSVGCircle
-                          cx="12"
-                          cy="9.5"
-                          r="1.5"
-                        />
-                        <RNSVGPath
-                          d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 11a3.5 3.5 0 1 1 3.5-3.5A3.5 3.5 0 0 1 12 13z"
-                        />
+                        <RNSVGGroup>
+                          <RNSVGRect
+                            height="24"
+                            opacity={0}
+                            width="24"
+                            x={0}
+                            y={0}
+                          />
+                          <RNSVGCircle
+                            cx="12"
+                            cy="9.5"
+                            r="1.5"
+                          />
+                          <RNSVGPath
+                            d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 11a3.5 3.5 0 1 1 3.5-3.5A3.5 3.5 0 0 1 12 13z"
+                          />
+                        </RNSVGGroup>
                       </RNSVGGroup>
                     </RNSVGGroup>
-                  </RNSVGGroup>
-                </RNSVGSvgView>
+                  </RNSVGSvgView>
+                </View>
               </View>
             </View>
           </View>
@@ -8990,15 +9042,15 @@ exports[`ContentScreen should toggle map modal 1`] = `
         Object {
           "backgroundColor": "#FFFFFF",
           "bottom": 0,
-          "elevation": 14,
+          "elevation": 4,
           "position": "absolute",
-          "shadowColor": "#212121",
+          "shadowColor": "rgba(33, 33, 33, 0.08)",
           "shadowOffset": Object {
             "height": -1,
             "width": 0,
           },
-          "shadowOpacity": 0.08,
-          "shadowRadius": 24,
+          "shadowOpacity": 1,
+          "shadowRadius": 8,
           "width": "100%",
           "zIndex": 14,
         },
@@ -9037,9 +9089,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#FFFFFF",
-            "borderRadius": 24,
+            "borderRadius": 8,
             "display": "flex",
-            "elevation": 1,
+            "elevation": 7,
             "flexDirection": "row",
             "height": 40,
             "justifyContent": "center",
@@ -9051,11 +9103,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
             "paddingTop": 8,
             "shadowColor": "rgba(33, 33, 33, 0.24)",
             "shadowOffset": Object {
-              "height": 8,
-              "width": 0,
+              "height": 1,
+              "width": 1,
             },
             "shadowOpacity": 1,
-            "shadowRadius": 16,
+            "shadowRadius": 8,
             "width": "auto",
           }
         }
@@ -9172,9 +9224,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
           Object {
             "alignItems": "center",
             "backgroundColor": "#FFFFFF",
-            "borderRadius": 24,
+            "borderRadius": 8,
             "display": "flex",
-            "elevation": 1,
+            "elevation": 7,
             "flexDirection": "row",
             "height": 40,
             "justifyContent": "center",
@@ -9186,11 +9238,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
             "paddingTop": 8,
             "shadowColor": "rgba(33, 33, 33, 0.24)",
             "shadowOffset": Object {
-              "height": 8,
-              "width": 0,
+              "height": 1,
+              "width": 1,
             },
             "shadowOpacity": 1,
-            "shadowRadius": 16,
+            "shadowRadius": 8,
             "width": "auto",
           }
         }
@@ -10378,7 +10430,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
-              "elevation": 1,
+              "elevation": 2,
               "flexDirection": "row",
               "height": 56,
               "justifyContent": "center",
@@ -10387,13 +10439,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
               "shadowOffset": Object {
-                "height": 8,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 2,
               "width": "100%",
             }
           }
@@ -10657,7 +10709,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "backgroundColor": "#212121",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 12,
                 "elevation": 7,
                 "opacity": 1,
@@ -10690,7 +10742,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 align="xMidYMid"
                 bbHeight={24}
                 bbWidth={24}
-                fill="#FFFFFF"
+                fill="#212121"
                 focusable={false}
                 height={24}
                 meetOrSlice={0}
@@ -10714,7 +10766,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 width={24}
               >
                 <RNSVGGroup
-                  fill={4294967295}
+                  fill={4280361249}
                   propList={
                     Array [
                       "fill",

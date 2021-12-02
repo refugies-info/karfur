@@ -101,7 +101,6 @@ exports[`Profil screen should render correctly when data in store 1`] = `
       Array [
         Object {
           "paddingBottom": 24,
-          "paddingHorizontal": 24,
           "paddingTop": 16,
         },
       ]
@@ -122,6 +121,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             },
             Object {
               "marginBottom": 24,
+              "paddingHorizontal": 24,
             },
           ]
         }
@@ -134,14 +134,15 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             Object {
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
-              "elevation": 0.5,
-              "shadowColor": "rgba(33, 33, 33, 0.1)",
+              "elevation": 7,
+              "marginHorizontal": 24,
+              "shadowColor": "rgba(33, 33, 33, 0.24)",
               "shadowOffset": Object {
-                "height": 0,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 40,
+              "shadowRadius": 8,
             },
           ]
         }
@@ -1159,6 +1160,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             "backgroundColor": "#C6C6C6",
             "borderRadius": 12,
             "marginBottom": 56,
+            "marginHorizontal": 24,
             "marginTop": 40,
             "opacity": 1,
             "paddingBottom": 16,
@@ -1199,6 +1201,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             },
             Object {
               "marginBottom": 24,
+              "paddingHorizontal": 24,
             },
           ]
         }
@@ -1211,14 +1214,15 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             Object {
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
-              "elevation": 0.5,
-              "shadowColor": "rgba(33, 33, 33, 0.1)",
+              "elevation": 7,
+              "marginHorizontal": 24,
+              "shadowColor": "rgba(33, 33, 33, 0.24)",
               "shadowOffset": Object {
-                "height": 0,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 40,
+              "shadowRadius": 8,
             },
           ]
         }
@@ -1927,6 +1931,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             "backgroundColor": "#C6C6C6",
             "borderRadius": 12,
             "marginBottom": 56,
+            "marginHorizontal": 24,
             "marginTop": 40,
             "opacity": 1,
             "paddingBottom": 16,
@@ -2113,7 +2118,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 "backgroundColor": "#0421B1",
                 "borderRadius": 12,
                 "display": "flex",
-                "elevation": 1,
+                "elevation": 2,
                 "flexDirection": "row",
                 "height": 56,
                 "justifyContent": "center",
@@ -2122,13 +2127,13 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 "paddingLeft": 18,
                 "paddingRight": 18,
                 "paddingTop": 18,
-                "shadowColor": "rgba(33, 33, 33, 0.24)",
+                "shadowColor": "rgba(33, 33, 33, 0.4)",
                 "shadowOffset": Object {
-                  "height": 8,
-                  "width": 0,
+                  "height": 1,
+                  "width": 1,
                 },
                 "shadowOpacity": 1,
-                "shadowRadius": 16,
+                "shadowRadius": 2,
                 "width": "100%",
               }
             }
@@ -2249,7 +2254,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
-              "elevation": 1,
+              "elevation": 2,
               "flexDirection": "row",
               "height": 56,
               "justifyContent": "center",
@@ -2258,13 +2263,13 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
               "shadowOffset": Object {
-                "height": 8,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 2,
               "width": "100%",
             }
           }
@@ -2454,7 +2459,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 "backgroundColor": "#0421B1",
                 "borderRadius": 12,
                 "display": "flex",
-                "elevation": 1,
+                "elevation": 2,
                 "flexDirection": "row",
                 "height": 56,
                 "justifyContent": "center",
@@ -2463,13 +2468,13 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                 "paddingLeft": 18,
                 "paddingRight": 18,
                 "paddingTop": 18,
-                "shadowColor": "rgba(33, 33, 33, 0.24)",
+                "shadowColor": "rgba(33, 33, 33, 0.4)",
                 "shadowOffset": Object {
-                  "height": 8,
-                  "width": 0,
+                  "height": 1,
+                  "width": 1,
                 },
                 "shadowOpacity": 1,
-                "shadowRadius": 16,
+                "shadowRadius": 2,
                 "width": "100%",
               }
             }
@@ -2590,7 +2595,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
-              "elevation": 1,
+              "elevation": 2,
               "flexDirection": "row",
               "height": 56,
               "justifyContent": "center",
@@ -2599,13 +2604,13 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
               "shadowOffset": Object {
-                "height": 8,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 2,
               "width": "100%",
             }
           }
@@ -3704,7 +3709,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
-              "elevation": 1,
+              "elevation": 2,
               "flexDirection": "row",
               "height": 56,
               "justifyContent": "center",
@@ -3713,13 +3718,13 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
               "shadowOffset": Object {
-                "height": 8,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 2,
               "width": "100%",
             }
           }
@@ -3928,7 +3933,6 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
       Array [
         Object {
           "paddingBottom": 24,
-          "paddingHorizontal": 24,
           "paddingTop": 16,
         },
       ]
@@ -3949,6 +3953,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             },
             Object {
               "marginBottom": 24,
+              "paddingHorizontal": 24,
             },
           ]
         }
@@ -3961,14 +3966,15 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             Object {
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
-              "elevation": 0.5,
-              "shadowColor": "rgba(33, 33, 33, 0.1)",
+              "elevation": 7,
+              "marginHorizontal": 24,
+              "shadowColor": "rgba(33, 33, 33, 0.24)",
               "shadowOffset": Object {
-                "height": 0,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 40,
+              "shadowRadius": 8,
             },
           ]
         }
@@ -4986,6 +4992,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             "backgroundColor": "#C6C6C6",
             "borderRadius": 12,
             "marginBottom": 56,
+            "marginHorizontal": 24,
             "marginTop": 40,
             "opacity": 1,
             "paddingBottom": 16,
@@ -5026,6 +5033,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             },
             Object {
               "marginBottom": 24,
+              "paddingHorizontal": 24,
             },
           ]
         }
@@ -5038,14 +5046,15 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             Object {
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
-              "elevation": 0.5,
-              "shadowColor": "rgba(33, 33, 33, 0.1)",
+              "elevation": 7,
+              "marginHorizontal": 24,
+              "shadowColor": "rgba(33, 33, 33, 0.24)",
               "shadowOffset": Object {
-                "height": 0,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 40,
+              "shadowRadius": 8,
             },
           ]
         }
@@ -5754,6 +5763,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             "backgroundColor": "#C6C6C6",
             "borderRadius": 12,
             "marginBottom": 56,
+            "marginHorizontal": 24,
             "marginTop": 40,
             "opacity": 1,
             "paddingBottom": 16,
@@ -5940,7 +5950,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 "backgroundColor": "#0421B1",
                 "borderRadius": 12,
                 "display": "flex",
-                "elevation": 1,
+                "elevation": 2,
                 "flexDirection": "row",
                 "height": 56,
                 "justifyContent": "center",
@@ -5949,13 +5959,13 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 "paddingLeft": 18,
                 "paddingRight": 18,
                 "paddingTop": 18,
-                "shadowColor": "rgba(33, 33, 33, 0.24)",
+                "shadowColor": "rgba(33, 33, 33, 0.4)",
                 "shadowOffset": Object {
-                  "height": 8,
-                  "width": 0,
+                  "height": 1,
+                  "width": 1,
                 },
                 "shadowOpacity": 1,
-                "shadowRadius": 16,
+                "shadowRadius": 2,
                 "width": "100%",
               }
             }
@@ -6076,7 +6086,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
-              "elevation": 1,
+              "elevation": 2,
               "flexDirection": "row",
               "height": 56,
               "justifyContent": "center",
@@ -6085,13 +6095,13 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
               "shadowOffset": Object {
-                "height": 8,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 2,
               "width": "100%",
             }
           }
@@ -6281,7 +6291,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 "backgroundColor": "#0421B1",
                 "borderRadius": 12,
                 "display": "flex",
-                "elevation": 1,
+                "elevation": 2,
                 "flexDirection": "row",
                 "height": 56,
                 "justifyContent": "center",
@@ -6290,13 +6300,13 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                 "paddingLeft": 18,
                 "paddingRight": 18,
                 "paddingTop": 18,
-                "shadowColor": "rgba(33, 33, 33, 0.24)",
+                "shadowColor": "rgba(33, 33, 33, 0.4)",
                 "shadowOffset": Object {
-                  "height": 8,
-                  "width": 0,
+                  "height": 1,
+                  "width": 1,
                 },
                 "shadowOpacity": 1,
-                "shadowRadius": 16,
+                "shadowRadius": 2,
                 "width": "100%",
               }
             }
@@ -6417,7 +6427,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
-              "elevation": 1,
+              "elevation": 2,
               "flexDirection": "row",
               "height": 56,
               "justifyContent": "center",
@@ -6426,13 +6436,13 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
               "shadowOffset": Object {
-                "height": 8,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 2,
               "width": "100%",
             }
           }
@@ -7531,7 +7541,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
-              "elevation": 1,
+              "elevation": 2,
               "flexDirection": "row",
               "height": 56,
               "justifyContent": "center",
@@ -7540,13 +7550,13 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
               "shadowOffset": Object {
-                "height": 8,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 2,
               "width": "100%",
             }
           }
@@ -7755,7 +7765,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
       Array [
         Object {
           "paddingBottom": 24,
-          "paddingHorizontal": 24,
           "paddingTop": 16,
         },
       ]
@@ -7776,6 +7785,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             },
             Object {
               "marginBottom": 24,
+              "paddingHorizontal": 24,
             },
           ]
         }
@@ -7788,14 +7798,15 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             Object {
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
-              "elevation": 0.5,
-              "shadowColor": "rgba(33, 33, 33, 0.1)",
+              "elevation": 7,
+              "marginHorizontal": 24,
+              "shadowColor": "rgba(33, 33, 33, 0.24)",
               "shadowOffset": Object {
-                "height": 0,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 40,
+              "shadowRadius": 8,
             },
           ]
         }
@@ -8813,6 +8824,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             "backgroundColor": "#C6C6C6",
             "borderRadius": 12,
             "marginBottom": 56,
+            "marginHorizontal": 24,
             "marginTop": 40,
             "opacity": 1,
             "paddingBottom": 16,
@@ -8853,6 +8865,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             },
             Object {
               "marginBottom": 24,
+              "paddingHorizontal": 24,
             },
           ]
         }
@@ -8865,14 +8878,15 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             Object {
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
-              "elevation": 0.5,
-              "shadowColor": "rgba(33, 33, 33, 0.1)",
+              "elevation": 7,
+              "marginHorizontal": 24,
+              "shadowColor": "rgba(33, 33, 33, 0.24)",
               "shadowOffset": Object {
-                "height": 0,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 40,
+              "shadowRadius": 8,
             },
           ]
         }
@@ -9581,6 +9595,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             "backgroundColor": "#C6C6C6",
             "borderRadius": 12,
             "marginBottom": 56,
+            "marginHorizontal": 24,
             "marginTop": 40,
             "opacity": 1,
             "paddingBottom": 16,
@@ -9767,7 +9782,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                 "backgroundColor": "#0421B1",
                 "borderRadius": 12,
                 "display": "flex",
-                "elevation": 1,
+                "elevation": 2,
                 "flexDirection": "row",
                 "height": 56,
                 "justifyContent": "center",
@@ -9776,13 +9791,13 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                 "paddingLeft": 18,
                 "paddingRight": 18,
                 "paddingTop": 18,
-                "shadowColor": "rgba(33, 33, 33, 0.24)",
+                "shadowColor": "rgba(33, 33, 33, 0.4)",
                 "shadowOffset": Object {
-                  "height": 8,
-                  "width": 0,
+                  "height": 1,
+                  "width": 1,
                 },
                 "shadowOpacity": 1,
-                "shadowRadius": 16,
+                "shadowRadius": 2,
                 "width": "100%",
               }
             }
@@ -9903,7 +9918,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
-              "elevation": 1,
+              "elevation": 2,
               "flexDirection": "row",
               "height": 56,
               "justifyContent": "center",
@@ -9912,13 +9927,13 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
               "shadowOffset": Object {
-                "height": 8,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 2,
               "width": "100%",
             }
           }
@@ -10108,7 +10123,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                 "backgroundColor": "#0421B1",
                 "borderRadius": 12,
                 "display": "flex",
-                "elevation": 1,
+                "elevation": 2,
                 "flexDirection": "row",
                 "height": 56,
                 "justifyContent": "center",
@@ -10117,13 +10132,13 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                 "paddingLeft": 18,
                 "paddingRight": 18,
                 "paddingTop": 18,
-                "shadowColor": "rgba(33, 33, 33, 0.24)",
+                "shadowColor": "rgba(33, 33, 33, 0.4)",
                 "shadowOffset": Object {
-                  "height": 8,
-                  "width": 0,
+                  "height": 1,
+                  "width": 1,
                 },
                 "shadowOpacity": 1,
-                "shadowRadius": 16,
+                "shadowRadius": 2,
                 "width": "100%",
               }
             }
@@ -10244,7 +10259,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
-              "elevation": 1,
+              "elevation": 2,
               "flexDirection": "row",
               "height": 56,
               "justifyContent": "center",
@@ -10253,13 +10268,13 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
               "shadowOffset": Object {
-                "height": 8,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 2,
               "width": "100%",
             }
           }
@@ -11358,7 +11373,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               "backgroundColor": "#FFFFFF",
               "borderRadius": 12,
               "display": "flex",
-              "elevation": 1,
+              "elevation": 2,
               "flexDirection": "row",
               "height": 56,
               "justifyContent": "center",
@@ -11367,13 +11382,13 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.24)",
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
               "shadowOffset": Object {
-                "height": 8,
-                "width": 0,
+                "height": 1,
+                "width": 1,
               },
               "shadowOpacity": 1,
-              "shadowRadius": 16,
+              "shadowRadius": 2,
               "width": "100%",
             }
           }

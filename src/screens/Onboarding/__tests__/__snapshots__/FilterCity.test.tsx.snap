@@ -633,18 +633,18 @@ exports[`Filter city should render correctly when city selected 1`] = `
                   "backgroundColor": "#0421B1",
                   "borderRadius": 12,
                   "display": "flex",
-                  "elevation": 1,
+                  "elevation": 2,
                   "flexDirection": "row",
                   "height": 56,
                   "justifyContent": "center",
                   "opacity": 0.4,
-                  "shadowColor": "rgba(33, 33, 33, 0.24)",
+                  "shadowColor": "rgba(33, 33, 33, 0.4)",
                   "shadowOffset": Object {
-                    "height": 8,
-                    "width": 0,
+                    "height": 1,
+                    "width": 1,
                   },
                   "shadowOpacity": 1,
-                  "shadowRadius": 16,
+                  "shadowRadius": 2,
                 }
               }
               testID="test-validate-button"
@@ -1585,7 +1585,7 @@ exports[`Filter city should render correctly when no city 1`] = `
               Object {
                 "alignItems": "center",
                 "backgroundColor": "#DAE0FB",
-                "borderColor": "transparent",
+                "borderColor": "#DAE0FB",
                 "borderRadius": 12,
                 "borderStyle": "solid",
                 "borderWidth": 2,
@@ -1594,11 +1594,11 @@ exports[`Filter city should render correctly when no city 1`] = `
                 "flexDirection": "row",
                 "marginVertical": 16,
                 "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-                "shadowColor": "rgba(0.33, 0.33, 0.33, 0.4)",
+                "paddingBottom": 14,
+                "paddingLeft": 14,
+                "paddingRight": 14,
+                "paddingTop": 14,
+                "shadowColor": "rgba(33, 33, 33, 0.4)",
                 "shadowOffset": Object {
                   "height": 1,
                   "width": 1,
@@ -1896,18 +1896,10 @@ exports[`Filter city should render correctly when no city 1`] = `
                   "backgroundColor": "#0421B1",
                   "borderRadius": 12,
                   "display": "flex",
-                  "elevation": 0,
                   "flexDirection": "row",
                   "height": 56,
                   "justifyContent": "center",
                   "opacity": 0.4,
-                  "shadowColor": "#EDEBEB",
-                  "shadowOffset": Object {
-                    "height": 8,
-                    "width": 0,
-                  },
-                  "shadowOpacity": 1,
-                  "shadowRadius": 16,
                 }
               }
               testID="test-validate-button"
