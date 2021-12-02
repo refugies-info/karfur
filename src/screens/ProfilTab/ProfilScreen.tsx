@@ -38,6 +38,7 @@ const DeleteDataContainer = styled.TouchableOpacity`
   padding: ${theme.margin * 2}px;
   margin-top: ${theme.margin * 5}px;
   margin-bottom: ${theme.margin * 7}px;
+  margin-horizontal: ${theme.margin * 3}px;
   background-color: ${theme.colors.grey60};
   border-radius: ${theme.radius * 2}px;
 `;
@@ -47,15 +48,16 @@ const DeleteDataText = styled(StyledTextSmall)`
 `;
 
 const ContentContainer = styled.ScrollView`
-  padding-horizontal: ${theme.margin * 3}px;
-  padding-bottom: ${theme.margin * 3}px;
-  padding-top: ${theme.margin * 2}px;
+padding-bottom: ${theme.margin * 3}px;
+padding-top: ${theme.margin * 2}px;
 `;
 const StyledText = styled(TextSmallNormal)`
+  padding-horizontal: ${theme.margin * 3}px;
   margin-bottom: ${theme.margin * 3}px;
-`;
+  `;
 
 const ProfilButtonsContainer = styled.View`
+  margin-horizontal: ${theme.margin * 3}px;
   background-color: ${theme.colors.white};
   border-radius: ${theme.radius * 2}px;
   ${theme.shadows.lg}

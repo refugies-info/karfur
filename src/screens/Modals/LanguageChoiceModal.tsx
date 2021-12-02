@@ -89,7 +89,7 @@ const FlagBackground = styled.View`
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  ${theme.shadows.sm}
+  ${theme.shadows.lg}
 `;
 const Backdrop = styled.View`
   flex: 1;

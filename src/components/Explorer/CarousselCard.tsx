@@ -22,7 +22,6 @@ interface Props {
 
 const ButtonContainer = styled.TouchableOpacity`
   padding-vertical: ${theme.margin}px;
-  ${theme.shadows.sm}
 `;
 const StyledContainer = styled(RTLView)`
   margin-horizontal: ${theme.margin * 2}px;
@@ -36,7 +35,7 @@ const StyledContainer = styled(RTLView)`
   border-radius: ${theme.radius * 2}px;
   background-color: ${(props: { backgroundColor: string }) =>
     props.backgroundColor};
-  ${theme.shadows.sm}
+  ${theme.shadows.lg}
 `;
 const StyledText = styled(StyledTextSmallBold)`
   color: ${theme.colors.white};

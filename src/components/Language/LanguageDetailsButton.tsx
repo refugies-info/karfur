@@ -16,7 +16,7 @@ const MainContainer = styled.TouchableOpacity`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  ${theme.shadows.sm}
+  ${theme.shadows.lg}
 `;
 
 const StyledTextBold = styled(StyledTextSmallBold)`
@@ -41,7 +41,7 @@ const FlagBackground = styled.View`
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  ${theme.shadows.sm}
+  ${theme.shadows.lg}
 `;
 
 interface Props {

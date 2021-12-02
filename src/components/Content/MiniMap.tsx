@@ -14,10 +14,14 @@ interface PropsType {
 interface StateType {}
 
 const MainContainer = styled.View`
-  border-radius: ${theme.radius * 2}px;
   margin-horizontal: ${theme.margin * 3}px;
-  overflow: hidden;
+  ${theme.shadows.lg};
 `;
+const MapViewContainer = styled.View`
+  border-radius: ${theme.radius * 2}px;
+  overflow:hidden;
+  ${theme.shadows.lg};
+`; // repeat shadow to work with ios and android
 const ContentContainer = styled.View`
   flex-direction: row;
   align-items: center;
@@ -28,8 +32,8 @@ const ContentContainer = styled.View`
   right: 0;
   bottom: 0;
   z-index: 2;
-  elevation: 2;
-`;
+  elevation: 8;
+`; // need elevation to show button
 
 export class MiniMap extends React.Component<PropsType, StateType> {
   render() {
@@ -40,44 +44,46 @@ export class MiniMap extends React.Component<PropsType, StateType> {
     return (
       <MainContainer>
         <ContentContainer>{this.props.children}</ContentContainer>
-        <MapView
-          provider={PROVIDER_GOOGLE}
-          style={{
-            width: mapWidth,
-            height: mapHeight,
-          }}
-          initialRegion={{
-            latitude: 47,
-            longitude: 2,
-            latitudeDelta: 10,
-            longitudeDelta: 5,
-          }}
-        >
-          {markers.map((marker, key) => {
-            const lat = typeof marker.latitude === "string"
-              ? parseFloat(marker.latitude)
-              : marker.latitude;
-            const lng = typeof marker.longitude === "string"
-              ? parseFloat(marker.longitude)
-              : marker.longitude;
-            return (
-              <Marker
-                key={key}
-                coordinate={{
-                  latitude: lat,
-                  longitude: lng
-                }}
-              >
-                <Icon
-                  name="pin"
-                  fill={this.props.markersColor}
-                  width={40}
-                  height={40}
-                />
-              </Marker>
-            );
-          })}
-        </MapView>
+        <MapViewContainer>
+          <MapView
+            provider={PROVIDER_GOOGLE}
+            style={{
+              width: mapWidth,
+              height: mapHeight,
+            }}
+            initialRegion={{
+              latitude: 47,
+              longitude: 2,
+              latitudeDelta: 10,
+              longitudeDelta: 5,
+            }}
+          >
+            {markers.map((marker, key) => {
+              const lat = typeof marker.latitude === "string"
+                ? parseFloat(marker.latitude)
+                : marker.latitude;
+              const lng = typeof marker.longitude === "string"
+                ? parseFloat(marker.longitude)
+                : marker.longitude;
+              return (
+                <Marker
+                  key={key}
+                  coordinate={{
+                    latitude: lat,
+                    longitude: lng
+                  }}
+                >
+                  <Icon
+                    name="pin"
+                    fill={this.props.markersColor}
+                    width={40}
+                    height={40}
+                  />
+                </Marker>
+              );
+            })}
+          </MapView>
+        </MapViewContainer>
       </MainContainer>
     );
   }

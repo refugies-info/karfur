@@ -37,13 +37,13 @@ const GeolocContainer = styled(RTLTouchableOpacity)`
   background-color: ${theme.colors.lightBlue};
   margin-vertical: ${theme.margin * 2}px;
   border-radius: ${theme.radius * 2}px;
-  padding: ${theme.margin * 2}px;
   align-items: center;
   ${theme.shadows.sm}
+  padding: ${(theme.margin * 2) - 2}px;
   border-width: 2px;
   border-style: solid;
   border-color: ${(props: { hasError: boolean }) =>
-    props.hasError ? theme.colors.red : "transparent"};
+    props.hasError ? theme.colors.red : theme.colors.lightBlue};
 `;
 
 const GeolocText = styled(TextSmallBold)`

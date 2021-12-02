@@ -97,12 +97,12 @@ const shadows = {
   elevation: 4;
   `,
   sm: `
-  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
-  elevation: 7;
+  box-shadow: 1px 1px 2px rgba(33, 33, 33, 0.4);
+  elevation: 2;
   `,
   lg: `
-  box-shadow: 0px 8px 16px rgba(33, 33, 33, 0.24);
-  elevation: 12;
+  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
+  elevation: 7;
   `
 }
 

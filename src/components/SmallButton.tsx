@@ -5,12 +5,11 @@ import { Icon } from "react-native-eva-icons";
 import { theme } from "../theme";
 
 const ButtonContainer = styled.TouchableOpacity`
-  background-color: ${(props: { reversed: boolean }) =>
-    props.reversed ? theme.colors.black : theme.colors.white};
+  background-color: ${theme.colors.white};
   border-radius: ${(props: { rounded: boolean }) =>
     !props.rounded ? theme.radius * 2 : theme.radius * 10}px;
   padding: ${theme.radius * 2}px;
-  ${theme.shadows.sm}
+  ${theme.shadows.lg}
 `;
 
 const ICON_SIZE = 24;
@@ -18,7 +17,6 @@ const ICON_SIZE = 24;
 interface Props {
   iconName: string;
   onPress?: () => void;
-  reversed?: boolean;
   rounded?: boolean;
   style?: StyleProp<ViewStyle>;
   label?: string;
@@ -26,7 +24,6 @@ interface Props {
 export const SmallButton = (props: Props) => (
   <ButtonContainer
     onPress={props.onPress}
-    reversed={props.reversed}
     rounded={!!props.rounded}
     style={props.style || {}}
     accessibilityRole="button"
@@ -37,7 +34,7 @@ export const SmallButton = (props: Props) => (
       name={props.iconName}
       width={ICON_SIZE}
       height={ICON_SIZE}
-      fill={props.reversed ? theme.colors.white : theme.colors.black}
+      fill={theme.colors.black}
     />
   </ButtonContainer>
 );

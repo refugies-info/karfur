@@ -25,7 +25,6 @@ import YourData from "../../theme/images/privacyPolicy/your-data.png";
 
 
 const ContentContainer = styled.ScrollView`
-  padding-horizontal: ${theme.margin * 3}px;
   padding-bottom: ${theme.margin * 3}px;
   padding-top: ${theme.margin * 2}px;
 `;
@@ -84,6 +83,10 @@ export const PrivacyPolicyScreen = ({
       <ContentContainer
         onScroll={handleScroll}
         scrollEventThrottle={5}
+        contentContainerStyle={{
+          overflow: "visible",
+          paddingHorizontal: theme.margin * 3
+        }}
       >
         <PText style={{marginTop: theme.margin * 2}}>
           Nous avons créé cette page pour répondre en quelques minutes à toutes les questions que tu te poses sur tes données et comment on s’en sert dans l’application réfugiés.info.

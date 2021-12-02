@@ -20,7 +20,6 @@ import { ContentHighlight } from "../../components/Profil/PrivacyPolicy/ContentH
 import { CustomButton } from "../../components/CustomButton";
 
 const ContentContainer = styled.ScrollView`
-  padding-horizontal: ${theme.margin * 3}px;
   padding-bottom: ${theme.margin * 3}px;
   padding-top: ${theme.margin * 2}px;
 `;
@@ -79,6 +78,10 @@ export const LegalNoticeScreen = ({
       <ContentContainer
         onScroll={handleScroll}
         scrollEventThrottle={5}
+        contentContainerStyle={{
+          overflow: "visible",
+          paddingHorizontal: theme.margin * 3
+        }}
       >
 
         <PText style={{marginTop: theme.margin * 2}}>

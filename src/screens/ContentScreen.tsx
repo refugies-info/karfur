@@ -142,7 +142,7 @@ const LastUpdateText = styled(TextSmallNormal)`
 const SimplifiedHeaderContainer = styled.View`
   padding-horizontal: ${theme.margin * 3}px;
   padding-vertical: ${theme.margin}px;
-  ${theme.shadows.sm}
+  ${theme.shadows.lg}
 `;
 const ModalContainer = styled.View`
   display: flex;
@@ -870,8 +870,7 @@ export const ContentScreen = ({
               <SmallButton
                 iconName="close-outline"
                 onPress={toggleMap}
-                reversed={true}
-                label={t("content_screen.close_map_accessibility")}
+                label={t("Content.Fermer la carte")}
               />
             </FixSafeAreaView>
           </ModalContainer>

@@ -16,18 +16,16 @@ interface Props {
 const MainContainer = styled(RTLTouchableOpacity)`
   background-color: ${(props: { isSelected: boolean }) =>
     props.isSelected ? theme.colors.lightBlue : theme.colors.white};
-  padding: ${theme.margin * 2}px;
   ${(props: { isSelected: boolean }) =>
-    props.isSelected ? "" : theme.shadows.sm};
+    props.isSelected ? "" : theme.shadows.lg};
   border-radius: ${theme.radius * 2}px;
   margin-bottom: ${theme.margin * 3}px;
   justify-content: space-between;
   flex-wrap: wrap;
-  elevation: ${(props: { isSelected: boolean }) =>
-  props.isSelected ? 0 : 2};
+  padding: ${(theme.margin * 2) - 2}px;
   border-width: 2px;
   border-color: ${(props: { isSelected: boolean }) =>
-  props.isSelected ? theme.colors.darkBlue : "transparent"};
+    props.isSelected ? theme.colors.darkBlue : theme.colors.white};
 `;
 
 const StyledText = styled(TextSmallBold)`

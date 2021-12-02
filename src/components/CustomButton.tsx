@@ -14,14 +14,14 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
   padding: ${(props: { isSmall: boolean }) =>
     !props.isSmall ? theme.radius * 3 : theme.margin}px;
   border-radius: ${(props: { isSmall: boolean }) =>
-    !props.isSmall ? theme.radius * 2 : theme.radius * 4}px;
+    !props.isSmall ? theme.radius * 2 : 8}px;
   align-items: center;
   width: ${(props: { notFullWidth: boolean }) =>
     props.notFullWidth ? "auto" : "100%"};
   height: ${(props: { isSmall: boolean }) =>
     !props.isSmall ? 56 : 40}px;
-  ${(props: { isDisabled: boolean }) =>
-    props.isDisabled ? "" : theme.shadows.lg};
+  ${(props: { isDisabled: boolean, isSmall: boolean }) =>
+    props.isDisabled ? "" : (props.isSmall ? theme.shadows.lg : theme.shadows.sm)};
   opacity: ${(props: { isDisabled: boolean }) =>
     props.isDisabled ? 0.4 : 1};
 `;

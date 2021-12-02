@@ -27,8 +27,7 @@ const RightButtonContainer = styled(RTLTouchableOpacity)`
   height: 56px;
   align-items: center;
   ${(props: { isDisabled: boolean }) =>
-    props.isDisabled ? "" : theme.shadows.lg}
-  elevation: ${(props: { isDisabled: boolean }) => (props.isDisabled ? 0 : 1)};
+    props.isDisabled ? "" : theme.shadows.sm}
 `;
 
 const BottomButtonsContainer = styled(RowContainer)`

@@ -19,7 +19,6 @@ const TitleContainer = styled(RTLTouchableOpacity)`
   border-radius:${theme.radius * 2}px
   ${(props: { isExpanded: boolean }) =>
     !props.isExpanded ? theme.shadows.lg : ""};
-  elevation: ${(props: { isExpanded: boolean }) => (props.isExpanded ? 0 : 1)};
   justify-content:space-between;
   border: ${(props: { isExpanded: boolean; darkColor: string }) =>
     props.isExpanded
