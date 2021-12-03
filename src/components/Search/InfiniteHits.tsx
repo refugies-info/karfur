@@ -57,7 +57,7 @@ const InfiniteHits = ({
           title={t(
             "search_screen.no_result",
             "Impossible de trouver"
-          ) + `\n"${query}"`}
+            , { search: query })}
           text={t(
             "search_screen.try_new_search",
             "Essaie encore, vérifie l’orthographe ou utilise un autre mot-clé."

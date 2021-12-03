@@ -150,7 +150,7 @@
     "most_searched_content": "Most searched files",
     "themes": "Themes",
     "results": "{{nbResults}} results",
-    "no_result": "Impossible to find",
+    "no_result": "Impossible to find « {{search}} »",
     "try_new_search": "Try again, check the spelling or use another keyword."
   },
   "needs_screen": {
@@ -194,7 +194,6 @@
   },
   "global": {
     "close": "Close",
-    "ok": "Ok",
     "no_connection": "No internet connection!",
     "language": "Language",
     "error": "Oh no! There's a problem. Please try again.",

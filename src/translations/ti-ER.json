@@ -150,7 +150,7 @@
     "most_searched_content": "ኣዝዮም ተደለይቲ ሰነዳት",
     "themes": "ኣርእስትታት",
     "results": "{{nbResults}} ውጽኢታት",
-    "no_result": "ክርከብ ዘይከኣል",
+    "no_result": "ክርከብ ዘይከኣል « {{search}} »",
     "try_new_search": "እንደገና ፈትን ኣጸሓሕፋኻ ኣረጋግጽ ወይ ካልእ ቁልፊ ዝኾነ ቃል ተጠቒምካ አጊምካ ድለ"
   },
   "needs_screen": {
@@ -194,7 +194,6 @@
   },
   "global": {
     "close": "ተዓጽዩ",
-    "ok": "ሕራይ",
     "no_connection": "መስመር መርበብ ሓበሬታ የለን",
     "language": "ቃንቃ",
     "error": "ኦው ሓደ ጸገም ከም እንደገና ክፍትን ኢየ",

@@ -150,7 +150,7 @@
     "most_searched_content": "ترټولو زیات لټول شوي فایلونه",
     "themes": "موضوعات",
     "results": "{{nbResults}} پایلې",
-    "no_result": "ونه موندل شو",
+    "no_result": "« {{search}} » ونه موندل شو",
     "try_new_search": "بیا هڅه وکړئ، املا یې وګورئ، یا بله کلیمه وکاروئ."
   },
   "needs_screen": {
@@ -194,7 +194,6 @@
   },
   "global": {
     "close": "بند یې کړئ",
-    "ok": "اوکې",
     "no_connection": "د انټرنیټ اتصال نشته!",
     "language": "ژبه",
     "error": "او نه، یوه ستونزه ده. بیا هڅه وکړئ.",

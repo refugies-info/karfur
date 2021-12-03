@@ -171,7 +171,7 @@
     "most_searched_content": "Les fiches les plus recherchées",
     "themes": "Les thèmes",
     "results": "{{nbResults}} résultats",
-    "no_result": "Impossible de trouver",
+    "no_result": "Impossible de trouver « {{search}} »",
     "try_new_search": "Essaie encore, vérifie l’orthographe ou utilise un autre mot-clé."
   },
   "about_screen": {
@@ -206,7 +206,6 @@
     "download_call_button": "Télécharger l’appel [PDF]"
   },
   "global": {
-    "ok": "Ok",
     "close": "Fermer",
     "cancel": "Annuler",
     "delete": "Supprimer",
