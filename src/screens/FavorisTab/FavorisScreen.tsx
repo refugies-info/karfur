@@ -34,12 +34,8 @@ import EmptyIllu from "../../theme/images/favoris/illu-empty-fav.png"
 import { HeaderAnimated } from "../../components/HeaderAnimated";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 
-const EmptyContainer = styled.View`
-  margin-bottom: ${theme.margin * 4}px;
+const EmptyContainer = styled.ScrollView`
   padding-horizontal: ${theme.margin * 4}px;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
 `;
 const EmptyTitle = styled(StyledTextBigBold)`
   text-align: center;
@@ -173,6 +169,7 @@ export const FavorisScreen = ({
       {favorites.length > 0 ?
         <ScrollView
           onScroll={handleScroll}
+          alwaysBounceVertical={false}
           scrollEventThrottle={5}
           scrollIndicatorInsets={{ right: 1 }}
           contentContainerStyle={{
@@ -184,7 +181,7 @@ export const FavorisScreen = ({
             flexGrow: 1
           }}
         >
-          <View style={{ marginBottom: theme.margin * 2 }}>
+          <View style={{ marginBottom: theme.margin * 2, flex: 1, justifyContent: "flex-start" }}>
             <View style={{ marginHorizontal: -theme.margin * 3 }}>
               {contentsToDisplay.map((content: SimplifiedContent) => {
                 const tagName = content.tags.length > 0 ? content.tags[0].name : "";
@@ -233,7 +230,17 @@ export const FavorisScreen = ({
             isTextNotBold={true}
           />
         </ScrollView> :
-        <EmptyContainer>
+        <EmptyContainer
+          onScroll={handleScroll}
+          scrollEventThrottle={5}
+          alwaysBounceVertical={false}
+          contentContainerStyle={{
+            alignItems: "center",
+            justifyContent: "center",
+            flexGrow: 1,
+            paddingBottom: theme.margin * 4
+          }}
+        >
           <Image
             source={EmptyIllu}
             style={{ width: 220, height: 278 }}
