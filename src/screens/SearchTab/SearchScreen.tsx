@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 import { SearchParamList } from "../../../types"
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { useHeaderAnimation } from "../../hooks/useHeaderAnimation";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import { mostViewedContentsSelector } from "../../services/redux/Contents/contents.selectors";
 import { RTLTouchableOpacity } from "../../components/BasicComponents";
@@ -53,19 +54,7 @@ export const SearchScreen = ({
   const toggleLanguageModal = () =>
     setLanguageModalVisible(!isLanguageModalVisible);
 
-  // Header animation
-  const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
-  const handleScroll = (event: any) => {
-    if (event.nativeEvent.contentOffset.y > 5 && !showSimplifiedHeader) {
-      setShowSimplifiedHeader(true);
-      return;
-    }
-    if (event.nativeEvent.contentOffset.y < 5 && showSimplifiedHeader) {
-      setShowSimplifiedHeader(false);
-      return;
-    }
-    return;
-  };
+  const { handleScroll, showSimplifiedHeader } = useHeaderAnimation();
 
   return (
     <View style={{ flex: 1 }}>

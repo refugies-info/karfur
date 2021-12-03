@@ -13,6 +13,7 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { ProfileParamList, BottomTabParamList } from "../../../types";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { useHeaderAnimation } from "../../hooks/useHeaderAnimation";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
 import { initHorizontalScroll } from "../../libs/rtlHorizontalScroll";
@@ -136,6 +137,7 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
   );
+  const { handleScroll, showSimplifiedHeader } = useHeaderAnimation();
 
   const scrollviewMissions = React.useRef<ScrollView>(null);
   const scrollviewProblematiques = React.useRef<ScrollView>(null);
@@ -157,20 +159,6 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
       scrollviewPartners
     ], isRTL)
   }, [isRTL])
-
-  // Header animation
-  const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
-  const handleScroll = (event: any) => {
-    if (event.nativeEvent.contentOffset.y > 5 && !showSimplifiedHeader) {
-      setShowSimplifiedHeader(true);
-      return;
-    }
-    if (event.nativeEvent.contentOffset.y < 5 && showSimplifiedHeader) {
-      setShowSimplifiedHeader(false);
-      return;
-    }
-    return;
-  };
 
   return (
     <View style={{ flex: 1 }}>

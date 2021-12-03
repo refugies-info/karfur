@@ -18,7 +18,7 @@ const ListSubtitle = styled(StyledTextNormalBold)`
 `;
 
 interface Props {
-  handleScroll: any;
+  handleScroll?: any;
   contents: SimplifiedContent[];
   navigation: any;
 }

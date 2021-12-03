@@ -12,6 +12,7 @@ import { getContentById } from "../../utils/API";
 import { SimplifiedContent, ObjectId } from "../../types/interface";
 import { BottomTabParamList } from "../../../types"
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { useHeaderAnimation } from "../../hooks/useHeaderAnimation";
 import { contentsSelector } from "../../services/redux/Contents/contents.selectors";
 import {
   hasUserNewFavoritesSelector,
@@ -23,14 +24,15 @@ import {
   removeUserAllFavoritesActionCreator,
   removeUserHasNewFavoritesActionCreator,
 } from "../../services/redux/User/user.actions";
-import { StyledTextBigBold, StyledTextSmall, TextBigBold, StyledTextVerySmall } from "../../components/StyledText"
+import { StyledTextBigBold, StyledTextSmall } from "../../components/StyledText"
 import { CustomButton } from "../../components/CustomButton"
 import { ContentSummary } from "../../components/Contents/ContentSummary";
 import { ConfirmationModal } from "../../components/ConfirmationModal";
-import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal"
 import { getThemeTag } from "../../libs/getThemeTag";
 import { theme } from "../../theme"
 import EmptyIllu from "../../theme/images/favoris/illu-empty-fav.png"
+import { HeaderAnimated } from "../../components/HeaderAnimated";
+import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 
 const EmptyContainer = styled.View`
   margin-bottom: ${theme.margin * 4}px;
@@ -48,19 +50,9 @@ const EmptyText = styled(StyledTextSmall)`
   text-align: center;
   margin-bottom: ${theme.margin * 4}px;
 `;
-const Title = styled(TextBigBold)`
-  margin-bottom: ${theme.margin * 3}px;
-`;
 const CardItem = styled.View`
   marginBottom: ${theme.margin * 1}px;
   flex: 1;
-`;
-const DeleteAllButton = styled.TouchableOpacity`
-  align-items: center;
-`;
-const DeleteAllButtonText = styled(StyledTextVerySmall)`
-  color: ${theme.colors.darkGrey};
-  margin-top: ${theme.margin * 3}px;
 `;
 
 export const FavorisScreen = ({
@@ -72,6 +64,13 @@ export const FavorisScreen = ({
   const contents = useSelector(contentsSelector);
   const { t, isRTL } = useTranslationWithRTL();
   const dispatch = useDispatch();
+  const { handleScroll, showSimplifiedHeader } = useHeaderAnimation();
+
+  const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
+    false
+  );
+  const toggleLanguageModal = () =>
+    setLanguageModalVisible(!isLanguageModalVisible);
 
   // When the screen has focus, remove "new favorite" badge
   const hasNewFavorites = useSelector(hasUserNewFavoritesSelector)
@@ -163,66 +162,76 @@ export const FavorisScreen = ({
   }
 
   return (
-    <WrapperWithHeaderAndLanguageModal>
+    <View style={{ flex: 1 }}>
+      <HeaderAnimated
+        title={t("favorites_screen.my_content", "Mes fiches")}
+        showSimplifiedHeader={showSimplifiedHeader}
+        onLongPressSwitchLanguage={toggleLanguageModal}
+        useShadow={true}
+      />
 
       {favorites.length > 0 ?
         <ScrollView
+          onScroll={handleScroll}
+          scrollEventThrottle={5}
           scrollIndicatorInsets={{ right: 1 }}
           contentContainerStyle={{
-            justifyContent: "center",
+            justifyContent: "space-between",
             paddingHorizontal: theme.margin * 3,
             paddingTop: theme.margin * 3,
             paddingBottom: theme.margin * 3,
+            flexShrink: 0,
+            flexGrow: 1
           }}
         >
-          <Title>{t("favorites_screen.my_content", "Mes fiches")}</Title>
-          <View style={{ marginHorizontal: -theme.margin * 3 }}>
-            {contentsToDisplay.map((content: SimplifiedContent) => {
-              const tagName = content.tags.length > 0 ? content.tags[0].name : "";
-              const colors = getThemeTag(tagName);
-              return (
-                <CardItem key={content._id}>
-                  <Swipeable
-                    renderRightActions={!isRTL ? renderActions : undefined}
-                    renderLeftActions={isRTL ? renderActions : undefined}
-                    leftThreshold={!isRTL ? 9999 : 120}
-                    rightThreshold={isRTL ? 9999 : 120}
-                    onSwipeableRightOpen={!isRTL ? () => deleteFavorite(content._id) : undefined}
-                    onSwipeableLeftOpen={isRTL ? () => deleteFavorite(content._id) : undefined}
-                    overshootFriction={8}
-                    childrenContainerStyle={{ paddingBottom: theme.margin * 2 }}
-                  >
-                    <ContentSummary
-                      navigation={navigation}
-                      themeTag={colors}
-                      contentId={content._id}
-                      titreInfo={content.titreInformatif}
-                      titreMarque={content.titreMarque}
-                      typeContenu={content.typeContenu}
-                      sponsorUrl={content.sponsorUrl}
-                      actionPress={() => showDeleteModal(content._id)}
-                      actionIcon={"trash-2-outline"}
-                      actionLabel={t("favorites_screen.delete_content_accessibility")}
-                      style={{ marginHorizontal: theme.margin * 3 }}
-                      backScreen="Favoris"
-                    />
-                  </Swipeable>
-                </CardItem>
-              )
-            })}
+          <View style={{ marginBottom: theme.margin * 2 }}>
+            <View style={{ marginHorizontal: -theme.margin * 3 }}>
+              {contentsToDisplay.map((content: SimplifiedContent) => {
+                const tagName = content.tags.length > 0 ? content.tags[0].name : "";
+                const colors = getThemeTag(tagName);
+                return (
+                  <CardItem key={content._id}>
+                    <Swipeable
+                      renderRightActions={!isRTL ? renderActions : undefined}
+                      renderLeftActions={isRTL ? renderActions : undefined}
+                      leftThreshold={!isRTL ? 9999 : 120}
+                      rightThreshold={isRTL ? 9999 : 120}
+                      onSwipeableRightOpen={!isRTL ? () => deleteFavorite(content._id) : undefined}
+                      onSwipeableLeftOpen={isRTL ? () => deleteFavorite(content._id) : undefined}
+                      overshootFriction={8}
+                      childrenContainerStyle={{ paddingBottom: theme.margin * 2 }}
+                    >
+                      <ContentSummary
+                        navigation={navigation}
+                        themeTag={colors}
+                        contentId={content._id}
+                        titreInfo={content.titreInformatif}
+                        titreMarque={content.titreMarque}
+                        typeContenu={content.typeContenu}
+                        sponsorUrl={content.sponsorUrl}
+                        actionPress={() => showDeleteModal(content._id)}
+                        actionIcon={"trash-2-outline"}
+                        actionLabel={t("favorites_screen.delete_content_accessibility")}
+                        style={{ marginHorizontal: theme.margin * 3 }}
+                        backScreen="Favoris"
+                      />
+                    </Swipeable>
+                  </CardItem>
+                )
+              })}
+            </View>
           </View>
 
-          <DeleteAllButton
+          <CustomButton
+            textColor={theme.colors.black}
+            i18nKey="favorites_screen.delete_all_accessibility"
+            defaultText="Supprimer toutes mes fiches"
             onPress={() => showDeleteModal("all")}
-            accessibilityRole="button"
-          >
-            <DeleteAllButtonText>
-              {t(
-                "favorites_screen.delete_all_accessibility",
-                "Supprimer toutes mes fiches"
-              )}
-            </DeleteAllButtonText>
-          </DeleteAllButton>
+            backgroundColor={theme.colors.grey60}
+            iconName="trash-2-outline"
+            iconFirst={true}
+            isTextNotBold={true}
+          />
         </ScrollView> :
         <EmptyContainer>
           <Image
@@ -267,6 +276,10 @@ export const FavorisScreen = ({
         defaultTextValidateButton={"Supprimer"}
         iconValidateButton={"trash-2-outline"}
       />
-    </WrapperWithHeaderAndLanguageModal>
+      <LanguageChoiceModal
+        isModalVisible={isLanguageModalVisible}
+        toggleModal={toggleLanguageModal}
+      />
+    </View>
   )
 }

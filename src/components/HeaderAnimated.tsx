@@ -11,14 +11,20 @@ interface Props {
   onLongPressSwitchLanguage: () => void;
   showSimplifiedHeader: boolean;
   extraHeight?: number;
+  useShadow?: boolean;
 }
 
+const MainSimpleContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: ${theme.margin}px;
+  background-color: ${theme.colors.lightGrey};
+  z-index: 4;
+  ${(props: { useShadow: boolean, showSimplifiedHeader: boolean }) =>
+    props.useShadow && props.showSimplifiedHeader ? theme.shadows.xs : ""}
+`;
+
 const styles = StyleSheet.create({
-  simpleHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingBottom: theme.margin,
-  },
   headerText: {
     fontSize: theme.fonts.sizes.big,
     fontFamily: theme.fonts.families.circularBold,
@@ -62,7 +68,10 @@ export const HeaderAnimated = (props: Props) => {
   });
 
   return (
-    <View style={styles.simpleHeader}>
+    <MainSimpleContainer
+      useShadow={props.useShadow}
+      showSimplifiedHeader={props.showSimplifiedHeader}
+    >
       <View style={{ paddingTop: insets.top }}>
         <Animated.View
           style={
@@ -95,7 +104,7 @@ export const HeaderAnimated = (props: Props) => {
         onLongPressSwitchLanguage={props.onLongPressSwitchLanguage}
         hideLogo={true}
       />
-    </View>
+    </MainSimpleContainer>
   );
 };
 

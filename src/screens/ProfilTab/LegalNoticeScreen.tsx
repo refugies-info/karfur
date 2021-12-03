@@ -9,6 +9,7 @@ import {
 import { Icon } from "react-native-eva-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { useHeaderAnimation } from "../../hooks/useHeaderAnimation";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
 import { ProfileParamList } from "../../../types";
@@ -47,24 +48,12 @@ export const LegalNoticeScreen = ({
     false
   );
 
+  const { handleScroll, showSimplifiedHeader } = useHeaderAnimation();
+
   const toggleLanguageModal = () =>
     setLanguageModalVisible(!isLanguageModalVisible);
 
   const { t, isRTL } = useTranslationWithRTL();
-
-  // Header animation
-  const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
-  const handleScroll = (event: any) => {
-    if (event.nativeEvent.contentOffset.y > 5 && !showSimplifiedHeader) {
-      setShowSimplifiedHeader(true);
-      return;
-    }
-    if (event.nativeEvent.contentOffset.y < 5 && showSimplifiedHeader) {
-      setShowSimplifiedHeader(false);
-      return;
-    }
-    return;
-  };
 
   return (
     <View style={{flex: 1}}>

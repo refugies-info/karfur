@@ -9,13 +9,19 @@ exports[`Profil screen should render correctly when data in store 1`] = `
   }
 >
   <View
+    showSimplifiedHeader={false}
     style={
-      Object {
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingBottom": 8,
-      }
+      Array [
+        Object {
+          "backgroundColor": "#F6F6F6",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 8,
+          "zIndex": 4,
+        },
+      ]
     }
+    useShadow={true}
   >
     <View
       style={
@@ -1144,9 +1150,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         </View>
       </View>
       <View
-        accessibilityRole="button"
         accessible={true}
-        focusable={true}
+        focusable={false}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -1157,35 +1162,73 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "#C6C6C6",
-            "borderRadius": 12,
             "marginBottom": 56,
             "marginHorizontal": 24,
             "marginTop": 40,
             "opacity": 1,
-            "paddingBottom": 16,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 16,
           }
         }
-        testID="test-delete-data"
       >
-        <Text
+        <View
+          accessibilityRole="button"
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "textAlign": "left",
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#C6C6C6",
+              "borderRadius": 12,
+              "display": "flex",
+              "elevation": 2,
+              "flexDirection": "row",
+              "height": 56,
+              "justifyContent": "center",
+              "opacity": 1,
+              "paddingBottom": 18,
+              "paddingLeft": 18,
+              "paddingRight": 18,
+              "paddingTop": 18,
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
               },
-            ]
+              "shadowOpacity": 1,
+              "shadowRadius": 2,
+              "width": "100%",
+            }
           }
+          testID="test-custom-button-Supprimer les données de mon profil"
         >
-          Supprimer les données de mon profil
-        </Text>
+          <Text
+            hasIcon={false}
+            iconFirst={false}
+            isRTL={false}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                },
+              ]
+            }
+            textColor="#212121"
+          >
+            Supprimer les données de mon profil
+          </Text>
+        </View>
       </View>
       <Text
         isRTL={false}
@@ -1915,9 +1958,8 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         </View>
       </View>
       <View
-        accessibilityRole="button"
         accessible={true}
-        focusable={true}
+        focusable={false}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -1928,34 +1970,73 @@ exports[`Profil screen should render correctly when data in store 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "#C6C6C6",
-            "borderRadius": 12,
             "marginBottom": 56,
             "marginHorizontal": 24,
             "marginTop": 40,
             "opacity": 1,
-            "paddingBottom": 16,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 16,
           }
         }
       >
-        <Text
+        <View
+          accessibilityRole="button"
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "textAlign": "left",
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#C6C6C6",
+              "borderRadius": 12,
+              "display": "flex",
+              "elevation": 2,
+              "flexDirection": "row",
+              "height": 56,
+              "justifyContent": "center",
+              "opacity": 1,
+              "paddingBottom": 18,
+              "paddingLeft": 18,
+              "paddingRight": 18,
+              "paddingTop": 18,
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
               },
-            ]
+              "shadowOpacity": 1,
+              "shadowRadius": 2,
+              "width": "100%",
+            }
           }
+          testID="test-custom-button-Réinitialiser l'application"
         >
-          Réinitialiser l'application
-        </Text>
+          <Text
+            hasIcon={false}
+            iconFirst={false}
+            isRTL={false}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                },
+              ]
+            }
+            textColor="#212121"
+          >
+            Réinitialiser l'application
+          </Text>
+        </View>
       </View>
     </View>
   </RCTScrollView>
@@ -3841,13 +3922,19 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
   }
 >
   <View
+    showSimplifiedHeader={false}
     style={
-      Object {
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingBottom": 8,
-      }
+      Array [
+        Object {
+          "backgroundColor": "#F6F6F6",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 8,
+          "zIndex": 4,
+        },
+      ]
     }
+    useShadow={true}
   >
     <View
       style={
@@ -4976,9 +5063,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         </View>
       </View>
       <View
-        accessibilityRole="button"
         accessible={true}
-        focusable={true}
+        focusable={false}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -4989,35 +5075,73 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "#C6C6C6",
-            "borderRadius": 12,
             "marginBottom": 56,
             "marginHorizontal": 24,
             "marginTop": 40,
             "opacity": 1,
-            "paddingBottom": 16,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 16,
           }
         }
-        testID="test-delete-data"
       >
-        <Text
+        <View
+          accessibilityRole="button"
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "textAlign": "left",
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#C6C6C6",
+              "borderRadius": 12,
+              "display": "flex",
+              "elevation": 2,
+              "flexDirection": "row",
+              "height": 56,
+              "justifyContent": "center",
+              "opacity": 1,
+              "paddingBottom": 18,
+              "paddingLeft": 18,
+              "paddingRight": 18,
+              "paddingTop": 18,
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
               },
-            ]
+              "shadowOpacity": 1,
+              "shadowRadius": 2,
+              "width": "100%",
+            }
           }
+          testID="test-custom-button-Supprimer les données de mon profil"
         >
-          Supprimer les données de mon profil
-        </Text>
+          <Text
+            hasIcon={false}
+            iconFirst={false}
+            isRTL={false}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                },
+              ]
+            }
+            textColor="#212121"
+          >
+            Supprimer les données de mon profil
+          </Text>
+        </View>
       </View>
       <Text
         isRTL={false}
@@ -5747,9 +5871,8 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         </View>
       </View>
       <View
-        accessibilityRole="button"
         accessible={true}
-        focusable={true}
+        focusable={false}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -5760,34 +5883,73 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "#C6C6C6",
-            "borderRadius": 12,
             "marginBottom": 56,
             "marginHorizontal": 24,
             "marginTop": 40,
             "opacity": 1,
-            "paddingBottom": 16,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 16,
           }
         }
       >
-        <Text
+        <View
+          accessibilityRole="button"
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "textAlign": "left",
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#C6C6C6",
+              "borderRadius": 12,
+              "display": "flex",
+              "elevation": 2,
+              "flexDirection": "row",
+              "height": 56,
+              "justifyContent": "center",
+              "opacity": 1,
+              "paddingBottom": 18,
+              "paddingLeft": 18,
+              "paddingRight": 18,
+              "paddingTop": 18,
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
               },
-            ]
+              "shadowOpacity": 1,
+              "shadowRadius": 2,
+              "width": "100%",
+            }
           }
+          testID="test-custom-button-Réinitialiser l'application"
         >
-          Réinitialiser l'application
-        </Text>
+          <Text
+            hasIcon={false}
+            iconFirst={false}
+            isRTL={false}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                },
+              ]
+            }
+            textColor="#212121"
+          >
+            Réinitialiser l'application
+          </Text>
+        </View>
       </View>
     </View>
   </RCTScrollView>
@@ -7673,13 +7835,19 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
   }
 >
   <View
+    showSimplifiedHeader={false}
     style={
-      Object {
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingBottom": 8,
-      }
+      Array [
+        Object {
+          "backgroundColor": "#F6F6F6",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 8,
+          "zIndex": 4,
+        },
+      ]
     }
+    useShadow={true}
   >
     <View
       style={
@@ -8808,9 +8976,8 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
         </View>
       </View>
       <View
-        accessibilityRole="button"
         accessible={true}
-        focusable={true}
+        focusable={false}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -8821,35 +8988,73 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "#C6C6C6",
-            "borderRadius": 12,
             "marginBottom": 56,
             "marginHorizontal": 24,
             "marginTop": 40,
             "opacity": 1,
-            "paddingBottom": 16,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 16,
           }
         }
-        testID="test-delete-data"
       >
-        <Text
+        <View
+          accessibilityRole="button"
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "textAlign": "left",
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#C6C6C6",
+              "borderRadius": 12,
+              "display": "flex",
+              "elevation": 2,
+              "flexDirection": "row",
+              "height": 56,
+              "justifyContent": "center",
+              "opacity": 1,
+              "paddingBottom": 18,
+              "paddingLeft": 18,
+              "paddingRight": 18,
+              "paddingTop": 18,
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
               },
-            ]
+              "shadowOpacity": 1,
+              "shadowRadius": 2,
+              "width": "100%",
+            }
           }
+          testID="test-custom-button-Supprimer les données de mon profil"
         >
-          Supprimer les données de mon profil
-        </Text>
+          <Text
+            hasIcon={false}
+            iconFirst={false}
+            isRTL={false}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                },
+              ]
+            }
+            textColor="#212121"
+          >
+            Supprimer les données de mon profil
+          </Text>
+        </View>
       </View>
       <Text
         isRTL={false}
@@ -9579,9 +9784,8 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
         </View>
       </View>
       <View
-        accessibilityRole="button"
         accessible={true}
-        focusable={true}
+        focusable={false}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -9592,34 +9796,73 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "#C6C6C6",
-            "borderRadius": 12,
             "marginBottom": 56,
             "marginHorizontal": 24,
             "marginTop": 40,
             "opacity": 1,
-            "paddingBottom": 16,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 16,
           }
         }
       >
-        <Text
+        <View
+          accessibilityRole="button"
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "textAlign": "left",
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#C6C6C6",
+              "borderRadius": 12,
+              "display": "flex",
+              "elevation": 2,
+              "flexDirection": "row",
+              "height": 56,
+              "justifyContent": "center",
+              "opacity": 1,
+              "paddingBottom": 18,
+              "paddingLeft": 18,
+              "paddingRight": 18,
+              "paddingTop": 18,
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
               },
-            ]
+              "shadowOpacity": 1,
+              "shadowRadius": 2,
+              "width": "100%",
+            }
           }
+          testID="test-custom-button-Réinitialiser l'application"
         >
-          Réinitialiser l'application
-        </Text>
+          <Text
+            hasIcon={false}
+            iconFirst={false}
+            isRTL={false}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 0,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                },
+              ]
+            }
+            textColor="#212121"
+          >
+            Réinitialiser l'application
+          </Text>
+        </View>
       </View>
     </View>
   </RCTScrollView>

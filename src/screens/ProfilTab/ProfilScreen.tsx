@@ -1,7 +1,6 @@
 import * as React from "react";
 import {
   TextSmallNormal,
-  StyledTextSmall,
 } from "../../components/StyledText";
 import { View } from "react-native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -32,19 +31,14 @@ import { ProfileParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ConfirmationModal } from "../../components/ConfirmationModal";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
+import { CustomButton } from "../../components/CustomButton"
+import { useHeaderAnimation } from "../../hooks/useHeaderAnimation";
 
 const DeleteDataContainer = styled.TouchableOpacity`
   align-items: center;
-  padding: ${theme.margin * 2}px;
   margin-top: ${theme.margin * 5}px;
   margin-bottom: ${theme.margin * 7}px;
   margin-horizontal: ${theme.margin * 3}px;
-  background-color: ${theme.colors.grey60};
-  border-radius: ${theme.radius * 2}px;
-`;
-
-const DeleteDataText = styled(StyledTextSmall)`
-  color: ${theme.colors.black};
 `;
 
 const ContentContainer = styled.ScrollView`
@@ -88,6 +82,8 @@ export const ProfilScreen = ({
   const { t, isRTL } = useTranslationWithRTL();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
 
+  const { handleScroll, showSimplifiedHeader } = useHeaderAnimation();
+
   const selectedLanguage = getSelectedLanguageFromI18nCode(
     selectedLanguageI18nCode
   );
@@ -115,26 +111,13 @@ export const ProfilScreen = ({
     })
   };
 
-  // Header animation
-  const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
-  const handleScroll = (event: any) => {
-    if (event.nativeEvent.contentOffset.y > 5 && !showSimplifiedHeader) {
-      setShowSimplifiedHeader(true);
-      return;
-    }
-    if (event.nativeEvent.contentOffset.y < 5 && showSimplifiedHeader) {
-      setShowSimplifiedHeader(false);
-      return;
-    }
-    return;
-  };
-
   return (
     <View style={{flex: 1}}>
       <HeaderAnimated
         title={t("tab_bar.profile", "Profil")}
         showSimplifiedHeader={showSimplifiedHeader}
         onLongPressSwitchLanguage={toggleLanguageModal}
+        useShadow={true}
       />
 
       <ContentContainer
@@ -191,14 +174,15 @@ export const ProfilScreen = ({
           />
         </ProfilButtonsContainer>
 
-        <DeleteDataContainer
-          onPress={toggleDeleteDataModal}
-          testID="test-delete-data"
-          accessibilityRole="button"
-        >
-          <DeleteDataText>
-            {t("profile_screens.delete_informations_button", "Supprimer les données de mon profil")}
-          </DeleteDataText>
+        <DeleteDataContainer>
+          <CustomButton
+            textColor={theme.colors.black}
+            i18nKey="profile_screens.delete_informations_button"
+            defaultText="Supprimer les données de mon profil"
+            onPress={toggleDeleteDataModal}
+            backgroundColor={theme.colors.grey60}
+            isTextNotBold={true}
+          />
         </DeleteDataContainer>
         <StyledText>{t("profile_screens.app_informations", "Informations sur l'application")}</StyledText>
         <ProfilButtonsContainer>
@@ -227,13 +211,15 @@ export const ProfilScreen = ({
             onPress={() => navigation.navigate("LegalNoticeScreen")}
           />
         </ProfilButtonsContainer>
-        <DeleteDataContainer
-          onPress={toggleReinitAppModal}
-          accessibilityRole="button"
-        >
-          <DeleteDataText>
-            {t("profile_screens.reinit_app_button", "Réinitialiser l'application")}
-          </DeleteDataText>
+        <DeleteDataContainer>
+          <CustomButton
+            textColor={theme.colors.black}
+            i18nKey="profile_screens.reinit_app_button"
+            defaultText="Réinitialiser l'application"
+            onPress={toggleReinitAppModal}
+            backgroundColor={theme.colors.grey60}
+            isTextNotBold={true}
+          />
         </DeleteDataContainer>
       </ContentContainer>
       <ConfirmationModal

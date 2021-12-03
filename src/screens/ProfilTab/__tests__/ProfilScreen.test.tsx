@@ -126,7 +126,7 @@ describe("Profil screen", () => {
       },
       compProps: { navigation },
     });
-    const Button = component.getByTestId("test-delete-data");
+    const Button = component.getByTestId("test-custom-button-Supprimer les données de mon profil");
 
     act(() => {
       fireEvent.press(Button);

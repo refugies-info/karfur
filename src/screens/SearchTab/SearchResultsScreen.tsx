@@ -51,20 +51,6 @@ export const SearchResultsScreen = ({
     setSearchableAttributes(getSearchableAttributes(currentI18nCode));
   }, [currentI18nCode])
 
-  // Header animation
-  const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
-  const handleScroll = (event: any) => {
-    if (event.nativeEvent.contentOffset.y > 5 && !showSimplifiedHeader) {
-      setShowSimplifiedHeader(true);
-      return;
-    }
-    if (event.nativeEvent.contentOffset.y < 5 && showSimplifiedHeader) {
-      setShowSimplifiedHeader(false);
-      return;
-    }
-    return;
-  };
-
   return (
     <View style={{ flex: 1 }}>
       <InstantSearch
@@ -90,7 +76,6 @@ export const SearchResultsScreen = ({
             />
           </View> :
           <SearchSuggestions
-            handleScroll={handleScroll}
             contents={mostViewedContents}
             navigation={navigation}
           />
