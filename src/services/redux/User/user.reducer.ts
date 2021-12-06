@@ -13,6 +13,7 @@ export interface UserState {
   frenchLevel: string | null;
   favorites: string[];
   localizedWarningHidden: boolean;
+  initialUrlUsed: boolean;
 }
 
 export const initialUserState = {
@@ -26,6 +27,7 @@ export const initialUserState = {
   frenchLevel: null,
   favorites: [],
   localizedWarningHidden: false,
+  initialUrlUsed: false,
 };
 
 export const userReducer = createReducer<UserState, UserActions>(
@@ -67,6 +69,10 @@ export const userReducer = createReducer<UserState, UserActions>(
     SET_USER_LOCALIZED_WARNING_HIDDEN: (state, action) => ({
       ...state,
       localizedWarningHidden: action.payload,
+    }),
+    SET_INITIAL_URL_USED: (state, action) => ({
+      ...state,
+      initialUrlUsed: action.payload,
     }),
   }
 );

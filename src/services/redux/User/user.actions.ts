@@ -26,7 +26,8 @@ import {
   ADD_USER_FAVORITE,
   REMOVE_USER_FAVORITE,
   REMOVE_USER_ALL_FAVORITES,
-  REMOVE_USER_LOCALIZED_WARNING_HIDDEN
+  REMOVE_USER_LOCALIZED_WARNING_HIDDEN,
+  SET_INITIAL_URL_USED
 } from "./user.actionTypes";
 import { AvailableLanguageI18nCode } from "../../../types/interface";
 
@@ -56,6 +57,9 @@ export const saveUserLocalizedWarningHiddenActionCreator = () =>
 
 export const removeUserLocalizedWarningHiddenActionCreator = () =>
   action(REMOVE_USER_LOCALIZED_WARNING_HIDDEN);
+
+export const setInitialUrlUsed = (value: boolean) =>
+  action(SET_INITIAL_URL_USED, value);
 
 export const setSelectedLanguageActionCreator = (
   value: AvailableLanguageI18nCode | null
@@ -152,6 +156,7 @@ const actions = {
   setUserFavoritesActionCreator,
   addUserFavoriteActionCreator,
   removeUserFavoriteActionCreator,
-  removeUserAllFavoritesActionCreator
+  removeUserAllFavoritesActionCreator,
+  setInitialUrlUsed
 };
 export type UserActions = ActionType<typeof actions>;

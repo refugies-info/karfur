@@ -29,3 +29,6 @@ export const isFavorite = (contentId: string) => (state: RootState) => {
 };
 export const isLocalizedWarningHiddenSelector = (state: RootState) =>
   state.user.localizedWarningHidden;
+
+export const isInitialUrlUsedSelector = (state: RootState) =>
+  state.user.initialUrlUsed;

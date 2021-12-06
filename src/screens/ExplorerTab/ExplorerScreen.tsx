@@ -6,7 +6,8 @@ import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
-  saveUserLocalizedWarningHiddenActionCreator
+  saveUserLocalizedWarningHiddenActionCreator,
+  setInitialUrlUsed
 } from "../../services/redux/User/user.actions";
 import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal";
 import { RTLView } from "../../components/BasicComponents";
@@ -15,7 +16,11 @@ import { tags } from "../../data/tagData";
 import { TagButton } from "../../components/Explorer/TagButton";
 import { TagsCarousel } from "../../components/Explorer/TagsCarousel";
 import { nbContentsSelector } from "../../services/redux/Contents/contents.selectors";
-import { userLocationSelector, isLocalizedWarningHiddenSelector } from "../../services/redux/User/user.selectors";
+import {
+  userLocationSelector,
+  isLocalizedWarningHiddenSelector,
+  isInitialUrlUsedSelector
+} from "../../services/redux/User/user.selectors";
 import { ExplorerParamList } from "../../../types";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
@@ -72,9 +77,14 @@ export const ExplorerScreen = ({
       }
     }
   }
+  const isInitialUrlUsed = useSelector(isInitialUrlUsedSelector);
   React.useEffect(() => {
     Linking.addEventListener("url", (event) => handleOpenUrl(event));
-    Linking.getInitialURL().then(handleOpenUrl);
+    if (!isInitialUrlUsed) {
+      Linking.getInitialURL()
+        .then(handleOpenUrl)
+        .then(() => dispatch(setInitialUrlUsed(true)));
+    }
 
     return Linking.removeEventListener("url", handleOpenUrl);
   }, []);
