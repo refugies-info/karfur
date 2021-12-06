@@ -3,7 +3,7 @@ import { UserActions } from "./user.actions";
 import { AvailableLanguageI18nCode } from "../../../types/interface";
 
 export interface UserState {
-  hasUserSeenOnboarding: boolean;
+  hasUserSeenOnboarding: boolean | null;
   hasUserNewFavorites: boolean;
   selectedLanguagei18nCode: AvailableLanguageI18nCode | null;
   currentLanguagei18nCode: AvailableLanguageI18nCode | null;
@@ -17,7 +17,7 @@ export interface UserState {
 }
 
 export const initialUserState = {
-  hasUserSeenOnboarding: false,
+  hasUserSeenOnboarding: null,
   hasUserNewFavorites: false,
   selectedLanguagei18nCode: null,
   currentLanguagei18nCode: null,

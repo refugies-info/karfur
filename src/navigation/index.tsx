@@ -17,7 +17,6 @@ import { logger } from "../logger";
 import { OnboardingStackNavigator } from "./OnboardingNavigator";
 import { hasUserSeenOnboardingSelector } from "../services/redux/User/user.selectors";
 import {
-  setHasUserSeenOnboardingActionCreator,
   setUserHasNewFavoritesActionCreator
 } from "../services/redux/User/user.actions";
 import { theme } from "../theme";
@@ -32,10 +31,6 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 export const RootNavigator = () => {
   const [isI18nInitialized, setIsI18nInitialized] = React.useState(false);
-  const [
-    isOnboardingValueInitialized,
-    setIsOnboardingValueInitialized,
-  ] = React.useState(false);
 
   const hasUserSeenOnboarding = useSelector(hasUserSeenOnboardingSelector);
   const dispatch = useDispatch();
@@ -65,21 +60,6 @@ export const RootNavigator = () => {
       }
     };
 
-    const checkIfUserHasAlreadySeenOnboarding = async () => {
-      try {
-        const value = await AsyncStorage.getItem("HAS_USER_SEEN_ONBOARDING");
-
-        const hasUserAlreadySeenOnboarding = value === "TRUE";
-        if (hasUserAlreadySeenOnboarding) {
-          dispatch(setHasUserSeenOnboardingActionCreator(true));
-        }
-
-        setIsOnboardingValueInitialized(true);
-      } catch (e) {
-        // error reading value
-      }
-    };
-
     const checkIfUserHasNewFavorites = async () => {
       try {
         const value = await AsyncStorage.getItem("HAS_USER_NEW_FAVORITES");
@@ -92,14 +72,13 @@ export const RootNavigator = () => {
         // error reading value
       }
     };
-    checkIfUserHasAlreadySeenOnboarding();
     checkIfUserHasNewFavorites();
     setLanguage();
     dispatch(getUserInfosActionCreator());
     dispatch(fetchNeedsActionCreator());
   }, []);
 
-  if (!isI18nInitialized || !isOnboardingValueInitialized) {
+  if (!isI18nInitialized || hasUserSeenOnboarding === null) {
     return null;
   }
 

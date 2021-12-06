@@ -48,6 +48,10 @@ import {
 } from "./functions";
 import { fetchContentsActionCreator } from "../Contents/contents.actions";
 import { hasUserSeenOnboardingSelector, userFavorites } from "./user.selectors";
+import {
+  startLoading,
+  LoadingStatusKey,
+} from "../LoadingStatus/loadingStatus.actions";
 import { logEventInFirebase } from "../../../utils/logEvent";
 import { FirebaseEvent } from "../../../utils/eventsUsedInFirebase";
 
@@ -275,6 +279,21 @@ export function* getUserInfos(): SagaIterator {
   try {
     logger.info("[getUserInfos] saga");
     try {
+      const hasUserAlreadySeenOnboarding = yield call(
+        getItemInAsyncStorage,
+        "HAS_USER_SEEN_ONBOARDING"
+      );
+      yield put(setHasUserSeenOnboardingActionCreator(hasUserAlreadySeenOnboarding === "TRUE"));
+    } catch (error) {
+      logger.error("Error while getting onboarding status", {
+        error: error.message,
+      });
+    }
+    const hasUserSeenOnboarding = yield select(hasUserSeenOnboardingSelector);
+    if (hasUserSeenOnboarding) { // start loader
+      yield put(startLoading(LoadingStatusKey.FETCH_CONTENTS));
+    }
+    try {
       const selectedLanguage = yield call(
         getItemInAsyncStorage,
         "SELECTED_LANGUAGE"
@@ -319,8 +338,8 @@ export function* getUserInfos(): SagaIterator {
         error: error.message,
       });
     }
-    const hasUserSeenOnboarding = yield select(hasUserSeenOnboardingSelector);
-    if (hasUserSeenOnboarding) {
+    if (hasUserSeenOnboarding) { // when user infos loaded, load content
+
       yield put(fetchContentsActionCreator());
     }
     try {
