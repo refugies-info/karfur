@@ -35,6 +35,10 @@ import {
   setUserHasNewFavoritesActionCreator,
   setUserLocalizedWarningHiddenActionCreator,
 } from "../user.actions";
+import {
+  startLoading,
+  LoadingStatusKey,
+} from "../../LoadingStatus/loadingStatus.actions";
 import { fetchContentsActionCreator } from "../../Contents/contents.actions";
 import { hasUserSeenOnboardingSelector } from "../user.selectors";
 import { logEventInFirebase } from "../../../../utils/logEvent";
@@ -332,6 +336,12 @@ describe("[Saga] user", () => {
     it("should get item in async storage and do nothing if no data", () => {
       testSaga(getUserInfos)
         .next()
+        .call(getItemInAsyncStorage, "HAS_USER_SEEN_ONBOARDING")
+        .next(null)
+        .put(setHasUserSeenOnboardingActionCreator(false))
+        .next(null)
+        .select(hasUserSeenOnboardingSelector)
+        .next(false)
         .call(getItemInAsyncStorage, "SELECTED_LANGUAGE")
         .next(null)
         .call(getItemInAsyncStorage, "CITY")
@@ -342,8 +352,6 @@ describe("[Saga] user", () => {
         .next(null)
         .call(getItemInAsyncStorage, "FRENCH_LEVEL")
         .next(null)
-        .select(hasUserSeenOnboardingSelector)
-        .next(false)
         .call(getItemInAsyncStorage, "FAVORITES")
         .next(false)
         .call(getItemInAsyncStorage, "LOCALIZED_WARNING_HIDDEN")
@@ -354,6 +362,14 @@ describe("[Saga] user", () => {
     it("should get item in async storage and set data in store", () => {
       testSaga(getUserInfos)
         .next()
+        .call(getItemInAsyncStorage, "HAS_USER_SEEN_ONBOARDING")
+        .next("TRUE")
+        .put(setHasUserSeenOnboardingActionCreator(true))
+        .next(null)
+        .select(hasUserSeenOnboardingSelector)
+        .next(true)
+        .put(startLoading(LoadingStatusKey.FETCH_CONTENTS))
+        .next(null)
         .call(getItemInAsyncStorage, "SELECTED_LANGUAGE")
         .next("fr")
         .put(setSelectedLanguageActionCreator("fr"))
@@ -374,8 +390,6 @@ describe("[Saga] user", () => {
         .next("frenchLevel")
         .put(setUserFrenchLevelActionCreator("frenchLevel"))
         .next()
-        .select(hasUserSeenOnboardingSelector)
-        .next(true)
         .put(fetchContentsActionCreator())
         .next()
         .call(getItemInAsyncStorage, "FAVORITES")
@@ -391,6 +405,10 @@ describe("[Saga] user", () => {
     it("should get item in async storage and continue if it throws", () => {
       testSaga(getUserInfos)
         .next()
+        .call(getItemInAsyncStorage, "HAS_USER_SEEN_ONBOARDING")
+        .throw(new Error("error"))
+        .select(hasUserSeenOnboardingSelector)
+        .next(false)
         .call(getItemInAsyncStorage, "SELECTED_LANGUAGE")
         .throw(new Error("error"))
         .call(getItemInAsyncStorage, "CITY")
@@ -399,8 +417,6 @@ describe("[Saga] user", () => {
         .throw(new Error("error"))
         .call(getItemInAsyncStorage, "FRENCH_LEVEL")
         .throw(new Error("error"))
-        .select(hasUserSeenOnboardingSelector)
-        .next(false)
         .call(getItemInAsyncStorage, "FAVORITES")
         .throw(new Error("error"))
         .call(getItemInAsyncStorage, "LOCALIZED_WARNING_HIDDEN")

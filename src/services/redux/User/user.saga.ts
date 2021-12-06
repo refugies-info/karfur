@@ -339,7 +339,6 @@ export function* getUserInfos(): SagaIterator {
       });
     }
     if (hasUserSeenOnboarding) { // when user infos loaded, load content
-
       yield put(fetchContentsActionCreator());
     }
     try {
