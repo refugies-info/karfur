@@ -764,6 +764,7 @@ export const ContentScreen = ({
                 <TouchableOpacity
                   onPress={toggleMap}
                   accessibilityLabel={t("content_screen.see_map_button")}
+                  testID="test-button-map"
                   style={{
                     width: "100%",
                     height: "100%",

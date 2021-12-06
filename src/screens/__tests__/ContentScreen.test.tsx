@@ -137,7 +137,7 @@ describe("ContentScreen", () => {
       compProps: { navigation, route },
     });
 
-    const Button = component.getByTestId("test-custom-button-Voir la carte");
+    const Button = component.getByTestId("test-button-map");
     act(() => {
       fireEvent.press(Button);
     });

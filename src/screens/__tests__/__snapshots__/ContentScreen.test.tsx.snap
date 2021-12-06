@@ -3290,7 +3290,6 @@ exports[`ContentScreen should render correctly 1`] = `
             }
           >
             <View
-              accessibilityRole="button"
               accessible={true}
               focusable={true}
               onClick={[Function]}
@@ -3303,129 +3302,127 @@ exports[`ContentScreen should render correctly 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 12,
-                  "display": "flex",
-                  "elevation": 2,
-                  "flexDirection": "row",
-                  "height": 56,
+                  "height": "100%",
                   "justifyContent": "center",
                   "opacity": 1,
-                  "paddingBottom": 18,
-                  "paddingLeft": 18,
-                  "paddingRight": 18,
-                  "paddingTop": 18,
-                  "shadowColor": "rgba(33, 33, 33, 0.4)",
-                  "shadowOffset": Object {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 1,
-                  "shadowRadius": 2,
-                  "width": "auto",
+                  "width": "100%",
                 }
               }
-              testID="test-custom-button-Voir la carte"
+              testID="test-button-map"
             >
               <View
-                style={
-                  Object {
-                    "transform": Array [
-                      Object {
-                        "scale": 1,
-                      },
-                    ],
-                  }
-                }
-              >
-                <RNSVGSvgView
-                  align="xMidYMid"
-                  bbHeight={24}
-                  bbWidth={24}
-                  fill="#212121"
-                  focusable={false}
-                  height={24}
-                  meetOrSlice={0}
-                  minX={0}
-                  minY={0}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      Object {},
-                      Object {
-                        "flex": 0,
-                        "height": 24,
-                        "width": 24,
-                      },
-                    ]
-                  }
-                  vbHeight={24}
-                  vbWidth={24}
-                  width={24}
-                >
-                  <RNSVGGroup
-                    fill={4280361249}
-                    propList={
-                      Array [
-                        "fill",
-                      ]
-                    }
-                  >
-                    <RNSVGGroup>
-                      <RNSVGGroup>
-                        <RNSVGRect
-                          height="24"
-                          matrix={
-                            Array [
-                              -1,
-                              1.2246467991473532e-16,
-                              -1.2246467991473532e-16,
-                              -1,
-                              24,
-                              24,
-                            ]
-                          }
-                          opacity={0}
-                          width="24"
-                          x={0}
-                          y={0}
-                        />
-                        <RNSVGPath
-                          d="M20 5a1 1 0 0 0-1-1h-5a1 1 0 0 0 0 2h2.57l-3.28 3.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0L18 7.42V10a1 1 0 0 0 1 1 1 1 0 0 0 1-1z"
-                        />
-                        <RNSVGPath
-                          d="M10.71 13.29a1 1 0 0 0-1.42 0L6 16.57V14a1 1 0 0 0-1-1 1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 0-2H7.42l3.29-3.29a1 1 0 0 0 0-1.42z"
-                        />
-                      </RNSVGGroup>
-                    </RNSVGGroup>
-                  </RNSVGGroup>
-                </RNSVGSvgView>
-              </View>
-              <Text
-                hasIcon={true}
-                iconFirst={true}
                 isRTL={false}
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 8,
-                      "marginRight": 0,
-                      "textAlign": "left",
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                    },
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 12,
+                      "height": 56,
+                      "justifyContent": "center",
+                      "paddingBottom": 18,
+                      "paddingLeft": 18,
+                      "paddingRight": 18,
+                      "paddingTop": 18,
+                      "width": "auto",
                     },
                   ]
                 }
-                textColor="#212121"
               >
-                Voir la carte
-              </Text>
+                <View
+                  style={
+                    Object {
+                      "transform": Array [
+                        Object {
+                          "scale": 1,
+                        },
+                      ],
+                    }
+                  }
+                >
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={24}
+                    bbWidth={24}
+                    fill="#212121"
+                    focusable={false}
+                    height={24}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 24,
+                          "width": 24,
+                        },
+                      ]
+                    }
+                    vbHeight={24}
+                    vbWidth={24}
+                    width={24}
+                  >
+                    <RNSVGGroup
+                      fill={4280361249}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                    >
+                      <RNSVGGroup>
+                        <RNSVGGroup>
+                          <RNSVGRect
+                            height="24"
+                            opacity={0}
+                            width="24"
+                            x={0}
+                            y={0}
+                          />
+                          <RNSVGPath
+                            d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zM12.22 17c-4.31.1-7.12-3.59-8-5 1-1.61 3.61-4.9 7.61-5 4.29-.11 7.11 3.59 8 5-1.03 1.61-3.61 4.9-7.61 5z"
+                          />
+                          <RNSVGPath
+                            d="M12 8.5a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 8.5zm0 5a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1-1.5 1.5z"
+                          />
+                        </RNSVGGroup>
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                </View>
+                <Text
+                  isRTL={false}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "marginLeft": 8,
+                        "marginRight": 0,
+                      },
+                    ]
+                  }
+                >
+                  Voir la carte
+                </Text>
+              </View>
             </View>
           </View>
           <View
@@ -8743,7 +8740,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
             }
           >
             <View
-              accessibilityRole="button"
               accessible={true}
               focusable={true}
               onClick={[Function]}
@@ -8756,129 +8752,127 @@ exports[`ContentScreen should toggle map modal 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 12,
-                  "display": "flex",
-                  "elevation": 2,
-                  "flexDirection": "row",
-                  "height": 56,
+                  "height": "100%",
                   "justifyContent": "center",
                   "opacity": 1,
-                  "paddingBottom": 18,
-                  "paddingLeft": 18,
-                  "paddingRight": 18,
-                  "paddingTop": 18,
-                  "shadowColor": "rgba(33, 33, 33, 0.4)",
-                  "shadowOffset": Object {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 1,
-                  "shadowRadius": 2,
-                  "width": "auto",
+                  "width": "100%",
                 }
               }
-              testID="test-custom-button-Voir la carte"
+              testID="test-button-map"
             >
               <View
-                style={
-                  Object {
-                    "transform": Array [
-                      Object {
-                        "scale": 1,
-                      },
-                    ],
-                  }
-                }
-              >
-                <RNSVGSvgView
-                  align="xMidYMid"
-                  bbHeight={24}
-                  bbWidth={24}
-                  fill="#212121"
-                  focusable={false}
-                  height={24}
-                  meetOrSlice={0}
-                  minX={0}
-                  minY={0}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      Object {},
-                      Object {
-                        "flex": 0,
-                        "height": 24,
-                        "width": 24,
-                      },
-                    ]
-                  }
-                  vbHeight={24}
-                  vbWidth={24}
-                  width={24}
-                >
-                  <RNSVGGroup
-                    fill={4280361249}
-                    propList={
-                      Array [
-                        "fill",
-                      ]
-                    }
-                  >
-                    <RNSVGGroup>
-                      <RNSVGGroup>
-                        <RNSVGRect
-                          height="24"
-                          matrix={
-                            Array [
-                              -1,
-                              1.2246467991473532e-16,
-                              -1.2246467991473532e-16,
-                              -1,
-                              24,
-                              24,
-                            ]
-                          }
-                          opacity={0}
-                          width="24"
-                          x={0}
-                          y={0}
-                        />
-                        <RNSVGPath
-                          d="M20 5a1 1 0 0 0-1-1h-5a1 1 0 0 0 0 2h2.57l-3.28 3.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0L18 7.42V10a1 1 0 0 0 1 1 1 1 0 0 0 1-1z"
-                        />
-                        <RNSVGPath
-                          d="M10.71 13.29a1 1 0 0 0-1.42 0L6 16.57V14a1 1 0 0 0-1-1 1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 0-2H7.42l3.29-3.29a1 1 0 0 0 0-1.42z"
-                        />
-                      </RNSVGGroup>
-                    </RNSVGGroup>
-                  </RNSVGGroup>
-                </RNSVGSvgView>
-              </View>
-              <Text
-                hasIcon={true}
-                iconFirst={true}
                 isRTL={false}
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 8,
-                      "marginRight": 0,
-                      "textAlign": "left",
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                    },
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 12,
+                      "height": 56,
+                      "justifyContent": "center",
+                      "paddingBottom": 18,
+                      "paddingLeft": 18,
+                      "paddingRight": 18,
+                      "paddingTop": 18,
+                      "width": "auto",
                     },
                   ]
                 }
-                textColor="#212121"
               >
-                Voir la carte
-              </Text>
+                <View
+                  style={
+                    Object {
+                      "transform": Array [
+                        Object {
+                          "scale": 1,
+                        },
+                      ],
+                    }
+                  }
+                >
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={24}
+                    bbWidth={24}
+                    fill="#212121"
+                    focusable={false}
+                    height={24}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 24,
+                          "width": 24,
+                        },
+                      ]
+                    }
+                    vbHeight={24}
+                    vbWidth={24}
+                    width={24}
+                  >
+                    <RNSVGGroup
+                      fill={4280361249}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                    >
+                      <RNSVGGroup>
+                        <RNSVGGroup>
+                          <RNSVGRect
+                            height="24"
+                            opacity={0}
+                            width="24"
+                            x={0}
+                            y={0}
+                          />
+                          <RNSVGPath
+                            d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zM12.22 17c-4.31.1-7.12-3.59-8-5 1-1.61 3.61-4.9 7.61-5 4.29-.11 7.11 3.59 8 5-1.03 1.61-3.61 4.9-7.61 5z"
+                          />
+                          <RNSVGPath
+                            d="M12 8.5a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 8.5zm0 5a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1-1.5 1.5z"
+                          />
+                        </RNSVGGroup>
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                </View>
+                <Text
+                  isRTL={false}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "marginLeft": 8,
+                        "marginRight": 0,
+                      },
+                    ]
+                  }
+                >
+                  Voir la carte
+                </Text>
+              </View>
             </View>
           </View>
           <View
