@@ -8,7 +8,9 @@ import {
   Modal,
   Share,
   Platform,
+  TouchableOpacity
 } from "react-native";
+import { Icon } from "react-native-eva-icons";
 import * as Linking from "expo-linking";
 import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
 import { CompositeNavigationProp } from "@react-navigation/native";
@@ -143,6 +145,21 @@ const SimplifiedHeaderContainer = styled.View`
   padding-horizontal: ${theme.margin * 3}px;
   padding-vertical: ${theme.margin}px;
   ${theme.shadows.lg}
+`;
+const FakeMapButton = styled(RTLView)`
+  background-color: ${theme.colors.white};
+  justify-content: center;
+  align-items: center;
+  padding: ${theme.radius * 3}px;
+  border-radius: ${theme.radius * 2}px;
+  width: auto;
+  height: 56px;
+`;
+const FakeMapButtonText = styled(TextSmallBold)`
+  margin-left: ${(props: { isRTL: boolean }) =>
+    !props.isRTL ? theme.margin : 0}px;
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? theme.margin : 0}px;
 `;
 const ModalContainer = styled.View`
   display: flex;
@@ -744,17 +761,28 @@ export const ContentScreen = ({
                 )}
               </HeaderText>
               <MiniMap map={map} markersColor={themeTag.tagDarkColor}>
-                <CustomButton
-                  textColor={theme.colors.black}
-                  i18nKey="content_screen.see_map_button"
+                <TouchableOpacity
                   onPress={toggleMap}
-                  defaultText="Voir la carte"
-                  backgroundColor={theme.colors.white}
-                  iconName="expand-outline"
-                  iconFirst={true}
-                  notFullWidth={true}
                   accessibilityLabel={t("content_screen.see_map_button")}
-                />
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <FakeMapButton>
+                    <Icon
+                      name="eye-outline"
+                      width={24}
+                      height={24}
+                      fill={theme.colors.black}
+                    />
+                    <FakeMapButtonText isRTL={isRTL}>
+                      {t("content_screen.see_map_button", "Voir la carte")}
+                    </FakeMapButtonText>
+                  </FakeMapButton>
+                </TouchableOpacity>
               </MiniMap>
             </>
           )}
