@@ -306,10 +306,10 @@ export const ContentScreen = ({
       outputRange: ["transparent", color],
     });
   }
-  const [boxInterpolation, setBoxInterpolation] = React.useState(getInterpolation(themeTag.tagLightColor));
+  const [boxInterpolation, setBoxInterpolation] = React.useState(getInterpolation(themeTag.tagDarkColor));
   React.useEffect(() => {
-    setBoxInterpolation(getInterpolation(themeTag.tagLightColor));
-  }, [themeTag.tagLightColor]);
+    setBoxInterpolation(getInterpolation(themeTag.tagDarkColor));
+  }, [themeTag.tagDarkColor]);
 
   // Load content
   let unsubscribeConnectionListener: any;
@@ -622,7 +622,6 @@ export const ContentScreen = ({
           </>
         }
         <View>
-     
           {headers.map((header, index) => {
             if (
               index === 1 &&
