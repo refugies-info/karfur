@@ -12,6 +12,8 @@ import NoLogo from "../../theme/images/contents/structure_no_logo.png";
 import { DemarcheImage } from "./DemarcheImage";
 import Highlight from "../Search/Highlight";
 
+const IMAGE_SIZE = 58;
+
 const ContentContainer = styled.TouchableOpacity`
   background-color: ${(props: { isDispo: boolean }) => (props.isDispo ?
     theme.colors.white : theme.colors.lightGrey)};
@@ -136,12 +138,12 @@ export const ContentSummary = (props: Props) => {
               <Image
                 source={{ uri: props.sponsorUrl }}
                 resizeMode={"contain"}
-                style={{ height: 58, width: 58, maxWidth: "100%" }}
+                style={{ height: IMAGE_SIZE, width: IMAGE_SIZE, maxWidth: "100%" }}
               />
             </ImageContainer>
           ) : (
             <ImageContainer isRTL={isRTL} hasMatch={props.hasSponsorMatch}>
-              <Image source={NoLogo} style={{ height: 58, width: 58 }} />
+              <Image source={NoLogo} style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }} />
             </ImageContainer>
           )}
 
@@ -212,6 +214,7 @@ export const ContentSummary = (props: Props) => {
             name={props.themeTag.iconName}
             stroke={props.themeTag.tagDarkColor}
             contentId={props.contentId}
+            isSmall={true}
           />
         </ImageContainer>
 

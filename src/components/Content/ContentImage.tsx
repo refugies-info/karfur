@@ -10,29 +10,26 @@ import { getImageNameFromContentId } from "../Contents/contentsIdDemarcheImageCo
 import { ObjectId } from "../../types/interface";
 import { DemarcheImage } from "../Contents/DemarcheImage";
 
+const CONTAINER_SIZE = 100;
+
 const getContainerDimensions = (imageName: string) => {
   if (
     [
-      "ameli",
+      "carteBancaire",
+      "carteIdentite",
       "carteVitale",
       "permisConduire",
       "titreSejour",
-      "carteBancaire",
-      "carteIdentite",
-      "covid",
-      "poleEmploi",
-      "ofpra",
-      "caf",
     ].includes(imageName)
   ) {
-    return { width: 80, height: 50 };
+    return { width: CONTAINER_SIZE, height: (56 + theme.margin * 2) };
   }
 
   if (imageName === "passeport") {
-    return { width: 80, height: 60 };
+    return { width: (60 + theme.margin * 2), height: CONTAINER_SIZE };
   }
 
-  return { width: 80, height: 50 };
+  return { width: CONTAINER_SIZE, height: CONTAINER_SIZE };
 };
 const StructureImageContainer = styled.View`
   background-color: ${theme.colors.white};
@@ -64,7 +61,7 @@ const SponsorImageContainer = styled.View`
     props.isRTL ? theme.margin * 3 : 0}px;
 
   border-radius: ${theme.radius * 2}px;
-  padding: 8px;
+  padding: ${theme.margin}px;
   display: flex;
   margin-bottom: ${theme.margin}px;
   align-self: ${(props: { isRTL: boolean }) =>
@@ -84,27 +81,34 @@ export const ContentImage = (props: Props) => {
 
   const imageName = getImageNameFromContentId(props.contentId);
 
+  // DISPOSITIF
   if (props.typeContenu === "dispositif") {
     if (props.sponsorPictureUrl) {
       return (
-        <SponsorImageContainer width={100} isRTL={isRTL} height={100}>
+        <SponsorImageContainer
+          width={CONTAINER_SIZE}
+          height={CONTAINER_SIZE}
+          isRTL={isRTL}
+        >
           <StructureImageContainer>
             <Image
-              source={{
-                uri: props.sponsorPictureUrl,
-              }}
+              source={{ uri: props.sponsorPictureUrl }}
               resizeMode={"contain"}
               style={{
-                height: 84,
-                width: 84,
+                height: CONTAINER_SIZE - (theme.margin * 2),
+                width: CONTAINER_SIZE - (theme.margin * 2),
               }}
             />
           </StructureImageContainer>
         </SponsorImageContainer>
       );
     }
-    return (
-      <SponsorImageContainer width={160} isRTL={isRTL} height={100}>
+    return ( // no image
+      <SponsorImageContainer
+        width={160}
+        height={CONTAINER_SIZE}
+        isRTL={isRTL}
+      >
         <StructureNameContainer>
           <StructureNameText numberOfLines={3}>
             {props.sponsorName}
@@ -114,26 +118,27 @@ export const ContentImage = (props: Props) => {
     );
   }
 
+  // DEMARCHE
   if (imageName) {
     const { width, height } = getContainerDimensions(imageName);
     return (
       <SponsorImageContainer
         width={width}
+        height={height}
         isRTL={isRTL}
         style={{ justifyContent: "center", alignItems: "center" }}
-        height={height}
       >
         <DemarcheImage name="" stroke="" contentId={props.contentId} />
       </SponsorImageContainer>
     );
   }
 
-  return (
+  return ( // no image
     <SponsorImageContainer
       width={115}
+      height={40}
       isRTL={isRTL}
       style={{ justifyContent: "center" }}
-      height={40}
     >
       <IconTextContainer>
         <StreamlineIcon
@@ -143,7 +148,10 @@ export const ContentImage = (props: Props) => {
           stroke={theme.colors.black}
         />
         <TextSmallNormal
-          style={{ marginLeft: isRTL ? 0 : 8, marginRight: isRTL ? 8 : 0 }}
+          style={{
+            marginLeft: isRTL ? 0 : theme.margin,
+            marginRight: isRTL ? theme.margin : 0
+          }}
         >
           {t("content_screen.procedure", "Démarche")}
         </TextSmallNormal>
