@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components/native";
-import { View, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import { MarkerGoogle } from "../../types/interface";
 import { TextSmallNormal } from "../StyledText";
 import { RTLView, RTLTouchableOpacity } from "../BasicComponents";
+import { CustomButton } from "../CustomButton";
 import { theme } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { MapContentFromHtml } from "./MapContentHtml";
@@ -74,18 +75,6 @@ const TextIcon = styled(Icon)`
     props.isRTL ? theme.margin * 2 : 0}px;
 `;
 
-const CloseContainer = styled(TouchableOpacity)`
-  background-color: ${theme.colors.black};
-  height: 40px;
-  width: 40px;
-  border-radius: 20px;
-  align-self: center;
-  margin-top: ${theme.margin * 4}px;
-  margin-bottom: ${theme.margin * 2}px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 const HTMLContainer = styled.View`
   flex-grow: 0;
   flex-shrink: 1;
@@ -103,7 +92,7 @@ export const MapBottomBar = (props: Props) => {
       : "";
   return (
     <MainContainer isSelected={true}>
-      <View>
+      <View style={{ marginBottom: theme.margin * 4 }}>
         <ContentContainer
           color={props.textColor}
           marginBottom={4}
@@ -213,19 +202,20 @@ export const MapBottomBar = (props: Props) => {
           </>
         )}
       </View>
-      <CloseContainer
-        onPress={props.hideSideBar}
-        accessibilityRole="button"
-        accessible={true}
-        accessibilityLabel={t("content_screen.close_details_accessibility")}
-      >
-        <Icon
-          name={"close-outline"}
-          height={24}
-          width={24}
-          fill={theme.colors.white}
+
+      <View style={{ alignItems: "center", paddingBottom: theme.margin * 2 }}>
+        <CustomButton
+          textColor={theme.colors.black}
+          i18nKey="global.close"
+          onPress={props.hideSideBar}
+          defaultText="Fermer"
+          iconName="close-outline"
+          accessibilityLabel={t("content_screen.close_details_accessibility")}
+          notFullWidth={true}
+          iconFirst={true}
+          isTextNotBold={true}
         />
-      </CloseContainer>
+      </View>
     </MainContainer>
   );
 };
