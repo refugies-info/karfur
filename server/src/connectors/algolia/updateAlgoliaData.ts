@@ -2,8 +2,8 @@ import logger from "../../logger";
 import { AlgoliaObject } from "../../types/interface";
 
 const algoliasearch = require("algoliasearch");
-const client = algoliasearch("L9HYT1676M", "b14b1dd48cb3299fbc01c3dea0350d09");
-const index = client.initIndex("staging_refugies");
+const client = algoliasearch("L9HYT1676M", process.env.ALGOLIA_API_KEY);
+const index = client.initIndex(process.env.ALGOLIA_INDEX);
 
 export const getAllAlgoliaObjects = async (): Promise<AlgoliaObject[]> => {
   let algoliaContents: AlgoliaObject[] = [];
