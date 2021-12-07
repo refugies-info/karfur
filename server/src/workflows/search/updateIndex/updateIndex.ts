@@ -36,12 +36,12 @@ const getNeedsForAlgolia = async (): Promise<AlgoliaObject[]> => {
 }
 
 // REQUEST
-export const getContent = async (
+export const updateIndex = async (
   req: RequestFromClient<Query>,
   res: Res
 ) => {
   try {
-    logger.info("[getContent] received");
+    logger.info("[updateIndex] received");
 
     const needs = await getNeedsForAlgolia();
     const dispositifs = await getDispositifsForAlgolia();
@@ -59,7 +59,7 @@ export const getContent = async (
       result
     });
   } catch (error) {
-    logger.error("[getContent] error", {
+    logger.error("[updateIndex] error", {
       error: error.message,
     });
     res.status(500).json({ text: "KO" });

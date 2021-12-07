@@ -1,5 +1,5 @@
-import { getContent } from "../workflows/search/getContent";
+import { updateIndex } from "../workflows/search/updateIndex";
 
 module.exports = function (app) {
-  app.get("/content", getContent);
+  app.get("/update-index", updateIndex);
 };
