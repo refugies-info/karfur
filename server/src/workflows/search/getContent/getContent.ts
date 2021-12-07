@@ -1,27 +1,17 @@
-import { RequestFromClient, Res } from "../../../types/interface";
+import { RequestFromClient, Res, AlgoliaObject } from "../../../types/interface";
 import logger from "../../../logger";
 import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
 import { getNeedsFromDB } from "../../../modules/needs/needs.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { LangueDoc } from "../../../schema/schemaLangue";
 import { indexableTags } from "../../../modules/search/data";
+import { updateAlgoliaIndex } from "../../../modules/search/search.service";
+import { getAllAlgoliaObjects } from "../../../connectors/algolia/updateAlgoliaData";
+import { formatForAlgolia } from "../../../libs/formatForAlgolia";
+
 interface Query {
 }
 
-const extractValuesPerLanguage = (object: any, keyPrefix: string) => {
-  if (!object) return {};
-  if (typeof object !== "object") { // if object is string
-    return { [`${keyPrefix}_fr`]: object }
-  }
-  const normalizedObject: any = {};
-  for (const [ln, value] of Object.entries(object)) {
-    normalizedObject[`${keyPrefix}_${ln}`] = value;
-  }
-  return normalizedObject;
-}
-
-/* DISPOSITIFS */
-const getDispositifs = async () => {
+const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
   const neededFields = {
     titreInformatif: 1,
     titreMarque: 1,
@@ -32,56 +22,17 @@ const getDispositifs = async () => {
     nbVues: 1,
   };
 
-  const initialQuery = { status: "Actif" };
-
   const contentsArray = await getActiveContentsFiltered(
     neededFields,
-    initialQuery
+    { status: "Actif" }
   );
-
-  return contentsArray.map((content: any) => {
-    const tags = content.tags.map((t: any) => t ? t.name : null).filter((t: any) => t !== null);
-
-    return {
-      objectID: content._id,
-      ...extractValuesPerLanguage(content.titreInformatif, "title"),
-      ...extractValuesPerLanguage(content.titreMarque, "titreMarque"),
-      ...extractValuesPerLanguage(content.abstract, "abstract"),
-      tags: tags,
-      needs: content.needs,
-      nbVues: content.nbVues,
-      typeContenu: content.typeContenu,
-      sponsorUrl: content?.mainSponsor?.picture?.secure_url,
-      sponsorName: content?.mainSponsor?.nom,
-      priority: content.typeContenu === "dispositif" ? 30 : 40,
-    }
-  });
+  return contentsArray.map((content) => formatForAlgolia(content));
 }
 
-/* NEEDS */
-const getAllNeedTitles = (need: any, activeLanguages: LangueDoc[]) => {
-  const titles: any = {};
-  for (const ln of activeLanguages) {
-    if (need[ln.i18nCode]) {
-      titles["title_" + ln.i18nCode] = need[ln.i18nCode].text;
-    }
-  }
-  return titles;
-}
-
-const getNeeds = async () => {
+const getNeedsForAlgolia = async (): Promise<AlgoliaObject[]> => {
   const needs = await getNeedsFromDB();
   const activeLanguages = await getActiveLanguagesFromDB();
-
-  return needs.map((need: any) => {
-    return {
-      objectID: need._id,
-      ...getAllNeedTitles(need, activeLanguages),
-      tagName: need.tagName,
-      typeContenu: "besoin",
-      priority: 20,
-    }
-  });
+  return needs.map((content) => formatForAlgolia(content, activeLanguages));
 }
 
 // REQUEST
@@ -92,16 +43,20 @@ export const getContent = async (
   try {
     logger.info("[getContent] received");
 
-    const needs = await getNeeds();
-    const dispositifs = await getDispositifs();
+    const needs = await getNeedsForAlgolia();
+    const dispositifs = await getDispositifsForAlgolia();
+    const localContents = [
+      ...indexableTags,
+      ...needs,
+      ...dispositifs
+    ];
+
+    const algoliaContents = await getAllAlgoliaObjects();
+    const result = await updateAlgoliaIndex(localContents, algoliaContents);
 
     res.status(200).json({
       text: "Succès",
-      data: [
-        ...indexableTags,
-        ...needs,
-        ...dispositifs
-      ]
+      result
     });
   } catch (error) {
     logger.error("[getContent] error", {

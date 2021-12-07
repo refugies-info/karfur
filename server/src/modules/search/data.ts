@@ -1,4 +1,6 @@
-export const indexableTags = [
+import { AlgoliaObject } from "../../types/interface";
+
+export const indexableTags: AlgoliaObject[] = [
   {
     "objectID": "Français",
     "title_fr": "Français",
