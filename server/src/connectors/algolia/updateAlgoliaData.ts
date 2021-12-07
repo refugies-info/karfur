@@ -20,18 +20,15 @@ export const getAllAlgoliaObjects = async (): Promise<AlgoliaObject[]> => {
 
 export const addAlgoliaObjects = async (objects: AlgoliaObject[]) => {
   logger.info(`[algolia] adding ${objects.length} contents`);
-  // return index.saveObjects(objects)
-  return true
+  return index.saveObjects(objects);
 }
 
 export const deleteAlgoliaObjects = async (objectsID: string[]) => {
   logger.info(`[algolia] deleting ${objectsID.length} contents`);
-  // return index.deleteObjects(objectsID);
-  return true
+  return index.deleteObjects(objectsID);
 }
 
-export const updateAlgoliaObject = async (object: AlgoliaObject) => {
-  logger.info(`[search] updating content: ${JSON.stringify(object)}`);
-  // return index.
-  return true
+export const updateAlgoliaObjects = async (objects: AlgoliaObject[]) => {
+  logger.info(`[algolia] updating ${objects.length} content`);
+  return index.partialUpdateObjects(objects);
 }

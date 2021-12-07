@@ -2,7 +2,7 @@ export const getDiffAlgoliaObject = (
   localObject: any,
   algoliaObject: any
 ) => {
-  let objectToUpdate: any = { id: localObject.objectID };
+  let objectToUpdate: any = { objectID: localObject.objectID };
   const keys = Object.keys(localObject);
 
   for (let key of keys) {
