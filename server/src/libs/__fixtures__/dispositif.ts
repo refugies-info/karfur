@@ -76,3 +76,30 @@ export const dispositif = {
   typeContenu: "dispositif",
   nbVues: 685
 }
+
+
+export const dispositifAlgolia = {
+  objectID: "5ce7ab7383983700167bc9da",
+  title_fr: "Parrainer un réfugié",
+  title_ar: "رعاية لاجىء",
+  title_ps: "یو کډوال حمایت کول",
+  title_fa: "حمایت از یک پناهنده",
+  title_ru: "Стать компаньоном для беженца",
+  abstract_fr: "Rencontrer et accompagner un réfugié dans son intégration en France.",
+  abstract_ar: "التعرّف الى لاجىء و مساعدته في مسار حياته في فرنسا.",
+  abstract_ps: "په فرانسه کې د ادغام او په تولنه کې د شمولیت په موخه له یو کډوال سره ووینئ او ملاتړ یې وکړئ.",
+  abstract_fa: "ملاقات و حمایت از یک پناهنده در ادغام وی در فرانسه.",
+  abstract_ru: "Познакомьтесь и поддержите беженца в его интеграции во Франции.",
+  titreMarque_fr: "MAINtenant",
+  titreMarque_ar: "MAINtenant",
+  titreMarque_ps: "له MAINtenant سره",
+  titreMarque_fa: "MAINtenant",
+  titreMarque_ru: "MAINtenant",
+  tags: [ "aider une association" ],
+  needs: ["aaa", "bbb"],
+  nbVues: 685,
+  typeContenu: "dispositif",
+  sponsorUrl: "https://image.com/logo2.jpg",
+  sponsorName: "Coallia",
+  priority: 30
+}
