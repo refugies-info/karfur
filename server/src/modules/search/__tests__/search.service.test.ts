@@ -1,7 +1,17 @@
 // @ts-nocheck
 import { updateAlgoliaIndex } from "../search.service";
 
+jest.mock("../../../connectors/algolia/updateAlgoliaData", () => ({
+  addAlgoliaObjects: jest.fn(),
+  deleteAlgoliaObjects: jest.fn(),
+  updateAlgoliaObjects: jest.fn(),
+}));
+
+
 describe("updateAlgoliaIndex", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   it("should return no update", async () => {
     const res = await updateAlgoliaIndex([], []);
     expect(res).toEqual({
