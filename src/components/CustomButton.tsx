@@ -20,8 +20,8 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
     props.notFullWidth ? "auto" : "100%"};
   height: ${(props: { isSmall: boolean }) =>
     !props.isSmall ? 56 : 40}px;
-  ${(props: { isDisabled: boolean, isSmall: boolean }) =>
-    props.isDisabled ? "" : (props.isSmall ? theme.shadows.lg : theme.shadows.sm)};
+  ${(props: { isDisabled: boolean, isSmall: boolean, backgroundColor: string }) =>
+    props.isDisabled ? "" : (props.isSmall || !props.backgroundColor ? theme.shadows.lg : theme.shadows.sm)};
   opacity: ${(props: { isDisabled: boolean }) =>
     props.isDisabled ? 0.4 : 1};
 `;

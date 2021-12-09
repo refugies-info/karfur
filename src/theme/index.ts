@@ -101,8 +101,8 @@ const shadows = {
   elevation: 2;
   `,
   lg: `
-  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.24);
-  elevation: 7;
+  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.16);
+  elevation: 6;
   `
 }
 
