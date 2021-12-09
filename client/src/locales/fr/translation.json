@@ -798,5 +798,11 @@
     "Thèmes & activités": "Thèmes & activités",
     "Type de structure": "Type de structure",
     "Rechercher par nom...": "Rechercher par nom..."
+  },
+  "MobileAppModal": {
+    "Application mobile disponible": "Application mobile disponible !",
+    "Gratuite et plus facile à utiliser": "Gratuite et plus facile à utiliser :",
+    "Rester sur le navigateur": "Rester sur le navigateur",
+    "Télécharger l'application": "Télécharger l’application"
   }
 }

@@ -278,10 +278,18 @@
   }
 
   #deployer {
-    background-size: 50%, cover;
-    background-repeat: no-repeat;
-    background-position: right;
     margin-right: 100px;
+
+    .deployer_map {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: absolute;
+      right: 0;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+    }
   }
 
   #ecrire {

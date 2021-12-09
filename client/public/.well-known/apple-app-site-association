@@ -1,0 +1,62 @@
+{
+	"applinks": {
+		"apps": [],
+		"details": [
+			{
+				"appIDs": [ "98K762J2MM.refugiesInfo" ],
+				"components": [
+					{
+						"/": "",
+						"comment": "Root"
+					},
+					{
+						"/": "/",
+						"comment": "Root"
+					},
+					{
+						"/": "/dispositif/*",
+						"comment": "Dispositifs"
+					},
+					{
+						"/": "/demarche/*",
+						"comment": "Demarches"
+					},
+					{
+						"/": "/advanced-search",
+						"comment": "Search"
+					},
+					{
+						"/": "/qui-sommes-nous",
+						"comment": "About"
+					},
+					{
+						"/": "/mentions-legales",
+						"comment": "Legal Notice"
+					},
+					{
+						"/": "/politique-de-confidentialite",
+						"comment": "Privacy Policy"
+					}
+				]
+			},
+			{
+				"appID": "98K762J2MM.refugiesInfo",
+				"paths": [
+					"",
+					"/",
+					"/dispositif/*",
+					"/demarche/*",
+					"/advanced-search",
+					"/qui-sommes-nous",
+					"/mentions-legales",
+					"/politique-de-confidentialite"
+				]
+			}
+		]
+	},
+	"activitycontinuation": {
+		"apps": [
+			"98K762J2MM.refugiesInfo"
+		]
+	}
+}
