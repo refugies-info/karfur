@@ -22,6 +22,7 @@ import { WrapperWithHeaderAndLanguageModal } from "./WrapperWithHeaderAndLanguag
 import { ScrollView } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSelectedContentActionCreator } from "../services/redux/SelectedContent/selectedContent.actions";
+import { setRedirectDispositifActionCreator } from "../services/redux/User/user.actions";
 import { selectedContentSelector } from "../services/redux/SelectedContent/selectedContent.selectors";
 import { theme } from "../theme";
 import Config from "../libs/getEnvironment";
@@ -571,6 +572,15 @@ export const ContentScreen = ({
     }
   };
 
+  const navigateToFavorites = () => {
+    dispatch(setRedirectDispositifActionCreator({
+      contentId,
+      colors: themeTag
+    }))
+    navigation.popToTop();
+    navigation.navigate("Favoris", { screen: "FavorisScreen" });
+  }
+
   return (
     <View style={{ paddingBottom: 60 }}>
       <FixedContainerForHeader>
@@ -863,10 +873,7 @@ export const ContentScreen = ({
                 <Trans i18nKey="content_screen.favorite_added">
                   Ajouté à
                   <ToastTextBold
-                    onPress={() => {
-                      navigation.popToTop();
-                      navigation.navigate("Favoris", {screen: "FavorisScreen"});
-                    }}
+                    onPress={navigateToFavorites}
                     style={{
                       textDecorationLine: "underline",
                       textDecorationColor: theme.colors.white,

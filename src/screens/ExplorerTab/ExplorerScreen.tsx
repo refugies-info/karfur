@@ -2,12 +2,14 @@ import * as React from "react";
 import { ScrollView } from "react-native";
 import * as Linking from "expo-linking";
 import { StackScreenProps } from "@react-navigation/stack";
+import { useFocusEffect } from "@react-navigation/native";
 import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
   saveUserLocalizedWarningHiddenActionCreator,
-  setInitialUrlUsed
+  setInitialUrlUsed,
+  setRedirectDispositifActionCreator
 } from "../../services/redux/User/user.actions";
 import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal";
 import { RTLView } from "../../components/BasicComponents";
@@ -19,7 +21,8 @@ import { nbContentsSelector } from "../../services/redux/Contents/contents.selec
 import {
   userLocationSelector,
   isLocalizedWarningHiddenSelector,
-  isInitialUrlUsedSelector
+  isInitialUrlUsedSelector,
+  redirectDispositifSelector
 } from "../../services/redux/User/user.selectors";
 import { ExplorerParamList } from "../../../types";
 import { logEventInFirebase } from "../../utils/logEvent";
@@ -88,6 +91,22 @@ export const ExplorerScreen = ({
 
     return Linking.removeEventListener("url", handleOpenUrl);
   }, []);
+
+  // When the screen gets focus, redirect if needed
+  const redirectDispositif = useSelector(redirectDispositifSelector);
+  const redirect = React.useCallback(() => {
+    if (redirectDispositif) {
+      navigation.navigate("NeedsScreen", {
+        colors: redirectDispositif.colors
+      });
+      navigation.navigate("ContentScreen", {
+        ...redirectDispositif,
+        backScreen: ""
+      });
+      dispatch(setRedirectDispositifActionCreator(null));
+    }
+  }, [redirectDispositif]);
+  useFocusEffect(redirect);
 
   // Calculate total content for warning
   const nbContents = useSelector(nbContentsSelector);

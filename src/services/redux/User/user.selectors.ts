@@ -32,3 +32,6 @@ export const isLocalizedWarningHiddenSelector = (state: RootState) =>
 
 export const isInitialUrlUsedSelector = (state: RootState) =>
   state.user.initialUrlUsed;
+
+export const redirectDispositifSelector = (state: RootState) =>
+  state.user.redirectDispositif;

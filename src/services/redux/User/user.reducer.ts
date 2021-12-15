@@ -1,6 +1,6 @@
 import { createReducer } from "typesafe-actions";
 import { UserActions } from "./user.actions";
-import { AvailableLanguageI18nCode } from "../../../types/interface";
+import { AvailableLanguageI18nCode, ObjectId, ThemeTag } from "../../../types/interface";
 
 export interface UserState {
   hasUserSeenOnboarding: boolean | null;
@@ -14,6 +14,10 @@ export interface UserState {
   favorites: string[];
   localizedWarningHidden: boolean;
   initialUrlUsed: boolean;
+  redirectDispositif: {
+    contentId: ObjectId;
+    colors: ThemeTag;
+  } | null;
 }
 
 export const initialUserState = {
@@ -28,6 +32,7 @@ export const initialUserState = {
   favorites: [],
   localizedWarningHidden: false,
   initialUrlUsed: false,
+  redirectDispositif: null
 };
 
 export const userReducer = createReducer<UserState, UserActions>(
@@ -74,5 +79,9 @@ export const userReducer = createReducer<UserState, UserActions>(
       ...state,
       initialUrlUsed: action.payload,
     }),
+    SET_REDIRECT_DISPOSITIF: (state, action) => ({
+      ...state,
+      redirectDispositif: action.payload,
+    })
   }
 );
