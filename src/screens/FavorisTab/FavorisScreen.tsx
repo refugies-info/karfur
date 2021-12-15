@@ -181,8 +181,8 @@ export const FavorisScreen = ({
             flexGrow: 1
           }}
         >
-          <View style={{ marginBottom: theme.margin * 2, flex: 1, justifyContent: "flex-start" }}>
-            <View style={{ marginHorizontal: -theme.margin * 3 }}>
+          <View style={{ marginBottom: theme.margin * 2 }}>
+            <View style={{ marginHorizontal: -theme.margin * 3, flex: 1, justifyContent: "flex-start" }}>
               {contentsToDisplay.map((content: SimplifiedContent) => {
                 const tagName = content.tags.length > 0 ? content.tags[0].name : "";
                 const colors = getThemeTag(tagName);
