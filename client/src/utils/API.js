@@ -243,7 +243,7 @@ export default {
 
   getAllDispositifs: () => axios.get(burl + "/dispositifs/getAllDispositifs"),
   getAllStructures: () => axios.get(burl + "/structures/getAllStructures"),
-  getAllUsers: () => axios.get(burl + "/user/getAllUsers"),
+  getAllUsers: () => axios.get(burl + "/user/getAllUsers", { headers }),
 
   add_tradForReview: (query) => {
     return axios.post(burl + "/traduction/add_tradForReview", query, {

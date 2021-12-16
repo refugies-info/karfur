@@ -135,7 +135,7 @@ export const adaptUsers = (users: UserDoc[]) =>
     };
   });
 
-export const getAllUsers = async (_: any, res: Res) => {
+export const getAllUsers = async (req: any, res: Res) => {
   try {
     logger.info("[getAllUsers] call received");
     const neededFields = {
@@ -152,11 +152,24 @@ export const getAllUsers = async (_: any, res: Res) => {
     const users = await getAllUsersFromDB(neededFields);
     const adaptedUsers = adaptUsers(users);
 
+    // Check authorizations
+    const isAdmin = (req.user.roles).some((x: {nom: string}) => (x.nom === "Admin"));
+    const currentUser = adaptedUsers.find(u => u._id.toString() === req.user._id.toString());
+    const hasStructure = (currentUser && currentUser.structures.length > 0)
+      ? currentUser.structures[0].role.includes("Responsable")
+      : false;
+    if (!isAdmin && !hasStructure) throw new Error("NOT_AUTHORIZED");
+
     return res.status(200).json({
       data: adaptedUsers,
     });
   } catch (error) {
     logger.error("[getAllUsers] error", { error: error.message });
-    res.status(500).json({ text: "Erreur interne" });
+    switch (error.message) {
+      case "NOT_AUTHORIZED":
+        return res.status(403).json({ text: "Accès interdit" });
+      default:
+        return res.status(500).json({ text: "Erreur interne" });
+    }
   }
 };

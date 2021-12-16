@@ -69,7 +69,7 @@ export class Layout extends Component {
     }
     if (isMobileOnly
       && !localStorage.getItem("hideMobileAppModal")
-      && localStorage.getItem("languei18nCode")
+      && !this.props.showLangModal
       && this.state.showMobileModal === null
     ) {
       localStorage.setItem("hideMobileAppModal", "true");
