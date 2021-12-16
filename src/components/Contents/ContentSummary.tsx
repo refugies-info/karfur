@@ -79,6 +79,7 @@ const ActionButton = styled.TouchableOpacity`
 interface Props {
   navigation: any;
   contentId: ObjectId;
+  needId?: ObjectId;
   themeTag: ThemeTag;
   titreInfo?: string;
   titreMarque?: string | undefined;
@@ -126,6 +127,7 @@ export const ContentSummary = (props: Props) => {
             screen: "ContentScreen",
             params: {
               contentId: props.contentId,
+              needId: props.needId,
               colors: props.themeTag,
               backScreen: props.backScreen
             }
@@ -202,6 +204,7 @@ export const ContentSummary = (props: Props) => {
           screen: "ContentScreen",
           params: {
             contentId: props.contentId,
+            needId: props.needId,
             colors: props.themeTag,
             backScreen: props.backScreen
           }

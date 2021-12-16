@@ -16,6 +16,7 @@ export interface UserState {
   initialUrlUsed: boolean;
   redirectDispositif: {
     contentId: ObjectId;
+    needId: ObjectId;
     colors: ThemeTag;
   } | null;
 }

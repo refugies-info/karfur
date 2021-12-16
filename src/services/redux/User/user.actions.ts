@@ -63,6 +63,7 @@ export const setInitialUrlUsed = (value: boolean) =>
   action(SET_INITIAL_URL_USED, value);
 
 export const setRedirectDispositifActionCreator = (value: {
+  needId: ObjectId,
   contentId: ObjectId,
   colors: ThemeTag,
 } | null) =>

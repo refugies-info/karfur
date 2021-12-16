@@ -99,8 +99,15 @@ export const ExplorerScreen = ({
       navigation.navigate("NeedsScreen", {
         colors: redirectDispositif.colors
       });
+      navigation.navigate("ContentsScreen", {
+        needId: redirectDispositif.needId,
+        colors: redirectDispositif.colors,
+        backScreen: ""
+      });
       navigation.navigate("ContentScreen", {
-        ...redirectDispositif,
+        contentId: redirectDispositif.contentId,
+        needId: redirectDispositif.needId,
+        colors: redirectDispositif.colors,
         backScreen: ""
       });
       dispatch(setRedirectDispositifActionCreator(null));

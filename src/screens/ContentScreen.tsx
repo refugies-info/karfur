@@ -249,6 +249,7 @@ export const ContentScreen = ({
 }: ContentScreenType) => {
   const {
     contentId,
+    needId,
     backScreen,
   } = route.params;
 
@@ -575,6 +576,7 @@ export const ContentScreen = ({
   const navigateToFavorites = () => {
     dispatch(setRedirectDispositifActionCreator({
       contentId,
+      needId,
       colors: themeTag
     }))
     navigation.popToTop();

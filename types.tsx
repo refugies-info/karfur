@@ -30,6 +30,7 @@ export type ExplorerParamList = {
   };
   ContentScreen: {
     contentId: ObjectId;
+    needId?: ObjectId;
     colors?: ThemeTag;
     backScreen?: string
   };
