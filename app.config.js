@@ -26,14 +26,17 @@ export default {
       googleMapsApiKey: process.env.GOOGLE_MAPS_KEY_IOS,
     },
     infoPlist: {
-      NSLocationWhenInUseUsageDescription: "This is only used to show you initiatives and associations close to you. This is not mandatory, the information will stay on your phone and we cannot use it.",
-      NSLocationUsageDescription: "This is only used to show you initiatives and associations close to you. This is not mandatory, the information will stay on your phone and we cannot use it.",
+      CFBundleAllowMixedLocalizations: true,
     },
     googleServicesFile: "./src/utils/firebase/GoogleService-Info.plist",
     associatedDomains: [
       "applinks:refugies.info",
       "applinks:www.refugies.info"
     ]
+  },
+  locales: {
+    en: "./src/translations/en.json",
+    fr: "./src/translations/fr.json"
   },
   android: {
     versionCode: 7,
