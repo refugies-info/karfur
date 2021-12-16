@@ -50,6 +50,11 @@ export const OneNeedTranslationModal = (props: Props) => {
   const [value, setValue] = useState("");
   const need = useSelector(needSelector(props.selectedNeedId));
 
+  const [isRTL, setIsRTL] = useState(false);
+  useEffect(() => {
+    setIsRTL(["ar", "ps", "fa"].includes(props.langueI18nCode));
+  }, [props.langueI18nCode]);
+
   useEffect(() => {
     if (
       need &&
@@ -113,7 +118,9 @@ export const OneNeedTranslationModal = (props: Props) => {
       <Title>Version française : </Title>
       <NeedTextFr>{need.fr.text}</NeedTextFr>
       <Title>Version traduite :</Title>
-      <FInput value={value} onChange={onValueChange} newSize={true} />
+      <div dir={isRTL ? "rtl" : ""}>
+        <FInput value={value} onChange={onValueChange} newSize={true} />
+      </div>
       <BottomRowContainer>
         <FButton
           className="mr-8"
