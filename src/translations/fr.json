@@ -1,6 +1,6 @@
 {
-  "NSLocationWhenInUseUsageDescription": "La localisation n'est utile que pour vous montrer les dispositifs et associations proches de vous. Ça n'est pas obligatoire, cette information restera sur votre téléphone et nous ne pourrons pas l'utiliser.",
-  "NSLocationUsageDescription": "La localisation n'est utile que pour vous montrer les dispositifs et associations proches de vous. Ça n'est pas obligatoire, cette information restera sur votre téléphone et nous ne pourrons pas l'utiliser.",
+  "NSLocationWhenInUseUsageDescription": "Ce n’est pas obligatoire et nous l’utilisons uniquement pour te montrer des associations et des actions autour de toi. Cette information reste dans ton téléphone et nous ne pouvons pas l’utiliser.",
+  "NSLocationUsageDescription": "Ce n’est pas obligatoire et nous l’utilisons uniquement pour te montrer des associations et des actions autour de toi. Cette information reste dans ton téléphone et nous ne pouvons pas l’utiliser.",
   "onboarding_screens": {
     "start_button": "Commencer",
     "bonjour": "Bonjour et bienvenue sur Réfugiés.info !",

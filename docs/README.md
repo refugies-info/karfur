@@ -106,3 +106,15 @@ Notes:
 ## Font
 
 We use a non open source font. The repo is private so that we can commit the font in the repo.
+
+# Development
+
+## Translation
+
+To translate the app, use the scripts in `src/translations`.
+
+For iOS, you must translate system strings, for example for authorizations.
+You can find more informations in the [Expo documentation](https://docs.expo.dev/distribution/app-stores/?redirected#localizing-your-ios-app).
+
+The `app.config.js` is configured to look for these strings in the regular translation files, in `src/translations/[ln].json`. 
+Just define the translations in these files, and use the same keys than the one you would have defined in `app.config.js`.
