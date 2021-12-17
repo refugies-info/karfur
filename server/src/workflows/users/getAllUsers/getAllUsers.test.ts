@@ -22,6 +22,7 @@ const neededFields = {
   roles: 1,
   structures: 1,
   email: 1,
+  phone: 1,
   selectedLanguages: 1,
 };
 
@@ -54,6 +55,7 @@ const user1 = {
     },
   ],
   email: "email1",
+  phone: "",
   selectedLanguages: [
     { langueCode: "fr", langueFr: "Français" },
     { langueCode: "gb", langueFr: "Anglais" },
@@ -69,6 +71,7 @@ const user2 = {
   status: "Actif",
   created_at: "created_at",
   email: "email2",
+  phone: "",
   last_connected: "",
 };
 
@@ -138,6 +141,7 @@ const simplifiedUser1 = {
     },
   ],
   email: "email1",
+  phone: "",
   langues: [
     { langueCode: "gb", langueFr: "Anglais" },
     { langueCode: "sa", langueFr: "Pachto" },
@@ -154,6 +158,7 @@ const simplifiedUser2 = {
   status: "Actif",
   created_at: "created_at",
   email: "email2",
+  phone: "",
   langues: [],
   nbStructures: 0,
   roles: [],

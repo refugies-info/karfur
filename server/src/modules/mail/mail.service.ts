@@ -62,6 +62,35 @@ export const sendResetPasswordMail = async (
   }
 };
 
+export const sendResetPhoneNumberMail = async (
+  username: string,
+  email: string
+) => {
+  try {
+    logger.info("[sendResetPhoneNumberMail] received", { email });
+    const dynamicData = {
+      to: email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        pseudonyme: username,
+      },
+    };
+    const templateName = "changePhoneNumber";
+    sendMail(templateName, dynamicData);
+    await addMailEvent({ templateName, username, email });
+    return;
+  } catch (error) {
+    logger.error("[sendResetPhoneNumberMail] error", {
+      email,
+      error: error.message,
+    });
+  }
+};
+
 export const sendSubscriptionReminderMailService = async (email: string) => {
   try {
     logger.info("[sendSubscriptionReminderMailService] received", { email });

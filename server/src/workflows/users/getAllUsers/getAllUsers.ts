@@ -128,6 +128,7 @@ export const adaptUsers = (users: UserDoc[]) =>
       last_connected: user.last_connected,
       roles,
       email: user.email,
+      phone: user.phone,
       langues,
       structures: simplifiedStructures,
       nbStructures: user.structures ? user.structures.length : 0,
@@ -146,6 +147,7 @@ export const getAllUsers = async (req: any, res: Res) => {
       roles: 1,
       structures: 1,
       email: 1,
+      phone: 1,
       selectedLanguages: 1,
     };
 
