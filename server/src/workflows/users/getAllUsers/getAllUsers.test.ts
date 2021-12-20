@@ -68,6 +68,9 @@ const user2 = {
   username: "username2",
   _id: "id2",
   picture: { secure_url: "secure_url2" },
+  roles: [
+    { nom: "User" },
+  ],
   status: "Actif",
   created_at: "created_at",
   email: "email2",
@@ -108,6 +111,7 @@ const user5 = {
   _id: "id5",
   roles: [
     { nom: "ExpertTrad" },
+    { nom: "hasStructure" },
   ],
   structures: [
     {
@@ -119,7 +123,7 @@ const user5 = {
   ],
 };
 
-const simplifiedUser1 = {
+const simplifiedUserAdmin1 = {
   username: "username1",
   _id: "id1",
   picture: { secure_url: "secure_url1" },
@@ -151,7 +155,7 @@ const simplifiedUser1 = {
   last_connected: "",
 };
 
-const simplifiedUser2 = {
+const simplifiedUserAdmin2 = {
   username: "username2",
   _id: "id2",
   picture: { secure_url: "secure_url2" },
@@ -167,8 +171,8 @@ const simplifiedUser2 = {
   last_connected: "",
 };
 
-const simplifiedUser3 = {
-  ...simplifiedUser1,
+const simplifiedUserAdmin3 = {
+  ...simplifiedUserAdmin1,
   _id: "id3",
   roles: ["ExpertTrad", "Rédacteur"],
   nbStructures: 1,
@@ -183,8 +187,8 @@ const simplifiedUser3 = {
   nbContributions: 0,
 };
 
-const simplifiedUser4 = {
-  ...simplifiedUser1,
+const simplifiedUserAdmin4 = {
+  ...simplifiedUserAdmin1,
   _id: "id4",
   roles: ["Admin", "ExpertTrad"],
   nbStructures: 1,
@@ -198,8 +202,8 @@ const simplifiedUser4 = {
   ],
 };
 
-const simplifiedUser5 = {
-  ...simplifiedUser1,
+const simplifiedUserAdmin5 = {
+  ...simplifiedUserAdmin1,
   _id: "id5",
   roles: ["ExpertTrad", "Responsable"],
   nbStructures: 1,
@@ -213,23 +217,56 @@ const simplifiedUser5 = {
   ],
 };
 
+
+const simplifiedUser1 = {
+  username: "username1",
+  _id: "id1",
+  picture: { secure_url: "secure_url1" },
+  status: "Actif",
+  email: "email1",
+};
+
+const simplifiedUser2 = {
+  username: "username2",
+  _id: "id2",
+  picture: { secure_url: "secure_url2" },
+  status: "Actif",
+  email: "email2",
+};
+
+const simplifiedUser3 = {
+  ...simplifiedUser1,
+  _id: "id3",
+};
+
+const simplifiedUser4 = {
+  ...simplifiedUser1,
+  _id: "id4",
+};
+
+const simplifiedUser5 = {
+  ...simplifiedUser1,
+  _id: "id5",
+};
+
+
 const users = [user1, user2, user3, user4, user5];
 describe("getAllUsers", () => {
   beforeEach(() => jest.clearAllMocks());
   it("should call getAllUsersFromDB and return 200 with user admin", async () => {
     getAllUsersFromDB.mockResolvedValueOnce(users);
     const res = mockResponse();
-    const req = {user: { _id: "id1", roles: ["Admin"] }};
+    const req = {user: { _id: "id1", roles: [] }};
     await getAllUsers(req, res);
     expect(getAllUsersFromDB).toHaveBeenCalledWith(neededFields);
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       data: [
-        simplifiedUser1,
-        simplifiedUser2,
-        simplifiedUser3,
-        simplifiedUser4,
-        simplifiedUser5,
+        simplifiedUserAdmin1,
+        simplifiedUserAdmin2,
+        simplifiedUserAdmin3,
+        simplifiedUserAdmin4,
+        simplifiedUserAdmin5,
       ],
     });
   });

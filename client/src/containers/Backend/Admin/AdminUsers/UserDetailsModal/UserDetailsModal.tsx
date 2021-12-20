@@ -133,10 +133,10 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
     return setRoles(newRoles);
   };
 
-  const hasStructure = userFromStore && userFromStore.structures.length > 0;
+  const hasStructure = userFromStore && (userFromStore.structures || []).length > 0;
   const isResponsable = hasStructure && userFromStore
-    && userFromStore.structures.find(s => (s.role && s.role.includes("Responsable")));
-  const isAdmin = userFromStore && userFromStore.roles.find(r => r === "Admin");
+    && (userFromStore.structures || []).find(s => (s.role && s.role.includes("Responsable")));
+  const isAdmin = userFromStore && (userFromStore.roles || []).find(r => r === "Admin");
 
   const onSaveClick = async () => {
     try {
@@ -282,7 +282,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         <Label>Structure</Label>
         {!hasStructure && <p>Pas de structure</p>}
         {hasStructure &&
-          userFromStore.structures.map((structure) => (
+          (userFromStore.structures || []).map((structure) => (
             <Structure
               key={structure._id.toString()}
               nom={structure.nom}
@@ -315,7 +315,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
       <div>
         <Label>Langues</Label>
         <RowContainerWrap>
-          {userFromStore.langues.map((langue) => (
+          {(userFromStore.langues || []).map((langue) => (
             <LangueDetail key={langue.langueCode} langue={langue} />
           ))}
         </RowContainerWrap>
