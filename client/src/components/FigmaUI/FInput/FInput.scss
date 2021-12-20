@@ -38,6 +38,9 @@ $borderRadius: 12px;
       max-width: 900px;
       padding-right: 38px;
     }
+    &.phone-input {
+      max-width: 170px;
+    }
     &.has-prepend {
       padding-left: 45px;
 

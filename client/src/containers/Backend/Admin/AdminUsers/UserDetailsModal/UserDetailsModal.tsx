@@ -274,6 +274,9 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
           onChange={onChangePhone}
           newSize={true}
           autoFocus={false}
+          prepend
+          prependName="smartphone-outline"
+          inputClassName="phone-input"
           error={!!phoneError && !phone}
         />
         {(!!phoneError && !phone) && <p style={{color: colors.error}}>{phoneError}</p>}
