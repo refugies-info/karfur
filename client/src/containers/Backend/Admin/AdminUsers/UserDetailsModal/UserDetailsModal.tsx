@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import {
   Event,
@@ -25,6 +25,7 @@ import { fetchAllUsersActionsCreator } from "../../../../../services/AllUsers/al
 import Swal from "sweetalert2";
 import { isLoadingSelector } from "../../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../../services/LoadingStatus/loadingStatus.actions";
+import { colors } from "colors";
 
 moment.locale("fr");
 
@@ -34,7 +35,7 @@ const StructureName = styled.div`
   line-height: 28px;
 `;
 
-const Title = styled.div`
+const Label = styled.label`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
@@ -78,6 +79,8 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
 ) => {
   // const [user, setUser] = useState<SimplifiedUser | null>(null);
   const [email, setEmail] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+  const [phoneError, setPhoneError] = useState<string>("");
   const [roles, setRoles] = useState<string[]>([]);
   const [indicators, setIndicators] = useState<null | Indicators>(null);
 
@@ -92,9 +95,11 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         setIndicators(data.data);
       }
     };
-    setEmail(userFromStore && userFromStore.email ? userFromStore.email : "");
+    setEmail(userFromStore?.email || "");
+    setPhone(userFromStore?.phone || "");
+    setPhoneError("");
     const roles =
-      userFromStore && userFromStore.roles
+      userFromStore?.roles
         ? userFromStore.roles.filter(
             (role: string) => role === "Admin" || role === "ExpertTrad"
           )
@@ -103,9 +108,12 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
     loadIndicators();
   }, [userFromStore]);
 
-  const onChange = (e: Event) => {
+  const onChangeEmail = useCallback((e: Event) => {
     setEmail(e.target.value);
-  };
+  }, []);
+  const onChangePhone = useCallback((e: Event) => {
+    setPhone(e.target.value);
+  }, []);
 
   const handleCheckBoxChange = (name: string) => {
     if (!roles) return;
@@ -124,12 +132,23 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
     // add role
     return setRoles(newRoles);
   };
+
+  const hasStructure = userFromStore && (userFromStore.structures || []).length > 0;
+  const isResponsable = hasStructure && userFromStore
+    && (userFromStore.structures || []).find(s => (s.role && s.role.includes("Responsable")));
+  const isAdmin = userFromStore && (userFromStore.roles || []).find(r => r === "Admin");
+
   const onSaveClick = async () => {
     try {
       if (userFromStore) {
+        if ((isResponsable || isAdmin) && userFromStore?.phone && !phone) {
+          setPhoneError("Vous devez renseigner un numéro");
+          return;
+        }
+        setPhoneError("");
         await API.updateUser({
           query: {
-            user: { _id: userFromStore._id, roles, email },
+            user: { _id: userFromStore._id, roles, email, phone },
             action: "modify-with-roles",
           },
         });
@@ -159,7 +178,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
       if (userFromStore) {
         await API.updateUser({
           query: {
-            user: { _id: userFromStore._id, roles, email },
+            user: { _id: userFromStore._id, roles, email, phone },
             action: "delete",
           },
         });
@@ -183,6 +202,10 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
       props.toggleModal();
     }
   };
+
+  const getMinutes = useCallback((value) => {
+    return value ? Math.floor(value / 1000 / 60) : 0;
+  }, []);
 
   const secureUrl =
     userFromStore && userFromStore.picture && userFromStore.picture.secure_url
@@ -216,7 +239,6 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
       </Modal>
     );
 
-  const hasStructure = userFromStore.structures.length > 0;
   return (
     <Modal
       isOpen={props.show}
@@ -228,108 +250,103 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         <img className="user-img mr-8" src={secureUrl} />
         <StructureName>{userFromStore.username}</StructureName>
       </RowContainer>
-      <Title>Email</Title>
-      <div style={{ marginTop: "4px", marginRight: "32px" }}>
+      <div style={{ marginRight: 32 }}>
+        <Label
+          htmlFor="email"
+          style={{ marginBottom: 12 }}
+        >Email</Label>
         <FInput
           id="email"
           value={email}
-          onChange={onChange}
+          onChange={onChangeEmail}
           newSize={true}
           autoFocus={false}
         />
       </div>
-      <Title>Structure</Title>
-      {!hasStructure && <span>Pas de structure</span>}
-      {hasStructure &&
-        userFromStore.structures.map((structure) => (
-          <Structure
-            // @ts-ignore : objectId not a string
-            key={structure._id}
-            nom={structure.nom}
-            picture={structure.picture}
-            role={structure.role ? structure.role[0] : null}
-            onClick={() => {
-              //@ts-ignore
-              props.setSelectedStructureIdAndToggleModal(structure);
-              props.toggleModal();
-            }}
+      <div style={{ marginRight: 32 }}>
+        <Label
+          htmlFor="phone"
+          style={{ marginBottom: 12 }}
+        >Numéro de téléphone</Label>
+        <FInput
+          id="phone"
+          value={phone}
+          onChange={onChangePhone}
+          newSize={true}
+          autoFocus={false}
+          prepend
+          prependName="smartphone-outline"
+          inputClassName="phone-input"
+          error={!!phoneError && !phone}
+        />
+        {(!!phoneError && !phone) && <p style={{color: colors.error}}>{phoneError}</p>}
+      </div>
+      <div>
+        <Label>Structure</Label>
+        {!hasStructure && <p>Pas de structure</p>}
+        {hasStructure &&
+          (userFromStore.structures || []).map((structure) => (
+            <Structure
+              key={structure._id.toString()}
+              nom={structure.nom}
+              picture={structure.picture}
+              role={structure.role ? structure.role[0] : null}
+              onClick={() => {
+                //@ts-ignore
+                props.setSelectedStructureIdAndToggleModal(structure);
+                props.toggleModal();
+              }}
+            />
+          ))
+        }
+      </div>
+      <div>
+        <Label>Rôles</Label>
+        <RowContainer>
+          <RoleCheckBox
+            name="Expert en traduction"
+            isSelected={roles.includes("ExpertTrad")}
+            handleCheckBoxChange={handleCheckBoxChange}
           />
-        ))}
-      <Title>Rôles</Title>
-      <RowContainer>
-        <RoleCheckBox
-          name="Expert en traduction"
-          isSelected={roles.includes("ExpertTrad")}
-          handleCheckBoxChange={handleCheckBoxChange}
-        />
-        <RoleCheckBox
-          name="Administrateur"
-          isSelected={roles.includes("Admin")}
-          handleCheckBoxChange={handleCheckBoxChange}
-        />
-      </RowContainer>
-      <Title>Langues</Title>
-      <RowContainerWrap>
-        {userFromStore.langues.map((langue) => (
-          <LangueDetail key={langue.langueCode} langue={langue} />
-        ))}
-      </RowContainerWrap>
-      <Title>Date de création</Title>
-      <div style={{ marginBottom: "8px" }}>
-        {userFromStore.created_at
-          ? moment(userFromStore.created_at).format("LLL")
-          : "Non connue"}
+          <RoleCheckBox
+            name="Administrateur"
+            isSelected={roles.includes("Admin")}
+            handleCheckBoxChange={handleCheckBoxChange}
+          />
+        </RowContainer>
+      </div>
+      <div>
+        <Label>Langues</Label>
+        <RowContainerWrap>
+          {(userFromStore.langues || []).map((langue) => (
+            <LangueDetail key={langue.langueCode} langue={langue} />
+          ))}
+        </RowContainerWrap>
+      </div>
+      <div>
+        <Label>Date de création</Label>
+        <div style={{ marginBottom: "8px" }}>
+          {userFromStore.created_at
+            ? moment(userFromStore.created_at).format("LLL")
+            : "Non connue"}
+        </div>
       </div>
       <IndicatorContainer>
         <IndicatorColumn>
-          <Title>Minutes passées à traduire</Title>
+          <Label>Minutes passées à traduire</Label>
           {indicators ? (
             <>
               <span>
-                {`3 derniers mois : ${
-                  indicators.threeMonthsIndicator &&
-                  indicators.threeMonthsIndicator[0] &&
-                  indicators.threeMonthsIndicator[0].timeSpent
-                    ? Math.floor(
-                        indicators.threeMonthsIndicator[0].timeSpent / 1000 / 60
-                      )
-                    : 0
-                }`}
+                3 derniers mois : {getMinutes(indicators?.threeMonthsIndicator?.[0]?.timeSpent)}
               </span>
               <span>
-                {`6 derniers mois : ${
-                  indicators.sixMonthsIndicator &&
-                  indicators.sixMonthsIndicator[0] &&
-                  indicators.sixMonthsIndicator[0].timeSpent
-                    ? Math.floor(
-                        indicators.sixMonthsIndicator[0].timeSpent / 1000 / 60
-                      )
-                    : 0
-                }`}
+                6 derniers mois : {getMinutes(indicators?.sixMonthsIndicator?.[0]?.timeSpent)}
               </span>
               <span>
-                {`12 derniers mois : ${
-                  indicators.twelveMonthsIndicator &&
-                  indicators.twelveMonthsIndicator[0] &&
-                  indicators.twelveMonthsIndicator[0].timeSpent
-                    ? Math.floor(
-                        indicators.twelveMonthsIndicator[0].timeSpent /
-                          1000 /
-                          60
-                      )
-                    : 0
-                }`}
+                12 derniers mois : {getMinutes(indicators?.twelveMonthsIndicator?.[0]?.timeSpent)}
               </span>
               <span>
-                {`Toujours : ${
-                  indicators.totalIndicator &&
-                  indicators.totalIndicator[0] &&
-                  indicators.totalIndicator[0].timeSpent
-                    ? Math.floor(
-                        indicators.totalIndicator[0].timeSpent / 1000 / 60
-                      )
-                    : 0
-                }`}
+                Toujours : {getMinutes(indicators?.totalIndicator?.[0]?.timeSpent)}
               </span>
             </>
           ) : (
@@ -337,44 +354,20 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
           )}
         </IndicatorColumn>
         <IndicatorColumn>
-          <Title>Nombre de mots traduits</Title>
+          <Label>Nombre de mots traduits</Label>
           {indicators ? (
             <>
               <span>
-                {`3 derniers mois : ${
-                  indicators.threeMonthsIndicator &&
-                  indicators.threeMonthsIndicator[0] &&
-                  indicators.threeMonthsIndicator[0].wordsCount
-                    ? indicators.threeMonthsIndicator[0].wordsCount
-                    : 0
-                }`}
+                3 derniers mois : {indicators?.threeMonthsIndicator?.[0]?.wordsCount || 0}
               </span>
               <span>
-                {`6 derniers mois : ${
-                  indicators.sixMonthsIndicator &&
-                  indicators.sixMonthsIndicator[0] &&
-                  indicators.sixMonthsIndicator[0].wordsCount
-                    ? indicators.sixMonthsIndicator[0].wordsCount
-                    : 0
-                }`}
+                6 derniers mois : {indicators?.sixMonthsIndicator?.[0]?.wordsCount || 0}
               </span>
               <span>
-                {`12 derniers mois : ${
-                  indicators.twelveMonthsIndicator &&
-                  indicators.twelveMonthsIndicator[0] &&
-                  indicators.twelveMonthsIndicator[0].wordsCount
-                    ? indicators.twelveMonthsIndicator[0].wordsCount
-                    : 0
-                }`}
+                12 derniers mois : {indicators?.twelveMonthsIndicator?.[0]?.wordsCount || 0}
               </span>
               <span>
-                {`Toujours : ${
-                  indicators.totalIndicator &&
-                  indicators.totalIndicator[0] &&
-                  indicators.totalIndicator[0].wordsCount
-                    ? indicators.totalIndicator[0].wordsCount
-                    : 0
-                }`}
+                Toujours : {indicators?.totalIndicator?.[0]?.wordsCount || 0}
               </span>
             </>
           ) : (
@@ -383,7 +376,11 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         </IndicatorColumn>
       </IndicatorContainer>
       <ButtonContainer>
-        <FButton type="error" onClick={onDeleteClick} name="trash-2">
+        <FButton
+          type="error"
+          onClick={onDeleteClick}
+          name="trash-2"
+        >
           Supprimer
         </FButton>
         <div>

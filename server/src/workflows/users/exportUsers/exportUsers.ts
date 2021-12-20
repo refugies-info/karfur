@@ -28,17 +28,17 @@ interface UserToExport {
 interface User {
   _id: ObjectId;
   username: string;
-  created_at: Date;
-  last_connected: Date;
-  roles: string[];
+  created_at?: Date;
+  last_connected?: Date;
+  roles?: string[];
   email: string;
-  langues: {
+  langues?: {
     langueCode: string;
     langueFr: string;
   }[];
-  structures: { _id: ObjectId; nom: string }[];
-  nbStructures: number;
-  nbContributions: number;
+  structures?: { _id: ObjectId; nom: string }[];
+  nbStructures?: number;
+  nbContributions?: number;
   totalIndicator: { wordsCount: number; timeSpent: number }[];
 }
 
@@ -129,7 +129,7 @@ export const exportUsers = async (req: RequestFromClient<{}>, res: Res) => {
     };
 
     const users = await getAllUsersFromDB(neededFields);
-    const adaptedUsers = adaptUsers(users);
+    const adaptedUsers = adaptUsers(users, "admin");
     let usersToExport: { fields: UserToExport }[] = [];
     await asyncForEach(adaptedUsers, async (user) => {
       logger.info(`[exportUsers] get indicators user ${user._id}`);

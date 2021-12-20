@@ -176,15 +176,15 @@ export const AdminUsers = () => {
     let filteredUsers = usersFilteredBySearch;
     if (filter === "Admin") {
       filteredUsers = usersFilteredBySearch.filter((user) =>
-        user.roles.includes("Admin")
+        (user.roles || []).includes("Admin")
       );
     } else if (filter === "Respo") {
       filteredUsers = usersFilteredBySearch.filter((user) =>
-        user.roles.includes("Responsable")
+        (user.roles || []).includes("Responsable")
       );
     } else if (filter === "Experts") {
       filteredUsers = usersFilteredBySearch.filter((user) =>
-        user.roles.includes("ExpertTrad")
+        (user.roles || []).includes("ExpertTrad")
       );
     } else if (filter === "Traducteurs") {
       filteredUsers = usersFilteredBySearch.filter(
@@ -192,11 +192,11 @@ export const AdminUsers = () => {
       );
     } else if (filter === "Rédacteurs") {
       filteredUsers = usersFilteredBySearch.filter((user) =>
-        user.roles.includes("Rédacteur")
+        (user.roles || []).includes("Rédacteur")
       );
     } else if (filter === "Multi-structure") {
       filteredUsers = usersFilteredBySearch.filter(
-        (user) => user.nbStructures > 1
+        (user) => (user.nbStructures || 0) > 1
       );
     }
 
@@ -212,6 +212,7 @@ export const AdminUsers = () => {
         const orderColumn: "pseudo" | "email" | "structure" | "created_at" =
           sortedHeader.orderColumn;
 
+        if (!a.structures || !b.structures) return 0;
         if (orderColumn === "structure") {
           const structureA =
             a.structures.length > 0 && a.structures[0].nom
@@ -280,23 +281,23 @@ export const AdminUsers = () => {
 
   const getNbUsersByStatus = (users: SimplifiedUser[], status: string) => {
     if (status === "Admin") {
-      return users.filter((user) => user.roles.includes("Admin")).length;
+      return users.filter((user) => (user.roles || []).includes("Admin")).length;
     }
     if (status === "Respo") {
-      return users.filter((user) => user.roles.includes("Responsable")).length;
+      return users.filter((user) => (user.roles || []).includes("Responsable")).length;
     }
     if (status === "Experts") {
-      return users.filter((user) => user.roles.includes("ExpertTrad")).length;
+      return users.filter((user) => (user.roles || []).includes("ExpertTrad")).length;
     }
     if (status === "Traducteurs") {
       return users.filter((user) => user.langues && user.langues.length > 0)
         .length;
     }
     if (status === "Rédacteurs") {
-      return users.filter((user) => user.roles.includes("Rédacteur")).length;
+      return users.filter((user) => (user.roles || []).includes("Rédacteur")).length;
     }
     if (status === "Multi-structure") {
-      return users.filter((user) => user.nbStructures > 1).length;
+      return users.filter((user) => (user.nbStructures || 0) > 1).length;
     }
     return users.length;
   };
@@ -405,20 +406,20 @@ export const AdminUsers = () => {
                     onClick={() =>
                       setSelectedStructureIdAndToggleModal(
                         //@ts-ignore
-                        element.structures.length > 0
+                        element.structures && element.structures.length > 0
                           ? element.structures[0]
                           : null
                       )
                     }
                   >
-                    {element.structures.length > 0 && element.structures[0].nom}
+                    {element.structures && element.structures.length > 0 && element.structures[0].nom}
                   </td>
                   <td
                     className="align-middle"
                     onClick={() => setSelectedUserIdAndToggleModal(element)}
                   >
                     <RoleContainer>
-                      {element.roles.map((role) => (
+                      {(element.roles || []).map((role) => (
                         <Role key={role} role={role} />
                       ))}
                     </RoleContainer>
@@ -428,7 +429,7 @@ export const AdminUsers = () => {
                     onClick={() => setSelectedUserIdAndToggleModal(element)}
                   >
                     <LangueContainer>
-                      {element.langues.map((langue) => (
+                      {(element.langues || []).map((langue) => (
                         <LangueFlag
                           langue={langue.langueCode}
                           key={langue.langueCode}
