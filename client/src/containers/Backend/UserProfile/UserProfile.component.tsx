@@ -88,7 +88,7 @@ export const Title = styled.div`
   font-size: 18px;
   line-height: 23px;
   margin-bottom: 8px;
-  margin-top: ${(props) => props.marginTop || "0px"};
+  margin-top: ${(props) => props.marginTop || 0}px;
 `;
 
 const FInputContainer = styled.div`
@@ -111,6 +111,7 @@ const getUserImage = (user: User) =>
 export const UserProfileComponent = (props: Props) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState<string | undefined>("");
+  const [phone, setPhone] = useState<string | undefined>("");
   const [isModifyPasswordOpen, setIsModifyPasswordOpen] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -121,8 +122,10 @@ export const UserProfileComponent = (props: Props) => {
   const [newPasswordScore, setNewPasswordScore] = useState(0);
   const [isPseudoModifyDisabled, setIsPseudoModifyDisabled] = useState(true);
   const [isEmailModifyDisabled, setIsEmailModifyDisabled] = useState(true);
+  const [isPhoneModifyDisabled, setIsPhoneModifyDisabled] = useState(true);
   const [isPictureUploading, setIsPictureUploading] = useState(false);
   const [notEmailError, setNotEmailError] = useState(false);
+  const [notPhoneError, setNotPhoneError] = useState(false);
   const isLoadingSave = useSelector(
     isLoadingSelector(LoadingStatusKey.SAVE_USER)
   );
@@ -142,6 +145,15 @@ export const UserProfileComponent = (props: Props) => {
   const user = useSelector(userDetailsSelector);
   const dispatch = useDispatch();
 
+  const [showPhone, setShowPhone] = useState(false);
+  useEffect(() => {
+    if (user) {
+      const roles = (user.roles || []).map(r => r.nom);
+      setShowPhone(roles.includes("Admin") || roles.includes("hasStructure"));
+    }
+  }, [user]);
+
+
   const onChange = (e: Event) => {
     if (e.target.id === "username") {
       setUsername(e.target.value);
@@ -151,6 +163,11 @@ export const UserProfileComponent = (props: Props) => {
     if (e.target.id === "email") {
       setEmail(e.target.value);
       setIsEmailModifyDisabled(false);
+      return;
+    }
+    if (e.target.id === "phone") {
+      setPhone(e.target.value);
+      setIsPhoneModifyDisabled(false);
       return;
     }
 
@@ -246,6 +263,29 @@ export const UserProfileComponent = (props: Props) => {
       setNotEmailError(true);
     }
   };
+  const onPhoneModificationValidate = () => {
+    const regex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+    const isPhone = phone ? !!phone.match(regex) : false;
+    if (isPhone) {
+      if (!user) return;
+      dispatch(
+        saveUserActionCreator({
+          user: { phone, _id: user._id },
+          type: "modify-my-details",
+        })
+      );
+
+      Swal.fire({
+        title: "Yay...",
+        text: "Votre numéro de téléphone a bien été modifié",
+        type: "success",
+        timer: 1500,
+      });
+      setIsPhoneModifyDisabled(true);
+    } else {
+      setNotPhoneError(true);
+    }
+  };
 
   const onPseudoModificationValidate = async () => {
     if (!user) return;
@@ -281,6 +321,7 @@ export const UserProfileComponent = (props: Props) => {
   useEffect(() => {
     setUsername(user ? user.username : "");
     setEmail(user ? user.email : "");
+    setPhone(user ? user.phone : "");
     window.scrollTo(0, 0);
   }, [user]);
   if (isLoading)
@@ -341,84 +382,141 @@ export const UserProfileComponent = (props: Props) => {
           </DescriptionText>
         </ProfilePictureContainer>
         <ProfileContainer>
-          <Title>
-            {props.t("UserProfile.votre pseudo", "Votre pseudonyme")}
-          </Title>
-          <RowContainer>
-            <FInputContainer>
-              <FInput
-                id="username"
-                value={username}
-                onChange={onChange}
-                newSize={true}
-                autoFocus={false}
-                prepend
-                prependName="person-outline"
-              />
-            </FInputContainer>
-            <div>
-              <FButton
-                disabled={isPseudoModifyDisabled}
-                type="validate-light"
-                name="checkmark-outline"
-                className="ml-8"
-                onClick={onPseudoModificationValidate}
-                testID="test-save-pseudo"
-              >
-                {props.t("UserProfile.Enregistrer", "Enregistrer")}
-              </FButton>
-            </div>
-          </RowContainer>
-          <DescriptionText>
-            {props.t(
-              "UserProfile.pseudoExplication",
-              "Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer."
+          <div>
+            <Title>
+              {props.t("UserProfile.votre pseudo", "Votre pseudonyme")}
+            </Title>
+            <RowContainer>
+              <FInputContainer>
+                <FInput
+                  id="username"
+                  value={username}
+                  onChange={onChange}
+                  newSize={true}
+                  autoFocus={false}
+                  prepend
+                  prependName="person-outline"
+                />
+              </FInputContainer>
+              <div>
+                <FButton
+                  disabled={isPseudoModifyDisabled}
+                  type="validate-light"
+                  name="save-outline"
+                  className="ml-8"
+                  onClick={onPseudoModificationValidate}
+                  testID="test-save-pseudo"
+                >
+                  {props.t("UserProfile.Enregistrer", "Enregistrer")}
+                </FButton>
+              </div>
+            </RowContainer>
+            <DescriptionText>
+              {props.t(
+                "UserProfile.pseudoExplication",
+                "Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer."
+              )}
+            </DescriptionText>
+          </div>
+          <div>
+            <Title marginTop={24}>
+              {props.t("Register.Votre email", "Votre email")}
+            </Title>
+            <RowContainer>
+              <FInputContainer>
+                <FInput
+                  id="email"
+                  value={email}
+                  onChange={onChange}
+                  newSize={true}
+                  autoFocus={false}
+                  prepend
+                  prependName="email-outline"
+                  placeholder={props.t(
+                    "Register.Renseignez votre adresse email",
+                    "Renseignez votre adresse email"
+                  )}
+                />
+              </FInputContainer>
+              <div>
+                <FButton
+                  disabled={isEmailModifyDisabled}
+                  type="validate-light"
+                  name="save-outline"
+                  className="ml-8"
+                  onClick={onEmailModificationValidate}
+                  testID="test-save-email"
+                >
+                  {props.t("UserProfile.Enregistrer", "Enregistrer")}
+                </FButton>
+              </div>
+            </RowContainer>
+            {notEmailError && (
+              <ErrorMessageContainer>
+                {`${props.t("Register.Ceci n'est pas un email,")} ${props.t("Register.vérifiez l'orthographe")}`}
+              </ErrorMessageContainer>
             )}
-          </DescriptionText>
-          <Title marginTop={"24px"}>
-            {props.t("Register.Votre email", "Votre email")}
-          </Title>
-          <RowContainer>
-            <FInputContainer>
-              <FInput
-                id="email"
-                value={email}
-                onChange={onChange}
-                newSize={true}
-                autoFocus={false}
-                prepend
-                prependName="email-outline"
-                placeholder={props.t(
-                  "Register.Renseignez votre adresse email",
-                  "Renseignez votre adresse email"
+            <DescriptionText>
+              {props.t(
+                "UserProfile.emailExplication",
+                "Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site."
+              )}
+            </DescriptionText>
+          </div>
+          {showPhone &&
+            <div>
+              <Title marginTop={24}>
+                {props.t("Register.Votre numéro de téléphone", "Votre numéro de téléphone")}
+              </Title>
+              <RowContainer>
+                <FInputContainer>
+                  <FInput
+                    id="phone"
+                    inputClassName="phone-user-input"
+                    value={phone}
+                    onChange={onChange}
+                    newSize={true}
+                    autoFocus={false}
+                    prepend
+                    prependName="smartphone-outline"
+                    error={!user.phone && !phone}
+                    placeholder={(!user.phone && !phone) ?
+                      props.t(
+                        "Register.Aucun numéro de téléphone",
+                        "Aucun numéro de téléphone")
+                      : props.t(
+                        "Register.Renseignez votre numéro de téléphone",
+                        "Renseignez votre numéro de téléphone")
+                    }
+                  />
+                </FInputContainer>
+                <div>
+                  <FButton
+                    disabled={isPhoneModifyDisabled}
+                    type="validate-light"
+                    name="save-outline"
+                    className="ml-8"
+                    onClick={onPhoneModificationValidate}
+                    testID="test-save-phone"
+                  >
+                    {props.t("UserProfile.Enregistrer", "Enregistrer")}
+                  </FButton>
+                </div>
+              </RowContainer>
+              {notPhoneError && (
+                <ErrorMessageContainer>
+                  {props.t("Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie")}
+                </ErrorMessageContainer>
+              )}
+              <DescriptionText>
+                {props.t(
+                  "UserProfile.phoneExplication",
+                  "Si vous modifiez votre numéro de téléphone, un code de confirmation vous sera demandé pour mettre à jour la double authentification."
                 )}
-              />
-            </FInputContainer>
-            <div>
-              <FButton
-                disabled={isEmailModifyDisabled}
-                type="validate-light"
-                name="checkmark-outline"
-                className="ml-8"
-                onClick={onEmailModificationValidate}
-                testID="test-save-email"
-              >
-                {props.t("UserProfile.Enregistrer", "Enregistrer")}
-              </FButton>
+              </DescriptionText>
             </div>
-          </RowContainer>
-          {notEmailError && (
-            <ErrorMessageContainer>
-              Ceci n'est pas un email, vérifiez l'orthographe.
-            </ErrorMessageContainer>
-          )}
-          <DescriptionText>
-            {props.t(
-              "UserProfile.emailExplication",
-              "Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site."
-            )}
-          </DescriptionText>
-          <Title marginTop={"24px"}>
+          }
+          <Title marginTop={24}>
             {props.t("UserProfile.Votre mot de passe", "Votre mot de passe")}
           </Title>
           {!isModifyPasswordOpen && (
@@ -480,7 +578,7 @@ export const UserProfileComponent = (props: Props) => {
                   <FButton
                     disabled={true}
                     type="validate-light"
-                    name="checkmark-outline"
+                    name="save-outline"
                     className="mt-8"
                     onClick={modifyPassword}
                   >
@@ -490,7 +588,7 @@ export const UserProfileComponent = (props: Props) => {
                   <FButton
                     disabled={newPasswordScore < 1 || !currentPassword}
                     type="validate-light"
-                    name="checkmark-outline"
+                    name="save-outline"
                     onClick={modifyPassword}
                     testID="test-save-password"
                   >
