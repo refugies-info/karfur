@@ -4,30 +4,33 @@ import { updateUserInDB } from "./users.repository";
 import { proceedWithLogin } from "./users.service";
 import { Res } from "../../types/interface";
 import { loginExceptionsManager } from "../../workflows/users/login/login.exceptions.manager";
-const authy = require("authy")(process.env.ACCOUNT_SECURITY_API_KEY);
+const { accountSid, authToken } = process.env;
+const client = require("twilio")(accountSid, authToken);
+const twilioService = client.verify.services.create({ friendlyName: "Réfugiés.info" });
 
 const requestSMSAdminLogin = async (
-  authyId: string,
-  username: string,
+  phone: string,
+  service: any,
   res: Res
 ) => {
-  authy.request_sms(authyId, true, function (err_sms: Error) {
-    if (err_sms) {
+  try {
+    await client.verify.services(service.sid)
+      .verifications
+      .create({ to: `+33${phone}`, channel: "sms" })
+    } catch (e) {
       logger.error("[Login] error while sending sms for admin", {
-        username,
-        error: err_sms,
+        phone,
+        error: e,
       });
       return loginExceptionsManager(
         new Error("ERROR_WHILE_SENDING_ADMIN_CODE"),
         res
       );
     }
-
     logger.info("[Login] admin, sms successfully sent to user", {
-      username,
+      phone,
     });
     return loginExceptionsManager(new Error("NO_CODE_SUPPLIED"), res);
-  });
 };
 
 export const adminLogin = async (
@@ -46,44 +49,51 @@ export const adminLogin = async (
     username,
   });
 
-  // user already authy_id and code provided --> check code
-  if (userFromDB.authy_id && userFromRequest.code) {
+  const service = await twilioService;
+
+  // code provided --> check code
+  const phone = userFromDB.phone || userFromRequest.phone;
+  if (phone && userFromRequest.code) {
     logger.info("[Login] admin user with a code provided", {
       username,
     });
 
-    // code provided : check if code is correct
-    return authy.verify(userFromDB.authy_id, userFromRequest.code, function (
-      err: Error,
-      result: any
-    ) {
-      if (err || !result) {
-        logger.error("[Login] error while verifying admin code", {
-          username,
-        });
-        return loginExceptionsManager(new Error("WRONG_ADMIN_CODE"), res);
-      }
+    const check = await client.verify.services(service.sid)
+      .verificationChecks
+      .create({to: `+33${phone}`, code: userFromRequest.code})
 
-      logger.info("[Login] admin user, code provided is correct", {
+    if (check.status !== "approved") {
+      logger.error("[Login] error while verifying admin code", {
         username,
       });
-      proceedWithLogin(userFromDB);
-      return res.status(200).json({
-        // @ts-ignore
-        token: userFromDB.getToken(),
-        text: "Authentification réussi",
+      return loginExceptionsManager(new Error("WRONG_ADMIN_CODE"), res);
+    }
+    logger.info("[Login] admin user, code provided is correct", {
+      username,
+    });
+
+    if (!userFromDB.phone) { // if no phone saved, save it
+      updateUserInDB(userFromDB._id, {
+        phone: userFromRequest.phone
       });
+    }
+
+    proceedWithLogin(userFromDB);
+    return res.status(200).json({
+      // @ts-ignore
+      token: userFromDB.getToken(),
+      text: "Authentification réussi",
     });
   }
 
-  // user already authy_id and no code provided --> send sms
-  if (userFromDB.authy_id) {
+  // user already phone and no code provided --> send sms
+  if (userFromDB.phone) {
     logger.info("[Login] admin user without a code provided", {
       username,
     });
 
     // no code provided : send sms with code
-    return requestSMSAdminLogin(userFromDB.authy_id, username, res);
+    return requestSMSAdminLogin(userFromDB.phone, service, res);
   }
 
   // user not already admin
@@ -92,31 +102,11 @@ export const adminLogin = async (
       username,
     });
     // creation of admin user
-    return authy.register_user(
-      userFromRequest.email,
-      userFromRequest.phone,
-      "33",
-      function (err: Error, result: { user: { id: string } }) {
-        if (err) {
-          logger.error(
-            "[Login] error while creating a new admin account for user",
-            { username }
-          );
-          return loginExceptionsManager(
-            new Error("ERROR_AUTHY_ACCOUNT_CREATION"),
-            res
-          );
-        }
-        const authyId = result.user.id;
-        updateUserInDB(userFromDB._id, {
-          authy_id: authyId,
-          phone: userFromRequest.phone,
-          email: userFromRequest.email,
-        });
-        return requestSMSAdminLogin(authyId, username, res);
-      }
-    );
+    updateUserInDB(userFromDB._id, {
+      email: userFromRequest.email,
+    });
+    return requestSMSAdminLogin(userFromRequest.phone, service, res);
   }
 
-  throw new Error("NO_AUTHY_ID");
+  throw new Error("NO_CONTACT");
 };

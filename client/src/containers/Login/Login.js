@@ -630,7 +630,7 @@ const PhoneAndEmailFields = (props) => (
       value={props.phone}
       {...props}
       id="phone"
-      type="phone"
+      type="tel"
       placeholder={props.t("Login.Entrez votre numéro", "Entrez votre numéro")}
       newSize
     />
