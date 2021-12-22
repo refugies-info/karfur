@@ -9,6 +9,7 @@ import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { Props } from "./UserProfile.container";
 import FInput from "../../../components/FigmaUI/FInput/FInput";
 import { PasswordField } from "./components/PasswordField";
+import { CodePhoneValidationModal } from "../../../components/Modals/CodePhoneValidationModal/CodePhoneValidationModal";
 import { computePasswordStrengthScore } from "../../../lib";
 import API from "../../../utils/API";
 import Swal from "sweetalert2";
@@ -112,6 +113,7 @@ export const UserProfileComponent = (props: Props) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState<string | undefined>("");
   const [phone, setPhone] = useState<string | undefined>("");
+  const [code, setCode] = useState<string>("");
   const [isModifyPasswordOpen, setIsModifyPasswordOpen] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -263,29 +265,46 @@ export const UserProfileComponent = (props: Props) => {
       setNotEmailError(true);
     }
   };
-  const onPhoneModificationValidate = () => {
-    const regex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
-    const isPhone = phone ? !!phone.match(regex) : false;
-    if (isPhone) {
-      if (!user) return;
-      dispatch(
-        saveUserActionCreator({
-          user: { phone, _id: user._id },
-          type: "modify-my-details",
-        })
-      );
 
-      Swal.fire({
-        title: "Yay...",
-        text: "Votre numéro de téléphone a bien été modifié",
-        type: "success",
-        timer: 1500,
-      });
-      setIsPhoneModifyDisabled(true);
-    } else {
+  const [codePhoneModalVisible, setCodePhoneModalVisible] = useState(false);
+  // show modal to validate phone
+  const onPhoneModificationValidate = () => {
+    const regex = /^(?:0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+    const isPhone = phone ? !!phone.match(regex) : false;
+    if (!isPhone) {
       setNotPhoneError(true);
+      return;
     }
+    setNotPhoneError(false);
+    if (!user) return;
+    API.updateUser({ // will return a 501 and send SMS code
+      query: {
+        user: { phone, _id: user._id },
+        action: "modify-my-details",
+      }
+    }).catch(() => setCodePhoneModalVisible(true));
   };
+
+  // submit verification code
+  const onSubmitCode = () => {
+    if (!user) return;
+    dispatch(
+      saveUserActionCreator({
+        user: { phone, code, _id: user._id },
+        type: "modify-my-details",
+      })
+    );
+    setCodePhoneModalVisible(false);
+    setCode("");
+    setIsPhoneModifyDisabled(true);
+
+    Swal.fire({
+      title: "Yay...",
+      text: "Votre numéro de téléphone a bien été modifié",
+      type: "success",
+      timer: 1500,
+    });
+  }
 
   const onPseudoModificationValidate = async () => {
     if (!user) return;
@@ -600,6 +619,13 @@ export const UserProfileComponent = (props: Props) => {
           )}
         </ProfileContainer>
       </MainContainer>
+      <CodePhoneValidationModal
+        visible={codePhoneModalVisible}
+        onValidate={onSubmitCode}
+        t={props.t}
+        code={code}
+        onChange={(e: Event) => setCode(e.target.value)}
+      ></CodePhoneValidationModal>
     </div>
   );
 };

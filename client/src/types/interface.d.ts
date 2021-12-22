@@ -99,6 +99,7 @@ export interface User {
   username: string;
   email?: string;
   phone?: string;
+  code?: string;
   description?: string;
   objectifTemps?: number;
   objectifMots?: number;
