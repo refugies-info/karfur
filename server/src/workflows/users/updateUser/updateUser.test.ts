@@ -6,6 +6,7 @@ import {
   updateUserInDB,
 } from "../../../modules/users/users.repository";
 import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
+// import { requestSMSAdminLogin, verifyCode } from "../../../modules/users/adminLogin";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -26,7 +27,10 @@ jest.mock("../../../modules/users/users.repository", () => ({
 jest.mock("../../../modules/mail/mail.service", () => ({
   sendResetPhoneNumberMail: jest.fn(),
 }));
-
+jest.mock("../../../modules/users/adminLogin", () => ({
+  requestSMSAdminLogin: jest.fn(),
+  verifyCode: jest.fn(),
+}));
 
 describe("updateUser", () => {
   beforeEach(() => {

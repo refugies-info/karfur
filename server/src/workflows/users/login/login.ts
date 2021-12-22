@@ -67,9 +67,7 @@ export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
             req.roles.find((x) => x.nom === "Admin")._id.toString()
       )
     ) {
-      // adminLogin is responsible to respond to the request
-      await adminLogin(req.body, user, res);
-      return;
+      await adminLogin(req.body, user);
     }
     await proceedWithLogin(user);
     return res.status(200).json({
