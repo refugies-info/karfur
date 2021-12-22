@@ -27,13 +27,9 @@ export const loginExceptionsManager = (error: Error, res: Res) => {
       return res.status(404).json({
         text: "Erreur à l'envoi du code à ce numéro",
       });
-    case "ERROR_AUTHY_ACCOUNT_CREATION":
-      return res.status(404).json({
-        text: "Erreur à la création du compte authy",
-      });
-    case "NO_AUTHY_ID":
+    case "NO_CONTACT":
       return res.status(502).json({
-        text: "no authy_id",
+        text: "no contact informations",
       });
     case "NO_CODE_SUPPLIED":
       return res.status(501).json({ text: "no code supplied" });

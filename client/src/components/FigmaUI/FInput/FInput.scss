@@ -41,6 +41,9 @@ $borderRadius: 12px;
     &.phone-input {
       max-width: 170px;
     }
+    &.phone-user-input.error::placeholder{
+      color: $error;
+    }
     &.has-prepend {
       padding-left: 45px;
 

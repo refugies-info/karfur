@@ -13,12 +13,18 @@ import {
 } from "../../../modules/users/users.repository";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
+import {
+  requestSMSAdminLogin,
+  verifyCode
+} from "../../../modules/users/adminLogin";
+import { loginExceptionsManager } from "../login/login.exceptions.manager";
 
 interface User {
   _id: ObjectId;
   roles: string[];
   email?: string;
   phone?: string;
+  code?: string;
   username?: string;
   picture?: Picture;
   selectedLanguages?: SelectedLanguage[];
@@ -98,6 +104,15 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
           } else {
             const newRoles = actualRoles.concat(traducteurRole._id);
             await updateUserInDB(user._id, { ...user, roles: newRoles });
+          }
+        } else if (user.phone) { // update phone number with 2FA
+          try {
+            if (!user.code) await requestSMSAdminLogin(user.phone);
+            await verifyCode(user.phone, user.code);
+            delete user.code;
+            await updateUserInDB(user._id, user);
+          } catch (e) {
+            return loginExceptionsManager(e, res);
           }
         } else {
           await updateUserInDB(user._id, user);

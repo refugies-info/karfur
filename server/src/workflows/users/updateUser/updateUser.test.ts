@@ -6,6 +6,7 @@ import {
   updateUserInDB,
 } from "../../../modules/users/users.repository";
 import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
+import { requestSMSAdminLogin, verifyCode } from "../../../modules/users/adminLogin";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -26,7 +27,10 @@ jest.mock("../../../modules/users/users.repository", () => ({
 jest.mock("../../../modules/mail/mail.service", () => ({
   sendResetPhoneNumberMail: jest.fn(),
 }));
-
+jest.mock("../../../modules/users/adminLogin", () => ({
+  requestSMSAdminLogin: jest.fn(),
+  verifyCode: jest.fn(),
+}));
 
 describe("updateUser", () => {
   beforeEach(() => {
@@ -192,6 +196,84 @@ describe("updateUser", () => {
     });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+
+  it("should return 501 if user himself and send SMS for phone verification", async () => {
+    requestSMSAdminLogin.mockImplementationOnce(() => { throw new Error("NO_CODE_SUPPLIED") });
+    await updateUser(
+      {
+        fromSite: true,
+        body: {
+          query: {
+            user: {
+              _id: "userId",
+              phone: "0600000000"
+            },
+            action: "modify-my-details",
+          },
+        },
+        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        userId: "userId",
+      },
+      res
+    );
+
+    expect(requestSMSAdminLogin).toHaveBeenCalledWith("0600000000");
+    expect(updateUserInDB).not.toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(501);
+  });
+  it("should return 200 if user himself and check code for phone verification", async () => {
+    verifyCode.mockResolvedValueOnce(true);
+    await updateUser(
+      {
+        fromSite: true,
+        body: {
+          query: {
+            user: {
+              _id: "userId",
+              phone: "0600000000",
+              code: "123456"
+            },
+            action: "modify-my-details",
+          },
+        },
+        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        userId: "userId",
+      },
+      res
+    );
+
+    expect(verifyCode).toHaveBeenCalledWith("0600000000", "123456");
+    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
+      _id: "userId",
+      phone: "0600000000"
+    });
+    expect(res.status).toHaveBeenCalledWith(200);
+  });
+  it("should return 402 if user himself and check code fails for phone verification", async () => {
+    verifyCode.mockImplementationOnce(() => { throw new Error("WRONG_ADMIN_CODE") });
+    await updateUser(
+      {
+        fromSite: true,
+        body: {
+          query: {
+            user: {
+              _id: "userId",
+              phone: "0600000000",
+              code: "123456"
+            },
+            action: "modify-my-details",
+          },
+        },
+        user: { roles: [{ nom: "Admin" }], _id: "userId" },
+        userId: "userId",
+      },
+      res
+    );
+
+    expect(verifyCode).toHaveBeenCalledWith("0600000000", "123456");
+    expect(updateUserInDB).not.toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(402);
   });
 
   it("should return 200 when modify, case new roles admin, actual role Expert admin autre null", async () => {

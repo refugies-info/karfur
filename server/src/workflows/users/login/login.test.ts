@@ -142,11 +142,10 @@ describe("login", () => {
       {
         authenticate,
         roles: ["id_admin"],
-      },
-      res
+      }
     );
-    expect(proceedWithLogin).not.toHaveBeenCalled();
-    expect(res.status).not.toHaveBeenCalled();
+    expect(proceedWithLogin).toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(200);
   });
 
   it("should call proceedWithLogin if user is not admin", async () => {
