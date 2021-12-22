@@ -6,7 +6,7 @@ import {
   updateUserInDB,
 } from "../../../modules/users/users.repository";
 import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
-import { requestSMSAdminLogin, verifyCode } from "../../../modules/users/adminLogin";
+import { requestSMSlogin2FA, verifyCode } from "../../../modules/users/login2FA";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -27,8 +27,8 @@ jest.mock("../../../modules/users/users.repository", () => ({
 jest.mock("../../../modules/mail/mail.service", () => ({
   sendResetPhoneNumberMail: jest.fn(),
 }));
-jest.mock("../../../modules/users/adminLogin", () => ({
-  requestSMSAdminLogin: jest.fn(),
+jest.mock("../../../modules/users/login2FA", () => ({
+  requestSMSlogin2FA: jest.fn(),
   verifyCode: jest.fn(),
 }));
 
@@ -199,7 +199,7 @@ describe("updateUser", () => {
   });
 
   it("should return 501 if user himself and send SMS for phone verification", async () => {
-    requestSMSAdminLogin.mockImplementationOnce(() => { throw new Error("NO_CODE_SUPPLIED") });
+    requestSMSlogin2FA.mockImplementationOnce(() => { throw new Error("NO_CODE_SUPPLIED") });
     await updateUser(
       {
         fromSite: true,
@@ -218,7 +218,7 @@ describe("updateUser", () => {
       res
     );
 
-    expect(requestSMSAdminLogin).toHaveBeenCalledWith("0600000000");
+    expect(requestSMSlogin2FA).toHaveBeenCalledWith("0600000000");
     expect(updateUserInDB).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(501);
   });

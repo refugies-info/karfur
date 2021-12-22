@@ -3,7 +3,7 @@ import { login } from "./login";
 import { getUserByUsernameFromDB } from "../../../modules/users/users.repository";
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import { register } from "../../../modules/users/register";
-import { adminLogin } from "../../../modules/users/adminLogin";
+import { login2FA } from "../../../modules/users/login2FA";
 import { proceedWithLogin } from "../../../modules/users/users.service";
 
 jest.mock("../../../modules/users/users.repository", () => ({
@@ -16,12 +16,17 @@ jest.mock("../../../controllers/role/role.repository", () => ({
 jest.mock("../../../modules/users/register", () => ({
   register: jest.fn(),
 }));
-jest.mock("../../../modules/users/adminLogin", () => ({
-  adminLogin: jest.fn(),
+jest.mock("../../../modules/users/login2FA", () => ({
+  login2FA: jest.fn(),
 }));
 jest.mock("../../../modules/users/users.service", () => ({
   proceedWithLogin: jest.fn(),
 }));
+
+const reqRoles = [
+  { nom: "Admin", _id: "id_admin" },
+  { nom: "hasStructure", _id: "has_structure" }
+];
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -78,7 +83,7 @@ describe("login", () => {
       { password: "password", username: "test" },
       userRole
     );
-    expect(adminLogin).not.toHaveBeenCalled();
+    expect(login2FA).not.toHaveBeenCalled();
     expect(proceedWithLogin).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
@@ -99,7 +104,7 @@ describe("login", () => {
       { password: "password", username: "test" },
       userRole
     );
-    expect(adminLogin).not.toHaveBeenCalled();
+    expect(login2FA).not.toHaveBeenCalled();
     expect(proceedWithLogin).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
@@ -116,7 +121,7 @@ describe("login", () => {
     expect(getUserByUsernameFromDB).toHaveBeenCalledWith("test");
     expect(getRoleByName).not.toHaveBeenCalled();
     expect(register).not.toHaveBeenCalled();
-    expect(adminLogin).not.toHaveBeenCalled();
+    expect(login2FA).not.toHaveBeenCalled();
     expect(proceedWithLogin).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({
@@ -125,23 +130,46 @@ describe("login", () => {
     });
   });
 
-  it("should call adminLogin if user is admin", async () => {
+  it("should call login2FA if user is admin", async () => {
     const authenticate = () => true;
     getUserByUsernameFromDB.mockResolvedValueOnce({
       authenticate,
       roles: ["id_admin"],
     });
 
-    await login({ ...req, roles: [{ nom: "Admin", _id: "id_admin" }] }, res);
+    await login({ ...req, roles: reqRoles }, res);
 
     expect(getUserByUsernameFromDB).toHaveBeenCalledWith("test");
     expect(getRoleByName).not.toHaveBeenCalled();
     expect(register).not.toHaveBeenCalled();
-    expect(adminLogin).toHaveBeenCalledWith(
+    expect(login2FA).toHaveBeenCalledWith(
       { password: "password", username: "test" },
       {
         authenticate,
         roles: ["id_admin"],
+      }
+    );
+    expect(proceedWithLogin).toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(200);
+  });
+
+  it("should call login2FA if user has structure", async () => {
+    const authenticate = () => true;
+    getUserByUsernameFromDB.mockResolvedValueOnce({
+      authenticate,
+      roles: ["has_structure"],
+    });
+
+    await login({ ...req, roles: reqRoles }, res);
+
+    expect(getUserByUsernameFromDB).toHaveBeenCalledWith("test");
+    expect(getRoleByName).not.toHaveBeenCalled();
+    expect(register).not.toHaveBeenCalled();
+    expect(login2FA).toHaveBeenCalledWith(
+      { password: "password", username: "test" },
+      {
+        authenticate,
+        roles: ["has_structure"],
       }
     );
     expect(proceedWithLogin).toHaveBeenCalled();
@@ -157,12 +185,12 @@ describe("login", () => {
     };
     getUserByUsernameFromDB.mockResolvedValueOnce(user);
 
-    await login({ ...req, roles: [{ nom: "Admin", _id: "id_admin" }] }, res);
+    await login({ ...req, roles: reqRoles }, res);
 
     expect(getUserByUsernameFromDB).toHaveBeenCalledWith("test");
     expect(getRoleByName).not.toHaveBeenCalled();
     expect(register).not.toHaveBeenCalled();
-    expect(adminLogin).not.toHaveBeenCalled();
+    expect(login2FA).not.toHaveBeenCalled();
     expect(proceedWithLogin).toHaveBeenCalledWith(user);
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
@@ -177,12 +205,12 @@ describe("login", () => {
     };
     getUserByUsernameFromDB.mockResolvedValueOnce(user);
 
-    await login({ ...req, roles: [{ nom: "Admin", _id: "id_admin" }] }, res);
+    await login({ ...req, roles: reqRoles }, res);
 
     expect(getUserByUsernameFromDB).toHaveBeenCalledWith("test");
     expect(getRoleByName).not.toHaveBeenCalled();
     expect(register).not.toHaveBeenCalled();
-    expect(adminLogin).not.toHaveBeenCalled();
+    expect(login2FA).not.toHaveBeenCalled();
     expect(proceedWithLogin).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(405);
     expect(res.json).toHaveBeenCalledWith({

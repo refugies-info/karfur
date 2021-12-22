@@ -4,7 +4,7 @@ import { getUserByUsernameFromDB } from "../../../modules/users/users.repository
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import { register } from "../../../modules/users/register";
-import { adminLogin } from "../../../modules/users/adminLogin";
+import { login2FA } from "../../../modules/users/login2FA";
 import { proceedWithLogin } from "../../../modules/users/users.service";
 import { loginExceptionsManager } from "./login.exceptions.manager";
 
@@ -59,15 +59,16 @@ export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
     });
 
     // check if user is admin
+    const adminRoleId = req.roles.find((x) => x.nom === "Admin")._id.toString();
+    const hasStructureRoleId = req.roles.find((x) => x.nom === "hasStructure")._id.toString();
     if (
       (user.roles || []).some(
-        (x) =>
-          x &&
-          x.toString() ===
-            req.roles.find((x) => x.nom === "Admin")._id.toString()
+        (x) => x &&
+          (x.toString() === adminRoleId ||
+            x.toString() === hasStructureRoleId)
       )
     ) {
-      await adminLogin(req.body, user);
+      await login2FA(req.body, user);
     }
     await proceedWithLogin(user);
     return res.status(200).json({

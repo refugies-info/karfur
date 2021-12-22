@@ -5,7 +5,7 @@ const { accountSid, authToken } = process.env;
 const client = require("twilio")(accountSid, authToken);
 const twilioService = client.verify.services.create({ friendlyName: "Réfugiés.info" });
 
-export const requestSMSAdminLogin = async (
+export const requestSMSLogin = async (
   phone: string
 ) => {
   try {
@@ -13,13 +13,13 @@ export const requestSMSAdminLogin = async (
     await client.verify.services(service.sid)
       .verifications.create({ to: `+33${phone}`, channel: "sms" })
   } catch (e) {
-    logger.error("[Login] error while sending sms for admin", {
+    logger.error("[Login] error while sending sms for", {
       phone,
       error: e,
     });
-    throw new Error("ERROR_WHILE_SENDING_ADMIN_CODE")
+    throw new Error("ERROR_WHILE_SENDING_CODE")
   }
-  logger.info("[Login] admin, sms successfully sent to user", {
+  logger.info("[Login], sms successfully sent to user", {
     phone,
   });
   throw new Error("NO_CODE_SUPPLIED");
@@ -36,18 +36,18 @@ export const verifyCode = async(
   const codeOK = check.status === "approved";
 
   if (!codeOK) {
-    logger.error("[Login] error while verifying admin code", {
+    logger.error("[Login] error while verifying code", {
       phone,
     });
-    throw new Error("WRONG_ADMIN_CODE");
+    throw new Error("WRONG_CODE");
   }
-  logger.info("[Login] admin user, code provided is correct", {
+  logger.info("[Login] user, code provided is correct", {
     phone,
   });
   return true;
 }
 
-export const adminLogin = async (
+export const login2FA = async (
   userFromRequest: {
     username: string;
     password: string;
@@ -58,14 +58,14 @@ export const adminLogin = async (
   userFromDB: UserDoc
 ) => {
     const username = userFromRequest.username;
-    logger.info("[Login] admin user", {
+    logger.info("[Login] 2FA user", {
       username,
     });
 
     // CASE 1: has phone and code --> check code
     const phone = userFromDB.phone || userFromRequest.phone;
     if (phone && userFromRequest.code) {
-      logger.info("[Login] admin user with a code provided", {
+      logger.info("[Login] 2FA user with a code provided", {
         username,
       });
 
@@ -81,24 +81,24 @@ export const adminLogin = async (
 
     // CASE 2: has phone and no code --> send sms
     if (userFromDB.phone) {
-      logger.info("[Login] admin user without a code provided", {
+      logger.info("[Login] 2FA user without a code provided", {
         username,
       });
 
       // no code provided : send sms with code
-      return requestSMSAdminLogin(userFromDB.phone);
+      return requestSMSLogin(userFromDB.phone);
     }
 
-    // CASE 3: user not already admin
+    // CASE 3: user has not already activated 2FA
     if (userFromRequest.email && userFromRequest.phone) {
-      logger.info("[Login] new admin user", {
+      logger.info("[Login] new 2FA user", {
         username,
       });
-      // creation of admin user
+      // creation of user
       updateUserInDB(userFromDB._id, {
         email: userFromRequest.email,
       });
-      return requestSMSAdminLogin(userFromRequest.phone);
+      return requestSMSLogin(userFromRequest.phone);
     }
 
     // CASE 4: missing contact infos

@@ -14,9 +14,9 @@ import {
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
 import {
-  requestSMSAdminLogin,
+  requestSMSLogin,
   verifyCode
-} from "../../../modules/users/adminLogin";
+} from "../../../modules/users/login2FA";
 import { loginExceptionsManager } from "../login/login.exceptions.manager";
 
 interface User {
@@ -107,7 +107,7 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
           }
         } else if (user.phone) { // update phone number with 2FA
           try {
-            if (!user.code) await requestSMSAdminLogin(user.phone);
+            if (!user.code) await requestSMSLogin(user.phone);
             await verifyCode(user.phone, user.code);
             delete user.code;
             await updateUserInDB(user._id, user);
