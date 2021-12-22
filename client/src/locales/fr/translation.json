@@ -178,7 +178,10 @@
     "phoneExplication": "Si vous modifiez votre numéro de téléphone, un code de confirmation vous sera demandé pour mettre à jour la double authentification.",
     "Votre mot de passe": "Votre mot de passe",
     "modifyPassword": "Modifier mon mot de passe",
-    "Enregistrer": "Enregistrer"
+    "Enregistrer": "Enregistrer",
+    "edit_phone_number": "Modification du numéro de téléphone",
+    "edit_phone_number_subtitle": "Un code vous a été envoyé par SMS au numéro {{phone}} :",
+    "edit_phone_number_wrong_code": "Oops ! Ce code n'est pas le bon. Réessayez ?"
   },
   "UserFavorites": {
     "fiche sauvegardée": "fiche sauvegardée.",

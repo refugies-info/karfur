@@ -19,7 +19,7 @@ import {
   saveUserActionCreator,
   fetchUserActionCreator,
 } from "../../../services/User/user.actions";
-import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
+import { isLoadingSelector, errorSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { UserProfileLoading } from "./components/UserProfileLoading";
 import { colors } from "../../../colors";
@@ -131,11 +131,12 @@ export const UserProfileComponent = (props: Props) => {
   const isLoadingSave = useSelector(
     isLoadingSelector(LoadingStatusKey.SAVE_USER)
   );
+  const errorSave = useSelector(
+    errorSelector(LoadingStatusKey.SAVE_USER)
+  );
   const isLoadingFetch = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_USER)
   );
-
-  const isLoading = isLoadingSave || isLoadingFetch;
 
   const openModifyPassword = () => setIsModifyPasswordOpen(true);
   const toggleNewPasswordVisibility = () =>
@@ -294,17 +295,23 @@ export const UserProfileComponent = (props: Props) => {
         type: "modify-my-details",
       })
     );
-    setCodePhoneModalVisible(false);
-    setCode("");
-    setIsPhoneModifyDisabled(true);
-
-    Swal.fire({
-      title: "Yay...",
-      text: "Votre numéro de téléphone a bien été modifié",
-      type: "success",
-      timer: 1500,
-    });
   }
+
+  useEffect(() => {
+    const phoneCodeValid = !isLoadingSave && !errorSave && codePhoneModalVisible;
+    if (phoneCodeValid) {
+      setCodePhoneModalVisible(false);
+      setCode("");
+      setIsPhoneModifyDisabled(true);
+
+      Swal.fire({
+        title: "Yay...",
+        text: "Votre numéro de téléphone a bien été modifié",
+        type: "success",
+        timer: 1500,
+      });
+    }
+  }, [isLoadingSave])
 
   const onPseudoModificationValidate = async () => {
     if (!user) return;
@@ -343,7 +350,7 @@ export const UserProfileComponent = (props: Props) => {
     setPhone(user ? user.phone : "");
     window.scrollTo(0, 0);
   }, [user]);
-  if (isLoading)
+  if (isLoadingFetch)
     return (
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
         <Navigation selected="profil" />
@@ -622,8 +629,12 @@ export const UserProfileComponent = (props: Props) => {
       <CodePhoneValidationModal
         visible={codePhoneModalVisible}
         onValidate={onSubmitCode}
+        isLoading={isLoadingSave}
         t={props.t}
         code={code}
+        error={errorSave}
+        phone={phone || ""}
+        toggle={() => setCodePhoneModalVisible(false)}
         onChange={(e: Event) => setCode(e.target.value)}
       ></CodePhoneValidationModal>
     </div>
