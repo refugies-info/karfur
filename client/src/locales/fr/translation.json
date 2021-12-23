@@ -406,7 +406,7 @@
     "Réinitialisation du mot de passe": "Un lien de réinitialisation a été envoyé",
     "Réinitialisation texte": "Vous n'avez rien reçu ? Avez-vous vérifié dans vos spams ?",
     "Double authentification": "Double authentification",
-    "Un code vous a été envoyé par sms sur votre mobile.": "Un code vous a été envoyé par sms sur votre mobile.",
+    "code_sent_sms": "Un code vous a été envoyé par sms sur votre mobile au numéro {{phone}}.",
     "Entrez votre code": "Entrez votre code",
     "Renvoyer le code": "Renvoyer le code",
     "Le code saisi n'est pas le bon.": "Le code saisi n'est pas le bon.",
@@ -417,7 +417,15 @@
     "Entrez votre numéro": "Entrez votre numéro",
     "Pas email": "Il n'y a pas d'email associé à ce pseudonyme.",
     "Choisissez un pseudonyme": "Choisissez un pseudonyme",
-    "user supprimé": "Ce compte a été supprimé."
+    "user supprimé": "Ce compte a été supprimé.",
+    "new_has_structure": "Nouveau responsable de structure ! 🎉",
+    "new_has_structure_subtitle": "Vous avez été nommé « responsable de structure » pour la structure : ",
+    "2fa_mandatory_subtitle": "La double authenfication est requise pour des raisons de sécurité :",
+    "email_up_to_date_label": "Vérifiez votre adresse email, est-elle à jour ?",
+    "enter_phone_label": "Entrez votre numéro de téléphone mobile pour recevoir le code d’identification",
+    "no_code_received": "Vous n'avez pas reçu le code à ce numéro ?",
+    "phone_number_outdated": "Le numéro n’est plus valable ?",
+    "contact_admin_edit_number": "Contactez un administrateur pour le modifier."
   },
   "Reset": {
     "Entrez votre nouveau mot de passe": "Entrez votre nouveau mot de passe",

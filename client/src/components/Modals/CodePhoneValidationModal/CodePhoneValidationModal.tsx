@@ -58,7 +58,7 @@ export const CodePhoneValidationModal = (props: Props) => {
           prependName="lock-outline"
           id="code"
           type="number"
-          error={!props.error}
+          error={props.error}
           placeholder={props.t("Login.Entrez votre code", "Entrez votre code")}
           newSize
           disabled={props.isLoading}
@@ -82,7 +82,7 @@ export const CodePhoneValidationModal = (props: Props) => {
             type="validate"
             name="checkmark-outline"
             onClick={props.onValidate}
-            disabled={props.isLoading}
+            disabled={props.isLoading || !props.code}
           >
             {props.t("Valider")}
           </FButton>

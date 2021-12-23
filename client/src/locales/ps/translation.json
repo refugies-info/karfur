@@ -401,7 +401,7 @@
     "Réinitialisation du mot de passe": "د دوباره تعیین او تنظیم لپاره یو لینک لیږل شوی",
     "Réinitialisation texte": "تاسو ته هیڅ نه دې رسیدلي؟ ایا تاسو په سپم ایمیلونو کې کتلې دي؟",
     "Double authentification": "دوه ځلې تصدیق",
-    "Un code vous a été envoyé par sms sur votre mobile.": "یو کوډ ستاسوموبایل ته د (sms) له لارې لیږل شوی دی",
+    "code_sent_sms": "یو کوډ ستاسوموبایل ته د (sms) له لارې لیږل شوی دی",
     "Entrez votre code": "خپل کوډ داخل کړئ",
     "Renvoyer le code": "کوډ دوباره راولیږئ",
     "Le code saisi n'est pas le bon.": "ورکړل شوی کوډ سم نه دی",

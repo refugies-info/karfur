@@ -401,7 +401,7 @@
     "Réinitialisation du mot de passe": "لینک (پیوند) تنظیم مجدد ارسال شده است",
     "Réinitialisation texte": "چیزی دریافت نکردید؟ آیا ایمیل های هرزنامه (spams) خود را بررسی کرده اید؟",
     "Double authentification": "تصدیق هویت دوبار",
-    "Un code vous a été envoyé par sms sur votre mobile.": "کدی توسط پیامک (مسیج) از طریق تلفن همراه برای شما ارسال شده است.",
+    "code_sent_sms": "کدی توسط پیامک (مسیج) از طریق تلفن همراه برای شما ارسال شده است.",
     "Entrez votre code": "کد خود را وارد نمایید",
     "Renvoyer le code": "کد را دوباره بفرستید",
     "Le code saisi n'est pas le bon.": "کد وارد شده صحیح نیست.",
