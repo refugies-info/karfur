@@ -19,12 +19,13 @@ export interface SimplifiedUser {
   picture: Picture;
   status: string;
   _id: ObjectId;
-  created_at: Moment;
-  roles: string[];
+  created_at?: Moment;
+  roles?: string[];
   email: string;
-  langues: { langueCode: string; langueFr: string }[];
-  structures: SimplifiedStructure[];
-  nbStructures: number;
+  phone?: string;
+  langues?: { langueCode: string; langueFr: string }[];
+  structures?: SimplifiedStructure[];
+  nbStructures?: number;
   threeMonthsIndicator?: Indicator;
   sixMonthsIndicator?: Indicator;
   twelveMonthsIndicator?: Indicator;
@@ -98,6 +99,7 @@ export interface User {
   username: string;
   email?: string;
   phone?: string;
+  code?: string;
   description?: string;
   objectifTemps?: number;
   objectifMots?: number;

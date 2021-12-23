@@ -12,11 +12,19 @@ import {
   updateUserInDB,
 } from "../../../modules/users/users.repository";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
+import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
+import {
+  requestSMSLogin,
+  verifyCode
+} from "../../../modules/users/login2FA";
+import { loginExceptionsManager } from "../login/login.exceptions.manager";
 
 interface User {
   _id: ObjectId;
   roles: string[];
   email?: string;
+  phone?: string;
+  code?: string;
   username?: string;
   picture?: Picture;
   selectedLanguages?: SelectedLanguage[];
@@ -44,7 +52,7 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
       }
       const expertRole = await getRoleByName("ExpertTrad");
       const adminRole = await getRoleByName("Admin");
-      const userFromDB = await getUserById(user._id, { roles: 1 });
+      const userFromDB = await getUserById(user._id, { username: 1, phone: 1, roles: 1 });
       const actualRoles = userFromDB.roles;
 
       let newRoles = actualRoles.filter(
@@ -63,7 +71,11 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
         newRoles.push(expertRole._id);
       }
 
-      await updateUserInDB(user._id, { email: user.email, roles: newRoles });
+      await updateUserInDB(user._id, { email: user.email, phone: user.phone, roles: newRoles });
+
+      if (userFromDB.phone !== user.phone) { // if phone changed, send mail
+        await sendResetPhoneNumberMail(userFromDB.username, user.email);
+      }
     }
 
     if (action === "delete") {
@@ -92,6 +104,15 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
           } else {
             const newRoles = actualRoles.concat(traducteurRole._id);
             await updateUserInDB(user._id, { ...user, roles: newRoles });
+          }
+        } else if (user.phone) { // update phone number with 2FA
+          try {
+            if (!user.code) await requestSMSLogin(user.phone);
+            await verifyCode(user.phone, user.code);
+            delete user.code;
+            await updateUserInDB(user._id, user);
+          } catch (e) {
+            return loginExceptionsManager(e, res);
           }
         } else {
           await updateUserInDB(user._id, user);

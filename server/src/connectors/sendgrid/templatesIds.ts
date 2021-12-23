@@ -11,6 +11,7 @@ declare type templateIds = {
   publishedTradForTraductors: string;
   subscriptionReminderMail: string;
   resetPassword: string;
+  changePhoneNumber: string;
 };
 
 export const templatesIds: templateIds = {
@@ -26,4 +27,5 @@ export const templatesIds: templateIds = {
   publishedTradForTraductors: "d-f933396f06ac43c9aadfbcf41288fbb3",
   subscriptionReminderMail: "d-7b825e600f5c46ad9a1666e4431d2c97",
   resetPassword: "d-20ecb97414ef4545b036c382493be037",
+  changePhoneNumber: "d-98ca8ec76a8f495aac751d2a64a0300c",
 };

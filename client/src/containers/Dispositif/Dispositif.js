@@ -93,6 +93,7 @@ const InfoBoxLanguageContainer = styled.div`
   border-radius: 12px;
   padding: 16px;
   justify-content: space-between;
+  align-items: flex-start;
   margin: ${isMobile ? "16px" : "0px 20px 20px 40px"};
 `;
 
@@ -100,7 +101,8 @@ const TextOtherLanguageContainer = styled.p`
   display: flex;
   color: ${colors.grisFonce};
   font-size: 18px;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   align-items: center;
   margin: ${isMobile ? "auto" : "auto 40px"};
   padding: ${isMobile ? "16px" : 0};
@@ -2093,7 +2095,7 @@ export class Dispositif extends Component {
                   style={
                     isMobile
                       ? {}
-                      : { display: "flex", justifyContent: "flex-start" }
+                      : { display: "flex", justifyContent: "flex-start", flexWrap: "wrap" }
                   }
                 >
                   {disableEdit && this.state.dispositif.lastModificationDate && (
@@ -2129,7 +2131,7 @@ export class Dispositif extends Component {
                       {langueSelected && isMobile ? (
                         <FButton
                           type="white"
-                          className="ml-10"
+                          className="ml-10 mb-2"
                           onClick={this.toggleShowLanguageModal}
                         >
                           <i
@@ -2157,7 +2159,7 @@ export class Dispositif extends Component {
                             <FButton
                               key={index}
                               type="white"
-                              className="ml-10"
+                              className="ml-10 mb-2"
                               onClick={() => {
                                 initGA();
                                 Event(
