@@ -401,7 +401,7 @@
     "Réinitialisation du mot de passe": "Ссылка на восстановление была отправлена",
     "Réinitialisation texte": "Не получили письмо? Вы проверили папку СПАМ?",
     "Double authentification": "Двойная идентификация",
-    "Un code vous a été envoyé par sms sur votre mobile.": "Код был отправлен в SMS на указанный вами номер",
+    "code_sent_sms": "Код был отправлен в SMS на указанный вами номер",
     "Entrez votre code": "Введите код",
     "Renvoyer le code": "Отправить код снова",
     "Le code saisi n'est pas le bon.": "Введен неправильный код",

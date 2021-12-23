@@ -108,15 +108,24 @@ export const Footer = (props: Props) => {
     return (
       <>
         <S.FooterLinkContainer style={{ marginBottom: 8 }}>
-          Vous n'avez pas reçu le code à ce numéro ?
+            {props.t(
+              "Login.no_code_received",
+              "Vous n'avez pas reçu le code à ce numéro ?"
+            )}
           <button onClick={props.login} className="footer-link">
             {props.t("Login.Renvoyer le code", "Renvoyer le code")}
           </button>
         </S.FooterLinkContainer>
         <S.FooterLinkContainer style={{ marginTop: 0 }}>
-          Le numéro n’est plus valable ?
+          {props.t(
+            "Login.phone_number_outdated",
+            "Le numéro n’est plus valable ?"
+          )}
           <button onClick={contactSupportCallback} className="footer-link">
-            Contactez un administrateur pour le modifier.
+            {props.t(
+              "Login.contact_admin_edit_number",
+              "Contactez un administrateur pour le modifier."
+            )}
           </button>
         </S.FooterLinkContainer>
       </>

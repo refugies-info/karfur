@@ -174,6 +174,7 @@ export class Login extends Component {
 
   submitForm = (e) => {
     e.preventDefault();
+    this.setState({ wrongPasswordError: false });
 
     // validate pseudo
     if (this.state.step === 0) {
@@ -303,10 +304,7 @@ export class Login extends Component {
 
     if (this.state.step === 2) {
       return this.props.t(
-        "Login.Un code vous a été envoyé par sms sur votre mobile.",
-        "Un code vous a été envoyé par sms sur votre mobile.", {
-          phone: this.state.smsSentTo
-        }
+        "Login.code_sent_sms", { phone: this.state.smsSentTo }
       );
     }
   };
@@ -322,7 +320,7 @@ export class Login extends Component {
         />
       )
     } else if (this.state.step === 1) { // STEP 1: password or contact infos
-      if (this.state.newAdminWithoutPhoneOrEmail) {
+      if (this.state.newAdminWithoutPhoneOrEmail && !this.state.wrongPasswordError) {
         return (
           <PhoneAndEmailFields
             t={this.props.t}
@@ -333,7 +331,7 @@ export class Login extends Component {
           />
         )
       }
-      if (this.state.newHasStructureWithoutPhoneOrEmail) {
+      if (this.state.newHasStructureWithoutPhoneOrEmail && !this.state.wrongPasswordError) {
         return (
           <>
             <PhoneAndEmailFields
