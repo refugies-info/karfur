@@ -147,7 +147,8 @@ describe("login", () => {
       {
         authenticate,
         roles: ["id_admin"],
-      }
+      },
+      "admin"
     );
     expect(proceedWithLogin).toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
@@ -170,7 +171,8 @@ describe("login", () => {
       {
         authenticate,
         roles: ["has_structure"],
-      }
+      },
+      "hasStructure"
     );
     expect(proceedWithLogin).toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
