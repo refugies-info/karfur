@@ -1,6 +1,8 @@
 import logger from "../../logger";
 import { UserDoc } from "../../schema/schemaUser";
+import LoginError from "./LoginError";
 import { updateUserInDB } from "./users.repository";
+import { getStructureFromDB } from "../structure/structure.repository";
 const { accountSid, authToken } = process.env;
 const client = require("twilio")(accountSid, authToken);
 const twilioService = client.verify.services.create({ friendlyName: "Réfugiés.info" });
@@ -17,12 +19,12 @@ export const requestSMSLogin = async (
       phone,
       error: e,
     });
-    throw new Error("ERROR_WHILE_SENDING_CODE")
+    throw new LoginError("ERROR_WHILE_SENDING_CODE")
   }
   logger.info("[Login], sms successfully sent to user", {
     phone,
   });
-  throw new Error("NO_CODE_SUPPLIED");
+  throw new LoginError("NO_CODE_SUPPLIED", { phone: "XXXXXXXX"+phone.slice(-2) });
 };
 
 export const verifyCode = async(
@@ -39,7 +41,7 @@ export const verifyCode = async(
     logger.error("[Login] error while verifying code", {
       phone,
     });
-    throw new Error("WRONG_CODE");
+    throw new LoginError("WRONG_CODE");
   }
   logger.info("[Login] user, code provided is correct", {
     phone,
@@ -55,52 +57,61 @@ export const login2FA = async (
     email?: string;
     phone?: string;
   },
-  userFromDB: UserDoc
+  userFromDB: UserDoc,
+  role: "admin"|"hasStructure"
 ) => {
-    const username = userFromRequest.username;
-    logger.info("[Login] 2FA user", {
+  const username = userFromRequest.username;
+  logger.info("[Login] 2FA user", {
+    username,
+  });
+
+  // CASE 1: has phone and code --> check code
+  const phone = userFromDB.phone || userFromRequest.phone;
+  if (phone && userFromRequest.code) {
+    logger.info("[Login] 2FA user with a code provided", {
       username,
     });
 
-    // CASE 1: has phone and code --> check code
-    const phone = userFromDB.phone || userFromRequest.phone;
-    if (phone && userFromRequest.code) {
-      logger.info("[Login] 2FA user with a code provided", {
-        username,
-      });
+    await verifyCode(phone, userFromRequest.code);
 
-      await verifyCode(phone, userFromRequest.code);
-
-      if (!userFromDB.phone) { // if no phone saved, save it
-        updateUserInDB(userFromDB._id, {
-          phone: userFromRequest.phone
-        });
-      }
-      return true;
-    }
-
-    // CASE 2: has phone and no code --> send sms
-    if (userFromDB.phone) {
-      logger.info("[Login] 2FA user without a code provided", {
-        username,
-      });
-
-      // no code provided : send sms with code
-      return requestSMSLogin(userFromDB.phone);
-    }
-
-    // CASE 3: user has not already activated 2FA
-    if (userFromRequest.email && userFromRequest.phone) {
-      logger.info("[Login] new 2FA user", {
-        username,
-      });
-      // creation of user
+    if (!userFromDB.phone) { // if no phone saved, save it
       updateUserInDB(userFromDB._id, {
-        email: userFromRequest.email,
+        phone: userFromRequest.phone
       });
-      return requestSMSLogin(userFromRequest.phone);
     }
+    return true;
+  }
 
-    // CASE 4: missing contact infos
-    throw new Error("NO_CONTACT");
+  // CASE 2: has phone and no code --> send sms
+  if (userFromDB.phone) {
+    logger.info("[Login] 2FA user without a code provided", {
+      username,
+    });
+
+    // no code provided : send sms with code
+    return requestSMSLogin(userFromDB.phone);
+  }
+
+  // CASE 3: user has not already activated 2FA
+  if (userFromRequest.email && userFromRequest.phone) {
+    logger.info("[Login] new 2FA user", {
+      username,
+    });
+    // creation of user
+    updateUserInDB(userFromDB._id, {
+      email: userFromRequest.email,
+    });
+    return requestSMSLogin(userFromRequest.phone);
+  }
+
+  // CASE 4: missing contact infos
+  let structure: any = {};
+  if (role === "hasStructure" && userFromDB.structures.length > 0) {
+    structure = await getStructureFromDB(userFromDB.structures[0], false, {nom: 1, picture: 1})
+  }
+  throw new LoginError("NO_CONTACT", {
+    role,
+    email: userFromDB.email,
+    structure
+  });
 };

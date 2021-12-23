@@ -7,6 +7,7 @@ import { register } from "../../../modules/users/register";
 import { login2FA } from "../../../modules/users/login2FA";
 import { proceedWithLogin } from "../../../modules/users/users.service";
 import { loginExceptionsManager } from "./login.exceptions.manager";
+import LoginError from "../../../modules/users/LoginError";
 
 interface User {
   username: string;
@@ -20,7 +21,7 @@ interface User {
 export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
   try {
     if (!req.body.username || !req.body.password) {
-      throw new Error("INVALID_REQUEST");
+      throw new LoginError("INVALID_REQUEST");
     }
 
     checkRequestIsFromSite(req.fromSite);
@@ -32,7 +33,7 @@ export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
     const user = await getUserByUsernameFromDB(req.body.username);
 
     if (user && user.status === "Exclu") {
-      throw new Error("USER_DELETED");
+      throw new LoginError("USER_DELETED");
     }
 
     if (!user) {
@@ -51,7 +52,7 @@ export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
         username: req.body && req.body.username,
       });
 
-      throw new Error("INVALID_PASSWORD");
+      throw new LoginError("INVALID_PASSWORD");
     }
 
     logger.info("[Login] password correct for user", {
@@ -61,14 +62,11 @@ export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
     // check if user is admin
     const adminRoleId = req.roles.find((x) => x.nom === "Admin")._id.toString();
     const hasStructureRoleId = req.roles.find((x) => x.nom === "hasStructure")._id.toString();
-    if (
-      (user.roles || []).some(
-        (x) => x &&
-          (x.toString() === adminRoleId ||
-            x.toString() === hasStructureRoleId)
-      )
-    ) {
-      await login2FA(req.body, user);
+    const userIsAdmin = (user.roles || []).some((x) => x && x.toString() === adminRoleId);
+    const userHasStructure = (user.roles || []).some((x) => x && x.toString() === hasStructureRoleId);
+
+    if (userIsAdmin || userHasStructure) {
+      await login2FA(req.body, user, userIsAdmin ? "admin" : "hasStructure");
     }
     await proceedWithLogin(user);
     return res.status(200).json({

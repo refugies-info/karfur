@@ -406,7 +406,7 @@
     "Réinitialisation du mot de passe": "Un lien de réinitialisation a été envoyé",
     "Réinitialisation texte": "Vous n'avez rien reçu ? Avez-vous vérifié dans vos spams ?",
     "Double authentification": "Double authentification",
-    "Un code vous a été envoyé par sms sur votre mobile.": "Un code vous a été envoyé par sms sur votre mobile.",
+    "Un code vous a été envoyé par sms sur votre mobile.": "Un code vous a été envoyé par sms sur votre mobile au numéro {{phone}}.",
     "Entrez votre code": "Entrez votre code",
     "Renvoyer le code": "Renvoyer le code",
     "Le code saisi n'est pas le bon.": "Le code saisi n'est pas le bon.",
