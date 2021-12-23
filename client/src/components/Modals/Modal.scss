@@ -20,6 +20,14 @@
     width: 100%;
   }
 
+  &.auto-height {
+    height: auto;
+  }
+
+  &.bg-grey {
+    background: #EDEBEB;
+  }
+
   ::-webkit-scrollbar {
     display: none;
     width: 0px; /* remove scrollbar space */

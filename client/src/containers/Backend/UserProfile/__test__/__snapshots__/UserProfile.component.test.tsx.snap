@@ -337,132 +337,136 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
     <div
       className="c8"
     >
-      <div
-        className="c9"
-      >
-        Votre pseudonyme
-      </div>
-      <div
-        className="c10"
-      >
+      <div>
         <div
-          className="c11"
+          className="c9"
+        >
+          Votre pseudonyme
+        </div>
+        <div
+          className="c10"
         >
           <div
-            className="mb-10 figma-input-group input-group"
+            className="c11"
           >
             <div
-              className="icon-prepend input-group-prepend"
+              className="mb-10 figma-input-group input-group"
             >
-              <span>
+              <div
+                className="icon-prepend input-group-prepend"
+              >
+                <span>
+                  <i
+                    data-eva="person-outline"
+                    data-eva-fill="#212121"
+                    data-eva-height="20px"
+                    data-eva-width="20px"
+                  />
+                </span>
+              </div>
+              <input
+                autoFocus={false}
+                className=" has-prepend new-size form-control"
+                id="username"
+                onChange={[Function]}
+                style={null}
+                type="text"
+                value="username"
+              />
+            </div>
+          </div>
+          <div>
+            <button
+              className="figma-btn validate-light ml-8"
+              disabled={true}
+              onClick={[Function]}
+              testID="test-save-pseudo"
+            >
+              <span
+                className="mr-10"
+              >
                 <i
-                  data-eva="person-outline"
-                  data-eva-fill="#212121"
+                  data-eva="save-outline"
+                  data-eva-fill="#fff"
                   data-eva-height="20px"
                   data-eva-width="20px"
                 />
               </span>
-            </div>
-            <input
-              autoFocus={false}
-              className=" has-prepend new-size form-control"
-              id="username"
-              onChange={[Function]}
-              style={null}
-              type="text"
-              value="username"
-            />
+              Enregistrer
+            </button>
           </div>
         </div>
-        <div>
-          <button
-            className="figma-btn validate-light ml-8"
-            disabled={true}
-            onClick={[Function]}
-            testID="test-save-pseudo"
-          >
-            <span
-              className="mr-10"
-            >
-              <i
-                data-eva="checkmark-outline"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
-              />
-            </span>
-            Enregistrer
-          </button>
+        <div
+          className="c7"
+        >
+          Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
         </div>
       </div>
-      <div
-        className="c7"
-      >
-        Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
-      </div>
-      <div
-        className="c12"
-      >
-        Votre email
-      </div>
-      <div
-        className="c10"
-      >
+      <div>
         <div
-          className="c11"
+          className="c12"
+        >
+          Votre email
+        </div>
+        <div
+          className="c10"
         >
           <div
-            className="mb-10 figma-input-group input-group"
+            className="c11"
           >
             <div
-              className="icon-prepend input-group-prepend"
+              className="mb-10 figma-input-group input-group"
             >
-              <span>
+              <div
+                className="icon-prepend input-group-prepend"
+              >
+                <span>
+                  <i
+                    data-eva="email-outline"
+                    data-eva-fill="#212121"
+                    data-eva-height="20px"
+                    data-eva-width="20px"
+                  />
+                </span>
+              </div>
+              <input
+                autoFocus={false}
+                className=" has-prepend new-size form-control"
+                id="email"
+                onChange={[Function]}
+                placeholder="Renseignez votre adresse email"
+                style={null}
+                type="text"
+                value="email@gmail.com"
+              />
+            </div>
+          </div>
+          <div>
+            <button
+              className="figma-btn validate-light ml-8"
+              disabled={true}
+              onClick={[Function]}
+              testID="test-save-email"
+            >
+              <span
+                className="mr-10"
+              >
                 <i
-                  data-eva="email-outline"
-                  data-eva-fill="#212121"
+                  data-eva="save-outline"
+                  data-eva-fill="#fff"
                   data-eva-height="20px"
                   data-eva-width="20px"
                 />
               </span>
-            </div>
-            <input
-              autoFocus={false}
-              className=" has-prepend new-size form-control"
-              id="email"
-              onChange={[Function]}
-              placeholder="Renseignez votre adresse email"
-              style={null}
-              type="text"
-              value="email@gmail.com"
-            />
+              Enregistrer
+            </button>
           </div>
         </div>
-        <div>
-          <button
-            className="figma-btn validate-light ml-8"
-            disabled={true}
-            onClick={[Function]}
-            testID="test-save-email"
-          >
-            <span
-              className="mr-10"
-            >
-              <i
-                data-eva="checkmark-outline"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
-              />
-            </span>
-            Enregistrer
-          </button>
+        <div
+          className="c7"
+        >
+          Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
         </div>
-      </div>
-      <div
-        className="c7"
-      >
-        Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
       </div>
       <div
         className="c12"
@@ -641,7 +645,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
             className="mr-10"
           >
             <i
-              data-eva="checkmark-outline"
+              data-eva="save-outline"
               data-eva-fill="#fff"
               data-eva-height="20px"
               data-eva-width="20px"
@@ -974,132 +978,136 @@ exports[`UserProfile should render correctly 1`] = `
     <div
       className="c8"
     >
-      <div
-        className="c9"
-      >
-        Votre pseudonyme
-      </div>
-      <div
-        className="c10"
-      >
+      <div>
         <div
-          className="c11"
+          className="c9"
+        >
+          Votre pseudonyme
+        </div>
+        <div
+          className="c10"
         >
           <div
-            className="mb-10 figma-input-group input-group"
+            className="c11"
           >
             <div
-              className="icon-prepend input-group-prepend"
+              className="mb-10 figma-input-group input-group"
             >
-              <span>
+              <div
+                className="icon-prepend input-group-prepend"
+              >
+                <span>
+                  <i
+                    data-eva="person-outline"
+                    data-eva-fill="#212121"
+                    data-eva-height="20px"
+                    data-eva-width="20px"
+                  />
+                </span>
+              </div>
+              <input
+                autoFocus={false}
+                className=" has-prepend new-size form-control"
+                id="username"
+                onChange={[Function]}
+                style={null}
+                type="text"
+                value="username"
+              />
+            </div>
+          </div>
+          <div>
+            <button
+              className="figma-btn validate-light ml-8"
+              disabled={true}
+              onClick={[Function]}
+              testID="test-save-pseudo"
+            >
+              <span
+                className="mr-10"
+              >
                 <i
-                  data-eva="person-outline"
-                  data-eva-fill="#212121"
+                  data-eva="save-outline"
+                  data-eva-fill="#fff"
                   data-eva-height="20px"
                   data-eva-width="20px"
                 />
               </span>
-            </div>
-            <input
-              autoFocus={false}
-              className=" has-prepend new-size form-control"
-              id="username"
-              onChange={[Function]}
-              style={null}
-              type="text"
-              value="username"
-            />
+              Enregistrer
+            </button>
           </div>
         </div>
-        <div>
-          <button
-            className="figma-btn validate-light ml-8"
-            disabled={true}
-            onClick={[Function]}
-            testID="test-save-pseudo"
-          >
-            <span
-              className="mr-10"
-            >
-              <i
-                data-eva="checkmark-outline"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
-              />
-            </span>
-            Enregistrer
-          </button>
+        <div
+          className="c7"
+        >
+          Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
         </div>
       </div>
-      <div
-        className="c7"
-      >
-        Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
-      </div>
-      <div
-        className="c12"
-      >
-        Votre email
-      </div>
-      <div
-        className="c10"
-      >
+      <div>
         <div
-          className="c11"
+          className="c12"
+        >
+          Votre email
+        </div>
+        <div
+          className="c10"
         >
           <div
-            className="mb-10 figma-input-group input-group"
+            className="c11"
           >
             <div
-              className="icon-prepend input-group-prepend"
+              className="mb-10 figma-input-group input-group"
             >
-              <span>
+              <div
+                className="icon-prepend input-group-prepend"
+              >
+                <span>
+                  <i
+                    data-eva="email-outline"
+                    data-eva-fill="#212121"
+                    data-eva-height="20px"
+                    data-eva-width="20px"
+                  />
+                </span>
+              </div>
+              <input
+                autoFocus={false}
+                className=" has-prepend new-size form-control"
+                id="email"
+                onChange={[Function]}
+                placeholder="Renseignez votre adresse email"
+                style={null}
+                type="text"
+                value="email@gmail.com"
+              />
+            </div>
+          </div>
+          <div>
+            <button
+              className="figma-btn validate-light ml-8"
+              disabled={true}
+              onClick={[Function]}
+              testID="test-save-email"
+            >
+              <span
+                className="mr-10"
+              >
                 <i
-                  data-eva="email-outline"
-                  data-eva-fill="#212121"
+                  data-eva="save-outline"
+                  data-eva-fill="#fff"
                   data-eva-height="20px"
                   data-eva-width="20px"
                 />
               </span>
-            </div>
-            <input
-              autoFocus={false}
-              className=" has-prepend new-size form-control"
-              id="email"
-              onChange={[Function]}
-              placeholder="Renseignez votre adresse email"
-              style={null}
-              type="text"
-              value="email@gmail.com"
-            />
+              Enregistrer
+            </button>
           </div>
         </div>
-        <div>
-          <button
-            className="figma-btn validate-light ml-8"
-            disabled={true}
-            onClick={[Function]}
-            testID="test-save-email"
-          >
-            <span
-              className="mr-10"
-            >
-              <i
-                data-eva="checkmark-outline"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
-              />
-            </span>
-            Enregistrer
-          </button>
+        <div
+          className="c7"
+        >
+          Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
         </div>
-      </div>
-      <div
-        className="c7"
-      >
-        Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
       </div>
       <div
         className="c12"
@@ -1447,132 +1455,136 @@ exports[`UserProfile should render correctly when changing password 1`] = `
     <div
       className="c8"
     >
-      <div
-        className="c9"
-      >
-        Votre pseudonyme
-      </div>
-      <div
-        className="c10"
-      >
+      <div>
         <div
-          className="c11"
+          className="c9"
+        >
+          Votre pseudonyme
+        </div>
+        <div
+          className="c10"
         >
           <div
-            className="mb-10 figma-input-group input-group"
+            className="c11"
           >
             <div
-              className="icon-prepend input-group-prepend"
+              className="mb-10 figma-input-group input-group"
             >
-              <span>
+              <div
+                className="icon-prepend input-group-prepend"
+              >
+                <span>
+                  <i
+                    data-eva="person-outline"
+                    data-eva-fill="#212121"
+                    data-eva-height="20px"
+                    data-eva-width="20px"
+                  />
+                </span>
+              </div>
+              <input
+                autoFocus={false}
+                className=" has-prepend new-size form-control"
+                id="username"
+                onChange={[Function]}
+                style={null}
+                type="text"
+                value="username"
+              />
+            </div>
+          </div>
+          <div>
+            <button
+              className="figma-btn validate-light ml-8"
+              disabled={true}
+              onClick={[Function]}
+              testID="test-save-pseudo"
+            >
+              <span
+                className="mr-10"
+              >
                 <i
-                  data-eva="person-outline"
-                  data-eva-fill="#212121"
+                  data-eva="save-outline"
+                  data-eva-fill="#fff"
                   data-eva-height="20px"
                   data-eva-width="20px"
                 />
               </span>
-            </div>
-            <input
-              autoFocus={false}
-              className=" has-prepend new-size form-control"
-              id="username"
-              onChange={[Function]}
-              style={null}
-              type="text"
-              value="username"
-            />
+              Enregistrer
+            </button>
           </div>
         </div>
-        <div>
-          <button
-            className="figma-btn validate-light ml-8"
-            disabled={true}
-            onClick={[Function]}
-            testID="test-save-pseudo"
-          >
-            <span
-              className="mr-10"
-            >
-              <i
-                data-eva="checkmark-outline"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
-              />
-            </span>
-            Enregistrer
-          </button>
+        <div
+          className="c7"
+        >
+          Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
         </div>
       </div>
-      <div
-        className="c7"
-      >
-        Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
-      </div>
-      <div
-        className="c12"
-      >
-        Votre email
-      </div>
-      <div
-        className="c10"
-      >
+      <div>
         <div
-          className="c11"
+          className="c12"
+        >
+          Votre email
+        </div>
+        <div
+          className="c10"
         >
           <div
-            className="mb-10 figma-input-group input-group"
+            className="c11"
           >
             <div
-              className="icon-prepend input-group-prepend"
+              className="mb-10 figma-input-group input-group"
             >
-              <span>
+              <div
+                className="icon-prepend input-group-prepend"
+              >
+                <span>
+                  <i
+                    data-eva="email-outline"
+                    data-eva-fill="#212121"
+                    data-eva-height="20px"
+                    data-eva-width="20px"
+                  />
+                </span>
+              </div>
+              <input
+                autoFocus={false}
+                className=" has-prepend new-size form-control"
+                id="email"
+                onChange={[Function]}
+                placeholder="Renseignez votre adresse email"
+                style={null}
+                type="text"
+                value="email@gmail.com"
+              />
+            </div>
+          </div>
+          <div>
+            <button
+              className="figma-btn validate-light ml-8"
+              disabled={true}
+              onClick={[Function]}
+              testID="test-save-email"
+            >
+              <span
+                className="mr-10"
+              >
                 <i
-                  data-eva="email-outline"
-                  data-eva-fill="#212121"
+                  data-eva="save-outline"
+                  data-eva-fill="#fff"
                   data-eva-height="20px"
                   data-eva-width="20px"
                 />
               </span>
-            </div>
-            <input
-              autoFocus={false}
-              className=" has-prepend new-size form-control"
-              id="email"
-              onChange={[Function]}
-              placeholder="Renseignez votre adresse email"
-              style={null}
-              type="text"
-              value="email@gmail.com"
-            />
+              Enregistrer
+            </button>
           </div>
         </div>
-        <div>
-          <button
-            className="figma-btn validate-light ml-8"
-            disabled={true}
-            onClick={[Function]}
-            testID="test-save-email"
-          >
-            <span
-              className="mr-10"
-            >
-              <i
-                data-eva="checkmark-outline"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
-              />
-            </span>
-            Enregistrer
-          </button>
+        <div
+          className="c7"
+        >
+          Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
         </div>
-      </div>
-      <div
-        className="c7"
-      >
-        Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
       </div>
       <div
         className="c12"
@@ -1706,7 +1718,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
             className="mr-10"
           >
             <i
-              data-eva="checkmark-outline"
+              data-eva="save-outline"
               data-eva-fill="#fff"
               data-eva-height="20px"
               data-eva-width="20px"

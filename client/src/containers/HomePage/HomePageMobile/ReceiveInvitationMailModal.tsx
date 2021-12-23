@@ -157,7 +157,7 @@ export const ReceiveInvitationMailModal = (props: Props) => {
               "Ceci n'est pas un email,"
             )}{" "}
             {props.t(
-              "Register.vérifiez l'orthographe.",
+              "Register.vérifiez l'orthographe",
               "vérifiez l'orthographe."
             )}
           </ErrorMessageContainer>

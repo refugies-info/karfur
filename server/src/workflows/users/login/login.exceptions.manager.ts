@@ -1,7 +1,8 @@
 import logger from "../../../logger";
 import { Res } from "../../../types/interface";
+import LoginError from "../../../modules/users/LoginError";
 
-export const loginExceptionsManager = (error: Error, res: Res) => {
+export const loginExceptionsManager = (error: LoginError, res: Res) => {
   logger.error("[Login] error while login", { error: error.message });
   switch (error.message) {
     case "INVALID_REQUEST":
@@ -18,7 +19,7 @@ export const loginExceptionsManager = (error: Error, res: Res) => {
       return res.status(401).json({ text: "Le mot de passe est trop faible" });
     case "INTERNAL":
       return res.status(500).json({ text: "Erreur interne" });
-    case "WRONG_ADMIN_CODE":
+    case "WRONG_CODE":
       return res.status(402).json({
         text: "Erreur à la vérification du code",
         data: "no-alert",
@@ -27,16 +28,16 @@ export const loginExceptionsManager = (error: Error, res: Res) => {
       return res.status(404).json({
         text: "Erreur à l'envoi du code à ce numéro",
       });
-    case "ERROR_AUTHY_ACCOUNT_CREATION":
-      return res.status(404).json({
-        text: "Erreur à la création du compte authy",
-      });
-    case "NO_AUTHY_ID":
+    case "NO_CONTACT":
       return res.status(502).json({
-        text: "no authy_id",
+        text: "no contact informations",
+        ...error.data
       });
     case "NO_CODE_SUPPLIED":
-      return res.status(501).json({ text: "no code supplied" });
+      return res.status(501).json({
+        text: "no code supplied",
+        ...error.data
+      });
     case "USER_DELETED":
       return res.status(405).json({
         text: "Utilisateur supprimé",

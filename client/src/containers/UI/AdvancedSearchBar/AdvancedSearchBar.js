@@ -188,18 +188,7 @@ const AdvancedSearchBar = (props) => {
       .replace(/[\u0300-\u036f]/g, "")
       .trim()
       .toLowerCase();
-    const dispositifsMatchedArray = [];
     const themesMatchedArray = [];
-    for (const elem of props.dispositifs) {
-      if (
-        (elem.titreInformatif &&
-          normalize(elem.titreInformatif).includes(text)) ||
-        (elem.titreMarque &&
-          normalize(elem.titreMarque).includes(text))
-      ) {
-        dispositifsMatchedArray.push(elem);
-      }
-    }
     for (const [key, value] of Object.entries(
       themes[i18n.language === "ti-ER" ? "ti" : i18n.language]
     )) {
@@ -213,7 +202,10 @@ const AdvancedSearchBar = (props) => {
       }
     }
     setSearchThemes(themesMatchedArray);
-    setSearchDispositifs(dispositifsMatchedArray);
+    setSearchDispositifs(props.dispositifs.filter(elem =>
+      (elem.titreInformatif && normalize(elem.titreInformatif).includes(text))
+      || (elem.titreMarque && normalize(elem.titreMarque).includes(text))
+    ));
 
     initGA();
     Event("USE_SEARCHBAR", value, "label");

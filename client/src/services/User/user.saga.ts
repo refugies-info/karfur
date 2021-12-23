@@ -13,8 +13,10 @@ import {
   startLoading,
   LoadingStatusKey,
   finishLoading,
+  setError
 } from "../LoadingStatus/loadingStatus.actions";
 import { fetchUserStructureActionCreator } from "../UserStructure/userStructure.actions";
+import { AxiosError } from "axios";
 
 export function* fetchUser(
   action: ReturnType<typeof fetchUserActionCreator>
@@ -67,8 +69,12 @@ export function* saveUser(
     yield put(finishLoading(LoadingStatusKey.SAVE_USER));
   } catch (error) {
     logger.error("[saveUser] saga error", { error });
-    yield put(setUserActionCreator(null));
-    yield put(finishLoading(LoadingStatusKey.SAVE_USER));
+    if ((<AxiosError>error).response?.status === 402) { // wrong phone code
+      yield put(setError(LoadingStatusKey.SAVE_USER, "WRONG_CODE"));
+    } else {
+      yield put(setUserActionCreator(null));
+      yield put(finishLoading(LoadingStatusKey.SAVE_USER));
+    }
   }
 }
 

@@ -29,14 +29,14 @@ export const UserProfileLoading = (props: { t: any }) => (
       <SkeletonTheme color={colors.blancSimple}>
         <Skeleton count={1} height={50} />
       </SkeletonTheme>
-      <Title marginTop={"24px"}>
+      <Title marginTop={24}>
         {props.t("Register.Votre email", "Votre email")}
       </Title>
       <SkeletonTheme color={colors.blancSimple}>
         <Skeleton count={1} height={50} />
       </SkeletonTheme>
 
-      <Title marginTop={"24px"}>
+      <Title marginTop={24}>
         {props.t("UserProfile.Votre mot de passe", "Votre mot de passe")}
       </Title>
       <SkeletonTheme color={colors.blancSimple}>

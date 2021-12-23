@@ -128,7 +128,7 @@ export const CompleteProfilModal = (props) => {
       </ExplainationContainer>
       {notEmailError && (
         <ErrorMessageContainer>
-          Ceci n'est pas un email, vérifiez l'orthographe.
+          {`${props.t("Register.Ceci n'est pas un email,")} ${props.t("Register.vérifiez l'orthographe")}`}
         </ErrorMessageContainer>
       )}
       <ButtonContainer>
