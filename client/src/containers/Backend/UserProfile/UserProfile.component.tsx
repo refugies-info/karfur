@@ -20,6 +20,7 @@ import {
   fetchUserActionCreator,
 } from "../../../services/User/user.actions";
 import { isLoadingSelector, errorSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
+import { userStructureMembresSelector } from "../../../services/UserStructure/userStructure.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { UserProfileLoading } from "./components/UserProfileLoading";
 import { colors } from "../../../colors";
@@ -146,15 +147,18 @@ export const UserProfileComponent = (props: Props) => {
     setIsCurrentPasswordVisible(!isCurrentPasswordVisible);
 
   const user = useSelector(userDetailsSelector);
+  const userStructureMembres = useSelector(userStructureMembresSelector);
   const dispatch = useDispatch();
 
   const [showPhone, setShowPhone] = useState(false);
   useEffect(() => {
     if (user) {
-      const roles = (user.roles || []).map(r => r.nom);
-      setShowPhone(roles.includes("Admin") || roles.includes("hasStructure"));
+      const isAdmin = (user.roles || []).find(r => r.nom === "Admin");
+      //@ts-ignore
+      const userStructureMembre = userStructureMembres.find(membre => membre.userId === user._id);
+      setShowPhone(!!isAdmin || !!userStructureMembre?.roles.includes("administrateur"));
     }
-  }, [user]);
+  }, [user, userStructureMembres]);
 
 
   const onChange = (e: Event) => {

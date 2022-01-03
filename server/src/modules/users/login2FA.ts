@@ -3,6 +3,7 @@ import { UserDoc } from "../../schema/schemaUser";
 import LoginError from "./LoginError";
 import { updateUserInDB } from "./users.repository";
 import { getStructureFromDB } from "../structure/structure.repository";
+import { ObjectId } from "mongoose";
 const { accountSid, authToken } = process.env;
 const client = require("twilio")(accountSid, authToken);
 const twilioService = client.verify.services.create({ friendlyName: "Réfugiés.info" });
@@ -58,7 +59,7 @@ export const login2FA = async (
     phone?: string;
   },
   userFromDB: UserDoc,
-  role: "admin"|"hasStructure"
+  role: "admin"|ObjectId
 ) => {
   const username = userFromRequest.username;
   logger.info("[Login] 2FA user", {
@@ -106,8 +107,8 @@ export const login2FA = async (
 
   // CASE 4: missing contact infos
   let structure: any = {};
-  if (role === "hasStructure" && userFromDB.structures.length > 0) {
-    structure = await getStructureFromDB(userFromDB.structures[0], false, {nom: 1, picture: 1})
+  if (role !== "admin") {
+    structure = await getStructureFromDB(role, false, {nom: 1, picture: 1})
   }
   throw new LoginError("NO_CONTACT", {
     role,
