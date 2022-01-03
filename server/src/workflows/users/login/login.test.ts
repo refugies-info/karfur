@@ -5,6 +5,7 @@ import { getRoleByName } from "../../../controllers/role/role.repository";
 import { register } from "../../../modules/users/register";
 import { login2FA } from "../../../modules/users/login2FA";
 import { proceedWithLogin } from "../../../modules/users/users.service";
+import { userRespoStructureId } from "../../../modules/structure/structure.service";
 
 jest.mock("../../../modules/users/users.repository", () => ({
   getUserByUsernameFromDB: jest.fn(),
@@ -21,6 +22,9 @@ jest.mock("../../../modules/users/login2FA", () => ({
 }));
 jest.mock("../../../modules/users/users.service", () => ({
   proceedWithLogin: jest.fn(),
+}));
+jest.mock("../../../modules/structure/structure.service", () => ({
+  userRespoStructureId: jest.fn(),
 }));
 
 const reqRoles = [
@@ -160,6 +164,7 @@ describe("login", () => {
       authenticate,
       roles: ["has_structure"],
     });
+    userRespoStructureId.mockResolvedValueOnce("structureId");
 
     await login({ ...req, roles: reqRoles }, res);
 
@@ -172,13 +177,13 @@ describe("login", () => {
         authenticate,
         roles: ["has_structure"],
       },
-      "hasStructure"
+      "structureId"
     );
     expect(proceedWithLogin).toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
-  it("should call proceedWithLogin if user is not admin", async () => {
+  it("should call proceedWithLogin if user is not admin or respo", async () => {
     const authenticate = () => true;
     const user = {
       authenticate,
@@ -186,6 +191,7 @@ describe("login", () => {
       getToken: () => "token",
     };
     getUserByUsernameFromDB.mockResolvedValueOnce(user);
+    userRespoStructureId.mockResolvedValueOnce(null);
 
     await login({ ...req, roles: reqRoles }, res);
 

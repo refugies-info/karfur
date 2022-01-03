@@ -3,6 +3,7 @@ import { getStructureFromDB } from "../structure.repository";
 import {
   checkIfUserIsAuthorizedToModifyStructure,
   getStructureMembers,
+  userRespoStructureId
 } from "../structure.service";
 
 jest.mock("../structure.repository", () => ({
@@ -146,3 +147,33 @@ describe("getStructureMembers", () => {
     expect(res).toEqual(membres);
   });
 });
+
+describe("userRespoStructureId", () => {
+  it("should return structureId if responsable", async () => {
+    const membres1 = [
+      { _id: "membre1", userId: "user1", roles: ["administrateur"] },
+      { _id: "membre2", userId: "user2", roles: ["redacteur"] }
+    ];
+    const membres2 = [
+      { _id: "membre2", userId: "user2", roles: ["administrateur"] }
+    ];
+    getStructureFromDB.mockResolvedValueOnce({ _id: "structureId1", membres: membres1 });
+    getStructureFromDB.mockResolvedValueOnce({ _id: "structureId2", membres: membres2 });
+
+    const res = await userRespoStructureId(["structureId1", "structureId2"], "user2");
+
+    expect(res).toEqual("structureId2");
+  });
+  it("should return null if not responsable", async () => {
+    const membres1 = [
+      { _id: "membre1", userId: "user1", roles: ["administrateur"] },
+      { _id: "membre2", userId: "user2", roles: ["redacteur"] }
+    ];
+    getStructureFromDB.mockResolvedValueOnce({ _id: "structureId1", membres: membres1 });
+
+    const res = await userRespoStructureId(["structureId1"], "user2");
+
+    expect(res).toEqual(null);
+  });
+});
+
