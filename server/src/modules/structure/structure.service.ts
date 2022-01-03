@@ -73,3 +73,21 @@ export const getStructureMembers = async (structureId: ObjectId) => {
   }
   return structure.membres;
 };
+
+export const userRespoStructureId = async (structures: ObjectId[], userId: ObjectId) => {
+  for (let structureId of structures) {
+    const membres = await getStructureMembers(structureId);
+    if (!membres) continue;
+    const membreInStructure = membres.filter((membre) => {
+      return membre.userId && membre.userId.toString() === userId.toString();
+    });
+
+    if (membreInStructure.length === 0) continue;
+    const roles = membreInStructure[0].roles;
+    if (roles.includes("administrateur")) return structureId;
+
+    continue;
+  }
+
+  return null;
+};

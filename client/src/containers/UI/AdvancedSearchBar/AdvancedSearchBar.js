@@ -211,7 +211,10 @@ const AdvancedSearchBar = (props) => {
     Event("USE_SEARCHBAR", value, "label");
   };
 
-  const delayedSearch = useCallback(debounce(q => search(q), 500), []);
+  const delayedSearch = useCallback(
+    debounce(q => search(q), 500),
+    [props.dispositifs]
+  );
   const onTextChange = (e) => {
     setSearchText(e.target.value);
     delayedSearch(e.target.value);
