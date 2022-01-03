@@ -15,7 +15,6 @@ var needsSchema = new mongoose.Schema(
     "ti-ER": { text: String, updatedAt: Date },
     ps: { text: String, updatedAt: Date },
   },
-  // @ts-ignore : https://github.com/Automattic/mongoose/issues/9606
   { timestamps: { createdAt: "created_at" } }
 );
 

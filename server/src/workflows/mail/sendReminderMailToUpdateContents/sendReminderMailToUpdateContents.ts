@@ -41,11 +41,11 @@ export const sendReminderMailToUpdateContents = async (
       (dispo) => {
         if (isTitreInformatifObject(dispo.titreInformatif)) {
           return {
-            ...dispo.toJSON(),
+            ...dispo.toJSON({flattenMaps: false}),
             titreInformatif: dispo.titreInformatif.fr,
           };
         }
-        return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif };
+        return { ...dispo.toJSON({flattenMaps: false}), titreInformatif: dispo.titreInformatif };
       }
     );
     await asyncForEach(

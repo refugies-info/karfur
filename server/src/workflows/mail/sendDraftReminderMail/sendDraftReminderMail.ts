@@ -19,9 +19,9 @@ import { DispositifPopulatedDoc } from "src/schema/schemaDispositif";
 
 const formatTitle = (dispo: DispositifPopulatedDoc) => {
   if (isTitreInformatifObject(dispo.titreInformatif)) {
-    return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif.fr };
+    return { ...dispo.toJSON({flattenMaps: false}), titreInformatif: dispo.titreInformatif.fr };
   }
-  return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif };
+  return { ...dispo.toJSON({flattenMaps: false}), titreInformatif: dispo.titreInformatif };
 }
 
 const sendReminderEmails = async (
