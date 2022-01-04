@@ -9,14 +9,15 @@ import { FButtonMobile } from "../../FigmaUI/FButtonMobile/FButtonMobile";
 import { colors } from "../../../colors";
 import illuMobileApp from "../../../assets/illu_mobile_app.png";
 import { isIOS } from "react-device-detect";
+import {
+  iosStoreLink,
+  androidStoreLink
+} from "../../../assets/storeLinks";
 
 
 const languageModal = (props) => {
   const { t } = props;
-  const storeLink = isIOS ?
-    "https://apps.apple.com/app/id1595597429" :
-    "https://play.google.com/store/apps/details?id=com.refugiesinfo.app";
-
+  const storeLink = isIOS ? iosStoreLink : androidStoreLink;
 
   if (props.show) {
     return (

@@ -1,4 +1,5 @@
 import HomePage from "./containers/HomePage/HomePage";
+import DownloadApp from "./containers/DownloadApp/DownloadApp";
 import Dashboard from "./containers/Backend/Dashboard/Dashboard";
 import { Admin } from "./containers/Backend/Admin/Admin";
 import { UserContributions } from "./containers/Backend/UserContributions";
@@ -86,6 +87,12 @@ const routes = [
     path: "/politique-de-confidentialite",
     name: "Réfugiés.info - Politique de confidentialité",
     component: PolitiqueConfidentialite,
+    restriction: [],
+  },
+  {
+    path: "/download-app",
+    name: "Réfugiés.info - Télécharger l'application",
+    component: DownloadApp,
     restriction: [],
   },
   {
