@@ -43,11 +43,13 @@ The environment variables are defined at 2 different places:
 
 1. Develop all the features on a specific branch.
 2. When done, merge your changes to `dev` branch.
+3. When the version is ready, merge your changes on the `staging` branch. Don't forget to increment the version number in `app.config.js`.
 3. Publish on `staging` for tests.
 4. When validated, merge your changes to `main` branch.
 5. For deployment in `production`, 2 options:
     - For bug fixes or minor updates, **publish** changes to update apps automatically.  
-      On iOS, the update is downloaded before the app is launched. On Android, it's downloaded in the background and installed the second time the app is opened.
+      On iOS, the update is downloaded before the app is launched.  
+      On Android, it's downloaded in the background and installed the second time the app is opened.
     - For config changes or major updates, create a **build** and submit on the stores.
 
 
@@ -77,6 +79,9 @@ It is possible to publish an update which will be automatically downloaded when 
 ```
 $ expo publish --release-channel production
 ```
+
+In order to follow the different versions of the app, change the version number for each publish in `app.config.js`.  
+It is located under `extra.displayVersionNumber` key.
 
 ### Build app
 

@@ -174,4 +174,7 @@ export default {
   },
   description: "",
   plugins: ["./src/utils/withSimulatorExcludedArchitectures.js"],
+  extra: {
+    displayVersionNumber: "2022.01.1"
+  }
 };

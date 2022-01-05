@@ -1,12 +1,14 @@
 import * as React from "react";
 import {
   TextSmallNormal,
+  TextVerySmallNormal
 } from "../../components/StyledText";
 import { View } from "react-native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import styled from "styled-components/native";
 import { theme } from "../../theme";
 import { useDispatch, useSelector } from "react-redux";
+import Constants from "expo-constants";
 import * as Analytics from "expo-firebase-analytics";
 import {
   removeUserFrenchLevelActionCreator,
@@ -221,6 +223,11 @@ export const ProfilScreen = ({
             isTextNotBold={true}
           />
         </DeleteDataContainer>
+        <View style={{ marginBottom: theme.margin * 7 }}>
+          <TextVerySmallNormal style={{ textAlign: "center", color: theme.colors.darkGrey }}>
+            Version {Constants.manifest?.extra?.displayVersionNumber}
+          </TextVerySmallNormal>
+        </View>
       </ContentContainer>
       <ConfirmationModal
         isModalVisible={isDeleteDataModalVisible}
