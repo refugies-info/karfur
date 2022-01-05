@@ -46,13 +46,13 @@ The environment variables are defined at 2 different places:
 3. When done, merge your changes to `dev` branch.
 4. When all your features are ready to be tested, merge your changes on the `staging` branch.
 5. Publish on `staging` for tests. See [how to deploy on staging](#staging)
-6. When the features are validated, merge your changes to `main` branch. 
+6. When the features are validated, merge your changes to `main` branch.  
     Don't forget to increment the version number. See the [Version numbers](#version-numbers) section.
-7. Deploy on production. For this, you have 2 options:
-    - For bug fixes or minor updates, **publish** changes to update apps automatically.  
+7. [Deploy on production](#production). For this, you have 2 options:
+    - For bug fixes or minor updates, [publish](#publish-changes) changes to update apps automatically.  
       On *iOS*, the update is downloaded before the app is launched.  
       On *Android*, it's downloaded in the background and installed the second time the app is opened.
-    - For config changes or major updates, create a **build** and submit on the stores.
+    - For config changes or major updates, create a [build](#build-app) and submit on the stores.
 
 
 # Deploy
