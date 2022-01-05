@@ -42,14 +42,16 @@ The environment variables are defined at 2 different places:
 # Workflow
 
 1. Develop all the features on a specific branch.
-2. When done, merge your changes to `dev` branch.
-3. When the version is ready, merge your changes on the `staging` branch. Don't forget to increment the version number in `app.config.js`.
-3. Publish on `staging` for tests.
-4. When validated, merge your changes to `main` branch.
-5. For deployment in `production`, 2 options:
+2. Update tests or create new one. See section [Tests](#tests)
+3. When done, merge your changes to `dev` branch.
+4. When all your features are ready to be tested, merge your changes on the `staging` branch.
+5. Publish on `staging` for tests. See [how to deploy on staging](#staging)
+6. When the features are validated, merge your changes to `main` branch. 
+    Don't forget to increment the version number. See the [Version numbers](#version-numbers) section.
+7. Deploy on production. For this, you have 2 options:
     - For bug fixes or minor updates, **publish** changes to update apps automatically.  
-      On iOS, the update is downloaded before the app is launched.  
-      On Android, it's downloaded in the background and installed the second time the app is opened.
+      On *iOS*, the update is downloaded before the app is launched.  
+      On *Android*, it's downloaded in the background and installed the second time the app is opened.
     - For config changes or major updates, create a **build** and submit on the stores.
 
 
@@ -80,12 +82,11 @@ It is possible to publish an update which will be automatically downloaded when 
 $ expo publish --release-channel production
 ```
 
-In order to follow the different versions of the app, change the version number for each publish in `app.config.js`.  
-It is located under `extra.displayVersionNumber` key.
+Don't forget to increment the **displayed version number**. See the [Version numbers](#version-numbers) section.
 
 ### Build app
 
-1. Increment `version` number in `app.config.js`: `version`, `ios.buildNumber` and `android.versionCode`.
+1. Increment the **build number**. See the [Version numbers](#version-numbers) section.
 
 2. Start a build which will be executed on expo servers. You can follow the process [here](https://expo.dev/accounts/refugies-info/projects/refugies-info-app/builds)
   ```
@@ -108,11 +109,36 @@ It is located under `extra.displayVersionNumber` key.
 Notes:
 - updates takes usually 2-3 days to be validated by the stores
 
+### Version numbers
+
+Multiple version numbers need to be incremented at each release, for different purposes:
+- **displayed version number**: displayed in the application to facilitate communication related to bugs,
+- **build number**: used by the stores to identify the versions of your app.
+
+**Displayed version number**
+
+When to increment: each time you **publish** a new version in production. See [Publish changes](#publish-changes) section.
+
+Where: in `app.config.js`, increment the `extra.displayVersionNumber` property.
+
+How: it should follow this convention: `[year]-[month]-[incrementalId]`
+
+**Build Number**
+
+When to increment: each time you **build** a new version to submit to stores. See [Build app](#build-app) section.
+
+Where: in `app.config.js`, increment the keys `version`, `ios.buildNumber` and `android.versionCode`
+
+How:
+- `version` and `ios.buildNumber` should follow the convention `[major]-[minor]-[incrementalId]`.
+- `android.versionCode` is just an incremental id.
+
+
+# Development
+
 ## Font
 
 We use a non open source font. The repo is private so that we can commit the font in the repo.
-
-# Development
 
 ## Translation
 
@@ -123,3 +149,12 @@ You can find more informations in the [Expo documentation](https://docs.expo.dev
 
 The `app.config.js` is configured to look for these strings in the regular translation files, in `src/translations/[ln].json`. 
 Just define the translations in these files, and use the same keys than the one you would have defined in `app.config.js`.
+
+## Tests
+
+To test the application, we compare snapshots of the app between the previous and the current version.  
+
+```
+> yarn test             # start to compare snapshots
+> yarn test:unit -u     # update snapshots to keep the current one as a reference.
+```
