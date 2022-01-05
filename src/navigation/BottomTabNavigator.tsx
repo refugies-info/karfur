@@ -24,21 +24,27 @@ import { FavorisNavigator } from "./BottomTabBar/FavorisNavigator";
 import { SearchNavigator } from "./BottomTabBar/SearchNavigator";
 
 const ICON_SIZE = 24;
+const ICON_SIZE_SMALL = 18;
+const ICON_EXPLORER = "compass";
+const ICON_FAVORITES = "star";
+const ICON_SEARCH = "search";
+const ICON_PROFILE = "person";
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 const renderTabBarIcon = (
   color: string,
   focused: boolean,
   iconName: string,
-  badge?: boolean
+  badge?: boolean,
+  isSmall?: boolean,
 ) => {
   const iconNameWithFocus = focused ? iconName : iconName + "-outline";
   return (
     <>
       <Icon
         name={iconNameWithFocus}
-        width={ICON_SIZE}
-        height={ICON_SIZE}
+        width={!isSmall ? ICON_SIZE : ICON_SIZE_SMALL}
+        height={!isSmall ? ICON_SIZE : ICON_SIZE_SMALL}
         fill={color}
       />
       {badge &&
@@ -73,6 +79,7 @@ const renderTabBarLabel = (color: string, focused: boolean, name: string) => {
     return <TabBarLabelTextBold color={color}>{name}</TabBarLabelTextBold>;
   return <TabBarLabelText color={color}>{name}</TabBarLabelText>;
 };
+
 export default function BottomTabNavigator() {
   const { t } = useTranslation();
   const hasUserNewFavorites = useSelector(hasUserNewFavoritesSelector);
@@ -96,7 +103,7 @@ export default function BottomTabNavigator() {
           }: {
             color: string;
             focused: boolean;
-          }) => renderTabBarIcon(color, focused, "compass"),
+          }) => renderTabBarIcon(color, focused, ICON_EXPLORER),
           tabBarLabel: ({
             color,
             focused,
@@ -117,7 +124,7 @@ export default function BottomTabNavigator() {
           }: {
             color: string;
             focused: boolean;
-          }) => renderTabBarIcon(color, focused, "star", hasUserNewFavorites),
+          }) => renderTabBarIcon(color, focused, ICON_FAVORITES, hasUserNewFavorites),
           tabBarLabel: ({
             color,
             focused,
@@ -138,7 +145,7 @@ export default function BottomTabNavigator() {
           }: {
             color: string;
             focused: boolean;
-          }) => renderTabBarIcon(color, focused, "search"),
+          }) => renderTabBarIcon(color, focused, ICON_SEARCH),
           tabBarLabel: ({
             color,
             focused,
@@ -159,7 +166,7 @@ export default function BottomTabNavigator() {
           }: {
             color: string;
             focused: boolean;
-          }) => renderTabBarIcon(color, focused, "person"),
+          }) => renderTabBarIcon(color, focused, ICON_PROFILE),
           tabBarLabel: ({
             color,
             focused,
@@ -171,4 +178,46 @@ export default function BottomTabNavigator() {
       />
     </BottomTab.Navigator>
   );
+}
+
+interface TabBarProps {
+  width: number
+}
+const FakeTabBarContainer = styled.View`
+  background-color: ${theme.colors.greyF7};
+  height: 40px;
+  width: ${(props: {width: number}) => props.width}px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: ${theme.radius * 2}px;
+`;
+const FakeTabBarItem = styled.View`
+  align-items: center;
+  width: 25%;
+  padding-top: 4px;
+`;
+export const FakeTabBar = (props: TabBarProps) => {
+  const { t } = useTranslation();
+
+  return (
+    <FakeTabBarContainer width={props.width}>
+      <FakeTabBarItem>
+        {renderTabBarIcon(theme.colors.darkGrey, false, ICON_EXPLORER, false, true)}
+        {renderTabBarLabel(theme.colors.darkGrey, false, t("tab_bar.explorer", "Explorer"))}
+      </FakeTabBarItem>
+      <FakeTabBarItem>
+        {renderTabBarIcon(theme.colors.darkGrey, false, ICON_FAVORITES, false, true)}
+        {renderTabBarLabel(theme.colors.darkGrey, false, t("tab_bar.favorites", "Favoris"))}
+      </FakeTabBarItem>
+      <FakeTabBarItem>
+        {renderTabBarIcon(theme.colors.darkGrey, false, ICON_SEARCH, false, true)}
+        {renderTabBarLabel(theme.colors.darkGrey, false, t("tab_bar.search", "Rechercher"))}
+      </FakeTabBarItem>
+      <FakeTabBarItem>
+        {renderTabBarIcon(theme.colors.darkBlue, true, ICON_PROFILE, false, true)}
+        {renderTabBarLabel(theme.colors.darkBlue, true, t("tab_bar.profile", "Moi"))}
+      </FakeTabBarItem>
+    </FakeTabBarContainer>
+  )
 }

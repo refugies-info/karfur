@@ -17,10 +17,11 @@ import {
   userAgeSelector,
   userFrenchLevelSelector,
 } from "../../services/redux/User/user.selectors";
-import noInfo from "../../theme/images/onboarding/onboarding_noinfo.png";
-import { Image, View, Dimensions } from "react-native";
+import ArrowOnboarding from "../../theme/images/onboarding/arrow-onboarding.svg";
+import { View, Dimensions } from "react-native";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
+import { FakeTabBar } from "../../navigation/BottomTabNavigator";
 
 const MainView = styled(SafeAreaView)`
   display: flex;
@@ -31,7 +32,6 @@ const MainView = styled(SafeAreaView)`
 
   padding-bottom: ${theme.margin * 3}px;
 `;
-
 const StyledText = styled(StyledTextBigBold)`
   color: ${theme.colors.white};
   text-align: center;
@@ -39,22 +39,25 @@ const StyledText = styled(StyledTextBigBold)`
     props.marginTop ? props.marginTop : theme.margin * 2}px;
   margin-bottom: ${theme.margin}px;
 `;
-
 const ElementsContainer = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-horizontal: ${theme.margin * 3}px;
 `;
-
 const LottieContainer = styled.View`
   height: 100px;
   width: 100px;
 `;
-
+const FakeTabBarArrowContainer = styled.View`
+  width: ${(props: { width: number }) => props.width}px;
+  align-items: flex-end;
+  margin-top: ${theme.margin * 2}px;
+`;
 const ButtonContainer = styled.View`
   padding-horizontal: ${theme.margin * 3}px;
 `;
+
 export const FinishOnboarding = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "FinishOnboarding">) => {
@@ -68,7 +71,7 @@ export const FinishOnboarding = ({
   const hasUserEnteredInfos =
     !!frenchLevel || !!age || !!location.city || !!location.department;
 
-  const windowWidth = Dimensions.get("window").width;
+  const fakeTabBarWidth = Dimensions.get("window").width * 0.9;
 
   const finishOnboarding = () => {
     try {
@@ -97,14 +100,10 @@ export const FinishOnboarding = ({
           </LottieContainer>
         ) : (
           <View>
-            <Image
-              source={noInfo}
-              style={{
-                width: windowWidth,
-                resizeMode: "cover",
-                maxHeight: windowWidth / 2.7,
-              }}
-            />
+            <FakeTabBar width={fakeTabBarWidth} />
+            <FakeTabBarArrowContainer width={fakeTabBarWidth}>
+              <ArrowOnboarding style={{ width: "100%" }}/>
+            </FakeTabBarArrowContainer>
           </View>
         )}
         {hasUserEnteredInfos && (
