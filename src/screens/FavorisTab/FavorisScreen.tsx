@@ -30,7 +30,7 @@ import { ContentSummary } from "../../components/Contents/ContentSummary";
 import { ConfirmationModal } from "../../components/ConfirmationModal";
 import { getThemeTag } from "../../libs/getThemeTag";
 import { theme } from "../../theme"
-import EmptyIllu from "../../theme/images/favoris/illu-empty-fav.png"
+import EmptyIllu from "../../theme/images/favoris/illu-empty-favorites.png"
 import { HeaderAnimated } from "../../components/HeaderAnimated";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 
@@ -243,9 +243,9 @@ export const FavorisScreen = ({
         >
           <Image
             source={EmptyIllu}
-            style={{ width: 220, height: 278 }}
-            width={220}
-            height={278}
+            style={{ width: 312, height: 250, marginTop: theme.margin * 4 }}
+            width={312}
+            height={250}
           />
           <EmptyTitle>
             {t("favorites_screen.empty", "C'est vide")}
