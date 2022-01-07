@@ -519,3 +519,44 @@ export const sendAdminImprovementsMailService = async (
     });
   }
 };
+
+interface NewResponsableMail {
+  userId: ObjectId;
+  email: string;
+  pseudonyme: string;
+  nomstructure: string;
+}
+
+export const sendNewReponsableMailService = async (
+  data: NewResponsableMail
+) => {
+  try {
+    logger.info("[sendNewReponsableMailService] received");
+
+    const dynamicData = {
+      to: data.email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        pseudonyme: data.pseudonyme,
+        nomstructure: data.nomstructure,
+      },
+    };
+    const templateName = "newResponsable";
+    sendMail(templateName, dynamicData);
+    await addMailEvent({
+      templateName,
+      username: data.pseudonyme,
+      email: data.email,
+      userId: data.userId,
+    });
+    return;
+  } catch (error) {
+    logger.error("[sendNewReponsableMailService] error", {
+      error: error.message,
+    });
+  }
+};
