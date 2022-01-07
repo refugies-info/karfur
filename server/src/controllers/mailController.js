@@ -14,7 +14,6 @@ module.exports = function (app) {
   app.post(
     "/sendAdminImprovementsMail",
     checkToken.check,
-    checkToken.getRoles,
     sendAdminImprovementsMail
   );
   app.post("/sendSubscriptionReminderMail", sendSubscriptionReminderMail);
