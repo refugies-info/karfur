@@ -125,126 +125,125 @@ const onCheckContainerClick = (section, toggleModal, missingElement) => {
 };
 
 const getTagElement = (tag) => {
-  let fullTag = "";
-  if (tag) {
-    fullTag = filtres.tags.filter((item) => item.name === tag.name)[0];
-  }
-  return fullTag;
+  return tag ? filtres.tags.filter((item) => item.name === tag.name)[0] : null;
 };
 
-const Check = (props) => (
-  <CheckContainer
-    missingElement={props.missingElement}
-    onClick={() => {
-      if (!props.geolocInfoCard && props.section === "geoloc") {
-        props.addItem(1, "card", "Zone d'action");
-      }
-      onCheckContainerClick(
-        props.section,
-        props.toggleModal,
-        props.missingElement
-      );
-    }}
-  >
-    <Row>
-      <Title missingElement={props.missingElement}>
-        {getTitle(props.section)}
-      </Title>
-      <Title missingElement={props.missingElement}>
-        {props.missingElement ? "Manquant" : "Ok"}
-        <EVAIcon
-          className={"ml-8"}
-          name={props.missingElement ? "alert-triangle" : "checkmark-circle-2"}
-          fill={props.missingElement ? "#FF9800" : "#4caf50"}
-        />
-      </Title>
-    </Row>
-    {props.section === "sentence" ? (
-      <>
-        <p style={{ fontSize: 16, marginTop: 8 }}>
-          Rédigez une dernière phrase, visible dans les résultats de recherche
-        </p>
-        <div style={{ display: "flex" }}>
-          <FInput
-            type="textarea"
-            rows={5}
-            value={props.abstract}
-            onChange={props.onChange}
-            id="abstract"
-            height="250px"
-            padding="15px"
-            placeholder="Résumez ici votre dispositif..."
-          />
-          <div style={{ marginTop: "100px" }}>
-            <EVAIcon
-              name={"chevron-right-outline"}
-              size="xlarge"
-              fill={colors.noir}
-            />
-          </div>
-          <MockupCardContainer
-            color={getTagElement(props.tags[0]).darkColor}
-            lightColor={getTagElement(props.tags[0]).lightColor}
-            typeContenu={props.typeContenu}
-          >
-            <CardContainer typeContenu={props.typeContenu}>
-              <TitleMockup
-                color={getTagElement(props.tags[0]).darkColor}
-                typeContenu={props.typeContenu}
-              >
-                {props.titreInformatif}
-              </TitleMockup>
-              <TextMockup
-                color={getTagElement(props.tags[0]).darkColor}
-                typeContenu={props.typeContenu}
-                textlength={props.abstract.length}
-              >
-                {props.abstract.length === 0 && (
-                  <EmptyTextContainer
-                    typeContenu={props.typeContenu}
-                  ></EmptyTextContainer>
-                )}
-                {props.abstract.length > 0 ? props.abstract : ""}
-              </TextMockup>
-            </CardContainer>
-            {props.tags && props.typeContenu === "dispositif" && (
-              <TagContainer color={getTagElement(props.tags[0]).darkColor}>
-                <TagContainerContent>
-                  <Streamline
-                    name={getTagElement(props.tags[0]).icon}
-                    stroke={"white"}
-                    width={22}
-                    height={22}
-                  />
-                  <TagNameContainer> {props.titreMarque}</TagNameContainer>
-                </TagContainerContent>
-              </TagContainer>
-            )}
-          </MockupCardContainer>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          <div
-            className={
-              "decompte" +
-              ((props.abstract || "").length > 110 ? " text-danger" : "")
-            }
-          >
-            {(props.abstract || "").length < 110
-              ? 110 - (props.abstract || "").length
-              : "110"}{" "}
-            sur 110 caractères restants
-          </div>
-        </div>
-      </>
-    ) : null}
-  </CheckContainer>
-);
+const Check = (props) => {
+  const tag = getTagElement(props.tags?.[0] || null);
 
+  return (
+    <CheckContainer
+      missingElement={props.missingElement}
+      onClick={() => {
+        if (!props.geolocInfoCard && props.section === "geoloc") {
+          props.addItem(1, "card", "Zone d'action");
+        }
+        onCheckContainerClick(
+          props.section,
+          props.toggleModal,
+          props.missingElement
+        );
+      }}
+    >
+      <Row>
+        <Title missingElement={props.missingElement}>
+          {getTitle(props.section)}
+        </Title>
+        <Title missingElement={props.missingElement}>
+          {props.missingElement ? "Manquant" : "Ok"}
+          <EVAIcon
+            className={"ml-8"}
+            name={props.missingElement ? "alert-triangle" : "checkmark-circle-2"}
+            fill={props.missingElement ? "#FF9800" : "#4caf50"}
+          />
+        </Title>
+      </Row>
+      {props.section === "sentence" ? (
+        <>
+          <p style={{ fontSize: 16, marginTop: 8 }}>
+            Rédigez une dernière phrase, visible dans les résultats de recherche
+          </p>
+          <div style={{ display: "flex" }}>
+            <FInput
+              type="textarea"
+              rows={5}
+              value={props.abstract}
+              onChange={props.onChange}
+              id="abstract"
+              height="250px"
+              padding="15px"
+              placeholder="Résumez ici votre dispositif..."
+            />
+            <div style={{ marginTop: "100px" }}>
+              <EVAIcon
+                name={"chevron-right-outline"}
+                size="xlarge"
+                fill={colors.noir}
+              />
+            </div>
+            <MockupCardContainer
+              color={tag ? tag.darkColor : "#000"}
+              lightColor={tag ? tag.lightColor : props.lightColor}
+              typeContenu={props.typeContenu}
+            >
+              <CardContainer typeContenu={props.typeContenu}>
+                <TitleMockup
+                  color={tag ? tag.darkColor : "#000"}
+                  typeContenu={props.typeContenu}
+                >
+                  {props.titreInformatif}
+                </TitleMockup>
+                <TextMockup
+                  color={tag ? tag.darkColor : "#000"}
+                  typeContenu={props.typeContenu}
+                  textlength={props.abstract.length}
+                >
+                  {props.abstract.length === 0 && (
+                    <EmptyTextContainer
+                      typeContenu={props.typeContenu}
+                    ></EmptyTextContainer>
+                  )}
+                  {props.abstract.length > 0 ? props.abstract : ""}
+                </TextMockup>
+              </CardContainer>
+              {props.tags && props.typeContenu === "dispositif" && (
+                <TagContainer color={tag ? tag.darkColor : "#000"}>
+                  <TagContainerContent>
+                    <Streamline
+                      name={tag ? tag.icon : ""}
+                      stroke={"white"}
+                      width={22}
+                      height={22}
+                    />
+                    <TagNameContainer> {props.titreMarque}</TagNameContainer>
+                  </TagContainerContent>
+                </TagContainer>
+              )}
+            </MockupCardContainer>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
+            <div
+              className={
+                "decompte" +
+                ((props.abstract || "").length > 110 ? " text-danger" : "")
+              }
+            >
+              {(props.abstract || "").length < 110
+                ? 110 - (props.abstract || "").length
+                : "110"}{" "}
+              sur 110 caractères restants
+            </div>
+          </div>
+        </>
+      ) : null}
+    </CheckContainer>
+  );
+}
 const dispositifValidateModal = (props) => {
   const validateAndClose = () => {
     props.validate();
