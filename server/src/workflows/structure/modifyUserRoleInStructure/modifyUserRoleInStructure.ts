@@ -1,8 +1,11 @@
 import { RequestFromClient, Res } from "../../../types/interface";
+import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
-import { ObjectId } from "mongoose";
-import { updateStructureMember } from "../../../modules/structure/structure.repository";
+import { sendNewReponsableMailService } from "../../../modules/mail/mail.service";
+import { getRoleByName } from "../../../controllers/role/role.repository";
+import { getUserById } from "../../../modules/users/users.repository";
+import { updateStructureMember, getStructureFromDB } from "../../../modules/structure/structure.repository";
 import {
   removeRoleAndStructureOfUser,
   updateRoleAndStructureOfResponsable,
@@ -72,6 +75,25 @@ export const modifyUserRoleInStructure = async (
     }
     const membreIdToSend = action === "create" ? null : membreId;
     await updateStructureMember(membreIdToSend, structure);
+
+    if ((action === "create" || action === "modify") && role === "administrateur") {
+      const user = await getUserById(membreId, { email: 1, username: 1, roles: 1 });
+      const adminRole = await getRoleByName("Admin");
+      const userIsAdmin = (user.roles || []).some((x) => x && x.toString() === adminRole._id.toString());
+      const structureData = await getStructureFromDB(structure._id, false, { nom: 1 });
+      if (!user || !structureData) {
+        logger.error("[modifyUserRoleInStructure] mail not sent");
+      } else if (userIsAdmin) {
+        logger.info("[modifyUserRoleInStructure] user is admin, mail not sent");
+      } else {
+        sendNewReponsableMailService({
+          userId: user._id,
+          email: user.email,
+          pseudonyme: user.username,
+          nomstructure: structureData.nom,
+        });
+      }
+    }
 
     // if delete, remove role and structure in corresponding user
     // if modify no need to update the user since he was already in the structure
