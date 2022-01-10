@@ -1,0 +1,12 @@
+@import "src/scss/colors.scss";
+
+.footer-link {
+  color: $grisFonce;
+  background: transparent;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  border: none;
+  text-decoration: underline;
+  outline: none;
+}

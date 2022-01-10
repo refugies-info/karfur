@@ -1,0 +1,1 @@
+export { updateIndex } from "./updateIndex";

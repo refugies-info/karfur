@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { initGA, Event } from "../../../tracking/dispatch";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { withTranslation } from "react-i18next";
@@ -8,6 +9,7 @@ import * as themes from "./data";
 import Streamline from "../../../assets/streamline";
 import NoResultPlaceholder from "./NoResultPlaceholder";
 import { filtres } from "../../Dispositif/data";
+import debounce from "lodash.debounce";
 
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import useOutsideClick from "./useOutsideClick";
@@ -176,51 +178,46 @@ const AdvancedSearchBar = (props) => {
     }
   }, [searchText, props.visible, props.scroll]);
 
-  const onTextChange = (e) => {
-    setSearchText(e.target.value);
-    const text = e.target.value
+  const normalize = useCallback((val) => (
+    val.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
+  ));
+
+  const search = (value) => {
+    const text = value
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .trim()
       .toLowerCase();
-    const dispositifsMatchedArray = [];
     const themesMatchedArray = [];
-    props.dispositifs.map((elem) => {
-      if (
-        (elem.titreInformatif &&
-          elem.titreInformatif
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .toLowerCase()
-            .includes(text)) ||
-        (elem.titreMarque &&
-          elem.titreMarque
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .toLowerCase()
-            .includes(text))
-      ) {
-        dispositifsMatchedArray.push(elem);
-      }
-    });
     for (const [key, value] of Object.entries(
       themes[i18n.language === "ti-ER" ? "ti" : i18n.language]
     )) {
-      value.map((theme) => {
+      for (const theme of value) {
         if (
-          theme
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .toLowerCase()
-            .includes(text) &&
+          normalize(theme).includes(text) &&
           !themesMatchedArray.includes(key)
         ) {
           themesMatchedArray.push(key);
         }
-      });
+      }
     }
     setSearchThemes(themesMatchedArray);
-    setSearchDispositifs(dispositifsMatchedArray);
+    setSearchDispositifs(props.dispositifs.filter(elem =>
+      (elem.titreInformatif && normalize(elem.titreInformatif).includes(text))
+      || (elem.titreMarque && normalize(elem.titreMarque).includes(text))
+    ));
+
+    initGA();
+    Event("USE_SEARCHBAR", value, "label");
+  };
+
+  const delayedSearch = useCallback(
+    debounce(q => search(q), 500),
+    [props.dispositifs]
+  );
+  const onTextChange = (e) => {
+    setSearchText(e.target.value);
+    delayedSearch(e.target.value);
   };
 
   return (

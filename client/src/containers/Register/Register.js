@@ -409,7 +409,7 @@ export class Register extends Component {
                       )}
                     </b>{" "}
                     {t(
-                      "Register.vérifiez l'orthographe.",
+                      "Register.vérifiez l'orthographe",
                       "vérifiez l'orthographe."
                     )}
                   </ErrorMessageContainer>
