@@ -11,6 +11,9 @@ declare type templateIds = {
   publishedTradForTraductors: string;
   subscriptionReminderMail: string;
   resetPassword: string;
+  changePhoneNumber: string;
+  newResponsable: string;
+  enabled2FaEmail: string; // TODO: to delete once sent
 };
 
 export const templatesIds: templateIds = {
@@ -26,4 +29,7 @@ export const templatesIds: templateIds = {
   publishedTradForTraductors: "d-f933396f06ac43c9aadfbcf41288fbb3",
   subscriptionReminderMail: "d-7b825e600f5c46ad9a1666e4431d2c97",
   resetPassword: "d-20ecb97414ef4545b036c382493be037",
+  changePhoneNumber: "d-98ca8ec76a8f495aac751d2a64a0300c",
+  newResponsable: "d-e31d1a56b06f44bb90d3dd000a4a962f",
+  enabled2FaEmail: "d-00a91b3c820940448984f8421f3be0f4" // TODO: to delete once sent
 };

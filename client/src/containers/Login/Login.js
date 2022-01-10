@@ -2,135 +2,29 @@ import React, { Component } from "react";
 import { Form } from "reactstrap";
 import i18n from "../../i18n";
 import Swal from "sweetalert2";
-import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import LanguageBtn from "../../components/FigmaUI/LanguageBtn/LanguageBtn";
-import API from "../../utils/API";
-import setAuthToken from "../../utils/setAuthToken";
-import FButton from "../../components/FigmaUI/FButton/FButton";
-import FInput from "../../components/FigmaUI/FInput/FInput";
-import { fetchUserActionCreator } from "../../services/User/user.actions";
-import styled from "styled-components";
-import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 
-import { colors } from "colors";
 import {
   fetchLanguesActionCreator,
   toggleLangueActionCreator,
   toggleLangueModalActionCreator,
 } from "../../services/Langue/langue.actions";
-import img from "../../assets/login_background.svg";
+import { fetchUserActionCreator } from "../../services/User/user.actions";
 import { LoadingStatusKey } from "../../services/LoadingStatus/loadingStatus.actions";
-
-const StyledHeader = styled.div`
-  font-weight: 500;
-  font-size: 32px;
-  line-height: 40px;
-  color: #0421b1;
-  margin-top: 64px;
-`;
-
-const StyledEnterValue = styled.div`
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  margin-top: 64px;
-  margin-bottom: 16px;
-`;
-
-const MainContainer = styled.div`
-  display: flex;
-  align-items: center;
-  flex: 1;
-  flex-direction: column;
-  background-image: url(${img});
-  background-color: #fbfbfb;
-`;
-
-const ContentContainer = styled.div`
-  padding-top: 100px;
-`;
-
-const NoAccountContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  font-size: 16px;
-  line-height: 20px;
-  color: #828282;
-  margin-top: 64px;
-`;
-
-const PseudoForgottenContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  font-size: 16px;
-  line-height: 20px;
-  color: #828282;
-  margin-top: 16px;
-  font-weight: bold;
-`;
-
-const FooterLink = styled.div`
-  color: #828282;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  margin-top: 64px;
-`;
-
-const ErrorMessageContainer = styled.div`
-  color: #e8140f;
-  font-size: 16px;
-  line-height: 20px;
-  margin-top: 16px;
-`;
-
-const NoEmailRelatedContainer = styled.div`
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #e8140f;
-  margin-top: 64px;
-  margin-bottom: 64px;
-`;
-
-const EmailRelatedContainer = styled.div`
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  margin-top: 64px;
-  margin-bottom: 16px;
-`;
-
-const GoBackButton = (props) => {
-  if (props.step === 0) {
-    return (
-      <NavLink to="/">
-        <FButton
-          type="light-action"
-          name="arrow-back-outline"
-          className="mr-10"
-        >
-          {props.t("Retour", "Retour")}
-        </FButton>
-      </NavLink>
-    );
-  }
-
-  return (
-    <FButton
-      type="light-action"
-      name="arrow-back-outline"
-      className="mr-10"
-      onClick={props.goBack}
-    >
-      {props.t("Retour", "Retour")}
-    </FButton>
-  );
-};
+import API from "../../utils/API";
+import setAuthToken from "../../utils/setAuthToken";
+import LanguageBtn from "../../components/FigmaUI/LanguageBtn/LanguageBtn";
+import FButton from "../../components/FigmaUI/FButton/FButton";
+import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
+import { GoBackButton } from "./components/GoBackButton";
+import { Footer } from "./components/Footer";
+import { CodeField } from "./components/fields/CodeField";
+import { PasswordField } from "./components/fields/PasswordField";
+import { PhoneAndEmailFields } from "./components/fields/PhoneAndEmailFields";
+import { UsernameField } from "./components/fields/UsernameField";
+import * as S from "./styles";
+import { colors } from "colors";
 
 export class Login extends Component {
   state = {
@@ -139,6 +33,8 @@ export class Login extends Component {
     code: "",
     email: "",
     phone: "",
+    smsSentTo: "",
+    structure: null,
     passwordVisible: false,
     step: 0,
     noUserError: false,
@@ -148,6 +44,7 @@ export class Login extends Component {
     wrongAdminCodeError: false,
     unexpectedError: false,
     newAdminWithoutPhoneOrEmail: false,
+    newHasStructureWithoutPhoneOrEmail: false,
     userDeletedError: false,
   };
 
@@ -166,12 +63,15 @@ export class Login extends Component {
     this.setState({
       step: 0,
       password: "",
+      smsSentTo: "",
+      structure: null,
       wrongPasswordError: false,
       resetPasswordNotPossible: false,
       resetPasswordPossible: false,
       wrongAdminCodeError: false,
       unexpectedError: false,
       newAdminWithoutPhoneOrEmail: false,
+      newHasStructureWithoutPhoneOrEmail: false,
     });
 
   resetPassword = () => {
@@ -201,7 +101,7 @@ export class Login extends Component {
    * 400 : invalid request, no user with this pseudo
    * 500 : internal error
    * 401 : wrong password
-   * 402 : wrong code (admin)
+   * 402 : wrong code (admin or hasStructure)
    * 404 : error sending code (admin), error creating admin account
    * 501 : no code provided (admin)
    * 200 : authentification succeeded
@@ -238,7 +138,12 @@ export class Login extends Component {
       .catch((e) => {
         // status 501 corresponds to an admin connecting (before entering the code)
         if (e.response.status === 501) {
-          this.setState({ step: 2, newAdminWithoutPhoneOrEmail: false });
+          this.setState({
+            step: 2,
+            newAdminWithoutPhoneOrEmail: false,
+            newHasStructureWithoutPhoneOrEmail: false,
+            smsSentTo: e.response?.data?.phone || ""
+          });
           // status 401 corresponds to wrong password
         } else if (e.response.status === 401) {
           this.setState({
@@ -247,7 +152,18 @@ export class Login extends Component {
         } else if (e.response.status === 402) {
           this.setState({ wrongAdminCodeError: true });
         } else if (e.response.status === 502) {
-          this.setState({ newAdminWithoutPhoneOrEmail: true });
+          if (e.response?.data?.role === "admin") {
+            this.setState({
+              newAdminWithoutPhoneOrEmail: true,
+              email: e.response?.data?.email || ""
+            });
+          } else {
+            this.setState({
+              newHasStructureWithoutPhoneOrEmail: true,
+              email: e.response?.data?.email || "",
+              structure: e.response?.data?.structure
+            });
+          }
         } else if (e.response.status === 405) {
           this.setState({ userDeletedError: true });
         } else {
@@ -256,8 +172,9 @@ export class Login extends Component {
       });
   };
 
-  send = (e) => {
+  submitForm = (e) => {
     e.preventDefault();
+    this.setState({ wrongPasswordError: false });
 
     // validate pseudo
     if (this.state.step === 0) {
@@ -315,6 +232,12 @@ export class Login extends Component {
         "Nouvel administrateur"
       );
     }
+    if (this.state.newHasStructureWithoutPhoneOrEmail) {
+      return this.props.t(
+        "Login.new_has_structure",
+        "Nouveau responsable de structure ! 🎉"
+      );
+    }
     if (this.state.resetPasswordNotPossible) {
       return this.props.t(
         "Login.Impossible de réinitialiser",
@@ -369,6 +292,9 @@ export class Login extends Component {
         "Entrez votre numéro et votre email"
       );
     }
+    if (this.state.newHasStructureWithoutPhoneOrEmail) {
+      return null
+    }
     if (this.state.step === 1) {
       return this.props.t(
         "Login.Entrez votre mot de passe",
@@ -378,68 +304,124 @@ export class Login extends Component {
 
     if (this.state.step === 2) {
       return this.props.t(
-        "Login.Un code vous a été envoyé par sms sur votre mobile.",
-        "Un code vous a été envoyé par sms sur votre mobile."
+        "Login.code_sent_sms", { phone: this.state.smsSentTo }
       );
     }
   };
 
+  getFormTemplate = () => {
+    if (this.state.step === 0) { // STEP 0: username
+      return (
+        <UsernameField
+          value={this.state.username}
+          onChange={this.handleChange}
+          t={this.props.t}
+          noUserError={this.state.noUserError}
+        />
+      )
+    } else if (this.state.step === 1) { // STEP 1: password or contact infos
+      if (this.state.newAdminWithoutPhoneOrEmail && !this.state.wrongPasswordError) {
+        return (
+          <PhoneAndEmailFields
+            t={this.props.t}
+            onChange={this.handleChange}
+            phone={this.state.phone}
+            email={this.state.email}
+            isAdmin={true}
+          />
+        )
+      }
+      if (this.state.newHasStructureWithoutPhoneOrEmail && !this.state.wrongPasswordError) {
+        return (
+          <>
+            <PhoneAndEmailFields
+              t={this.props.t}
+              onChange={this.handleChange}
+              phone={this.state.phone}
+              email={this.state.email}
+              structure={this.state.structure}
+              isAdmin={false}
+            />
+          </>
+        )
+      }
+      return (
+        <PasswordField
+          id="password"
+          value={this.state.password}
+          onChange={this.handleChange}
+          passwordVisible={this.state.passwordVisible}
+          onClick={this.togglePasswordVisibility}
+          t={this.props.t}
+          wrongPasswordError={this.state.wrongPasswordError}
+        />
+      )
+    }
+
+    return ( // STEP 2: 2FA code
+      <CodeField
+        value={this.state.code}
+        onChange={this.handleChange}
+        t={this.props.t}
+        wrongAdminCodeError={this.state.wrongAdminCodeError}
+      />
+    )
+  }
+
   render() {
     const {
-      passwordVisible,
-      username,
       step,
-      code,
-      email,
-      phone,
       resetPasswordNotPossible,
       resetPasswordPossible,
-      noUserError,
       newAdminWithoutPhoneOrEmail,
-      password,
-      wrongAdminCodeError,
-      wrongPasswordError,
+      newHasStructureWithoutPhoneOrEmail,
       unexpectedError,
       userDeletedError,
     } = this.state;
     const { t } = this.props;
+
     return (
       <div className="app">
-        <MainContainer>
-          <ContentContainer>
-            <GoBackButton step={step} goBack={this.goBack} t={t} />
-            <LanguageBtn />
-            <FButton
-              tag={"a"}
-              href="https://help.refugies.info/fr/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-btn"
-              type="help"
-              name="question-mark-circle-outline"
-              fill={colors.noir}
-            >
-              {t("Login.Centre d'aide", "Centre d'aide")}
-            </FButton>
-            <StyledHeader>{this.getHeaderText()}</StyledHeader>
+        <S.MainContainer>
+          <S.ContentContainer smallPadding={step === 1 && newHasStructureWithoutPhoneOrEmail}>
+            <S.HeaderContainer>
+              <GoBackButton step={step} goBack={this.goBack} t={t} />
+              <div>
+                <LanguageBtn />
+                <FButton
+                  tag="a"
+                  href="https://help.refugies.info/fr/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer-btn"
+                  type="tuto"
+                  name="question-mark-circle-outline"
+                  fill={colors.noir}
+                >
+                  {t("Login.Centre d'aide", "Centre d'aide")}
+                </FButton>
+              </div>
+            </S.HeaderContainer>
+
+            <S.StyledH2>{this.getHeaderText()}</S.StyledH2>
             {resetPasswordNotPossible && (
-              <NoEmailRelatedContainer>
+              <S.NoEmailRelatedContainer>
                 {t(
                   "Login.Pas email",
                   "Il n'y a pas d'email associé à ce pseudonyme."
                 )}
-              </NoEmailRelatedContainer>
+              </S.NoEmailRelatedContainer>
             )}
             {resetPasswordPossible && (
               <>
-                <EmailRelatedContainer>
+                <S.EmailRelatedContainer>
                   {t(
                     "Login.Lien réinitialisation",
                     "Un lien de réinitialisation a été envoyé à "
                   ) +
                     this.getHashedEmail() +
                     "."}
-                </EmailRelatedContainer>
+                </S.EmailRelatedContainer>
                 <div
                   style={{
                     fontWeight: "bold",
@@ -457,44 +439,11 @@ export class Login extends Component {
             )}
             {!resetPasswordNotPossible && !resetPasswordPossible && (
               <>
-                <StyledEnterValue>{this.getSubtitle()}</StyledEnterValue>
-                <Form onSubmit={this.send}>
-                  {step === 0 ? (
-                    <UsernameField
-                      value={username}
-                      onChange={this.handleChange}
-                      step={step}
-                      key="username-field"
-                      t={t}
-                      noUserError={noUserError}
-                    />
-                  ) : newAdminWithoutPhoneOrEmail ? (
-                    <PhoneAndEmailFields
-                      t={t}
-                      {...this.props}
-                      onChange={this.handleChange}
-                      phone={phone}
-                      email={email}
-                    />
-                  ) : step === 1 ? (
-                    <PasswordField
-                      id="password"
-                      value={password}
-                      onChange={this.handleChange}
-                      passwordVisible={passwordVisible}
-                      onClick={this.togglePasswordVisibility}
-                      t={t}
-                      wrongPasswordError={wrongPasswordError}
-                    />
-                  ) : (
-                    <CodeField
-                      value={code}
-                      onChange={this.handleChange}
-                      key="code-field"
-                      t={t}
-                      wrongAdminCodeError={wrongAdminCodeError}
-                    />
-                  )}
+                {!!this.getSubtitle() &&
+                  <S.StyledEnterValue>{this.getSubtitle()}</S.StyledEnterValue>
+                }
+                <Form onSubmit={this.submitForm}>
+                  {this.getFormTemplate()}
                 </Form>
               </>
             )}
@@ -507,9 +456,10 @@ export class Login extends Component {
               login={this.login}
               unexpectedError={unexpectedError}
               newAdminWithoutPhoneOrEmail={newAdminWithoutPhoneOrEmail}
+              newHasStructureWithoutPhoneOrEmail={newHasStructureWithoutPhoneOrEmail}
               userDeletedError={userDeletedError}
             />
-          </ContentContainer>
+          </S.ContentContainer>
           <LanguageModal
             show={this.props.showLangModal}
             current_language={i18n.language}
@@ -518,316 +468,11 @@ export class Login extends Component {
             langues={this.props.langues}
             isLanguagesLoading={this.props.isLanguagesLoading}
           />
-        </MainContainer>
+        </S.MainContainer>
       </div>
     );
   }
 }
-
-const ResetPasswordMessage = styled.div`
-  font-size: 16px;
-  line-height: 20px;
-  color: #828282;
-  margin-bottom: 16px;
-`;
-
-const ContactSupport = (props) => (
-  <a onClick={() => window.$crisp.push(["do", "chat:open"])}>
-    <div
-      style={{
-        fontWeight: "bold",
-        textDecoration: "underline",
-        cursor: "pointer",
-        color: "#828282",
-      }}
-    >
-      {props.t("Login.Contactez le support", "Contactez le support")}
-    </div>
-  </a>
-);
-const Footer = (props) => {
-  if (props.unexpectedError) {
-    return (
-      <ErrorMessageContainer>
-        {props.t(
-          "Login.Une erreur est survenue. Veuillez réessayer.",
-          "Une erreur est survenue. Veuillez réessayer."
-        )}
-      </ErrorMessageContainer>
-    );
-  }
-  if (props.userDeletedError) {
-    return (
-      <ErrorMessageContainer>
-        {props.t("Login.user supprimé", "Ce compte a été supprimé.")}
-      </ErrorMessageContainer>
-    );
-  }
-  if (props.resetPasswordNotPossible) {
-    return (
-      <>
-        <ResetPasswordMessage>
-          {props.t(
-            "Login.Reset password message",
-            "Attention, si vous n'avez pas configuré d'email, vous ne pourrez pas réinitialiser votre mot de passe."
-          )}
-        </ResetPasswordMessage>
-        <ContactSupport t={props.t} />
-      </>
-    );
-  }
-
-  if (props.resetPasswordPossible) {
-    return (
-      <>
-        <FooterLink>
-          <div onClick={props.resetPassword}>
-            <u>{props.t("Login.Renvoyer le lien", "Renvoyer le lien")}</u>
-          </div>
-        </FooterLink>
-        <div style={{ marginTop: "16px" }}>
-          <ContactSupport t={props.t} />
-        </div>
-      </>
-    );
-  }
-
-  if (props.step === 0) {
-    return <PseudoFooter t={props.t} />;
-  }
-
-  if (props.step === 1 && !props.newAdminWithoutPhoneOrEmail) {
-    return <PasswordFooter t={props.t} resetPassword={props.resetPassword} />;
-  }
-
-  if (props.step === 2) {
-    return (
-      <FooterLink>
-        <div onClick={props.login}>
-          <u>{props.t("Login.Renvoyer le code", "Renvoyer le code")}</u>
-        </div>
-      </FooterLink>
-    );
-  }
-  return false;
-};
-
-const PhoneAndEmailFields = (props) => (
-  <>
-    <FInput
-      prepend
-      prependName="at-outline"
-      value={props.email}
-      {...props}
-      id="email"
-      type="email"
-      placeholder={props.t("Login.Entrez votre email", "Entrez votre email")}
-      newSize
-    />
-    <FInput
-      prepend
-      prependName="smartphone-outline"
-      value={props.phone}
-      {...props}
-      id="phone"
-      type="phone"
-      placeholder={props.t("Login.Entrez votre numéro", "Entrez votre numéro")}
-      newSize
-    />
-    <FButton
-      type="validate-light"
-      name="arrow-forward-outline"
-      disabled={!props.phone || !props.email}
-    >
-      {props.t("Suivant", "Suivant")}
-    </FButton>
-  </>
-);
-
-const PseudoFooter = (props) => (
-  <>
-    <NoAccountContainer>
-      {props.t("Login.Pas encore de compte ?", "Pas encore de compte ?")}
-      <Link
-        to={{
-          pathname: "/register",
-        }}
-      >
-        <div
-          style={{
-            fontWeight: "bold",
-            textDecoration: "underline",
-            marginLeft: "5px",
-          }}
-        >
-          {props.t("Login.Créez un compte", "Créez un compte")}
-        </div>
-      </Link>
-    </NoAccountContainer>
-    <PseudoForgottenContainer>
-      <div style={{ marginRight: "5px" }}>
-        {props.t("Login.Pseudonyme oublié ?", "Pseudonyme oublié ?")}{" "}
-      </div>
-      <ContactSupport t={props.t} />
-    </PseudoForgottenContainer>{" "}
-  </>
-);
-
-const UsernameField = (props) => (
-  <>
-    <div
-      key="username-field"
-      style={{
-        flexDirection: "row",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <div style={{ marginTop: "10px" }}>
-        <FInput
-          prepend
-          prependName="person-outline"
-          id="username"
-          type="username"
-          placeholder={props.t("Login.Pseudonyme", "Pseudonyme")}
-          autoComplete="username"
-          error={props.noUserError}
-          errorIcon="person"
-          newSize
-          {...props}
-        />
-      </div>
-      <div style={{ marginLeft: "10px" }}>
-        <FButton
-          type="validate-light"
-          name="arrow-forward-outline"
-          disabled={!props.value}
-        >
-          {props.t("Suivant", "Suivant")}
-        </FButton>
-      </div>
-    </div>
-    {props.noUserError && (
-      <ErrorMessageContainer>
-        <b>{props.t("Login.Oups,", "Oups,")}</b>{" "}
-        {props.t(
-          "Login.Pas de compte",
-          `il n'existe pas de compte à
-  ce nom.`
-        )}
-      </ErrorMessageContainer>
-    )}
-  </>
-);
-
-const CodeField = (props) => (
-  <>
-    <div
-      key="code-field"
-      style={{
-        flexDirection: "row",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <div style={{ marginTop: "10px" }}>
-        <FInput
-          prepend
-          prependName="lock-outline"
-          {...props}
-          id="code"
-          type="number"
-          placeholder={props.t("Login.Entrez votre code", "Entrez votre code")}
-          error={props.wrongAdminCodeError}
-          errorIcon="lock"
-          newSize
-        />
-      </div>
-      <div style={{ marginLeft: "10px" }}>
-        <FButton
-          type="validate-light"
-          name="checkmark-outline"
-          disabled={!props.value}
-        >
-          {props.t("Valider", "Valider")}
-        </FButton>
-      </div>
-    </div>
-    {props.wrongAdminCodeError && (
-      <ErrorMessageContainer>
-        <b>
-          {props.t(
-            "Login.Le code saisi n'est pas le bon.",
-            "Le code saisi n'est pas le bon."
-          )}
-        </b>
-      </ErrorMessageContainer>
-    )}
-  </>
-);
-
-const PasswordField = (props) => (
-  <>
-    <div
-      style={{
-        flexDirection: "row",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <div style={{ marginTop: "10px" }}>
-        <FInput
-          prepend
-          append
-          autoFocus={props.id === "password"}
-          prependName="lock-outline"
-          appendName={
-            props.passwordVisible ? "eye-off-2-outline" : "eye-outline"
-          }
-          inputClassName="password-input"
-          onAppendClick={props.onClick}
-          {...props}
-          type={props.passwordVisible ? "text" : "password"}
-          id={props.id}
-          placeholder={props.t("Login.Mot de passe", "Mot de passe")}
-          autoComplete="new-password"
-          error={props.wrongPasswordError}
-          errorIcon="lock"
-          errorType="wrongPassword"
-          newSize
-        />
-      </div>
-      <div style={{ marginLeft: "10px" }}>
-        <FButton
-          type="validate-light"
-          name="checkmark-outline"
-          disabled={!props.value}
-        >
-          {props.t("Valider", "Valider")}
-        </FButton>
-      </div>
-    </div>
-    {props.wrongPasswordError && (
-      <ErrorMessageContainer>
-        {props.t(
-          "Login.Mauvais mot de passe",
-          "Erreur, mauvais mot de passe : "
-        )}
-        <b>{props.t("Login.Reessayez", "réessayez !")}</b>
-      </ErrorMessageContainer>
-    )}
-  </>
-);
-
-const PasswordFooter = (props) => (
-  <FooterLink>
-    <div onClick={props.resetPassword}>
-      <u>
-        {props.t("Login.Mot de passe oublié ?", "J'ai oublié mon mot de passe")}
-      </u>
-    </div>
-  </FooterLink>
-);
 
 const mapDispatchToProps = {
   fetchUser: fetchUserActionCreator,

@@ -759,7 +759,7 @@ $imgHeight: 350px;
   .fiabilite-row {
     margin-left: 0px;
 
-    padding: 0 40px;
+    padding: 12px 40px;
     @include media-max("tablet-up") {
       text-align: center;
     }
@@ -768,7 +768,7 @@ $imgHeight: 350px;
       padding: 0;
       min-width: 250px;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       white-space: nowrap;
       font-size: 16px;
       line-height: 35px;

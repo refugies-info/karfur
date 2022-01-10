@@ -1,11 +1,17 @@
 // @ts-nocheck
 import { modifyUserRoleInStructure } from "./modifyUserRoleInStructure";
 import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
-import { updateStructureMember } from "../../../modules/structure/structure.repository";
+import { updateStructureMember, getStructureFromDB } from "../../../modules/structure/structure.repository";
 import {
   removeRoleAndStructureOfUser,
   updateRoleAndStructureOfResponsable,
 } from "../../../modules/users/users.service";
+import {
+  sendNewReponsableMailService
+} from "../../../modules/mail/mail.service";
+import { getUserById } from "../../../modules/users/users.repository";
+import { getRoleByName } from "../../../controllers/role/role.repository";
+
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -17,15 +23,28 @@ const mockResponse = (): MockResponse => {
 
 jest.mock("../../../modules/structure/structure.repository", () => ({
   updateStructureMember: jest.fn(),
+  getStructureFromDB: jest.fn().mockResolvedValue({
+    _id: "structureId",
+    nom: "My Structure",
+  }),
 }));
-
+jest.mock("../../../modules/users/users.repository", () => ({
+  getUserById: jest.fn(),
+}));
 jest.mock("../../../modules/structure/structure.service", () => ({
   checkIfUserIsAuthorizedToModifyStructure: jest.fn(),
 }));
-
 jest.mock("../../../modules/users/users.service", () => ({
   removeRoleAndStructureOfUser: jest.fn(),
   updateRoleAndStructureOfResponsable: jest.fn(),
+}));
+jest.mock("../../../modules/mail/mail.service", () => ({
+  sendNewReponsableMailService: jest.fn(),
+}));
+jest.mock("../../../controllers/role/role.repository", () => ({
+  getRoleByName: jest.fn().mockResolvedValue({
+    _id: "adminRole"
+  }),
 }));
 
 describe("modifyUserRoleInStructure", () => {
@@ -37,12 +56,14 @@ describe("modifyUserRoleInStructure", () => {
   it("should return 405 if not from site", async () => {
     const req = { test: "a", fromSite: false };
     await modifyUserRoleInStructure(req, res);
+    expect(sendNewReponsableMailService).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(405);
     expect(res.json).toHaveBeenCalledWith({ text: "Requête bloquée par API" });
   });
   it("should return 400 if no body", async () => {
     const req = { fromSite: true };
     await modifyUserRoleInStructure(req, res);
+    expect(sendNewReponsableMailService).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
   });
@@ -50,14 +71,23 @@ describe("modifyUserRoleInStructure", () => {
   it("should return 400 if no body query", async () => {
     const req = { fromSite: true, body: { test: "s" } };
     await modifyUserRoleInStructure(req, res);
+    expect(sendNewReponsableMailService).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
   });
 
+  const user = {
+    _id: "userId",
+    username: "user",
+    email: "test@test.com",
+    roles: [
+      "userRole"
+    ]
+  }
   const structure = {
     structureId: "structureId",
     action: "modify",
-    role: "role",
+    role: "contributeur",
     membreId: "membreId",
   };
   const req = {
@@ -79,6 +109,7 @@ describe("modifyUserRoleInStructure", () => {
     ).toHaveBeenCalledWith("structureId", "userId", ["test"]);
     expect(updateStructureMember).not.toHaveBeenCalled();
     expect(updateRoleAndStructureOfResponsable).not.toHaveBeenCalled();
+    expect(sendNewReponsableMailService).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(402);
     expect(res.json).toHaveBeenCalledWith({ text: "Id non valide" });
   });
@@ -93,22 +124,53 @@ describe("modifyUserRoleInStructure", () => {
     ).toHaveBeenCalledWith("structureId", "userId", ["test"]);
     expect(updateRoleAndStructureOfResponsable).not.toHaveBeenCalled();
     expect(updateStructureMember).not.toHaveBeenCalled();
+    expect(sendNewReponsableMailService).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({ text: "Token invalide" });
   });
 
-  const structureModify = {
-    _id: "structureId",
-    $set: { "membres.$.roles": ["role"] },
-  };
-  it("should return 200 if modify ", async () => {
+  it("should return 200 if modify to contributeur and not send email", async () => {
     await modifyUserRoleInStructure(req, res);
     expect(updateStructureMember).toHaveBeenCalledWith(
       "membreId",
-      structureModify
+      {
+        _id: "structureId",
+        $set: { "membres.$.roles": ["contributeur"] },
+      }
     );
     expect(removeRoleAndStructureOfUser).not.toHaveBeenCalled();
     expect(updateRoleAndStructureOfResponsable).not.toHaveBeenCalled();
+    expect(sendNewReponsableMailService).not.toHaveBeenCalled();
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "Succès" });
+  });
+
+  it("should return 200 if modify to responsable and send email", async () => {
+    const requestResponsable = JSON.parse(JSON.stringify(req)); // deep copy
+    requestResponsable.body.query.role = "administrateur";
+
+    getUserById.mockResolvedValueOnce(user);
+    await modifyUserRoleInStructure(requestResponsable, res);
+    expect(updateStructureMember).toHaveBeenCalledWith(
+      "membreId",
+      {
+        _id: "structureId",
+        $set: { "membres.$.roles": ["administrateur"] },
+      }
+    );
+    expect(removeRoleAndStructureOfUser).not.toHaveBeenCalled();
+    expect(updateRoleAndStructureOfResponsable).not.toHaveBeenCalled();
+
+    expect(getUserById).toHaveBeenCalled();
+    expect(getRoleByName).toHaveBeenCalled();
+    expect(getStructureFromDB).toHaveBeenCalled();
+    expect(sendNewReponsableMailService).toHaveBeenCalledWith({
+      pseudonyme: "user",
+      email: "test@test.com",
+      userId: "userId",
+      nomstructure: "My Structure"
+    });
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "Succès" });
@@ -129,6 +191,7 @@ describe("modifyUserRoleInStructure", () => {
     expect(updateStructureMember).not.toHaveBeenCalled();
     expect(removeRoleAndStructureOfUser).not.toHaveBeenCalled();
     expect(updateRoleAndStructureOfResponsable).not.toHaveBeenCalled();
+    expect(sendNewReponsableMailService).not.toHaveBeenCalled();
 
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
@@ -158,6 +221,7 @@ describe("modifyUserRoleInStructure", () => {
       "structureId"
     );
     expect(updateRoleAndStructureOfResponsable).not.toHaveBeenCalled();
+    expect(sendNewReponsableMailService).not.toHaveBeenCalled();
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "Succès" });
@@ -168,10 +232,14 @@ describe("modifyUserRoleInStructure", () => {
     await modifyUserRoleInStructure(req, res);
     expect(updateStructureMember).toHaveBeenCalledWith(
       "membreId",
-      structureModify
+      {
+        _id: "structureId",
+        $set: { "membres.$.roles": ["contributeur"] },
+      }
     );
     expect(removeRoleAndStructureOfUser).not.toHaveBeenCalled();
     expect(updateRoleAndStructureOfResponsable).not.toHaveBeenCalled();
+    expect(sendNewReponsableMailService).not.toHaveBeenCalled();
 
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
@@ -189,6 +257,7 @@ describe("modifyUserRoleInStructure", () => {
       "structureId"
     );
     expect(updateRoleAndStructureOfResponsable).not.toHaveBeenCalled();
+    expect(sendNewReponsableMailService).not.toHaveBeenCalled();
 
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
@@ -207,7 +276,17 @@ describe("modifyUserRoleInStructure", () => {
     $addToSet: {
       membres: {
         userId: "membreId",
-        roles: ["role"],
+        roles: ["contributeur"],
+        added_at: new Date(1466424490000),
+      },
+    },
+  };
+  const structureCreateResponsable = {
+    _id: "structureId",
+    $addToSet: {
+      membres: {
+        userId: "membreId",
+        roles: ["administrateur"],
         added_at: new Date(1466424490000),
       },
     },
@@ -215,13 +294,41 @@ describe("modifyUserRoleInStructure", () => {
   const mockDate = new Date(1466424490000);
   jest.spyOn(global, "Date").mockImplementation(() => mockDate);
 
-  it("should return 200 if create ", async () => {
+  it("should return 200 if create and not send email", async () => {
     await modifyUserRoleInStructure(reqCreate, res);
     expect(updateStructureMember).toHaveBeenCalledWith(null, structureCreate);
     expect(updateRoleAndStructureOfResponsable).toHaveBeenCalledWith(
       "membreId",
       "structureId"
     );
+    expect(sendNewReponsableMailService).not.toHaveBeenCalled();
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "Succès" });
+  });
+
+  it("should return 200 if create responsable and send email", async () => {
+    const requestResponsable = JSON.parse(JSON.stringify(reqCreate)); // deep copy
+    requestResponsable.body.query.role = "administrateur";
+
+    getUserById.mockResolvedValueOnce(user);
+
+    await modifyUserRoleInStructure(requestResponsable, res);
+    expect(updateStructureMember).toHaveBeenCalledWith(null, structureCreateResponsable);
+    expect(updateRoleAndStructureOfResponsable).toHaveBeenCalledWith(
+      "membreId",
+      "structureId"
+    );
+    expect(getUserById).toHaveBeenCalled();
+    expect(getRoleByName).toHaveBeenCalled();
+    expect(getStructureFromDB).toHaveBeenCalled();
+    expect(sendNewReponsableMailService).toHaveBeenCalledWith({
+      pseudonyme: "user",
+      email: "test@test.com",
+      userId: "userId",
+      nomstructure: "My Structure"
+    });
+
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "Succès" });
   });
@@ -241,6 +348,45 @@ describe("modifyUserRoleInStructure", () => {
     expect(updateStructureMember).not.toHaveBeenCalled();
     expect(updateRoleAndStructureOfResponsable).not.toHaveBeenCalled();
     expect(removeRoleAndStructureOfUser).not.toHaveBeenCalled();
+    expect(sendNewReponsableMailService).not.toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
+  });
+
+  it("should return 200 if create responsable of an admin and not send email", async () => {
+    const requestResponsable = JSON.parse(JSON.stringify(reqCreate)); // deep copy
+    requestResponsable.body.query.role = "administrateur";
+
+    getUserById.mockResolvedValueOnce({...user, roles: ["adminRole"]});
+
+    await modifyUserRoleInStructure(requestResponsable, res);
+    expect(updateStructureMember).toHaveBeenCalledWith(null, structureCreateResponsable);
+    expect(updateRoleAndStructureOfResponsable).toHaveBeenCalledWith(
+      "membreId",
+      "structureId"
+    );
+    expect(sendNewReponsableMailService).not.toHaveBeenCalled();
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "Succès" });
+  });
+
+  it("should return 500 if create and no role", async () => {
+    await modifyUserRoleInStructure(
+      {
+        user: { roles: ["test"] },
+        userId: "userId",
+        fromSite: true,
+        body: {
+          query: { ...structure, role: null, action: "create" },
+        },
+      },
+      res
+    );
+    expect(updateStructureMember).not.toHaveBeenCalled();
+    expect(updateRoleAndStructureOfResponsable).not.toHaveBeenCalled();
+    expect(removeRoleAndStructureOfUser).not.toHaveBeenCalled();
+    expect(sendNewReponsableMailService).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
   });
@@ -256,6 +402,7 @@ describe("modifyUserRoleInStructure", () => {
       "structureId"
     );
     expect(removeRoleAndStructureOfUser).not.toHaveBeenCalled();
+    expect(sendNewReponsableMailService).not.toHaveBeenCalled();
 
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });

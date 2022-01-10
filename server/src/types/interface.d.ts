@@ -163,3 +163,35 @@ export interface Need {
   created_at: Moment;
   updatedAt: Moment;
 }
+
+export interface AlgoliaObject {
+  objectID: ObjectId | string;
+  title_fr: string;
+  title_ru?: string;
+  title_en?: string;
+  title_fa?: string;
+  title_ar?: string;
+  title_ps?: string;
+  "title_ti-ER"?: string;
+  name_fr?: string;
+  name_ru?: string;
+  name_en?: string;
+  name_fa?: string;
+  name_ar?: string;
+  name_ps?: string;
+  "name_ti-ER"?: string;
+  abstract_fr?: string;
+  abstract_ar?: string;
+  abstract_en?: string;
+  abstract_fa?: string;
+  abstract_ru?: string;
+  abstract_ps?: string;
+  "abstract_ti-ER"?: string;
+  sponsorName?: string;
+  sponsorUrl?: string;
+  nbVues?: number;
+  tags?: string[];
+  needs?: ObjectId[];
+  typeContenu: "demarche"|"dispositif"|"besoin"|"theme";
+  priority: number;
+}

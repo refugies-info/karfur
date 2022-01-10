@@ -91,8 +91,19 @@ const getSelectedLanguages = (langues: LangueDoc[]) => {
   return _.uniq(languesFiltered);
 };
 
-export const adaptUsers = (users: UserDoc[]) =>
+export const adaptUsers = (users: UserDoc[], role: "admin" | "hasStructure") =>
   users.map((user) => {
+    let simpleUser = {
+      _id: user._id,
+      username: user.username,
+      picture: user.picture,
+      status: user.status,
+      email: user.email,
+    };
+    // hasStructure
+    if (role === "hasStructure") return simpleUser;
+
+    // admin
     const simplifiedStructures =
       user.structures && user.structures.length > 0
         ? user.structures.map((structure) => {
@@ -120,14 +131,11 @@ export const adaptUsers = (users: UserDoc[]) =>
 
     const langues = getSelectedLanguages(user.selectedLanguages);
     return {
-      _id: user._id,
-      username: user.username,
-      picture: user.picture,
-      status: user.status,
+      ...simpleUser,
       created_at: user.created_at,
       last_connected: user.last_connected,
       roles,
-      email: user.email,
+      phone: user.phone,
       langues,
       structures: simplifiedStructures,
       nbStructures: user.structures ? user.structures.length : 0,
@@ -135,7 +143,7 @@ export const adaptUsers = (users: UserDoc[]) =>
     };
   });
 
-export const getAllUsers = async (_: any, res: Res) => {
+export const getAllUsers = async (req: any, res: Res) => {
   try {
     logger.info("[getAllUsers] call received");
     const neededFields = {
@@ -146,17 +154,30 @@ export const getAllUsers = async (_: any, res: Res) => {
       roles: 1,
       structures: 1,
       email: 1,
+      phone: 1,
       selectedLanguages: 1,
     };
 
     const users = await getAllUsersFromDB(neededFields);
-    const adaptedUsers = adaptUsers(users);
+
+    // Check authorizations
+    const currentUser = users.find(u => u._id.toString() === req.user._id.toString());
+    const isAdmin = currentUser && !!currentUser.roles.some((r: any) => r.nom === "Admin")
+    const hasStructure = currentUser && !!currentUser.roles.some((r: any) => r.nom === "hasStructure")
+    if (!isAdmin && !hasStructure) throw new Error("NOT_AUTHORIZED");
+
+    const adaptedUsers = adaptUsers(users, isAdmin ? "admin" : "hasStructure");
 
     return res.status(200).json({
       data: adaptedUsers,
     });
   } catch (error) {
     logger.error("[getAllUsers] error", { error: error.message });
-    res.status(500).json({ text: "Erreur interne" });
+    switch (error.message) {
+      case "NOT_AUTHORIZED":
+        return res.status(403).json({ text: "Accès interdit" });
+      default:
+        return res.status(500).json({ text: "Erreur interne" });
+    }
   }
 };

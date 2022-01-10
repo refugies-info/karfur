@@ -62,6 +62,35 @@ export const sendResetPasswordMail = async (
   }
 };
 
+export const sendResetPhoneNumberMail = async (
+  username: string,
+  email: string
+) => {
+  try {
+    logger.info("[sendResetPhoneNumberMail] received", { email });
+    const dynamicData = {
+      to: email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        pseudonyme: username,
+      },
+    };
+    const templateName = "changePhoneNumber";
+    sendMail(templateName, dynamicData);
+    await addMailEvent({ templateName, username, email });
+    return;
+  } catch (error) {
+    logger.error("[sendResetPhoneNumberMail] error", {
+      email,
+      error: error.message,
+    });
+  }
+};
+
 export const sendSubscriptionReminderMailService = async (email: string) => {
   try {
     logger.info("[sendSubscriptionReminderMailService] received", { email });
@@ -490,3 +519,87 @@ export const sendAdminImprovementsMailService = async (
     });
   }
 };
+
+interface NewResponsableMail {
+  userId: ObjectId;
+  email: string;
+  pseudonyme: string;
+  nomstructure: string;
+}
+
+export const sendNewReponsableMailService = async (
+  data: NewResponsableMail
+) => {
+  try {
+    logger.info("[sendNewReponsableMailService] received");
+
+    const dynamicData = {
+      to: data.email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        pseudonyme: data.pseudonyme,
+        nomstructure: data.nomstructure,
+      },
+    };
+    const templateName = "newResponsable";
+    sendMail(templateName, dynamicData);
+    await addMailEvent({
+      templateName,
+      username: data.pseudonyme,
+      email: data.email,
+      userId: data.userId,
+    });
+    return;
+  } catch (error) {
+    logger.error("[sendNewReponsableMailService] error", {
+      error: error.message,
+    });
+  }
+};
+
+/* TODO: to delete once sent */
+interface Enabled2FaEmail {
+  userId: ObjectId;
+  email: string;
+  pseudonyme: string;
+  structurename: string;
+}
+
+export const sendEnabled2FaEmailMailService = async (
+  data: Enabled2FaEmail
+) => {
+  try {
+    logger.info("[sendEnabled2FaEmailMailService] received");
+
+    const dynamicData = {
+      to: data.email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        pseudonyme: data.pseudonyme,
+        structurename: data.structurename,
+      },
+    };
+    const templateName = "enabled2FaEmail";
+    sendMail(templateName, dynamicData);
+    await addMailEvent({
+      templateName,
+      username: data.pseudonyme,
+      email: data.email,
+      userId: data.userId,
+    });
+    return;
+  } catch (error) {
+    logger.error("[sendEnabled2FaEmailMailService] error", {
+      error: error.message,
+    });
+  }
+};
+

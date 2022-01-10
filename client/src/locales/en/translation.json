@@ -67,6 +67,8 @@
     "Trier par n": "Sort by",
     "Filtrer par n": "Filter by",
     "Plus de filtres": "More filters",
+    "Voir plus de filtres": "See more filters",
+    "Voir moins de filtres": "See fewer filters",
     "Dispositifs": "Programs",
     "Démarches": "Processes",
     "Créer une fiche": "Create a page",
@@ -279,6 +281,9 @@
   },
   "Dispositifs": {
     "Header": "Build your life in France",
+    "Cette fiche n'est pas dispo": "This file is not yet available in :",
+    "Vous pouvez la lire en français": "You can read it in French below.",
+    "Vous pouvez la lire en plusieurs langues": "You can read it in French or select another language below.",
     "Subheader": "Here, you can discover how to access social aid, find a job, find French classes"
   },
   "Tags": {
@@ -396,7 +401,7 @@
     "Réinitialisation du mot de passe": "A reset link has been sent",
     "Réinitialisation texte": "Didn't receive anything? Have you checked your spam?",
     "Double authentification": "Dual Authentication",
-    "Un code vous a été envoyé par sms sur votre mobile.": "A code has been sent to you by sms on your mobile.",
+    "code_sent_sms": "A code has been sent to you by sms on your mobile.",
     "Entrez votre code": "Enter your code",
     "Renvoyer le code": "Resend code",
     "Le code saisi n'est pas le bon.": "The code entered is incorrect.",
@@ -430,7 +435,7 @@
     "Moyen": "Average",
     "Mot de passe trop faible": "Oops, your password is too weak.",
     "Ceci n'est pas un email,": "This is not an email,",
-    "vérifiez l'orthographe.": "check your spelling.",
+    "vérifiez l'orthographe": "check your spelling.",
     "Créer un nouveau compte": "Create a new account",
     "Rendez-vous sur votre ordinateur": "Go to your PC",
     "Me le rappeler par email": "Remind me by e-mail",
@@ -459,6 +464,7 @@
     "Et après ?": "And after?",
     "Comment je m'engage ?": "How do I get involved?",
     "Voir le site": "See the website",
+    "Ajouter votre site": "Add your website",
     "Télécharger en PDF": "Download PDF",
     "Télécharger la fiche en PDF": "Download the PDF file",
     "Télécharger": "Download",
@@ -545,6 +551,7 @@
     "réfugié": "refugee",
     "tout public": "for all",
     "En savoir plus": "Learn more",
+    "Lire en": "Read in :",
     "Tiennent la page": "Keep the page up to date and answer your questions",
     "Évaluer mon niveau": "Evaluate my level",
     "Réagir": "React",
@@ -625,8 +632,8 @@
     "Inscrivez-vous à notre lettre": "Subscribe to our newsletter to follow the evolution of the Refugies.info project",
     "Vous cherchez ?": "What are you looking for?",
     "Centre d'aide": "Help center",
-    "description": "Réfugiés.info is a collaborative information portal run by the ",
-    "description_suite": " and developed by the "
+    "description": "Réfugiés.info is a collaborative information portal run by the",
+    "description_suite": "and developed by the"
   },
   "Retour à la recherche": "Back to search",
   "ou": "or",
@@ -664,6 +671,7 @@
   "Rechercher un utilisateur": "Search by user",
   "CMU-C, demande de logement social, solidarité transport": "CMU-C, social housing application, public transportation discounts",
   "Rechercher": "Search",
+  "Sélectionnez un filtre !": "Select a filter!",
   "Rechercher2": "Search for...",
   "Qui sommes-nous ?": "Who are we?",
   "Comment contribuer ?": "How will you contribute?",
@@ -698,8 +706,11 @@
   "manger, me doucher": "eating, showering...",
   "Annuaire": {
     "Annuaire": "Directory",
+    "Rechercher par": "Search by name ...",
     "Association": "Association",
     "Entreprise": "Company",
+    "Cette structure n'accueille pas de public.": "Not open to the general public.",
+    "Uniquement sur rendez-vous": "By appointment only",
     "École": "School",
     "Université": "University",
     "Opérateur": "Operator",
@@ -781,6 +792,16 @@
     "Aides financières": "Financial aid",
     "Cours de conduite": "Driving courses",
     "Formation au code": "Highway code training",
-    "Intermédiation locative": "Rental intermediation"
+    "Intermédiation locative": "Rental intermediation",
+    "Retour à l'annuaire": "Back to the directory",
+    "Thèmes & activités": "Themes & activities",
+    "Type de structure": "Type of organisation",
+    "Rechercher par nom...": "Search by name..."
+  },
+  "MobileAppModal": {
+    "Application mobile disponible": "Mobile application available!",
+    "Gratuite et plus facile à utiliser": "Free and easier to use:",
+    "Rester sur le navigateur": "Stay on the browser",
+    "Télécharger l'application": "Download the application"
   }
 }

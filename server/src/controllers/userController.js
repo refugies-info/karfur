@@ -26,7 +26,7 @@ module.exports = function (app) {
   app.post("/set_new_password", checkToken.getRoles, account.set_new_password);
 
   app.get("/getFiguresOnUsers", getFiguresOnUsers);
-  app.get("/getAllUsers", getAllUsers);
+  app.get("/getAllUsers", checkToken.check, getAllUsers);
   app.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser);
   app.post("/exportUsers", checkToken.check, checkToken.getRoles, exportUsers);
   app.get(
