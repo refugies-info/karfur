@@ -208,9 +208,17 @@ export const ProfilScreen = ({
             iconName="file-text-outline"
             category={t("profile_screens.legal_notice", "Mentions légales")}
             isFirst={false}
-            isLast={true}
+            isLast={false}
             isRTL={isRTL}
             onPress={() => navigation.navigate("LegalNoticeScreen")}
+          />
+          <ProfilDetailButton
+            iconName="file-text-outline"
+            category={t("profile_screens.accessibility", "Déclaration d'accessibilité")}
+            isFirst={false}
+            isLast={true}
+            isRTL={isRTL}
+            onPress={() => navigation.navigate("AccessibilityScreen")}
           />
         </ProfilButtonsContainer>
         <DeleteDataContainer>

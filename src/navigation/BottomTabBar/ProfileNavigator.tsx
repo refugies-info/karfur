@@ -9,6 +9,7 @@ import { FrenchLevelProfilScreen } from "../../screens/ProfilTab/FrenchLevelProf
 import { PrivacyPolicyScreen } from "../../screens/ProfilTab/PrivacyPolicyScreen";
 import { LegalNoticeScreen } from "../../screens/ProfilTab/LegalNoticeScreen";
 import { AboutScreen } from "../../screens/ProfilTab/AboutScreen";
+import { AccessibilityScreen } from "../../screens/ProfilTab/AccessibilityScreen";
 
 const ProfileStack = createStackNavigator<ProfileParamList>();
 
@@ -45,6 +46,10 @@ export const ProfileNavigator = () => (
     <ProfileStack.Screen
       name="AboutScreen"
       component={AboutScreen}
+    />
+    <ProfileStack.Screen
+      name="AccessibilityScreen"
+      component={AccessibilityScreen}
     />
   </ProfileStack.Navigator>
 );

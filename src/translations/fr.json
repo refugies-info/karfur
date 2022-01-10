@@ -101,7 +101,8 @@
     "all_ages": "Tous les âges",
     "reinit_app2": "Tes informations pour filtrer les fiches vont être supprimées. L'application va ensuite recommencer comme la première fois.",
     "delete_data": "Tes informations pour filtrer les fiches vont être supprimées. Tu pouras voir toutes les fiches sans personnalisation.",
-    "language_choice": "Quelle langue tu préfères ?"
+    "language_choice": "Quelle langue tu préfères ?",
+    "accessibility": "Déclaration d'accessibilité"
   },
   "content_screen": {
     "what": "C'est quoi ?",

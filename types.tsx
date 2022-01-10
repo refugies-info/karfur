@@ -68,6 +68,7 @@ export type ProfileParamList = {
   PrivacyPolicyScreen: undefined;
   LegalNoticeScreen: undefined;
   AboutScreen: undefined;
+  AccessibilityScreen: undefined;
 };
 
 export type LanguageChoiceParamList = {
