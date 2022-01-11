@@ -40,7 +40,8 @@ const Separator = styled.View`
 `;
 
 interface Props {
-  iconName: string;
+  iconName?: string;
+  iconImage?: any;
   category: string;
   userChoice?: string;
   isFirst: boolean;
@@ -59,12 +60,20 @@ export const ProfilDetailButton = (props: Props) => (
       accessibilityRole="button"
     >
       <RTLView style={{ flexGrow: 0, flexShrink: 1 }}>
-        <Icon
-          name={props.iconName}
-          width={ICON_SIZE}
-          height={ICON_SIZE}
-          fill={theme.colors.black}
-        />
+        {props.iconName &&
+          <Icon
+            name={props.iconName}
+            width={ICON_SIZE}
+            height={ICON_SIZE}
+            fill={theme.colors.black}
+          />
+        }
+        {props.iconImage &&
+          <props.iconImage
+            width={ICON_SIZE}
+            height={ICON_SIZE}
+          />
+        }
         <StyledCategoryText isRTL={props.isRTL}>
           {props.category}
         </StyledCategoryText>

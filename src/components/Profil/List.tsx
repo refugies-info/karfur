@@ -27,10 +27,12 @@ interface Props {
 export const List = (props: Props) => (
   <View style={props.style || {}}>
     {props.items.map((item, index) => (
-      <RTLView key={index} style={{ alignItems: "flex-start"}}>
-        <BulletPoint isRTL={props.isRTL}>{"\u2022"}</BulletPoint>
-        <ListItem isRTL={props.isRTL}>{item}</ListItem>
-      </RTLView>
+      item ? (
+        <RTLView key={index} style={{ alignItems: "flex-start" }}>
+          <BulletPoint isRTL={props.isRTL}>{"\u2022"}</BulletPoint>
+          <ListItem isRTL={props.isRTL}>{item}</ListItem>
+        </RTLView>
+      ) : null
     ))}
   </View>
 );

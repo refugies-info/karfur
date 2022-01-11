@@ -35,6 +35,7 @@ import { ConfirmationModal } from "../../components/ConfirmationModal";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 import { CustomButton } from "../../components/CustomButton"
 import { useHeaderAnimation } from "../../hooks/useHeaderAnimation";
+import AccessibleIcon from "../../theme/images/accessibility/accessible-icon.svg";
 
 const DeleteDataContainer = styled.TouchableOpacity`
   align-items: center;
@@ -213,7 +214,7 @@ export const ProfilScreen = ({
             onPress={() => navigation.navigate("LegalNoticeScreen")}
           />
           <ProfilDetailButton
-            iconName="file-text-outline"
+            iconImage={AccessibleIcon}
             category={t("profile_screens.accessibility", "Déclaration d'accessibilité")}
             isFirst={false}
             isLast={true}

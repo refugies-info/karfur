@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Platform, Image } from "react-native";
 import * as Linking from "expo-linking";
 import {
   TextSmallNormal,
@@ -20,7 +20,8 @@ import { RTLView } from "../../components/BasicComponents";
 import { List } from "../../components/Profil/List";
 import { CustomButton } from "../../components/CustomButton";
 import { Card } from "../../components/Profil/Card";
-import IosIllu from "../../theme/images/accessibility/accessibility-ios.svg"
+import IosIllu from "../../theme/images/accessibility/accessibility-ios.png"
+import AndroidIllu from "../../theme/images/accessibility/accessibility-android.png"
 
 const ContentContainer = styled.ScrollView`
   padding-bottom: ${theme.margin * 3}px;
@@ -64,6 +65,8 @@ export const AccessibilityScreen = ({
 
   const { isRTL } = useTranslationWithRTL();
 
+  const isIOS = Platform.OS === "ios";
+
   return (
     <View style={{flex: 1}}>
       <HeaderWithBackAnimated
@@ -83,7 +86,7 @@ export const AccessibilityScreen = ({
       >
 
         <P style={{marginTop: theme.margin * 2}}>
-          Sur cette page, tu trouveras les informations obligatoires concernant l’accessibilité de l’application iOS Réfugiés.info.
+          Sur cette page, tu trouveras les informations obligatoires concernant l’accessibilité de l’application {isIOS ? "iOS" : "Android"} Réfugiés.info.
         </P>
         <P>
           L’accessibilité permet à tous les publics, sans discrimination, d’accéder aux contenus et aux services numériques. Pour cela, il faut respecter des règles émises par le World Wide Web Consortium et pensées par des ergonomes pour chaque type de handicap.
@@ -113,11 +116,15 @@ export const AccessibilityScreen = ({
           À cette fin, il met en œuvre la stratégie et les actions détaillées dans son plan pluriannuel en cours d'élaboration.
         </P>
         <P style={{marginBottom: 0}}>
-          Cette déclaration d'accessibilité s'applique à l'application mobile iOS Réfugiés.info.
+          Cette déclaration d'accessibilité s'applique à l'application mobile {isIOS ? "iOS" : "Android"} Réfugiés.info.
         </P>
 
         <H1>État de conformité</H1>
-        <P style={{marginBottom: 0}}>L’application iOS Réfugiés.info est en <TextSmallBold>conformité partielle</TextSmallBold> avec EN 301 549 V3.2.1 en raison des non-conformités et des dérogations énumérées ci-dessous.</P>
+        <P style={{ marginBottom: 0 }}>
+          L’application {isIOS ? "iOS" : "Android"} Réfugiés.info est{" "}
+          {isIOS ? <>en <TextSmallBold>conformité partielle</TextSmallBold></> : <TextSmallBold>non-conforme</TextSmallBold>}
+          {" "}avec EN 301 549 V3.2.1 en raison des non-conformités et des dérogations énumérées ci-dessous.
+        </P>
 
         <H1>Résultats des tests</H1>
         <P>
@@ -126,15 +133,15 @@ export const AccessibilityScreen = ({
             accessibilityRole="link"
             onPress={() => { Linking.openURL("https://www.ipedis.com/") }}
           >Ipedis</Link>
-          {" "}révèle que 50,00% des critères de la Directive EN 301 549 V3.2.1 sont respectés.
+          {" "}révèle que {isIOS ? "50,00" : "45,83"}% des critères de la Directive EN 301 549 V3.2.1 sont respectés.
         </P>
         <RTLView style={{ alignItems: "flex-start", marginBottom: theme.margin}}>
           <TextSmallNormal>  ✅  </TextSmallNormal>
-          <TextSmallNormal>12 critères sont respectés</TextSmallNormal>
+          <TextSmallNormal>{isIOS ? "12" : "11"} critères sont respectés</TextSmallNormal>
         </RTLView>
         <RTLView style={{ alignItems: "flex-start", marginBottom: theme.margin}}>
           <TextSmallNormal>  ❌  </TextSmallNormal>
-          <TextSmallNormal>12 critères ne sont pas respectés</TextSmallNormal>
+          <TextSmallNormal>{isIOS ? "12" : "13"} critères ne sont pas respectés</TextSmallNormal>
         </RTLView>
         <RTLView style={{ alignItems: "flex-start", marginBottom: theme.margin * 3}}>
           <TextSmallNormal>  🚫  </TextSmallNormal>
@@ -143,10 +150,15 @@ export const AccessibilityScreen = ({
 
         <Card style={{marginBottom: 0}}>
           <P style={{ fontStyle: "italic", textAlign: "center" }}>Résultat de conformité des critères au EN-301-549-V3.2.1</P>
-          <IosIllu
-            width={230}
-            height={210}
-            style={{ alignSelf: "center", marginBottom: theme.margin * 3 }}
+          <Image
+            source={isIOS ? IosIllu : AndroidIllu}
+            resizeMode="contain"
+            style={{
+              width: 276,
+              height: 228,
+              alignSelf: "center",
+              marginBottom: theme.margin * 3
+            }}
           />
           <RTLView style={{ alignItems: "center", justifyContent: "center", marginBottom: theme.margin}}>
             <Legend isRTL={isRTL} color={theme.colors.travail80} />
@@ -167,10 +179,12 @@ export const AccessibilityScreen = ({
         <List
           isRTL={isRTL}
           items={[
-            "Les images/icônes porteuses d'information n'ont pas d'alternative textuelle",
+            isIOS ? "Les images/icônes porteuses d'information n'ont pas d'alternative textuelle" : null,
             "Certains textes ne sont pas correctement lus par le lecteur d'écran",
-            "Le contraste entre la couleur de fond et les textes/images et certains composants d’interface ne sont pas suffisants",
+            isIOS ? "Le contraste entre la couleur de fond et les textes/images et certains composants d’interface ne sont pas suffisants" : null,
             "L'application n'est consultable qu'en version portrait",
+            !isIOS ? "L'augmentation de la taille du texte par défaut n'est pas toujours répétée dans toute l'application" : null,
+            !isIOS ? "Certains boutons nécessitent d'appuyer deux fois et maintenir enfoncer pour être sélectionné" : null,
             "L'ordre de tabulation des éléments de la page n'est pas toujours logique et intuitif",
             "Au chargement des pages, le focus ne part pas automatiquement sur le premier élément de la nouvelle page",
             "Des pièges au clavier sont présents",
@@ -179,9 +193,10 @@ export const AccessibilityScreen = ({
             "Certaines pages ont des titres qui ne sont pas définis comme étant des en-têtes",
             "La navigation sur la carte Google doit se faire avec l’utilisation simultanée de deux doigts ou plus",
             "Le champ Ta Ville affiche une liste de suggestion, mais cela n'est pas vocalisé par le lecteur d'écran",
-            "Certains boutons/listes de suggestion/boutons radio/liens ne sont pas reconnus comme tels",
             "Les barres d'onglet ne sont pas reconnues comme telles par le lecteur d'écran",
-            "Les messages de statut ne sont pas restitués par le lecteur d'écran"
+            !isIOS ? "Certains textes sont lus comme des éléments interactifs par le lecteur d'écran alors qu'ils n'ont pas de fonctionnalité" : null,
+            "Certains boutons/listes de suggestion/boutons radio/liens ne sont pas reconnus comme tels",
+            "Les messages de statut ne sont pas restitués par le lecteur d'écran",
           ]}
           style={{marginBottom: theme.margin * 3}}
         ></List>
@@ -207,7 +222,7 @@ export const AccessibilityScreen = ({
         <List
           isRTL={isRTL}
           items={[
-            "iOS Voiceover"
+            isIOS ? "iOS Voiceover" : "Android Talkback"
           ]}
           style={{marginBottom: theme.margin * 3}}
         ></List>
@@ -217,7 +232,7 @@ export const AccessibilityScreen = ({
           isRTL={isRTL}
           items={[
             "Contrast Color checker WCAG",
-            "iOS Voiceover"
+            isIOS ? "iOS Voiceover" : "Android Talkback"
           ]}
           style={{marginBottom: theme.margin * 3}}
         ></List>
