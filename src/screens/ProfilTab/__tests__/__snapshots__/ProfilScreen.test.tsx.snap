@@ -1955,6 +1955,170 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               </View>
             </View>
           </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#EDEBEB",
+                  "height": 1,
+                },
+              ]
+            }
+          />
+        </View>
+        <View>
+          <View
+            accessibilityRole="button"
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "height": 56,
+                "justifyContent": "space-between",
+                "opacity": 1,
+                "paddingLeft": 16,
+                "paddingRight": 8,
+              }
+            }
+            testID="test-profil-button-undefined"
+          >
+            <View
+              isRTL={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                  },
+                ]
+              }
+            >
+              <react-native-svg
+                height={20}
+                width={20}
+              />
+              <Text
+                isRTL={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "marginLeft": 8,
+                      "marginRight": 0,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                Déclaration d'accessibilité
+              </Text>
+            </View>
+            <View
+              isRTL={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight={24}
+                  bbWidth={24}
+                  fill="#5E5E5E"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={4284374622}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
+                        <RNSVGRect
+                          height="24"
+                          matrix={
+                            Array [
+                              6.123233995736766e-17,
+                              -1,
+                              1,
+                              6.123233995736766e-17,
+                              0,
+                              24,
+                            ]
+                          }
+                          opacity={0}
+                          width="24"
+                          x={0}
+                          y={0}
+                        />
+                        <RNSVGPath
+                          d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
         </View>
       </View>
       <View
@@ -5898,6 +6062,170 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               </View>
             </View>
           </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#EDEBEB",
+                  "height": 1,
+                },
+              ]
+            }
+          />
+        </View>
+        <View>
+          <View
+            accessibilityRole="button"
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "height": 56,
+                "justifyContent": "space-between",
+                "opacity": 1,
+                "paddingLeft": 16,
+                "paddingRight": 8,
+              }
+            }
+            testID="test-profil-button-undefined"
+          >
+            <View
+              isRTL={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                  },
+                ]
+              }
+            >
+              <react-native-svg
+                height={20}
+                width={20}
+              />
+              <Text
+                isRTL={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "marginLeft": 8,
+                      "marginRight": 0,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                Déclaration d'accessibilité
+              </Text>
+            </View>
+            <View
+              isRTL={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight={24}
+                  bbWidth={24}
+                  fill="#5E5E5E"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={4284374622}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
+                        <RNSVGRect
+                          height="24"
+                          matrix={
+                            Array [
+                              6.123233995736766e-17,
+                              -1,
+                              1,
+                              6.123233995736766e-17,
+                              0,
+                              24,
+                            ]
+                          }
+                          opacity={0}
+                          width="24"
+                          x={0}
+                          y={0}
+                        />
+                        <RNSVGPath
+                          d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
         </View>
       </View>
       <View
@@ -9752,6 +10080,170 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                 }
               >
                 Mentions légales
+              </Text>
+            </View>
+            <View
+              isRTL={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight={24}
+                  bbWidth={24}
+                  fill="#5E5E5E"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={4284374622}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
+                        <RNSVGRect
+                          height="24"
+                          matrix={
+                            Array [
+                              6.123233995736766e-17,
+                              -1,
+                              1,
+                              6.123233995736766e-17,
+                              0,
+                              24,
+                            ]
+                          }
+                          opacity={0}
+                          width="24"
+                          x={0}
+                          y={0}
+                        />
+                        <RNSVGPath
+                          d="M10 19a1 1 0 0 1-.64-.23 1 1 0 0 1-.13-1.41L13.71 12 9.39 6.63a1 1 0 0 1 .15-1.41 1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19z"
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#EDEBEB",
+                  "height": 1,
+                },
+              ]
+            }
+          />
+        </View>
+        <View>
+          <View
+            accessibilityRole="button"
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "height": 56,
+                "justifyContent": "space-between",
+                "opacity": 1,
+                "paddingLeft": 16,
+                "paddingRight": 8,
+              }
+            }
+            testID="test-profil-button-undefined"
+          >
+            <View
+              isRTL={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                  Object {
+                    "flexGrow": 0,
+                    "flexShrink": 1,
+                  },
+                ]
+              }
+            >
+              <react-native-svg
+                height={20}
+                width={20}
+              />
+              <Text
+                isRTL={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "marginLeft": 8,
+                      "marginRight": 0,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                Déclaration d'accessibilité
               </Text>
             </View>
             <View

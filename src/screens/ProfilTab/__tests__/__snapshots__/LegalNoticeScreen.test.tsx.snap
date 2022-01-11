@@ -1,0 +1,3560 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LegalNotice screen should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    showShadow={false}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#F6F6F6",
+          "paddingBottom": 8,
+          "zIndex": 4,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "paddingTop": undefined,
+        }
+      }
+    >
+      <View
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingHorizontal": 24,
+              "paddingTop": 8,
+            },
+          ]
+        }
+      >
+        <View
+          accessibilityLabel=""
+          accessibilityRole="button"
+          accessible={true}
+          focusable={false}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 12,
+              "elevation": 6,
+              "opacity": 1,
+              "paddingBottom": 12,
+              "paddingLeft": 12,
+              "paddingRight": 12,
+              "paddingTop": 12,
+              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 8,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "transform": Array [
+                  Object {
+                    "scale": 1,
+                  },
+                ],
+              }
+            }
+          >
+            <RNSVGSvgView
+              align="xMidYMid"
+              bbHeight={24}
+              bbWidth={24}
+              fill="#212121"
+              focusable={false}
+              height={24}
+              meetOrSlice={0}
+              minX={0}
+              minY={0}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                  Object {
+                    "flex": 0,
+                    "height": 24,
+                    "width": 24,
+                  },
+                ]
+              }
+              vbHeight={24}
+              vbWidth={24}
+              width={24}
+            >
+              <RNSVGGroup
+                fill={4280361249}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              >
+                <RNSVGGroup>
+                  <RNSVGGroup>
+                    <RNSVGRect
+                      height="24"
+                      matrix={
+                        Array [
+                          6.123233995736766e-17,
+                          1,
+                          -1,
+                          6.123233995736766e-17,
+                          24,
+                          0,
+                        ]
+                      }
+                      opacity={0}
+                      width="24"
+                      x={0}
+                      y={0}
+                    />
+                    <RNSVGPath
+                      d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
+                    />
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGSvgView>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+            ]
+          }
+        >
+          <View />
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "paddingHorizontal": 24,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#212121",
+            "fontFamily": "circularBold",
+            "fontSize": 25,
+            "marginTop": 32,
+            "textAlign": "left",
+          }
+        }
+      />
+    </View>
+  </View>
+  <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "overflow": "visible",
+        "paddingHorizontal": 24,
+      }
+    }
+    onScroll={[Function]}
+    scrollEventThrottle={5}
+    style={
+      Array [
+        Object {
+          "paddingBottom": 24,
+          "paddingTop": 16,
+        },
+      ]
+    }
+  >
+    <View>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+            Object {
+              "marginTop": 16,
+            },
+          ]
+        }
+      >
+        Sur cette page, tu trouveras toutes les informations obligatoires sur l’application Réfugiés.info. Par exemple : Qui est notre hébergeur ? Qui détient les droits d’auteur sur les contenus que nous publions ?
+      </Text>
+      <View
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={24}
+            bbWidth={24}
+            fill="#5E5E5E"
+            focusable={false}
+            height={24}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "marginLeft": 0,
+                  "marginRight": 8,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width={24}
+          >
+            <RNSVGGroup
+              fill={4284374622}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGGroup>
+                <RNSVGGroup>
+                  <RNSVGRect
+                    height="24"
+                    matrix={
+                      Array [
+                        -1,
+                        1.2246467991473532e-16,
+                        -1.2246467991473532e-16,
+                        -1,
+                        24,
+                        24,
+                      ]
+                    }
+                    opacity={0}
+                    width="24"
+                    x={0}
+                    y={0}
+                  />
+                  <RNSVGPath
+                    d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+                  />
+                  <RNSVGPath
+                    d="M16 11h-3V8a1 1 0 0 0-2 0v4a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2z"
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#5E5E5E",
+              },
+            ]
+          }
+        >
+          Temps de lecture : 
+          <Text
+            style={
+              Object {
+                "color": "#008205",
+              }
+            }
+          >
+            5 à 10 minutes
+          </Text>
+        </Text>
+      </View>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+              "marginTop": 56,
+            },
+          ]
+        }
+      >
+        Qui est l’éditeur de Réfugiés.info ?
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+            Object {
+              "marginBottom": 8,
+            },
+          ]
+        }
+      >
+        L’application Réfugiés.info a été créée par la Délégation interministérielle à l'accueil et à l'intégration des réfugiés du Ministère de l’Intérieur.
+      </Text>
+      <View
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={24}
+            bbWidth={24}
+            fill="#212121"
+            focusable={false}
+            height={24}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "marginLeft": 0,
+                  "marginRight": 8,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width={24}
+          >
+            <RNSVGGroup
+              fill={4280361249}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGGroup>
+                <RNSVGGroup>
+                  <RNSVGRect
+                    height="24"
+                    opacity={0}
+                    width="24"
+                    x={0}
+                    y={0}
+                  />
+                  <RNSVGPath
+                    d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"
+                  />
+                  <RNSVGPath
+                    d="M12 6a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 6zm0 5a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 12 11z"
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+          Place Beauvau, 75800 Paris Cedex 08
+        </Text>
+      </View>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+            Object {
+              "marginBottom": 8,
+              "marginTop": 24,
+            },
+          ]
+        }
+      >
+        Elle est développée par la MedNum, société coopérative d’intérêt collectif spécialisée sur la médiation et l’inclusion numérique.
+      </Text>
+      <View
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={24}
+            bbWidth={24}
+            fill="#212121"
+            focusable={false}
+            height={24}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "marginLeft": 0,
+                  "marginRight": 8,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width={24}
+          >
+            <RNSVGGroup
+              fill={4280361249}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGGroup>
+                <RNSVGGroup>
+                  <RNSVGRect
+                    height="24"
+                    opacity={0}
+                    width="24"
+                    x={0}
+                    y={0}
+                  />
+                  <RNSVGPath
+                    d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"
+                  />
+                  <RNSVGPath
+                    d="M12 6a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 6zm0 5a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 12 11z"
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+          135 Boulevard Chanzy, 93100 Montreuil
+        </Text>
+      </View>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+            Object {
+              "marginTop": 24,
+            },
+          ]
+        }
+      >
+        Monsieur Nour ALLAZKANI, est le responsable de publication de l’application.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+              "marginTop": 56,
+            },
+          ]
+        }
+      >
+        Qui héberge Réfugiés.info ?
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+            Object {
+              "marginBottom": 8,
+            },
+          ]
+        }
+      >
+        L’application Réfugiés.info est hébergée par la société Google Cloud.
+      </Text>
+      <View
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={24}
+            bbWidth={24}
+            fill="#212121"
+            focusable={false}
+            height={24}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "marginLeft": 0,
+                  "marginRight": 8,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width={24}
+          >
+            <RNSVGGroup
+              fill={4280361249}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGGroup>
+                <RNSVGGroup>
+                  <RNSVGRect
+                    height="24"
+                    opacity={0}
+                    width="24"
+                    x={0}
+                    y={0}
+                  />
+                  <RNSVGPath
+                    d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"
+                  />
+                  <RNSVGPath
+                    d="M12 6a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 6zm0 5a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 12 11z"
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+          8 rue de Londres, 75009 PARIS
+        </Text>
+      </View>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+            Object {
+              "marginTop": 24,
+            },
+          ]
+        }
+      >
+        Les serveurs qui hébergent l’application sont situés en Europe.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+              "marginTop": 56,
+            },
+          ]
+        }
+      >
+        Quels sont les droits sur les contenus ?
+      </Text>
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 12,
+              "elevation": 6,
+              "marginBottom": 24,
+              "paddingBottom": 24,
+              "paddingLeft": 24,
+              "paddingRight": 24,
+              "paddingTop": 24,
+              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 8,
+            },
+          ]
+        }
+      >
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginBottom": 24,
+                "maxWidth": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            isRTL={false}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#212121",
+                  "borderRadius": 16,
+                  "height": 32,
+                  "justifyContent": "center",
+                  "marginLeft": 0,
+                  "marginRight": 16,
+                  "width": 32,
+                },
+              ]
+            }
+          >
+            <Text
+              isRTL={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBold",
+                    "fontSize": 19,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#FFFFFF",
+                  },
+                ]
+              }
+            >
+              1
+            </Text>
+          </View>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBold",
+                  "fontSize": 19,
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                Object {
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                },
+              ]
+            }
+          >
+            Les contenus
+          </Text>
+        </View>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+              Object {
+                "marginBottom": 24,
+              },
+              Object {
+                "marginBottom": 0,
+              },
+            ]
+          }
+        >
+          Les informations que l’on trouve sur l’application Réfugiés.info sont publiques et peuvent être reproduites ou réutilisées librement, à condition de :
+        </Text>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            respecter l’intégrité de l’information reproduite
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            citer la source « Réfugiés.info »
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "marginVertical": 32,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "transform": Array [
+                  Object {
+                    "scale": 1,
+                  },
+                ],
+              }
+            }
+          >
+            <RNSVGSvgView
+              align="xMidYMid"
+              bbHeight={24}
+              bbWidth={24}
+              fill="#212121"
+              focusable={false}
+              height={24}
+              meetOrSlice={0}
+              minX={0}
+              minY={0}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                  Object {
+                    "marginLeft": 0,
+                    "marginRight": 8,
+                  },
+                  Object {
+                    "flex": 0,
+                    "height": 24,
+                    "width": 24,
+                  },
+                ]
+              }
+              vbHeight={24}
+              vbWidth={24}
+              width={24}
+            >
+              <RNSVGGroup
+                fill={4280361249}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              >
+                <RNSVGGroup>
+                  <RNSVGGroup>
+                    <RNSVGRect
+                      height="24"
+                      matrix={
+                        Array [
+                          -1,
+                          1.2246467991473532e-16,
+                          -1.2246467991473532e-16,
+                          -1,
+                          24,
+                          24,
+                        ]
+                      }
+                      opacity={0}
+                      width="24"
+                      x={0}
+                      y={0}
+                    />
+                    <RNSVGPath
+                      d="M20.62 4.22a1 1 0 0 0-.84-.2L12 5.77 4.22 4A1 1 0 0 0 3 5v12.2a1 1 0 0 0 .78 1l8 1.8h.44l8-1.8a1 1 0 0 0 .78-1V5a1 1 0 0 0-.38-.78zM5 6.25l6 1.35v10.15L5 16.4zM19 16.4l-6 1.35V7.6l6-1.35z"
+                    />
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGSvgView>
+          </View>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+              ]
+            }
+          >
+            (Art. L. 122-5 du Code de la propriété intellectuelle)
+          </Text>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ffcecb",
+                "borderRadius": 12,
+                "paddingBottom": 24,
+                "paddingLeft": 24,
+                "paddingRight": 24,
+                "paddingTop": 24,
+              },
+            ]
+          }
+        >
+          <View
+            isRTL={false}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "marginBottom": 16,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "transform": Array [
+                    Object {
+                      "scale": 1,
+                    },
+                  ],
+                }
+              }
+            >
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={24}
+                bbWidth={24}
+                fill="#212121"
+                focusable={false}
+                height={24}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 24,
+                      "width": 24,
+                    },
+                  ]
+                }
+                vbHeight={24}
+                vbWidth={24}
+                width={24}
+              >
+                <RNSVGGroup
+                  fill={4280361249}
+                  propList={
+                    Array [
+                      "fill",
+                    ]
+                  }
+                >
+                  <RNSVGGroup>
+                    <RNSVGGroup>
+                      <RNSVGRect
+                        height="24"
+                        matrix={
+                          Array [
+                            -1,
+                            1.2246467991473532e-16,
+                            -1.2246467991473532e-16,
+                            -1,
+                            24,
+                            24,
+                          ]
+                        }
+                        opacity={0}
+                        width="24"
+                        x={0}
+                        y={0}
+                      />
+                      <RNSVGPath
+                        d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+                      />
+                      <RNSVGCircle
+                        cx="12"
+                        cy="8"
+                        r="1"
+                      />
+                      <RNSVGPath
+                        d="M12 10a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0v-5a1 1 0 0 0-1-1z"
+                      />
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGSvgView>
+            </View>
+            <Text
+              isRTL={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBold",
+                    "fontSize": 19,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              Bon à savoir
+            </Text>
+          </View>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginBottom": 24,
+                },
+              ]
+            }
+          >
+            Tu ne peux pas utiliser ces informations dans un but publicitaire ou commercial.
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginBottom": 24,
+                },
+                Object {
+                  "marginBottom": 0,
+                },
+              ]
+            }
+          >
+            Tu ne peux pas non plus utiliser le contenu de l’application en le détournant de son contexte d’actualité, ou de manière contraire aux lois et aux règlements, ou d’une façon qui porte atteinte à l’ordre public.
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 12,
+              "elevation": 6,
+              "marginBottom": 24,
+              "paddingBottom": 24,
+              "paddingLeft": 24,
+              "paddingRight": 24,
+              "paddingTop": 24,
+              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 8,
+            },
+          ]
+        }
+      >
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "marginBottom": 24,
+                "maxWidth": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            isRTL={false}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#212121",
+                  "borderRadius": 16,
+                  "height": 32,
+                  "justifyContent": "center",
+                  "marginLeft": 0,
+                  "marginRight": 16,
+                  "width": 32,
+                },
+              ]
+            }
+          >
+            <Text
+              isRTL={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBold",
+                    "fontSize": 19,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#FFFFFF",
+                  },
+                ]
+              }
+            >
+              2
+            </Text>
+          </View>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBold",
+                  "fontSize": 19,
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                Object {
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                },
+              ]
+            }
+          >
+            Les créations graphiques
+          </Text>
+        </View>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+              Object {
+                "marginBottom": 24,
+              },
+            ]
+          }
+        >
+          Toute reproduction ou adaptation (retouchage, montage, recadrage...) des éléments graphiques et iconographiques du site est interdite sans l’accord de Réfugiés.info.
+        </Text>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "marginBottom": 24,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "transform": Array [
+                  Object {
+                    "scale": 1,
+                  },
+                ],
+              }
+            }
+          >
+            <RNSVGSvgView
+              align="xMidYMid"
+              bbHeight={24}
+              bbWidth={24}
+              fill="#212121"
+              focusable={false}
+              height={24}
+              meetOrSlice={0}
+              minX={0}
+              minY={0}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                  Object {
+                    "marginLeft": 0,
+                    "marginRight": 8,
+                  },
+                  Object {
+                    "flex": 0,
+                    "height": 24,
+                    "width": 24,
+                  },
+                ]
+              }
+              vbHeight={24}
+              vbWidth={24}
+              width={24}
+            >
+              <RNSVGGroup
+                fill={4280361249}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              >
+                <RNSVGGroup>
+                  <RNSVGGroup>
+                    <RNSVGRect
+                      height="24"
+                      matrix={
+                        Array [
+                          -1,
+                          1.2246467991473532e-16,
+                          -1.2246467991473532e-16,
+                          -1,
+                          24,
+                          24,
+                        ]
+                      }
+                      opacity={0}
+                      width="24"
+                      x={0}
+                      y={0}
+                    />
+                    <RNSVGPath
+                      d="M20.62 4.22a1 1 0 0 0-.84-.2L12 5.77 4.22 4A1 1 0 0 0 3 5v12.2a1 1 0 0 0 .78 1l8 1.8h.44l8-1.8a1 1 0 0 0 .78-1V5a1 1 0 0 0-.38-.78zM5 6.25l6 1.35v10.15L5 16.4zM19 16.4l-6 1.35V7.6l6-1.35z"
+                    />
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGSvgView>
+          </View>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+              ]
+            }
+          >
+            (Art L.122-4 du Code de la propriété Intellectuelle)
+          </Text>
+        </View>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+              Object {
+                "marginBottom": 24,
+              },
+            ]
+          }
+        >
+          Pour toute question sur la reproduction de contenus, tu peux t’adresser à :
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "flex-start",
+            }
+          }
+        >
+          <View
+            accessibilityRole="button"
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#212121",
+                "borderRadius": 12,
+                "display": "flex",
+                "elevation": 2,
+                "flexDirection": "row",
+                "height": 56,
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingBottom": 18,
+                "paddingLeft": 18,
+                "paddingRight": 18,
+                "paddingTop": 18,
+                "shadowColor": "rgba(33, 33, 33, 0.4)",
+                "shadowOffset": Object {
+                  "height": 1,
+                  "width": 1,
+                },
+                "shadowOpacity": 1,
+                "shadowRadius": 2,
+                "width": "auto",
+              }
+            }
+            testID="test-custom-button-contact@refugies.info"
+          >
+            <View
+              style={
+                Object {
+                  "transform": Array [
+                    Object {
+                      "scale": 1,
+                    },
+                  ],
+                }
+              }
+            >
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={24}
+                bbWidth={24}
+                fill="#FFFFFF"
+                focusable={false}
+                height={24}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {},
+                    Object {
+                      "flex": 0,
+                      "height": 24,
+                      "width": 24,
+                    },
+                  ]
+                }
+                vbHeight={24}
+                vbWidth={24}
+                width={24}
+              >
+                <RNSVGGroup
+                  fill={4294967295}
+                  propList={
+                    Array [
+                      "fill",
+                    ]
+                  }
+                >
+                  <RNSVGGroup>
+                    <RNSVGGroup>
+                      <RNSVGRect
+                        height="24"
+                        opacity={0}
+                        width="24"
+                        x={0}
+                        y={0}
+                      />
+                      <RNSVGPath
+                        d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z"
+                      />
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGSvgView>
+            </View>
+            <Text
+              hasIcon={true}
+              iconFirst={true}
+              isRTL={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#FFFFFF",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+              textColor="#FFFFFF"
+            >
+              contact@refugies.info
+            </Text>
+          </View>
+        </View>
+      </View>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+              "marginTop": 56,
+            },
+          ]
+        }
+      >
+        Création de liens vers Réfugiés.info
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Tu peux librement créer des liens vers Réfugiés.info sans accord préalable. En revanche, la mention explicite de l’intitulé de l’application dans l’intitulé du lien est vivement souhaitée.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Il est fortement recommandé que l’ouverture de cette page se fasse dans une fenêtre indépendante du navigateur.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Toutefois, Réfugiés.info se réserve le droit de demander la suppression de liens vers des sites dont l’objet s’avérerait non conforme à l’objet de l’application, diffuseraient des informations à caractère raciste, pornographique, xénophobe ou étant de nature à heurter la sensibilité du public.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+              "marginTop": 56,
+            },
+          ]
+        }
+      >
+        Liens vers d’autres sites
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Des liens vers d’autres sites, publics ou privés sont proposés sur l’application pour te faciliter l’accès à l’information. Réfugiés.info n’est pas responsable du contenu de ces sites.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+              "marginTop": 56,
+            },
+          ]
+        }
+      >
+        Accès au site
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Réfugiés.info et son hébergeur font le maximum pour te permettre d’avoir accès en continu à l’application Réfugiés.info.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Il est possible que certaines situations (panne, intention technique de maintenance) empêchent l’accès à l’application. Réfugiés.info a le droit de ne pas garantir l’accessibilité sans que sa responsabilité ne soit engagée.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+              "marginTop": 56,
+            },
+          ]
+        }
+      >
+        Il te reste des questions ?
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Si tu ne trouves pas l’information que tu cherches, n’hésite pas à consulter les autres pages de l’application :
+      </Text>
+      <View
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            },
+            Object {
+              "alignItems": "flex-start",
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+          •
+        </Text>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+              Object {
+                "marginLeft": 8,
+                "marginRight": 0,
+              },
+            ]
+          }
+        >
+          <Text
+            accessibilityRole="link"
+            isRTL={false}
+            onPress={[Function]}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBold",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "textDecorationColor": "black",
+                  "textDecorationLine": "underline",
+                  "textDecorationStyle": "solid",
+                },
+              ]
+            }
+          >
+            Tes données, pour quoi faire
+          </Text>
+           qui répond à toutes tes questions sur tes données dans l’application.
+        </Text>
+      </View>
+      <View
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            },
+            Object {
+              "alignItems": "flex-start",
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+          •
+        </Text>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+              Object {
+                "marginLeft": 8,
+                "marginRight": 0,
+              },
+            ]
+          }
+        >
+          <Text
+            accessibilityRole="link"
+            isRTL={false}
+            onPress={[Function]}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBold",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "textDecorationColor": "black",
+                  "textDecorationLine": "underline",
+                  "textDecorationStyle": "solid",
+                },
+              ]
+            }
+          >
+            Qui sommes-nous ?
+          </Text>
+           qui t’en dit plus sur notre plateforme numérique Réfugiés.info.
+        </Text>
+      </View>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Sinon, n’hésite pas à nous contacter directement :
+      </Text>
+      <View
+        style={
+          Object {
+            "alignItems": "flex-start",
+          }
+        }
+      >
+        <View
+          accessibilityRole="button"
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#212121",
+              "borderRadius": 12,
+              "display": "flex",
+              "elevation": 2,
+              "flexDirection": "row",
+              "height": 56,
+              "justifyContent": "center",
+              "opacity": 1,
+              "paddingBottom": 18,
+              "paddingLeft": 18,
+              "paddingRight": 18,
+              "paddingTop": 18,
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 2,
+              "width": "auto",
+            }
+          }
+          testID="test-custom-button-contact@refugies.info"
+        >
+          <View
+            style={
+              Object {
+                "transform": Array [
+                  Object {
+                    "scale": 1,
+                  },
+                ],
+              }
+            }
+          >
+            <RNSVGSvgView
+              align="xMidYMid"
+              bbHeight={24}
+              bbWidth={24}
+              fill="#FFFFFF"
+              focusable={false}
+              height={24}
+              meetOrSlice={0}
+              minX={0}
+              minY={0}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                  Object {},
+                  Object {
+                    "flex": 0,
+                    "height": 24,
+                    "width": 24,
+                  },
+                ]
+              }
+              vbHeight={24}
+              vbWidth={24}
+              width={24}
+            >
+              <RNSVGGroup
+                fill={4294967295}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              >
+                <RNSVGGroup>
+                  <RNSVGGroup>
+                    <RNSVGRect
+                      height="24"
+                      opacity={0}
+                      width="24"
+                      x={0}
+                      y={0}
+                    />
+                    <RNSVGPath
+                      d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z"
+                    />
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGSvgView>
+          </View>
+          <Text
+            hasIcon={true}
+            iconFirst={true}
+            isRTL={false}
+            style={
+              Array [
+                Object {
+                  "color": "#FFFFFF",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBold",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                },
+              ]
+            }
+            textColor="#FFFFFF"
+          >
+            contact@refugies.info
+          </Text>
+        </View>
+      </View>
+      <View
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            },
+            Object {
+              "marginVertical": 56,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={24}
+            bbWidth={24}
+            fill="#5E5E5E"
+            focusable={false}
+            height={24}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "marginLeft": 0,
+                  "marginRight": 8,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width={24}
+          >
+            <RNSVGGroup
+              fill={4284374622}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGGroup>
+                <RNSVGGroup>
+                  <RNSVGRect
+                    height="24"
+                    opacity={0}
+                    width="24"
+                    x={0}
+                    y={0}
+                  />
+                  <RNSVGPath
+                    d="M20.3 13.43a1 1 0 0 0-1.25.65A7.14 7.14 0 0 1 12.18 19 7.1 7.1 0 0 1 5 12a7.1 7.1 0 0 1 7.18-7 7.26 7.26 0 0 1 4.65 1.67l-2.17-.36a1 1 0 0 0-1.15.83 1 1 0 0 0 .83 1.15l4.24.7h.17a1 1 0 0 0 .34-.06.33.33 0 0 0 .1-.06.78.78 0 0 0 .2-.11l.09-.11c0-.05.09-.09.13-.15s0-.1.05-.14a1.34 1.34 0 0 0 .07-.18l.75-4a1 1 0 0 0-2-.38l-.27 1.45A9.21 9.21 0 0 0 12.18 3 9.1 9.1 0 0 0 3 12a9.1 9.1 0 0 0 9.18 9A9.12 9.12 0 0 0 21 14.68a1 1 0 0 0-.7-1.25z"
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#5E5E5E",
+              },
+            ]
+          }
+        >
+          Mise à jour : 
+          <Text
+            style={
+              Object {
+                "color": "#008205",
+              }
+            }
+          >
+            30 novembre
+          </Text>
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+  <Modal
+    animationType="none"
+    deviceHeight={null}
+    deviceWidth={null}
+    hardwareAccelerated={false}
+    hideModalContentWhileAnimating={false}
+    onBackdropPress={[Function]}
+    onModalHide={[Function]}
+    onModalWillHide={[Function]}
+    onModalWillShow={[Function]}
+    onRequestClose={[Function]}
+    panResponderThreshold={4}
+    scrollHorizontal={false}
+    scrollOffset={0}
+    scrollOffsetMax={0}
+    scrollTo={null}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    swipeThreshold={100}
+    transparent={true}
+    visible={false}
+  >
+    <View
+      forwardedRef={[Function]}
+      style={
+        Object {
+          "backgroundColor": "transparent",
+          "bottom": 0,
+          "height": 1334,
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": 750,
+        }
+      }
+    >
+      <View
+        accessibilityRole="button"
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#212121",
+              "flexBasis": 0,
+              "flexGrow": 1,
+              "flexShrink": 1,
+            },
+          ]
+        }
+      />
+    </View>
+    <View
+      deviceHeight={null}
+      deviceWidth={null}
+      forwardedRef={[Function]}
+      hideModalContentWhileAnimating={false}
+      onBackdropPress={[Function]}
+      onModalHide={[Function]}
+      onModalWillHide={[Function]}
+      onModalWillShow={[Function]}
+      panResponderThreshold={4}
+      pointerEvents="box-none"
+      scrollHorizontal={false}
+      scrollOffset={0}
+      scrollOffsetMax={0}
+      scrollTo={null}
+      style={
+        Object {
+          "flex": 1,
+          "justifyContent": "flex-end",
+          "margin": 0,
+          "transform": Array [
+            Object {
+              "translateY": 0,
+            },
+          ],
+        }
+      }
+      supportedOrientations={
+        Array [
+          "portrait",
+          "landscape",
+        ]
+      }
+      swipeThreshold={100}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#F6F6F6",
+              "borderTopLeftRadius": 12,
+              "borderTopRightRadius": 12,
+              "display": "flex",
+              "paddingHorizontal": 24,
+              "paddingVertical": 8,
+            },
+            Object {
+              "paddingBottom": undefined,
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "alignSelf": "center",
+                "color": "#212121",
+                "fontFamily": "circularBold",
+                "fontSize": 19,
+                "lineHeight": 24,
+                "marginTop": 24,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+          Langue de l'application
+        </Text>
+        <RCTScrollView
+          style={
+            Array [
+              Object {
+                "marginBottom": 8,
+                "marginTop": 16,
+              },
+            ]
+          }
+        >
+          <View>
+            <View>
+              <View
+                accessibilityRole="button"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F6F6F6",
+                    "borderRadius": 12,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                  }
+                }
+                testID="test-language-button-Français"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 6,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "rgba(33, 33, 33, 0.16)",
+                          "shadowOffset": Object {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 1,
+                          "shadowRadius": 8,
+                          "width": 22,
+                        },
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    Français
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#EDEBEB",
+                      "height": 1,
+                      "marginLeft": 16,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              />
+            </View>
+            <View>
+              <View
+                accessibilityRole="button"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F6F6F6",
+                    "borderRadius": 12,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                  }
+                }
+                testID="test-language-button-Persan/Dari"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 6,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "rgba(33, 33, 33, 0.16)",
+                          "shadowOffset": Object {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 1,
+                          "shadowRadius": 8,
+                          "width": 22,
+                        },
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    فارسی/ دری
+                  </Text>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "display": "flex",
+                          "flexDirection": "row",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "fontFamily": "circularBook",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                       - 
+                      Persan/Dari
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#EDEBEB",
+                      "height": 1,
+                      "marginLeft": 16,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              />
+            </View>
+            <View>
+              <View
+                accessibilityRole="button"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F6F6F6",
+                    "borderRadius": 12,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                  }
+                }
+                testID="test-language-button-Arabe"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 6,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "rgba(33, 33, 33, 0.16)",
+                          "shadowOffset": Object {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 1,
+                          "shadowRadius": 8,
+                          "width": 22,
+                        },
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    العربية
+                  </Text>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "display": "flex",
+                          "flexDirection": "row",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "fontFamily": "circularBook",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                       - 
+                      Arabe
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#EDEBEB",
+                      "height": 1,
+                      "marginLeft": 16,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              />
+            </View>
+            <View>
+              <View
+                accessibilityRole="button"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F6F6F6",
+                    "borderRadius": 12,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                  }
+                }
+                testID="test-language-button-Anglais"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 6,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "rgba(33, 33, 33, 0.16)",
+                          "shadowOffset": Object {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 1,
+                          "shadowRadius": 8,
+                          "width": 22,
+                        },
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    English
+                  </Text>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "display": "flex",
+                          "flexDirection": "row",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "fontFamily": "circularBook",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                       - 
+                      Anglais
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#EDEBEB",
+                      "height": 1,
+                      "marginLeft": 16,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              />
+            </View>
+            <View>
+              <View
+                accessibilityRole="button"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F6F6F6",
+                    "borderRadius": 12,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                  }
+                }
+                testID="test-language-button-Pachto"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 6,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "rgba(33, 33, 33, 0.16)",
+                          "shadowOffset": Object {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 1,
+                          "shadowRadius": 8,
+                          "width": 22,
+                        },
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    پښتو
+                  </Text>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "display": "flex",
+                          "flexDirection": "row",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "fontFamily": "circularBook",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                       - 
+                      Pachto
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#EDEBEB",
+                      "height": 1,
+                      "marginLeft": 16,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              />
+            </View>
+            <View>
+              <View
+                accessibilityRole="button"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F6F6F6",
+                    "borderRadius": 12,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                  }
+                }
+                testID="test-language-button-Russe"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 6,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "rgba(33, 33, 33, 0.16)",
+                          "shadowOffset": Object {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 1,
+                          "shadowRadius": 8,
+                          "width": 22,
+                        },
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    Русский
+                  </Text>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "display": "flex",
+                          "flexDirection": "row",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "fontFamily": "circularBook",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                       - 
+                      Russe
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#EDEBEB",
+                      "height": 1,
+                      "marginLeft": 16,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              />
+            </View>
+            <View>
+              <View
+                accessibilityRole="button"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F6F6F6",
+                    "borderRadius": 12,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                  }
+                }
+                testID="test-language-button-Tigrinya"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 6,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "rgba(33, 33, 33, 0.16)",
+                          "shadowOffset": Object {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 1,
+                          "shadowRadius": 8,
+                          "width": 22,
+                        },
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    ትግርኛ
+                  </Text>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "display": "flex",
+                          "flexDirection": "row",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "fontFamily": "circularBook",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                       - 
+                      Tigrinya
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </RCTScrollView>
+        <View
+          accessibilityRole="button"
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 12,
+              "display": "flex",
+              "elevation": 6,
+              "flexDirection": "row",
+              "height": 56,
+              "justifyContent": "center",
+              "opacity": 1,
+              "paddingBottom": 18,
+              "paddingLeft": 18,
+              "paddingRight": 18,
+              "paddingTop": 18,
+              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 8,
+              "width": "100%",
+            }
+          }
+          testID="test-custom-button-Fermer"
+        >
+          <View
+            style={
+              Object {
+                "transform": Array [
+                  Object {
+                    "scale": 1,
+                  },
+                ],
+              }
+            }
+          >
+            <RNSVGSvgView
+              align="xMidYMid"
+              bbHeight={24}
+              bbWidth={24}
+              fill="#212121"
+              focusable={false}
+              height={24}
+              meetOrSlice={0}
+              minX={0}
+              minY={0}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                  Object {},
+                  Object {
+                    "flex": 0,
+                    "height": 24,
+                    "width": 24,
+                  },
+                ]
+              }
+              vbHeight={24}
+              vbWidth={24}
+              width={24}
+            >
+              <RNSVGGroup
+                fill={4280361249}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              >
+                <RNSVGGroup>
+                  <RNSVGGroup>
+                    <RNSVGRect
+                      height="24"
+                      matrix={
+                        Array [
+                          -1,
+                          1.2246467991473532e-16,
+                          -1.2246467991473532e-16,
+                          -1,
+                          24,
+                          24,
+                        ]
+                      }
+                      opacity={0}
+                      width="24"
+                      x={0}
+                      y={0}
+                    />
+                    <RNSVGPath
+                      d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
+                    />
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGSvgView>
+          </View>
+          <Text
+            hasIcon={true}
+            iconFirst={true}
+            isRTL={false}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                },
+              ]
+            }
+            textColor="#212121"
+          >
+            Fermer
+          </Text>
+        </View>
+      </View>
+    </View>
+  </Modal>
+</View>
+`;

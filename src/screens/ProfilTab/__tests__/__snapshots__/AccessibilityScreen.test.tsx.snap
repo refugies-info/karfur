@@ -1,0 +1,4875 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Accessibility screen should render correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    showShadow={false}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#F6F6F6",
+          "paddingBottom": 8,
+          "zIndex": 4,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "paddingTop": undefined,
+        }
+      }
+    >
+      <View
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingHorizontal": 24,
+              "paddingTop": 8,
+            },
+          ]
+        }
+      >
+        <View
+          accessibilityLabel=""
+          accessibilityRole="button"
+          accessible={true}
+          focusable={false}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 12,
+              "elevation": 6,
+              "opacity": 1,
+              "paddingBottom": 12,
+              "paddingLeft": 12,
+              "paddingRight": 12,
+              "paddingTop": 12,
+              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 8,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "transform": Array [
+                  Object {
+                    "scale": 1,
+                  },
+                ],
+              }
+            }
+          >
+            <RNSVGSvgView
+              align="xMidYMid"
+              bbHeight={24}
+              bbWidth={24}
+              fill="#212121"
+              focusable={false}
+              height={24}
+              meetOrSlice={0}
+              minX={0}
+              minY={0}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                  Object {
+                    "flex": 0,
+                    "height": 24,
+                    "width": 24,
+                  },
+                ]
+              }
+              vbHeight={24}
+              vbWidth={24}
+              width={24}
+            >
+              <RNSVGGroup
+                fill={4280361249}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              >
+                <RNSVGGroup>
+                  <RNSVGGroup>
+                    <RNSVGRect
+                      height="24"
+                      matrix={
+                        Array [
+                          6.123233995736766e-17,
+                          1,
+                          -1,
+                          6.123233995736766e-17,
+                          24,
+                          0,
+                        ]
+                      }
+                      opacity={0}
+                      width="24"
+                      x={0}
+                      y={0}
+                    />
+                    <RNSVGPath
+                      d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
+                    />
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGSvgView>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+            ]
+          }
+        >
+          <View />
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "paddingHorizontal": 24,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#212121",
+            "fontFamily": "circularBold",
+            "fontSize": 25,
+            "marginTop": 32,
+            "textAlign": "left",
+          }
+        }
+      >
+        L’accessibilité, c’est quoi ?
+      </Text>
+    </View>
+  </View>
+  <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "overflow": "visible",
+        "paddingHorizontal": 24,
+      }
+    }
+    onScroll={[Function]}
+    scrollEventThrottle={5}
+    style={
+      Array [
+        Object {
+          "paddingBottom": 24,
+          "paddingTop": 16,
+        },
+      ]
+    }
+  >
+    <View>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+            Object {
+              "marginTop": 16,
+            },
+          ]
+        }
+      >
+        Sur cette page, tu trouveras les informations obligatoires concernant l’accessibilité de l’application 
+        iOS
+         Réfugiés.info.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        L’accessibilité permet à tous les publics, sans discrimination, d’accéder aux contenus et aux services numériques. Pour cela, il faut respecter des règles émises par le World Wide Web Consortium et pensées par des ergonomes pour chaque type de handicap.
+      </Text>
+      <View
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={24}
+            bbWidth={24}
+            fill="#5E5E5E"
+            focusable={false}
+            height={24}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "marginLeft": 0,
+                  "marginRight": 8,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width={24}
+          >
+            <RNSVGGroup
+              fill={4284374622}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGGroup>
+                <RNSVGGroup>
+                  <RNSVGRect
+                    height="24"
+                    matrix={
+                      Array [
+                        -1,
+                        1.2246467991473532e-16,
+                        -1.2246467991473532e-16,
+                        -1,
+                        24,
+                        24,
+                      ]
+                    }
+                    opacity={0}
+                    width="24"
+                    x={0}
+                    y={0}
+                  />
+                  <RNSVGPath
+                    d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+                  />
+                  <RNSVGPath
+                    d="M16 11h-3V8a1 1 0 0 0-2 0v4a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2z"
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#5E5E5E",
+              },
+            ]
+          }
+        >
+          Temps de lecture : 
+          <Text
+            style={
+              Object {
+                "color": "#008205",
+              }
+            }
+          >
+            5 à 10 minutes
+          </Text>
+        </Text>
+      </View>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+              "marginTop": 56,
+            },
+          ]
+        }
+      >
+        Déclaration d’accessibilité
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        La Délégation interministérielle à l'accueil et à l'intégration des réfugiés du Ministère de l’Intérieur s'engage à rendre son application mobile accessible conformément à la Directive européenne sur l'accessibilité des applications Web et mobiles (Directive (UE) 2018/2048) sur les exigences d'accessibilité pour les produits et services TIC EN 301 549 V3.2.1.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        À cette fin, il met en œuvre la stratégie et les actions détaillées dans son plan pluriannuel en cours d'élaboration.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+            Object {
+              "marginBottom": 0,
+            },
+          ]
+        }
+      >
+        Cette déclaration d'accessibilité s'applique à l'application mobile 
+        iOS
+         Réfugiés.info.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+              "marginTop": 56,
+            },
+          ]
+        }
+      >
+        État de conformité
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+            Object {
+              "marginBottom": 0,
+            },
+          ]
+        }
+      >
+        L’application 
+        iOS
+         Réfugiés.info est
+         
+        en 
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "flexShrink": 1,
+                "fontFamily": "circularBold",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+          conformité partielle
+        </Text>
+         
+        avec EN 301 549 V3.2.1 en raison des non-conformités et des dérogations énumérées ci-dessous.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+              "marginTop": 56,
+            },
+          ]
+        }
+      >
+        Résultats des tests
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        L’audit de conformité réalisé par la société
+         
+        <Text
+          accessibilityRole="link"
+          isRTL={false}
+          onPress={[Function]}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "flexShrink": 1,
+                "fontFamily": "circularBold",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+              Object {
+                "textDecorationColor": "black",
+                "textDecorationLine": "underline",
+                "textDecorationStyle": "solid",
+              },
+            ]
+          }
+        >
+          Ipedis
+        </Text>
+         
+        révèle que 
+        50,00
+        % des critères de la Directive EN 301 549 V3.2.1 sont respectés.
+      </Text>
+      <View
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            },
+            Object {
+              "alignItems": "flex-start",
+              "marginBottom": 8,
+            },
+          ]
+        }
+      >
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+            ✅  
+        </Text>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+          12
+           critères sont respectés
+        </Text>
+      </View>
+      <View
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            },
+            Object {
+              "alignItems": "flex-start",
+              "marginBottom": 8,
+            },
+          ]
+        }
+      >
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+            ❌  
+        </Text>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+          12
+           critères ne sont pas respectés
+        </Text>
+      </View>
+      <View
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            },
+            Object {
+              "alignItems": "flex-start",
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+            🚫  
+        </Text>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+          19 critères ne sont pas applicables
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 12,
+              "elevation": 6,
+              "marginBottom": 24,
+              "paddingBottom": 24,
+              "paddingLeft": 24,
+              "paddingRight": 24,
+              "paddingTop": 24,
+              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 8,
+            },
+            Object {
+              "marginBottom": 0,
+            },
+          ]
+        }
+      >
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+              Object {
+                "marginBottom": 24,
+              },
+              Object {
+                "fontStyle": "italic",
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          Résultat de conformité des critères au EN-301-549-V3.2.1
+        </Text>
+        <Image
+          resizeMode="contain"
+          source={1}
+          style={
+            Object {
+              "alignSelf": "center",
+              "height": 228,
+              "marginBottom": 24,
+              "width": 276,
+            }
+          }
+        />
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+                "marginBottom": 8,
+              },
+            ]
+          }
+        >
+          <View
+            color="#27A8A5"
+            isRTL={false}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#27A8A5",
+                  "borderRadius": 6,
+                  "height": 24,
+                  "marginLeft": 0,
+                  "marginRight": 16,
+                  "width": 24,
+                },
+              ]
+            }
+          />
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "width": 180,
+                },
+              ]
+            }
+          >
+            critères conformes
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+                "marginBottom": 8,
+              },
+            ]
+          }
+        >
+          <View
+            color="#D64B71"
+            isRTL={false}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#D64B71",
+                  "borderRadius": 6,
+                  "height": 24,
+                  "marginLeft": 0,
+                  "marginRight": 16,
+                  "width": 24,
+                },
+              ]
+            }
+          />
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "width": 180,
+                },
+              ]
+            }
+          >
+            critères non conformes
+          </Text>
+        </View>
+      </View>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+              "marginTop": 56,
+            },
+          ]
+        }
+      >
+        Contenus non accessibles
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Les contenus listés ci-dessous ne sont pas accessibles pour les raisons suivantes.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 19,
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Non-conformité
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Plusieurs éléments de non-conformité sont décrits dans ce document, dont certains récurrents sur plusieurs pages :
+      </Text>
+      <View
+        style={
+          Object {
+            "marginBottom": 24,
+          }
+        }
+      >
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Les images/icônes porteuses d'information n'ont pas d'alternative textuelle
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Certains textes ne sont pas correctement lus par le lecteur d'écran
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Le contraste entre la couleur de fond et les textes/images et certains composants d’interface ne sont pas suffisants
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            L'application n'est consultable qu'en version portrait
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            L'ordre de tabulation des éléments de la page n'est pas toujours logique et intuitif
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Au chargement des pages, le focus ne part pas automatiquement sur le premier élément de la nouvelle page
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Des pièges au clavier sont présents
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Certains boutons n'ont pas d'intitulé ou ont un intitulé qui n'est pas pertinent
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Le label des champs est visible, mais n'est pas restitué lorsque le focus du lecteur d’écran arrive dessus
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Certaines pages ont des titres qui ne sont pas définis comme étant des en-têtes
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            La navigation sur la carte Google doit se faire avec l’utilisation simultanée de deux doigts ou plus
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Le champ Ta Ville affiche une liste de suggestion, mais cela n'est pas vocalisé par le lecteur d'écran
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Les barres d'onglet ne sont pas reconnues comme telles par le lecteur d'écran
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Certains boutons/listes de suggestion/boutons radio/liens ne sont pas reconnus comme tels
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Les messages de statut ne sont pas restitués par le lecteur d'écran
+          </Text>
+        </View>
+      </View>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 19,
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Dérogations pour charge disproportionnée
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Pas de dérogation identifiée
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 19,
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Contenus non soumis à l’obligation d’accessibilité
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+            Object {
+              "marginBottom": 0,
+            },
+          ]
+        }
+      >
+        Pas de contenus non soumis à l'obligation d'accessibilité
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+              "marginTop": 56,
+            },
+          ]
+        }
+      >
+        Établissement de cette déclaration d’accessibilité
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Cette déclaration a été établie le 30 novembre 2021.
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+            Object {
+              "marginBottom": 0,
+            },
+          ]
+        }
+      >
+        Technologies utilisées pour la réalisation de l’application :
+      </Text>
+      <View
+        style={
+          Object {
+            "marginBottom": 24,
+          }
+        }
+      >
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            React Native
+          </Text>
+        </View>
+      </View>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+            Object {
+              "marginBottom": 0,
+            },
+          ]
+        }
+      >
+        Les tests des pages web ont été effectués avec les combinaisons d'agents utilisateurs et de lecteurs d’écran suivants :
+      </Text>
+      <View
+        style={
+          Object {
+            "marginBottom": 24,
+          }
+        }
+      >
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            iOS Voiceover
+          </Text>
+        </View>
+      </View>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+            Object {
+              "marginBottom": 0,
+            },
+          ]
+        }
+      >
+        Les outils suivants ont été utilisés lors de l’évaluation :
+      </Text>
+      <View
+        style={
+          Object {
+            "marginBottom": 24,
+          }
+        }
+      >
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Contrast Color checker WCAG
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            iOS Voiceover
+          </Text>
+        </View>
+      </View>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+            Object {
+              "marginBottom": 0,
+            },
+          ]
+        }
+      >
+        Pages du site ayant fait l’objet de la vérification de conformité :
+      </Text>
+      <View
+        style={Object {}}
+      >
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Page “Explorer”
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Page “Déclaration d’accessibilité”
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Page “Rechercher”
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Page du Choix de langue
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Carrousel d'explications de l'application
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Pages de création des filtres
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Page “Moi”
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Page “Mes fiches”
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Fiche “Trouver un logement”
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Fiche “Accueils de jours à Paris”
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Page “Mentions légales”
+          </Text>
+        </View>
+      </View>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+              "marginTop": 56,
+            },
+          ]
+        }
+      >
+        Retour d’information et contact
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Si vous n’arrivez pas à accéder à un contenu ou à un service, vous pouvez contacter le responsable de l’application mobile pour être orienté vers une alternative accessible ou obtenir le contenu sous une autre forme.
+      </Text>
+      <View
+        style={
+          Object {
+            "alignItems": "flex-start",
+          }
+        }
+      >
+        <View
+          accessibilityRole="button"
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#212121",
+              "borderRadius": 12,
+              "display": "flex",
+              "elevation": 2,
+              "flexDirection": "row",
+              "height": 56,
+              "justifyContent": "center",
+              "opacity": 1,
+              "paddingBottom": 18,
+              "paddingLeft": 18,
+              "paddingRight": 18,
+              "paddingTop": 18,
+              "shadowColor": "rgba(33, 33, 33, 0.4)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 2,
+              "width": "auto",
+            }
+          }
+          testID="test-custom-button-contact@refugies.info"
+        >
+          <View
+            style={
+              Object {
+                "transform": Array [
+                  Object {
+                    "scale": 1,
+                  },
+                ],
+              }
+            }
+          >
+            <RNSVGSvgView
+              align="xMidYMid"
+              bbHeight={24}
+              bbWidth={24}
+              fill="#FFFFFF"
+              focusable={false}
+              height={24}
+              meetOrSlice={0}
+              minX={0}
+              minY={0}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                  Object {},
+                  Object {
+                    "flex": 0,
+                    "height": 24,
+                    "width": 24,
+                  },
+                ]
+              }
+              vbHeight={24}
+              vbWidth={24}
+              width={24}
+            >
+              <RNSVGGroup
+                fill={4294967295}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              >
+                <RNSVGGroup>
+                  <RNSVGGroup>
+                    <RNSVGRect
+                      height="24"
+                      opacity={0}
+                      width="24"
+                      x={0}
+                      y={0}
+                    />
+                    <RNSVGPath
+                      d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z"
+                    />
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGSvgView>
+          </View>
+          <Text
+            hasIcon={true}
+            iconFirst={true}
+            isRTL={false}
+            style={
+              Array [
+                Object {
+                  "color": "#FFFFFF",
+                  "flexShrink": 1,
+                  "fontFamily": "circularBold",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                },
+              ]
+            }
+            textColor="#FFFFFF"
+          >
+            contact@refugies.info
+          </Text>
+        </View>
+      </View>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBold",
+              "fontSize": 25,
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+              "marginTop": 56,
+            },
+          ]
+        }
+      >
+        Voies de recours
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Cette procédure est à utiliser dans le cas suivant :
+      </Text>
+      <Text
+        isRTL={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "fontFamily": "circularBook",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Vous avez signalé au responsable du site internet un défaut d’accessibilité qui vous empêche d’accéder à un contenu ou à un des services du portail et vous n’avez pas obtenu de réponse satisfaisante.
+      </Text>
+      <View
+        style={Object {}}
+      >
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Écrire un message au
+             
+            <Text
+              accessibilityRole="link"
+              isRTL={false}
+              onPress={[Function]}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "textDecorationColor": "black",
+                    "textDecorationLine": "underline",
+                    "textDecorationStyle": "solid",
+                  },
+                ]
+              }
+            >
+              Défenseur des droits
+            </Text>
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Contacter le délégué du
+             
+            <Text
+              accessibilityRole="link"
+              isRTL={false}
+              onPress={[Function]}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "textDecorationColor": "black",
+                    "textDecorationLine": "underline",
+                    "textDecorationStyle": "solid",
+                  },
+                ]
+              }
+            >
+              Défenseur des droits de ta région
+            </Text>
+          </Text>
+        </View>
+        <View
+          isRTL={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "alignItems": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 4,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            •
+          </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            Envoyer un courrier par la poste (gratuit, ne pas mettre de timbre) à l’adresse suivante :
+          </Text>
+        </View>
+      </View>
+      <View
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            },
+            Object {
+              "marginTop": 24,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={24}
+            bbWidth={24}
+            fill="#212121"
+            focusable={false}
+            height={24}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "marginLeft": 16,
+                  "marginRight": 8,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width={24}
+          >
+            <RNSVGGroup
+              fill={4280361249}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGGroup>
+                <RNSVGGroup>
+                  <RNSVGRect
+                    height="24"
+                    opacity={0}
+                    width="24"
+                    x={0}
+                    y={0}
+                  />
+                  <RNSVGPath
+                    d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"
+                  />
+                  <RNSVGPath
+                    d="M12 6a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 6zm0 5a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 12 11z"
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+          Défenseur des droits
+          
+
+          Libre réponse 71120
+          
+
+          75342 Paris CEDEX 07
+        </Text>
+      </View>
+      <View
+        isRTL={false}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            },
+            Object {
+              "marginVertical": 56,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={24}
+            bbWidth={24}
+            fill="#5E5E5E"
+            focusable={false}
+            height={24}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "marginLeft": 0,
+                  "marginRight": 8,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 24,
+                  "width": 24,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width={24}
+          >
+            <RNSVGGroup
+              fill={4284374622}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGGroup>
+                <RNSVGGroup>
+                  <RNSVGRect
+                    height="24"
+                    opacity={0}
+                    width="24"
+                    x={0}
+                    y={0}
+                  />
+                  <RNSVGPath
+                    d="M20.3 13.43a1 1 0 0 0-1.25.65A7.14 7.14 0 0 1 12.18 19 7.1 7.1 0 0 1 5 12a7.1 7.1 0 0 1 7.18-7 7.26 7.26 0 0 1 4.65 1.67l-2.17-.36a1 1 0 0 0-1.15.83 1 1 0 0 0 .83 1.15l4.24.7h.17a1 1 0 0 0 .34-.06.33.33 0 0 0 .1-.06.78.78 0 0 0 .2-.11l.09-.11c0-.05.09-.09.13-.15s0-.1.05-.14a1.34 1.34 0 0 0 .07-.18l.75-4a1 1 0 0 0-2-.38l-.27 1.45A9.21 9.21 0 0 0 12.18 3 9.1 9.1 0 0 0 3 12a9.1 9.1 0 0 0 9.18 9A9.12 9.12 0 0 0 21 14.68a1 1 0 0 0-.7-1.25z"
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          isRTL={false}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "fontFamily": "circularBook",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#5E5E5E",
+              },
+            ]
+          }
+        >
+          Mise à jour : 
+          <Text
+            style={
+              Object {
+                "color": "#008205",
+              }
+            }
+          >
+            6 janvier 2022
+          </Text>
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+  <Modal
+    animationType="none"
+    deviceHeight={null}
+    deviceWidth={null}
+    hardwareAccelerated={false}
+    hideModalContentWhileAnimating={false}
+    onBackdropPress={[Function]}
+    onModalHide={[Function]}
+    onModalWillHide={[Function]}
+    onModalWillShow={[Function]}
+    onRequestClose={[Function]}
+    panResponderThreshold={4}
+    scrollHorizontal={false}
+    scrollOffset={0}
+    scrollOffsetMax={0}
+    scrollTo={null}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    swipeThreshold={100}
+    transparent={true}
+    visible={false}
+  >
+    <View
+      forwardedRef={[Function]}
+      style={
+        Object {
+          "backgroundColor": "transparent",
+          "bottom": 0,
+          "height": 1334,
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": 750,
+        }
+      }
+    >
+      <View
+        accessibilityRole="button"
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#212121",
+              "flexBasis": 0,
+              "flexGrow": 1,
+              "flexShrink": 1,
+            },
+          ]
+        }
+      />
+    </View>
+    <View
+      deviceHeight={null}
+      deviceWidth={null}
+      forwardedRef={[Function]}
+      hideModalContentWhileAnimating={false}
+      onBackdropPress={[Function]}
+      onModalHide={[Function]}
+      onModalWillHide={[Function]}
+      onModalWillShow={[Function]}
+      panResponderThreshold={4}
+      pointerEvents="box-none"
+      scrollHorizontal={false}
+      scrollOffset={0}
+      scrollOffsetMax={0}
+      scrollTo={null}
+      style={
+        Object {
+          "flex": 1,
+          "justifyContent": "flex-end",
+          "margin": 0,
+          "transform": Array [
+            Object {
+              "translateY": 0,
+            },
+          ],
+        }
+      }
+      supportedOrientations={
+        Array [
+          "portrait",
+          "landscape",
+        ]
+      }
+      swipeThreshold={100}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#F6F6F6",
+              "borderTopLeftRadius": 12,
+              "borderTopRightRadius": 12,
+              "display": "flex",
+              "paddingHorizontal": 24,
+              "paddingVertical": 8,
+            },
+            Object {
+              "paddingBottom": undefined,
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "alignSelf": "center",
+                "color": "#212121",
+                "fontFamily": "circularBold",
+                "fontSize": 19,
+                "lineHeight": 24,
+                "marginTop": 24,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+          Langue de l'application
+        </Text>
+        <RCTScrollView
+          style={
+            Array [
+              Object {
+                "marginBottom": 8,
+                "marginTop": 16,
+              },
+            ]
+          }
+        >
+          <View>
+            <View>
+              <View
+                accessibilityRole="button"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F6F6F6",
+                    "borderRadius": 12,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                  }
+                }
+                testID="test-language-button-Français"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 6,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "rgba(33, 33, 33, 0.16)",
+                          "shadowOffset": Object {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 1,
+                          "shadowRadius": 8,
+                          "width": 22,
+                        },
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    Français
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#EDEBEB",
+                      "height": 1,
+                      "marginLeft": 16,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              />
+            </View>
+            <View>
+              <View
+                accessibilityRole="button"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F6F6F6",
+                    "borderRadius": 12,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                  }
+                }
+                testID="test-language-button-Persan/Dari"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 6,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "rgba(33, 33, 33, 0.16)",
+                          "shadowOffset": Object {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 1,
+                          "shadowRadius": 8,
+                          "width": 22,
+                        },
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    فارسی/ دری
+                  </Text>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "display": "flex",
+                          "flexDirection": "row",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "fontFamily": "circularBook",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                       - 
+                      Persan/Dari
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#EDEBEB",
+                      "height": 1,
+                      "marginLeft": 16,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              />
+            </View>
+            <View>
+              <View
+                accessibilityRole="button"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F6F6F6",
+                    "borderRadius": 12,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                  }
+                }
+                testID="test-language-button-Arabe"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 6,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "rgba(33, 33, 33, 0.16)",
+                          "shadowOffset": Object {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 1,
+                          "shadowRadius": 8,
+                          "width": 22,
+                        },
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    العربية
+                  </Text>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "display": "flex",
+                          "flexDirection": "row",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "fontFamily": "circularBook",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                       - 
+                      Arabe
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#EDEBEB",
+                      "height": 1,
+                      "marginLeft": 16,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              />
+            </View>
+            <View>
+              <View
+                accessibilityRole="button"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F6F6F6",
+                    "borderRadius": 12,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                  }
+                }
+                testID="test-language-button-Anglais"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 6,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "rgba(33, 33, 33, 0.16)",
+                          "shadowOffset": Object {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 1,
+                          "shadowRadius": 8,
+                          "width": 22,
+                        },
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    English
+                  </Text>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "display": "flex",
+                          "flexDirection": "row",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "fontFamily": "circularBook",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                       - 
+                      Anglais
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#EDEBEB",
+                      "height": 1,
+                      "marginLeft": 16,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              />
+            </View>
+            <View>
+              <View
+                accessibilityRole="button"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F6F6F6",
+                    "borderRadius": 12,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                  }
+                }
+                testID="test-language-button-Pachto"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 6,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "rgba(33, 33, 33, 0.16)",
+                          "shadowOffset": Object {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 1,
+                          "shadowRadius": 8,
+                          "width": 22,
+                        },
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    پښتو
+                  </Text>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "display": "flex",
+                          "flexDirection": "row",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "fontFamily": "circularBook",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                       - 
+                      Pachto
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#EDEBEB",
+                      "height": 1,
+                      "marginLeft": 16,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              />
+            </View>
+            <View>
+              <View
+                accessibilityRole="button"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F6F6F6",
+                    "borderRadius": 12,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                  }
+                }
+                testID="test-language-button-Russe"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 6,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "rgba(33, 33, 33, 0.16)",
+                          "shadowOffset": Object {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 1,
+                          "shadowRadius": 8,
+                          "width": 22,
+                        },
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    Русский
+                  </Text>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "display": "flex",
+                          "flexDirection": "row",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "fontFamily": "circularBook",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                       - 
+                      Russe
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#EDEBEB",
+                      "height": 1,
+                      "marginLeft": 16,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              />
+            </View>
+            <View>
+              <View
+                accessibilityRole="button"
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F6F6F6",
+                    "borderRadius": 12,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingBottom": 16,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 16,
+                  }
+                }
+                testID="test-language-button-Tigrinya"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 4,
+                          "display": "flex",
+                          "elevation": 6,
+                          "height": 17,
+                          "justifyContent": "center",
+                          "marginBottom": 4,
+                          "marginLeft": 4,
+                          "marginRight": 4,
+                          "marginTop": 4,
+                          "shadowColor": "rgba(33, 33, 33, 0.16)",
+                          "shadowOffset": Object {
+                            "height": 1,
+                            "width": 1,
+                          },
+                          "shadowOpacity": 1,
+                          "shadowRadius": 8,
+                          "width": 22,
+                        },
+                      ]
+                    }
+                  >
+                    <react-native-svg
+                      height={15}
+                      width={20}
+                    />
+                  </View>
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "marginLeft": 8,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                    ትግርኛ
+                  </Text>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "display": "flex",
+                          "flexDirection": "row",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isSelected={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "fontFamily": "circularBook",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                       - 
+                      Tigrinya
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </RCTScrollView>
+        <View
+          accessibilityRole="button"
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 12,
+              "display": "flex",
+              "elevation": 6,
+              "flexDirection": "row",
+              "height": 56,
+              "justifyContent": "center",
+              "opacity": 1,
+              "paddingBottom": 18,
+              "paddingLeft": 18,
+              "paddingRight": 18,
+              "paddingTop": 18,
+              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 8,
+              "width": "100%",
+            }
+          }
+          testID="test-custom-button-Fermer"
+        >
+          <View
+            style={
+              Object {
+                "transform": Array [
+                  Object {
+                    "scale": 1,
+                  },
+                ],
+              }
+            }
+          >
+            <RNSVGSvgView
+              align="xMidYMid"
+              bbHeight={24}
+              bbWidth={24}
+              fill="#212121"
+              focusable={false}
+              height={24}
+              meetOrSlice={0}
+              minX={0}
+              minY={0}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                  Object {},
+                  Object {
+                    "flex": 0,
+                    "height": 24,
+                    "width": 24,
+                  },
+                ]
+              }
+              vbHeight={24}
+              vbWidth={24}
+              width={24}
+            >
+              <RNSVGGroup
+                fill={4280361249}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              >
+                <RNSVGGroup>
+                  <RNSVGGroup>
+                    <RNSVGRect
+                      height="24"
+                      matrix={
+                        Array [
+                          -1,
+                          1.2246467991473532e-16,
+                          -1.2246467991473532e-16,
+                          -1,
+                          24,
+                          24,
+                        ]
+                      }
+                      opacity={0}
+                      width="24"
+                      x={0}
+                      y={0}
+                    />
+                    <RNSVGPath
+                      d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
+                    />
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGSvgView>
+          </View>
+          <Text
+            hasIcon={true}
+            iconFirst={true}
+            isRTL={false}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                  "textAlign": "left",
+                },
+              ]
+            }
+            textColor="#212121"
+          >
+            Fermer
+          </Text>
+        </View>
+      </View>
+    </View>
+  </Modal>
+</View>
+`;
