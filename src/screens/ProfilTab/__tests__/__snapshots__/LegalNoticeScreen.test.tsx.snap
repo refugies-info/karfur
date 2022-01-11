@@ -946,112 +946,126 @@ exports[`LegalNotice screen should render correctly 1`] = `
           Les informations que l’on trouve sur l’application Réfugiés.info sont publiques et peuvent être reproduites ou réutilisées librement, à condition de :
         </Text>
         <View
-          isRTL={false}
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-              Object {
-                "alignItems": "flex-start",
-              },
-            ]
-          }
+          style={Object {}}
         >
-          <Text
+          <View
             isRTL={false}
-            selectable={true}
             style={
               Array [
                 Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                },
+                Object {
+                  "alignItems": "flex-start",
                 },
               ]
             }
           >
-            •
-          </Text>
-          <Text
+            <Text
+              isRTL={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
+              }
+            >
+              •
+            </Text>
+            <Text
+              isRTL={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "flexShrink": 1,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
+              }
+            >
+              respecter l’intégrité de l’information reproduite
+            </Text>
+          </View>
+          <View
             isRTL={false}
-            selectable={true}
             style={
               Array [
                 Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
                 },
                 Object {
-                  "marginLeft": 8,
-                  "marginRight": 0,
+                  "alignItems": "flex-start",
                 },
               ]
             }
           >
-            respecter l’intégrité de l’information reproduite
-          </Text>
-        </View>
-        <View
-          isRTL={false}
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-              Object {
-                "alignItems": "flex-start",
-              },
-            ]
-          }
-        >
-          <Text
-            isRTL={false}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            •
-          </Text>
-          <Text
-            isRTL={false}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "marginLeft": 8,
-                  "marginRight": 0,
-                },
-              ]
-            }
-          >
-            citer la source « Réfugiés.info »
-          </Text>
+            <Text
+              isRTL={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "marginLeft": 4,
+                    "marginRight": 0,
+                  },
+                ]
+              }
+            >
+              •
+            </Text>
+            <Text
+              isRTL={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "flexShrink": 1,
+                    "marginLeft": 8,
+                    "marginRight": 0,
+                  },
+                ]
+              }
+            >
+              citer la source « Réfugiés.info »
+            </Text>
+          </View>
         </View>
         <View
           isRTL={false}
@@ -1156,6 +1170,9 @@ exports[`LegalNotice screen should render correctly 1`] = `
                   "fontSize": 16,
                   "lineHeight": 20,
                   "textAlign": "left",
+                },
+                Object {
+                  "flexShrink": 1,
                 },
               ]
             }
@@ -1557,6 +1574,9 @@ exports[`LegalNotice screen should render correctly 1`] = `
                   "lineHeight": 20,
                   "textAlign": "left",
                 },
+                Object {
+                  "flexShrink": 1,
+                },
               ]
             }
           >
@@ -1942,164 +1962,188 @@ exports[`LegalNotice screen should render correctly 1`] = `
         Si tu ne trouves pas l’information que tu cherches, n’hésite pas à consulter les autres pages de l’application :
       </Text>
       <View
-        isRTL={false}
         style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "display": "flex",
-              "flexDirection": "row",
-            },
-            Object {
-              "alignItems": "flex-start",
-              "marginBottom": 24,
-            },
-          ]
+          Object {
+            "marginBottom": 24,
+          }
         }
       >
-        <Text
+        <View
           isRTL={false}
-          selectable={true}
           style={
             Array [
               Object {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "textAlign": "left",
-              },
-            ]
-          }
-        >
-          •
-        </Text>
-        <Text
-          isRTL={false}
-          selectable={true}
-          style={
-            Array [
-              Object {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "textAlign": "left",
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
               },
               Object {
-                "marginLeft": 8,
-                "marginRight": 0,
+                "alignItems": "flex-start",
               },
             ]
           }
         >
           <Text
-            accessibilityRole="link"
             isRTL={false}
-            onPress={[Function]}
             selectable={true}
             style={
               Array [
                 Object {
                   "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
+                  "fontFamily": "circularBook",
                   "fontSize": 16,
                   "lineHeight": 20,
                   "textAlign": "left",
                 },
                 Object {
-                  "textDecorationColor": "black",
-                  "textDecorationLine": "underline",
-                  "textDecorationStyle": "solid",
+                  "marginLeft": 4,
+                  "marginRight": 0,
                 },
               ]
             }
           >
-            Tes données, pour quoi faire
+            •
           </Text>
-           qui répond à toutes tes questions sur tes données dans l’application.
-        </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "flexShrink": 1,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            <Text
+              accessibilityRole="link"
+              isRTL={false}
+              onPress={[Function]}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "textDecorationColor": "black",
+                    "textDecorationLine": "underline",
+                    "textDecorationStyle": "solid",
+                  },
+                ]
+              }
+            >
+              Tes données, pour quoi faire
+            </Text>
+             qui répond à toutes tes questions sur tes données dans l’application.
+          </Text>
+        </View>
       </View>
       <View
-        isRTL={false}
         style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "display": "flex",
-              "flexDirection": "row",
-            },
-            Object {
-              "alignItems": "flex-start",
-              "marginBottom": 24,
-            },
-          ]
+          Object {
+            "marginBottom": 24,
+          }
         }
       >
-        <Text
+        <View
           isRTL={false}
-          selectable={true}
           style={
             Array [
               Object {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "textAlign": "left",
-              },
-            ]
-          }
-        >
-          •
-        </Text>
-        <Text
-          isRTL={false}
-          selectable={true}
-          style={
-            Array [
-              Object {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "textAlign": "left",
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
               },
               Object {
-                "marginLeft": 8,
-                "marginRight": 0,
+                "alignItems": "flex-start",
               },
             ]
           }
         >
           <Text
-            accessibilityRole="link"
             isRTL={false}
-            onPress={[Function]}
             selectable={true}
             style={
               Array [
                 Object {
                   "color": "#212121",
-                  "flexShrink": 1,
-                  "fontFamily": "circularBold",
+                  "fontFamily": "circularBook",
                   "fontSize": 16,
                   "lineHeight": 20,
                   "textAlign": "left",
                 },
                 Object {
-                  "textDecorationColor": "black",
-                  "textDecorationLine": "underline",
-                  "textDecorationStyle": "solid",
+                  "marginLeft": 4,
+                  "marginRight": 0,
                 },
               ]
             }
           >
-            Qui sommes-nous ?
+            •
           </Text>
-           qui t’en dit plus sur notre plateforme numérique Réfugiés.info.
-        </Text>
+          <Text
+            isRTL={false}
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "#212121",
+                  "fontFamily": "circularBook",
+                  "fontSize": 16,
+                  "lineHeight": 20,
+                  "textAlign": "left",
+                },
+                Object {
+                  "flexShrink": 1,
+                  "marginLeft": 8,
+                  "marginRight": 0,
+                },
+              ]
+            }
+          >
+            <Text
+              accessibilityRole="link"
+              isRTL={false}
+              onPress={[Function]}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "flexShrink": 1,
+                    "fontFamily": "circularBold",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "textDecorationColor": "black",
+                    "textDecorationLine": "underline",
+                    "textDecorationStyle": "solid",
+                  },
+                ]
+              }
+            >
+              Qui sommes-nous ?
+            </Text>
+             qui t’en dit plus sur notre plateforme numérique Réfugiés.info.
+          </Text>
+        </View>
       </View>
       <Text
         isRTL={false}
@@ -2362,7 +2406,7 @@ exports[`LegalNotice screen should render correctly 1`] = `
               }
             }
           >
-            30 novembre
+            30 novembre 2021
           </Text>
         </Text>
       </View>

@@ -359,7 +359,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             ]
           }
         >
-          Temps de lecture : 
+          Temps de lecture : 
           <Text
             style={
               Object {
@@ -1059,6 +1059,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -1117,6 +1118,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -1175,6 +1177,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -1233,6 +1236,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -1291,6 +1295,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -1349,6 +1354,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -1407,6 +1413,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -1465,6 +1472,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -1523,6 +1531,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -1581,6 +1590,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -1639,6 +1649,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -1697,6 +1708,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -1755,6 +1767,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -1813,6 +1826,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -1871,6 +1885,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -2084,6 +2099,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -2173,6 +2189,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -2262,6 +2279,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -2320,6 +2338,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -2405,6 +2424,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -2463,6 +2483,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -2521,6 +2542,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -2579,6 +2601,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -2637,6 +2660,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -2695,6 +2719,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -2753,6 +2778,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -2811,6 +2837,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -2869,6 +2896,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -2927,6 +2955,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -2985,6 +3014,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -3282,6 +3312,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -3366,6 +3397,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },
@@ -3450,6 +3482,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "textAlign": "left",
                 },
                 Object {
+                  "flexShrink": 1,
                   "marginLeft": 8,
                   "marginRight": 0,
                 },

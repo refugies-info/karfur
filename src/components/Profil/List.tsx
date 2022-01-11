@@ -16,6 +16,7 @@ const ListItem = styled(TextSmallNormal)`
   props.isRTL ? theme.margin : 0}px;
   margin-left: ${(props: { isRTL: boolean }) =>
   !props.isRTL ? theme.margin : 0}px;
+  flex-shrink: 1;
 `;
 
 interface Props {

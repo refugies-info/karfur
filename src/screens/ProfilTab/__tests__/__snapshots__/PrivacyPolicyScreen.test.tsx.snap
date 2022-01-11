@@ -2240,300 +2240,329 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             </Text>
           </View>
           <View
-            isRTL={false}
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
-                  "alignItems": "flex-start",
-                },
-              ]
-            }
+            style={Object {}}
           >
-            <Text
+            <View
               isRTL={false}
-              selectable={true}
               style={
                 Array [
                   Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                  Object {
+                    "alignItems": "flex-start",
                   },
                 ]
               }
             >
-              •
-            </Text>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                  },
-                ]
-              }
-            >
-              Attribue un numéro à chaque installation de l’application (ce numéro ne permet pas d’identifier l’utilisateur)
-            </Text>
-          </View>
-          <View
-            isRTL={false}
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
-                  "alignItems": "flex-start",
-                },
-              ]
-            }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              •
-            </Text>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                  },
-                ]
-              }
-            >
-              Trace des événements dans l’application
-            </Text>
-          </View>
-          <View
-            isRTL={false}
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
-                  "alignItems": "flex-start",
-                },
-              ]
-            }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              •
-            </Text>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                  },
-                ]
-              }
-            >
-              Agrège ces événements pour nous fournir des statistiques servant à améliorer l’application Réfugiés.info
-            </Text>
-          </View>
-          <View
-            isRTL={false}
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
-                  "alignItems": "flex-start",
-                },
-              ]
-            }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              •
-            </Text>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                  },
-                ]
-              }
-            >
-              Garde tes données 26 mois
-            </Text>
-          </View>
-          <View
-            isRTL={false}
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
-                  "alignItems": "flex-start",
-                },
-              ]
-            }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              •
-            </Text>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                  },
-                ]
-              }
-            >
-              Politique de données personnelles :
-               
               <Text
-                accessibilityRole="link"
                 isRTL={false}
-                onPress={[Function]}
                 selectable={true}
                 style={
                   Array [
                     Object {
                       "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
                       "textAlign": "left",
                     },
                     Object {
-                      "textDecorationColor": "black",
-                      "textDecorationLine": "underline",
-                      "textDecorationStyle": "solid",
+                      "marginLeft": 4,
+                      "marginRight": 0,
                     },
                   ]
                 }
               >
-                ici
+                •
               </Text>
-            </Text>
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "flexShrink": 1,
+                      "marginLeft": 8,
+                      "marginRight": 0,
+                    },
+                  ]
+                }
+              >
+                Attribue un numéro à chaque installation de l’application (ce numéro ne permet pas d’identifier l’utilisateur)
+              </Text>
+            </View>
+            <View
+              isRTL={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                  Object {
+                    "alignItems": "flex-start",
+                  },
+                ]
+              }
+            >
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "marginLeft": 4,
+                      "marginRight": 0,
+                    },
+                  ]
+                }
+              >
+                •
+              </Text>
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "flexShrink": 1,
+                      "marginLeft": 8,
+                      "marginRight": 0,
+                    },
+                  ]
+                }
+              >
+                Trace des événements dans l’application
+              </Text>
+            </View>
+            <View
+              isRTL={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                  Object {
+                    "alignItems": "flex-start",
+                  },
+                ]
+              }
+            >
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "marginLeft": 4,
+                      "marginRight": 0,
+                    },
+                  ]
+                }
+              >
+                •
+              </Text>
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "flexShrink": 1,
+                      "marginLeft": 8,
+                      "marginRight": 0,
+                    },
+                  ]
+                }
+              >
+                Agrège ces événements pour nous fournir des statistiques servant à améliorer l’application Réfugiés.info
+              </Text>
+            </View>
+            <View
+              isRTL={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                  Object {
+                    "alignItems": "flex-start",
+                  },
+                ]
+              }
+            >
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "marginLeft": 4,
+                      "marginRight": 0,
+                    },
+                  ]
+                }
+              >
+                •
+              </Text>
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "flexShrink": 1,
+                      "marginLeft": 8,
+                      "marginRight": 0,
+                    },
+                  ]
+                }
+              >
+                Garde tes données 26 mois
+              </Text>
+            </View>
+            <View
+              isRTL={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                  Object {
+                    "alignItems": "flex-start",
+                  },
+                ]
+              }
+            >
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "marginLeft": 4,
+                      "marginRight": 0,
+                    },
+                  ]
+                }
+              >
+                •
+              </Text>
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "flexShrink": 1,
+                      "marginLeft": 8,
+                      "marginRight": 0,
+                    },
+                  ]
+                }
+              >
+                Politique de données personnelles :
+                 
+                <Text
+                  accessibilityRole="link"
+                  isRTL={false}
+                  onPress={[Function]}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "textDecorationColor": "black",
+                        "textDecorationLine": "underline",
+                        "textDecorationStyle": "solid",
+                      },
+                    ]
+                  }
+                >
+                  ici
+                </Text>
+              </Text>
+            </View>
           </View>
           <View
             isRTL={false}
@@ -2582,246 +2611,270 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             </Text>
           </View>
           <View
-            isRTL={false}
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
-                  "alignItems": "flex-start",
-                },
-              ]
-            }
+            style={Object {}}
           >
-            <Text
+            <View
               isRTL={false}
-              selectable={true}
               style={
                 Array [
                   Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                  Object {
+                    "alignItems": "flex-start",
                   },
                 ]
               }
             >
-              •
-            </Text>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                  },
-                ]
-              }
-            >
-              Trace des événements dans l’application
-            </Text>
-          </View>
-          <View
-            isRTL={false}
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
-                  "alignItems": "flex-start",
-                },
-              ]
-            }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              •
-            </Text>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                  },
-                ]
-              }
-            >
-              Agrège ces événements pour nous fournir des statistiques servant à améliorer l’application Réfugiés.info
-            </Text>
-          </View>
-          <View
-            isRTL={false}
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
-                  "alignItems": "flex-start",
-                },
-              ]
-            }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              •
-            </Text>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                  },
-                ]
-              }
-            >
-              Garde tes données 26 mois
-            </Text>
-          </View>
-          <View
-            isRTL={false}
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
-                  "alignItems": "flex-start",
-                },
-              ]
-            }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              •
-            </Text>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "marginLeft": 8,
-                    "marginRight": 0,
-                  },
-                ]
-              }
-            >
-              Politique de données personnelles :
-               
               <Text
-                accessibilityRole="link"
                 isRTL={false}
-                onPress={[Function]}
                 selectable={true}
                 style={
                   Array [
                     Object {
                       "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
+                      "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
                       "textAlign": "left",
                     },
                     Object {
-                      "textDecorationColor": "black",
-                      "textDecorationLine": "underline",
-                      "textDecorationStyle": "solid",
+                      "marginLeft": 4,
+                      "marginRight": 0,
                     },
                   ]
                 }
               >
-                ici
+                •
               </Text>
-            </Text>
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "flexShrink": 1,
+                      "marginLeft": 8,
+                      "marginRight": 0,
+                    },
+                  ]
+                }
+              >
+                Trace des événements dans l’application
+              </Text>
+            </View>
+            <View
+              isRTL={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                  Object {
+                    "alignItems": "flex-start",
+                  },
+                ]
+              }
+            >
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "marginLeft": 4,
+                      "marginRight": 0,
+                    },
+                  ]
+                }
+              >
+                •
+              </Text>
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "flexShrink": 1,
+                      "marginLeft": 8,
+                      "marginRight": 0,
+                    },
+                  ]
+                }
+              >
+                Agrège ces événements pour nous fournir des statistiques servant à améliorer l’application Réfugiés.info
+              </Text>
+            </View>
+            <View
+              isRTL={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                  Object {
+                    "alignItems": "flex-start",
+                  },
+                ]
+              }
+            >
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "marginLeft": 4,
+                      "marginRight": 0,
+                    },
+                  ]
+                }
+              >
+                •
+              </Text>
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "flexShrink": 1,
+                      "marginLeft": 8,
+                      "marginRight": 0,
+                    },
+                  ]
+                }
+              >
+                Garde tes données 26 mois
+              </Text>
+            </View>
+            <View
+              isRTL={false}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                  Object {
+                    "alignItems": "flex-start",
+                  },
+                ]
+              }
+            >
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "marginLeft": 4,
+                      "marginRight": 0,
+                    },
+                  ]
+                }
+              >
+                •
+              </Text>
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "flexShrink": 1,
+                      "marginLeft": 8,
+                      "marginRight": 0,
+                    },
+                  ]
+                }
+              >
+                Politique de données personnelles :
+                 
+                <Text
+                  accessibilityRole="link"
+                  isRTL={false}
+                  onPress={[Function]}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "textDecorationColor": "black",
+                        "textDecorationLine": "underline",
+                        "textDecorationStyle": "solid",
+                      },
+                    ]
+                  }
+                >
+                  ici
+                </Text>
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -3317,7 +3370,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               }
             }
           >
-            30 novembre
+            30 novembre 2021
           </Text>
         </Text>
       </View>

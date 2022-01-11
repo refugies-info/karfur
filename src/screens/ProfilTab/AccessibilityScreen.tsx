@@ -1,11 +1,9 @@
 import * as React from "react";
-import { View, Text, Platform, Image } from "react-native";
+import { View, Platform, Image } from "react-native";
 import * as Linking from "expo-linking";
 import {
   TextSmallNormal,
-  TextBigBold,
   TextSmallBold,
-  TextNormalBold,
 } from "../../components/StyledText";
 import { Icon } from "react-native-eva-icons";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -18,27 +16,17 @@ import { HeaderWithBackAnimated } from "../../components/HeaderAnimated";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 import { RTLView } from "../../components/BasicComponents";
 import { List } from "../../components/Profil/List";
-import { CustomButton } from "../../components/CustomButton";
 import { Card } from "../../components/Profil/Card";
+import { P, H1, H2, Link } from "../../components/Profil/Typography";
 import IosIllu from "../../theme/images/accessibility/accessibility-ios.png"
 import AndroidIllu from "../../theme/images/accessibility/accessibility-android.png"
+import { ReadingTime } from "../../components/Profil/ReadingTime";
+import { UpdatedDate } from "../../components/Profil/UpdatedDate";
+import { ContactButton } from "../../components/Profil/ContactButton";
 
 const ContentContainer = styled.ScrollView`
   padding-bottom: ${theme.margin * 3}px;
   padding-top: ${theme.margin * 2}px;
-`;
-const P = styled(TextSmallNormal)`
-  margin-bottom: ${theme.margin * 3}px;
-`;
-const H1 = styled(TextBigBold)`
-  margin-bottom: ${theme.margin * 3}px;
-  margin-top: ${theme.margin * 7}px;
-`;
-const H2 = styled(TextNormalBold)`
-  margin-bottom: ${theme.margin * 3}px;
-`;
-const Link = styled(TextSmallBold)`
-  text-decoration: underline;
 `;
 const Legend = styled.View`
   width: ${theme.margin * 3}px;
@@ -92,21 +80,10 @@ export const AccessibilityScreen = ({
           L’accessibilité permet à tous les publics, sans discrimination, d’accéder aux contenus et aux services numériques. Pour cela, il faut respecter des règles émises par le World Wide Web Consortium et pensées par des ergonomes pour chaque type de handicap.
         </P>
 
-        <RTLView>
-          <Icon
-            name="clock-outline"
-            height={24}
-            width={24}
-            fill={theme.colors.darkGrey}
-            style={{
-              marginRight: !isRTL ? theme.margin : 0,
-              marginLeft: isRTL ? theme.margin : 0
-            }}
-          />
-          <TextSmallNormal style={{color: theme.colors.darkGrey}}>
-            Temps de lecture : <Text style={{color: theme.colors.green}}>5 à 10 minutes</Text>
-          </TextSmallNormal>
-        </RTLView>
+        <ReadingTime
+          isRTL={isRTL}
+          text="5 à 10 minutes"
+        />
 
         <H1>Déclaration d’accessibilité</H1>
         <P>
@@ -257,22 +234,7 @@ export const AccessibilityScreen = ({
 
         <H1>Retour d’information et contact</H1>
         <P>Si vous n’arrivez pas à accéder à un contenu ou à un service, vous pouvez contacter le responsable de l’application mobile pour être orienté vers une alternative accessible ou obtenir le contenu sous une autre forme.</P>
-        <View
-          style={{
-            alignItems: !isRTL ? "flex-start" : "flex-end"
-          }}
-        >
-          <CustomButton
-            i18nKey={"contact@refugies.info"}
-            defaultText="contact@refugies.info"
-            iconName="email-outline"
-            backgroundColor={theme.colors.black}
-            textColor={theme.colors.white}
-            onPress={() => {Linking.openURL("mailto://contact@refugies.info")}}
-            iconFirst={true}
-            notFullWidth={true}
-          />
-        </View>
+        <ContactButton isRTL={isRTL} />
 
         <H1>Voies de recours</H1>
         <P>Cette procédure est à utiliser dans le cas suivant :</P>
@@ -315,21 +277,10 @@ export const AccessibilityScreen = ({
           </TextSmallNormal>
         </RTLView>
 
-        <RTLView style={{marginVertical: theme.margin * 7 }}>
-          <Icon
-            name="refresh-outline"
-            height={24}
-            width={24}
-            fill={theme.colors.darkGrey}
-            style={{
-              marginRight: !isRTL ? theme.margin : 0,
-              marginLeft: isRTL ? theme.margin : 0
-            }}
-          />
-          <TextSmallNormal style={{color: theme.colors.darkGrey}}>
-            Mise à jour : <Text style={{color: theme.colors.green}}>6 janvier 2022</Text>
-          </TextSmallNormal>
-        </RTLView>
+        <UpdatedDate
+          isRTL={isRTL}
+          text="6 janvier 2022"
+        />
       </ContentContainer>
 
       <LanguageChoiceModal
