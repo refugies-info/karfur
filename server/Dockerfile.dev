@@ -5,8 +5,8 @@
 
 
 
-# Use a node 10 base image
-ARG NODE_VERSION=10
+# Use a node 12 base image
+ARG NODE_VERSION=12
 FROM node:${NODE_VERSION}-alpine
 
 # Useful in order to execute the entrypoint script that will:

@@ -58,7 +58,27 @@ jest.mock("../../../controllers/role/role.repository", () => ({
 jest.mock("../../../modules/users/users.repository", () => ({
   addRoleAndContribToUser: jest.fn(),
 }));
-
+jest.mock("../../../schema/schemaError", () => ({
+  Error: {
+    save: jest.fn(),
+  }
+}));
+jest.mock("../../../schema/schemaDispositif", () => ({
+  Dispositif: {
+    find: jest.fn(),
+    findOneAndUpdate: jest.fn(),
+  }
+}));
+jest.mock("../../../schema/schemaLangue", () => ({
+  Langue: {
+    find: jest.fn(),
+  }
+}));
+jest.mock("../../../schema/schemaNeeds", () => ({
+  Need: {
+    find: jest.fn(),
+  }
+}));
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
   const res: MockResponse = {};

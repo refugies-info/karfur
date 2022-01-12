@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { getUserFavoritesInLocale } from "./getUserFavoritesInLocale";
 import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
-import { turnToLocalized } from "../../../controllers/dispositif/functions";
+import functions from "../../../controllers/dispositif/functions";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -15,7 +15,18 @@ jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getDispositifById: jest.fn(),
 }));
 
-jest.mock("../../../controllers/dispositif/functions");
+jest.mock("../../../schema/schemaDispositif", () => ({
+  Dispositif: {
+    find: jest.fn(),
+    findOneAndUpdate: jest.fn(),
+  }
+}));
+
+jest.mock("../../../schema/schemaError", () => ({
+  Error: {
+    save: jest.fn(),
+  }
+}));
 
 describe("getUserFavoritesInLocale", () => {
   beforeEach(() => {
@@ -82,25 +93,26 @@ describe("getUserFavoritesInLocale", () => {
     const functionToJSON = (element: any) => element;
     const dispo1 = {
       titreInformatif: "TI1",
-      contenu: "contenu",
+      contenu: [],
       toJSON: () => ({ titreInformatif: "TI1" }),
       status: "Actif",
     };
     const dispo2 = {
       titreInformatif: "TI2",
-      contenu: "contenu",
+      contenu: [],
       toJSON: functionToJSON,
       status: "En attente",
     };
     const dispo3 = {
       titreInformatif: "TI3",
-      contenu: "contenu",
+      contenu: [],
       toJSON: () => ({ titreInformatif: "TI3" }),
       status: "Actif",
     };
     getDispositifById.mockResolvedValueOnce(dispo1);
     getDispositifById.mockResolvedValueOnce(dispo2);
     getDispositifById.mockResolvedValueOnce(dispo3);
+    jest.spyOn(functions, "turnToLocalized");
 
     const req = {
       fromSite: true,
@@ -116,8 +128,8 @@ describe("getUserFavoritesInLocale", () => {
 
     expect(getDispositifById).toHaveBeenCalledWith("id1", neededFields);
     expect(getDispositifById).toHaveBeenCalledWith("id2", neededFields);
-    expect(turnToLocalized).toHaveBeenCalledWith(dispo1, "fr");
-    expect(turnToLocalized).toHaveBeenCalledWith(dispo3, "fr");
+    expect(functions.turnToLocalized).toHaveBeenCalledWith(dispo1, "fr");
+    expect(functions.turnToLocalized).toHaveBeenCalledWith(dispo3, "fr");
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
