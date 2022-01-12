@@ -624,6 +624,9 @@ exports[`Accessibility screen should render correctly 1`] = `
                 "lineHeight": 20,
                 "textAlign": "left",
               },
+              Object {
+                "lineHeight": 22,
+              },
             ]
           }
         >
@@ -676,6 +679,9 @@ exports[`Accessibility screen should render correctly 1`] = `
                 "lineHeight": 20,
                 "textAlign": "left",
               },
+              Object {
+                "lineHeight": 22,
+              },
             ]
           }
         >
@@ -727,6 +733,9 @@ exports[`Accessibility screen should render correctly 1`] = `
                 "fontSize": 16,
                 "lineHeight": 20,
                 "textAlign": "left",
+              },
+              Object {
+                "lineHeight": 22,
               },
             ]
           }

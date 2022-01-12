@@ -112,16 +112,16 @@ export const AccessibilityScreen = ({
           >Ipedis</Link>
           {" "}révèle que {isIOS ? "50,00" : "45,83"}% des critères de la Directive EN 301 549 V3.2.1 sont respectés.
         </P>
-        <RTLView style={{ alignItems: "flex-start", marginBottom: theme.margin}}>
-          <TextSmallNormal>  ✅  </TextSmallNormal>
+        <RTLView style={{ alignItems: "flex-start", marginBottom: theme.margin }}>
+          <TextSmallNormal style={{ lineHeight: 22 }}>  ✅  </TextSmallNormal>
           <TextSmallNormal>{isIOS ? "12" : "11"} critères sont respectés</TextSmallNormal>
         </RTLView>
         <RTLView style={{ alignItems: "flex-start", marginBottom: theme.margin}}>
-          <TextSmallNormal>  ❌  </TextSmallNormal>
+          <TextSmallNormal style={{ lineHeight: 22 }}>  ❌  </TextSmallNormal>
           <TextSmallNormal>{isIOS ? "12" : "13"} critères ne sont pas respectés</TextSmallNormal>
         </RTLView>
         <RTLView style={{ alignItems: "flex-start", marginBottom: theme.margin * 3}}>
-          <TextSmallNormal>  🚫  </TextSmallNormal>
+          <TextSmallNormal style={{ lineHeight: 22 }}>  🚫  </TextSmallNormal>
           <TextSmallNormal>19 critères ne sont pas applicables</TextSmallNormal>
         </RTLView>
 
