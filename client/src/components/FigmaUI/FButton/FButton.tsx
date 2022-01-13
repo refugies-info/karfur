@@ -4,7 +4,7 @@ import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import styles from "./FButton.module.scss";
 
 interface Props {
-  type:
+  type?:
     | "default"
     | "saved"
     | "modified"
@@ -29,15 +29,15 @@ interface Props {
     | "edit"
     | "precision"
     | "fill-dark"
-    | "theme";
-  className: string;
-  fill: string;
-  name: string;
-  size: number;
-  filter: boolean;
-  tag: any;
-  children: any;
-  [x: string]: any;
+    | "theme"
+  className?: string
+  fill?: string
+  name?: string
+  size?: number
+  filter?: boolean
+  tag?: any
+  children?: any
+  [x: string]: any
 }
 
 const FButton = (props: Props) => {
@@ -57,7 +57,7 @@ const FButton = (props: Props) => {
   const themeType = type === "theme" ? " backgroundColor-darkColor" : "";
 
   const classNames = `${styles.btn} ${filter ? styles.filter : ""} ${
-    styles[type] || ""
+    type ? styles[type] : ""
   } ${className || ""} ${themeType}`;
 
   return (

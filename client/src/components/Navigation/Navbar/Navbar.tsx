@@ -1,13 +1,12 @@
-//@ts-nocheck
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Image from "next/image";
 import i18n from "i18n";
 import { useSelector, useDispatch } from "react-redux";
 import API from "utils/API";
 import AudioBtn from "containers/UI/AudioBtn/AudioBtn";
-import marioProfile from "assets/mario-profile.jpg";
 import Logo from "components/Logo/Logo";
 import LanguageBtn from "components/FigmaUI/LanguageBtn/LanguageBtn";
 import FButton from "components/FigmaUI/FButton/FButton";
@@ -28,6 +27,7 @@ import { logger } from "logger";
 import { getNbNewNotifications } from "containers/Backend/UserNotifications/lib";
 import { isMobile } from "react-device-detect";
 import styles from "./Navbar.module.scss";
+import marioProfile from "assets/mario-profile.jpg";
 
 const InnerButton = styled.div`
   display: flex;
@@ -46,7 +46,11 @@ const IconButton = styled.div`
   width: 50px;
 `;
 
-const Navbar = (props) => {
+interface Props {
+  drawerToggleClicked: any
+}
+
+const Navbar = (props: Props) => {
   const [visible, setVisible] = useState(true);
   const [scroll, setScroll] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -63,9 +67,9 @@ const Navbar = (props) => {
   const disconnect = () => {
     API.logout();
     dispatch(fetchUserActionCreator());
-    this.props.setUserStructure(null);
+    // this.props.setUserStructure(null);
   };
-
+/*
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     if (
@@ -85,7 +89,7 @@ const Navbar = (props) => {
     }
 
     return window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, []); */
 
 /*   componentDidUpdate(prevProps) {
     if (
@@ -114,20 +118,15 @@ const Navbar = (props) => {
     }
   } */
 
-  const toggle = () => setDropdownOpen(!dropdownOpen)
 
-  const navigateTo = (route) => {
-    router.push(route);
-  };
-
-  const handleScroll = () => {
+/*   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
     const visible = currentScrollPos < 70;
     setVisible(true);
-  };
+  }; */
 
-  const goBack = () => {
-    if (
+   const goBack = () => {
+    /* if (
       router.state &&
       router.state.previousRoute &&
       router.state.previousRoute === "advanced-search"
@@ -135,12 +134,12 @@ const Navbar = (props) => {
       this.props.history.go(-1);
     } else {
       this.props.history.push({ pathname: "/advanced-search" });
-    }
+    } */
   };
 
   const path = router.pathname || "";
-  const { windowWidth } = props;
-  const userImg = user && user.picture ? user.picture.secure_url : marioProfile;
+  const windowWidth = 1200; // TODO : fix that
+  const userImg = user.user && user.user.picture ? user.user.picture.secure_url : marioProfile;
   const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
   const pathName = user.membreStruct
     ? "/backend/user-dash-notifications"
@@ -151,46 +150,36 @@ const Navbar = (props) => {
     hasResponsibleSeenNotification
   );
   const isUserOnContentPage = path.includes("dispositif") || path.includes("demarche");
-
   return (
     <header
-      className={
-        styles.navbar +
-        (visible || !scroll ? "" : " toolbar-hidden") +
-        (isRTL ? " isRTL" : "")
-      }
+      className={`${styles.navbar} ${(visible || !scroll) ? "" : styles.hidden} ${isRTL ? styles.rtl : ""}`}
     >
       {isUserOnContentPage && isMobile ? (
-        <div style={{ height: "50px" }}>
+        <div style={{ height: 50 }}>
           <FButton
             type="light-action"
             name="arrow-back"
-            onClick={this.goBack}
+            onClick={goBack}
           >
             {t("Retour", "Retour")}
           </FButton>
         </div>
       ) : (
-        <div className="left_buttons">
-          <Logo reduced={windowWidth < breakpoints.phoneDown} isRTL={isRTL} />
-          {path !== "/" &&
-            path !== "/homepage" &&
-            windowWidth >= breakpoints.phoneDown && (
-              <NavLink to="/" className="home-btn">
-                <FButton type="login" name="home-outline">
-                  {windowWidth >= breakpoints.lgLimit &&
-                    windowWidth > 1280 && (
-                      <b className="home-texte">
-                        {t("Toolbar.Accueil", "Accueil")}
-                      </b>
-                    )}
+        <div className={styles.left_buttons}>
+          <Logo />
+          {path !== "/" && path !== "/homepage" && windowWidth >= breakpoints.phoneDown && (
+              <Link href="/">
+                <FButton type="login" name="home-outline" tag="a" className={styles.home_btn}>
+                  {windowWidth >= breakpoints.lgLimit && windowWidth > 1280 && (
+                    <b>{t("Toolbar.Accueil", "Accueil")}</b>
+                  )}
                 </FButton>
-              </NavLink>
+              </Link>
             )}
         </div>
       )}
 
-      <div className="center-buttons">
+      <div className={styles.center_buttons}>
         <AudioBtn windowWidth={windowWidth} />
         <LanguageBtn
           hideText={windowWidth < breakpoints.tabletUp || windowWidth < 1024}
@@ -198,9 +187,9 @@ const Navbar = (props) => {
         {isMobile ? (
           <IconButton
             onClick={() => {
-              this.props.history.push({
+              router.push({
                 pathname: "/advanced-search",
-                state: "clean-filters",
+                // state: "clean-filters",
               });
             }}
           >
@@ -219,69 +208,50 @@ const Navbar = (props) => {
         {!isMobile && (
           <button
             onClick={() => {
-              if (this.props.location.pathname === "/advanced-search") {
-                this.props.history.replace("/advanced-search");
-                window.location.reload();
+              if (router.pathname === "/advanced-search") {
+                router.replace("/advanced-search");
+                // window.location.reload();
               } else {
-                this.props.history.push("/advanced-search");
+                router.push("/advanced-search");
               }
             }}
-            className={
-              isRTL
-                ? "advanced-search-btn-menu-rtl"
-                : "advanced-search-btn-menu"
-            }
+            className={`${styles.advanced_search_btn} ${(isRTL ? styles.advanced_search_btn : "")}`}
           >
             <InnerButton isRTL={isRTL}>
-              {!isRTL ? (
-                <div
-                  style={{
-                    display: "flex",
-                    marginRight: 10,
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Streamline name={"menu"} stroke={"white"} />
-                </div>
-              ) : (
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    marginLeft: 10,
-                  }}
-                >
-                  <Streamline name={"menu"} stroke={"white"} />
-                </div>
-              )}
-              {t("Toolbar.Tout voir", "Tout voir")}
+              <div
+                className={styles.menu_btn}
+                style={!isRTL ? { marginRight: 10 } : { marginLeft: 10 }}
+              >
+                <Streamline name={"menu"} stroke={"white"} />
+              </div>
+            {t("Toolbar.Tout voir", "Tout voir")}
             </InnerButton>
           </button>
         )}
 
         {!isMobile ? (
           API.isAuth() ? (
-            <Link
-              className="user-picture-link"
-              href={{
-                pathname: pathName,
-              }}
-            >
-              <a>
-                {user.membreStruct && nbNewNotifications > 0 &&
-                userStructure ? (
-                  <div className="overlay">
-                    <img
+            <Link href={pathName}>
+              <a className={styles.user_picture_link}>
+                {user.membreStruct && nbNewNotifications > 0 && userStructure ? (
+                  <div className={styles.overlay}>
+                    <Image
                       src={userImg}
-                      className="user-picture-with-overlay"
+                      className={styles.user_picture_with_overlay}
                       alt="user"
+                      width={52}
+                      height={52}
                     />
-                    <div className="middle">{nbNewNotifications}</div>
+                    <div className={styles.middle}>{nbNewNotifications}</div>
                   </div>
                 ) : (
-                  <img src={userImg} className="user-picture" alt="user" />
+                  <Image
+                    src={userImg}
+                    className={styles.user_picture}
+                      alt="user"
+                      width={52}
+                      height={52}
+                  />
                 )}
               </a>
             </Link>
@@ -290,17 +260,17 @@ const Navbar = (props) => {
               <Link href="/register">
                 <FButton
                   type="signup"
-                  name={"person-add-outline"}
+                  name="person-add-outline"
                   className="mr-10"
                   onClick={() => logger.info("Click on Inscription")}
                 >
-                  {windowWidth >= breakpoints.tabletUp &&
-                    windowWidth > 1280 &&
-                    t("Toolbar.Inscription", "Inscription")}
+                  {windowWidth >= breakpoints.tabletUp && windowWidth > 1280 &&
+                    t("Toolbar.Inscription", "Inscription")
+                  }
                 </FButton>
               </Link>
               <Link href="/login">
-                <FButton type="login" name={"log-in-outline"}>
+                <FButton type="login" name="log-in-outline">
                   {windowWidth > 1280 && t("Toolbar.Connexion", "Connexion")}
                 </FButton>
               </Link>
