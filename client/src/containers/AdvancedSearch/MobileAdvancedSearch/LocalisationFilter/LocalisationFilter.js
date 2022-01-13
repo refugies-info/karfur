@@ -60,7 +60,7 @@ export const LocalisationFilter = (props) => {
             loadingComponent={<div>Chargement de Google Maps...</div>}
             scripts={[
               "https://maps.googleapis.com/maps/api/js?key=" +
-                process.env.REACT_APP_GOOGLE_API_KEY +
+                process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY +
                 "&v=3.exp&libraries=places&language=fr&region=FR",
             ]}
           >

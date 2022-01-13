@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { colors } from "../../../colors";
-import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import traductionIconBlanc from "../../../assets/icon_traduction_blanc.svg";
-import icon_mobilisation from "../../../assets/icon_mobilisation.svg";
-import i18n from "../../../i18n";
+import { colors } from "colors";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import traductionIconBlanc from "assets/icon_traduction_blanc.svg";
+import icon_mobilisation from "assets/icon_mobilisation.svg";
+import i18n from "i18n";
 
 declare const window: Window;
 interface Props {

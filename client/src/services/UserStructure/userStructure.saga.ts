@@ -18,7 +18,7 @@ import {
 } from "../LoadingStatus/loadingStatus.actions";
 import { userStructureSelector } from "./userStructure.selectors";
 import { userSelector } from "../User/user.selectors";
-import { push } from "connected-react-router";
+// import { push } from "connected-react-router";
 import { setUserRoleInStructureActionCreator } from "../User/user.actions";
 
 export function* fetchUserStructure(

@@ -1,7 +1,5 @@
 import React from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { NavLink } from "react-router-dom";
-import { NavHashLink } from "react-router-hash-link";
 import { withTranslation } from "react-i18next";
 
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";

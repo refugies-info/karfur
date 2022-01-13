@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import styled from "styled-components";
-import { withRouter } from "react-router-dom";
-import i18n from "../../i18n";
-import FSearchBtn from "../../components/FigmaUI/FSearchBtn/FSearchBtn";
-import Streamline from "../../assets/streamline";
+import i18n from "../../../i18n";
+import FSearchBtn from "../../FigmaUI/FSearchBtn/FSearchBtn";
+import Streamline from "../../../assets/streamline";
 import { motion } from "framer-motion";
 
 const InnerButton = styled.div`
@@ -161,4 +160,4 @@ class CatList extends Component {
   }
 }
 
-export default withRouter(withTranslation()(CatList));
+export default withTranslation()(CatList);

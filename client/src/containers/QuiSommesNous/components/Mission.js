@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import { NavLink } from "react-router-dom";
-
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import "./Mission.scss";
 import { assetsOnServer } from "../../../assets/assetsOnServer";

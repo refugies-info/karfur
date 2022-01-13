@@ -14,7 +14,7 @@ import {
   TranslationState,
 } from "./Translation/translation.reducer";
 import { ttsReducer, TtsState } from "./Tts/tts.reducer";
-import { connectRouter } from "connected-react-router";
+// import { connectRouter } from "connected-react-router";
 import {
   SelectedDispositifState,
   selectedDispositifReducer,
@@ -73,9 +73,9 @@ export interface RootState {
   dispositifsWithTranslations: DispositifsWithTranslationsStatusState;
   needs: NeedsState;
 }
-export const appReducer = (history: any) =>
+export const appReducer = () =>
   combineReducers({
-    router: connectRouter(history),
+    // router: connectRouter(history),
     langue: langueReducer,
     activeDispositifs: activeDispositifsReducer,
     user: userReducer,

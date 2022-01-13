@@ -2,7 +2,6 @@ import { ContribContainer } from "./SubComponents";
 import React from "react";
 import styled from "styled-components";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import { NavHashLink } from "react-router-hash-link";
 import { colors } from "../../../../colors";
 
 const Header = styled.div`

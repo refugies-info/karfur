@@ -7,7 +7,7 @@ import {
   setSelectedDispositifActionCreator,
 } from "./selectedDispositif.actions";
 import { FETCH_SELECTED_DISPOSITIF } from "./selectedDispositif.actionTypes";
-import { push } from "connected-react-router";
+// import { push } from "connected-react-router";
 import { userSelector } from "../User/user.selectors";
 import _ from "lodash";
 import {

@@ -4,7 +4,6 @@ import {
   ModalBody,
 } from "reactstrap";
 import { withTranslation } from "react-i18next";
-import "./MobileAppModal.scss";
 import { FButtonMobile } from "../../FigmaUI/FButtonMobile/FButtonMobile";
 import { colors } from "../../../colors";
 import illuMobileApp from "../../../assets/illu_mobile_app.png";
@@ -13,6 +12,7 @@ import {
   iosStoreLink,
   androidStoreLink
 } from "../../../assets/storeLinks";
+import "./MobileAppModal.module.scss";
 
 
 const languageModal = (props) => {

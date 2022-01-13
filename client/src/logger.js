@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 
-// if (process.env.REACT_APP_ENV === "staging") {
+// if (process.env.NEXT_PUBLIC_REACT_APP_ENV === "staging") {
 //   datadogLogs.init({
-//     clientToken: process.env.REACT_APP_DATADOG_TOKEN,
+//     clientToken: process.env.NEXT_PUBLIC_REACT_APP_DATADOG_TOKEN,
 //     datacenter: "eu",
 //     forwardErrorsToLogs: true,
 //     sampleRate: 100,
@@ -10,7 +10,7 @@
 // }
 export class logger {
   static info = (message, data) => {
-    if (process.env.REACT_APP_ENV === "staging") {
+    if (process.env.NEXT_PUBLIC_REACT_APP_ENV === "staging") {
       console.log(message, data);
       // datadogLogs.logger.debug(message, data, "info");
       return;
@@ -20,7 +20,7 @@ export class logger {
   };
 
   static warn = (message, data) => {
-    if (process.env.REACT_APP_ENV === "staging") {
+    if (process.env.NEXT_PUBLIC_REACT_APP_ENV === "staging") {
       console.log(message, data);
       // datadogLogs.logger.log(message, data, "warn");
       return;
@@ -30,7 +30,7 @@ export class logger {
   };
 
   static error = (message, data) => {
-    if (process.env.REACT_APP_ENV === "staging") {
+    if (process.env.NEXT_PUBLIC_REACT_APP_ENV === "staging") {
       console.log(message, data);
       // datadogLogs.logger.log(message, data, "error");
       return;

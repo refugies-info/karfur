@@ -1,8 +1,7 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 import { withTranslation } from "react-i18next";
 import i18n from "../../i18n";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import windowSize from "react-window-size";
 import { toggleLangueModalActionCreator } from "../../services/Langue/langue.actions";
@@ -23,11 +22,11 @@ import {
   userStructureDisposAssociesSelector,
   userStructureSelector,
 } from "../../services/UserStructure/userStructure.selectors";
-import "./Toolbar.scss";
 import { colors } from "colors";
 import { logger } from "../../logger";
 import { getNbNewNotifications } from "../Backend/UserNotifications/lib";
 import { isMobile } from "react-device-detect";
+import "./Toolbar.module.scss";
 
 const InnerButton = styled.div`
   display: flex;
@@ -357,9 +356,7 @@ const mapDispatchToProps = {
   fetchUser: fetchUserActionCreator,
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(withTranslation()(windowSize(Toolbar)))
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTranslation()(windowSize(Toolbar)))

@@ -5,7 +5,6 @@ import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 import debounce from "lodash.debounce";
 import NoResultImage from "../../../assets/no_results.svg";
-import { withRouter } from "react-router-dom";
 import { withTranslation } from "react-i18next";
 
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";

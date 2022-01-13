@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Icon from "react-eva-icons";
+
 import { MobileSearchFilterModal } from "./MobileSearchFilterModal/MobileSearchFilterModal";
 import { colors } from "../../../colors";
 import { LocalisationFilter } from "./LocalisationFilter/LocalisationFilter";

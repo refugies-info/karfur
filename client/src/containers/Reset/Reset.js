@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Form, Progress } from "reactstrap";
 import Swal from "sweetalert2";
-import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 import _ from "lodash";

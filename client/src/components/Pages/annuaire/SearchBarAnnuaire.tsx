@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { colors } from "../../../../../colors";
-import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
-import "./SearchBarAnnuaire.scss";
+import { colors } from "colors";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { Input } from "reactstrap";
 // @ts-ignore
 import ReactDependentScript from "react-dependent-script";
 import Autocomplete from "react-google-autocomplete";
 import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
-import { StructureTypes } from "../../../AnnuaireCreate/data";
-import FButton from "../../../../../components/FigmaUI/FButton/FButton";
+import { StructureTypes } from "containers/Annuaire/AnnuaireCreate/data";
+import FButton from "components/FigmaUI/FButton/FButton";
 import { SimplifiedStructure } from "types/interface";
+import "./SearchBarAnnuaire.module.scss";
 
 const MainContainer = styled.div`
   display: flex;
@@ -262,7 +262,7 @@ export const SearchBarAnnuaire = (props: Props) => {
             loadingComponent={<div>Chargement de Google Maps...</div>}
             scripts={[
               "https://maps.googleapis.com/maps/api/js?key=" +
-                process.env.REACT_APP_GOOGLE_API_KEY +
+                process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY +
                 "&v=3.exp&libraries=places&language=fr&region=FR",
             ]}
           >

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { Progress } from "reactstrap";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { connect } from "react-redux";

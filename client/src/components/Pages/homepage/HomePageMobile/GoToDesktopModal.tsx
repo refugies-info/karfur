@@ -1,9 +1,9 @@
 import React from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
-import { rendez_vous_ordinateur } from "../../../assets/figma";
-import { FButtonMobile } from "../../../components/FigmaUI/FButtonMobile/FButtonMobile";
-import { colors } from "../../../colors";
+import { rendez_vous_ordinateur } from "assets/figma";
+import { FButtonMobile } from "components/FigmaUI/FButtonMobile/FButtonMobile";
+import { colors } from "colors";
 
 declare const window: Window;
 interface Props {

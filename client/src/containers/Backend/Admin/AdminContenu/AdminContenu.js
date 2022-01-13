@@ -339,7 +339,7 @@ export const AdminContenu = () => {
   return (
     <div>
       <SearchBarContainer>
-        {process.env.REACT_APP_ENV === "production" && (
+        {process.env.NEXT_PUBLIC_REACT_APP_ENV === "production" && (
           <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
             {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
           </FButton>

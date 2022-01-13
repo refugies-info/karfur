@@ -1,7 +1,7 @@
 import React from "react";
-import { colors } from "../../colors";
+import { colors } from "../../../colors";
 import styled from "styled-components";
-import { FButtonMobile } from "../../components/FigmaUI/FButtonMobile/FButtonMobile";
+import { FButtonMobile } from "../../FigmaUI/FButtonMobile/FButtonMobile";
 
 declare const window: Window;
 interface Props {

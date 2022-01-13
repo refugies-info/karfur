@@ -7,7 +7,6 @@ import qs from "query-string";
 import _ from "lodash";
 import windowSize from "react-window-size";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import produce from "immer";
 import withSizes from "react-sizes";

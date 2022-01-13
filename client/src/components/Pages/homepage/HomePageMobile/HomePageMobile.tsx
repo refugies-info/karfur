@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { colors } from "../../../colors";
+import { colors } from "colors";
 import styled from "styled-components";
 import {
   illustration_connaitre_initiative,
   illustration_aidez_traduire,
   iphone,
-} from "../../../assets/figma";
+} from "assets/figma";
 import { HomePageMobileSection } from "./HomePageMobileSection";
 import { GoToDesktopModal } from "./GoToDesktopModal";
-import { SubscribeNewsletterModal } from "../../Footer/SubscribeNewsletterModal/SubscribeNewsletterModal";
+import { SubscribeNewsletterModal } from "containers/Footer/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import { ReceiveInvitationMailModal } from "./ReceiveInvitationMailModal";
 import { HelpToTranslateMobileModal } from "./HelpToTranslateMobileModal";
 

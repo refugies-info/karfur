@@ -11,13 +11,12 @@ import {
 } from "reactstrap";
 import { withTranslation } from "react-i18next";
 import { colorAvancement } from "../../Functions/ColorFunctions";
-import { NavHashLink } from "react-router-hash-link";
-import "./LanguageModal.scss";
 import FButton from "../../FigmaUI/FButton/FButton";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import { Event, initGA } from "../../../tracking/dispatch";
 import { activatedLanguages } from "./data";
 import { isMobile } from "react-device-detect";
+import "./LanguageModal.module.scss";
 
 const languageModal = (props) => {
   const languages = {

@@ -1,12 +1,11 @@
 import React from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
-import "./MobileSearchFilterModal.scss";
 import Streamline from "../../../../assets/streamline";
-import Icon from "react-eva-icons";
 import { colors } from "colors";
 import { filtres } from "../../../Dispositif/data";
 import { initial_data } from "../../data";
+import "./MobileSearchFilterModal.module.scss";
 
 const TextTitle = styled.div`
   width: fit-content;
@@ -97,7 +96,7 @@ export const MobileSearchFilterModal = (props: Props) => {
         <TextTitle> {props.t(props.sentence, props.defaultSentence)}</TextTitle>
         <ButtonTitle onClick={props.toggle}>
           {props.t(props.title, props.defaultTitle)}
-          <Icon name="close" fill="#FFFFFF" size="large" />
+          {/* <Icon name="close" fill="#FFFFFF" size="large" /> */}
         </ButtonTitle>
       </TitleContainer>
       {/* Display list of possible values */}

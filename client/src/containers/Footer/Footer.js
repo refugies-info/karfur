@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import Swal from "sweetalert2";
 import styled from "styled-components";
-
 import { isMobile } from "react-device-detect";
 import { SubscribeNewsletterModal } from "./SubscribeNewsletterModal/SubscribeNewsletterModal";
-import { withRouter } from "react-router-dom";
+import { colors } from "colors";
+import FButton from "../../components/FigmaUI/FButton/FButton";
+import "./Footer.module.scss";
 
 const MainContainer = styled.div`
   display: flex;
@@ -44,9 +45,7 @@ const ButtonContainer = styled.div`
   width: ${isMobile ? "100%" : "auto"};
 `;
 
-import "./Footer.scss";
-import { colors } from "colors";
-import FButton from "../../components/FigmaUI/FButton/FButton";
+
 
 export class Footer extends Component {
   state = {
@@ -249,4 +248,4 @@ export class Footer extends Component {
   }
 }
 
-export default withRouter(withTranslation()(Footer));
+export default withTranslation()(Footer);

@@ -23,7 +23,6 @@ import { allDispositifsSelector } from "../../../../../services/AllDispositifs/a
 import { compare } from "../../AdminContenu/AdminContenu";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import Swal from "sweetalert2";
-import { withRouter, RouteComponentProps } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { structureSelector } from "services/AllStructures/allStructures.selector";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";

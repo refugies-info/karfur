@@ -1,12 +1,12 @@
 import React from "react";
 
 import NavigationItem from "./NavigationItem/NavigationItem";
-import routes from "../../../routes";
+// import routes from "../../../routes";
 
-import "./NavigationItems.scss";
+import "./NavigationItems.module.scss";
 
 const navigationItems = () => {
-  let dispRoutes = routes.filter((x) => x.path === "/dispositifs");
+  let dispRoutes = [].filter((x) => x.path === "/dispositifs");
   return (
     <ul className="NavigationItems">
       {dispRoutes.map((route, idx) => {

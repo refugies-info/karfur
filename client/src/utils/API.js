@@ -7,13 +7,8 @@ import { logger } from "../logger";
 const socket = null;
 export { socket };
 
-const headers = {
-  "Content-Type": "application/json",
-  "x-access-token": localStorage.getItem("token") || undefined,
-  "site-secret": process.env.REACT_APP_SITE_SECRET,
-};
 
-const burl = process.env.REACT_APP_SERVER_URL;
+const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
 
 axios.withCredentials = true;
 
@@ -64,127 +59,166 @@ let cancel;
 
 // export {source};
 
+const getHeaders = () => {
+  return {
+    "Content-Type": "application/json",
+    "x-access-token": localStorage.getItem("token") || undefined,
+    "site-secret": process.env.NEXT_PUBLIC_REACT_APP_SITE_SECRET,
+  };
+}
+
 export default {
   login: (user) => {
-    return axios.post(burl + "/user/login", user, { headers: headers });
+    const headers = getHeaders();
+    return axios.post(burl + "/user/login", user, { headers });
   },
   signup: (send) => {
-    return axios.post(burl + "/user/signup", send, { headers: headers });
+    const headers = getHeaders();
+    return axios.post(burl + "/user/signup", send, { headers });
   },
   checkUserExists: (send) => {
+    const headers = getHeaders();
     return axios.post(burl + "/user/checkUserExists", send, {
-      headers: headers,
+      headers,
     });
   },
   set_user_info: (user) => {
-    return axios.post(burl + "/user/set_user_info", user, { headers: headers });
+    const headers = getHeaders();
+    return axios.post(burl + "/user/set_user_info", user, { headers });
   },
   get_users: (params = {}) => {
-    return axios.post(burl + "/user/get_users", params, { headers: headers });
+    const headers = getHeaders();
+    return axios.post(burl + "/user/get_users", params, { headers });
   },
   get_user_info: (query) => {
+    const headers = getHeaders();
     return axios.post(burl + "/user/get_user_info", query, {
-      headers: headers,
+      headers,
     });
   },
-
-  updateUser: (query) =>
-    axios.post(burl + "/user/updateUser", query, {
+  updateUser: (query) => {
+    const headers = getHeaders();
+    return axios.post(burl + "/user/updateUser", query, {
       headers,
-    }),
-
-  changePassword: (query) =>
-    axios.post(burl + "/user/changePassword", query, {
+    })
+  },
+  changePassword: (query) => {
+    const headers = getHeaders();
+    return axios.post(burl + "/user/changePassword", query, {
       headers,
-    }),
-
+    })
+  },
   reset_password: (query) => {
+    const headers = getHeaders();
     return axios.post(burl + "/user/reset_password", query, {
-      headers: headers,
+      headers,
     });
   },
   set_new_password: (query) => {
+    const headers = getHeaders();
     return axios.post(burl + "/user/set_new_password", query, {
-      headers: headers,
+      headers,
     });
   },
-
-  addDispositif: (query) =>
+  addDispositif: (query) => {
+    const headers = getHeaders();
     axios.post(burl + "/dispositifs/addDispositif", query, {
       headers,
-    }),
+    })
+  },
 
-  sendAdminImprovementsMail: (query) =>
+  sendAdminImprovementsMail: (query) => {
+    const headers = getHeaders();
     axios.post(burl + "/mail/sendAdminImprovementsMail", query, {
       headers,
-    }),
+    })
+  },
 
-  sendSubscriptionReminderMail: (query) =>
+  sendSubscriptionReminderMail: (query) => {
+    const headers = getHeaders();
     axios.post(burl + "/mail/sendSubscriptionReminderMail", query, {
       headers,
-    }),
+    })
+  },
 
   add_dispositif_infocards: (query) => {
     return axios.post(burl + "/dispositifs/add_dispositif_infocards", query, {
-      headers: headers,
+      headers,
     });
   },
   get_dispositif: (params = {}) => {
     return axios.post(burl + "/dispositifs/get_dispositif", params, {
-      headers: headers,
+      headers,
     });
   },
   count_dispositifs: (query) => {
     return axios.post(burl + "/dispositifs/count_dispositifs", query, {
-      headers: headers,
+      headers,
     });
   },
-  updateDispositifReactions: (query) =>
-    axios.post(burl + "/dispositifs/updateDispositifReactions", query, {
+  updateDispositifReactions: (query) => {
+    const headers = getHeaders();
+    return axios.post(burl + "/dispositifs/updateDispositifReactions", query, {
       headers,
-    }),
+    })
+  },
 
-  updateDispositifStatus: (query) =>
-    axios.post(burl + "/dispositifs/updateDispositifStatus", query, {
+  updateDispositifStatus: (query) => {
+    const headers = getHeaders();
+    return axios.post(burl + "/dispositifs/updateDispositifStatus", query, {
       headers,
-    }),
+    })
+  },
 
-  updateDispositifTagsOrNeeds: (query) =>
-    axios.post(burl + "/dispositifs/updateDispositifTagsOrNeeds", query, {
+  updateDispositifTagsOrNeeds: (query) => {
+    const headers = getHeaders();
+    return axios.post(burl + "/dispositifs/updateDispositifTagsOrNeeds", query, {
       headers,
-    }),
+    })
+  },
 
-  modifyDispositifMainSponsor: (query) =>
-    axios.post(burl + "/dispositifs/modifyDispositifMainSponsor", query, {
+  modifyDispositifMainSponsor: (query) => {
+    const headers = getHeaders();
+    return axios.post(burl + "/dispositifs/modifyDispositifMainSponsor", query, {
       headers,
-    }),
+    })
+  },
 
-  updateDispositifAdminComments: (query) =>
-    axios.post(burl + "/dispositifs/updateDispositifAdminComments", query, {
+  updateDispositifAdminComments: (query) => {
+    const headers = getHeaders();
+    return axios.post(burl + "/dispositifs/updateDispositifAdminComments", query, {
       headers,
-    }),
+    })
+  },
 
-  createStructure: (query) =>
-    axios.post(burl + "/structures/createStructure", query, {
+  createStructure: (query) => {
+    const headers = getHeaders();
+    return axios.post(burl + "/structures/createStructure", query, {
       headers,
-    }),
+    })
+  },
 
-  updateStructure: (query) =>
-    axios.post(burl + "/structures/updateStructure", query, {
+  updateStructure: (query) => {
+    const headers = getHeaders();
+    return axios.post(burl + "/structures/updateStructure", query, {
       headers,
-    }),
-  modifyUserRoleInStructure: (query) =>
-    axios.post(burl + "/structures/modifyUserRoleInStructure", query, {
+    })
+  },
+  modifyUserRoleInStructure: (query) => {
+    const headers = getHeaders();
+    return axios.post(burl + "/structures/modifyUserRoleInStructure", query, {
       headers,
-    }),
+    })
+  },
 
   getStructureById: (
     id,
     withDisposAssocies,
     localeOfLocalizedDispositifsAssocies,
     withMembres
-  ) =>
-    axios.get(burl + "/structures/getStructureById", {
+  ) => {
+    const headers = getHeaders();
+    return axios.get(burl + "/structures/getStructureById", {
       params: {
         id,
         withDisposAssocies,
@@ -192,136 +226,170 @@ export default {
         withMembres,
       },
       headers,
-    }),
+    })
+  },
 
-  getUserFavoritesInLocale: (locale) =>
-    axios.get(burl + `/user/getUserFavoritesInLocale?locale=${locale}`, {
+  getUserFavoritesInLocale: (locale) => {
+    const headers = getHeaders();
+    return axios.get(burl + `/user/getUserFavoritesInLocale?locale=${locale}`, {
       headers,
-    }),
-  getNeeds: () => axios.get(burl + "/needs/getNeeds"),
+    })
+  },
+  getNeeds: () =>
+    axios.get(burl + "/needs/getNeeds"),
 
-  getDispositifsWithTranslationAvancement: (locale) =>
-    axios.get(
+  getDispositifsWithTranslationAvancement: (locale) => {
+    const headers = getHeaders();
+    return axios.get(
       burl + `/user/getDispositifsWithTranslationAvancement?locale=${locale}`,
-      {
-        headers,
-      }
-    ),
+      { headers }
+    )
+  },
 
-  getUserContributions: () =>
-    axios.get(burl + "/user/getUserContributions", { headers }),
+  getUserContributions: () => {
+    const headers = getHeaders();
+    return axios.get(burl + "/user/getUserContributions", { headers })
+  },
 
-  updateUserFavorites: (query) =>
-    axios.post(burl + "/user/updateUserFavorites", query, { headers }),
+  updateUserFavorites: (query) => {
+    const headers = getHeaders();
+    return axios.post(burl + "/user/updateUserFavorites", query, { headers })
+  },
 
   getNbDispositifsByRegion: () =>
     axios.get(burl + "/dispositifs/getNbDispositifsByRegion"),
 
-  getFiguresOnUsers: () => axios.get(burl + "/user/getFiguresOnUsers"),
+  getFiguresOnUsers: () =>
+    axios.get(burl + "/user/getFiguresOnUsers"),
 
-  exportUsers: () => axios.post(burl + "/user/exportUsers", {}, { headers }),
-  exportFiches: () => axios.post(burl + "/user/exportFiches", {}, { headers }),
+  exportUsers: () => {
+    const headers = getHeaders();
+    return axios.post(burl + "/user/exportUsers", {}, { headers })
+  },
+  exportFiches: () => {
+    const headers = getHeaders();
+    return axios.post(burl + "/user/exportFiches", {}, { headers })
+  },
 
-  exportDispositifsGeolocalisation: () =>
-    axios.post(
+  exportDispositifsGeolocalisation: () => {
+    const headers = getHeaders();
+    return axios.post(
       burl + "/dispositifs/exportDispositifsGeolocalisation",
       {},
       { headers }
-    ),
-
+    )
+  },
   getActiveStructures: () =>
     axios.get(burl + "/structures/getActiveStructures"),
 
   getDispositifs: (params) => {
+    const headers = getHeaders();
     return axios.post(burl + "/dispositifs/getDispositifs", params);
   },
 
-  updateNbVuesOrFavoritesOnContent: (params) =>
-    axios.post(burl + "/dispositifs/updateNbVuesOrFavoritesOnContent", params, {
+  updateNbVuesOrFavoritesOnContent: (params) => {
+    const headers = getHeaders();
+    return axios.post(burl + "/dispositifs/updateNbVuesOrFavoritesOnContent", params, {
       headers,
-    }),
+    })
+  },
 
   getAllDispositifs: () => axios.get(burl + "/dispositifs/getAllDispositifs"),
   getAllStructures: () => axios.get(burl + "/structures/getAllStructures"),
-  getAllUsers: () => axios.get(burl + "/user/getAllUsers", { headers }),
+  getAllUsers: () => {
+    const headers = getHeaders();
+    return axios.get(burl + "/user/getAllUsers", { headers })
+  },
 
   add_tradForReview: (query) => {
+    const headers = getHeaders();
     return axios.post(burl + "/traduction/add_tradForReview", query, {
-      headers: headers,
+      headers,
     });
   },
   get_tradForReview: (query) => {
+    const headers = getHeaders();
     return axios.post(burl + "/traduction/get_tradForReview", query, {
-      headers: headers,
+      headers,
     });
   },
   validateTranslations: (query) => {
+    const headers = getHeaders();
     return axios.post(burl + "/traduction/validateTranslations", query, {
       headers,
     });
   },
 
-  saveNeed: (query) =>
-    axios.post(burl + "/needs/saveNeed", query, {
+  saveNeed: (query) =>{
+    const headers = getHeaders();
+    return axios.post(burl + "/needs/saveNeed", query, {
       headers,
-    }),
+    })
+  },
 
-  createNeed: (query) =>
-    axios.post(burl + "/needs/createNeed", query, {
+  createNeed: (query) =>{
+    const headers = getHeaders();
+    return axios.post(burl + "/needs/createNeed", query, {
       headers,
-    }),
+    })
+  },
 
   delete_trads: (query) => {
+    const headers = getHeaders();
     return axios.post(burl + "/traduction/delete_trads", query, {
-      headers: headers,
+      headers,
     });
   },
   get_progression: (query) => {
+    const headers = getHeaders();
     return axios.post(burl + "/traduction/get_progression", query, {
-      headers: headers,
+      headers,
     });
   },
 
   update_tradForReview: (query) => {
+    const headers = getHeaders();
     return axios.post(burl + "/traduction/update_tradForReview", query, {
-      headers: headers,
+      headers,
     });
   },
 
   get_translation: (query = {}) => {
+    const headers = getHeaders();
     return axios.post(burl + "/translate/get_translation", query, {
-      headers: headers,
+      headers,
     });
   },
 
   get_langues: (query, sort, populate) => {
+    const headers = getHeaders();
     return axios.post(
       burl + "/langues/get_langues",
       { query: query, sort: sort, populate: populate },
-      { headers: headers }
+      { headers }
     );
   },
 
   getLanguages: () => axios.get(burl + "/langues/getLanguages"),
 
   set_image: (query) => {
-    return axios.post(burl + "/images/set_image", query, { headers: headers });
+    const headers = getHeaders();
+    return axios.post(burl + "/images/set_image", query, { headers });
   },
 
   set_mail: (query) => {
-    return axios.post(burl + "/miscellaneous/set_mail", query, {
-      headers: headers,
-    });
+    const headers = getHeaders();
+    return axios.post(burl + "/miscellaneous/set_mail", query, { headers });
   },
   send_sms: (query) => {
-    return axios.post(burl + "/miscellaneous/send_sms", query, {
-      headers: headers,
-    });
+    const headers = getHeaders();
+    return axios.post(burl + "/miscellaneous/send_sms", query, { headers });
   },
 
   get_tts: (query) => {
+    const headers = getHeaders();
     return axios.post(burl + "/tts/get_tts", query, {
-      headers: headers,
+      headers,
       cancelToken: new CancelToken(function executor(c) {
         cancel = c;
       }),
@@ -330,6 +398,7 @@ export default {
   cancel_tts_subscription: () => cancel && cancel(),
 
   isAuth: () => {
+    if (typeof window === 'undefined') return false;
     return localStorage.getItem("token") !== null;
   },
   logout: () => {

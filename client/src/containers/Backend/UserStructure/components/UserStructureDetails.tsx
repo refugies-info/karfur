@@ -10,7 +10,7 @@ import placeholder from "../../../../assets/annuaire/placeholder_logo_annuaire.s
 import "./UserStructureDetails.scss";
 import styled from "styled-components";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { MembresTable } from "./MembresTable";
 import { ObjectId } from "mongodb";
 import { AddMemberModal } from "./AddMemberModal";

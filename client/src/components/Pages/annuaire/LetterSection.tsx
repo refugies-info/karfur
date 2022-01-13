@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { Picture, SimplifiedStructure } from "../../../../types/interface";
-import "./LetterSection.scss";
 import LinesEllipsis from "react-lines-ellipsis";
 import { ObjectId } from "mongodb";
-import placeholder from "../../../../assets/annuaire/placeholder_logo_annuaire.svg";
+import { Picture, SimplifiedStructure } from "types/interface";
+import placeholder from "assets/annuaire/placeholder_logo_annuaire.svg";
+import "./LetterSection.module.scss";
 
 interface Props {
   structures: SimplifiedStructure[];

@@ -1,14 +1,11 @@
 @import "src/scss/colors.scss";
 @import "src/scss/global.scss";
 
-// Base de la structure des boutons du design system
-
-body .figma-btn {
+.btn {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   border-radius: 12px;
-  //min-height: 40px;
   padding: 15px;
   cursor: pointer;
   border: 0.5px solid transparent;
@@ -18,19 +15,18 @@ body .figma-btn {
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
+
   @include media-max("sm-limit") {
     font-size: 16px;
   }
 
-  &.filter-fbutton {
+  &.filter {
     padding: 8px;
   }
 
-  &.default svg {
-    fill: $noir;
-  }
   &:hover {
     transition: all 0.5s ease;
+
     svg {
       fill: $noir;
     }
@@ -43,20 +39,11 @@ body .figma-btn {
       background: $noirCD;
       color: $noir;
     }
-
-    // // Ici on précise le comportement du focus, il s'applique sur toutes les variantes
-    // on enleve le focus state bleu pour linstant
     &:focus {
-      // color: $blancSimple;
-      // background: $focus;
       outline: 0;
       border: 0.5px solid transparent;
-      // svg {
-      //   fill: $blancSimple;
-      // }
     }
 
-    // Ici on précise le comportement "disabled"
     &:disabled,
     &.disabled {
       background: $gris;
@@ -75,6 +62,12 @@ body .figma-btn {
     }
   }
 
+  // TYPES
+  &.default {
+    svg {
+      fill: $noir;
+    }
+  }
   &.saved {
     background: $lightgreen;
     color: $noir;
@@ -82,7 +75,6 @@ body .figma-btn {
       fill: $vert;
     }
   }
-
   &.modified {
     background: $lightOrange;
     color: $noir;
@@ -90,7 +82,6 @@ body .figma-btn {
       fill: $orange;
     }
   }
-
   &.white {
     background: $blancSimple;
     color: $noir;
@@ -106,7 +97,6 @@ body .figma-btn {
       }
     }
   }
-
   &.white-yellow-hover {
     background: $blancSimple;
     color: $noir;
@@ -122,8 +112,6 @@ body .figma-btn {
       }
     }
   }
-
-  // Fill-Dark
   &.dark {
     background: $noir;
     color: #ffffff;
@@ -146,7 +134,6 @@ body .figma-btn {
       }
     }
   }
-
   &.validate-light {
     background: $vert;
     color: $blancSimple;
@@ -163,7 +150,7 @@ body .figma-btn {
       }
     }
     &:not(:disabled):not(.disabled):active {
-      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
       background: $vert;
     }
 
@@ -183,9 +170,6 @@ body .figma-btn {
       }
     }
   }
-
-  // Validate
-
   &.validate {
     background: $vert;
     color: $blancSimple;
@@ -202,7 +186,7 @@ body .figma-btn {
       }
     }
     &:not(:disabled):not(.disabled):active {
-      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
       background: $vert;
     }
   }
@@ -222,7 +206,7 @@ body .figma-btn {
       }
     }
     &:not(:disabled):not(.disabled):active {
-      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
       background: $vert;
     }
     &.disabled {
@@ -234,7 +218,6 @@ body .figma-btn {
       }
     }
   }
-
   &.login {
     background: #0421b1;
     color: $blancSimple;
@@ -250,7 +233,6 @@ body .figma-btn {
       }
     }
   }
-
   &.signup {
     background: $blancSimple;
     color: #0421b1;
@@ -265,8 +247,6 @@ body .figma-btn {
       }
     }
   }
-
-  // Bouton d'erreur
   &.error {
     background: $error;
     color: $blancSimple;
@@ -281,8 +261,6 @@ body .figma-btn {
       background: $error;
     }
   }
-
-  // Fill-Light
   &.light-action {
     //min-width: 40px;
     color: $noir;
@@ -306,18 +284,15 @@ body .figma-btn {
       }
     }
   }
-
   &.small-figma {
     padding: 0;
     width: 40px;
     height: 40px;
-    margin-top: 0px;
+    margin-top: 0;
     justify-content: center;
     align-items: center;
     background-color: #cdcdcd;
   }
-
-  // Le bouton "merci" dans dispositif
   &.thanks {
     background: transparent;
     color: $grisFonce;
@@ -339,20 +314,6 @@ body .figma-btn {
       border: 0.5px solid $validationHover;
     }
   }
-
-  // Utilisé lorsqu'un bouton utilise la couleur de thème de façon dynamique dans le JS
-  &.theme {
-    background: $noir;
-    color: $blanc;
-    svg {
-      fill: $blanc;
-    }
-    &:hover {
-      box-shadow: none;
-    }
-  }
-
-  // Outline-Light
   &.outline {
     border: 0.5px solid #ffffff;
     background: transparent;
@@ -367,8 +328,6 @@ body .figma-btn {
       }
     }
   }
-
-  // Outline-Dark
   &.outline-black {
     border: 0.5px solid $noir;
     background: transparent;
@@ -386,11 +345,14 @@ body .figma-btn {
       }
     }
   }
-
-  // La version sans texte, notamment utilisée dans l'univers profil pour les tables
   &.pill {
     border-radius: 12px;
     height: auto;
+    border: 0.5px solid #ffffff;
+    background: transparent;
+    color: #ffffff;
+    transition: all 0.2s ease;
+
     svg {
       fill: $blanc;
     }
@@ -402,13 +364,6 @@ body .figma-btn {
         fill: $noir;
       }
     }
-  }
-
-  &.pill {
-    border: 0.5px solid #ffffff;
-    background: transparent;
-    color: #ffffff;
-    transition: all 0.2s ease;
     &:hover {
       border-color: #000000;
     }
@@ -433,15 +388,11 @@ body .figma-btn {
       }
     }
   }
-
-  // Les gros boutons de la page d'accueil
   &.hero {
     height: 60px;
     padding: 10px 20px;
-    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
   }
-
-  // Bouton Aide ou J'ai besoin d'aide
   &.help {
     background: $erreur;
     color: $error;
@@ -459,8 +410,6 @@ body .figma-btn {
       background: $erreur;
     }
   }
-
-  // Ici on précise le comportement des icônes avec svg et fill
   &.tuto {
     background: $focus;
     color: $blancSimple;
@@ -480,7 +429,6 @@ body .figma-btn {
       background: $focus;
     }
   }
-
   &.edit {
     background: #f9ef99;
     color: $noir;
@@ -491,7 +439,6 @@ body .figma-btn {
       box-shadow: none;
     }
   }
-
   &.precision {
     background: $attention;
     color: $darkColor;
@@ -499,7 +446,6 @@ body .figma-btn {
       fill: $darkColor;
     }
   }
-
   &.fill-dark {
     background: $noir;
     color: $blancSimple;
@@ -515,6 +461,18 @@ body .figma-btn {
       svg {
         fill: $noir;
       }
+    }
+  }
+
+  // Utilisé lorsqu'un bouton utilise la couleur de thème de façon dynamique dans le JS
+  &.theme {
+    background: $noir;
+    color: $blanc;
+    svg {
+      fill: $blanc;
+    }
+    &:hover {
+      box-shadow: none;
     }
   }
 }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { initGA, Event } from "../../../tracking/dispatch";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import { withTranslation } from "react-i18next";
 import styled from "styled-components";
 import Highlighter from "react-highlight-words";
@@ -15,7 +14,7 @@ import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import useOutsideClick from "./useOutsideClick";
 import i18n from "../../../i18n";
 
-import "./AdvancedSearchBar.scss";
+import "./AdvancedSearchBar.module.scss";
 import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 
 /* const NoResults = styled.div`
@@ -526,6 +525,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default withRouter(
-  connect(mapStateToProps)(withTranslation()(AdvancedSearchBar))
-);
+export default connect(mapStateToProps)(withTranslation()(AdvancedSearchBar))

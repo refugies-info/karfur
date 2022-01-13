@@ -1,7 +1,6 @@
 import React, { Component, Suspense } from "react";
 import i18n from "../../i18n";
 import { withTranslation } from "react-i18next";
-import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import DirectionProvider, {
   DIRECTIONS,
 } from "react-with-direction/dist/DirectionProvider";

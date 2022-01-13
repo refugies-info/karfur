@@ -9,7 +9,6 @@ import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStat
 import { Language, UserLanguage } from "../../../../types/interface";
 import "./TranslationLanguagesChoiceModal.scss";
 import { saveUserActionCreator } from "../../../../services/User/user.actions";
-import { withRouter, RouteComponentProps } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
 import { colors } from "../../../../colors";

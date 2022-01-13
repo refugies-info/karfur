@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import NoResultsBackgroundImage from "../../../../assets/no_results.svg";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import { useTranslation } from 'react-i18next';
+import NoResultsBackgroundImage from "assets/no_results.svg";
+import FButton from "components/FigmaUI/FButton/FButton";
 
 const NoResultsContainer = styled.div`
   display: flex;
@@ -47,16 +48,17 @@ const NoResultsText = styled.p`
   max-width: 550px;
 `;
 
-export const NoResult = (props) => {
+export const NoResult = (props: any) => {
+  const { t } = useTranslation();
   return (
     <NoResultsContainer>
       <NoResults />
       <NoResultsTextContainer>
         <NoResultsTitle>
-          {props.t("Aucun résultat", "Aucun résultat")}
+          {t("Aucun résultat", "Aucun résultat")}
         </NoResultsTitle>
         <NoResultsText>
-          {props.t(
+          {t(
             "Annuaire.Elargir recherche",
             "Il n’existe aucune structure correspondant aux filtres sélectionnés. Essayez d’élargir votre recherche en retirant des filtres."
           )}{" "}

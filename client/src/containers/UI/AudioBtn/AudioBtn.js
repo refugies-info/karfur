@@ -8,9 +8,9 @@ import {
   toggleTTSActionCreator,
   toggleSpinner,
 } from "../../../services/Tts/tts.actions";
-import "./AudioBtn.scss";
 import { colors } from "colors";
 import { isMobile } from "react-device-detect";
+import "./AudioBtn.module.scss";
 
 class AudioBtn extends Component {
   toggleAudio = () => {

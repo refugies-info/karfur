@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
 import { colors } from "colors";
-import Streamline from "../../assets/streamline";
+import Streamline from "../../../assets/streamline";
 import Ripples from "react-ripples";
-import i18n from "../../i18n";
+import i18n from "../../../i18n";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 

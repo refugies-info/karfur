@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import img from "../../../../assets/annuaire/annuaire_cover.svg";
+import img from "assets/annuaire/annuaire_cover.svg";
 import { Letter } from "./Letter";
-import { NavHashLink } from "react-router-hash-link";
-import i18n from "../../../../i18n";
-import { SearchBarAnnuaire } from "./SearBarAnnuaire/SearchBarAnnuaire";
-import { colors } from "../../../../colors";
+import i18n from "i18n";
+import { SearchBarAnnuaire } from "./SearchBarAnnuaire";
+import { colors } from "colors";
 import { SimplifiedStructure } from "types/interface";
+import { useTranslation } from 'react-i18next';
 
 const HeaderContainer = styled.div`
   background-image: url(${img});
@@ -85,7 +85,6 @@ interface Props {
   setIsCityFocus: (a: boolean) => void;
   isCitySelected: boolean;
   setIsCitySelected: (a: boolean) => void;
-  t: any;
   resetSearch: () => void;
   keyword: string;
   setKeyword: (a: string) => void;
@@ -95,6 +94,7 @@ interface Props {
 
 export const Header = (props: Props) => {
   const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (props.currentScroll === 0) {
@@ -122,11 +122,11 @@ export const Header = (props: Props) => {
         <SearchContainer>
           {" "}
           <TextContainer isRTL={isRTL}>
-            {props.t("Annuaire.Annuaire", "Annuaire")}
+            {t("Annuaire.Annuaire", "Annuaire")}
           </TextContainer>
           <SearchBarAnnuaire
             filteredStructures={props.filteredStructures}
-            t={props.t}
+            t={t}
             resetSearch={props.resetSearch}
             keyword={props.keyword}
             setKeyword={props.setKeyword}
@@ -148,9 +148,9 @@ export const Header = (props: Props) => {
         <LettersContainer isRTL={isRTL}>
           <>
             {props.letters.map((letter, index) => (
-              <NavHashLink
+              <button
                 onClick={() => selectLetter(letter)}
-                to={
+                href={
                   props.lettersClickable.includes(letter.toLocaleUpperCase())
                     ? `/annuaire#${letter.toUpperCase()}`
                     : "/annuaire"
@@ -168,7 +168,7 @@ export const Header = (props: Props) => {
                   //   onLetterClick={props.onLetterClick}
                   isSelected={props.letterSelected === letter ? true : false}
                 />
-              </NavHashLink>
+              </button>
             ))}
           </>
         </LettersContainer>

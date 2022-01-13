@@ -3,7 +3,7 @@ import React from "react";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 import LeftSideDrawer from "./LeftSideDrawer/LeftSideDrawer";
 
-import "./SideDrawer.scss";
+import "./SideDrawer.module.scss";
 
 const sideDrawer = (props) => {
   const drawer = <LeftSideDrawer {...props} />;

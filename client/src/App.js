@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import { Spinner } from "reactstrap";
@@ -11,7 +10,7 @@ import "./i18n";
 
 import "react-notifications/src/notifications.scss";
 import "./App.scss";
-import { ConnectedRouter } from "connected-react-router";
+// import { ConnectedRouter } from "connected-react-router";
 import { history } from "./services/configureStore";
 
 const loading = () => (
@@ -76,7 +75,7 @@ class App extends Component {
 
   componentDidMount() {
     //On désactive les logs en prod
-    if (process.env.REACT_APP_ENV === "production") {
+    if (process.env.NEXT_PUBLIC_REACT_APP_ENV === "production") {
       // eslint-disable-next-line no-console
       console.log = function () {};
     }
@@ -94,7 +93,7 @@ class App extends Component {
 
     //on charge les cookies
     window.axeptioSettings = {
-      clientId: process.env.REACT_APP_AXEPTIO_CLIENTID,
+      clientId: process.env.NEXT_PUBLIC_REACT_APP_AXEPTIO_CLIENTID,
     };
 
     (function (d, s) {
@@ -116,7 +115,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <Switch>
+{/*           <Switch>
             <Route exact path="/login" name="Login Page" component={Login} />
             <Route
               exact
@@ -138,7 +137,7 @@ class App extends Component {
               socket={socket}
               socketFn={this.socketFn}
             />
-          </Switch>
+          </Switch> */}
         </ConnectedRouter>
       </Provider>
     );

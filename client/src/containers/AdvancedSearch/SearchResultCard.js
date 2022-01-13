@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { filtres } from "../Dispositif/data";
 import CustomCard from "../../components/UI/CustomCard/CustomCard";
@@ -8,7 +7,7 @@ import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import Streamline from "../../assets/streamline";
 import "./AdvancedSearch.scss";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const CardText = styled.p`
   font-weight: 14px;

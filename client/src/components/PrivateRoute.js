@@ -1,5 +1,4 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import API from "../utils/API";
@@ -26,7 +25,7 @@ const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
   };
   updateLastConnexion();
   return (
-    <Route
+    {/* <Route
       {...rest}
       render={(props) => {
         var path = props.location.pathname;
@@ -83,7 +82,7 @@ const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
         }
         return <Component {...props} socket={socket} socketFn={socketFn} />;
       }}
-    />
+    /> */}
   );
 };
 

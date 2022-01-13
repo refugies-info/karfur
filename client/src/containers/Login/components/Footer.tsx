@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "../styles";
 import "./Footer.scss";
-import { Link } from "react-router-dom";
+import Link from 'next/link'
 
 interface Props {
   step: number
@@ -84,8 +84,8 @@ export const Footer = (props: Props) => {
       <>
         <S.FooterLinkContainer>
           {props.t("Login.Pas encore de compte ?", "Pas encore de compte ?")}{" "}
-          <Link to={{ pathname: "/register"}} className="footer-link">
-            {props.t("Login.Créez un compte", "Créez un compte")}
+          <Link href="/register" className="footer-link">
+            <a>{props.t("Login.Créez un compte", "Créez un compte")}</a>
           </Link>
         </S.FooterLinkContainer>
         <S.FooterLinkContainer style={{marginTop: 0, fontWeight: "bold"}}>

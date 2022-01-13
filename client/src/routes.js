@@ -13,7 +13,7 @@ import MentionsLegales from "./containers/MentionsLegales/MentionsLegales";
 import PolitiqueConfidentialite from "./containers/PolitiqueConfidentialite/PolitiqueConfidentialite";
 import { AnnuaireCreate } from "./containers/Annuaire/AnnuaireCreate";
 import {
-  AnnuaireLecture,
+  // AnnuaireLecture,
   AnnuaireDetail,
 } from "./containers/Annuaire/AnnuaireLecture";
 import { UserNotifications } from "./containers/Backend/UserNotifications";
@@ -25,7 +25,7 @@ import {
 import { UserTranslation } from "./containers/Backend/UserTranslation";
 
 const routes = [
-  {
+/*   {
     path: "/",
     exact: true,
     name: "Réfugiés.info",
@@ -37,7 +37,7 @@ const routes = [
     name: "Réfugiés.info - Accueil",
     component: HomePage,
     restriction: [],
-  },
+  }, */
 
   {
     path: "/advanced-search",
@@ -57,13 +57,13 @@ const routes = [
     component: AnnuaireCreate,
     restriction: [],
   },
-  {
+/*   {
     path: "/annuaire",
     exact: true,
     name: "Réfugiés.info - Annuaire",
     component: AnnuaireLecture,
     restriction: [],
-  },
+  }, */
   {
     path: "/annuaire/:id",
     name: "Réfugiés.info - Annuaire",

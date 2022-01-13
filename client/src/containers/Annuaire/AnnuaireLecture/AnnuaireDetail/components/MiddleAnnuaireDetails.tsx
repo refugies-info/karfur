@@ -10,7 +10,7 @@ import { NoActivity } from "./NoActivity";
 import Skeleton from "react-loading-skeleton";
 import { colors } from "../../../../../colors";
 import FButton from "components/FigmaUI/FButton/FButton";
-import { NavLink } from "react-router-dom";
+//import { NavLink } from "react-router-dom";
 
 interface Props {
   structure: Structure | null;

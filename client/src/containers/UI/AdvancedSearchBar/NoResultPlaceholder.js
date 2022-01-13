@@ -1,7 +1,6 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 import styled from "styled-components";
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import NoResultsBackgroundImage from "../../../assets/search_no_results.svg";
 
 const NoResultsContainer = styled.div`
@@ -38,6 +37,7 @@ const NoResultsTitle = styled.p`
 
 
 const NoResultPlaceholder = () => {
+  const { t } = useTranslation();
   return (
     <NoResultsContainer>
       <NoResults />
@@ -48,4 +48,4 @@ const NoResultPlaceholder = () => {
   );
 };
 
-export default withRouter(withTranslation()(NoResultPlaceholder));
+export default NoResultPlaceholder;

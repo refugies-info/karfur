@@ -176,9 +176,9 @@ const MobileSponsorSection = styled.div`
 `;
 
 const burl =
-  process.env.REACT_APP_ENV === "development"
+  process.env.NEXT_PUBLIC_REACT_APP_ENV === "development"
     ? "http://localhost:3000/"
-    : process.env.REACT_APP_ENV === "staging"
+    : process.env.NEXT_PUBLIC_REACT_APP_ENV === "staging"
     ? "https://staging.refugies.info/"
     : "https://www.refugies.info/";
 

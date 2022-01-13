@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./FSearchBtn.scss";
+import "./FSearchBtn.module.scss";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 
 const fSearchBtn = (props) => {

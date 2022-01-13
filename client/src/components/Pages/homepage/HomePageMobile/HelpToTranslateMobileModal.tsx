@@ -1,8 +1,8 @@
 import React from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
-import { colors } from "../../colors";
-import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
+import { colors } from "../../../../colors";
+import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 
 declare const window: Window;
 interface Props {
@@ -25,10 +25,9 @@ const CloseIconContainer = styled.div`
   background-color: ${colors.noir};
   right: 10px;
   top: 8px;
-  cursor: pointer;
 `;
 
-export const BecomeTesterModal = (props: Props) => (
+export const HelpToTranslateMobileModal = (props: Props) => (
   <Modal isOpen={props.show} toggle={props.toggle} className="share-content">
     <MainContainer>
       <CloseIconContainer onClick={props.toggle}>
@@ -38,12 +37,12 @@ export const BecomeTesterModal = (props: Props) => (
         style={{
           alignSelf: "center",
           width: "100%",
-          height: 900,
+          height: "97vh",
           border: "1px solid #FBFBFB",
           borderRadius: "12px",
         }}
         allowFullScreen
-        src="https://airtable.com/embed/shrnxkFB2Pa9Awzgs?backgroundColor=yellow"
+        src="https://airtable.com/embed/shrNHudVX6lL4W52j?backgroundColor=yellow"
       />
     </MainContainer>
   </Modal>

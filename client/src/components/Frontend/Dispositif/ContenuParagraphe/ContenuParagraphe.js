@@ -18,7 +18,6 @@ import {
   cardTitlesDemarche,
 } from "../../../../containers/Dispositif/data";
 
-import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { infocardsDemarcheTitles } from "../../../../containers/Dispositif/data";
 import { isMobile } from "react-device-detect";
@@ -501,4 +500,4 @@ const AddMoudleBtnTag = (props) => {
   );
 };
 
-export default withRouter(contenuParagraphe);
+export default contenuParagraphe;

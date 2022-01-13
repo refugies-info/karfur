@@ -3,7 +3,7 @@ import styled from "styled-components";
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 import gif from "../../../../../assets/annuaire/GIF-annuaire.gif";
 import "./Step6.scss";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { ObjectId } from "mongodb";
 
 const Title = styled.div`

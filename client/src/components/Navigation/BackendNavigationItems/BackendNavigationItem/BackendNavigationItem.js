@@ -1,7 +1,7 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 
-import "./BackendNavigationItem.scss";
+import "./BackendNavigationItem.module.scss";
 
 const backendNavigationItem = (props) => (
   <NavLink

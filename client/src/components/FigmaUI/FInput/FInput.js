@@ -4,7 +4,7 @@ import { Input, InputGroup, InputGroupAddon } from "reactstrap";
 
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 
-import "./FInput.scss";
+import "./FInput.module.scss";
 import { colors } from "colors";
 
 const FInput = (props) => {

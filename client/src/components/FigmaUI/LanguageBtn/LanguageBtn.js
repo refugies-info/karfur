@@ -5,7 +5,7 @@ import FButton from "../FButton/FButton";
 
 import { toggleLangueModalActionCreator } from "../../../services/Langue/langue.actions";
 
-import "./LanguageBtn.scss";
+import "./LanguageBtn.module.scss";
 
 const languageBtn = (props) => {
   const current =

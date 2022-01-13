@@ -19,7 +19,6 @@ import { FrameModal } from "../../../components/Modals";
 import { ContribContainer } from "./components/SubComponents";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
-import { NavHashLink } from "react-router-hash-link";
 import { UserContribTable } from "./components/UserContribTable";
 import { ObjectId } from "mongodb";
 import { colors } from "../../../colors";

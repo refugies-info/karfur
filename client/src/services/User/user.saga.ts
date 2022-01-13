@@ -7,7 +7,7 @@ import {
   fetchUserActionCreator,
   saveUserActionCreator,
 } from "./user.actions";
-import { push } from "connected-react-router";
+// import { push } from "connected-react-router";
 import { logger } from "../../logger";
 import {
   startLoading,

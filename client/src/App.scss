@@ -5,8 +5,10 @@
 @import "~font-awesome/css/font-awesome.min.css";
 // Import Simple Line Icons Set
 @import "~simple-line-icons/css/simple-line-icons.css";
-// Import Main styles for this application
+// Main styles
 @import "./scss/style.scss";
+// Pages
+@import "./scss/pages/Homepage.scss";
 
 @import "./scss/common.scss";
 @import "./scss/colors.scss";
