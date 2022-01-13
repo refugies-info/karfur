@@ -9,7 +9,7 @@ import { colors } from "colors";
 import { saveUserActionCreator } from "../../../services/User/user.actions";
 import Swal from "sweetalert2";
 
-import "./CompleteProfilModal.scss";
+import "./CompleteProfilModal.module.scss";
 
 const TitleContainer = styled.div`
   font-weight: 700;

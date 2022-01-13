@@ -27,7 +27,6 @@ import { BecomeTesterModal } from "../components/Pages/homepage/BecomeTesterModa
 import { HomePageMobile } from "../components/Pages/homepage/HomePageMobile/HomePageMobile";
 import HomeSearch from "../components/Pages/homepage/HomeSearch";
 import CatList from "../components/Pages/homepage/CatList";
-// import "../components/Pages/homepage/HomePage.module.scss";
 
 const CoronaAlert = styled.div`
   display: flex;
@@ -341,15 +340,18 @@ const Homepage = (props) => {
                   {t("Homepage.contribution subheader")}
                 </p>
               </div>
-              <footer className="footer-section">
-                <FButton
-                  name="file-add-outline"
-                  to="/comment-contribuer"
-                  type="dark"
-                  style={{ height: "60px" }}
-                >
-                  {t("Homepage.Je contribue", "Je contribue")}
-                </FButton>
+                <footer className="footer-section">
+                  <Link href="/comment-contribuer">
+                  <FButton
+                    name="file-add-outline"
+                      tag="a"
+                      tabindex="1"
+                    type="dark"
+                    style={{ height: "60px" }}
+                  >
+                    {t("Homepage.Je contribue", "Je contribue")}
+                  </FButton>
+                  </Link>
               </footer>
             </div>
           </section>
@@ -362,15 +364,20 @@ const Homepage = (props) => {
                   {t("Homepage.Faites connaitre subheader")}
                 </p>
               </div>
-              <footer>
-                <FButton
-                  name="file-add-outline"
-                  to="/comment-contribuer#ecrire"
-                  type="dark"
-                  style={{ height: "60px" }}
-                >
-                  {t("Homepage.Je propose une fiche", "Je propose une fiche")}
-                </FButton>
+                <footer>
+                  <Link
+                    href="/comment-contribuer#ecrire"
+                  >
+                  <FButton
+                    name="file-add-outline"
+                      type="dark"
+                      tag="a"
+                      tabindex="2"
+                    style={{ height: "60px" }}
+                  >
+                    {t("Homepage.Je propose une fiche", "Je propose une fiche")}
+                  </FButton>
+                  </Link>
               </footer>
             </div>
           </section>
@@ -384,15 +391,21 @@ const Homepage = (props) => {
                 </p>
                 {/*<LanguageBtn />*/}
               </div>
-              <footer className="footer-section">
+                <footer className="footer-section">
+                  <Link
+                    href="/comment-contribuer#traduire"
+                  >
+
                 <FButton
                   name="file-add-outline"
-                  to={"/comment-contribuer#traduire"}
-                  type="dark"
+                      type="dark"
+                      tag="a"
+                      tabindex="3"
                   style={{ height: "60px" }}
                 >
                   {t("Homepage.J'aide à traduire", "J'aide à traduire")}
                 </FButton>
+                  </Link>
               </footer>
             </div>
           </section>
@@ -411,33 +424,43 @@ const Homepage = (props) => {
               </div>
               <footer className="footer-section">
                 <ButtonContainerRow>
-                  <ButtonSeparator isRTL={isRTL}>
+                    <ButtonSeparator isRTL={isRTL}>
+                      <Link
+                      href="/comment-contribuer#deployer-card"
+                      >
+                      <FButton
+                          type="dark"
+                          tag="a"
+                          tabindex="4"
+                        style={{ height: "60px" }}
+                      >
+                        <img
+                          src={icon_mobilisation}
+                          alt="icon mobilisation"
+                          className={"mr-8"}
+                        />
+                        {t(
+                          "Homepage.Participe déploiement",
+                          "Je participe au déploiement"
+                        )}
+                      </FButton>
+                      </Link>
+                    </ButtonSeparator>
+                    <Link
+                    href="/comment-contribuer#deployer-card"
+                    >
                     <FButton
-                      to={"/comment-contribuer#deployer-card"}
-                      type="dark"
+                        type="outline-black"
+                        tag="a"
+                        tabindex="5"
                       style={{ height: "60px" }}
                     >
-                      <img
-                        src={icon_mobilisation}
-                        alt="icon mobilisation"
-                        className={"mr-8"}
-                      />
                       {t(
-                        "Homepage.Participe déploiement",
-                        "Je participe au déploiement"
+                        "Homepage.Vous hésitez encore ?",
+                        "Vous hésitez encore ?"
                       )}
                     </FButton>
-                  </ButtonSeparator>
-                  <FButton
-                    to={"/comment-contribuer#deployer-card"}
-                    type="outline-black"
-                    style={{ height: "60px" }}
-                  >
-                    {t(
-                      "Homepage.Vous hésitez encore ?",
-                      "Vous hésitez encore ?"
-                    )}
-                  </FButton>
+                    </Link>
                 </ButtonContainerRow>
               </footer>
             </div>
@@ -464,22 +487,21 @@ const Homepage = (props) => {
                 {/*<LanguageBtn />*/}
               </div>
               <ButtonContainer>
-                <p>
-                  <FButton
-                    name="email-outline"
-                    to={"/"}
-                    onClick={() => toggleShowNewsletterModal()}
-                    type="white"
-                  >
-                    {t(
-                      "Homepage.informé du lancement",
-                      "Je veux être informé du lancement"
-                    )}
-                  </FButton>
+                  <p>
+
+                    <FButton
+                        name="email-outline"
+                      onClick={() => toggleShowNewsletterModal()}
+                      type="white"
+                    >
+                      {t(
+                        "Homepage.informé du lancement",
+                        "Je veux être informé du lancement"
+                      )}
+                    </FButton>
                 </p>
                 <FButton
                   name="eye-outline"
-                  to={""}
                   onClick={() => toggleBecomeTesterModal()}
                   type="white"
                 >
