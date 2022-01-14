@@ -45,12 +45,12 @@ const routes = [
     component: AdvancedSearch,
     restriction: [],
   },
-  {
+/*   {
     path: "/qui-sommes-nous",
     name: "Réfugiés.info - Qui sommes-nous ?",
     component: QuiSommesNous,
     restriction: [],
-  },
+  }, */
   {
     path: "/annuaire-create",
     name: "Réfugiés.info - Annuaire",
@@ -71,12 +71,12 @@ const routes = [
     component: AnnuaireDetail,
     restriction: [],
   },
-  {
+/*   {
     path: "/comment-contribuer",
     name: "Réfugiés.info - Comment contribuer ?",
     component: CommentContribuer,
     restriction: [],
-  },
+  }, */
   {
     path: "/mentions-legales",
     name: "Réfugiés.info - Mentions Légales",

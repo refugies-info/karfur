@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
-import { partners } from "../data";
+import { useTranslation } from "react-i18next";
+import FButton from "components/FigmaUI/FButton/FButton";
+import { partners } from "data/partners";
 
 const MainContainer = styled.div`
   display: flex;
@@ -33,28 +34,29 @@ const sortPartners = () =>
     return -1;
   });
 
-export const Partners = (props) => {
+export const Partners = () => {
   const sortedPartners = sortPartners();
+  const { t } = useTranslation();
 
   return (
     <MainContainer>
       <DescriptionContainer>
         <b>
-          {props.t(
+          {t(
             "QuiSommesNous.appel-a-manifestation1",
             "Ces organisations ont signé un Appel à manifestation d’intérêt et participent à l’évolution de la plateforme."
           )}
         </b>
         <br />
         <br />
-        {props.t(
+        {t(
           "QuiSommesNous.appel-a-manifestation2",
           "Vous représentez une organisation liée à l’intégration des personnes réfugiées et souhaitez rejoindre l’aventure ? Téléchargez l’appel ci-dessous et envoyez-le à nour@refugies.info. Nous prendrons contact avec vous pour définir les modalités de notre partenariat."
         )}
         <div style={{ marginTop: "32px" }}>
           <a href="/AMI_REFUGIE_INFO.pdf" download>
             <FButton type="fill-dark" name="download-outline">
-              {props.t(
+              {t(
                 "QuiSommesNous.telechargerAppel",
                 "Télécharger l’appel [PDF] "
               )}
@@ -63,14 +65,13 @@ export const Partners = (props) => {
         </div>
       </DescriptionContainer>
       <LogoContainer>
-        {sortedPartners.map((partner) => {
-          if (partner.logo)
-            return (
-              <ImageContainer>
-                <img src={partner.logo} alt={partner.name} />
-              </ImageContainer>
-            );
-        })}
+        {sortedPartners.map((partner) =>
+          partner.logo ? (
+            <ImageContainer>
+              <img src={partner.logo} alt={partner.name} />
+            </ImageContainer>
+          ) : null
+        )}
       </LogoContainer>
     </MainContainer>
   );

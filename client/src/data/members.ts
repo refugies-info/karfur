@@ -1,139 +1,17 @@
-import { assetsOnServer } from "../../assets/assetsOnServer";
+export type Member = {
+  name: string
+  roleShort?: string
+  roleName?: string
+  twitter?: string
+  linkedin?: string
+  autre?: string
+  portfolio?: string
+  color: string
+  borderColor: string
+  textColor: string
+}
 
-export const partners = [
-  {
-    name: "Coallia",
-    date: new Date("09/27/2019"),
-    logo: assetsOnServer.partners.Coallia,
-  },
-  {
-    name: "Konexio",
-    date: new Date("10/03/2019"),
-    logo: assetsOnServer.partners.Konexio,
-  },
-  {
-    name: "Simplon",
-    date: new Date("10/07/2019"),
-    logo: assetsOnServer.partners.Simplon,
-  },
-  {
-    name: "Causons",
-    date: new Date("10/09/2019"),
-    logo: assetsOnServer.partners.Causons,
-  },
-  {
-    name: "Aurore",
-    date: new Date("10/14/2019"),
-    logo: assetsOnServer.partners.Aurore,
-  },
-  {
-    name: "CASP",
-    date: new Date("10/15/2019"),
-    logo: assetsOnServer.partners.CASP,
-  },
-  {
-    name: "IFRI",
-    date: new Date("10/16/2019"),
-    logo: assetsOnServer.partners.IFRI,
-  },
-  {
-    name: "Puy de Dome",
-    date: new Date("10/17/2019"),
-    logo: assetsOnServer.partners.Puy,
-  },
-  {
-    name: "France Terre d'Asile",
-    date: new Date("10/24/2019"),
-    logo: assetsOnServer.partners.FTDA,
-  },
-  {
-    name: "Each One",
-    date: new Date("10/25/2019"),
-    logo: assetsOnServer.partners.EachOne,
-  },
-  {
-    name: "WERO",
-    date: new Date("10/28/2019"),
-    logo: assetsOnServer.partners.WERO,
-  },
-  {
-    name: "Habitat Humanisme",
-    date: new Date("10/30/2019"),
-    logo: assetsOnServer.partners.Habitat,
-  },
-  {
-    name: "JRS France",
-    date: new Date("10/31/2019"),
-    logo: assetsOnServer.partners.JRS,
-  },
-  {
-    name: "CESAM",
-    date: new Date("11/03/2019"),
-    logo: assetsOnServer.partners.CESAM,
-  },
-  {
-    name: "Singa",
-    date: new Date("11/04/2019"),
-    logo: assetsOnServer.partners.Singa,
-  },
-  {
-    name: "Fondation COS",
-    date: new Date("11/14/2019"),
-    logo: assetsOnServer.partners.COS,
-  },
-  {
-    name: "Groupe SOS",
-    date: new Date("11/18/2019"),
-    logo: assetsOnServer.partners.SOS,
-  },
-  {
-    name: "CNAM",
-    date: new Date("11/20/2019"),
-    logo: assetsOnServer.partners.CNAM,
-  },
-  {
-    name: "INALCO",
-    date: new Date("11/22/2019"),
-    logo: assetsOnServer.partners.INALCO,
-  },
-  {
-    name: "France Horizon",
-    date: new Date("12/11/2019"),
-    logo: assetsOnServer.partners.FranceHorizon,
-  },
-  {
-    name: "CroixRouge",
-    date: new Date("01/23/2020"),
-    logo: assetsOnServer.partners.CRF,
-  },
-  {
-    name: "Duo For a Job",
-    date: new Date("01/25/2020"),
-    logo: assetsOnServer.partners.Duo,
-  },
-  {
-    name: "Forum Refugiés",
-    date: new Date("01/31/2020"),
-    logo: assetsOnServer.partners.ForumRefugies,
-  },
-  {
-    name: "Benenova",
-    date: new Date("02/06/2020"),
-    logo: assetsOnServer.partners.Benenova,
-  },
-  {
-    name: "Action Emploi Réfugiés",
-    date: new Date("02/26/2020"),
-    logo: assetsOnServer.partners.AER,
-  },
-  {
-    name: "Mission Local",
-    date: new Date("08/26/2020"),
-    logo: assetsOnServer.partners.MissionLocale,
-  },
-];
-
-export const former_membres = [
+export const former_members: Member[] = [
   {
     name: "Simon Karleskind",
     roleName: "Chef de projet",
@@ -178,7 +56,7 @@ export const former_membres = [
   },
 ];
 
-export const membres = [
+export const members: Member[] = [
   {
     name: "Alain Régnier",
     roleShort: "Mentor",

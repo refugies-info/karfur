@@ -1,16 +1,14 @@
-import React, { Component } from "react";
-import { withTranslation } from "react-i18next";
-import AnchorLink from "react-anchor-link-smooth-scroll";
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-
-import { Mission } from "./components/Mission";
-import { Problematic } from "./components/Problematic";
-import { Contribution } from "./components/Contribution";
-import { Team } from "./components/Team";
-
-import { Partners } from "./components/Partners";
-import i18n from "../../i18n";
-import { assetsOnServer } from "../../assets/assetsOnServer";
+import i18n from "i18n";
+import { Mission } from "components/Pages/qui-sommes-nous/Mission";
+import { Problematic } from "components/Pages/qui-sommes-nous/Problematic";
+import { Contribution } from "components/Pages/qui-sommes-nous/Contribution";
+import { Team } from "components/Pages/qui-sommes-nous/Team";
+import { Partners } from "components/Pages/qui-sommes-nous/Partners";
+import { assetsOnServer } from "assets/assetsOnServer";
+import type { Member } from "data/members";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -124,34 +122,41 @@ const PartnersContainer = styled.div`
   padding-left: 120px;
   padding-right: 32px;
 `;
-class QuiSommesNous extends Component {
-  state = {
-    sideVisible: false,
-    membre: null,
-    isToolbarVisible: true,
-    visibleSection: null,
-  };
 
-  componentDidMount() {
-    window.scrollTo(0, 0);
-    window.addEventListener("scroll", this.handleScroll);
+interface Props {
+
+}
+
+const QuiSommesNous = () => {
+    const [sideVisible, setSideVisible] = useState(false);
+    const [membre, setMembre] = useState<Member|null>(null);
+    const [isToolbarVisible, setIsToolbarVisible] = useState(true);
+    const [visibleSection, setVisibleSection] = useState("");
+
+    const { t } = useTranslation();
+
+  useEffect(() => {
+    /* window.scrollTo(0, 0);
+    window.addEventListener("scroll", handleScroll);
+
+    return window.removeEventListener("scroll", handleScroll);
+    */
+  }, [])
+
+
+  const onSelectMembre = (membre: any) => {
+    setSideVisible(true);
+    setMembre(membre)
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
-  onSelectMembre = (membre) => this.setState({ sideVisible: true, membre });
-
-  closeSide = () => {
-    if (this.state.sideVisible) {
-      this.setState({ sideVisible: false });
-    }
+  const closeSide = () => {
+    if (sideVisible) setSideVisible(false)
   };
 
-  handleScroll = () => {
-    const currentScrollPos = window.pageYOffset;
+  const handleScroll = () => {
+    const currentScrollPos = 0// window.pageYOffset;
     const visible = currentScrollPos < 720;
-    let visibleSection;
+    let visibleSection = "";
     if (720 < currentScrollPos && currentScrollPos <= 1440) {
       visibleSection = "Missions";
     } else if (1440 < currentScrollPos && currentScrollPos <= 2290) {
@@ -163,16 +168,9 @@ class QuiSommesNous extends Component {
     } else if (3730 < currentScrollPos) {
       visibleSection = "Partenaires";
     }
-    this.setState({
-      isToolbarVisible: visible,
-      visibleSection,
-    });
+    setIsToolbarVisible(visible);
+    setVisibleSection(visibleSection);
   };
-
-  render() {
-    const { membre, sideVisible } = this.state;
-    const { t } = this.props;
-    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
 
     return (
       <MainContainer>
@@ -201,63 +199,61 @@ class QuiSommesNous extends Component {
             </SubHeaderText>
           </HeaderTextContainer>
         </HeaderContainer>
-        <NavBarContainer isToolbarVisible={this.state.isToolbarVisible}>
-          <AnchorLink offset="60" href="#mission">
+        <NavBarContainer isToolbarVisible={isToolbarVisible}>
+          <a href="#mission">
             <NavBarText
-              isVisibleSection={this.state.visibleSection === "Missions"}
+              isVisibleSection={visibleSection === "Missions"}
             >
               {t("QuiSommesNous.Missions", "Missions")}
             </NavBarText>
-          </AnchorLink>
-          <AnchorLink offset="60" href="#equipe">
+          </a>
+          <a href="#equipe">
             <NavBarText
-              isVisibleSection={this.state.visibleSection === "Equipe"}
+              isVisibleSection={visibleSection === "Equipe"}
             >
               {t("QuiSommesNous.Équipe", "Équipe")}
             </NavBarText>
-          </AnchorLink>
-          <AnchorLink offset="60" href="#problematic">
+          </a>
+          <a href="#problematic">
             <NavBarText
-              isVisibleSection={this.state.visibleSection === "Problematiques"}
+              isVisibleSection={visibleSection === "Problematiques"}
             >
               {t("QuiSommesNous.Problématiques", "Problématiques")}
             </NavBarText>
-          </AnchorLink>
-          <AnchorLink offset="60" href="#contribution">
+          </a>
+          <a href="#contribution">
             <NavBarText
-              isVisibleSection={this.state.visibleSection === "Contribution"}
+              isVisibleSection={visibleSection === "Contribution"}
             >
               {t(
                 "QuiSommesNous.Approche contributive",
                 "Approche contributive"
               )}
             </NavBarText>
-          </AnchorLink>
-          <AnchorLink offset="60" href="#partners">
+          </a>
+          <a href="#partners">
             <NavBarText
-              isVisibleSection={this.state.visibleSection === "Partenaires"}
+              isVisibleSection={visibleSection === "Partenaires"}
             >
               {t("QuiSommesNous.Partenaires", "Partenaires")}
             </NavBarText>
-          </AnchorLink>
+          </a>
         </NavBarContainer>
         <MissionContainer id="mission">
           <SectionHeader>
             {t("QuiSommesNous.Missions", "Missions")}
           </SectionHeader>
-          <Mission t={t} isRTL={isRTL} />
+          <Mission />
         </MissionContainer>
-        <TeamContainer id="equipe" onClick={this.closeSide}>
+        <TeamContainer id="equipe" onClick={closeSide}>
           <SectionHeader>
             {t("QuiSommesNous.L'équipe", "L'équipe Réfugiés.info")}
           </SectionHeader>
           <Team
-            t={t}
             sideVisible={sideVisible}
-            membre={membre}
-            closeSide={this.closeSide}
-            onMemberCardClick={this.onSelectMembre}
-            type="membres"
+            member={membre}
+            onMemberCardClick={onSelectMembre}
+            type="members"
           />
           <SectionSubHeader>
             {t("QuiSommesNous.Anciens membres", "Anciens membres")}
@@ -266,35 +262,32 @@ class QuiSommesNous extends Component {
             </SectionSubHeaderMissing>
           </SectionSubHeader>
           <Team
-            t={t}
             sideVisible={sideVisible}
-            membre={membre}
-            closeSide={this.closeSide}
-            onMemberCardClick={this.onSelectMembre}
-            type="former_membres"
+            member={membre}
+            onMemberCardClick={onSelectMembre}
+            type="former_members"
           />
         </TeamContainer>
         <ProblematicContainer id="problematic">
           <SectionHeader>
             {t("QuiSommesNous.Problématiques", "Problématiques")}
           </SectionHeader>
-          <Problematic t={t} />
+          <Problematic />
         </ProblematicContainer>
         <ContributionContainer id="contribution">
           <SectionHeader>
             {t("QuiSommesNous.Approche contributive", "Approche contributive")}
           </SectionHeader>
-          <Contribution t={t} />
+          <Contribution />
         </ContributionContainer>
         <PartnersContainer id="partners">
           <SectionHeader>
             {t("QuiSommesNous.Partenaires", "Partenaires")}
           </SectionHeader>
-          <Partners t={t} />
+          <Partners />
         </PartnersContainer>
       </MainContainer>
     );
-  }
 }
 
-export default withTranslation()(QuiSommesNous);
+export default QuiSommesNous;

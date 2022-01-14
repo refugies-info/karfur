@@ -1,23 +1,22 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
-
-import { membres } from "../data";
-
-import { former_membres } from "../data";
-import Alain from "../../../assets/qui-sommes-nous/Alain.png";
-import Agathe from "../../../assets/qui-sommes-nous/Agathe.png";
-import Nour from "../../../assets/qui-sommes-nous/Nour.png";
-import Soufiane from "../../../assets/qui-sommes-nous/Soufiane.png";
-import Simon from "../../../assets/qui-sommes-nous/Simon.png";
-import Luca from "../../../assets/qui-sommes-nous/Luca.png";
-import Ana from "../../../assets/qui-sommes-nous/Ana.png";
-import Hugo from "../../../assets/qui-sommes-nous/Hugo.png";
-import Chloé from "../../../assets/qui-sommes-nous/Chloé.png";
-import Camille from "../../../assets/qui-sommes-nous/Camille.png";
-import Alice from "../../../assets/qui-sommes-nous/Alice.png";
-import Gael from "../../../assets/qui-sommes-nous/Gael.png";
-import Margot from "../../../assets/qui-sommes-nous/Margot.png";
+import { useTranslation } from "react-i18next";
+import FButton from "components/FigmaUI/FButton/FButton";
+import Alain from "assets/qui-sommes-nous/Alain.png";
+import Agathe from "assets/qui-sommes-nous/Agathe.png";
+import Nour from "assets/qui-sommes-nous/Nour.png";
+import Soufiane from "assets/qui-sommes-nous/Soufiane.png";
+import Simon from "assets/qui-sommes-nous/Simon.png";
+import Luca from "assets/qui-sommes-nous/Luca.png";
+import Ana from "assets/qui-sommes-nous/Ana.png";
+import Hugo from "assets/qui-sommes-nous/Hugo.png";
+import Chloé from "assets/qui-sommes-nous/Chloé.png";
+import Camille from "assets/qui-sommes-nous/Camille.png";
+import Alice from "assets/qui-sommes-nous/Alice.png";
+import Gael from "assets/qui-sommes-nous/Gael.png";
+import Margot from "assets/qui-sommes-nous/Margot.png";
+import { members, former_members } from "data/members";
+import type { Member } from "data/members";
 
 const TeamContainer = styled.div`
   display: flex;
@@ -26,40 +25,30 @@ const TeamContainer = styled.div`
   margin-left: 66px;
   justify-content: center;
 `;
-export const Team = (props) => (
+
+interface TeamProps {
+  type: "members" | "former_members";
+  onMemberCardClick: any;
+  sideVisible: boolean;
+  member: any;
+}
+
+export const Team = (props: TeamProps) => (
   <TeamContainer>
-    {props.type === "membres"
-      ? membres.map((membre) => (
+    {props.type === "members"
+      ? members.map((member) => (
           <MemberCard
-            portfolio={membre.portfolio}
-            linkedin={membre.linkedin}
-            twitter={membre.twitter}
-            name={membre.name}
-            key={membre.name}
-            autre={membre.autre}
-            role={membre.roleShort || membre.roleName}
-            color={membre.color}
-            borderColor={membre.borderColor}
+            member={member}
             onMemberCardClick={props.onMemberCardClick}
-            membreSelected={props.membre === membre.name && props.sideVisible}
-            t={props.t}
+            memberSelected={props.member === member.name && props.sideVisible}
           />
         ))
-      : props.type === "former_membres"
-      ? former_membres.map((membre) => (
+      : props.type === "former_members"
+      ? former_members.map((member) => (
           <MemberCard
-            portfolio={membre.portfolio}
-            linkedin={membre.linkedin}
-            twitter={membre.twitter}
-            name={membre.name}
-            key={membre.name}
-            autre={membre.autre}
-            role={membre.roleShort || membre.roleName}
-            color={membre.color}
-            borderColor={membre.borderColor}
+            member={member}
             onMemberCardClick={props.onMemberCardClick}
-            membreSelected={props.membre === membre.name && props.sideVisible}
-            t={props.t}
+            memberSelected={props.member === member.name && props.sideVisible}
           />
         ))
       : null}
@@ -119,7 +108,7 @@ const RoleContainer = styled.div`
   background: #ffffff;
 `;
 
-const getImage = (name) => {
+const getImage = (name: string) => {
   const firstName = name.split(" ")[0];
 
   if (firstName === "Alain") return Alain;
@@ -137,36 +126,42 @@ const getImage = (name) => {
   if (firstName === "Soufiane") return Soufiane;
 };
 
-const MemberCard = (props) => {
+interface MemberProps {
+  member: Member;
+  onMemberCardClick: any;
+  memberSelected: boolean;
+}
+const MemberCard = (props: MemberProps) => {
   const [isHover, setIsHover] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <MemberContainer>
       <MemberCardContainer
-        background={props.color}
-        borderColor={props.borderColor}
+        background={props.member.color}
+        borderColor={props.member.borderColor}
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
         isHover={isHover}
-        membreSelected={props.membreSelected}
+        membreSelected={props.memberSelected}
       >
         {isHover ? (
           <LinkContainer>
-            {props.portfolio && (
+            {props.member.portfolio && (
               <FButton
                 target="_blank"
-                href={props.portfolio}
+                href={props.member.portfolio}
                 type="white"
                 className="mb-10 mt-10"
                 name="external-link-outline"
               >
-                {props.t("QuiSommesNous.Portfolio", "Portfolio ")}
+                {t("QuiSommesNous.Portfolio", "Portfolio ")}
               </FButton>
             )}
-            {props.linkedin && (
+            {props.member.linkedin && (
               <FButton
                 target="_blank"
-                href={props.linkedin}
+                href={props.member.linkedin}
                 type="white"
                 className="mb-10  mt-10"
                 name="linkedin-outline"
@@ -174,10 +169,10 @@ const MemberCard = (props) => {
                 Linkedin
               </FButton>
             )}
-            {props.twitter && (
+            {props.member.twitter && (
               <FButton
                 target="_blank"
-                href={props.twitter}
+                href={props.member.twitter}
                 type="white"
                 className="mb-10 mt-10"
                 name="twitter-outline"
@@ -185,15 +180,15 @@ const MemberCard = (props) => {
                 Twitter
               </FButton>
             )}
-            {props.autre && (
+            {props.member.autre && (
               <FButton
                 target="_blank"
-                href={props.autre}
+                href={props.member.autre}
                 type="white"
                 className="mb-10  mt-10"
                 name="external-link-outline"
               >
-                {props.t("QuiSommesNous.Autre", "Autre ")}
+                {t("QuiSommesNous.Autre", "Autre ")}
               </FButton>
             )}
           </LinkContainer>
@@ -201,13 +196,15 @@ const MemberCard = (props) => {
           <>
             <div>
               <img
-                src={getImage(props.name)}
+                src={getImage(props.member.name)}
                 //   onClick={this._closeSide}
-                alt={props.name}
+                alt={props.member.name}
               />
             </div>
-            <NameContainer>{props.name}</NameContainer>
-            <RoleContainer>{props.role}</RoleContainer>
+            <NameContainer>{props.member.name}</NameContainer>
+            <RoleContainer>
+              {props.member.roleShort || props.member.roleName}
+            </RoleContainer>
           </>
         )}
       </MemberCardContainer>
