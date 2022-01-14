@@ -27,7 +27,7 @@ import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
 import MobileAppModal from "components/Modals/MobileAppModal/MobileAppModal";
 import { readAudio } from "lib/readAudio";
 // import routes from "routes";
-import Footer from "containers/Footer/Footer";
+import Footer from "components/Layout/Footer";
 import { toggleSpinner } from "services/Tts/tts.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isMobileOnly } from "react-device-detect";

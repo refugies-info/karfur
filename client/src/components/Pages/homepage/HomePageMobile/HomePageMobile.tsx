@@ -8,7 +8,7 @@ import {
 } from "assets/figma";
 import { HomePageMobileSection } from "./HomePageMobileSection";
 import { GoToDesktopModal } from "./GoToDesktopModal";
-import { SubscribeNewsletterModal } from "containers/Footer/SubscribeNewsletterModal/SubscribeNewsletterModal";
+import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import { ReceiveInvitationMailModal } from "./ReceiveInvitationMailModal";
 import { HelpToTranslateMobileModal } from "./HelpToTranslateMobileModal";
 
@@ -110,7 +110,6 @@ export const HomePageMobile = (props: Props) => {
       <SubscribeNewsletterModal
         toggle={toggleShowNewsletterModal}
         show={showNewslettreModal}
-        t={props.t}
       />
       <ReceiveInvitationMailModal
         toggle={toggleShowInvitationEmailModal}

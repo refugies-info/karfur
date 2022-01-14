@@ -1,27 +1,26 @@
 import React, { useState } from "react";
 import { Modal } from "reactstrap";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import { newsletter } from "../../../assets/figma";
-import FInput from "../../../components/FigmaUI/FInput/FInput";
+import { newsletter } from "assets/figma";
+import FInput from "components/FigmaUI/FInput/FInput";
 import Swal from "sweetalert2";
-import API from "../../../utils/API";
-import { FButtonMobile } from "../../../components/FigmaUI/FButtonMobile/FButtonMobile";
+import API from "utils/API";
+import { FButtonMobile } from "components/FigmaUI/FButtonMobile/FButtonMobile";
 import { colors } from "colors";
 import { isMobile } from "react-device-detect";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
+import FButton from "components/FigmaUI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 
 declare const window: Window;
 interface Props {
   toggle: () => void;
   show: boolean;
-  t: (a: string, b: string) => void;
 }
 
 interface EmailProps {
   email: string;
   notEmailError: boolean;
-  t: (a: string, b: string) => void;
   id: string;
   onChange: (email: string) => void;
 }
@@ -68,26 +67,30 @@ const CloseIconContainer = styled.div`
   top: 8px;
 `;
 
-const EmailField = (props: EmailProps) => (
-  <>
-    <FInput
-      prepend
-      prependName="email-outline"
-      value={props.email}
-      {...props}
-      id="email"
-      type="email"
-      placeholder={props.t("Register.Votre email", "Votre email")}
-      error={props.notEmailError}
-      errorIcon="email-outline"
-      newSize
-    />
-  </>
-);
+const EmailField = (props: EmailProps) => {
+  const { t } = useTranslation();
+  return (
+    <>
+      <FInput
+        prepend
+        prependName="email-outline"
+        value={props.email}
+        {...props}
+        id="email"
+        type="email"
+        placeholder={t("Register.Votre email", "Votre email")}
+        error={props.notEmailError}
+        errorIcon="email-outline"
+        newSize
+      />
+    </>
+  )
+}
 
 export const SubscribeNewsletterModal = (props: Props) => {
   const [email, setEmail] = useState("");
   const [notEmailError, setNotEmailError] = useState(false);
+  const { t } = useTranslation();
 
   const handleChangeEmail = (event: any) => {
     setEmail(event.target.value);
@@ -137,14 +140,14 @@ export const SubscribeNewsletterModal = (props: Props) => {
         <img src={newsletter} alt="image newsletter" />
         <TitleContainer>
           {isMobile
-            ? props.t("Footer.Newsletter", "Newsletter")
-            : props.t(
+            ? t("Footer.Newsletter", "Newsletter")
+            : t(
                 "Footer.Inscription à la newsletter",
                 "Inscription à la newsletter"
               )}
         </TitleContainer>
         <TextContainer>
-          {props.t(
+          {t(
             "Footer.Inscrivez-vous à notre lettre",
             "Inscrivez-vous à notre lettre d'information pour suivre l'évolution du projet Réfugiés.info"
           )}
@@ -153,16 +156,15 @@ export const SubscribeNewsletterModal = (props: Props) => {
           id="email"
           email={email}
           onChange={handleChangeEmail}
-          t={props.t}
           notEmailError={notEmailError}
         />
         {notEmailError && (
           <ErrorMessageContainer>
-            {props.t(
+            {t(
               "Register.Ceci n'est pas un email,",
               "Ceci n'est pas un email,"
             )}{" "}
-            {props.t(
+            {t(
               "Register.vérifiez l'orthographe",
               "vérifiez l'orthographe."
             )}
@@ -174,8 +176,8 @@ export const SubscribeNewsletterModal = (props: Props) => {
             isDisabled={!email}
             fill="white"
             color={colors.vert}
+            t={t}
             onClick={sendMail}
-            t={props.t}
             title="Envoyer"
             defaultTitle="Envoyer"
           />
@@ -186,7 +188,7 @@ export const SubscribeNewsletterModal = (props: Props) => {
               name="close-outline"
               onClick={props.toggle}
             >
-              <div> {props.t("Retour", "Retour")}</div>
+              <div> {t("Retour", "Retour")}</div>
             </FButton>
             <FButton
               type="validate-light"
@@ -195,7 +197,7 @@ export const SubscribeNewsletterModal = (props: Props) => {
               onClick={sendMail}
               className="ml-8"
             >
-              <div> {props.t("Envoyer", "Envoyer")}</div>
+              <div> {t("Envoyer", "Envoyer")}</div>
             </FButton>
           </ButtonContainer>
         )}

@@ -17,7 +17,7 @@ import {
 import { initial_data } from "../containers/AdvancedSearch/data";
 import { initGA, PageView } from "../tracking/dispatch";
 import { iphone } from "../assets/figma";
-import { SubscribeNewsletterModal } from "../containers/Footer/SubscribeNewsletterModal/SubscribeNewsletterModal";
+import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import { MobileSearchFilterModal } from "../containers/AdvancedSearch/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
 import icon_mobilisation from "../assets/icon_mobilisation.svg";
 import { assetsOnServer } from "../assets/assetsOnServer";
@@ -345,7 +345,7 @@ const Homepage = (props) => {
                   <FButton
                     name="file-add-outline"
                       tag="a"
-                      tabindex="1"
+                      tabIndex="1"
                     type="dark"
                     style={{ height: "60px" }}
                   >
@@ -372,7 +372,7 @@ const Homepage = (props) => {
                     name="file-add-outline"
                       type="dark"
                       tag="a"
-                      tabindex="2"
+                      tabIndex="2"
                     style={{ height: "60px" }}
                   >
                     {t("Homepage.Je propose une fiche", "Je propose une fiche")}
@@ -400,7 +400,7 @@ const Homepage = (props) => {
                   name="file-add-outline"
                       type="dark"
                       tag="a"
-                      tabindex="3"
+                      tabIndex="3"
                   style={{ height: "60px" }}
                 >
                   {t("Homepage.J'aide à traduire", "J'aide à traduire")}
@@ -431,7 +431,7 @@ const Homepage = (props) => {
                       <FButton
                           type="dark"
                           tag="a"
-                          tabindex="4"
+                          tabIndex="4"
                         style={{ height: "60px" }}
                       >
                         <img
@@ -452,7 +452,7 @@ const Homepage = (props) => {
                     <FButton
                         type="outline-black"
                         tag="a"
-                        tabindex="5"
+                        tabIndex="5"
                       style={{ height: "60px" }}
                     >
                       {t(
@@ -529,7 +529,6 @@ const Homepage = (props) => {
       <SubscribeNewsletterModal
         toggle={toggleShowNewsletterModal}
         show={showNewslettreModal}
-        t={t}
       />
       <BecomeTesterModal
         toggle={toggleBecomeTesterModal}
