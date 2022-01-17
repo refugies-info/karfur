@@ -6,7 +6,7 @@ import { CardBody, CardFooter } from "reactstrap";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import Streamline from "../../assets/streamline";
-import "./AdvancedSearch.scss";
+// import "./AdvancedSearch.scss";
 // import { Link } from "react-router-dom";
 
 const CardText = styled.p`
@@ -30,7 +30,7 @@ const SearchResultCard = ({
   showPinned,
 }) => {
   if (themeList) {
-    return;
+    return null;
   }
   const pinned =
     pinnedList.includes(dispositif._id) ||
@@ -130,7 +130,7 @@ const SearchResultCard = ({
       </div>
     );
   }
-  return false;
+  return null;
 };
 
-export default withRouter(SearchResultCard);
+export default SearchResultCard;

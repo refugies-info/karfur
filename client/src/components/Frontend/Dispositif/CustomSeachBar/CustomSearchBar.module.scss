@@ -1,0 +1,48 @@
+@import "src/scss/colors.scss";
+@import "src/scss/global.scss";
+
+.container {
+  background: #ffffff;
+  border: 0.5px solid #ffffff;
+  border-radius: 12px;
+  padding-right: 12px;
+  padding-left: 15px;
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 18%;
+  min-width: 180px;
+  height: 52px;
+  color: #000000;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.1);
+  }
+  &:focus {
+    outline: none !important;
+  }
+  @include media-min("widescreen-up") {
+    width: 240px
+  }
+  &.no_margin {
+    margin-right: 0;
+  }
+}
+
+.input {
+  background: #ffffff;
+  border: 0.5px solid #ffffff;
+  border-radius: 12px;
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  color: #000000;
+
+  &:focus {
+    outline: none !important;
+  }
+}

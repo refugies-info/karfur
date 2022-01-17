@@ -33,7 +33,7 @@ import { isLoadingSelector } from "../../services/LoadingStatus/loadingStatus.se
 import { LoadingStatusKey } from "../../services/LoadingStatus/loadingStatus.actions";
 import { activatedLanguages } from "../../components/Modals/LanguageModal/data";
 
-import "./AdvancedSearch.scss";
+// import "./AdvancedSearch.scss";
 import { colors } from "colors";
 
 const ThemeContainer = styled.div`

@@ -51,12 +51,12 @@ const routes = [
     component: QuiSommesNous,
     restriction: [],
   }, */
-  {
+/*   {
     path: "/annuaire-create",
     name: "Réfugiés.info - Annuaire",
     component: AnnuaireCreate,
     restriction: [],
-  },
+  }, */
 /*   {
     path: "/annuaire",
     exact: true,
@@ -64,20 +64,20 @@ const routes = [
     component: AnnuaireLecture,
     restriction: [],
   }, */
-  {
+/*   {
     path: "/annuaire/:id",
     name: "Réfugiés.info - Annuaire",
     exact: true,
     component: AnnuaireDetail,
     restriction: [],
-  },
+  }, */
 /*   {
     path: "/comment-contribuer",
     name: "Réfugiés.info - Comment contribuer ?",
     component: CommentContribuer,
     restriction: [],
   }, */
-  {
+/*   {
     path: "/mentions-legales",
     name: "Réfugiés.info - Mentions Légales",
     component: MentionsLegales,
@@ -88,13 +88,7 @@ const routes = [
     name: "Réfugiés.info - Politique de confidentialité",
     component: PolitiqueConfidentialite,
     restriction: [],
-  },
-  {
-    path: "/download-app",
-    name: "Réfugiés.info - Télécharger l'application",
-    component: DownloadApp,
-    restriction: [],
-  },
+  }, */
   {
     path: "/dispositif/:id",
     exact: true,
@@ -122,6 +116,18 @@ const routes = [
     exact: true,
     name: "Réfugiés.info - Démarche",
     component: Dispositif,
+    restriction: [],
+  },
+
+
+
+
+
+
+  {
+    path: "/download-app",
+    name: "Réfugiés.info - Télécharger l'application",
+    component: DownloadApp,
     restriction: [],
   },
 

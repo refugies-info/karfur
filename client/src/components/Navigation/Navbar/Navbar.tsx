@@ -12,7 +12,8 @@ import LanguageBtn from "components/FigmaUI/LanguageBtn/LanguageBtn";
 import FButton from "components/FigmaUI/FButton/FButton";
 import AdvancedSearchBar from "containers/UI/AdvancedSearchBar/AdvancedSearchBar";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { fetchUserActionCreator } from "services/User/user.actions";
+// import { fetchUserActionCreator } from "services/User/user.actions";
+import { toggleTTSActionCreator, toggleSpinner } from "services/Tts/tts.actions";
 import { breakpoints } from "utils/breakpoints.js";
 import styled from "styled-components";
 import Streamline from "assets/streamline";
@@ -22,6 +23,7 @@ import {
   userStructureSelector,
 } from "services/UserStructure/userStructure.selectors";
 import { userSelector } from "services/User/user.selectors";
+import { ttsActiveSelector, ttsLoadingSelector } from "services/Tts/tts.selector";
 import { colors } from "colors";
 import { logger } from "logger";
 import { getNbNewNotifications } from "containers/Backend/UserNotifications/lib";
@@ -46,14 +48,9 @@ const IconButton = styled.div`
   width: 50px;
 `;
 
-interface Props {
-  drawerToggleClicked: any
-}
-
-const Navbar = (props: Props) => {
+const Navbar = () => {
   const [visible, setVisible] = useState(true);
   const [scroll, setScroll] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -63,12 +60,9 @@ const Navbar = (props: Props) => {
   const dispositifsAssocies = useSelector(userStructureDisposAssociesSelector);
   const hasResponsibleSeenNotification = useSelector(userStructureHasResponsibleSeenNotification);
   const userStructure = useSelector(userStructureSelector);
+  const ttsActive = useSelector(ttsActiveSelector);
+  const ttsLoading = useSelector(ttsLoadingSelector);
 
-  const disconnect = () => {
-    API.logout();
-    dispatch(fetchUserActionCreator());
-    // this.props.setUserStructure(null);
-  };
 /*
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -138,7 +132,7 @@ const Navbar = (props: Props) => {
   };
 
   const path = router.pathname || "";
-  const windowWidth = 1200; // TODO : fix that
+  const windowWidth = 1300; // TODO : fix that
   const userImg = user.user && user.user.picture ? user.user.picture.secure_url : marioProfile;
   const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
   const pathName = user.membreStruct
@@ -167,7 +161,7 @@ const Navbar = (props: Props) => {
       ) : (
         <div className={styles.left_buttons}>
           <Logo />
-          {path !== "/" && path !== "/homepage" && windowWidth >= breakpoints.phoneDown && (
+          {path !== "/" && path !== "/homepage" && (
               <Link href="/">
                 <FButton type="login" name="home-outline" tag="a" className={styles.home_btn}>
                   {windowWidth >= breakpoints.lgLimit && windowWidth > 1280 && (
@@ -180,10 +174,13 @@ const Navbar = (props: Props) => {
       )}
 
       <div className={styles.center_buttons}>
-        <AudioBtn windowWidth={windowWidth} />
-        <LanguageBtn
-          hideText={windowWidth < breakpoints.tabletUp || windowWidth < 1024}
+        <AudioBtn
+          enabled={["fr", "en", "ar", "ru"].includes(i18n.language)}
+          toggleAudio={() => dispatch(toggleTTSActionCreator())}
+          ttsActive={ttsActive}
+          ttsLoading={ttsLoading}
         />
+        <LanguageBtn hideTextOnMobile={true} />
         {isMobile ? (
           <IconButton
             onClick={() => {
@@ -199,9 +196,7 @@ const Navbar = (props: Props) => {
           <AdvancedSearchBar
             visible={visible}
             scroll={scroll}
-            loupe
-            windowWidth={windowWidth}
-            className="search-bar inner-addon right-addon mr-10 rsz"
+            // className="search-bar inner-addon right-addon mr-10 rsz"
           />
         )}
 

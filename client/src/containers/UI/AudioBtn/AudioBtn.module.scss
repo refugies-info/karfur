@@ -1,10 +1,8 @@
 @import "src/scss/colors.scss";
 @import "src/scss/global.scss";
 
-.audio-icon-wrapper {
+.audio_btn {
   position: relative;
-  // width: 40px;
-  // min-width: 40px;
   height: 52px;
   background: $blanc;
   box-sizing: border-box;
@@ -14,13 +12,12 @@
   user-select: none;
   transition: all 0.2s ease;
   display: flex;
-
   justify-content: center;
-
   align-items: center;
   margin-top: auto;
   margin-bottom: auto;
   min-width: 50px;
+
   @include media-max("phone-down") {
     margin-right: 5px;
   }
@@ -29,7 +26,23 @@
     margin-right: 8px;
   }
 
-  .ecouter-text {
+  &:hover {
+    background: $noir;
+    border-color: $noir;
+    box-shadow: 04px 7px rgba(0, 0, 0, 0.1);
+    color: $blanc;
+    svg {
+      fill: $blanc;
+    }
+  }
+
+  &.pressed {
+    background: $vert;
+    border: none;
+    color: $blanc;
+  }
+
+  .text {
     display: flex;
     flex: 1;
     font-weight: bold;
@@ -39,27 +52,17 @@
     margin-bottom: 15px;
     margin-right: 15px;
     margin-left: 10px;
-  }
 
-  &:hover {
-    background: $noir;
-    border-color: $noir;
-    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
-    color: $blanc;
-    svg {
-      fill: $blanc;
+    @include media-max("desktop-up") {
+      display: none;
     }
   }
-  &.pressed {
-    background: $vert;
-    border: none;
-    color: $blanc;
-  }
 
-  i.eva-hover {
-    margin: auto;
-  }
-  #audioBtn {
+  .icon {
     line-height: 20px;
+
+    @include media-min("desktop-up") {
+      margin-left: 15px;
+    }
   }
 }

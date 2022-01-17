@@ -31,45 +31,29 @@ $avatarSize: 52px;
   padding-top: 15px;
   padding-bottom: 15px;
 
-  nav {
-    height: 100%;
-  }
-
-  .navbar-toggler {
-    &:focus {
-      outline: 0;
-    }
-    .navbar-toggler-icon {
-      height: 23px;
-      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%232f353a' stroke-width='2.25' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-    }
-  }
-
-  .Logo {
-    font-weight: 800;
-    font-size: 22px;
-    margin: auto;
-    text-decoration: none;
-    color: inherit;
-
-    .beta-tag {
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 26px;
-      color: #b71540;
-    }
-  }
-
-  .right-buttons {
-    display: flex;
-    max-height: 40px;
-  }
   .search-bar .react-autosuggest__container input {
     height: 100%;
   }
   .figma-btn {
     height: 100%;
+  }
+
+  .hidden {
+    @include media-min("desktop-up") {
+      top: -100px !important;
+    }
+  }
+
+  .rtl {
+    background: linear-gradient(
+      267.06deg,
+      #ffffff 13.69%,
+      rgba(255, 255, 255, 0) 31.19%
+    );
+
+    @include media-max("tablet-up") {
+      background: none;
+    }
   }
 }
 
@@ -141,15 +125,19 @@ $avatarSize: 52px;
   margin: auto;
   padding-left: 10px;
   font-size: 18px;
+  display: none;
 
   @media (min-width: 1024px) {
     margin-top: -3px;
+  }
+
+  @include media-min("phone-down") {
+    display: block;
   }
 }
 .center_buttons {
   display: inline-flex;
 }
-
 .left_buttons {
   height: 100%;
   display: flex;
@@ -158,40 +146,4 @@ $avatarSize: 52px;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-@media (max-width: $drawerLimit) {
-  .DesktopOnly {
-    display: none;
-  }
-}
-
-.hidden {
-  @include media-min("desktop-up") {
-    top: -100px !important;
-  }
-}
-
-.rtl {
-  background: linear-gradient(
-    267.06deg,
-    #ffffff 13.69%,
-    rgba(255, 255, 255, 0) 31.19%
-  );
-
-  @include media-max("tablet-up") {
-    background: none;
-  }
-}
-
-.Toolbar .dropdown-toggle.btn.btn-transparent:after {
-  color: #6c757d;
-}
-
-.Toolbar .dropdown-toggle.btn.btn-transparent:hover:after {
-  color: white;
-}
-
-.Toolbar .dropdown-toggle.btn.btn-transparent:hover {
-  background-color: gray;
 }

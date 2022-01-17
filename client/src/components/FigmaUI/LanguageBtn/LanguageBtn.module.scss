@@ -4,9 +4,10 @@
 $btnHeight: 40px;
 $btnWidth: 40px;
 
-.language-btn.figma-btn {
+.language_btn {
   margin-top: auto;
   margin-bottom: auto;
+
   @include media-max("phone-down") {
     margin-right: 5px;
   }
@@ -14,5 +15,11 @@ $btnWidth: 40px;
     width: 50px;
     min-height: 50px;
     margin-right: 8px;
+  }
+
+  .mobile_hidden {
+    @include media-max("desktop-up") {
+      display: none;
+    }
   }
 }

@@ -7,6 +7,9 @@ import Layout from "components/Layout/Layout";
 
 import "App.scss";
 import "components/Layout/Layout.scss";
+import "rc-time-picker/assets/index.css";
+import "components/UI/CustomCard/CustomCard.scss";
+import "containers/AdvancedSearch/AdvancedSearch.scss";
 
 const App = ({ Component, pageProps }: AppProps) => (
   <Provider store={store}>
