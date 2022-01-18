@@ -8,7 +8,7 @@ import Streamline from "../../../assets/streamline";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import i18n from "../../../i18n";
 
-import "./SearchItem.scss";
+// import "./SearchItem.scss";
 // import variables from 'scss/colors.scss';
 
 export class SearchItem extends Component {

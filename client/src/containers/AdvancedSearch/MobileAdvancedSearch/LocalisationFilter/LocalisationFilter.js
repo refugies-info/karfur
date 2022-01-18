@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { colors } from "../../../../colors";
 import ReactDependentScript from "react-dependent-script";
 import Autocomplete from "react-google-autocomplete";
-import Icon from "react-eva-icons";
+// import Icon from "react-eva-icons";
 
 const FilterButton = styled.div`
   padding: 16px;
@@ -86,7 +86,7 @@ export const LocalisationFilter = (props) => {
               props.desactiver(index);
             }}
           >
-            <Icon name="close" fill={colors.blanc} size="large" />
+            {/* <Icon name="close" fill={colors.blanc} size="large" /> */}
           </div>
         </SelectedFilter>
       )}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import FButton from "../../FigmaUI/FButton/FButton";
 import { responsableFiche } from "../../../assets/figma";
-import "./ResponsableModal.scss";
+// import "./ResponsableModal.scss";
 
 class ResponsableModal extends Component {
   validateModal = async () => {

@@ -7,9 +7,11 @@ import Layout from "components/Layout/Layout";
 
 import "App.scss";
 import "components/Layout/Layout.scss";
+// TODO: clean
 import "rc-time-picker/assets/index.css";
 import "components/UI/CustomCard/CustomCard.scss";
 import "containers/AdvancedSearch/AdvancedSearch.scss";
+import "components/FigmaUI/TagButton/TagButton.scss"
 
 const App = ({ Component, pageProps }: AppProps) => (
   <Provider store={store}>

@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 
-import "./ThanksModal.scss";
+// import "./ThanksModal.scss";
 
 const thanksModal = (props) => {
   return (

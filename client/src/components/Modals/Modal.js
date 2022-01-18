@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, ModalHeader } from "reactstrap";
 
-import "./Modal.scss";
+// import "./Modal.scss";
 
 const modal = (props) => {
   const { show, toggle, modalHeader, className, children, modalRef } = props;

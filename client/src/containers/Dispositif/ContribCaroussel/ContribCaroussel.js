@@ -14,7 +14,7 @@ import withSizes from "react-sizes";
 import marioProfile from "../../../assets/mario-profile.jpg";
 import { colors } from "colors";
 import "./ContribCaroussel.scss";
-import Icon from "react-eva-icons";
+// import Icon from "react-eva-icons";
 import _ from "lodash";
 
 class ContribCaroussel extends Component {
@@ -152,21 +152,21 @@ class ContribCaroussel extends Component {
               className="left-btn cursor-pointer"
               onClick={() => this.previous(maxL)}
             >
-              <Icon
+              {/* <Icon
                 name="arrow-ios-back-outline"
                 size="large"
                 fill={colors.darkColor}
-              />
+              /> */}
             </div>
             <div
               className="left-btn cursor-pointer"
               onClick={() => this.next(maxL)}
             >
-              <Icon
+              {/* <Icon
                 name="arrow-ios-forward-outline"
                 size="large"
                 fill={colors.darkColor}
-              />
+              /> */}
             </div>
           </Col>
         </Row>

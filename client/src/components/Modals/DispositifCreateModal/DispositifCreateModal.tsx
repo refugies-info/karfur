@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
-import Icon from "react-eva-icons";
-import "./DispositifCreateModal.scss";
+// import Icon from "react-eva-icons";
+// import "./DispositifCreateModal.scss";
 import FButton from "../../FigmaUI/FButton/FButton";
 
 interface Props {
@@ -123,7 +123,7 @@ export class DispositifCreateModal extends Component<Props, StateType> {
       >
         <MainContainer>
           <IconContainer onClick={this.props.toggle}>
-            <Icon name="close-outline" fill="#3D3D3D" size="large" />
+            {/* <Icon name="close-outline" fill="#3D3D3D" size="large" /> */}
           </IconContainer>
           <HeaderContainer step={this.state.step}>
             <Header>Nouvelle fiche</Header>

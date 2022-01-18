@@ -15,7 +15,7 @@ import ReactToPrint from "react-to-print";
 import Modal from "../Modal";
 import FButton from "../../FigmaUI/FButton/FButton";
 
-import "./EtapeModal.scss";
+// import "./EtapeModal.scss";
 import {colors} from "colors";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 

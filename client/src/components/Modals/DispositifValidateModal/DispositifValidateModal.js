@@ -8,7 +8,7 @@ import { colors } from "../../../colors";
 import { filtres } from "../../../containers/Dispositif/data";
 import Streamline from "../../../assets/streamline/index";
 
-import "./DispositifValidateModal.scss";
+// import "./DispositifValidateModal.scss";
 
 const CheckContainer = styled.div`
   background: ${(props) => (props.missingElement ? "#FFE2B8" : "#def7c2")};

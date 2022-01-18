@@ -1,8 +1,8 @@
 import React from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
-import Icon from "react-eva-icons";
-import "./DraftModal.scss";
+// import Icon from "react-eva-icons";
+// import "./DraftModal.scss";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import FButton from "../../FigmaUI/FButton/FButton";
 import imageGreen from "../../../assets/illu_bonasavoir.svg";
@@ -153,7 +153,7 @@ export const DraftModal = (props: Props) => (
   <Modal isOpen={props.show} toggle={props.toggle} className="draft">
     <MainContainer>
       <IconContainer onClick={props.toggle}>
-        <Icon name="close-outline" fill="#3D3D3D" size="large" />
+        {/* <Icon name="close-outline" fill="#3D3D3D" size="large" /> */}
       </IconContainer>
       <Header>Sauvegarder</Header>
       <InfosContainer>

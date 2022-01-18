@@ -3,7 +3,6 @@ import styled from "styled-components";
 import CustomCard from "../../components/UI/CustomCard/CustomCard";
 import { CardBody } from "reactstrap";
 import { withTranslation } from "react-i18next";
-import "./AdvancedSearch.scss";
 import Skeleton from "react-loading-skeleton";
 
 const CardText = styled.p`
@@ -28,4 +27,4 @@ const LoadingCard = () => {
   );
 };
 
-export default withRouter(withTranslation()(LoadingCard));
+export default LoadingCard;

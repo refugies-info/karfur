@@ -6,8 +6,8 @@ import { interieur_2, interieur_3, interieur_4 } from "../../../assets/figma";
 import FButton from "../../FigmaUI/FButton/FButton";
 import Modal from "../Modal";
 
-import "./DemarcheCreateModal.scss";
 import { colors } from "colors";
+import styles from "./DemarcheCreateModal.module.scss";
 
 class DemarcheCreateModal extends Component {
   state = {
@@ -29,7 +29,7 @@ class DemarcheCreateModal extends Component {
     const { stepIdx } = this.state;
     return (
       <Modal
-        className="dispositif-create-modal"
+        className={styles.modal}
         modalHeader={
           <>
             {stepIdx === 0
@@ -38,14 +38,14 @@ class DemarcheCreateModal extends Component {
                 : "C’est parti !"
               : onBoardSteps[stepIdx].title}
             {stepIdx === 0 && (
-              <div className="temps-right">
+              <div className={styles.temps_right}>
                 <EVAIcon
                   className="mr-8"
                   name="clock-outline"
                   size="large"
                   fill={colors.noir}
                 />
-                <span className="inline-custom">
+                <span className={styles.inline_custom}>
                   ≈ {typeContenu === "demarche" ? 40 : 20} min
                 </span>
               </div>

@@ -2,9 +2,9 @@ import React from "react";
 import { Input, Modal } from "reactstrap";
 import FButton from "../../FigmaUI/FButton/FButton";
 import styled from "styled-components";
-import Icon from "react-eva-icons";
+// import Icon from "react-eva-icons";
 
-import "./ReactionLectureModal.scss";
+// import "./ReactionLectureModal.scss";
 
 const ModalHeaderContainer = styled.div`
   display: flex;
@@ -68,7 +68,7 @@ const ReactionLectureModal = (props) => {
       className="modal-suggestion"
     >
       <IconContainer onClick={props.toggle}>
-        <Icon name="close-outline" fill="#3D3D3D" size="large" />
+        {/* <Icon name="close-outline" fill="#3D3D3D" size="large" /> */}
       </IconContainer>
       <ModalHeaderContainer toggle={props.toggle}>
         Réaction{" "}

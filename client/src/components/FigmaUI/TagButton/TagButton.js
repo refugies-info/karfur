@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./TagButton.scss";
+// import "./TagButton.scss";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 
 const fSearchBtn = (props) => {

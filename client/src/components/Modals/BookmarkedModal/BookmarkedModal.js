@@ -1,20 +1,26 @@
 import React from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 
-import "./BookmarkedModal.scss";
 import { colors } from "colors";
 import FButton from "../../FigmaUI/FButton/FButton";
+import styles from "./BookmarkedModal.module.scss";
 
-const bookmarkedModal = (props) => {
-  const { show, toggle, success, t } = props;
+const BookmarkedModal = (props) => {
+  const { t } = useTranslation();
+  const { show, toggle, success } = props;
   return (
-    <Modal isOpen={show} toggle={toggle} className="bookmark-modal">
+    <Modal isOpen={show} toggle={toggle} className={styles.bookmark_modal}>
       <ModalHeader toggle={toggle}>
-        <div className={"bookmark-icon" + (success ? " success" : " oups")}>
-          <EVAIcon name={"star"} fill={colors.blanc} />
+        <div
+          className={`${styles.bookmark_icon} ${
+            success ? styles.success : styles.oups
+          }`}
+        >
+          <EVAIcon name="star" fill={colors.blanc} />
         </div>
         <div>
           {success
@@ -29,9 +35,9 @@ const bookmarkedModal = (props) => {
               "Dispositif.favoriSaved",
               "Votre recherche est désormais disponible dans votre profil dans la rubrique"
             )}{" "}
-            <NavHashLink to="/backend/user-favorites">
-              <b>{t("Dispositif.Mes favoris", "Mes favoris")}</b>
-            </NavHashLink>
+            <Link href="/backend/user-favorites">
+              <a>{t("Dispositif.Mes favoris", "Mes favoris")}</a>
+            </Link>
           </>
         ) : (
           <>
@@ -58,28 +64,25 @@ const bookmarkedModal = (props) => {
           </>
         ) : (
           <>
-            <NavLink
+            <Link
               to={{
                 pathname: "/login",
               }}
             >
-              <FButton type="login" name={"log-in-outline"}>
+              <FButton type="login" name={"log-in-outline"} tag="a">
                 {t("Toolbar.Connexion", "Connexion")}
               </FButton>
-            </NavLink>
-            <NavLink
-              to={{
-                pathname: "/register",
-              }}
-            >
+            </Link>
+            <Link href={{ pathname: "/register" }}>
               <FButton
                 type="signup"
-                name={"person-add-outline"}
+                name="person-add-outline"
                 className="mr-10"
+                tag="a"
               >
                 {t("Toolbar.Inscription", "Inscription")}
               </FButton>
-            </NavLink>
+            </Link>
           </>
         )}
       </ModalFooter>
@@ -87,4 +90,4 @@ const bookmarkedModal = (props) => {
   );
 };
 
-export default withTranslation()(bookmarkedModal);
+export default BookmarkedModal;

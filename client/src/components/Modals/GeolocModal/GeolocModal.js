@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Icon from "react-eva-icons";
+// import Icon from "react-eva-icons";
 import { filtres } from "../../../containers/Dispositif/data";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
@@ -182,7 +182,7 @@ const GeolocModal = (props) => {
   return (
     <Modal show={props.show} className="geoloc-modal">
       <IconContainer onClick={props.hideModal}>
-        <Icon name="close-outline" fill="#3D3D3D" size="large" />
+        {/* <Icon name="close-outline" fill="#3D3D3D" size="large" /> */}
       </IconContainer>
       <div id="svgContainer" />
       <h1>Zone d'action</h1>

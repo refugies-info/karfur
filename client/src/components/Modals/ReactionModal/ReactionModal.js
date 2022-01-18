@@ -3,7 +3,7 @@ import { Input, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { withTranslation } from "react-i18next";
 import {colors} from "colors";
 
-import "./ReactionModal.scss";
+// import "./ReactionModal.scss";
 import FButton from "../../FigmaUI/FButton/FButton";
 
 const suggererModal = (props) => {

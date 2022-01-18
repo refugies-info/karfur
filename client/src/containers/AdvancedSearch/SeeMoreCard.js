@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 import CustomCard from "../../components/UI/CustomCard/CustomCard";
 import { CardBody} from "reactstrap";
-import { withTranslation } from "react-i18next";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import {colors} from "colors";
-import "./AdvancedSearch.scss";
 
 const CardText = styled.p`
   font-size: 32px;
@@ -32,7 +31,8 @@ const SeeMoreText = styled.p`
   font-weight: 700;
 `
 
-const SeeMoreCard = ({ theme, t, seeMore, isRTL }) => {
+const SeeMoreCard = ({ theme, seeMore, isRTL }) => {
+  const { t } = useTranslation();
   return (
     <div
       className={
@@ -54,4 +54,4 @@ const SeeMoreCard = ({ theme, t, seeMore, isRTL }) => {
   );
 };
 
-export default withRouter(withTranslation()(SeeMoreCard));
+export default SeeMoreCard;

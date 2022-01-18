@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Icon from "react-eva-icons";
+// import Icon from "react-eva-icons";
 declare const window: Window;
 
 interface Props {
@@ -46,7 +46,7 @@ export const ShareButton = (props: Props) => {
     <>
       {props.type === "button" && props.onClick && (
         <MainContainer onClick={props.onClick}>
-          {props.name && <Icon name={props.name} fill="#000000" size="large" />}
+          {/* {props.name && <Icon name={props.name} fill="#000000" size="large" />} */}
           {props.text && <TextContainer>{props.text}</TextContainer>}
         </MainContainer>
       )}
@@ -56,9 +56,9 @@ export const ShareButton = (props: Props) => {
           href={`mailto:?subject=${mailSubject}&body=${emailBody}`}
         >
           <MainContainer>
-            {props.name && (
+            {/* {props.name && (
               <Icon name={props.name} fill="#000000" size="large" />
-            )}
+            )} */}
             {props.text && <TextContainer>{props.text}</TextContainer>}
           </MainContainer>
         </a>

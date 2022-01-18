@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
-import Icon from "react-eva-icons";
+// import Icon from "react-eva-icons";
 import FButton from "../../FigmaUI/FButton/FButton";
 import ReactToPrint from "react-to-print";
 
@@ -77,7 +77,7 @@ export class PdfCreateModal extends Component<Props> {
       >
         <MainContainer>
           <IconContainer onClick={this.props.toggle}>
-            <Icon name="close-outline" fill="#3D3D3D" size="large" />
+            {/* <Icon name="close-outline" fill="#3D3D3D" size="large" /> */}
           </IconContainer>
           <HeaderContainer>
             <Header>

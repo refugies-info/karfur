@@ -1,37 +1,37 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
+import { withRouter } from 'next/router'
 import { Tooltip } from "reactstrap";
 import Swal from "sweetalert2";
 import querySearch from "stringquery";
 import qs from "query-string";
 import _ from "lodash";
-import windowSize from "react-window-size";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import produce from "immer";
 import withSizes from "react-sizes";
-import i18n from "../../i18n";
-import Streamline from "../../assets/streamline";
-import SearchItem from "./SearchItem/SearchItem";
-import SearchResultCard from "./SearchResultCard";
-import SeeMoreCard from "./SeeMoreCard";
-import LoadingCard from "./LoadingCard";
-import NoResultPlaceholder from "./NoResultPlaceholder";
-import { MobileAdvancedSearch } from "./MobileAdvancedSearch/MobileAdvancedSearch";
-import API from "../../utils/API";
-import { initial_data } from "./data";
-import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
-import { filtres } from "../Dispositif/data";
-import { filtres_contenu, tris } from "./data";
-import FButton from "../../components/FigmaUI/FButton/FButton";
-import TagButton from "../../components/FigmaUI/TagButton/TagButton";
-import { BookmarkedModal } from "../../components/Modals/index";
-import { fetchUserActionCreator } from "../../services/User/user.actions";
+import i18n from "i18n";
+import Streamline from "assets/streamline";
+import SearchItem from "containers/AdvancedSearch/SearchItem/SearchItem";
+import SearchResultCard from "containers/AdvancedSearch/SearchResultCard";
+import SeeMoreCard from "containers/AdvancedSearch/SeeMoreCard";
+import LoadingCard from "containers/AdvancedSearch/LoadingCard";
+import NoResultPlaceholder from "containers/AdvancedSearch/NoResultPlaceholder";
+import { MobileAdvancedSearch } from "containers/AdvancedSearch/MobileAdvancedSearch/MobileAdvancedSearch";
+import API from "utils/API";
+import { initial_data } from "containers/AdvancedSearch/data";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { filtres } from "containers/Dispositif/data";
+import { filtres_contenu, tris } from "containers/AdvancedSearch/data";
+import FButton from "components/FigmaUI/FButton/FButton";
+import TagButton from "components/FigmaUI/TagButton/TagButton";
+import { BookmarkedModal } from "components/Modals/index";
+import { fetchUserActionCreator } from "services/User/user.actions";
 import { isMobile } from "react-device-detect";
-import { filterContents } from "./filterContents";
-import { isLoadingSelector } from "../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../services/LoadingStatus/loadingStatus.actions";
-import { activatedLanguages } from "../../components/Modals/LanguageModal/data";
+import { filterContents } from "containers/AdvancedSearch/filterContents";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { activatedLanguages } from "components/Modals/LanguageModal/data";
 
 // import "./AdvancedSearch.scss";
 import { colors } from "colors";
@@ -289,33 +289,33 @@ export class AdvancedSearch extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    document.addEventListener("mousedown", this.handleClickOutside);
-    window.addEventListener("scroll", this.handleScrolling);
+    // document.addEventListener("mousedown", this.handleClickOutside);
+    // window.addEventListener("scroll", this.handleScrolling);
     this._isMounted = true;
     this.retrieveCookies();
     // Retrieve filters value from url parameters
-    let tagFromNav =
-      this.props.location.state === "clean-filters" ||
+    let tagFromNav = "";
+      /* this.props.location.state === "clean-filters" ||
       this.props.location.state === "dispositifs" ||
       this.props.location.state === "demarches"
         ? null
-        : this.props.location.state;
+        : this.props.location.state; */
 
-    let tag = querySearch(this.props.location.search).tag || tagFromNav;
+    let tag = this.props.router.query.tag || tagFromNav;
 
-    let bottomValue = querySearch(this.props.location.search).bottomValue;
-    let dep = querySearch(this.props.location.search).dep;
-    let city = querySearch(this.props.location.search).city;
-    let topValue = querySearch(this.props.location.search).topValue;
-    let niveauFrancais = querySearch(this.props.location.search).niveauFrancais;
+    let bottomValue = this.props.router.query.bottomValue;
+    let dep = this.props.router.query.dep;
+    let city = this.props.router.query.city;
+    let topValue = this.props.router.query.topValue;
+    let niveauFrancais = this.props.router.query.niveauFrancais;
     let niveauFrancaisObj = this.state.recherche[3].children.find(
       (elem) => elem.name === decodeURIComponent(niveauFrancais)
     );
-    let filter = querySearch(this.props.location.search).filter;
-    let langue = querySearch(this.props.location.search).langue;
+    let filter = this.props.router.query.filter;
+    let langue = this.props.router.query.langue;
 
     // tri is created_at or nbVues
-    const tri = querySearch(this.props.location.search).tri;
+    const tri = this.props.router.query.tri;
 
     if (filter || langue || tri) {
       this.setState({ searchToggleVisible: true });
@@ -418,8 +418,8 @@ export class AdvancedSearch extends Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener("mousedown", this.handleClickOutside);
-    window.removeEventListener("scroll", this.handleScrolling);
+    // document.removeEventListener("mousedown", this.handleClickOutside);
+    // window.removeEventListener("scroll", this.handleScrolling);
     this._isMounted = false;
   }
 
@@ -428,14 +428,14 @@ export class AdvancedSearch extends Component {
       this.queryDispositifs(null, this.props);
     }
 
-    if (
+    /* if (
       prevProps.location.state !== "clean-filters" &&
       this.props.location.state === "clean-filters"
     ) {
       this.setState({
         recherche: initial_data.map((x) => ({ ...x, active: false })),
       });
-    }
+    } */
 
     if (prevProps.languei18nCode !== this.props.languei18nCode) {
       this.setState(
@@ -563,7 +563,7 @@ export class AdvancedSearch extends Component {
         newQueryParam[key] === undefined ? delete newQueryParam[key] : {}
       );
       // inject parameters in the url
-      this.props.history.push({
+      this.props.router.push({
         search: qs.stringify(newQueryParam),
       });
     }
@@ -823,11 +823,11 @@ export class AdvancedSearch extends Component {
 
   writeNew = () => {
     if (this.props.user) {
-      this.props.history.push({
+      this.props.router.push({
         pathname: "/comment-contribuer",
       });
     } else {
-      this.props.history.push({
+      this.props.router.push({
         pathname: "/login",
       });
     }
@@ -950,7 +950,7 @@ export class AdvancedSearch extends Component {
   };
 
   goToDispositif = (dispositif = {}) => {
-    this.props.history.push(
+    this.props.router.push(
       "/" +
         (dispositif.typeContenu || "dispositif") +
         (dispositif._id ? "/" + dispositif._id : "")
@@ -1122,7 +1122,7 @@ export class AdvancedSearch extends Component {
             addParamasInRechercher={this.addParamasInRechercher}
             queryDispositifs={this.queryDispositifs}
             desactiver={this.deleteItemInSearch}
-            query={querySearch(this.props.location.search)}
+            query={this.props.router.query}
             dispositifs={this.state.dispositifs}
             dispositifsFullFrance={this.state.dispositifsFullFrance}
             principalThemeList={this.state.principalThemeList}
@@ -1135,7 +1135,7 @@ export class AdvancedSearch extends Component {
             }
             totalFicheCount={this.props.dispositifs.length}
             nbFilteredResults={this.state.countShow}
-            history={this.props.history}
+            history={this.props.router}
             isLoading={this.props.isLoading}
           />
         ) : (
@@ -2125,5 +2125,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(withSizes(mapSizesToProps)(withTranslation()(windowSize(AdvancedSearch))))
-);
+  )(withSizes(mapSizesToProps)(withTranslation()(AdvancedSearch)))
+)

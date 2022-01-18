@@ -9,7 +9,7 @@ import { colors } from "colors";
 import Swal from "sweetalert2";
 import FButton from "../../FigmaUI/FButton/FButton";
 
-import "./TagsModal.scss";
+// import "./TagsModal.scss";
 import API from "../../../utils/API";
 
 const Title = styled.p`

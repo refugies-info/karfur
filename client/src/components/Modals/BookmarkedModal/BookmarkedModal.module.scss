@@ -1,6 +1,6 @@
 @import "src/scss/colors.scss";
 
-.bookmark-modal.modal-dialog {
+.bookmark_modal {
   width: 400px;
   max-width: 90vw;
 
@@ -21,23 +21,6 @@
         line-height: 51px;
         font-weight: 600;
         background: inherit;
-
-        .bookmark-icon {
-          border-radius: 50%;
-          &.success {
-            background: #4caf50;
-          }
-          &.oups {
-            background: #0421b1;
-          }
-          width: 40px;
-          height: 40px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding-bottom: 7px;
-          margin-bottom: 20px;
-        }
       }
     }
     .modal-body {
@@ -50,5 +33,22 @@
     .modal-footer {
       border: none;
     }
+  }
+
+  .bookmark_icon {
+    border-radius: 50%;
+    &.success {
+      background: #4caf50;
+    }
+    &.oups {
+      background: #0421b1;
+    }
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 7px;
+    margin-bottom: 20px;
   }
 }

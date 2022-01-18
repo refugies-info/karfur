@@ -13,7 +13,7 @@ import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import API from "../../../utils/API";
 import marioProfile from "../../../assets/mario-profile.jpg";
 
-import "./RejectTradModal.scss";
+// import "./RejectTradModal.scss";
 import {colors} from "colors";
 
 const reasons = [

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import FButton from "../../FigmaUI/FButton/FButton";
 import { rejectionFiche } from "../../../assets/figma";
-import "./RejectionModal.scss";
+// import "./RejectionModal.scss";
 
 class RejectionModal extends Component {
   state = {
@@ -49,8 +49,8 @@ class RejectionModal extends Component {
             éléments offensants. Pas de panique, nous prenons le relais.
           </p>
 
-          {/*userBelongs && createur && createur._id && createur.username && !((mainSponsor || {}).membres || []).some(x => x.userId === createur._id) && 
-                <> 
+          {/*userBelongs && createur && createur._id && createur.username && !((mainSponsor || {}).membres || []).some(x => x.userId === createur._id) &&
+                <>
                   <br/>
                   <p>{createur.username} a crée ce dispositif et souhaite devenir membre de votre structure. Acceptez-vous ?</p>
                   <div className={"creator-wrapper mb-10" + (memberAdded ? " member-added" : "")}>
@@ -59,7 +59,7 @@ class RejectionModal extends Component {
                         <img className="img-circle mr-10" src={createur.picture.secure_url} alt="profile"/>}
                       <b>{(createur || {}).username}</b>
                     </div>
-                    {memberAdded ? 
+                    {memberAdded ?
                       <div className="texte-validationHover">
                         <b>Sera ajouté en tant que membre</b>
                       </div> :

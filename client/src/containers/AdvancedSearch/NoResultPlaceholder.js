@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { withTranslation } from "react-i18next";
-import "./AdvancedSearch.scss";
+import { useTranslation } from "react-i18next";
 import NoResultsBackgroundImage from "../../assets/no_results.svg";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import { isMobile } from "react-device-detect";
@@ -51,7 +50,9 @@ const NoResultsText = styled.p`
   max-width: 520px;
 `;
 
-const NoResultPlaceholder = ({ restart, writeNew, t }) => {
+const NoResultPlaceholder = ({ restart, writeNew }) => {
+  const { t } = useTranslation();
+
   return (
     <NoResultsContainer>
       <NoResults />
@@ -87,4 +88,4 @@ const NoResultPlaceholder = ({ restart, writeNew, t }) => {
   );
 };
 
-export default withRouter(withTranslation()(NoResultPlaceholder));
+export default NoResultPlaceholder;

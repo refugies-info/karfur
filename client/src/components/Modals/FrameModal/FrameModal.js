@@ -7,7 +7,7 @@ import _ from "lodash";
 import FButton from "../../FigmaUI/FButton/FButton";
 import { sectionUrlCorrespondencies } from "./data";
 
-import "./FrameModal.scss";
+// import "./FrameModal.scss";
 
 export class FrameModal extends Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Streamline from "../../../../assets/streamline";
-import Icon from "react-eva-icons";
+// import Icon from "react-eva-icons";
 import { colors } from "../../../../colors";
 import { Tag } from "../../../../types/interface";
 
@@ -110,7 +110,7 @@ export const SelectedFilter = (props: Props) => {
             <>
               <FilterButton onClick={() => props.toggleShowModal(props.type)}>
                 {props.t(props.title, props.defaultTitle)}
-                <Icon name="chevron-down" fill="#212121" size="large" />
+                {/* <Icon name="chevron-down" fill="#212121" size="large" /> */}
               </FilterButton>
             </>
           )}
@@ -135,7 +135,7 @@ export const SelectedFilter = (props: Props) => {
                   props.desactiver(index);
                 }}
               >
-                <Icon name="close" fill={colors.blanc} size="large" />
+                {/* <Icon name="close" fill={colors.blanc} size="large" /> */}
               </div>
             </SelectedFilter>
           ) : (

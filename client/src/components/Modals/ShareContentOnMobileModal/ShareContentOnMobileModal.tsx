@@ -1,8 +1,8 @@
 import React from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
-import Icon from "react-eva-icons";
-import "./ShareContentOnMobileModal.scss";
+// import Icon from "react-eva-icons";
+// import "./ShareContentOnMobileModal.scss";
 import { ShareButton } from "../../FigmaUI/ShareButton/ShareButton";
 import {
   send_sms,
@@ -60,7 +60,7 @@ export const ShareContentOnMobileModal = (props: Props) => {
     <Modal isOpen={props.show} toggle={props.toggle} className="share-content">
       <MainContainer>
         <IconContainer onClick={props.toggle}>
-          <Icon name="close-outline" fill="#FFFFFF" size="large" />
+          {/* <Icon name="close-outline" fill="#FFFFFF" size="large" /> */}
         </IconContainer>
         <Header>
           {props.t("Dispositif.Partager Fiche", "Partager la fiche")}
