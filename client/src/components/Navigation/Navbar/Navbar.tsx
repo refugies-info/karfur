@@ -113,6 +113,7 @@ const Navbar = () => {
   } */
 
 
+
 /*   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
     const visible = currentScrollPos < 70;

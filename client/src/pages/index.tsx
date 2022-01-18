@@ -1,10 +1,10 @@
-//@ts-nocheck
 import React, { useState, useEffect } from "react";
-import { useTranslation } from 'react-i18next';
-import Link from 'next/link'
-import {useRouter} from 'next/router'
-import EVAIcon from "../components/UI/EVAIcon/EVAIcon";
-import FButton from "../components/FigmaUI/FButton/FButton";
+import { useTranslation } from "react-i18next";
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import FButton from "components/FigmaUI/FButton/FButton";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { colors } from "colors";
@@ -13,20 +13,21 @@ import {
   illustration_homeCard_annuaire,
   illustration_homeCard_demarche,
   illustration_homeCard_lexique,
-} from "../assets/figma";
-import { initial_data } from "../containers/AdvancedSearch/data";
-import { initGA, PageView } from "../tracking/dispatch";
-import { iphone } from "../assets/figma";
+} from "assets/figma";
+import { initial_data } from "data/searchFilters";
+import { initGA, PageView } from "tracking/dispatch";
+import { iphone } from "assets/figma";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
-import { MobileSearchFilterModal } from "../containers/AdvancedSearch/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
-import icon_mobilisation from "../assets/icon_mobilisation.svg";
-import { assetsOnServer } from "../assets/assetsOnServer";
-import i18n from "../i18n";
-import { HomeCard } from "../components/Pages/homepage/HomeCard";
-import { BecomeTesterModal } from "../components/Pages/homepage/BecomeTesterModal";
-import { HomePageMobile } from "../components/Pages/homepage/HomePageMobile/HomePageMobile";
-import HomeSearch from "../components/Pages/homepage/HomeSearch";
-import CatList from "../components/Pages/homepage/CatList";
+import { MobileSearchFilterModal } from "containers/AdvancedSearch/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
+import icon_mobilisation from "assets/icon_mobilisation.svg";
+import { assetsOnServer } from "assets/assetsOnServer";
+import i18n from "i18n";
+import { HomeCard } from "components/Pages/homepage/HomeCard";
+import { BecomeTesterModal } from "components/Pages/homepage/BecomeTesterModal";
+import { HomePageMobile } from "components/Pages/homepage/HomePageMobile/HomePageMobile";
+import HomeSearch from "components/Pages/homepage/HomeSearch";
+import CatList from "components/Pages/homepage/CatList";
+import { filtres } from "containers/Dispositif/data";
 
 const CoronaAlert = styled.div`
   display: flex;
@@ -90,12 +91,12 @@ const ButtonSeparator = styled.div`
   margin-left: ${(props) => (props.isRTL ? "10px" : "0px")};
 `;
 
-const Homepage = (props) => {
+interface Props {}
 
+const Homepage = (props: Props) => {
   const [corona, setCorona] = useState(false);
   const [popup, setPopup] = useState(false);
   const [overlay, setOverlay] = useState(false);
-  const [showGoToDesktopModal, setShowGoToDesktopModal] = useState(false);
   const [showTagModal, setShowTagModal] = useState(false);
   const [showNewslettreModal, setShowNewslettreModal] = useState(false);
   const [showBecomeTesterModal, setShowBecomeTesterModal] = useState(false);
@@ -107,52 +108,26 @@ const Homepage = (props) => {
   useEffect(() => {
     initGA();
     PageView();
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   }, []);
 
-  const selectParam = (_, subitem) => {
-    return (
-      subitem &&
-      router.push({
-        pathname: "/advanced-search",
-        search: "?tag=" + subitem.name,
-      })
-    );
-  }
-  const selectOption = (item) => {
+  const selectOption = (_item: any) => {
     router.push({
       pathname: "/advanced-search",
-      state: item.name,
+      // state: item.name,
     });
   };
-  const togglePopup = () => {
-    setPopup(!popup);
-  };
-  const toggleShowTagModal = () => {
-    setShowTagModal(!showTagModal);
-  };
-  const toggleShowNewsletterModal = () => {
-    setShowNewslettreModal(!showNewslettreModal);
-  };
+  const togglePopup = () => setPopup(!popup);
+  const toggleShowTagModal = () => setShowTagModal(!showTagModal);
+  const toggleShowNewsletterModal = () => setShowNewslettreModal(!showNewslettreModal);
+  const toggleBecomeTesterModal = () => setShowBecomeTesterModal(!showBecomeTesterModal);
+  const closeCorona = () => setCorona(false);
+  const closeParrainage = () => setParrainage(false);
+  const toggleOverlay = () => setOverlay(!overlay);
 
-  const toggleBecomeTesterModal = () => {
-    setShowBecomeTesterModal(!showBecomeTesterModal);
-  };
-
-  const closeCorona = () => {
-    setCorona(false);
-  };
-  const closeParrainage = () => {
-    setParrainage(false);
-  };
-
-  const toggleOverlay = () => {
-    setOverlay(!overlay);
-  };
-
-  const item = initial_data[0];
+  const searchItem = initial_data[0];
   const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
-  item.title = "J'ai besoin de";
+  searchItem.title = "J'ai besoin de";
 
   return (
     <div className="animated fadeIn homepage">
@@ -181,7 +156,10 @@ const Homepage = (props) => {
           {parrainage ? (
             <div className="parrainage-alert">
               <AlertText>
-                <span style={{ fontWeight: "bold" }}>Parrainez une personne réfugiée&nbsp;!</span> Découvrez les actions par thématique&nbsp;:
+                <span style={{ fontWeight: "bold" }}>
+                  Parrainez une personne réfugiée&nbsp;!
+                </span>{" "}
+                Découvrez les actions par thématique&nbsp;:
                 <div style={{ flexDirection: "row" }}>
                   <Link href="/dispositif/616581b863933e00148153fe">
                     <AlertTextLink>Rencontres et loisirs</AlertTextLink>
@@ -212,31 +190,16 @@ const Homepage = (props) => {
 
           <div className="search-row">
             <HomeSearch
-              className="on-homepage"
-              item={item}
-              keyValue={0}
+              searchItem={searchItem}
               togglePopup={togglePopup}
-              selectParam={selectParam}
-              desactiver={() => {}}
               toggleOverlay={toggleOverlay}
-              history={props.history}
               toggleModal={toggleShowTagModal}
             />
           </div>
         </div>
-        {popup ? (
-          <CatList
-            className="on-homepage"
-            item={item}
-            keyValue={0}
-            togglePopup={togglePopup}
-            selectParam={selectParam}
-            desactiver={() => {}}
-          />
-        ) : null}
+        {popup ? <CatList tags={filtres.tags} /> : null}
         <div className="chevron-wrapper">
           <a
-            offset="60"
             href="#plan"
             className="header-anchor d-inline-flex justify-content-center align-items-center"
           >
@@ -255,7 +218,6 @@ const Homepage = (props) => {
       <section id="plan" className="triptique">
         <CardContainer isRTL={isRTL}>
           <HomeCard
-            t={t}
             text="Homepage.Trouver une initiative"
             defaultText="Trouver un programme ou une formation"
             buttonTitle="Homepage.Je cherche"
@@ -273,7 +235,6 @@ const Homepage = (props) => {
             }}
           />
           <HomeCard
-            t={t}
             text="Homepage.Comprendre les démarches administratives"
             defaultText="Comprendre les démarches administratives"
             buttonTitle="Homepage.Je cherche"
@@ -291,7 +252,6 @@ const Homepage = (props) => {
             }}
           />
           <HomeCard
-            t={t}
             text="Homepage.Consulter l'annuaire pour trouver une association"
             defaultText="Consulter l'annuaire pour trouver une association"
             buttonTitle={
@@ -314,7 +274,6 @@ const Homepage = (props) => {
             }}
           />
           <HomeCard
-            t={t}
             text="Homepage.Lire le lexique"
             defaultText="Lire le lexique pour comprendre les mots difficiles"
             buttonTitle="Homepage.Bientôt disponible"
@@ -324,6 +283,7 @@ const Homepage = (props) => {
             textColor={colors.bleuCharte}
             image={illustration_homeCard_lexique}
             isDisabled={true}
+            onClick={() => {}}
           />
         </CardContainer>
       </section>
@@ -340,18 +300,18 @@ const Homepage = (props) => {
                   {t("Homepage.contribution subheader")}
                 </p>
               </div>
-                <footer className="footer-section">
-                  <Link href="/comment-contribuer">
+              <footer className="footer-section">
+                <Link href="/comment-contribuer">
                   <FButton
                     name="file-add-outline"
-                      tag="a"
-                      tabIndex="1"
+                    tag="a"
+                    tabIndex="1"
                     type="dark"
                     style={{ height: "60px" }}
                   >
                     {t("Homepage.Je contribue", "Je contribue")}
                   </FButton>
-                  </Link>
+                </Link>
               </footer>
             </div>
           </section>
@@ -364,20 +324,18 @@ const Homepage = (props) => {
                   {t("Homepage.Faites connaitre subheader")}
                 </p>
               </div>
-                <footer>
-                  <Link
-                    href="/comment-contribuer#ecrire"
-                  >
+              <footer>
+                <Link href="/comment-contribuer#ecrire">
                   <FButton
                     name="file-add-outline"
-                      type="dark"
-                      tag="a"
-                      tabIndex="2"
+                    type="dark"
+                    tag="a"
+                    tabIndex="2"
                     style={{ height: "60px" }}
                   >
                     {t("Homepage.Je propose une fiche", "Je propose une fiche")}
                   </FButton>
-                  </Link>
+                </Link>
               </footer>
             </div>
           </section>
@@ -391,31 +349,26 @@ const Homepage = (props) => {
                 </p>
                 {/*<LanguageBtn />*/}
               </div>
-                <footer className="footer-section">
-                  <Link
-                    href="/comment-contribuer#traduire"
+              <footer className="footer-section">
+                <Link href="/comment-contribuer#traduire">
+                  <FButton
+                    name="file-add-outline"
+                    type="dark"
+                    tag="a"
+                    tabIndex="3"
+                    style={{ height: "60px" }}
                   >
-
-                <FButton
-                  name="file-add-outline"
-                      type="dark"
-                      tag="a"
-                      tabIndex="3"
-                  style={{ height: "60px" }}
-                >
-                  {t("Homepage.J'aide à traduire", "J'aide à traduire")}
-                </FButton>
-                  </Link>
+                    {t("Homepage.J'aide à traduire", "J'aide à traduire")}
+                  </FButton>
+                </Link>
               </footer>
             </div>
           </section>
-          <section
-            id="deployer"
-          >
-              <div
-                className="section-container half-width left-side"
-                style={{zIndex: 2, position: "relative"}}
-              >
+          <section id="deployer">
+            <div
+              className="section-container half-width left-side"
+              style={{ zIndex: 2, position: "relative" }}
+            >
               <div className="section-body">
                 <h2>{t("Homepage.Déployez")}</h2>
                 <p className="texte-normal">
@@ -424,35 +377,31 @@ const Homepage = (props) => {
               </div>
               <footer className="footer-section">
                 <ButtonContainerRow>
-                    <ButtonSeparator isRTL={isRTL}>
-                      <Link
-                      href="/comment-contribuer#deployer-card"
-                      >
+                  <ButtonSeparator isRTL={isRTL}>
+                    <Link href="/comment-contribuer#deployer-card">
                       <FButton
-                          type="dark"
-                          tag="a"
-                          tabIndex="4"
+                        type="dark"
+                        tag="a"
+                        tabIndex="4"
                         style={{ height: "60px" }}
                       >
-                        <img
+                        <Image
                           src={icon_mobilisation}
                           alt="icon mobilisation"
-                          className={"mr-8"}
+                          className="mr-8"
                         />
                         {t(
                           "Homepage.Participe déploiement",
                           "Je participe au déploiement"
                         )}
                       </FButton>
-                      </Link>
-                    </ButtonSeparator>
-                    <Link
-                    href="/comment-contribuer#deployer-card"
-                    >
+                    </Link>
+                  </ButtonSeparator>
+                  <Link href="/comment-contribuer#deployer-card">
                     <FButton
-                        type="outline-black"
-                        tag="a"
-                        tabIndex="5"
+                      type="outline-black"
+                      tag="a"
+                      tabIndex="5"
                       style={{ height: "60px" }}
                     >
                       {t(
@@ -460,7 +409,7 @@ const Homepage = (props) => {
                         "Vous hésitez encore ?"
                       )}
                     </FButton>
-                    </Link>
+                  </Link>
                 </ButtonContainerRow>
               </footer>
             </div>
@@ -472,7 +421,7 @@ const Homepage = (props) => {
             ></div>
           </section>
           <section id="smartphone">
-            <img src={iphone} />
+            <Image src={iphone} />
             <div className="section-container half-width right-side smartphone">
               <div className="section-body smartphone">
                 <h2>
@@ -487,18 +436,17 @@ const Homepage = (props) => {
                 {/*<LanguageBtn />*/}
               </div>
               <ButtonContainer>
-                  <p>
-
-                    <FButton
-                        name="email-outline"
-                      onClick={() => toggleShowNewsletterModal()}
-                      type="white"
-                    >
-                      {t(
-                        "Homepage.informé du lancement",
-                        "Je veux être informé du lancement"
-                      )}
-                    </FButton>
+                <p>
+                  <FButton
+                    name="email-outline"
+                    onClick={() => toggleShowNewsletterModal()}
+                    type="white"
+                  >
+                    {t(
+                      "Homepage.informé du lancement",
+                      "Je veux être informé du lancement"
+                    )}
+                  </FButton>
                 </p>
                 <FButton
                   name="eye-outline"
@@ -535,7 +483,7 @@ const Homepage = (props) => {
         show={showBecomeTesterModal}
       />
     </div>
-  )
-}
+  );
+};
 
 export default Homepage;

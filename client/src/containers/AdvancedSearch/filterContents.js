@@ -1,4 +1,4 @@
-import { filtres_contenu } from "./data";
+import { filtres_contenu } from "data/searchFilters";
 
 const filterContentsByTheme = (contents, tagFilter) => {
   if (!tagFilter) {

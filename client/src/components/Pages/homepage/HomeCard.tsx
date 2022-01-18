@@ -1,6 +1,7 @@
 import React from "react";
 import { colors } from "../../../colors";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 import { FButtonMobile } from "../../FigmaUI/FButtonMobile/FButtonMobile";
 
 declare const window: Window;
@@ -11,7 +12,6 @@ interface Props {
   defaultBoutonTitle: string;
   iconName: string;
   image: string;
-  t: (text: string, defaultText: string) => void;
   backgroundColor: string;
   textColor: string;
   onClick: (e: any) => void;
@@ -52,11 +52,14 @@ const ButtonContainer = styled.div`
   width: 87%;
 `;
 
-export const HomeCard = (props: Props) => (
-  <MainContainer backgroundColor={props.backgroundColor}>
+export const HomeCard = (props: Props) => {
+  const { t } = useTranslation();
+
+  return (
+    <MainContainer backgroundColor={props.backgroundColor}>
     <img alt="img-homecard" src={props.image} />
     <TextContainer text={props.text} textColor={props.textColor}>
-      {props.t(props.text, props.defaultText)}
+      {t(props.text, props.defaultText)}
     </TextContainer>
     <ButtonContainer>
       <FButtonMobile
@@ -65,10 +68,10 @@ export const HomeCard = (props: Props) => (
         fill={colors.noir}
         color={colors.blancSimple}
         onClick={props.onClick}
-        t={props.t}
         title={props.buttonTitle}
         defaultTitle={props.defaultBoutonTitle}
       />
     </ButtonContainer>
-  </MainContainer>
-);
+    </MainContainer>
+  )
+};

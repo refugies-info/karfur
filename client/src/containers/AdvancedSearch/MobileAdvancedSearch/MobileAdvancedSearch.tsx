@@ -10,7 +10,7 @@ import { SelectedFilter } from "./SelectedFilter/SelectedFilter";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 declare const window: Window;
 import { filtres } from "../../Dispositif/data";
-import { initial_data } from "../data";
+import { initial_data } from "data/searchFilters";
 
 interface Props {
   nbFilteredResults: number;

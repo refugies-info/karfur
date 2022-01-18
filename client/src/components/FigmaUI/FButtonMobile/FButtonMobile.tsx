@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { colors } from "../../../colors";
-import EVAIcon from "../../UI/EVAIcon/EVAIcon";
-import i18n from "../../../i18n";
+import { useTranslation } from "react-i18next";
+import { colors } from "colors";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import i18n from "i18n";
 
 interface Props {
   name: string;
-  t: (a: string, b: string) => void;
   fill: string;
   title: string;
   defaultTitle: string;
@@ -39,6 +39,7 @@ const IconContainer = styled.div`
 
 export const FButtonMobile = (props: Props) => {
   const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  const { t } = useTranslation();
 
   return (
     <ButtonContainer
@@ -51,7 +52,7 @@ export const FButtonMobile = (props: Props) => {
         <EVAIcon name={props.name} fill={props.fill} size={"large"} />
       </IconContainer>
 
-      {props.t(props.title, props.defaultTitle)}
+      {t(props.title, props.defaultTitle)}
     </ButtonContainer>
   );
 };

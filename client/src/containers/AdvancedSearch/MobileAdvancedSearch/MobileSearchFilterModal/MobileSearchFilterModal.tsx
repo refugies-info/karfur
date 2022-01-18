@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Streamline from "../../../../assets/streamline";
 import { colors } from "colors";
 import { filtres } from "../../../Dispositif/data";
-import { initial_data } from "../../data";
+import { initial_data } from "data/searchFilters";
 import "./MobileSearchFilterModal.module.scss";
 
 const TextTitle = styled.div`
