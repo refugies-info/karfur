@@ -290,7 +290,8 @@ const Register = () => {
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                   passwordVisible={passwordVisible}
                   onShowPassword={togglePasswordVisibility}
-                  weakPasswordError={weakPasswordError}
+                    weakPasswordError={weakPasswordError}
+                    nextButtonText={t("Suivant", "Suivant")}
                 />
               ) : (
                 <EmailField

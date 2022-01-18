@@ -25,6 +25,7 @@ interface Props {
   weakPasswordError: any
   onShowPassword: () => void
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  nextButtonText: string
 }
 
 const getStrength = (score: number) => {
@@ -70,9 +71,7 @@ const PasswordField = (props: Props) => {
             type="validate-light"
             name="checkmark-outline"
             disabled={passwordScore < 1}
-          >
-            {t("Suivant", "Suivant")}
-          </FButton>
+          >{props.nextButtonText}</FButton>
         </div>
       </div>
       {props.value && (
