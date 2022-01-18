@@ -7,7 +7,7 @@ import i18n from "i18n";
 import styles from "./LanguageBtn.module.scss";
 
 interface Props {
-  hideTextOnMobile: boolean
+  hideTextOnMobile?: boolean
 }
 
 const LanguageBtn = (props: Props) => {

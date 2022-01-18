@@ -3,15 +3,15 @@
 $placeholderColor: $noir;
 $borderRadius: 12px;
 
-.figma-input-group {
-  .icon-prepend {
+.input {
+  .prepend {
     position: absolute;
     z-index: 10;
     top: 50%;
     transform: translateY(-50%);
     left: 15px;
   }
-  .icon-append {
+  .append {
     position: absolute;
     z-index: 10;
     top: 50%;
@@ -19,10 +19,11 @@ $borderRadius: 12px;
     right: 15px;
     cursor: pointer;
   }
+
   input,
   textarea {
     background: #ffffff;
-    border-radius: $borderRadius;
+    border-radius: $borderRadius !important;
     border: 0.5px solid $noir;
     color: $noir;
     outline: none;
@@ -30,24 +31,13 @@ $borderRadius: 12px;
     &.error {
       border: 0.5px solid $error;
     }
-    &.new-size {
+    &.new_size {
       height: 52px;
     }
-    &.password-input {
-      min-width: 300px;
-      max-width: 900px;
-      padding-right: 38px;
-    }
-    &.phone-input {
-      max-width: 170px;
-    }
-    &.phone-user-input.error::placeholder{
-      color: $error;
-    }
-    &.has-prepend {
+    &.has_prepend {
       padding-left: 45px;
 
-      &.new-size {
+      &.new_size {
         height: 52px;
       }
     }
@@ -65,33 +55,30 @@ $borderRadius: 12px;
       box-shadow: none;
       background: $blanc;
     }
-    &.form-control:not(:first-child) {
-      border-top-left-radius: $borderRadius;
-      border-bottom-left-radius: $borderRadius;
+    // TODO : wont work
+    &.password-input {
+      min-width: 300px;
+      max-width: 900px;
+      padding-right: 38px;
     }
-    &.form-control:not(:last-child) {
-      border-top-right-radius: $borderRadius;
-      border-bottom-right-radius: $borderRadius;
+    &.phone-input {
+      max-width: 170px;
+    }
+    &.phone-user-input.error::placeholder {
+      color: $error;
     }
   }
-  *::-webkit-input-placeholder {
-    color: $placeholderColor;
-  }
-  *:-moz-placeholder {
-    color: $placeholderColor;
-    opacity: 1;
-  }
+
+  *::-webkit-input-placeholder,
+  *:-ms-input-placeholder,
+  *::-ms-input-placeholder,
+  *::placeholder,
+  *:-moz-placeholder,
   *::-moz-placeholder {
     color: $placeholderColor;
+  }
+  *:-moz-placeholder,
+  *::-moz-placeholder {
     opacity: 1;
-  }
-  *:-ms-input-placeholder {
-    color: $placeholderColor;
-  }
-  *::-ms-input-placeholder {
-    color: $placeholderColor;
-  }
-  *::placeholder {
-    color: $placeholderColor;
   }
 }
