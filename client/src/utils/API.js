@@ -3,6 +3,7 @@ import axios from "axios";
 import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
 import { logger } from "../logger";
+import isInBrowser from "lib/isInBrowser";
 
 const socket = null;
 export { socket };
@@ -398,7 +399,7 @@ export default {
   cancel_tts_subscription: () => cancel && cancel(),
 
   isAuth: () => {
-    if (typeof window === 'undefined') return false;
+    if (!isInBrowser()) return false;
     return localStorage.getItem("token") !== null;
   },
   logout: () => {

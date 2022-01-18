@@ -33,6 +33,7 @@ import { customConvertOption } from "../data";
 import { colors } from "colors";
 import produce from "immer";
 import styled from "styled-components";
+import isInBrowser from "lib/isInBrowser";
 
 const AlertModified = styled.div`
   height: 40px;
@@ -1146,7 +1147,7 @@ class SideTrad extends Component {
           >
             <ConditionalSpinner show={!(translated || {}).body} />
 
-            {typeof window !== "undefined" && <Editor
+            {isInBrowser() && <Editor
               toolbarClassName={
                 isRTL
                   ? "toolbar-editeur"

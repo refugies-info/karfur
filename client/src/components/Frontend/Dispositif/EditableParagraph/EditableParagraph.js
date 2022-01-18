@@ -19,6 +19,7 @@ import { logger } from "logger";
 
 //import "./EditableParagraph.scss";
 import { colors } from "colors";
+import isInBrowser from "lib/isInBrowser";
 
 // const styles = {
 //   media: {
@@ -163,7 +164,7 @@ class EditableParagraph extends Component {
       return (
         // {/* <Backdrop show={true} clicked={()=>props.handleContentClick(props.keyValue,false, props.subkey)} /> */}
         <>
-          {typeof window !== "undefined" && <Editor
+          {isInBrowser() && <Editor
             spellCheck
             editorRef={this.setEditorReference}
             toolbarClassName={
