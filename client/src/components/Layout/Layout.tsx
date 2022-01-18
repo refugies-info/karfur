@@ -145,10 +145,10 @@ const Layout = (props: any) => {
 
         <LanguageModal
           show={showLangModal}
-          current_language={i18n.language}
+          currentLanguage={i18n.language}
           toggle={() => dispatch(toggleLangueModalActionCreator())}
           changeLanguage={changeLanguage}
-          langues={langues}
+          languages={langues}
           isLanguagesLoading={isLanguagesLoading}
         />
         <MobileAppModal

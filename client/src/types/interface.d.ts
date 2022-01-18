@@ -83,8 +83,9 @@ export interface Language {
   langueLoc: string;
   langueCode: string;
   i18nCode: string;
-  _id: ObjectId;
+  _id?: ObjectId;
   avancement: number;
+  avancementTrad?: number;
 }
 
 export interface UserLanguage {

@@ -30,7 +30,7 @@ import { isMobile } from "react-device-detect";
 import { filterContents } from "containers/AdvancedSearch/filterContents";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { activatedLanguages } from "components/Modals/LanguageModal/data";
+import { activatedLanguages } from "data/activatedLanguages";
 
 // import "./AdvancedSearch.scss";
 import { colors } from "colors";
@@ -461,13 +461,7 @@ export class AdvancedSearch extends Component {
   getLangue = (filter, langue) => {
     if (filter !== "traduction") return "";
 
-    const correspondingLangueIndex = Object.keys(activatedLanguages).filter(
-      (index) => activatedLanguages[index].i18nCode === langue
-    );
-
-    if (correspondingLangueIndex)
-      return activatedLanguages[correspondingLangueIndex];
-    return "";
+    return activatedLanguages.filter((ln) => ln.i18nCode === langue) || "";
   };
 
   getFilter = (filter) => {

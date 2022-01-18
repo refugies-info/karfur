@@ -1,5 +1,7 @@
-export const activatedLanguages = {
-  0: {
+import { Language } from "types/interface";
+
+export const activatedLanguages: Language[] = [
+  {
     langueFr: "Français",
     langueLoc: "Français",
     langueCode: "fr",
@@ -7,7 +9,7 @@ export const activatedLanguages = {
     avancement: 1,
     avancementTrad: 0,
   },
-  1: {
+  {
     langueFr: "Pachto",
     langueLoc: "پښتو",
     langueCode: "af",
@@ -15,7 +17,7 @@ export const activatedLanguages = {
     avancement: 1,
     avancementTrad: 0,
   },
-  2: {
+  {
     langueFr: "Anglais",
     langueLoc: "English",
     langueCode: "gb",
@@ -23,7 +25,7 @@ export const activatedLanguages = {
     avancement: 1,
     avancementTrad: 0,
   },
-  3: {
+  {
     langueFr: "Persan/Dari",
     langueLoc: "فارسی/ دری",
     langueCode: "ir",
@@ -31,7 +33,7 @@ export const activatedLanguages = {
     avancement: 1,
     avancementTrad: 0,
   },
-  4: {
+  {
     langueFr: "Tigrinya",
     langueLoc: "ትግርኛ",
     langueCode: "er",
@@ -39,7 +41,7 @@ export const activatedLanguages = {
     avancement: 1,
     avancementTrad: 0,
   },
-  5: {
+  {
     langueFr: "Russe",
     langueLoc: "Русский",
     langueCode: "ru",
@@ -47,7 +49,7 @@ export const activatedLanguages = {
     avancement: 1,
     avancementTrad: 0,
   },
-  6: {
+  {
     langueFr: "Arabe",
     langueLoc: "العربية",
     langueCode: "sa",
@@ -55,4 +57,4 @@ export const activatedLanguages = {
     avancement: 1,
     avancementTrad: 0,
   },
-};
+]
