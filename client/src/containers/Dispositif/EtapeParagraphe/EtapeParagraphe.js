@@ -23,7 +23,7 @@ import { QuickToolbar } from "../QuickToolbar";
 import EditableParagraph from "../../../components/Frontend/Dispositif/EditableParagraph/EditableParagraph";
 import FInput from "../../../components/FigmaUI/FInput/FInput";
 
-import "./EtapeParagraphe.scss";
+// import "./EtapeParagraphe.scss";
 import { colors } from "colors";
 import { EtapeModal } from "../../../components/Modals";
 import styled from "styled-components";

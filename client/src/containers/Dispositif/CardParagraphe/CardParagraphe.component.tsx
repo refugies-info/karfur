@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Col, Card, CardBody, CardHeader, CardFooter } from "reactstrap";
 import Swal from "sweetalert2";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import "./CardParagraphe.scss";
+// import "./CardParagraphe.scss";
 import { colors } from "colors";
 import { Props } from "./CardParagraphe.container";
 import { DispositifContent, Tag } from "../../../types/interface";
@@ -172,12 +172,12 @@ export class CardParagraphe extends Component<Props> {
     const { subitem, subkey, disableEdit } = this.props;
 
     let dispositifId = "";
-    if (this.props.location.pathname) {
+/*     if (this.props.location.pathname) {
       let pathVariables = this.props.location.pathname.split("/");
       if (pathVariables.length === 3 && pathVariables[1] === "dispositif") {
         dispositifId = pathVariables[2];
       }
-    }
+    } */
 
     // filter cards to have maximum one infocard by category
     const availablecardTitles =

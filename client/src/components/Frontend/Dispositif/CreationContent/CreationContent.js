@@ -13,7 +13,7 @@ import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import FInput from "../../../FigmaUI/FInput/FInput";
 
-import "./CreationContent.scss";
+// import "./CreationContent.scss";
 import { colors } from "colors";
 
 const CreationContent = (props) => {

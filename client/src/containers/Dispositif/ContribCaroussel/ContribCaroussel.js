@@ -13,7 +13,7 @@ import withSizes from "react-sizes";
 
 import marioProfile from "../../../assets/mario-profile.jpg";
 import { colors } from "colors";
-import "./ContribCaroussel.scss";
+// import "./ContribCaroussel.scss";
 // import Icon from "react-eva-icons";
 import _ from "lodash";
 

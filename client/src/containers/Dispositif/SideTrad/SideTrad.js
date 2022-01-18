@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactHtmlParser from "react-html-parser";
+// import ReactHtmlParser from "react-html-parser";
 import { Spinner, Tooltip, Progress } from "reactstrap";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
@@ -27,7 +27,7 @@ import marioProfile from "../../../assets/mario-profile.jpg";
 import { RejectTradModal } from "../../../components/Modals";
 import moment from "moment";
 
-import "./SideTrad.scss";
+// import "./SideTrad.scss";
 import { colorAvancement } from "../../../components/Functions/ColorFunctions";
 import { customConvertOption } from "../data";
 import { colors } from "colors";
@@ -1069,7 +1069,7 @@ class SideTrad extends Component {
             this.initial_text = initial_text;
           }}
         >
-          {ReactHtmlParser((francais || {}).body || "", options)}
+          {/* {ReactHtmlParser((francais || {}).body || "", options)} */}
         </div>
         {this.state.currIdx === "abstract" ? (
           <AlertModified type={modified ? "modified" : "abstract"}>
@@ -1124,7 +1124,8 @@ class SideTrad extends Component {
             id={langue.langueCode}
           ></i>
         </div>
-        <DirectionProvider direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
+        {/* <DirectionProvider direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}> */}
+        <div>
           <div
             className={
               userId &&
@@ -1145,7 +1146,7 @@ class SideTrad extends Component {
           >
             <ConditionalSpinner show={!(translated || {}).body} />
 
-            <Editor
+            {typeof window !== "undefined" && <Editor
               toolbarClassName={
                 isRTL
                   ? "toolbar-editeur"
@@ -1198,7 +1199,7 @@ class SideTrad extends Component {
                   showOpenOptionOnHover: true,
                 },
               }}
-            />
+            />}
             {autosuggest && (
               <div className="google-suggest">
                 Suggestion par{" "}
@@ -1206,7 +1207,8 @@ class SideTrad extends Component {
               </div>
             )}
           </div>
-        </DirectionProvider>
+          {/* </DirectionProvider> */}
+          </div>
         <div className="expert-bloc">
           {userId &&
           userId.username &&

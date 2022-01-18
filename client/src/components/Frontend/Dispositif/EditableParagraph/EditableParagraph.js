@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ContentEditable from "react-contenteditable";
-import { Editor } from "react-draft-wysiwyg";
+// import { Editor } from "react-draft-wysiwyg";
 import { EditorBlock } from "draft-js";
 import { withTranslation } from "react-i18next";
 import {
@@ -17,7 +17,7 @@ import FButton from "../../../FigmaUI/FButton/FButton";
 import API from "../../../../utils/API";
 import { logger } from "logger";
 
-import "./EditableParagraph.scss";
+//import "./EditableParagraph.scss";
 import { colors } from "colors";
 
 // const styles = {
@@ -163,7 +163,7 @@ class EditableParagraph extends Component {
       return (
         // {/* <Backdrop show={true} clicked={()=>props.handleContentClick(props.keyValue,false, props.subkey)} /> */}
         <>
-          <Editor
+          {typeof window !== "undefined" && <Editor
             spellCheck
             editorRef={this.setEditorReference}
             toolbarClassName={
@@ -236,7 +236,7 @@ class EditableParagraph extends Component {
                 showOpenOptionOnHover: true,
               },
             }}
-          />
+          />}
           {this.props.keyValue !== 0 ? (
             <AddModuleBtn
               isDropdownOpen={this.state.isDropdownOpen}

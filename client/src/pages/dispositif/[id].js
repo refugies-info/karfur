@@ -2,31 +2,32 @@ import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { Col, Row, Spinner } from "reactstrap";
 import { connect } from "react-redux";
+import { withRouter } from "next/router";
 import ContentEditable from "react-contenteditable";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import htmlToDraft from "html-to-draftjs";
-import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
+// import htmlToDraft from "html-to-draftjs";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import {
   EditorState,
   convertToRaw,
   convertFromRaw,
   ContentState,
 } from "draft-js";
-import i18n from "../../i18n";
+import i18n from "i18n";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
 import h2p from "html2plaintext";
 import _ from "lodash";
 import querySearch from "stringquery";
 import { convertToHTML } from "draft-convert";
-import windowSize from "react-window-size";
-import {
+// import windowSize from "react-window-size";
+/* import {
   NotificationContainer,
   NotificationManager,
-} from "react-notifications";
-import API from "../../utils/API";
-import Sponsors from "../../components/Frontend/Dispositif/Sponsors/Sponsors";
-import { ContenuDispositif } from "../../components/Frontend/Dispositif/ContenuDispositif";
+} from "react-notifications"; */
+import API from "utils/API";
+import Sponsors from "components/Frontend/Dispositif/Sponsors/Sponsors";
+import { ContenuDispositif } from "components/Frontend/Dispositif/ContenuDispositif";
 import {
   BookmarkedModal,
   DispositifCreateModal,
@@ -38,20 +39,20 @@ import {
   FrameModal,
   DraftModal,
   ShareContentOnMobileModal,
-} from "../../components/Modals/index";
-import FButton from "../../components/FigmaUI/FButton/FButton";
-import { Tags } from "./Tags";
-import { LanguageToReadModal } from "./LanguageToReadModal/LanguagetoReadModal";
-import { LeftSideDispositif } from "../../components/Frontend/Dispositif/LeftSideDispositif";
-import { BandeauEdition } from "../../components/Frontend/Dispositif/BandeauEdition";
-import { TopRightHeader } from "../../components/Frontend/Dispositif/TopRightHeader";
-import { fetchActiveDispositifsActionsCreator } from "../../services/ActiveDispositifs/activeDispositifs.actions";
-import { fetchUserActionCreator } from "../../services/User/user.actions";
-import ContribCaroussel from "./ContribCaroussel/ContribCaroussel";
-import SideTrad from "./SideTrad/SideTrad";
-import ExpertSideTrad from "./SideTrad/ExpertSideTrad";
-import { initializeTimer } from "../Translation/functions";
-import { readAudio, stopAudio } from "../Layout/functions";
+} from "components/Modals/index";
+import FButton from "components/FigmaUI/FButton/FButton";
+import { Tags } from "containers/Dispositif/Tags";
+import { LanguageToReadModal } from "containers/Dispositif/LanguageToReadModal/LanguagetoReadModal";
+import { LeftSideDispositif } from "components/Frontend/Dispositif/LeftSideDispositif";
+import { BandeauEdition } from "components/Frontend/Dispositif/BandeauEdition";
+import { TopRightHeader } from "components/Frontend/Dispositif/TopRightHeader";
+import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
+import { fetchUserActionCreator } from "services/User/user.actions";
+import ContribCaroussel from "containers/Dispositif/ContribCaroussel/ContribCaroussel";
+// import SideTrad from "containers/Dispositif/SideTrad/SideTrad";
+// import ExpertSideTrad from "containers/Dispositif/SideTrad/ExpertSideTrad";
+import { initializeTimer } from "containers/Translation/functions";
+import { readAudio, stopAudio } from "lib/readAudio";
 import {
   contenu,
   menu as menuDispositif,
@@ -63,27 +64,29 @@ import {
   customConvertOption,
   infocardsDemarcheTitles,
   infocardFranceEntiere,
-} from "./data";
-import { calculFiabilite } from "./functions";
+} from "containers/Dispositif/data";
+import { calculFiabilite } from "containers/Dispositif/functions";
 import { breakpoints } from "utils/breakpoints.js";
-import { BackButton } from "../../components/Frontend/Dispositif/BackButton";
+import { BackButton } from "components/Frontend/Dispositif/BackButton";
 import { colors } from "colors";
 import {
   fetchSelectedDispositifActionCreator,
   updateUiArrayActionCreator,
   updateSelectedDispositifActionCreator,
-} from "../../services/SelectedDispositif/selectedDispositif.actions";
-import "./Dispositif.scss";
-import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner";
-import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFooter";
-import { initGA, Event } from "../../tracking/dispatch";
-import { fetchActiveStructuresActionCreator } from "../../services/ActiveStructures/activeStructures.actions";
-import { logger } from "../../logger";
+} from "services/SelectedDispositif/selectedDispositif.actions";
+import { EnBrefBanner } from "components/Frontend/Dispositif/EnBrefBanner";
+import { FeedbackFooter } from "components/Frontend/Dispositif/FeedbackFooter";
+import { initGA, Event } from "tracking/dispatch";
+import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
+import { logger } from "logger";
 import { isMobile } from "react-device-detect";
-import { PdfCreateModal } from "../../components/Modals/PdfCreateModal/PdfCreateModal";
+import { PdfCreateModal } from "components/Modals/PdfCreateModal/PdfCreateModal";
 import styled from "styled-components";
 
 moment.locale("fr");
+const window = null;
+const htmlToDraft = (props) => ({contentBlocks: []});
+
 
 const InfoBoxLanguageContainer = styled.div`
   display: flex;
@@ -125,7 +128,6 @@ export class Dispositif extends Component {
     this.newRef = React.createRef();
     this.sponsors = React.createRef();
     this.mountTime = 0;
-    this.audio = new Audio();
     this._isMounted = false;
     this.initializeTimer = initializeTimer.bind(this);
     this.readAudio = readAudio.bind(this);
@@ -202,7 +204,7 @@ export class Dispositif extends Component {
     this.props.fetchUser();
     this.props.fetchActiveStructures();
     this.checkUserFetchedAndInitialize();
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     // this._initializeDispositif(this.props);
   }
 
@@ -242,9 +244,10 @@ export class Dispositif extends Component {
     }
   };
 
+  //temp
   _initializeDispositif = (props) => {
     const itemId = props.match && props.match.params && props.match.params.id;
-    const typeContenu = (props.match.path || "").includes("demarche")
+    const typeContenu = (props.router.pathname || "").includes("demarche")
       ? "demarche"
       : "dispositif";
 
@@ -416,9 +419,9 @@ export class Dispositif extends Component {
                 this.setColors();
               }
             );
-          document.title =
-            this.state.content.titreMarque ||
-            this.state.content.titreInformatif;
+          //document.title =
+          //  this.state.content.titreMarque ||
+          //  this.state.content.titreInformatif;
 
           //On récupère les données de l'utilisateur
           if (this._isMounted && API.isAuth()) {
@@ -506,7 +509,7 @@ export class Dispositif extends Component {
         state: { redirectTo: "/dispositif" },
       });
     }
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   };
 
   setColors = () => {
@@ -574,7 +577,7 @@ export class Dispositif extends Component {
         this.state.content.titreMarque === contenu.titreMarque
       ) {
         this.setState({ content: { ...this.state.content, titreMarque: "" } });
-        document.getElementById("titreMarque").focus();
+        // document.getElementById("titreMarque").focus();
       }
     }
   };
@@ -786,12 +789,12 @@ export class Dispositif extends Component {
             : key === 1
             ? "card-col col-lg-4"
             : undefined;
-        let parentNode = document.getElementsByClassName(target)[0];
+        let parentNode = null // document.getElementsByClassName(target)[0];
         if (subkey && parentNode) {
           parentNode
             .getElementsByClassName("public-DraftEditor-content")[0]
             .focus();
-          window.getSelection().addRange(document.createRange());
+          // window.getSelection().addRange(document.createRange());
           parentNode.getElementsByClassName(
             "DraftEditor-root"
           )[0].style.height =
@@ -1784,7 +1787,7 @@ export class Dispositif extends Component {
       >
         <Row className="main-row">
           {translating && (
-            <Col xl="4" lg="4" md="4" sm="4" xs="4" className="side-col">
+            {/* <Col xl="4" lg="4" md="4" sm="4" xs="4" className="side-col">
               {!this.props.isExpert ? (
                 <SideTrad
                   menu={this.state.menu}
@@ -1802,7 +1805,7 @@ export class Dispositif extends Component {
                   {...this.props}
                 />
               )}
-            </Col>
+            </Col> */}
           )}
           <Col
             xl={translating ? "8" : "12"}
@@ -2433,7 +2436,7 @@ export class Dispositif extends Component {
               t={this.props.t}
             />
 
-            <NotificationContainer />
+            {/* <NotificationContainer /> */}
 
             {isDispositifLoading && (
               <div className="ecran-protection no-main">
@@ -2470,6 +2473,6 @@ const mapDispatchToProps = {
   fetchActiveStructures: fetchActiveStructuresActionCreator,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps, null, {
+export default withRouter(connect(mapStateToProps, mapDispatchToProps, null, {
   forwardRef: true,
-})(withTranslation()(windowSize(Dispositif)));
+})(withTranslation()(Dispositif)));

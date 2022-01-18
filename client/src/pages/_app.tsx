@@ -10,7 +10,8 @@ import "components/Layout/Layout.scss";
 // TODO: clean
 import "rc-time-picker/assets/index.css";
 import "components/UI/CustomCard/CustomCard.scss";
-import "containers/AdvancedSearch/AdvancedSearch.scss";
+import "scss/pages/advanced-search.scss";
+import "scss/pages/dispositif.scss";
 import "components/FigmaUI/TagButton/TagButton.scss"
 
 const App = ({ Component, pageProps }: AppProps) => (

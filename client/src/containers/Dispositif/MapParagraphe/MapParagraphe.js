@@ -10,7 +10,7 @@ import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import { markerInfo } from "./data";
 import { isMobile } from "react-device-detect";
 
-import "./MapParagraphe.scss";
+// import "./MapParagraphe.scss";
 import { colors } from "colors";
 import styled from "styled-components";
 

@@ -38,13 +38,12 @@ const routes = [
     component: HomePage,
     restriction: [],
   }, */
-
-  {
+/*   {
     path: "/advanced-search",
     name: "Réfugiés.info - Recherche",
     component: AdvancedSearch,
     restriction: [],
-  },
+  }, */
 /*   {
     path: "/qui-sommes-nous",
     name: "Réfugiés.info - Qui sommes-nous ?",

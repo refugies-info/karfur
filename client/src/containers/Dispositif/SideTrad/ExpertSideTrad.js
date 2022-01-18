@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactHtmlParser from "react-html-parser";
+// import ReactHtmlParser from "react-html-parser";
 import { Spinner, Tooltip, Progress } from "reactstrap";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
@@ -29,7 +29,7 @@ import { RejectTradModal } from "../../../components/Modals";
 import { colorAvancement } from "../../../components/Functions/ColorFunctions";
 import { customConvertOption } from "../data";
 
-import "./SideTrad.scss";
+// import "./SideTrad.scss";
 import { colors } from "colors";
 import API from "../../../utils/API";
 import produce from "immer";
@@ -1251,7 +1251,7 @@ class SideTrad extends Component {
             this.initial_text = initial_text;
           }}
         >
-          {ReactHtmlParser((francais || {}).body || "", options)}
+          {/* {ReactHtmlParser((francais || {}).body || "", options)} */}
         </div>
         {this.state.currIdx === "abstract" ? (
           <AlertModified type={modified ? "modified" : "abstract"}>

@@ -63,7 +63,7 @@ export const LeftSideDispositif = (props: Props) => {
         )
     : props.toggleInputBtnClicked;
 
-  const emailBody = "Voici le lien vers cette fiche : " + window.location.href;
+  const emailBody = "Voici le lien vers cette fiche : " // + window.location.href;
 
   const getTitle = (title: string) => {
     if (title === "La démarche par étapes")

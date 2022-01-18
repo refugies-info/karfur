@@ -5,7 +5,7 @@ import h2p from "html2plaintext";
 
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
-import "./QuickToolbar.scss";
+// import "./QuickToolbar.scss";
 import { colors } from "colors";
 import { Props } from "./QuickToolbar.container";
 

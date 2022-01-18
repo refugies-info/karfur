@@ -1,11 +1,11 @@
 import React from "react";
 // import { AppSwitch } from "@coreui/react";
 
-import "./FSwitch.scss";
+import styles from "./FSwitch.module.scss";
 
 const fSwitch = (props) => {
   return (
-    <div className={"switch-wrapper " + (props.className || "")}>
+    <div className={styles.switch + " " + (props.className || "")}>
       {props.precontent}
 {/*       <AppSwitch
         className={"mr-10" + (props.precontent ? " ml-10" : "")}

@@ -5,7 +5,7 @@ import { filtres } from "../data";
 import TagButton from "../../../components/FigmaUI/TagButton/TagButton";
 import Streamline from "../../../assets/streamline";
 
-import "./Tags.scss";
+// import "./Tags.scss";
 import { Props } from "./Tags.container";
 import { Tag } from "../../../types/interface";
 import styled from "styled-components";

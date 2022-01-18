@@ -6,7 +6,7 @@ import { Table } from "reactstrap";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import { markerInfo } from "./data";
 
-import "./MapParagraphe.scss";
+// import "./MapParagraphe.scss";
 
 class MapParagraphe extends PureComponent {
   state = {

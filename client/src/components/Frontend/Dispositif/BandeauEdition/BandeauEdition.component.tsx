@@ -1,7 +1,7 @@
 import React from "react";
-import "./BandeauEdition.scss";
 import { Props } from "./BandeauEdition.container";
 import { BandeauEditionWithoutVariante } from "./BandeauEditionWithoutVariante";
+// import "./BandeauEdition.scss";
 
 declare const window: any;
 

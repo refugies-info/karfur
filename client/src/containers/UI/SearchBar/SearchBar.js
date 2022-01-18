@@ -6,10 +6,11 @@ import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 import debounce from "lodash.debounce";
 import NoResultImage from "../../../assets/no_results.svg";
 import { withTranslation } from "react-i18next";
+import { withRouter } from "next/router";
 
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
-import "./SearchBar.scss";
+// import "./SearchBar.scss";
 import { colors } from "colors";
 import FButton from "components/FigmaUI/FButton/FButton";
 import styled from "styled-components";

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 // import Icon from "react-eva-icons";
-import { filtres } from "../../../containers/Dispositif/data";
-import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
-import { CustomDropDown } from "../../../containers/Annuaire/AnnuaireCreate/CustomDropdown/CustomDropdown";
-import { CustomCheckBox } from "../../../containers/Annuaire/AnnuaireCreate/components/CustomCheckBox/CustomCheckBox";
-import FInput from "../../../components/FigmaUI/FInput/FInput";
+import { filtres } from "containers/Dispositif/data";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import FButton from "components/FigmaUI/FButton/FButton";
+import { CustomDropDown } from "components/Pages/annuaire-create/CustomDropdown";
+import { CustomCheckBox } from "components/Pages/annuaire-create/CustomCheckBox";
+import FInput from "components/FigmaUI/FInput/FInput";
 
-import "./GeolocModal.css";
+// import "./GeolocModal.css";
 import Modal from "../Modal";
 
 const IconContainer = styled.div`

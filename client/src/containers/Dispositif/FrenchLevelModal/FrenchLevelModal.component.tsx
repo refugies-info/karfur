@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Modal } from "reactstrap";
-import "./FrenchLevelModal.scss";
+// import "./FrenchLevelModal.scss";
 import styled from "styled-components";
-import Icon from "react-eva-icons";
+// import Icon from "react-eva-icons";
 import { FrenchLevelButton } from "./FrenchLevelButton/FrenchLevelButton";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { Props } from "./FrenchLevelModal.container";
@@ -180,7 +180,7 @@ export class FrenchLevelModalComponent extends Component<Props> {
       >
         {" "}
         <IconContainer onClick={this.props.hideModal}>
-          <Icon name="close-outline" fill="#3D3D3D" size="large" />
+          {/* <Icon name="close-outline" fill="#3D3D3D" size="large" /> */}
         </IconContainer>
         <MainContainer>
           <StyledMainTitle>

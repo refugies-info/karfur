@@ -2,10 +2,10 @@ import React from "react";
 import { Col, Row } from "reactstrap";
 import { Props } from "./ContenuDispositif.container";
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
-import { QuickToolbar } from "../../../../containers/Dispositif/QuickToolbar";
+import { QuickToolbar } from "containers/Dispositif/QuickToolbar";
 import ContenuParagraphe from "../ContenuParagraphe/ContenuParagraphe";
-import { DispositifContent } from "../../../../types/interface";
-import FButton from "../../../FigmaUI/FButton/FButton";
+import { DispositifContent } from "types/interface";
+import FButton from "components/FigmaUI/FButton/FButton";
 import { isMobile } from "react-device-detect";
 
 interface UiObject {

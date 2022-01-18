@@ -22,7 +22,7 @@ import { structure_definie } from "../../../../assets/figma/index";
 import CreationContent from "../CreationContent/CreationContent";
 import { updateUserActionCreator } from "../../../../services/User/user.actions";
 import _ from "lodash";
-import "./Sponsors.scss";
+// import "./Sponsors.scss";
 import { colors } from "colors";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
