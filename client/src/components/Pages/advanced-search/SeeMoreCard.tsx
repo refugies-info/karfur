@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { CardBody } from "reactstrap";
 import { useTranslation } from "react-i18next";
-import CustomCard from "../../components/UI/CustomCard/CustomCard";
-import { CardBody} from "reactstrap";
-import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
+import CustomCard from "components/UI/CustomCard/CustomCard";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import {colors} from "colors";
+import { Tag } from "types/interface";
 
 const CardText = styled.p`
   font-size: 32px;
@@ -31,21 +32,24 @@ const SeeMoreText = styled.p`
   font-weight: 700;
 `
 
-const SeeMoreCard = ({ theme, seeMore, isRTL }) => {
+interface Props {
+  theme: Tag
+  seeMore: any
+  isRTL: boolean
+}
+
+const SeeMoreCard = (props: Props) => {
   const { t } = useTranslation();
+
   return (
-    <div
-      className={
-        "card-col puff-in-center dispositif"
-      }
-    >
-      <CustomCard onClick={seeMore} className={"border-none"}>
+    <div className="card-col puff-in-center dispositif">
+      <CustomCard onClick={props.seeMore} className="border-none">
         <CardBody>
-          <CardText color={theme.darkColor}>{t("AdvancedSearch.Voir les fiches", "Voir toutes les fiches")}</CardText>
-          <SeeMoreButton color={theme.darkColor}>
+          <CardText color={props.theme.darkColor}>{t("AdvancedSearch.Voir les fiches", "Voir toutes les fiches")}</CardText>
+          <SeeMoreButton color={props.theme.darkColor}>
           <EVAIcon name="expand-outline" fill={colors.blanc} />
-            <SeeMoreText mr={isRTL ? 8 : 0}>
-              {t("Tags." + theme.short, theme.short)}
+            <SeeMoreText mr={props.isRTL ? 8 : 0}>
+              {t("Tags." + props.theme.short, props.theme.short)}
             </SeeMoreText>
           </SeeMoreButton>
         </CardBody>

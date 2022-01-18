@@ -9,7 +9,7 @@ import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { userFavoritesSelector } from "../../../services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
 import styled from "styled-components";
-import SearchResultCard from "../../AdvancedSearch/SearchResultCard";
+import SearchResultCard from "components/Pages/advanced-search/SearchResultCard";
 import { Props } from "../UserProfile/UserProfile.container";
 import { NoFavorites } from "./components/NoFavorites.component";
 import {
@@ -153,7 +153,6 @@ export const UserFavoritesComponent = (props: Props) => {
                   pin={removePinnedDispositif}
                   pinnedList={pinnedList}
                   dispositif={fav}
-                  themeList={null}
                   showPinned={true}
                 />
               </CardContainer>

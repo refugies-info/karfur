@@ -5,7 +5,7 @@ import { FicheOnMobile } from "./FicheOnMobile/FicheOnMobile";
 import { colors } from "../../../../colors";
 import Streamline from "assets/streamline";
 import { LoadingFicheOnMobile } from "./LoadingFicheOnMobile";
-import NoResultPlaceholder from "../../NoResultPlaceholder";
+import NoResultPlaceholder from "components/Pages/advanced-search/NoResultPlaceholder";
 
 interface Props {
   tagSelected: null | Tag;

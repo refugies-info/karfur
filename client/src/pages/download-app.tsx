@@ -1,14 +1,17 @@
-import React from "react";
+import {useEffect} from "react";
 import { isMobileOnly, isIOS, isAndroid } from "react-device-detect";
+import { useRouter } from "next/router";
 import {
   iosStoreLink,
   androidStoreLink
-} from "../../assets/storeLinks";
-declare const window: Window;
+} from "assets/storeLinks";
 
-const DownloadApp = (props: any) => {
-  React.useEffect(() => {
-    props.history.replace("/");
+const DownloadApp = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/");
+
     if (isMobileOnly) {
       if (isAndroid) {
         window.location.replace(androidStoreLink);
@@ -20,6 +23,7 @@ const DownloadApp = (props: any) => {
       }
     }
   }, []);
+
   return null
 }
 

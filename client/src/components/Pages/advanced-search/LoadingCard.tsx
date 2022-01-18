@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import CustomCard from "../../components/UI/CustomCard/CustomCard";
+import CustomCard from "components/UI/CustomCard/CustomCard";
 import { CardBody } from "reactstrap";
-import { withTranslation } from "react-i18next";
 import Skeleton from "react-loading-skeleton";
 
 const CardText = styled.p`
@@ -14,8 +13,8 @@ const CardText = styled.p`
 
 const LoadingCard = () => {
   return (
-    <div className={"card-col puff-in-center dispositif"}>
-      <CustomCard className={"border-none"}>
+    <div className="card-col puff-in-center dispositif">
+      <CustomCard className="border-none">
         <CardBody>
           <CardText>
             <Skeleton />

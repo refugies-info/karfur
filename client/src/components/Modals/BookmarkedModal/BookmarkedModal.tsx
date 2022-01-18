@@ -2,19 +2,32 @@ import React from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
-
-import EVAIcon from "../../UI/EVAIcon/EVAIcon";
-
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import FButton from "components/FigmaUI/FButton/FButton";
 import { colors } from "colors";
-import FButton from "../../FigmaUI/FButton/FButton";
 import styles from "./BookmarkedModal.module.scss";
 
-const BookmarkedModal = (props) => {
+interface Props {
+  show: boolean
+  toggle: () => void
+  success: boolean
+}
+
+const BookmarkedModal = (props: Props) => {
   const { t } = useTranslation();
   const { show, toggle, success } = props;
+
   return (
-    <Modal isOpen={show} toggle={toggle} className={styles.bookmark_modal}>
-      <ModalHeader toggle={toggle}>
+    <Modal
+      isOpen={show}
+      toggle={toggle}
+      className={styles.bookmark_modal}
+      contentClassName={styles.modal_content}
+    >
+      <ModalHeader
+        toggle={toggle}
+        className={styles.modal_header}
+      >
         <div
           className={`${styles.bookmark_icon} ${
             success ? styles.success : styles.oups
@@ -28,7 +41,7 @@ const BookmarkedModal = (props) => {
             : t("Dispositif.Oups", "Oups !")}
         </div>
       </ModalHeader>
-      <ModalBody>
+      <ModalBody className={styles.modal_body}>
         {success ? (
           <>
             {t(
@@ -51,7 +64,7 @@ const BookmarkedModal = (props) => {
           </>
         )}
       </ModalBody>
-      <ModalFooter>
+      <ModalFooter className={styles.modal_footer}>
         {success ? (
           <>
             <FButton
@@ -64,16 +77,12 @@ const BookmarkedModal = (props) => {
           </>
         ) : (
           <>
-            <Link
-              to={{
-                pathname: "/login",
-              }}
-            >
-              <FButton type="login" name={"log-in-outline"} tag="a">
+            <Link href="/login">
+              <FButton type="login" name="log-in-outline" tag="a">
                 {t("Toolbar.Connexion", "Connexion")}
               </FButton>
             </Link>
-            <Link href={{ pathname: "/register" }}>
+            <Link href="/register">
               <FButton
                 type="signup"
                 name="person-add-outline"

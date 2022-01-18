@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link"
-import { filtres } from "../Dispositif/data";
-import CustomCard from "../../components/UI/CustomCard/CustomCard";
+import { filtres } from "containers/Dispositif/data";
+import CustomCard from "components/UI/CustomCard/CustomCard";
 import { CardBody, CardFooter } from "reactstrap";
-import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
-import Streamline from "../../assets/streamline";
-// import "./AdvancedSearch.scss";
+import Streamline from "assets/streamline";
 
 const CardText = styled.p`
   font-weight: 14px;
@@ -22,35 +21,33 @@ const BookmarkedContainer = styled.div`
   width: 40px;
 `;
 
-const SearchResultCard = ({
-  pin,
-  pinnedList,
-  dispositif,
-  themeList,
-  showPinned,
-}) => {
-  if (themeList) {
-    return null;
-  }
+interface Props {
+  pin: any
+  pinnedList: any[]
+  dispositif: any
+  showPinned: boolean
+}
+
+const SearchResultCard = (props: Props) => {
   const pinned =
-    pinnedList.includes(dispositif._id) ||
-    pinnedList.filter(
+  props.pinnedList.includes(props.dispositif._id) ||
+  props.pinnedList.filter(
       (pinnedDispostif) =>
-        pinnedDispostif && pinnedDispostif._id === dispositif._id
+        pinnedDispostif && pinnedDispostif._id === props.dispositif._id
     ).length > 0;
 
-  if (!dispositif.hidden) {
-    let shortTag = null;
-    let shortTagFull = null;
+  if (!props.dispositif.hidden) {
+    let shortTag = "";
+    let shortTagFull = "";
     let iconTag = null;
     if (
-      dispositif.tags &&
-      dispositif.tags.length > 0 &&
-      dispositif.tags[0] &&
-      dispositif.tags[0].short
+      props.dispositif.tags &&
+      props.dispositif.tags.length > 0 &&
+      props.dispositif.tags[0] &&
+      props.dispositif.tags[0].short
     ) {
-      shortTag = (dispositif.tags[0].short || {}).replace(/ /g, "-");
-      shortTagFull = dispositif.tags[0].short;
+      shortTag = (props.dispositif.tags[0].short || {}).replace(/ /g, "-");
+      shortTagFull = props.dispositif.tags[0].short;
     }
     if (shortTagFull) {
       iconTag = filtres.tags.find((tag) => tag.short === shortTagFull);
@@ -59,23 +56,23 @@ const SearchResultCard = ({
     return (
       <div
         className={
-          "card-col puff-in-center " + (dispositif.typeContenu || "dispositif")
+          "card-col puff-in-center " + (props.dispositif.typeContenu || "dispositif")
         }
-        key={dispositif._id}
+        key={props.dispositif._id}
       >
         <Link
           href={{
             pathname:
               "/" +
-              (dispositif.typeContenu || "dispositif") +
-              (dispositif._id ? "/" + dispositif._id : ""),
-            state: { previousRoute: "advanced-search" },
+              (props.dispositif.typeContenu || "dispositif") +
+              (props.dispositif._id ? "/" + props.dispositif._id : ""),
+            // state: { previousRoute: "advanced-search" },
           }}
         >
           <a>
             <CustomCard
               className={
-                dispositif.typeContenu === "demarche"
+                props.dispositif.typeContenu === "demarche"
                   ? "texte-" +
                     shortTag +
                     " bg-light-" +
@@ -86,19 +83,19 @@ const SearchResultCard = ({
               }
             >
               <CardBody>
-                {showPinned && (
+                {props.showPinned && (
                   <BookmarkedContainer
                     className={"bookmark-icon" + (pinned ? " pinned" : "")}
-                    onClick={(e) => pin(e, dispositif)}
-                    testID={"test-toggle-pin-" + dispositif._id}
+                    onClick={(e: any) => props.pin(e, props.dispositif)}
+                    testID={"test-toggle-pin-" + props.dispositif._id}
                   >
                     <EVAIcon name="star" fill={colors.blanc} size="medium" />
                   </BookmarkedContainer>
                 )}
-                <h5>{dispositif.titreInformatif}</h5>
-                <CardText>{dispositif.abstract}</CardText>
+                <h5>{props.dispositif.titreInformatif}</h5>
+                <CardText>{props.dispositif.abstract}</CardText>
               </CardBody>
-              {dispositif.typeContenu !== "demarche" && (
+              {props.dispositif.typeContenu !== "demarche" && (
                 <CardFooter
                   className={
                     "correct-radius align-right bg-" +
@@ -123,7 +120,7 @@ const SearchResultCard = ({
                       />
                     </div>
                   ) : null}
-                  {dispositif.titreMarque}
+                  {props.dispositif.titreMarque}
                 </CardFooter>
               )}
             </CustomCard>

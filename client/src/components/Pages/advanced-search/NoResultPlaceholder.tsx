@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { useTranslation } from "react-i18next";
-import NoResultsBackgroundImage from "../../assets/no_results.svg";
-import FButton from "../../components/FigmaUI/FButton/FButton";
 import { isMobile } from "react-device-detect";
+import { useTranslation } from "react-i18next";
+import NoResultsBackgroundImage from "assets/no_results.svg";
+import FButton from "components/FigmaUI/FButton/FButton";
 
 const NoResultsContainer = styled.div`
   display: flex;
@@ -50,7 +50,12 @@ const NoResultsText = styled.p`
   max-width: 520px;
 `;
 
-const NoResultPlaceholder = ({ restart, writeNew }) => {
+interface Props {
+  restart: () => void
+  writeNew: () => void
+}
+
+const NoResultPlaceholder = (props: Props) => {
   const { t } = useTranslation();
 
   return (
@@ -69,7 +74,7 @@ const NoResultPlaceholder = ({ restart, writeNew }) => {
             type="dark"
             name="refresh-outline"
             className="mr-10"
-            onClick={restart}
+            onClick={props.restart}
           >
             Recommencer
           </FButton>
@@ -77,7 +82,7 @@ const NoResultPlaceholder = ({ restart, writeNew }) => {
             <FButton
               type="white-yellow-hover"
               name="file-add-outline"
-              onClick={writeNew}
+              onClick={props.writeNew}
             >
               Rédiger une nouvelle fiche
             </FButton>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { IDispositif } from "types/interface";
 import { ObjectId } from "mongodb";
-import SearchResultCard from "containers/AdvancedSearch/SearchResultCard";
+import SearchResultCard from "components/Pages/advanced-search/SearchResultCard";
 import NoResultsBackgroundImage from "assets/no_results.svg";
 // import "./RightAnnuaireDetails.scss";
 
@@ -121,7 +121,6 @@ export const RightAnnuaireDetails = (props: Props) => {
                 pin={() => {}}
                 pinnedList={[]}
                 dispositif={dispositif}
-                themeList={null}
                 showPinned={false}
               />
             </CardContainer>

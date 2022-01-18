@@ -2,7 +2,7 @@ import React from "react";
 import { ModalBody } from "reactstrap";
 import styled from "styled-components";
 
-import FButton from "../../FigmaUI/FButton/FButton";
+import FButton from "components/FigmaUI/FButton/FButton";
 import Modal from "../Modal";
 
 import { colors } from "colors";

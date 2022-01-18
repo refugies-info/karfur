@@ -4,37 +4,35 @@
   width: 400px;
   max-width: 90vw;
 
-  .modal-content {
+  .modal_content {
     background: $gris;
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
     border-radius: 12px;
     font-size: 18px;
     line-height: 23px;
     border: none;
+  }
+  .modal_header {
+    border: none;
+    padding: 30px 30px 0;
 
-    .modal-header {
-      border: none;
-      padding: 30px 30px 0;
-
-      .modal-title {
-        font-size: 40px;
-        line-height: 51px;
-        font-weight: 600;
-        background: inherit;
-      }
-    }
-    .modal-body {
-      padding: 30px;
-      a {
-        font-weight: 600;
-        color: inherit;
-      }
-    }
-    .modal-footer {
-      border: none;
+    h5 {
+      font-size: 40px;
+      line-height: 51px;
+      font-weight: 600;
+      background: inherit;
     }
   }
-
+  .modal_body {
+    padding: 30px;
+    a {
+      font-weight: 600;
+      color: inherit;
+    }
+  }
+  .modal_footer {
+    border: none;
+  }
   .bookmark_icon {
     border-radius: 50%;
     &.success {
