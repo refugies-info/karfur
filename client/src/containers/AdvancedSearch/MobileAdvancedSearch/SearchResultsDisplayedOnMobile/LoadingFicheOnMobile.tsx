@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { colors } from "../../../../colors";
+import { colors } from "colors";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const ItemContainer = styled.div`

@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { MobileSearchFilterModal } from "./MobileSearchFilterModal/MobileSearchFilterModal";
-import { colors } from "../../../colors";
+import { colors } from "colors";
 import { LocalisationFilter } from "./LocalisationFilter/LocalisationFilter";
 import { SearchResultsDisplayedOnMobile } from "./SearchResultsDisplayedOnMobile/SearchResultsDisplayedOnMobile";
-import { Tag, IDispositif } from "../../../types/interface";
+import { Tag, IDispositif } from "types/interface";
 import { SelectedFilter } from "./SelectedFilter/SelectedFilter";
-import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 declare const window: Window;
-import { filtres } from "../../Dispositif/data";
+import { filtres } from "data/dispositif";
 import { initial_data } from "data/searchFilters";
 
 interface Props {

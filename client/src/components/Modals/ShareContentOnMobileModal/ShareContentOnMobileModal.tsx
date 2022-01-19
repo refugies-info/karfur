@@ -7,7 +7,7 @@ import { ShareButton } from "../../FigmaUI/ShareButton/ShareButton";
 import {
   send_sms,
   sharingOptions,
-} from "../../../containers/Dispositif/function";
+} from "components/Pages/dispositif/function";
 
 declare const window: Window;
 interface Props {

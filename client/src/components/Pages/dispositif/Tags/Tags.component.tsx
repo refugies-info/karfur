@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
-import { filtres } from "../data";
+import { filtres } from "data/dispositif";
 
-import TagButton from "../../../components/FigmaUI/TagButton/TagButton";
-import Streamline from "../../../assets/streamline";
+import TagButton from "components/FigmaUI/TagButton/TagButton";
+import Streamline from "assets/streamline";
 
 // import "./Tags.scss";
 import { Props } from "./Tags.container";
-import { Tag } from "../../../types/interface";
+import { Tag } from "types/interface";
 import styled from "styled-components";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
+import FButton from "components/FigmaUI/FButton/FButton";
 
 const InnerButton = styled.div`
   display: flex;

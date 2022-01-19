@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { Col, Card, CardBody, CardHeader, CardFooter } from "reactstrap";
 import Swal from "sweetalert2";
-import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 // import "./CardParagraphe.scss";
 import { colors } from "colors";
 import { Props } from "./CardParagraphe.container";
-import { DispositifContent, Tag } from "../../../types/interface";
-import { filtres, cardTitlesDispositif, cardTitlesDemarche } from "../data";
+import { DispositifContent, Tag } from "types/interface";
+import { filtres, cardTitlesDispositif, cardTitlesDemarche } from "data/dispositif";
 import _ from "lodash";
 import { FrenchLevelModal } from "../FrenchLevelModal";
-import GeolocModal from "../../../components/Modals/GeolocModal/GeolocModal";
-import API from "../../../utils/API";
+import GeolocModal from "components/Modals/GeolocModal/GeolocModal";
+import API from "utils/API";
 import {
   FrenchCECRLevel,
   DepartmentsSelected,

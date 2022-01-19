@@ -4,9 +4,9 @@ import ContentEditable from "react-contenteditable";
 import Swal from "sweetalert2";
 import { withTranslation } from "react-i18next";
 
-import MapComponent from "../../../components/Frontend/Dispositif/MapComponent/MapComponent";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
-import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
+import MapComponent from "components/Frontend/Dispositif/MapComponent/MapComponent";
+import FButton from "components/FigmaUI/FButton/FButton";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { markerInfo } from "./data";
 import { isMobile } from "react-device-detect";
 

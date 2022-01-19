@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link"
-import { filtres } from "containers/Dispositif/data";
+import { filtres } from "data/dispositif";
 import CustomCard from "components/UI/CustomCard/CustomCard";
 import { CardBody, CardFooter } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";

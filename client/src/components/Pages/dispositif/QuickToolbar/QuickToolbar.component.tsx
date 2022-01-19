@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Card, CardBody, Row, Col, Tooltip, Button } from "reactstrap";
 import h2p from "html2plaintext";
 
-import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 
 // import "./QuickToolbar.scss";
 import { colors } from "colors";

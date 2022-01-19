@@ -1,6 +1,6 @@
 import React from "react";
-import FSwitch from "../../../../components/FigmaUI/FSwitch/FSwitch";
-import { DispositifContent } from "../../../../types/interface";
+import FSwitch from "components/FigmaUI/FSwitch/FSwitch";
+import { DispositifContent } from "types/interface";
 import {
   Input,
   ButtonDropdown,

@@ -2,24 +2,22 @@ import React from "react";
 import { Col, Row, Collapse } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
-import { QuickToolbar } from "../../../../containers/Dispositif/QuickToolbar";
+import { QuickToolbar } from "components/Pages/dispositif/QuickToolbar";
 import {
   CardParagraphe,
   PlusCard,
-} from "../../../../containers/Dispositif/CardParagraphe";
-import MapParagraphe from "../../../../containers/Dispositif/MapParagraphe/MapParagraphe";
-import MapParagraphePrint from "../../../../containers/Dispositif/MapParagraphe/MapParagraphePrint";
-import EtapeParagraphe from "../../../../containers/Dispositif/EtapeParagraphe/EtapeParagraphe";
-import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
-import FButton from "../../../FigmaUI/FButton/FButton";
+} from "components/Pages/dispositif/CardParagraphe";
+import MapParagraphe from "components/Pages/dispositif/MapParagraphe/MapParagraphe";
+import MapParagraphePrint from "components/Pages/dispositif/MapParagraphe/MapParagraphePrint";
+import EtapeParagraphe from "components/Pages/dispositif/EtapeParagraphe/EtapeParagraphe";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import FButton from "components/FigmaUI/FButton/FButton";
 import { colors } from "colors";
-import {
-  cardTitlesDispositif,
-  cardTitlesDemarche,
-} from "../../../../containers/Dispositif/data";
-
 import styled from "styled-components";
-import { infocardsDemarcheTitles } from "../../../../containers/Dispositif/data";
+import {  cardTitlesDispositif,
+  cardTitlesDemarche,
+  infocardsDemarcheTitles
+} from "data/dispositif";
 import { isMobile } from "react-device-detect";
 
 const StyledAccordeon = styled.div`

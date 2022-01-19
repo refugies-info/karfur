@@ -1,12 +1,12 @@
 import React from "react";
-import { infoCardIcon } from "../../../../components/Icon/Icon";
+import { infoCardIcon } from "components/Icon/Icon";
 import {
   ButtonDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
-import { DispositifContent } from "../../../../types/interface";
+import { DispositifContent } from "types/interface";
 
 interface Props {
   subitem: DispositifContent;

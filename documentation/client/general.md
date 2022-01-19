@@ -77,4 +77,4 @@ function Button() {
 ```
 
 You can see an example of a simple static component in /karfur/client/src/components/Frontend/Dispositif/MediaUpload/StyledTab.js
-Or an example of a styled-component declared within a much complex component in /karfur/client/src/containers/Dispositif/SideTrad/ExpertSideTrad.js
+Or an example of a styled-component declared within a much complex component in /karfur/client/src/components/Pages/dispositif/SideTrad/ExpertSideTrad.js

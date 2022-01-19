@@ -1,9 +1,9 @@
 import React from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
-import Streamline from "../../../../assets/streamline";
+import Streamline from "assets/streamline";
 import { colors } from "colors";
-import { filtres } from "../../../Dispositif/data";
+import { filtres } from "data/dispositif";
 import { initial_data } from "data/searchFilters";
 import "./MobileSearchFilterModal.module.scss";
 

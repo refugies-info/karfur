@@ -3,8 +3,8 @@ import _ from "lodash";
 import { withTranslation } from "react-i18next";
 import { Table } from "reactstrap";
 
-import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import { markerInfo } from "./data";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { markerInfo } from "data/dispositif";
 
 // import "./MapParagraphe.scss";
 

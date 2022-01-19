@@ -1,4 +1,4 @@
-import { cardTitlesDispositif, cardTitlesDemarche } from "../data";
+import { cardTitlesDispositif, cardTitlesDemarche } from "data/dispositif";
 import React from "react";
 import { Card, CardHeader, CardBody, Col } from "reactstrap";
 

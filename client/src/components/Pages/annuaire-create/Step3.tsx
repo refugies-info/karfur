@@ -4,7 +4,7 @@ import { jsUcfirst } from "lib";
 import _ from "lodash";
 import { UserStructure } from "types/interface";
 import { activities } from "data/activities";
-import { filtres } from "containers/Dispositif/data";
+import { filtres } from "data/dispositif";
 import { ActivityCard } from "./ActivityCard";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 

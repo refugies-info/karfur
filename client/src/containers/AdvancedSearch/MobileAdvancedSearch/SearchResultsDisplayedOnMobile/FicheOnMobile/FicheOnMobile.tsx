@@ -1,9 +1,9 @@
 import React from "react";
-import { IDispositif } from "../../../../../types/interface";
+import { IDispositif } from "types/interface";
 import styled from "styled-components";
-import { colors } from "../../../../../colors";
+import { colors } from "colors";
 import Streamline from "assets/streamline";
-import { filtres } from "../../../../Dispositif/data";
+import { filtres } from "data/dispositif";
 
 interface Props {
   item: IDispositif;

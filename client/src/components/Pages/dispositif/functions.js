@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { menu } from "./data";
+import { menu } from "data/dispositif";
 
 const calculFiabilite = function (dispositif) {
   let score = 0;

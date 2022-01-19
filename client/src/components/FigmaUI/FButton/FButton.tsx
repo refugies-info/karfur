@@ -1,5 +1,5 @@
 import React from "react";
-import EVAIcon from "../../UI/EVAIcon/EVAIcon";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 
 import styles from "./FButton.module.scss";
 

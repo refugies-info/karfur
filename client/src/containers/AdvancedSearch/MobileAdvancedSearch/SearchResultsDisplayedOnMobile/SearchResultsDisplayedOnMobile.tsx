@@ -1,8 +1,8 @@
 import React from "react";
-import { Tag, IDispositif } from "../../../../types/interface";
+import { Tag, IDispositif } from "types/interface";
 import styled from "styled-components";
 import { FicheOnMobile } from "./FicheOnMobile/FicheOnMobile";
-import { colors } from "../../../../colors";
+import { colors } from "colors";
 import Streamline from "assets/streamline";
 import { LoadingFicheOnMobile } from "./LoadingFicheOnMobile";
 import NoResultPlaceholder from "components/Pages/advanced-search/NoResultPlaceholder";

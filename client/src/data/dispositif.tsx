@@ -12,7 +12,6 @@ const contenu = {
 const showModals = {
   reaction: false,
   fiabilite: false,
-  reaction: false,
   merci: false,
   allGood: false,
   construction: false,
@@ -207,7 +206,9 @@ const menuDemarche = [
   },
 ];
 
+//@ts-ignore
 const infocardsDemarcheTitles = menuDemarche[1].children.map(
+  //@ts-ignore
   (child) => child.title
 );
 
@@ -634,7 +635,7 @@ const demarcheSteps = {
 };
 
 const customConvertOption = {
-  blockToHTML: (block) => {
+  blockToHTML: (block: any) => {
     if (block.type === "header-six") {
       return {
         start:
@@ -643,7 +644,7 @@ const customConvertOption = {
       };
     }
   },
-  entityToHTML: (entity, originalText) => {
+  entityToHTML: (entity: any, originalText: string) => {
     if (entity.type === "link" || entity.type === "LINK") {
       return (
         <a

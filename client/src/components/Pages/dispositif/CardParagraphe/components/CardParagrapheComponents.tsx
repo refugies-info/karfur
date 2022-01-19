@@ -7,10 +7,10 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
-import { DispositifContent } from "../../../../types/interface";
+import { DispositifContent } from "types/interface";
 import { jsUcfirstInfocards } from "./functions";
 import styled from "styled-components";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import FButton from "components/FigmaUI/FButton/FButton";
 
 export const GeolocTooltipItem = (props: any) => {
   const { item, id } = props;

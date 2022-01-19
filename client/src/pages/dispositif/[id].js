@@ -41,16 +41,16 @@ import {
   ShareContentOnMobileModal,
 } from "components/Modals/index";
 import FButton from "components/FigmaUI/FButton/FButton";
-import { Tags } from "containers/Dispositif/Tags";
-import { LanguageToReadModal } from "containers/Dispositif/LanguageToReadModal/LanguagetoReadModal";
+import { Tags } from "components/Pages/dispositif/Tags";
+import { LanguageToReadModal } from "components/Pages/dispositif/LanguageToReadModal/LanguagetoReadModal";
 import { LeftSideDispositif } from "components/Frontend/Dispositif/LeftSideDispositif";
 import { BandeauEdition } from "components/Frontend/Dispositif/BandeauEdition";
 import { TopRightHeader } from "components/Frontend/Dispositif/TopRightHeader";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
-import ContribCaroussel from "containers/Dispositif/ContribCaroussel/ContribCaroussel";
-// import SideTrad from "containers/Dispositif/SideTrad/SideTrad";
-// import ExpertSideTrad from "containers/Dispositif/SideTrad/ExpertSideTrad";
+import ContribCaroussel from "components/Pages/dispositif/ContribCaroussel/ContribCaroussel";
+// import SideTrad from "components/Pages/dispositif/SideTrad/SideTrad";
+// import ExpertSideTrad from "components/Pages/dispositif/SideTrad/ExpertSideTrad";
 import { initializeTimer } from "containers/Translation/functions";
 import { readAudio, stopAudio } from "lib/readAudio";
 import {
@@ -64,8 +64,8 @@ import {
   customConvertOption,
   infocardsDemarcheTitles,
   infocardFranceEntiere,
-} from "containers/Dispositif/data";
-import { calculFiabilite } from "containers/Dispositif/functions";
+} from "data/dispositif";
+import { calculFiabilite } from "components/Pages/dispositif/functions";
 import { breakpoints } from "utils/breakpoints.js";
 import { BackButton } from "components/Frontend/Dispositif/BackButton";
 import { colors } from "colors";
@@ -271,7 +271,7 @@ export class Dispositif extends Component {
           let dispositif = { ...data_res.data.data[0] };
           if (!dispositif || !dispositif._id) {
             this._isMounted = false;
-            return this.props.history.push("/");
+            return this.props.router.push("/");
           }
           if (dispositif.status === "Actif" && !props.translating) {
             const nbVues = dispositif.nbVues ? dispositif.nbVues + 1 : 1;
@@ -298,7 +298,7 @@ export class Dispositif extends Component {
                 type: "error",
                 timer: 1200,
               });
-              return this.props.history.push("/login");
+              return this.props.router.push("/login");
             }
             Swal.fire({
               title: "Erreur",
@@ -307,7 +307,7 @@ export class Dispositif extends Component {
               timer: 1200,
             });
             this._isMounted = false;
-            return this.props.history.push("/");
+            return this.props.router.push("/");
           }
 
           const disableEdit = true;
@@ -449,7 +449,7 @@ export class Dispositif extends Component {
               timer: 1200,
             });
             this._isMounted = false;
-            return this.props.history.push("/login");
+            return this.props.router.push("/login");
           }
           Swal.fire({
             title: "Erreur",
@@ -459,7 +459,7 @@ export class Dispositif extends Component {
           });
           logger.error("Error: ", { error: err.message });
           this._isMounted = false;
-          return this.props.history.push("/");
+          return this.props.router.push("/");
         });
     } else if (API.isAuth()) {
       // initialize the creation of a new dispositif if user is logged in
@@ -504,7 +504,7 @@ export class Dispositif extends Component {
         () => this.setColors()
       );
     } else {
-      props.history.push({
+      this.props.router.push({
         pathname: "/login",
         state: { redirectTo: "/dispositif" },
       });
@@ -1366,9 +1366,9 @@ export class Dispositif extends Component {
       this.props.location.state.previousRoute &&
       this.props.location.state.previousRoute === "advanced-search"
     ) {
-      this.props.history.go(-1);
+      // this.props.history.go(-1);
     } else {
-      this.props.history.push({ pathname: "/advanced-search" });
+      this.props.router.push({ pathname: "/advanced-search" });
     }
   };
 
@@ -1397,11 +1397,11 @@ export class Dispositif extends Component {
   };
 
   editDispositif = (_ = null, disableEdit = false) => {
-    this.props.history.push({
+    /* this.props.history.push({
       state: {
         editable: true,
       },
-    });
+    }); */
     this.setState(
       (pS) => ({
         disableEdit: disableEdit,
@@ -1470,7 +1470,7 @@ export class Dispositif extends Component {
           disableEdit: status !== "Accepté structure",
         });
       if (status === "Rejeté structure") {
-        this.props.history.push("/backend/user-dash-structure");
+        this.props.router.push("/backend/user-dash-structure");
       }
     });
   };
@@ -1694,7 +1694,7 @@ export class Dispositif extends Component {
               isDispositifLoading: false,
             },
             () => {
-              this.props.history.push(
+              this.props.router.push(
                 "/" + dispositif.typeContenu + "/" + newDispo._id
               );
             }
@@ -1981,7 +1981,7 @@ export class Dispositif extends Component {
                       addTag={this.addTag}
                       openTag={this.openTag}
                       deleteTag={this.deleteTag}
-                      history={this.props.history}
+                      // history={this.props.history}
                       toggleTutorielModal={this.toggleTutorielModal}
                       displayTuto={this.state.displayTuto}
                       updateUIArray={this.updateUIArray}
@@ -2368,7 +2368,7 @@ export class Dispositif extends Component {
                 toggle={this.toggleDispositifCreateModal}
                 typeContenu={typeContenu}
                 navigateToCommentContribuer={() =>
-                  this.props.history.push("/comment-contribuer")
+                  this.props.router.push("/comment-contribuer")
                 }
               />
             )}
@@ -2401,7 +2401,7 @@ export class Dispositif extends Component {
               toggle={this.toggleTagsModal}
               toggleTutorielModal={this.toggleTutorielModal}
               user={this.props.user}
-              history={this.props.history}
+              // history={this.props.history}
               dispositifId={this.state.dispositif._id}
             />
             <FrameModal
@@ -2422,7 +2422,7 @@ export class Dispositif extends Component {
               toggle={this.toggleDraftModal}
               valider_dispositif={this.valider_dispositif}
               navigateToMiddleOffice={() =>
-                this.props.history.push("/backend/user-dash-contrib")
+                this.props.router.push("/backend/user-dash-contrib")
               }
               status={this.state.status}
               toggleIsModified={this.toggleIsModified}

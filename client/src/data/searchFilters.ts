@@ -1,4 +1,4 @@
-import { filtres } from "containers/Dispositif/data";
+import { filtres } from "data/dispositif";
 
 const initial_data = [
   // {

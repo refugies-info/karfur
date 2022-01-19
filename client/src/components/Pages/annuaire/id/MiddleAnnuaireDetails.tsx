@@ -7,7 +7,7 @@ import { Structure } from "types/interface";
 import { DayHoursPrecisions } from "./DayHoursPrecisions";
 import { ActivityCard } from "components/Pages/annuaire-create/ActivityCard";
 import { activities } from "data/activities";
-import { filtres } from "containers/Dispositif/data";
+import { filtres } from "data/dispositif";
 import { NoActivity } from "./NoActivity";
 import Skeleton from "react-loading-skeleton";
 import { colors } from "colors";

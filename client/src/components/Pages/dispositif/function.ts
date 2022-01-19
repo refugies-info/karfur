@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import API from "../../utils/API";
+import API from "utils/API";
 
 declare const window: Window;
 export const send_sms = (

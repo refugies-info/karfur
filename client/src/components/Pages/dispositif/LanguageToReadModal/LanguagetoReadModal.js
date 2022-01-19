@@ -1,8 +1,8 @@
 import React from "react";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
+import FButton from "components/FigmaUI/FButton/FButton";
 import styled from "styled-components";
-import { initGA, Event } from "../../../tracking/dispatch";
+import { initGA, Event } from "tracking/dispatch";
 
 const ButtonContainer = styled.div`
   display: flex;

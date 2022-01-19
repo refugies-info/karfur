@@ -5,7 +5,7 @@ import FButton from "../../FigmaUI/FButton/FButton";
 import FInput from "../../FigmaUI/FInput/FInput";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import { colors } from "../../../colors";
-import { filtres } from "../../../containers/Dispositif/data";
+import { filtres } from "data/dispositif";
 import Streamline from "../../../assets/streamline/index";
 
 // import "./DispositifValidateModal.scss";

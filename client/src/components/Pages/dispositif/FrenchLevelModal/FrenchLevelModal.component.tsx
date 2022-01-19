@@ -4,7 +4,7 @@ import { Modal } from "reactstrap";
 import styled from "styled-components";
 // import Icon from "react-eva-icons";
 import { FrenchLevelButton } from "./FrenchLevelButton/FrenchLevelButton";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
+import FButton from "components/FigmaUI/FButton/FButton";
 import { Props } from "./FrenchLevelModal.container";
 
 export interface PropsBeforeInjection {

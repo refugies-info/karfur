@@ -17,7 +17,7 @@ import { Props } from "./LeftSideDispositif.container";
 import { DispositifContent } from "../../../../types/interface";
 import API from "../../../../utils/API";
 import Swal from "sweetalert2";
-import { send_sms } from "../../../../containers/Dispositif/function";
+import { send_sms } from "components/Pages/dispositif/function";
 
 declare const window: Window;
 export interface PropsBeforeInjection {

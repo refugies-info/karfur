@@ -27,7 +27,7 @@ import { BecomeTesterModal } from "components/Pages/homepage/BecomeTesterModal";
 import { HomePageMobile } from "components/Pages/homepage/HomePageMobile/HomePageMobile";
 import HomeSearch from "components/Pages/homepage/HomeSearch";
 import CatList from "components/Pages/homepage/CatList";
-import { filtres } from "containers/Dispositif/data";
+import { filtres } from "data/dispositif";
 
 const CoronaAlert = styled.div`
   display: flex;

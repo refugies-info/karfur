@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 // import Icon from "react-eva-icons";
-import { filtres } from "containers/Dispositif/data";
+import { filtres } from "data/dispositif";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { CustomDropDown } from "components/Pages/annuaire-create/CustomDropdown";

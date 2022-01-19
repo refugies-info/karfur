@@ -11,7 +11,7 @@ import type { IDispositif } from "types/interface";
 import * as themes from "data/synonym";
 import Streamline from "assets/streamline";
 import NoResultPlaceholder from "./NoResultPlaceholder";
-import { filtres } from "containers/Dispositif/data";
+import { filtres } from "data/dispositif";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";

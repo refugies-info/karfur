@@ -11,8 +11,7 @@ import {
 import { withTranslation } from "react-i18next";
 import withSizes from "react-sizes";
 
-import marioProfile from "../../../assets/mario-profile.jpg";
-import { colors } from "colors";
+import marioProfile from "assets/mario-profile.jpg";
 // import "./ContribCaroussel.scss";
 // import Icon from "react-eva-icons";
 import _ from "lodash";

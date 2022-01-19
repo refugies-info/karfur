@@ -17,18 +17,18 @@ import ContentEditable from "react-contenteditable";
 import _ from "lodash";
 import { withTranslation } from "react-i18next";
 
-import FButton from "../../../components/FigmaUI/FButton/FButton";
-import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
+import FButton from "components/FigmaUI/FButton/FButton";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { QuickToolbar } from "../QuickToolbar";
-import EditableParagraph from "../../../components/Frontend/Dispositif/EditableParagraph/EditableParagraph";
-import FInput from "../../../components/FigmaUI/FInput/FInput";
+import EditableParagraph from "components/Frontend/Dispositif/EditableParagraph/EditableParagraph";
+import FInput from "components/FigmaUI/FInput/FInput";
 
 // import "./EtapeParagraphe.scss";
 import { colors } from "colors";
-import { EtapeModal } from "../../../components/Modals";
+import { EtapeModal } from "components/Modals";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
-import i18n from "../../../i18n";
+import i18n from "i18n";
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>
