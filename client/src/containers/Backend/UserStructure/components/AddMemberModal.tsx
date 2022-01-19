@@ -13,7 +13,7 @@ import { activeUsersSelector } from "../../../../services/AllUsers/allUsers.sele
 import { SimplifiedUser } from "../../../../types/interface";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { ObjectId } from "mongodb";
-import { CustomUserSearchBar } from "../../../UI/CustomUserSearchBar/CustomUserSearchBar";
+import { CustomUserSearchBar } from "components/Backend/CustomUserSearchBar";
 
 const Title = styled.div`
   font-weight: normal;

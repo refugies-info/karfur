@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Modal, Spinner } from "reactstrap";
 import "./ChangeStructureModale.scss";
-import { SearchBar } from "../../../../UI/SearchBar/SearchBar";
+import SearchBar from "components/UI/SearchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchActiveStructuresActionCreator } from "../../../../../services/ActiveStructures/activeStructures.actions";
 import { activeStructuresSelector } from "../../../../../services/ActiveStructures/activeStructures.selector";
@@ -141,7 +141,6 @@ export const ChangeStructureModal = (props: Props) => {
           <Title>Choisissez la structure du contenu :</Title>
           {!selectedStructure && (
             <SearchBar
-              isArray
               structures
               className="search-bar inner-addon right-addon"
               placeholder="Chercher"

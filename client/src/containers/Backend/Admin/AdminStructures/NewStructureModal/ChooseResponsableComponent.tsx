@@ -1,5 +1,5 @@
 import { Spinner } from "reactstrap";
-import SearchBar from "containers/UI/SearchBar/SearchBar";
+import SearchBar from "components/UI/SearchBar/SearchBar";
 import React from "react";
 import styled from "styled-components";
 import { colors } from "colors";
@@ -19,7 +19,7 @@ const SelectedUser = styled.div`
 
 interface Props {
   isLoading: boolean;
-  activeUsers: any;
+  activeUsers: SimplifiedUser[];
   onSelectItem: (data: SimplifiedUser) => void;
   responsable: Responsable | null;
   removeRespo: () => void;
@@ -30,12 +30,11 @@ export const ChooseResponsableComponent = (props: Props) => {
   if (!props.responsable)
     return (
       <SearchBar
-        // @ts-ignore
-        isArray={true}
         users
         className="search-bar inner-addon right-addon"
         placeholder="Rechercher un utilisateur"
         array={props.activeUsers}
+        //@ts-ignore
         selectItem={props.onSelectItem}
       />
     );

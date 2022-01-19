@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { SimplifiedUser } from "../../../types/interface";
-import FInput from "../../../components/FigmaUI/FInput/FInput";
-import { removeAccents } from "../../../lib";
-import { UserDetail } from "./UserDetail";
+import { SimplifiedUser } from "types/interface";
 import styled from "styled-components";
 import { ObjectId } from "mongodb";
+import FInput from "components/FigmaUI/FInput/FInput";
+import { UserDetail } from "components/Backend/UserDetail";
+import { removeAccents } from "lib";
 
 interface Props {
   dataArray: SimplifiedUser[];

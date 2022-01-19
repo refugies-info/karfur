@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Modal, Spinner } from "reactstrap";
 import "./SelectFirstResponsableModal.scss";
-import { SearchBar } from "containers/UI/SearchBar/SearchBar";
+import SearchBar from "components/UI/SearchBar/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -126,11 +126,11 @@ export const SelectFirstResponsableModal = (props: Props) => {
         <Header>Choix d'un utilisateur</Header>
         {!selectedUser && (
           <SearchBar
-            isArray
             users
             className="search-bar inner-addon right-addon"
             placeholder="Rechercher un utilisateur"
             array={activeUsers}
+            //@ts-ignore
             selectItem={onSelectItem}
           />
         )}

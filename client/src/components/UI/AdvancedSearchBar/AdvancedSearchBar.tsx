@@ -11,11 +11,11 @@ import type { IDispositif } from "types/interface";
 import * as themes from "data/synonym";
 import Streamline from "assets/streamline";
 import NoResultPlaceholder from "./NoResultPlaceholder";
-import { filtres } from "../../Dispositif/data";
+import { filtres } from "containers/Dispositif/data";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import useOutsideClick from "./useOutsideClick";
+import useOutsideClick from "hooks/useOutsideClick";
 
 import "./AdvancedSearchBar.module.scss";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
@@ -157,7 +157,7 @@ const AdvancedSearchBar = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
 
-  var wrapperRef = useRef();
+  var wrapperRef: React.MutableRefObject<Element|undefined> = useRef();
 
   const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
 

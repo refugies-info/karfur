@@ -17,7 +17,7 @@ import API from "utils/API.js";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import FInput from "../../../FigmaUI/FInput/FInput";
-import SearchBar from "../../../../containers/UI/SearchBar/SearchBar";
+import SearchBar from "components/UI/SearchBar/SearchBar";
 import { structure_definie } from "../../../../assets/figma/index";
 import CreationContent from "../CreationContent/CreationContent";
 import { updateUserActionCreator } from "../../../../services/User/user.actions";
@@ -791,7 +791,6 @@ class Sponsors extends Component {
             <div style={{ marginTop: 24 }} />
           )}
           <SearchBar
-            isArray
             structures
             loupe
             className="search-bar inner-addon right-addon mb-16 mt-8"
