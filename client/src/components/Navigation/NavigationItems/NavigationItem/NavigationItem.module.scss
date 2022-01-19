@@ -1,4 +1,4 @@
-@import 'src/scss/global.scss';
+@import 'src/scss/mixins/responsive';
 
 .NavigationItem{
   margin: 10px 0;
@@ -44,7 +44,7 @@
     width: auto;
     align-items: center;
   }
-  
+
   .NavigationItem a {
     color: inherit;
     height: 100%;

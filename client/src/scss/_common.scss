@@ -1,0 +1,331 @@
+@import 'mixins/responsive';
+@import 'colors';
+
+$theme-list: (
+  Français #37277c #f0e8f5 #ada8d4,
+  Logement #1174ba #ddf3fa #55a6ce,
+  Insertion-pro #149295 #d6eff4 #4fd3bd,
+  Formation-pro #095411 #e8f4e9 #7dc690,
+  Études #378e04 #e8f7cd #adea5c,
+  Mobilité #ea6206 #fff0e7 #f9d1b7,
+  Bénévolat #0A54BF#FFEEEE #fda8ad,
+  Rencontre #a50455 #ffebf5 #fda5c4,
+  Loisir #ab2dc1 #f6e6fc #e595f9,
+  Culture #ce310d #fff0e7 #fec396,
+  Santé #c6093f #ffeeee #f985a6,
+  Administratif #443023 #eae2e1 #fcb21c
+);
+
+$list: top bottom left right;
+
+html body{
+  @for $i from 8 through 16 {
+    @each $side in $list {
+      .m#{str-slice($side, 0, 1)}-#{$i} {
+        margin-#{$side}: 1px*$i;
+        @include media-max("phone-down") { &.rsz{margin-#{$side}: 1px*$i/2; }}
+      }
+    }
+    [dir="rtl"]{
+      .mr-#{$i} {
+        margin-left: 1px*$i;
+        margin-right: 0;
+        @include media-max("phone-down") { &.rsz{margin-left: 1px*$i/2; }}
+      }
+      .ml-#{$i} {
+        margin-right: 1px*$i;
+        margin-left: 0;
+        @include media-max("phone-down") { &.rsz{margin-right: 1px*$i/2; }}
+      }
+      .mb-#{$i} {
+        margin-bottom: 1px*$i;
+        @include media-max("phone-down") { &.rsz{margin-bottom: 1px*$i/2; }}
+      }
+    }
+  }
+}
+
+html body {
+  height: 100%;
+  min-height: 100vh;
+  font-size: 16px;
+
+  [contenteditable] {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  h1 {
+    font-weight: bold;
+    font-size: 52px;
+    line-height: 66px;
+    @include media-max("sm-limit") {
+      font-size: 35px;
+    }
+  }
+  h2 {
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 51px;
+    @include media-max("sm-limit") {
+      font-size: 27px;
+    }
+  }
+  h3 {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 51px;
+    @include media-max("sm-limit") {
+      font-size: 27px;
+    }
+  }
+  h4 {
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 40px;
+    @include media-max("sm-limit") {
+      font-size: 21px;
+    }
+  }
+  h5 {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 27px;
+    @include media-max("sm-limit") {
+      font-size: 15px;
+    }
+  }
+
+  .texte-small {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    @include media-max("sm-limit") {
+      font-size: 11px;
+    }
+  }
+  .texte-very-small {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .color-vert {
+    color: $validationHover;
+  }
+  .color-jaune {
+    color: $uiattention;
+  }
+  .color-orange {
+    color: $orange;
+  }
+  .color-rouge {
+    color: $error;
+  }
+  .color-grisFonce {
+    color: $grisFonce;
+  }
+  .color-focus {
+    color: $focus;
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  .full-width {
+    width: 100%;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    &:hover {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+
+  .btn-group:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  .btn:focus {
+    outline: none;
+    box-shadow: none !important;
+  }
+  .dropdown-menu.show {
+    border-radius: 12px;
+    border: none;
+  }
+  .profile-img-pin {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+  }
+
+  .bg-attention {
+    background: $attention;
+  }
+  .bg-attention2 {
+    background: $bgfocus;
+  }
+  .bg-validation {
+    background: $validation;
+  }
+  .bg-gris {
+    background: $gris;
+  }
+  .bg-dark-gris {
+    background: $grisFonce;
+  }
+  .bg-standby {
+    background: $standby;
+  }
+  .bg-focus {
+    background: $focus;
+  }
+  .bg-erreur {
+    background: $erreur;
+  }
+  .bg-error {
+    background: $error;
+  }
+  .bg-black {
+    background: #212121;
+  }
+
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .dashed-panel {
+    background: repeating-linear-gradient(
+      -45deg,
+      $uiattention,
+      $uiattention 20px,
+      $noir 20px,
+      $noir 40px
+    );
+    height: 10px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  @each $value in $theme-list {
+    .bg-#{nth($value, 1)} {
+      background-color: nth($value, 2);
+    }
+    .bg-light-#{nth($value, 1)} {
+      background-color: nth($value, 3);
+    }
+    .border-#{nth($value, 1)} {
+      border-color: nth($value, 2);
+    }
+    .texte-#{nth($value, 1)} {
+      color: nth($value, 2);
+    }
+    .texte-light-#{nth($value, 1)} {
+      color: nth($value, 2);
+    }
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .flag-icon-sa {
+    background-image: url(../assets/figma/sa_custom.svg);
+  }
+}
+
+.ecran-protection{
+  height: calc(100%);
+  width: calc(100%);
+  opacity: 1;
+  top: 0;
+  left: 0;
+  position: absolute;
+  padding: 0;
+  transition: opacity .5s;
+  z-index:2;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  color: $grisFonce;
+  background: $gris;
+
+  &.no-main{
+    background: linear-gradient(114.47deg, rgba(246, 185, 59, 0.9) 12.52%, rgba(229, 80, 57, 0.9) 79.83%);
+    z-index: 10;
+    align-items: flex-start;
+    .content-wrapper{
+      width:100%;
+      max-width:100%;
+      height: 100vh;
+      justify-content: center;
+      position:fixed;
+    }
+  }
+
+  &.no-obj{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background: rgba(205, 205, 205, 0.6);
+  }
+
+  &.no-recent{
+    background: rgba(130, 130, 130, 0.8);
+  }
+
+  span{
+    font-size: 18px;
+  }
+
+  .close-box{
+    position: absolute;
+    top:51px;
+    right:53px;
+    cursor: pointer;
+
+    i{
+      margin-right:12px;
+    }
+  }
+  .content-wrapper{
+    position: relative;
+    width:60%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    h1{
+      font-size: 40px;
+      line-height: 51px;
+      text-align: center;
+      margin-bottom:11px;
+    }
+    .btn{
+      background: #FFFFFF;
+      border: 0.5px solid #FFFFFF;
+      box-sizing: border-box;
+      box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 23px;
+      padding:13px;
+    }
+    .sous-contenu{
+      font-size: 18px;
+      line-height: 23px;
+    }
+    .subtitle{
+      margin-bottom: 30px;
+    }
+  }
+}

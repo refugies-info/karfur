@@ -1,0 +1,31 @@
+$breakpoints: (
+  "phone-down": 500px,
+  "sm-limit": 577px,
+  "tablet-up": 768px,
+  "md-limit": 769px,
+  "tablet-down": 900px,
+  "lg-limit": 992px,
+  "desktop-up": 1024px,
+  "xl-limit": 1200px,
+  "desktop-down": 1280px,
+  "widescreen-up": 1440px
+);
+$drawerLimit: 768px;
+
+/* from... */
+@mixin media-min($_key) {
+  $break: map-get($breakpoints, $_key);
+
+  @media screen and (min-width: $break) {
+    &{ @content; }
+  }
+}
+
+/* to... */
+@mixin media-max($_key) {
+  $break: map-get($breakpoints, $_key);
+
+  @media screen and (max-width: ($break - 1)) {
+    &{ @content; }
+  }
+}

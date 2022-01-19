@@ -296,7 +296,7 @@ const Homepage = (props: Props) => {
             <div className="section-container half-width right-side">
               <div className="section-body">
                 <h2>{t("Homepage.contribution")}</h2>
-                <p className="texte-normal">
+                <p>
                   {t("Homepage.contribution subheader")}
                 </p>
               </div>
@@ -320,7 +320,7 @@ const Homepage = (props: Props) => {
             <div className="section-container half-width left-side">
               <div className="section-body">
                 <h2>{t("Homepage.Faites connaitre")}</h2>
-                <p className="texte-normal">
+                <p>
                   {t("Homepage.Faites connaitre subheader")}
                 </p>
               </div>
@@ -344,7 +344,7 @@ const Homepage = (props: Props) => {
             <div className="section-container half-width right-side">
               <div className="section-body">
                 <h2>{t("Homepage.aidez-nous à taduire")}</h2>
-                <p className="texte-normal">
+                <p>
                   {t("Homepage.aidez-nous à taduire subheader")}
                 </p>
                 {/*<LanguageBtn />*/}
@@ -371,7 +371,7 @@ const Homepage = (props: Props) => {
             >
               <div className="section-body">
                 <h2>{t("Homepage.Déployez")}</h2>
-                <p className="texte-normal">
+                <p>
                   {t("Homepage.Déployez subheader")}
                 </p>
               </div>
@@ -430,7 +430,7 @@ const Homepage = (props: Props) => {
                     "Bientôt sur smartphone"
                   )}
                 </h2>
-                <p className="texte-normal">
+                <p>
                   {t("Homepage.Bientôt sur smartphone subheader")}
                 </p>
                 {/*<LanguageBtn />*/}

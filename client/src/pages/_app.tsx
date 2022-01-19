@@ -7,13 +7,6 @@ import { store } from "../services/configureStore";
 import Layout from "components/Layout/Layout";
 
 import "App.scss";
-import "components/Layout/Layout.scss";
-// TODO: clean
-import "rc-time-picker/assets/index.css";
-import "components/UI/CustomCard/CustomCard.scss";
-import "scss/pages/advanced-search.scss";
-import "scss/pages/dispositif.scss";
-import "components/FigmaUI/TagButton/TagButton.scss"
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
