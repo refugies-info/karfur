@@ -1,30 +1,21 @@
+@import 'src/scss/mixins/responsive';
 @import 'src/scss/colors.scss';
 
-.search-btn{
-  justify-content: center;
+.search_btn{
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   background: $grisFonce;
-  border-radius: 6px;
-  border:none;
+  border-radius: 12px;
+  border: none;
   color: $cardColor;
   font-weight: 600;
-  font-size: 16px;
-  padding: 10px 10px;
+  font-size: 20px;
+  padding: 10px;
   cursor: pointer;
-  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
-
-  &.disabled {
-    background-color: #cdcdcd;
-    cursor: not-allowed;
-  }
 
   &:hover{
     color: $noir;
-  }
-  &:not(:disabled):not(.disabled):active, &.active{
-    color: #FFFFFF;
-    background: $noir;
-
   }
   &:focus{
     outline: none;
@@ -32,35 +23,54 @@
     border: 0.5px solid #2D9CDB;
   }
 
-  &.full{
-    background: transparent;
+  // Styles
+  &.active{
     color: #FFFFFF;
-    border: 0.5px solid #FFFFFF;
-    &:hover{
-      color: $noir;
-      background: #FFFFFF;
-    }
+    background: $noir;
+  }
+  &.with_margins {
+    margin: 5px;
   }
   &.filter{
     background: black;
     color: #FFFFFF;
-    //border: 0.5px solid #FFFFFF;
+
     &:hover{
       filter:brightness(80%);
     }
   }
   &.color{
     color: #FFFFFF;
+
     &:hover{
       filter:brightness(80%);
     }
   }
-  &.in-header{
-    padding: 20px;
+  &.in_header {
     color: $blanc;
-    border-radius: 12px;
+    font-size: 18px;
+
+    @include media-min("big-desktop") {
+      font-size: 22px;
+    }
+
     &:after{
       margin-left: 13px;
+    }
+  }
+  &.extra_padding {
+    padding: 12px;
+  }
+  &.search_option {
+    outline: none;
+    flex-direction: row;
+    display: flex;
+    white-space: nowrap;
+    overflow: visible;
+    margin-top: 10px;
+
+    &:not(:last-child) {
+      margin-right: 8px;
     }
   }
 }

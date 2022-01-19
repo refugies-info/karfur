@@ -17,7 +17,6 @@ import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDisp
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import useOutsideClick from "hooks/useOutsideClick";
 
-import "./AdvancedSearchBar.module.scss";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 
 const SearchModalContainer = styled.div`

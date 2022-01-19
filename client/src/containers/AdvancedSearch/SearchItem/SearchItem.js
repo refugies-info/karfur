@@ -8,8 +8,9 @@ import Streamline from "../../../assets/streamline";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import i18n from "../../../i18n";
 
-// import "./SearchItem.scss";
 // import variables from 'scss/colors.scss';
+import styles from "./SearchItem.module.scss";
+import fsb_styles from "components/FigmaUI/FSearchBtn/FSearchBtn.module.scss"
 
 export class SearchItem extends Component {
   constructor(props) {
@@ -68,23 +69,15 @@ export class SearchItem extends Component {
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
 
     return (
-      <div className="search-col">
-        <span
-          className={
-            "mr-10 " + (isBigDesktop ? "search-title" : "search-title-small")
-          }
-        >
+      <div className={styles.search_col}>
+        <span className={"mr-10 " + styles.title}>
           {t("SearchItem." + item.title, item.title)}
         </span>
-        {item.queryName === "localisation" &&
-        ville !== "" &&
-        this.props.geoSearch ? (
-          <FSearchBtn
-            className={
-              "in-header search-filter " +
-              (isBigDesktop ? "search-btn " : "search-btn-small ") +
-              (item.active ? "active " : "")
-            }
+        {item.queryName === "localisation" && ville !== "" && this.props.geoSearch ? (
+            <FSearchBtn
+              inHeader
+              extraPadding
+              active={item.active}
           >
             {ville
               ? ville.slice(0, 20) + (ville.length > 20 ? "..." : "")
@@ -102,9 +95,7 @@ export class SearchItem extends Component {
               />
             )}
           </FSearchBtn>
-        ) : item.queryName === "localisation" &&
-          ville === "" &&
-          this.props.geoSearch ? (
+        ) : item.queryName === "localisation" && ville === "" && this.props.geoSearch ? (
           isMounted && (
             <ReactDependentScript
               loadingComponent={<div>Chargement de Google Maps...</div>}
@@ -119,10 +110,13 @@ export class SearchItem extends Component {
                   ref={(input) => {
                     input && input.refs.input.focus();
                   }}
-                  className={
-                    "search-btn in-header search-autocomplete " +
-                    (item.active ? "active " : "") +
-                    (isBigDesktop ? "" : "search-btn-small")
+                      className={[
+                        fsb_styles.search_btn,
+                        fsb_styles.extra_padding,
+                        fsb_styles.in_header,
+                        styles.search_autocomplete,
+                        (item.active ? fsb_styles.active : "")
+                    ].join(" ")
                   }
                   onBlur={() =>
                     ville === "" &&
@@ -154,13 +148,9 @@ export class SearchItem extends Component {
           )
         ) : item.queryName === "localisation" && !this.props.geoSearch ? (
           <FSearchBtn
-            onClick={() => {
-              this.props.switchGeoSearch(true);
-            }}
-            className={
-              "in-header search-filter " +
-              (isBigDesktop ? "search-btn " : "search-btn-small ")
-            }
+                inHeader
+                extraPadding
+            onClick={() => { this.props.switchGeoSearch(true) }}
           >
             {t("SearchItem.ma ville", "ma ville")}
           </FSearchBtn>
@@ -168,7 +158,7 @@ export class SearchItem extends Component {
           <Dropdown
             isOpen={dropdownOpen}
             toggle={this.toggle}
-            className="display-inline-block"
+            className="inline-block"
           >
             <DropdownToggle
               caret={false}
@@ -176,13 +166,13 @@ export class SearchItem extends Component {
               //data-toggle="none"
               aria-haspopup={false}
               aria-expanded={dropdownOpen}
-              className={
-                "search-btn in-header search-filter " +
-                (item.short && item.active
-                  ? "bg-" + item.short.split(" ").join("-")
-                  : "") +
-                (!item.short && item.active ? "active " : "") +
-                (isBigDesktop ? "" : " search-btn-small")
+              className={[
+                fsb_styles.search_btn,
+                fsb_styles.extra_padding,
+                fsb_styles.in_header,
+                (item.short && item.active ? "bg-" + item.short.split(" ").join("-") : ""),
+                (!item.short && item.active ? fsb_styles.active : "")
+              ].join(" ")
               }
             >
               {item.active && item.placeholder === "thème" && (
@@ -228,11 +218,11 @@ export class SearchItem extends Component {
                 />
               )}
             </DropdownToggle>
-            <DropdownMenu>
+            <DropdownMenu className={styles.dropdown}>
               <div
                 className={
-                  "options-wrapper" +
-                  (item.queryName === "tags.name" ? " query-tags" : "")
+                  [styles.options,
+                  (item.queryName === "tags.name" ? styles.tags : "")].join(" ")
                 }
               >
                 {item.children &&
@@ -241,9 +231,9 @@ export class SearchItem extends Component {
                       <FSearchBtn
                         key={idx}
                         onClick={() => this.selectOption(subi)}
-                        className={
-                          "search-options color" + (subi.short ? "" : " filter")
-                        }
+                        filter={!subi.short}
+                        searchOption
+                        inHeader
                         color={(subi.short || "").replace(/ /g, "-")}
                       >
                         {subi.icon ? (

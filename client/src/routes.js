@@ -88,13 +88,13 @@ const routes = [
     component: PolitiqueConfidentialite,
     restriction: [],
   }, */
-  {
+/*   {
     path: "/dispositif/:id",
     exact: true,
     name: "Réfugiés.info - Dispositif",
     component: Dispositif,
     restriction: [],
-  },
+  }, */
   {
     path: "/dispositif",
     exact: true,
@@ -118,17 +118,12 @@ const routes = [
     restriction: [],
   },
 
-
-
-
-
-
-  {
+  /* {
     path: "/download-app",
     name: "Réfugiés.info - Télécharger l'application",
     component: DownloadApp,
     restriction: [],
-  },
+  }, */
 
   {
     path: "/traduction",

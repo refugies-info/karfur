@@ -81,11 +81,6 @@
       border-radius: 12px;
       margin: 15px;
       z-index: 4;
-      .search-btn {
-        margin: 5px;
-        font-size: 20px;
-        border-radius: 12px;
-      }
       .advanced-search-btn {
         margin: 5px;
         font-size: 20px;
@@ -155,9 +150,6 @@
         padding-right: 10px;
         z-index: 4;
       }
-      .search-btn {
-        font-size: 22px;
-      }
     }
   }
 
@@ -191,13 +183,6 @@
       width: fit-content;
       z-index: 5;
     }
-  }
-
-  .search-btn {
-    -webkit-animation: on-homepage 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955)
-      infinite both;
-    animation: on-homepage 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite
-      both;
   }
 
   // .header-anchor{

@@ -1,87 +1,48 @@
 @import "src/scss/colors.scss";
+@import "src/scss/mixins/responsive";
 
 $placeholderColor: $blanc;
 
-.search-col {
+.search_col {
   padding-right: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  .search-title {
-    font-size: 22px;
-    font-weight: bold;
-    white-space: nowrap;
-  }
-  .search-title-small {
+  .title {
     font-size: 18px;
     font-weight: bold;
     white-space: nowrap;
+
+    @include media-min("big-desktop") {
+      font-size: 22px;
+    }
   }
 
-  .search-btn {
-    font-size: 22px;
-  }
-  .search-btn-small {
-    font-size: 18px;
-  }
-
-  .search-filter {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 12px;
-  }
-
-  .dropdown-menu.show {
-    display: flex;
-    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+  .dropdown {
+    // display: flex;
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
     background: $blanc;
     border-radius: 12px;
     padding: 10px;
     z-index: 3;
-    //flex-wrap: wrap;
     flex-direction: row;
   }
 
-  .options-wrapper {
+  .options {
     margin-top: -10px;
     flex-direction: row;
     display: flex;
     -ms-overflow-style: none;
     overflow: -moz-scrollbars-none;
-    //&::-webkit-scrollbar { width: 0 !important }
-    &.query-tags {
+
+    &.tags {
       flex-wrap: wrap;
       min-width: 700px;
     }
   }
-  .search-options {
-    outline: none;
-    flex-direction: row;
-    display: flex;
-    white-space: nowrap;
-    overflow: visible;
-    margin-top: 10px;
 
-    &:not(:last-child) {
-      margin-right: 8px;
-    }
-  }
-  .display-inline-block {
-    display: inline-block;
-  }
-  .texte-blanc {
-    color: #ffffff;
-  }
-
-  .search-dropdown {
-    background: $gris;
-    border-radius: 6px;
-    padding: 20px;
-  }
-
-  .search-autocomplete {
+  .search_autocomplete {
     padding: 12px;
     text-align: center;
     display: flex;
@@ -111,12 +72,5 @@ $placeholderColor: $blanc;
       color: $placeholderColor;
       text-align: center;
     }
-  }
-
-  .close-icon {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    cursor: pointer;
   }
 }

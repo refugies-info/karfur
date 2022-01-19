@@ -70,14 +70,13 @@ const CatList = (props: Props) => {
         return (
           <motion.li
             key={idx}
-            className={"search-options color" + (tag.short ? "" : " full")}
             variants={itemanim}
           >
             <FSearchBtn
               key={idx}
               onClick={() => goToTag(tag.name)}
-              className={"search-options color" + (tag.short ? "" : " full")}
               color={(tag.short || "").replace(/ /g, "-")}
+              withMargins
             >
               <InnerButton>
                 {tag.icon ? (
@@ -98,15 +97,15 @@ const CatList = (props: Props) => {
       })}
       <motion.li
         key={props.tags.length}
-        className={"search-options  advanced-search-a bg-noir"}
+        className="advanced-search-a bg-noir"
         variants={itemanim}
       >
         <a target="_blank" href="https://soliguide.fr/">
           <InnerButton>
             <IconContainer isRTL={isRTL}>
               <Streamline
-                name={"message"}
-                stroke={"white"}
+                name="message"
+                stroke="white"
                 width={22}
                 height={22}
               />
@@ -120,11 +119,11 @@ const CatList = (props: Props) => {
           onClick={() => {
             router.push("/advanced-search");
           }}
-          className={"search-options advanced-search-btn-menu  bg-blanc"}
+          className="advanced-search-btn-menu bg-blanc"
         >
           <InnerButton>
             <IconContainer isRTL={isRTL}>
-              <Streamline name={"menu"} stroke={"black"} />
+              <Streamline name="menu" stroke="black" />
             </IconContainer>
             {t("Toolbar.Tout voir", "Tout voir")}
           </InnerButton>
