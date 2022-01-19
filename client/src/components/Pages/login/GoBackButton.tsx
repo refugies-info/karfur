@@ -1,24 +1,27 @@
 import React from "react";
-// import { NavLink } from "react-router-dom";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
+import Link from "next/link";
+import {useTranslation } from "react-i18next"
+import FButton from "components/FigmaUI/FButton/FButton";
 
-interface Props {
-  goBack: any
+interface Props {
+  goBack: () => void
   step: number
-  t: any
 }
-export const GoBackButton = (props: Props) => {
+const GoBackButton = (props: Props) => {
+  const { t } = useTranslation();
+
   if (props.step === 0) {
     return (
-      <NavLink to="/">
+      <Link href="/">
         <FButton
           type="light-action"
           name="arrow-back-outline"
           className="mr-10"
+          tag="a"
         >
-          {props.t("Retour", "Retour")}
+          {t("Retour", "Retour")}
         </FButton>
-      </NavLink>
+      </Link>
     );
   }
 
@@ -29,7 +32,9 @@ export const GoBackButton = (props: Props) => {
       className="mr-10"
       onClick={props.goBack}
     >
-      {props.t("Retour", "Retour")}
+      {t("Retour", "Retour")}
     </FButton>
   );
 };
+
+export default GoBackButton;

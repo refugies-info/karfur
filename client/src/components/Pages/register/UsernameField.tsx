@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import FInput from "components/FigmaUI/FInput/FInput";
 import FButton from "components/FigmaUI/FButton/FButton";
-import styles from "scss/components/errors.module.scss";
+import styles from "scss/components/login.module.scss";
 
 const PseudoPrecisions = styled.div`
   font-size: 16px;
@@ -36,7 +36,7 @@ const UsernameField = (props: Props) => {
             prepend
             prependName="person-outline"
             id="username"
-            type="username"
+            type="text"
             placeholder={t("Login.Pseudonyme", "Pseudonyme")}
             autoComplete="username"
             error={props.pseudoAlreadyTaken}

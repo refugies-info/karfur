@@ -1,7 +1,9 @@
-import React from "react";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import FInput from "../../../../components/FigmaUI/FInput/FInput";
-import * as S from "../../styles";
+import React, { ChangeEventHandler } from "react";
+import { useTranslation } from "react-i18next";
+import FButton from "components/FigmaUI/FButton/FButton";
+import FInput from "components/FigmaUI/FInput/FInput";
+import { H5 } from "components/UI/Typography/Typography";
+import styles from "scss/components/login.module.scss";
 
 interface Props {
   email: string;
@@ -12,32 +14,34 @@ interface Props {
     picture: {
       secure_url: string;
     };
-  };
-  onChange: void;
-  t: any;
+  } | null;
+  onChangeEmail: ChangeEventHandler<HTMLInputElement>;
+  onChangePhone: ChangeEventHandler<HTMLInputElement>;
 }
 
-export const PhoneAndEmailFields = (props: Props) => {
+const PhoneAndEmailFields = (props: Props) => {
+  const { t } = useTranslation();
+
   return props.isAdmin ? ( // ADMIN
     <>
       <FInput
         prepend
         prependName="at-outline"
         value={props.email}
-        onChange={props.onChange}
+        onChange={props.onChangeEmail}
         id="email"
         type="email"
-        placeholder={props.t("Login.Entrez votre email", "Entrez votre email")}
+        placeholder={t("Login.Entrez votre email", "Entrez votre email")}
         newSize
       />
       <FInput
         prepend
         prependName="smartphone-outline"
         value={props.phone}
-        onChange={props.onChange}
+        onChange={props.onChangePhone}
         id="phone"
         type="tel"
-        placeholder={props.t(
+        placeholder={t(
           "Login.Entrez votre numéro",
           "Entrez votre numéro"
         )}
@@ -48,19 +52,19 @@ export const PhoneAndEmailFields = (props: Props) => {
         name="arrow-forward-outline"
         disabled={!props.phone || !props.email}
       >
-        {props.t("Suivant", "Suivant")}
+        {t("Suivant", "Suivant")}
       </FButton>
     </>
   ) : ( // HAS STRUCTURE
     <>
       {props.structure?.nom && (
         <>
-          <S.StyledH5>
-            {props.t(
+          <H5 className={styles.h5}>
+            {t(
               "Login.new_has_structure_subtitle",
               "Vous avez été nommé « responsable de structure » pour la structure :"
             )}
-          </S.StyledH5>
+          </H5>
           <div className="figma-btn white">
             {props.structure?.picture?.secure_url && (
               <img
@@ -75,27 +79,30 @@ export const PhoneAndEmailFields = (props: Props) => {
         </>
       )}
 
-        <S.StyledH5>
-          {props.t(
+        <H5 className={styles.h5}>
+          {t(
             "Login.2fa_mandatory_subtitle",
             "La double authenfication est requise pour des raisons de sécurité :"
           )}
-      </S.StyledH5>
-      <S.StyledEnterValue style={{ marginTop: 16 }}>
-        {props.t(
+      </H5>
+      <div
+        className={styles.label}
+        style={{ marginTop: 16 }}
+      >
+        {t(
           "Login.email_up_to_date_label",
           "Vérifiez votre adresse email, est-elle à jour ?"
         )}
-      </S.StyledEnterValue>
+      </div>
       <div style={{ maxWidth: 360 }}>
         <FInput
           prepend
           prependName="at-outline"
           value={props.email}
-          onChange={props.onChange}
+          onChange={props.onChangeEmail}
           id="email"
           type="email"
-          placeholder={props.t(
+          placeholder={t(
             "Login.Entrez votre email",
             "Entrez votre email"
           )}
@@ -103,21 +110,24 @@ export const PhoneAndEmailFields = (props: Props) => {
         />
       </div>
 
-      <S.StyledEnterValue style={{ marginTop: 16 }}>
-        {props.t(
+      <div
+        className={styles.label}
+        style={{ marginTop: 16 }}
+      >
+        {t(
           "Login.enter_phone_label",
           "Entrez votre numéro de téléphone mobile pour recevoir le code d’identification"
         )}
-      </S.StyledEnterValue>
+      </div>
       <div style={{ maxWidth: 360 }}>
         <FInput
           prepend
           prependName="smartphone-outline"
           value={props.phone}
-          onChange={props.onChange}
+          onChange={props.onChangePhone}
           id="phone"
           type="tel"
-          placeholder={props.t(
+          placeholder={t(
             "Login.Entrez votre numéro",
             "Entrez votre numéro"
           )}
@@ -131,9 +141,11 @@ export const PhoneAndEmailFields = (props: Props) => {
           name="arrow-forward-outline"
           disabled={!props.phone || !props.email}
         >
-          {props.t("Suivant", "Suivant")}
+          {t("Suivant", "Suivant")}
         </FButton>
       </div>
     </>
   );
 };
+
+export default PhoneAndEmailFields;

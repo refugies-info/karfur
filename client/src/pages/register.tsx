@@ -30,7 +30,6 @@ import Footer from "components/Pages/register/Footer";
 import API from "utils/API";
 import setAuthToken from "utils/setAuthToken";
 import { logger } from "logger";
-import errors from "scss/components/errors.module.scss";
 import styles from "scss/components/login.module.scss";
 
 const StyledHeader = styled.div`
@@ -77,9 +76,7 @@ const Register = () => {
 
   useEffect(() => {
     dispatch(fetchLanguesActionCreator());
-    if (API.isAuth()) {
-      router.push("/");
-    }
+    if (API.isAuth()) router.push("/");
   }, [])
 
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -110,9 +107,9 @@ const Register = () => {
    */
   const login = () => {
     const user = {
-      username: username,
-      password: password,
-      email: email,
+      username,
+      password,
+      email,
     };
     logger.info("[Register] register attempt for user", {
       username: user.username,
@@ -324,7 +321,7 @@ const Register = () => {
                   </div>
                 </div>
                 {notEmailError && (
-                  <div className={errors.error_message}>
+                  <div className={styles.error_message}>
                     <b>
                       {t(
                         "Register.Ceci n'est pas un email,",

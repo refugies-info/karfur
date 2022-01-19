@@ -7,7 +7,7 @@ import { InputType } from "reactstrap/lib/Input";
 
 interface Props {
   id: string;
-  value: string;
+  value?: string;
   placeholder?: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   autoComplete?: string;
@@ -16,7 +16,7 @@ interface Props {
   newSize?: boolean;
   height?: number;
   padding?: number;
-  rows: any;
+  rows?: any;
   type?: InputType;
   prepend?: boolean;
   append?: boolean;
@@ -24,8 +24,8 @@ interface Props {
   appendName?: string;
   prependFill?: string;
   appendFill?: string;
-  autoFocus: boolean;
-  onAppendClick: React.MouseEventHandler<HTMLElement>;
+  autoFocus?: boolean;
+  onAppendClick?: React.MouseEventHandler<HTMLElement>;
   error?: boolean;
   errorIcon?: string;
   errorType?: string;

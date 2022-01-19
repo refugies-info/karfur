@@ -6,7 +6,7 @@ import { computePasswordStrengthScore } from "lib/index";
 import FInput from "components/FigmaUI/FInput/FInput";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { colorAvancement } from "components/Functions/ColorFunctions";
-import styles from "scss/components/errors.module.scss";
+import styles from "scss/components/login.module.scss";
 
 const ProgressContainer = styled.div`
   width: 30%;
