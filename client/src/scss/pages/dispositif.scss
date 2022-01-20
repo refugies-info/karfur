@@ -850,51 +850,6 @@ $imgHeight: 350px;
     }
   }
 
-  .feedback-footer {
-    background: $blanc;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 35px 20px 35px 40px;
-    font-size: 18px;
-
-    h5 {
-      @include media-max("tablet-up") {
-        font-size: 22px;
-        text-align: center;
-      }
-    }
-    span {
-      @include media-max("tablet-up") {
-        font-size: 18px;
-        text-align: center;
-      }
-    }
-    .feedback-btn {
-      width: -webkit-fill-available;
-      justify-content: center;
-    }
-    .btn {
-      font-weight: bold;
-      font-size: 16px;
-      border-radius: 12px;
-      border: 0.5px solid;
-      padding: 15px 20px;
-      &:hover {
-        background: darken($color: $gris, $amount: 0);
-      }
-      &:active {
-        background: $validationHover;
-        color: #ffffff;
-        border: none;
-      }
-      &::after {
-        background: $validationHover;
-      }
-    }
-  }
-
   .contenu figure .image-wrapper img {
     max-width: 100px;
   }

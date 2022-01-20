@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-
 import { Card, CardBody, Row, Col, Tooltip, Button } from "reactstrap";
 import h2p from "html2plaintext";
-
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-
-// import "./QuickToolbar.scss";
-import { colors } from "colors";
 import { Props } from "./QuickToolbar.container";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { colors } from "colors";
+import styles from "./QuickToolbar.module.scss";
 
 interface StateType {
   fill: boolean[];
@@ -143,12 +140,12 @@ export class QuickToolbar extends Component<Props, StateType> {
     if (show) {
       if (disableEdit) {
         return (
-          <Card className="quick-toolbar">
-            <CardBody>
-              <Row className="first-row">
-                <Col lg="6" md="6" sm="12" xs="12" className="col-btn">
+          <Card className={styles.toolbar}>
+            <CardBody className={styles.card_body}>
+              <Row>
+                <Col lg="6" md="6" sm="12" xs="12" className={styles.col}>
                   <Button
-                    className="btn-pill isNonActiv"
+                    className={`${styles.btn_pill} ${styles.unactive}`}
                     id="eva-icon-0"
                     onMouseEnter={() => this._hoverOn(0)}
                     onMouseLeave={this._hoverOff}
@@ -160,10 +157,9 @@ export class QuickToolbar extends Component<Props, StateType> {
                         (this.state.fill[0] ? "" : "-outline")
                       }
                       fill={colors.darkColor}
-                      className="icon-toolbar"
                     />
                     <Tooltip
-                      className="dark-back"
+                      className={styles.tooltip_dark_back}
                       placement="top"
                       isOpen={this.state.tooltipOpen[0]}
                       target="eva-icon-0"
@@ -174,12 +170,10 @@ export class QuickToolbar extends Component<Props, StateType> {
                   </Button>
                 </Col>
                 {showLanguageButton && (
-                  <Col lg="6" md="6" sm="12" xs="12" className="col-btn">
+                  <Col md="6" xs="12" className={styles.col}>
                     <Button
                       className={
-                        this.state.isVoiceActiv
-                          ? "btn-pill isActiv"
-                          : "btn-pill isNonActiv"
+                        `${styles.btn_pill} ${this.state.isVoiceActiv ? styles.active : styles.unactive}`
                       }
                       id="eva-icon-1"
                       onMouseEnter={() => this._hoverOn(1)}
@@ -189,20 +183,17 @@ export class QuickToolbar extends Component<Props, StateType> {
                       <EVAIcon
                         name={
                           "volume-up" +
-                          (this.state.fill[1] || this.props.ttsActive
-                            ? ""
-                            : "-outline")
+                          (this.state.fill[1] || this.props.ttsActive ? "" : "-outline")
                         }
                         fill={
                           this.state.isVoiceActiv
                             ? colors.blanc
                             : colors.darkColor
                         }
-                        className="icon-toolbar"
                       />
 
                       <Tooltip
-                        className="dark-back"
+                        className={styles.tooltip_dark_back}
                         placement="top"
                         isOpen={this.state.tooltipOpen[1]}
                         target="eva-icon-1"

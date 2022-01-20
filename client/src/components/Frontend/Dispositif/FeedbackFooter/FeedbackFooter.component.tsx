@@ -1,9 +1,10 @@
 import React from "react";
-import { Props } from "./FeedbackFooter.container";
-import FButton from "../../../FigmaUI/FButton/FButton";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
-import { colors } from "../../../../colors";
+import FButton from "components/FigmaUI/FButton/FButton";
+import { Props } from "./FeedbackFooter.container";
+import { colors } from "colors";
+import styles from "./FeedbackFooter.module.scss";
 
 const FeedbackContainer = styled.div`
   display: flex;
@@ -46,7 +47,7 @@ export const FeedbackFooter = (props: Props) => {
   const { nbThanks, t, pushReaction, didThank } = props;
 
   return (
-    <FeedbackContainer color={props.color} className="feedback-footer">
+    <FeedbackContainer color={props.color} className={styles.container}>
       <TextContainer>
         <h5>
           {t(
@@ -71,7 +72,8 @@ export const FeedbackFooter = (props: Props) => {
         {!didThank && (
           <FButton
             disabled={didThank}
-            className={"feedback-btn validate mr-8 mb-8"}
+            className={styles.btn + " validate mr-8 mb-8"}
+            type="validate"
             onClick={() => pushReaction(null, "merci")}
           >
             <span role="img" aria-label="thanks">
@@ -81,7 +83,8 @@ export const FeedbackFooter = (props: Props) => {
           </FButton>
         )}
         <FButton
-          className={"feedback-btn error mr-8 mb-8"}
+          className={styles.btn + " mr-8 mb-8"}
+          type="error"
           onClick={() => {
             props.window.$crisp.push([
               "set",

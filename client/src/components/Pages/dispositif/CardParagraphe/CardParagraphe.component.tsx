@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Col, Card, CardBody, CardHeader, CardFooter } from "reactstrap";
 import Swal from "sweetalert2";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-// import "./CardParagraphe.scss";
 import { colors } from "colors";
 import { Props } from "./CardParagraphe.container";
 import { DispositifContent, Tag } from "types/interface";

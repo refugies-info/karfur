@@ -1,7 +1,8 @@
 import React from "react";
-import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 
 import { colors } from "colors";
+import styles from "./MapComponent.module.scss";
 
 const { compose, withProps, lifecycle } = require("recompose");
 const {
@@ -69,16 +70,16 @@ const mapComponent = compose(
         controlPosition={window.google.maps.ControlPosition.TOP_LEFT}
         onPlacesChanged={props.onPlacesChanged}
       >
-        <div className="places-input-wrapper">
+        <div>
           <input
             type="text"
             placeholder="Ajoutez un nouveau lieu"
-            className="places-input"
+            className={styles.places_input}
             value={props.searchValue}
             onChange={props.handleChange}
           />
           <EVAIcon
-            className="places-icon"
+            className={styles.places_icon}
             name="search-outline"
             fill={colors.grisFonce}
           />

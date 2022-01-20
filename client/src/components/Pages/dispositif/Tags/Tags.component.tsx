@@ -1,24 +1,13 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import { Button } from "reactstrap";
 import { filtres } from "data/dispositif";
-
-import TagButton from "components/FigmaUI/TagButton/TagButton";
-import Streamline from "assets/streamline";
-
-// import "./Tags.scss";
-import { Props } from "./Tags.container";
 import { Tag } from "types/interface";
-import styled from "styled-components";
+import { Props } from "./Tags.container";
+import TagButton from "components/FigmaUI/TagButton/TagButton";
 import FButton from "components/FigmaUI/FButton/FButton";
-
-const InnerButton = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 16px;
-  padding: 5px;
-  line-height: 20px;
-`;
+import Streamline from "assets/streamline";
+import styles from "./Tags.module.scss";
 
 export interface PropsBeforeInjection {
   tags: Tag[];
@@ -91,7 +80,7 @@ export class Tags extends Component<Props> {
 
   render() {
     return (
-      <div className="tags" id="tags">
+      <div className={styles.tags}>
         {(this.props.tags || []).map((tag: Tag, key: number) => {
           if (tag) {
             var tagIcon = filtres.tags.find((elem) => elem.name === tag.name);
@@ -103,16 +92,13 @@ export class Tags extends Component<Props> {
                   noHover
                   onMouseEnter={() => this.props.updateUIArray(-6)}
                 >
-                  <InnerButton>
+                  <div className={styles.btn_container}>
                     {tagIcon ? (
-                      !this.props.isRTL ? (
                         <div
-                          style={{
-                            display: "flex",
-                            marginRight: 10,
-                            justifyContent: "center",
-                            alignItems: "center",
-                          }}
+                          className={[
+                            styles.icon_container,
+                            (this.props.isRTL ? styles.rtl : "")
+                          ].join(" ")}
                         >
                           <Streamline
                             name={tagIcon.icon}
@@ -121,35 +107,18 @@ export class Tags extends Component<Props> {
                             height={20}
                           />
                         </div>
-                      ) : (
-                        <div
-                          style={{
-                            display: "flex",
-                            marginLeft: 10,
-                            justifyContent: "center",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Streamline
-                            name={tagIcon.icon}
-                            stroke={"white"}
-                            width={20}
-                            height={20}
-                          />
-                        </div>
-                      )
                     ) : null}
                     {this.props.t("Tags." + tag.short)}
-                  </InnerButton>
+                  </div>
                 </TagButton>
               </div>
             );
           }
-          return false;
+          return null;
         })}
         {!this.props.disableEdit && (this.props.tags || []).length > 0 ? (
           <Button
-            className="plus-button ml-10 icon"
+            className={`${styles.plus_btn} ${styles.icon} ml-10`}
             onClick={this.props.openTag}
             onMouseEnter={() => this.props.updateUIArray(-6)}
           >
@@ -157,7 +126,7 @@ export class Tags extends Component<Props> {
           </Button>
         ) : !this.props.disableEdit && (this.props.tags || []).length < 1 ? (
           <Button
-            className="plus-button ml-10"
+            className={styles.plus_btn + " ml-10"}
             onClick={this.props.openTag}
             onMouseEnter={() => this.props.updateUIArray(-6)}
           >
@@ -169,7 +138,7 @@ export class Tags extends Component<Props> {
           this.props.displayTuto &&
           this.props.typeContenu === "dispositif" && (
             <div
-              style={{ marginLeft: "8px" }}
+              style={{ marginLeft: 8 }}
               onMouseEnter={() => this.props.updateUIArray(-6)}
             >
               <FButton

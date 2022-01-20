@@ -1,9 +1,10 @@
+import styles from "components/Pages/dispositif/MapParagraphe/MapParagraphe.module.scss";
 export const markerInfo = [
   {
     id: 0,
     label: "Titre du lieu",
     mandatory: true,
-    customClass: "isTitle",
+    customClass: styles.is_title,
     item: "nom",
     placeholder: "Saisir le titre",
   },
@@ -11,14 +12,14 @@ export const markerInfo = [
     id: 1,
     label: "Adresse",
     item: "address",
-    customClass: "no-highlight",
+    customClass: styles.no_highlight,
     placeholder: "3 rue de la Folie-Méricourt",
   },
   {
     id: 2,
     label: "Ville",
     item: "vicinity",
-    customClass: "no-highlight",
+    customClass: styles.no_highlight,
     placeholder: "Ville",
   },
   {

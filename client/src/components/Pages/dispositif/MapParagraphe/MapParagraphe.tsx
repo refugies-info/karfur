@@ -1,18 +1,16 @@
-import React, { PureComponent } from "react";
+import React, { useEffect, useState } from "react";
 import _ from "lodash";
+import { isMobile } from "react-device-detect";
+import { useTranslation } from "react-i18next";
 import ContentEditable from "react-contenteditable";
 import Swal from "sweetalert2";
-import { withTranslation } from "react-i18next";
-
 import MapComponent from "components/Frontend/Dispositif/MapComponent/MapComponent";
 import FButton from "components/FigmaUI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { markerInfo } from "./data";
-import { isMobile } from "react-device-detect";
-
-// import "./MapParagraphe.scss";
+import { markerInfo } from "data/markerInfo";
 import { colors } from "colors";
 import styled from "styled-components";
+import styles from "./MapParagraphe.module.scss";
 
 const StyledButton = styled.div`
   background-color: #8bc34a;
@@ -28,22 +26,35 @@ const StyledButton = styled.div`
   color: #ffffff;
 `;
 
-const refs = {};
-class MapParagraphe extends PureComponent {
-  state = {
-    center: { lat: 48.856614, lng: 2.3522219 },
-    selectedMarker: null,
-    showSidebar: false,
-    searchValue: "",
-  };
+const refs: any = {};
+interface Props{
+  showMapButton: (val: boolean) => void
+  disableEdit: boolean
+  displayTuto: boolean
+  updateUIArray: any
+  subitem: any
+  setMarkers: any
+  keyValue: string
+  subkey: string
+  toggleShareContentOnMobileModal: any
+  toggleTutorielModal: any
+  deleteCard: any
+}
+const MapParagraphe  = (props: Props) => {
+    const [center, setCenter] = useState({ lat: 48.856614, lng: 2.3522219 });
+    const [selectedMarker, setSelectedMarker] = useState<any>(null);
+    const [showSidebar, setShowSidebar] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
-  componentDidMount() {
-    this.props.showMapButton(false);
-  }
+  const { t } = useTranslation();
 
-  onSearchBoxMounted = (ref) => (refs.searchBox = ref);
+  useEffect(() => {
+    props.showMapButton(false);
+  }, []);
 
-  onPlacesChanged = () => {
+  const onSearchBoxMounted = (ref: any) => (refs.searchBox = ref);
+
+  const onPlacesChanged = () => {
     //J'enlève tous les markers qui ont pas été validés
     const place = _.get(refs.searchBox.getPlaces(), "0", {});
     const nextMarker = {
@@ -54,52 +65,32 @@ class MapParagraphe extends PureComponent {
       place_id: place.place_id,
       position: place.geometry.location,
     };
-    const nextCenter = _.get(nextMarker, "position", this.state.center);
+    const nextCenter = _.get(nextMarker, "position", center);
 
-    this.setState({
-      center: nextCenter,
-      selectedMarker: nextMarker,
-      showSidebar: true,
-      searchValue: "",
-    });
+    setCenter(nextCenter);
+    setSelectedMarker(nextMarker);
+    setShowSidebar(true);
+    setSearchValue("");
   };
 
-  handleMarkerClick = (_, marker) => {
-    this.setState({
-      showSidebar: true,
-      center: { lat: marker.latitude, lng: marker.longitude },
-      selectedMarker: marker,
-    });
+  const handleMarkerClick = (_: any, marker: any) => {
+    setShowSidebar(true);
+    setCenter({ lat: marker.latitude, lng: marker.longitude });
+    setSelectedMarker(marker);
   };
 
-  handleChange = (e) => this.setState({ searchValue: e.target.value });
+  const handleChange = (e: any) => setSearchValue(e.target.value);
 
-  onClose = () => {
-    this.setState({
-      showSidebar: false,
-      selectedMarker: null,
-    });
+  const onClose = () => {
+    setShowSidebar(false);
+    setSelectedMarker(null);
   };
 
-  toggleSidebar = () =>
-    this.setState((pS) => ({ showSidebar: !pS.showSidebar }));
+  const handleMarkerChange = (e: any, field: string) =>
+    setSelectedMarker({ ...selectedMarker, [field]: e.target.value });
 
-  selectLocation = (key) => {
-    this.setState({
-      center: {
-        lat: parseFloat(this.state.markers[key].latitude),
-        lng: parseFloat(this.state.markers[key].longitude),
-      },
-    });
-  };
-
-  handleMarkerChange = (e, field) =>
-    this.setState({
-      selectedMarker: { ...this.state.selectedMarker, [field]: e.target.value },
-    });
-
-  validateMarker = () => {
-    if (!this.state.selectedMarker || !this.state.selectedMarker.nom) {
+  const validateMarker = () => {
+    if (!selectedMarker || !selectedMarker.nom) {
       Swal.fire({
         title: "Oh non!",
         text: "Vous devez renseigner un titre de lieu pour ce marqueur",
@@ -110,53 +101,47 @@ class MapParagraphe extends PureComponent {
     }
 
     const isMarkerAlreadyInMarkers =
-      this.props.subitem.markers.filter(
-        (marker) => marker.place_id === this.state.selectedMarker.place_id
+      props.subitem.markers.filter(
+        (marker: any) => marker.place_id === selectedMarker.place_id
       ).length > 0;
     let newMarkers;
 
     if (isMarkerAlreadyInMarkers) {
-      newMarkers = this.props.subitem.markers
+      newMarkers = props.subitem.markers
         .filter(
-          (marker) => marker.place_id !== this.state.selectedMarker.place_id
+          (marker: any) => marker.place_id !== selectedMarker.place_id
         )
-        .concat([this.state.selectedMarker]);
+        .concat([selectedMarker]);
     } else {
-      newMarkers = this.props.subitem.markers.concat([
-        this.state.selectedMarker,
+      newMarkers = props.subitem.markers.concat([
+        selectedMarker,
       ]);
     }
 
-    this.props.setMarkers(newMarkers, this.props.keyValue, this.props.subkey);
-    this.setState({
-      showSidebar: false,
-      selectedMarker: null,
-    });
+    props.setMarkers(newMarkers, props.keyValue, props.subkey);
+    setShowSidebar(false);
+    setSelectedMarker(null);
   };
 
-  deleteSelectedMarker = () => {
-    const newMarkers = this.props.subitem.markers.filter(
-      (marker) => marker.place_id !== this.state.selectedMarker.place_id
+  const deleteSelectedMarker = () => {
+    const newMarkers = props.subitem.markers.filter(
+      (marker: any) => marker.place_id !== selectedMarker.place_id
     );
-    this.props.setMarkers(newMarkers, this.props.keyValue, this.props.subkey);
-    this.setState({
-      showSidebar: false,
-      selectedMarker: null,
-    });
+    props.setMarkers(newMarkers, props.keyValue, props.subkey);
+    setShowSidebar(false);
+    setSelectedMarker(null);
   };
 
-  render() {
-    const { t, disableEdit } = this.props;
-    const markersToDisplay = this.state.selectedMarker
-      ? this.props.subitem.markers.concat([this.state.selectedMarker])
-      : this.props.subitem.markers;
+    const markersToDisplay = selectedMarker
+      ? props.subitem.markers.concat([selectedMarker])
+      : props.subitem.markers;
     return (
       <div
-        className="map-paragraphe"
+        className={styles.map}
         id="map-paragraphe"
-        onMouseEnter={() => this.props.updateUIArray(-5)}
+        onMouseEnter={() => props.updateUIArray(-5)}
       >
-        {(markersToDisplay.length || !disableEdit) && (
+        {(markersToDisplay.length || !props.disableEdit) && (
           <div>
             {isMobile && (
               <div
@@ -170,16 +155,16 @@ class MapParagraphe extends PureComponent {
                 <FButton
                   type="outline-black"
                   name={"share-outline"}
-                  onClick={this.props.toggleShareContentOnMobileModal}
+                  onClick={props.toggleShareContentOnMobileModal}
                 >
-                  {this.props.t(
+                  {t(
                     "Dispositif.Partager Fiche",
                     "Partager la fiche"
                   )}
                 </FButton>
               </div>
             )}
-            <div className="where-header backgroundColor-darkColor">
+            <div className={styles.header}>
               <div
                 style={{
                   display: "flex",
@@ -199,65 +184,57 @@ class MapParagraphe extends PureComponent {
                     :{" "}
                   </b>
                 </div>
-                {!this.props.disableEdit && this.props.displayTuto && (
+                {!props.disableEdit && props.displayTuto && (
                   <FButton
                     type="tuto"
                     name={"play-circle-outline"}
-                    onClick={() => this.props.toggleTutorielModal("Map")}
+                    onClick={() => props.toggleTutorielModal("Map")}
                   >
                     Tutoriel
                   </FButton>
                 )}
               </div>
-              {!disableEdit && (
+              {!props.disableEdit && (
                 <EVAIcon
                   onClick={() =>
-                    this.props.deleteCard(
-                      this.props.keyValue,
-                      this.props.subkey,
+                    props.deleteCard(
+                      props.keyValue,
+                      props.subkey,
                       "map"
                     )
                   }
                   name="close-circle"
                   fill={colors.error}
                   size="xlarge"
-                  className="remove-btn"
+                  className={styles.remove_btn}
                 />
               )}
             </div>
-            <div className="map-content">
-              <div className="inner-container">
+            <div className={styles.map_content}>
+              <div className={styles.container}>
                 <MapComponent
-                  onMarkerClick={this.handleMarkerClick}
-                  onClose={this.onClose}
+                  onMarkerClick={handleMarkerClick}
+                  onClose={onClose}
                   markers={markersToDisplay || []}
-                  onSearchBoxMounted={this.onSearchBoxMounted}
-                  onPlacesChanged={this.onPlacesChanged}
-                  disableEdit={disableEdit}
-                  handleChange={this.handleChange}
-                  {...this.state}
+                  onSearchBoxMounted={onSearchBoxMounted}
+                  onPlacesChanged={onPlacesChanged}
+                  disableEdit={props.disableEdit}
+                  handleChange={handleChange}
+                  // {...this.state} TODO : bug here
                 />
-                )
               </div>
 
               <div
-                className={
-                  "right-menu " +
-                  (this.state.showSidebar
-                    ? "slide-in-blurred-right"
-                    : "flip-out-ver-right")
-                }
+                className={`${styles.right_menu} ${showSidebar ? styles.slide : styles.flip}`}
               >
                 {markerInfo.map((field, key) => {
-                  const selectedMarker = this.state.selectedMarker;
-
                   if (
                     field.item === "description" &&
                     selectedMarker &&
                     (selectedMarker.description ===
                       "Saisir des informations complémentaires si besoin" ||
                       !selectedMarker.description) &&
-                    disableEdit
+                      props.disableEdit
                   ) {
                     return;
                   } else if (
@@ -271,7 +248,7 @@ class MapParagraphe extends PureComponent {
                         (!selectedMarker.email ||
                           selectedMarker.email === "ajouter@votreemail.fr" ||
                           selectedMarker.email === "Non renseigné"))) &&
-                    disableEdit
+                          props.disableEdit
                   ) {
                     return (
                       <React.Fragment key={key}>
@@ -281,12 +258,12 @@ class MapParagraphe extends PureComponent {
                         </label>
                         <ContentEditable
                           html={"Non renseigné" || ""}
-                          disabled={disableEdit}
+                          disabled={props.disableEdit}
                           onChange={(e) =>
-                            this.handleMarkerChange(e, field.item)
+                            handleMarkerChange(e, field.item)
                           }
                           className={
-                            "marker-input color-darkColor " + field.customClass
+                            styles.marker_input + " color-darkColor " + field.customClass
                           }
                           placeholder="test"
                         />
@@ -306,40 +283,40 @@ class MapParagraphe extends PureComponent {
                             : ""
                         }
                         disabled={
-                          disableEdit ||
+                          props.disableEdit ||
                           ["vicinity", "address"].includes(field.item)
                         }
-                        onChange={(e) => this.handleMarkerChange(e, field.item)}
+                        onChange={(e) => handleMarkerChange(e, field.item)}
                         className={
-                          "marker-input color-darkColor " + field.customClass
+                          styles.marker_input + " color-darkColor " + field.customClass
                         }
                         placeholder={field.placeholder}
                       />
                     </React.Fragment>
                   );
                 })}
-                {!disableEdit && (
+                {!props.disableEdit && (
                   <>
                     <FButton
-                      onClick={this.deleteSelectedMarker}
+                      onClick={deleteSelectedMarker}
                       type="error"
                       name="trash"
-                      className="delete-btn"
+                      className={styles.delete_btn}
                     >
                       Supprimer
                     </FButton>
                     <FButton
-                      onClick={this.validateMarker}
+                      onClick={validateMarker}
                       type="theme"
                       name="checkmark-circle-2-outline"
-                      className="validate-btn"
+                      className={styles.validate_btn}
                     >
                       {t("Valider", "Valider")}
                     </FButton>
                   </>
                 )}
                 {isMobile && (
-                  <StyledButton onClick={this.onClose}>
+                  <StyledButton onClick={onClose}>
                     <div
                       style={{
                         display: "flex",
@@ -359,6 +336,5 @@ class MapParagraphe extends PureComponent {
       </div>
     );
   }
-}
 
-export default withTranslation()(MapParagraphe);
+export default MapParagraphe;

@@ -143,16 +143,19 @@ export default {
   },
 
   add_dispositif_infocards: (query) => {
+    const headers = getHeaders();
     return axios.post(burl + "/dispositifs/add_dispositif_infocards", query, {
       headers,
     });
   },
   get_dispositif: (params = {}) => {
+    const headers = getHeaders();
     return axios.post(burl + "/dispositifs/get_dispositif", params, {
       headers,
     });
   },
   count_dispositifs: (query) => {
+    const headers = getHeaders();
     return axios.post(burl + "/dispositifs/count_dispositifs", query, {
       headers,
     });

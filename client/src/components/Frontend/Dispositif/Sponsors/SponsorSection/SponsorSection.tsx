@@ -90,7 +90,7 @@ export const SponsorSection = (props: Props) => {
               rel="noopener noreferrer"
             >
               <img
-                className="sponsor-img"
+                className={styles.sponsor_img}
                 src={(props.sponsor.object.picture || {}).secure_url}
                 alt={props.sponsor.object.acronyme}
               />
@@ -119,7 +119,7 @@ export const SponsorSection = (props: Props) => {
                 rel="noopener noreferrer"
               >
                 <img
-                  className="sponsor-img"
+                  className={styles.sponsor_img}
                   src={props.sponsor.object.picture.secure_url}
                   alt={props.sponsor.object.alt}
                 />
@@ -129,7 +129,7 @@ export const SponsorSection = (props: Props) => {
                 {props.sponsor.object.picture &&
                   props.sponsor.object.picture.secure_url && (
                     <img
-                      className="sponsor-img"
+                      className={styles.sponsor_img}
                       src={props.sponsor.object.picture.secure_url}
                       alt={props.sponsor.object.alt}
                     />

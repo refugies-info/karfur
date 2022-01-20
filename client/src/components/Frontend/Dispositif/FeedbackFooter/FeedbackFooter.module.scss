@@ -1,0 +1,46 @@
+
+  @import "src/scss/colors.scss";
+  @import "src/scss/mixins/responsive";
+
+  .container {
+    background: $blanc;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 35px 20px 35px 40px;
+    font-size: 18px;
+
+    h5 {
+      @include media-max("tablet-up") {
+        font-size: 22px;
+        text-align: center;
+      }
+    }
+    span {
+      @include media-max("tablet-up") {
+        font-size: 18px;
+        text-align: center;
+      }
+    }
+    .btn {
+      width: -webkit-fill-available;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 12px;
+      border: 0.5px solid;
+      padding: 15px 20px;
+      &:hover {
+        background: darken($color: $gris, $amount: 0);
+      }
+      &:active {
+        background: $validationHover;
+        color: #ffffff;
+        border: none;
+      }
+      &::after {
+        background: $validationHover;
+      }
+    }
+  }

@@ -1,0 +1,61 @@
+@import "src/scss/colors.scss";
+
+.tags {
+  z-index: 10;
+  outline: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  .btn_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    padding: 5px;
+    line-height: 20px;
+  }
+
+  .icon_container {
+    display: flex;
+    margin-right: 10px;
+    justify-content: center;
+    align-items: center;
+
+    .rtl {
+      margin-right: 0;
+      margin-left: 10px;
+    }
+  }
+
+  .plus_btn {
+    background: $jauneClair;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    color: $noir;
+    border: none;
+    padding: 10px;
+    height: 50px;
+
+    &:hover {
+      background-color: $gris;
+    }
+
+    svg {
+      margin-right: 10px;
+      fill: $noir;
+    }
+    i {
+      margin-right: 10px;
+    }
+
+    &.icon {
+      svg {
+        fill: $noir;
+        margin-right: 2px;
+      }
+    }
+  }
+}

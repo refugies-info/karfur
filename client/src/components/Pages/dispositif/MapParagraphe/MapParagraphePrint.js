@@ -6,7 +6,7 @@ import { Table } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { markerInfo } from "data/dispositif";
 
-// import "./MapParagraphe.scss";
+import styles from "./MapParagraphe.module.scss";
 
 class MapParagraphe extends PureComponent {
   state = {
@@ -35,11 +35,18 @@ class MapParagraphe extends PureComponent {
     const { t } = this.props;
     return (
       <div
-        className="map-paragraphe page-break"
+        className={styles.map + " page-break"}
         id="map-paragraphe"
         onMouseEnter={() => this.props.updateUIArray(-5)}
       >
-        <div className="where-header" style={{backgroundColor: (this.props.mainTag && this.props.mainTag.darkColor) ? this.props.mainTag.darkColor : "#000000"}}>
+        <div
+          className={styles.header}
+          style={{
+            backgroundColor: (this.props.mainTag && this.props.mainTag.darkColor)
+              ? this.props.mainTag.darkColor
+              : "#000000"
+          }}
+        >
           <div
             style={{
               display: "flex",
