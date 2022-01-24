@@ -932,7 +932,10 @@ class EtapeParagraphe extends Component {
         <EtapeModal
           show={showModal}
           toggle={this.toggleModal}
-          {...this.props}
+          subitem={this.props.subitem}
+          upcoming={this.props.upcoming}
+          content={this.props.content}
+          subkey={this.props.subkey}
         />
       </div>
     );

@@ -1,0 +1,103 @@
+.modal {
+  padding: 20px;
+  height: 850px !important;
+
+  .close {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+  }
+
+  .title {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+    margin-bottom: 16px;
+    margin-top: 8px;
+  }
+
+  .help {
+    display: flex;
+    flex-direction: row;
+    background: #2d9cdb;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+    position: relative;
+
+    .description {
+      line-height: 28px;
+      color: #fbfbfb;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+    }
+  }
+
+  .department {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .checkbox {
+    border-radius: 12px;
+    width: fit-content;
+    padding: 14px;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #828282;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+
+    .text {
+      font-weight: 400;
+      color: #828282;
+    }
+    .text_checked {
+      font-weight: 900;
+      color: #212121;
+    }
+  }
+
+  .selected {
+    background: #8bc34a;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #ffffff;
+    padding: 15px;
+    width: fit-content;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: row;
+    margin-right: 8px;
+  }
+
+  .btn_text {
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0;
+  }
+
+  .btn_group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    width: 90%;
+    bottom: 20px;
+
+    .right {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+}

@@ -3,7 +3,6 @@ import DemarcheCreateModal from "./DemarcheCreateModal/DemarcheCreateModal";
 import DispositifValidateModal from "./DispositifValidateModal/DispositifValidateModal";
 import LanguageModal from "./LanguageModal/LanguageModal";
 import ReactionModal from "./ReactionModal/ReactionModal";
-import ThanksModal from "./ThanksModal/ThanksModal";
 import ReactionLectureModal from "./ReactionLectureModal/ReactionLectureModal";
 import ResponsableModal from "./ResponsableModal/ResponsableModal";
 import RejectionModal from "./RejectionModal/RejectionModal";
@@ -23,7 +22,6 @@ export {
   DispositifValidateModal,
   LanguageModal,
   ReactionModal,
-  ThanksModal,
   ReactionLectureModal,
   ResponsableModal,
   RejectionModal,

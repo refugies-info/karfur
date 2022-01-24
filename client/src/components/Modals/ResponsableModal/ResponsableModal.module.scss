@@ -1,11 +1,11 @@
 @import "src/scss/colors.scss";
 
-.modal.show .modal-responsable {
+.modal {
   max-width: 650px;
 
-  .modal-content {
+  .modal_content {
     background: $gris;
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
     padding: 20px 40px;
     border: none;
@@ -13,25 +13,34 @@
     .modal-header {
       border: none;
       padding: 0;
-      h5.modal-title {
+
+      h5 {
         font-size: 40px;
         line-height: 51px;
       }
     }
-    .modal-body {
+
+    .modal_body {
       padding: 0;
 
-      .responsable-img {
+      .img {
         margin: 50px 0 30px 80px;
       }
-
-      .texte-vert {
+      h5 {
         color: $vert;
       }
-      .creator-wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    }
+
+    .footer_inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      p {
+        color: gray;
+        align-self: center;
+        margin-bottom: 0;
+        margin-right: 10px;
       }
     }
   }

@@ -1,13 +1,12 @@
 import React from "react";
 import { Modal } from "reactstrap";
-import styled from "styled-components";
-// import Icon from "react-eva-icons";
-// import "./ShareContentOnMobileModal.scss";
-import { ShareButton } from "../../FigmaUI/ShareButton/ShareButton";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { ShareButton } from "components/FigmaUI/ShareButton/ShareButton";
 import {
   send_sms,
   sharingOptions,
 } from "components/Pages/dispositif/function";
+import styles from "./ShareContentOnMobileModal.module.scss";
 
 declare const window: Window;
 interface Props {
@@ -24,48 +23,25 @@ interface Props {
   t: any;
 }
 
-const IconContainer = styled.div`
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  right: 40px;
-  top: 30px;
-  background-color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100%;
-  cursor: pointer;
-`;
-
-const Header = styled.div`
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 30px;
-  margin-bottom: 20px;
-`;
-
-const MainContainer = styled.div`
-  padding: 40px;
-  border-radius: 12px;
-`;
-
-const ButtonsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 export const ShareContentOnMobileModal = (props: Props) => {
   return (
-    <Modal isOpen={props.show} toggle={props.toggle} className="share-content">
-      <MainContainer>
-        <IconContainer onClick={props.toggle}>
-          {/* <Icon name="close-outline" fill="#FFFFFF" size="large" /> */}
-        </IconContainer>
-        <Header>
+    <Modal
+      isOpen={props.show}
+      toggle={props.toggle}
+      className={styles.modal}
+      contentClassName={styles.modal_content}
+    >
+      <div className={styles.container}>
+        <div
+          onClick={props.toggle}
+          className={styles.close}
+        >
+          <EVAIcon name="close-outline" fill="#FFFFFF" size="large" />
+        </div>
+        <h2 className={styles.header}>
           {props.t("Dispositif.Partager Fiche", "Partager la fiche")}
-        </Header>
-        <ButtonsContainer>
+        </h2>
+        <div className={styles.btn_container}>
           <ShareButton
             name={"email-outline"}
             content={props.content}
@@ -98,8 +74,8 @@ export const ShareContentOnMobileModal = (props: Props) => {
             text={props.t("Dispositif.Plus options", "Plus d'options")}
             type="button"
           />
-        </ButtonsContainer>
-      </MainContainer>
+        </div>
+      </div>
     </Modal>
   );
 };

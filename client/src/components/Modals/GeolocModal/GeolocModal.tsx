@@ -1,117 +1,24 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-// import Icon from "react-eva-icons";
-import { filtres } from "data/dispositif";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { filtres } from "data/dispositif";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { CustomDropDown } from "components/Pages/annuaire-create/CustomDropdown";
 import { CustomCheckBox } from "components/Pages/annuaire-create/CustomCheckBox";
 import FInput from "components/FigmaUI/FInput/FInput";
-
-// import "./GeolocModal.css";
 import Modal from "../Modal";
+import styles from "./GeolocModal.module.scss";
 
-const IconContainer = styled.div`
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  right: 20px;
-  top: 20px;
-  cursor: pointer;
-`;
+interface Props {
+  show: boolean
+  toggleTutorielModal: any
+  validateDepartments: any
+  departments: any[]
+  hideModal: any
+}
 
-const CheckBoxText = styled.div`
-  font-weight: ${(props) => (props.checked ? 900 : 400)};
-  color: ${(props) => (props.checked ? "#212121" : "#828282")};
-`;
-
-const Title = styled.div`
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 23px;
-  margin-bottom: 16px;
-  margin-top: 8px;
-`;
-
-const HelpContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  background: #2d9cdb;
-  border-radius: 12px;
-  //width: 800px;
-  padding: 16px;
-  margin-bottom: 24px;
-  position: relative;
-`;
-
-const HelpDescription = styled.div`
-  line-height: 28px;
-  color: #fbfbfb;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-`;
-
-const DepartmentContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-`;
-
-const CheckboxContainer = styled.div`
-  background: ${(props) => (props.checked ? "#DEF7C2" : "#f2f2f2")};
-  border-radius: 12px;
-  width: fit-content;
-  padding: 14px;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 20px;
-  color: #828282;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  cursor: pointer;
-  margin-bottom: 20px;
-`;
-
-const SelectedContainer = styled.div`
-  background: #8bc34a;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 16px;
-  color: #ffffff;
-  padding: 15px;
-  width: fit-content;
-  heigth: 50px;
-  margin-bottom: 8px;
-  display: flex;
-  flex-direction: row;
-  margin-right: 8px;
-`;
-
-const ButtonText = styled.p`
-  font-size: 16px;
-  line-height: 20px;
-  margin: 0;
-`;
-
-const StyledButtonGroupContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  position: absolute;
-  width: 90%;
-  bottom: 20px;
-  //margin-top: 20px;
-`;
-
-const StyledRightButtonGroup = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const GeolocModal = (props) => {
-  const [departments, setDepartments] = useState([]);
+const GeolocModal = (props: Props) => {
+  const [departments, setDepartments] = useState<string[]>([]);
   const [isFranceSelected, setFranceSelected] = useState(
     props.departments && props.departments.includes("All")
   );
@@ -119,7 +26,7 @@ const GeolocModal = (props) => {
     props.departments || []
   );
   const [departmentInput, setDepartmentInput] = useState("");
-  const onDepartmentChange = (e) => {
+  const onDepartmentChange = (e: any) => {
     setDepartmentInput(e.target.value);
     if (e.target.value === "") {
       return setDepartments([]);
@@ -136,7 +43,7 @@ const GeolocModal = (props) => {
     setDepartments(filteredDepartments);
   };
 
-  const removeDropdowElement = (element) => {
+  const removeDropdowElement = (element: any) => {
     const departments = selectedDepartments
       ? selectedDepartments.filter((department) => department !== element)
       : [];
@@ -153,7 +60,7 @@ const GeolocModal = (props) => {
     }
   };
 
-  const onDropdownElementClick = (element) => {
+  const onDropdownElementClick = (element: any) => {
     var departments = [];
     if (selectedDepartments.length > 0 && selectedDepartments[0] === "All") {
       departments = selectedDepartments
@@ -180,21 +87,24 @@ const GeolocModal = (props) => {
   };
 
   return (
-    <Modal show={props.show} className="geoloc-modal">
-      <IconContainer onClick={props.hideModal}>
-        {/* <Icon name="close-outline" fill="#3D3D3D" size="large" /> */}
-      </IconContainer>
+    <Modal
+      show={props.show}
+      className={styles.modal}
+    >
+      <div onClick={props.hideModal} className={styles.close}>
+        <EVAIcon name="close-outline" fill="#3D3D3D" size="large" />
+      </div>
       <div id="svgContainer" />
       <h1>Zone d'action</h1>
       <p>
         Sélectionnez les départements sur lesquels votre dispositif est actif :
       </p>
       {!isFranceSelected && (
-        <DepartmentContainer>
+        <div className={styles.department}>
           {selectedDepartments &&
             selectedDepartments.length > 0 &&
             selectedDepartments.map((department) => (
-              <SelectedContainer key={department}>
+              <div key={department} className={styles.selected}>
                 {department}
                 <div style={{ cursor: "pointer" }}>
                   <EVAIcon
@@ -204,13 +114,14 @@ const GeolocModal = (props) => {
                     onClick={() => removeDropdowElement(department)}
                   />
                 </div>
-              </SelectedContainer>
+              </div>
             ))}
-        </DepartmentContainer>
+        </div>
       )}
       {selectedDepartments && selectedDepartments.length < 13 && (
         <div style={{ width: "280px", marginRight: "8px" }}>
           <FInput
+            id="department"
             value={departmentInput}
             onChange={onDepartmentChange}
             newSize={true}
@@ -227,28 +138,31 @@ const GeolocModal = (props) => {
         </div>
       )}
       {selectedDepartments && selectedDepartments.length === 13 && (
-        <HelpContainer>
-          <HelpDescription>
+        <div className={styles.help}>
+          <p className={styles.description}>
             Nombre maximum de départements renseignés. Préférez l’option{" "}
             <b>France entière</b> si votre dispositif est présent sur de
             nombreux territoires.
-          </HelpDescription>
-        </HelpContainer>
+          </p>
+        </div>
       )}
-      <Title>OU</Title>
+      <div className={styles.title}>OU</div>
       <p>
         Votre dispositif est accessible sur tout le territoire, cochez l’option
         ci-dessous :{" "}
       </p>
-      <CheckboxContainer
+      <div
+        className={styles.checkbox}
         onClick={handleCheckboxChange}
-        checked={isFranceSelected}
+        style={{ backgroundColor: isFranceSelected ? "#DEF7C2" : "#f2f2f2" }}
       >
         <CustomCheckBox checked={isFranceSelected} />
-        <CheckBoxText checked={isFranceSelected}>France entière</CheckBoxText>
-      </CheckboxContainer>
+        <p className={isFranceSelected ? styles.text_checked : styles.text}>
+          France entière
+        </p>
+      </div>
 
-      <StyledButtonGroupContainer>
+      <div className={styles.btn_group}>
         <FButton
           type="tuto"
           name={"play-circle-outline"}
@@ -256,17 +170,17 @@ const GeolocModal = (props) => {
         >
           Tutoriel
         </FButton>
-        <StyledRightButtonGroup>
+        <div className={styles.right}>
           <FButton
             type="validate"
             name="checkmark"
             onClick={onValidate}
             disabled={selectedDepartments.length === 0}
           >
-            <ButtonText>Valider</ButtonText>
+            <span className={styles.btn_text}>Valider</span>
           </FButton>
-        </StyledRightButtonGroup>
-      </StyledButtonGroupContainer>
+        </div>
+      </div>
     </Modal>
   );
 };

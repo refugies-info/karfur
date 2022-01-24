@@ -1,30 +1,40 @@
 import React from "react";
 import { Input, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import {colors} from "colors";
 
-// import "./ReactionModal.scss";
 import FButton from "../../FigmaUI/FButton/FButton";
+import styles from "./ReactionModal.module.scss";
 
-const suggererModal = (props) => {
-  const { t, showModals } = props;
-  const isOpen = showModals.reaction;
-  let name = "reaction",
-    fieldName = "suggestions";
+interface Props {
+  showModals: any
+  toggleModal: any
+  suggestion: any
+  onChange: any
+  onValidate: any
+}
+
+const ReactionModal = (props: Props) => {
+  const { t } = useTranslation();
+  const isOpen = props.showModals.reaction;
+  let name = "reaction";
+  let fieldName = "suggestions";
 
   return (
     <Modal
       isOpen={isOpen}
       toggle={() => props.toggleModal(false, name)}
-      className="modal-suggerer"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
     >
-      <ModalHeader toggle={() => props.toggleModal(false, name)}>
+      <ModalHeader
+        className={styles.modal_header}
+        toggle={() => props.toggleModal(false, name)}
+      >
         {t("Dispositif.Envoyer une réaction", "Envoyer une réaction")}
       </ModalHeader>
-      <ModalBody>
-        <div
-          style={{ fontSize: " 16px", lineHeight: "20px", marginBottom: "8px" }}
-        >
+      <ModalBody className={styles.modal_body}>
+        <div className={styles.inner}>
           {t(
             "Dispositif.Dites nous ce que vous pensez",
             "Dites nous ce que vous pensez :"
@@ -33,6 +43,7 @@ const suggererModal = (props) => {
 
         <Input
           type="textarea"
+          className={styles.input}
           placeholder="J'écris ici ma réaction"
           rows={5}
           value={props.suggestion}
@@ -40,9 +51,9 @@ const suggererModal = (props) => {
           id="suggestion"
         />
       </ModalBody>
-      <ModalFooter>
+      <ModalFooter className={styles.modal_footer}>
         <FButton
-          tag={"a"}
+          tag="a"
           href="https://help.refugies.info/fr/"
           target="_blank"
           rel="noopener noreferrer"
@@ -64,4 +75,4 @@ const suggererModal = (props) => {
   );
 };
 
-export default withTranslation()(suggererModal);
+export default ReactionModal;

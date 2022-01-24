@@ -1,0 +1,67 @@
+@import "src/scss/colors.scss";
+
+.modal {
+  :global(.modal-title) {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .title_wrapper {
+    color: $grisFonce;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      font-size: 22px;
+      line-height: 28px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      line-height: 23px;
+    }
+  }
+
+  .infos {
+    background: $noir;
+    border-radius: 12px;
+    padding: 10px 20px;
+    color: #ffffff;
+    margin-bottom: 30px;
+    cursor: pointer;
+
+    h5 {
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+  }
+  .copy {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 10px;
+    line-height: 20px;
+  }
+
+  .list {
+    margin-bottom: 30px;
+
+    .item {
+      background: $gris;
+      border-radius: 12px;
+      padding: 10px;
+      padding-left: 40px;
+      margin-bottom: 10px;
+
+      &.checked {
+        background: $validation;
+      }
+    }
+  }
+
+  .modal_footer {
+    justify-content: space-between;
+  }
+}

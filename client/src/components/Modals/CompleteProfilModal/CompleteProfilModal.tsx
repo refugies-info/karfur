@@ -1,67 +1,43 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 import { Modal } from "reactstrap";
-import styled from "styled-components";
-import FInput from "../../FigmaUI/FInput/FInput";
-import FButton from "../../FigmaUI/FButton/FButton";
-import { colors } from "colors";
-
-import { saveUserActionCreator } from "../../../services/User/user.actions";
 import Swal from "sweetalert2";
+import FInput from "components/FigmaUI/FInput/FInput";
+import FButton from "components/FigmaUI/FButton/FButton";
+import { saveUserActionCreator } from "services/User/user.actions";
+import styles from "./CompleteProfilModal.module.scss";
 
-import "./CompleteProfilModal.module.scss";
+interface Props {
+  show: boolean;
+  toggle: any;
+  user: any;
+  type: string;
+  element?: any;
+  isExpert?: boolean;
+  langueId?: string;
+}
 
-const TitleContainer = styled.div`
-  font-weight: 700;
-  font-size: 40px;
-`;
-const FInputContainer = styled.div`
-  width: 520px; ;
-`;
-
-const ExplainationContainer = styled.div`
-  width: 520px;
-  background-color: ${colors.focus};
-  border-radius: 12px;
-  padding: 16px;
-  color: white;
-  font-size: 16px;
-  margin-top: 8px;
-`;
-const ButtonContainer = styled.div`
-  display: flex;
-  margin-top: 16px;
-  justify-content: flex-end;
-`;
-
-const ErrorMessageContainer = styled.div`
-  color: ${colors.error};
-  font-size: 16px;
-  line-height: 20px;
-  margin-top: 16px;
-`;
-
-const ExplainationTitleContainer = styled.p`
-  font-weight: 700;
-`;
-
-export const CompleteProfilModal = (props) => {
+export const CompleteProfilModal = (props: Props) => {
   const [email, setEmail] = useState("");
   const [notEmailError, setNotEmailError] = useState(false);
+  const router = useRouter();
+  const { t } = useTranslation();
 
-  const onChange = (e) => {
+  const onChange = (e: any) => {
     setEmail(e.target.value);
   };
 
   const redirect = () => {
     if (props.type === "dispositif") {
-      props.history.push("/dispositif");
+      router.push("/dispositif");
     } else if (props.type === "demarche") {
-      props.history.push("/demarche");
+      router.push("/demarche");
     } else if (props.type === "traduction") {
       if (!props.langueId) return;
       if (!props.isExpert && props.element.tradStatus === "Validée") return;
-      return props.history.push({
+      return router.push({
         pathname:
           (props.isExpert ? "/validation" : "/traduction") +
           "/" +
@@ -71,6 +47,7 @@ export const CompleteProfilModal = (props) => {
         search: "?id=" + props.langueId,
       });
     }
+    return;
   };
 
   const dispatch = useDispatch();
@@ -99,11 +76,16 @@ export const CompleteProfilModal = (props) => {
   };
 
   return (
-    <Modal isOpen={props.show} toggle={props.toggle} className="profil-modal">
-      <TitleContainer>Complétez votre profil</TitleContainer>
+    <Modal
+      isOpen={props.show}
+      toggle={props.toggle}
+      className={styles.modal}
+      contentClassName={styles.modal_content}
+    >
+      <h2 className={styles.title}>Complétez votre profil</h2>
 
       <p>Pour contribuer, vous devez renseigner votre adresse email :</p>
-      <FInputContainer>
+      <div className={styles.input_container}>
         <FInput
           id="email"
           value={email}
@@ -114,27 +96,30 @@ export const CompleteProfilModal = (props) => {
           prependName="at-outline"
           placeholder="Mon adresse email"
         />
-      </FInputContainer>
-      <ExplainationContainer>
-        <ExplainationTitleContainer>
+      </div>
+      <div className={styles.explaination}>
+        <p className={styles.title_container}>
           Pourquoi nous vous demandons votre email :
-        </ExplainationTitleContainer>
+        </p>
         <ul>
           <li>Pour réinitialiser votre mot de passe en cas d’oubli</li>
           <li>Pour vous informer en cas d’évolutions sur vos contributions</li>
           <li>Pour des raisons de sécurité (en cas de pratiques abusives)</li>
         </ul>
         Nous ne transmetterons jamais votre email à d’autres organisations.
-      </ExplainationContainer>
+      </div>
       {notEmailError && (
-        <ErrorMessageContainer>
-          {`${props.t("Register.Ceci n'est pas un email,")} ${props.t("Register.vérifiez l'orthographe")}`}
-        </ErrorMessageContainer>
+        <p className={styles.error}>
+          {`${t("Register.Ceci n'est pas un email,")} ${t(
+            "Register.vérifiez l'orthographe"
+          )}`}
+        </p>
       )}
-      <ButtonContainer>
+      <div className={styles.btn_container}>
         <FButton
           onClick={props.toggle}
-          type="outline-black mr-8"
+          type="outline-black"
+          className="mr-8"
           name="arrow-back-outline"
         >
           {"Retour"}
@@ -147,7 +132,7 @@ export const CompleteProfilModal = (props) => {
         >
           {"Valider"}
         </FButton>
-      </ButtonContainer>
+      </div>
     </Modal>
   );
 };

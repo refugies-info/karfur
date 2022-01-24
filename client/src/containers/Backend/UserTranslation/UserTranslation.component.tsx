@@ -299,12 +299,11 @@ export const UserTranslationComponent = (props: Props) => {
           <CompleteProfilModal
             show={showCompleteProfilModal}
             toggle={toggleCompleteProfilModal}
-            history={props.history}
             user={user.user}
             type={"traduction"}
             element={elementToTranslate}
             isExpert={user.expertTrad}
-            langueId={getLangueId()}
+            langueId={getLangueId()?.toString()}
           />
         )}
         {showOneNeedTranslationModal && (

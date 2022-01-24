@@ -2354,14 +2354,14 @@ export class Dispositif extends Component {
               show={this.state.showBookmarkModal}
               toggle={this.toggleBookmarkModal}
             />
-            {/* {typeContenu === "demarche" && (
+            {typeContenu === "demarche" && (
               <DemarcheCreateModal
                 show={this.state.showDispositifCreateModal}
                 toggle={this.toggleDispositifCreateModal}
                 typeContenu={typeContenu}
                 onBoardSteps={onBoardSteps}
               />
-            )} */}
+            )}
             {typeContenu === "dispositif" && (
               <DispositifCreateModal
                 show={this.state.showDispositifCreateModal}

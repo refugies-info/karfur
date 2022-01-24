@@ -1,14 +1,51 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 
-.profil-modal {
+.modal {
   min-width: 600px;
   background: $gris;
   border: hidden;
-  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
   border-radius: 12px;
   color: $noir;
   padding: 40px;
-  .modal-content {
+
+  .title {
+    font-weight: 700;
+    font-size: 40px;
+  }
+
+  .input_container {
+    width: 520px;
+  }
+
+  .explaination {
+    width: 520px;
+    background-color: $focus;
+    border-radius: 12px;
+    padding: 16px;
+    color: white;
+    font-size: 16px;
+    margin-top: 8px;
+
+    .title_container {
+      font-weight: 700;
+    }
+  }
+
+  .btn_container {
+    display: flex;
+    margin-top: 16px;
+    justify-content: flex-end;
+  }
+
+  .error {
+    color: $error;
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 16px;
+  }
+
+  .modal_content {
     background: $gris;
     border: hidden;
   }

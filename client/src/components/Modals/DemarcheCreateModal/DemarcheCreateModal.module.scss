@@ -6,8 +6,8 @@
     background: #FFFFFF;
     height: 680px;
 
-    .modal-header{
-      border:none;
+    .modal_header{
+      border: none;
       padding-top: 0;
 
       h5{
@@ -18,63 +18,47 @@
         justify-content: space-between;
         align-items: center;
       }
-      .close{
-        outline: none;
-        text-shadow: none;
-        position: absolute;
-        opacity: 1;
-        top: 20px;
-        right: 20px;
-      }
     }
-    .modal-body{
-      .content-bloc{
-        color: $noir;
-        margin-bottom: 10px;
-      }
-      p{
-        font-size: 16px;
-        line-height: 20px;
-        margin-bottom: 0;
-      }
-      h5{
-        font-size: 24px;
-        line-height: 30px;
-        margin-bottom: 15px;
-      }
-      .liste-classic{
-        background: $blanc;
-        border-radius: 12px;
-        margin-bottom: 0;
-        padding: 20px;
-        padding-left: 40px;
-        li{
-          margin-bottom: 5px;
-          &:last-child{
-            margin-bottom: 0;
-          }
+    .close{
+      outline: none;
+      text-shadow: none;
+      position: absolute;
+      opacity: 1;
+      top: 20px;
+      right: 20px;
+    }
+    .content {
+      color: $noir;
+      margin-bottom: 10px;
+    }
+    h5{
+      font-size: 24px;
+      line-height: 30px;
+      margin-bottom: 15px;
+    }
+    .list {
+      background: $blanc;
+      border-radius: 12px;
+      margin-bottom: 0;
+      padding: 20px;
+      padding-left: 40px;
+
+      li{
+        margin-bottom: 5px;
+        &:last-child{
+          margin-bottom: 0;
         }
       }
-
-      .image-figma{
-        box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
-        border-radius: 12px;
-        padding: 30px;
-        margin-bottom: 30px;
-        margin-top: 14px;
-      }
-      .tuto-wrapper{
-        text-align: center;
-      }
-      .texte-jaune{
-        background-color: $jauneClair;
-      }
-      .texte-rouge{
-        background-color: $erreur;
-        color: $error;
-      }
     }
-    .modal-footer{
+    .image{
+      box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      margin-top: 14px;
+    }
+
+    .modal_footer{
       border:none;
       display: inline-flex;
       flex: 1;
@@ -83,7 +67,7 @@
       padding-bottom: 0;
 
       .btn{
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.07);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
         background: #FBFBFB;
         border-radius: 12px;
         color:$noir;
@@ -94,29 +78,31 @@
         }
       }
 
-      .nav-tabs {
+      :global(.nav-tabs) {
         position: relative;
         flex: 1;
         border:none;
+
+        & > li {
+          margin-right: 5px;
+          line-height: 10px;
+        }
       }
 
-      .nav-tabs > li {
-        margin-right: 5px;
-        line-height: 10px;
-      }
-      .round-tab {
+      .round_tab {
         width: 20px;
         height: 20px;
         display: inline-block;
         border-radius: 50%;
         border: 0.5px solid $noir;
-      }
-      .active .round-tab {
-        background: $noir;
-      }
-      .active.ended .round-tab{
-        background: $validationDefault;
-        border: 0.5px solid $validationDefault;
+
+        .active & {
+          background: $noir;
+        }
+        .active.ended &{
+          background: $validationDefault;
+          border: 0.5px solid $validationDefault;
+        }
       }
     }
   }

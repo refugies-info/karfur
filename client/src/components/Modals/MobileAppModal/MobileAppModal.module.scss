@@ -1,15 +1,15 @@
-.mobile-app-modal {
+.modal {
   width: 100%;
   height: 100%;
   margin: 0;
 
-  .modal-content {
+  .modal_content {
     background-color: #EDEBEB;
     min-height: 100%;
     border-radius: 0;
   }
 
-  .modal-body {
+  .modal_body {
     display: flex;
     align-items: center;
   }
@@ -31,7 +31,7 @@
     line-height: 22px;
     text-align: center;
   }
-  .close-button{
+  .close_btn {
     margin-bottom: 8px;
   }
 }
