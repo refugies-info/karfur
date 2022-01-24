@@ -1,7 +1,6 @@
 import React from "react";
 import { Props } from "./BandeauEdition.container";
 import { BandeauEditionWithoutVariante } from "./BandeauEditionWithoutVariante";
-// import "./BandeauEdition.scss";
 
 declare const window: any;
 
@@ -40,10 +39,7 @@ export class BandeauEdition extends React.Component<
   handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
     const visible = currentScrollPos < 70;
-
-    this.setState({
-      visible,
-    });
+    this.setState({ visible });
   };
 
   render() {

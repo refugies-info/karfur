@@ -1,6 +1,6 @@
 import React from "react";
-import styled from "styled-components";
-import FButton from "../../../FigmaUI/FButton/FButton";
+import FButton from "components/FigmaUI/FButton/FButton";
+import styles from "./BandeauEdition.module.scss";
 
 interface Props {
   visible: boolean;
@@ -14,72 +14,6 @@ interface Props {
   isModified: boolean;
   isSaved: boolean;
 }
-
-const ContentTypeContainer = styled.div`
-  background: #ffffff;
-  border-radius: 6px;
-  font-size: 12px;
-  line-height: 15px;
-  margin-left: 20px;
-  height: 31px;
-  padding: 8px;
-`;
-
-const MainContainer = styled.div`
-  background: ${(props) => (props.yellow ? "#f9ef99" : "#edebeb")};
-  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: row;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  justify-content: space-between;
-`;
-
-const InfoText = styled.div`
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  margin-left: 15px;
-`;
-
-const YellowText = styled.div`
-  background: #f9ef99;
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  padding: 8px;
-  margin-left: 8px;
-  margin-right: 15px;
-`;
-
-const FirstGroupContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const SecondGroupContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const DescriptionText = styled.div`
-  font-size: 16px;
-  line-height: 20px;
-  margin-left: 15px;
-`;
-
-const EndDescription = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-const KnowMore = styled.div`
-  font-size: 16px;
-  line-height: 20px;
-  cursor: pointer;
-`;
 
 const getInfoText = (
   step: number,
@@ -199,27 +133,35 @@ export const BandeauEditionWithoutVariante = (props: Props) => {
   const correctContenu =
     props.typeContenu === "dispositif" ? "Dispositif" : "Démarche";
   return (
-    <div className={"bandeau-edition" + (props.visible ? "" : " go-to-top")}>
-      <div className="dashed-panel no-radius" />
-      <MainContainer yellow={props.displayTuto && props.tKeyValue !== -1}>
-        <FirstGroupContainer>
-          <ContentTypeContainer>{correctContenu}</ContentTypeContainer>
-          <InfoText>{title}</InfoText>
+    <div className={`${styles.container} ${(props.visible ? "" : styles.top)}`}>
+      <div className={styles.dashed} />
+      <div
+        className={styles.inner}
+        style={{
+          backgroundColor: props.displayTuto && props.tKeyValue !== -1 ? "#f9ef99" : "#edebeb"
+        }}
+      >
+        <div className={styles.group_container}>
+          <div className={styles.content}>{correctContenu}</div>
+          <div className={styles.title}>{title}</div>
           {props.tKeyValue !== -1 && props.displayTuto && (
-            <DescriptionText>{subtitle}</DescriptionText>
+            <p className={styles.description}>{subtitle}</p>
           )}
           {(props.tKeyValue === -1 || !props.displayTuto) && (
-            <EndDescription>
-              <YellowText>jaune.</YellowText>
+            <div className={styles.group_container}>
+              <span className={styles.yellow_text}>jaune.</span>
               {isDispositif && (
-                <KnowMore onClick={props.toggleDispositifCreateModal}>
+                <div
+                  className={styles.more}
+                  onClick={props.toggleDispositifCreateModal}
+                >
                   <u>En savoir plus</u>
-                </KnowMore>
+                </div>
               )}
-            </EndDescription>
+            </div>
           )}
-        </FirstGroupContainer>
-        <SecondGroupContainer>
+        </div>
+        <div className={styles.group_container}>
           {isDispositif && (
             <FButton
               type="tuto"
@@ -254,8 +196,8 @@ export const BandeauEditionWithoutVariante = (props: Props) => {
           >
             Valider
           </FButton>
-        </SecondGroupContainer>
-      </MainContainer>
+        </div>
+      </div>
     </div>
   );
 };

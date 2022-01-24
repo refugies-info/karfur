@@ -209,18 +209,6 @@ html body {
     align-items: center;
   }
 
-  .dashed-panel {
-    background: repeating-linear-gradient(
-      -45deg,
-      $uiattention,
-      $uiattention 20px,
-      $noir 20px,
-      $noir 40px
-    );
-    height: 10px;
-    border-radius: 12px 12px 0 0;
-  }
-
   @each $value in $theme-list {
     .bg-#{nth($value, 1)} {
       background-color: nth($value, 2);
