@@ -164,7 +164,13 @@ const Navbar = () => {
           <Logo />
           {path !== "/" && path !== "/homepage" && (
               <Link href="/">
-                <FButton type="login" name="home-outline" tag="a" className={styles.home_btn}>
+                <FButton
+                  type="login"
+                  name="home-outline"
+                  tag="a"
+                  className={styles.home_btn}
+                  tabIndex="1"
+                >
                   {windowWidth >= breakpoints.lgLimit && windowWidth > 1280 && (
                     <b>{t("Toolbar.Accueil", "Accueil")}</b>
                   )}
@@ -211,7 +217,7 @@ const Navbar = () => {
                 router.push("/advanced-search");
               }
             }}
-            className={`${styles.advanced_search_btn} ${(isRTL ? styles.advanced_search_btn : "")}`}
+            className={`${styles.advanced_search_btn} ${(isRTL ? styles.advanced_search_btn_rtl : "")}`}
           >
             <InnerButton isRTL={isRTL}>
               <div
