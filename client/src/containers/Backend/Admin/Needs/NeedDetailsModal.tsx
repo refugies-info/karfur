@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "reactstrap";
-import "./NeedDetailsModal.scss";
+// import "./NeedDetailsModal.scss";
 import { Need } from "../../../../types/interface";
 import styled from "styled-components";
 import { getTagColor } from "./lib";

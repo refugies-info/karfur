@@ -22,7 +22,7 @@ import {
   RowContainer,
   StructureName,
 } from "../AdminStructures/components/AdminStructureComponents";
-import "./AdminUsers.scss";
+// import "./AdminUsers.scss";
 import { Role, LangueFlag } from "./ components/AdminUsersComponents";
 import { LoadingAdminUsers } from "./ components/LoadingAdminUsers";
 import { compare } from "../AdminContenu/AdminContenu";

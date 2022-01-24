@@ -1,9 +1,9 @@
-import { SimplifiedUser } from "../../../types/interface";
+import { SimplifiedUser } from "types/interface";
 import React from "react";
 import styled from "styled-components";
 import marioProfile from "assets/mario-profile.jpg";
-import { colors } from "../../../colors";
-import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
+import { colors } from "colors";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 
 interface Props {
   user: SimplifiedUser;

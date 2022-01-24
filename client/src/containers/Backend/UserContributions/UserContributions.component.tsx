@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavHashLink } from "react-router-hash-link";
 import {
   fetchUserContributionsActionCreator,
   deleteDispositifActionCreator,

@@ -8,7 +8,7 @@ import {
 import marioProfile from "assets/mario-profile.jpg";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
-import "./MembresTable.scss";
+// import "./MembresTable.scss";
 import { ObjectId } from "mongodb";
 import moment from "moment/min/moment-with-locales";
 

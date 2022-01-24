@@ -65,7 +65,7 @@ export const NavigationComponent: React.FunctionComponent<Props> = (
       return props.history.push("/backend/user-dash-notifications");
     }
     if (type === "favoris") {
-      return props.history.push("/backend/user-favorites");
+      return props.history.push("/backend");
     }
     if (type === "contributions") {
       return props.history.push("/backend/user-dash-contrib");

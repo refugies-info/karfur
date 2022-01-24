@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React from "react";
 import { RowContainer } from "../../AdminStructures/components/AdminStructureComponents";
 import { Picture } from "../../../../../types/interface";
-import "./AdminUsersComponent.scss";
+// import "./AdminUsersComponent.scss";
 interface RoleProps {
   role: string;
 }

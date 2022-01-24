@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
 import React, { useState } from "react";
 import { Modal, Spinner } from "reactstrap";
-import "./ImprovementsMailModal.scss";
+// import "./ImprovementsMailModal.scss";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { dispositifSelector } from "../../../../../services/AllDispositifs/allDispositifs.selector";

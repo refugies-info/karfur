@@ -17,7 +17,7 @@ import {
 import CustomTabPane from "../../../components/Backend/Admin/CustomTabPane";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
-import "./Admin.scss";
+// import "./Admin.scss";
 import { colors } from "colors";
 import styled from "styled-components";
 import { Navigation } from "../Navigation";

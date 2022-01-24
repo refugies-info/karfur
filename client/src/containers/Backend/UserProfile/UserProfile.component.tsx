@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { userDetailsSelector } from "../../../services/User/user.selectors";
 import { User, Event } from "../../../types/interface";
 import marioProfile from "../../../assets/mario-profile.jpg";
-import "./UserProfile.scss";
+// import "./UserProfile.scss";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { Props } from "./UserProfile.container";
 import FInput from "../../../components/FigmaUI/FInput/FInput";

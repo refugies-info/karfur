@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "reactstrap";
 
-import "./MemberModal.scss";
+// import "./MemberModal.scss";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import styled from "styled-components";
 import { colors } from "../../../../colors";

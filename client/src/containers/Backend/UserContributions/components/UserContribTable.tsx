@@ -12,7 +12,7 @@ import {
   DeleteButton,
   SeeButtonWithoutNavigation,
 } from "../../Admin/sharedComponents/SubComponents";
-import "./UserContribTable.scss";
+// import "./UserContribTable.scss";
 import { ObjectId } from "mongodb";
 
 const headers = ["Type", "Titre", "Responsabilité", "Statut", "Merci", "Vues"];

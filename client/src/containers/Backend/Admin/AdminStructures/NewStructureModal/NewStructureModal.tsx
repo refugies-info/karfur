@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Event, Picture, Responsable, SimplifiedUser } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
-import "./NewStructureModal.scss";
+// import "./NewStructureModal.scss";
 import FInput from "components/FigmaUI/FInput/FInput";
 import moment from "moment/min/moment-with-locales";
 import FButton from "components/FigmaUI/FButton/FButton";

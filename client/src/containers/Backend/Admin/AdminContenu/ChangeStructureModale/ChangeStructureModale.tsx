@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Modal, Spinner } from "reactstrap";
-import "./ChangeStructureModale.scss";
+// import "./ChangeStructureModale.scss";
 import SearchBar from "components/UI/SearchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchActiveStructuresActionCreator } from "../../../../../services/ActiveStructures/activeStructures.actions";

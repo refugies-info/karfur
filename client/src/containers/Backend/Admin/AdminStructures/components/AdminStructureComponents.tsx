@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Responsable } from "types/interface";
 import React from "react";
 import marioProfile from "assets/mario-profile.jpg";
-import "./AdminStructureComponents.scss";
+// import "./AdminStructureComponents.scss";
 import FButton from "components/FigmaUI/FButton/FButton";
 
 export const RowContainer = styled.div`

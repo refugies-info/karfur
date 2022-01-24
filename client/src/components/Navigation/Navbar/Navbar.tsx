@@ -136,9 +136,9 @@ const Navbar = () => {
   const windowWidth = 1300; // TODO : fix that
   const userImg = user.user && user.user.picture ? user.user.picture.secure_url : marioProfile;
   const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
-  const pathName = user.membreStruct
+/*   const pathName = user.membreStruct
     ? "/backend/user-dash-notifications"
-    : "/backend/user-favorites";
+    : "/backend/user-favorites"; */
 
   const nbNewNotifications = getNbNewNotifications(
     dispositifsAssocies,
@@ -227,7 +227,7 @@ const Navbar = () => {
 
         {!isMobile ? (
           API.isAuth() ? (
-            <Link href={pathName}>
+            <Link href="/backend">
               <a className={styles.user_picture_link}>
                 {user.membreStruct && nbNewNotifications > 0 && userStructure ? (
                   <div className={styles.overlay}>

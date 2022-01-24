@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import moment from "moment/min/moment-with-locales";
 import API from "../../../utils/API";
-import "./Dashboard.scss";
-import { filtres } from "../../Dispositif/data";
+// import "./Dashboard.scss";
+import { filtres } from "data/dispositif";
 import _ from "lodash";
 import { targetByTag } from "./data";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { NoGeolocModal } from "./NoGeolocModal";
 import Swal from "sweetalert2";
+import { NavLink } from "react-router-dom";
 
 moment.locale("fr");
 
@@ -138,6 +139,7 @@ class Dashboard extends Component {
     return (
       <div className="dashboard-container animated fadeIn">
         <div className="unformatted-data mb-10 ml-12">
+          <NavLink to="backend/admin">Admin</NavLink>
           <ul>
             <b>
               Contenus par thème (nombre de dispositifs/démarches avec tag

@@ -175,7 +175,8 @@ const Login = () => {
       });
   };
 
-  const submitForm = () => {
+  const submitForm = (e: any) => {
+    e.preventDefault();
     setWrongPasswordError(false);
 
     if (step === 0) { // validate pseudo

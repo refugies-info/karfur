@@ -7,7 +7,7 @@ import {
 import { TitleWithNumber } from "../../middleOfficeSharedComponents";
 import { Picture, UserStructureMembre } from "../../../../types/interface";
 import placeholder from "../../../../assets/annuaire/placeholder_logo_annuaire.svg";
-import "./UserStructureDetails.scss";
+// import "./UserStructureDetails.scss";
 import styled from "styled-components";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 // import { NavLink } from "react-router-dom";

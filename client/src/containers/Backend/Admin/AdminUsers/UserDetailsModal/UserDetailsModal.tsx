@@ -6,7 +6,7 @@ import {
   SimplifiedStructureForAdmin,
 } from "types/interface";
 import { Modal, Spinner } from "reactstrap";
-import "./UserDetailsModal.scss";
+// import "./UserDetailsModal.scss";
 import moment from "moment/min/moment-with-locales";
 import { useSelector, useDispatch } from "react-redux";
 import marioProfile from "assets/mario-profile.jpg";

@@ -1,4 +1,4 @@
-import { filtres } from "../../../Dispositif/data";
+import { filtres } from "data/dispositif";
 import Swal from "sweetalert2";
 import { colors } from "colors";
 import API from "../../../../utils/API";

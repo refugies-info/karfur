@@ -13,7 +13,7 @@ import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { fetchDispositifsWithTranslationsStatusActionCreator } from "../../../../services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
 import { useDispatch } from "react-redux";
 import { ObjectId } from "mongodb";
-import "./TranslationAvancementTable.scss";
+// import "./TranslationAvancementTable.scss";
 import { sortData } from "./functions";
 import { User } from "../../../../types/interface";
 

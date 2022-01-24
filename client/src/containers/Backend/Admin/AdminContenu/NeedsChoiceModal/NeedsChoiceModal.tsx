@@ -7,7 +7,7 @@ import { LoadingStatusKey } from "../../../../../services/LoadingStatus/loadingS
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 import { ObjectId } from "mongodb";
 import { dispositifSelector } from "../../../../../services/AllDispositifs/allDispositifs.selector";
-import "./NeedsChoiceModal.scss";
+// import "./NeedsChoiceModal.scss";
 import { TagButton } from "../../Needs/TagButton";
 import { getTagColor, getTag } from "../../Needs/lib";
 import { jsUcfirst, removeAccents } from "../../../../../lib";

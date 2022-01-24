@@ -19,7 +19,7 @@ import {
   StyledSort,
   SearchBarContainer,
 } from "../sharedComponents/StyledAdmin";
-import "./AdminStructures.scss";
+// import "./AdminStructures.scss";
 import {
   TabHeader,
   StyledStatus,

@@ -7,7 +7,8 @@ import {
   SimplifiedDispositif,
 } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
-import "./StructureDetailsModal.scss";
+import { withRouter, RouteComponentProps } from "react-router-dom";
+// import "./StructureDetailsModal.scss";
 import FInput from "components/FigmaUI/FInput/FInput";
 import moment from "moment/min/moment-with-locales";
 import FButton from "components/FigmaUI/FButton/FButton";

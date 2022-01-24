@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { UserLanguage, TranslationStatus } from "../../../../types/interface";
-import "./SubComponents.scss";
+// import "./SubComponents.scss";
 import { colorAvancement } from "../../../../components/Functions/ColorFunctions";
 import { Progress } from "reactstrap";
 import { colors } from "../../../../colors";

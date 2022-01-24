@@ -1,4 +1,4 @@
-import "./TranslationNeedsModal.scss";
+// import "./TranslationNeedsModal.scss";
 import React, { useState, useEffect } from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";

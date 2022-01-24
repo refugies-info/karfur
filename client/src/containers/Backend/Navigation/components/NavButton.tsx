@@ -5,7 +5,7 @@ import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 import { SelectedPage } from "../Navigation.component";
 import traductionIcon from "../../../../assets/icon_traduction.svg";
 import traductionIconBlanc from "../../../../assets/icon_traduction_blanc.svg";
-import "./NavButton.scss";
+// import "./NavButton.scss";
 const NavButtonContainer = styled.div`
   background: ${(props) => props.backgroundColor};
   border-radius: 12px;

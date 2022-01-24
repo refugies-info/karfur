@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Modal, Input, Spinner } from "reactstrap";
-import "./DetailsModal.scss";
+// import "./DetailsModal.scss";
 import {
   TypeContenu,
   StyledStatus,

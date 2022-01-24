@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Modal, Spinner } from "reactstrap";
-import "./SelectFirstResponsableModal.scss";
+// import "./SelectFirstResponsableModal.scss";
 import SearchBar from "components/UI/SearchBar/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";

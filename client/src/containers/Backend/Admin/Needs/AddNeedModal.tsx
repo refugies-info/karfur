@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Modal } from "reactstrap";
-import "./NeedDetailsModal.scss";
+// import "./NeedDetailsModal.scss";
 import styled from "styled-components";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import FInput from "../../../../components/FigmaUI/FInput/FInput";
-import { filtres } from "../../../Dispositif/data";
+import FButton from "components/FigmaUI/FButton/FButton";
+import FInput from "components/FigmaUI/FInput/FInput";
+import { filtres } from "data/dispositif";
 import { TagButton } from "./TagButton";
 import { useDispatch } from "react-redux";
-import { createNeedActionCreator } from "../../../../services/Needs/needs.actions";
+import { createNeedActionCreator } from "services/Needs/needs.actions";
 
 interface Props {
   show: boolean;
