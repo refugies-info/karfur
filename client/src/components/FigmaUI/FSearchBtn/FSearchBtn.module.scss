@@ -2,17 +2,19 @@
 @import 'src/scss/colors.scss';
 
 .search_btn{
+  display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background: $grisFonce;
-  border-radius: 12px;
-  border: none;
+  border-radius: 10px;
   color: $cardColor;
   font-weight: 600;
   font-size: 20px;
   padding: 10px;
   cursor: pointer;
+  white-space: nowrap;
+  border: 0.5px solid transparent;
 
   &:hover{
     color: $noir;
@@ -28,15 +30,29 @@
     color: #FFFFFF;
     background: $noir;
   }
+  &.lighter {
+    filter: saturate(80%) opacity(50%) brightness(110%);
+  }
   &.with_margins {
     margin: 5px;
   }
   &.filter{
-    background: black;
+    background: transparent;
     color: #FFFFFF;
+    margin-right: 10px;
+    border-radius: 12px;
+    border: 1px solid white;
+    font-weight: 400;
+    padding: 8px;
+    font-size: 16px;
 
     &:hover{
       filter:brightness(80%);
+    }
+    &.active {
+      color: black !important;
+      font-weight: 500;
+      background: #ffffff;
     }
   }
   &.color{
@@ -68,9 +84,22 @@
     white-space: nowrap;
     overflow: visible;
     margin-top: 10px;
+    font-weight: 600;
+    padding: 10px;
+    margin-right: 0;
 
+    &:not(&.color) {
+      background: black;
+    }
     &:not(:last-child) {
       margin-right: 8px;
     }
+  }
+  &.no_hover {
+    cursor: unset !important;
+    // TODO: no hover
+  }
+  &.small_font {
+    font-size: 16px;
   }
 }

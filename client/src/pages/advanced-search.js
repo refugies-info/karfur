@@ -22,7 +22,7 @@ import { initial_data, filtres_contenu, tris } from "data/searchFilters";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { filtres } from "data/dispositif";
 import FButton from "components/FigmaUI/FButton/FButton";
-import TagButton from "components/FigmaUI/TagButton/TagButton";
+import FSearchBtn from "components/FigmaUI/FSearchBtn/FSearchBtn";
 import { BookmarkedModal } from "components/Modals/index";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { isMobile } from "react-device-detect";
@@ -1187,26 +1187,26 @@ export class AdvancedSearch extends Component {
                 </FilterTitle>
                 {filtres_contenu.map((filtre, idx) => {
                   return (
-                    <TagButton
+                    <FSearchBtn
                       active={filtre.name === activeFiltre}
                       desactiver={this.desactiverFiltre}
                       key={idx}
-                      filter
                       onClick={() => this.filter_content(filtre)}
+                      filter
                     >
                       {filtre.name &&
                         t("AdvancedSearch." + filtre.name, filtre.name)}
-                    </TagButton>
+                    </FSearchBtn>
                   );
                 })}
                 {languei18nCode === "fr" ? (
                   <>
-                    <TagButton
+                    <FSearchBtn
                       active={"traduction" === activeFiltre}
                       desactiver={this.desactiverFiltre}
-                      filter
                       id={"Tooltip-1"}
                       onClick={() => this.openLDropdown()}
+                      filter
                     >
                       {filterLanguage === "" ? (
                         t("AdvancedSearch.Traduction")
@@ -1225,7 +1225,7 @@ export class AdvancedSearch extends Component {
                           </LanguageTextFilter>
                         </>
                       )}
-                    </TagButton>
+                    </FSearchBtn>
                     <Tooltip
                       placement={"bottom"}
                       isOpen={this.state.languageDropdown}
@@ -1277,7 +1277,7 @@ export class AdvancedSearch extends Component {
                   {t("AdvancedSearch.Trier par n", "Trier par")}
                 </FilterTitle>
                 {tris.map((tri, idx) => (
-                  <TagButton
+                  <FSearchBtn
                     active={tri.name === activeTri}
                     desactiver={this.desactiverTri}
                     key={idx}
@@ -1285,7 +1285,7 @@ export class AdvancedSearch extends Component {
                     onClick={() => this.reorder(tri)}
                   >
                     {t("AdvancedSearch." + tri.name, tri.name)}
-                  </TagButton>
+                  </FSearchBtn>
                 ))}
                 <FilterTitle>
                   {" "}

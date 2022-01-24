@@ -14,6 +14,9 @@ interface Props {
   extraPadding?: boolean
   withMargins?: boolean
   searchOption?: boolean
+  noHover?: boolean
+  lighter?: boolean
+  smallFont?: boolean
   [x: string]: any
 }
 
@@ -28,6 +31,9 @@ const FSearchBtn = (props: Props) => {
     extraPadding,
     withMargins,
     searchOption,
+    noHover,
+    lighter,
+    smallFont,
     ...bProps
   } = props;
 
@@ -38,9 +44,12 @@ const FSearchBtn = (props: Props) => {
         (active ? styles.active : ""),
         (inHeader ? styles.in_header : ""),
         (filter ? styles.filter : ""),
+        (lighter ? styles.lighter : ""),
         (extraPadding ? styles.extra_padding : ""),
         (withMargins ? styles.with_margins : ""),
         (searchOption ? styles.search_option : ""),
+        (noHover ? styles.no_hover : ""),
+        (smallFont ? styles.small_font : ""),
         (color ? styles.color + (" bg-" + color) : "")].join(" ")
       }
       {...bProps}
@@ -50,6 +59,7 @@ const FSearchBtn = (props: Props) => {
         <EVAIcon
           className="ml-10"
           name="close-outline"
+          fill={filter ? "black" : ""}
           onClick={props.desactiver || null}
         />
       )}

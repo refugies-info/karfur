@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import styled from "styled-components";
-import TagButton from "../../FigmaUI/TagButton/TagButton";
+import FSearchBtn from "components/FigmaUI/FSearchBtn/FSearchBtn";
 import Streamline from "../../../assets/streamline";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import { withTranslation } from "react-i18next";
@@ -201,21 +201,23 @@ export class dispositifValidateModal extends Component {
           />
           {this.props.categories.map((subi, idx) => {
             return (
-              <TagButton
+              <FSearchBtn
                 key={idx}
                 onClick={() => this.selectTag1(subi)}
                 className={
                   !this.state.tag1
-                    ? "mr-10 mt-10 color" + (subi.short ? "" : " full")
+                    ? "mr-10 mt-10"
                     : this.state.tag1.short === subi.short
-                    ? "mr-10 mt-10 color" + (subi.short ? "" : " full")
-                    : "mr-10 mt-10 color bg-dark-gris"
+                    ? "mr-10 mt-10"
+                    : "mr-10 mt-10 bg-dark-gris"
                 }
                 color={
-                  !this.state.tag1 || this.state.tag1.short === subi.short
+                  this.state.tag1 && this.state.tag1.short === subi.short
                     ? (subi.short || "").replace(/ /g, "-")
-                    : null
+                    : "dark-gris"
                 }
+                withMargins
+                smallFont
               >
                 <InnerButton>
                   {subi.icon ? (
@@ -245,7 +247,7 @@ export class dispositifValidateModal extends Component {
                     />
                   ) : null}
                 </InnerButton>
-              </TagButton>
+              </FSearchBtn>
             );
           })}
           <StyledSub
@@ -262,21 +264,16 @@ export class dispositifValidateModal extends Component {
           />
           {this.props.categories.map((subi, idx) => {
             return (
-              <TagButton
+              <FSearchBtn
                 key={idx}
                 onClick={() =>
                   this.state.tag1 && subi.short === this.state.tag1.short
                     ? null
                     : this.selectTag2(subi)
                 }
-                className={
-                  this.state.tag1 === subi.short
-                    ? "mr-10  mt-10 color" + (subi.short ? "" : " full")
-                    : "mr-10 mt-10 color bg-dark-gris"
-                }
                 color={
                   this.state.tag1 && subi.short === this.state.tag1.short
-                    ? null
+                    ? "dark-gris"
                     : (this.state.tag2 &&
                         this.state.tag2.short === subi.short) ||
                       (this.state.tag3 &&
@@ -287,7 +284,7 @@ export class dispositifValidateModal extends Component {
                         !this.state.tag3 &&
                         !this.state.noTag)
                     ? (subi.short || "").replace(/ /g, "-")
-                    : null
+                    : "dark-gris"
                 }
                 lighter={
                   this.state.tag1 && subi.short === this.state.tag1.short
@@ -304,6 +301,8 @@ export class dispositifValidateModal extends Component {
                     ? true
                     : false
                 }
+                withMargins
+                smallFont
               >
                 <InnerButton>
                   {subi.icon ? (
@@ -334,7 +333,7 @@ export class dispositifValidateModal extends Component {
                     />
                   ) : null}
                 </InnerButton>
-              </TagButton>
+              </FSearchBtn>
             );
           })}
           <div

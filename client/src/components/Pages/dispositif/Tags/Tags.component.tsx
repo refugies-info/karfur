@@ -4,7 +4,7 @@ import { Button } from "reactstrap";
 import { filtres } from "data/dispositif";
 import { Tag } from "types/interface";
 import { Props } from "./Tags.container";
-import TagButton from "components/FigmaUI/TagButton/TagButton";
+import FSearchBtn from "components/FigmaUI/FSearchBtn/FSearchBtn";
 import FButton from "components/FigmaUI/FButton/FButton";
 import Streamline from "assets/streamline";
 import styles from "./Tags.module.scss";
@@ -86,8 +86,8 @@ export class Tags extends Component<Props> {
             var tagIcon = filtres.tags.find((elem) => elem.name === tag.name);
             return (
               <div key={key}>
-                <TagButton
-                  className={"mr-10 color" + (tag.short ? "" : " full")}
+                <FSearchBtn
+                  className="mr-10 color"
                   color={(tag.short || "").replace(/ /g, "-")}
                   noHover
                   onMouseEnter={() => this.props.updateUIArray(-6)}
@@ -110,7 +110,7 @@ export class Tags extends Component<Props> {
                     ) : null}
                     {this.props.t("Tags." + tag.short)}
                   </div>
-                </TagButton>
+                </FSearchBtn>
               </div>
             );
           }
