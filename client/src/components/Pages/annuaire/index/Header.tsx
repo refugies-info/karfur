@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import img from "assets/annuaire/annuaire_cover.svg";
 import { Letter } from "./Letter";
 import i18n from "i18n";
@@ -94,6 +96,7 @@ interface Props {
 export const Header = (props: Props) => {
   const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
   const { t } = useTranslation();
+  const router = useRouter();
 
   useEffect(() => {
     if (props.currentScroll === 0) {
@@ -103,10 +106,10 @@ export const Header = (props: Props) => {
 
   const selectLetter = (letter: string) => {
     props.setLetterSelected(letter);
-    let search = props.history.location.search;
+    let search = router.query.search;
     if (search !== "") {
       setTimeout(function () {
-        props.history.push(search);
+        router.push(search);
       }, 1000);
     }
   };
@@ -147,7 +150,7 @@ export const Header = (props: Props) => {
         <LettersContainer isRTL={isRTL}>
           <>
             {props.letters.map((letter, index) => (
-              <button
+              <Link
                 onClick={() => selectLetter(letter)}
                 href={
                   props.lettersClickable.includes(letter.toLocaleUpperCase())
@@ -164,10 +167,9 @@ export const Header = (props: Props) => {
                     letter.toLocaleUpperCase()
                   )}
                   index={props.letters.length - index}
-                  //   onLetterClick={props.onLetterClick}
                   isSelected={props.letterSelected === letter ? true : false}
                 />
-              </button>
+              </Link>
             ))}
           </>
         </LettersContainer>

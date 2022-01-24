@@ -1,34 +1,80 @@
-.typeButton {
-  height: 50px;
-  padding: 12px;
+@import 'src/scss/colors.scss';
+
+.container {
+  display: flex;
+  margin-top: 146px;
+  margin-left: 77px;
+  height: 74px;
+  background-color: $bleuCharte;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.25));
   border-radius: 12px;
-  font-weight: 700;
-  font-size: 16px;
+  padding: 12px;
 
-  align-items: center;
-  margin-right: 12px;
+  .input,
+  .btn {
+    display: flex;
+    height: 50px;
+    background: $blanc;
+    padding: 12px;
+    border: 0.5px solid #ffffff;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-right: 12px;
+    align-items: center;
+  }
+  .btn {
+    font-weight: 700;
+    padding-right: 16px;
 
-  &.whiteButton {
-    background: #ffffff;
+    &.dark {
+      background: $noir;
+      color: $blanc;
+      cursor: pointer;
+    }
+  }
+  .dropdown {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    background: #e0e0e0;
+    padding: 16px;
+    border-radius: 12px;
+    align-items: left;
+    width: max-content;
+  }
+
+  .results {
+    font-size: 16px;
+    font-weight: 700;
+    padding: 12px;
+    color: $blanc;
+  }
+
+  .type_btn {
+    height: 50px;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    align-items: center;
+    margin-right: 12px;
     border: 0.5px solid white;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 16px;
+    background: #ffffff;
+
+    &.selected {
+      color: #ffffff;
+      border: 0.5px solid black;
+      background-color: black;
+    }
   }
-  &.typeSelected {
-    color: #ffffff;
-    border: 0.5px solid black;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 16px;
-    background-color: black;
+  .autocomplete {
+    border: #ffffff;
+  }
+  .city_input > span {
+    display: none;
   }
 }
 
-.autocomplete {
-  border: #ffffff;
-}
 
-.position-relative span {
-  display: none;
-}
+

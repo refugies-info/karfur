@@ -10,76 +10,7 @@ import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import { structureTypes } from "data/structureTypes";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { SimplifiedStructure } from "types/interface";
-import "./SearchBarAnnuaire.module.scss";
-
-const MainContainer = styled.div`
-  display: flex;
-  margin-top: 146px;
-  margin-left: 77px;
-  height: 74px;
-  background-color: ${colors.bleuCharte};
-  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.25));
-  border-radius: 12px;
-  padding: 12px;
-`;
-
-const TextInputContainer = styled(Input)`
-  display: flex;
-  height: 50px;
-  background: ${colors.blanc};
-  padding: 12px;
-  border: 0.5px solid #ffffff;
-  border-radius: 12px;
-  font-size: 16px;
-  margin-right: 12px;
-  align-items: center;
-`;
-
-const DropDownItemContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 0px;
-  background: #e0e0e0;
-  padding: 16px;
-  border-radius: 12px;
-  align-items: left;
-  width: max-content;
-`;
-
-const WhiteButtonContainer = styled.div`
-  display: flex;
-  height: 50px;
-  background: ${colors.blanc};
-  padding: 12px;
-  border: 0.5px solid #ffffff;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: 16px;
-  align-items: center;
-  margin-right: 12px;
-  padding-right: 16px;
-`;
-const DarkButtonContainer = styled.div`
-  display: flex;
-  height: 50px;
-  background: ${colors.noir};
-  padding: 12px;
-  cursor: pointer;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: 16px;
-  align-items: center;
-  margin-right: 12px;
-  color: ${colors.blanc};
-`;
-const ResultNumberContainer = styled.div`
-  font-size: 16px;
-  font-weight: 700;
-  padding: 12px;
-  color: ${colors.blanc};
-`;
-
+import styles from "./SearchBarAnnuaire.module.scss";
 interface Props {
   t: any;
   filteredStructures: SimplifiedStructure[] | null;
@@ -173,12 +104,13 @@ export const SearchBarAnnuaire = (props: Props) => {
   };
 
   return (
-    <MainContainer>
-      <WhiteButtonContainer>
-        <TextInputContainer
+    <div className={styles.container}>
+      <div className={styles.btn}>
+        <Input
           onChange={onChangeKeywords}
           type="text"
           plaintext={true}
+          className={styles.input}
           placeholder={props.t(
             "Annuaire.Rechercher par",
             "Rechercher par nom ..."
@@ -205,9 +137,9 @@ export const SearchBarAnnuaire = (props: Props) => {
             onClick={() => props.setKeyword("")}
           />
         )}
-      </WhiteButtonContainer>
+      </div>
       {props.ville === "" && !props.isCityFocus ? (
-        <WhiteButtonContainer>
+        <div className={styles.btn}>
           <EVAIcon
             name="pin-outline"
             fill={colors.noir}
@@ -222,9 +154,9 @@ export const SearchBarAnnuaire = (props: Props) => {
           >
             {props.t("Dispositif.Ville", "Ville")}
           </div>{" "}
-        </WhiteButtonContainer>
+        </div>
       ) : props.isCitySelected ? (
-        <DarkButtonContainer>
+        <div className={`${styles.btn} ${styles.dark}`}>
           <EVAIcon
             name="pin-outline"
             fill={colors.blancSimple}
@@ -248,9 +180,9 @@ export const SearchBarAnnuaire = (props: Props) => {
               resetCity();
             }}
           />
-        </DarkButtonContainer>
+        </div>
       ) : (
-        <WhiteButtonContainer>
+        <div className={styles.btn}>
           <EVAIcon
             name="pin-outline"
             fill={colors.noir}
@@ -266,13 +198,13 @@ export const SearchBarAnnuaire = (props: Props) => {
                 "&v=3.exp&libraries=places&language=fr&region=FR",
             ]}
           >
-            <div className="position-relative">
+            <div className={styles.city_input}>
               {true && ( //@ts-ignore
                 <Autocomplete
                   ref={(input: any) => {
                     input && input.refs.input.focus();
                   }}
-                  className="autocomplete"
+                  className={styles.autocomplete}
                   onBlur={() => {
                     props.setIsCityFocus(false);
                   }}
@@ -293,16 +225,16 @@ export const SearchBarAnnuaire = (props: Props) => {
               />
             </div>
           </ReactDependentScript>
-        </WhiteButtonContainer>
+        </div>
       )}{" "}
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle
           caret={false}
-          className={
+          className={`${styles.type_btn} ${
             props.typeSelected && props.typeSelected.length === 0
-              ? "typeButton whiteButton"
-              : "typeButton typeSelected"
-          }
+              ? ""
+              : styles.selected
+          }`}
         >
           {props.typeSelected && props.typeSelected.length === 1
             ? props.typeSelected[0]
@@ -325,7 +257,7 @@ export const SearchBarAnnuaire = (props: Props) => {
           )}
         </DropdownToggle>
         <DropdownMenu>
-          <DropDownItemContainer>
+          <div className={styles.dropdown}>
             {structureTypes.map((item: string, key) => {
               return (
                 <FButton
@@ -359,13 +291,13 @@ export const SearchBarAnnuaire = (props: Props) => {
                 </FButton>
               );
             })}
-          </DropDownItemContainer>
+          </div>
         </DropdownMenu>
       </Dropdown>
-      <ResultNumberContainer>
+      <div className={styles.results}>
         {props.filteredStructures ? props.filteredStructures.length : 0}{" "}
         {props.t("AdvancedSearch.résultats", "résultats")}
-      </ResultNumberContainer>
-    </MainContainer>
+      </div>
+    </div>
   );
 };
