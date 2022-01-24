@@ -1,32 +1,36 @@
 @import 'src/scss/colors.scss';
 
 .switch {
-  display:flex;
+  display: flex;
   flex-direction: row;
   align-items: center;
   color: $noir;
   font-weight: bold;
   font-size: 16px;
 
-  .switch-input:checked + .switch-slider{
-    &:before{
-      border:none;
-      background: $vert;
-    }
-  }
-  .switch-slider{
-    background: #FFFFFF;
-    border-color: #FFFFFF;
-    &:before{
-      border:none;
-      background: #CDCDCD;
-    }
-  }
-}
+  :global(.switch-input:checked + .switch-slider){
+    background-color: #4caf50 !important;
+    border-color: #4caf50 !important;
 
-.card-custom-title{
-  font-size: 24px;
-  font-weight: 600;
-  border-radius: 6px;
-  line-height: 38px;
+    &:before{
+      background: #ffffff;
+      border-color: #ffffff;
+    }
+  }
+  :global(.switch-slider){
+    background: #edebeb;
+    border-color: #edebeb;
+
+    &:before{
+      background: #5e5e5e;
+      border-color: #5e5e5e;
+    }
+  }
+
+  &.large{
+    font-size: 24px;
+    font-weight: 600;
+    border-radius: 6px;
+    line-height: 38px;
+  }
 }

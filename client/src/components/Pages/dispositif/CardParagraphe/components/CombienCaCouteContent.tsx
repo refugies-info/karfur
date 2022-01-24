@@ -41,7 +41,7 @@ export const CombienCaCouteContent = (props: Props) => {
         </div>
       ) : (
         <FSwitch
-          className="card-custom-title"
+          large
           precontent="Gratuit"
           content="Payant"
           checked={!props.subitem.free}
