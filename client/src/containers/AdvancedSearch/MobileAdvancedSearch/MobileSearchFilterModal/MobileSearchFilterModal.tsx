@@ -1,57 +1,10 @@
 import React from "react";
 import { Modal } from "reactstrap";
-import styled from "styled-components";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Streamline from "assets/streamline";
-import { colors } from "colors";
 import { filtres } from "data/dispositif";
 import { initial_data } from "data/searchFilters";
-import "./MobileSearchFilterModal.module.scss";
-
-const TextTitle = styled.div`
-  width: fit-content;
-  margin-right: 8px;
-  padding-top: 14px;
-  white-space: nowrap;
-`;
-const ButtonTitle = styled.div`
-  height: 55px;
-  background-color: black;
-  display: flex;
-  justify-content: space-between;
-  width: fit-content;
-  color: white;
-  padding: 14px;
-  border-radius: 12px;
-  align-items: center;
-  width: 100%;
-`;
-const TitleContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 0;
-  font-size: 18px;
-  font-weight: 700;
-`;
-
-const FilterButton = styled.div`
-  align-items: center;
-  padding: 16px;
-  height: 53px;
-  width: 100%;
-  background-color: ${(props) => props.color};
-  color: ${(props) => props.textColor};
-  text-align: ${(props) => props.textAlign};
-  font-weight: 700;
-  border-color: ${colors.noir};
-  border-radius: 12px;
-  margin: 5px 0;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const FilterText = styled.div`
-  margin: auto;
-`;
+import styles from "./MobileSearchFilterModal.module.scss";
 
 interface Props {
   selectOption: (item: any, type: string) => void;
@@ -62,8 +15,7 @@ interface Props {
   defaultTitle: string;
   sentence: string;
   defaultSentence: string;
-
-  t: (a: string, b: string) => void;
+  t: (a: string, b: string) => string;
 }
 
 export const MobileSearchFilterModal = (props: Props) => {
@@ -89,27 +41,26 @@ export const MobileSearchFilterModal = (props: Props) => {
     <Modal
       isOpen={props.show}
       toggle={props.toggle}
-      className="mobile-search-filter"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
     >
-      {/* Display Modal title */}
-      <TitleContainer>
-        <TextTitle> {props.t(props.sentence, props.defaultSentence)}</TextTitle>
-        <ButtonTitle onClick={props.toggle}>
+      <div className={styles.title}>
+        <p className={styles.title_text}> {props.t(props.sentence, props.defaultSentence)}</p>
+        <button className={styles.title_btn} onClick={props.toggle}>
           {props.t(props.title, props.defaultTitle)}
-          {/* <Icon name="close" fill="#FFFFFF" size="large" /> */}
-        </ButtonTitle>
-      </TitleContainer>
+          <EVAIcon name="close" fill="#FFFFFF" size="large" />
+        </button>
+      </div>
       {/* Display list of possible values */}
       {data &&
         data.map((item: any, index: number) => {
           return (
             <div key={index}>
               {props.type === "thème" ? (
-                <FilterButton
-                  color={item.darkColor}
-                  textColor="white"
-                  textAlign="left"
+                <button
                   onClick={() => selectOption(item, props.type)}
+                  className={`${styles.filter_btn} ${styles.theme}`}
+                  style={{ backgroundColor: item.darkColor}}
                 >
                   {props.t("Tags." + item.name, item.name)}
                   {item.icon ? (
@@ -120,18 +71,16 @@ export const MobileSearchFilterModal = (props: Props) => {
                       height={22}
                     />
                   ) : null}
-                </FilterButton>
+                </button>
               ) : props.type === "age" || props.type === "french" ? (
-                <FilterButton
-                  color="white"
-                  textColor="black"
-                  textAlign="center"
+                <button
                   onClick={() => selectOption(item, props.type)}
+                  className={`${styles.filter_btn} ${styles.other}`}
                 >
-                  <FilterText>
+                  <div className="m-auto">
                     {props.t("Tags." + item.name, item.name)}
-                  </FilterText>
-                </FilterButton>
+                  </div>
+                </button>
               ) : null}
             </div>
           );

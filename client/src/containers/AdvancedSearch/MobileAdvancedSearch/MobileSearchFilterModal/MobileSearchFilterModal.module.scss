@@ -1,15 +1,70 @@
-.mobile-search-filter {
+@import "src/scss/colors";
+
+.modal {
   min-width: 100px;
 
-  .modal-content {
-    background: #edebeb;
-    border: hidden;
-    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
-    border-radius: 12px;
-    mix-blend-mode: normal; /* Shadow autour */
-    padding: 24px;
+  .title {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+
+    .title_text {
+      width: fit-content;
+      margin-right: 8px;
+      padding-top: 14px;
+      white-space: nowrap;
+    }
+    .title_btn {
+      height: 55px;
+      background-color: black;
+      display: flex;
+      justify-content: space-between;
+      color: white;
+      padding: 14px;
+      border-radius: 12px;
+      align-items: center;
+      width: 100%;
+      font-weight: bold;
+      border: none;
+    }
   }
-  .modal-dialog {
+
+  .filter_btn {
+    align-items: center;
+    padding: 16px;
+    height: 53px;
+    width: 100%;
+    font-weight: 700;
+    border-color: $noir;
+    border-radius: 12px;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    border: none;
+
+    &.theme {
+      color: white;
+      text-align: left;
+    }
+    &.other {
+      color: black;
+      background: white;
+      text-align: center;
+    }
+  }
+
+  :global(.modal-dialog) {
     margin: 24px 12px;
   }
+}
+
+.modal_content {
+  background: #edebeb;
+  border: hidden;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  mix-blend-mode: normal; /* Shadow autour */
+  padding: 24px;
 }
