@@ -1,0 +1,75 @@
+@import 'src/scss/colors.scss';
+
+.contributors {
+  background: #F2F2F2;
+
+  .header{
+    padding:40px 10px 40px 40px;
+
+  }
+  .subheader{
+    display: inline;
+    font-size: 16px;
+
+    h5{
+      display: inline;
+      margin-right: 6px;
+      font-size: 24px;
+      color: $darkColor;
+    }
+    .badge {
+      margin-right: 33px;
+      font-size: 11px;
+      color: $darkColor;
+    }
+  }
+
+  .navigate_btn{
+    flex-grow:1;
+    display: flex;
+    justify-content: flex-end;
+
+    a{
+      cursor: pointer;
+    }
+  }
+}
+
+.carousel {
+  padding: 0 30px 16px 30px;
+
+  .item {
+    display: flex;
+  }
+
+  .card_wrapper{
+    padding: 0 10px;
+  }
+}
+
+.card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  width:140px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  border:none;
+  font-weight: bold;
+  font-size: 16px;
+
+  .card_body{
+    padding: 20px;
+  }
+
+  .img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+
+    &.author{
+      border: 2px solid #F6B93B;
+    }
+  }
+}

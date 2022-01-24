@@ -143,6 +143,16 @@ html body {
       color: inherit;
     }
   }
+  .reset-btn {
+    border: none;
+    background: none;
+    padding: 0;
+    -webkit-appearance: unset;
+
+    &:focus {
+      outline: none;
+    }
+  }
 
   .btn-group:focus {
     outline: none;
