@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import {
   Modal,
   ModalBody,
@@ -7,14 +7,12 @@ import {
   ListGroupItem,
 } from "reactstrap";
 import Swal from "sweetalert2";
-
-import FButton from "../../FigmaUI/FButton/FButton";
-import EVAIcon from "../../UI/EVAIcon/EVAIcon";
-import API from "../../../utils/API";
-import marioProfile from "../../../assets/mario-profile.jpg";
-
-// import "./RejectTradModal.scss";
+import FButton from "components/FigmaUI/FButton/FButton";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import API from "utils/API";
+import marioProfile from "assets/mario-profile.jpg";
 import {colors} from "colors";
+import styles from "./RejectTradModal.module.scss";
 
 const reasons = [
   {
@@ -31,21 +29,24 @@ const reasons = [
   },
 ];
 
-class RejectTradModal extends Component {
-  state = {
-    clicked: new Array(5).fill(false),
-    message: "",
-  };
+interface Props {
+  name: string
+  show: boolean
+  toggle: any
+  removeTranslation: any
+  currIdx: number
+  selectedTrad: any
+  userId: any
+}
 
-  selectReason = (idx) =>
-    this.setState((pS) => ({
-      clicked: pS.clicked.map((x, i) => (i === idx ? !x : false)),
-    }));
-  handleChange = (e) => this.setState({ message: e.target.value });
+const RejectTradModal = (props: Props) => {
+  const [clicked, setClicked] = useState(new Array(5).fill(false));
+  const [message, setMessage] = useState("");
 
-  onReject = () => {
-    const { clicked, message } = this.state,
-      { selectedTrad, currIdx } = this.props;
+  const selectReason = (idx: number) => setClicked(clicked.map((x, i) => (i === idx ? !x : false)))
+  const handleChange = (e: any) => setMessage(e.target.value);
+
+  const onReject = () => {
     if (!clicked.includes(true)) {
       Swal.fire({
         title: "Oh non",
@@ -57,46 +58,46 @@ class RejectTradModal extends Component {
     }
     const selectedR = clicked.findIndex((x) => x === true);
     const newTrad = {
-      _id: selectedTrad._id,
+      _id: props.selectedTrad._id,
       translatedText: {
-        ...selectedTrad.translatedText,
+        ...props.selectedTrad.translatedText,
         status: {
-          ...(selectedTrad.translatedText.status || {}),
-          [currIdx]: "Rejetée",
+          ...(props.selectedTrad.translatedText.status || {}),
+          [props.currIdx]: "Rejetée",
         },
         feedbacks: {
-          ...(selectedTrad.translatedText.feedback || {}),
-          [currIdx]: [
+          ...(props.selectedTrad.translatedText.feedback || {}),
+          [props.currIdx]: [
             message && message !== "" ? message : reasons[selectedR].text,
           ],
         },
       },
     };
     API.update_tradForReview(newTrad).then(() => {
-      this.props.removeTranslation(selectedTrad);
-      this.props.toggle();
+      props.removeTranslation(props.selectedTrad);
+      props.toggle();
     });
   };
 
-  render() {
-    const { show, toggle, userId } = this.props;
-    const { clicked, message } = this.state;
     return (
-      <Modal isOpen={show} toggle={toggle} className="reject-trad-modal">
-        {/* <ModalHeader toggle={toggle}>
-          {selection ? "Droits d’édition" : "Confirmation"}
-        </ModalHeader> */}
-        <ModalBody>
+      <Modal
+        isOpen={props.show}
+        toggle={props.toggle}
+        className={styles.modal}
+        contentClassName={styles.modal_content}
+      >
+        <ModalBody className={styles.modal_body}>
           <h5>Refusé</h5>{" "}
           <span>Choisissez une raison ou rédigez un message :</span>
-          <ListGroup>
+          <ListGroup className={styles.list_group}>
             {reasons.map((r, key) => (
               <ListGroupItem
                 tag="button"
                 action
                 key={key}
-                onClick={() => this.selectReason(key)}
+                onClick={() => selectReason(key)}
                 active={clicked[key]}
+                className={styles.list_group_item}
               >
                 <EVAIcon
                   name={"radio-button-" + (clicked[key] ? "on" : "off")}
@@ -110,7 +111,7 @@ class RejectTradModal extends Component {
               tag="button"
               action
               key={reasons.length}
-              onClick={() => this.selectReason(reasons.length)}
+              onClick={() => selectReason(reasons.length)}
               active={clicked[reasons.length]}
             >
               <EVAIcon
@@ -122,37 +123,34 @@ class RejectTradModal extends Component {
               />
               <span>Message personnalisé à : </span>
               <img
-                src={(userId.picture || {}).secure_url || marioProfile}
+                src={(props.userId.picture || {}).secure_url || marioProfile}
                 className="profile-img-pin mr-10"
                 alt="profile"
               />
-              <b>{userId.username}</b>
+              <b>{props.userId.username}</b>
             </ListGroupItem>
           </ListGroup>
           {clicked[reasons.length] && (
             <textarea
               id="message"
               name="message"
-              rows="7"
-              cols="33"
+              rows={7}
+              cols={33}
               value={message}
-              onChange={this.handleChange}
+              onChange={handleChange}
               placeholder="Message personnalisé"
             />
           )}
         </ModalBody>
-        <ModalFooter>
-          <div className="footer-btns">
-            {/* <FButton type="outline-black" name="flag-outline" onClick={this.signaler} disabled={!(this.props.translated || {}).body} fill={colors.noir} className="mr-10">
-            Signaler
-          </FButton> */}
-            <FButton type="light-action" className="mr-10" onClick={toggle}>
+        <ModalFooter className={styles.modal_footer}>
+          <div>
+            <FButton type="light-action" className="mr-10" onClick={props.toggle}>
               Annuler
             </FButton>
             <FButton
               type="validate"
               name="checkmark-circle-outline"
-              onClick={this.onReject}
+              onClick={onReject}
               disabled={
                 !clicked.includes(true) ||
                 (clicked[reasons.length] && (!message || message === ""))
@@ -165,6 +163,5 @@ class RejectTradModal extends Component {
       </Modal>
     );
   }
-}
 
 export default RejectTradModal;

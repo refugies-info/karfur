@@ -1394,8 +1394,6 @@ class SideTrad extends Component {
           toggle={() => this.toggleModal(false, "rejected")}
           removeTranslation={this.removeTranslation}
           currIdx={currIdx}
-          currSubIdx={currSubIdx}
-          currSubName={currSubName}
           selectedTrad={selectedTrad}
           userId={userId}
         />
