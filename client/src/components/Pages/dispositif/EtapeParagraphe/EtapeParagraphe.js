@@ -28,7 +28,7 @@ import { EtapeModal } from "components/Modals";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import i18n from "i18n";
-import styles from "./EtapeParagraphe.scss";
+import styles from "./EtapeParagraphe.module.scss";
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>

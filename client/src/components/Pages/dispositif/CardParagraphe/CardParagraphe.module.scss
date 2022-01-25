@@ -1286,16 +1286,16 @@
 }
 
 :global(.tooltip){
-  :global(.show) {
+  .show {
     opacity: 1 !important;
-    :global(.tooltip-inner) {
+    .tooltip-inner {
       background: $noir;
       opacity: 1;
       padding: 20px;
       text-align: left;
       max-width: 260px;
 
-      :global(.arrow) {
+      .arrow {
         border-top-color: $noir;
       }
     }

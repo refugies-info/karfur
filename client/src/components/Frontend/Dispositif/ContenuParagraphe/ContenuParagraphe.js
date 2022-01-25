@@ -19,7 +19,7 @@ import {  cardTitlesDispositif,
   infocardsDemarcheTitles
 } from "data/dispositif";
 import { isMobile } from "react-device-detect";
-import styles from "ContenuParagraphe.module.scss";
+import styles from "./ContenuParagraphe.module.scss";
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>
