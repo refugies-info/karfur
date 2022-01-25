@@ -2383,7 +2383,6 @@ export class Dispositif extends Component {
               validate={this.valider_dispositif}
               toggleTutorielModal={this.toggleTutorielModal}
               tags={this.state.tags}
-              sponsors={this.state.sponsors}
               mainSponsor={this.state.mainSponsor}
               menu={this.state.menu}
               toggleTagsModal={this.toggleTagsModal}

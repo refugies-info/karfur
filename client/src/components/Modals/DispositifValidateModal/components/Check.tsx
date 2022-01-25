@@ -1,14 +1,12 @@
 import React from "react";
-import { Modal, ModalHeader, ModalFooter } from "reactstrap";
 import styled from "styled-components";
-import FButton from "../../FigmaUI/FButton/FButton";
-import FInput from "../../FigmaUI/FInput/FInput";
-import EVAIcon from "../../UI/EVAIcon/EVAIcon";
-import { colors } from "../../../colors";
+import FButton from "components/FigmaUI/FButton/FButton";
+import FInput from "components/FigmaUI/FInput/FInput";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { colors } from "colors";
 import { filtres } from "data/dispositif";
-import Streamline from "../../../assets/streamline/index";
-
-// import "./DispositifValidateModal.scss";
+import Streamline from "assets/streamline/index";
+import styles from "./DispositifValidateModal.module.scss";
 
 const CheckContainer = styled.div`
   background: ${(props) => (props.missingElement ? "#FFE2B8" : "#def7c2")};
@@ -108,7 +106,7 @@ const MockupCardContainer = styled.div`
       : ""};
 `;
 
-const getTitle = (section) =>
+const getTitle = (section: string) =>
   section === "tags"
     ? "Choix des thèmes"
     : section === "geoloc"
@@ -117,18 +115,32 @@ const getTitle = (section) =>
     ? "Phrase explicative"
     : "Structure responsable";
 
-const onCheckContainerClick = (section, toggleModal, missingElement) => {
-  if (!missingElement || section === "sentence") {
-    return;
-  }
+const onCheckContainerClick = (section: string, toggleModal: any, missingElement: any) => {
+  if (!missingElement || section === "sentence") return;
   return toggleModal(true);
 };
 
-const getTagElement = (tag) => {
+const getTagElement = (tag: any) => {
   return tag ? filtres.tags.filter((item) => item.name === tag.name)[0] : null;
 };
 
-const Check = (props) => {
+interface Props {
+  section: string
+  missingElement: any
+  toggleModal?: any
+  addItem?: any
+  geolocInfoCard?: any
+  tags?: any[]
+  abstract?: string
+  onChange?: any
+  toggleTagsModal?: any
+  toggleSponsorModal?: any
+  titreInformatif?: string
+  titreMarque?: string
+  typeContenu?: string
+}
+
+const Check = (props: Props) => {
   const tag = getTagElement(props.tags?.[0] || null);
 
   return (
@@ -170,8 +182,8 @@ const Check = (props) => {
               value={props.abstract}
               onChange={props.onChange}
               id="abstract"
-              height="250px"
-              padding="15px"
+              height={250}
+              padding={15}
               placeholder="Résumez ici votre dispositif..."
             />
             <div style={{ marginTop: "100px" }}>
@@ -183,7 +195,7 @@ const Check = (props) => {
             </div>
             <MockupCardContainer
               color={tag ? tag.darkColor : "#000"}
-              lightColor={tag ? tag.lightColor : props.lightColor}
+              lightColor={tag ? tag.lightColor : "#FFF"}
               typeContenu={props.typeContenu}
             >
               <CardContainer typeContenu={props.typeContenu}>
@@ -196,14 +208,14 @@ const Check = (props) => {
                 <TextMockup
                   color={tag ? tag.darkColor : "#000"}
                   typeContenu={props.typeContenu}
-                  textlength={props.abstract.length}
+                  textlength={props.abstract?.length || 0}
                 >
-                  {props.abstract.length === 0 && (
+                  {!props.abstract && (
                     <EmptyTextContainer
                       typeContenu={props.typeContenu}
                     ></EmptyTextContainer>
                   )}
-                  {props.abstract.length > 0 ? props.abstract : ""}
+                  {props.abstract && props.abstract.length > 0 ? props.abstract : ""}
                 </TextMockup>
               </CardContainer>
               {props.tags && props.typeContenu === "dispositif" && (
@@ -244,133 +256,5 @@ const Check = (props) => {
     </CheckContainer>
   );
 }
-const dispositifValidateModal = (props) => {
-  const validateAndClose = () => {
-    props.validate();
-    props.toggle();
-  };
-  let geoloc = false;
-  let geolocInfoCard = null;
-  if (
-    props.menu &&
-    props.menu[1] &&
-    props.menu[1].children &&
-    props.menu[1].children.length > 0
-  ) {
-    geolocInfoCard = props.menu[1].children.find(
-      (elem) => elem.title === "Zone d'action"
-    );
-    if (
-      geolocInfoCard &&
-      geolocInfoCard.departments &&
-      geolocInfoCard.departments.length > 0
-    ) {
-      geoloc = true;
-    }
-  }
-  return (
-    <Modal
-      isOpen={props.show}
-      toggle={props.toggle}
-      className="dispositif-validate-modal"
-    >
-      <ModalHeader toggle={props.toggle}>Dernières vérifications</ModalHeader>
-      <div>
-        {props.typeContenu !== "demarche" ? (
-          <Check
-            geolocInfoCard={geolocInfoCard}
-            section="geoloc"
-            missingElement={!geoloc}
-            toggleModal={props.toggleGeolocModal}
-            addItem={props.addItem}
-          />
-        ) : null}
 
-        <Check
-          section="structure"
-          missingElement={!props.mainSponsor._id}
-          toggleModal={props.toggleSponsorModal}
-        />
-
-        <Check
-          section="tags"
-          missingElement={props.tags.length === 0}
-          toggleModal={props.toggleTagsModal}
-        />
-
-        <Check
-          section="sentence"
-          abstract={props.abstract}
-          onChange={props.onChange}
-          missingElement={
-            (props.abstract || "").length > 110 || !props.abstract
-          }
-          toggleTagsModal={props.toggleTagsModal}
-          toggleSponsorModal={props.toggleSponsorModal}
-          titreInformatif={props.titreInformatif}
-          titreMarque={props.titreMarque}
-          tags={props.tags}
-          typeContenu={props.typeContenu}
-        />
-      </div>
-      <ModalFooter>
-        <div>
-          {/*           <FButton
-            tag={"a"}
-            href="https://help.refugies.info/fr/"
-            target="_blank"
-            rel="noopener noreferrer"
-            type="help"
-            name="question-mark-circle-outline"
-            fill={colors.noir}
-            className="mr-8"
-          >
-            Centre d'aide
-          </FButton> */}
-          <FButton
-            type="tuto"
-            name={"play-circle-outline"}
-            onClick={() => props.toggleTutorielModal("Description")}
-          >
-            Tutoriel
-          </FButton>
-        </div>
-        <div>
-          <FButton
-            type="outline-black"
-            name={"arrow-back"}
-            className="mr-8"
-            onClick={props.toggle}
-          >
-            Retour
-          </FButton>
-          <FButton
-            name="checkmark"
-            type={
-              "validate-mockup" +
-              (!props.abstract ||
-              props.abstract === "" ||
-              props.abstract.length > 110 ||
-              (!geoloc && props.typeContenu !== "demarche") ||
-              props.tags.length === 0
-                ? " disabled"
-                : "")
-            }
-            disabled={
-              !props.abstract ||
-              props.abstract === "" ||
-              props.abstract.length > 110 ||
-              (!geoloc && props.typeContenu !== "demarche") ||
-              props.tags.length === 0
-            }
-            onClick={validateAndClose}
-          >
-            Valider
-          </FButton>
-        </div>
-      </ModalFooter>
-    </Modal>
-  );
-};
-
-export default dispositifValidateModal;
+export default Check;
