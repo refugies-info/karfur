@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import SVGIcon from "components/UI/SVGIcon/SVGIcon";
-import { icon_France } from "assets/figma/index";
+import icon_France from "assets/figma/icon_France.svg";
+import Image from "next/image";
 
 const CardContainer = styled.div`
 width: 200px;
@@ -44,7 +45,7 @@ const HeaderCard = (props: Props) => (
       {props.eva ? (
         <EVAIcon name={props.iconName} size="xlarge" fill="#212121" />
       ) : props.iconName === "icon_France" ? (
-        <img src={icon_France} alt="icon_france" />
+          <Image src={icon_France} alt="icon_france" />
       ) : (
         <SVGIcon name="translate" fill="#212121" width="40px" height="40px" />
       )}

@@ -107,7 +107,7 @@ const Annuaire = (props: any) => {
   };
 
   const handleScroll = () => {
-    const currentScrollPos = window.pageYOffset;
+    const currentScrollPos = window.scrollY;
     setCurrentScroll(currentScrollPos);
     return setStopScroll(currentScrollPos >= 85);
   };
@@ -130,9 +130,7 @@ const Annuaire = (props: any) => {
       dispatch(setSelectedStructureActionCreator(null));
       dispatch(fetchActiveStructuresActionCreator());
     };
-    if (!structures.length) {
-      loadStructures();
-    }
+    if (!structures.length) loadStructures();
 
     window.addEventListener("scroll", handleScroll);
     window.scrollTo(0, 0);
@@ -142,7 +140,7 @@ const Annuaire = (props: any) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [dispatch]);
+  }, []);
 
   const resetSearch = () => {
     const filterStructures = structures

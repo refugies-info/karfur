@@ -1,10 +1,11 @@
 import type { User } from "types/interface";
 import React from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import BackgroundDemarche from "assets/comment-contribuer/CommentContribuer-background_rouge.svg";
 import { assetsOnServer } from "assets/assetsOnServer";
+import styles from "./DemarcheCard.module.scss";
 
 const TitleContainer = styled.div`
   font-weight: bold;
@@ -27,22 +28,7 @@ const DescriptionText = styled.div`
   line-height: 23px;
   margin-top: 16px;
 `;
-const DemarcheCardContainer = styled.div`
-  background-image: url(${BackgroundDemarche});
-  background-repeat: no-repeat;
-  height: 480px;
-  width: 283px;
-  border-radius: 12px;
-  padding: 24px;
-  padding-bottom: 12px;
-  padding-top: 0;
-  border: 4px solid #ffffff;
-  cursor: pointer;
-  &:hover {
-    border: 4px solid #de6b8a;
-  }
-  position: relative;
-`;
+const DemarcheCardContainer = styled.div``;
 const TimeContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -54,65 +40,66 @@ const TimeContainer = styled.div`
 `;
 
 interface Props {
-  user: User | null
-  toggleModal: any
+  user: User | null;
+  toggleModal: any;
 }
-
 
 const DemarcheCard = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
 
-return (
-  <DemarcheCardContainer
-    onClick={() => {
-      if (!props.user) {
-        return props.history.push("/login");
-      }
-      if (props.user.email !== "") {
-        return props.history.push("/demarche");
-      }
-      return props.toggleModal("demarche");
-    }}
-  >
-    <img
-      src={assetsOnServer.commentContribuer.demarche}
-      height="190px"
-      alt="demarche"
-    />
+  return (
     <div
-      style={{
-        display: "flex",
-        flex: 1,
-        flexDirection: "column",
-        justifyContent: "space-between",
+      className={styles.container}
+      onClick={() => {
+        if (!props.user) {
+          return router.push("/login");
+        }
+        if (props.user.email !== "") {
+          return router.push("/demarche");
+        }
+        return props.toggleModal("demarche");
       }}
     >
-      <div>
-        <TitleContainer>
-          {t("CommentContribuer.Rédiger une fiche", "Rédiger une fiche")}
-        </TitleContainer>
-        <TitleFramed width={"122px"}>
-          {t("CommentContribuer.Démarche", "Démarche")}
-        </TitleFramed>
-        <DescriptionText>
-          {t(
-            "CommentContribuer.DemarcheDescription",
-            "Expliquez une démarche administrative étape par étape pour faciliter son accès et sa compréhension par les personnes réfugiées."
-          )}
-        </DescriptionText>
+      <img
+        src={assetsOnServer.commentContribuer.demarche}
+        height="190px"
+        alt="demarche"
+      />
+      <div
+        style={{
+          display: "flex",
+          flex: 1,
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        <div>
+          <TitleContainer>
+            {t("CommentContribuer.Rédiger une fiche", "Rédiger une fiche")}
+          </TitleContainer>
+          <TitleFramed width={"122px"}>
+            {t("CommentContribuer.Démarche", "Démarche")}
+          </TitleFramed>
+          <DescriptionText>
+            {t(
+              "CommentContribuer.DemarcheDescription",
+              "Expliquez une démarche administrative étape par étape pour faciliter son accès et sa compréhension par les personnes réfugiées."
+            )}
+          </DescriptionText>
+        </div>
+        <TimeContainer>
+          <EVAIcon
+            name="clock-outline"
+            fill="#000000"
+            size="10"
+            className="mr-10"
+          />
+          {"~ 40 "}
+          {t("CommentContribuer.minutes", "minutes")}
+        </TimeContainer>
       </div>
-      <TimeContainer>
-        <EVAIcon
-          name="clock-outline"
-          fill="#000000"
-          size="10"
-          className="mr-10"
-        />
-        {"~ 40 "}
-        {t("CommentContribuer.minutes", "minutes")}
-      </TimeContainer>
     </div>
-  </DemarcheCardContainer>
-)
-}
+  );
+};
 export default DemarcheCard;

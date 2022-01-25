@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import BackgroundStructure from "assets/comment-contribuer/CommentContribuer-background_violet.svg";
 import { assetsOnServer } from "assets/assetsOnServer";
+import styles from "./StructureCard.module.scss";
+
 const TitleContainer = styled.div`
   font-weight: bold;
   font-size: 22px;
@@ -25,19 +26,7 @@ const DescriptionText = styled.div`
   line-height: 23px;
   margin-top: 16px;
 `;
-const StructureCardContainer = styled.div`
-  background-image: url(${BackgroundStructure});
-  background-repeat: no-repeat;
-  height: 480px;
-  width: 283px;
-  border-radius: 12px;
-  padding: 24px;
-  padding-bottom: 12px;
 
-  border: 4px solid #ffffff;
-  cursor: not-allowed;
-  position: relative;
-`;
 const TimeContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -47,15 +36,13 @@ const TimeContainer = styled.div`
   position: absolute;
   bottom: 12px;
 `;
-interface Props {
 
-}
 
-const StructureCard = (props: Props) => {
+const StructureCard = () => {
   const { t } = useTranslation();
 
 return (
-  <StructureCardContainer>
+  <div className={styles.container}>
     <img src={assetsOnServer.commentContribuer.structure} alt="structure" />
     <div
       style={{
@@ -89,7 +76,7 @@ return (
         {t("Bientôt disponible", "Bientôt disponible")}
       </TimeContainer>
     </div>
-  </StructureCardContainer>
+  </div>
 )
 }
 export default StructureCard;

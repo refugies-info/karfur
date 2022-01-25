@@ -1,4 +1,5 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
+@import "src/scss/variables";
 @import "src/scss/mixins/responsive";
 
 .audio_btn {
@@ -7,16 +8,15 @@
   background: $blanc;
   box-sizing: border-box;
   border: 0.5px solid $blanc;
-  border-radius: 12px;
-  cursor: pointer;
+  border-radius: $radius;
   user-select: none;
-  transition: all 0.2s ease;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: auto;
-  margin-bottom: auto;
+  padding: 15px;
   min-width: 50px;
+  transition: all 0.2s ease;
+  outline: none;
 
   @include media-max("phone-down") {
     margin-right: 5px;
@@ -29,7 +29,7 @@
   &:hover {
     background: $noir;
     border-color: $noir;
-    box-shadow: 04px 7px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.1);
     color: $blanc;
     svg {
       fill: $blanc;
@@ -48,9 +48,6 @@
     font-weight: bold;
     font-size: 16px;
     line-height: 20px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-right: 15px;
     margin-left: 10px;
 
     @include media-max("desktop-up") {
@@ -60,9 +57,5 @@
 
   .icon {
     line-height: 20px;
-
-    @include media-min("desktop-up") {
-      margin-left: 15px;
-    }
   }
 }

@@ -85,7 +85,7 @@ export class TopRightHeader extends React.Component<Props> {
             {props.admin && (
               <div style={{ marginBottom: "8px" }}>
                 <FButton
-                  className="dark"
+                  type="dark"
                   name="edit-outline"
                   onClick={props.editDispositif}
                 >
@@ -153,7 +153,7 @@ export class TopRightHeader extends React.Component<Props> {
             isUserAllowedToModifyDispositif && (
               <div className="top-icon-wrapper button">
                 <FButton
-                  className="dark"
+                  type="dark"
                   name="edit-outline"
                   onClick={props.editDispositif}
                 >

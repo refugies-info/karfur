@@ -33,7 +33,7 @@ import { colors } from "colors";
 import produce from "immer";
 import styled from "styled-components";
 import isInBrowser from "lib/isInBrowser";
-import styles from "./SideTrad.scss";
+import styles from "./SideTrad.module.scss";
 
 const AlertModified = styled.div`
   height: 40px;

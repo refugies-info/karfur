@@ -97,7 +97,13 @@
   }
   &.no_hover {
     cursor: unset !important;
-    // TODO: no hover
+
+    &:hover {
+      filter: none;
+    }
+    &:focus {
+      border-color: transparent;
+    }
   }
   &.small_font {
     font-size: 16px;

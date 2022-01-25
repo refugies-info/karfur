@@ -1,5 +1,6 @@
 @import "src/scss/mixins/responsive";
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
+@import "src/scss/variables";
 
 $avatarSize: 52px;
 
@@ -21,17 +22,18 @@ $avatarSize: 52px;
   z-index: 90;
   color: $noir;
   transition: top 0.6s;
+
   @include media-max("tablet-up") {
     background: none;
   }
 
-  .hidden {
+  &.hidden {
     @include media-min("desktop-up") {
       top: -100px !important;
     }
   }
 
-  .rtl {
+  &.rtl {
     background: linear-gradient(
       267.06deg,
       #ffffff 13.69%,
@@ -46,6 +48,8 @@ $avatarSize: 52px;
   // User
   .user_picture_link {
     cursor: pointer;
+    height: $avatarSize;
+    width: $avatarSize;
 
     .overlay {
       background-image: linear-gradient(
@@ -53,8 +57,8 @@ $avatarSize: 52px;
         rgba(4, 33, 177, 0.6),
         rgba(4, 33, 177, 0.6)
       );
-      height: $avatarSize;
-      width: $avatarSize;
+      height: 100%;
+      width: 100%;
       border-radius: 50%;
       position: relative;
       font-weight: bold;
@@ -63,14 +67,14 @@ $avatarSize: 52px;
       color: #ffffff;
     }
     .user_picture {
-      height: $avatarSize;
-      width: $avatarSize;
+      height: 100%;
+      width: 100%;
       border-radius: 50%;
     }
 
     .user_picture_with_overlay {
-      height: $avatarSize;
-      width: $avatarSize;
+      height: 100%;
+      width: 100%;
       border-radius: 50%;
       opacity: 0.3;
     }
@@ -98,7 +102,8 @@ $avatarSize: 52px;
     font-weight: 600;
     padding-left: 10px;
     padding-right: 10px;
-    border-radius: 12px;
+    border-radius: $radius;
+    height: 52px;
     background-color: black;
   }
   .advanced_search_btn_rtl {
@@ -107,7 +112,8 @@ $avatarSize: 52px;
 
   // Buttons
   .center_buttons {
-    display: inline-flex;
+    display: flex;
+    align-items: center;
   }
   .left_buttons {
     display: flex;

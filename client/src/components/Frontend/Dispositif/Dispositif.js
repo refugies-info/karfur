@@ -82,9 +82,9 @@ import { logger } from "logger";
 import { isMobile } from "react-device-detect";
 import { PdfCreateModal } from "components/Modals/PdfCreateModal/PdfCreateModal";
 import styled from "styled-components";
+import isInBrowser from "lib/isInBrowser";
 
 moment.locale("fr");
-const window = null;
 const htmlToDraft = (props) => ({contentBlocks: []});
 
 
@@ -1739,7 +1739,8 @@ export class Dispositif extends Component {
   };
   render() {
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
-    const { t, translating, windowWidth } = this.props;
+    const { t, translating } = this.props;
+    const windowWidth = isInBrowser() ? window.innerWidth : 0;
     const {
       showModals,
       isDispositifLoading,

@@ -1,8 +1,9 @@
 import React from "react";
-import { colors } from "../../../colors";
-import styled from "styled-components";
 import { useTranslation } from "react-i18next";
-import { FButtonMobile } from "../../FigmaUI/FButtonMobile/FButtonMobile";
+import styled from "styled-components";
+import Image from "next/image";
+import { colors } from "colors";
+import { FButtonMobile } from "components/FigmaUI/FButtonMobile/FButtonMobile";
 
 declare const window: Window;
 interface Props {
@@ -57,7 +58,7 @@ export const HomeCard = (props: Props) => {
 
   return (
     <MainContainer backgroundColor={props.backgroundColor}>
-    <img alt="img-homecard" src={props.image} />
+    <Image alt="img-homecard" src={props.image} />
     <TextContainer text={props.text} textColor={props.textColor}>
       {t(props.text, props.defaultText)}
     </TextContainer>

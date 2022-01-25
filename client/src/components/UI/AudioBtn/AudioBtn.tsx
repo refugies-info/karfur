@@ -17,7 +17,7 @@ const AudioBtn = (props: Props) => {
 
   if (props.enabled) {
     return (
-      <div
+      <button
         className={
           styles.audio_btn + " mr-10 " + (props.ttsActive ? styles.pressed : "")
         }
@@ -34,7 +34,7 @@ const AudioBtn = (props: Props) => {
           />
         )}
         <div className={styles.text}>{t("Écouter", "Écouter")}</div>
-      </div>
+      </button>
     );
   }
   return null;

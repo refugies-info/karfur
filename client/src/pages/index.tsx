@@ -3,31 +3,31 @@ import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FButton from "components/FigmaUI/FButton/FButton";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { colors } from "colors";
+import i18n from "i18n";
+import { initial_data } from "data/searchFilters";
+import { initGA, PageView } from "tracking/dispatch";
+import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
+import { MobileSearchFilterModal } from "containers/AdvancedSearch/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
+import { HomeCard } from "components/Pages/homepage/HomeCard";
+import { BecomeTesterModal } from "components/Pages/homepage/BecomeTesterModal";
+import { HomePageMobile } from "components/Pages/homepage/HomePageMobile/HomePageMobile";
+import HomeSearch from "components/Pages/homepage/HomeSearch";
+import CatList from "components/Pages/homepage/CatList";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import FButton from "components/FigmaUI/FButton/FButton";
+import { filtres } from "data/dispositif";
+import iphone from "assets/figma/iphone.svg";
 import {
   illustration_homeCard_dispositif,
   illustration_homeCard_annuaire,
   illustration_homeCard_demarche,
   illustration_homeCard_lexique,
 } from "assets/figma";
-import { initial_data } from "data/searchFilters";
-import { initGA, PageView } from "tracking/dispatch";
-import { iphone } from "assets/figma";
-import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
-import { MobileSearchFilterModal } from "containers/AdvancedSearch/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
 import icon_mobilisation from "assets/icon_mobilisation.svg";
 import { assetsOnServer } from "assets/assetsOnServer";
-import i18n from "i18n";
-import { HomeCard } from "components/Pages/homepage/HomeCard";
-import { BecomeTesterModal } from "components/Pages/homepage/BecomeTesterModal";
-import { HomePageMobile } from "components/Pages/homepage/HomePageMobile/HomePageMobile";
-import HomeSearch from "components/Pages/homepage/HomeSearch";
-import CatList from "components/Pages/homepage/CatList";
-import { filtres } from "data/dispositif";
 
 const CoronaAlert = styled.div`
   display: flex;

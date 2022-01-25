@@ -123,171 +123,152 @@ const PartnersContainer = styled.div`
   padding-right: 32px;
 `;
 
-interface Props {
-
-}
-
 const QuiSommesNous = () => {
-    const [sideVisible, setSideVisible] = useState(false);
-    const [membre, setMembre] = useState<Member|null>(null);
-    const [isToolbarVisible, setIsToolbarVisible] = useState(true);
-    const [visibleSection, setVisibleSection] = useState("");
+  const [sideVisible, setSideVisible] = useState(false);
+  const [membre, setMembre] = useState<Member | null>(null);
+  const [isToolbarVisible, setIsToolbarVisible] = useState(true);
+  const [visibleSection, setVisibleSection] = useState("");
 
-    const { t } = useTranslation();
+  const { t } = useTranslation();
 
+  // scroll
   useEffect(() => {
-    /* window.scrollTo(0, 0);
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      const visible = currentScrollPos < 720;
+      let visibleSection = "";
+      if (720 < currentScrollPos && currentScrollPos <= 1440) {
+        visibleSection = "Missions";
+      } else if (1440 < currentScrollPos && currentScrollPos <= 2290) {
+        visibleSection = "Equipe";
+      } else if (2290 < currentScrollPos && currentScrollPos <= 3010) {
+        visibleSection = "Problematiques";
+      } else if (3010 < currentScrollPos && currentScrollPos <= 3730) {
+        visibleSection = "Contribution";
+      } else if (3730 < currentScrollPos) {
+        visibleSection = "Partenaires";
+      }
+      setIsToolbarVisible(visible);
+      setVisibleSection(visibleSection);
+    };
+    handleScroll();
+
     window.addEventListener("scroll", handleScroll);
-
-    return window.removeEventListener("scroll", handleScroll);
-    */
-  }, [])
-
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const onSelectMembre = (membre: any) => {
     setSideVisible(true);
-    setMembre(membre)
-  }
+    setMembre(membre);
+  };
 
   const closeSide = () => {
-    if (sideVisible) setSideVisible(false)
+    if (sideVisible) setSideVisible(false);
   };
 
-  const handleScroll = () => {
-    const currentScrollPos = 0// window.pageYOffset;
-    const visible = currentScrollPos < 720;
-    let visibleSection = "";
-    if (720 < currentScrollPos && currentScrollPos <= 1440) {
-      visibleSection = "Missions";
-    } else if (1440 < currentScrollPos && currentScrollPos <= 2290) {
-      visibleSection = "Equipe";
-    } else if (2290 < currentScrollPos && currentScrollPos <= 3010) {
-      visibleSection = "Problematiques";
-    } else if (3010 < currentScrollPos && currentScrollPos <= 3730) {
-      visibleSection = "Contribution";
-    } else if (3730 < currentScrollPos) {
-      visibleSection = "Partenaires";
-    }
-    setIsToolbarVisible(visible);
-    setVisibleSection(visibleSection);
-  };
-
-    return (
-      <MainContainer>
-        <HeaderContainer>
-          <div style={{ marginTop: "240px", marginBottom: "28px" }}>
-            <HeaderTextContainer>
-              <HeaderText>
-                {t("QuiSommesNous.Qui sommes-nous", "Qui sommes nous ?")}
-              </HeaderText>
-            </HeaderTextContainer>
-          </div>
+  return (
+    <MainContainer>
+      <HeaderContainer>
+        <div style={{ marginTop: 240, marginBottom: 28 }}>
           <HeaderTextContainer>
-            <SubHeaderText>
-              {t(
-                "QuiSommesNous.subheader1",
-                "Réfugiés.info est un projet collaboratif"
-              )}
-            </SubHeaderText>
+            <HeaderText>
+              {t("QuiSommesNous.Qui sommes-nous", "Qui sommes nous ?")}
+            </HeaderText>
           </HeaderTextContainer>
-          <HeaderTextContainer>
-            <SubHeaderText>
-              {t(
-                "QuiSommesNous.subheader2",
-                "porté par la Diair et développé par la Mednum"
-              )}
-            </SubHeaderText>
-          </HeaderTextContainer>
-        </HeaderContainer>
-        <NavBarContainer isToolbarVisible={isToolbarVisible}>
-          <a href="#mission">
-            <NavBarText
-              isVisibleSection={visibleSection === "Missions"}
-            >
-              {t("QuiSommesNous.Missions", "Missions")}
-            </NavBarText>
-          </a>
-          <a href="#equipe">
-            <NavBarText
-              isVisibleSection={visibleSection === "Equipe"}
-            >
-              {t("QuiSommesNous.Équipe", "Équipe")}
-            </NavBarText>
-          </a>
-          <a href="#problematic">
-            <NavBarText
-              isVisibleSection={visibleSection === "Problematiques"}
-            >
-              {t("QuiSommesNous.Problématiques", "Problématiques")}
-            </NavBarText>
-          </a>
-          <a href="#contribution">
-            <NavBarText
-              isVisibleSection={visibleSection === "Contribution"}
-            >
-              {t(
-                "QuiSommesNous.Approche contributive",
-                "Approche contributive"
-              )}
-            </NavBarText>
-          </a>
-          <a href="#partners">
-            <NavBarText
-              isVisibleSection={visibleSection === "Partenaires"}
-            >
-              {t("QuiSommesNous.Partenaires", "Partenaires")}
-            </NavBarText>
-          </a>
-        </NavBarContainer>
-        <MissionContainer id="mission">
-          <SectionHeader>
+        </div>
+        <HeaderTextContainer>
+          <SubHeaderText>
+            {t(
+              "QuiSommesNous.subheader1",
+              "Réfugiés.info est un projet collaboratif"
+            )}
+          </SubHeaderText>
+        </HeaderTextContainer>
+        <HeaderTextContainer>
+          <SubHeaderText>
+            {t(
+              "QuiSommesNous.subheader2",
+              "porté par la Diair et développé par la Mednum"
+            )}
+          </SubHeaderText>
+        </HeaderTextContainer>
+      </HeaderContainer>
+      <NavBarContainer isToolbarVisible={isToolbarVisible}>
+        <a href="#mission">
+          <NavBarText isVisibleSection={visibleSection === "Missions"}>
             {t("QuiSommesNous.Missions", "Missions")}
-          </SectionHeader>
-          <Mission />
-        </MissionContainer>
-        <TeamContainer id="equipe" onClick={closeSide}>
-          <SectionHeader>
-            {t("QuiSommesNous.L'équipe", "L'équipe Réfugiés.info")}
-          </SectionHeader>
-          <Team
-            sideVisible={sideVisible}
-            member={membre}
-            onMemberCardClick={onSelectMembre}
-            type="members"
-          />
-          <SectionSubHeader>
-            {t("QuiSommesNous.Anciens membres", "Anciens membres")}
-            <SectionSubHeaderMissing>
-              {t("QuiSommesNous.Vous nous manquez", "(vous nous manquez !)")}
-            </SectionSubHeaderMissing>
-          </SectionSubHeader>
-          <Team
-            sideVisible={sideVisible}
-            member={membre}
-            onMemberCardClick={onSelectMembre}
-            type="former_members"
-          />
-        </TeamContainer>
-        <ProblematicContainer id="problematic">
-          <SectionHeader>
+          </NavBarText>
+        </a>
+        <a href="#equipe">
+          <NavBarText isVisibleSection={visibleSection === "Equipe"}>
+            {t("QuiSommesNous.Équipe", "Équipe")}
+          </NavBarText>
+        </a>
+        <a href="#problematic">
+          <NavBarText isVisibleSection={visibleSection === "Problematiques"}>
             {t("QuiSommesNous.Problématiques", "Problématiques")}
-          </SectionHeader>
-          <Problematic />
-        </ProblematicContainer>
-        <ContributionContainer id="contribution">
-          <SectionHeader>
+          </NavBarText>
+        </a>
+        <a href="#contribution">
+          <NavBarText isVisibleSection={visibleSection === "Contribution"}>
             {t("QuiSommesNous.Approche contributive", "Approche contributive")}
-          </SectionHeader>
-          <Contribution />
-        </ContributionContainer>
-        <PartnersContainer id="partners">
-          <SectionHeader>
+          </NavBarText>
+        </a>
+        <a href="#partners">
+          <NavBarText isVisibleSection={visibleSection === "Partenaires"}>
             {t("QuiSommesNous.Partenaires", "Partenaires")}
-          </SectionHeader>
-          <Partners />
-        </PartnersContainer>
-      </MainContainer>
-    );
-}
+          </NavBarText>
+        </a>
+      </NavBarContainer>
+      <MissionContainer id="mission">
+        <SectionHeader>{t("QuiSommesNous.Missions", "Missions")}</SectionHeader>
+        <Mission />
+      </MissionContainer>
+      <TeamContainer id="equipe" onClick={closeSide}>
+        <SectionHeader>
+          {t("QuiSommesNous.L'équipe", "L'équipe Réfugiés.info")}
+        </SectionHeader>
+        <Team
+          sideVisible={sideVisible}
+          member={membre}
+          onMemberCardClick={onSelectMembre}
+          type="members"
+        />
+        <SectionSubHeader>
+          {t("QuiSommesNous.Anciens membres", "Anciens membres")}
+          <SectionSubHeaderMissing>
+            {t("QuiSommesNous.Vous nous manquez", "(vous nous manquez !)")}
+          </SectionSubHeaderMissing>
+        </SectionSubHeader>
+        <Team
+          sideVisible={sideVisible}
+          member={membre}
+          onMemberCardClick={onSelectMembre}
+          type="former_members"
+        />
+      </TeamContainer>
+      <ProblematicContainer id="problematic">
+        <SectionHeader>
+          {t("QuiSommesNous.Problématiques", "Problématiques")}
+        </SectionHeader>
+        <Problematic />
+      </ProblematicContainer>
+      <ContributionContainer id="contribution">
+        <SectionHeader>
+          {t("QuiSommesNous.Approche contributive", "Approche contributive")}
+        </SectionHeader>
+        <Contribution />
+      </ContributionContainer>
+      <PartnersContainer id="partners">
+        <SectionHeader>
+          {t("QuiSommesNous.Partenaires", "Partenaires")}
+        </SectionHeader>
+        <Partners />
+      </PartnersContainer>
+    </MainContainer>
+  );
+};
 
 export default QuiSommesNous;

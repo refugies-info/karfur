@@ -1,11 +1,11 @@
 import type { User } from "types/interface";
 import React from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import SVGIcon from "components/UI/SVGIcon/SVGIcon";
-import BackgroundDispositif from "assets/comment-contribuer/CommentContribuer-background_orange.svg";
 import { assetsOnServer } from "assets/assetsOnServer";
+import styles from "./DispositifCard.module.scss";
 
 const TitleContainer = styled.div`
   font-weight: bold;
@@ -28,21 +28,6 @@ const DescriptionText = styled.div`
   line-height: 23px;
   margin-top: 16px;
 `;
-const DispoCardContainer = styled.div`
-  background-image: url(${BackgroundDispositif});
-  background-repeat: no-repeat;
-  height: 480px;
-  width: 283px;
-  border-radius: 12px;
-  padding: 24px;
-  padding-bottom: 12px;
-  border: 4px solid #ffffff;
-  cursor: pointer;
-  &:hover {
-    border: 4px solid #f9aa75;
-  }
-  position: relative;
-`;
 const TimeContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -53,62 +38,57 @@ const TimeContainer = styled.div`
   bottom: 12px;
 `;
 interface Props {
-  user: User | null
-  toggleModal: any
+  user: User | null;
+  toggleModal: any;
 }
 
 const DispositifCard = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
-  <DispoCardContainer
-    onClick={() => {
-      if (!props.user) {
-        return props.history.push("/login");
-      }
-      if (props.user.email !== "") {
-        return props.history.push("/dispositif");
-      }
-      return props.toggleModal("dispositif");
-    }}
-  >
-    <img src={assetsOnServer.commentContribuer.dispositif} alt="dispositif" />
     <div
-      style={{
-        display: "flex",
-        flex: 1,
-        flexDirection: "column",
-        justifyContent: "space-between",
+      className={styles.container}
+      onClick={() => {
+        if (!props.user) {
+          return router.push("/login");
+        }
+        if (props.user.email !== "") {
+          return router.push("/dispositif");
+        }
+        return props.toggleModal("dispositif");
       }}
     >
-      <div>
-        <TitleContainer>
-          {t("CommentContribuer.Rédiger une fiche", "Rédiger une fiche")}
-        </TitleContainer>
-        <TitleFramed width={"113px"}>
-          {t("CommentContribuer.Dispositif", "Dispositif")}
-        </TitleFramed>
-        <DescriptionText>
-          {t(
-            "CommentContribuer.DispositifDescription",
-            `Programme, atelier, formation, cours en ligne, permanence d’accueil ou
+      <img src={assetsOnServer.commentContribuer.dispositif} alt="dispositif" />
+      <div className={styles.inner}>
+        <div>
+          <TitleContainer>
+            {t("CommentContribuer.Rédiger une fiche", "Rédiger une fiche")}
+          </TitleContainer>
+          <TitleFramed width={"113px"}>
+            {t("CommentContribuer.Dispositif", "Dispositif")}
+          </TitleFramed>
+          <DescriptionText>
+            {t(
+              "CommentContribuer.DispositifDescription",
+              `Programme, atelier, formation, cours en ligne, permanence d’accueil ou
       tout autre dispositif directement accessible par les personnes réfugiées.`
-          )}
-        </DescriptionText>
+            )}
+          </DescriptionText>
+        </div>
+        <TimeContainer>
+          <EVAIcon
+            name="clock-outline"
+            fill="#000000"
+            size="10"
+            className="mr-10"
+          />
+          {"~ 20 "}
+          {t("CommentContribuer.minutes", "minutes")}
+        </TimeContainer>
       </div>
-      <TimeContainer>
-        <EVAIcon
-          name="clock-outline"
-          fill="#000000"
-          size="10"
-          className="mr-10"
-        />
-        {"~ 20 "}
-        {t("CommentContribuer.minutes", "minutes")}
-      </TimeContainer>
     </div>
-  </DispoCardContainer>
-  )
-}
+  );
+};
 
 export default DispositifCard;

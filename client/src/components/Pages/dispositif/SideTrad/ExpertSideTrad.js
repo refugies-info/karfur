@@ -14,8 +14,8 @@ import DirectionProvider, {
 import _ from "lodash";
 import moment from "moment";
 
-import FButton from "../../../components/FigmaUI/FButton/FButton";
-import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
+import FButton from "components/FigmaUI/FButton/FButton";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import {
   boldBtn,
   italicBtn,
@@ -23,18 +23,18 @@ import {
   listBtn,
   logo_google,
   linkBtn,
-} from "../../../assets/figma/index";
-import marioProfile from "../../../assets/mario-profile.jpg";
-import { RejectTradModal } from "../../../components/Modals";
-import { colorAvancement } from "../../../components/Functions/ColorFunctions";
+} from "assets/figma/index";
+import marioProfile from "assets/mario-profile.jpg";
+import { RejectTradModal } from "components/Modals";
+import { colorAvancement } from "components/Functions/ColorFunctions";
 import { customConvertOption } from "../data";
 
-// import "./SideTrad.scss";
 import { colors } from "colors";
-import API from "../../../utils/API";
+import API from "utils/API";
 import produce from "immer";
 import styled from "styled-components";
-import { updateTradActionCreator } from "../../../services/Translation/translation.actions";
+import { updateTradActionCreator } from "services/Translation/translation.actions";
+import styles from "./SideTrad.module.scss";
 
 const AlertModified = styled.div`
   height: 40px;

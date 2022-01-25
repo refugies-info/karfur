@@ -134,6 +134,7 @@ export const LeftSideDispositif = (props: Props) => {
               >
                 {props.disableEdit && props.content.externalLink && (
                   <FButton
+                    className="print_buttons_btn"
                     type={"theme"}
                     name="external-link-outline"
                     onClick={onLinkClicked}
@@ -143,6 +144,7 @@ export const LeftSideDispositif = (props: Props) => {
                 )}
                 {!props.disableEdit && (
                   <FButton
+                    className="print_buttons_btn"
                     type={"edit"}
                     name="external-link-outline"
                     onClick={onLinkClicked}
@@ -152,6 +154,7 @@ export const LeftSideDispositif = (props: Props) => {
                 )}
                 {!props.disableEdit && props.displayTuto && (
                   <FButton
+                    className="print_buttons_btn"
                     type="tuto"
                     name={"play-circle-outline"}
                     className="ml-8"
@@ -165,6 +168,7 @@ export const LeftSideDispositif = (props: Props) => {
         {props.disableEdit && (
           <>
             <FButton
+              className="print_buttons_btn"
               type="light-action"
               name="download-outline"
               onClick={() => props.toggleShowPdfModal()}
@@ -175,6 +179,7 @@ export const LeftSideDispositif = (props: Props) => {
               )}
             </FButton>
             <FButton
+              className="print_buttons_btn"
               type="light-action"
               href={`mailto:?subject=${mailSubject}&body=${emailBody}`}
               name="paper-plane-outline"
@@ -182,6 +187,7 @@ export const LeftSideDispositif = (props: Props) => {
               {t("Dispositif.Envoyer par mail", "Envoyer par mail")}
             </FButton>
             <FButton
+              className="print_buttons_btn"
               type="light-action"
               onClick={() =>
                 send_sms(
@@ -202,7 +208,7 @@ export const LeftSideDispositif = (props: Props) => {
                 props.closePdf();
               }}
               trigger={() => (
-                <FButton type="light-action" name="printer-outline">
+                <FButton className="print_buttons_btn" type="light-action" name="printer-outline">
                   {t("Dispositif.Imprimer", "Imprimer")}
                 </FButton>
               )}

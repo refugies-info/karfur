@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
 import FButton from "components/FigmaUI/FButton/FButton";
 import Alain from "assets/qui-sommes-nous/Alain.png";
 import Agathe from "assets/qui-sommes-nous/Agathe.png";
@@ -195,7 +196,7 @@ const MemberCard = (props: MemberProps) => {
         ) : (
           <>
             <div>
-              <img
+              <Image
                 src={getImage(props.member.name)}
                 //   onClick={this._closeSide}
                 alt={props.member.name}
