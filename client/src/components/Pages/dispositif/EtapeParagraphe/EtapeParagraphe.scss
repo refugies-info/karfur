@@ -1,25 +1,28 @@
 @import "src/scss/colors.scss";
 
 .etape {
-  .etape-title {
+  .etape_title {
     display: inline-block;
   }
-  .delete-icon {
+  .delete_icon {
     position: absolute;
     right: 16px;
     top: 20px;
+    cursor: pointer;
   }
-  .etapes-data {
+  .etapes_data {
     display: inline-flex;
     justify-content: space-between;
+
     &.editing {
       cursor: pointer;
-      .etape-data {
+
+      .etape_data {
         background: $attention;
       }
     }
   }
-  .etape-data {
+  .etape_data {
     border-right: 1px solid $grisFonce;
     color: $grisFonce;
     padding: 10px;
@@ -27,26 +30,28 @@
       border: none;
     }
   }
-  .bloc-configuration {
+  .bloc_configuration {
     background: $attention;
     border-radius: 12px;
     padding: 20px;
     margin-top: 20px;
 
-    .row-config {
+    .row_config {
       background: $blanc;
       border-radius: 12px;
       padding: 10px;
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      &.direction-colonne {
+
+      &.direction_colonne {
         flex-direction: column;
         align-items: flex-start;
       }
       &.validated {
         background: $validation;
-        .col-config.active {
+
+        .col_config.active {
           background: $validationDefault;
           color: #ffffff;
           border: none;
@@ -56,10 +61,10 @@
         }
       }
     }
-    .options-wrapper {
+    .options_wrapper {
       display: flex;
     }
-    .col-config {
+    .col_config {
       background: $gris;
       border: 0.5px solid $gris;
       border-radius: 12px;
@@ -76,38 +81,39 @@
         }
       }
     }
-    .etape-dropdown {
+    .etape_dropdown {
       display: block;
     }
-    .negative-padding {
+    .negative_padding {
       padding-bottom: 0;
 
-      .etape-dropdown {
+      .etape_dropdown {
         display: block;
         margin-bottom: 10px;
       }
     }
-    .etape-input {
+    .etape_input {
       width: 60px;
       text-align: center;
       margin-left: 10px;
     }
-    .etape-input,
-    .etape-dropdown .dropdown-toggle {
+    .etape_input,
+    .etape_dropdown :global(.dropdown-toggle) {
       padding: 10px;
       background: $gris;
       border-radius: 12px;
       border: none;
       color: $grisFonce;
-      &.docs-dropdown {
+
+      &.docs_dropdown {
         padding-left: 0;
       }
     }
-    .etape-dropdown .dropdown-menu {
+    .etape_dropdown :global(.dropdown-menu) {
       max-height: 60vh;
       overflow: scroll;
     }
-    .form-group {
+    :global(.form-group) {
       display: flex;
       flex-wrap: wrap;
       margin-left: -15px;
@@ -116,41 +122,37 @@
     label {
       font-weight: bold;
     }
-    .figma-input-group input,
-    .figma-input-group textarea {
-      border: none;
-    }
-    .no-info {
-      color: $grisFonce;
-      label {
-        font-weight: normal;
-      }
-    }
-    .footer-form {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .plus-btn-docs {
+    .plus_btn_docs {
       background: $grisFonce;
       padding: 10px;
       border-radius: 12px 0px 0px 12px;
       margin-right: 10px;
     }
-    .idx-docs {
+    .idx_docs {
       background: $noir;
       color: #ffffff;
       padding: 10px;
-      border-radius: 12px 0px 0px 12px;
+      border-radius: 12px 0 0 12px;
       margin-right: 10px;
     }
-    .footer-btns {
+    .footer_btns {
       display: flex;
       justify-content: space-between;
     }
+    .footer_form {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .no_info {
+      color: $grisFonce;
+      label {
+        font-weight: normal;
+      }
+    }
   }
 
-  .realisation-wrapper {
+  .realisation_wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -159,20 +161,8 @@
     border-radius: 12px;
     margin-bottom: 20px;
 
-    .real-btns .figma-btn {
+    .real_btns :global(.figma-btn) {
       padding: 20px;
     }
-  }
-
-  .feedback-wrapper {
-    margin-bottom: 10px;
-    background: $gris;
-    border-radius: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    padding-left: 20px;
-    color: $noir;
   }
 }

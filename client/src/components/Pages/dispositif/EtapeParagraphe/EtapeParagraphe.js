@@ -23,12 +23,12 @@ import { QuickToolbar } from "../QuickToolbar";
 import EditableParagraph from "components/Frontend/Dispositif/EditableParagraph/EditableParagraph";
 import FInput from "components/FigmaUI/FInput/FInput";
 
-// import "./EtapeParagraphe.scss";
 import { colors } from "colors";
 import { EtapeModal } from "components/Modals";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import i18n from "i18n";
+import styles from "./EtapeParagraphe.scss";
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>
@@ -305,7 +305,8 @@ class EtapeParagraphe extends Component {
       <div
         key={subkey}
         className={
-          "etape contenu" +
+          styles.etape +
+          " contenu " +
           (safeUiArray(keyValue, subkey, "isHover") ? " isHovered" : "")
         }
         onMouseEnter={(e) =>
@@ -341,7 +342,7 @@ class EtapeParagraphe extends Component {
                     id={keyValue}
                     data-subkey={subkey}
                     data-target="title"
-                    className="etape-title"
+                    className={styles.etape_title}
                     html={subitem.title || ""} // innerHTML of the editable div
                     disabled={disableEdit} // use true to disable editing
                     onChange={this.props.handleMenuChange} // handle innerHTML change
@@ -366,7 +367,7 @@ class EtapeParagraphe extends Component {
                 {!disableEdit && subkey > 0 && (
                   <EVAIcon
                     onClick={() => this.props.removeItem(keyValue, subkey)}
-                    className="delete-icon cursor-pointer"
+                    className={styles.delete_icon}
                     name="close-circle"
                     fill={colors.error}
                     size="xlarge"
@@ -375,12 +376,12 @@ class EtapeParagraphe extends Component {
               </StyledAccordeon>
               <div
                 className={
-                  "etapes-data ml-10" + (disableEdit ? "" : " editing")
+                  styles.etapes_data + " ml-10 " + (disableEdit ? "" : styles.editing)
                 }
                 onClick={this.toggleConfigurationOpen}
               >
                 {subitem.option && subitem.option.texte && (
-                  <div className="etape-data" id="etape-option">
+                  <div className={styles.etape_data} id="etape-option">
                     <EVAIcon
                       name={((subitem.option || {}).logo || "at") + "-outline"}
                       fill={colors.grisFonce}
@@ -405,7 +406,7 @@ class EtapeParagraphe extends Component {
                   </div>
                 )}
                 {subitem.duree && subitem.duree !== "00" && (
-                  <div className="etape-data" id="etape-duree">
+                  <div className={styles.etape_data} id="etape-duree">
                     <EVAIcon
                       name="clock-outline"
                       fill={colors.grisFonce}
@@ -430,7 +431,7 @@ class EtapeParagraphe extends Component {
                   </div>
                 )}
                 {subitem.delai && subitem.delai !== "00" && (
-                  <div className="etape-data" id="etape-delai">
+                  <div className={styles.etape_data} id="etape-delai">
                     <EVAIcon
                       name="undo"
                       fill={colors.grisFonce}
@@ -463,7 +464,7 @@ class EtapeParagraphe extends Component {
                   </div>
                 )}
                 {subitem.papiers && subitem.papiers.length > 0 && (
-                  <div className="etape-data" id="etape-papiers">
+                  <div className={styles.etape_data} id="etape-papiers">
                     <EVAIcon
                       name="file-text-outline"
                       fill={colors.grisFonce}
@@ -488,23 +489,25 @@ class EtapeParagraphe extends Component {
             </div>
 
             <Collapse
-              className="bloc-configuration"
+              className={styles.bloc_configuration}
               isOpen={!disableEdit && configurationOpen}
-              data-parent=".etapes-data"
+              data-parent=".etapes_data"
             >
               <h5>Configurez votre étape</h5>
 
               <div
                 className={
-                  "row-config direction-colonne mb-10" +
-                  (validatedRow[0] ? " validated" : "")
+                  styles.row_config + " " +
+                  styles.direction_colonne +
+                  "  mb-10 " +
+                  (validatedRow[0] ? styles.validated : "")
                 }
               >
-                <div className="options-wrapper">
+                <div className={styles.options_wrapper}>
                   {options.map((option, key) => (
                     <div
                       className={
-                        "col-config mr-10" + (option.selected ? " active" : "")
+                        styles.col_config + " mr-10 " + (option.selected ? styles.active : "")
                       }
                       key={key}
                       onClick={() => this.selectOption(key, option)}
@@ -612,11 +615,11 @@ class EtapeParagraphe extends Component {
                         )}
                       </FormGroup>
                     )}
-                    <div className="footer-form">
+                    <div className={styles.footer_form}>
                       {selectedOption.checkbox ? (
                         <FormGroup
                           check
-                          className={"no-info" + (checked ? " checked" : "")}
+                          className={styles.no_info + (checked ? " checked" : "")}
                         >
                           <Label check>
                             <Input
@@ -630,7 +633,7 @@ class EtapeParagraphe extends Component {
                       ) : (
                         <div />
                       )}
-                      <div className="footer-btns">
+                      <div className={styles.footer_btns}>
                         <FButton
                           type="light-action"
                           name="close-outline"
@@ -659,7 +662,8 @@ class EtapeParagraphe extends Component {
 
               <div
                 className={
-                  "row-config mb-10" + (validatedRow[1] ? " validated" : "")
+                  styles.row_config +
+                  " mb-10 " + (validatedRow[1] ? styles.validated : "")
                 }
               >
                 <EVAIcon
@@ -671,7 +675,7 @@ class EtapeParagraphe extends Component {
 
                 <Input
                   type="number"
-                  className="etape-input mr-10"
+                  className={styles.etape_input + " mr-10"}
                   placeholder="00"
                   id={keyValue}
                   data-subkey={subkey}
@@ -683,7 +687,7 @@ class EtapeParagraphe extends Component {
                 <ButtonDropdown
                   isOpen={isDropdownOpen[0]}
                   toggle={() => this.toggleDropdown(0)}
-                  className="etape-dropdown mr-10"
+                  className={styles.etape_dropdown + " mr-10"}
                 >
                   <DropdownToggle caret>{subitem.timeStepDuree}</DropdownToggle>
                   <DropdownMenu>
@@ -707,7 +711,8 @@ class EtapeParagraphe extends Component {
 
               <div
                 className={
-                  "row-config mb-10" + (validatedRow[2] ? " validated" : "")
+                  styles.row_config +
+                  " mb-10 " + (validatedRow[2] ? styles.validated : "")
                 }
               >
                 <EVAIcon name="undo" fill={colors.noir} className="mr-10" />
@@ -715,7 +720,7 @@ class EtapeParagraphe extends Component {
 
                 <Input
                   type="number"
-                  className="etape-input mr-10"
+                  className={styles.etape_input + " mr-10"}
                   placeholder="00"
                   id={keyValue}
                   data-subkey={subkey}
@@ -727,7 +732,7 @@ class EtapeParagraphe extends Component {
                 <ButtonDropdown
                   isOpen={isDropdownOpen[1]}
                   toggle={() => this.toggleDropdown(1)}
-                  className="etape-dropdown mr-10"
+                  className={styles.etape_dropdown + " mr-10"}
                 >
                   <DropdownToggle caret>{subitem.timeStepDelai}</DropdownToggle>
                   <DropdownMenu>
@@ -752,8 +757,8 @@ class EtapeParagraphe extends Component {
 
               <div
                 className={
-                  "row-config negative-padding" +
-                  (validatedRow[3] ? " validated" : "")
+                  styles.row_config+" "+ styles.negative_padding + " " +
+                  (validatedRow[3] ? styles.validated : "")
                 }
               >
                 <EVAIcon
@@ -773,11 +778,11 @@ class EtapeParagraphe extends Component {
                   <ButtonDropdown
                     isOpen={isPapiersDropdownOpen[idx]}
                     toggle={() => this.togglePapiersDropdown(idx)}
-                    className="etape-dropdown mr-10"
+                    className={styles.etape_dropdown + " mr-10"}
                     key={idx}
                   >
-                    <DropdownToggle caret className="docs-dropdown">
-                      <span className="idx-docs">{idx + 1}</span>
+                    <DropdownToggle caret className={styles.docs_dropdown}>
+                      <span className={styles.idx_docs}>{idx + 1}</span>
                       {doc.texte}
                       {!disableEdit && (
                         <EVAIcon
@@ -785,7 +790,7 @@ class EtapeParagraphe extends Component {
                             e.stopPropagation();
                             this.addDoc(doc, idx, false);
                           }}
-                          className="delete-icon cursor-pointer"
+                          className={styles.delete_icon}
                           name="close-circle"
                           fill={colors.error}
                           size="xlarge"
@@ -812,10 +817,10 @@ class EtapeParagraphe extends Component {
                   toggle={() =>
                     this.togglePapiersDropdown(isPapiersDropdownOpen.length - 1)
                   }
-                  className="etape-dropdown mr-10"
+                  className={styles.etape_dropdown + " mr-10"}
                 >
-                  <DropdownToggle caret className="docs-dropdown">
-                    <EVAIcon name="plus-circle" className="plus-btn-docs" />
+                  <DropdownToggle caret className={styles.docs_dropdown}>
+                    <EVAIcon name="plus-circle" className={styles.plus_btn_docs} />
                     Ajouter un document
                   </DropdownToggle>
                   <DropdownMenu>
@@ -832,7 +837,7 @@ class EtapeParagraphe extends Component {
                 </ButtonDropdown>
               </div>
 
-              <div className="footer-btns mt-10">
+              <div className={styles.footer_btns + " mt-10"}>
                 <FButton
                   tag={"a"}
                   href="https://help.refugies.info/fr/"
@@ -864,8 +869,8 @@ class EtapeParagraphe extends Component {
               aria-labelledby={"heading" + keyValue + "-" + subkey}
             >
               {subitem.option && subitem.option.ctaField && (
-                <div className="realisation-wrapper">
-                  <div className="real-btns">
+                <div className={styles.realisation_wrapper}>
+                  <div className={styles.real_btns}>
                     <FButton
                       type="dark"
                       name="link-outline"
