@@ -1185,8 +1185,8 @@ class SideTrad extends Component {
     };
 
     return (
-      <div className="side-trad shadow">
-        <div className="nav-btns">
+      <div className={styles.side_trad}>
+        <div className={styles.nav_btns}>
           <FButton
             type="light-action"
             name={"close" + "-outline"}
@@ -1226,10 +1226,10 @@ class SideTrad extends Component {
             </div>
           </div>
         </div>
-        <div className="langue-data">
+        <div className={styles.langue_data}>
           <h5>Texte français initial</h5>
           <i
-            className="flag-icon flag-icon-fr mr-12 ml-12 mb-8 flag-margin"
+            className={"flag-icon flag-icon-fr mb-8 " + styles.flag_margin}
             title="fr"
             id="fr"
           ></i>
@@ -1237,14 +1237,14 @@ class SideTrad extends Component {
         <div
           className={
             this.state.currIdx === "abstract" && modified
-              ? "content-data-french no-margin-modified"
-              : this.state.currIdx === "abstract"
-              ? "content-data-french no-margin-abstract"
-              : modified
-              ? "content-data-french no-margin-modified"
-              : validated && !modified
-              ? "content-data-french no-margin-validated"
-              : "content-data-french"
+            ? `${styles.content_data_french} ${styles.no_margin_modified}`
+            : this.state.currIdx === "abstract"
+            ? `${styles.content_data_french} ${styles.no_margin_abstract}`
+            : modified
+            ? `${styles.content_data_french} ${styles.no_margin_modified}`
+            : validated && !modified
+            ? `${styles.content_data_french} ${styles.no_margin_validated}`
+            : styles.content_data_french
           }
           id="body_texte_initial"
           ref={(initial_text) => {
@@ -1295,11 +1295,12 @@ class SideTrad extends Component {
             <AlertText type={"validated"}>Déjà validé</AlertText>
           </AlertModified>
         ) : null}
-        <div className="langue-data">
+        <div className={styles.langue_data}>
           <h5>Traduction en {(langue.langueFr || "").toLowerCase()}</h5>
           <i
             className={
-              "mr-12 ml-12 mb-8 flag-icon flag-margin flag-icon-" +
+              styles.flag_margin +
+              "mb-8 flag-icon flag-icon-" +
               langue.langueCode
             }
             title={langue.langueCode}
@@ -1314,16 +1315,16 @@ class SideTrad extends Component {
               validated &&
               !modified &&
               !modifiedNew
-                ? "content-data notrounded no-margin-validated"
+                ? `${styles.content_data} ${styles.notrounded} ${styles.no_margin_validated}`
                 : userId &&
                   userId.username &&
                   validated &&
                   !modified &&
                   modifiedNew
-                ? "content-data notrounded"
+                ? `${styles.content_data} ${styles.notrounded}`
                 : this.state.availableListTrad.length > 0
-                ? "content-data notrounded"
-                : "content-data"
+                ? `${styles.content_data} ${styles.notrounded}`
+                : styles.content_data
             }
             id="body_texte_final"
           >
@@ -1331,17 +1332,17 @@ class SideTrad extends Component {
             <Editor
               toolbarClassName={
                 isRTL
-                  ? "toolbar-editeur"
-                  : "toolbar-editeur toolbar-editeur-droite"
+                ? styles.toolbar_editeur
+                : `${styles.toolbar_editeur} ${styles.toolbar_editeur_droite}`
               }
               editorClassName={
                 validated && !modifiedNew && !modified
-                  ? "editor-editeur editor-validated"
-                  : "editor-editeur"
+                  ? `${styles.editor_editeur} ${styles.editor_validated}`
+                  : styles.editor_editeur
               }
               readOnly={validated && !modifiedNew && !modified ? true : false}
               //onContentStateChange={}
-              wrapperClassName="wrapper-editeur editeur-sidebar"
+              wrapperClassName={`${styles.wrapper_editeur} ${styles.editeur_sidebar}`}
               placeholder="Renseignez votre traduction ici"
               onEditorStateChange={this.props.onEditorStateChange}
               editorState={(translated || {}).body}
@@ -1383,9 +1384,9 @@ class SideTrad extends Component {
               }}
             />
             {autosuggest && (
-              <div className="google-suggest">
+              <div className={styles.google_suggest}>
                 Suggestion par{" "}
-                <img src={logo_google} className="google-logo" alt="google" />
+                <img src={logo_google} className={styles.google_logo} alt="google" />
               </div>
             )}
           </div>
@@ -1401,13 +1402,13 @@ class SideTrad extends Component {
             <AlertText type={"validated"}>Proposition retenue</AlertText>
           </AlertExpert>
         ) : null}
-        <div className="expert-bloc">
+        <div className={styles.expert_bloc}>
           {userId &&
           userId.username &&
           !modifiedNew &&
           this.state.availableListTrad.length > 0 ? (
             <div style={{ display: "flex", flexDirection: "row", flex: 1 }}>
-              <div className="trad-info">
+              <div className={styles.trad_info}>
                 <img
                   src={(userId.picture || {}).secure_url || marioProfile}
                   className="profile-img-pin mr-10"
@@ -1419,8 +1420,8 @@ class SideTrad extends Component {
                 <div
                   className={
                     validated
-                      ? "proposition no-margin-validated"
-                      : "proposition"
+                      ? `${styles.proposition} ${styles.no_margin_validated}`
+                      : styles.proposition
                   }
                 >
                   Proposition unique
@@ -1429,8 +1430,8 @@ class SideTrad extends Component {
                 <div
                   className={
                     validated
-                      ? "propositions no-margin-validated"
-                      : "propositions"
+                      ? `${styles.propositions} ${styles.no_margin_validated}`
+                      : styles.propositions
                   }
                 >
                   <div
@@ -1490,7 +1491,7 @@ class SideTrad extends Component {
             </div>
           ) : modifiedNew ? (
             <>
-              <div className="trad-info">
+              <div className={styles.trad_info}>
                 <img
                   src={(userId.picture || {}).secure_url || marioProfile}
                   className="profile-img-pin mr-10"
@@ -1498,11 +1499,11 @@ class SideTrad extends Component {
                 />
                 <span>{this.props.user.username}</span>
               </div>
-              <div className="proposition">Ma nouvelle proposition</div>
+              <div className={styles.proposition}>Ma nouvelle proposition</div>
             </>
           ) : null}
         </div>
-        <div className="footer-btns">
+        <div className={style.footer_btns}>
           <div>
             {currIdx !== "titreInformatif" && (
               <FButton
@@ -1538,7 +1539,7 @@ class SideTrad extends Component {
               className="mt-10 ml-10"
             />
           </div>
-          <div className="right-footer">
+          <div className={styles.right_footer}>
             {validated && !modified && !modifiedNew ? (
               <FButton
                 type="outline-black"
