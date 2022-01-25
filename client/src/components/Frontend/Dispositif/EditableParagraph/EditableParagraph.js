@@ -10,16 +10,15 @@ import {
   listBtn,
   imgBtn,
   linkBtn,
-} from "../../../../assets/figma"; //videoBtn
+} from "assets/figma"; //videoBtn
 import CustomOption from "./CustomOption/CustomOption";
-import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
-import FButton from "../../../FigmaUI/FButton/FButton";
-import API from "../../../../utils/API";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import FButton from "components/FigmaUI/FButton/FButton";
+import API from "utils/API";
 import { logger } from "logger";
-
-//import "./EditableParagraph.scss";
 import { colors } from "colors";
 import isInBrowser from "lib/isInBrowser";
+import styles from "./EditableParagraph.module.scss";
 
 // const styles = {
 //   media: {
@@ -306,7 +305,7 @@ class EditableParagraph extends Component {
 const AddModuleBtn = (props) => {
   if (props.type !== "etape") {
     return (
-      <div className="plus-wrapper" style={{ marginBottom: "24px" }}>
+      <div className={styles.plus_wrapper} style={{ marginBottom: "24px" }}>
         <FButton
           onClick={() =>
             props.addItem(props.keyValue, "accordion", props.subkey)

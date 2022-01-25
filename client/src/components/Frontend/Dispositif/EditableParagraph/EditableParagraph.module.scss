@@ -1,10 +1,10 @@
 @import 'src/scss/colors.scss';
 
-.plus-wrapper{
-  .dropdown-menu{
+.plus_wrapper{
+  :global(.dropdown-menu){
     background: #3D3D3D;
     border-radius: 8px;
-  
+
     .dropdown-item{
       font-size: 14px;
       color: #FFFFFF;
