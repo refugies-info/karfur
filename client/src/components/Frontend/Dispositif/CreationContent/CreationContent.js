@@ -8,26 +8,24 @@ import {
   Label,
   Spinner,
 } from "reactstrap";
-
-import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
-import FButton from "../../../FigmaUI/FButton/FButton";
-import FInput from "../../../FigmaUI/FInput/FInput";
-
-// import "./CreationContent.scss";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import FButton from "components/FigmaUI/FButton/FButton";
+import FInput from "components/FigmaUI/FInput/FInput";
 import { colors } from "colors";
+import styles from "./CreationContent.module.scss";
 
 const CreationContent = (props) => {
   const [banner, setBanner] = useState(true);
   const [isChecked, setIsChecked] = useState(false);
   return (
-    <div className="creation-content">
-      <div className="form-field">
+    <div className={styles.container}>
+      <div className={styles.form_field}>
         <b>Nom de la nouvelle structure</b>
         <Row>
           <Col lg="9" md="9" sm="12" xs="12">
-            <InputGroup>
+            <InputGroup className={styles.input_group}>
               <EVAIcon
-                className="input-icon"
+                className={styles.input_icon}
                 name="pricetags-outline"
                 fill={colors.noir}
               />
@@ -43,12 +41,12 @@ const CreationContent = (props) => {
           </Col>
         </Row>
       </div>
-      <div className="form-field">
+      <div className={styles.form_field}>
         <b style={{ fontSize: "22px" }}>Responsable à contacter</b>
         {banner ? (
-          <div className="warning-bloc bg-focus mt-16 mb-8">
-            <EVAIcon name="info" fill={colors.blanc} className="info-icon" />
-            <div onClick={() => setBanner(false)} className={"info-icon-close"}>
+          <div className="bg-focus mt-16 mb-8">
+            <EVAIcon name="info" fill={colors.blanc} />
+            <div onClick={() => setBanner(false)}>
               <EVAIcon name="close-outline" fill={colors.blanc} />
             </div>
             <p style={{ marginBottom: 0 }}>
@@ -65,7 +63,7 @@ const CreationContent = (props) => {
             <b>Nom et prénom&#42;</b>
             <InputGroup>
               <EVAIcon
-                className="input-icon"
+                className={styles.input_icon}
                 name="person-outline"
                 fill={colors.noir}
               />
@@ -83,7 +81,7 @@ const CreationContent = (props) => {
             <b>Téléphone&#42;</b>
             <InputGroup>
               <EVAIcon
-                className="input-icon"
+                className={styles.input_icon}
                 name="phone-outline"
                 fill={colors.noir}
               />
@@ -101,7 +99,7 @@ const CreationContent = (props) => {
         <b style={{ marginTop: "16px" }}>Email&#42;</b>
         <InputGroup>
           <EVAIcon
-            className="input-icon"
+            className={styles.input_icon}
             name="at-outline"
             fill={colors.noir}
           />
@@ -117,7 +115,7 @@ const CreationContent = (props) => {
         <b style={{ marginTop: "16px" }}>Est-ce que c'est vous ?</b>
         <FormGroup
           check
-          className="ma-structure mb-10"
+          className="mb-10"
           style={
             isChecked
               ? {
@@ -152,15 +150,15 @@ const CreationContent = (props) => {
       {props.adminView && (
         <>
           {props._id && props.createur && props.createur._id && (
-            <div className="creator-wrapper">
+            <div className={styles.creator_wrapper}>
               {props.createur.picture && props.createur.picture.secure_url && (
                 <img
-                  className="img-circle mr-10"
+                  className={styles.img + " mr-10"}
                   src={props.createur.picture.secure_url}
                   alt="profile"
                 />
               )}
-              <div className="creator-info">
+              <div>
                 <p>
                   <b>Nom d'utilisateur : </b> {props.createur.username}
                 </p>
@@ -174,7 +172,7 @@ const CreationContent = (props) => {
             </div>
           )}
           <FormGroup row>
-            <Col md="3" className="status-label">
+            <Col md="3">
               <Label htmlFor="select">
                 <b>Administrateur de la structure</b>
               </Label>
@@ -198,7 +196,7 @@ const CreationContent = (props) => {
               </Input>
             </Col>
           </FormGroup>
-          <div className="form-field">
+          <div className={styles.form_field}>
             <b>Informations administratives</b>
             <span className="float-right">
               Renseignées par un administrateur uniquement
@@ -207,7 +205,7 @@ const CreationContent = (props) => {
               <Col lg="6" md="6" sm="12" xs="12">
                 <InputGroup>
                   <EVAIcon
-                    className="input-icon"
+                    className={styles.input_icon}
                     name="award-outline"
                     fill={colors.noir}
                   />
@@ -223,7 +221,7 @@ const CreationContent = (props) => {
               <Col lg="6" md="6" sm="12" xs="12">
                 <InputGroup>
                   <EVAIcon
-                    className="input-icon"
+                    className={styles.input_icon}
                     name="award-outline"
                     fill={colors.noir}
                   />
@@ -239,7 +237,7 @@ const CreationContent = (props) => {
             </Row>
             <InputGroup>
               <EVAIcon
-                className="input-icon"
+                className={styles.input_icon}
                 name="pin-outline"
                 fill={colors.noir}
               />
@@ -253,7 +251,7 @@ const CreationContent = (props) => {
             </InputGroup>
             <InputGroup>
               <EVAIcon
-                className="input-icon"
+                className={styles.input_icon}
                 name="at-outline"
                 fill={colors.noir}
               />
@@ -267,12 +265,11 @@ const CreationContent = (props) => {
             </InputGroup>
           </div>
 
-          <div className="form-field inline-div">
+          <div className={`${styles.form_field} ${styles.inline_div}`}>
             <b>Logo de la structure</b>
             {(props.picture || {}).secure_url ? (
-              <div className="image-wrapper">
+              <div className={styles.image_wrapper}>
                 <Input
-                  className="file-input"
                   type="file"
                   id="picture"
                   name="structure"
@@ -280,7 +277,7 @@ const CreationContent = (props) => {
                   onChange={props.handleFileInputChange}
                 />
                 <img
-                  className="sponsor-img"
+                  className={styles.sponsor_img}
                   src={(props.picture || {}).secure_url}
                   alt={props.acronyme}
                 />
@@ -290,12 +287,11 @@ const CreationContent = (props) => {
               </div>
             ) : (
               <FButton
-                className="upload-btn"
+                className={styles.upload_btn}
                 type="theme"
                 name="upload-outline"
               >
                 <Input
-                  className="file-input"
                   type="file"
                   id="picture"
                   name="structure"
@@ -309,11 +305,11 @@ const CreationContent = (props) => {
               </FButton>
             )}
           </div>
-          <div className="form-field">
+          <div className={styles.form_field}>
             <b>Texte alternatif à l’image</b>
             <InputGroup>
               <EVAIcon
-                className="input-icon"
+                className={styles.input_icon}
                 name="eye-off-outline"
                 fill={colors.noir}
               />

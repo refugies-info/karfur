@@ -1,6 +1,6 @@
 @import 'src/scss/colors.scss';
 
-.creation-content{
+.container {
   .compulsory{
     border-radius: 12px;
     padding: 16px;
@@ -8,37 +8,40 @@
     right: 0;
     top: 10px;
   }
-  .form-field{
+
+  .form_field{
     margin-bottom: 10px;
 
-    &.inline-div{
+    &.inline_div{
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 20px;
     }
-    .input-group{
-      margin-top: 10px;
-      input{
-        border-radius: 12px;
-        border: none;
-        padding: 10px 10px 10px 40px;
-      }
-      .input-icon{
-        position: absolute;
-        top: 24px !important;
-        left: 10px;
-        z-index: 4;
-        line-height: 20px;
-      }
-    }
+  }
 
-    .image-wrapper{
-      position:relative;
-      .sponsor-img{
-        max-height: 40px;
-        max-width: 110px;
-      }
+  .image_wrapper{
+    position:relative;
+
+    .sponsor_img{
+      max-height: 40px;
+      max-width: 110px;
+    }
+  }
+
+  .input_group{
+    margin-top: 10px;
+    input{
+      border-radius: 12px;
+      border: none;
+      padding: 10px 10px 10px 40px;
+    }
+    .input_icon{
+      position: absolute;
+      top: 24px !important;
+      left: 10px;
+      z-index: 4;
+      line-height: 20px;
     }
   }
 
@@ -77,7 +80,7 @@
     top: 0;
   }
 
-  .creator-wrapper{
+  .creator_wrapper{
     display: flex;
     border: 0.5px solid $grisFonce;
     border-radius: 12px;
@@ -85,7 +88,7 @@
       padding: 20px;
       margin-bottom: 10px;
     }
-    .img-circle{
+    .img{
       max-width: 100px;
       max-height: 100px;
     }
