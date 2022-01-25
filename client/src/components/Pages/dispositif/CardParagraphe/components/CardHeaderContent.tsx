@@ -7,6 +7,7 @@ import {
   DropdownItem,
 } from "reactstrap";
 import { DispositifContent } from "types/interface";
+import styles from "./CardHeaderContent.module.scss";
 
 interface Props {
   subitem: DispositifContent;
@@ -47,7 +48,7 @@ export const CardHeaderContent = (props: Props) => {
     return (
       <>
         {infoCardIcon(props.subitem.titleIcon, "#FFFFFF")}
-        <span className="header-content">
+        <span className={styles.header_content}>
           {title && props.t("Dispositif." + title, title)}
         </span>
       </>
@@ -59,10 +60,10 @@ export const CardHeaderContent = (props: Props) => {
     <ButtonDropdown isOpen={props.isDropdownOpen} toggle={props.toggleDropdown}>
       {
         // title and icon
-        <DropdownToggle caret={!props.disableEdit} className="header-value">
-          <div className="icon-title">
+        <DropdownToggle caret={!props.disableEdit} className={styles.header_value}>
+          <div className={styles.icon_title}>
             {infoCardIcon(props.subitem.titleIcon, "#FFFFFF")}
-            <span className="header-content">{title}</span>
+            <span className={styles.header_content}>{title}</span>
           </div>
         </DropdownToggle>
       }
@@ -76,9 +77,9 @@ export const CardHeaderContent = (props: Props) => {
                 // @ts-ignore
                 id={key}
               >
-                <div className="icon-title">
+                <div className={styles.icon_title}>
                   {infoCardIcon(cardTitle.titleIcon)}
-                  <span className="header-content">{cardTitle.title}</span>
+                  <span className={styles.header_content}>{cardTitle.title}</span>
                 </div>
               </DropdownItem>
             );

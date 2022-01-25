@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Col, Card, CardBody, CardHeader, CardFooter } from "reactstrap";
 import Swal from "sweetalert2";
+import _ from "lodash";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import { Props } from "./CardParagraphe.container";
 import { DispositifContent, Tag } from "types/interface";
 import { filtres, cardTitlesDispositif, cardTitlesDemarche } from "data/dispositif";
-import _ from "lodash";
 import { FrenchLevelModal } from "../FrenchLevelModal";
 import GeolocModal from "components/Modals/GeolocModal/GeolocModal";
 import API from "utils/API";
@@ -20,6 +20,7 @@ import { CardBodyContent } from "./components/CardBodyContent";
 import { CardFooterContent } from "./components/CardFooterContent";
 import { CardHeaderContent } from "./components/CardHeaderContent";
 import { isMobile } from "react-device-detect";
+import styles from "./CardParagraphe.module.scss";
 
 // difficult to type
 type Element = any;
@@ -202,15 +203,15 @@ export class CardParagraphe extends Component<Props> {
         safeMainTag;
 
       if (subitem.title === "Combien ça coûte ?")
-        return className + "-" + subitem.free;
-      return className;
+        return styles[className + "-" + subitem.free];
+      return styles[className];
     };
 
     // returns infocards using components defined above, mainly header, content and title
     return (
       <>
         <Col
-          className={"card-col"}
+          className={styles.card_col}
           onMouseEnter={() =>
             this.props.updateUIArray(
               this.props.keyValue,
@@ -220,10 +221,10 @@ export class CardParagraphe extends Component<Props> {
           }
         >
           <Card
-            className={computeCardClassName()}
+            className={`${styles.card} ${computeCardClassName()}`}
             id={"info-card-" + this.props.keyValue + "-" + subkey}
           >
-            <CardHeader className="backgroundColor-darkColor">
+            <CardHeader className={styles.card_header + " backgroundColor-darkColor"}>
               <CardHeaderContent
                 subitem={subitem}
                 disableEdit={disableEdit}
@@ -234,8 +235,8 @@ export class CardParagraphe extends Component<Props> {
                 typeContenu={this.props.typeContenu}
               />
             </CardHeader>
-            <CardBody>
-              <span className="color-darkColor card-custom-title">
+            <CardBody className={styles.card_body}>
+              <span className={styles.card_title + " color-darkColor"}>
                 <CardBodyContent
                   subitem={subitem}
                   isOptionsOpen={this.state.isOptionsOpen}
@@ -275,7 +276,7 @@ export class CardParagraphe extends Component<Props> {
             </CardBody>
             {
               // footer for card Niveau de français to assess level in a website
-              <CardFooter>
+              <CardFooter className={styles.card_footer}>
                 <CardFooterContent
                   subitem={subitem}
                   disableEdit={disableEdit}
@@ -292,7 +293,7 @@ export class CardParagraphe extends Component<Props> {
                   this.props.typeContenu === "demarche" &&
                   subitem.title === "Zone d'action"
                 ) && (
-                  <div className="card-icons">
+                  <div className={styles.card_icons}>
                     <div
                       onClick={() =>
                         this.props.deleteCard(this.props.keyValue, subkey)
@@ -302,7 +303,6 @@ export class CardParagraphe extends Component<Props> {
                         size="xlarge"
                         name="close-circle"
                         fill={colors.noirCD}
-                        className="delete-icon"
                       />
                     </div>
                   </div>

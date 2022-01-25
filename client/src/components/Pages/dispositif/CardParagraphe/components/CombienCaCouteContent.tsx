@@ -8,6 +8,8 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
+import parentStyles from "../CardParagraphe.module.scss";
+import styles from "./CombienCaCouteContent.module.scss";
 
 interface Props {
   disableEdit: boolean;
@@ -34,7 +36,7 @@ export const CombienCaCouteContent = (props: Props) => {
   return (
     <>
       {props.disableEdit ? (
-        <div className="card-custom-title">
+        <div className={parentStyles.card_title}>
           {props.subitem.free
             ? props.t("Dispositif.Gratuit", "Gratuit")
             : props.t("Dispositif.Payant", "Payant")}
@@ -49,13 +51,13 @@ export const CombienCaCouteContent = (props: Props) => {
         />
       )}
       {!props.subitem.free && (
-        <span className="color-darkColor price-details">
+        <span className={"color-darkColor " + styles.price_details}>
           {props.disableEdit ? (
             <span>{props.subitem.price}</span>
           ) : (
             <Input
               type="number"
-              className="color-darkColor age-input"
+              className={"color-darkColor " + parentStyles.age_input}
               disabled={props.disableEdit}
               value={props.subitem.price}
               onMouseUp={() =>
@@ -75,7 +77,7 @@ export const CombienCaCouteContent = (props: Props) => {
           <ButtonDropdown
             isOpen={!props.disableEdit && props.isOptionsOpen}
             toggle={props.toggleOptions}
-            className="content-title price-frequency"
+            className={`${parentStyles.content_title} ${styles.price_frequency}`}
           >
             <DropdownToggle caret={!props.disableEdit}>
               <span>

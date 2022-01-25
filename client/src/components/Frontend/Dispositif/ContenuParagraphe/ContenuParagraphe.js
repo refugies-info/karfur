@@ -19,6 +19,7 @@ import {  cardTitlesDispositif,
   infocardsDemarcheTitles
 } from "data/dispositif";
 import { isMobile } from "react-device-detect";
+import styles from "ContenuParagraphe.module.scss";
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>
@@ -80,7 +81,7 @@ const contenuParagraphe = (props) => {
 
   return (
     <div
-      className={item.type === "cards" ? "row cards " : "sous-paragraphe"}
+      className={item.type === "cards" ? "row " + styles.cards : "sous-paragraphe"}
       style={isMobile ? { overflowX: "auto", overflowY: "hidden" } : {}}
     >
       {isMobile && item.type === "cards" && item.children.length > 1 && (

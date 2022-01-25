@@ -8,6 +8,7 @@ import FButton from "components/FigmaUI/FButton/FButton";
 import { getTextForAgeInfocard, jsUcfirstInfocards } from "./functions";
 import ContentEditable from "react-contenteditable";
 import { CombienCaCouteContent } from "./CombienCaCouteContent";
+import styles from "./CardBodyContent.module.scss";
 
 const TitleTextBody = styled.p`
   font-size: 22px;
@@ -175,7 +176,7 @@ export const CardBodyContent = (props: Props) => {
     <ContentEditable
       //@ts-ignore
       id={props.keyValue}
-      className="card-input"
+      className={styles.card_input}
       data-subkey={props.subkey}
       data-target="contentTitle"
       html={texte} // innerHTML of the editable div

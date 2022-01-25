@@ -1,0 +1,27 @@
+.add_card {
+  background-color: rgba(0, 0, 0, 0.05);
+  text-align: center;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    .add_sign {
+      opacity: 1;
+      font-size: 90px;
+      -webkit-transition: opacity 0.4s ease, font-size 0.4s ease;
+      -moz-transition: opacity 0.4s ease, font-size 0.4s ease;
+      -o-transition: opacity 0.4s ease, font-size 0.4s ease;
+      transition: opacity 0.4s ease, font-size 0.4s ease;
+    }
+  }
+  .add_sign {
+    font-size: 60px;
+    font-weight: bold;
+    opacity: 0.5;
+  }
+  .card_body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: hsl(0, 0%, 20%);
+  }
+}

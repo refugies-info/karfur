@@ -11,6 +11,8 @@ import { DispositifContent } from "types/interface";
 import { jsUcfirstInfocards } from "./functions";
 import styled from "styled-components";
 import FButton from "components/FigmaUI/FButton/FButton";
+import parentStyles from "../CardParagraphe.module.scss";
+import styles from "./CardParagrapheComponent.module.scss";
 
 export const GeolocTooltipItem = (props: any) => {
   const { item, id } = props;
@@ -63,7 +65,7 @@ export const AgeRequisEditionContentTitle = (
             {i < arr.length - 1 && (
               <Input
                 type="number"
-                className="color-darkColor age-input"
+                className={"color-darkColor "+parentStyles.age_input}
                 value={
                   (arr[0] === "De " && i === 0) || arr[0] === "Plus de "
                     ? props.subitem.bottomValue
@@ -112,7 +114,7 @@ export const DropDownContent = (props: DropDownContentProps) => (
   <ButtonDropdown
     isOpen={props.isOptionsOpen}
     toggle={props.toggleOptions}
-    className="content-title"
+    className={parentStyles.content_title}
   >
     <DropdownToggle caret={!props.disableEdit}>
       {props.subitem.title === "Âge requis" ? (
@@ -156,7 +158,7 @@ interface FrenchCECRLevelProps {
 const niveaux = ["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"];
 
 export const FrenchCECRLevel = (props: FrenchCECRLevelProps) => (
-  <div className="color-darkColor niveaux-wrapper">
+  <div className={"color-darkColor " + styles.niveaux_wrapper}>
     {niveaux
       .filter((nv) =>
         (props.subitem.niveaux || []).some((x: string) => x === nv)
@@ -185,7 +187,7 @@ const TitleTextBody = styled.p`
 `;
 
 export const DepartmentsSelected = (props: DepartmentsSelectedProps) => (
-  <div className="color-darkColor niveaux-wrapper">
+  <div className={"color-darkColor " + styles.niveaux_wrapper}>
     {props.subitem.departments && props.subitem.departments.length > 1 ? (
       props.subitem.departments.map((nv, key) => (
         <GeolocTooltipItem key={key} item={nv} id={key} />
