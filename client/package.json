@@ -36,7 +36,7 @@
     "node-sass": "^4.13.1",
     "query-string": "^7.1.0",
     "rc-time-picker": "^3.7.3",
-    "react": "^16.8.0",
+    "react": "^17.0.2",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-app-env": "^1.2.3",
     "react-autosuggest": "^9.4.3",
@@ -44,7 +44,7 @@
     "react-csv": "^1.1.1",
     "react-dependent-script": "^1.1.2",
     "react-device-detect": "^1.17.0",
-    "react-dom": "^16.8.0",
+    "react-dom": "^17.0.2",
     "react-draft-wysiwyg": "^1.14.7",
     "react-eva-icons": "0.0.7",
     "react-flippy": "^1.1.0",
@@ -84,15 +84,13 @@
     "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage",
     "test:types": "tsc --noEmit",
     "test:unit": "jest --runInBand",
-    "test:lint": "eslint . --ext ts,tsx,js --quiet --cache",
+    "test:lint": "next lint",
+    "fix:lint": "next lint --fix",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "proxy": "http://localhost:8000",
   "bugs": {
     "url": "https://github.com/entrepreneur-interet-general/karfur/issues"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": [
     ">0.2%",
@@ -101,12 +99,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@babel/core": "^7.16.7",
-    "@babel/plugin-proposal-class-properties": "^7.16.7",
-    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/preset-env": "^7.16.8",
-    "@babel/preset-react": "^7.16.7",
-    "@babel/preset-typescript": "^7.16.7",
+    "@babel/core": "^7.16.12",
     "@next/eslint-plugin-next": "^12.0.8",
     "@types/autosuggest-highlight": "^3.2.0",
     "@types/file-saver": "^2.0.1",
@@ -121,7 +114,7 @@
     "@types/react-redux": "^7.1.9",
     "@types/react-router-hash-link": "^1.2.1",
     "@types/react-scrollspy": "^3.3.2",
-    "@types/reactstrap": "^8.4.2",
+    "@types/reactstrap": "^7.1.6",
     "@types/recompose": "^0.30.7",
     "@types/styled-components": "^5.1.1",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
@@ -131,9 +124,10 @@
     "enzyme-adapter-react-16": "^1.9.0",
     "enzyme-to-json": "^3.3.5",
     "eslint": "^8.7.0",
-    "eslint-plugin-react": "^7.20.0",
+    "eslint-config-next": "^12.0.8",
     "jest-styled-components": "^6.3.4",
     "papaparse": "^5.3.0",
+    "postcss": "^8.4.5",
     "react-test-renderer": "^16.7.0",
     "redux-mock-store": "^1.5.4",
     "redux-saga-test-plan": "^4.0.0-rc.3",

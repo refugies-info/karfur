@@ -5,6 +5,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import traductionIconBlanc from "assets/icon_traduction_blanc.svg";
 import icon_mobilisation from "assets/icon_mobilisation.svg";
 import i18n from "i18n";
+import Image from "next/image";
 
 declare const window: Window;
 interface Props {
@@ -73,8 +74,7 @@ export const HomePageMobileSection = (props: Props) => {
 
   return (
     <SectionContainer backgroundColor={props.backgroundColor}>
-      <img
-        alt="illustration section"
+      <div
         style={
           props.text === "Homepage.Contribuer à la traduction"
             ? { marginLeft: "-15px" }
@@ -82,8 +82,12 @@ export const HomePageMobileSection = (props: Props) => {
             ? { marginLeft: "40px" }
             : undefined
         }
-        src={props.image}
-      />
+      >
+        <Image
+          alt="illustration section"
+          src={props.image}
+        />
+      </div>
       <TitleContainer textColor={props.textColor}>
         {props.t(props.title, props.defaultTitle)}
       </TitleContainer>
@@ -104,9 +108,9 @@ export const HomePageMobileSection = (props: Props) => {
               size={"large"}
             />
           ) : props.iconType === "traduction" ? (
-            <img src={traductionIconBlanc} alt="picto-traduction" />
+            <Image src={traductionIconBlanc} alt="picto-traduction" />
           ) : props.iconType === "territoire" ? (
-            <img src={icon_mobilisation} alt="picto-mobilisation" />
+            <Image src={icon_mobilisation} alt="picto-mobilisation" />
           ) : null}
         </IconContainer>
 

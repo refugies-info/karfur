@@ -97,7 +97,7 @@ const LeftContainer = styled.div`
   margin-top: 112px;
 `;
 
-export const AnnuaireCreateComponent = (props: Props) => {
+const AnnuaireCreate = (props: Props) => {
   const [step, setStep] = useState(1);
   const [showTutoModal, setShowTutoModal] = useState(false);
   const [hasModifications, setHasModifications] = useState(false);
@@ -300,3 +300,5 @@ export const AnnuaireCreateComponent = (props: Props) => {
     </MainContainer>
   );
 };
+
+export default AnnuaireCreate;

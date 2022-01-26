@@ -1,11 +1,12 @@
 import React from "react";
 import { Modal, ModalBody } from "reactstrap";
 import { useTranslation } from "react-i18next";
-import { FButtonMobile } from "../../FigmaUI/FButtonMobile/FButtonMobile";
-import { colors } from "../../../colors";
-import illuMobileApp from "../../../assets/illu_mobile_app.png";
 import { isIOS } from "react-device-detect";
-import { iosStoreLink, androidStoreLink } from "../../../assets/storeLinks";
+import Image from "next/image";
+import { FButtonMobile } from "components/FigmaUI/FButtonMobile/FButtonMobile";
+import { colors } from "colors";
+import illuMobileApp from "assets/illu_mobile_app.png";
+import { iosStoreLink, androidStoreLink } from "assets/storeLinks";
 import styles from "./MobileAppModal.module.scss";
 
 interface Props {
@@ -27,7 +28,7 @@ const LanguageModal = (props: Props) => {
       <ModalBody className={styles.modal_body}>
         <section>
           <a href={storeLink}>
-            <img src={illuMobileApp} width={268} height={232} />
+            <Image src={illuMobileApp} width={268} height={232} alt="mobile app" />
           </a>
           <h1>
             {t(

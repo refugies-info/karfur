@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from "react";
-import { Provider } from 'react-redux'
-import type { AppProps } from 'next/app'
-import type { NextPage } from 'next'
+import { Provider } from "react-redux"
+import type { AppProps } from "next/app"
+import type { NextPage } from "next"
 
 import { store } from "../services/configureStore";
 import Layout from "components/Layout/Layout";

@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import Link from 'next/link'
+import Link from "next/link"
 import styles from "scss/components/login.module.scss";
 
 interface Props {

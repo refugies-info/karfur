@@ -27,30 +27,31 @@ const StyledButton = styled.div`
 `;
 
 const refs: any = {};
-interface Props{
-  showMapButton: (val: boolean) => void
-  disableEdit: boolean
-  displayTuto: boolean
-  updateUIArray: any
-  subitem: any
-  setMarkers: any
-  keyValue: string
-  subkey: string
-  toggleShareContentOnMobileModal: any
-  toggleTutorielModal: any
-  deleteCard: any
+interface Props {
+  showMapButton: (val: boolean) => void;
+  disableEdit: boolean;
+  displayTuto: boolean;
+  updateUIArray: any;
+  subitem: any;
+  setMarkers: any;
+  keyValue: string;
+  subkey: string;
+  toggleShareContentOnMobileModal: any;
+  toggleTutorielModal: any;
+  deleteCard: any;
 }
-const MapParagraphe  = (props: Props) => {
-    const [center, setCenter] = useState({ lat: 48.856614, lng: 2.3522219 });
-    const [selectedMarker, setSelectedMarker] = useState<any>(null);
-    const [showSidebar, setShowSidebar] = useState(false);
+const MapParagraphe = (props: Props) => {
+  const [center, setCenter] = useState({ lat: 48.856614, lng: 2.3522219 });
+  const [selectedMarker, setSelectedMarker] = useState<any>(null);
+  const [showSidebar, setShowSidebar] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
   const { t } = useTranslation();
 
+  const { showMapButton } = props;
   useEffect(() => {
-    props.showMapButton(false);
-  }, []);
+    showMapButton(false);
+  }, [showMapButton]);
 
   const onSearchBoxMounted = (ref: any) => (refs.searchBox = ref);
 
@@ -108,14 +109,10 @@ const MapParagraphe  = (props: Props) => {
 
     if (isMarkerAlreadyInMarkers) {
       newMarkers = props.subitem.markers
-        .filter(
-          (marker: any) => marker.place_id !== selectedMarker.place_id
-        )
+        .filter((marker: any) => marker.place_id !== selectedMarker.place_id)
         .concat([selectedMarker]);
     } else {
-      newMarkers = props.subitem.markers.concat([
-        selectedMarker,
-      ]);
+      newMarkers = props.subitem.markers.concat([selectedMarker]);
     }
 
     props.setMarkers(newMarkers, props.keyValue, props.subkey);
@@ -132,144 +129,119 @@ const MapParagraphe  = (props: Props) => {
     setSelectedMarker(null);
   };
 
-    const markersToDisplay = selectedMarker
-      ? props.subitem.markers.concat([selectedMarker])
-      : props.subitem.markers;
-    return (
-      <div
-        className={styles.map}
-        id="map-paragraphe"
-        onMouseEnter={() => props.updateUIArray(-5)}
-      >
-        {(markersToDisplay.length || !props.disableEdit) && (
-          <div>
-            {isMobile && (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  marginTop: -30,
-                  marginBottom: 20,
-                }}
+  const markersToDisplay = selectedMarker
+    ? props.subitem.markers.concat([selectedMarker])
+    : props.subitem.markers;
+  return (
+    <div
+      className={styles.map}
+      id="map-paragraphe"
+      onMouseEnter={() => props.updateUIArray(-5)}
+    >
+      {(markersToDisplay.length || !props.disableEdit) && (
+        <div>
+          {isMobile && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: -30,
+                marginBottom: 20,
+              }}
+            >
+              <FButton
+                type="outline-black"
+                name={"share-outline"}
+                onClick={props.toggleShareContentOnMobileModal}
               >
-                <FButton
-                  type="outline-black"
-                  name={"share-outline"}
-                  onClick={props.toggleShareContentOnMobileModal}
-                >
+                {t("Dispositif.Partager Fiche", "Partager la fiche")}
+              </FButton>
+            </div>
+          )}
+          <div className={styles.header}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                flex: 1,
+                alignItems: "center",
+              }}
+            >
+              <div style={{ marginLeft: isMobile ? 6 : 30 }}>
+                <EVAIcon name="pin-outline" className="mr-10" />
+                <b>
                   {t(
-                    "Dispositif.Partager Fiche",
-                    "Partager la fiche"
-                  )}
+                    "Dispositif.Trouver un interlocuteur",
+                    "Trouver un interlocuteur"
+                  )}{" "}
+                  :{" "}
+                </b>
+              </div>
+              {!props.disableEdit && props.displayTuto && (
+                <FButton
+                  type="tuto"
+                  name={"play-circle-outline"}
+                  onClick={() => props.toggleTutorielModal("Map")}
+                >
+                  Tutoriel
                 </FButton>
-              </div>
-            )}
-            <div className={styles.header}>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  flex: 1,
-                  alignItems: "center",
-                }}
-              >
-                <div style={{ marginLeft: isMobile ? 6 : 30 }}>
-                  <EVAIcon name="pin-outline" className="mr-10" />
-                  <b>
-                    {t(
-                      "Dispositif.Trouver un interlocuteur",
-                      "Trouver un interlocuteur"
-                    )}{" "}
-                    :{" "}
-                  </b>
-                </div>
-                {!props.disableEdit && props.displayTuto && (
-                  <FButton
-                    type="tuto"
-                    name={"play-circle-outline"}
-                    onClick={() => props.toggleTutorielModal("Map")}
-                  >
-                    Tutoriel
-                  </FButton>
-                )}
-              </div>
-              {!props.disableEdit && (
-                <EVAIcon
-                  onClick={() =>
-                    props.deleteCard(
-                      props.keyValue,
-                      props.subkey,
-                      "map"
-                    )
-                  }
-                  name="close-circle"
-                  fill={colors.error}
-                  size="xlarge"
-                  className={styles.remove_btn}
-                />
               )}
             </div>
-            <div className={styles.map_content}>
-              <div className={styles.container}>
-                <MapComponent
-                  onMarkerClick={handleMarkerClick}
-                  onClose={onClose}
-                  markers={markersToDisplay || []}
-                  onSearchBoxMounted={onSearchBoxMounted}
-                  onPlacesChanged={onPlacesChanged}
-                  disableEdit={props.disableEdit}
-                  handleChange={handleChange}
-                  // {...this.state} TODO : bug here
-                />
-              </div>
+            {!props.disableEdit && (
+              <EVAIcon
+                onClick={() =>
+                  props.deleteCard(props.keyValue, props.subkey, "map")
+                }
+                name="close-circle"
+                fill={colors.error}
+                size="xlarge"
+                className={styles.remove_btn}
+              />
+            )}
+          </div>
+          <div className={styles.map_content}>
+            <div className={styles.container}>
+              <MapComponent
+                onMarkerClick={handleMarkerClick}
+                onClose={onClose}
+                markers={markersToDisplay || []}
+                onSearchBoxMounted={onSearchBoxMounted}
+                onPlacesChanged={onPlacesChanged}
+                disableEdit={props.disableEdit}
+                handleChange={handleChange}
+                // {...this.state} TODO : bug here
+              />
+            </div>
 
-              <div
-                className={`${styles.right_menu} ${showSidebar ? styles.slide : styles.flip}`}
-              >
-                {markerInfo.map((field, key) => {
-                  if (
-                    field.item === "description" &&
+            <div
+              className={`${styles.right_menu} ${
+                showSidebar ? styles.slide : styles.flip
+              }`}
+            >
+              {markerInfo.map((field, key) => {
+                if (
+                  field.item === "description" &&
+                  selectedMarker &&
+                  (selectedMarker.description ===
+                    "Saisir des informations complémentaires si besoin" ||
+                    !selectedMarker.description) &&
+                  props.disableEdit
+                ) {
+                  return;
+                } else if (
+                  ((field.item === "telephone" &&
                     selectedMarker &&
-                    (selectedMarker.description ===
-                      "Saisir des informations complémentaires si besoin" ||
-                      !selectedMarker.description) &&
-                      props.disableEdit
-                  ) {
-                    return;
-                  } else if (
-                    ((field.item === "telephone" &&
+                    (!selectedMarker.telephone ||
+                      selectedMarker.telephone === "00 11 22 33 44" ||
+                      selectedMarker.telephone === "Non renseigné")) ||
+                    (key === 4 &&
                       selectedMarker &&
-                      (!selectedMarker.telephone ||
-                        selectedMarker.telephone === "00 11 22 33 44" ||
-                        selectedMarker.telephone === "Non renseigné")) ||
-                      (key === 4 &&
-                        selectedMarker &&
-                        (!selectedMarker.email ||
-                          selectedMarker.email === "ajouter@votreemail.fr" ||
-                          selectedMarker.email === "Non renseigné"))) &&
-                          props.disableEdit
-                  ) {
-                    return (
-                      <React.Fragment key={key}>
-                        <label>
-                          {t("Dispositif." + field.label, field.label)}
-                          {field.mandatory && <sup>*</sup>}
-                        </label>
-                        <ContentEditable
-                          html={"Non renseigné" || ""}
-                          disabled={props.disableEdit}
-                          onChange={(e) =>
-                            handleMarkerChange(e, field.item)
-                          }
-                          className={
-                            styles.marker_input + " color-darkColor " + field.customClass
-                          }
-                          placeholder="test"
-                        />
-                      </React.Fragment>
-                    );
-                  }
+                      (!selectedMarker.email ||
+                        selectedMarker.email === "ajouter@votreemail.fr" ||
+                        selectedMarker.email === "Non renseigné"))) &&
+                  props.disableEdit
+                ) {
                   return (
                     <React.Fragment key={key}>
                       <label>
@@ -277,64 +249,86 @@ const MapParagraphe  = (props: Props) => {
                         {field.mandatory && <sup>*</sup>}
                       </label>
                       <ContentEditable
-                        html={
-                          selectedMarker && selectedMarker[field.item]
-                            ? selectedMarker[field.item]
-                            : ""
-                        }
-                        disabled={
-                          props.disableEdit ||
-                          ["vicinity", "address"].includes(field.item)
-                        }
+                        html={"Non renseigné" || ""}
+                        disabled={props.disableEdit}
                         onChange={(e) => handleMarkerChange(e, field.item)}
                         className={
-                          styles.marker_input + " color-darkColor " + field.customClass
+                          styles.marker_input +
+                          " color-darkColor " +
+                          field.customClass
                         }
-                        placeholder={field.placeholder}
+                        placeholder="test"
                       />
                     </React.Fragment>
                   );
-                })}
-                {!props.disableEdit && (
-                  <>
-                    <FButton
-                      onClick={deleteSelectedMarker}
-                      type="error"
-                      name="trash"
-                      className={styles.delete_btn}
-                    >
-                      Supprimer
-                    </FButton>
-                    <FButton
-                      onClick={validateMarker}
-                      type="theme"
-                      name="checkmark-circle-2-outline"
-                      className={styles.validate_btn}
-                    >
-                      {t("Valider", "Valider")}
-                    </FButton>
-                  </>
-                )}
-                {isMobile && (
-                  <StyledButton onClick={onClose}>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <EVAIcon name="checkmark" className="mr-10" />
-                      {t("Ok", "Ok")}
-                    </div>
-                  </StyledButton>
-                )}
-              </div>
+                }
+                return (
+                  <React.Fragment key={key}>
+                    <label>
+                      {t("Dispositif." + field.label, field.label)}
+                      {field.mandatory && <sup>*</sup>}
+                    </label>
+                    <ContentEditable
+                      html={
+                        selectedMarker && selectedMarker[field.item]
+                          ? selectedMarker[field.item]
+                          : ""
+                      }
+                      disabled={
+                        props.disableEdit ||
+                        ["vicinity", "address"].includes(field.item)
+                      }
+                      onChange={(e) => handleMarkerChange(e, field.item)}
+                      className={
+                        styles.marker_input +
+                        " color-darkColor " +
+                        field.customClass
+                      }
+                      placeholder={field.placeholder}
+                    />
+                  </React.Fragment>
+                );
+              })}
+              {!props.disableEdit && (
+                <>
+                  <FButton
+                    onClick={deleteSelectedMarker}
+                    type="error"
+                    name="trash"
+                    className={styles.delete_btn}
+                  >
+                    Supprimer
+                  </FButton>
+                  <FButton
+                    onClick={validateMarker}
+                    type="theme"
+                    name="checkmark-circle-2-outline"
+                    className={styles.validate_btn}
+                  >
+                    {t("Valider", "Valider")}
+                  </FButton>
+                </>
+              )}
+              {isMobile && (
+                <StyledButton onClick={onClose}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <EVAIcon name="checkmark" className="mr-10" />
+                    {t("Ok", "Ok")}
+                  </div>
+                </StyledButton>
+              )}
             </div>
           </div>
-        )}
-      </div>
-    );
-  }
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default MapParagraphe;

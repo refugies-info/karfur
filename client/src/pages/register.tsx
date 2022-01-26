@@ -77,7 +77,7 @@ const Register = () => {
   useEffect(() => {
     dispatch(fetchLanguesActionCreator());
     if (API.isAuth()) router.push("/");
-  }, [])
+  }, [dispatch, router])
 
   const [passwordVisible, setPasswordVisible] = useState(false);
   const togglePasswordVisibility = () => setPasswordVisible(!setPasswordVisible)
@@ -249,7 +249,7 @@ const Register = () => {
         setSubtitleText("")
         break;
     }
-  }, [step]);
+  }, [step, username, t]);
 
     return (
       <div className="app">

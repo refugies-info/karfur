@@ -143,7 +143,7 @@ const ContributionEngagement = () => {
             "En donnant à chacun la possibilité d’être facilement acteur et contributeur de la plateforme, à l’instar de Wikipédia, Réfugiés.info favorise de nouvelles formes de micro-engagement permettant à de nouveaux publics de s’engager pour une cause de solidarité, en faveur des réfugiés"
           )}
         </ContributionDetailDescription>
-        <Link href="/backend/user-dash-contrib">
+        <Link href="/backend/user-dash-contrib" passHref>
           <FButton type="fill-dark" tag="a">
             {t("Contribuer", "Contribuer")}
           </FButton>

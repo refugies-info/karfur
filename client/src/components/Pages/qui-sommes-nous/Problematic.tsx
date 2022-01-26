@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { assetsOnServer } from "assets/assetsOnServer";
+import Image from "next/image";
 
 const ProblematicContentContainer = styled.div`
   display: flex;
@@ -50,7 +51,7 @@ const Statut = () => {
   const { t } = useTranslation();
   return (
     <ProblematicDetailContainer>
-      <img
+      <Image
         src={assetsOnServer.quiSommesNous.statutRefugie}
         alt="statut-refugie"
       />
@@ -76,7 +77,7 @@ const Information = () => {
   const { t } = useTranslation();
   return (
     <ProblematicDetailContainer>
-      <img src={assetsOnServer.quiSommesNous.information} alt="info" />
+      <Image src={assetsOnServer.quiSommesNous.information} alt="info" />
       <TextContainer>
         <ProblematicDetailTitle>
           {t(
@@ -99,7 +100,7 @@ const Accompagnement = () => {
   const { t } = useTranslation();
   return (
     <ProblematicDetailContainer>
-      <img
+      <Image
         src={assetsOnServer.quiSommesNous.accompagnement}
         alt="accompagnement"
       />

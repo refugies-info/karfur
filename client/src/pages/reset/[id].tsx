@@ -97,7 +97,7 @@ const Reset = () => {
         setIsLoading(false);
         setIsError(true);
       });
-  }, []);
+  }, [dispatch, router.query.id]);
 
   const [passwordVisible, setPasswordVisible] = useState(false);
   const togglePasswordVisibility = () =>
@@ -176,7 +176,7 @@ const Reset = () => {
           )}
           ...
         </h5>
-        <Link href="/login">
+        <Link href="/login" passHref>
           <FButton tag="a" fill={colors.noir} name="arrow-back-outline">
             {t(
               "Login.Revenir à la page de connexion",

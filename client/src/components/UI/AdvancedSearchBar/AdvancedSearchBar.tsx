@@ -208,6 +208,7 @@ const AdvancedSearchBar = (props: Props) => {
     Event("USE_SEARCHBAR", value, "label");
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const delayedSearch = useCallback(
     debounce((q: string) => search(q), 500),
     [dispositifs]

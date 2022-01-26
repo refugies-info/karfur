@@ -3,18 +3,17 @@ import React, { Component } from "react";
 import { Spinner, Tooltip, Progress } from "reactstrap";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
-import { Editor } from "react-draft-wysiwyg";
+import dynamic from "next/dynamic"
 import h2p from "html2plaintext";
 import { EditorState, ContentState } from "draft-js";
-import htmlToDraft from "html-to-draftjs";
 import { convertToHTML } from "draft-convert";
 import DirectionProvider, {
   DIRECTIONS,
 } from "react-with-direction/dist/DirectionProvider";
 import _ from "lodash";
 
-import FButton from "../../../components/FigmaUI/FButton/FButton";
-import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
+import FButton from "components/FigmaUI/FButton/FButton";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import {
   boldBtn,
   italicBtn,
@@ -22,18 +21,28 @@ import {
   listBtn,
   logo_google,
   linkBtn,
-} from "../../../assets/figma/index";
-import marioProfile from "../../../assets/mario-profile.jpg";
-import { RejectTradModal } from "../../../components/Modals";
+} from "assets/figma/index";
+import marioProfile from "assets/mario-profile.jpg";
+import { RejectTradModal } from "components/Modals";
 import moment from "moment";
 
-import { colorAvancement } from "../../../components/Functions/ColorFunctions";
-import { customConvertOption } from "../data";
+import { colorAvancement } from "components/Functions/ColorFunctions";
+import { customConvertOption } from "data/dispositif";
 import { colors } from "colors";
 import produce from "immer";
 import styled from "styled-components";
 import isInBrowser from "lib/isInBrowser";
 import styles from "./SideTrad.module.scss";
+import Image from "next/image";
+
+const Editor = dynamic(
+  () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
+  { ssr: false }
+);
+const htmlToDraft = dynamic(
+  () => import("html-to-draftjs"),
+  { ssr: false }
+);
 
 const AlertModified = styled.div`
   height: 40px;
@@ -1205,7 +1214,7 @@ class SideTrad extends Component {
             {autosuggest && (
               <div className={styles.google_suggest}>
                 Suggestion par{" "}
-                <img src={logo_google} className={styles.google_logo} alt="google" />
+                <Image src={logo_google} className={styles.google_logo} alt="google" />
               </div>
             )}
           </div>
@@ -1219,7 +1228,7 @@ class SideTrad extends Component {
           this.state.availableListTrad.length > 0 ? (
             <>
               <div className={styles.trad_info}>
-                <img
+                <Image
                   src={(userId.picture || {}).secure_url || marioProfile}
                   className="profile-img-pin mr-10"
                   alt="profile"
@@ -1290,7 +1299,7 @@ class SideTrad extends Component {
           ) : modifiedNew ? (
             <>
               <div className={styles.trad_info}>
-                <img
+                <Image
                   src={(userId.picture || {}).secure_url || marioProfile}
                   className="profile-img-pin mr-10"
                   alt="profile"

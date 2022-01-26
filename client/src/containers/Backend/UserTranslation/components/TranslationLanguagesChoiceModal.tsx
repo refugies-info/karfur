@@ -14,7 +14,7 @@ import styled from "styled-components";
 import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import { ObjectId } from "mongodb";
+// import { ObjectId } from "mongodb";
 
 const Header = styled.div`
   font-weight: bold;
@@ -128,6 +128,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
   );
 
   const isLoading = isLoadingLangues || isLoadingUser;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (
@@ -193,20 +194,20 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
     }
 
     if (!isLangueSelected) {
-      const newSelectedLangues = selectedLangues.concat({
-        _id: new ObjectId(langue._id),
+      const newSelectedLangues: UserLanguage[] = []; /* selectedLangues.concat({
+        //@ts-ignore
+        _id: langue._id,
         i18nCode: langue.i18nCode,
         langueCode: langue.langueCode,
         langueFr: langue.langueFr,
         langueLoc: langue.langueLoc,
-      });
+      }); */
       setSelectedLangues(newSelectedLangues);
     }
   };
 
   const onReinitClick = () => setSelectedLangues([]);
 
-  const dispatch = useDispatch();
 
   const onValidate = () => {
     if (!user || !user.user) return;

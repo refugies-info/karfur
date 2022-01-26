@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import styles from "scss/pages/legal-pages.module.scss";
 
 const PolitiqueConfidentialite = () => {
@@ -8,8 +9,8 @@ const PolitiqueConfidentialite = () => {
       <h2>Qui sommes-nous ?</h2>
       <p>
         Ce site est édité par <strong>Refugies.info</strong>. Visitez la page{" "}
-        <a href="/mentions-legales/">Mentions légales</a> pour plus
-        d'informations.
+        <Link href="/mentions-legales/"><a>Mentions légales</a></Link> pour plus
+        d&apos;informations.
       </p>
 
       <h2>Utilisation des données personnelles collectées</h2>
@@ -18,12 +19,12 @@ const PolitiqueConfidentialite = () => {
         Si vous vous connectez à notre site web pour contribuer au contenu, vos
         données de connexion, telle que votre pseudo, votre adresse IP et les
         informations de l’agent utilisateur de votre navigateur sont collectés
-        pour nous aider à la détection des connexions indésirables. Vous n'avez
+        pour nous aider à la détection des connexions indésirables. Vous n&apos;avez
         pas besoin de communiquer votre email pour créer un compte utilisateur.
         Toutefois, une fois connecté, vous pourrez renseigner votre e-mail dans
         votre profil utilisateur. En ce cas, nous conservons également votre
         e-mail. Votre mot de passe de connexion au site est stocké sur nos
-        serveurs sous forme cryptée. Nous n'y avons pas accès en clair.
+        serveurs sous forme cryptée. Nous n&apos;y avons pas accès en clair.
       </p>
 
       <h3>Médias</h3>
@@ -71,7 +72,7 @@ const PolitiqueConfidentialite = () => {
         et modifier ces informations.
       </p>
 
-      <h2>Droits d'accès à vos données</h2>
+      <h2>Droits d&apos;accès à vos données</h2>
       <p>
         Si vous avez un compte ou si vous avez laissé des commentaires sur le
         site, vous pouvez demander à recevoir un fichier contenant toutes les
@@ -89,7 +90,7 @@ const PolitiqueConfidentialite = () => {
         vérifiés par nos équipes, ou à l’aide de systèmes automatisés de
         détection de contenus indésirables. A tout moment nous nous réservons la
         possibilité de supprimer ces informations et de supprimer les données
-        d'un profil utilisateur.
+        d&apos;un profil utilisateur.
       </p>
 
       <h3>Procédures mises en œuvre en cas de fuite de données</h3>
@@ -102,11 +103,11 @@ const PolitiqueConfidentialite = () => {
 
       <h3>Les services tiers qui nous transmettent des données</h3>
       <p>
-        Dans le cadre d'opérations événementielles ou de communication menées
+        Dans le cadre d&apos;opérations événementielles ou de communication menées
         avec des partenaires associatifs ou institutionnels, nous pouvons être
         amenés à recevoir des données personnelles vous concernant. Telles que
         votre nom, votre e-mail ou votre fonction. Nous nous engageons à
-        n'utiliser ces données que dans le cadre limité à l'opération menée en
+        n&apos;utiliser ces données que dans le cadre limité à l&apos;opération menée en
         commun avec ces partenaires.
       </p>
     </div>

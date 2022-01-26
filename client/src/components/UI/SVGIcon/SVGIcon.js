@@ -447,16 +447,16 @@ const getPath = (name, props) => {
               d="M12 18H8.07675V11C8.07675 9.5 8.56715 9 10.0384 9C11.5096 9 12 9.5 12 11V18Z"
               stroke="white"
               strokeWidth="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLineCap="round"
+              strokeLineJoin="round"
             />
             <path
               {...props}
               d="M8.07675 5C8.41934 6.04789 9.01059 7.3493 10.0384 7C10.8509 6.72386 11.5096 5.5 11.0192 5C9 5 10.0384 1 10.0384 1C10.0384 1 7.53506 3.34315 8.07675 5Z"
               stroke="white"
               strokeWidth="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLineCap="round"
+              strokeLineJoin="round"
             />
           </g>
         </>

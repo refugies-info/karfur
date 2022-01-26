@@ -5,6 +5,7 @@ import FButton from "components/FigmaUI/FButton/FButton";
 import { Props } from "./FeedbackFooter.container";
 import { colors } from "colors";
 import styles from "./FeedbackFooter.module.scss";
+import isInBrowser from "lib/isInBrowser";
 
 const FeedbackContainer = styled.div`
   display: flex;
@@ -39,7 +40,6 @@ export interface PropsBeforeInjection {
   pushReaction: (arg1: null, arg2: string) => void;
   didThank: boolean;
   nbThanks: number;
-  window: any;
   color: string;
 }
 
@@ -86,12 +86,13 @@ export const FeedbackFooter = (props: Props) => {
           className={styles.btn + " mr-8 mb-8"}
           type="error"
           onClick={() => {
-            props.window.$crisp.push([
+            if (!isInBrowser()) return;
+            (window as any).$crisp.push([
               "set",
               "session:event",
               ["no-thanks-btn"],
             ]);
-            props.window.$crisp.push(["do", "chat:open"]);
+            (window as any).$crisp.push(["do", "chat:open"]);
           }}
         >
           <span role="img" aria-label="thanks">

@@ -12,7 +12,7 @@ const GoBackButton = (props: Props) => {
 
   if (props.step === 0) {
     return (
-      <Link href="/">
+      <Link href="/" passHref>
         <FButton
           type="light-action"
           name="arrow-back-outline"

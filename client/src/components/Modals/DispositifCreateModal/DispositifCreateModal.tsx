@@ -68,7 +68,7 @@ export class DispositifCreateModal extends Component<Props, StateType> {
             </div>
           </div>
           {step === 1 && (
-            <p> className={styles.subtitle}Bienvenue dans l'éditeur de fiche dispositif !</p>
+            <p> className={styles.subtitle}Bienvenue dans l&apos;éditeur de fiche dispositif !</p>
           )}
 
           {step === 3 && (
@@ -114,7 +114,7 @@ export class DispositifCreateModal extends Component<Props, StateType> {
                 this.props.navigateToCommentContribuer();
               }}
             >
-              Quitter l'éditeur
+              Quitter l&apos;éditeur
             </FButton>
             <div>
               {step > 1 && (

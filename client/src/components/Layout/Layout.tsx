@@ -58,8 +58,7 @@ const Layout = (props: any) => {
       this.props.toggleLangueModal();
     }
  */
-    // window.scrollTo(0, 0);
-  }, []);
+  }, [dispatch]);
 
   const forceStopAudio = () => {
 /*     audio.pause();

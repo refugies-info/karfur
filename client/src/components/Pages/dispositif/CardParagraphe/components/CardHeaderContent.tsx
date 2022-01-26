@@ -19,7 +19,7 @@ interface Props {
   }[];
   t: any;
   isDropdownOpen: boolean;
-  toggleDropdown: (e: any) => void;
+  toggleDropdown: any;
   typeContenu: "dispositif" | "demarche";
 }
 

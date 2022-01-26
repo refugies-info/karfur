@@ -4,6 +4,7 @@ import FButton from "components/FigmaUI/FButton/FButton";
 import FInput from "components/FigmaUI/FInput/FInput";
 import { H5 } from "components/UI/Typography/Typography";
 import styles from "scss/components/login.module.scss";
+import Image from "next/image";
 
 interface Props {
   email: string;
@@ -67,7 +68,7 @@ const PhoneAndEmailFields = (props: Props) => {
           </H5>
           <div className="figma-btn white">
             {props.structure?.picture?.secure_url && (
-              <img
+              <Image
                 className="mr-10"
                 src={props.structure?.picture?.secure_url}
                 alt={props.structure.nom}

@@ -77,12 +77,12 @@ const BookmarkedModal = (props: Props) => {
           </>
         ) : (
           <>
-            <Link href="/login">
+            <Link href="/login" passHref>
               <FButton type="login" name="log-in-outline" tag="a">
                 {t("Toolbar.Connexion", "Connexion")}
               </FButton>
             </Link>
-            <Link href="/register">
+            <Link href="/register" passHref>
               <FButton
                 type="signup"
                 name="person-add-outline"

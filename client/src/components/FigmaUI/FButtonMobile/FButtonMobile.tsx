@@ -15,6 +15,12 @@ interface Props {
   onClick: (e: any) => void;
 }
 
+interface ButtonProps {
+  isDisabled: boolean
+  color: string
+  backgroundColor: string
+  onClick: any
+}
 const ButtonContainer = styled.div`
   display:flex;
   width: 100%;
@@ -24,16 +30,16 @@ const ButtonContainer = styled.div`
   border-radius: 12px;
   margin: auto;
   align-items:center;
-  background-color: ${(props) =>
+  background-color: ${(props: ButtonProps) =>
     props.isDisabled ? colors.grey : props.backgroundColor};
   font-size:16px;
-  color:${(props) => props.color};
+  color:${(props: ButtonProps) => props.color};
   font-weight:700;
   cursor:pointer;
 `;
 
 const IconContainer = styled.div`
-  margin-right: ${(props) => (props.isRTL ? "0px" : "10px")};
+  margin-right: ${(props: {isRTL: boolean}) => (props.isRTL ? "0px" : "10px")};
   margin-left: ${(props) => (props.isRTL ? "10px" : "0px")};
 `;
 

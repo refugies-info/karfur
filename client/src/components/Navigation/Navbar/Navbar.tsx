@@ -149,7 +149,7 @@ const Navbar = () => {
         <div className={styles.left_buttons}>
           <Logo />
           {path !== "/" && path !== "/homepage" && (
-            <Link href="/">
+            <Link href="/" passHref>
               <FButton
                 type="login"
                 name="home-outline"
@@ -249,7 +249,7 @@ const Navbar = () => {
             </Link>
           ) : (
             <>
-              <Link href="/register">
+              <Link href="/register" passHref>
                 <FButton
                   type="signup"
                   name="person-add-outline"
@@ -261,7 +261,7 @@ const Navbar = () => {
                     t("Toolbar.Inscription", "Inscription")}
                 </FButton>
               </Link>
-              <Link href="/login">
+              <Link href="/login" passHref>
                 <FButton type="login" name="log-in-outline">
                   {windowWidth > 1280 && t("Toolbar.Connexion", "Connexion")}
                 </FButton>

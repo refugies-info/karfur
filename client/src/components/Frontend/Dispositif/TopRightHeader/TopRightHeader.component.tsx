@@ -122,7 +122,7 @@ export class TopRightHeader extends React.Component<Props> {
                 viewBox="0 0 20 20"
                 size="medium"
               />
-              Besoin d'aide ?
+              Besoin d&apos;aide ?
             </CardFooter>
           </Card>
         </Col>

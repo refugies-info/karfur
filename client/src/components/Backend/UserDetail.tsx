@@ -1,9 +1,10 @@
 import { SimplifiedUser } from "types/interface";
 import React from "react";
 import styled from "styled-components";
-import marioProfile from "assets/mario-profile.jpg";
-import { colors } from "colors";
+import Image from "next/image";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { colors } from "colors";
+import marioProfile from "assets/mario-profile.jpg";
 
 interface Props {
   user: SimplifiedUser;
@@ -17,19 +18,19 @@ const UserDetailContainer = styled.div`
   margin-bottom: 10px;
   border-width: 1px;
   border-style: solid;
-  border-color: ${(props) => (props.isSelected ? colors.focus : colors.noir)};
+  border-color: ${(props: {isSelected: boolean}) => (props.isSelected ? colors.focus : colors.noir)};
   border-radius: 12px;
   padding: 8px;
   display: flex;
   flex-direction: row;
   align-items: center;
   cursor: pointer;
-  background: ${(props) => (props.isSelected ? colors.focus : "")};
+  background: ${(props: {isSelected: boolean}) => (props.isSelected ? colors.focus : "")};
   justify-content: space-between;
 
   &:hover {
-    background: ${(props) => (props.isSelected ? colors.focus : colors.grey2)};
-    border-color: ${(props) =>
+    background: ${(props: {isSelected: boolean}) => (props.isSelected ? colors.focus : colors.grey2)};
+    border-color: ${(props: {isSelected: boolean}) =>
       props.isSelected ? colors.focus : colors.grey2};
   }
 `;
@@ -37,7 +38,7 @@ const UserDetailContainer = styled.div`
 const Text = styled.div`
   font-size: 16px;
   line-height: 20px;
-  color: ${(props) => (props.isSelected ? colors.blancSimple : colors.noir)};
+  color: ${(props: {isSelected: boolean}) => (props.isSelected ? colors.blancSimple : colors.noir)};
 `;
 
 const RowContainer = styled.div`
@@ -64,7 +65,7 @@ export const UserDetail = (props: Props) => {
       onClick={() => props.onSelectItem(props.user)}
     >
       <RowContainer>
-        <img className="user-img mr-8" src={secureUrl} />
+        <Image className="user-img mr-8" src={secureUrl} alt="user picture" />
         <Text isSelected={props.isSelected}>{getText()}</Text>
       </RowContainer>
       <EVAIcon

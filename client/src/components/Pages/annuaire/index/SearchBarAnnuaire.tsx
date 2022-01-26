@@ -230,11 +230,12 @@ export const SearchBarAnnuaire = (props: Props) => {
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle
           caret={false}
-          className={`${styles.type_btn} ${
-            props.typeSelected && props.typeSelected.length === 0
-              ? ""
-              : styles.selected
-          }`}
+          className={[
+            styles.type_btn,
+            (props.typeSelected && props.typeSelected.length === 0
+              ? "" : styles.selected)
+            ].join(" ")
+          }
         >
           {props.typeSelected && props.typeSelected.length === 1
             ? props.typeSelected[0]

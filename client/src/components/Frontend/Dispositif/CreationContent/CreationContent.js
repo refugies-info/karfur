@@ -8,6 +8,7 @@ import {
   Label,
   Spinner,
 } from "reactstrap";
+import Image from "next/image";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/FigmaUI/FButton/FButton";
 import FInput from "components/FigmaUI/FInput/FInput";
@@ -112,7 +113,7 @@ const CreationContent = (props) => {
             newSize={true}
           />
         </InputGroup>
-        <b style={{ marginTop: "16px" }}>Est-ce que c'est vous ?</b>
+        <b style={{ marginTop: "16px" }}>Est-ce que c&apos;est vous ?</b>
         <FormGroup
           check
           className="mb-10"
@@ -152,7 +153,7 @@ const CreationContent = (props) => {
           {props._id && props.createur && props.createur._id && (
             <div className={styles.creator_wrapper}>
               {props.createur.picture && props.createur.picture.secure_url && (
-                <img
+                <Image
                   className={styles.img + " mr-10"}
                   src={props.createur.picture.secure_url}
                   alt="profile"
@@ -160,7 +161,7 @@ const CreationContent = (props) => {
               )}
               <div>
                 <p>
-                  <b>Nom d'utilisateur : </b> {props.createur.username}
+                  <b>Nom d&apos;utilisateur : </b> {props.createur.username}
                 </p>
                 <p>
                   <b>Email : </b> {props.createur.email}
@@ -276,7 +277,7 @@ const CreationContent = (props) => {
                   accept="image/*"
                   onChange={props.handleFileInputChange}
                 />
-                <img
+                <Image
                   className={styles.sponsor_img}
                   src={(props.picture || {}).secure_url}
                   alt={props.acronyme}

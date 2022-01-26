@@ -8,7 +8,7 @@ import i18n from "i18n";
 import { SearchBarAnnuaire } from "./SearchBarAnnuaire";
 import { colors } from "colors";
 import { SimplifiedStructure } from "types/interface";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const HeaderContainer = styled.div`
   background-image: url(${img});
@@ -139,6 +139,7 @@ export const Header = (props: Props) => {
                     : "/annuaire"
                 }
                 key={letter}
+                passHref
               >
                 <Letter
                   letter={letter}

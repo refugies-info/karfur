@@ -29,7 +29,7 @@ const ButtonTextBody = styled.p`
 interface Props {
   subitem: DispositifContent;
   isOptionsOpen: boolean;
-  toggleOptions: (e: any) => void;
+  toggleOptions: any;
   disableEdit: boolean;
   changeAge: (arg1: any, arg2: any, arg3: any, arg4: any) => void;
   changePrice: (arg1: any, arg2: any, arg3: any) => void;

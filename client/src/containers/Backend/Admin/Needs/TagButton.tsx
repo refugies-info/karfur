@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Streamline from "../../../../assets/streamline";
+import Streamline from "assets/streamline";
 
 interface Props {
   name: string;

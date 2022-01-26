@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { assetsOnServer } from "assets/assetsOnServer";
 import styles from "./DispositifCard.module.scss";
+import Image from "next/image";
 
 const TitleContainer = styled.div`
   font-weight: bold;
@@ -59,7 +60,7 @@ const DispositifCard = (props: Props) => {
         return props.toggleModal("dispositif");
       }}
     >
-      <img src={assetsOnServer.commentContribuer.dispositif} alt="dispositif" />
+      <Image src={assetsOnServer.commentContribuer.dispositif} alt="dispositif" />
       <div className={styles.inner}>
         <div>
           <TitleContainer>

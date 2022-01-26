@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { partners } from "data/partners";
+import Image from "next/image";
 
 const MainContainer = styled.div`
   display: flex;
@@ -68,7 +69,7 @@ export const Partners = () => {
         {sortedPartners.map((partner) =>
           partner.logo ? (
             <ImageContainer>
-              <img src={partner.logo} alt={partner.name} />
+              <Image src={partner.logo} alt={partner.name} />
             </ImageContainer>
           ) : null
         )}

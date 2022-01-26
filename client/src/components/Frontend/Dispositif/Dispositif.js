@@ -4,8 +4,7 @@ import { Col, Row, Spinner } from "reactstrap";
 import { connect } from "react-redux";
 import { withRouter } from "next/router";
 import ContentEditable from "react-contenteditable";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-// import htmlToDraft from "html-to-draftjs";
+import dynamic from "next/dynamic"
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import {
   EditorState,
@@ -49,8 +48,9 @@ import { TopRightHeader } from "components/Frontend/Dispositif/TopRightHeader";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import ContribCaroussel from "components/Pages/dispositif/ContribCaroussel/ContribCaroussel";
-// import SideTrad from "components/Pages/dispositif/SideTrad/SideTrad";
-// import ExpertSideTrad from "components/Pages/dispositif/SideTrad/ExpertSideTrad";
+import SideTrad from "components/Pages/dispositif/SideTrad/SideTrad";
+import ExpertSideTrad from "components/Pages/dispositif/SideTrad/ExpertSideTrad";
+import DemarcheCreateModal from "components/Modals/DemarcheCreateModal/DemarcheCreateModal";
 import { initializeTimer } from "containers/Translation/functions";
 import { readAudio, stopAudio } from "lib/readAudio";
 import {
@@ -85,8 +85,11 @@ import styled from "styled-components";
 import isInBrowser from "lib/isInBrowser";
 
 moment.locale("fr");
-const htmlToDraft = (props) => ({contentBlocks: []});
 
+const htmlToDraft = dynamic(
+  () => import("html-to-draftjs"),
+  { ssr: false }
+);
 
 const InfoBoxLanguageContainer = styled.div`
   display: flex;
@@ -2242,7 +2245,6 @@ export class Dispositif extends Component {
                       <FeedbackFooter
                         pushReaction={this.pushReaction}
                         didThank={didThank}
-                        window={window}
                         color={this.state.mainTag.darkColor}
                         nbThanks={
                           this.state.dispositif.merci

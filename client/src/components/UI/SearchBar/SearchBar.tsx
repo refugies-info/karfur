@@ -138,7 +138,7 @@ const SearchBar = (props: Props) => {
     return (
       <span className="suggestion-content">
         {suggestion.picture && suggestion.picture.secure_url && (
-          <img
+          <Image
             src={suggestion.picture.secure_url}
             className="selection-logo mr-10"
             alt="logo"

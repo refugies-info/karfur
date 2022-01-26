@@ -3,9 +3,9 @@ import { useTranslation } from "react-i18next";
 //@ts-ignore
 import Flippy, { FrontSide, BackSide } from "react-flippy";
 import { colors } from "colors";
-import Streamline from "../../../assets/streamline";
+import Streamline from "assets/streamline";
 import Ripples from "react-ripples";
-import i18n from "../../../i18n";
+import i18n from "i18n";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { Tag } from "types/interface";
@@ -42,7 +42,7 @@ const HomeSearch = (props: Props) => {
         }, 1000);
       }
     }, 1500);
-  }, []);
+  }, [indexF]);
 
   useEffect(() => {
     if (flip) {
@@ -55,7 +55,7 @@ const HomeSearch = (props: Props) => {
         }
       }, 1500);
     }
-  }, [indexF]);
+  }, [indexF, flip, indexB]);
 
   useEffect(() => {
     if (flip) {
@@ -68,7 +68,7 @@ const HomeSearch = (props: Props) => {
         }
       }, 1500);
     }
-  }, [indexB, flip]);
+  }, [indexB, indexF, flip]);
 
   const open = (e: any) => {
     e.preventDefault();

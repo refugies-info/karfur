@@ -13,6 +13,7 @@ import API from "utils/API";
 import marioProfile from "assets/mario-profile.jpg";
 import {colors} from "colors";
 import styles from "./RejectTradModal.module.scss";
+import Image from "next/image";
 
 const reasons = [
   {
@@ -122,7 +123,7 @@ const RejectTradModal = (props: Props) => {
                 className="mr-10"
               />
               <span>Message personnalisé à : </span>
-              <img
+              <Image
                 src={(props.userId.picture || {}).secure_url || marioProfile}
                 className="profile-img-pin mr-10"
                 alt="profile"

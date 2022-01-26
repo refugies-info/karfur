@@ -1,3 +1,7 @@
 {
-  "scss.lint.unknownAtRules": "ignore"
+  "scss.lint.unknownAtRules": "ignore",
+  "eslint.workingDirectories": [
+    "./client",
+    "./server"
+  ]
 }

@@ -3,6 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { rejectionFiche } from "assets/figma";
 import styles from "./RejectionModal.module.scss";
+import Image from "next/image";
 
 interface Props {
   show: boolean
@@ -31,7 +32,7 @@ const RejectionModal = (props: Props) => {
           {"Êtes-vous sûr ?"}
         </ModalHeader>
         <ModalBody className={styles.modal_body}>
-          <img
+          <Image
             src={rejectionFiche}
             className={styles.img}
             alt="rejection-fiche"

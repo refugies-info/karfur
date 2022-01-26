@@ -1,24 +1,27 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
     "allowSyntheticDefaultImports": true,
+    "declaration": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "lib": [
       "es6",
       "dom"
     ],
+    "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
-    "strict": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "resolveJsonModule": true,
-    "target": "es2018",
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
+    "strict": true,
+    "target": "es2018",
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "src",
     "incremental": true

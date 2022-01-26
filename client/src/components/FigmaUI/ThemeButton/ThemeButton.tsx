@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Tag } from "../../../types/interface";
-import Streamline from "../../../assets/streamline";
+import { Tag } from "types/interface";
+import Streamline from "assets/streamline";
 
 const ThemeButtonContainer = styled.div`
   background-color: ${(props) => props.color};

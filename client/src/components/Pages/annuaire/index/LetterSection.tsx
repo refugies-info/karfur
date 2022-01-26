@@ -4,6 +4,7 @@ import { ObjectId } from "mongodb";
 import { Picture, SimplifiedStructure } from "types/interface";
 import placeholder from "assets/annuaire/placeholder_logo_annuaire.svg";
 import styles from "./LetterSection.module.scss";
+import Image from "next/image";
 
 interface Props {
   structures: SimplifiedStructure[];
@@ -29,7 +30,7 @@ const StructureCard = (props: StructureCardProps) => {
       onClick={() => props.onStructureCardClick(props.id)}
     >
       <div className={styles.inner}>
-        <img
+        <Image
           className={styles.img}
           src={getSecureUrl(props.picture)}
           alt={props.acronyme}

@@ -50,7 +50,7 @@ const FrameModal = (props: Props) => {
           className="mr-10"
           target="_blank"
         >
-          Voir dans le centre d'aide
+          Voir dans le centre d&apos;aide
         </FButton>
         <FButton
           type="tuto"

@@ -143,7 +143,7 @@ const Homepage = (props: Props) => {
                 <AlertText>
                   {t("Homepage.Covid alert")}
                   <br />
-                  <Link href="/advanced-search?tag=Santé">
+                  <Link href="/advanced-search?tag=Santé" passHref>
                     <AlertTextLink>{t("Homepage.Covid link")}</AlertTextLink>
                   </Link>
                 </AlertText>
@@ -161,19 +161,19 @@ const Homepage = (props: Props) => {
                 </span>{" "}
                 Découvrez les actions par thématique&nbsp;:
                 <div style={{ flexDirection: "row" }}>
-                  <Link href="/dispositif/616581b863933e00148153fe">
+                  <Link href="/dispositif/616581b863933e00148153fe" passHref>
                     <AlertTextLink>Rencontres et loisirs</AlertTextLink>
                   </Link>
                   <span> / </span>
-                  <Link href="/dispositif/61680552e389a200141c1c44">
+                  <Link href="/dispositif/61680552e389a200141c1c44" passHref>
                     <AlertTextLink>Éducation</AlertTextLink>
                   </Link>
                   <span> / </span>
-                  <Link href="/dispositif/616ec622c8e422001419a0cd">
+                  <Link href="/dispositif/616ec622c8e422001419a0cd" passHref>
                     <AlertTextLink>Hébergement citoyen</AlertTextLink>
                   </Link>
                   <span> / </span>
-                  <Link href="/dispositif/61681cafe389a200141c27e3">
+                  <Link href="/dispositif/61681cafe389a200141c27e3" passHref>
                     <AlertTextLink>Insertion professionnelle</AlertTextLink>
                   </Link>
                 </div>
@@ -301,7 +301,7 @@ const Homepage = (props: Props) => {
                 </p>
               </div>
               <footer className="footer-section">
-                <Link href="/comment-contribuer">
+                <Link href="/comment-contribuer" passHref>
                   <FButton
                     name="file-add-outline"
                     tag="a"
@@ -325,7 +325,7 @@ const Homepage = (props: Props) => {
                 </p>
               </div>
               <footer>
-                <Link href="/comment-contribuer#ecrire">
+                <Link href="/comment-contribuer#ecrire" passHref>
                   <FButton
                     name="file-add-outline"
                     type="dark"
@@ -350,7 +350,7 @@ const Homepage = (props: Props) => {
                 {/*<LanguageBtn />*/}
               </div>
               <footer className="footer-section">
-                <Link href="/comment-contribuer#traduire">
+                <Link href="/comment-contribuer#traduire" passHref>
                   <FButton
                     name="file-add-outline"
                     type="dark"
@@ -378,7 +378,7 @@ const Homepage = (props: Props) => {
               <footer className="footer-section">
                 <ButtonContainerRow>
                   <ButtonSeparator isRTL={isRTL}>
-                    <Link href="/comment-contribuer#deployer-card">
+                    <Link href="/comment-contribuer#deployer-card" passHref>
                       <FButton
                         type="dark"
                         tag="a"
@@ -397,7 +397,7 @@ const Homepage = (props: Props) => {
                       </FButton>
                     </Link>
                   </ButtonSeparator>
-                  <Link href="/comment-contribuer#deployer-card">
+                  <Link href="/comment-contribuer#deployer-card" passHref>
                     <FButton
                       type="outline-black"
                       tag="a"
@@ -421,7 +421,7 @@ const Homepage = (props: Props) => {
             ></div>
           </section>
           <section id="smartphone">
-            <Image src={iphone} />
+            <Image src={iphone} alt="iphone mockup" />
             <div className="section-container half-width right-side smartphone">
               <div className="section-body smartphone">
                 <h2>

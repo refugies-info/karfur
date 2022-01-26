@@ -233,7 +233,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           </TitleContainer>
           {props.isMember && (
             <div style={{ height: "5Opx" }}>
-              <Link href="/annuaire-create">
+              <Link href="/annuaire-create" passHref>
                 <FButton
                   tag="a"
                   type="dark"

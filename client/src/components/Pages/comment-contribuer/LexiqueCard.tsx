@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { assetsOnServer } from "assets/assetsOnServer";
 import styles from "./LexiqueCard.module.scss";
+import Image from "next/image";
 
 const TitleContainer = styled.div`
   font-weight: bold;
@@ -41,7 +42,7 @@ const LexiqueCard = () => {
 
   return (
     <div className={styles.container}>
-      <img src={assetsOnServer.commentContribuer.lexique} alt="lexique" />
+      <Image src={assetsOnServer.commentContribuer.lexique} alt="lexique" />
       <div
         style={{
           display: "flex",

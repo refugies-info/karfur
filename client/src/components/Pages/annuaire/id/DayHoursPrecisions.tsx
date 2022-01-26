@@ -41,9 +41,8 @@ const getOpeningHours = (
   to0: string | undefined,
   from1: string | undefined,
   to1: string | undefined,
+  t: any
 ) => {
-  const { t } = useTranslation();
-
   if (!from0 || !to0) return " : " + t("Annuaire.ouvert", "ouvert");
 
   const firstPart =
@@ -87,6 +86,7 @@ const Opened = (props: {
           details.to0,
           details.from1,
           details.to1,
+          t
         )}
     </Container>
   );

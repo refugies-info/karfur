@@ -11,7 +11,7 @@ const UnauthorizedAccess = () => {
   return (
     <div className={styles.container}>
       <h3>{t("UnauthorizedAccess.Accès refusé", "Accès refusé")}</h3>
-      <Link href="/">
+      <Link href="/" passHref>
         <FButton
           tag="a"
           fill={colors.noir}

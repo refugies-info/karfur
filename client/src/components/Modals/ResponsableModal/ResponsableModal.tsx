@@ -3,6 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import FButton from "../../FigmaUI/FButton/FButton";
 import { responsableFiche } from "../../../assets/figma";
 import styles from "./ResponsableModal.module.scss";
+import Image from "next/image";
 
 interface Props {
   show: boolean;
@@ -33,7 +34,7 @@ const ResponsableModal = (props: Props) => {
         {"Super !"}
       </ModalHeader>
       <ModalBody className={styles.modal_body}>
-        <img
+        <Image
           src={responsableFiche}
           className={styles.img}
           alt="responsable-fiche"
@@ -54,7 +55,7 @@ const ResponsableModal = (props: Props) => {
             name="arrow-forward-outline"
             onClick={validateModal}
           >
-            D'accord
+            D&apos;accord
           </FButton>
         </div>
       </ModalFooter>

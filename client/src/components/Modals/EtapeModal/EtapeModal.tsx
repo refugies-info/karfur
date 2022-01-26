@@ -36,7 +36,8 @@ const EtapeModal = (props: Props) => {
     if (newLength !== checked.length) {
       setChecked(new Array(newLength).fill(false));
     }
-  }, [props.subitem]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.subitem, checked.length]);
 
   const handleCheck = (idx: number) =>
     setChecked(checked.map((x, i) => (i === idx ? !x : x)));

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Image from "next/image";
 import styles from "../Sponsors.module.scss";
 
 interface Props {
@@ -90,7 +91,7 @@ export const SponsorSection = (props: Props) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img
+              <Image
                 className={styles.sponsor_img}
                 src={(props.sponsor.object.picture || {}).secure_url}
                 alt={props.sponsor.object.acronyme}
@@ -119,7 +120,7 @@ export const SponsorSection = (props: Props) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
+                <Image
                   className={styles.sponsor_img}
                   src={props.sponsor.object.picture.secure_url}
                   alt={props.sponsor.object.alt}
@@ -129,7 +130,7 @@ export const SponsorSection = (props: Props) => {
               <ImageLink>
                 {props.sponsor.object.picture &&
                   props.sponsor.object.picture.secure_url && (
-                    <img
+                    <Image
                       className={styles.sponsor_img}
                       src={props.sponsor.object.picture.secure_url}
                       alt={props.sponsor.object.alt}

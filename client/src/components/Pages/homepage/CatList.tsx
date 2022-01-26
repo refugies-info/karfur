@@ -100,7 +100,7 @@ const CatList = (props: Props) => {
         className="advanced-search-a bg-noir"
         variants={itemanim}
       >
-        <a target="_blank" href="https://soliguide.fr/">
+        <a target="_blank" href="https://soliguide.fr/" rel="noopener noreferrer">
           <InnerButton>
             <IconContainer isRTL={isRTL}>
               <Streamline

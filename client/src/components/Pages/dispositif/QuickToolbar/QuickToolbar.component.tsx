@@ -145,7 +145,7 @@ export class QuickToolbar extends Component<Props, StateType> {
               <Row>
                 <Col lg="6" md="6" sm="12" xs="12" className={styles.col}>
                   <Button
-                    className={`${styles.btn_pill} ${styles.unactive}`}
+                    className={[styles.btn_pill, styles.unactive].join(" ")}
                     id="eva-icon-0"
                     onMouseEnter={() => this._hoverOn(0)}
                     onMouseLeave={this._hoverOff}
@@ -172,9 +172,10 @@ export class QuickToolbar extends Component<Props, StateType> {
                 {showLanguageButton && (
                   <Col md="6" xs="12" className={styles.col}>
                     <Button
-                      className={
-                        `${styles.btn_pill} ${this.state.isVoiceActiv ? styles.active : styles.unactive}`
-                      }
+                      className={[
+                        styles.btn_pill,
+                        (this.state.isVoiceActiv ? styles.active : styles.unactive)
+                      ].join(" ")}
                       id="eva-icon-1"
                       onMouseEnter={() => this._hoverOn(1)}
                       onMouseLeave={this._hoverOff}

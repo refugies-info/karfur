@@ -39,7 +39,7 @@ interface Props {
 }
 
 const Langue = (props: Props) => (
-  <Link href="/backend/user-translation">
+  <Link href="/backend/user-translation" passHref>
     <LangueContainer>
       <div
         style={{

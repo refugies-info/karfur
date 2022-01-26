@@ -33,6 +33,7 @@ const NoResultPlaceholder = () => {
         src={NoResultsBackgroundImage}
         width={256}
         height={150}
+        alt=""
       />
       <NoResultsTextContainer>
         <NoResultsTitle>Oups ! Aucun résultat...</NoResultsTitle>

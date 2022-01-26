@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
@@ -129,12 +129,6 @@ const Annuaire = (props: any) => {
   };
 
   useEffect(() => {
-    const loadStructures = () => {
-      dispatch(setSelectedStructureActionCreator(null));
-      dispatch(fetchActiveStructuresActionCreator());
-    };
-    if (!structures.length) loadStructures();
-
     window.addEventListener("scroll", handleScroll);
     window.scrollTo(0, 0);
 
@@ -145,7 +139,15 @@ const Annuaire = (props: any) => {
     };
   }, []);
 
-  const resetSearch = () => {
+  useEffect(() => {
+    const loadStructures = () => {
+      dispatch(setSelectedStructureActionCreator(null));
+      dispatch(fetchActiveStructuresActionCreator());
+    };
+    if (!structures.length) loadStructures();
+  }, [dispatch, structures.length]);
+
+  const resetSearch = useCallback(() => {
     const filterStructures = structures
       ? structures.filter(
           (structure) => structure._id.toString() !== "5f69cb9c0aab6900460c0f3f"
@@ -153,7 +155,7 @@ const Annuaire = (props: any) => {
       : [];
 
     setFilteredStructures(filterStructures);
-  };
+  }, [structures]);
 
   const computeTypeFromUrl = (search: any) => {
     let typeSelectedFromUrl: string[] = [];
@@ -213,73 +215,64 @@ const Annuaire = (props: any) => {
     // computeStateFromUrl(history.location.search);
   }, []);
 
-  const filterStructuresByType = (arrayTofilter: SimplifiedStructure[]) => {
-    if (!typeSelected || typeSelected.length === 0) {
-      return arrayTofilter;
-    }
-    return arrayTofilter.filter((structure) => {
-      let hasType: boolean = false;
+  const filterStructures = useCallback(() => {
+    const filterStructuresByType = (arrayTofilter: SimplifiedStructure[]) => {
+      if (!typeSelected || typeSelected.length === 0) {
+        return arrayTofilter;
+      }
+      return arrayTofilter.filter((structure) => {
+        let hasType: boolean = false;
 
-      typeSelected.forEach((type) => {
-        if (
-          structure.structureTypes &&
-          structure.structureTypes.includes(type)
-        ) {
-          hasType = true;
-        }
-      });
-
-      return hasType;
-    });
-  };
-
-  const filterStructuresByKeword = (arrayTofilter: SimplifiedStructure[]) => {
-    let newArrayKeyword: SimplifiedStructure[] = [];
-    if (keyword.length > 0) {
-      if (arrayTofilter) {
-        arrayTofilter.forEach((structure) => {
+        typeSelected.forEach((type) => {
           if (
-            (structure.nom.toLowerCase().includes(keyword.toLowerCase()) ||
-              (structure.acronyme &&
-                structure.acronyme
-                  .toLowerCase()
-                  .includes(keyword.toLowerCase()))) &&
-            newArrayKeyword &&
-            !newArrayKeyword.includes(structure)
+            structure.structureTypes &&
+            structure.structureTypes.includes(type)
           ) {
-            newArrayKeyword.push(structure);
+            hasType = true;
           }
         });
-      }
-    } else {
-      newArrayKeyword = arrayTofilter;
-    }
-    return newArrayKeyword;
-  };
 
-  const filterStructuresByLoc = (arrayTofilter: SimplifiedStructure[]) => {
-    let newArrayLoc: SimplifiedStructure[] = [];
-    if (isCitySelected) {
-      if (arrayTofilter) {
-        arrayTofilter.forEach((structure) => {
-          if (
-            structure.disposAssociesLocalisation?.includes("All") ||
-            (structure.departments?.includes("All") && newArrayLoc)
-          ) {
-            newArrayLoc.push(structure);
-          } else {
-            if (depNumber && structure.disposAssociesLocalisation) {
-              structure.disposAssociesLocalisation.forEach((el) => {
-                if (
-                  el.substr(0, 2) === depNumber &&
-                  newArrayLoc &&
-                  !newArrayLoc.includes(structure)
-                ) {
-                  newArrayLoc.push(structure);
-                }
-              });
-              if (structure.departments) {
-                structure.departments.forEach((el) => {
+        return hasType;
+      });
+    };
+
+    const filterStructuresByKeword = (arrayTofilter: SimplifiedStructure[]) => {
+      let newArrayKeyword: SimplifiedStructure[] = [];
+      if (keyword.length > 0) {
+        if (arrayTofilter) {
+          arrayTofilter.forEach((structure) => {
+            if (
+              (structure.nom.toLowerCase().includes(keyword.toLowerCase()) ||
+                (structure.acronyme &&
+                  structure.acronyme
+                    .toLowerCase()
+                    .includes(keyword.toLowerCase()))) &&
+              newArrayKeyword &&
+              !newArrayKeyword.includes(structure)
+            ) {
+              newArrayKeyword.push(structure);
+            }
+          });
+        }
+      } else {
+        newArrayKeyword = arrayTofilter;
+      }
+      return newArrayKeyword;
+    };
+
+    const filterStructuresByLoc = (arrayTofilter: SimplifiedStructure[]) => {
+      let newArrayLoc: SimplifiedStructure[] = [];
+      if (isCitySelected) {
+        if (arrayTofilter) {
+          arrayTofilter.forEach((structure) => {
+            if (
+              structure.disposAssociesLocalisation?.includes("All") ||
+              (structure.departments?.includes("All") && newArrayLoc)
+            ) {
+              newArrayLoc.push(structure);
+            } else {
+              if (depNumber && structure.disposAssociesLocalisation) {
+                structure.disposAssociesLocalisation.forEach((el) => {
                   if (
                     el.substr(0, 2) === depNumber &&
                     newArrayLoc &&
@@ -288,19 +281,19 @@ const Annuaire = (props: any) => {
                     newArrayLoc.push(structure);
                   }
                 });
-              }
-            } else if (depName && structure.disposAssociesLocalisation) {
-              structure.disposAssociesLocalisation.forEach((el) => {
-                if (
-                  el.includes(depName) &&
-                  newArrayLoc &&
-                  !newArrayLoc.includes(structure)
-                ) {
-                  newArrayLoc.push(structure);
+                if (structure.departments) {
+                  structure.departments.forEach((el) => {
+                    if (
+                      el.substr(0, 2) === depNumber &&
+                      newArrayLoc &&
+                      !newArrayLoc.includes(structure)
+                    ) {
+                      newArrayLoc.push(structure);
+                    }
+                  });
                 }
-              });
-              if (structure.departments) {
-                structure.departments.forEach((el) => {
+              } else if (depName && structure.disposAssociesLocalisation) {
+                structure.disposAssociesLocalisation.forEach((el) => {
                   if (
                     el.includes(depName) &&
                     newArrayLoc &&
@@ -309,47 +302,56 @@ const Annuaire = (props: any) => {
                     newArrayLoc.push(structure);
                   }
                 });
+                if (structure.departments) {
+                  structure.departments.forEach((el) => {
+                    if (
+                      el.includes(depName) &&
+                      newArrayLoc &&
+                      !newArrayLoc.includes(structure)
+                    ) {
+                      newArrayLoc.push(structure);
+                    }
+                  });
+                }
               }
             }
-          }
-        });
+          });
+        }
+      } else {
+        newArrayLoc = arrayTofilter;
       }
-    } else {
-      newArrayLoc = arrayTofilter;
-    }
-    return newArrayLoc;
-  };
+      return newArrayLoc;
+    };
 
-  const filterStructures = () => {
     const filterByType = filterStructuresByType(structures);
     const filterByTypeAndLoc = filterStructuresByLoc(filterByType);
     const filterByTypeAndLocAndKeyword =
       filterStructuresByKeword(filterByTypeAndLoc);
     const sortedStructureByAlpha = filterByTypeAndLocAndKeyword
       ? filterByTypeAndLocAndKeyword.sort((a, b) =>
-          a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
-            ? -1
-            : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()
+        a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
+          ? -1
+          : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()
             ? 1
             : 0
-        )
+      )
       : [];
 
     setFilteredStructures(sortedStructureByAlpha);
-  };
-
-  const computeUrlFromState = (query: {
-    depName?: string | undefined;
-    depNumber?: string | null;
-    keyword?: string;
-    ville?: string;
-  }) => {
-    router.push({
-      search: qs.stringify(query),
-    });
-  };
+  }, [depName, depNumber, isCitySelected, keyword, structures, typeSelected]);
 
   useEffect(() => {
+    const computeUrlFromState = (query: {
+      depName?: string | undefined;
+      depNumber?: string | null;
+      keyword?: string;
+      ville?: string;
+    }) => {
+      router.push({
+        search: qs.stringify(query),
+      });
+    };
+
     let query: {
       depName?: string | undefined;
       depNumber?: string;
@@ -406,12 +408,12 @@ const Annuaire = (props: any) => {
     }
     computeUrlFromState(query);
     filterStructures();
-  }, [typeSelected, depName, depNumber, keyword, isCitySelected]);
+  }, [typeSelected, depName, depNumber, keyword, isCitySelected, filterStructures, router, ville]);
 
   useEffect(() => {
     resetSearch();
     filterStructures();
-  }, [structures]);
+  }, [structures, resetSearch, filterStructures]);
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
   const onStructureCardClick = (id: ObjectId) =>

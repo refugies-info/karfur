@@ -6,6 +6,7 @@ import {
   InputGroup,
   Spinner,
 } from "reactstrap";
+import Image from "next/image";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/FigmaUI/FButton/FButton";
 import FInput from "components/FigmaUI/FInput/FInput";
@@ -42,7 +43,7 @@ const ImgModal = (props: Props) => {
         <span>Ajouter un logo</span>
         {props.imgData.secure_url ? (
           <div className={styles.image_wrapper}>
-            <img
+            <Image
               className={styles.sponsor_img}
               src={props.imgData.secure_url}
               alt={props.imgData.alt}

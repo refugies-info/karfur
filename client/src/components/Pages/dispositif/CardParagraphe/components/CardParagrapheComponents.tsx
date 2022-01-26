@@ -101,7 +101,7 @@ export const AgeRequisEditionContentTitle = (
 
 interface DropDownContentProps {
   isOptionsOpen: boolean;
-  toggleOptions: (e: any) => void;
+  toggleOptions: () => void;
   disableEdit: boolean;
   subitem: DispositifContent;
   changeAge: (arg1: any, arg2: any, arg3: any, arg4: any) => void;

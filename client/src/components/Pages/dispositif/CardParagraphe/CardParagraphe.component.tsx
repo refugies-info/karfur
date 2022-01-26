@@ -221,7 +221,7 @@ export class CardParagraphe extends Component<Props> {
           }
         >
           <Card
-            className={`${styles.card} ${computeCardClassName()}`}
+            className={[styles.card, computeCardClassName()].join(" ")}
             id={"info-card-" + this.props.keyValue + "-" + subkey}
           >
             <CardHeader className={styles.card_header + " backgroundColor-darkColor"}>

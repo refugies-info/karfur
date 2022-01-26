@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import styles from "scss/pages/legal-pages.module.scss";
 
 const MentionsLegales = () => {
@@ -25,12 +26,12 @@ const MentionsLegales = () => {
         </a>
         .
         <p>
-          Ou par courrier postal, daté et signé, accompagné d'une copie d’un
-          titre d’identité, à l'adresse suivante :
+          Ou par courrier postal, daté et signé, accompagné d&apos;une copie d’un
+          titre d’identité, à l&apos;adresse suivante :
         </p>
         <p>
           <strong>
-            Le délégué interministériel chargé de l'accueil et de l'intégration
+            Le délégué interministériel chargé de l&apos;accueil et de l&apos;intégration
             des réfugiés
           </strong>
           <br />
@@ -44,10 +45,12 @@ const MentionsLegales = () => {
 
       <p>
         Les informations personnelles collectées ne sont en aucun cas confiées à
-        des tiers. Pour plus d'information consultez la page relative à{" "}
-        <a href="/politique-de-confidentialite/">
-          <strong>notre politique de confidentialité</strong>
-        </a>
+        des tiers. Pour plus d&apos;information consultez la page relative à{" "}
+        <Link href="/politique-de-confidentialite/">
+          <a>
+            <strong>notre politique de confidentialité</strong>
+          </a>
+        </Link>
         .
       </p>
 
@@ -56,7 +59,7 @@ const MentionsLegales = () => {
       <p>
         Tout le contenu de notre site, incluant, de façon non limitative, les
         graphismes, images, textes, vidéos, animations, sons, logos et icônes,
-        sont la propriété exclusive de l'éditeur du site, à l’exception des
+        sont la propriété exclusive de l&apos;éditeur du site, à l’exception des
         marques, logos ou contenus appartenant à d’autres organisations. Pour
         toute demande d’autorisation ou d’information, veuillez nous contacter
         par email :{" "}
@@ -70,7 +73,7 @@ const MentionsLegales = () => {
 
       <p>
         Le site Refugies.info est hébergé par la société
-        <a href="https://www.ovh.com">OVH</a>. 2 rue Kellermann – 59100 Roubaix
+        <Link href="https://www.ovh.com"><a>OVH</a></Link>. 2 rue Kellermann – 59100 Roubaix
         – France Téléphone : 08 90 39 09 75 (France)
       </p>
     </div>

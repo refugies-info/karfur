@@ -20,7 +20,7 @@ interface Props {
   subkey: number;
   changePrice: (arg1: any, arg2: any, arg3: any) => void;
   isOptionsOpen: boolean;
-  toggleOptions: (e: any) => void;
+  toggleOptions: any;
 }
 
 const frequencesPay = [
@@ -77,7 +77,7 @@ export const CombienCaCouteContent = (props: Props) => {
           <ButtonDropdown
             isOpen={!props.disableEdit && props.isOptionsOpen}
             toggle={props.toggleOptions}
-            className={`${parentStyles.content_title} ${styles.price_frequency}`}
+            className={[parentStyles.content_title, styles.price_frequency].join(" ")}
           >
             <DropdownToggle caret={!props.disableEdit}>
               <span>

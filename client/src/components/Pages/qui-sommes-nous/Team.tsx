@@ -37,16 +37,18 @@ interface TeamProps {
 export const Team = (props: TeamProps) => (
   <TeamContainer>
     {props.type === "members"
-      ? members.map((member) => (
-          <MemberCard
+      ? members.map((member, i) => (
+        <MemberCard
+            key={i}
             member={member}
             onMemberCardClick={props.onMemberCardClick}
             memberSelected={props.member === member.name && props.sideVisible}
           />
         ))
       : props.type === "former_members"
-      ? former_members.map((member) => (
+      ? former_members.map((member, i) => (
           <MemberCard
+            key={i}
             member={member}
             onMemberCardClick={props.onMemberCardClick}
             memberSelected={props.member === member.name && props.sideVisible}
@@ -56,6 +58,11 @@ export const Team = (props: TeamProps) => (
   </TeamContainer>
 );
 
+interface MemberCardContainerProps {
+  borderColor: string
+  background: string
+  isHover: boolean
+}
 const MemberCardContainer = styled.div`
   text-align: center;
   display: flex;
@@ -68,7 +75,7 @@ const MemberCardContainer = styled.div`
   margin-right: 4px;
   margin-bottom: 32px;
   border-radius: 12px;
-  background: ${(props) =>
+  background: ${(props: MemberCardContainerProps) =>
     props.isHover ? props.borderColor : props.background};
   position: relative;
   cursor: pointer;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const MainContainer = styled.div`
+const MainContainer = styled.a`
   border-radius: 8px;
   width: 36px;
   height: 36px;

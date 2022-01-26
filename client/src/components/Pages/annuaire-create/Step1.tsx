@@ -6,6 +6,7 @@ import { UserStructure } from "types/interface";
 import PlaceholderLogo from "assets/Placeholder_logo.png";
 import FButton from "components/FigmaUI/FButton/FButton";
 import API from "utils/API";
+import Image from "next/image";
 
 const Title = styled.div`
   font-weight: bold;
@@ -64,12 +65,13 @@ interface Props {
 export const Step1 = (props: Props) => {
   const [uploading, setUploading] = useState(false);
 
+  const { structure, setStructure } = props;
   useEffect(() => {
-    props.setStructure({
-      ...props.structure,
+    setStructure({
+      ...structure,
       hasResponsibleSeenNotification: true,
     });
-  }, []);
+  }, [structure, setStructure]);
 
   const onChange = (e: any) => {
     props.setHasModifications(true);
@@ -105,7 +107,7 @@ export const Step1 = (props: Props) => {
 
   return (
     <MainContainer className="step1">
-      <Title>Nom d'affichage</Title>
+      <Title>Nom d&apos;affichage</Title>
       <div
         style={{
           marginBottom: "16px",
@@ -135,15 +137,20 @@ export const Step1 = (props: Props) => {
       <LogoContainer>
         <LogoWrapper>
           {secureUrl ? (
-            <img
+            <Image
               src={secureUrl}
               alt={props.structure ? props.structure.acronyme : ""}
-              style={{ maxHeight: 200, maxWidth: 200 }}
+              width={200}
+              height={200}
+              objectFit="contain"
             />
           ) : (
-              <img
+              <Image
                 src={PlaceholderLogo}
-                style={{ maxHeight: 200, maxWidth: 200 }}
+                alt="defautl logo"
+                width={200}
+                height={200}
+                objectFit="contain"
               />
           )}
         </LogoWrapper>

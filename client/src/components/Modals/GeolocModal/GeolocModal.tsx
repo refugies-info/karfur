@@ -87,7 +87,7 @@ const GeolocModal = (props: Props) => {
         <EVAIcon name="close-outline" fill="#3D3D3D" size="large" />
       </div>
       <div id="svgContainer" />
-      <h1>Zone d'action</h1>
+      <h1>Zone d&apos;action</h1>
       <p>
         Sélectionnez les départements sur lesquels votre dispositif est actif :
       </p>

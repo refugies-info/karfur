@@ -11,6 +11,7 @@ import {
   Spinner,
 } from "reactstrap";
 import { connect } from "react-redux";
+import Image from "next/image";
 import Swal from "sweetalert2";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
@@ -551,7 +552,7 @@ class Sponsors extends Component {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img
+                    <Image
                       className={styles.sponsor_img}
                       src={(mainSponsor.picture || {}).secure_url}
                       alt={mainSponsor.acronyme}
@@ -635,7 +636,7 @@ class Sponsors extends Component {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            <img
+                            <Image
                               className={styles.sponsor_img}
                               src={sponsor.picture.secure_url}
                               alt={sponsor.alt}
@@ -644,7 +645,7 @@ class Sponsors extends Component {
                         ) : (
                           <ImageLink>
                             {sponsor.picture && sponsor.picture.secure_url && (
-                              <img
+                              <Image
                                 className={styles.sponsor_img}
                                 src={sponsor.picture.secure_url}
                                 alt={sponsor.alt}
@@ -897,7 +898,7 @@ class Sponsors extends Component {
 
             <div className={styles.selection_wrapper + " bg-white mb-10"}>
               {selected.picture && selected.picture.secure_url && (
-                <img
+                <Image
                   src={selected.picture.secure_url}
                   className={styles.selection_logo}
                   alt="logo de structure"
@@ -926,7 +927,7 @@ class Sponsors extends Component {
                 onChange={this.handleBelongsSChange}
               />{" "}
               <b>
-                Non et j'accepte que cette structure reprenne le droit d'édition
+                Non et j&apos;accepte que cette structure reprenne le droit d&apos;édition
               </b>
             </Label>
           </FormGroup>
@@ -1013,7 +1014,7 @@ class Sponsors extends Component {
             <span style={{ fontSize: 22 }}>Ajouter un logo</span>
             {this.state.imgData.secure_url ? (
               <div className={styles.image_wrapper}>
-                <img
+                <Image
                   className={styles.sponsor_img}
                   src={this.state.imgData.secure_url}
                   alt={this.state.imgData.alt}
@@ -1098,7 +1099,7 @@ class Sponsors extends Component {
           }
         >
           <div className={styles.content_sent}>
-            <img src={structure_definie} className={styles.illu} alt="illustration" />
+            <Image src={structure_definie} className={styles.illu} alt="illustration" />
 
             {isMyStructureSelected ? (
               <>
@@ -1108,7 +1109,7 @@ class Sponsors extends Component {
                 <MyStructureContainer>
                   {" "}
                   {mainSponsor.picture && mainSponsor.picture.secure_url && (
-                    <img
+                    <Image
                       src={mainSponsor.picture.secure_url}
                       className={styles.selection_logo}
                       alt="logo de structure"
@@ -1134,7 +1135,7 @@ class Sponsors extends Component {
                   </h5>
                     <div className={styles.selection_wrapper + " mb-10"}>
                     {selected.picture && selected.picture.secure_url && (
-                      <img
+                      <Image
                         src={selected.picture.secure_url}
                         className={styles.selection_logo}
                         alt="logo de structure"
@@ -1161,7 +1162,7 @@ class Sponsors extends Component {
                   <MyStructureContainer>
                     {" "}
                     {mainSponsor.picture && mainSponsor.picture.secure_url && (
-                      <img
+                      <Image
                         src={mainSponsor.picture.secure_url}
                         className={styles.selection_logo}
                         alt="logo de structure"

@@ -118,7 +118,7 @@ export class Tags extends Component<Props> {
         })}
         {!this.props.disableEdit && (this.props.tags || []).length > 0 ? (
           <Button
-            className={`${styles.plus_btn} ${styles.icon} ml-10`}
+            className={[styles.plus_btn, styles.icon, "ml-10"].join(" ")}
             onClick={this.props.openTag}
             onMouseEnter={() => this.props.updateUIArray(-6)}
           >

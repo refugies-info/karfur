@@ -2,6 +2,7 @@ import type { User } from "types/interface";
 import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { assetsOnServer } from "assets/assetsOnServer";
@@ -61,7 +62,7 @@ const DemarcheCard = (props: Props) => {
         return props.toggleModal("demarche");
       }}
     >
-      <img
+      <Image
         src={assetsOnServer.commentContribuer.demarche}
         height="190px"
         alt="demarche"

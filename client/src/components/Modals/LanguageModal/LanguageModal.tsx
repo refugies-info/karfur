@@ -77,7 +77,7 @@ const LanguageModal = (props: Props) => {
                     Event("CHANGE_LANGUAGE", ln.i18nCode, "label");
                     props.changeLanguage(ln.i18nCode);
                   }}
-                  className={`${styles.list_group_item} ${isSelected ? styles.active : ""}`}
+                  className={styles.list_group_item + "  "+ (isSelected && styles.active)}
                 >
                   <Row>
                     <Col xs="1">
@@ -134,14 +134,14 @@ const LanguageModal = (props: Props) => {
             <ListGroupItem
               action
               key="unavailable"
-              className={`${styles.list_group_item} ${styles.unavailable} `}
+              className={styles.list_group_item + " " +styles.unavailable}
             >
               <Row>
                 <Col xs="8" className={styles.vertical_center}>
                   <b>{t("Homepage.traduire", "Aidez-nous à traduire !")}</b>
                 </Col>
                 <Col xs="4" className={styles.button_col}>
-                  <Link href="/comment-contribuer#traduire">
+                  <Link href="/comment-contribuer#traduire" passHref>
                     <FButton
                       tag="a"
                       onClick={props.toggle}

@@ -1,3 +1,5 @@
+import React from "react";
+
 import Elearning from "./Elearning.js";
 import House from "./House.js";
 import Briefcase from "./Briefcase.js";
@@ -14,8 +16,6 @@ import Search from "./Search";
 import Message from "./Message";
 import Menu from "./Menu";
 import Tag from "./Tag";
-
-import React from "react";
 
 const Streamline = ({ name = "house", ...props }) => {
   switch (name) {

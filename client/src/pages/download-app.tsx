@@ -22,7 +22,7 @@ const DownloadApp = () => {
         return;
       }
     }
-  }, []);
+  }, [router]);
 
   return null
 }

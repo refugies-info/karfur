@@ -140,7 +140,7 @@ const CommentContribuer = (props: any) => {
           {t("CommentContribuer.Traduction", "Traduire pour rendre accessible")}
         </div>
         <div className={styles.row}>
-          <img
+          <Image
             src={assetsOnServer.commentContribuer.traduction}
             alt="traduction"
           />
@@ -152,7 +152,7 @@ const CommentContribuer = (props: any) => {
               )}
             </h2>
             <div className={styles.row}>
-              <Link href="/backend/user-translation">
+              <Link href="/backend/user-translation" passHref>
                 <NumberTraduction
                   amount={nbTraductors}
                   text={t(
@@ -163,7 +163,7 @@ const CommentContribuer = (props: any) => {
                   width={181}
                 />
               </Link>
-              <Link href="/backend/user-translation">
+              <Link href="/backend/user-translation" passHref>
                 <NumberTraduction
                   amount={nbExperts}
                   text={t(
@@ -406,6 +406,7 @@ const CommentContribuer = (props: any) => {
         >
           <Image
             src={PapillonRose}
+            alt=""
           />
         </div>
         <div
@@ -434,6 +435,7 @@ const CommentContribuer = (props: any) => {
         >
           <Image
             src={PapillonViolet}
+            alt=""
           />
         </div>
       </div>

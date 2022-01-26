@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import { withRouter } from 'next/router'
+import { withRouter } from "next/router"
 import { Tooltip } from "reactstrap";
 import Swal from "sweetalert2";
 import qs from "query-string";

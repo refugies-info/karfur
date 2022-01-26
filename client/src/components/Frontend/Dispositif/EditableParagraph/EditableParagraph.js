@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ContentEditable from "react-contenteditable";
-// import { Editor } from "react-draft-wysiwyg";
+import dynamic from "next/dynamic"
 import { EditorBlock } from "draft-js";
 import { withTranslation } from "react-i18next";
 import {
@@ -28,6 +28,11 @@ import styles from "./EditableParagraph.module.scss";
 //     whiteSpace: "initial",
 //   },
 // };
+
+const Editor = dynamic(
+  () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
+  { ssr: false }
+)
 
 const MyCustomBlock = (props) => (
   <div className="bloc-rouge">

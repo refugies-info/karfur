@@ -448,7 +448,7 @@ export const Step4 = (props: Props) => {
 
   return (
     <MainContainer>
-      <Title>Départements d'action</Title>
+      <Title>Départements d&apos;action</Title>
       {showHelp && (
         <HelpContainer>
           <IconContainer onClick={() => setShowHelp(false)}>
@@ -658,13 +658,13 @@ export const Step4 = (props: Props) => {
           autoFocus={false}
         />
       </div>
-      <Title>Horaires d'accueil du public</Title>
+      <Title>Horaires d&apos;accueil du public</Title>
       <CheckboxContainer
         onClick={handlePublicCheckboxChange}
         checked={noPublicChecked}
       >
         <CustomCheckBox checked={noPublicChecked} />
-        Notre structure n'accueille pas de public.
+        Notre structure n&apos;accueille pas de public.
       </CheckboxContainer>
       <CheckboxContainer
         onClick={handleRdvCheckboxChange}
@@ -676,7 +676,7 @@ export const Step4 = (props: Props) => {
 
       {!noPublicChecked && (
         <>
-          <Subtitle>Cochez ou décochez les jours d'ouverture :</Subtitle>
+          <Subtitle>Cochez ou décochez les jours d&apos;ouverture :</Subtitle>
           {days.map((day) => (
             <HoursDetails
               key={day}

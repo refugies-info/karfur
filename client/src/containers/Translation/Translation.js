@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Swal from "sweetalert2";
 import querySearch from "stringquery";
 import h2p from "html2plaintext";
+import dynamic from 'next/dynamic'
 import { EditorState, ContentState } from "draft-js";
-// import htmlToDraft from "html-to-draftjs";
 import { connect } from "react-redux";
 import _ from "lodash";
 import produce from "immer";
@@ -20,7 +20,10 @@ import {
 let last_target = null;
 let letter_pressed = null;
 
-const htmlToDraft = () => {}
+const htmlToDraft = dynamic(
+  () => import('html-to-draftjs'),
+  { ssr: false }
+);
 export class TranslationHOC extends Component {
   constructor(props) {
     super(props);

@@ -99,6 +99,7 @@ export class FrenchLevelModalComponent extends Component<Props> {
                       style={{ textDecoration: "underline" }}
                       target="_blank"
                       href={element.linkToKnowMore}
+                      rel="noopener noreferrer"
                     >
                       {this.props.t("En savoir plus", "En savoir plus")}
                     </a>
@@ -135,6 +136,7 @@ export class FrenchLevelModalComponent extends Component<Props> {
               href={
                 "https://www.coe.int/fr/web/common-european-framework-reference-languages"
               }
+              rel="noopener noreferrer"
             >
               {"Cadre européen commun de référence pour les langues"}
             </a>{" "}
@@ -149,7 +151,7 @@ export class FrenchLevelModalComponent extends Component<Props> {
                 href="https://help.refugies.info/fr/"
                 target="_blank"
               >
-                <span className={styles.btn_text}>J'ai besoin d'aide</span>
+                <span className={styles.btn_text}>J&apos;ai besoin d&apos;aide</span>
               </FButton>
               <div className={styles.right}>
                 <div

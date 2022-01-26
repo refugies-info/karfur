@@ -72,7 +72,7 @@ const Login = () => {
   useEffect(() => {
     dispatch(fetchLanguesActionCreator());
     if (API.isAuth()) router.push("/");
-  }, []);
+  }, [dispatch, router]);
 
   const [passwordVisible, setPasswordVisible] = useState(false);
   const togglePasswordVisibility = () => setPasswordVisible(!passwordVisible);

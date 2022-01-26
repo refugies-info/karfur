@@ -8,6 +8,7 @@ import Modal from "../Modal";
 
 import { colors } from "colors";
 import styles from "./DemarcheCreateModal.module.scss";
+import Image from "next/image";
 
 interface Props {
   show: boolean;
@@ -23,7 +24,7 @@ const DemarcheCreateModal = (props: Props) => {
     if (props.show && stepIdx !== 0) {
       setStepIdx(0);
     }
-  }, [props.show]);
+  }, [props.show, stepIdx]);
 
   const changeStep = (next = true) => setStepIdx(stepIdx + (next ? 1 : -1));
 
@@ -97,7 +98,7 @@ const DemarcheCreateModal = (props: Props) => {
         ) : (
           <div className="text-center">
             <div className={styles.image}>
-              <img
+              <Image
                 src={
                   stepIdx === 1
                     ? interieur_2

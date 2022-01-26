@@ -1,7 +1,7 @@
 import API from "utils/API";
 
 let audio: HTMLAudioElement | null;
-if(typeof Audio != "undefined") { // for browsers
+if(typeof Audio !== "undefined") { // for browsers
   audio = new Audio();
 }
 
