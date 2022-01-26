@@ -1244,9 +1244,9 @@ class SideTrad extends Component {
                 </span>
               </div>
               {this.state.availableListTrad.length === 1 ? (
-                <div className={style.proposition}>Proposition unique</div>
+                <div className={styles.proposition}>Proposition unique</div>
               ) : (
-                <div className={style.propositions}>
+                <div className={styles.propositions}>
                   <div style={{ display: "flex", flexDirection: "column" }}>
                     <div>
                       {this.state.propositionIndex +
@@ -1310,7 +1310,7 @@ class SideTrad extends Component {
             </>
           ) : null}
         </div>
-        <div className={style.footer_btns}>
+        <div className={styles.footer_btns}>
           <div>
             {currIdx !== "titreInformatif" && (
               <FButton

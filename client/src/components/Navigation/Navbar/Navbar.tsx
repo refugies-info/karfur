@@ -83,7 +83,6 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    console.log(router.pathname);
     if (
       router.pathname.includes("dispositif") /*  &&
         location.state &&

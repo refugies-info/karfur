@@ -27,36 +27,6 @@ const TeamContainer = styled.div`
   justify-content: center;
 `;
 
-interface TeamProps {
-  type: "members" | "former_members";
-  onMemberCardClick: any;
-  sideVisible: boolean;
-  member: any;
-}
-
-export const Team = (props: TeamProps) => (
-  <TeamContainer>
-    {props.type === "members"
-      ? members.map((member, i) => (
-        <MemberCard
-            key={i}
-            member={member}
-            onMemberCardClick={props.onMemberCardClick}
-            memberSelected={props.member === member.name && props.sideVisible}
-          />
-        ))
-      : props.type === "former_members"
-      ? former_members.map((member, i) => (
-          <MemberCard
-            key={i}
-            member={member}
-            onMemberCardClick={props.onMemberCardClick}
-            memberSelected={props.member === member.name && props.sideVisible}
-          />
-        ))
-      : null}
-  </TeamContainer>
-);
 
 interface MemberCardContainerProps {
   borderColor: string
@@ -219,3 +189,34 @@ const MemberCard = (props: MemberProps) => {
     </MemberContainer>
   );
 };
+
+interface TeamProps {
+  type: "members" | "former_members";
+  onMemberCardClick: any;
+  sideVisible: boolean;
+  member: any;
+}
+
+export const Team = (props: TeamProps) => (
+  <TeamContainer>
+    {props.type === "members"
+      ? members.map((member, i) => (
+        <MemberCard
+            key={i}
+            member={member}
+            onMemberCardClick={props.onMemberCardClick}
+            memberSelected={props.member === member.name && props.sideVisible}
+          />
+        ))
+      : props.type === "former_members"
+      ? former_members.map((member, i) => (
+          <MemberCard
+            key={i}
+            member={member}
+            onMemberCardClick={props.onMemberCardClick}
+            memberSelected={props.member === member.name && props.sideVisible}
+          />
+        ))
+      : null}
+  </TeamContainer>
+);

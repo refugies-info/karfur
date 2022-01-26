@@ -114,6 +114,11 @@ const DispositifValidateModal = (props: Props) => {
     setTag3(null);
   };
 
+  const validateAndClose = () => {
+    props.validate([tag1, tag2, tag3]);
+    props.toggle();
+  };
+
   const validateThemes = () => {
     API.updateDispositifTagsOrNeeds({
       query: {
@@ -133,10 +138,6 @@ const DispositifValidateModal = (props: Props) => {
     });
   };
 
-  const validateAndClose = () => {
-    props.validate([tag1, tag2, tag3]);
-    props.toggle();
-  };
   const isAdmin = props.user
     ? props.user.roles.find((element: any) => element.nom === "Admin")
       ? true

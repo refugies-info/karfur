@@ -1512,7 +1512,7 @@ class SideTrad extends Component {
             </>
           ) : null}
         </div>
-        <div className={style.footer_btns}>
+        <div className={styles.footer_btns}>
           <div>
             {currIdx !== "titreInformatif" && (
               <FButton

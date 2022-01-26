@@ -41,14 +41,6 @@ const TextContainer = styled.div`
   top: 210px;
 `;
 
-export const Contribution = () => (
-  <ContributionContentContainer>
-    <ContributionCode />
-    <ContributionTerrain />
-    <ContributionEngagement />
-  </ContributionContentContainer>
-);
-
 const ContributionCode = () => {
   const { t } = useTranslation();
   return (
@@ -152,3 +144,11 @@ const ContributionEngagement = () => {
     </ContributionDetailContainer>
   );
 };
+
+export const Contribution = () => (
+  <ContributionContentContainer>
+    <ContributionCode />
+    <ContributionTerrain />
+    <ContributionEngagement />
+  </ContributionContentContainer>
+);

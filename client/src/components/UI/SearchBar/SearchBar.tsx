@@ -68,11 +68,6 @@ const SearchBar = (props: Props) => {
     }
   };
 
-  const onSuggestionsFetchRequested = debounce(({ value }) => {
-    setSuggestions(getSuggestions(value));
-    setIsLoadingResults(false);
-  }, 200);
-
   const getSuggestions = (value: string) => {
     if (!value || value.length === 0) return [];
 
@@ -100,6 +95,11 @@ const SearchBar = (props: Props) => {
       }
     );
   };
+
+  const onSuggestionsFetchRequested = debounce(({ value }) => {
+    setSuggestions(getSuggestions(value));
+    setIsLoadingResults(false);
+  }, 200);
 
   const onSuggestionSelected = (_: any, { suggestion }: { suggestion: Suggestion }) => {
     props.selectItem(suggestion);

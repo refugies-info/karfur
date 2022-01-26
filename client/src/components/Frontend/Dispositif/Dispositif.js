@@ -20,10 +20,6 @@ import _ from "lodash";
 import querySearch from "stringquery";
 import { convertToHTML } from "draft-convert";
 // import windowSize from "react-window-size";
-/* import {
-  NotificationContainer,
-  NotificationManager,
-} from "react-notifications"; */
 import API from "utils/API";
 import Sponsors from "components/Frontend/Dispositif/Sponsors/Sponsors";
 import { ContenuDispositif } from "components/Frontend/Dispositif/ContenuDispositif";
@@ -88,6 +84,14 @@ moment.locale("fr");
 
 const htmlToDraft = dynamic(
   () => import("html-to-draftjs"),
+  { ssr: false }
+);
+const NotificationContainer = dynamic(
+  () => import("react-notifications").then((mod) => mod.NotificationContainer),
+  { ssr: false }
+);
+const NotificationManager = dynamic(
+  () => import("react-notifications").then((mod) => mod.NotificationManager),
   { ssr: false }
 );
 
@@ -1704,18 +1708,21 @@ export class Dispositif extends Component {
           );
         });
       } else if (this._isMounted) {
-        NotificationManager.success(
-          "Retrouvez votre contribution dans votre page 'Mon profil'",
-          "Enregistrement automatique",
-          5000,
-          () => {
-            Swal.fire(
-              "Enregistrement automatique",
-              "Retrouvez votre contribution dans votre page 'Mon profil'",
-              "success"
-            );
-          }
-        );
+
+        if (isInBrowser()) {
+          NotificationManager.success(
+            "Retrouvez votre contribution dans votre page 'Mon profil'",
+            "Enregistrement automatique",
+            5000,
+            () => {
+              Swal.fire(
+                "Enregistrement automatique",
+                "Retrouvez votre contribution dans votre page 'Mon profil'",
+                "success"
+              );
+            }
+          );
+        }
         this.setState({ _id: newDispo._id });
       }
     });
@@ -2357,14 +2364,6 @@ export class Dispositif extends Component {
               show={this.state.showBookmarkModal}
               toggle={this.toggleBookmarkModal}
             />
-            {typeContenu === "demarche" && (
-              <DemarcheCreateModal
-                show={this.state.showDispositifCreateModal}
-                toggle={this.toggleDispositifCreateModal}
-                typeContenu={typeContenu}
-                onBoardSteps={onBoardSteps}
-              />
-            )}
             {typeContenu === "dispositif" && (
               <DispositifCreateModal
                 show={this.state.showDispositifCreateModal}
@@ -2438,7 +2437,7 @@ export class Dispositif extends Component {
               t={this.props.t}
             />
 
-            {/* <NotificationContainer /> */}
+            {isInBrowser() && <NotificationContainer />}
 
             {isDispositifLoading && (
               <div className="ecran-protection no-main">

@@ -2,7 +2,6 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { appReducer } from "./rootReducer";
 import { rootSaga } from "./sagas";
 // import { createBrowserHistory } from "history";
-// import { routerMiddleware } from "connected-react-router";
 // import ReactGA from "react-ga";
 import createSagaMiddleware from "redux-saga";
 
@@ -13,9 +12,6 @@ export const history = createBrowserHistory();
 history.listen((location) => {
   ReactGA.pageview(location.pathname + location.search);
 });
-
-const reactRouterMiddleware = routerMiddleware(history);
-middlewares.push(reactRouterMiddleware);
 */
 
 export const store = createStore(

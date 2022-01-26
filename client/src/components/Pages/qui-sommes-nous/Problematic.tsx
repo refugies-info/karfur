@@ -39,14 +39,6 @@ const ProblematicDetailDescription = styled.div`
   margin-bottom: 32px;
 `;
 
-export const Problematic = () => (
-  <ProblematicContentContainer>
-    <Statut />
-    <Information />
-    <Accompagnement />
-  </ProblematicContentContainer>
-);
-
 const Statut = () => {
   const { t } = useTranslation();
   return (
@@ -122,3 +114,11 @@ const Accompagnement = () => {
     </ProblematicDetailContainer>
   )
 }
+
+export const Problematic = () => (
+  <ProblematicContentContainer>
+    <Statut />
+    <Information />
+    <Accompagnement />
+  </ProblematicContentContainer>
+);

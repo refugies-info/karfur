@@ -4,7 +4,8 @@ import {
   PropsBeforeInjection,
   BandeauEdition,
 } from "./BandeauEdition.component";
-import { RootState } from "../../../../services/rootReducer";
+import { RootState } from "services/rootReducer";
+import { UiElement } from "services/SelectedDispositif/selectedDispositif.reducer";
 
 const mapStateToProps = (state: RootState) => ({
   menu: (!!state.selectedDispositif && state.selectedDispositif.contenu) || [],

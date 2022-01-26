@@ -4,7 +4,6 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "allowSyntheticDefaultImports": true,
-    "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,

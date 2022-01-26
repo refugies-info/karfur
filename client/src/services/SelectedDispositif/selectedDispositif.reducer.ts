@@ -3,7 +3,7 @@ import { SelectedDispositifActions } from "./selectedDispositif.actions";
 import _ from "lodash";
 import { DispositifContent, IDispositif } from "../../types/interface";
 
-interface UiElement {
+export interface UiElement {
   isHover: boolean;
   accordion: boolean;
   cardDropdown: boolean;

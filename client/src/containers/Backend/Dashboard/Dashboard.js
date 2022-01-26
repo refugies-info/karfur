@@ -252,4 +252,6 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+module.exports = {
+  Dashboard,
+};

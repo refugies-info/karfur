@@ -1,6 +1,6 @@
-import { logger } from "../../logger";
+import { logger } from "logger";
 
-const initializeTimer = function (step = null, action = () => {}) {
+export const initializeTimer = (step = null, action = () => {}) => {
   clearInterval(this.timer);
   this.mountTime = Date.now();
   const timestep = 10000;
@@ -31,4 +31,3 @@ const initializeTimer = function (step = null, action = () => {}) {
   }, timestep);
 };
 
-export { initializeTimer };

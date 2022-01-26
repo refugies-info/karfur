@@ -42,14 +42,6 @@ const FooterText = styled.div`
   margin-top: 24px;
 `;
 
-export const Mission = () => (
-  <MissionContentContainer>
-    <MissionDispositif />
-    <MissionDemarche />
-    <MissionParcours />
-  </MissionContentContainer>
-);
-
 const MissionDispositif = () => {
   const { t } = useTranslation();
   return (
@@ -145,3 +137,11 @@ const MissionParcours = () => {
     </MissionDetailContainer>
   )
 }
+
+export const Mission = () => (
+  <MissionContentContainer>
+    <MissionDispositif />
+    <MissionDemarche />
+    <MissionParcours />
+  </MissionContentContainer>
+);
