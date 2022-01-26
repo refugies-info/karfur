@@ -34,4 +34,4 @@ yarn-error.log*
 .next
 /client/src/locales/interfaceTranslation/csvBeforeTrad
 /client/src/locales/interfaceTranslation/csvAfterTrad
-/client/src/scss/fonts/CircularStd
+/client/public/fonts/CircularStd

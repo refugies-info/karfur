@@ -1,11 +1,12 @@
 import React from "react";
 import { Col, Card, CardBody, CardFooter, Spinner } from "reactstrap";
-import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
-import FButton from "../../../FigmaUI/FButton/FButton";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import FButton from "components/FigmaUI/FButton/FButton";
 import { Props } from "./TopRightHeader.container";
 import { isUserAllowedToModify } from "./functions";
 import { isMobile } from "react-device-detect";
-import { ContribStyledStatus } from "../../../../containers/Backend/UserContributions/components/SubComponents";
+import { ContribStyledStatus } from "containers/Backend/UserContributions/components/SubComponents";
+import styles from "./TopRightHeader.module.scss";
 
 export interface PropsBeforeInjection {
   disableEdit: boolean;
@@ -80,8 +81,8 @@ export class TopRightHeader extends React.Component<Props> {
     if (props.status === "En attente" && (userIsSponsor || props.admin)) {
       // top right part of dispositif when user is sponsor and dispo is 'En attente'
       return (
-        <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">
-          <Card>
+        <Col xl="6" lg="6" md="6" sm="6" xs="12" className={styles.top_right}>
+          <Card className={styles.card}>
             {props.admin && (
               <div style={{ marginBottom: "8px" }}>
                 <FButton
@@ -93,27 +94,27 @@ export class TopRightHeader extends React.Component<Props> {
                 </FButton>
               </div>
             )}
-            <CardBody className="backgroundColor-lightColor">
-              <span className="validate-header">
+            <CardBody className={styles.card_body + " backgroundColor-lightColor"}>
+              <span className="text-center">
                 Souhaitez-vous récupérer ce contenu ?
               </span>
               <FButton
                 type="validate"
-                className="mt-10 full-width"
+                className={styles.full_width + " mt-10"}
                 onClick={() => props.toggleModal(true, "responsable")}
               >
                 Oui
               </FButton>
               <FButton
                 type="error"
-                className="mt-10 full-width"
+                className={styles.full_width + " mt-10"}
                 onClick={() => props.toggleModal(true, "rejection")}
               >
                 Non
               </FButton>
             </CardBody>
             <CardFooter
-              className="color-darkColor cursor-pointer"
+              className={styles.card_footer + " color-darkColor"}
               onClick={props.toggleDispositifCreateModal}
             >
               <EVAIcon
@@ -133,7 +134,7 @@ export class TopRightHeader extends React.Component<Props> {
       // 160920 : or autor but not when dispo if pubié, en attente admin or accepté structure
       // when site is not in french, cannot modify the text
       return (
-        <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right-edition">
+        <Col xl="6" lg="6" md="6" sm="6" xs="12" className={styles.top_right_edition}>
           {!props.translating &&
             props.langue === "fr" &&
             (props.admin || isAuthor || userIsSponsor) &&
@@ -143,7 +144,7 @@ export class TopRightHeader extends React.Component<Props> {
                   event.stopPropagation();
                   props.toggleTutoModal("Statut des fiches");
                 }}
-                className="top-icon-wrapper button"
+                className={styles.icon}
               >
                 <ContribStyledStatus size="large" text={props.status} />
               </div>
@@ -151,7 +152,7 @@ export class TopRightHeader extends React.Component<Props> {
           {!props.translating &&
             props.langue === "fr" &&
             isUserAllowedToModifyDispositif && (
-              <div className="top-icon-wrapper button">
+              <div className={styles.icon}>
                 <FButton
                   type="dark"
                   name="edit-outline"
@@ -164,7 +165,7 @@ export class TopRightHeader extends React.Component<Props> {
           {this.props.selectedDispositif &&
             this.props.selectedDispositif.status === "Actif" && (
               <div
-                className="top-icon-wrapper button"
+                className={styles.icon}
                 onClick={props.bookmarkDispositif}
               >
                 {props.showSpinnerBookmark ? (

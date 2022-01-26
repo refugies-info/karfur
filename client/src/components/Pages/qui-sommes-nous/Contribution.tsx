@@ -120,7 +120,8 @@ const ContributionEngagement = () => {
       <Image
         src={assetsOnServer.quiSommesNous.microEngagement}
         alt="micro-engagement"
-        layout="fill"
+        width={320}
+        height={183}
       />
       <TextContainer>
         <ContributionDetailTitle>

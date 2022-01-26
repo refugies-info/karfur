@@ -143,6 +143,8 @@ const CommentContribuer = (props: any) => {
           <Image
             src={assetsOnServer.commentContribuer.traduction}
             alt="traduction"
+            width={590}
+            height={562}
           />
           <div className={styles.column}>
             <h2 className={styles.trad_header}>
@@ -407,6 +409,8 @@ const CommentContribuer = (props: any) => {
           <Image
             src={PapillonRose}
             alt=""
+            width={410}
+            height={410}
           />
         </div>
         <div
@@ -436,6 +440,8 @@ const CommentContribuer = (props: any) => {
           <Image
             src={PapillonViolet}
             alt=""
+            width={485}
+            height={492}
           />
         </div>
       </div>

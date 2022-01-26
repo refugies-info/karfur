@@ -26,7 +26,9 @@ const LogoContainer = styled.div`
 const ImageContainer = styled.div`
   margin-right: 32px;
   margin-bottom: 32px;
-  align-self: center;
+  min-width: 160px;
+  min-height: 100px;
+  position: relative;
 `;
 const sortPartners = () =>
   partners.sort((a, b) => {
@@ -69,7 +71,12 @@ export const Partners = () => {
         {sortedPartners.map((partner) =>
           partner.logo ? (
             <ImageContainer>
-              <Image src={partner.logo} alt={partner.name} />
+              <Image
+                src={partner.logo}
+                alt={partner.name}
+                layout="fill"
+                objectFit="contain"
+              />
             </ImageContainer>
           ) : null
         )}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
 import styled from "styled-components";
@@ -7,6 +7,7 @@ import FSearchBtn from "components/FigmaUI/FSearchBtn/FSearchBtn";
 import Streamline from "assets/streamline";
 import { motion } from "framer-motion";
 import { Tag } from "types/interface";
+import styles from "./CatList.module.scss";
 
 const InnerButton = styled.div`
   display: flex;
@@ -61,7 +62,7 @@ const CatList = (props: Props) => {
 
   return (
     <motion.ul
-      className="options-wrapper"
+      className={styles.options}
       variants={container}
       initial="hidden"
       animate="visible"
@@ -97,7 +98,7 @@ const CatList = (props: Props) => {
       })}
       <motion.li
         key={props.tags.length}
-        className="advanced-search-a bg-noir"
+        className={styles.link + " bg-noir"}
         variants={itemanim}
       >
         <a target="_blank" href="https://soliguide.fr/" rel="noopener noreferrer">
@@ -119,7 +120,7 @@ const CatList = (props: Props) => {
           onClick={() => {
             router.push("/advanced-search");
           }}
-          className="advanced-search-btn-menu bg-blanc"
+          className={styles.menu + " bg-blanc"}
         >
           <InnerButton>
             <IconContainer isRTL={isRTL}>

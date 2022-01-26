@@ -42,7 +42,12 @@ const LexiqueCard = () => {
 
   return (
     <div className={styles.container}>
-      <Image src={assetsOnServer.commentContribuer.lexique} alt="lexique" />
+      <Image
+        src={assetsOnServer.commentContribuer.lexique}
+        alt="lexique"
+        width={200}
+        height={162}
+      />
       <div
         style={{
           display: "flex",

@@ -60,7 +60,12 @@ const DispositifCard = (props: Props) => {
         return props.toggleModal("dispositif");
       }}
     >
-      <Image src={assetsOnServer.commentContribuer.dispositif} alt="dispositif" />
+      <Image
+        src={assetsOnServer.commentContribuer.dispositif}
+        alt="dispositif"
+        width={200}
+        height={162}
+      />
       <div className={styles.inner}>
         <div>
           <TitleContainer>

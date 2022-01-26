@@ -64,7 +64,8 @@ const DemarcheCard = (props: Props) => {
     >
       <Image
         src={assetsOnServer.commentContribuer.demarche}
-        height="190px"
+        width={200}
+        height={162}
         alt="demarche"
       />
       <div

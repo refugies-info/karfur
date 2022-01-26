@@ -176,7 +176,9 @@ const MemberCard = (props: MemberProps) => {
               <Image
                 src={getImage(props.member.name)}
                 //   onClick={this._closeSide}
-                alt={props.member.name}
+                  alt={props.member.name}
+                  width={120}
+                  height={120}
               />
             </div>
             <NameContainer>{props.member.name}</NameContainer>

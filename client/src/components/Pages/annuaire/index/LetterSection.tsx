@@ -19,11 +19,6 @@ interface StructureCardProps {
   id: ObjectId;
 }
 const StructureCard = (props: StructureCardProps) => {
-  const getSecureUrl = (picture: Picture | null) => {
-    if (picture && picture.secure_url) return picture.secure_url;
-
-    return placeholder;
-  };
   return (
     <div
       className={styles.structure_container}
@@ -32,11 +27,13 @@ const StructureCard = (props: StructureCardProps) => {
       <div className={styles.inner}>
         <Image
           className={styles.img}
-          src={getSecureUrl(props.picture)}
+          src={props.picture?.secure_url || placeholder}
           alt={props.acronyme}
+          width={150}
+          height={100}
         />
       </div>
-      {(!props.picture || !props.picture.secure_url) && <div></div>}
+      {(!props?.picture?.secure_url) && <div></div>}
 
       <LinesEllipsis
         text={
@@ -60,25 +57,25 @@ const StructureCard = (props: StructureCardProps) => {
 export const LetterSection = (props: Props) => {
   return (
     <div className={styles.letter_container}>
-      {props.structures &&
-        props.structures.map((structure, key) => (
+      {(props.structures || []).map((structure, key) => (
           <>
             {key === 0 &&
-              <div id="A" className={styles.anchor} />
+              <div id="A" key={key} className={styles.anchor} />
             }
 
             {key > 1 && // @ts-ignore
               props.structures[key - 1].nom[0].toLowerCase() !==
                 props.structures[key].nom[0].toLowerCase() && (
                 <>
-                  <div
+                <div
+                  key={props.structures[key].nom[0].toUpperCase()}
                     className={styles.anchor}
                     id={props.structures[key].nom[0].toUpperCase()}
                   />
                 </>
               )}
-            <StructureCard
-              key={structure.nom}
+          <StructureCard
+            key={key}
               nom={structure.nom}
               picture={structure.picture || {}}
               acronyme={structure.acronyme}

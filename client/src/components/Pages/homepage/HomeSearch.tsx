@@ -9,6 +9,7 @@ import i18n from "i18n";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { Tag } from "types/interface";
+import styles from "./HomeSearch.module.scss";
 
 const IconContainer = styled.div`
   display: flex;
@@ -38,11 +39,11 @@ const HomeSearch = (props: Props) => {
       if (flippy.current) {
         flippy.current.toggle();
         setTimeout(() => {
-          setIndexF(indexF === 10 ? 0 : indexF + 2);
+          setIndexF(i => i === 10 ? 0 : i + 2);
         }, 1000);
       }
     }, 1500);
-  }, [indexF]);
+  }, []);
 
   useEffect(() => {
     if (flip) {
@@ -50,12 +51,12 @@ const HomeSearch = (props: Props) => {
         if (flippy.current) {
           flippy.current.toggle();
           setTimeout(() => {
-            setIndexB(indexB === 9 ? 1 : indexB + 2);
+            setIndexB(i => i === 9 ? 1 : i + 2);
           }, 1000);
         }
       }, 1500);
     }
-  }, [indexF, flip, indexB]);
+  }, [indexF, flip]);
 
   useEffect(() => {
     if (flip) {
@@ -63,12 +64,12 @@ const HomeSearch = (props: Props) => {
         if (flippy.current) {
           flippy.current.toggle();
           setTimeout(() => {
-            setIndexF(indexF === 10 ? 0 : indexF + 2);
+            setIndexF(i => i === 10 ? 0 : i + 2);
           }, 1000);
         }
       }, 1500);
     }
-  }, [indexB, indexF, flip]);
+  }, [indexB, flip]);
 
   const open = (e: any) => {
     e.preventDefault();
@@ -91,7 +92,7 @@ const HomeSearch = (props: Props) => {
   const { searchItem } = props;
 
   return (
-    <div onClick={open} className="search-col">
+    <div onClick={open} className={styles.col}>
       <span className="mr-10 mb-15">
         {t("SearchItem." + searchItem.title, searchItem.title)}
       </span>

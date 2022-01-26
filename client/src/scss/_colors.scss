@@ -28,6 +28,7 @@ $bgfocus: #d2edfc;
 $standby: #fdd497;
 $bleuCharte: #0421b1;
 $darkOrange: #ea6206;
+$grey: #c6c6c6;
 
 :export {
   lightColor: $lightColor;
@@ -57,4 +58,5 @@ $darkOrange: #ea6206;
   darkOrange: $darkOrange;
   bleuCharte: $bleuCharte;
   lightBlue: $bgfocus;
+  grey: $grey;
 }

@@ -44,7 +44,12 @@ const StructureCard = () => {
 
 return (
   <div className={styles.container}>
-    <Image src={assetsOnServer.commentContribuer.structure} alt="structure" />
+    <Image
+    src={assetsOnServer.commentContribuer.structure}
+      alt="structure"
+      width={200}
+        height={162}
+    />
     <div
       style={{
         display: "flex",

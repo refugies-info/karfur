@@ -79,6 +79,7 @@ import { isMobile } from "react-device-detect";
 import { PdfCreateModal } from "components/Modals/PdfCreateModal/PdfCreateModal";
 import styled from "styled-components";
 import isInBrowser from "lib/isInBrowser";
+import styles from "scss/pages/dispositif.module.scss";
 
 moment.locale("fr");
 
@@ -1826,7 +1827,7 @@ export class Dispositif extends Component {
             xs={translating ? "8" : "12"}
             className="main-col"
           >
-            <section className={"banniere-dispo " + tag}>
+            <section className={styles.banniere+ " " + styles[tag]}>
               {!disableEdit && (
                 // yellow banner in top of a demarche to create a variante
                 // To see this component, create a new demarche then select an existing demarche
@@ -1844,7 +1845,7 @@ export class Dispositif extends Component {
                   toggleDispositifCreateModal={this.toggleDispositifCreateModal}
                 />
               )}
-              <Row className="header-row">
+              <Row className={styles.row}>
                 {windowWidth >= breakpoints.smLimit && (
                   <BackButton goBack={this.goBack} />
                 )}
@@ -1871,8 +1872,8 @@ export class Dispositif extends Component {
                   t={t}
                 />
               </Row>
-              <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
-                <div className={"bloc-titre "}>
+              <Col lg="12" md="12" sm="12" xs="12" className={styles.title}>
+                <div className={styles.bloc_title}>
                   <div
                     style={{
                       display: "flex",
@@ -1881,14 +1882,14 @@ export class Dispositif extends Component {
                   >
                     {isMobile && (
                       <div>
-                        <div className="title-info-mobile">
-                          <div className="title-mobile-text">
+                        <div className={styles.mobile_title}>
+                          <div className={styles.mobile_title_text}>
                             {this.state.content.titreInformatif || ""}
                           </div>
                         </div>
                         {typeContenu === "dispositif" && (
-                          <div className="title-marque-mobile">
-                            <div className="title-mobile-text">
+                          <div className={styles.mobile_title_sponsor}>
+                            <div className={styles.mobile_title_text}>
                               <span>{t("Dispositif.avec", "avec")}&nbsp;</span>
                               {this.state.content.titreMarque || ""}
                             </div>
@@ -1920,7 +1921,7 @@ export class Dispositif extends Component {
                           }
                         </h1>
                         {typeContenu === "dispositif" && (
-                          <h2 className={"bloc-subtitle "}>
+                          <h2 className={styles.bloc_subtitle}>
                             <span>{t("Dispositif.avec", "avec")}&nbsp;</span>
                             {
                               // Display and edition of titreMarque

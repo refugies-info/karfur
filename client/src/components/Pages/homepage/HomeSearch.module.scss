@@ -1,0 +1,38 @@
+@import "src/scss/mixins/responsive";
+@import "src/scss/colors";
+
+.col {
+  outline: none;
+  border-radius: 12px;
+  border-width: 0;
+  padding-left: 20px;
+  padding: 10px 10px 10px 20px;
+  font-size: 22px;
+  font-weight: 600;
+  color: $noir;
+  display: flex;
+  align-items: center;
+  z-index: 4;
+  background: #ffffff;
+
+  @include media-max("tablet-up") {
+    flex-direction: column;
+    padding: 20px;
+  }
+  @include media-min("tablet-up") {
+    margin-bottom: 0;
+  }
+
+  :global(.mb-15) {
+    @include media-min("tablet-up") {
+      margin-bottom: 0;
+    }
+    @include media-max("tablet-up") {
+      margin-bottom: 15px;
+    }
+  }
+  :global(.mr-10) {
+    padding-right: 10px;
+    z-index: 4;
+  }
+}

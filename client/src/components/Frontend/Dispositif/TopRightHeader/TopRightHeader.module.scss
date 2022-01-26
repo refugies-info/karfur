@@ -1,0 +1,71 @@
+@import "src/scss/colors";
+
+.top_right {
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  .card {
+    background: transparent;
+    z-index: 3;
+    position: fixed;
+    border: none;
+    max-width: 210px;
+
+    .card_body {
+      display: flex;
+      flex-direction: column;
+      align-content: space-between;
+      border-radius: 12px 12px 0 0;
+      background: $gris;
+      z-index: 2;
+
+      .full_width {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .card-footer {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: $erreur;
+      border: none;
+      border-radius: 0 0 12px 12px;
+      color: $error;
+      cursor: pointer;
+      font-weight: bold;
+
+      svg {
+        fill: $error;
+      }
+      &:hover {
+        background: $error;
+        color: $blancSimple;
+        svg {
+          fill: $blancSimple;
+        }
+      }
+    }
+  }
+}
+
+.top_right_edition {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  font-weight: bold;
+  justify-content: flex-end;
+
+  .icon {
+    border-radius: 12px;
+    margin-right: 11px;
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
+  }
+}

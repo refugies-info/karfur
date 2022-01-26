@@ -28,6 +28,7 @@ import {
 } from "assets/figma";
 import icon_mobilisation from "assets/icon_mobilisation.svg";
 import { assetsOnServer } from "assets/assetsOnServer";
+import styles from "scss/pages/homepage.module.scss";
 
 const CoronaAlert = styled.div`
   display: flex;
@@ -108,7 +109,6 @@ const Homepage = (props: Props) => {
   useEffect(() => {
     initGA();
     PageView();
-    // window.scrollTo(0, 0);
   }, []);
 
   const selectOption = (_item: any) => {
@@ -132,7 +132,7 @@ const Homepage = (props: Props) => {
   return (
     <div className="animated fadeIn homepage">
       {overlay ? <div className="overlay" /> : null}
-      <section id="hero">
+      <section className={styles.hero}>
         <div className="hero-container">
           {corona ? (
             <CoronaAlert>
@@ -215,7 +215,7 @@ const Homepage = (props: Props) => {
         </div>
       </section>
 
-      <section id="plan" className="triptique">
+      <section id="plan" className={`${styles.section} ${styles.triptique}`}>
         <CardContainer isRTL={isRTL}>
           <HomeCard
             text="Homepage.Trouver une initiative"
@@ -292,7 +292,7 @@ const Homepage = (props: Props) => {
         <HomePageMobile t={t} />
       ) : (
         <>
-          <section id="contribution" className="contrib">
+          <section id="contribution" className={`${styles.section} ${styles.contribution}`}>
             <div className="section-container half-width right-side">
               <div className="section-body">
                 <h2>{t("Homepage.contribution")}</h2>
@@ -316,7 +316,7 @@ const Homepage = (props: Props) => {
             </div>
           </section>
 
-          <section id="ecrire">
+          <section id="ecrire" className={`${styles.section} ${styles.ecrire}`}>
             <div className="section-container half-width left-side">
               <div className="section-body">
                 <h2>{t("Homepage.Faites connaitre")}</h2>
@@ -340,7 +340,7 @@ const Homepage = (props: Props) => {
             </div>
           </section>
 
-          <section id="multilangues">
+          <section id="multilangues" className={`${styles.section} ${styles.multilangues}`}>
             <div className="section-container half-width right-side">
               <div className="section-body">
                 <h2>{t("Homepage.aidez-nous à taduire")}</h2>
@@ -364,7 +364,7 @@ const Homepage = (props: Props) => {
               </footer>
             </div>
           </section>
-          <section id="deployer">
+          <section id="deployer" className={`${styles.section} ${styles.deployer}`}>
             <div
               className="section-container half-width left-side"
               style={{ zIndex: 2, position: "relative" }}
@@ -414,14 +414,22 @@ const Homepage = (props: Props) => {
               </footer>
             </div>
             <div
-              className="deployer_map"
+              className={styles.deployer_map}
               style={{
                 backgroundImage: `url(${assetsOnServer.homepage.CarteDeploiement})`,
               }}
             ></div>
           </section>
-          <section id="smartphone">
-            <Image src={iphone} alt="iphone mockup" />
+            <section id="smartphone" className={`${styles.section} ${styles.smartphone}`}>
+              <div className={styles.img}>
+                <Image
+                  src={iphone}
+                  alt="iphone mockup"
+                  width={480}
+                  height={500}
+                  objectFit="contain"
+                />
+              </div>
             <div className="section-container half-width right-side smartphone">
               <div className="section-body smartphone">
                 <h2>

@@ -130,7 +130,6 @@ const Annuaire = (props: any) => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-    window.scrollTo(0, 0);
 
     initGA();
     Event("ANNUAIRE_VIEW", "VIEW", "label");
@@ -408,7 +407,10 @@ const Annuaire = (props: any) => {
     }
     computeUrlFromState(query);
     filterStructures();
-  }, [typeSelected, depName, depNumber, keyword, isCitySelected, filterStructures, router, ville]);
+
+  // Bug router: https://github.com/vercel/next.js/issues/18127#issuecomment-950907739
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [typeSelected, depName, depNumber, keyword, isCitySelected, filterStructures, ville]);
 
   useEffect(() => {
     resetSearch();
@@ -457,7 +459,7 @@ const Annuaire = (props: any) => {
               flexWrap: "wrap",
             }}
           >
-            {new Array(7).fill("a").map((index) => (
+            {new Array(7).fill("a").map((_, index) => (
               <LoadingCard key={index} />
             ))}
           </div>

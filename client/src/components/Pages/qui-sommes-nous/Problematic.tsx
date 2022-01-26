@@ -46,6 +46,8 @@ const Statut = () => {
       <Image
         src={assetsOnServer.quiSommesNous.statutRefugie}
         alt="statut-refugie"
+        width={320}
+        height={220}
       />
       <TextContainer>
         <ProblematicDetailTitle>
@@ -69,7 +71,12 @@ const Information = () => {
   const { t } = useTranslation();
   return (
     <ProblematicDetailContainer>
-      <Image src={assetsOnServer.quiSommesNous.information} alt="info" />
+      <Image
+        src={assetsOnServer.quiSommesNous.information}
+        alt="info"
+        width={320}
+        height={220}
+      />
       <TextContainer>
         <ProblematicDetailTitle>
           {t(
@@ -95,6 +102,8 @@ const Accompagnement = () => {
       <Image
         src={assetsOnServer.quiSommesNous.accompagnement}
         alt="accompagnement"
+        width={320}
+        height={160}
       />
 
       <TextContainer>
