@@ -8,7 +8,6 @@ import styles from "./LetterSection.module.scss";
 interface Props {
   structures: SimplifiedStructure[];
   onStructureCardClick: (id: ObjectId) => void;
-  setLetterSelected: any;
 }
 
 interface StructureCardProps {

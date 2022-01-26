@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-
+import { useTranslation } from "react-i18next";
 import { MobileSearchFilterModal } from "./MobileSearchFilterModal/MobileSearchFilterModal";
 import { colors } from "colors";
 import { LocalisationFilter } from "./LocalisationFilter/LocalisationFilter";
@@ -14,7 +14,6 @@ import { initial_data } from "data/searchFilters";
 
 interface Props {
   nbFilteredResults: number;
-  t: (a: string, b: string) => void;
   recherche: string[];
   addParamasInRechercher: (index: number, item: any) => void;
   queryDispositifs: () => void;
@@ -104,6 +103,8 @@ const ShowMoreFiltreTextContainer = styled.div`
 `;
 
 export const MobileAdvancedSearch = (props: Props) => {
+  const { t } = useTranslation();
+
   const [showTagModal, setShowTagModal] = useState(false);
   const [tagSelected, setTagSelected] = useState<Tag | null>(null);
   const [showAgeModal, setShowAgeModal] = useState(false);
@@ -244,7 +245,7 @@ export const MobileAdvancedSearch = (props: Props) => {
             size="large"
           />
           <SearchTitle>
-            {props.t(
+            {t(
               "AdvancedSearch.Modifier ma recherche",
               "Modifier ma recherche"
             )}
@@ -254,13 +255,12 @@ export const MobileAdvancedSearch = (props: Props) => {
       {isUrlEmpty ? (
         <>
           <TextTitle>
-            {props.t("SearchItem.J'ai besoin de", "J'ai besoin de")}
+            {t("SearchItem.J'ai besoin de", "J'ai besoin de")}
           </TextTitle>
           <SelectedFilter
             toggleShowModal={toggleShowModal}
             tagSelected={tagSelected}
             type="thème"
-            t={props.t}
             title={"Tags.choisir un thème"}
             defaultTitle={"choisir un thème"}
             desactiver={props.desactiver}
@@ -268,7 +268,7 @@ export const MobileAdvancedSearch = (props: Props) => {
           />
 
           <TextTitle>
-            {props.t("SearchItem.J'habite à", "J'habite à")}
+            {t("SearchItem.J'habite à", "J'habite à")}
           </TextTitle>
           {geoSearch || ville !== "" ? (
             <LocalisationFilter
@@ -283,19 +283,18 @@ export const MobileAdvancedSearch = (props: Props) => {
           ) : (
             <>
               <FilterButton onClick={() => setGeoSearch(true)}>
-                {props.t("SearchItem.choisir ma ville", "choisir ma ville")}
-                <Icon name="pin" fill="#212121" size="large" />
+                {t("SearchItem.choisir ma ville", "choisir ma ville")}
+                <EVAIcon name="pin" fill="#212121" size="large" />
               </FilterButton>
             </>
           )}
           {showMoreFiltre && (
             <>
-              <TextTitle> {props.t("SearchItem.J'ai", "J'ai")}</TextTitle>
+              <TextTitle> {t("SearchItem.J'ai", "J'ai")}</TextTitle>
               <SelectedFilter
                 toggleShowModal={toggleShowModal}
                 otherFilterSelected={ageSelected}
                 type="age"
-                t={props.t}
                 title={"SearchItem.choisir mon âge"}
                 defaultTitle={"choisir mon âge"}
                 setState={setAgeSelected}
@@ -305,13 +304,12 @@ export const MobileAdvancedSearch = (props: Props) => {
 
               <TextTitle>
                 {" "}
-                {props.t("SearchItem.Je parle", "Je parle")}
+                {t("SearchItem.Je parle", "Je parle")}
               </TextTitle>
               <SelectedFilter
                 toggleShowModal={toggleShowModal}
                 otherFilterSelected={frenchSelected}
                 type="french"
-                t={props.t}
                 title={"Tags.niveau de français"}
                 defaultTitle={"niveau de français"}
                 setState={setFrenchSelected}
@@ -322,18 +320,17 @@ export const MobileAdvancedSearch = (props: Props) => {
           )}
           <ShowMoreFiltreTextContainer onClick={toggleShowFiltre}>
             {showMoreFiltre
-              ? props.t(
+              ? t(
                   "AdvancedSearch.Voir moins de filtres",
                   "Voir moins de filtres"
                 )
-              : props.t(
+              : t(
                   "AdvancedSearch.Voir plus de filtres",
                   "Voir plus de filtres"
                 )}
           </ShowMoreFiltreTextContainer>
           {showTagModal && (
             <MobileSearchFilterModal
-              t={props.t}
               selectOption={selectOption}
               type="thème"
               title="Tags.thème"
@@ -346,7 +343,6 @@ export const MobileAdvancedSearch = (props: Props) => {
           )}
           {showAgeModal && (
             <MobileSearchFilterModal
-              t={props.t}
               selectOption={selectOption}
               type="age"
               title="SearchItem.choisir mon âge"
@@ -359,7 +355,6 @@ export const MobileAdvancedSearch = (props: Props) => {
           )}
           {showFrenchModal && (
             <MobileSearchFilterModal
-              t={props.t}
               selectOption={selectOption}
               type="french"
               title="SearchItem.le français"
@@ -384,7 +379,6 @@ export const MobileAdvancedSearch = (props: Props) => {
           secondaryThemeList={props.secondaryThemeList}
           secondaryThemeListFullFrance={props.secondaryThemeListFullFrance}
           totalFicheCount={props.totalFicheCount}
-          t={props.t}
           nbFilteredResults={props.nbFilteredResults}
           isLoading={props.isLoading}
           history={props.history}
@@ -404,8 +398,8 @@ export const MobileAdvancedSearch = (props: Props) => {
           />
           <SearchTitle>
             {isSearchButtonDisabled
-              ? props.t("Sélectionnez un filtre !", "Sélectionnez un filtre !")
-              : props.t("Rechercher", "Rechercher")}
+              ? t("Sélectionnez un filtre !", "Sélectionnez un filtre !")
+              : t("Rechercher", "Rechercher")}
           </SearchTitle>
         </SearchBoutton>
       )}

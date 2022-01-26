@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import styles from "../Sponsors.module.scss";
 
 interface Props {
   index: number;

@@ -80,7 +80,7 @@ interface InitialStructure {
   contact: string;
   phone_contact: string;
   mail_contact: string;
-  responsable: null | Responsable;
+  responsable?: null | Responsable;
   nom: string;
 }
 
@@ -253,7 +253,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
           isLoading={isLoading}
           activeUsers={activeUsers}
           onSelectItem={onSelectItem}
-          responsable={structure.responsable}
+          responsable={structure.responsable || null}
           removeRespo={() => setStructure({ ...structure, responsable: null })}
         />
       </ResponsableContainer>

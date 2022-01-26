@@ -1,21 +1,21 @@
-// import "./TranslationNeedsModal.scss";
 import React, { useEffect, useState } from "react";
 import { Modal, Table } from "reactstrap";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { ObjectId } from "mongodb";
-import { Need, AvailableLanguageI18nCode } from "../../../../types/interface";
-import { needsSelector } from "../../../../services/Needs/needs.selectors";
+import { Need, AvailableLanguageI18nCode } from "types/interface";
+import { needsSelector } from "services/Needs/needs.selectors";
 import { getTag } from "../../Admin/Needs/lib";
 import { TagButton } from "../../Admin/Needs/TagButton";
-import { jsUcfirst } from "../../../../lib";
-import { fetchNeedsActionCreator } from "../../../../services/Needs/needs.actions";
-import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
-import { colors } from "../../../../colors";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import { jsUcfirst } from "lib";
+import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { colors } from "colors";
+import FButton from "components/FigmaUI/FButton/FButton";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import { FrameModal } from "../../../../components/Modals/FrameModal/FrameModal";
+import FrameModal from "components/Modals/FrameModal/FrameModal";
+// import "./TranslationNeedsModal.scss";
 
 interface Props {
   show: boolean;

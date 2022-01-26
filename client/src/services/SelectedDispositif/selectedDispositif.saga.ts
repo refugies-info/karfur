@@ -1,13 +1,13 @@
 import { SagaIterator } from "redux-saga";
 import { takeLatest, call, put, select } from "redux-saga/effects";
-import API from "../../utils/API";
-import { logger } from "../../logger";
+import API from "utils/API";
+import { logger } from "logger";
 import {
   fetchSelectedDispositifActionCreator,
   setSelectedDispositifActionCreator,
 } from "./selectedDispositif.actions";
 import { FETCH_SELECTED_DISPOSITIF } from "./selectedDispositif.actionTypes";
-// import { push } from "connected-react-router";
+import Router from "next/router";
 import { userSelector } from "../User/user.selectors";
 import _ from "lodash";
 import {
@@ -37,7 +37,7 @@ export function* fetchSelectedDispositif(
       const dispositif = data.data.data[0];
       yield put(setSelectedDispositifActionCreator(dispositif));
       if (!dispositif || !dispositif._id) {
-        yield put(push("/"));
+        yield call(Router.push, "/");
       }
 
       const user = yield select(userSelector);
@@ -49,9 +49,9 @@ export function* fetchSelectedDispositif(
         !user.user.structures.includes(dispositif.mainSponsor._id)
       ) {
         if (_.isEmpty(user)) {
-          yield put(push("/login"));
+          yield call(Router.push, "/login");
         }
-        yield put(push("/"));
+        yield call(Router.push, "/");
       }
     }
 

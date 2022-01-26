@@ -18,7 +18,8 @@ export function* fetchLangues(): SagaIterator {
     yield put(setLanguesActionCreator(data.data.data));
     yield put(finishLoading(LoadingStatusKey.FETCH_LANGUES));
   } catch (error) {
-    logger.error("Error while fetching langues", { error: error.message });
+    const { message } = error as Error;
+    logger.error("Error while fetching langues", { error: message });
     yield put(setLanguesActionCreator([]));
   }
 }
@@ -27,7 +28,8 @@ export function* toggleLangue(): SagaIterator {
   try {
     yield put(fetchActiveDispositifsActionsCreator());
   } catch (error) {
-    logger.error("Error while setting dispositifs", { error: error.message });
+    const { message } = error as Error;
+    logger.error("Error while setting dispositifs", { error: message });
   }
 }
 

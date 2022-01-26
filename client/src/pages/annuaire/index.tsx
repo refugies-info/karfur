@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
-import { useRouter } from 'next/router'
-import { useTranslation } from 'react-i18next';
+import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 import { ObjectId } from "mongodb";
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
 import { activeStructuresSelector } from "services/ActiveStructures/activeStructures.selector";
@@ -79,8 +79,9 @@ const LoadingCard = () => (
 const Annuaire = (props: any) => {
   const [stopScroll, setStopScroll] = useState(false);
   const [currentScroll, setCurrentScroll] = useState(0);
-  const [letterSelected, setLetterSelected] = useState("");
-  const [filteredStructures, setFilteredStructures] = useState<SimplifiedStructure[]>([]);
+  const [filteredStructures, setFilteredStructures] = useState<
+    SimplifiedStructure[]
+  >([]);
   const [keyword, setKeyword] = useState("");
   const [typeSelected, setTypeSelected] = useState<string[]>([]);
   const [ville, setVille] = useState("");
@@ -90,7 +91,9 @@ const Annuaire = (props: any) => {
   const [isCitySelected, setIsCitySelected] = useState(false);
 
   const structures = useSelector(activeStructuresSelector);
-  const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES));
+  const isLoading = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES)
+  );
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -418,48 +421,6 @@ const Annuaire = (props: any) => {
     });
   const lettersClickable = defineLettersClickable(filteredStructures);
 
-  if (isLoading) {
-    const emptyArray = new Array(7).fill("a");
-    return (
-      <MainContainer>
-        <Header
-          letters={letters}
-          stopScroll={stopScroll}
-          currentScroll={currentScroll}
-          letterSelected={letterSelected}
-          setLetterSelected={setLetterSelected}
-          filteredStructures={filteredStructures}
-          resetSearch={resetSearch}
-          keyword={keyword}
-          setKeyword={setKeyword}
-          typeSelected={typeSelected}
-          setTypeSelected={setTypeSelected}
-          ville={ville}
-          setVille={setVille}
-          depName={depName}
-          setDepName={setDepName}
-          depNumber={depNumber}
-          setDepNumber={setDepNumber}
-          isCityFocus={isCityFocus}
-          setIsCityFocus={setIsCityFocus}
-          isCitySelected={isCitySelected}
-          setIsCitySelected={setIsCitySelected}
-          history={null}
-          lettersClickable={lettersClickable}
-        />
-        <LoadingContainer>
-          <div
-            style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
-          >
-            {emptyArray.map((index) => (
-              <LoadingCard key={index} />
-            ))}
-          </div>
-        </LoadingContainer>
-      </MainContainer>
-    );
-  }
-
   return (
     <MainContainer>
       <Header
@@ -467,8 +428,6 @@ const Annuaire = (props: any) => {
         letters={letters}
         stopScroll={stopScroll}
         currentScroll={currentScroll}
-        letterSelected={letterSelected}
-        setLetterSelected={setLetterSelected}
         filteredStructures={filteredStructures}
         keyword={keyword}
         setKeyword={setKeyword}
@@ -484,24 +443,39 @@ const Annuaire = (props: any) => {
         setIsCityFocus={setIsCityFocus}
         isCitySelected={isCitySelected}
         setIsCitySelected={setIsCitySelected}
-        history={null}
         lettersClickable={lettersClickable}
       />
-      <Content
-        currentScroll={currentScroll}
-        stopScroll={stopScroll}
-        hasMarginBottom={true}
-      >
-        {filteredStructures.length > 0 ? (
-          <LetterSection
-            onStructureCardClick={onStructureCardClick}
-            structures={filteredStructures}
-            setLetterSelected={setLetterSelected}
-          />
-        ) : (
-          <NoResult resetAllFilter={resetAllFilter} t={props.t} />
-        )}
-      </Content>
+
+      {isLoading ? (
+        <LoadingContainer>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+            }}
+          >
+            {new Array(7).fill("a").map((index) => (
+              <LoadingCard key={index} />
+            ))}
+          </div>
+        </LoadingContainer>
+      ) : (
+        <Content
+          currentScroll={currentScroll}
+          stopScroll={stopScroll}
+          hasMarginBottom={true}
+        >
+          {filteredStructures.length > 0 ? (
+            <LetterSection
+              onStructureCardClick={onStructureCardClick}
+              structures={filteredStructures}
+            />
+          ) : (
+            <NoResult resetAllFilter={resetAllFilter} t={props.t} />
+          )}
+        </Content>
+      )}
     </MainContainer>
   );
 };

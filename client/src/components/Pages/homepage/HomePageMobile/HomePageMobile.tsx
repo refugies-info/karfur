@@ -115,7 +115,6 @@ export const HomePageMobile = (props: Props) => {
         toggle={toggleShowInvitationEmailModal}
         show={showInvitationEmailModal}
         togglePreviousModal={toggleGoToDesktopModal}
-        t={props.t}
       />
       <HelpToTranslateMobileModal
         toggle={toggleShowHelpToTranslateModal}

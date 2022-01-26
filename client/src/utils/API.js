@@ -130,14 +130,14 @@ export default {
 
   sendAdminImprovementsMail: (query) => {
     const headers = getHeaders();
-    axios.post(burl + "/mail/sendAdminImprovementsMail", query, {
+    return axios.post(burl + "/mail/sendAdminImprovementsMail", query, {
       headers,
     })
   },
 
   sendSubscriptionReminderMail: (query) => {
     const headers = getHeaders();
-    axios.post(burl + "/mail/sendSubscriptionReminderMail", query, {
+    return axios.post(burl + "/mail/sendSubscriptionReminderMail", query, {
       headers,
     })
   },

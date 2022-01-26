@@ -313,7 +313,7 @@ export const Step2 = (props: Props) => {
         <FInput
           autoFocus={false}
           id="twitter"
-          value={props.structure && props.structure.twitter}
+          value={props?.structure?.twitter || undefined}
           onChange={onChange}
           newSize={true}
           placeholder="Votre twitter"
@@ -329,7 +329,7 @@ export const Step2 = (props: Props) => {
         <FInput
           autoFocus={false}
           id="facebook"
-          value={props.structure && props.structure.facebook}
+          value={props?.structure?.facebook || undefined}
           onChange={onChange}
           newSize={true}
           placeholder="Votre page Facebook"
@@ -345,7 +345,7 @@ export const Step2 = (props: Props) => {
         <FInput
           autoFocus={false}
           id="linkedin"
-          value={props.structure && props.structure.linkedin}
+          value={props?.structure?.linkedin || undefined}
           onChange={onChange}
           newSize={true}
           placeholder="Votre profil Linkedin"

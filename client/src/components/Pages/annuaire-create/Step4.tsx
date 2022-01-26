@@ -115,7 +115,7 @@ const DeleteIconContainer = styled.div`
 `;
 export const Step4 = (props: Props) => {
   const [showHelp, setShowHelp] = useState(true);
-  const [departments, setDepartments] = useState([]);
+  const [departments, setDepartments] = useState<string[]>([]);
   const [departmentInput, setDepartmentInput] = useState("");
 
   const [show1PhoneInput, setshow1PhoneInput] = useState(false);
@@ -483,7 +483,8 @@ export const Step4 = (props: Props) => {
             props.structure.departments &&
             props.structure.departments.length < 8 && (
               <div style={{ width: "280px", marginRight: "8px" }}>
-                <FInput
+              <FInput
+                id="department"
                   value={departmentInput}
                   onChange={onDepartmentChange}
                   newSize={true}
@@ -530,7 +531,6 @@ export const Step4 = (props: Props) => {
                   onChange={onMailChange}
                   newSize={true}
                   placeholder="Votre adresse email"
-                  type="string"
                   autoFocus={false}
                 />
               </div>
@@ -649,7 +649,7 @@ export const Step4 = (props: Props) => {
       >
         <FInput
           id="adressPublic"
-          value={props.structure && props.structure.adressPublic}
+          value={props?.structure?.adressPublic || undefined}
           onChange={onChange}
           newSize={true}
           placeholder="Entrez votre adresse"

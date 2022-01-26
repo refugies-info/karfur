@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import Streamline from "../../../../assets/streamline";
-// import Icon from "react-eva-icons";
-import { colors } from "../../../../colors";
-import { Tag } from "../../../../types/interface";
+import Streamline from "assets/streamline";
+import { useTranslation } from "react-i18next";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { colors } from "colors";
+import { Tag } from "types/interface";
 
 interface Props {
   tagSelected?: Tag | null;
   otherFilterSelected?: { name: string } | null;
   toggleShowModal: (a: string) => void;
-  t: (a: string, b: string) => void;
   type: string;
   title: string;
   defaultTitle: string;
@@ -19,6 +19,7 @@ interface Props {
 }
 
 export const SelectedFilter = (props: Props) => {
+  const { t } = useTranslation();
   const SelectedFilter = styled.div`
     align-items: center;
     padding: 16px;
@@ -93,7 +94,7 @@ export const SelectedFilter = (props: Props) => {
               textAlign="left"
               onClick={() => props.toggleShowModal(props.type)}
             >
-              {props.t(
+              {t(
                 "Tags." + props.tagSelected.name,
                 props.tagSelected.name
               )}
@@ -109,8 +110,8 @@ export const SelectedFilter = (props: Props) => {
           ) : (
             <>
               <FilterButton onClick={() => props.toggleShowModal(props.type)}>
-                {props.t(props.title, props.defaultTitle)}
-                {/* <Icon name="chevron-down" fill="#212121" size="large" /> */}
+                {t(props.title, props.defaultTitle)}
+                <EVAIcon name="chevron-down" fill="#212121" size="large" />
               </FilterButton>
             </>
           )}
@@ -124,7 +125,7 @@ export const SelectedFilter = (props: Props) => {
               textAlign="left"
               onClick={() => props.toggleShowModal(props.type)}
             >
-              {props.t(
+              {t(
                 "Tags." + props.otherFilterSelected.name,
                 props.otherFilterSelected.name
               )}
@@ -135,14 +136,14 @@ export const SelectedFilter = (props: Props) => {
                   props.desactiver(index);
                 }}
               >
-                {/* <Icon name="close" fill={colors.blanc} size="large" /> */}
+                <EVAIcon name="close" fill={colors.blanc} size="large" />
               </div>
             </SelectedFilter>
           ) : (
             <>
               <FilterButton onClick={() => props.toggleShowModal(props.type)}>
-                {props.t(props.title, props.defaultTitle)}
-                <Icon name="chevron-down" fill={colors.noir} size="large" />
+                {t(props.title, props.defaultTitle)}
+                <EVAIcon name="chevron-down" fill={colors.noir} size="large" />
               </FilterButton>
             </>
           )}

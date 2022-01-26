@@ -13,7 +13,7 @@ const MainContainer = styled.div`
   align-items: center;
   box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
   position: relative;
-  z-index: ${(props) => (props.isSelected ? "25" : props.index)};
+  z-index: 25;
   cursor: ${(props) => (props.isClickable ? "pointer" : "default")};
   background: #ffffff;
   color: ${(props) => (!props.isClickable ? "#C6C6C6" : "#212121")};
@@ -26,17 +26,11 @@ const MainContainer = styled.div`
 
 interface Props {
   letter: string;
-  index: number;
-  isOneSelected: boolean;
-  isSelected: boolean;
   isClickable: boolean;
 }
 
 export const Letter = (props: Props) => (
   <MainContainer
-    index={props.index}
-    isSelected={props.isSelected}
-    isOneSelected={props.isOneSelected}
     isClickable={props.isClickable}
   >
     {props.letter.toUpperCase()}

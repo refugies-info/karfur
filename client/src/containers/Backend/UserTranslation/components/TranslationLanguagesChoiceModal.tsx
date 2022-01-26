@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Modal } from "reactstrap";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import FButton from "components/FigmaUI/FButton/FButton";
 import { useSelector, useDispatch } from "react-redux";
-import { allLanguesSelector } from "../../../../services/Langue/langue.selectors";
-import { userSelector } from "../../../../services/User/user.selectors";
-import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
-import { Language, UserLanguage } from "../../../../types/interface";
+import { allLanguesSelector } from "services/Langue/langue.selectors";
+import { userSelector } from "services/User/user.selectors";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { Language, UserLanguage } from "types/interface";
 // import "./TranslationLanguagesChoiceModal.scss";
-import { saveUserActionCreator } from "../../../../services/User/user.actions";
+import { saveUserActionCreator } from "services/User/user.actions";
 import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
-import { colors } from "../../../../colors";
-import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
+import { colors } from "colors";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+import { ObjectId } from "mongodb";
 
 const Header = styled.div`
   font-weight: bold;
@@ -193,7 +194,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
 
     if (!isLangueSelected) {
       const newSelectedLangues = selectedLangues.concat({
-        _id: langue._id,
+        _id: new ObjectId(langue._id),
         i18nCode: langue.i18nCode,
         langueCode: langue.langueCode,
         langueFr: langue.langueFr,

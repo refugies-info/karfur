@@ -1,6 +1,5 @@
 import { createReducer } from "typesafe-actions";
 import { SelectedDispositifActions } from "./selectedDispositif.actions";
-import { updateObject } from "../utility";
 import _ from "lodash";
 import { DispositifContent, IDispositif } from "../../types/interface";
 
@@ -31,7 +30,7 @@ export const selectedDispositifReducer = createReducer<
   SelectedDispositifActions
 >(initialSelectedDispositifState, {
   SET_SELECTED_DISPOSITIF: (state, action) =>
-    updateObject(state, {
+    ({... state,
       ...action.payload,
       // @ts-ignore
       uiArray: _.get(action.payload, "contenu", []).map(
@@ -48,8 +47,9 @@ export const selectedDispositifReducer = createReducer<
         }
       ),
     }),
+  // @ts-ignore
   UPDATE_UI_ARRAY: (state, action) =>
-    updateObject(state, {
+    ({...state,
       uiArray:
         state &&
         state.uiArray &&
@@ -79,11 +79,13 @@ export const selectedDispositifReducer = createReducer<
             }),
           };
         }),
-    }),
+  }),
+  //@ts-ignore
   UPDATE_SELECTED_DISPOSITIF: (state, action) =>
-    updateObject(state, { ...action.payload }),
+    ({ ...state, ...action.payload }),
+  //@ts-ignore
   DELETE_TAG: (state, action) =>
-    updateObject(state, {
+    ({...state,
       tags: state ? state.tags.filter((_, i) => i !== action.payload) : [],
     }),
 });

@@ -1,4 +1,3 @@
-import { updateObject } from "../utility";
 import { User, Role } from "../../types/interface";
 import { createReducer } from "typesafe-actions";
 import { ObjectId } from "mongodb";
@@ -31,7 +30,7 @@ export const userReducer = createReducer<UserState, UserActions>(
   initialUserState,
   {
     SET_USER: (state, action) =>
-      updateObject(state, {
+      ({ ...state,
         userFetched: true,
         user: action.payload,
         userId: action.payload ? action.payload._id : "",
@@ -53,16 +52,16 @@ export const userReducer = createReducer<UserState, UserActions>(
             : false,
         membreStruct:
           action.payload && action.payload.roles
-            ? action.payload.roles.some(
+            ? !!action.payload.roles.some(
                 (x: Role) => x.nom === "hasStructure"
               ) ||
-              (action.payload.structures &&
+              !!(action.payload.structures &&
                 action.payload.structures.length > 0)
             : false,
       }),
     UPDATE_USER: (state, action) =>
-      updateObject(state, { user: action.payload, userFetched: true }),
+      ({ ...state, user: action.payload, userFetched: true }),
     SET_USER_ROLE_IN_STRUCTURE: (state, action) =>
-      updateObject(state, { rolesInStructure: action.payload }),
+      ({...state, rolesInStructure: action.payload }),
   }
 );

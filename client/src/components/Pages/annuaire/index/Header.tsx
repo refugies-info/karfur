@@ -72,8 +72,6 @@ interface Props {
   letters: string[];
   stopScroll: boolean;
   currentScroll: number;
-  letterSelected: string;
-  setLetterSelected: (a: string) => void;
   filteredStructures: SimplifiedStructure[] | null;
   typeSelected: string[] | null;
   setTypeSelected: (a: string[]) => void;
@@ -97,22 +95,6 @@ export const Header = (props: Props) => {
   const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
   const { t } = useTranslation();
   const router = useRouter();
-
-  useEffect(() => {
-    if (props.currentScroll === 0) {
-      props.setLetterSelected("");
-    }
-  }, [props.currentScroll]);
-
-  const selectLetter = (letter: string) => {
-    props.setLetterSelected(letter);
-    let search = router.query.search;
-    if (search !== "") {
-      setTimeout(function () {
-        router.push(search);
-      }, 1000);
-    }
-  };
 
   return (
     <>
@@ -151,23 +133,18 @@ export const Header = (props: Props) => {
           <>
             {props.letters.map((letter, index) => (
               <Link
-                onClick={() => selectLetter(letter)}
                 href={
                   props.lettersClickable.includes(letter.toLocaleUpperCase())
                     ? `/annuaire#${letter.toUpperCase()}`
                     : "/annuaire"
                 }
-                smooth={true}
                 key={letter}
               >
                 <Letter
                   letter={letter}
-                  isOneSelected={props.letterSelected === "" ? false : true}
                   isClickable={props.lettersClickable.includes(
                     letter.toLocaleUpperCase()
                   )}
-                  index={props.letters.length - index}
-                  isSelected={props.letterSelected === letter ? true : false}
                 />
               </Link>
             ))}

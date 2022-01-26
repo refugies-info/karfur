@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEventHandler } from "react";
 import { Modal } from "reactstrap";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
@@ -22,7 +22,7 @@ interface EmailProps {
   email: string;
   notEmailError: boolean;
   id: string;
-  onChange: (email: string) => void;
+  onChange: ChangeEventHandler<HTMLInputElement>
 }
 const TitleContainer = styled.div`
   font-size: 28px;
@@ -176,7 +176,6 @@ export const SubscribeNewsletterModal = (props: Props) => {
             isDisabled={!email}
             fill="white"
             color={colors.vert}
-            t={t}
             onClick={sendMail}
             title="Envoyer"
             defaultTitle="Envoyer"

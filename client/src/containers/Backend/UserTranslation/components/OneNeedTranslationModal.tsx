@@ -4,10 +4,10 @@ import { Modal } from "reactstrap";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { ObjectId } from "mongodb";
-import { needSelector } from "../../../../services/Needs/needs.selectors";
-import FInput from "../../../../components/FigmaUI/FInput/FInput";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import { saveNeedActionCreator } from "../../../../services/Needs/needs.actions";
+import { needSelector } from "services/Needs/needs.selectors";
+import FInput from "components/FigmaUI/FInput/FInput";
+import FButton from "components/FigmaUI/FButton/FButton";
+import { saveNeedActionCreator } from "services/Needs/needs.actions";
 
 interface Props {
   show: boolean;
@@ -119,7 +119,7 @@ export const OneNeedTranslationModal = (props: Props) => {
       <NeedTextFr>{need.fr.text}</NeedTextFr>
       <Title>Version traduite :</Title>
       <div dir={isRTL ? "rtl" : ""}>
-        <FInput value={value} onChange={onValueChange} newSize={true} />
+        <FInput id="translated-version" value={value} onChange={onValueChange} newSize={true} />
       </div>
       <BottomRowContainer>
         <FButton

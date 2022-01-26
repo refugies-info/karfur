@@ -96,6 +96,7 @@ export const NeedDetailsModal = (props: Props) => {
       </StyledTagContainer>
       <SubTitle>Nom du besoin*</SubTitle>
       <FInput
+        id="need-name"
         autoFocus={false}
         value={value}
         onChange={onValueChange}

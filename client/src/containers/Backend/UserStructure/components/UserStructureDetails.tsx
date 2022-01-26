@@ -5,16 +5,16 @@ import {
   StructureContainer,
 } from "./SubComponents";
 import { TitleWithNumber } from "../../middleOfficeSharedComponents";
-import { Picture, UserStructureMembre } from "../../../../types/interface";
-import placeholder from "../../../../assets/annuaire/placeholder_logo_annuaire.svg";
-// import "./UserStructureDetails.scss";
+import { Picture, UserStructureMembre } from "types/interface";
+import placeholder from "assets/annuaire/placeholder_logo_annuaire.svg";
 import styled from "styled-components";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
-// import { NavLink } from "react-router-dom";
+import FButton from "components/FigmaUI/FButton/FButton";
+import { NavLink } from "react-router-dom";
 import { MembresTable } from "./MembresTable";
 import { ObjectId } from "mongodb";
 import { AddMemberModal } from "./AddMemberModal";
 import { EditMemberModal } from "./EditMemberModal";
+// import "./UserStructureDetails.scss";
 
 const StructureName = styled.div`
   font-weight: bold;

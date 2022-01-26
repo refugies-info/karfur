@@ -114,7 +114,7 @@ export const Step1 = (props: Props) => {
       >
         <FInput
           id="nom"
-          value={props.structure && props.structure.nom}
+          value={props?.structure?.nom || undefined}
           onChange={onChange}
           newSize={true}
           autoFocus={false}
@@ -124,7 +124,7 @@ export const Step1 = (props: Props) => {
       <div style={{ marginBottom: "16px", width: "240px" }}>
         <FInput
           id="acronyme"
-          value={props.structure && props.structure.acronyme}
+          value={props?.structure?.acronyme || undefined}
           onChange={onChange}
           newSize={true}
           placeholder="L'acronyme de votre structure"

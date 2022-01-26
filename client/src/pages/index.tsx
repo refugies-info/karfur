@@ -464,7 +464,6 @@ const Homepage = (props: Props) => {
         </>
       )}
       <MobileSearchFilterModal
-        t={t}
         selectOption={selectOption}
         type="thème"
         title="Tags.thème"

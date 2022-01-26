@@ -1,6 +1,7 @@
 import React from "react";
-import { Tag, IDispositif } from "types/interface";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
+import { Tag, IDispositif } from "types/interface";
 import { FicheOnMobile } from "./FicheOnMobile/FicheOnMobile";
 import { colors } from "colors";
 import Streamline from "assets/streamline";
@@ -19,7 +20,6 @@ interface Props {
   secondaryThemeList: IDispositif[];
   secondaryThemeListFullFrance: IDispositif[];
   totalFicheCount: number;
-  t: (a: string, b: string) => void;
   nbFilteredResults: number;
   isLoading: boolean;
   history: any;
@@ -71,11 +71,13 @@ const City = styled.div`
 `;
 
 export const SearchResultsDisplayedOnMobile = (props: Props) => {
+  const { t } = useTranslation();
+
   if (props.isLoading) {
     return (
       <div>
         <TotalCountTitle>
-          {". sur . " + props.t("AdvancedSearch.résultats", "résultats")}
+          {". sur . " + t("AdvancedSearch.résultats", "résultats")}
         </TotalCountTitle>
         <LoadingFicheOnMobile />
       </div>
@@ -89,7 +91,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
           " sur " +
           props.totalFicheCount +
           " " +
-          props.t("AdvancedSearch.résultats", "résultats")}
+          t("AdvancedSearch.résultats", "résultats")}
       </TotalCountTitle>
 
       {props.nbFilteredResults === 0 && props.ville === "" && (
@@ -106,13 +108,12 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
               <FicheOnMobile
                 key={index}
                 item={item}
-                t={props.t}
                 history={props.history}
               />
             );
           })}
           <AProposTitle>
-            {props.t(
+            {t(
               "AdvancedSearch.Fiches aussi à propos de",
               "Fiches aussi à propos de"
             )}
@@ -120,7 +121,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
               {props.tagSelected && (
                 <>
                   <Title>
-                    {props.t(
+                    {t(
                       "Tags." + props.tagSelected.short,
                       props.tagSelected.name
                     )}
@@ -146,7 +147,6 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
                 <FicheOnMobile
                   key={index}
                   item={item}
-                  t={props.t}
                   history={props.history}
                 />
               );
@@ -157,16 +157,16 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
         <>
           <AProposTitle>
             {props.nbFilteredResults > 0
-              ? props.t("AdvancedSearch.Fiches pour", "Fiches pour")
-              : props.t("AdvancedSearch.0 fiche pour", "0 fiche pour")}
+              ? t("AdvancedSearch.Fiches pour", "Fiches pour")
+              : t("AdvancedSearch.0 fiche pour", "0 fiche pour")}
 
             <City>{" " + props.ville}</City>
-            {props.t("AdvancedSearch.avec le thème", "avec le thème")}
+            {t("AdvancedSearch.avec le thème", "avec le thème")}
             <TagSelected color={props.tagSelected.darkColor}>
               {props.tagSelected && (
                 <>
                   <Title>
-                    {props.t(
+                    {t(
                       "Tags." + props.tagSelected.short,
                       props.tagSelected.name
                     )}
@@ -194,23 +194,22 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
                 <FicheOnMobile
                   key={index}
                   item={item}
-                  t={props.t}
                   history={props.history}
                 />
               );
             })}
           <AProposTitle>
-            {props.t("AdvancedSearch.Fiches valables", "Fiches valables")}
+            {t("AdvancedSearch.Fiches valables", "Fiches valables")}
             <City>
-              {props.t("AdvancedSearch.partout en France", "partout en France")}
+              {t("AdvancedSearch.partout en France", "partout en France")}
             </City>
-            {props.t("AdvancedSearch.avec le thème", "avec le thème")}
+            {t("AdvancedSearch.avec le thème", "avec le thème")}
 
             <TagSelected color={props.tagSelected.darkColor}>
               {props.tagSelected && (
                 <>
                   <Title>
-                    {props.t(
+                    {t(
                       "Tags." + props.tagSelected.short,
                       props.tagSelected.name
                     )}
@@ -236,7 +235,6 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
 
                 <FicheOnMobile
                   item={item}
-                  t={props.t}
                   history={props.history}
                   key={index}
                 />
@@ -248,7 +246,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
         <>
           {props.ville !== "" && (
             <AProposTitle>
-              {props.t("AdvancedSearch.Fiches pour", "Fiches pour")}
+              {t("AdvancedSearch.Fiches pour", "Fiches pour")}
               <City>{" " + props.ville}</City>
             </AProposTitle>
           )}
@@ -259,16 +257,15 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
               <FicheOnMobile
                 key={index}
                 item={item}
-                t={props.t}
                 history={props.history}
               />
             );
           })}
           {props.ville !== "" && (
             <AProposTitle>
-              {props.t("AdvancedSearch.Fiches valables", "Fiches valables")}
+              {t("AdvancedSearch.Fiches valables", "Fiches valables")}
               <City>
-                {props.t(
+                {t(
                   "AdvancedSearch.partout en France",
                   "partout en France"
                 )}
@@ -283,7 +280,6 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
                 <FicheOnMobile
                   key={index}
                   item={item}
-                  t={props.t}
                   history={props.history}
                 />
               );

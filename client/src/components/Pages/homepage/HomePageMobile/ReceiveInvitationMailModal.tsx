@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent } from "react";
 import { Modal } from "reactstrap";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import Swal from "sweetalert2";
 import { FButtonMobile } from "components/FigmaUI/FButtonMobile/FButtonMobile";
@@ -13,32 +14,34 @@ interface Props {
   toggle: () => void;
   togglePreviousModal: () => void;
   show: boolean;
-  t: (a: string, b: string) => void;
 }
 interface EmailProps {
   email: string;
   notEmailError: boolean;
-  t: (a: string, b: string) => void;
   id: string;
-  onChange: (email: string) => void;
+  onChange: (email: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const EmailField = (props: EmailProps) => (
-  <>
-    <FInput
-      prepend
-      prependName="email-outline"
-      value={props.email}
-      {...props}
-      id="email"
-      type="email"
-      placeholder={props.t("Register.Votre email", "Votre email")}
-      error={props.notEmailError}
-      errorIcon="email-outline"
-      newSize
-    />
-  </>
-);
+const EmailField = (props: EmailProps) => {
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <FInput
+        prepend
+        prependName="email-outline"
+        value={props.email}
+        {...props}
+        id="email"
+        type="email"
+        placeholder={t("Register.Votre email", "Votre email")}
+        error={props.notEmailError}
+        errorIcon="email-outline"
+        newSize
+      />
+    </>
+  );
+}
 
 const TitleContainer = styled.div`
   font-size: 28px;
@@ -78,6 +81,8 @@ const CloseIconContainer = styled.div`
 `;
 
 export const ReceiveInvitationMailModal = (props: Props) => {
+  const { t } = useTranslation();
+
   const [email, setEmail] = useState("");
   const [notEmailError, setNotEmailError] = useState(false);
 
@@ -132,13 +137,13 @@ export const ReceiveInvitationMailModal = (props: Props) => {
           <EVAIcon name="close" fill={colors.blancSimple} size={"large"} />
         </CloseIconContainer>
         <TitleContainer>
-          {props.t(
+          {t(
             "Register.Recevoir une invitation",
             "Recevoir une invitation"
           )}
         </TitleContainer>
         <TextContainer>
-          {props.t(
+          {t(
             "Register.Nous vous enverrons un email d'invitation pour vous inscrire",
             "Nous vous enverrons un email d'invitation pour vous inscrire."
           )}
@@ -147,16 +152,15 @@ export const ReceiveInvitationMailModal = (props: Props) => {
           id="email"
           email={email}
           onChange={handleChangeEmail}
-          t={props.t}
           notEmailError={notEmailError}
         />
         {notEmailError && (
           <ErrorMessageContainer>
-            {props.t(
+            {t(
               "Register.Ceci n'est pas un email,",
               "Ceci n'est pas un email,"
             )}{" "}
-            {props.t(
+            {t(
               "Register.vérifiez l'orthographe",
               "vérifiez l'orthographe."
             )}
@@ -168,7 +172,6 @@ export const ReceiveInvitationMailModal = (props: Props) => {
           fill="white"
           color={colors.vert}
           onClick={sendMail}
-          t={props.t}
           title="Envoyer"
           defaultTitle="Envoyer"
         />

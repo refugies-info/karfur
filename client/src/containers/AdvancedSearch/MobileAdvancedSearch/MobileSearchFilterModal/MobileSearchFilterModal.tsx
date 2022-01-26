@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal } from "reactstrap";
+import { useTranslation } from "react-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Streamline from "assets/streamline";
 import { filtres } from "data/dispositif";
@@ -15,10 +16,11 @@ interface Props {
   defaultTitle: string;
   sentence: string;
   defaultSentence: string;
-  t: (a: string, b: string) => string;
 }
 
 export const MobileSearchFilterModal = (props: Props) => {
+  const { t } = useTranslation();
+
   const data: any =
     props.type === "thème"
       ? filtres.tags
@@ -45,9 +47,9 @@ export const MobileSearchFilterModal = (props: Props) => {
       contentClassName={styles.modal_content}
     >
       <div className={styles.title}>
-        <p className={styles.title_text}> {props.t(props.sentence, props.defaultSentence)}</p>
+        <p className={styles.title_text}> {t(props.sentence, props.defaultSentence)}</p>
         <button className={styles.title_btn} onClick={props.toggle}>
-          {props.t(props.title, props.defaultTitle)}
+          {t(props.title, props.defaultTitle)}
           <EVAIcon name="close" fill="#FFFFFF" size="large" />
         </button>
       </div>
@@ -62,7 +64,7 @@ export const MobileSearchFilterModal = (props: Props) => {
                   className={`${styles.filter_btn} ${styles.theme}`}
                   style={{ backgroundColor: item.darkColor}}
                 >
-                  {props.t("Tags." + item.name, item.name)}
+                  {t("Tags." + item.name, item.name)}
                   {item.icon ? (
                     <Streamline
                       name={item.icon}
@@ -78,7 +80,7 @@ export const MobileSearchFilterModal = (props: Props) => {
                   className={`${styles.filter_btn} ${styles.other}`}
                 >
                   <div className="m-auto">
-                    {props.t("Tags." + item.name, item.name)}
+                    {t("Tags." + item.name, item.name)}
                   </div>
                 </button>
               ) : null}

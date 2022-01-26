@@ -88,6 +88,7 @@ export const AddNeedModal = (props: Props) => {
 
       <SubTitle>Nom du besoin*</SubTitle>
       <FInput
+        id="need-name"
         autoFocus={false}
         value={value}
         onChange={onValueChange}

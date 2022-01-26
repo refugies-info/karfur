@@ -643,6 +643,7 @@ const customConvertOption = {
         end: "</div> </div>",
       };
     }
+    return null;
   },
   entityToHTML: (entity: any, originalText: string) => {
     if (entity.type === "link" || entity.type === "LINK") {

@@ -57,7 +57,6 @@ export const GoToDesktopModal = (props: Props) => (
           fill="white"
           color={colors.noir}
           onClick={props.toggleShowInvitationEmailModal}
-          t={props.t}
           title="Register.Me le rappeler par email"
           defaultTitle="Me le rappeler par email"
         />
@@ -69,7 +68,6 @@ export const GoToDesktopModal = (props: Props) => (
           fill="white"
           color={colors.vert}
           onClick={props.toggle}
-          t={props.t}
           title="Dispositif.compris"
           defaultTitle="Ok, compris !"
         />

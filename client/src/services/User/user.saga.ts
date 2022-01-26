@@ -7,7 +7,7 @@ import {
   fetchUserActionCreator,
   saveUserActionCreator,
 } from "./user.actions";
-// import { push } from "connected-react-router";
+import Router from "next/router";
 import { logger } from "../../logger";
 import {
   startLoading,
@@ -45,10 +45,10 @@ export function* fetchUser(
 
     if (action.payload && action.payload.shouldRedirect) {
       yield put(
-        push({
-          pathname: "/backend/user-translation",
-          state: { user: action.payload.user },
-        })
+        yield call(
+          Router.push, "/backend/user-translation"
+          // state: { user: action.payload.user }, // TODO : location.state
+        )
       );
     }
   } catch (error) {

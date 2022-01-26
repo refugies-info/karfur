@@ -1,5 +1,6 @@
 import React from "react";
 import { IDispositif } from "types/interface";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { colors } from "colors";
 import Streamline from "assets/streamline";
@@ -7,7 +8,6 @@ import { filtres } from "data/dispositif";
 
 interface Props {
   item: IDispositif;
-  t: (a: string, b: string) => void;
   history: any;
 }
 
@@ -50,6 +50,8 @@ const PictoCircle = styled.div`
 `;
 
 export const FicheOnMobile = (props: Props) => {
+  const { t } = useTranslation();
+
   const navigateToContent = () => {
     return props.history.push({
       pathname:
@@ -72,7 +74,7 @@ export const FicheOnMobile = (props: Props) => {
             {props.item.titreInformatif}
             {props.item.titreMarque && (
               <SubTitleText>
-                {" " + props.t("Dispositif.avec", "avec") + " "}{" "}
+                {" " + t("Dispositif.avec", "avec") + " "}{" "}
                 {props.item.titreMarque}
               </SubTitleText>
             )}

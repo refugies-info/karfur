@@ -52,7 +52,6 @@ export const sharingOptions = (
   titreInformatif: string,
   titreMarque?: string
 ) => {
-  // @ts-ignore
   if (navigator.share) {
     const title =
       typeContenu === "dispositif"
@@ -61,13 +60,10 @@ export const sharingOptions = (
 
     const text = `Voici le lien vers la fiche ${titreInformatif} : ${window.location.href} `;
 
-    // @ts-ignore
     return navigator
-      .share({
-        title,
-        text,
-      })
-      .then(() => {})
-      .catch(() => {});
+      .share({ title, text })
+      .then(() => { })
+      .catch(() => { });
   }
+  return null;
 };

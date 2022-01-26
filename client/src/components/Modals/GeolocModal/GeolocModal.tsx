@@ -13,7 +13,7 @@ interface Props {
   show: boolean
   toggleTutorielModal: any
   validateDepartments: any
-  departments: any[]
+  departments: string[] | undefined
   hideModal: any
 }
 
@@ -60,20 +60,12 @@ const GeolocModal = (props: Props) => {
     }
   };
 
-  const onDropdownElementClick = (element: any) => {
-    var departments = [];
-    if (selectedDepartments.length > 0 && selectedDepartments[0] === "All") {
-      departments = selectedDepartments
-        ? !selectedDepartments
-          ? [element]
-          : (selectedDepartments[0] = [element])
-        : [];
-    } else {
-      departments = selectedDepartments
-        ? !selectedDepartments
-          ? [element]
-          : selectedDepartments.concat([element])
-        : [];
+  const onDropdownElementClick = (element: string) => {
+    var departments: string[] = [];
+    if (selectedDepartments.length > 0 && selectedDepartments[0] === "All") { // All selected
+      departments = [element];
+    } else { // element selected
+      departments = (selectedDepartments || []).concat(element);
     }
     setSelectedDepartments(departments);
     setDepartments([]);
@@ -156,7 +148,7 @@ const GeolocModal = (props: Props) => {
         onClick={handleCheckboxChange}
         style={{ backgroundColor: isFranceSelected ? "#DEF7C2" : "#f2f2f2" }}
       >
-        <CustomCheckBox checked={isFranceSelected} />
+        <CustomCheckBox checked={!!isFranceSelected} />
         <p className={isFranceSelected ? styles.text_checked : styles.text}>
           France entière
         </p>

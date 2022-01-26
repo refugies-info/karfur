@@ -2,21 +2,21 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Modal, Spinner, Table } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { isLoadingSelector } from "../../../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../../../services/LoadingStatus/loadingStatus.actions";
-import FButton from "../../../../../components/FigmaUI/FButton/FButton";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import FButton from "components/FigmaUI/FButton/FButton";
 import { ObjectId } from "mongodb";
-import { dispositifSelector } from "../../../../../services/AllDispositifs/allDispositifs.selector";
+import { dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
 // import "./NeedsChoiceModal.scss";
 import { TagButton } from "../../Needs/TagButton";
 import { getTagColor, getTag } from "../../Needs/lib";
-import { jsUcfirst, removeAccents } from "../../../../../lib";
-import FInput from "../../../../../components/FigmaUI/FInput/FInput";
-import { needsSelector } from "../../../../../services/Needs/needs.selectors";
+import { jsUcfirst, removeAccents } from "lib";
+import FInput from "components/FigmaUI/FInput/FInput";
+import { needsSelector } from "services/Needs/needs.selectors";
 import { DeleteButton } from "../../sharedComponents/SubComponents";
-import { colors } from "../../../../../colors";
-import API from "../../../../../utils/API";
-import { fetchAllDispositifsActionsCreator } from "../../../../../services/AllDispositifs/allDispositifs.actions";
+import { colors } from "colors";
+import API from "utils/API";
+import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 
 interface Props {
   show: boolean;
@@ -218,6 +218,7 @@ export const NeedsChoiceModal = (props: Props) => {
 
           <SubTitle>Ajouter un besoin</SubTitle>
           <FInput
+            id="need-input"
             autoFocus={false}
             value={value}
             onChange={onValueChange}

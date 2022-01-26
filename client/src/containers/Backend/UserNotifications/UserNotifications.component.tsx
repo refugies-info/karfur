@@ -4,27 +4,27 @@ import {
   fetchUserStructureActionCreator,
   setUserStructureActionCreator,
   updateUserStructureActionCreator,
-} from "../../../services/UserStructure/userStructure.actions";
-import { userStructureIdSelector } from "../../../services/User/user.selectors";
+} from "services/UserStructure/userStructure.actions";
+import { userStructureIdSelector } from "services/User/user.selectors";
 import {
   userStructureDisposAssociesSelector,
   userStructureHasResponsibleSeenNotification,
   userStructureSelector,
-} from "../../../services/UserStructure/userStructure.selectors";
-import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
+} from "services/UserStructure/userStructure.selectors";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import styled from "styled-components";
 import { formatNotifications } from "./lib";
 import { Notification } from "./components/Notification";
-import { ReactionLectureModal } from "../../../components/Modals";
+import { ReactionLectureModal } from "components/Modals";
 import { FormattedNotification } from "./types";
 import _ from "lodash";
 import Swal from "sweetalert2";
-import { updateDispositifReactionActionCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
+import { updateDispositifReactionActionCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import Skeleton from "react-loading-skeleton";
-import { assetsOnServer } from "../../../assets/assetsOnServer";
+import { assetsOnServer } from "assets/assetsOnServer";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
-import { colors } from "../../../colors";
+import { colors } from "colors";
 import { Navigation } from "../Navigation";
 
 declare const window: Window;
@@ -258,7 +258,6 @@ export const UserNotificationsComponent = (props: PropsBeforeInjection) => {
           toggle={toggleReactionModal}
           delete={() => deleteNotificationAndUpdate(selectedReaction)}
           read={() => readNotificationAndUpdate(selectedReaction)}
-          history={props.history}
         />
       </MainContainer>
     </div>

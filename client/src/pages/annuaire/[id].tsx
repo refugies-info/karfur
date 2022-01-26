@@ -21,12 +21,6 @@ const Content = styled.div`
   flex-direction: row;
   flex: 1 1 0%;
 `;
-declare global {
-  interface Window {
-    scrollTo: (arg1: number, arg2: number) => void;
-    innerHeight: number;
-  }
-}
 
 const MainContainer = styled.div`
   display: flex;

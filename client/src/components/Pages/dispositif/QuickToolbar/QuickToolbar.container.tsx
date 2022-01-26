@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { withTranslation, WithTranslation } from "react-i18next";
 import { compose } from "recompose";
 import { PropsBeforeInjection, QuickToolbar } from "./QuickToolbar.component";
-import { RootState } from "../../../services/rootReducer";
+import { RootState } from "services/rootReducer";
 
 const mapStateToProps = (state: RootState) => {
   return {
