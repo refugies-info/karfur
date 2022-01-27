@@ -86,7 +86,7 @@ const DispositifCard = (props: Props) => {
           <EVAIcon
             name="clock-outline"
             fill="#000000"
-            size="10"
+            size={10}
             className="mr-10"
           />
           {"~ 20 "}

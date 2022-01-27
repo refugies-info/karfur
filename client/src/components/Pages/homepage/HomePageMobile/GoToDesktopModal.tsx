@@ -5,6 +5,7 @@ import { rendez_vous_ordinateur } from "assets/figma";
 import { FButtonMobile } from "components/FigmaUI/FButtonMobile/FButtonMobile";
 import { colors } from "colors";
 import Image from "next/image";
+import styles from "scss/components/modals.module.scss";
 
 declare const window: Window;
 interface Props {
@@ -36,7 +37,12 @@ const ButtonContainer = styled.div`
 `;
 
 export const GoToDesktopModal = (props: Props) => (
-  <Modal isOpen={props.show} toggle={props.toggle} className="share-content">
+  <Modal
+    isOpen={props.show}
+    toggle={props.toggle}
+    className={styles.modal}
+    contentClassName={styles.modal_content}
+  >
     <MainContainer>
       <Image src={rendez_vous_ordinateur} alt="image newsletter" />
       <TitleContainer>

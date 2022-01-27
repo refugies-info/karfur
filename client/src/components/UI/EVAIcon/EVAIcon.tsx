@@ -18,7 +18,7 @@ interface Props {
   | "large"
   | "xlarge"
   | "hero"
-  | "xhero";
+  | "xhero" | number;
   name: string;
   className?: string;
   id?: string;
@@ -26,7 +26,9 @@ interface Props {
 }
 
 const EVAIcon = (props: Props) => {
-  const { name, fill, size } = props;
+  const { name, fill } = props;
+  const size = typeof props.size === "number" ? props.size : SIZE[props.size];
+
   useEffect(() => {
     eva.replace({ name, fill, size })
   }, [name, fill, size]);
@@ -34,15 +36,14 @@ const EVAIcon = (props: Props) => {
   return (
     <span
       id={props.id || ""}
-      key={props.name}
       className={props.className || ""}
       onClick={props.onClick}
     >
       <i
-        data-eva={props.name}
-        data-eva-fill={props.fill}
-        data-eva-height={SIZE[props.size]}
-        data-eva-width={SIZE[props.size]}
+        data-eva={name}
+        data-eva-fill={fill}
+        data-eva-height={size}
+        data-eva-width={size}
       />
     </span>
   );

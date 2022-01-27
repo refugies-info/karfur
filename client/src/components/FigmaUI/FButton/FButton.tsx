@@ -40,7 +40,7 @@ interface Props {
   [x: string]: any
 }
 
-const FButton = (props: Props) => {
+const FButton = React.forwardRef((props: Props, ref) => {
   let {
     type,
     className,
@@ -73,7 +73,9 @@ const FButton = (props: Props) => {
       {props.children}
     </Tag>
   );
-};
+});
+
+FButton.displayName = "FButton";
 
 FButton.defaultProps = {
   type: "default",

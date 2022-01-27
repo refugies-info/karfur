@@ -50,6 +50,9 @@ $avatarSize: 52px;
     cursor: pointer;
     height: $avatarSize;
     width: $avatarSize;
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
 
     .overlay {
       background-image: linear-gradient(
@@ -59,7 +62,6 @@ $avatarSize: 52px;
       );
       height: 100%;
       width: 100%;
-      border-radius: 50%;
       position: relative;
       font-weight: bold;
       font-size: 16px;
@@ -69,13 +71,11 @@ $avatarSize: 52px;
     .user_picture {
       height: 100%;
       width: 100%;
-      border-radius: 50%;
     }
 
     .user_picture_with_overlay {
       height: 100%;
       width: 100%;
-      border-radius: 50%;
       opacity: 0.3;
     }
 
@@ -85,7 +85,6 @@ $avatarSize: 52px;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
       text-align: center;
       opacity: 1;
     }
@@ -105,6 +104,9 @@ $avatarSize: 52px;
     border-radius: $radius;
     height: 52px;
     background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   .advanced_search_btn_rtl {
     margin-left: 16px;

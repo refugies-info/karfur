@@ -1,13 +1,12 @@
 import React from "react";
 import { TabPane } from "reactstrap";
-import { AdminContenu } from "../../../containers/Backend/Admin/AdminContenu/AdminContenu";
-import { AdminStructures } from "../../../containers/Backend/Admin/AdminStructures/AdminStructures";
-import { AdminUsers } from "../../../containers/Backend/Admin/AdminUsers/AdminUsers";
-import { Needs } from "../../../containers/Backend/Admin/Needs/Needs";
+import { AdminContenu } from "containers/Backend/Admin/AdminContenu/AdminContenu";
+import { AdminStructures } from "containers/Backend/Admin/AdminStructures/AdminStructures";
+import { AdminUsers } from "containers/Backend/Admin/AdminUsers/AdminUsers";
+import { Needs } from "containers/Backend/Admin/Needs/Needs";
+import Dashboard from "containers/Backend/Dashboard/Dashboard";
 
-import Dashboard from "../../../containers/Backend/Dashboard/Dashboard";
-
-const customTabPane = () => {
+const CustomTabPane = () => {
   return (
     <>
       <TabPane tabId="0" className="no-padding">
@@ -29,4 +28,4 @@ const customTabPane = () => {
   );
 };
 
-export default customTabPane;
+export default CustomTabPane;

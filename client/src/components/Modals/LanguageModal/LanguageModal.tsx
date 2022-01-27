@@ -147,7 +147,7 @@ const LanguageModal = (props: Props) => {
                       onClick={props.toggle}
                       type="outline"
                     >
-                      {t("Homepage.Je traduis", "Je traduis")}
+                      {t("Homepage.btn_translate", "Je traduis")}
                     </FButton>
                   </Link>
                 </Col>

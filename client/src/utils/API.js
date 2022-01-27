@@ -68,7 +68,7 @@ const getHeaders = () => {
   };
 }
 
-export default {
+const API = {
   login: (user) => {
     const headers = getHeaders();
     return axios.post(burl + "/user/login", user, { headers });
@@ -407,7 +407,9 @@ export default {
   },
   logout: () => {
     setAuthToken(false);
-    delete headers["x-access-token"];
+
     return localStorage.removeItem("token");
   },
 };
+
+export default API;

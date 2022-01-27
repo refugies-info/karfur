@@ -8,6 +8,7 @@ import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FInput from "components/FigmaUI/FInput/FInput";
 import API from "utils/API";
+import styles from "scss/components/modals.module.scss";
 
 declare const window: Window;
 interface Props {
@@ -131,7 +132,12 @@ export const ReceiveInvitationMailModal = (props: Props) => {
   };
 
   return (
-    <Modal isOpen={props.show} toggle={props.toggle} className="share-content">
+    <Modal
+      isOpen={props.show}
+      toggle={props.toggle}
+      className={styles.modal}
+      contentClassName={styles.modal_content}
+    >
       <MainContainer>
         <CloseIconContainer onClick={props.toggle}>
           <EVAIcon name="close" fill={colors.blancSimple} size={"large"} />

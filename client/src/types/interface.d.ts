@@ -14,6 +14,33 @@ export interface Indicator {
   wordsCount: number;
   timeSpent: number;
 }
+
+export interface Picture {
+  imgId: ObjectId;
+  public_id: string;
+  secure_url: string;
+}
+
+export interface SimplifiedStructure {
+  _id: ObjectId;
+  acronyme: string;
+  nom: string;
+  structureTypes?: string[];
+  departments?: string[];
+  picture: Picture;
+  role?: string[];
+  disposAssociesLocalisation?: string[];
+}
+
+export interface Tag {
+  darkColor: string;
+  hoverColor: string;
+  illustrationColor: string;
+  lightColor: string;
+  name: string;
+  short: string;
+  icon: string;
+}
 export interface SimplifiedUser {
   username: string;
   picture: Picture;
@@ -65,11 +92,6 @@ export interface SimplifiedDispositif {
   lastModificationDate?: Moment;
   needs?: ObjectId[];
   tags: Tag[];
-}
-export interface Picture {
-  imgId: ObjectId;
-  public_id: string;
-  secure_url: string;
 }
 
 export interface Role {
@@ -150,14 +172,59 @@ export interface DispositifContent {
   noContent?: boolean;
 }
 
-export interface Tag {
-  darkColor: string;
-  hoverColor: string;
-  illustrationColor: string;
-  lightColor: string;
-  name: string;
-  short: string;
-  icon: string;
+interface Membre {
+  userId: ObjectId;
+  roles: string[];
+}
+
+export interface DetailedOpeningHours {
+  day: string;
+  from0?: string;
+  to0?: string;
+  from1?: string;
+  to1?: string;
+}
+export interface OpeningHours {
+  details: DetailedOpeningHours[];
+  noPublic: boolean;
+  precisions?: string;
+}
+export interface Structure {
+  _id: ObjectId;
+  membres: Membre[];
+  acronyme: string;
+  administrateur: ObjectId;
+  adresse: string;
+  authorBelongs: boolean;
+  contact: string;
+  created_at: Moment;
+  createur: ObjectId;
+  // eslint-disable-next-line no-use-before-define
+  dispositifsAssocies: ObjectId[] | IDispositif[];
+  link: string;
+  mail_contact: string;
+  mail_generique: string;
+  nom: string;
+  phone_contact: string;
+  siren: string;
+  siret: string;
+  status: string;
+  updatedAt: Moment;
+  picture: Picture;
+  structureTypes?: string[];
+  websites?: string[];
+  facebook?: string;
+  linkedin?: string;
+  twitter?: string;
+  activities?: string[];
+  departments?: string[];
+  phonesPublic?: string[];
+  adressPublic?: string;
+  openingHours?: OpeningHours;
+  onlyWithRdv?: boolean;
+  description?: string;
+  hasResponsibleSeenNotification?: boolean;
+  mailsPublic?: string[];
 }
 
 export interface AudienceAge {
@@ -202,60 +269,6 @@ export interface IDispositif {
   nbMercis: number;
 }
 
-export interface DetailedOpeningHours {
-  day: string;
-  from0?: string;
-  to0?: string;
-  from1?: string;
-  to1?: string;
-}
-export interface OpeningHours {
-  details: DetailedOpeningHours[];
-  noPublic: boolean;
-  precisions?: string;
-}
-
-interface Membre {
-  userId: ObjectId;
-  roles: string[];
-}
-export interface Structure {
-  _id: ObjectId;
-  membres: Membre[];
-  acronyme: string;
-  administrateur: ObjectId;
-  adresse: string;
-  authorBelongs: boolean;
-  contact: string;
-  created_at: Moment;
-  createur: ObjectId;
-  dispositifsAssocies: ObjectId[] | Dispositif[];
-  link: string;
-  mail_contact: string;
-  mail_generique: string;
-  nom: string;
-  phone_contact: string;
-  siren: string;
-  siret: string;
-  status: string;
-  updatedAt: Moment;
-  picture: Picture;
-  structureTypes?: string[];
-  websites?: string[];
-  facebook?: string;
-  linkedin?: string;
-  twitter?: string;
-  activities?: string[];
-  departments?: string[];
-  phonesPublic?: string[];
-  adressPublic?: string;
-  openingHours?: OpeningHours;
-  onlyWithRdv?: boolean;
-  description?: string;
-  hasResponsibleSeenNotification?: boolean;
-  mailsPublic?: string[];
-}
-
 export interface UserStructureMembre {
   _id: ObjectId;
   roles: string[];
@@ -268,18 +281,6 @@ export interface UserStructureMembre {
 export interface UserStructure extends Structure {
   membres: UserStructureMembre[];
 }
-
-export interface SimplifiedStructure {
-  _id: ObjectId;
-  acronyme: string;
-  nom: string;
-  structureTypes?: string[];
-  departments?: string[];
-  picture: Picture;
-  role?: string[];
-  disposAssociesLocalisation?: string[];
-}
-
 export interface Picture {
   imgId: string | null;
   public_id: string | null;

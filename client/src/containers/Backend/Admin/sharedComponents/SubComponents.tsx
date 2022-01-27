@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { ObjectId } from "mongodb";
-import { limitNbCaracters } from "../../../../lib";
+import { limitNbCaracters } from "lib";
 import { correspondingStatus, progressionData } from "../AdminContenu/data";
-import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 
 const Container = styled.div`
@@ -219,7 +219,7 @@ export const ValidateButton = (props: {
     testID="validate-button"
   >
     <div style={{ marginBottom: "4px" }}>
-      <EVAIcon name="checkmark-outline" fill={colors.blancSimple} size="20" />
+      <EVAIcon name="checkmark-outline" fill={colors.blancSimple} size={20} />
     </div>
   </ButtonContainer>
 );
@@ -228,7 +228,7 @@ export const SeeButton = (props: { burl: string }) => (
   <ButtonContainer hoverColor={colors.darkColor}>
     <a href={props.burl} target="_blank" rel="noopener noreferrer">
       <div style={{ marginBottom: "4px" }}>
-        <EVAIcon name="eye" fill={colors.blancSimple} size="20" />
+        <EVAIcon name="eye" fill={colors.blancSimple} size={20} />
       </div>
     </a>
   </ButtonContainer>
@@ -237,7 +237,7 @@ export const SeeButton = (props: { burl: string }) => (
 export const SeeButtonWithoutNavigation = () => (
   <ButtonContainer hoverColor={colors.darkColor}>
     <div style={{ marginBottom: "4px" }}>
-      <EVAIcon name="eye" fill={colors.blancSimple} size="20" />
+      <EVAIcon name="eye" fill={colors.blancSimple} size={20} />
     </div>
   </ButtonContainer>
 );
@@ -245,7 +245,7 @@ export const SeeButtonWithoutNavigation = () => (
 export const EditButtonWithoutNavigation = (props: { onClick: () => void }) => (
   <ButtonContainer hoverColor={colors.darkColor} onClick={props.onClick}>
     <div style={{ marginBottom: "4px" }}>
-      <EVAIcon name="edit" fill={colors.blancSimple} size="20" />
+      <EVAIcon name="edit" fill={colors.blancSimple} size={20} />
     </div>
   </ButtonContainer>
 );
@@ -262,7 +262,7 @@ export const DeleteButton = (props: {
     testID="delete-button"
   >
     <div style={{ marginBottom: "4px" }}>
-      <EVAIcon name="trash" fill={colors.blancSimple} size="20" />
+      <EVAIcon name="trash" fill={colors.blancSimple} size={20} />
     </div>
   </ButtonContainer>
 );

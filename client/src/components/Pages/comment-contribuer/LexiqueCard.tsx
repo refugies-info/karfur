@@ -75,7 +75,7 @@ const LexiqueCard = () => {
           <EVAIcon
             name="calendar-outline"
             fill="#000000"
-            size="10"
+            size={10}
             className="mr-10"
           />
           {t("CommentContribuer.Prochainement", "Prochainement")}

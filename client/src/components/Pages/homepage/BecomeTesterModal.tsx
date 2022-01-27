@@ -1,8 +1,9 @@
 import React from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
-import { colors } from "../../../colors";
-import EVAIcon from "../../UI/EVAIcon/EVAIcon";
+import { colors } from "colors";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import styles from "scss/components/modals.module.scss";
 
 declare const window: Window;
 interface Props {
@@ -29,7 +30,12 @@ const CloseIconContainer = styled.div`
 `;
 
 export const BecomeTesterModal = (props: Props) => (
-  <Modal isOpen={props.show} toggle={props.toggle} className="share-content">
+  <Modal
+    isOpen={props.show}
+    toggle={props.toggle}
+    className={styles.modal}
+    contentClassName={styles.modal_content}
+  >
     <MainContainer>
       <CloseIconContainer onClick={props.toggle}>
         <EVAIcon name="close" fill={colors.blancSimple} size={"large"} />

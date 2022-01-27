@@ -76,7 +76,7 @@ return (
         <EVAIcon
           name="sun-outline"
           fill="#000000"
-          size="10"
+          size={10}
           className="mr-10"
         />
         {t("Bientôt disponible", "Bientôt disponible")}

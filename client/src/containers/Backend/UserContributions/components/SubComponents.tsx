@@ -61,7 +61,7 @@ export const Responsabilite = (props: { responsable: string | null }) => {
           name={
             props.responsable === "Moi" ? "person-outline" : "briefcase-outline"
           }
-          size="20"
+          size={20}
           fill={colors.noir}
         />
       </div>
@@ -103,7 +103,7 @@ export const ContribStyledStatus = (props: { text: string; size?: string }) => {
         {onMouseHover && (
           <EVAIcon
             name={"question-mark-circle"}
-            size="20"
+            size={20}
             fill={textColor}
             className="ml-8"
           />
@@ -119,7 +119,7 @@ export const StatutHeader = (props: { onClick: () => void }) => {
       Statut
       <EVAIcon
         name={"question-mark-circle-outline"}
-        size="20"
+        size={20}
         fill={colors.noir}
         className="ml-8"
       />

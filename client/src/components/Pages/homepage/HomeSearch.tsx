@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 //@ts-ignore
@@ -27,49 +28,39 @@ interface Props {
 }
 const HomeSearch = (props: Props) => {
   const [flip, setFlip] = useState(true);
-  const [indexF, setIndexF] = useState(0);
-  const [indexB, setIndexB] = useState(1);
+  const [indexFront, setIndexFront] = useState(0);
+  const [indexBack, setIndexBack] = useState(1);
 
   const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
   const { t } = useTranslation();
   const flippy: any = useRef();
 
-  useEffect(() => {
-    setTimeout(() => {
-      if (flippy.current) {
-        flippy.current.toggle();
-        setTimeout(() => {
-          setIndexF(i => i === 10 ? 0 : i + 2);
-        }, 1000);
-      }
-    }, 1500);
-  }, []);
-
+  const showFront = useRef();
+  const flipFunc = useRef();
   useEffect(() => {
     if (flip) {
-      setTimeout(() => {
+      flipFunc.current = setInterval(() => {
         if (flippy.current) {
           flippy.current.toggle();
           setTimeout(() => {
-            setIndexB(i => i === 9 ? 1 : i + 2);
-          }, 1000);
+            if (showFront.current) {
+              setIndexBack((i) => (i === 9 ? 1 : i + 2));
+              showFront.current = false;
+            } else {
+              setIndexFront((i) => (i === 10 ? 0 : i + 2));
+              showFront.current = true;
+            }
+          }, 500);
         }
-      }, 1500);
+      }, 2000);
+    } else {
+      clearInterval(flipFunc.current)
     }
-  }, [indexF, flip]);
 
-  useEffect(() => {
-    if (flip) {
-      setTimeout(() => {
-        if (flippy.current) {
-          flippy.current.toggle();
-          setTimeout(() => {
-            setIndexF(i => i === 10 ? 0 : i + 2);
-          }, 1000);
-        }
-      }, 1500);
-    }
-  }, [indexB, flip]);
+    return(() => {
+      clearInterval(flipFunc.current)
+    })
+  }, [flip]);
 
   const open = (e: any) => {
     e.preventDefault();
@@ -90,6 +81,7 @@ const HomeSearch = (props: Props) => {
   };
 
   const { searchItem } = props;
+  const tags: Tag[] = searchItem.children;
 
   return (
     <div onClick={open} className={styles.col}>
@@ -114,40 +106,35 @@ const HomeSearch = (props: Props) => {
               borderRadius: 10,
             }}
           >
-            {searchItem.children.map((tag: Tag, idx: number) =>
-              idx === indexF ? (
-                <button
-                  key={idx}
-                  onClick={open}
-                  className={
-                    "search-home " +
-                    "bg-" +
-                    (tag.short || "").replace(/ /g, "-")
-                  }
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexDirection: "row",
-                    borderRadius: 10,
-                    padding: 0,
-                    fontWeight: 600,
-                  }}
-                >
-                  {tag.icon ? (
-                    <IconContainer isRTL={isRTL}>
-                      <Streamline
-                        name={tag.icon}
-                        stroke={"white"}
-                        width={22}
-                        height={22}
-                      />
-                    </IconContainer>
-                  ) : null}
-                  {t("Tags." + tag.name, tag.name)}
-                </button>
-              ) : null
-            )}
+            <button
+              onClick={open}
+              className={
+                "search-home " +
+                "bg-" +
+                (tags[indexFront].short || "").replace(/ /g, "-")
+              }
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "row",
+                borderRadius: 10,
+                padding: 0,
+                fontWeight: 600,
+              }}
+            >
+              {tags[indexFront].icon ? (
+                <IconContainer isRTL={isRTL}>
+                  <Streamline
+                    name={tags[indexFront].icon}
+                    stroke={"white"}
+                    width={22}
+                    height={22}
+                  />
+                </IconContainer>
+              ) : null}
+              {t("Tags." + tags[indexFront].name, tags[indexFront].name)}
+            </button>
           </FrontSide>
           <BackSide
             style={{
@@ -160,40 +147,35 @@ const HomeSearch = (props: Props) => {
               borderRadius: 10,
             }}
           >
-            {searchItem.children.map((tag: Tag, idx: number) =>
-              idx === indexB ? (
-                <button
-                  key={idx}
-                  onClick={open}
-                  className={
-                    "search-home " +
-                    "bg-" +
-                    (tag.short || "").replace(/ /g, "-")
-                  }
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexDirection: "row",
-                    borderRadius: 10,
-                    padding: 0,
-                    fontWeight: 600,
-                  }}
-                >
-                  {tag.icon ? (
-                    <IconContainer isRTL={isRTL}>
-                      <Streamline
-                        name={tag.icon}
-                        stroke={"white"}
-                        width={22}
-                        height={22}
-                      />
-                    </IconContainer>
-                  ) : null}
-                  {t("Tags." + tag.name, tag.name)}
-                </button>
-              ) : null
-            )}
+            <button
+              onClick={open}
+              className={
+                "search-home " +
+                "bg-" +
+                (tags[indexBack].short || "").replace(/ /g, "-")
+              }
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "row",
+                borderRadius: 10,
+                padding: 0,
+                fontWeight: 600,
+              }}
+            >
+              {tags[indexBack].icon ? (
+                <IconContainer isRTL={isRTL}>
+                  <Streamline
+                    name={tags[indexBack].icon}
+                    stroke={"white"}
+                    width={22}
+                    height={22}
+                  />
+                </IconContainer>
+              ) : null}
+              {t("Tags." + tags[indexBack].name, tags[indexBack].name)}
+            </button>
           </BackSide>
         </Flippy>
       ) : (

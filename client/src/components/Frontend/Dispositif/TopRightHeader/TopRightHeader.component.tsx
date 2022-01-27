@@ -120,7 +120,6 @@ export class TopRightHeader extends React.Component<Props> {
               <EVAIcon
                 className="mr-8"
                 name="question-mark-circle"
-                viewBox="0 0 20 20"
                 size="medium"
               />
               Besoin d&apos;aide ?

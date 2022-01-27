@@ -37,12 +37,6 @@ import { isMobile } from "react-device-detect";
 import styles from "./Navbar.module.scss";
 import marioProfile from "assets/mario-profile.jpg";
 
-const InnerButton = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 const IconButton = styled.div`
   background-color: ${colors.noir};
   border-radius: 12px;
@@ -193,20 +187,12 @@ const Navbar = () => {
         )}
 
         {!isMobile && (
-          <button
-            onClick={() => {
-              if (router.pathname === "/advanced-search") {
-                router.replace("/advanced-search");
-                // window.location.reload();
-              } else {
-                router.push("/advanced-search");
-              }
-            }}
-            className={`${styles.advanced_search_btn} ${
-              isRTL ? styles.advanced_search_btn_rtl : ""
-            }`}
-          >
-            <InnerButton isRTL={isRTL}>
+          <Link href="/advanced-search">
+            <a
+              className={`${styles.advanced_search_btn} ${
+                isRTL ? styles.advanced_search_btn_rtl : ""
+              }`}
+            >
               <div
                 className={styles.menu_btn}
                 style={!isRTL ? { marginRight: 10 } : { marginLeft: 10 }}
@@ -214,45 +200,40 @@ const Navbar = () => {
                 <Streamline name={"menu"} stroke={"white"} />
               </div>
               {t("Toolbar.Tout voir", "Tout voir")}
-            </InnerButton>
-          </button>
+            </a>
+          </Link>
         )}
 
-        {!isMobile ? (
+        {!isMobile && (
           API.isAuth() ? (
-            <Link href="/backend">
-              <a className={styles.user_picture_link}>
-                {user.membreStruct &&
-                nbNewNotifications > 0 &&
-                userStructure ? (
-                  <div className={styles.overlay}>
-                    <Image
-                      src={userImg}
-                      className={styles.user_picture_with_overlay}
-                      alt="user"
-                      width={52}
-                      height={52}
-                    />
-                    <div className={styles.middle}>{nbNewNotifications}</div>
-                  </div>
-                ) : (
-                  <Image
-                    src={userImg}
-                    className={styles.user_picture}
-                    alt="user"
-                    width={52}
-                    height={52}
-                  />
-                )}
-              </a>
-            </Link>
+            <div>
+              <Link href="/backend">
+                <a className={styles.user_picture_link}>
+                  {user.membreStruct &&
+                  nbNewNotifications > 0 &&
+                  userStructure ? (
+                    <div className={styles.overlay}>
+                      <div className={styles.user_picture_with_overlay}>
+                        <Image src={userImg} alt="user" width={52} height={52} />
+                      </div>
+                      <div className={styles.middle}>{nbNewNotifications}</div>
+                    </div>
+                  ) : (
+                    <div className={styles.user_picture}>
+                      <Image src={userImg} alt="user" width={52} height={52} />
+                    </div>
+                  )}
+                </a>
+              </Link>
+            </div>
           ) : (
-            <>
+            <div>
               <Link href="/register" passHref>
                 <FButton
                   type="signup"
                   name="person-add-outline"
                   className="mr-10"
+                  tag="a"
                   onClick={() => logger.info("Click on Inscription")}
                 >
                   {windowWidth >= breakpoints.tabletUp &&
@@ -261,13 +242,13 @@ const Navbar = () => {
                 </FButton>
               </Link>
               <Link href="/login" passHref>
-                <FButton type="login" name="log-in-outline">
+                <FButton type="login" name="log-in-outline" tag="a">
                   {windowWidth > 1280 && t("Toolbar.Connexion", "Connexion")}
                 </FButton>
               </Link>
-            </>
+            </div>
           )
-        ) : null}
+        )}
       </div>
     </header>
   );
