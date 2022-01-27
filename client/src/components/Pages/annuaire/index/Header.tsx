@@ -1,77 +1,14 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
+import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import img from "assets/annuaire/annuaire_cover.svg";
-import { Letter } from "./Letter";
 import i18n from "i18n";
 import { SearchBarAnnuaire } from "./SearchBarAnnuaire";
-import { colors } from "colors";
 import { SimplifiedStructure } from "types/interface";
 import { useTranslation } from "react-i18next";
-
-const HeaderContainer = styled.div`
-  background-image: url(${img});
-  background-repeat: no-repeat;
-  background-position: 20px ${(props) => -props.currentScroll + "px"};
-  height: 290px;
-  width: 100%;
-  margin-left: 30px;
-  margin-top: ${(props) =>
-    props.stopScroll
-      ? "-140px"
-      : -props.currentScroll < -120
-      ? "-60px"
-      : -props.currentScroll / 2 + "px"};
-  position: ${(props) => (props.stopScroll ? "fixed" : "relative")};
-  z-index: 1;
-`;
-
-const GreyBlockContainer = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 400px;
-  margin-top: -90px;
-  background: linear-gradient(#e6e6e6, rgba(246, 246, 246, 0));
-`;
-
-const TextContainer = styled.div`
-  height: 74px;
-  padding: 4px 8px 4px 8px;
-  background: #ffffff;
-  font-weight: bold;
-  font-size: 52px;
-  line-height: 66px;
-  width: fit-content;
-  margin-top: 146px;
-  margin-left: 72px;
-  margin-right: ${(props) => props.isRTL && "72px"};
-  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.25));
-  color: ${colors.bleuCharte};
-`;
-
-const LettersContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 44px;
-  position: absolute;
-  bottom: 0px;
-  display: flex;
-  flex-direction: row;
-  margin-right: ${(props) => props.isRTL && "72px"};
-  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.25));
-  z-index: -1;
-`;
-
-const SearchContainer = styled.div`
-  display: flex;
-`;
+import styles from "./Header.module.scss";
 
 interface Props {
   letters: string[];
-  stopScroll: boolean;
-  currentScroll: number;
   filteredStructures: SimplifiedStructure[] | null;
   typeSelected: string[] | null;
   setTypeSelected: (a: string[]) => void;
@@ -98,16 +35,14 @@ export const Header = (props: Props) => {
 
   return (
     <>
-      <GreyBlockContainer />
-      <HeaderContainer
-        currentScroll={props.currentScroll}
-        stopScroll={props.stopScroll}
-      >
-        <SearchContainer>
+      <div className={styles.grey_block} />
+      <div className={styles.back_image} />
+      <div className={styles.container}>
+        <div className="d-flex">
           {" "}
-          <TextContainer isRTL={isRTL}>
+          <h1 className={`${styles.title} ${isRTL && styles.rtl}`}>
             {t("Annuaire.Annuaire", "Annuaire")}
-          </TextContainer>
+          </h1>
           <SearchBarAnnuaire
             filteredStructures={props.filteredStructures}
             t={t}
@@ -127,11 +62,11 @@ export const Header = (props: Props) => {
             isCitySelected={props.isCitySelected}
             setIsCitySelected={props.setIsCitySelected}
           />
-        </SearchContainer>
+        </div>
 
-        <LettersContainer isRTL={isRTL}>
+        <div className={`${styles.letters} ${isRTL && styles.rtl}`}>
           <>
-            {props.letters.map((letter, index) => (
+            {props.letters.map((letter) => (
               <Link
                 href={
                   props.lettersClickable.includes(letter.toLocaleUpperCase())
@@ -139,19 +74,19 @@ export const Header = (props: Props) => {
                     : "/annuaire"
                 }
                 key={letter}
-                passHref
               >
-                <Letter
-                  letter={letter}
-                  isClickable={props.lettersClickable.includes(
-                    letter.toLocaleUpperCase()
-                  )}
-                />
+                  <a
+                    className={`${styles.letter} ${props.lettersClickable.includes(
+                      letter.toLocaleUpperCase()
+                    ) && styles.clickable}`}
+                  >
+                    {letter.toUpperCase()}
+                  </a>
               </Link>
             ))}
           </>
-        </LettersContainer>
-      </HeaderContainer>
+        </div>
+      </div>
     </>
   );
 };

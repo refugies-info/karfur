@@ -149,9 +149,10 @@ const Register = () => {
       });
   };
 
-  const send = () => {
-    // validate pseudo
-    if (step === 0) {
+  const submitForm = (e: any) => {
+    e.preventDefault();
+
+    if (step === 0) { // validate pseudo
       if (username.length === 0) {
         Swal.fire({
           title: "Oops...",
@@ -176,8 +177,7 @@ const Register = () => {
           setStep(1)
         }
       });
-    } else if (step === 1) {
-      // password check
+    } else if (step === 1) { // password check
       if (password.length === 0) {
         Swal.fire({
           title: "Oops...",
@@ -189,7 +189,7 @@ const Register = () => {
       }
 
       setStep(2);
-    } else if (step === 2) {
+    } else if (step === 2) { // email check
       if (email) {
         logger.info("[Register] checking email", {
           username: username,
@@ -271,7 +271,7 @@ const Register = () => {
             </FButton>
             <StyledHeader>{headerText}</StyledHeader>
             <StyledEnterValue>{subtitleText}</StyledEnterValue>
-            <Form onSubmit={send}>
+            <Form onSubmit={submitForm}>
               {step === 0 ? (
                 <UsernameField
                   value={username}
@@ -306,7 +306,7 @@ const Register = () => {
                     type="validate-light"
                     name="checkmark-outline"
                     disabled={!email}
-                    onClick={send}
+                    onClick={submitForm}
                   >
                     {t("Valider", "Valider")}
                   </FButton>

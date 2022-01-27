@@ -40,8 +40,6 @@ const Content = styled.div`
   display: flex;
   flex-direction: row;
   flew-wrap: wrap;
-  margin-top: ${(props) =>
-    props.stopScroll ? "140px" : -props.currentScroll + "px"};
   margin-bottom: ${(props) => (props.hasMarginBottom ? "24px" : "0px")};
 `;
 
@@ -77,8 +75,6 @@ const LoadingCard = () => (
 );
 
 const Annuaire = (props: any) => {
-  const [stopScroll, setStopScroll] = useState(false);
-  const [currentScroll, setCurrentScroll] = useState(0);
   const [filteredStructures, setFilteredStructures] = useState<
     SimplifiedStructure[]
   >([]);
@@ -109,18 +105,12 @@ const Annuaire = (props: any) => {
     setKeyword("");
   };
 
-  const handleScroll = () => {
-    const currentScrollPos = window.scrollY;
-    setCurrentScroll(currentScrollPos);
-    return setStopScroll(currentScrollPos >= 85);
-  };
-
   const defineLettersClickable = (
     sortedStructureByAlpha: SimplifiedStructure[]
   ) => {
     let lettersClickable: string[] = [];
     sortedStructureByAlpha.forEach((structure) => {
-      let letter = structure.nom.substr(0, 1);
+      let letter = structure.nom[0];
       if (!lettersClickable.includes(letter.toLocaleUpperCase())) {
         lettersClickable.push(letter.toLocaleUpperCase());
       }
@@ -129,13 +119,8 @@ const Annuaire = (props: any) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
     initGA();
     Event("ANNUAIRE_VIEW", "VIEW", "label");
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
   }, []);
 
   useEffect(() => {
@@ -156,62 +141,59 @@ const Annuaire = (props: any) => {
     setFilteredStructures(filterStructures);
   }, [structures]);
 
-  const computeTypeFromUrl = (search: any) => {
+  const computeTypeFromUrl = (query: any) => {
     let typeSelectedFromUrl: string[] = [];
-    if (querySearch(search).isAssociation) {
+    if (query.isAssociation) {
       typeSelectedFromUrl.push("Association");
     }
-    if (querySearch(search).isEntreprise) {
+    if (query.isEntreprise) {
       typeSelectedFromUrl.push("Entreprise");
     }
-    if (querySearch(search).isEcole) {
+    if (query.isEcole) {
       typeSelectedFromUrl.push("École");
     }
-    if (querySearch(search).isUni) {
+    if (query.isUni) {
       typeSelectedFromUrl.push("Université");
     }
-    if (querySearch(search).isOpe) {
+    if (query.isOpe) {
       typeSelectedFromUrl.push("Opérateur");
     }
-    if (querySearch(search).isPublic) {
+    if (query.isPublic) {
       typeSelectedFromUrl.push("Établissement publicateur");
     }
-    if (querySearch(search).isReseau) {
+    if (query.isReseau) {
       typeSelectedFromUrl.push("Réseau d'acteurs");
     }
-    if (querySearch(search).isCenter) {
+    if (query.isCenter) {
       typeSelectedFromUrl.push("Centre de formation");
     }
 
     return typeSelectedFromUrl;
   };
 
-  const computeStateFromUrl = (search: any) => {
-    let keywordFromUrl = querySearch(search).keyword;
-    let typeSelectedFromUrl = computeTypeFromUrl(search);
-    let villeFromUrl = querySearch(search).ville;
-    let depNameFromUrl = querySearch(search).depName;
-    let depNumberFromUrl = querySearch(search).depNumber;
-    if (keywordFromUrl) {
-      setKeyword(decodeURIComponent(keywordFromUrl));
-    }
-    if (typeSelectedFromUrl) {
-      setTypeSelected(typeSelectedFromUrl);
-    }
-    if (depNameFromUrl) {
-      setDepName(decodeURIComponent(depNameFromUrl));
-      setVille(decodeURIComponent(villeFromUrl));
-      setIsCitySelected(true);
-    }
-    if (depNumberFromUrl) {
-      setDepNumber(decodeURIComponent(depNumberFromUrl));
-      setVille(decodeURIComponent(villeFromUrl));
-      setIsCitySelected(true);
-    }
-  };
-
   useEffect(() => {
-    // computeStateFromUrl(history.location.search);
+      let keywordFromUrl = router.query.keyword;
+      let typeSelectedFromUrl = computeTypeFromUrl(router.query);
+      let villeFromUrl = router.query.ville;
+      let depNameFromUrl = router.query.depName;
+      let depNumberFromUrl = router.query.depNumber;
+      if (keywordFromUrl) {
+        setKeyword(keywordFromUrl as string);
+      }
+      if (typeSelectedFromUrl) {
+        setTypeSelected(typeSelectedFromUrl);
+      }
+      if (depNameFromUrl) {
+        setDepName(depNameFromUrl as string);
+        setVille(villeFromUrl as string);
+        setIsCitySelected(true);
+      }
+      if (depNumberFromUrl) {
+        setDepNumber(depNumberFromUrl as string);
+        setVille(villeFromUrl as string);
+        setIsCitySelected(true);
+      }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const filterStructures = useCallback(() => {
@@ -421,7 +403,7 @@ const Annuaire = (props: any) => {
   const onStructureCardClick = (id: ObjectId) =>
     router.push({
       pathname: `/annuaire/${id}`,
-      // state: "from_annuaire_lecture",
+      // state: "from_annuaire_lecture", // TODO : location.state
     });
   const lettersClickable = defineLettersClickable(filteredStructures);
 
@@ -430,8 +412,6 @@ const Annuaire = (props: any) => {
       <Header
         resetSearch={resetSearch}
         letters={letters}
-        stopScroll={stopScroll}
-        currentScroll={currentScroll}
         filteredStructures={filteredStructures}
         keyword={keyword}
         setKeyword={setKeyword}
@@ -466,8 +446,6 @@ const Annuaire = (props: any) => {
         </LoadingContainer>
       ) : (
         <Content
-          currentScroll={currentScroll}
-          stopScroll={stopScroll}
           hasMarginBottom={true}
         >
           {filteredStructures.length > 0 ? (

@@ -60,7 +60,7 @@ export const LetterSection = (props: Props) => {
       {(props.structures || []).map((structure, key) => (
           <>
             {key === 0 &&
-              <div id="A" key={key} className={styles.anchor} />
+              <div id="A" key={"anchor_" + key} className={styles.anchor} />
             }
 
             {key > 1 && // @ts-ignore
@@ -68,14 +68,14 @@ export const LetterSection = (props: Props) => {
                 props.structures[key].nom[0].toLowerCase() && (
                 <>
                 <div
-                  key={props.structures[key].nom[0].toUpperCase()}
+                    key={"anchor_" + props.structures[key].nom[0].toUpperCase()}
                     className={styles.anchor}
                     id={props.structures[key].nom[0].toUpperCase()}
                   />
                 </>
               )}
           <StructureCard
-            key={key}
+            key={"structure_"+key}
               nom={structure.nom}
               picture={structure.picture || {}}
               acronyme={structure.acronyme}

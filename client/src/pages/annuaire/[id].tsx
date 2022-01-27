@@ -14,8 +14,6 @@ import { RightAnnuaireDetails } from "components/Pages/annuaire/id/RightAnnuaire
 import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
 import { colors } from "colors";
 
-declare const window: Window;
-
 const Content = styled.div`
   display: flex;
   flex-direction: row;
@@ -56,7 +54,7 @@ const AnnuaireDetail = () => {
   const height = useWindowSize();
   const dispatch = useDispatch();
   const router = useRouter()
-  const structureId = router.query.id;
+  const structureId = router.query.id as string;
 
   const locale = i18n.language;
   const leftPartHeight = height - 150;

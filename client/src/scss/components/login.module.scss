@@ -1,4 +1,4 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 
 .container {
   display: flex;
@@ -28,6 +28,7 @@
 // Titles
 .h2 {
   margin-top: 64px;
+  color: $bleuCharte;
 }
 .h5 {
   margin-top: 32px;

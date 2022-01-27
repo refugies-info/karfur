@@ -1,43 +1,14 @@
 import React from "react";
-import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import { Structure, Picture } from "types/interface";
 import { StructureType } from "./StructureType";
 import { SocialsLink } from "./SocialsLink";
-import img from "assets/annuaire/illu_annuaire_big.svg";
-import placeholder from "assets/annuaire/placeholder_logo_annuaire.svg";
 import FButton from "components/FigmaUI/FButton/FButton";
+import placeholder from "assets/annuaire/placeholder_logo_annuaire.svg";
+import styles from "./LeftAnnuaireDetail.module.scss";
 
-const LeftContainer = styled.div`
-  width: 390px;
-  background-image: url(${img});
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 44px;
-  display: flex;
-  padding-top: 100px;
-  flex-direction: column;
-`;
-
-const LogoContainer = styled.div`
-  background: #ffffff;
-  border-radius: 12px;
-  width: 296px;
-  height: 168px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 8px;
-  padding: 32px;
-`;
-
-const Image = styled.img`
-width: 100%;
-align-self: center;
-object-fit: contain;
-max-height: 150px;
-`;
 
 interface Props {
   structure: Structure | null;
@@ -64,7 +35,7 @@ export const LeftAnnuaireDetail = (props: Props) => {
   };
   if (props.structure && !props.isLoading) {
     return (
-      <LeftContainer height={props.leftPartHeight}>
+      <div className={styles.container}>
         <div style={{ marginBottom: "33px" }}>
           <FButton
             type="login"
@@ -75,12 +46,16 @@ export const LeftAnnuaireDetail = (props: Props) => {
           </FButton>
         </div>
         <div>
-          <LogoContainer>
+          <div className={styles.logo}>
             <Image
               src={getSecureUrl(props.structure.picture)}
               alt={props.structure.acronyme}
+              className={styles.image}
+              width={232}
+              height={150}
+              objectFit="contain"
             />
-          </LogoContainer>
+          </div>
           {props.structure.structureTypes &&
             props.structure.structureTypes.map((structureType) => (
               <StructureType
@@ -95,15 +70,15 @@ export const LeftAnnuaireDetail = (props: Props) => {
           linkedin={props.structure.linkedin}
           twitter={props.structure.twitter}
         />
-      </LeftContainer>
+      </div>
     );
   }
 
   return (
-    <LeftContainer height={props.leftPartHeight}>
+    <div className={styles.container}>
       <div>
-        <LogoContainer></LogoContainer>
+        <div className={styles.logo}></div>
       </div>
-    </LeftContainer>
+    </div>
   );
 };

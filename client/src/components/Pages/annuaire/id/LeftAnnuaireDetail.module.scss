@@ -1,0 +1,26 @@
+.container {
+  width: 390px;
+  background-image: url(../../../../assets/annuaire/illu_annuaire_big.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 44px;
+  display: flex;
+  padding-top: 100px;
+  flex-direction: column;
+}
+
+.logo {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 296px;
+  height: 168px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 32px;
+}
+
+.img {
+  align-self: center;
+}

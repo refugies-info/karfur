@@ -28,7 +28,6 @@ import CodeField from "components/Pages/login/CodeField";
 import PasswordField from "components/Pages/login/PasswordField";
 import PhoneAndEmailFields from "components/Pages/login/PhoneAndEmailFields";
 import UsernameField from "components/Pages/login/UsernameField";
-import { H2 } from "components/UI/Typography/Typography";
 import { colors } from "colors";
 import styles from "scss/components/login.module.scss";
 
@@ -376,7 +375,7 @@ const Login = () => {
             </div>
           </div>
 
-          <H2 className={styles.h2}>{getHeaderText()}</H2>
+          <h2 className={styles.h2}>{getHeaderText()}</h2>
           {resetPasswordNotPossible && (
             <div className={`${styles.email_message} ${styles.no_email}`}>
               {t(

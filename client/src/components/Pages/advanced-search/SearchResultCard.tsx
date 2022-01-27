@@ -120,7 +120,7 @@ const SearchResultCard = (props: Props) => {
                       />
                     </div>
                   ) : null}
-                  {props.dispositif.titreMarque}
+                  <span>{props.dispositif.titreMarque}</span>
                 </CardFooter>
               )}
             </CustomCard>

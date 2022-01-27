@@ -2,7 +2,6 @@ import React, { ChangeEventHandler } from "react";
 import { useTranslation } from "react-i18next";
 import FButton from "components/FigmaUI/FButton/FButton";
 import FInput from "components/FigmaUI/FInput/FInput";
-import { H5 } from "components/UI/Typography/Typography";
 import styles from "scss/components/login.module.scss";
 import Image from "next/image";
 
@@ -60,12 +59,12 @@ const PhoneAndEmailFields = (props: Props) => {
     <>
       {props.structure?.nom && (
         <>
-          <H5 className={styles.h5}>
+          <h5 className={styles.h5}>
             {t(
               "Login.new_has_structure_subtitle",
               "Vous avez été nommé « responsable de structure » pour la structure :"
             )}
-          </H5>
+          </h5>
           <div className="figma-btn white">
             {props.structure?.picture?.secure_url && (
               <Image
@@ -80,12 +79,12 @@ const PhoneAndEmailFields = (props: Props) => {
         </>
       )}
 
-        <H5 className={styles.h5}>
+        <h5 className={styles.h5}>
           {t(
             "Login.2fa_mandatory_subtitle",
             "La double authenfication est requise pour des raisons de sécurité :"
           )}
-      </H5>
+      </h5>
       <div
         className={styles.label}
         style={{ marginTop: 16 }}
