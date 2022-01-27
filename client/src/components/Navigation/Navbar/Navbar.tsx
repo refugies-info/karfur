@@ -17,7 +17,6 @@ import {
   toggleTTSActionCreator,
   toggleSpinner,
 } from "services/Tts/tts.actions";
-import { breakpoints } from "utils/breakpoints.js";
 import styled from "styled-components";
 import Streamline from "assets/streamline";
 import {
@@ -110,15 +109,14 @@ const Navbar = () => {
   };
 
   const path = router.pathname || "";
-  const windowWidth = 1300; // TODO : fix that
   const userImg =
     user.user && user.user.picture
       ? user.user.picture.secure_url
       : marioProfile;
   const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
-  /*   const pathName = user.membreStruct
+  const pathName = user.membreStruct
     ? "/backend/user-dash-notifications"
-    : "/backend/user-favorites"; */
+    : "/backend";
 
   const nbNewNotifications = getNbNewNotifications(
     dispositifsAssocies,
@@ -150,9 +148,7 @@ const Navbar = () => {
                 className={styles.home_btn}
                 tabIndex="1"
               >
-                {windowWidth >= breakpoints.lgLimit && windowWidth > 1280 && (
-                  <b>{t("Toolbar.Accueil", "Accueil")}</b>
-                )}
+                <b>{t("Toolbar.Accueil", "Accueil")}</b>
               </FButton>
             </Link>
           )}
@@ -207,7 +203,7 @@ const Navbar = () => {
         {!isMobile && (
           API.isAuth() ? (
             <div>
-              <Link href="/backend">
+              <Link href={pathName}>
                 <a className={styles.user_picture_link}>
                   {user.membreStruct &&
                   nbNewNotifications > 0 &&
@@ -232,18 +228,22 @@ const Navbar = () => {
                 <FButton
                   type="signup"
                   name="person-add-outline"
-                  className="mr-10"
                   tag="a"
                   onClick={() => logger.info("Click on Inscription")}
+                  className={styles.auth_btn+ " mr-10"}
+
                 >
-                  {windowWidth >= breakpoints.tabletUp &&
-                    windowWidth > 1280 &&
-                    t("Toolbar.Inscription", "Inscription")}
+                  <span className={styles.auth_btn_text}>{t("Toolbar.Inscription", "Inscription")}</span>
                 </FButton>
               </Link>
               <Link href="/login" passHref>
-                <FButton type="login" name="log-in-outline" tag="a">
-                  {windowWidth > 1280 && t("Toolbar.Connexion", "Connexion")}
+                  <FButton
+                    type="login"
+                    name="log-in-outline"
+                    tag="a"
+                    className={styles.auth_btn}
+                  >
+                  <span className={styles.auth_btn_text}>{t("Toolbar.Connexion", "Connexion")}</span>
                 </FButton>
               </Link>
             </div>

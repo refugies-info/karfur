@@ -27,6 +27,10 @@ $avatarSize: 52px;
     background: none;
   }
 
+  @include media-max("desktop-up") {
+    padding: 0 10px;
+  }
+
   &.hidden {
     @include media-min("desktop-up") {
       top: -100px !important;
@@ -116,6 +120,7 @@ $avatarSize: 52px;
   .center_buttons {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
   }
   .left_buttons {
     display: flex;
@@ -133,6 +138,24 @@ $avatarSize: 52px;
 
     @include media-min("phone-down") {
       display: block;
+    }
+    @include media-max("desktop-down") {
+      :global(span.mr-10) {
+        margin: 0 !important;
+      }
+      b {
+        display: none;
+      }
+    }
+  }
+  .auth_btn {
+    @include media-max("desktop-down") {
+      :global(span.mr-10) {
+        margin: 0 !important;
+      }
+      .auth_btn_text {
+        display: none;
+      }
     }
   }
 }
