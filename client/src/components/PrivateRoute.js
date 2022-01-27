@@ -5,7 +5,7 @@ import API from "../utils/API";
 import UnauthorizedAccess from "./Navigation/UnauthorizedAccess/UnauthorizedAccess";
 import { fetchUserActionCreator } from "../services/User/user.actions";
 
-const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
+const PrivateRoute = ({ component: Component, ...rest }) => {
   const { user, fetchUser } = rest;
 
   const updateLastConnexion = () => {

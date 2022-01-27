@@ -5,10 +5,6 @@ import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
 
-const socket = null;
-export { socket };
-
-
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
 
 axios.withCredentials = true;
