@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import { Spinner } from "reactstrap";
 import FButton from "components/FigmaUI/FButton/FButton";
+import { useRouter } from "next/router";
 import { AnnuaireGauge } from "components/Pages/annuaire-create/AnnuaireGauge";
 import { Step1 } from "components/Pages/annuaire-create/Step1";
 import { Step2 } from "components/Pages/annuaire-create/Step2";
@@ -21,83 +21,12 @@ import { userStructureIdSelector } from "services/User/user.selectors";
 import { userStructureSelector } from "services/UserStructure/userStructure.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import img from "assets/annuaire/annuaire_create.svg";
 import { UserStructure } from "types/interface";
+import styles from "scss/pages/annuaire-create.module.scss";
 
-declare const window: Window;
-interface Props {
-  history: any;
-}
-const MainContainer = styled.div`
-  background: #fbfbfb;
-  display: flex;
-  flex: 1;
-  margin-top: -75px;
-  padding-left: 120px;
-  padding-right: 120px;
-`;
 
-const LoaderContainer = styled.div`
-  diplay: flex;
-  flex: 1;
-  margin-top: 200px;
-  margin-left: 300px;
-`;
-const HeaderContainer = styled.div`
-  background-image: url(${img});
-  width: 360px;
-  height: 600px;
-  border-radius: 12px;
-  padding: 24px;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  margin-right: 40px;
-  margin-bottom: 8px;
-`;
-
-const LeftTitleContainer = styled.div`
-  background: #ffffff;
-  font-weight: bold;
-  font-size: 40px;
-  line-height: 51px;
-  padding-right: 16px;
-  padding-left: 16px;
-  width: fit-content;
-  margin-bottom: 13px;
-  padding-bottom: 8px;
-  padding-top: 8px;
-`;
-
-const StepDescription = styled.div`
-  font-weight: bold;
-  font-size: 52px;
-  line-height: 66px;
-  color: #ffffff;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
-const RightContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  margin-top: 112px;
-`;
-const LeftContainer = styled.div`
-  position: -webkit-sticky;
-  position: sticky;
-  top: 112px;
-  margin-bottom: 24px;
-  height: 650px;
-  margin-top: 112px;
-`;
-
-const AnnuaireCreate = (props: Props) => {
+const AnnuaireCreate = () => {
+  const router = useRouter();
   const [step, setStep] = useState(1);
   const [showTutoModal, setShowTutoModal] = useState(false);
   const [hasModifications, setHasModifications] = useState(false);
@@ -156,21 +85,21 @@ const AnnuaireCreate = (props: Props) => {
   const showModifications = step !== 1 || hasModifications;
 
   return (
-    <MainContainer>
-      <LeftContainer>
-        <HeaderContainer>
+    <div className={styles.container}>
+      <div className={styles.left}>
+        <div className={styles.header}>
           <div>
-            <LeftTitleContainer>Annuaire</LeftTitleContainer>
+            <h1 className={styles.title}>Annuaire</h1>
             {step !== 4 && (
-              <StepDescription>{getStepDescription()}</StepDescription>
+              <div className={styles.step}>{getStepDescription()}</div>
             )}
             {step === 4 && (
-              <StepDescription>
+              <div className={styles.step}>
                 Contacts <br /> et infos pratiques
-              </StepDescription>
+              </div>
             )}
           </div>
-          <ButtonContainer>
+          <div className={styles.btn_container}>
             <FButton
               type="tuto"
               name={"play-circle-outline"}
@@ -182,7 +111,7 @@ const AnnuaireCreate = (props: Props) => {
                   type={"white"}
                   name="close-outline"
                   onClick={() =>
-                    props.history.push("/backend/user-dash-structure")
+                    router.push("/backend/user-dash-structure")
                   }
                 >
                   Quitter
@@ -225,21 +154,21 @@ const AnnuaireCreate = (props: Props) => {
                   name="done-all-outline"
                   className="ml-8"
                   onClick={() =>
-                    props.history.push("/backend/user-dash-structure")
+                    router.push("/backend/user-dash-structure")
                   }
                 >
                   Terminer
                 </FButton>
               )}
             </div>
-          </ButtonContainer>
-        </HeaderContainer>
+          </div>
+        </div>
         {showModifications && hasModifications && (
           <Modifications hasModifications={hasModifications} />
         )}
-      </LeftContainer>
+      </div>
 
-      <RightContainer>
+      <div className={styles.right}>
         {!isLoading && (
           <>
             <AnnuaireGauge step={step} />
@@ -285,11 +214,11 @@ const AnnuaireCreate = (props: Props) => {
           </>
         )}
         {isLoading && (
-          <LoaderContainer>
+          <div className={styles.loader}>
             <Spinner />
-          </LoaderContainer>
+          </div>
         )}
-      </RightContainer>
+      </div>
       {showTutoModal && (
         <FrameModal
           show={showTutoModal}
@@ -297,7 +226,7 @@ const AnnuaireCreate = (props: Props) => {
           section={"Annuaire"}
         />
       )}
-    </MainContainer>
+    </div>
   );
 };
 
