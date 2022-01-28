@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Modal } from "reactstrap";
-
-// import "./MemberModal.scss";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import FButton from "components/FigmaUI/FButton/FButton";
 import styled from "styled-components";
-import { UserStructureMembre } from "../../../../types/interface";
+import { UserStructureMembre } from "types/interface";
 import { ObjectId } from "mongodb";
 import marioProfile from "assets/mario-profile.jpg";
 import { Role } from "./Role";
+import styles from "./MemberModal.module.scss";
 
 const Title = styled.div`
   font-weight: normal;
@@ -77,16 +76,26 @@ export const EditMemberModal = (props: Props) => {
 
   if (!props.selectedUser)
     return (
-      <Modal isOpen={props.show} toggle={props.toggle} className="member-modal">
+      <Modal
+       isOpen={props.show}
+       toggle={props.toggle}
+       className={styles.modal}
+       contentClassName={styles.modal_content}
+      >
         <div>Erreur</div>;
       </Modal>
     );
 
   return (
-    <Modal isOpen={props.show} toggle={props.toggle} className="member-modal">
+    <Modal
+     isOpen={props.show}
+     toggle={props.toggle}
+     className={styles.modal}
+     contentClassName={styles.modal_content}
+    >
       <RowContainer>
         <Title>Modifier le rôle de</Title>
-        <img className="user-img mr-8" src={secureUrl} />
+        <img className={styles.user_img + " mr-8"} src={secureUrl} />
         <UserName>{props.selectedUser.username}</UserName>
       </RowContainer>
       <Role

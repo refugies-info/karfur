@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Modal, Spinner } from "reactstrap";
-// import "./SelectFirstResponsableModal.scss";
 import SearchBar from "components/UI/SearchBar/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
@@ -10,12 +9,13 @@ import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { SimplifiedUser } from "types/interface";
 import { ObjectId } from "mongodb";
-import API from "../../../../../utils/API";
+import API from "utils/API";
 import Swal from "sweetalert2";
 import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
 import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import { structureSelector } from "services/AllStructures/allStructures.selector";
 import { colors } from "colors";
+import styles from "./SelectFirstResponsableModal.module.scss";
 
 const ModifyLink = styled.div`
   font-weight: bold;
@@ -109,7 +109,8 @@ export const SelectFirstResponsableModal = (props: Props) => {
         isOpen={props.show}
         toggle={props.toggleModal}
         size="lg"
-        className="select-respo-modal"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
       >
         <Spinner />
       </Modal>
@@ -120,7 +121,8 @@ export const SelectFirstResponsableModal = (props: Props) => {
       isOpen={props.show}
       toggle={props.toggleModal}
       size="lg"
-      className="select-respo-modal"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
     >
       <div>
         <Header>Choix d'un utilisateur</Header>

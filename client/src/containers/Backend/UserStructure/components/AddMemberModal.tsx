@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "reactstrap";
-
-// import "./MemberModal.scss";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import FButton from "components/FigmaUI/FButton/FButton";
 import styled from "styled-components";
-import { colors } from "../../../../colors";
+import { colors } from "colors";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllUsersActionsCreator } from "../../../../services/AllUsers/allUsers.actions";
-import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
-import { activeUsersSelector } from "../../../../services/AllUsers/allUsers.selector";
-import { SimplifiedUser } from "../../../../types/interface";
+import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
+import { SimplifiedUser } from "types/interface";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { ObjectId } from "mongodb";
 import { CustomUserSearchBar } from "components/Backend/CustomUserSearchBar";
+import styles from "./MemberModal.module.scss";
 
 const Title = styled.div`
   font-weight: normal;
@@ -69,7 +68,12 @@ export const AddMemberModal = (props: Props) => {
   };
 
   return (
-    <Modal isOpen={props.show} toggle={props.toggle} className="member-modal">
+    <Modal
+      isOpen={props.show}
+      toggle={props.toggle}
+      className={styles.modal}
+      contentClassName={styles.modal_content}
+    >
       <Title>Ajouter un membre</Title>
       <InformationContainer>
         <b>Attention :</b> assurez-vous que la personne que vous souhaitez

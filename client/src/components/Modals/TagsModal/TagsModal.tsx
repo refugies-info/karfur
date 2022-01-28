@@ -9,6 +9,7 @@ import FSearchBtn from "components/FigmaUI/FSearchBtn/FSearchBtn";
 import FButton from "components/FigmaUI/FButton/FButton";
 import API from "utils/API";
 import styles from "./TagsModal.module.scss";
+import checkStyles from "scss/components/checkbox.module.scss";
 
 const Step = ({ ...props }) => {
   return (
@@ -285,13 +286,13 @@ const DispositifValidateModal = (props: Props) => {
           }}
           onClick={handleCheckboxChange}
         >
-          <label className={styles.checkbox}>
+          <label className={checkStyles.checkbox}>
             <input
               onChange={handleCheckboxChange}
               type="checkbox"
               checked={noTag}
             />
-            <span className={styles.checkmark}></span>
+            <span className={checkStyles.checkmark}></span>
           </label>
           <p style={{ marginLeft: 30, fontSize: 14 }}>
             Je ne souhaite pas ajouter de thèmes supplémentaires

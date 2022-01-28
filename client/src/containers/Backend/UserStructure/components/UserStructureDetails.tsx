@@ -14,7 +14,7 @@ import { MembresTable } from "./MembresTable";
 import { ObjectId } from "mongodb";
 import { AddMemberModal } from "./AddMemberModal";
 import { EditMemberModal } from "./EditMemberModal";
-// import "./UserStructureDetails.scss";
+import styles from "./UserStructureDetails.module.scss";
 
 const StructureName = styled.div`
   font-weight: bold;
@@ -99,10 +99,10 @@ export const UserStructureDetails = (props: Props) => {
     : false;
 
   return (
-    <MainContainer className="structure-detail">
+    <MainContainer className={styles.container}>
       <StructurePictureContainer>
         <img
-          className="sponsor-img"
+          className={styles.sponsor_img}
           src={getSecureUrl(props.picture)}
           alt={props.acronyme}
         />

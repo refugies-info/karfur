@@ -9,19 +9,19 @@ import Dashboard from "containers/Backend/Dashboard/Dashboard";
 const CustomTabPane = () => {
   return (
     <>
-      <TabPane tabId="0" className="no-padding">
+      <TabPane tabId="0" className="p-0">
         <AdminContenu />
       </TabPane>
-      <TabPane tabId="1" className="no-padding">
+      <TabPane tabId="1" className="p-0">
         <AdminStructures />
       </TabPane>
-      <TabPane tabId="2" className="no-padding">
+      <TabPane tabId="2" className="p-0">
         <AdminUsers />
       </TabPane>
-      <TabPane tabId="3" className="no-padding">
+      <TabPane tabId="3" className="p-0">
         <Dashboard />
       </TabPane>
-      <TabPane tabId="4" className="no-padding">
+      <TabPane tabId="4" className="p-0">
         <Needs />
       </TabPane>
     </>

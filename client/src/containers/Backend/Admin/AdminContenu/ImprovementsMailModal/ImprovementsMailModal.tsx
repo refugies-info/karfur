@@ -1,24 +1,24 @@
 import { ObjectId } from "mongodb";
 import React, { useState } from "react";
 import { Modal, Spinner } from "reactstrap";
-// import "./ImprovementsMailModal.scss";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { dispositifSelector } from "../../../../../services/AllDispositifs/allDispositifs.selector";
+import { dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
 import { correspondingStatus } from "../data";
-import { activeUsersSelector } from "../../../../../services/AllUsers/allUsers.selector";
-import { allStructuresSelector } from "../../../../../services/AllStructures/allStructures.selector";
+import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
+import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
 import { getUsersToSendMail } from "./functions";
-import { LoadingStatusKey } from "../../../../../services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "../../../../../services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
-import { SimplifiedCreator } from "../../../../../types/interface";
-import marioProfile from "../../../../../assets/mario-profile.jpg";
-import { colors } from "../../../../../colors";
+import { SimplifiedCreator } from "types/interface";
+import marioProfile from "assets/mario-profile.jpg";
+import { colors } from "colors";
 import { Category } from "./Components";
-import FButton from "../../../../../components/FigmaUI/FButton/FButton";
-import API from "../../../../../utils/API";
+import FButton from "components/FigmaUI/FButton/FButton";
+import API from "utils/API";
 import Swal from "sweetalert2";
+import styles from "./ImprovementsMailModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -128,7 +128,8 @@ export const ImprovementsMailModal = (props: Props) => {
       <Modal
         isOpen={props.show}
         toggle={props.toggleModal}
-        className="improvements-modal"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
       >
         <Spinner />
       </Modal>
@@ -140,7 +141,8 @@ export const ImprovementsMailModal = (props: Props) => {
       <Modal
         isOpen={props.show}
         toggle={props.toggleModal}
-        className="improvements-modal"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
         size="lg"
       >
         <Header>Erreur</Header>
@@ -148,7 +150,7 @@ export const ImprovementsMailModal = (props: Props) => {
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
+  // eslint-disable-next-line
   const usersToDisplay = getUsersToSendMail(
     dispositif.status,
     dispositif.creatorId,
@@ -239,7 +241,8 @@ export const ImprovementsMailModal = (props: Props) => {
     <Modal
       isOpen={props.show}
       toggle={props.toggleModal}
-      className="improvements-modal"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
       size="lg"
     >
       <Header>Demande d'informations complémentaires pour la fiche :</Header>
@@ -266,7 +269,7 @@ export const ImprovementsMailModal = (props: Props) => {
         const email = user.email || "pas d'email renseigné";
         return (
           <UserContainer key={user._id}>
-            <img className="user-img" src={getUserImage(user)} />
+            <img className={styles.user_img} src={getUserImage(user)} />
             {user.username + " - "}
             <EmailText hasEmail={hasEmail}>{email}</EmailText>
           </UserContainer>

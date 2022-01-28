@@ -15,7 +15,7 @@ import { colors } from "colors";
 import FButton from "components/FigmaUI/FButton/FButton";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import FrameModal from "components/Modals/FrameModal/FrameModal";
-// import "./TranslationNeedsModal.scss";
+import styles from "./TranslationNeedsModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -110,7 +110,8 @@ export const TranslationNeedsModal = (props: Props) => {
       <Modal
         isOpen={props.show}
         toggle={props.toggle}
-        className="modal-besoins"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
         size="lg"
       >
         Erreur
@@ -122,7 +123,8 @@ export const TranslationNeedsModal = (props: Props) => {
       <Modal
         isOpen={props.show}
         toggle={props.toggle}
-        className="modal-besoins"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
         size="lg"
       >
         <Header>{"Traduction des besoins"}</Header>
@@ -183,7 +185,8 @@ export const TranslationNeedsModal = (props: Props) => {
     <Modal
       isOpen={props.show}
       toggle={props.toggle}
-      className="modal-besoins"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
       size="lg"
     >
       <Header>{"Traduction des besoins en " + props.langueSelectedFr}</Header>

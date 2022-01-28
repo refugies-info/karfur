@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Event, Picture, Responsable, SimplifiedUser } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
-// import "./NewStructureModal.scss";
 import FInput from "components/FigmaUI/FInput/FInput";
 import moment from "moment/min/moment-with-locales";
 import FButton from "components/FigmaUI/FButton/FButton";
@@ -20,9 +19,11 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
 import { ChooseResponsableComponent } from "./ChooseResponsableComponent";
 import { colors } from "colors";
-import { fetchAllStructuresActionsCreator } from "../../../../../services/AllStructures/allStructures.actions";
-import { fetchAllDispositifsActionsCreator } from "../../../../../services/AllDispositifs/allDispositifs.actions";
-import { fetchAllUsersActionsCreator } from "../../../../../services/AllUsers/allUsers.actions";
+import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
+import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
+import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
+import styles from "./NewStructureModal.module.scss";
+
 moment.locale("fr");
 
 const Header = styled.div`
@@ -210,7 +211,9 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
     <Modal
       isOpen={props.show}
       toggle={toggle}
-      className="structure-details-modal"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
+
     >
       <Header>Création d'une nouvelle structure</Header>
       <InputContainer>
@@ -225,7 +228,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
       </InputContainer>
       <LogoContainer>
         <LogoWrapper>
-          <img className="sponsor-img" src={secureUrl || noStructure} />
+          <img className={styles.sponsor_img} src={secureUrl || noStructure} />
         </LogoWrapper>
         <RightLogoContainer>
           <FButton className="upload-btn" type="theme" name="upload-outline">

@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
-import { colors } from "../../../../colors";
-import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
+import { colors } from "colors";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { SelectedPage } from "../Navigation.component";
-import traductionIcon from "../../../../assets/icon_traduction.svg";
-import traductionIconBlanc from "../../../../assets/icon_traduction_blanc.svg";
-// import "./NavButton.scss";
+import traductionIcon from "assets/icon_traduction.svg";
+import traductionIconBlanc from "assets/icon_traduction_blanc.svg";
+import styles from "./NavButton.module.scss";
+
 const NavButtonContainer = styled.div`
   background: ${(props) => props.backgroundColor};
   border-radius: 12px;
@@ -180,14 +181,18 @@ export const NavButton = (props: NavButtonProps) => {
       {props.type === "traductions" &&
         !props.isSelected &&
         hoverType !== "traductions" && (
-          <img src={traductionIcon} alt="a" className={"icon-traduction"} />
+        <img
+          src={traductionIcon}
+          alt="a"
+          className={styles.icon_traduction}
+        />
         )}
       {props.type === "traductions" &&
         (props.isSelected || hoverType === "traductions") && (
           <img
             src={traductionIconBlanc}
             alt="a"
-            className={"icon-traduction"}
+            className={styles.icon_traduction}
           />
         )}
       {getTitle(

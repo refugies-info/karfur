@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import React from "react";
 import { RowContainer } from "../../AdminStructures/components/AdminStructureComponents";
-import { Picture } from "../../../../../types/interface";
-// import "./AdminUsersComponent.scss";
+import { Picture } from "types/interface";
+import checkStyles from "scss/components/checkbox.module.scss";
 interface RoleProps {
   role: string;
 }
@@ -111,13 +111,13 @@ interface RoleCheckBoxProps {
 
 export const RoleCheckBox = (props: RoleCheckBoxProps) => (
   <MainContainer isSelected={props.isSelected}>
-    <label className="container">
+    <label className={checkStyles.checkbox}>
       <input
         onChange={() => props.handleCheckBoxChange(props.name)}
         type="checkbox"
         checked={props.isSelected}
       />
-      <span className="checkmark"></span>
+      <span className={checkStyles.checkmark}></span>
     </label>
     <Name>{props.name}</Name>
   </MainContainer>

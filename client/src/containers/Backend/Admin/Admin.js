@@ -5,23 +5,23 @@ import { useDispatch } from "react-redux";
 import {
   fetchAllDispositifsActionsCreator,
   setAllDispositifsActionsCreator,
-} from "../../../services/AllDispositifs/allDispositifs.actions";
+} from "services/AllDispositifs/allDispositifs.actions";
 import {
   fetchAllStructuresActionsCreator,
   setAllStructuresActionCreator,
-} from "../../../services/AllStructures/allStructures.actions";
+} from "services/AllStructures/allStructures.actions";
 import {
   fetchAllUsersActionsCreator,
   setAllUsersActionsCreator,
-} from "../../../services/AllUsers/allUsers.actions";
-import CustomTabPane from "../../../components/Backend/Admin/CustomTabPane";
-import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-
-// import "./Admin.scss";
+} from "services/AllUsers/allUsers.actions";
+import CustomTabPane from "components/Backend/Admin/CustomTabPane";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import styled from "styled-components";
 import { Navigation } from "../Navigation";
-import { fetchNeedsActionCreator } from "../../../services/Needs/needs.actions";
+import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
+import styles from "./Admin.module.scss";
+
 const OngletText = styled.span`
   color: ${(props) => (props.isActive ? colors.bleuCharte : colors.darkColor)};
   font-weight: ${(props) => (props.isActive ? "bold" : "normal")};
@@ -73,7 +73,7 @@ export const Admin = () => {
   const toggleTab = (tab) => setActiveTab(tab);
 
   return (
-    <div className="animated fadeIn admin">
+    <div className={styles.admin + " animated fadeIn"}>
       <Navigation selected="admin" />
       <Nav>
         <NavItem>
@@ -153,7 +153,10 @@ export const Admin = () => {
           </NavLink>
         </NavItem>
       </Nav>
-      <TabContent activeTab={activeTab}>
+      <TabContent
+        activeTab={activeTab}
+        className={styles.tab_content}
+      >
         <CustomTabPane />
       </TabContent>
     </div>

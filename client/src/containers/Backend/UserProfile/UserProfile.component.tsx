@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { userDetailsSelector } from "../../../services/User/user.selectors";
-import { User, Event } from "../../../types/interface";
-import marioProfile from "../../../assets/mario-profile.jpg";
-// import "./UserProfile.scss";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
+import { userDetailsSelector } from "services/User/user.selectors";
+import { User, Event } from "types/interface";
+import marioProfile from "assets/mario-profile.jpg";
+import FButton from "components/FigmaUI/FButton/FButton";
 import { Props } from "./UserProfile.container";
-import FInput from "../../../components/FigmaUI/FInput/FInput";
+import FInput from "components/FigmaUI/FInput/FInput";
 import { PasswordField } from "./components/PasswordField";
-import { CodePhoneValidationModal } from "../../../components/Modals/CodePhoneValidationModal/CodePhoneValidationModal";
-import { computePasswordStrengthScore } from "../../../lib";
-import API from "../../../utils/API";
+import { CodePhoneValidationModal } from "components/Modals/CodePhoneValidationModal/CodePhoneValidationModal";
+import { computePasswordStrengthScore } from "lib";
+import API from "utils/API";
 import Swal from "sweetalert2";
-import setAuthToken from "../../../utils/setAuthToken";
+import setAuthToken from "utils/setAuthToken";
 import { Spinner, Input } from "reactstrap";
 import {
   saveUserActionCreator,
   fetchUserActionCreator,
-} from "../../../services/User/user.actions";
-import { isLoadingSelector, errorSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
-import { userStructureMembresSelector } from "../../../services/UserStructure/userStructure.selectors";
-import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
+} from "services/User/user.actions";
+import { isLoadingSelector, errorSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { userStructureMembresSelector } from "services/UserStructure/userStructure.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { UserProfileLoading } from "./components/UserProfileLoading";
-import { colors } from "../../../colors";
+import { colors } from "colors";
 import { Navigation } from "../Navigation";
+import styles from "./UserProfile.module.scss";
+
 declare const window: Window;
 
 export const MainContainer = styled.div`
@@ -381,14 +382,14 @@ export const UserProfileComponent = (props: Props) => {
   return (
     <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
       <Navigation selected="profil" />
-      <MainContainer className="user-profile">
+      <MainContainer className={styles.container}>
         <ProfilePictureContainer>
-          <img src={getUserImage(user)} alt="my-image" className="user-img" />
+          <img src={getUserImage(user)} alt="my-image" className={styles.user_img} />
           <UserName>{user.username}</UserName>
           <FButton
             type="dark"
             name="upload-outline"
-            className="upload-button mb-16"
+            className={styles.upload_btn +"  mb-16"}
           >
             <Input
               className="file-input"

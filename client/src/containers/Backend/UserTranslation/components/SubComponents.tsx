@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { UserLanguage, TranslationStatus } from "../../../../types/interface";
-// import "./SubComponents.scss";
-import { colorAvancement } from "../../../../components/Functions/ColorFunctions";
+import { UserLanguage, TranslationStatus } from "types/interface";
+import { colorAvancement } from "components/Functions/ColorFunctions";
 import { Progress } from "reactstrap";
-import { colors } from "../../../../colors";
-import FSwitch from "../../../../components/FigmaUI/FSwitch/FSwitch";
+import { colors } from "colors";
+import FSwitch from "components/FigmaUI/FSwitch/FSwitch";
+import styles from "./SubComponents.module.scss";
 
 interface Props {
   language: UserLanguage;
@@ -30,13 +30,13 @@ const Title = styled.div`
 `;
 export const LanguageTitle = (props: Props) => (
   <MainContainer
-    className="language-title"
+    className={styles.language_title}
     hasMultipleLanguages={props.hasMultipleLanguages}
   >
     {props.isSelected ? (
       <i
         className={
-          "flag-icon flag-icon-" + props.language.langueCode + " selected"
+          styles.selected + " flag-icon flag-icon-" + props.language.langueCode
         }
         title={props.language.langueCode}
         id={props.language.langueCode}

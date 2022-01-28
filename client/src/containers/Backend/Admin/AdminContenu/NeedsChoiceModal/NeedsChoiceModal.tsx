@@ -7,7 +7,6 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { ObjectId } from "mongodb";
 import { dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
-// import "./NeedsChoiceModal.scss";
 import { TagButton } from "../../Needs/TagButton";
 import { getTagColor, getTag } from "../../Needs/lib";
 import { jsUcfirst, removeAccents } from "lib";
@@ -17,6 +16,7 @@ import { DeleteButton } from "../../sharedComponents/SubComponents";
 import { colors } from "colors";
 import API from "utils/API";
 import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
+import styles from "./NeedsChoiceModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -170,7 +170,12 @@ export const NeedsChoiceModal = (props: Props) => {
     : [];
   if (isLoading) {
     return (
-      <Modal isOpen={props.show} toggle={props.toggle} className="needs-modal">
+      <Modal
+        isOpen={props.show}
+        toggle={props.toggle}
+        className={styles.modal}
+        contentClassName={styles.modal_content}
+      >
         <Spinner />
       </Modal>
     );
@@ -178,17 +183,23 @@ export const NeedsChoiceModal = (props: Props) => {
 
   if (!dispositif) {
     return (
-      <Modal isOpen={props.show} toggle={props.toggle} className="needs-modal">
+      <Modal
+        isOpen={props.show}
+        toggle={props.toggle}
+        className={styles.modal}
+        contentClassName={styles.modal_content}
+      >
         <div>Erreur</div>
       </Modal>
     );
   }
   return (
     <Modal
-      className="needs-modal"
-      isOpen={props.show}
-      size="lg"
-      toggle={props.toggle}
+    isOpen={props.show}
+    size="lg"
+    toggle={props.toggle}
+    className={styles.modal}
+    contentClassName={styles.modal_content}
     >
       <Content>
         <div>

@@ -6,26 +6,26 @@ import {
   SimplifiedStructureForAdmin,
 } from "types/interface";
 import { Modal, Spinner } from "reactstrap";
-// import "./UserDetailsModal.scss";
 import moment from "moment/min/moment-with-locales";
 import { useSelector, useDispatch } from "react-redux";
 import marioProfile from "assets/mario-profile.jpg";
-import { userSelector } from "../../../../../services/AllUsers/allUsers.selector";
-import FInput from "../../../../../components/FigmaUI/FInput/FInput";
+import { userSelector } from "services/AllUsers/allUsers.selector";
+import FInput from "components/FigmaUI/FInput/FInput";
 import { RowContainer } from "../../AdminStructures/components/AdminStructureComponents";
 import {
   Structure,
   RoleCheckBox,
   LangueDetail,
 } from "../ components/AdminUsersComponents";
-import FButton from "../../../../../components/FigmaUI/FButton/FButton";
+import FButton from "components/FigmaUI/FButton/FButton";
 import { ObjectId } from "mongodb";
-import API from "../../../../../utils/API";
-import { fetchAllUsersActionsCreator } from "../../../../../services/AllUsers/allUsers.actions";
+import API from "utils/API";
+import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import Swal from "sweetalert2";
-import { isLoadingSelector } from "../../../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../../../services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { colors } from "colors";
+import styles from "./UserDetailsModal.module.scss";
 
 moment.locale("fr");
 
@@ -221,7 +221,8 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
       <Modal
         isOpen={props.show}
         toggle={props.toggleModal}
-        className="user-details-modal"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
       >
         <Spinner />
       </Modal>
@@ -232,7 +233,8 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
       <Modal
         isOpen={props.show}
         toggle={props.toggleModal}
-        className="user-details-modal"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
         size="large"
       >
         Erreur
@@ -243,11 +245,12 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
     <Modal
       isOpen={props.show}
       toggle={props.toggleModal}
-      className="user-details-modal"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
       size="lg"
     >
       <RowContainer>
-        <img className="user-img mr-8" src={secureUrl} />
+        <img className={styles.user_img + " mr-8"} src={secureUrl} />
         <StructureName>{userFromStore.username}</StructureName>
       </RowContainer>
       <div style={{ marginRight: 32 }}>

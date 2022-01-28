@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Modal, Input, Spinner } from "reactstrap";
-// import "./DetailsModal.scss";
 import {
   TypeContenu,
   StyledStatus,
 } from "../../sharedComponents/SubComponents";
-import FButton from "../../../../../components/FigmaUI/FButton/FButton";
+import FButton from "components/FigmaUI/FButton/FButton";
 import { correspondingStatus, progressionData } from "../data";
 import { compare } from "../AdminContenu";
 import moment from "moment/min/moment-with-locales";
 import {
   SimplifiedDispositif,
   SimplifiedStructureForAdmin,
-} from "../../../../../types/interface";
+} from "types/interface";
 import { colors } from "colors";
-import marioProfile from "../../../../../assets/mario-profile.jpg";
-import noStructure from "../../../../../assets/noStructure.png";
+import marioProfile from "assets/mario-profile.jpg";
+import noStructure from "assets/noStructure.png";
 import { useSelector, useDispatch } from "react-redux";
-import { dispositifSelector } from "../../../../../services/AllDispositifs/allDispositifs.selector";
-import API from "../../../../../utils/API";
-import { fetchAllDispositifsActionsCreator } from "../../../../../services/AllDispositifs/allDispositifs.actions";
+import { dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
+import API from "utils/API";
+import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import { ObjectId } from "mongodb";
-import { LoadingStatusKey } from "../../../../../services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "../../../../../services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import styles from "./DetailsModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -234,7 +234,8 @@ export const DetailsModal = (props: Props) => {
         isOpen={props.show}
         toggle={toggle}
         size="lg"
-        className="details-modal"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
       >
         <MainContainer>
           <RowContainer>
@@ -319,7 +320,7 @@ export const DetailsModal = (props: Props) => {
                 }}
               >
                 <img
-                  className="creator-img"
+                  className={styles.creator_img}
                   src={getCreatorImage(dispositif)}
                 />
                 {dispositif.creatorId && dispositif.creatorId.username}
@@ -398,7 +399,7 @@ export const DetailsModal = (props: Props) => {
                       dispositif.mainSponsor.picture &&
                       dispositif.mainSponsor.picture.secure_url && (
                         <img
-                          className="sponsor-img"
+                          className={styles.sopnsor_img}
                           src={
                             (dispositif.mainSponsor.picture || {}).secure_url
                           }
@@ -424,7 +425,7 @@ export const DetailsModal = (props: Props) => {
                 <StructureContainer noStructure={true}>
                   Aucune structure définie !
                   <LogoContainer spaceBetween={true}>
-                    <img className="sponsor-img" src={noStructure} />
+                    <img className={styles.sponsor_img} src={noStructure} />
 
                     <div>
                       <FButton

@@ -14,15 +14,14 @@ import {
 import { userHeaders, correspondingStatus } from "./data";
 import { Table, Spinner } from "reactstrap";
 import { useSelector } from "react-redux";
-import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
-import { activeUsersSelector } from "../../../../services/AllUsers/allUsers.selector";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
 import { TabHeader, FilterButton } from "../sharedComponents/SubComponents";
 import {
   RowContainer,
   StructureName,
 } from "../AdminStructures/components/AdminStructureComponents";
-// import "./AdminUsers.scss";
 import { Role, LangueFlag } from "./ components/AdminUsersComponents";
 import { LoadingAdminUsers } from "./ components/LoadingAdminUsers";
 import { compare } from "../AdminContenu/AdminContenu";
@@ -31,21 +30,22 @@ import {
   SimplifiedUser,
   Responsable,
   SimplifiedStructureForAdmin,
-} from "../../../../types/interface";
+} from "types/interface";
 import { prepareDeleteContrib } from "../Needs/lib";
 import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
 import { ChangeStructureModal } from "../AdminContenu/ChangeStructureModale/ChangeStructureModale";
 import { ImprovementsMailModal } from "../AdminContenu/ImprovementsMailModal/ImprovementsMailModal";
-import { removeAccents } from "../../../../lib";
+import { removeAccents } from "lib";
 import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "./UserDetailsModal/UserDetailsModal";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
-import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import API from "../../../../utils/API";
+import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
+import FButton from "components/FigmaUI/FButton/FButton";
+import API from "utils/API";
 import Swal from "sweetalert2";
 import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
+import styles from "./AdminUsers.module.scss";
 
 moment.locale("fr");
 declare const window: Window;
@@ -306,7 +306,7 @@ export const AdminUsers = () => {
     return <LoadingAdminUsers />;
   }
   return (
-    <div className="admin-users">
+    <div className={styles.container}>
       <SearchBarContainer>
         {process.env.NEXT_PUBLIC_REACT_APP_ENV === "production" && (
           <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
@@ -387,7 +387,7 @@ export const AdminUsers = () => {
                   >
                     <div style={{ maxWidth: "300px", overflow: "hidden" }}>
                       <RowContainer>
-                        <img className="user-img mr-8" src={secureUrl} />
+                        <img className={styles.user_img + " mr-8"} src={secureUrl} />
                         <StructureName>{element.username}</StructureName>
                       </RowContainer>
                     </div>

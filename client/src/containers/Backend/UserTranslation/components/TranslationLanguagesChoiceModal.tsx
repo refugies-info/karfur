@@ -7,7 +7,6 @@ import { userSelector } from "services/User/user.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { Language, UserLanguage } from "types/interface";
-// import "./TranslationLanguagesChoiceModal.scss";
 import { saveUserActionCreator } from "services/User/user.actions";
 import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
@@ -15,6 +14,7 @@ import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 // import { ObjectId } from "mongodb";
+import styles from "./TranslationLanguagesChoiceModal.module.scss";
 
 const Header = styled.div`
   font-weight: bold;
@@ -146,7 +146,8 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
       <Modal
         isOpen={props.show}
         toggle={props.toggle}
-        className="modal-traducteur"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
       >
         <Header>Choix de vos langues</Header>
         <SubTitle>Cochez les langues que vous souhaitez utiliser : </SubTitle>

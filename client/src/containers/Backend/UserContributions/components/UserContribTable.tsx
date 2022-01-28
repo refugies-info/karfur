@@ -12,8 +12,8 @@ import {
   DeleteButton,
   SeeButtonWithoutNavigation,
 } from "../../Admin/sharedComponents/SubComponents";
-// import "./UserContribTable.scss";
 import { ObjectId } from "mongodb";
+import styles from "scss/components/adminTable.module.scss";
 
 const headers = ["Type", "Titre", "Responsabilité", "Statut", "Merci", "Vues"];
 interface Props {
@@ -55,11 +55,11 @@ export const UserContribTable = (props: Props) => (
           <tr
             key={key}
             onClick={() => props.onContributionRowClick(burl)}
-            className="line"
+            className={styles.line}
             // @ts-ignore
             testID={`test_${element._id}`}
           >
-            <td className="first align-middle">
+            <td className={styles.first + " align-middle"}>
               <TypeContenu
                 type={element.typeContenu || "dispositif"}
                 isDetailedVue={false}
@@ -116,7 +116,7 @@ export const UserContribTable = (props: Props) => (
               )}
             </td>
 
-            <td className="last align-middle">
+            <td className={styles.last + " align-middle"}>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <SeeButtonWithoutNavigation />
                 <DeleteButton

@@ -1,11 +1,12 @@
-.admin-users {
-  .user-img {
+.container {
+  .user_img {
     max-width: 70px;
     max-height: 40px;
     border-radius: 50%;
   }
+
+  td {
+    cursor: pointer;
+  }
 }
 
-td {
-  cursor: pointer;
-}

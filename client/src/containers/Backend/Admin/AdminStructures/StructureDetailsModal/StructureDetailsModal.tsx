@@ -8,7 +8,6 @@ import {
 } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-// import "./StructureDetailsModal.scss";
 import FInput from "components/FigmaUI/FInput/FInput";
 import moment from "moment/min/moment-with-locales";
 import FButton from "components/FigmaUI/FButton/FButton";
@@ -20,7 +19,7 @@ import {
   RowContainer,
 } from "../components/AdminStructureComponents";
 import { correspondingStatus } from "../data";
-import { allDispositifsSelector } from "../../../../../services/AllDispositifs/allDispositifs.selector";
+import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
 import { compare } from "../../AdminContenu/AdminContenu";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import Swal from "sweetalert2";
@@ -28,10 +27,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { structureSelector } from "services/AllStructures/allStructures.selector";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { fetchAllStructuresActionsCreator } from "../../../../../services/AllStructures/allStructures.actions";
-import { fetchAllDispositifsActionsCreator } from "../../../../../services/AllDispositifs/allDispositifs.actions";
-import { fetchAllUsersActionsCreator } from "../../../../../services/AllUsers/allUsers.actions";
+import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
+import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
+import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import { colors } from "colors";
+import styles from "./StructureDetailsModal.module.scss";
+
 moment.locale("fr");
 
 const Title = styled.div`
@@ -255,7 +256,8 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
       <Modal
         isOpen={props.show}
         toggle={props.toggleModal}
-        className="structure-details-modal"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
       >
         <Spinner />
       </Modal>
@@ -267,7 +269,8 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
       <Modal
         isOpen={props.show}
         toggle={props.toggleModal}
-        className="structure-details-modal"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
       >
         Erreur
       </Modal>
@@ -276,7 +279,8 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
     <Modal
       isOpen={props.show}
       toggle={props.toggleModal}
-      className="structure-details-modal"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
       style={{ maxWidth: "950px" }}
     >
       <ColumnContainer>
@@ -292,7 +296,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
           </InputContainer>
           <LogoContainer>
             <LogoWrapper>
-              <img className="sponsor-img" src={secureUrl || noStructure} />
+              <img className={styles.sponsor_img} src={secureUrl || noStructure} />
             </LogoWrapper>
             <RightLogoContainer>
               <FButton
