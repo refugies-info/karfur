@@ -1,31 +1,19 @@
 @import "src/scss/mixins/responsive";
-.text-center {
-  text-align: center;
-}
-
-@media (min-width: 992px) {
-  .header-fixed .app-body {
-    margin-top: 55px;
-  }
-}
-
-@media (min-width: 992px) {
-  .aside-menu-lg-show.aside-menu-fixed .Content {
-    margin-right: 250px;
-  }
-}
-
 div.app-body {
   @include media-min("tablet-up") {
     overflow-x: inherit;
   }
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
+
+  @media (min-width: 992px) {
+    .header-fixed & {
+      margin-top: 55px;
+    }
+  }
+
   @media (max-width: 991.98px) {
     margin-top: 0;
   }
-  background: #ffffff;
+
   &.pdf-print {
     @media print {
       html,
@@ -35,41 +23,14 @@ div.app-body {
     }
   }
 
-  .Content {
-    margin-top: 75px;
-    margin-left: 0px;
-    margin-right: 0px;
-    min-height: 90vh;
-    height: 100%;
-    flex: 1;
-    min-width: 0;
+  .content {
     display: flex;
-    &.advanced-search {
-      margin-top: 0;
-    }
-  }
-
-  //global style
-  .label.label-default.rank-label {
-    padding: 5px 10px 5px 10px;
-    border-radius: 27px;
-  }
-
-  .rank-label-container [type="file"] {
-    cursor: inherit;
-    display: block;
-    font-size: 999px;
-    filter: alpha(opacity=0);
-    min-height: 100%;
-    min-width: 100%;
-    opacity: 0;
-    position: absolute;
-    right: 0;
-    text-align: right;
-    top: 0;
-  }
-
-  .rank-label-container [type="file"] {
-    cursor: pointer;
+    flex: 1;
+    min-height: 90vh;
+    min-width: 0;
+    height: 100%;
+    margin-top: 75px;
+    margin-left: 0;
+    margin-right: 0;
   }
 }

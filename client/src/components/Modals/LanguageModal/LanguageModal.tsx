@@ -10,15 +10,15 @@ import {
   Progress,
 } from "reactstrap";
 import Link from "next/link";
-import { useTranslation } from "react-i18next";
-import { colorAvancement } from "../../Functions/ColorFunctions";
-import FButton from "../../FigmaUI/FButton/FButton";
-import EVAIcon from "../../UI/EVAIcon/EVAIcon";
-import { Event, initGA } from "../../../tracking/dispatch";
-import { activatedLanguages } from "data/activatedLanguages";
 import { isMobile } from "react-device-detect";
-import styles from "./LanguageModal.module.scss";
+import { useTranslation } from "react-i18next";
 import { Language } from "types/interface";
+import { colorAvancement } from "components/Functions/ColorFunctions";
+import FButton from "components/FigmaUI/FButton/FButton";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { Event, initGA } from "tracking/dispatch";
+import { activatedLanguages } from "data/activatedLanguages";
+import styles from "./LanguageModal.module.scss";
 
 interface Props {
   show: boolean
