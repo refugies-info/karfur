@@ -87,7 +87,7 @@ export const AccessibilityScreen = ({
 
         <H1>Déclaration d’accessibilité</H1>
         <P>
-          La Délégation interministérielle à l'accueil et à l'intégration des réfugiés du Ministère de l’Intérieur s'engage à rendre son application mobile accessible conformément à la Directive européenne sur l'accessibilité des applications Web et mobiles (Directive (UE) 2018/2048) sur les exigences d'accessibilité pour les produits et services TIC EN 301 549 V3.2.1.
+          La Délégation interministérielle à l'accueil et à l'intégration des réfugiés s'engage à rendre son application mobile accessible conformément à la Directive européenne sur l'accessibilité des applications Web et mobiles (Directive (UE) 2018/2048) sur les exigences d'accessibilité pour les produits et services TIC EN 301 549 V3.2.1.
         </P>
         <P>
           À cette fin, il met en œuvre la stratégie et les actions détaillées dans son plan pluriannuel en cours d'élaboration.
