@@ -11,11 +11,11 @@ const DownloadApp = (props: any) => {
     props.history.replace("/");
     if (isMobileOnly) {
       if (isAndroid) {
-        window.open(androidStoreLink, "_blank");
+        window.location.replace(androidStoreLink);
         return;
       }
       if (isIOS) {
-        window.open(iosStoreLink, "_blank");
+        window.location.replace(iosStoreLink);
         return;
       }
     }
