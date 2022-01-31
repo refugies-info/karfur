@@ -127,6 +127,8 @@ const RejectTradModal = (props: Props) => {
                 src={(props.userId.picture || {}).secure_url || marioProfile}
                 className="profile-img-pin mr-10"
                 alt="profile"
+                width={40}
+                height={40}
               />
               <b>{props.userId.username}</b>
             </ListGroupItem>

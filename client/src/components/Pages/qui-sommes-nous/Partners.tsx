@@ -68,9 +68,9 @@ export const Partners = () => {
         </div>
       </DescriptionContainer>
       <LogoContainer>
-        {sortedPartners.map((partner) =>
+        {sortedPartners.map((partner, i) =>
           partner.logo ? (
-            <ImageContainer>
+            <ImageContainer key={i}>
               <Image
                 src={partner.logo}
                 alt={partner.name}

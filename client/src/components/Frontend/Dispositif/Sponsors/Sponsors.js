@@ -84,6 +84,7 @@ const ImageLink = styled.a`
   justify-content: center;
   align-items: center;
   display: flex;
+  position: relative;
 `;
 const ConfirmationStructureTitleContainer = styled.div`
   font-weight: 700;
@@ -556,6 +557,9 @@ class Sponsors extends Component {
                       className={styles.sponsor_img}
                       src={(mainSponsor.picture || {}).secure_url}
                       alt={mainSponsor.acronyme}
+                      width={160}
+                      height={110}
+                      objectFit="contain"
                     />
                   </ImageLink>
                   <SponsorTitle>{mainSponsor.nom}</SponsorTitle>
@@ -640,6 +644,9 @@ class Sponsors extends Component {
                               className={styles.sponsor_img}
                               src={sponsor.picture.secure_url}
                               alt={sponsor.alt}
+                              width={160}
+                              height={110}
+                              objectFit="contain"
                             />
                           </ImageLink>
                         ) : (
@@ -649,6 +656,9 @@ class Sponsors extends Component {
                                 className={styles.sponsor_img}
                                 src={sponsor.picture.secure_url}
                                 alt={sponsor.alt}
+                                width={160}
+                                height={110}
+                                objectFit="contain"
                               />
                             )}
                           </ImageLink>
@@ -902,6 +912,9 @@ class Sponsors extends Component {
                   src={selected.picture.secure_url}
                   className={styles.selection_logo}
                   alt="logo de structure"
+                  width={40}
+                  height={40}
+                  objectFit="contain"
                 />
               )}
               <span>
@@ -1018,6 +1031,9 @@ class Sponsors extends Component {
                   className={styles.sponsor_img}
                   src={this.state.imgData.secure_url}
                   alt={this.state.imgData.alt}
+                  width={160}
+                  height={110}
+                  objectFit="contain"
                 />
                 <FButton
                   className={styles.upload_btn}
@@ -1113,6 +1129,9 @@ class Sponsors extends Component {
                       src={mainSponsor.picture.secure_url}
                       className={styles.selection_logo}
                       alt="logo de structure"
+                      objectFit="contain"
+                      width={40}
+                      height={40}
                     />
                   )}
                   <span>
@@ -1139,6 +1158,9 @@ class Sponsors extends Component {
                         src={selected.picture.secure_url}
                         className={styles.selection_logo}
                         alt="logo de structure"
+                        width={40}
+                        height={40}
+                        objectFit="contain"
                       />
                     )}
                     <span>
@@ -1166,6 +1188,9 @@ class Sponsors extends Component {
                         src={mainSponsor.picture.secure_url}
                         className={styles.selection_logo}
                         alt="logo de structure"
+                        width={40}
+                        height={40}
+                        objectFit="contain"
                       />
                     )}
                     <span>

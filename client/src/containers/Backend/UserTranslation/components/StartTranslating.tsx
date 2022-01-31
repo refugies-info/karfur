@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "colors";
+import Image from "next/image";
 import FButton from "components/FigmaUI/FButton/FButton";
 import traductionIconBlanc from "assets/icon_traduction_blanc.svg";
 import styles from "containers/Backend/Navigation/components/NavButton.module.scss";
@@ -70,7 +71,7 @@ export const StartTranslating = (props: Props) => {
             className="mr-10"
             onClick={props.toggleTraducteurModal}
           >
-            <img
+            <Image
               src={traductionIconBlanc}
               alt="a"
               className={styles.icon_traduction}

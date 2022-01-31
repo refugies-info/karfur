@@ -95,6 +95,9 @@ export const SponsorSection = (props: Props) => {
                 className={styles.sponsor_img}
                 src={(props.sponsor.object.picture || {}).secure_url}
                 alt={props.sponsor.object.acronyme}
+                width={160}
+                height={110}
+                objectFit="contain"
               />
             </ImageLink>
             <SponsorTitle>{props.sponsor.object.nom}</SponsorTitle>
@@ -124,6 +127,9 @@ export const SponsorSection = (props: Props) => {
                   className={styles.sponsor_img}
                   src={props.sponsor.object.picture.secure_url}
                   alt={props.sponsor.object.alt}
+                  width={160}
+                  height={110}
+                  objectFit="contain"
                 />
               </ImageLink>
             ) : (
@@ -134,6 +140,9 @@ export const SponsorSection = (props: Props) => {
                       className={styles.sponsor_img}
                       src={props.sponsor.object.picture.secure_url}
                       alt={props.sponsor.object.alt}
+                      width={160}
+                      height={110}
+                      objectFit="contain"
                     />
                   )}
               </ImageLink>

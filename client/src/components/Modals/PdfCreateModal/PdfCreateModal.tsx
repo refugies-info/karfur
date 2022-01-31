@@ -87,7 +87,7 @@ export class PdfCreateModal extends Component<Props> {
                 {
                   family: "CircularStdMedium",
                   source:
-                    "../../../scss/fonts/CircularStd/CircularStd-Medium.WOFF",
+                    "/fonts/CircularStd/CircularStd-Medium.WOFF",
                 },
               ]}
               trigger={() => (

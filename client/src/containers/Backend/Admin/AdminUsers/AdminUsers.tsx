@@ -11,6 +11,7 @@ import {
   StyledSort,
   Content,
 } from "../sharedComponents/StyledAdmin";
+import Image from "next/image";
 import { userHeaders, correspondingStatus } from "./data";
 import { Table, Spinner } from "reactstrap";
 import { useSelector } from "react-redux";
@@ -387,7 +388,14 @@ export const AdminUsers = () => {
                   >
                     <div style={{ maxWidth: "300px", overflow: "hidden" }}>
                       <RowContainer>
-                        <img className={styles.user_img + " mr-8"} src={secureUrl} />
+                        <Image
+                          className={styles.user_img + " mr-8"}
+                          src={secureUrl}
+                          alt=""
+                          width={70}
+                          height={40}
+                          objectFit="contain"
+                        />
                         <StructureName>{element.username}</StructureName>
                       </RowContainer>
                     </div>

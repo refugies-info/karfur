@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Image from "next/image";
 import {
   fetchUserStructureActionCreator,
   setUserStructureActionCreator,
@@ -218,9 +219,11 @@ export const UserNotificationsComponent = (props: PropsBeforeInjection) => {
           <CenterContainer>
             <Title>Aucune notification ! </Title>
             <div style={{ marginTop: "32px", marginBottom: "20px" }}>
-              <img
+              <Image
                 src={assetsOnServer.middleOffice.noNotification}
                 alt="no-notification"
+                width={400}
+                height={289}
               />
             </div>
           </CenterContainer>

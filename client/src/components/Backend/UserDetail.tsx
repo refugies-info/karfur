@@ -65,7 +65,14 @@ export const UserDetail = (props: Props) => {
       onClick={() => props.onSelectItem(props.user)}
     >
       <RowContainer>
-        <Image className="user-img mr-8" src={secureUrl} alt="user picture" />
+        <Image
+          className="user-img mr-8"
+          src={secureUrl}
+          alt="user picture"
+          width={70}
+          height={40}
+          objectFit="contain"
+        />
         <Text isSelected={props.isSelected}>{getText()}</Text>
       </RowContainer>
       <EVAIcon

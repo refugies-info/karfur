@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Modal, Spinner } from "reactstrap";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import Image from "next/image";
 import { dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
 import { correspondingStatus } from "../data";
 import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
@@ -269,7 +270,14 @@ export const ImprovementsMailModal = (props: Props) => {
         const email = user.email || "pas d'email renseigné";
         return (
           <UserContainer key={user._id}>
-            <img className={styles.user_img} src={getUserImage(user)} />
+            <Image
+              className={styles.user_img}
+              src={getUserImage(user)}
+              alt=""
+              width={70}
+              height={40}
+              objectFit="contain"
+            />
             {user.username + " - "}
             <EmailText hasEmail={hasEmail}>{email}</EmailText>
           </UserContainer>

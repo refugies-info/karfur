@@ -50,6 +50,7 @@ const IconButton = styled.div`
 const Navbar = () => {
   const [visible, setVisible] = useState(true);
   const [scroll, setScroll] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -73,6 +74,11 @@ const Navbar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+  }, []);
+
+  // Auth
+  useEffect(() => {
+    setIsAuth(API.isAuth());
   }, []);
 
   useEffect(() => {
@@ -201,53 +207,48 @@ const Navbar = () => {
         )}
 
         {!isMobile && (
-          API.isAuth() ? (
-            <div>
-              <Link href={pathName}>
-                <a className={styles.user_picture_link}>
-                  {user.membreStruct &&
-                  nbNewNotifications > 0 &&
-                  userStructure ? (
-                    <div className={styles.overlay}>
-                      <div className={styles.user_picture_with_overlay}>
-                        <Image src={userImg} alt="user" width={52} height={52} />
-                      </div>
-                      <div className={styles.middle}>{nbNewNotifications}</div>
-                    </div>
-                  ) : (
-                    <div className={styles.user_picture}>
+          isAuth ?
+          <div>
+            <Link href={pathName} passHref>
+              <a className={styles.user_picture_link}>
+                {(user.membreStruct && nbNewNotifications > 0 && userStructure) ? (
+                  <div className={styles.overlay}>
+                    <div className={styles.user_picture_with_overlay}>
                       <Image src={userImg} alt="user" width={52} height={52} />
                     </div>
-                  )}
-                </a>
-              </Link>
-            </div>
-          ) : (
-            <div>
-              <Link href="/register" passHref>
+                    <div className={styles.middle}>{nbNewNotifications}</div>
+                  </div>
+                ) : (
+                  <div className={styles.user_picture}>
+                    <Image src={userImg} alt="user" width={52} height={52} />
+                  </div>
+                )}
+              </a>
+            </Link>
+          </div> :
+          <div>
+            <Link href="/register" passHref>
+              <FButton
+                type="signup"
+                name="person-add-outline"
+                tag="a"
+                onClick={() => logger.info("Click on Inscription")}
+                className={styles.auth_btn+ " mr-10"}
+              >
+                <span className={styles.auth_btn_text}>{t("Toolbar.Inscription", "Inscription")}</span>
+              </FButton>
+            </Link>
+            <Link href="/login" passHref>
                 <FButton
-                  type="signup"
-                  name="person-add-outline"
+                  type="login"
+                  name="log-in-outline"
                   tag="a"
-                  onClick={() => logger.info("Click on Inscription")}
-                  className={styles.auth_btn+ " mr-10"}
-
+                  className={styles.auth_btn}
                 >
-                  <span className={styles.auth_btn_text}>{t("Toolbar.Inscription", "Inscription")}</span>
-                </FButton>
-              </Link>
-              <Link href="/login" passHref>
-                  <FButton
-                    type="login"
-                    name="log-in-outline"
-                    tag="a"
-                    className={styles.auth_btn}
-                  >
-                  <span className={styles.auth_btn_text}>{t("Toolbar.Connexion", "Connexion")}</span>
-                </FButton>
-              </Link>
-            </div>
-          )
+                <span className={styles.auth_btn_text}>{t("Toolbar.Connexion", "Connexion")}</span>
+              </FButton>
+            </Link>
+          </div>
         )}
       </div>
     </header>

@@ -52,7 +52,7 @@ const MyCustomBlock = (props) => (
 // };
 
 // const Image = (props) => {
-//   return <img src={props.src} style={styles.media} />;
+//   return <Image src={props.src} style={styles.media} />;
 // };
 
 // const Video = (props) => {

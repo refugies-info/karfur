@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+import Image from "next/image";
 import { userDetailsSelector } from "services/User/user.selectors";
 import { User, Event } from "types/interface";
 import marioProfile from "assets/mario-profile.jpg";
@@ -384,7 +385,14 @@ export const UserProfileComponent = (props: Props) => {
       <Navigation selected="profil" />
       <MainContainer className={styles.container}>
         <ProfilePictureContainer>
-          <img src={getUserImage(user)} alt="my-image" className={styles.user_img} />
+          <Image
+            src={getUserImage(user)}
+            alt="my-image"
+            className={styles.user_img}
+            width={160}
+            height={160}
+            objectFit="contain"
+          />
           <UserName>{user.username}</UserName>
           <FButton
             type="dark"

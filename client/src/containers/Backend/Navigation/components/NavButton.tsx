@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import { colors } from "colors";
+import Image from "next/image";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { SelectedPage } from "../Navigation.component";
 import traductionIcon from "assets/icon_traduction.svg";
@@ -181,7 +182,7 @@ export const NavButton = (props: NavButtonProps) => {
       {props.type === "traductions" &&
         !props.isSelected &&
         hoverType !== "traductions" && (
-        <img
+        <Image
           src={traductionIcon}
           alt="a"
           className={styles.icon_traduction}
@@ -189,7 +190,7 @@ export const NavButton = (props: NavButtonProps) => {
         )}
       {props.type === "traductions" &&
         (props.isSelected || hoverType === "traductions") && (
-          <img
+          <Image
             src={traductionIconBlanc}
             alt="a"
             className={styles.icon_traduction}

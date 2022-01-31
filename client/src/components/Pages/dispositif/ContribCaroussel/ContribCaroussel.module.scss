@@ -62,14 +62,15 @@
     padding: 20px;
   }
 
-  .img{
+  .img {
     width: 80px;
     height: 80px;
     border-radius: 50%;
     margin-bottom: 20px;
-
-    &.author{
-      border: 2px solid #F6B93B;
-    }
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid #F6B93B;
+    display: block;
+    overflow: hidden;
   }
 }

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React from "react";
+import Image from "next/image";
 import { RowContainer } from "../../AdminStructures/components/AdminStructureComponents";
 import { Picture } from "types/interface";
 import checkStyles from "scss/components/checkbox.module.scss";
@@ -79,7 +80,14 @@ export const Structure = (props: StructureProps) => (
   >
     <RowContainer>
       {props.picture && props.picture.secure_url && (
-        <img className="sponsor-img mr-8" src={props.picture.secure_url} />
+        <Image
+          className="mr-8"
+          src={props.picture.secure_url}
+          alt=""
+          width={40}
+          height={40}
+          objectFit="contain"
+        />
       )}
       <StructureName onClick={props.onClick}>{props.nom}</StructureName>
       {props.role && <RoleDetail>{props.role}</RoleDetail>}

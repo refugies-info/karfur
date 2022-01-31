@@ -385,11 +385,12 @@ const Homepage = (props: Props) => {
                         tabIndex="4"
                         style={{ height: "60px" }}
                       >
-                        <Image
-                          src={icon_mobilisation}
-                          alt="icon mobilisation"
-                          className="mr-8"
-                        />
+                        <span className="mr-8">
+                          <Image
+                            src={icon_mobilisation}
+                            alt="icon mobilisation"
+                          />
+                        </span>
                         {t(
                           "Homepage.Participe déploiement",
                           "Je participe au déploiement"

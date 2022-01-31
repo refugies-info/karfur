@@ -65,17 +65,22 @@ const PhoneAndEmailFields = (props: Props) => {
               "Vous avez été nommé « responsable de structure » pour la structure :"
             )}
           </h5>
-          <div className="figma-btn white">
+          <FButton
+            type="white"
+            tag="div"
+          >
             {props.structure?.picture?.secure_url && (
               <Image
                 className="mr-10"
                 src={props.structure?.picture?.secure_url}
                 alt={props.structure.nom}
-                width="40"
+                width={40}
+                height={80}
+                objectFit="contain"
               />
             )}
             {props.structure.nom}
-          </div>
+          </FButton>
         </>
       )}
 

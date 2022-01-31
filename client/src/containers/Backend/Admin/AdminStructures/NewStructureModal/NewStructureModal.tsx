@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Event, Picture, Responsable, SimplifiedUser } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
+import Image from "next/image";
 import FInput from "components/FigmaUI/FInput/FInput";
 import moment from "moment/min/moment-with-locales";
 import FButton from "components/FigmaUI/FButton/FButton";
@@ -228,7 +229,14 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
       </InputContainer>
       <LogoContainer>
         <LogoWrapper>
-          <img className={styles.sponsor_img} src={secureUrl || noStructure} />
+          <Image
+            className={styles.sponsor_img}
+            src={secureUrl || noStructure}
+            alt=""
+            width={140}
+            height={60}
+            objectFit="contain"
+          />
         </LogoWrapper>
         <RightLogoContainer>
           <FButton className="upload-btn" type="theme" name="upload-outline">

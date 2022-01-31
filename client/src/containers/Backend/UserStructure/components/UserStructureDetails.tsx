@@ -4,6 +4,7 @@ import {
   StructurePictureContainer,
   StructureContainer,
 } from "./SubComponents";
+import Image from "next/image";
 import { TitleWithNumber } from "../../middleOfficeSharedComponents";
 import { Picture, UserStructureMembre } from "types/interface";
 import placeholder from "assets/annuaire/placeholder_logo_annuaire.svg";
@@ -101,10 +102,13 @@ export const UserStructureDetails = (props: Props) => {
   return (
     <MainContainer className={styles.container}>
       <StructurePictureContainer>
-        <img
+        <Image
           className={styles.sponsor_img}
           src={getSecureUrl(props.picture)}
           alt={props.acronyme}
+          width={235}
+          height={115}
+          objectFit="contain"
         />
         <StructureName>{props.name}</StructureName>
         {isMember && (

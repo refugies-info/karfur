@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Modal, Input, Spinner } from "reactstrap";
+import Image from "next/image";
 import {
   TypeContenu,
   StyledStatus,
@@ -319,9 +320,13 @@ export const DetailsModal = (props: Props) => {
                   props.setSelectedUserIdAndToggleModal(dispositif.creatorId);
                 }}
               >
-                <img
+                <Image
                   className={styles.creator_img}
                   src={getCreatorImage(dispositif)}
+                  alt="creator image"
+                  width={70}
+                  height={50}
+                  objectFit="contain"
                 />
                 {dispositif.creatorId && dispositif.creatorId.username}
               </CreatorContainer>
@@ -398,12 +403,13 @@ export const DetailsModal = (props: Props) => {
                     {dispositif.mainSponsor &&
                       dispositif.mainSponsor.picture &&
                       dispositif.mainSponsor.picture.secure_url && (
-                        <img
+                        <Image
                           className={styles.sopnsor_img}
-                          src={
-                            (dispositif.mainSponsor.picture || {}).secure_url
-                          }
+                          src={(dispositif.mainSponsor.picture || {}).secure_url}
                           alt={dispositif.mainSponsor.nom}
+                          width={140}
+                          height={60}
+                          objectFit="contain"
                         />
                       )}
                     <div>
@@ -425,7 +431,11 @@ export const DetailsModal = (props: Props) => {
                 <StructureContainer noStructure={true}>
                   Aucune structure définie !
                   <LogoContainer spaceBetween={true}>
-                    <img className={styles.sponsor_img} src={noStructure} />
+                    <Image
+                      className={styles.sponsor_img}
+                      src={noStructure}
+                      alt="no structure"
+                    />
 
                     <div>
                       <FButton

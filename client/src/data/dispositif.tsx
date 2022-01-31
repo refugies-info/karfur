@@ -1,5 +1,6 @@
 import React from "react";
 import h2p from "html2plaintext";
+import Image from "next/image";
 
 const contenu = {
   titreInformatif: "Titre informatif",
@@ -660,7 +661,7 @@ const customConvertOption = {
     } else if (entity.type === "image" || entity.type === "IMAGE") {
       return (
         <div className="image-wrapper">
-          <img {...entity.data} alt={(entity.data || {}).alt} />
+          <Image {...entity.data} alt={(entity.data || {}).alt} />
         </div>
       );
     }

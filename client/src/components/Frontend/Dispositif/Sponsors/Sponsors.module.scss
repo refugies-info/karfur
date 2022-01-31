@@ -38,11 +38,11 @@ $tailleBig: 80px;
   display: flex;
   flex-direction: row;
   margin: 0 8px;
+  max-width: 80px;
+  max-height: 100px;
 
   .sponsor_img {
     margin: 0 8px 0 0;
-    max-width: 64px;
-    max-height: 100px;
   }
 }
 

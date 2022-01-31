@@ -12,7 +12,7 @@ coverage
 # misc
 .DS_Store
 .env
-.env.local
+.env.local*
 .env.development.local
 .env.test.local
 .env.production.local
@@ -35,3 +35,4 @@ yarn-error.log*
 /client/src/locales/interfaceTranslation/csvBeforeTrad
 /client/src/locales/interfaceTranslation/csvAfterTrad
 /client/public/fonts/CircularStd
+/client/src/scss/fonts/CircularStd

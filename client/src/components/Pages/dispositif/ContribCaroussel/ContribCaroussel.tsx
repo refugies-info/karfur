@@ -154,11 +154,16 @@ const ContribCarousel = (props: Props) => {
                       <div className={styles.card_wrapper} key={subkey}>
                         <Card className={styles.card}>
                           <CardBody className={styles.card_body}>
-                            <Image
-                              className={`${styles.img} ${styles.author}`}
-                              src={contribImg}
-                              alt="juliette"
-                            />
+                            <span
+                              className={styles.img}
+                            >
+                              <Image
+                                src={contribImg}
+                                alt="juliette"
+                                width={80}
+                                height={80}
+                              />
+                            </span>
                             {contrib.username}
                           </CardBody>
                         </Card>

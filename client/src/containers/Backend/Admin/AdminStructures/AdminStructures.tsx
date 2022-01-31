@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Table } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
+import Image from "next/image";
 import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -349,9 +350,13 @@ export const AdminStructures = () => {
                 >
                   <RowContainer>
                     {element.picture && element.picture.secure_url && (
-                      <img
+                      <Image
                         className={styles.sponsor_img + " mr-8"}
                         src={(element.picture || {}).secure_url}
+                        alt=""
+                        width={90}
+                        height={35}
+                        objectFit="contain"
                       />
                     )}
                     <StructureName>{element.nom}</StructureName>

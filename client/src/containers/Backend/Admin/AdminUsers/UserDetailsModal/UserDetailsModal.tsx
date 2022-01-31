@@ -5,6 +5,7 @@ import {
   Indicators,
   SimplifiedStructureForAdmin,
 } from "types/interface";
+import Image from "next/image";
 import { Modal, Spinner } from "reactstrap";
 import moment from "moment/min/moment-with-locales";
 import { useSelector, useDispatch } from "react-redux";
@@ -250,7 +251,14 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
       size="lg"
     >
       <RowContainer>
-        <img className={styles.user_img + " mr-8"} src={secureUrl} />
+        <Image
+          className={styles.user_img + " mr-8"}
+          src={secureUrl}
+          alt=""
+          width={80}
+          height={80}
+          objectFit="contain"
+        />
         <StructureName>{userFromStore.username}</StructureName>
       </RowContainer>
       <div style={{ marginRight: 32 }}>

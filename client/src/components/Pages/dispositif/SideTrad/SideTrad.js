@@ -1231,7 +1231,9 @@ class SideTrad extends Component {
                 <Image
                   src={(userId.picture || {}).secure_url || marioProfile}
                   className="profile-img-pin mr-10"
-                  alt="profile"
+                    alt="profile"
+                    width={40}
+                    height={40}
                 />
                 <span
                   style={{
@@ -1302,7 +1304,9 @@ class SideTrad extends Component {
                 <Image
                   src={(userId.picture || {}).secure_url || marioProfile}
                   className="profile-img-pin mr-10"
-                  alt="profile"
+                    alt="profile"
+                    width={40}
+                    height={40}
                 />
                 <span>{this.props.user.username}</span>
               </div>

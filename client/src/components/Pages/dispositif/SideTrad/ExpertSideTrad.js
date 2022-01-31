@@ -1422,6 +1422,8 @@ class SideTrad extends Component {
                   src={(userId.picture || {}).secure_url || marioProfile}
                   className="profile-img-pin mr-10"
                   alt="profile"
+                  width={40}
+                  height={40}
                 />
                 <span>{userId.username}</span>
               </div>
@@ -1505,6 +1507,8 @@ class SideTrad extends Component {
                   src={(userId.picture || {}).secure_url || marioProfile}
                   className="profile-img-pin mr-10"
                   alt="profile"
+                  width={40}
+                  height={40}
                 />
                 <span>{this.props.user.username}</span>
               </div>

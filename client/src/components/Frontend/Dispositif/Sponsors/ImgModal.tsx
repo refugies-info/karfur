@@ -47,6 +47,9 @@ const ImgModal = (props: Props) => {
               className={styles.sponsor_img}
               src={props.imgData.secure_url}
               alt={props.imgData.alt}
+              width={160}
+              height={110}
+              objectFit="contain"
             />
             <FButton className={styles.upload_btn} type="theme" name="upload-outline">
               <Input

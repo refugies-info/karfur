@@ -7,6 +7,7 @@ import {
   SimplifiedDispositif,
 } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
+import Image from "next/image";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import FInput from "components/FigmaUI/FInput/FInput";
 import moment from "moment/min/moment-with-locales";
@@ -296,7 +297,14 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
           </InputContainer>
           <LogoContainer>
             <LogoWrapper>
-              <img className={styles.sponsor_img} src={secureUrl || noStructure} />
+              <Image
+                className={styles.sponsor_img}
+                src={secureUrl || noStructure}
+                alt=""
+                width={140}
+                height={60}
+                objectFit="contain"
+              />
             </LogoWrapper>
             <RightLogoContainer>
               <FButton

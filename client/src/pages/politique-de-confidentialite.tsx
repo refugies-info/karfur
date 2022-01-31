@@ -38,8 +38,7 @@ const PolitiqueConfidentialite = () => {
 
       <h3>Formulaire de contact</h3>
       <p>
-        Les informations transmises via le{" "}
-        <a href="/nous-contacter/">formulaire de contact</a> de ce site sont
+        Les informations transmises via le formulaire de contact de ce site sont
         transmises à notre service de communication et ne sont en aucun cas
         communiquées à des tiers. En application de la loi Informatique et
         liberté, vous disposez d’un droit d’accès, de rectification, de

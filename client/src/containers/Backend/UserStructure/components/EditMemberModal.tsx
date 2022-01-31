@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "reactstrap";
 import FButton from "components/FigmaUI/FButton/FButton";
+import Image from "next/image";
 import styled from "styled-components";
 import { UserStructureMembre } from "types/interface";
 import { ObjectId } from "mongodb";
@@ -95,7 +96,14 @@ export const EditMemberModal = (props: Props) => {
     >
       <RowContainer>
         <Title>Modifier le rôle de</Title>
-        <img className={styles.user_img + " mr-8"} src={secureUrl} />
+        <Image
+          className={styles.user_img + " mr-8"}
+          src={secureUrl}
+          alt=""
+          width={70}
+          height={40}
+          objectFit="contain"
+        />
         <UserName>{props.selectedUser.username}</UserName>
       </RowContainer>
       <Role

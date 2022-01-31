@@ -157,6 +157,9 @@ const CreationContent = (props) => {
                   className={styles.img + " mr-10"}
                   src={props.createur.picture.secure_url}
                   alt="profile"
+                  width={100}
+                  height={100}
+                  objectFit="contain"
                 />
               )}
               <div>
@@ -281,6 +284,9 @@ const CreationContent = (props) => {
                   className={styles.sponsor_img}
                   src={(props.picture || {}).secure_url}
                   alt={props.acronyme}
+                  width={110}
+                  height={40}
+                  objectFit="contain"
                 />
                 {props.uploading && (
                   <Spinner color="success" className="ml-10" />
