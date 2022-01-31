@@ -75,7 +75,7 @@ describe("updateUser", () => {
     fromSite: true,
     body: {
       query: {
-        user: { _id: "id", email: "email", phone: "phone", roles: [] },
+        user: { _id: "id", email: "email", phone: "0607080910", roles: [] },
         action: "modify-with-roles",
       },
     },
@@ -86,7 +86,7 @@ describe("updateUser", () => {
     getRoleByName.mockResolvedValueOnce({ _id: "adminRoleId" });
     getUserById.mockResolvedValueOnce({
       username: "user",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["autreRoleId"]
     });
     await updateUser(reqRolesEmpty, res);
@@ -95,7 +95,7 @@ describe("updateUser", () => {
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["autreRoleId"],
     });
     expect(res.status).toHaveBeenCalledWith(200);
@@ -107,7 +107,7 @@ describe("updateUser", () => {
     getRoleByName.mockResolvedValueOnce({ _id: "adminRoleId" });
     getUserById.mockResolvedValueOnce({
       username: "user",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["autreRoleId", "expertRoleId", "adminRoleId", null],
     });
 
@@ -117,7 +117,7 @@ describe("updateUser", () => {
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["autreRoleId"],
     });
     expect(res.status).toHaveBeenCalledWith(200);
@@ -128,7 +128,7 @@ describe("updateUser", () => {
     fromSite: true,
     body: {
       query: {
-        user: { _id: "id", email: "email", phone: "phone", roles: ["Admin"] },
+        user: { _id: "id", email: "email", phone: "0607080910", roles: ["Admin"] },
         action: "modify-with-roles",
       },
     },
@@ -281,7 +281,7 @@ describe("updateUser", () => {
     getRoleByName.mockResolvedValueOnce({ _id: "adminRoleId" });
     getUserById.mockResolvedValueOnce({
       username: "user",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["autreRoleId", "expertRoleId", "adminRoleId", null],
     });
 
@@ -291,7 +291,7 @@ describe("updateUser", () => {
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["autreRoleId", "adminRoleId"],
     });
     expect(res.status).toHaveBeenCalledWith(200);
@@ -313,7 +313,7 @@ describe("updateUser", () => {
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["adminRoleId"],
     });
     expect(res.status).toHaveBeenCalledWith(200);
@@ -325,7 +325,7 @@ describe("updateUser", () => {
     getRoleByName.mockResolvedValueOnce({ _id: "adminRoleId" });
     getUserById.mockResolvedValueOnce({
       username: "user",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["adminRoleId"],
     });
 
@@ -335,7 +335,7 @@ describe("updateUser", () => {
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["adminRoleId"],
     });
     expect(res.status).toHaveBeenCalledWith(200);
@@ -348,7 +348,7 @@ describe("updateUser", () => {
     getRoleByName.mockResolvedValueOnce({ _id: "adminRoleId" });
     getUserById.mockResolvedValueOnce({
       username: "user",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["autreRoleId", null],
     });
 
@@ -358,7 +358,7 @@ describe("updateUser", () => {
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["autreRoleId", "adminRoleId"],
     });
     expect(res.status).toHaveBeenCalledWith(200);
@@ -369,7 +369,7 @@ describe("updateUser", () => {
     fromSite: true,
     body: {
       query: {
-        user: { _id: "id", email: "email", phone: "phone", roles: ["ExpertTrad"] },
+        user: { _id: "id", email: "email", phone: "0607080910", roles: ["ExpertTrad"] },
         action: "modify-with-roles",
       },
     },
@@ -381,7 +381,7 @@ describe("updateUser", () => {
     getRoleByName.mockResolvedValueOnce({ _id: "adminRoleId" });
     getUserById.mockResolvedValueOnce({
       username: "user",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["autreRoleId", "expertRoleId", "adminRoleId", null],
     });
 
@@ -391,7 +391,7 @@ describe("updateUser", () => {
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["autreRoleId", "expertRoleId"],
     });
     expect(res.status).toHaveBeenCalledWith(200);
@@ -403,7 +403,7 @@ describe("updateUser", () => {
     getRoleByName.mockResolvedValueOnce({ _id: "adminRoleId" });
     getUserById.mockResolvedValueOnce({
       username: "user",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["autreRoleId", null],
     });
 
@@ -413,7 +413,7 @@ describe("updateUser", () => {
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["autreRoleId", "expertRoleId"],
     });
     expect(res.status).toHaveBeenCalledWith(200);
@@ -424,7 +424,7 @@ describe("updateUser", () => {
     fromSite: true,
     body: {
       query: {
-        user: { _id: "id", email: "email", phone: "phone", roles: ["ExpertTrad", "Admin"] },
+        user: { _id: "id", email: "email", phone: "0607080910", roles: ["ExpertTrad", "Admin"] },
         action: "modify-with-roles",
       },
     },
@@ -435,7 +435,7 @@ describe("updateUser", () => {
     getRoleByName.mockResolvedValueOnce({ _id: "expertRoleId" });
     getRoleByName.mockResolvedValueOnce({ _id: "adminRoleId" });
     getUserById.mockResolvedValueOnce({
-      phone: "phone",
+      phone: "0607080910",
       username: "user",
       roles: ["autreRoleId", "expertRoleId", "adminRoleId", null],
     });
@@ -446,7 +446,7 @@ describe("updateUser", () => {
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["autreRoleId", "adminRoleId", "expertRoleId"],
     });
     expect(res.status).toHaveBeenCalledWith(200);
@@ -458,7 +458,7 @@ describe("updateUser", () => {
     getRoleByName.mockResolvedValueOnce({ _id: "adminRoleId" });
     getUserById.mockResolvedValueOnce({
       username: "user",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["autreRoleId", null],
     });
 
@@ -468,7 +468,7 @@ describe("updateUser", () => {
     expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
-      phone: "phone",
+      phone: "0607080910",
       roles: ["autreRoleId", "adminRoleId", "expertRoleId"],
     });
     expect(res.status).toHaveBeenCalledWith(200);
@@ -511,7 +511,7 @@ describe("updateUser", () => {
         fromSite: true,
         body: {
           query: {
-            user: { _id: "id", email: "email", phone: "phone", roles: ["ExpertTrad", "Admin"] },
+            user: { _id: "id", email: "email", phone: "0607080910", roles: ["ExpertTrad", "Admin"] },
             action: "delete",
           },
         },
