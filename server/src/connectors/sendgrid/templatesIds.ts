@@ -13,7 +13,6 @@ declare type templateIds = {
   resetPassword: string;
   changePhoneNumber: string;
   newResponsable: string;
-  enabled2FaEmail: string; // TODO: to delete once sent
 };
 
 export const templatesIds: templateIds = {
@@ -31,5 +30,4 @@ export const templatesIds: templateIds = {
   resetPassword: "d-20ecb97414ef4545b036c382493be037",
   changePhoneNumber: "d-98ca8ec76a8f495aac751d2a64a0300c",
   newResponsable: "d-e31d1a56b06f44bb90d3dd000a4a962f",
-  enabled2FaEmail: "d-00a91b3c820940448984f8421f3be0f4" // TODO: to delete once sent
 };
