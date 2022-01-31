@@ -120,7 +120,8 @@ export const sendOneDraftReminderMailService = async (
   username: string,
   titreInformatif: string,
   userId: ObjectId,
-  dispositifId: ObjectId
+  dispositifId: ObjectId,
+  reminder: "first" | "second"
 ) => {
   try {
     logger.info("[sendOneDraftReminderMailService]  received", {
@@ -140,7 +141,7 @@ export const sendOneDraftReminderMailService = async (
         titreInformatif,
       },
     };
-    const templateName = "oneDraftReminder";
+    const templateName = reminder === "first" ? "oneDraftReminder" : "secondOneDraftReminder";
     sendMail(templateName, dynamicData);
     await addMailEvent({ templateName, username, email, userId, dispositifId });
     return;
@@ -196,7 +197,8 @@ export const sendUpdateReminderMailService = async (
 export const sendMultipleDraftsReminderMailService = async (
   email: string,
   username: string,
-  userId: ObjectId
+  userId: ObjectId,
+  reminder: "first" | "second"
 ) => {
   try {
     logger.info("[sendMultipleDraftsReminderMailService] received", {
@@ -214,7 +216,7 @@ export const sendMultipleDraftsReminderMailService = async (
         pseudo: username,
       },
     };
-    const templateName = "multipleDraftsReminder";
+    const templateName = reminder === "first" ? "multipleDraftsReminder" : "multipleDraftsReminder"; // TODO : change template
     sendMail(templateName, dynamicData);
     await addMailEvent({ templateName, username, email, userId });
     return;

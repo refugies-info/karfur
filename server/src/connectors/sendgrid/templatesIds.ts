@@ -1,6 +1,7 @@
 declare type templateIds = {
   newUserWelcome: string;
   oneDraftReminder: string;
+  secondOneDraftReminder: string;
   multipleDraftsReminder: string;
   publishedFicheToCreator: string;
   reviewFiche: string;
@@ -30,4 +31,5 @@ export const templatesIds: templateIds = {
   resetPassword: "d-20ecb97414ef4545b036c382493be037",
   changePhoneNumber: "d-98ca8ec76a8f495aac751d2a64a0300c",
   newResponsable: "d-e31d1a56b06f44bb90d3dd000a4a962f",
+  secondOneDraftReminder: "d-7fc299960fca4d9db6b78b494ce84689",
 };

@@ -4,7 +4,6 @@ import {
   getDraftDispositifs,
   updateDispositifInDB,
 } from "../../../modules/dispositif/dispositif.repository";
-import { asyncForEach } from "../../../libs/asyncForEach";
 import {
   sendOneDraftReminderMailService,
   sendMultipleDraftsReminderMailService,
@@ -13,8 +12,73 @@ import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
 import {
   filterDispositifsForDraftReminders,
   formatDispositifsByCreator,
+  FormattedDispositif,
 } from "../../../modules/dispositif/dispositif.adapter";
 import { isTitreInformatifObject } from "../../../types/typeguards";
+import { DispositifPopulatedDoc } from "src/schema/schemaDispositif";
+
+const formatTitle = (dispo: DispositifPopulatedDoc) => {
+  if (isTitreInformatifObject(dispo.titreInformatif)) {
+    return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif.fr };
+  }
+  return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif };
+}
+
+const sendReminderEmails = async (
+  recipient: FormattedDispositif,
+  reminder: "first" | "second"
+) => {
+  try {
+    if (recipient.dispositifs.length === 1) {
+      const dispositifId = recipient.dispositifs[0]._id;
+      logger.info(
+        `[sendDraftReminderMail] send mail to ${recipient.email} for dispositif with id ${dispositifId} `
+      );
+      await sendOneDraftReminderMailService(
+        recipient.email,
+        recipient.username,
+        recipient.dispositifs[0].titreInformatif,
+        recipient.creatorId,
+        dispositifId,
+        reminder
+      );
+      const updatedDispositif = reminder === "first" ? {
+        draftReminderMailSentDate: Date.now(),
+      } : {
+        draftSecondReminderMailSentDate: Date.now(),
+      };
+      await updateDispositifInDB(dispositifId, updatedDispositif);
+      return;
+    }
+
+    logger.info(
+      `[sendDraftReminderMail] send mail to ${recipient.email} for multiple dispositifs`
+    );
+
+    await sendMultipleDraftsReminderMailService(
+      recipient.email,
+      recipient.username,
+      recipient.creatorId,
+      reminder
+    );
+
+    recipient.dispositifs.map(
+      async (dispositif) => {
+        const updatedDispositif = reminder === "first" ? {
+          draftReminderMailSentDate: Date.now(),
+        } : {
+          draftSecondReminderMailSentDate: Date.now(),
+        };
+        await updateDispositifInDB(dispositif._id, updatedDispositif);
+      }
+    );
+    return;
+  } catch (error) {
+    logger.error("[sendDraftReminderMail] error with the recipient", {
+      creatorId: recipient.creatorId,
+    });
+  }
+}
 
 export const sendDraftReminderMail = async (
   req: RequestFromClient<{ cronToken: string }>,
@@ -30,70 +94,37 @@ export const sendDraftReminderMail = async (
       `[sendDraftReminderMail] ${dispositifs.length} dispositifs in Brouillon`
     );
 
-    const nbDaysBeforeReminder = 8;
-
-    const filteredDispositifs = filterDispositifsForDraftReminders(
+    const nbDaysBeforeFirstReminder = 8;
+    const dispositifsFirstReminder = filterDispositifsForDraftReminders(
       dispositifs,
-      nbDaysBeforeReminder
+      nbDaysBeforeFirstReminder,
+      "draftReminderMailSentDate"
     );
+
+    const nbDaysBeforeSecondReminder = 30;
+    const dispositifsSecondReminder = filterDispositifsForDraftReminders(
+      dispositifs,
+      nbDaysBeforeSecondReminder,
+      "draftSecondReminderMailSentDate"
+    ).filter(dispo => !dispositifsFirstReminder.find( // if dispo in 2 lists, send only first
+      d => d._id.toString() === dispo._id.toString()
+    ));
 
     logger.info(
-      `[sendDraftReminderMail] send ${filteredDispositifs.length} reminders`
+      `[sendDraftReminderMail] send ${dispositifsFirstReminder.length} 1rst reminders and ${dispositifsSecondReminder.length} 2nd reminders`
     );
 
-    const dispositifsWithFormattedTitle = filteredDispositifs.map((dispo) => {
-      if (isTitreInformatifObject(dispo.titreInformatif)) {
-        return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif.fr };
-      }
-      return { ...dispo.toJSON(), titreInformatif: dispo.titreInformatif };
-    });
+    const dispositifsFirstReminderWithFormattedTitle = dispositifsFirstReminder.map((dispo) => formatTitle(dispo));
+    const formattedRecipientsFirstReminder = formatDispositifsByCreator(dispositifsFirstReminderWithFormattedTitle);
+    for (const recipient of formattedRecipientsFirstReminder) {
+      await sendReminderEmails(recipient, "first");
+    }
 
-    const formattedRecipients = formatDispositifsByCreator(
-      dispositifsWithFormattedTitle
-    );
-
-    await asyncForEach(formattedRecipients, async (recipient) => {
-      try {
-        if (recipient.dispositifs.length === 1) {
-          const dispositifId = recipient.dispositifs[0]._id;
-          logger.info(
-            `[sendDraftReminderMail] send mail to ${recipient.email} for dispositif with id ${dispositifId} `
-          );
-          await sendOneDraftReminderMailService(
-            recipient.email,
-            recipient.username,
-            recipient.dispositifs[0].titreInformatif,
-            recipient.creatorId,
-            dispositifId
-          );
-          await updateDispositifInDB(dispositifId, {
-            draftReminderMailSentDate: Date.now(),
-          });
-          return;
-        }
-
-        logger.info(
-          `[sendDraftReminderMail] send mail to ${recipient.email} for multiple dispositifs`
-        );
-
-        await sendMultipleDraftsReminderMailService(
-          recipient.email,
-          recipient.username,
-          recipient.creatorId
-        );
-
-        recipient.dispositifs.map(
-          async (dispositif) =>
-            await updateDispositifInDB(dispositif._id, {
-              draftReminderMailSentDate: Date.now(),
-            })
-        );
-      } catch (error) {
-        logger.error("[sendDraftReminderMail] error with the recipient", {
-          creatorId: recipient.creatorId,
-        });
-      }
-    });
+    const dispositifsSecondReminderWithFormattedTitle = dispositifsSecondReminder.map((dispo) => formatTitle(dispo));
+    const formattedRecipientsSecondReminder = formatDispositifsByCreator(dispositifsSecondReminderWithFormattedTitle);
+    for (const recipient of formattedRecipientsSecondReminder) {
+      await sendReminderEmails(recipient, "second");
+    }
 
     return res.status(200).json({ text: "OK" });
   } catch (error) {
