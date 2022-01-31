@@ -4,6 +4,7 @@ import LoginError from "./LoginError";
 import { updateUserInDB } from "./users.repository";
 import { getStructureFromDB } from "../structure/structure.repository";
 import { ObjectId } from "mongoose";
+import formatPhoneNumber from "../../libs/formatPhoneNumber";
 const { accountSid, authToken } = process.env;
 const client = require("twilio")(accountSid, authToken);
 const twilioService = client.verify.services.create({ friendlyName: "Réfugiés.info" });
@@ -67,7 +68,7 @@ export const login2FA = async (
   });
 
   // CASE 1: has phone and code --> check code
-  const phone = userFromDB.phone || userFromRequest.phone;
+  const phone = userFromDB.phone || formatPhoneNumber(userFromRequest.phone);
   if (phone && userFromRequest.code) {
     logger.info("[Login] 2FA user with a code provided", {
       username,
@@ -76,9 +77,7 @@ export const login2FA = async (
     await verifyCode(phone, userFromRequest.code);
 
     if (!userFromDB.phone) { // if no phone saved, save it
-      updateUserInDB(userFromDB._id, {
-        phone: userFromRequest.phone
-      });
+      updateUserInDB(userFromDB._id, { phone });
     }
     return true;
   }
@@ -102,7 +101,7 @@ export const login2FA = async (
     updateUserInDB(userFromDB._id, {
       email: userFromRequest.email,
     });
-    return requestSMSLogin(userFromRequest.phone);
+    return requestSMSLogin(phone);
   }
 
   // CASE 4: missing contact infos

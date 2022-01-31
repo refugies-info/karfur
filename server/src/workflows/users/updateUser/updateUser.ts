@@ -18,6 +18,7 @@ import {
   verifyCode
 } from "../../../modules/users/login2FA";
 import { loginExceptionsManager } from "../login/login.exceptions.manager";
+import formatPhoneNumber from "../../../libs/formatPhoneNumber";
 
 interface User {
   _id: ObjectId;
@@ -43,6 +44,10 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
     }
 
     logger.info("[updateUser] call received", { user, action });
+
+    if (user.phone) { // format phone
+      user.phone = formatPhoneNumber(user.phone);
+    }
 
     if (action === "modify-with-roles") {
       // @ts-ignore
