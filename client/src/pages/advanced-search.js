@@ -51,7 +51,7 @@ const ThemeHeader = styled.div`
 
 const ThemeHeaderTitle = styled.p`
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 32px;
   line-height: 40px;
   color: ${(props) => props.color};
@@ -129,7 +129,7 @@ const ThemeText = styled.p`
   font-size: 18px;
   margin-left: 8px;
   margin-right: ${(props) => (props.mr ? `${props.mr}px` : "0px")};
-  font-weight: 700;
+  font-weight: bold;
 `;
 
 const ThemeTextAlone = styled.p`
@@ -137,7 +137,7 @@ const ThemeTextAlone = styled.p`
   font-size: 18px;
   margin-left: 0px;
   margin-right: ${(props) => (props.mr ? `${props.mr}px` : "0px")};
-  font-weight: 700;
+  font-weight: bold;
 `;
 
 const LanguageText = styled.span`
@@ -145,7 +145,7 @@ const LanguageText = styled.span`
   font-size: 16px;
   margin-right: 16px;
   margin-left: 8px;
-  font-weight: 400;
+  font-weight: normal;
 `;
 
 const LanguageTextFilter = styled.span`
@@ -153,7 +153,7 @@ const LanguageTextFilter = styled.span`
   font-size: 16px;
   margin-right: 0px;
   margin-left: 8px;
-  font-weight: 700;
+  font-weight: bold;
 `;
 
 const FilterTitle = styled.p`

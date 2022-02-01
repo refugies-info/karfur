@@ -7,7 +7,7 @@ import Skeleton from "react-loading-skeleton";
 const CardText = styled.p`
   font-size: 32px;
   line-height: 40px !important;
-  font-weight: 500;
+  font-weight: 600;
   color: ${(props) => props.color};
 `;
 

@@ -74,13 +74,13 @@ const ColumnContainer = styled.div`
 
 const FichesColumnContainer = styled.div`
   padding-left: 32px;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 16px;
   padding-bottom: 8px;
 `;
 const TitleFichesContainer = styled.div`
   padding-left: 32px;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 18px;
   text-decoration: underline;
   padding-bottom: 5px;
@@ -95,7 +95,7 @@ const TextInfoFichesContainer = styled.div`
 
 const TextNoFicheContainer = styled.div`
   padding-left: 32px;
-  font-weight: 700;
+  font-weight: bold;
 color:${colors.grisFonce}
   font-size: 22px;
 `;
@@ -437,7 +437,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                   <DetailsFichesContainer>
                     <TextInfoFichesContainer>
                       {index === 0 && (
-                        <div style={{ fontWeight: 700 }}>
+                        <div style={{ fontWeight: "bold" }}>
                           Fiche ayant créé la structure
                         </div>
                       )}

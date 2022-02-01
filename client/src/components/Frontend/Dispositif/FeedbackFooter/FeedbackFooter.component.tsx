@@ -30,7 +30,7 @@ const CountButtonContainer = styled.div`
   margin-right: 8px;
   margin-bottom: 8px;
   border-radius: 12px;
-  font-weight: 700;
+  font-weight: bold;
   line-height:20px;
   background-color:${(props) => (props.didThank ? colors.vert : colors.gris)}
   color:${(props) => (props.didThank ? colors.blancSimple : colors.noir)};

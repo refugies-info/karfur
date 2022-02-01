@@ -35,7 +35,7 @@ const SectionContainer = styled.div`
 
 const TitleContainer = styled.div`
   font-size: 32px;
-  font-weight: 400;
+  font-weight: normal;
   margin-top: 15px;
   margin-bottom: 24px;
   color: ${(props) => props.textColor};

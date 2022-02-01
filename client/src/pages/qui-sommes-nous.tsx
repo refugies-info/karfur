@@ -30,7 +30,7 @@ const HeaderText = styled.div`
   line-height: 66px;
 `;
 const SubHeaderText = styled.div`
-  font-weight: 500;
+  font-weight: 600;
   font-size: 32px;
   line-height: 40px;
 `;
@@ -71,7 +71,7 @@ const NavBarText = styled.div`
 
 const SectionHeader = styled.div`
   text-align: center;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 40px;
   line-height: 40px;
   margin-bottom: 48px;
@@ -82,7 +82,7 @@ const SectionSubHeader = styled.div`
   justify-content: center;
   align-items: baseline;
   text-align: center;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 30px;
   line-height: 40px;
   margin-bottom: 48px;
@@ -90,7 +90,7 @@ const SectionSubHeader = styled.div`
 
 const SectionSubHeaderMissing = styled.div`
   text-align: center;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 20px;
   color: grey;
   margin-left: 8px;

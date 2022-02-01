@@ -10,7 +10,7 @@ import { Tag } from "types/interface";
 const CardText = styled.p`
   font-size: 32px;
   line-height: 40px !important;
-  font-weight: 500;
+  font-weight: 600;
   color: ${props => props.color};
 `;
 
@@ -29,7 +29,7 @@ const SeeMoreText = styled.p`
   font-size: 18px;
   margin-left: 8px;
   margin-right: ${(props) => (props.mr ? `${props.mr}px` : "0px")};
-  font-weight: 700;
+  font-weight: bold;
 `
 
 interface Props {

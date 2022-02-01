@@ -25,7 +25,7 @@ interface Props {
   history: any;
 }
 const TotalCountTitle = styled.div`
-  font-weight: 700;
+  font-weight: bold;
   font-size: 16px;
   text-align: center;
   margin: 13px;
@@ -34,7 +34,7 @@ const TotalCountTitle = styled.div`
 
 const AProposTitle = styled.div`
   font-size: 22px;
-  font-weight: 700;
+  font-weight: bold;
   text-align: center;
   color: ${colors.grisFonce};
   margin-top: 25px;
@@ -49,7 +49,7 @@ const AProposTitle = styled.div`
 const Title = styled.div`
   margin-right: 10px;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: bold;
 `;
 
 const TagSelected = styled.div`

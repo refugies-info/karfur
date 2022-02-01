@@ -300,7 +300,7 @@ const CommentContribuer = (props: any) => {
               height={190}
             />
             <div className={styles.infos}>
-              <p style={{ fontWeight: 700 }}>
+              <p style={{ fontWeight: "bold" }}>
                 Nour Allazkani
               </p>
               <p>

@@ -12,7 +12,7 @@ const FilterButton = styled.div`
   background-color: ${colors.blancSimple};
   border: 1px solid;
   color: ${colors.noir};
-  font-weight: 700;
+  font-weight: bold;
   border-color: ${colors.noir};
   border-radius: 12px;
   padding-top: 12px;
@@ -29,7 +29,7 @@ const SelectedFilter = styled.div`
   background-color: ${colors.noir};
   color: ${colors.blanc};
   text-align: left;
-  font-weight: 700;
+  font-weight: bold;
   border-color: #212121;
   border-radius: 12px;
   margin: 5px 0;

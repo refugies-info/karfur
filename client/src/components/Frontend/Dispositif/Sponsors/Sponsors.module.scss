@@ -15,7 +15,7 @@ $tailleBig: 80px;
   }
   h5 {
     margin-bottom: 20px;
-    font-weight: 700;
+    font-weight: bold;
     font-size: 40px;
     @include media-max("tablet-up") {
       font-size: 28px;

@@ -34,7 +34,7 @@ const MainContainer = styled.div`
 const TextContainer = styled.div`
   color: ${(props) => props.textColor};
   font-size: 22px;
-  font-weight: 700;
+  font-weight: bold;
   padding-left: 20px;
   padding-right: 20px;
   margin-top: ${(props) =>

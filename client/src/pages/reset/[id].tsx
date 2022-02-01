@@ -32,7 +32,7 @@ import { colors } from "colors";
 import styles from "scss/components/login.module.scss";
 
 const StyledHeader = styled.div`
-  font-weight: 500;
+  font-weight: 600;
   font-size: 32px;
   line-height: 40px;
   color: #0421b1;

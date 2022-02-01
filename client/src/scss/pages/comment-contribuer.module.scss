@@ -25,7 +25,7 @@
 
 .redaction {
   padding-top: 48px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 32px;
   line-height: 40px;
   padding-left: 120px;
@@ -39,7 +39,7 @@
   height: 720px;
   background-image: url(../../assets/comment-contribuer/CommentContribuer_backgroundTraduction.svg);
   padding-top: 48px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 32px;
   line-height: 40px;
   display: flex;
@@ -87,7 +87,7 @@
   position: relative;
 
   h2 {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 32px;
     line-height: 40px;
   }
@@ -108,7 +108,7 @@
 
   .deployons_header {
     font-size: 40px;
-    font-weight: 700;
+    font-weight: bold;
     text-align: center;
   }
   .section {
@@ -134,7 +134,7 @@
   .inner {
     text-align: center;
     font-size: 28px;
-    font-weight: 700;
+    font-weight: bold;
     padding: 50px;
   }
 }
@@ -152,7 +152,7 @@
       background-color: $blancSimple;
       font-size: 18px;
       width:fit-content;
-      font-weight: 400;
+      font-weight: normal;
       padding : 5px 10px;
     }
   }
@@ -160,19 +160,19 @@
 
 .main_text {
   font-size: 20px;
-  font-weight: 700;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 .sub_text {
   font-size: 18px;
-  font-weight: 400;
+  font-weight: normal;
 }
 
 .dispo {
   color: $blancSimple;
   font-size: 16px;
   padding: 12px 10px 0 10px;
-  font-weight: 700;
+  font-weight: bold;
 }
 
 .icon {

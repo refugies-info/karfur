@@ -74,7 +74,7 @@ const CardContainer = styled.div`
 
 const MainTitleContainer = styled.div`
   font-size: ${isMobile ? "28px" : "52px"};
-  font-weight: 700;
+  font-weight: bold;
   padding: 0 60px;
 `;
 const ButtonContainer = styled.div`

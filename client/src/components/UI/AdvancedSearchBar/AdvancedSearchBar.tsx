@@ -105,7 +105,7 @@ const ThemeButton = styled.div`
 const ThemeText = styled.p`
   color: white;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: bold;
   margin-bottom: 0px;
   margin-left: ${(props) => (props.rtl ? null : "8px")};
   margin-right: ${(props) => (props.rtl ? "8px" : null)};
@@ -114,7 +114,7 @@ const ThemeText = styled.p`
 const ThemeActionText = styled.p`
   color: ${(props) => props.color};
   font-size: 18px;
-  font-weight: 700;
+  font-weight: bold;
   margin-bottom: 0px;
 `;
 

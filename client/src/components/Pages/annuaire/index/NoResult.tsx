@@ -33,7 +33,7 @@ const NoResultsButtonsContainer = styled.div`
 
 const NoResultsTitle = styled.p`
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 32px;
   line-height: 40px;
   margin-bottom: 24px !important;

@@ -130,7 +130,7 @@ const CreationContent = (props) => {
           <Label
             style={{
               cursor: "pointer",
-              fontWeight: "700",
+              fontWeight: "bold",
             }}
             check
           >

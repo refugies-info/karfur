@@ -29,7 +29,7 @@ export const SelectedFilter = (props: Props) => {
     background-color: ${(props) => props.color};
     color: ${(props) => props.textColor};
     text-align: ${(props) => props.textAlign};
-    font-weight: 700;
+    font-weight: bold;
     border-color: #212121;
     border-radius: 12px;
     margin: 5px 0;
@@ -45,7 +45,7 @@ export const SelectedFilter = (props: Props) => {
     border: 1px solid;
     align-items: center;
     color: ${colors.noir};
-    font-weight: 700;
+    font-weight: bold;
     border-color: ${colors.noir};
     border-radius: 12px;
     margin: 10px 0;

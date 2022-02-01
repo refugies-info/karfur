@@ -64,7 +64,7 @@ const SearchBoutton = styled.div`
   flex-direction: row;
   justify-content: center;
   color: white;
-  font-weight: 700;
+  font-weight: bold;
   margin: 5px 0;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
 `;
@@ -76,7 +76,7 @@ const FilterButton = styled.div`
   background-color: ${colors.blancSimple};
   border: 1px solid;
   color: ${colors.noir};
-  font-weight: 700;
+  font-weight: bold;
   border-color: ${colors.noir};
   border-radius: 12px;
   margin: 10px 0;
@@ -86,7 +86,7 @@ const FilterButton = styled.div`
 `;
 
 const TextTitle = styled.div`
-  font-weight: 700;
+  font-weight: bold;
   font-size: 18px;
   margin-top: 5px;
 `;

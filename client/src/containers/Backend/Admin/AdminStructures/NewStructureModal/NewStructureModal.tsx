@@ -28,7 +28,7 @@ import styles from "./NewStructureModal.module.scss";
 moment.locale("fr");
 
 const Header = styled.div`
-  font-weight: 500;
+  font-weight: 600;
   font-size: 32px;
   line-height: 40px;
   margin-bottom: 16px;

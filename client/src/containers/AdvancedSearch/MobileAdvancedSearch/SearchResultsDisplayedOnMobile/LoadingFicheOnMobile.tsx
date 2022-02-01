@@ -22,7 +22,7 @@ const TitleText = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: bold;
 `;
 
 const PictoCircle = styled.div`

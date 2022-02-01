@@ -17,7 +17,7 @@ interface Props {
 
 const TitleContainer = styled.div`
   font-size: 28px;
-  font-weight: 700;
+  font-weight: bold;
   margin: 8px;
 `;
 const MainContainer = styled.div`
@@ -28,7 +28,7 @@ const MainContainer = styled.div`
 `;
 const TextContainer = styled.div`
   font-size: 18px;
-  font-weight: 400;
+  font-weight: normal;
   margin: 16px;
 `;
 const ButtonContainer = styled.div`

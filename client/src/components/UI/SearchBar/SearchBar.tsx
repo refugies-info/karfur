@@ -34,7 +34,7 @@ const NoResultContainer = styled.div`
 `;
 
 const NoResultTextContainer = styled.div`
-  font-weight: 700;
+  font-weight: bold;
   font-size: 22px;
   margin-bottom: 20px;
 `;

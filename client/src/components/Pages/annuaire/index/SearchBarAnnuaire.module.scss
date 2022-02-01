@@ -23,7 +23,7 @@
     align-items: center;
   }
   .btn {
-    font-weight: 700;
+    font-weight: bold;
     padding-right: 16px;
 
     &.dark {
@@ -46,7 +46,7 @@
 
   .results {
     font-size: 16px;
-    font-weight: 700;
+    font-weight: bold;
     padding: 12px;
     color: $blanc;
   }
@@ -55,7 +55,7 @@
     height: 50px;
     padding: 12px;
     border-radius: 12px;
-    font-weight: 700;
+    font-weight: bold;
     font-size: 16px;
     align-items: center;
     margin-right: 12px;

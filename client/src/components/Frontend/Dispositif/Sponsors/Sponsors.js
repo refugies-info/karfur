@@ -87,7 +87,7 @@ const ImageLink = styled.a`
   position: relative;
 `;
 const ConfirmationStructureTitleContainer = styled.div`
-  font-weight: 700;
+  font-weight: bold;
   font-size: 22px;
 `;
 
@@ -835,7 +835,7 @@ class Sponsors extends Component {
                 <Label
                   style={{
                     cursor: "pointer",
-                    fontWeight: "700",
+                    fontWeight: "bold",
                   }}
                   check
                 >

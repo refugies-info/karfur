@@ -30,13 +30,13 @@ const TitleText = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: bold;
 `;
 
 const SubTitleText = styled.div`
   color: ${(props) => props.color};
   font-size: 16px;
-  font-weight: 400;
+  font-weight: normal;
 `;
 
 const PictoCircle = styled.div`
