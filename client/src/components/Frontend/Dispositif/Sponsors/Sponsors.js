@@ -1023,7 +1023,7 @@ class Sponsors extends Component {
             handleBelongsChange={this.handleBelongsChange}
             setStructureContactAsMe={this.setStructureContactAsMe}
             mainTag={this.props.mainTag}
-            {...this.state.structure}
+            {...this.state.structure} // TO DO : spread
           />
           <div className={`${styles.input} ${styles.inline}`}>
             <span style={{ fontSize: 22 }}>Ajouter un logo</span>

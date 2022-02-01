@@ -165,7 +165,7 @@ export const contenuDispositif = (props: Props) => {
         </Row>
         {
           // lecture and edition of childrens and info cards
-          <ContenuParagraphe item={item} keyValue={key} {...props} />
+          <ContenuParagraphe item={item} keyValue={key} {...props} />  // TO DO : spread
         }
       </div>
     );

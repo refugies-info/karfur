@@ -66,7 +66,7 @@ const SearchResultCard = (props: Props) => {
               "/" +
               (props.dispositif.typeContenu || "dispositif") +
               (props.dispositif._id ? "/" + props.dispositif._id : ""),
-            // state: { previousRoute: "advanced-search" },
+            // state: { previousRoute: "advanced-search" }, // TODO : location.state
           }}
         >
           <a>

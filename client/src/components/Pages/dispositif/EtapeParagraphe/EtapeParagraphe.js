@@ -908,7 +908,7 @@ class EtapeParagraphe extends Component {
                 tutoriel={this.props.item.tutoriel}
                 addItem={this.props.addItem}
                 typeContenu={this.props.typeContenu}
-                {...subitem}
+                {...subitem}  // TO DO : spread
               />
             </Collapse>
             {!disableEdit && (
@@ -928,7 +928,15 @@ class EtapeParagraphe extends Component {
                 show={safeUiArray(keyValue, subkey, "isHover")}
                 keyValue={keyValue}
                 subkey={subkey}
-                {...this.props}
+                t={this.props.t}
+                item={this.props.item}
+                handleContentClick={this.props.handleContentClick}
+                disableEdit={this.props.disableEdit}
+                toggleModal={this.props.toggleModal}
+                readAudio={this.props.readAudio}
+                stopAudio={this.props.stopAudio}
+                removeItem={this.props.removeItem}
+                ttsActive={this.props.ttsActive}
               />
             </Col>
           )}

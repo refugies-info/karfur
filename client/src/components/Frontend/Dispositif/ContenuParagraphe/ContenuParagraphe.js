@@ -175,7 +175,7 @@ const contenuParagraphe = (props) => {
                   subitem={subitem}
                   disableEdit={disableEdit}
                   mainTag={bprops.mainTag}
-                  {...bprops}
+                  {...bprops} // TO DO : spread
                 />
               ) : subitem.type === "map" && bprops.printing ? (
                 <MapParagraphePrint
@@ -183,7 +183,7 @@ const contenuParagraphe = (props) => {
                   subkey={subkey}
                   subitem={subitem}
                   disableEdit={disableEdit}
-                  {...bprops}
+                  {...bprops} // TO DO : spread
                 />
               ) : subitem.type === "etape" ? (
                 <EtapeParagraphe
@@ -192,7 +192,7 @@ const contenuParagraphe = (props) => {
                   subitem={subitem}
                   tutoriel={item.tutoriel}
                   disableEdit={disableEdit}
-                  {...bprops}
+                  {...bprops} // TO DO : spread
                 />
               ) : subitem.type === "accordion" ? (
                 <div
@@ -316,7 +316,7 @@ const contenuParagraphe = (props) => {
                             disableEdit={disableEdit}
                             tutoriel={item.tutoriel}
                             addItem={props.addItem}
-                            {...subitem}
+                            {...subitem} // TO DO : spread
                           />
                         }
                       </Collapse>
@@ -328,7 +328,14 @@ const contenuParagraphe = (props) => {
                           keyValue={props.keyValue}
                           subkey={subkey}
                           disableEdit={disableEdit}
-                          {...bprops}
+                          t={this.props.t}
+                          item={this.props.item}
+                          handleContentClick={this.props.handleContentClick}
+                          toggleModal={this.props.toggleModal}
+                          readAudio={this.props.readAudio}
+                          stopAudio={this.props.stopAudio}
+                          removeItem={this.props.removeItem}
+                          ttsActive={this.props.ttsActive}
                         />
                       </Col>
                     )}
@@ -382,7 +389,7 @@ const contenuParagraphe = (props) => {
                             disableEdit={disableEdit}
                             tutoriel={item.tutoriel}
                             addItem={props.addItem}
-                            {...subitem}
+                            {...subitem} // TO DO : spread
                           />
                           <br />
                         </Col>
@@ -403,7 +410,14 @@ const contenuParagraphe = (props) => {
                               keyValue={props.keyValue}
                               subkey={subkey}
                               disableEdit={disableEdit}
-                              {...bprops}
+                              t={this.props.t}
+                              item={this.props.item}
+                              handleContentClick={this.props.handleContentClick}
+                              toggleModal={this.props.toggleModal}
+                              readAudio={this.props.readAudio}
+                              stopAudio={this.props.stopAudio}
+                              removeItem={this.props.removeItem}
+                              ttsActive={this.props.ttsActive}
                             />
                           </Col>
                         )}

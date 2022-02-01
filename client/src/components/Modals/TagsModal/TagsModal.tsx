@@ -27,12 +27,15 @@ const Step = ({ ...props }) => {
   );
 };
 
-const StyledSub = ({ ...props }) => {
+interface SubProps {
+  title: string
+  subtitle: string
+  step: string
+  done: boolean
+}
+const StyledSub = (props: SubProps) => {
   return (
-    <div
-      className={styles.sub}
-      {...props}
-    >
+    <div className={styles.sub}>
       <Step done={props.done}>{props.step}</Step>
       <div>
         <p className={styles.title}>{props.title}</p>

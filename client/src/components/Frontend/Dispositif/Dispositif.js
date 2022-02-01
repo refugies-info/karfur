@@ -1764,7 +1764,7 @@ export class Dispositif extends Component {
                   content={this.state.content}
                   updateUIArray={this.updateUIArray}
                   typeContenu={typeContenu}
-                  {...this.props}
+                  {...this.props} // TO DO : spread
                 />
               ) : (
                 <ExpertSideTrad
@@ -1772,7 +1772,7 @@ export class Dispositif extends Component {
                   content={this.state.content}
                   updateUIArray={this.updateUIArray}
                   typeContenu={typeContenu}
-                  {...this.props}
+                  {...this.props} // TO DO : spread
                 />
               )}
             </Col> */}
@@ -2203,8 +2203,7 @@ export class Dispositif extends Component {
                     this.toggleShareContentOnMobileModal
                   }
                   mainTag={this.state.mainTag}
-                  // TO DO : remove spread state
-                  {...this.state}
+                  {...this.state} // TO DO : spread
                 />
 
                 {this.state.disableEdit && (

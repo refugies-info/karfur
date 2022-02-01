@@ -32,7 +32,7 @@ const EmailField = (props: EmailProps) => {
         prepend
         prependName="email-outline"
         value={props.email}
-        {...props}
+        onChange={props.onChange}
         id="email"
         type="email"
         placeholder={t("Register.Votre email", "Votre email")}

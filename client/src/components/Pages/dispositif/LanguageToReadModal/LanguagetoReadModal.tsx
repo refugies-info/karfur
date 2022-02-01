@@ -1,20 +1,31 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import FButton from "components/FigmaUI/FButton/FButton";
 import styled from "styled-components";
 import { initGA, Event } from "lib/tracking";
+import { Language } from "types/interface";
 
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-export const LanguageToReadModal = (props) => {
+interface Props {
+  show: boolean
+  toggle: any
+  languages: Language[]
+  changeLanguage: any
+}
+
+export const LanguageToReadModal = (props: Props) => {
+  const { t } = useTranslation();
+
   return (
     <Modal isOpen={props.show} toggle={props.toggle} className="language-modal">
       <ModalHeader toggle={props.toggle}>
         <span className="title">
-          {props.t("Dispositif.Lire en", "Lire en : ")}
+          {t("Dispositif.Lire en", "Lire en : ")}
         </span>
       </ModalHeader>
       <ModalBody>

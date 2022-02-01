@@ -215,7 +215,7 @@ const MapParagraphe = (props: Props) => {
                 onPlacesChanged={onPlacesChanged}
                 disableEdit={props.disableEdit}
                 handleChange={handleChange}
-                // {...this.state} TODO : bug here
+                // {...this.state} // TO DO : spread
               />
             </div>
 

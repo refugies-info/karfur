@@ -30,8 +30,6 @@ import { filterContents } from "containers/AdvancedSearch/filterContents";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { activatedLanguages } from "data/activatedLanguages";
-
-// import "./AdvancedSearch.scss";
 import { colors } from "colors";
 
 const ThemeContainer = styled.div`

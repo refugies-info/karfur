@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Swal from "sweetalert2";
 import querySearch from "stringquery";
 import h2p from "html2plaintext";
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic"
 import { EditorState, ContentState } from "draft-js";
 import { connect } from "react-redux";
 import _ from "lodash";
@@ -21,7 +21,7 @@ let last_target = null;
 let letter_pressed = null;
 
 const htmlToDraft = dynamic(
-  () => import('html-to-draftjs'),
+  () => import("html-to-draftjs"),
   { ssr: false }
 );
 export class TranslationHOC extends Component {
@@ -466,8 +466,8 @@ export class TranslationHOC extends Component {
           onEditorStateChange={this.onEditorStateChange}
           onSkip={this.onSkip}
           getTrads={this.get_trads}
-          {...this.state}
-          {...this.props}
+          {...this.state} // TO DO : spread
+          {...this.props} // TO DO : spread
         />
       );
     }

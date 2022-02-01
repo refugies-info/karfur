@@ -41,7 +41,7 @@ const MyCustomBlock = (props) => (
     </div>
     <div className="right-side">
       <b>Bon à savoir :</b>
-      <EditorBlock {...props} />
+      <EditorBlock {...props} /> {/* // TO DO : spread */}
     </div>
   </div>
 );

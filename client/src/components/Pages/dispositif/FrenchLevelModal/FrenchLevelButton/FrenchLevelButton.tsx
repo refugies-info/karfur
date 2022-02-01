@@ -13,7 +13,7 @@ const StyledContainerEdit = styled.div`
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  border-width: 1px 
+  border-width: 1px
   border-style : solid
   border-color : ${(props: PropsType) =>
     props.isSelected ? "#4CAF50" : "black"};
@@ -37,7 +37,7 @@ const StyledContainerLecture = styled.div`
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  border-width: 1px 
+  border-width: 1px
   border-style : solid
   border-color : ${(props: PropsType) =>
     props.isSelected ? "#4CAF50" : "black"};
@@ -59,14 +59,18 @@ const StyledText = styled.div`
 
 export const FrenchLevelButton = (props: PropsType) =>
   props.disableEdit ? (
-    <StyledContainerLecture {...props}>
-      <StyledText {...props}>{props.frenchLevel}</StyledText>
+    <StyledContainerLecture
+      isSelected={props.isSelected}
+      disableEdit={props.disableEdit}
+    >
+      <StyledText>{props.frenchLevel}</StyledText>
     </StyledContainerLecture>
   ) : (
     <StyledContainerEdit
-      {...props}
+      isSelected={props.isSelected}
+      disableEdit={props.disableEdit}
       onClick={() => props.onClick(props.frenchLevel)}
     >
-      <StyledText {...props}>{props.frenchLevel}</StyledText>
+      <StyledText>{props.frenchLevel}</StyledText>
     </StyledContainerEdit>
   );
