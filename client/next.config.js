@@ -12,4 +12,7 @@ module.exports = {
     };
     return config;
   },
+  experimental: {
+    styledComponents: true
+  }
 }
