@@ -174,6 +174,7 @@ const contenuParagraphe = (props) => {
                   subkey={subkey}
                   subitem={subitem}
                   disableEdit={disableEdit}
+                  mainTag={bprops.mainTag}
                   {...bprops}
                 />
               ) : subitem.type === "map" && bprops.printing ? (
@@ -438,6 +439,7 @@ const contenuParagraphe = (props) => {
             keyValue={props.keyValue}
             cards={cards}
             typeContenu={props.typeContenu}
+            mainTag={props.mainTag}
           />
         )}
 
@@ -455,6 +457,7 @@ const contenuParagraphe = (props) => {
             keyValue={props.keyValue}
             cards={cards}
             typeContenu={props.typeContenu}
+            mainTag={props.mainTag}
           />
         )}
       {props.disableEdit &&

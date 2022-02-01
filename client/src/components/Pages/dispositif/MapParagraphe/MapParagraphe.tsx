@@ -11,6 +11,7 @@ import { markerInfo } from "data/markerInfo";
 import { colors } from "colors";
 import styled from "styled-components";
 import styles from "./MapParagraphe.module.scss";
+import { Tag } from "types/interface";
 
 const StyledButton = styled.div`
   background-color: #8bc34a;
@@ -39,6 +40,7 @@ interface Props {
   toggleShareContentOnMobileModal: any;
   toggleTutorielModal: any;
   deleteCard: any;
+  mainTag: Tag;
 }
 const MapParagraphe = (props: Props) => {
   const [center, setCenter] = useState({ lat: 48.856614, lng: 2.3522219 });
@@ -158,7 +160,10 @@ const MapParagraphe = (props: Props) => {
               </FButton>
             </div>
           )}
-          <div className={styles.header}>
+          <div
+            className={styles.header}
+            style={{backgroundColor: props.mainTag.darkColor}}
+          >
             <div
               style={{
                 display: "flex",
@@ -252,11 +257,8 @@ const MapParagraphe = (props: Props) => {
                         html={"Non renseigné" || ""}
                         disabled={props.disableEdit}
                         onChange={(e) => handleMarkerChange(e, field.item)}
-                        className={
-                          styles.marker_input +
-                          " color-darkColor " +
-                          field.customClass
-                        }
+                        className={styles.marker_input + " " +field.customClass}
+                        style={{color: props.mainTag.darkColor}}
                         placeholder="test"
                       />
                     </React.Fragment>
@@ -279,11 +281,8 @@ const MapParagraphe = (props: Props) => {
                         ["vicinity", "address"].includes(field.item)
                       }
                       onChange={(e) => handleMarkerChange(e, field.item)}
-                      className={
-                        styles.marker_input +
-                        " color-darkColor " +
-                        field.customClass
-                      }
+                      className={styles.marker_input + "  " + field.customClass}
+                      style={{color: props.mainTag.darkColor}}
                       placeholder={field.placeholder}
                     />
                   </React.Fragment>

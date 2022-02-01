@@ -4,7 +4,7 @@ import { Props } from "./ContenuDispositif.container";
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
 import { QuickToolbar } from "components/Pages/dispositif/QuickToolbar";
 import ContenuParagraphe from "../ContenuParagraphe/ContenuParagraphe";
-import { DispositifContent } from "types/interface";
+import { DispositifContent, Tag } from "types/interface";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { isMobile } from "react-device-detect";
 
@@ -49,6 +49,7 @@ export interface PropsBeforeInjection {
   displayTuto: boolean;
   addMapBtn: boolean;
   printing: boolean;
+  mainTag: Tag;
 }
 
 /**
@@ -90,8 +91,9 @@ export const contenuDispositif = (props: Props) => {
             <div style={{ display: "flex", flexDirection: "row" }}>
               <h3
                 className={
-                  "contenu-title color-darkColor" + (key !== 0 ? " mt-20" : "")
+                  "contenu-title " + (key !== 0 ? " mt-20" : "")
                 }
+                style={{ color: props.mainTag.darkColor }}
               >
                 {
                   // display title of dispositif

@@ -12,6 +12,7 @@ import FButton from "components/FigmaUI/FButton/FButton";
 import FInput from "components/FigmaUI/FInput/FInput";
 import { colors } from "colors";
 import styles from "./Sponsors.module.scss";
+import { Tag } from "types/interface";
 
 interface Props {
   modal: any
@@ -30,6 +31,7 @@ interface Props {
   edit: boolean
   editSponsor: any
   sponsorKey: string
+  mainTag: Tag
 }
 
 const ImgModal = (props: Props) => {
@@ -51,7 +53,12 @@ const ImgModal = (props: Props) => {
               height={110}
               objectFit="contain"
             />
-            <FButton className={styles.upload_btn} type="theme" name="upload-outline">
+            <FButton
+              className={styles.upload_btn}
+              type="theme"
+              theme={props.mainTag.darkColor}
+              name="upload-outline"
+              >
               <Input
                 className={styles.file_input}
                 type="file"
@@ -67,7 +74,12 @@ const ImgModal = (props: Props) => {
             </FButton>
           </div>
         ) : (
-          <FButton className={styles.upload_btn} type="theme" name="upload-outline">
+          <FButton
+            className={styles.upload_btn}
+            type="theme"
+            theme={props.mainTag.darkColor}
+            name="upload-outline"
+            >
             <Input
               className={styles.file_input}
               type="file"

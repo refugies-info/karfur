@@ -1869,6 +1869,7 @@ export class Dispositif extends Component {
                   status={this.state.status}
                   typeContenu={typeContenu}
                   langue={i18n.language}
+                  mainTag={this.state.mainTag}
                   t={t}
                 />
               </Row>
@@ -1965,7 +1966,7 @@ export class Dispositif extends Component {
             </section>
 
             {!isMobile && (
-              <Row className="tags-row backgroundColor-darkColor">
+              <Row className="tags-row bg-darkColor" style={{ backgroundColor: this.state.mainTag.darkColor }}>
                 <Col
                   style={{ display: "flex", alignItems: "center" }}
                   lg="8"
@@ -2035,6 +2036,7 @@ export class Dispositif extends Component {
                       displayTuto={this.state.displayTuto}
                       updateUIArray={this.updateUIArray}
                       toggleShowPdfModal={this.toggleShowPdfModal}
+                      mainTag={this.state.mainTag}
                     />
                   }
                 </Col>
@@ -2243,6 +2245,7 @@ export class Dispositif extends Component {
                   toggleShareContentOnMobileModal={
                     this.toggleShareContentOnMobileModal
                   }
+                  mainTag={this.state.mainTag}
                   // TO DO : remove spread state
                   {...this.state}
                 />
@@ -2262,7 +2265,7 @@ export class Dispositif extends Component {
                       />
                     )}
                     {!printing && !isMobile && (
-                      <div className="discussion-footer backgroundColor-darkColor">
+                      <div className="discussion-footer bg-darkColor" style={{ backgroundColor: this.state.mainTag.darkColor }}>
                         <h5>{t("Dispositif.Avis", "Avis et discussions")}</h5>
                         <span>
                           {t("Bientôt disponible !", "Bientôt disponible !")}
@@ -2304,6 +2307,7 @@ export class Dispositif extends Component {
                   toggleDispositifValidateModal={
                     this.toggleDispositifValidateModal
                   }
+                  mainTag={this.state.mainTag}
                 />
               </Col>
               {!isMobile && (

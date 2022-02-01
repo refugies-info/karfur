@@ -7,7 +7,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
-import { DispositifContent } from "types/interface";
+import { DispositifContent, Tag } from "types/interface";
 import { jsUcfirstInfocards } from "./functions";
 import styled from "styled-components";
 import FButton from "components/FigmaUI/FButton/FButton";
@@ -15,7 +15,7 @@ import parentStyles from "../CardParagraphe.module.scss";
 import styles from "./CardParagrapheComponent.module.scss";
 
 export const GeolocTooltipItem = (props: any) => {
-  const { item, id } = props;
+  const { item, id, mainTag } = props;
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const toggle = () => setTooltipOpen(!tooltipOpen);
@@ -25,7 +25,8 @@ export const GeolocTooltipItem = (props: any) => {
       <button
         key={id + "d"}
         id={"Tooltip-" + id}
-        className={"backgroundColor-darkColor active "}
+        className={"bg-darkColor active "}
+        style={{ backgroundColor: mainTag.darkColor }}
       >
         {item.split(" ")[0].length > 1
           ? item.split(" ")[0]
@@ -49,6 +50,7 @@ interface AgeRequisEditionContentTitleProps {
   changeAge: (arg1: any, arg2: any, arg3: any, arg4: any) => void;
   keyValue: number;
   subkey: number;
+  mainTag: Tag;
 }
 
 export const AgeRequisEditionContentTitle = (
@@ -65,7 +67,8 @@ export const AgeRequisEditionContentTitle = (
             {i < arr.length - 1 && (
               <Input
                 type="number"
-                className={"color-darkColor "+parentStyles.age_input}
+                className={parentStyles.age_input}
+                style={{color: props.mainTag.darkColor}}
                 value={
                   (arr[0] === "De " && i === 0) || arr[0] === "Plus de "
                     ? props.subitem.bottomValue
@@ -109,6 +112,7 @@ interface DropDownContentProps {
   subkey: number;
   t: any;
   cardTitle: { title: string; options: string[] };
+  mainTag: Tag;
 }
 export const DropDownContent = (props: DropDownContentProps) => (
   <ButtonDropdown
@@ -123,6 +127,7 @@ export const DropDownContent = (props: DropDownContentProps) => (
           keyValue={props.keyValue}
           subkey={props.subkey}
           changeAge={props.changeAge}
+          mainTag={props.mainTag}
         />
       ) : (
         <span>
@@ -154,17 +159,25 @@ export const DropDownContent = (props: DropDownContentProps) => (
 
 interface FrenchCECRLevelProps {
   subitem: DispositifContent;
+  mainTag: Tag;
 }
 const niveaux = ["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"];
 
 export const FrenchCECRLevel = (props: FrenchCECRLevelProps) => (
-  <div className={"color-darkColor " + styles.niveaux_wrapper}>
+  <div
+    className={styles.niveaux_wrapper}
+    style={{ color: props.mainTag.darkColor }}
+  >
     {niveaux
       .filter((nv) =>
         (props.subitem.niveaux || []).some((x: string) => x === nv)
       )
       .map((nv, key) => (
-        <button key={key} className={"backgroundColor-darkColor active"}>
+        <button
+          key={key}
+          className={"bg-darkColor active"}
+          style={{ backgroundColor: props.mainTag.darkColor }}
+        >
           {nv}
         </button>
       ))}
@@ -174,6 +187,7 @@ export const FrenchCECRLevel = (props: FrenchCECRLevelProps) => (
 interface DepartmentsSelectedProps {
   subitem: DispositifContent;
   disableEdit: boolean;
+  mainTag: Tag;
 }
 
 const TitleTextBody = styled.p`
@@ -187,10 +201,13 @@ const TitleTextBody = styled.p`
 `;
 
 export const DepartmentsSelected = (props: DepartmentsSelectedProps) => (
-  <div className={"color-darkColor " + styles.niveaux_wrapper}>
+  <div
+    className={styles.niveaux_wrapper}
+    style={{ color: props.mainTag.darkColor }}
+  >
     {props.subitem.departments && props.subitem.departments.length > 1 ? (
       props.subitem.departments.map((nv, key) => (
-        <GeolocTooltipItem key={key} item={nv} id={key} />
+        <GeolocTooltipItem key={key} item={nv} id={key} mainTag={props.mainTag} />
       ))
     ) : props.subitem.departments &&
       props.subitem.departments.length === 1 &&

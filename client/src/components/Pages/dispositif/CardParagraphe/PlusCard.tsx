@@ -1,6 +1,7 @@
 import { cardTitlesDispositif, cardTitlesDemarche } from "data/dispositif";
 import React from "react";
 import { Card, CardHeader, CardBody, Col } from "reactstrap";
+import { Tag } from "types/interface";
 import parentStyles from "./CardParagraphe.module.scss"
 import styles from "./PlusCard.module.scss"
 
@@ -9,6 +10,7 @@ interface PlusCardProps {
   keyValue: number;
   cards: string[];
   typeContenu: "dispositif" | "demarche";
+  mainTag: Tag;
 }
 
 export const PlusCard = (props: PlusCardProps) => {
@@ -29,7 +31,7 @@ export const PlusCard = (props: PlusCardProps) => {
         className={styles.add_card}
         onClick={() => props.addItem(props.keyValue, "card", nextTitle)}
       >
-        <CardHeader className="backgroundColor-darkColor">
+        <CardHeader className="bg-darkColor" style={{ backgroundColor: props.mainTag.darkColor}}>
           Ajouter un item
         </CardHeader>
         <CardBody className={styles.card_body}>

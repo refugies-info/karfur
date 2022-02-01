@@ -224,7 +224,10 @@ export class CardParagraphe extends Component<Props> {
             className={[styles.card, computeCardClassName()].join(" ")}
             id={"info-card-" + this.props.keyValue + "-" + subkey}
           >
-            <CardHeader className={styles.card_header + " backgroundColor-darkColor"}>
+            <CardHeader
+              className={styles.card_header + " bg-darkColor"}
+              style={{ backgroundColor: this.props.mainTag.darkColor }}
+            >
               <CardHeaderContent
                 subitem={subitem}
                 disableEdit={disableEdit}
@@ -236,7 +239,10 @@ export class CardParagraphe extends Component<Props> {
               />
             </CardHeader>
             <CardBody className={styles.card_body}>
-              <span className={styles.card_title + " color-darkColor"}>
+              <span
+                className={styles.card_title}
+                style={{ color: this.props.mainTag.darkColor }}
+              >
                 <CardBodyContent
                   subitem={subitem}
                   isOptionsOpen={this.state.isOptionsOpen}
@@ -252,18 +258,20 @@ export class CardParagraphe extends Component<Props> {
                   toggleGeolocModal={this.props.toggleGeolocModal}
                   handleMenuChange={this.props.handleMenuChange}
                   emptyPlaceholder={this.emptyPlaceholder}
+                  mainTag={this.props.mainTag}
                 />
               </span>
 
               {subitem.title === "Niveau de français" &&
                 (subitem.niveaux || []).length > 0 && (
-                  <FrenchCECRLevel subitem={subitem} />
+                  <FrenchCECRLevel subitem={subitem} mainTag={this.props.mainTag} />
                 )}
               {subitem.title === "Zone d'action" &&
                 (subitem.departments || []).length > 0 && (
                   <DepartmentsSelected
                     subitem={subitem}
                     disableEdit={disableEdit}
+                    mainTag={this.props.mainTag}
                   />
                 )}
               <AdminGeolocPublicationButton

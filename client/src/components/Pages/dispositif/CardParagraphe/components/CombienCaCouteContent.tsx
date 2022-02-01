@@ -1,6 +1,6 @@
 import React from "react";
 import FSwitch from "components/FigmaUI/FSwitch/FSwitch";
-import { DispositifContent } from "types/interface";
+import { DispositifContent, Tag } from "types/interface";
 import {
   Input,
   ButtonDropdown,
@@ -21,6 +21,7 @@ interface Props {
   changePrice: (arg1: any, arg2: any, arg3: any) => void;
   isOptionsOpen: boolean;
   toggleOptions: any;
+  mainTag: Tag;
 }
 
 const frequencesPay = [
@@ -51,13 +52,17 @@ export const CombienCaCouteContent = (props: Props) => {
         />
       )}
       {!props.subitem.free && (
-        <span className={"color-darkColor " + styles.price_details}>
+        <span
+          className={styles.price_details}
+          style={{color: props.mainTag.darkColor}}
+        >
           {props.disableEdit ? (
             <span>{props.subitem.price}</span>
           ) : (
             <Input
               type="number"
-              className={"color-darkColor " + parentStyles.age_input}
+              className={parentStyles.age_input}
+              style={{color: props.mainTag.darkColor}}
               disabled={props.disableEdit}
               value={props.subitem.price}
               onMouseUp={() =>

@@ -37,6 +37,7 @@ interface Props {
   filter?: boolean
   tag?: any
   children?: any
+  theme?: string;
   [x: string]: any
 }
 
@@ -54,14 +55,18 @@ const FButton = React.forwardRef((props: Props, ref) => {
   } = props;
 
   if (props.href && Tag === "button") Tag = "a";
-  const themeType = type === "theme" ? " backgroundColor-darkColor" : "";
+  const themeType = type === "theme" ? " bg-darkColor" : "";
 
   const classNames = `${styles.btn} ${filter ? styles.filter : ""} ${
     type ? styles[type] : ""
   } ${className || ""} ${themeType}`;
 
   return (
-    <Tag className={classNames} {...bProps}>
+    <Tag
+      className={classNames}
+      {...bProps}
+      style={ props.theme && { backgroundColor: props.theme }}
+    >
       {name && (
         <EVAIcon
           name={name}

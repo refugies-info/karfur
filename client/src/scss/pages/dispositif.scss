@@ -18,11 +18,13 @@ $imgHeight: 350px;
   flex: 1 1;
   position: relative;
   max-width: 100%;
+  overflow-x: hidden;
   -ms-overflow-style: none;
   scrollbar-width: 0;
+
   ::-webkit-scrollbar {
     display: none;
-    width: 0px; /* remove scrollbar space */
+    width: 0; /* remove scrollbar space */
     background: transparent; /* optional: just make scrollbar invisible */
   }
 
@@ -690,10 +692,10 @@ $imgHeight: 350px;
     position: relative;
   }
 
-  .backgroundColor-darkColor {
+  .bg-darkColor {
     background: $darkColor;
   }
-  .backgroundColor-lightColor {
+  .bg-lightColor {
     background: $lightColor;
   }
 

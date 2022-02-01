@@ -296,6 +296,7 @@ const CreationContent = (props) => {
               <FButton
                 className={styles.upload_btn}
                 type="theme"
+                theme={props.mainTag.darkColor}
                 name="upload-outline"
               >
                 <Input

@@ -7,6 +7,7 @@ import { isUserAllowedToModify } from "./functions";
 import { isMobile } from "react-device-detect";
 import { ContribStyledStatus } from "containers/Backend/UserContributions/components/SubComponents";
 import styles from "./TopRightHeader.module.scss";
+import { Tag } from "types/interface";
 
 export interface PropsBeforeInjection {
   disableEdit: boolean;
@@ -25,6 +26,7 @@ export interface PropsBeforeInjection {
   status: string;
   typeContenu: "dispositif" | "demarche";
   langue: string;
+  mainTag: Tag
   t: any;
 }
 
@@ -94,7 +96,7 @@ export class TopRightHeader extends React.Component<Props> {
                 </FButton>
               </div>
             )}
-            <CardBody className={styles.card_body + " backgroundColor-lightColor"}>
+            <CardBody className={styles.card_body + " bg-lightColor"} style={{backgroundColor: props.mainTag.lightColor}}>
               <span className="text-center">
                 Souhaitez-vous récupérer ce contenu ?
               </span>
@@ -114,8 +116,9 @@ export class TopRightHeader extends React.Component<Props> {
               </FButton>
             </CardBody>
             <CardFooter
-              className={styles.card_footer + " color-darkColor"}
+              className={styles.card_footer}
               onClick={props.toggleDispositifCreateModal}
+              style={{ color: props.mainTag.darkColor }}
             >
               <EVAIcon
                 className="mr-8"

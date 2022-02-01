@@ -500,6 +500,7 @@ class Sponsors extends Component {
       <div
         className={styles.container}
         onMouseEnter={() => this.props.updateUIArray(-7)}
+        style={{ backgroundColor: this.props.mainTag.darkColor }}
       >
         <div
           style={{
@@ -1021,6 +1022,7 @@ class Sponsors extends Component {
             handleChange={this.handleChange}
             handleBelongsChange={this.handleBelongsChange}
             setStructureContactAsMe={this.setStructureContactAsMe}
+            mainTag={this.props.mainTag}
             {...this.state.structure}
           />
           <div className={`${styles.input} ${styles.inline}`}>
@@ -1039,6 +1041,7 @@ class Sponsors extends Component {
                   className={styles.upload_btn}
                   type="theme"
                   name="upload-outline"
+                  theme={this.props.mainTag.darkColor}
                 >
                   <Input
                     className={styles.file_input}
@@ -1059,6 +1062,7 @@ class Sponsors extends Component {
                 className={styles.upload_btn}
                 type="theme"
                 name="upload-outline"
+                theme={this.props.mainTag.darkColor}
               >
                 <Input
                   className={styles.file_input}
@@ -1237,6 +1241,7 @@ class Sponsors extends Component {
           edit={this.state.edit}
           editSponsor={this.editSponsor}
           sponsorKey={this.state.sponsorKey}
+          mainTag={this.props.mainTag}
         />
       </div>
     );

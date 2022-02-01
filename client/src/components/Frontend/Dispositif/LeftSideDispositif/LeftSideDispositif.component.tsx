@@ -13,7 +13,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { colors } from "colors";
 import { Props } from "./LeftSideDispositif.container";
-import { DispositifContent } from "types/interface";
+import { DispositifContent, Tag } from "types/interface";
 import API from "utils/API";
 import Swal from "sweetalert2";
 import { send_sms } from "components/Pages/dispositif/function";
@@ -43,6 +43,7 @@ export interface PropsBeforeInjection {
   displayTuto: boolean;
   updateUIArray: (arg: number) => void;
   toggleShowPdfModal: () => void;
+  mainTag: Tag;
 }
 
 export const LeftSideDispositif = (props: Props) => {
@@ -137,6 +138,7 @@ export const LeftSideDispositif = (props: Props) => {
                     type={"theme"}
                     name="external-link-outline"
                     onClick={onLinkClicked}
+                    theme={props.mainTag.darkColor}
                   >
                     {t("Dispositif.Voir le site", "Voir le site")}
                   </FButton>
