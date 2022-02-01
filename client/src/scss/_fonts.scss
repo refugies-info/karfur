@@ -1,3 +1,4 @@
+/* Different than previous render
 @font-face {
   font-family: "CircularStd";
   src: local("CircularStdMedium"),
@@ -21,11 +22,11 @@
   font-weight: bold;
   font-style: normal;
 }
-
+ */
 @font-face {
   font-family: "CircularStd";
   src: local("CircularStd"),
     url(/fonts/CircularStd/CircularStd-Book.WOFF) format("woff");
-  font-weight: normal;
-  font-style: normal;
+/*   font-weight: normal;
+  font-style: normal; */
 }
