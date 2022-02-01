@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useRouter } from "next/router";
 import Link from "next/link";
-import Swal from "sweetalert2";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
@@ -48,24 +46,12 @@ const ButtonContainer = styled.div`
 `;
 
 const Footer = () => {
-  const [email, setEmail] = useState("");
   const [showSubscribeNewsletterModal, setShowSubscribeNewsletterModal] =
     useState(false);
   const { t } = useTranslation();
-  const router = useRouter();
-
-  const onChange = (e: any) => setEmail(e.target.value);
 
   const toggleSubscribeNewsletterModal = () =>
     setShowSubscribeNewsletterModal(!showSubscribeNewsletterModal);
-
-  const upcoming = () =>
-    Swal.fire({
-      title: "Oh non!",
-      text: "Cette fonctionnalité n'est pas encore disponible",
-      type: "error",
-      timer: 1500,
-    });
 
   return (
     <div className={styles.footer + " animated fadeIn"}>
@@ -145,9 +131,7 @@ const Footer = () => {
             )}
             <div className={styles.link}>
               <a
-                onClick={() => {
-                  /* window.$crisp.push(["do", "chat:open"]) */
-                }}
+                onClick={() => { window.$crisp.push(["do", "chat:open"]) }}
               >
                 {t("Démarche administrative", "Contacter l'èquipe")}
               </a>
@@ -186,9 +170,7 @@ const Footer = () => {
           </div>
           <div className={styles.space_btn}>
             <FButton
-              onClick={() => {
-                /* window.$crisp.push(["do", "chat:open"]) */
-              }}
+              onClick={() => { window.$crisp.push(["do", "chat:open"]) }}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.btn}
