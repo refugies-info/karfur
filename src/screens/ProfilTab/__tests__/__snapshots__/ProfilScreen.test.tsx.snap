@@ -2229,7 +2229,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
           }
         >
           Version 
-          2022.01.1
+          2022.02.1
         </Text>
       </View>
     </View>
@@ -6336,7 +6336,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
           }
         >
           Version 
-          2022.01.1
+          2022.02.1
         </Text>
       </View>
     </View>
@@ -10443,7 +10443,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           }
         >
           Version 
-          2022.01.1
+          2022.02.1
         </Text>
       </View>
     </View>
