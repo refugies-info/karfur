@@ -1,19 +1,20 @@
 import React from "react";
 import { Row } from "reactstrap";
-import { Props } from "./EnBrefBanner.container";
 import h2p from "html2plaintext";
-import { DispositifContent } from "../../../../types/interface";
+import { useTranslation } from "react-i18next";
+import { Props } from "./EnBrefBanner.container";
+import { DispositifContent } from "types/interface";
 import { infoCardIcon } from "../../../Icon/Icon";
-import { jsUcfirst } from "../../../../lib";
+import { jsUcfirst } from "lib";
 
 export interface PropsBeforeInjection {
-  t: any;
   menu: DispositifContent[];
   isRTL: boolean;
 }
 
 export const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
   // display En Bref and a summary of infocards
+  const { t } = useTranslation();
 
   const getTextForAgeInfocard = (
     ageRange: string | undefined,
@@ -22,34 +23,34 @@ export const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
   ) => {
     if (ageRange === "De ** à ** ans") {
       return (
-        props.t("Dispositif.De", "De") +
+        t("Dispositif.De", "De") +
         " " +
         bottomValue +
         " " +
-        props.t("Dispositif.à", "à") +
+        t("Dispositif.à", "à") +
         " " +
         topValue +
         " " +
-        props.t("Dispositif.ans", "ans")
+        t("Dispositif.ans", "ans")
       );
     }
 
     if (ageRange === "Moins de ** ans") {
       return (
-        props.t("Dispositif.Moins de", "Moins de") +
+        t("Dispositif.Moins de", "Moins de") +
         " " +
         topValue +
         " " +
-        props.t("Dispositif.ans", "ans")
+        t("Dispositif.ans", "ans")
       );
     }
 
     return (
-      props.t("Dispositif.Plus de", "Plus de") +
+      t("Dispositif.Plus de", "Plus de") +
       " " +
       bottomValue +
       " " +
-      props.t("Dispositif.ans", "ans")
+      t("Dispositif.ans", "ans")
     );
   };
 
@@ -61,7 +62,7 @@ export const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
     rightSection && rightSection.children ? rightSection.children : [];
   return (
     <Row>
-      <b className="en-bref">{props.t("Dispositif.En bref", "En bref")} </b>
+      <b className="en-bref">{t("Dispositif.En bref", "En bref")} </b>
       {childrenArray.map((card: DispositifContent, key: number) => {
         if (!card) return;
         // selected card, not Important
@@ -96,17 +97,17 @@ export const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
           ) {
             texte =
               card.contentTitle &&
-              props.t("Dispositif." + card.contentTitle, card.contentTitle);
+              t("Dispositif." + card.contentTitle, card.contentTitle);
           } else if (card.title === "Combien ça coûte ?") {
             texte = card.free
-              ? props.t("Dispositif.Gratuit", "Gratuit")
+              ? t("Dispositif.Gratuit", "Gratuit")
               : card.price +
                 " € " +
-                props.t("Dispositif." + card.contentTitle, card.contentTitle);
+                t("Dispositif." + card.contentTitle, card.contentTitle);
           } else if (
             ["Acte de naissance OFPRA", "Titre de séjour"].includes(card.title)
           ) {
-            texte = props.t("Dispositif." + card.title, card.title);
+            texte = t("Dispositif." + card.title, card.title);
           }
           return (
             <div className="tag-wrapper ml-15" key={key}>

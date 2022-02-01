@@ -119,7 +119,6 @@ const TextOtherLanguageContainer = styled.p`
   padding: ${isMobile ? "16px" : 0};
 `;
 
-const sponsorsData = [];
 const uiElement = {
   isHover: false,
   accordion: false,
@@ -145,7 +144,7 @@ export class Dispositif extends Component {
   state = {
     menu: [],
     content: contenu,
-    sponsors: sponsorsData,
+    sponsors: [],
     tags: [],
     mainTag: {
       darkColor: colors.darkColor,
@@ -422,11 +421,7 @@ export class Dispositif extends Component {
                   dispositif.typeContenu === "dispositif"
                     ? JSON.parse(JSON.stringify(menu))
                     : JSON.parse(JSON.stringify(menuDemarche)),
-              },
-              () => {
-                this.setColors();
-              }
-            );
+              });
           //document.title =
           //  this.state.content.titreMarque ||
           //  this.state.content.titreInformatif;
@@ -508,8 +503,7 @@ export class Dispositif extends Component {
             typeContenu === "dispositif"
               ? JSON.parse(JSON.stringify(menuDispositif))
               : JSON.parse(JSON.stringify(menuDemarche)),
-        },
-        () => this.setColors()
+        }
       );
     } else {
       this.props.router.push({
@@ -518,21 +512,6 @@ export class Dispositif extends Component {
       });
     }
     // window.scrollTo(0, 0);
-  };
-
-  setColors = () => {
-    return ["color", "borderColor", "backgroundColor", "fill"].map((s) => {
-      return ["dark", "light"].map((c) => {
-        return (
-          document &&
-          document
-            .querySelectorAll("." + s + "-" + c + "Color")
-            .forEach((elem) => {
-              elem.style[s] = this.state.mainTag[c + "Color"];
-            })
-        );
-      });
-    });
   };
 
   toggleIsModified = (newState) => {
@@ -1003,10 +982,7 @@ export class Dispositif extends Component {
       ...(uiArray[key].children || []),
       { ...uiElement, accordion: true, varianteSelected: true },
     ];
-    this.setState(
-      { menu: prevState, uiArray: uiArray },
-      () => (type === "card" || type === "map") && this.setColors()
-    );
+    this.setState({ menu: prevState, uiArray: uiArray });
   };
 
   removeItem = (key, subkey = null) => {
@@ -1036,13 +1012,10 @@ export class Dispositif extends Component {
     prevState[key].children = prevState[key].children.filter(
       (_, index) => index !== subkey
     );
-    this.setState(
-      {
-        menu: prevState,
-        isModified: true,
-      },
-      () => this.setColors()
-    );
+    this.setState({
+      menu: prevState,
+      isModified: true,
+    });
   };
 
   toggleModal = (show, name) => {
@@ -1119,21 +1092,18 @@ export class Dispositif extends Component {
     }));
 
   toggleNiveau = (selectedLevels, key, subkey) => {
-    this.setState(
-      {
-        menu: [...this.state.menu].map((x, i) =>
-          i === key
-            ? {
-                ...x,
-                children: x.children.map((y, ix) =>
-                  ix === subkey ? { ...y, niveaux: selectedLevels } : y
-                ),
-              }
-            : x
-        ),
-      },
-      () => this.setColors()
-    );
+    this.setState({
+      menu: [...this.state.menu].map((x, i) =>
+        i === key
+          ? {
+              ...x,
+              children: x.children.map((y, ix) =>
+                ix === subkey ? { ...y, niveaux: selectedLevels } : y
+              ),
+            }
+          : x
+      ),
+    });
   };
 
   toggleFree = (key, subkey) =>
@@ -1153,24 +1123,21 @@ export class Dispositif extends Component {
       isModified: true,
     });
   changeDepartements = (departments, key, subkey) =>
-    this.setState(
-      {
-        menu: [...this.state.menu].map((x, i) =>
-          i === key
-            ? {
-                ...x,
-                children: x.children.map((y, ix) =>
-                  ix === subkey
-                    ? { ...y, departments: departments, isFakeContent: false }
-                    : y
-                ),
-              }
-            : x
-        ),
-        isModified: true,
-      },
-      () => this.setColors()
-    );
+    this.setState({
+      menu: [...this.state.menu].map((x, i) =>
+        i === key
+          ? {
+              ...x,
+              children: x.children.map((y, ix) =>
+                ix === subkey
+                  ? { ...y, departments: departments, isFakeContent: false }
+                  : y
+              ),
+            }
+          : x
+      ),
+      isModified: true,
+    });
   changePrice = (e, key, subkey) =>
     this.setState({
       menu: [...this.state.menu].map((x, i) =>
@@ -1273,19 +1240,12 @@ export class Dispositif extends Component {
   };
 
   changeTag = (key, value) => {
-    this.setState(
-      {
-        tags: this.state.tags.map((x, i) => (i === key ? value : x)),
-        ...(key === 0 && {
-          mainTag: filtres.tags.find((x) => x.short === value.short),
-        }),
-      },
-      () => {
-        if (key === 0) {
-          this.setColors();
-        }
-      }
-    );
+    this.setState({
+      tags: this.state.tags.map((x, i) => (i === key ? value : x)),
+      ...(key === 0 && {
+        mainTag: filtres.tags.find((x) => x.short === value.short),
+      }),
+    });
   };
 
   addTag = (tags) => {
@@ -1293,7 +1253,7 @@ export class Dispositif extends Component {
   };
 
   validateTags = (tags) => {
-    this.setState({ tags: tags, mainTag: tags[0] }, () => this.setColors());
+    this.setState({ tags: tags, mainTag: tags[0] });
   };
 
   openTag = () => {
@@ -1431,8 +1391,7 @@ export class Dispositif extends Component {
             })),
           }),
         })),
-      }),
-      () => this.setColors()
+      })
     );
   };
 
@@ -2026,7 +1985,6 @@ export class Dispositif extends Component {
                       inputBtnClicked={this.state.inputBtnClicked}
                       disableEdit={this.state.disableEdit}
                       toggleInputBtnClicked={this.toggleInputBtnClicked}
-                      handleScrollSpy={this.handleScrollSpy}
                       createPdf={this.createPdf}
                       closePdf={this.closePdf}
                       newRef={this.newRef}

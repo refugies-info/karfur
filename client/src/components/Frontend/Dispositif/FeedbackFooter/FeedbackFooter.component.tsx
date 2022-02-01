@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
+import { useTranslation } from "react-i18next";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { Props } from "./FeedbackFooter.container";
 import { colors } from "colors";
@@ -36,7 +37,6 @@ const CountButtonContainer = styled.div`
 `;
 
 export interface PropsBeforeInjection {
-  t: any;
   pushReaction: (arg1: null, arg2: string) => void;
   didThank: boolean;
   nbThanks: number;
@@ -44,7 +44,8 @@ export interface PropsBeforeInjection {
 }
 
 export const FeedbackFooter = (props: Props) => {
-  const { nbThanks, t, pushReaction, didThank } = props;
+  const { t } = useTranslation();
+  const { nbThanks, pushReaction, didThank } = props;
 
   return (
     <FeedbackContainer color={props.color} className={styles.container}>
