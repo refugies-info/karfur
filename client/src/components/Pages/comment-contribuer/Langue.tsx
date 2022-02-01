@@ -2,7 +2,7 @@ import React from "react";
 import { Progress } from "reactstrap";
 import styled from "styled-components";
 import Link from "next/link";
-import { colorAvancement } from "components/Functions/ColorFunctions";
+import { colorAvancement } from "lib/colors";
 import { Language } from "types/interface";
 
 const LangueContainer = styled.a`

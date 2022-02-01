@@ -37,7 +37,13 @@ const OngletContainer = styled.div`
   background: #f2f2f2;
 `;
 
-const Onglet = (props) => (
+interface TabProps {
+  isSelected: boolean
+  iconSelected: string
+  iconNotSelected: string
+  text: string
+}
+const Onglet = (props: TabProps) => (
   <OngletContainer>
     <div style={{ marginBottom: "3px" }}>
       <EVAIcon
@@ -70,7 +76,7 @@ export const Admin = () => {
     };
   }, [dispatch]);
 
-  const toggleTab = (tab) => setActiveTab(tab);
+  const toggleTab = (tab: string) => setActiveTab(tab);
 
   return (
     <div className={styles.admin + " animated fadeIn"}>
@@ -79,9 +85,7 @@ export const Admin = () => {
         <NavItem>
           <NavLink
             active={activeTab === "0"}
-            onClick={() => {
-              toggleTab("0");
-            }}
+            onClick={() => toggleTab("0")}
           >
             <Onglet
               iconSelected="file-add"
@@ -94,9 +98,7 @@ export const Admin = () => {
         <NavItem>
           <NavLink
             active={activeTab === "1"}
-            onClick={() => {
-              toggleTab("1");
-            }}
+            onClick={() => toggleTab("1")}
           >
             <Onglet
               iconSelected="shopping-bag"
@@ -109,9 +111,7 @@ export const Admin = () => {
         <NavItem>
           <NavLink
             active={activeTab === "2"}
-            onClick={() => {
-              toggleTab("2");
-            }}
+            onClick={() => toggleTab("2")}
           >
             <Onglet
               iconSelected="person"
@@ -125,9 +125,7 @@ export const Admin = () => {
         <NavItem>
           <NavLink
             active={activeTab === "3"}
-            onClick={() => {
-              toggleTab("3");
-            }}
+            onClick={() => toggleTab("3")}
           >
             <Onglet
               iconSelected="pie-chart"
@@ -140,9 +138,7 @@ export const Admin = () => {
         <NavItem>
           <NavLink
             active={activeTab === "4"}
-            onClick={() => {
-              toggleTab("4");
-            }}
+            onClick={() => toggleTab("4")}
           >
             <Onglet
               iconSelected="pie-chart"

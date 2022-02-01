@@ -6,7 +6,7 @@ import Image from "next/image";
 import { FButtonMobile } from "components/FigmaUI/FButtonMobile/FButtonMobile";
 import { colors } from "colors";
 import illuMobileApp from "assets/illu_mobile_app.png";
-import { iosStoreLink, androidStoreLink } from "assets/storeLinks";
+import { iosStoreLink, androidStoreLink } from "data/storeLinks";
 import styles from "./MobileAppModal.module.scss";
 
 interface Props {

@@ -6,7 +6,7 @@ import type { NextPage } from "next"
 import { store } from "services/configureStore";
 import Layout from "components/Layout/Layout";
 import isInBrowser from "lib/isInBrowser";
-import "App.scss";
+import "scss/index.scss";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode

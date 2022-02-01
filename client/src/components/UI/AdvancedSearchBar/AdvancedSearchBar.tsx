@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { initGA, Event } from "tracking/dispatch";
+import { initGA, Event } from "lib/tracking";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";

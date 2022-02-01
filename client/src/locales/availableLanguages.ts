@@ -6,7 +6,7 @@ import translationRU from "./ru/translation.json";
 import translationTIER from "./ti-ER/translation.json";
 import translationPS from "./ps/translation.json";
 
-export const available_languages = {
+export const availableLanguages = {
   fr: {
     translation: translationFR,
     name: "Français",

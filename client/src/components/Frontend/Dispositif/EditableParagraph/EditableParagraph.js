@@ -166,7 +166,6 @@ class EditableParagraph extends Component {
     const props = this.props;
     if (props.editable && !props.disableEdit) {
       return (
-        // {/* <Backdrop show={true} clicked={()=>props.handleContentClick(props.keyValue,false, props.subkey)} /> */}
         <>
           {isInBrowser() && <Editor
             spellCheck

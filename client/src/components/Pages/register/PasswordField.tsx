@@ -5,7 +5,7 @@ import { Progress } from "reactstrap";
 import { computePasswordStrengthScore } from "lib/index";
 import FInput from "components/FigmaUI/FInput/FInput";
 import FButton from "components/FigmaUI/FButton/FButton";
-import { colorAvancement } from "components/Functions/ColorFunctions";
+import { colorAvancement } from "lib/colors";
 import styles from "scss/components/login.module.scss";
 
 const ProgressContainer = styled.div`

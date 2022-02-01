@@ -2,11 +2,10 @@ import i18n from "i18next";
 import detector from "i18next-browser-languagedetector";
 import backend from "i18next-xhr-backend";
 import { initReactI18next } from "react-i18next";
-
-import { available_languages } from "./locales/available_languages.js";
+import { availableLanguages } from "locales/availableLanguages";
 
 // the translations
-const resources = available_languages;
+const resources = availableLanguages;
 
 i18n
   .use(detector)

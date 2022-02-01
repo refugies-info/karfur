@@ -1,7 +1,6 @@
 // to be used in js/ts files
 export const colors = {
   blanc: "#fbfbfb",
-  noir: "#212121",
   gris: "#f2f2f2",
   grisFonce: "#828282",
   noir3: "#e5e5e5",
@@ -13,7 +12,6 @@ export const colors = {
   violet: "#583f93",
   blancSimple: "#ffffff",
   jauneClair: "#fff7ae",
-  orange: "#ff9800",
   attention: "#f9ef99",
   uiattention: "#ffeb3b",
   validation: "#def6c2",

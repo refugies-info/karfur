@@ -10,7 +10,7 @@ import { activeStructuresSelector } from "services/ActiveStructures/activeStruct
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { setSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
-import { Event, initGA } from "tracking/dispatch";
+import { Event, initGA } from "lib/tracking";
 import { SimplifiedStructure } from "types/interface";
 import { NoResult } from "components/Pages/annuaire/index/NoResult";
 import { LetterSection } from "components/Pages/annuaire/index/LetterSection";

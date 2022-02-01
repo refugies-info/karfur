@@ -212,3 +212,9 @@
     }
   }
 }
+
+.back_button {
+  @include media-max("sm-limit") {
+    display: none;
+  }
+}

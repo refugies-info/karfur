@@ -1,28 +1,29 @@
-const colorAvancement = (avancement) => {
+const colorAvancement = (avancement: number) => {
   if (avancement > 0.75) {
     return "success";
   } else if (avancement > 0.5) {
     return "info";
   } else if (avancement > 0.25) {
     return "warning";
-  } 
-    return "danger";
-  
+  }
+  return "danger";
+
 };
 
-const fColorAvancement = (avancement) => {
+const fColorAvancement = (avancement: number) => {
   if (avancement > 0.75) {
     return "vert";
   } else if (avancement > 0.5) {
     return "jaune";
   } else if (avancement > 0.2) {
     return "orange";
-  } 
-    return "rouge";
-  
+  }
+  return "rouge";
+
 };
 
-const colorStatut = (avancement) => {
+type AvancementText = "Annulé" | "Annulée" | "Exclu" | "Supprimé" | "Inactif" | "Inactive" | "En attente" | "En cours" | "Brouillon";
+const colorStatut = (avancement: AvancementText) => {
   if (
     avancement === "Annulé" ||
     avancement === "Annulée" ||
@@ -38,9 +39,9 @@ const colorStatut = (avancement) => {
     avancement === "Brouillon"
   ) {
     return "warning";
-  } 
-    return "success";
-  
+  }
+  return "success";
+
 };
 
 const randomColor = () => {

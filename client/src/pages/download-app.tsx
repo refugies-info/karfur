@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import {
   iosStoreLink,
   androidStoreLink
-} from "assets/storeLinks";
+} from "data/storeLinks";
 
 const DownloadApp = () => {
   const router = useRouter();

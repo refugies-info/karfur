@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { UserLanguage, TranslationStatus } from "types/interface";
-import { colorAvancement } from "components/Functions/ColorFunctions";
+import { colorAvancement } from "lib/colors";
 import { Progress } from "reactstrap";
 import { colors } from "colors";
 import FSwitch from "components/FigmaUI/FSwitch/FSwitch";

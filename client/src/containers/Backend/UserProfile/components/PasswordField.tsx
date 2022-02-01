@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import FInput from "../../../../components/FigmaUI/FInput/FInput";
+import FInput from "components/FigmaUI/FInput/FInput";
 import { Progress } from "reactstrap";
-import { colorAvancement } from "../../../../components/Functions/ColorFunctions";
-import { Event } from "../../../../types/interface";
-import { colors } from "../../../../colors";
+import { colorAvancement } from "lib/colors";
+import { Event } from "types/interface";
+import { colors } from "colors";
 
 const ProgressContainer = styled.div`
   width: 100%;

@@ -26,7 +26,7 @@ import marioProfile from "assets/mario-profile.jpg";
 import { RejectTradModal } from "components/Modals";
 import moment from "moment";
 
-import { colorAvancement } from "components/Functions/ColorFunctions";
+import { colorAvancement } from "lib/colors";
 import { customConvertOption } from "data/dispositif";
 import { colors } from "colors";
 import produce from "immer";

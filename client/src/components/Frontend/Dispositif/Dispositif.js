@@ -62,7 +62,6 @@ import {
   infocardFranceEntiere,
 } from "data/dispositif";
 import { calculFiabilite } from "components/Pages/dispositif/functions";
-import { breakpoints } from "utils/breakpoints.js";
 import { BackButton } from "components/Frontend/Dispositif/BackButton";
 import { colors } from "colors";
 import {
@@ -72,7 +71,7 @@ import {
 } from "services/SelectedDispositif/selectedDispositif.actions";
 import { EnBrefBanner } from "components/Frontend/Dispositif/EnBrefBanner";
 import { FeedbackFooter } from "components/Frontend/Dispositif/FeedbackFooter";
-import { initGA, Event } from "tracking/dispatch";
+import { initGA, Event } from "lib/tracking";
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
 import { logger } from "logger";
 import { isMobile } from "react-device-detect";
@@ -1805,9 +1804,9 @@ export class Dispositif extends Component {
                 />
               )}
               <Row className={styles.row}>
-                {windowWidth >= breakpoints.smLimit && (
+                <div className={styles.back_button}>
                   <BackButton goBack={this.goBack} />
-                )}
+                </div>
 
                 <TopRightHeader
                   disableEdit={this.state.disableEdit}

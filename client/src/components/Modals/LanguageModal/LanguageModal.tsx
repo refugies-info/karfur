@@ -13,10 +13,10 @@ import Link from "next/link";
 import { isMobile } from "react-device-detect";
 import { useTranslation } from "react-i18next";
 import { Language } from "types/interface";
-import { colorAvancement } from "components/Functions/ColorFunctions";
+import { colorAvancement } from "lib/colors";
 import FButton from "components/FigmaUI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { Event, initGA } from "tracking/dispatch";
+import { Event, initGA } from "lib/tracking";
 import { activatedLanguages } from "data/activatedLanguages";
 import styles from "./LanguageModal.module.scss";
 

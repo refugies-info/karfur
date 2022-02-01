@@ -25,7 +25,7 @@ import {
 } from "assets/figma/index";
 import marioProfile from "assets/mario-profile.jpg";
 import { RejectTradModal } from "components/Modals";
-import { colorAvancement } from "components/Functions/ColorFunctions";
+import { colorAvancement } from "lib/colors";
 import { customConvertOption } from "data/dispositif";
 
 import { colors } from "colors";
