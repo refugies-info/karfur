@@ -29,6 +29,7 @@ interface Props {
   error?: boolean;
   errorIcon?: string;
   errorType?: string;
+  name?: string
 }
 
 const FInput = (props: Props) => {
@@ -63,6 +64,7 @@ const FInput = (props: Props) => {
         onChange={props.onChange}
         autoComplete={props.autoComplete}
         disabled={props.disabled}
+        name={props.name}
         className={[
           props.inputClassName,
           props.prepend ? styles.has_prepend : "",

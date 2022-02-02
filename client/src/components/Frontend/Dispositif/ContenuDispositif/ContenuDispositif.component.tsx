@@ -4,52 +4,50 @@ import { Props } from "./ContenuDispositif.container";
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
 import { QuickToolbar } from "components/Pages/dispositif/QuickToolbar";
 import ContenuParagraphe from "../ContenuParagraphe/ContenuParagraphe";
-import { DispositifContent, Tag } from "types/interface";
+import { DispositifContent, Tag, UiObject } from "types/interface";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { isMobile } from "react-device-detect";
-
-interface UiObject {
-  accordion: boolean;
-  addDropdown: boolean;
-  cardDropdown: boolean;
-  isHover: boolean;
-  varianteSelected: boolean;
-}
+import { ShortContent } from "data/dispositif";
 
 export interface PropsBeforeInjection {
   updateUIArray: (
     key: number,
-    arg: null,
+    arg: number|null,
     variante: string,
     option?: boolean
   ) => void;
   handleContentClick: () => void;
-  handleMenuChange: () => void;
+  handleMenuChange: (ev: any, value?: any) => any
   onEditorStateChange: () => void;
-  addItem: () => void;
-  // not sure it is boolean
-  sideView: boolean;
-  typeContenu: string;
+  addItem: (key: any, type?: string, subkey?: string|null) => void
+  sideView: boolean; // unused?
+  admin: boolean;
+  content: ShortContent;
+  showGeolocModal: boolean;
+  typeContenu: "dispositif" | "demarche";
   uiArray: UiObject[];
-  t: any;
   disableEdit: boolean;
   menu: DispositifContent[];
-  tracking: any;
-  toggleModal: any;
-  readAudio: any;
-  stopAudio: any;
-  subkey: any;
-  show: any;
-  tts: any;
-  removeItem: any;
-  ttsActive: any;
-  filtres: any;
-  toggleTutorielModal: (arg: string) => void;
-  toggleGeolocModal: () => void;
   displayTuto: boolean;
   addMapBtn: boolean;
   printing: boolean;
   mainTag: Tag;
+  t: any;
+  toggleModal: (show: boolean, name: string) => void
+  toggleTutorielModal: (arg: string) => void;
+  toggleGeolocModal: () => void;
+  removeItem: (key: number, subkey?: number | null) => void
+  showMapButton: () => void;
+  changeTitle: (key: any, subkey: any, node: any, value: any) => void
+  changeAge: (e: any, key: any, subkey: any, isBottom?: boolean) => any
+  changeDepartements: (departments: any, key: any, subkey: any) => any
+  changePrice: (e: any, key: any, subkey: any) => any
+  toggleFree: (key: any, subkey: any) => any
+  toggleNiveau: (selectedLevels: any, key: any, subkey: any) => void
+  deleteCard: (key: any, subkey: any, type: any) => void
+  setMarkers: (markers: any, key: any, subkey: any) => void
+  toggleShareContentOnMobileModal: () => any
+  upcoming: () => any
 }
 
 /**
@@ -69,7 +67,7 @@ export const contenuDispositif = (props: Props) => {
   };
 
   // props.menu is an array of the different sections (for example for a dispositif it is C'est quoi, C'est pour qui, Pourquoi c'est intéressant and Comment je m'engage)
-  return props.menu.map((item: DispositifContent, key: number) => {
+  return props.menu.map((dispositifContent: DispositifContent, key: number) => {
     return (
       <div key={key} className={"contenu-wrapper"} id={"contenu-" + key}>
         <Row className="relative-position nopadding content-row">
@@ -85,7 +83,7 @@ export const contenuDispositif = (props: Props) => {
           >
             {!isMobile && (
               <button className="anchor" id={"item-head-" + key}>
-                {item.title}
+                {dispositifContent.title}
               </button>
             )}
             <div style={{ display: "flex", flexDirection: "row" }}>
@@ -98,7 +96,7 @@ export const contenuDispositif = (props: Props) => {
                 {
                   // display title of dispositif
                 }
-                {item.title && getTitle(item.title)}
+                {dispositifContent.title && getTitle(dispositifContent.title)}
               </h3>
               {!disableEdit &&
                 props.typeContenu === "dispositif" &&
@@ -112,7 +110,7 @@ export const contenuDispositif = (props: Props) => {
                     <FButton
                       type="tuto"
                       name={"play-circle-outline"}
-                      onClick={() => props.toggleTutorielModal(item.title)}
+                      onClick={() => props.toggleTutorielModal(dispositifContent.title)}
                     >
                       Tutoriel
                     </FButton>
@@ -121,22 +119,22 @@ export const contenuDispositif = (props: Props) => {
             </div>
             {
               // EditableParagraph displays content (but not children) in lecture mode and deal with edition in edition mode
-              item.content !== null && item.content !== "null" && (
+              dispositifContent.content !== null && dispositifContent.content !== "null" && (
                 <EditableParagraph
                   keyValue={key}
+                  subkey={0} // TODO: ok?
                   handleMenuChange={props.handleMenuChange}
                   onEditorStateChange={props.onEditorStateChange}
                   handleContentClick={props.handleContentClick}
                   disableEdit={disableEdit}
                   addItem={props.addItem}
-                  subkey={props.subkey}
-                  editable={item.editable}
-                  type={item.type}
-                  placeholder={item.placeholder}
-                  target={item.target}
-                  content={item.content}
+                  editable={dispositifContent.editable}
+                  type={dispositifContent.type}
+                  placeholder={dispositifContent.placeholder || ""}
+                  target={dispositifContent.target}
+                  content={dispositifContent.content}
                   // @ts-ignore
-                  editorState={item.editorState}
+                  editorState={dispositifContent.editorState}
                 />
               )
             }
@@ -148,16 +146,13 @@ export const contenuDispositif = (props: Props) => {
                 <QuickToolbar
                   show={props.uiArray[key].isHover}
                   keyValue={key}
-                  item={item}
+                  subkey={0} // TODO: ok?
+                  item={dispositifContent}
                   handleContentClick={props.handleContentClick}
                   disableEdit={disableEdit}
                   toggleModal={props.toggleModal}
-                  readAudio={props.readAudio}
-                  stopAudio={props.stopAudio}
-                  subkey={props.subkey}
-                  t={props.t}
                   removeItem={props.removeItem}
-                  ttsActive={props.ttsActive}
+                  t={props.t}
                 />
               }
             </Col>
@@ -165,7 +160,42 @@ export const contenuDispositif = (props: Props) => {
         </Row>
         {
           // lecture and edition of childrens and info cards
-          <ContenuParagraphe item={item} keyValue={key} {...props} />  // TO DO : spread
+          <ContenuParagraphe
+            dispositifContent={dispositifContent}
+            keyValue={key}
+            updateUIArray={props.updateUIArray}
+            handleContentClick={props.handleContentClick}
+            handleMenuChange={props.handleMenuChange}
+            onEditorStateChange={props.onEditorStateChange}
+            addItem={props.addItem}
+            sideView={props.sideView}
+            typeContenu={props.typeContenu}
+            uiArray={props.uiArray}
+            disableEdit={props.disableEdit}
+            menu={props.menu}
+            toggleModal={props.toggleModal}
+            removeItem={props.removeItem}
+            toggleTutorielModal={props.toggleTutorielModal}
+            toggleGeolocModal={props.toggleGeolocModal}
+            displayTuto={props.displayTuto}
+            addMapBtn={props.addMapBtn}
+            printing={props.printing}
+            mainTag={props.mainTag}
+            showMapButton={props.showMapButton}
+            changeTitle={props.changeTitle}
+            changeAge={props.changeAge}
+            toggleFree={props.toggleFree}
+            changePrice={props.changePrice}
+            toggleNiveau={props.toggleNiveau}
+            changeDepartements={props.changeDepartements}
+            deleteCard={props.deleteCard}
+            content={props.content}
+            admin={props.admin}
+            showGeolocModal={props.showGeolocModal}
+            setMarkers={props.setMarkers}
+            toggleShareContentOnMobileModal={props.toggleShareContentOnMobileModal}
+            upcoming={props.upcoming}
+          />
         }
       </div>
     );

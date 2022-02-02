@@ -56,7 +56,6 @@ import {
   importantCard,
   showModals,
   menuDemarche,
-  demarcheSteps,
   customConvertOption,
   infocardsDemarcheTitles,
   infocardFranceEntiere,
@@ -2190,7 +2189,6 @@ export class Dispositif extends Component {
                   filtres={filtres}
                   readAudio={this.readAudio}
                   stopAudio={this.stopAudio}
-                  demarcheSteps={demarcheSteps}
                   upcoming={this.upcoming}
                   toggleTutorielModal={this.toggleTutorielModal}
                   displayTuto={this.state.displayTuto}

@@ -4,4 +4,5 @@ interface Window {
   axeptioSettings: {
     clientId: string | undefined
   }
+  google: any
 }

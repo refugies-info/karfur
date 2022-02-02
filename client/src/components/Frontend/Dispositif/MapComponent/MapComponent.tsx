@@ -1,20 +1,35 @@
 import React from "react";
+import { compose, withProps } from "recompose"
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-
 import { colors } from "colors";
 import styles from "./MapComponent.module.scss";
-
-const { compose, withProps, lifecycle } = require("recompose");
-const {
+import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker,
-} = require("react-google-maps");
-const {
-  SearchBox,
-} = require("react-google-maps/lib/components/places/SearchBox");
-const mapComponent = compose(
+} from "react-google-maps";
+const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
+
+
+interface InjectedProps {
+  zoomToMarkers: any
+}
+
+interface PropsBeforeInjection {
+  onClose: any
+  disableEdit: boolean
+  onSearchBoxMounted: any
+  onPlacesChanged: any
+  searchValue: string
+  handleChange: any
+  markers: any[]
+  onMarkerClick: any
+}
+
+export interface Props extends PropsBeforeInjection, InjectedProps {}
+
+const MapComponent = compose<Props, PropsBeforeInjection>(
   withProps({
     googleMapURL:
       "https://maps.googleapis.com/maps/api/js?key=" +
@@ -23,36 +38,30 @@ const mapComponent = compose(
     loadingElement: <div style={{ height: "100%" }} />,
     containerElement: <div style={{ height: "470px", width: "100%" }} />,
     mapElement: <div style={{ height: "100%", width: "100%" }} />,
-  }),
-  lifecycle({
-    componentWillMount() {
-      this.setState({
-        zoomToMarkers: (map) => {
-          if (map) {
-            const bounds = new window.google.maps.LatLngBounds();
-            if (map.props.children[1]) {
-              map.props.children[1].forEach((child) => {
-                if (child.type === Marker) {
-                  bounds.extend(
-                    new window.google.maps.LatLng(
-                      child.props.position.lat,
-                      child.props.position.lng
-                    )
-                  );
-                }
-              });
-              if (map.props.children[1].length > 1) {
-                map.fitBounds(bounds);
-              }
+    zoomToMarkers: (map: any) => {
+      if (map) {
+        const bounds = new window.google.maps.LatLngBounds();
+        if (map.props.children[1]) {
+          map.props.children[1].forEach((child: any) => {
+            if (child.type === Marker) {
+              bounds.extend(
+                new window.google.maps.LatLng(
+                  child.props.position.lat,
+                  child.props.position.lng
+                )
+              );
             }
+          });
+          if (map.props.children[1].length > 1) {
+            map.fitBounds(bounds);
           }
-        },
-      });
+        }
+      }
     },
   }),
   withScriptjs,
   withGoogleMap
-)((props) => (
+)((props: Props) => (
   <GoogleMap
     ref={props.zoomToMarkers}
     defaultZoom={5}
@@ -104,4 +113,4 @@ const mapComponent = compose(
   </GoogleMap>
 ));
 
-export default mapComponent;
+export default MapComponent;

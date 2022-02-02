@@ -35,8 +35,8 @@ interface Props {
   updateUIArray: any;
   subitem: any;
   setMarkers: any;
-  keyValue: string;
-  subkey: string;
+  keyValue: number;
+  subkey: number;
   toggleShareContentOnMobileModal: any;
   toggleTutorielModal: any;
   deleteCard: any;
@@ -215,7 +215,7 @@ const MapParagraphe = (props: Props) => {
                 onPlacesChanged={onPlacesChanged}
                 disableEdit={props.disableEdit}
                 handleChange={handleChange}
-                // {...this.state} // TO DO : spread
+                searchValue={searchValue}
               />
             </div>
 

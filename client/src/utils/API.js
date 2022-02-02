@@ -119,7 +119,7 @@ const API = {
   },
   addDispositif: (query) => {
     const headers = getHeaders();
-    axios.post(burl + "/dispositifs/addDispositif", query, {
+    return axios.post(burl + "/dispositifs/addDispositif", query, {
       headers,
     })
   },

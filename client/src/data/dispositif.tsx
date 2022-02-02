@@ -2,7 +2,14 @@ import React from "react";
 import h2p from "html2plaintext";
 import Image from "next/image";
 
-const contenu = {
+export type ShortContent = {
+  titreInformatif: string
+  titreMarque: string
+  abstract: string
+  contact: string
+  externalLink: string
+}
+const contenu: ShortContent = {
   titreInformatif: "Titre informatif",
   titreMarque: "Le nom du dispositif",
   abstract: "",
@@ -531,7 +538,33 @@ const onBoardSteps = [
   },
 ];
 
-const demarcheSteps = {
+
+export type Option = {
+  texte: string
+  logo: string
+  label1: string|null
+  label2: string|null
+  placeholder1: string
+  placeholder2: string|null
+  placeholder3?: string
+  placeholder4?: string
+  checkbox?: string
+  icon1?: string
+  icon2?: string
+  icon3?: string
+  icon4?: string
+  ctaText: string
+  ctaField?: string
+  modalHeader: string
+}
+
+export type DemarcheSteps = {
+  options: Option[];
+  timeSteps: { texte: string }[];
+  papiers: { texte: string }[];
+}
+
+const demarcheSteps: DemarcheSteps = {
   options: [
     {
       texte: "En ligne",

@@ -39,7 +39,7 @@ interface Props {
   t: any;
   typeContenu: "dispositif" | "demarche";
   toggleGeolocModal: (arg: boolean) => void;
-  handleMenuChange: (arg1: any) => void;
+  handleMenuChange: (ev: any, value?: any) => any
   emptyPlaceholder: (e: any) => void;
   mainTag: Tag;
 }

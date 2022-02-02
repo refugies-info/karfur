@@ -6,7 +6,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import { Props } from "./CardParagraphe.container";
 import { DispositifContent, Tag } from "types/interface";
-import { filtres, cardTitlesDispositif, cardTitlesDemarche } from "data/dispositif";
+import { filtres, cardTitlesDispositif, cardTitlesDemarche, ShortContent } from "data/dispositif";
 import { FrenchLevelModal } from "../FrenchLevelModal";
 import GeolocModal from "components/Modals/GeolocModal/GeolocModal";
 import API from "utils/API";
@@ -25,39 +25,35 @@ import styles from "./CardParagraphe.module.scss";
 // difficult to type
 type Element = any;
 
-interface Content {
-  abstract: string;
-  contact: string;
-  externalLink: string;
-  titreInformatif: string;
-  titreMarque: string;
-}
 
 export interface PropsBeforeInjection {
   subkey: number;
-  subitem: DispositifContent;
-  disableEdit: boolean;
-  changeTitle: (arg1: number, arg2: number, arg3: string, arg4: string) => void;
-  handleMenuChange: (arg1: any) => void;
-  filtres: typeof filtres;
-  changeAge: (arg1: any, arg2: number, arg3: number, arg4: boolean) => void;
-  toggleFree: (arg1: number, arg2: number) => void;
-  changePrice: (arg1: any, arg2: number, arg3: number) => void;
-  updateUIArray: (arg1: number, arg2: number, arg3: string) => void;
-  toggleNiveau: (arg1: string[], arg2: number, arg3: number) => void;
-  changeDepartements: (arg1: string[], arg2: number, arg3: number) => void;
-  deleteCard: (arg1: number, arg2: number) => void;
-  content: Content;
   keyValue: number;
-  t: any;
+  updateUIArray: (
+    key: number,
+    arg: number|null,
+    variante: string,
+    option?: boolean
+  ) => void;
+  handleMenuChange: (ev: any, value?: any) => any
+  subitem: DispositifContent;
+  content: ShortContent;
   cards: string[];
-  mainTag: Tag;
-  toggleTutorielModal: () => void;
-  location: any;
   admin: boolean;
-  toggleGeolocModal: (arg1: boolean) => void;
   showGeolocModal: boolean;
   typeContenu: "dispositif" | "demarche";
+  disableEdit: boolean;
+  mainTag: Tag;
+  t: any;
+  toggleTutorielModal: (arg: string) => void;
+  toggleGeolocModal: (arg1: boolean) => void;
+  changeTitle: (arg1: number, arg2: number, arg3: string, arg4: string) => void;
+  changeAge: (arg1: any, arg2: number, arg3: number, arg4: boolean) => void;
+  changeDepartements: (arg1: string[], arg2: number, arg3: number) => void;
+  changePrice: (arg1: any, arg2: number, arg3: number) => void;
+  toggleFree: (arg1: number, arg2: number) => void;
+  toggleNiveau: (arg1: string[], arg2: number, arg3: number) => void;
+  deleteCard: (key: any, subkey: any, type?: any) => void
 }
 type StateType = {
   isDropdownOpen: boolean;
@@ -65,7 +61,6 @@ type StateType = {
   tooltipOpen: boolean;
   showFrenchLevelModal: boolean;
 };
-
 export class CardParagraphe extends Component<Props> {
   state: StateType = {
     isDropdownOpen: false,

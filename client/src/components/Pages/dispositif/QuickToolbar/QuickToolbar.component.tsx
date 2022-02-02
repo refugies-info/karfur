@@ -5,6 +5,8 @@ import { Props } from "./QuickToolbar.container";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import styles from "./QuickToolbar.module.scss";
+import { DispositifContent } from "types/interface";
+import { readAudio, stopAudio } from "lib/readAudio";
 
 interface StateType {
   fill: boolean[];
@@ -15,18 +17,15 @@ interface StateType {
 }
 
 export interface PropsBeforeInjection {
-  disableEdit: boolean;
-  toggleModal: (arg1: boolean, arg2: string) => void;
-  readAudio: (arg1: any, arg2: string, arg3: any, arg4: boolean) => void;
-  stopAudio: () => void;
-  item: any;
-  subkey: number;
-  handleContentClick: (arg1: any, arg2: boolean, arg3: number) => void;
-  keyValue: any;
   show: boolean;
+  keyValue: number;
+  subkey: number;
+  disableEdit: boolean;
+  item: DispositifContent;
+  handleContentClick: (arg1: any, arg2: boolean, arg3: number) => void;
+  toggleModal: (arg1: boolean, arg2: string) => void;
   removeItem: (arg1: number, arg2: number) => void;
   t: any;
-  ttsActive: boolean;
 }
 
 export class QuickToolbar extends Component<Props, StateType> {
@@ -84,7 +83,7 @@ export class QuickToolbar extends Component<Props, StateType> {
       if (id === 0) {
         this.props.toggleModal(true, "reaction");
       } else if (id === 1 && !this.state.isVoiceActiv) {
-        let node = this.props.item;
+        let node: any = this.props.item;
         if (
           this.props.subkey !== undefined &&
           this.props.subkey !== null &&
@@ -92,20 +91,20 @@ export class QuickToolbar extends Component<Props, StateType> {
           node.children &&
           node.children.length > 0
         ) {
-          node = this.props.item.children[this.props.subkey];
+          node = this.props.item.children?.[this.props.subkey];
         }
         this.setState({ isVoiceActiv: !this.state.isVoiceActiv });
         node &&
           node.title &&
-          this.props.readAudio(
+          readAudio(
             h2p(this.getSectionTitleInCorrectLanguage(node.title)),
             this.props.activeLangue,
             () =>
-              this.props.readAudio(
+              readAudio(
                 h2p(node.content),
                 this.props.activeLangue,
                 () =>
-                  this.props.readAudio(
+                  readAudio(
                     "",
                     this.props.activeLangue,
                     this.setState({ isVoiceActiv: !this.state.isVoiceActiv }),
@@ -117,7 +116,7 @@ export class QuickToolbar extends Component<Props, StateType> {
           );
       } else if (id === 1 && this.state.isVoiceActiv) {
         this.setState({ isVoiceActiv: !this.state.isVoiceActiv });
-        this.props.stopAudio();
+        stopAudio();
       }
     } else {
       if (id === 0) {

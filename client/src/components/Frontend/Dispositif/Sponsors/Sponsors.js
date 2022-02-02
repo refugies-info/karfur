@@ -1023,7 +1023,24 @@ class Sponsors extends Component {
             handleBelongsChange={this.handleBelongsChange}
             setStructureContactAsMe={this.setStructureContactAsMe}
             mainTag={this.props.mainTag}
-            {...this.state.structure} // TO DO : spread
+            nom={this.state.structure.nom}
+            contact={this.state.structure.contact}
+            phone_contact={this.state.structure.phone_contact}
+            mail_contact={this.state.structure.mail_contact}
+            adminView={this.state.structure.adminView}
+            _id={this.state.structure._id}
+            createur={this.state.structure.createur}
+            administrateur={this.state.structure.administrateur}
+            users={this.state.structure.users}
+            siren={this.state.structure.siren}
+            siret={this.state.structure.siret}
+            adresse={this.state.structure.adresse}
+            mail_generique={this.state.structure.mail_generique}
+            picture={this.state.structure.picture}
+            handleFileInputChange={this.state.structure.handleFileInputChange}
+            acronyme={this.state.structure.acronyme}
+            uploading={this.state.structure.uploading}
+            alt={this.state.structure.alt}
           />
           <div className={`${styles.input} ${styles.inline}`}>
             <span style={{ fontSize: 22 }}>Ajouter un logo</span>

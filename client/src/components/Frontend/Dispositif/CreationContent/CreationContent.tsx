@@ -14,8 +14,33 @@ import FButton from "components/FigmaUI/FButton/FButton";
 import FInput from "components/FigmaUI/FInput/FInput";
 import { colors } from "colors";
 import styles from "./CreationContent.module.scss";
+import { Picture, Tag, User } from "types/interface";
 
-const CreationContent = (props) => {
+interface Props {
+  nom: string
+  handleChange: any
+  contact: string
+  phone_contact: string
+  mail_contact: string
+  setStructureContactAsMe: any
+  adminView: boolean
+  _id: string
+  createur: User
+  administrateur: any
+  users: User[]
+  siren: string
+  siret: string
+  adresse: string
+  mail_generique: string
+  picture: Picture
+  handleFileInputChange: any
+  acronyme: string
+  uploading: boolean
+  mainTag: Tag
+  alt: string
+}
+
+const CreationContent = (props: Props) => {
   const [banner, setBanner] = useState(true);
   const [isChecked, setIsChecked] = useState(false);
   return (
@@ -192,8 +217,8 @@ const CreationContent = (props) => {
                 <option value={""} key={0}>
                   A définir
                 </option>
-                {props.users.map((user) => (
-                  <option value={user._id} key={user._id}>
+                {props.users.map((user, i) => (
+                  <option value={user._id.toString()} key={i}>
                     {user.username}
                   </option>
                 ))}

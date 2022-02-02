@@ -6,7 +6,7 @@ import parentStyles from "./CardParagraphe.module.scss"
 import styles from "./PlusCard.module.scss"
 
 interface PlusCardProps {
-  addItem: (arg1: number, arg2: string, arg3?: string | null) => void;
+  addItem: (key: any, type?: string, subkey?: string|null) => void
   keyValue: number;
   cards: string[];
   typeContenu: "dispositif" | "demarche";

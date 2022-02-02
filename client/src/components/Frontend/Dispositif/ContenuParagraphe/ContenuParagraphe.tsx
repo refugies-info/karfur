@@ -3,6 +3,7 @@ import { Col, Row, Collapse } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
 import { QuickToolbar } from "components/Pages/dispositif/QuickToolbar";
+import { useTranslation } from "react-i18next";
 import {
   CardParagraphe,
   PlusCard,
@@ -14,12 +15,15 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { colors } from "colors";
 import styled from "styled-components";
-import {  cardTitlesDispositif,
+import {
+  cardTitlesDispositif,
   cardTitlesDemarche,
-  infocardsDemarcheTitles
+  infocardsDemarcheTitles,
+  ShortContent,
 } from "data/dispositif";
 import { isMobile } from "react-device-detect";
 import styles from "./ContenuParagraphe.module.scss";
+import { DispositifContent, Tag, UiObject } from "types/interface";
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>
@@ -56,18 +60,79 @@ const MobileInfoCardsSection = styled.div`
   display: flex;
 `;
 
-const contenuParagraphe = (props) => {
-  const { disableEdit, ...bprops } = props;
-  const item = props.item;
-  const safeUiArray = (key, subkey, node) =>
-    props.uiArray[key] &&
+interface BtnProps {
+  onClick: () => void;
+}
+const AddModuleBtnTag = (props: BtnProps) => {
+  return (
+    <div className={"ml-15 mt-10 mb-10"}>
+      <FButton
+        type="edit"
+        name="pin-outline"
+        fill={colors.blanc}
+        onClick={props.onClick}
+      >
+        {"Ajouter une carte interactive"}
+      </FButton>
+    </div>
+  );
+};
+interface Props {
+  dispositifContent: DispositifContent;
+  keyValue: number;
+  updateUIArray: (
+    key: number,
+    arg: number|null,
+    variante: string,
+    option?: boolean
+  ) => void;
+  handleContentClick: () => void;
+  handleMenuChange: (ev: any, value?: any) => any;
+  onEditorStateChange: () => void;
+  addItem: (key: any, type?: string, subkey?: string | null) => void
+  sideView: boolean; // unused?
+  admin: boolean
+  content: ShortContent
+  showGeolocModal: boolean
+  typeContenu: "dispositif" | "demarche";
+  uiArray: UiObject[];
+  disableEdit: boolean;
+  menu: DispositifContent[];
+  displayTuto: boolean;
+  addMapBtn: boolean;
+  printing: boolean;
+  mainTag: Tag;
+  toggleModal: (show: boolean, name: string) => void
+  toggleTutorielModal: (arg: string) => void;
+  toggleGeolocModal: () => void;
+  removeItem: (key: number, subkey?: number | null) => void
+  showMapButton: () => void;
+  changeTitle: (key: any, subkey: any, node: any, value: any) => void
+  changeAge: (e: any, key: any, subkey: any, isBottom?: boolean) => any
+  changeDepartements: (departments: any, key: any, subkey: any) => any
+  changePrice: (e: any, key: any, subkey: any) => any
+  toggleFree: (key: any, subkey: any) => any
+  toggleNiveau: (selectedLevels: any, key: any, subkey: any) => void
+  deleteCard: (key: any, subkey: any, type: any) => void
+  setMarkers: (markers: any, key: any, subkey: any) => void
+  toggleShareContentOnMobileModal: () => any
+  upcoming: () => void
+}
+const ContenuParagraphe = (props: Props) => {
+  const { t } = useTranslation();
+
+  const safeUiArray = (key: number, subkey: number, node: string) => {
+    return props.uiArray[key] &&
     props.uiArray[key].children &&
     props.uiArray[key].children.length > subkey &&
     props.uiArray[key].children[subkey] &&
     props.uiArray[key].children[subkey][node];
+  }
 
-  const cards = item.children
-    ? item.children.filter((x) => x.type === "card").map((x) => x.title)
+  const cards = props.dispositifContent.children
+    ? props.dispositifContent.children
+        .filter((x) => x.type === "card")
+        .map((x) => x.title)
     : [];
   const darkColor =
     props.mainTag && props.mainTag.darkColor
@@ -79,51 +144,56 @@ const contenuParagraphe = (props) => {
       ? props.mainTag.lightColor
       : colors.lightColor;
 
+  const nbChildren = (props.dispositifContent?.children || []).length;
+
   return (
     <div
-      className={item.type === "cards" ? "row " + styles.cards : "sous-paragraphe"}
+      className={
+        props.dispositifContent.type === "cards"
+          ? "row " + styles.cards
+          : "sous-paragraphe"
+      }
       style={isMobile ? { overflowX: "auto", overflowY: "hidden" } : {}}
     >
-      {isMobile && item.type === "cards" && item.children.length > 1 && (
+      {isMobile && props.dispositifContent.type === "cards" && nbChildren > 1 && (
         <MobileInfoCardsSection>
-          {item.children &&
-            item.children.map((subitem, subkey) => {
+          {(props.dispositifContent?.children || []).map(
+            (subDispositifContent, i) => {
               return (
                 <CardParagraphe
-                  key={subitem}
-                  location={props.location}
-                  subkey={subkey}
-                  subitem={subitem}
-                  disableEdit={disableEdit}
-                  changeTitle={bprops.changeTitle}
-                  handleMenuChange={bprops.handleMenuChange}
-                  changeAge={bprops.changeAge}
-                  toggleFree={bprops.toggleFree}
-                  changePrice={bprops.changePrice}
-                  updateUIArray={bprops.updateUIArray}
-                  toggleNiveau={bprops.toggleNiveau}
-                  changeDepartements={bprops.changeDepartements}
-                  deleteCard={bprops.deleteCard}
-                  content={bprops.content}
-                  keyValue={bprops.keyValue}
+                  key={i}
+                  subkey={i}
+                  subitem={subDispositifContent}
+                  disableEdit={props.disableEdit}
+                  changeTitle={props.changeTitle}
+                  handleMenuChange={props.handleMenuChange}
+                  changeAge={props.changeAge}
+                  toggleFree={props.toggleFree}
+                  changePrice={props.changePrice}
+                  updateUIArray={props.updateUIArray}
+                  toggleNiveau={props.toggleNiveau}
+                  changeDepartements={props.changeDepartements}
+                  deleteCard={props.deleteCard}
+                  content={props.content}
+                  keyValue={props.keyValue}
                   cards={cards}
-                  mainTag={bprops.mainTag}
+                  mainTag={props.mainTag}
                   toggleTutorielModal={props.toggleTutorielModal}
                   admin={props.admin}
                   toggleGeolocModal={props.toggleGeolocModal}
                   showGeolocModal={props.showGeolocModal}
                   typeContenu={props.typeContenu}
+                  t={t}
                 />
               );
-            })}
+            }
+          )}
         </MobileInfoCardsSection>
       )}
-      {item.children &&
-        item.children.map((subitem, subkey) => {
-          const childrenLength = item.children.length;
+      {(props.dispositifContent.children || []).map((subitem, index) => {
           const isAccordeonOpen = !!safeUiArray(
             props.keyValue,
-            subkey,
+            index,
             "accordion"
           );
 
@@ -133,83 +203,102 @@ const contenuParagraphe = (props) => {
                 "sous-contenu-wrapper" +
                 (subitem.type === "map"
                   ? " sous-contenu-map"
-                  : (item.title === "Comment je m'engage ?" ||
-                      item.title === "Et après ?") &&
-                    childrenLength === subkey + 1
-                  ? " mb-15 last-item"
+                  : (props.dispositifContent.title ===
+                      "Comment je m'engage ?" ||
+                      props.dispositifContent.title === "Et après ?") &&
+                    nbChildren === index + 1
+                  ? " mb-15 last-props.item"
                   : "") +
-                (item.type === "cards" ? " sous-contenu-cards" : "")
+                (props.dispositifContent.type === "cards"
+                  ? " sous-contenu-cards"
+                  : "")
               }
-              key={subkey}
+              key={index}
             >
-              {subitem.type === "card" &&
-              (!isMobile || item.children.length === 1) ? (
+              {subitem.type === "card" && (!isMobile || nbChildren === 1) ? (
                 <CardParagraphe
-                  location={props.location}
-                  subkey={subkey}
+                  subkey={index}
                   subitem={subitem}
-                  disableEdit={disableEdit}
-                  changeTitle={bprops.changeTitle}
-                  handleMenuChange={bprops.handleMenuChange}
-                  changeAge={bprops.changeAge}
-                  toggleFree={bprops.toggleFree}
-                  changePrice={bprops.changePrice}
-                  updateUIArray={bprops.updateUIArray}
-                  toggleNiveau={bprops.toggleNiveau}
-                  changeDepartements={bprops.changeDepartements}
-                  deleteCard={bprops.deleteCard}
-                  content={bprops.content}
-                  keyValue={bprops.keyValue}
+                  disableEdit={props.disableEdit}
+                  changeTitle={props.changeTitle}
+                  handleMenuChange={props.handleMenuChange}
+                  changeAge={props.changeAge}
+                  toggleFree={props.toggleFree}
+                  changePrice={props.changePrice}
+                  updateUIArray={props.updateUIArray}
+                  toggleNiveau={props.toggleNiveau}
+                  changeDepartements={props.changeDepartements}
+                  deleteCard={props.deleteCard}
+                  content={props.content}
+                  keyValue={props.keyValue}
                   cards={cards}
-                  mainTag={bprops.mainTag}
+                  mainTag={props.mainTag}
                   toggleTutorielModal={props.toggleTutorielModal}
                   admin={props.admin}
                   toggleGeolocModal={props.toggleGeolocModal}
                   showGeolocModal={props.showGeolocModal}
                   typeContenu={props.typeContenu}
+                  t={t}
                 />
-              ) : subitem.type === "map" && !bprops.printing ? (
+              ) : subitem.type === "map" && !props.printing ? (
                 <MapParagraphe
-                  key={subkey}
-                  subkey={subkey}
+                  key={index}
+                  subkey={index}
                   subitem={subitem}
-                  disableEdit={disableEdit}
-                  mainTag={bprops.mainTag}
-                  {...bprops} // TO DO : spread
+                  disableEdit={props.disableEdit}
+                  mainTag={props.mainTag}
+                  showMapButton={props.showMapButton}
+                  displayTuto={props.displayTuto}
+                  updateUIArray={props.updateUIArray}
+                  setMarkers={props.setMarkers}
+                  keyValue={props.keyValue}
+                  toggleShareContentOnMobileModal={props.toggleShareContentOnMobileModal}
+                  toggleTutorielModal={props.toggleTutorielModal}
+                  deleteCard={props.deleteCard}
                 />
-              ) : subitem.type === "map" && bprops.printing ? (
+              ) : subitem.type === "map" && props.printing ? (
                 <MapParagraphePrint
-                  key={subkey}
-                  subkey={subkey}
+                  updateUIArray={props.updateUIArray}
                   subitem={subitem}
-                  disableEdit={disableEdit}
-                  {...bprops} // TO DO : spread
+                  mainTag={props.mainTag}
                 />
               ) : subitem.type === "etape" ? (
                 <EtapeParagraphe
-                  key={subkey}
-                  subkey={subkey}
+                  key={index}
+                  subkey={index}
                   subitem={subitem}
-                  tutoriel={item.tutoriel}
-                  disableEdit={disableEdit}
-                  {...bprops} // TO DO : spread
+                  item={props.dispositifContent}
+                  handleContentClick={props.handleContentClick}
+                  handleMenuChange={props.handleMenuChange}
+                  onEditorStateChange={props.onEditorStateChange}
+                  addItem={props.addItem}
+                  sideView={props.sideView}
+                  removeItem={props.removeItem}
+                  mainTag={props.mainTag}
+                  typeContenu={props.typeContenu}
+                  uiArray={props.uiArray}
+                  upcoming={props.upcoming}
+                  content={props.content}
+                  keyValue={props.keyValue}
+                  updateUIArray={props.updateUIArray}
+                  disableEdit={props.disableEdit}
+                  toggleModal={props.toggleModal}
                 />
               ) : subitem.type === "accordion" ? (
                 <div
-                  key={subkey}
+                  key={index}
                   className={
                     "contenu" +
-                    (safeUiArray(props.keyValue, subkey, "isHover")
+                    (safeUiArray(props.keyValue, index, "isHover")
                       ? " isHovered"
                       : "")
                   }
                   onMouseEnter={(e) =>
                     props.updateUIArray(
                       props.keyValue,
-                      subkey,
+                      index,
                       "isHover",
-                      true,
-                      e
+                      true
                     )
                   }
                 >
@@ -224,48 +313,48 @@ const contenuParagraphe = (props) => {
                       <div className="title-bloc">
                         <StyledAccordeon
                           isAccordeonOpen={isAccordeonOpen}
-                          disableEdit={disableEdit}
+                          disableEdit={props.disableEdit}
                           lightColor={lightColor}
                           darkColor={darkColor}
-                          subkey={subkey}
+                          subkey={index}
                           onMouseUp={() =>
-                            disableEdit &&
+                            props.disableEdit &&
                             props.updateUIArray(
                               props.keyValue,
-                              subkey,
+                              index,
                               "accordion",
-                              !safeUiArray(props.keyValue, subkey, "accordion")
+                              !safeUiArray(props.keyValue, index, "accordion")
                             )
                           }
                           aria-expanded={safeUiArray(
                             props.keyValue,
-                            subkey,
+                            index,
                             "accordion"
                           )}
                           aria-controls={
-                            "collapse" + props.keyValue + "-" + subkey
+                            "collapse" + props.keyValue + "-" + index
                           }
                         >
                           <StyledHeader darkColor={darkColor}>
                             <ContentEditable
-                              id={props.keyValue}
-                              data-subkey={subkey}
+                              id={props.keyValue+""}
+                              data-subkey={index}
                               data-target="title"
                               html={subitem.title || ""} // innerHTML of the editable div
-                              disabled={disableEdit} // use true to disable editing
+                              disabled={props.disableEdit} // use true to disable editing
                               onChange={props.handleMenuChange} // handle innerHTML change
                               onMouseUp={(e) =>
-                                !disableEdit && e.stopPropagation()
+                                !props.disableEdit && e.stopPropagation()
                               }
                               placeholder={"Titre à remplacer"}
                             />
-                            {disableEdit && (
+                            {props.disableEdit && (
                               <EVAIcon
                                 name={
                                   "chevron-" +
                                   (safeUiArray(
                                     props.keyValue,
-                                    subkey,
+                                    index,
                                     "accordion"
                                   )
                                     ? "up"
@@ -278,10 +367,10 @@ const contenuParagraphe = (props) => {
                               />
                             )}
                           </StyledHeader>
-                          {!disableEdit && subkey > 0 && (
+                          {!props.disableEdit && index > 0 && (
                             <EVAIcon
                               onClick={() =>
-                                props.removeItem(props.keyValue, subkey)
+                                props.removeItem(props.keyValue, index)
                               }
                               className="accordeon-delete-icon  cursor-pointer"
                               name="close-circle"
@@ -295,47 +384,48 @@ const contenuParagraphe = (props) => {
                         className="contenu-accordeon"
                         isOpen={safeUiArray(
                           props.keyValue,
-                          subkey,
+                          index,
                           "accordion"
                         )}
                         data-parent="#accordion"
-                        id={"collapse" + props.keyValue + "-" + subkey}
+                        id={"collapse" + props.keyValue + "-" + index}
                         aria-labelledby={
-                          "heading" + props.keyValue + "-" + subkey
+                          "heading" + props.keyValue + "-" + index
                         }
                       >
                         {
                           // display and edition of content
                           <EditableParagraph
                             keyValue={props.keyValue}
-                            subkey={subkey}
+                            subkey={index}
                             target="content"
                             handleMenuChange={props.handleMenuChange}
                             onEditorStateChange={props.onEditorStateChange}
                             handleContentClick={props.handleContentClick}
-                            disableEdit={disableEdit}
-                            tutoriel={item.tutoriel}
+                            disableEdit={props.disableEdit}
                             addItem={props.addItem}
-                            {...subitem} // TO DO : spread
+                            type={subitem.type}
+                            content={subitem.content}
+                            editable={subitem.editable}
+                            placeholder={subitem.placeholder}
+                            //@ts-ignore
+                            editorState={subitem.editorState}
                           />
                         }
                       </Collapse>
                     </Col>
-                    {!props.sideView && disableEdit && !isMobile && (
+                    {!props.sideView && props.disableEdit && !isMobile && (
                       <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
                         <QuickToolbar
-                          show={safeUiArray(props.keyValue, subkey, "isHover")}
+                          show={safeUiArray(props.keyValue, index, "isHover")}
                           keyValue={props.keyValue}
-                          subkey={subkey}
-                          disableEdit={disableEdit}
-                          t={this.props.t}
-                          item={this.props.item}
-                          handleContentClick={this.props.handleContentClick}
-                          toggleModal={this.props.toggleModal}
-                          readAudio={this.props.readAudio}
-                          stopAudio={this.props.stopAudio}
-                          removeItem={this.props.removeItem}
-                          ttsActive={this.props.ttsActive}
+                          subkey={index}
+                          disableEdit={props.disableEdit}
+                          item={props.dispositifContent}
+                          handleContentClick={props.handleContentClick}
+                          toggleModal={props.toggleModal}
+                          removeItem={props.removeItem}
+                          t={t}
                         />
                       </Col>
                     )}
@@ -343,35 +433,35 @@ const contenuParagraphe = (props) => {
                 </div>
               ) : (
                 <>
-                  {!isMobile && item.type !== "cards" && (
+                  {!isMobile && props.dispositifContent.type !== "cards" && (
                     <div
-                      key={subkey}
+                      key={index}
                       className={
                         "contenu paragraphe" +
-                        (safeUiArray(props.keyValue, subkey, "isHover")
+                        (safeUiArray(props.keyValue, index, "isHover")
                           ? " isHovered"
                           : "")
                       }
                       onMouseEnter={() =>
-                        props.updateUIArray(props.keyValue, subkey, "isHover")
+                        props.updateUIArray(props.keyValue, index, "isHover")
                       }
                     >
                       <Row className="relative-position">
                         <Col lg="12" md="12" sm="12" xs="12">
                           <h4>
                             <ContentEditable
-                              id={props.keyValue}
-                              data-subkey={subkey}
+                              id={props.keyValue+""}
+                              data-subkey={index}
                               data-target="title"
                               className="display-inline-block"
                               html={subitem.title || ""} // innerHTML of the editable div
-                              disabled={disableEdit} // use true to disable editing
+                              disabled={props.disableEdit} // use true to disable editing
                               onChange={props.handleMenuChange} // handle innerHTML change
                             />
-                            {!disableEdit && (
+                            {!props.disableEdit && (
                               <EVAIcon
                                 onClick={() =>
-                                  props.removeItem(props.keyValue, subkey)
+                                  props.removeItem(props.keyValue, index)
                                 }
                                 className="delete-icon ml-10 cursor-pointer"
                                 name="minus-circle-outline"
@@ -381,19 +471,23 @@ const contenuParagraphe = (props) => {
                           </h4>
                           <EditableParagraph
                             keyValue={props.keyValue}
-                            subkey={subkey}
+                            subkey={index}
                             target="content"
                             handleMenuChange={props.handleMenuChange}
                             onEditorStateChange={props.onEditorStateChange}
                             handleContentClick={props.handleContentClick}
-                            disableEdit={disableEdit}
-                            tutoriel={item.tutoriel}
+                            disableEdit={props.disableEdit}
                             addItem={props.addItem}
-                            {...subitem} // TO DO : spread
+                            type={subitem.type}
+                            content={subitem.content}
+                            editable={subitem.editable}
+                            placeholder={subitem.placeholder}
+                            //@ts-ignore
+                            editorState={subitem.editorState}
                           />
                           <br />
                         </Col>
-                        {!props.sideView && disableEdit && !isMobile && (
+                        {!props.sideView && props.disableEdit && !isMobile && (
                           <Col
                             lg="2"
                             md="2"
@@ -404,20 +498,17 @@ const contenuParagraphe = (props) => {
                             <QuickToolbar
                               show={safeUiArray(
                                 props.keyValue,
-                                subkey,
+                                index,
                                 "isHover"
                               )}
                               keyValue={props.keyValue}
-                              subkey={subkey}
-                              disableEdit={disableEdit}
-                              t={this.props.t}
-                              item={this.props.item}
-                              handleContentClick={this.props.handleContentClick}
-                              toggleModal={this.props.toggleModal}
-                              readAudio={this.props.readAudio}
-                              stopAudio={this.props.stopAudio}
-                              removeItem={this.props.removeItem}
-                              ttsActive={this.props.ttsActive}
+                              subkey={index}
+                              disableEdit={props.disableEdit}
+                              item={props.dispositifContent}
+                              handleContentClick={props.handleContentClick}
+                              toggleModal={props.toggleModal}
+                              removeItem={props.removeItem}
+                              t={t}
                             />
                           </Col>
                         )}
@@ -431,10 +522,8 @@ const contenuParagraphe = (props) => {
               props.keyValue === 3 &&
               !props.disableEdit &&
               !(props.typeContenu === "demarche") ? (
-                <AddMoudleBtnTag
-                  addItem={props.addItem}
-                  subkey={item.children ? item.children.length : 0}
-                  tag={props.mainTag}
+                <AddModuleBtnTag
+                  onClick={() => props.addItem(3, "map", nbChildren.toString())}
                 />
               ) : null}
             </div>
@@ -442,9 +531,9 @@ const contenuParagraphe = (props) => {
         })}
 
       {!props.disableEdit &&
-        item.type === "cards" &&
-        item.children &&
-        item.title === "C'est pour qui ?" &&
+        props.dispositifContent.type === "cards" &&
+        props.dispositifContent.children &&
+        props.dispositifContent.title === "C'est pour qui ?" &&
         props.typeContenu === "dispositif" &&
         // when all types of incards are displayed we do not want to add more
         cards.length < cardTitlesDispositif.length && (
@@ -458,9 +547,9 @@ const contenuParagraphe = (props) => {
         )}
 
       {!props.disableEdit &&
-        item.type === "cards" &&
-        item.children &&
-        item.title === "C'est pour qui ?" &&
+        props.dispositifContent.type === "cards" &&
+        props.dispositifContent.children &&
+        props.dispositifContent.title === "C'est pour qui ?" &&
         props.typeContenu === "demarche" &&
         // when all types of incards are displayed we do not want to add more
         // we need to filter because on old demarches there may be other types of infocards not used anymore
@@ -476,11 +565,11 @@ const contenuParagraphe = (props) => {
         )}
       {props.disableEdit &&
         isMobile &&
-        (item.title === "Comment je m'engage ?" ||
-          item.title === "Et après ?") &&
-        item.children &&
-        item.children[item.children.length - 1] &&
-        item.children[item.children.length - 1].type !== "map" && (
+        (props.dispositifContent.title === "Comment je m'engage ?" ||
+          props.dispositifContent.title === "Et après ?") &&
+        props.dispositifContent.children &&
+        props.dispositifContent.children[nbChildren - 1] &&
+        props.dispositifContent.children[nbChildren - 1].type !== "map" && (
           <div
             style={{
               display: "flex",
@@ -493,7 +582,7 @@ const contenuParagraphe = (props) => {
               name={"share-outline"}
               onClick={props.toggleShareContentOnMobileModal}
             >
-              {props.t("Dispositif.Partager Fiche", "Partager la fiche")}
+              {t("Dispositif.Partager Fiche", "Partager la fiche")}
             </FButton>
           </div>
         )}
@@ -501,19 +590,4 @@ const contenuParagraphe = (props) => {
   );
 };
 
-const AddMoudleBtnTag = (props) => {
-  return (
-    <div className={"ml-15 mt-10 mb-10"}>
-      <FButton
-        type="edit"
-        name="pin-outline"
-        fill={colors.blanc}
-        onClick={() => props.addItem(3, "map", props.subkey)}
-      >
-        {"Ajouter une carte interactive"}
-      </FButton>
-    </div>
-  );
-};
-
-export default contenuParagraphe;
+export default ContenuParagraphe;

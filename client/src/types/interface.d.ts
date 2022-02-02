@@ -32,6 +32,15 @@ export interface SimplifiedStructure {
   disposAssociesLocalisation?: string[];
 }
 
+export interface UiObject {
+  accordion: boolean;
+  addDropdown: boolean;
+  cardDropdown: boolean;
+  isHover: boolean;
+  varianteSelected: boolean;
+  children: any
+}
+
 export interface Tag {
   darkColor: string;
   hoverColor: string;

@@ -1,49 +1,32 @@
-import React, { PureComponent } from "react";
+import React, { useState } from "react";
 import _ from "lodash";
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { Table } from "reactstrap";
-
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { markerInfo } from "data/markerInfo";
-
 import styles from "./MapParagraphe.module.scss";
+import { Tag } from "types/interface";
 
-class MapParagraphe extends PureComponent {
-  state = {
-    markers: [],
-    isMarkerShown: [],
-    showingInfoWindow: [],
-    isDropdownOpen: false,
-    dropdownValue: _.get(this.props.subitem.markers, "0.ville"),
-    zoom: 5,
-    center: { lat: 48.856614, lng: 2.3522219 },
-    selectedMarker: 0,
-    showModal: false,
-    showSidebar: false,
-    markerInfo: markerInfo,
-    searchValue: "",
-  };
+interface Props {
+  subitem: any
+  updateUIArray: any
+  mainTag: Tag
+}
 
-  componentDidMount() {
-    if (!this.props.disableEdit && !this.props.subitem.isMapLoaded) {
-      // this.setState({showModal:true})
-    }
-  }
+const MapParagraphePrint = (props: Props) => {
+  const { t } = useTranslation();
 
-  render() {
-    const { markerInfo } = this.state;
-    const { t } = this.props;
     return (
       <div
-        className={styles.map + " page-break"}
         id="map-paragraphe"
-        onMouseEnter={() => this.props.updateUIArray(-5)}
+        className={styles.map + " page-break"}
+        onMouseEnter={() => props.updateUIArray(-5)}
       >
         <div
           className={styles.header}
           style={{
-            backgroundColor: (this.props.mainTag && this.props.mainTag.darkColor)
-              ? this.props.mainTag.darkColor
+            backgroundColor: (props.mainTag && props.mainTag.darkColor)
+              ? props.mainTag.darkColor
               : "#000000"
           }}
         >
@@ -75,7 +58,7 @@ class MapParagraphe extends PureComponent {
                 </tr>
               </thead>
               <tbody>
-                {this.props.subitem.markers.map((element, key) => {
+                {props.subitem.markers.map((element: any, key: number) => {
                   return (
                     <tr key={key}>
                       <td className="align-middle">{element.name}</td>
@@ -113,7 +96,6 @@ class MapParagraphe extends PureComponent {
         </div>
       </div>
     );
-  }
 }
 
-export default withTranslation()(MapParagraphe);
+export default MapParagraphePrint;
