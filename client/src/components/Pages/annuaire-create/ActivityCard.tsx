@@ -97,16 +97,19 @@ export const ActivityCard = (props: Props) => {
         )}
         <div>
           {props.image && (
-            <ActivityImage
+            <Image
               src={props.image}
               alt={props.activity}
+              width={144}
+              height={100}
+              objectFit="contain"
             />
           )}
         </div>
       </ImageContainer>
       <Text>{props.activity}</Text>
       {props.isLectureMode && props.tag && (
-        <ThemeButton isRTL={isRTL} tag={props.tag} t={props.t} />
+        <ThemeButton isRTL={isRTL} tag={props.tag} />
       )}
     </CardContainer>
   );

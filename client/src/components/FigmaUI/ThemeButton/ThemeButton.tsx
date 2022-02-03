@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 import { Tag } from "types/interface";
 import Streamline from "assets/streamline";
 
@@ -26,20 +27,23 @@ const ThemeText = styled.p`
 
 interface Props {
   tag: Tag;
-  t?: any;
   isRTL?: boolean;
 }
 
-export const ThemeButton = (props: Props) => (
-  <ThemeButtonContainer ml={8} color={props.tag ? props.tag.darkColor : null}>
-    <Streamline
-      name={props.tag ? props.tag.icon : undefined}
-      stroke={"white"}
-      width={14}
-      height={14}
-    />
-    <ThemeText mr={props.isRTL ? 8 : 0}>
-      {props.tag ? props.t("Tags." + props.tag.short, props.tag.short) : null}
-    </ThemeText>
-  </ThemeButtonContainer>
-);
+export const ThemeButton = (props: Props) => {
+  const { t } = useTranslation();
+
+  return (
+    <ThemeButtonContainer ml={8} color={props.tag ? props.tag.darkColor : null}>
+      <Streamline
+        name={props.tag ? props.tag.icon : undefined}
+        stroke={"white"}
+        width={14}
+        height={14}
+      />
+      <ThemeText mr={props.isRTL ? 8 : 0}>
+        {props.tag ? t("Tags." + props.tag.short, props.tag.short) : null}
+      </ThemeText>
+    </ThemeButtonContainer>
+  );
+};
