@@ -23,6 +23,7 @@ import PapillonRose from "assets/comment-contribuer/CommentContribuer-papillon_r
 import gif from "assets/comment-contribuer/GIF-corriger.gif";
 import Nour from "assets/qui-sommes-nous/Nour-big.png";
 import styles from "scss/pages/comment-contribuer.module.scss";
+import SEO from "components/Seo";
 
 
 const CommentContribuer = (props: any) => {
@@ -63,6 +64,7 @@ const CommentContribuer = (props: any) => {
 
   return (
     <div className={styles.container}>
+      <SEO />
       <div className={styles.header}>
         <h1>
           {t("CommentContribuer.Comment contribuer", "Comment contribuer ?")}

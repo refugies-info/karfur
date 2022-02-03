@@ -19,6 +19,7 @@ import { Header } from "components/Pages/annuaire/index/Header";
 import qs from "query-string";
 // @ts-ignore
 import querySearch from "stringquery";
+import SEO from "components/Seo";
 
 declare const window: Window;
 
@@ -409,6 +410,7 @@ const Annuaire = (props: any) => {
 
   return (
     <MainContainer>
+      <SEO />
       <Header
         resetSearch={resetSearch}
         letters={letters}

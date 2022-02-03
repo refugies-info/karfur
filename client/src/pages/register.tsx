@@ -31,6 +31,7 @@ import API from "utils/API";
 import setAuthToken from "utils/setAuthToken";
 import { logger } from "logger";
 import styles from "scss/components/login.module.scss";
+import SEO from "components/Seo";
 
 const StyledHeader = styled.div`
   font-weight: 600;
@@ -253,6 +254,7 @@ const Register = () => {
 
     return (
       <div className="app">
+        <SEO />
         <div className={styles.container}>
           <ContentContainer>
             <GoBackButton step={step} goBack={goBack} />

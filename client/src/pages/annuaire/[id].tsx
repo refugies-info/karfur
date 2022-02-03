@@ -13,6 +13,7 @@ import { MiddleAnnuaireDetail } from "components/Pages/annuaire/id/MiddleAnnuair
 import { RightAnnuaireDetails } from "components/Pages/annuaire/id/RightAnnuaireDetails";
 import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
 import { colors } from "colors";
+import SEO from "components/Seo";
 
 const Content = styled.div`
   display: flex;
@@ -77,27 +78,9 @@ const AnnuaireDetail = () => {
       ? true
       : false;
 
-  if (isLoading || !structure) {
-    return (
-      <MainContainer>
-        <Content className="annuaire-detail">
-          <LeftAnnuaireDetail
-            structure={structure}
-            leftPartHeight={leftPartHeight}
-            isLoading={isLoading}
-          />
-          <MiddleAnnuaireDetail
-            structure={structure}
-            leftPartHeight={leftPartHeight}
-            isLoading={isLoading}
-            isMember={isMember}
-          />
-        </Content>
-      </MainContainer>
-    );
-  }
   return (
     <MainContainer>
+      <SEO />
       <Content className="annuaire-detail">
         <LeftAnnuaireDetail
           structure={structure}
@@ -111,10 +94,12 @@ const AnnuaireDetail = () => {
           isLoading={isLoading}
           isMember={isMember}
         />
-        <RightAnnuaireDetails
-          leftPartHeight={leftPartHeight}
-          dispositifsAssocies={structure && structure.dispositifsAssocies}
-        />
+        {!isLoading && structure &&
+          <RightAnnuaireDetails
+            leftPartHeight={leftPartHeight}
+            dispositifsAssocies={structure && structure.dispositifsAssocies}
+          />
+        }
       </Content>
     </MainContainer>
   );

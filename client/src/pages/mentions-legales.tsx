@@ -1,10 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import styles from "scss/pages/legal-pages.module.scss";
+import SEO from "components/Seo";
 
 const MentionsLegales = () => {
   return (
     <div className={styles.legal_pages + " animated fadeIn texte-small"}>
+      <SEO />
       <h1>Mentions légales</h1>
       <h2>Site édité par</h2>
       <strong>Refugies.info</strong>

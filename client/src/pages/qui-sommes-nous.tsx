@@ -9,6 +9,7 @@ import { Team } from "components/Pages/qui-sommes-nous/Team";
 import { Partners } from "components/Pages/qui-sommes-nous/Partners";
 import { assetsOnServer } from "assets/assetsOnServer";
 import type { Member } from "data/members";
+import SEO from "components/Seo";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -170,6 +171,7 @@ const QuiSommesNous = () => {
 
   return (
     <MainContainer>
+      <SEO />
       <HeaderContainer>
         <div style={{ marginTop: 240, marginBottom: 28 }}>
           <HeaderTextContainer>

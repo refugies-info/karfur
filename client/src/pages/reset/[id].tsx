@@ -30,6 +30,7 @@ import API from "utils/API";
 
 import { colors } from "colors";
 import styles from "scss/components/login.module.scss";
+import SEO from "components/Seo";
 
 const StyledHeader = styled.div`
   font-weight: 600;
@@ -157,6 +158,7 @@ const Reset = () => {
   if (isLoading) {
     return (
       <div className="loading-access">
+        <SEO />
         <h3>
           {t(
             "Login.Chargement des données utilisateur",
@@ -169,6 +171,7 @@ const Reset = () => {
   } else if (isError) {
     return (
       <div className="loading-access">
+        <SEO />
         <h5>
           {t(
             "Login.Problème mdp",
@@ -190,6 +193,7 @@ const Reset = () => {
 
   return (
     <div className="app">
+      <SEO />
       <div className={styles.container}>
         <ContentContainer>
           {/* <GoBackButton step={step} goBack={goBack} /> */}

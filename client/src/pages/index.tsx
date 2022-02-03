@@ -29,6 +29,7 @@ import {
 import icon_mobilisation from "assets/icon_mobilisation.svg";
 import { assetsOnServer } from "assets/assetsOnServer";
 import styles from "scss/pages/homepage.module.scss";
+import SEO from "components/Seo";
 
 const CoronaAlert = styled.div`
   display: flex;
@@ -131,6 +132,7 @@ const Homepage = (props: Props) => {
 
   return (
     <div className="animated fadeIn homepage">
+      <SEO />
       {overlay ? <div className="overlay" /> : null}
       <section className={styles.hero}>
         <div className="hero-container">

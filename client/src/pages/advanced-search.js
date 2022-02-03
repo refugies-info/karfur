@@ -31,6 +31,7 @@ import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selector
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { activatedLanguages } from "data/activatedLanguages";
 import { colors } from "colors";
+import SEO from "components/Seo";
 
 const ThemeContainer = styled.div`
   width: 100%;
@@ -1105,6 +1106,7 @@ export class AdvancedSearch extends Component {
       this.props.langues.length > 0 && current ? current.langueCode : "fr";
     return (
       <div className="animated fadeIn advanced-search">
+        <SEO />
         {isMobile ? (
           <MobileAdvancedSearch
             t={t}

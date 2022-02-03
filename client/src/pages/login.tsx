@@ -30,6 +30,7 @@ import PhoneAndEmailFields from "components/Pages/login/PhoneAndEmailFields";
 import UsernameField from "components/Pages/login/UsernameField";
 import { colors } from "colors";
 import styles from "scss/components/login.module.scss";
+import SEO from "components/Seo";
 
 type Structure = {
   nom: string;
@@ -349,6 +350,7 @@ const Login = () => {
   };
   return (
     <div className="app">
+      <SEO />
       <div className={styles.container}>
         <div
           style={{

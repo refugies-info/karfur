@@ -23,6 +23,7 @@ import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selector
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { UserStructure } from "types/interface";
 import styles from "scss/pages/annuaire-create.module.scss";
+import SEO from "components/Seo";
 
 
 const AnnuaireCreate = () => {
@@ -86,6 +87,7 @@ const AnnuaireCreate = () => {
 
   return (
     <div className={styles.container}>
+      <SEO />
       <div className={styles.left}>
         <div className={styles.header}>
           <div>

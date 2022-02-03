@@ -78,6 +78,7 @@ import { PdfCreateModal } from "components/Modals/PdfCreateModal/PdfCreateModal"
 import styled from "styled-components";
 import isInBrowser from "lib/isInBrowser";
 import styles from "scss/pages/dispositif.module.scss";
+import SEO from "components/Seo";
 
 moment.locale("fr");
 
@@ -1754,6 +1755,7 @@ export class Dispositif extends Component {
         }
         ref={this.newRef}
       >
+        <SEO />
         <Row className="main-row">
           {translating && (
             {/* <Col xl="4" lg="4" md="4" sm="4" xs="4" className="side-col">

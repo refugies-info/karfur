@@ -1,10 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import styles from "scss/pages/legal-pages.module.scss";
+import SEO from "components/Seo";
 
 const PolitiqueConfidentialite = () => {
   return (
     <div className={styles.legal_pages + " animated fadeIn texte-small"}>
+      <SEO />
       <h1>Politique de confidentialité</h1>
       <h2>Qui sommes-nous ?</h2>
       <p>
