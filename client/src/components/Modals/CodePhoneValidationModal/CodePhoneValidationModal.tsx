@@ -34,7 +34,7 @@ interface Props {
   code: string
   phone: string
   isLoading: boolean
-  error: string|undefined
+  error: string|undefined|null
   onChange: any
   onValidate: any
   toggle: any
