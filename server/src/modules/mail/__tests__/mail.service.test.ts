@@ -117,7 +117,8 @@ describe("sendOneDraftReminderMailService", () => {
       "username",
       "titre",
       "userId",
-      "dispositifId"
+      "dispositifId",
+      "first"
     );
     const templateName = "oneDraftReminder";
     const dynamicData = {
@@ -150,7 +151,7 @@ describe("sendMultipleDraftsReminderMailService", () => {
     jest.clearAllMocks();
   });
   it("should call send mail and add mail event", async () => {
-    await sendMultipleDraftsReminderMailService("email", "username", "userId");
+    await sendMultipleDraftsReminderMailService("email", "username", "userId", "first");
     const templateName = "multipleDraftsReminder";
     const dynamicData = {
       to: "email",

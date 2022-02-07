@@ -179,6 +179,11 @@ var dispositifSchema = new mongoose.Schema(
       unique: false,
       required: false,
     },
+    draftSecondReminderMailSentDate: {
+      type: Date,
+      unique: false,
+      required: false,
+    },
     lastReminderMailSentToUpdateContentDate: {
       type: Date,
       unique: false,
