@@ -6,7 +6,7 @@ import { createWrapper } from "next-redux-wrapper";
 
 const bindMiddleware = (middleware: any) => {
   if (process.env.NODE_ENV !== "production") {
-    const { composeWithDevTools } = require("redux-devtools-extension")
+    const { composeWithDevTools } = require("@redux-devtools/extension")
     return composeWithDevTools(applyMiddleware(...middleware))
   }
   return applyMiddleware(...middleware)

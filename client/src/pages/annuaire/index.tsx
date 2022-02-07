@@ -1,84 +1,31 @@
 import React, { useState, useEffect, useCallback } from "react";
-import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
 import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
+import { NextParsedUrlQuery } from "next/dist/server/request-meta";
 import { ObjectId } from "mongodb";
+import qs from "query-string";
+import { END } from "redux-saga";
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
 import { activeStructuresSelector } from "services/ActiveStructures/activeStructures.selector";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { setSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
-import { Event, initGA } from "lib/tracking";
+import { wrapper } from "services/configureStore";
 import { SimplifiedStructure } from "types/interface";
 import { NoResult } from "components/Pages/annuaire/index/NoResult";
 import { LetterSection } from "components/Pages/annuaire/index/LetterSection";
 import { Header } from "components/Pages/annuaire/index/Header";
-// import { history } from "services/configureStore";
-import qs from "query-string";
-// @ts-ignore
-import querySearch from "stringquery";
 import SEO from "components/Seo";
-
-declare const window: Window;
-
-const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: auto;
-  background: #e5e5e5;
-`;
-
-const LoadingContainer = styled.div`
-  margin-top: 24px;
-  display: flex;
-  flex-direction: row;
-  margin-left: 72px;
-`;
-const Content = styled.div`
-  display: flex;
-  flex-direction: row;
-  flew-wrap: wrap;
-  margin-bottom: ${(props) => (props.hasMarginBottom ? "24px" : "0px")};
-`;
-
-const LoadingCardContainer = styled.div`
-  background: #ffffff;
-  border-radius: 12px;
-  width: 198px;
-  height: 271px;
-  margin-right: 8px;
-  margin-left: 8px;
-  margin-bottom: 16px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const GreyContainer = styled.div`
-  border-radius: 12px;
-  width: 100%;
-  margin-bottom: 24px;
-`;
-
-const LoadingCard = () => (
-  <LoadingCardContainer>
-    <GreyContainer>
-      <Skeleton height={100} />
-    </GreyContainer>
-    <GreyContainer>
-      <Skeleton count={2} />
-    </GreyContainer>
-  </LoadingCardContainer>
-);
+// import { history } from "services/configureStore";
+import { Event, initGA } from "lib/tracking";
+import {
+  filterStructuresByType,
+  filterStructuresByKeword,
+  filterStructuresByLoc,
+} from "lib/filterStructures";
+import styles from "scss/pages/annuaire.module.scss";
 
 const Annuaire = (props: any) => {
-  const [filteredStructures, setFilteredStructures] = useState<
-    SimplifiedStructure[]
-  >([]);
   const [keyword, setKeyword] = useState("");
   const [typeSelected, setTypeSelected] = useState<string[]>([]);
   const [ville, setVille] = useState("");
@@ -87,16 +34,9 @@ const Annuaire = (props: any) => {
   const [isCityFocus, setIsCityFocus] = useState(false);
   const [isCitySelected, setIsCitySelected] = useState(false);
 
-  const structures = useSelector(activeStructuresSelector);
-  const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES)
-  );
-
-  const dispatch = useDispatch();
   const router = useRouter();
-  const { t } = useTranslation();
 
-  const resetAllFilter = () => {
+  const resetAllFilter = useCallback(() => {
     setIsCitySelected(false);
     setIsCityFocus(false);
     setDepNumber("");
@@ -104,9 +44,9 @@ const Annuaire = (props: any) => {
     setVille("");
     setTypeSelected([]);
     setKeyword("");
-  };
+  }, []);
 
-  const defineLettersClickable = (
+  const defineLettersClickable = useCallback((
     sortedStructureByAlpha: SimplifiedStructure[]
   ) => {
     let lettersClickable: string[] = [];
@@ -117,32 +57,20 @@ const Annuaire = (props: any) => {
       }
     });
     return lettersClickable;
-  };
+  }, []);
 
   useEffect(() => {
     initGA();
     Event("ANNUAIRE_VIEW", "VIEW", "label");
   }, []);
 
-  useEffect(() => {
-    const loadStructures = () => {
-      dispatch(setSelectedStructureActionCreator(null));
-      dispatch(fetchActiveStructuresActionCreator());
-    };
-    if (!structures.length) loadStructures();
-  }, [dispatch, structures.length]);
+  const structures = useSelector(activeStructuresSelector);
+  const initialFilteredStructures = (structures || []).filter(
+    (structure) => structure._id.toString() !== "5f69cb9c0aab6900460c0f3f"
+  );
+  const [filteredStructures, setFilteredStructures] = useState(initialFilteredStructures);
 
-  const resetSearch = useCallback(() => {
-    const filterStructures = structures
-      ? structures.filter(
-          (structure) => structure._id.toString() !== "5f69cb9c0aab6900460c0f3f"
-        )
-      : [];
-
-    setFilteredStructures(filterStructures);
-  }, [structures]);
-
-  const computeTypeFromUrl = (query: any) => {
+  const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
     let typeSelectedFromUrl: string[] = [];
     if (query.isAssociation) {
       typeSelectedFromUrl.push("Association");
@@ -197,131 +125,6 @@ const Annuaire = (props: any) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const filterStructures = useCallback(() => {
-    const filterStructuresByType = (arrayTofilter: SimplifiedStructure[]) => {
-      if (!typeSelected || typeSelected.length === 0) {
-        return arrayTofilter;
-      }
-      return arrayTofilter.filter((structure) => {
-        let hasType: boolean = false;
-
-        typeSelected.forEach((type) => {
-          if (
-            structure.structureTypes &&
-            structure.structureTypes.includes(type)
-          ) {
-            hasType = true;
-          }
-        });
-
-        return hasType;
-      });
-    };
-
-    const filterStructuresByKeword = (arrayTofilter: SimplifiedStructure[]) => {
-      let newArrayKeyword: SimplifiedStructure[] = [];
-      if (keyword.length > 0) {
-        if (arrayTofilter) {
-          arrayTofilter.forEach((structure) => {
-            if (
-              (structure.nom.toLowerCase().includes(keyword.toLowerCase()) ||
-                (structure.acronyme &&
-                  structure.acronyme
-                    .toLowerCase()
-                    .includes(keyword.toLowerCase()))) &&
-              newArrayKeyword &&
-              !newArrayKeyword.includes(structure)
-            ) {
-              newArrayKeyword.push(structure);
-            }
-          });
-        }
-      } else {
-        newArrayKeyword = arrayTofilter;
-      }
-      return newArrayKeyword;
-    };
-
-    const filterStructuresByLoc = (arrayTofilter: SimplifiedStructure[]) => {
-      let newArrayLoc: SimplifiedStructure[] = [];
-      if (isCitySelected) {
-        if (arrayTofilter) {
-          arrayTofilter.forEach((structure) => {
-            if (
-              structure.disposAssociesLocalisation?.includes("All") ||
-              (structure.departments?.includes("All") && newArrayLoc)
-            ) {
-              newArrayLoc.push(structure);
-            } else {
-              if (depNumber && structure.disposAssociesLocalisation) {
-                structure.disposAssociesLocalisation.forEach((el) => {
-                  if (
-                    el.substr(0, 2) === depNumber &&
-                    newArrayLoc &&
-                    !newArrayLoc.includes(structure)
-                  ) {
-                    newArrayLoc.push(structure);
-                  }
-                });
-                if (structure.departments) {
-                  structure.departments.forEach((el) => {
-                    if (
-                      el.substr(0, 2) === depNumber &&
-                      newArrayLoc &&
-                      !newArrayLoc.includes(structure)
-                    ) {
-                      newArrayLoc.push(structure);
-                    }
-                  });
-                }
-              } else if (depName && structure.disposAssociesLocalisation) {
-                structure.disposAssociesLocalisation.forEach((el) => {
-                  if (
-                    el.includes(depName) &&
-                    newArrayLoc &&
-                    !newArrayLoc.includes(structure)
-                  ) {
-                    newArrayLoc.push(structure);
-                  }
-                });
-                if (structure.departments) {
-                  structure.departments.forEach((el) => {
-                    if (
-                      el.includes(depName) &&
-                      newArrayLoc &&
-                      !newArrayLoc.includes(structure)
-                    ) {
-                      newArrayLoc.push(structure);
-                    }
-                  });
-                }
-              }
-            }
-          });
-        }
-      } else {
-        newArrayLoc = arrayTofilter;
-      }
-      return newArrayLoc;
-    };
-
-    const filterByType = filterStructuresByType(structures);
-    const filterByTypeAndLoc = filterStructuresByLoc(filterByType);
-    const filterByTypeAndLocAndKeyword =
-      filterStructuresByKeword(filterByTypeAndLoc);
-    const sortedStructureByAlpha = filterByTypeAndLocAndKeyword
-      ? filterByTypeAndLocAndKeyword.sort((a, b) =>
-        a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
-          ? -1
-          : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()
-            ? 1
-            : 0
-      )
-      : [];
-
-    setFilteredStructures(sortedStructureByAlpha);
-  }, [depName, depNumber, isCitySelected, keyword, structures, typeSelected]);
-
   useEffect(() => {
     const computeUrlFromState = (query: {
       depName?: string | undefined;
@@ -329,9 +132,7 @@ const Annuaire = (props: any) => {
       keyword?: string;
       ville?: string;
     }) => {
-      router.push({
-        search: qs.stringify(query),
-      });
+      router.push({ search: qs.stringify(query) });
     };
 
     let query: {
@@ -350,18 +151,10 @@ const Annuaire = (props: any) => {
       isCenter?: boolean;
     } = {};
 
-    if (depName !== "") {
-      query.depName = depName;
-    }
-    if (ville !== "") {
-      query.ville = ville;
-    }
-    if (depNumber) {
-      query.depNumber = depNumber;
-    }
-    if (keyword !== "") {
-      query.keyword = keyword;
-    }
+    if (depName !== "") query.depName = depName;
+    if (ville !== "") query.ville = ville;
+    if (depNumber) query.depNumber = depNumber;
+    if (keyword !== "") query.keyword = keyword;
     if (typeSelected && typeSelected.length) {
       if (typeSelected.includes("Association")) {
         query.isAssociation = true;
@@ -389,16 +182,30 @@ const Annuaire = (props: any) => {
       }
     }
     computeUrlFromState(query);
-    filterStructures();
+
+    // filter structures
+    const filterByType = filterStructuresByType(structures, typeSelected);
+    const filterByTypeAndLoc = filterStructuresByLoc(filterByType, isCitySelected, depNumber, depName);
+    const filterByTypeAndLocAndKeyword = filterStructuresByKeword(filterByTypeAndLoc, keyword);
+    const sortedStructureByAlpha = filterByTypeAndLocAndKeyword
+      ? filterByTypeAndLocAndKeyword.sort((a, b) =>
+        a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
+          ? -1
+          : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()
+            ? 1
+            : 0
+      )
+      : [];
+
+    setFilteredStructures(sortedStructureByAlpha);
 
   // Bug router: https://github.com/vercel/next.js/issues/18127#issuecomment-950907739
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [typeSelected, depName, depNumber, keyword, isCitySelected, filterStructures, ville]);
+  }, [typeSelected, depName, depNumber, keyword, isCitySelected, ville]);
 
-  useEffect(() => {
-    resetSearch();
-    filterStructures();
-  }, [structures, resetSearch, filterStructures]);
+  const resetSearch = useCallback(() => {
+    setFilteredStructures(initialFilteredStructures);
+  }, [initialFilteredStructures]);
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
   const onStructureCardClick = (id: ObjectId) =>
@@ -409,7 +216,7 @@ const Annuaire = (props: any) => {
   const lettersClickable = defineLettersClickable(filteredStructures);
 
   return (
-    <MainContainer>
+    <div className={styles.container}>
       <SEO />
       <Header
         resetSearch={resetSearch}
@@ -431,25 +238,7 @@ const Annuaire = (props: any) => {
         setIsCitySelected={setIsCitySelected}
         lettersClickable={lettersClickable}
       />
-
-      {isLoading ? (
-        <LoadingContainer>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              flexWrap: "wrap",
-            }}
-          >
-            {new Array(7).fill("a").map((_, index) => (
-              <LoadingCard key={index} />
-            ))}
-          </div>
-        </LoadingContainer>
-      ) : (
-        <Content
-          hasMarginBottom={true}
-        >
+        <div className={styles.content}>
           {filteredStructures.length > 0 ? (
             <LetterSection
               onStructureCardClick={onStructureCardClick}
@@ -458,10 +247,21 @@ const Annuaire = (props: any) => {
           ) : (
             <NoResult resetAllFilter={resetAllFilter} t={props.t} />
           )}
-        </Content>
-      )}
-    </MainContainer>
+        </div>
+    </div>
   );
 };
+
+export const getStaticProps = wrapper.getStaticProps(store => async () => {
+  if (store.getState().activeStructures.length === 0) {
+    store.dispatch(fetchActiveStructuresActionCreator());
+    store.dispatch(END);
+    await store.sagaTask?.toPromise();
+  }
+  return {
+    props: {},
+    revalidate: 30
+  };
+});
 
 export default Annuaire;
