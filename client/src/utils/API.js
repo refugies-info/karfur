@@ -57,11 +57,16 @@ let cancel;
 // export {source};
 
 const getHeaders = () => {
-  return {
+  const headers = {
     "Content-Type": "application/json",
-    "x-access-token": localStorage.getItem("token") || undefined,
     "site-secret": process.env.NEXT_PUBLIC_REACT_APP_SITE_SECRET,
   };
+
+  const token = isInBrowser() ?
+    localStorage.getItem("token") : undefined;
+  if (token) headers["x-access-token"] = token;
+
+  return headers;
 }
 
 const API = {

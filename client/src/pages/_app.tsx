@@ -1,9 +1,8 @@
 import React, { ReactElement, ReactNode } from "react";
-import { Provider } from "react-redux"
-import type { AppProps } from "next/app"
-import Script from "next/script"
-import type { NextPage } from "next"
-import { store } from "services/configureStore";
+import type { AppProps } from "next/app";
+import Script from "next/script";
+import type { NextPage } from "next";
+import { wrapper } from "services/configureStore";
 import Layout from "components/Layout/Layout";
 import isInBrowser from "lib/isInBrowser";
 import "scss/index.scss";
@@ -32,13 +31,13 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   }
 
   return (
-    <Provider store={store}>
+    <>
       <Script src="https://client.crisp.chat/l.js" strategy="lazyOnload" />
       <Script src="//static.axept.io/sdk.js" strategy="lazyOnload" />
 
       {getLayout(<Component {...pageProps} />)}
-    </Provider>
+    </>
   )
 }
 
-export default App
+export default wrapper.withRedux(App);

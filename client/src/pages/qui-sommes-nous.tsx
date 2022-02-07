@@ -10,6 +10,7 @@ import { Partners } from "components/Pages/qui-sommes-nous/Partners";
 import { assetsOnServer } from "assets/assetsOnServer";
 import type { Member } from "data/members";
 import SEO from "components/Seo";
+import { NextPage } from "next";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -124,7 +125,7 @@ const PartnersContainer = styled.div`
   padding-right: 32px;
 `;
 
-const QuiSommesNous = () => {
+const QuiSommesNous: NextPage = () => {
   const [sideVisible, setSideVisible] = useState(false);
   const [membre, setMembre] = useState<Member | null>(null);
   const [isToolbarVisible, setIsToolbarVisible] = useState(true);

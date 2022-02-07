@@ -1,4 +1,5 @@
 module.exports = {
+  reactStrictMode: true, // Fix for https://github.com/kirill-konshin/next-redux-wrapper/issues/422
   images: {
     domains: [
       "storage.googleapis.com",

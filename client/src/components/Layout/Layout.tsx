@@ -19,6 +19,7 @@ import { fetchUserActionCreator } from "services/User/user.actions";
 import { ttsActiveSelector } from "services/Tts/tts.selector";
 import { showLangModalSelector, allLanguesSelector } from "services/Langue/langue.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 
 import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
 import MobileAppModal from "components/Modals/MobileAppModal/MobileAppModal";
@@ -40,6 +41,7 @@ const Layout = (props: Props) => {
   const showLangModal = useSelector(showLangModalSelector);
   const langues = useSelector(allLanguesSelector);
   const isLanguagesLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_LANGUES));
+  const dispositifs = useSelector(activeDispositifsSelector);
 
 
   const switchToLanguage = useCallback((lng: string) => {
@@ -58,8 +60,12 @@ const Layout = (props: Props) => {
 
   useEffect(() => {
     dispatch(fetchUserActionCreator());
-    dispatch(fetchActiveDispositifsActionsCreator());
-    dispatch(fetchLanguesActionCreator());
+    if (dispositifs.length === 0) {
+      dispatch(fetchActiveDispositifsActionsCreator());
+    }
+    if (langues.length === 0) {
+      dispatch(fetchLanguesActionCreator());
+    }
 
     const storedLanguei18nCode = localStorage.getItem("languei18nCode");
     if (storedLanguei18nCode && storedLanguei18nCode !== "fr") {

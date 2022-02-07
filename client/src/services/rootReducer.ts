@@ -53,6 +53,8 @@ import {
   dispositifsWithTranslationsStatusReducer,
 } from "./DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.reducer";
 import { needsReducer, NeedsState } from "./Needs/needs.reducer";
+import { HYDRATE } from "next-redux-wrapper"
+import { Reducer } from "typesafe-actions";
 
 export interface RootState {
   user: UserState;
@@ -73,24 +75,43 @@ export interface RootState {
   dispositifsWithTranslations: DispositifsWithTranslationsStatusState;
   needs: NeedsState;
 }
-export const appReducer = () =>
-  combineReducers({
-    // router: connectRouter(history),
-    langue: langueReducer,
-    activeDispositifs: activeDispositifsReducer,
-    user: userReducer,
-    tts: ttsReducer,
-    userStructure: structureReducer,
-    selectedDispositif: selectedDispositifReducer,
-    loadingStatus: loadingStatusReducer,
-    translation: translationReducer,
-    activeStructures: activeStructuresReducer,
-    selectedStructure: selectedStructureReducer,
-    allDispositifs: allDispositifsReducer,
-    allStructures: allStructuresReducer,
-    users: allUsersReducer,
-    userFavorites: userFavoritesReducer,
-    userContributions: userContributionsReducer,
-    dispositifsWithTranslations: dispositifsWithTranslationsStatusReducer,
-    needs: needsReducer,
-  });
+
+const combinedReducer = combineReducers({
+  // router: connectRouter(history),
+  langue: langueReducer,
+  activeDispositifs: activeDispositifsReducer,
+  user: userReducer,
+  tts: ttsReducer,
+  userStructure: structureReducer,
+  selectedDispositif: selectedDispositifReducer,
+  loadingStatus: loadingStatusReducer,
+  translation: translationReducer,
+  activeStructures: activeStructuresReducer,
+  selectedStructure: selectedStructureReducer,
+  allDispositifs: allDispositifsReducer,
+  allStructures: allStructuresReducer,
+  users: allUsersReducer,
+  userFavorites: userFavoritesReducer,
+  userContributions: userContributionsReducer,
+  dispositifsWithTranslations: dispositifsWithTranslationsStatusReducer,
+  needs: needsReducer,
+});
+
+export const appReducer: Reducer<any, any> = (state, action) => {
+  if (action.type === HYDRATE) {
+    const nextState = {
+      ...state, // use previous state
+      ...action.payload, // apply delta from hydration
+    };
+
+    // preserve on client side navigation
+    if (state.activeDispositifs.length > 0) {
+      nextState.activeDispositifs = state.activeDispositifs;
+    }
+    if (state.activeStructures.length > 0) {
+      nextState.activeStructures = state.activeStructures;
+    }
+    return nextState;
+  }
+  return combinedReducer(state, action);
+};

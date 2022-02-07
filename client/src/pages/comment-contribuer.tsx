@@ -24,6 +24,9 @@ import gif from "assets/comment-contribuer/GIF-corriger.gif";
 import Nour from "assets/qui-sommes-nous/Nour-big.png";
 import styles from "scss/pages/comment-contribuer.module.scss";
 import SEO from "components/Seo";
+import { wrapper } from "services/configureStore";
+import { END } from "redux-saga";
+import { fetchLanguesActionCreator } from "services/Langue/langue.actions";
 
 
 const CommentContribuer = (props: any) => {
@@ -456,5 +459,17 @@ const CommentContribuer = (props: any) => {
     </div>
   )
 };
+
+export const getStaticProps = wrapper.getStaticProps(store => async () => {
+  if (store.getState().langue.langues.length === 0) {
+    store.dispatch(fetchLanguesActionCreator());
+    store.dispatch(END);
+    await store.sagaTask?.toPromise();
+  }
+  return {
+    props: {},
+    revalidate: 60
+  };
+});
 
 export default CommentContribuer;
