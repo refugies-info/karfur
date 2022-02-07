@@ -274,7 +274,7 @@ export const UserProfileComponent = (props: Props) => {
   const [codePhoneModalVisible, setCodePhoneModalVisible] = useState(false);
   // show modal to validate phone
   const onPhoneModificationValidate = () => {
-    const regex = /^(?:0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+    const regex = /^(?:0|\+33 ?|0033 ?)([1-9] ?(?:[0-9] ?){8})$/;
     const isPhone = phone ? !!phone.match(regex) : false;
     if (!isPhone) {
       setNotPhoneError(true);

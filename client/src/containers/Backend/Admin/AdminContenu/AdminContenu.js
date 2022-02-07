@@ -252,6 +252,11 @@ export const AdminContenu = () => {
   const toggleStructureDetailsModal = () =>
     setShowStructureDetailsModal(!showStructureDetailsModal);
 
+  const setSelectedContentIdAndToggleModal = (elementId) => {
+    const element = dispositifs.find(d => d._id && d._id.toString() === elementId);
+    if (element) setSelectedDispositifAndToggleModal(element ? element : null);
+  }
+
   const setSelectedStructureIdAndToggleModal = (element) => {
     setSelectedStructureId(element ? element._id : null);
     toggleStructureDetailsModal();
@@ -589,6 +594,7 @@ export const AdminContenu = () => {
           selectedStructureId={selectedStructureId}
           toggleRespoModal={() => setSelectFirstRespoModal(true)}
           setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
+          setSelectedContentIdAndToggleModal={setSelectedContentIdAndToggleModal}
         />
       )}
       {selectedStructureId && (
