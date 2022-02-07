@@ -12,7 +12,6 @@ import styles from "./LeftAnnuaireDetail.module.scss";
 
 interface Props {
   structure: Structure | null;
-  leftPartHeight: number;
   isLoading: boolean;
 }
 

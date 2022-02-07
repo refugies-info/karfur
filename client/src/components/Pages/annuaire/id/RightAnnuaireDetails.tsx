@@ -15,7 +15,6 @@ const BottomContainer = styled.div`
 `;
 
 interface Props {
-  leftPartHeight: number;
   dispositifsAssocies: ObjectId[] | IDispositif[];
 }
 

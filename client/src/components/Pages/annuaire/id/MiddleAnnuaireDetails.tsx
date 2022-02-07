@@ -15,9 +15,7 @@ import FButton from "components/FigmaUI/FButton/FButton";
 
 interface Props {
   structure: Structure | null;
-  leftPartHeight: number;
   isLoading: boolean;
-
   isMember: boolean;
 }
 
@@ -218,7 +216,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
 
   if (!props.isLoading && structure) {
     return (
-      <MiddleContainer height={props.leftPartHeight}>
+      <MiddleContainer>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <TitleContainer>
             {!structure.acronyme && <Title>{structure.nom}</Title>}
@@ -410,7 +408,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
   }
 
   return (
-    <MiddleContainer height={props.leftPartHeight}>
+    <MiddleContainer>
       <Skeleton width={600} height={40} />
       <div style={{ marginTop: "16px" }}>
         <Skeleton width={600} count={3} />

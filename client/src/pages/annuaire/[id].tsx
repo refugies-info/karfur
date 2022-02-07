@@ -14,6 +14,11 @@ import { RightAnnuaireDetails } from "components/Pages/annuaire/id/RightAnnuaire
 import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
 import { colors } from "colors";
 import SEO from "components/Seo";
+import { wrapper } from "services/configureStore";
+import { END } from "redux-saga";
+import { Context } from "next-redux-wrapper";
+import { NextPageContext } from "next";
+import { ObjectId } from "mongodb";
 
 const Content = styled.div`
   display: flex;
@@ -29,49 +34,32 @@ const MainContainer = styled.div`
   background-color: ${colors.gris};
 `;
 
-function useWindowSize() {
-  const [size, setSize] = useState(0);
-
-  useLayoutEffect(() => {
-    function updateSize() {
-      setSize(window.innerHeight);
-    }
-    window.addEventListener("resize", updateSize);
-    updateSize();
-    return () => window.removeEventListener("resize", updateSize);
-  }, []);
-  return size;
-}
-
 const AnnuaireDetail = () => {
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_STRUCTURE)
   );
-
   const structure = useSelector(selectedStructureSelector);
-
   const user = useSelector(userSelector);
 
-  const height = useWindowSize();
   const dispatch = useDispatch();
   const router = useRouter()
   const structureId = router.query.id as string;
 
   const locale = i18n.language;
-  const leftPartHeight = height - 150;
+  const [currentLoadedLocale, setCurrentLoadedLocale] = useState(locale);
 
+  // Reload structure if locale change
   useEffect(() => {
-    const loadStructure = () => {
+    if (structureId && currentLoadedLocale !== locale) {
       dispatch(
-        //@ts-ignore
-        fetchSelectedStructureActionCreator({ id: structureId, locale })
+        fetchSelectedStructureActionCreator({
+          id: structureId as string,
+          locale
+        })
       );
-    };
-
-    if (structureId) {
-      loadStructure();
+      setCurrentLoadedLocale(locale);
     }
-  }, [dispatch, structureId, locale]);
+  }, [dispatch, locale, currentLoadedLocale, structureId]);
 
   const isMember =
     structure && structure.membres && structure.membres.find((el: any) => el._id === user.userId)
@@ -84,19 +72,16 @@ const AnnuaireDetail = () => {
       <Content className="annuaire-detail">
         <LeftAnnuaireDetail
           structure={structure}
-          leftPartHeight={leftPartHeight}
           isLoading={isLoading}
         />
 
         <MiddleAnnuaireDetail
           structure={structure}
-          leftPartHeight={leftPartHeight}
           isLoading={isLoading}
           isMember={isMember}
         />
         {!isLoading && structure &&
           <RightAnnuaireDetails
-            leftPartHeight={leftPartHeight}
             dispositifsAssocies={structure && structure.dispositifsAssocies}
           />
         }
@@ -104,5 +89,18 @@ const AnnuaireDetail = () => {
     </MainContainer>
   );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps(store => async ({query}) => {
+  if (query.id) {
+    const action = fetchSelectedStructureActionCreator({
+      id: query.id as string,
+      locale: "fr" // TODO: fix language here
+    });
+    store.dispatch(action);
+    store.dispatch(END);
+    await store.sagaTask?.toPromise();
+  }
+  return {props: {}}
+});
 
 export default AnnuaireDetail;
