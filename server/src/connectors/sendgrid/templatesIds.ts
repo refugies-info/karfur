@@ -2,6 +2,7 @@ declare type templateIds = {
   newUserWelcome: string;
   oneDraftReminder: string;
   secondOneDraftReminder: string;
+  secondMultipleDraftReminder: string;
   multipleDraftsReminder: string;
   publishedFicheToCreator: string;
   reviewFiche: string;
@@ -32,4 +33,5 @@ export const templatesIds: templateIds = {
   changePhoneNumber: "d-98ca8ec76a8f495aac751d2a64a0300c",
   newResponsable: "d-e31d1a56b06f44bb90d3dd000a4a962f",
   secondOneDraftReminder: "d-7fc299960fca4d9db6b78b494ce84689",
+  secondMultipleDraftReminder: "d-d0cd2b645a194866980a3288ddfc4b27",
 };

@@ -216,7 +216,7 @@ export const sendMultipleDraftsReminderMailService = async (
         pseudo: username,
       },
     };
-    const templateName = reminder === "first" ? "multipleDraftsReminder" : "multipleDraftsReminder"; // TODO : change template
+    const templateName = reminder === "first" ? "multipleDraftsReminder" : "secondMultipleDraftReminder";
     sendMail(templateName, dynamicData);
     await addMailEvent({ templateName, username, email, userId });
     return;
