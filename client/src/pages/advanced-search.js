@@ -32,6 +32,9 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { activatedLanguages } from "data/activatedLanguages";
 import { colors } from "colors";
 import SEO from "components/Seo";
+import { wrapper } from "services/configureStore";
+import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
+import { END } from "redux-saga";
 
 const ThemeContainer = styled.div`
   width: 100%;
@@ -2111,6 +2114,12 @@ const mapSizesToProps = ({ width }) => ({
   isSmallDesktop: width >= 1100 && width < 1400,
   isDesktop: width >= 1400 && width < 1565,
   isBigDesktop: width >= 1565,
+});
+
+export const getServerSideProps = wrapper.getServerSideProps(store => async () => {
+  store.dispatch(fetchActiveDispositifsActionsCreator());
+  store.dispatch(END);
+  await store.sagaTask?.toPromise();
 });
 
 export default withRouter(
