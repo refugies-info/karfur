@@ -5,7 +5,7 @@ import createSagaMiddleware from "redux-saga";
 import { createWrapper } from "next-redux-wrapper";
 
 const bindMiddleware = (middleware: any) => {
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") {
     const { composeWithDevTools } = require("@redux-devtools/extension")
     return composeWithDevTools(applyMiddleware(...middleware))
   }
