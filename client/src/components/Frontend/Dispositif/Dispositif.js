@@ -41,8 +41,8 @@ import { LanguageToReadModal } from "components/Pages/dispositif/LanguageToReadM
 import { LeftSideDispositif } from "components/Frontend/Dispositif/LeftSideDispositif";
 import { BandeauEdition } from "components/Frontend/Dispositif/BandeauEdition";
 import { TopRightHeader } from "components/Frontend/Dispositif/TopRightHeader";
-import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
+import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import ContribCaroussel from "components/Pages/dispositif/ContribCaroussel/ContribCaroussel";
 import SideTrad from "components/Pages/dispositif/SideTrad/SideTrad";
 import ExpertSideTrad from "components/Pages/dispositif/SideTrad/ExpertSideTrad";
@@ -71,7 +71,6 @@ import {
 import { EnBrefBanner } from "components/Frontend/Dispositif/EnBrefBanner";
 import { FeedbackFooter } from "components/Frontend/Dispositif/FeedbackFooter";
 import { initGA, Event } from "lib/tracking";
-import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
 import { logger } from "logger";
 import { isMobile } from "react-device-detect";
 import { PdfCreateModal } from "components/Modals/PdfCreateModal/PdfCreateModal";
@@ -208,7 +207,6 @@ export class Dispositif extends Component {
     }); */
     this._isMounted = true;
     this.props.fetchUser();
-    this.props.fetchActiveStructures();
     this.checkUserFetchedAndInitialize();
     // window.scrollTo(0, 0);
     // this._initializeDispositif(this.props);
@@ -260,12 +258,12 @@ export class Dispositif extends Component {
     // if an itemId is present : initialize dispositif lecture or dispositif modification
     // if no itemId and user logged in : initialize new dispo creation
     // if no itemId and user not logged in : redirect to login page
-    if (itemId) {
+    if (itemId) { // ID: create dispositif
       // work in progress : store dispo in redux and in state. the goal is not to have dispo in state anymore
-      this.props.fetchSelectedDispositif({
+/*       this.props.fetchSelectedDispositif({
         selectedDispositifId: itemId,
         locale: props.languei18nCode,
-      });
+      }); */
 
       return API.get_dispositif({
         query: { _id: itemId },
@@ -463,7 +461,7 @@ export class Dispositif extends Component {
           this._isMounted = false;
           return this.props.router.push("/");
         });
-    } else if (API.isAuth()) {
+    } else if (API.isAuth()) { // NO ID: create dispositif
       // initialize the creation of a new dispositif if user is logged in
       this.initializeTimer(3 * 60 * 1000, () =>
         this.valider_dispositif("Brouillon", true)
@@ -507,7 +505,7 @@ export class Dispositif extends Component {
     } else {
       this.props.router.push({
         pathname: "/login",
-        state: { redirectTo: "/dispositif" },
+        // state: { redirectTo: "/dispositif" }, // TODO : location.state
       });
     }
     // window.scrollTo(0, 0);
@@ -2423,6 +2421,7 @@ const mapStateToProps = (state) => {
     admin: state.user.admin,
     userFetched: state.user.userFetched,
     langues: state.langue.langues,
+    activeStructures: state.activeStructures
   };
 };
 
@@ -2432,7 +2431,6 @@ const mapDispatchToProps = {
   fetchSelectedDispositif: fetchSelectedDispositifActionCreator,
   updateUiArray: updateUiArrayActionCreator,
   updateSelectedDispositif: updateSelectedDispositifActionCreator,
-  fetchActiveStructures: fetchActiveStructuresActionCreator,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps, null, {

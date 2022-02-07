@@ -24,6 +24,7 @@ import SearchBar from "components/UI/SearchBar/SearchBar";
 import { structure_definie } from "assets/figma/index";
 import CreationContent from "../CreationContent/CreationContent";
 import { updateUserActionCreator } from "services/User/user.actions";
+import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
 import { colors } from "colors";
 import i18n from "i18n";
 import { SponsorSection } from "./SponsorSection/SponsorSection";
@@ -220,6 +221,12 @@ class Sponsors extends Component {
     activeIndex: 0,
     animating: false,
   };
+
+  componentDidMount() {
+    if (this.props.structures.length === 0) {
+      this.props.fetchActiveStructuresActionCreator();
+    }
+  }
 
   next = (totalSponsor) => {
     if (this.state.animating) return;
@@ -1275,6 +1282,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   updateUserActionCreator,
+  fetchActiveStructuresActionCreator,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
