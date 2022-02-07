@@ -253,11 +253,10 @@ const Annuaire = (props: any) => {
 };
 
 export const getStaticProps = wrapper.getStaticProps(store => async () => {
-  if (store.getState().activeStructures.length === 0) {
-    store.dispatch(fetchActiveStructuresActionCreator());
-    store.dispatch(END);
-    await store.sagaTask?.toPromise();
-  }
+  store.dispatch(fetchActiveStructuresActionCreator());
+  store.dispatch(END);
+  await store.sagaTask?.toPromise();
+
   return {
     props: {},
     revalidate: 30

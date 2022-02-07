@@ -99,17 +99,29 @@ const combinedReducer = combineReducers({
 
 export const appReducer: Reducer<any, any> = (state, action) => {
   if (action.type === HYDRATE) {
+    /* keep only specific updates to avoid side effects
     const nextState = {
       ...state, // use previous state
       ...action.payload, // apply delta from hydration
-    };
+    }; */
 
-    // preserve on client side navigation
-    if (state.activeDispositifs.length > 0) {
-      nextState.activeDispositifs = state.activeDispositifs;
+    const nextState = { ...state };
+
+    // add to store if not already in
+    if (action.payload.activeDispositifs.length > 0 && nextState.activeDispositifs.length === 0) {
+      nextState.activeDispositifs = action.payload.activeDispositifs;
     }
-    if (state.activeStructures.length > 0) {
-      nextState.activeStructures = state.activeStructures;
+    if (action.payload.activeStructures.length > 0 && nextState.activeStructures.length === 0) {
+      nextState.activeStructures = action.payload.activeStructures;
+    }
+    if (action.payload.selectedDispositif) {
+      nextState.selectedDispositif = action.payload.selectedDispositif;
+    }
+    if (action.payload.selectedStructure) {
+      nextState.selectedStructure = action.payload.selectedStructure;
+    }
+    if (action.payload.langue.langues.length > 0 && nextState.langue.langues.length === 0) {
+      nextState.langue = action.payload.langue;
     }
     return nextState;
   }

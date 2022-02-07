@@ -428,11 +428,10 @@ const CommentContribuer = (props: Props) => {
 };
 
 export const getStaticProps = wrapper.getStaticProps(store => async () => {
-  if (store.getState().langue.langues.length === 0) {
-    store.dispatch(fetchLanguesActionCreator());
-    store.dispatch(END);
-    await store.sagaTask?.toPromise();
-  }
+  store.dispatch(fetchLanguesActionCreator());
+  store.dispatch(END);
+  await store.sagaTask?.toPromise();
+
   let nbExperts = 0;
   let nbTraductors = 0;
   try {
