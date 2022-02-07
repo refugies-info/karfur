@@ -56,6 +56,10 @@
 .row {
   display: flex;
   flex-direction: row;
+
+  .col {
+    margin-right: 48px;
+  }
 }
 .column {
   display: flex;
@@ -96,6 +100,19 @@
     flex-direction: column;
     margin-top: 80px;
     width: 380px;
+  }
+  .title {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 28px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+  .description {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 32px;
   }
 }
 

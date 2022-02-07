@@ -28,11 +28,12 @@ import { wrapper } from "services/configureStore";
 import { END } from "redux-saga";
 import { fetchLanguesActionCreator } from "services/Langue/langue.actions";
 
+interface Props {
+  nbExperts: number
+  nbTraductors: number
+}
 
-const CommentContribuer = (props: any) => {
-  const [showModals, setShowModals] = useState({ checkDemarche: false });
-  const [nbTraductors, setNbTraductors] = useState(0);
-  const [nbExperts, setNbExperts] = useState(0);
+const CommentContribuer = (props: Props) => {
   const [showCompleteProfilModal, setShowCompleteProfilModal] = useState(false);
   const [typeModal, setTypeModal] = useState("");
 
@@ -40,21 +41,9 @@ const CommentContribuer = (props: any) => {
   const langues = useSelector(allLanguesSelector);
   const user = useSelector(userSelector);
 
-  useEffect(() => {
-    API.getFiguresOnUsers().then((data) => {
-      setNbExperts(data.data.data.nbExperts);
-      setNbTraductors(data.data.data.nbTraductors);
-    });
-    // window.scrollTo(0, 0);
-  }, []);
-
   const toggleCompleteProfilModal = (type = "") => {
     setShowCompleteProfilModal(!showCompleteProfilModal);
     setTypeModal(type);
-  };
-
-  const toggleModal = (show: boolean, name: string) => {
-    setShowModals({ ...showModals, [name]: show });
   };
 
   const getActiveLangues = () => {
@@ -73,7 +62,10 @@ const CommentContribuer = (props: any) => {
           {t("CommentContribuer.Comment contribuer", "Comment contribuer ?")}
         </h1>
         <div className={styles.row}>
-          <div style={{ marginRight: isRTL ? "0px" : "48px" }}>
+          <div
+            className={styles.col}
+            style={isRTL ? { marginRight: 0 } : {}}
+          >
             <a href="#ecrire-card">
               <HeaderCard
                 title={t("CommentContribuer.écrire", "écrire")}
@@ -82,7 +74,7 @@ const CommentContribuer = (props: any) => {
               />
             </a>
           </div>
-          <div style={{ marginRight: "48px" }}>
+          <div className={styles.col}>
             <a href="#traduire-card">
               <HeaderCard
                 title={t("CommentContribuer.traduire", "traduire")}
@@ -91,7 +83,7 @@ const CommentContribuer = (props: any) => {
             </a>
           </div>
           <a href="#corriger">
-            <div style={{ marginRight: "48px" }}>
+            <div className={styles.col}>
               <HeaderCard
                 title={t("CommentContribuer.corriger", "corriger")}
                 iconName="done-all-outline"
@@ -99,7 +91,10 @@ const CommentContribuer = (props: any) => {
               />
             </div>
           </a>
-          <div style={{ marginRight: isRTL ? "48px" : "0px" }}>
+          <div
+            className={styles.col}
+            style={!isRTL ? { marginRight: 0 } : {}}
+          >
             <a href="#deployer-card">
               <HeaderCard
                 title={t("CommentContribuer.déployer", "déployer")}
@@ -161,7 +156,7 @@ const CommentContribuer = (props: any) => {
             <div className={styles.row}>
               <Link href="/backend/user-translation" passHref>
                 <NumberTraduction
-                  amount={nbTraductors}
+                  amount={props.nbTraductors}
                   text={t(
                     "CommentContribuer.traducteurs actifs",
                     "traducteurs actifs"
@@ -172,7 +167,7 @@ const CommentContribuer = (props: any) => {
               </Link>
               <Link href="/backend/user-translation" passHref>
                 <NumberTraduction
-                  amount={nbExperts}
+                  amount={props.nbExperts}
                   text={t(
                     "CommentContribuer.experts en traduction",
                     "experts en traduction"
@@ -347,25 +342,10 @@ const CommentContribuer = (props: any) => {
               size="xlarge"
             />
           </div>
-          <div
-            style={{
-              fontWeight: "bold",
-              fontSize: "22px",
-              lineHeight: "28px",
-              marginTop: "16px",
-              marginBottom: "16px",
-            }}
-          >
+          <div className={styles.title}>
             {t("CommentContribuer.Commentaires ciblés", "Commentaires ciblés")}
           </div>
-          <div
-            style={{
-              fontWeight: "normal",
-              fontSize: "16px",
-              lineHeight: "20px",
-              marginBottom: "32px",
-            }}
-          >
+          <div className={styles.description}>
             {t(
               "CommentContribuer.Commentaires ciblés explications",
               "Un paragraphe est erroné ? Réagissez directement au niveau du paragraphe. Pas besoin de compte. Cherchez l’icône ci-dessus en passant votre souris sur le paragraphe à corriger."
@@ -375,28 +355,15 @@ const CommentContribuer = (props: any) => {
             <EVAIcon name="edit-outline" fill="#828282" size="xlarge" />
           </div>
           <div
-            style={{
-              fontWeight: "bold",
-              fontSize: "22px",
-              lineHeight: "28px",
-              marginTop: "16px",
-              marginBottom: "16px",
-              color: "#828282",
-            }}
+            className={styles.title}
+            style={{ color: "#828282" }}
           >
             {t(
               "CommentContribuer.Suggestion",
               "Suggestion de modification (prochainement)"
             )}
           </div>
-          <div
-            style={{
-              fontWeight: "normal",
-              fontSize: "16px",
-              lineHeight: "20px",
-              marginBottom: "32px",
-            }}
-          >
+          <div className={styles.description}>
             {t(
               "CommentContribuer.Suggestion explications",
               "Proposez une nouvelle formulation d’un paragraphe pour faciliter la tâche des responsables de la fiche. Les fiches seront ainsi écrites à plusieurs mains !"
@@ -466,8 +433,18 @@ export const getStaticProps = wrapper.getStaticProps(store => async () => {
     store.dispatch(END);
     await store.sagaTask?.toPromise();
   }
+  let nbExperts = 0;
+  let nbTraductors = 0;
+  try {
+    const usersStats = await API.getFiguresOnUsers();
+    nbExperts = usersStats.data.data.nbExperts;
+    nbTraductors = usersStats.data.data.nbTraductors;
+  } catch(e) {}
   return {
-    props: {},
+    props: {
+      nbExperts,
+      nbTraductors
+    },
     revalidate: 60
   };
 });
