@@ -81,6 +81,8 @@ export const selectedDispositifReducer = createReducer<
         }),
   }),
   //@ts-ignore
+  SET_UI_ARRAY: (state, action) => ({...state, uiArray: action.payload }),
+  //@ts-ignore
   UPDATE_SELECTED_DISPOSITIF: (state, action) =>
     ({ ...state, ...action.payload }),
   //@ts-ignore

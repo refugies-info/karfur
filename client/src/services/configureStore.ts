@@ -21,7 +21,7 @@ export const makeStore = () => {
   return store
 }
 
-export const wrapper = createWrapper<Store<RootState>>(makeStore, { debug: true })
+export const wrapper = createWrapper<Store<RootState>>(makeStore, { debug: false })
 
 /*
 import { createBrowserHistory } from "history";

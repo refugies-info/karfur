@@ -31,6 +31,8 @@ import i18n from "i18n";
 import styles from "./EtapeParagraphe.module.scss";
 import { DispositifContent, Tag, UiObject } from "types/interface";
 import { demarcheSteps, Option, ShortContent } from "data/dispositif";
+import { EditorState } from "draft-js";
+import { UiElement } from "services/SelectedDispositif/selectedDispositif.reducer";
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>
@@ -93,16 +95,15 @@ interface Props {
     variante: string,
     option?: boolean
   ) => void;
-  handleContentClick: () => void;
+  handleContentClick: (key: number, editable: boolean, subkey?: number | undefined) => void;
   handleMenuChange: (ev: any, value?: any) => any
-  onEditorStateChange: () => void;
+  onEditorStateChange: (editorState: EditorState, key: number, subkey?: number | null) => void;
   addItem: (key: any, type?: string, subkey?: string | null) => void;
   toggleModal: (show: boolean, name: string) => void
-  sideView: boolean;
   removeItem: any;
   mainTag: Tag;
   typeContenu: "dispositif" | "demarche";
-  uiArray: UiObject[];
+  uiArray: UiElement[];
   disableEdit: boolean;
   upcoming: () => void;
   content: ShortContent;
@@ -266,18 +267,18 @@ const EtapeParagraphe = (props: Props) => {
     uiArray,
     updateUIArray,
     disableEdit,
-    sideView,
   } = props;
 
   const safeUiArray = (key: number, subkey: number, node: string) => {
-    return (
-      uiArray[key] &&
-      uiArray[key].children &&
-      uiArray[key].children.length > subkey &&
-      uiArray[key].children[subkey] &&
-      uiArray[key].children[subkey][node]
-    );
-  };
+    const children = props.uiArray[key].children;
+    if (children === undefined) return false;
+    return props.uiArray[key] &&
+    children &&
+    children.length > subkey &&
+    children[subkey] &&
+    //@ts-ignore
+    children[subkey][node];
+  }
 
   const isAccordeonOpen = !!safeUiArray(keyValue, subkey, "accordion");
   const darkColor = props.mainTag?.darkColor || colors.darkColor;
@@ -913,7 +914,7 @@ const EtapeParagraphe = (props: Props) => {
             </FButton>
           )}
         </Col>
-        {!sideView && disableEdit && !isMobile && (
+        {disableEdit && !isMobile && (
           <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
             <QuickToolbar
               show={safeUiArray(keyValue, subkey, "isHover")}

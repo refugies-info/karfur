@@ -622,45 +622,6 @@ $imgHeight: 350px;
     @include media-max("lg-limit") {
       width: 116%;
     }
-
-    .ecran-protection {
-      position: absolute;
-      height: calc(100%);
-      width: calc(100%);
-      top: 0;
-      left: 0;
-      padding: 0;
-      z-index: 2;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      &:hover {
-        opacity: 0.9;
-        transition: opacity 0.5s;
-      }
-      .content-wrapper {
-        position: relative;
-        width: 80%;
-        max-width: 700px;
-        text-align: center;
-        background: #b71540;
-        border: 1px dashed #ffffff;
-        box-sizing: border-box;
-        border-radius: 12px;
-        opacity: 1;
-        padding: 15px;
-
-        font-weight: bold;
-        font-size: 24px;
-        line-height: 30px;
-        color: #ffffff;
-        i {
-          margin-right: 16px;
-        }
-      }
-    }
   }
 
   .pointer {

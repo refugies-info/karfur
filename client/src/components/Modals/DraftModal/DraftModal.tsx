@@ -15,7 +15,7 @@ interface Props {
     arg4: boolean
   ) => void;
   navigateToMiddleOffice: () => void;
-  status: "string";
+  status: string;
   toggleIsModified: (arg: boolean) => void;
   toggleIsSaved: (arg: boolean) => void;
 }

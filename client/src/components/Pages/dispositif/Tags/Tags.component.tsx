@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import { Button } from "reactstrap";
+import { withRouter } from "next/router";
 import { filtres } from "data/dispositif";
 import { Tag } from "types/interface";
 import { Props } from "./Tags.container";
@@ -16,13 +16,13 @@ export interface PropsBeforeInjection {
   addTag: (tags: Tag[]) => void;
   openTag: () => void;
   deleteTag: (idx: number) => void;
-  history: any;
   t: any;
   toggleTutorielModal: (arg: string) => void;
   displayTuto: boolean;
   updateUIArray: (arg: number) => void;
   isRTL: boolean;
   typeContenu: "dispositif" | "demarche";
+  router: any;
 }
 
 export class Tags extends Component<Props> {
@@ -51,7 +51,7 @@ export class Tags extends Component<Props> {
 
   toggleDropdown = (key: number, tag: Tag) => {
     if (this.props.disableEdit) {
-      this.props.history.push({
+      this.props.router.push({
         pathname: "/advanced-search",
         search: "?tag=" + tag.short || tag.name || tag,
       });

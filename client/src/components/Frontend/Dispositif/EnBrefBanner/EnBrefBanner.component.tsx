@@ -89,7 +89,7 @@ export const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
               );
             }
           } else if (
-            [
+            card.title && [
               "Niveau de français",
               "Justificatif demandé",
               "Public visé",
@@ -105,7 +105,7 @@ export const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
                 " € " +
                 t("Dispositif." + card.contentTitle, card.contentTitle);
           } else if (
-            ["Acte de naissance OFPRA", "Titre de séjour"].includes(card.title)
+            card.title && ["Acte de naissance OFPRA", "Titre de séjour"].includes(card.title)
           ) {
             texte = t("Dispositif." + card.title, card.title);
           }

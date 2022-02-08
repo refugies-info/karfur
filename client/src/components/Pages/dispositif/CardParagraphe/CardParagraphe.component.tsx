@@ -189,7 +189,7 @@ export class CardParagraphe extends Component<Props> {
           : this.props.mainTag.short.replace(/ /g, "-");
 
       const className =
-        subitem.title
+        (subitem.title || "")
           .replace(/ /g, "-")
           .replace("-?", "")
           .replace("-!", "")

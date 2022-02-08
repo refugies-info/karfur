@@ -3,6 +3,7 @@ import { Modal, ModalHeader, ModalFooter } from "reactstrap";
 import FButton from "components/FigmaUI/FButton/FButton";
 import Check from "./components/Check";
 import styles from "./DispositifValidateModal.module.scss";
+import { Structure } from "types/interface";
 
 interface Props {
   show: boolean
@@ -15,7 +16,7 @@ interface Props {
   validate: any
   toggleTutorielModal: any
   tags: any[]
-  mainSponsor: any
+  mainSponsor: Structure | undefined
   menu: any
   toggleTagsModal: any
   toggleSponsorModal: any
@@ -71,7 +72,7 @@ const DispositifValidateModal = (props: Props) => {
 
         <Check
           section="structure"
-          missingElement={!props.mainSponsor._id}
+          missingElement={!props.mainSponsor}
           toggleModal={props.toggleSponsorModal}
         />
 

@@ -24,10 +24,10 @@ interface Props {
 }
 
 const getTitle = (
-  initialTitle: string,
+  initialTitle: string | undefined,
   typeContenu: "dispositif" | "demarche"
 ) => {
-  if (["Titre de séjour", "Acte de naissance OFPRA"].includes(initialTitle))
+  if (initialTitle && ["Titre de séjour", "Acte de naissance OFPRA"].includes(initialTitle))
     return "Impossible sans";
 
   if (typeContenu === "demarche" && initialTitle === "Zone d'action")

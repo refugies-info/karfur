@@ -26,7 +26,7 @@ export interface PropsBeforeInjection {
   status: string;
   typeContenu: "dispositif" | "demarche";
   langue: string;
-  mainTag: Tag
+  mainTag: Tag | null
   t: any;
 }
 
@@ -96,7 +96,7 @@ export class TopRightHeader extends React.Component<Props> {
                 </FButton>
               </div>
             )}
-            <CardBody className={styles.card_body + " bg-lightColor"} style={{backgroundColor: props.mainTag.lightColor}}>
+            <CardBody className={styles.card_body + " bg-lightColor"} style={{backgroundColor: props.mainTag?.lightColor || "light"}}>
               <span className="text-center">
                 Souhaitez-vous récupérer ce contenu ?
               </span>
@@ -118,7 +118,7 @@ export class TopRightHeader extends React.Component<Props> {
             <CardFooter
               className={styles.card_footer}
               onClick={props.toggleDispositifCreateModal}
-              style={{ color: props.mainTag.darkColor }}
+              style={{ color: props.mainTag?.darkColor || "dark" }}
             >
               <EVAIcon
                 className="mr-8"

@@ -554,7 +554,7 @@ class Sponsors extends Component {
               {deduplicatedSponsors.length !== 0 || !disableEdit ? (
                 <SectionTitle>Responsable</SectionTitle>
               ) : null}
-              {mainSponsor._id ? (
+              {mainSponsor && mainSponsor._id ? (
                 <SponsorCard disableEdit={disableEdit} isMobile={isMobile}>
                   <ImageLink
                     href={`${burl}annuaire/${mainSponsor._id}`}

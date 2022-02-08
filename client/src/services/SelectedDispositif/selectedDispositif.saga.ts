@@ -36,10 +36,10 @@ export function* fetchSelectedDispositif(
 
       const dispositif = data.data.data[0];
       yield put(setSelectedDispositifActionCreator(dispositif));
-      if (!dispositif || !dispositif._id) {
+/*       if (!dispositif || !dispositif._id) {
         yield call(Router.push, "/");
       }
-
+ */
       const user = yield select(userSelector);
 
       if (
@@ -51,7 +51,7 @@ export function* fetchSelectedDispositif(
         if (_.isEmpty(user)) {
           yield call(Router.push, "/login");
         }
-        yield call(Router.push, "/");
+        // yield call(Router.push, "/");
       }
     }
 

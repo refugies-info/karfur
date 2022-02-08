@@ -14,13 +14,11 @@ import FButton from "components/FigmaUI/FButton/FButton";
 import { colors } from "colors";
 import { Props } from "./LeftSideDispositif.container";
 import { DispositifContent, Tag } from "types/interface";
-import API from "utils/API";
-import Swal from "sweetalert2";
 import { send_sms } from "components/Pages/dispositif/function";
+import { useTranslation } from "react-i18next";
 
 declare const window: Window;
 export interface PropsBeforeInjection {
-  t: any;
   menu: DispositifContent[];
   showSpinner: boolean;
   content: {
@@ -33,11 +31,10 @@ export interface PropsBeforeInjection {
   inputBtnClicked: boolean;
   disableEdit: boolean;
   toggleInputBtnClicked: () => void;
-  handleScrollSpy: () => void;
   createPdf: () => void;
   closePdf: () => void;
   newRef: any;
-  handleChange: () => void;
+  handleChange: (ev: any) => void;
   typeContenu: string;
   toggleTutorielModal: (arg: string) => void;
   displayTuto: boolean;
@@ -47,7 +44,7 @@ export interface PropsBeforeInjection {
 }
 
 export const LeftSideDispositif = (props: Props) => {
-  const { t } = props;
+  const { t } = useTranslation();
 
   // when clicking on 'Voir le site'
   // if lecture mode : navigate to the link
@@ -84,7 +81,6 @@ export const LeftSideDispositif = (props: Props) => {
         <Scrollspy
           items={props.menu.map((_, key) => "item-" + key)}
           currentClassName="active"
-          onUpdate={props.handleScrollSpy}
           offset={-60}
         >
           {props.menu.map((item, key) => {

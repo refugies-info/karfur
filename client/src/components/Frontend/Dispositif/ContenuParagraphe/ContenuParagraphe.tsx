@@ -24,6 +24,8 @@ import {
 import { isMobile } from "react-device-detect";
 import styles from "./ContenuParagraphe.module.scss";
 import { DispositifContent, Tag, UiObject } from "types/interface";
+import { EditorState } from "draft-js";
+import { UiElement } from "services/SelectedDispositif/selectedDispositif.reducer";
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>
@@ -86,16 +88,15 @@ interface Props {
     variante: string,
     option?: boolean
   ) => void;
-  handleContentClick: () => void;
+  handleContentClick: (key: number, editable: boolean, subkey?: number | undefined) => void;
   handleMenuChange: (ev: any, value?: any) => any;
-  onEditorStateChange: () => void;
+  onEditorStateChange: (editorState: EditorState, key: number, subkey?: number | null) => void;
   addItem: (key: any, type?: string, subkey?: string | null) => void
-  sideView: boolean; // unused?
   admin: boolean
   content: ShortContent
   showGeolocModal: boolean
   typeContenu: "dispositif" | "demarche";
-  uiArray: UiObject[];
+  uiArray: UiElement[];
   disableEdit: boolean;
   menu: DispositifContent[];
   displayTuto: boolean;
@@ -104,9 +105,9 @@ interface Props {
   mainTag: Tag;
   toggleModal: (show: boolean, name: string) => void
   toggleTutorielModal: (arg: string) => void;
-  toggleGeolocModal: () => void;
-  removeItem: (key: number, subkey?: number | null) => void
-  showMapButton: () => void;
+  toggleGeolocModal: (val: boolean) => void;
+  removeItem: (key: number, subkey: number | null) => void
+  showMapButton: (val: boolean) => void;
   changeTitle: (key: any, subkey: any, node: any, value: any) => void
   changeAge: (e: any, key: any, subkey: any, isBottom?: boolean) => any
   changeDepartements: (departments: any, key: any, subkey: any) => any
@@ -122,18 +123,19 @@ const ContenuParagraphe = (props: Props) => {
   const { t } = useTranslation();
 
   const safeUiArray = (key: number, subkey: number, node: string) => {
+    const children = props.uiArray[key].children;
+    if (children === undefined) return false;
     return props.uiArray[key] &&
-    props.uiArray[key].children &&
-    props.uiArray[key].children.length > subkey &&
-    props.uiArray[key].children[subkey] &&
-    props.uiArray[key].children[subkey][node];
+    children &&
+    children.length > subkey &&
+    children[subkey] &&
+    //@ts-ignore
+    children[subkey][node];
   }
 
-  const cards = props.dispositifContent.children
-    ? props.dispositifContent.children
-        .filter((x) => x.type === "card")
-        .map((x) => x.title)
-    : [];
+  const cards = (props.dispositifContent.children || [])
+    .filter((x) => x.type === "card")
+    .map((x) => x.title || "");
   const darkColor =
     props.mainTag && props.mainTag.darkColor
       ? props.mainTag.darkColor
@@ -272,7 +274,6 @@ const ContenuParagraphe = (props: Props) => {
                   handleMenuChange={props.handleMenuChange}
                   onEditorStateChange={props.onEditorStateChange}
                   addItem={props.addItem}
-                  sideView={props.sideView}
                   removeItem={props.removeItem}
                   mainTag={props.mainTag}
                   typeContenu={props.typeContenu}
@@ -406,15 +407,14 @@ const ContenuParagraphe = (props: Props) => {
                             addItem={props.addItem}
                             type={subitem.type}
                             content={subitem.content}
-                            editable={subitem.editable}
+                            editable={!!subitem.editable}
                             placeholder={subitem.placeholder}
-                            //@ts-ignore
                             editorState={subitem.editorState}
                           />
                         }
                       </Collapse>
                     </Col>
-                    {!props.sideView && props.disableEdit && !isMobile && (
+                    {props.disableEdit && !isMobile && (
                       <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
                         <QuickToolbar
                           show={safeUiArray(props.keyValue, index, "isHover")}
@@ -480,14 +480,13 @@ const ContenuParagraphe = (props: Props) => {
                             addItem={props.addItem}
                             type={subitem.type}
                             content={subitem.content}
-                            editable={subitem.editable}
+                            editable={!!subitem.editable}
                             placeholder={subitem.placeholder}
-                            //@ts-ignore
                             editorState={subitem.editorState}
                           />
                           <br />
                         </Col>
-                        {!props.sideView && props.disableEdit && !isMobile && (
+                        {props.disableEdit && !isMobile && (
                           <Col
                             lg="2"
                             md="2"

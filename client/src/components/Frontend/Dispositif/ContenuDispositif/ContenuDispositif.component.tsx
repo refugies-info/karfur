@@ -8,6 +8,8 @@ import { DispositifContent, Tag, UiObject } from "types/interface";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { isMobile } from "react-device-detect";
 import { ShortContent } from "data/dispositif";
+import { EditorState } from "draft-js";
+import { UiElement } from "services/SelectedDispositif/selectedDispositif.reducer";
 
 export interface PropsBeforeInjection {
   updateUIArray: (
@@ -16,16 +18,15 @@ export interface PropsBeforeInjection {
     variante: string,
     option?: boolean
   ) => void;
-  handleContentClick: () => void;
+  handleContentClick: (key: number, editable: boolean, subkey?: number | undefined) => void;
   handleMenuChange: (ev: any, value?: any) => any
-  onEditorStateChange: () => void;
+  onEditorStateChange: (editorState: EditorState, key: number, subkey?: number | null) => void;
   addItem: (key: any, type?: string, subkey?: string|null) => void
-  sideView: boolean; // unused?
   admin: boolean;
   content: ShortContent;
   showGeolocModal: boolean;
   typeContenu: "dispositif" | "demarche";
-  uiArray: UiObject[];
+  uiArray: UiElement[];
   disableEdit: boolean;
   menu: DispositifContent[];
   displayTuto: boolean;
@@ -35,9 +36,10 @@ export interface PropsBeforeInjection {
   t: any;
   toggleModal: (show: boolean, name: string) => void
   toggleTutorielModal: (arg: string) => void;
-  toggleGeolocModal: () => void;
-  removeItem: (key: number, subkey?: number | null) => void
-  showMapButton: () => void;
+  toggleGeolocModal: (val: boolean) => void;
+  toggleTooltip: () => void;
+  removeItem: (key: number, subkey: number | null) => void
+  showMapButton: (val: boolean) => void;
   changeTitle: (key: any, subkey: any, node: any, value: any) => void
   changeAge: (e: any, key: any, subkey: any, isBottom?: boolean) => any
   changeDepartements: (departments: any, key: any, subkey: any) => any
@@ -110,7 +112,7 @@ export const contenuDispositif = (props: Props) => {
                     <FButton
                       type="tuto"
                       name={"play-circle-outline"}
-                      onClick={() => props.toggleTutorielModal(dispositifContent.title)}
+                      onClick={() => props.toggleTutorielModal(dispositifContent.title || "")}
                     >
                       Tutoriel
                     </FButton>
@@ -128,7 +130,7 @@ export const contenuDispositif = (props: Props) => {
                   handleContentClick={props.handleContentClick}
                   disableEdit={disableEdit}
                   addItem={props.addItem}
-                  editable={dispositifContent.editable}
+                  editable={!!dispositifContent.editable}
                   type={dispositifContent.type}
                   placeholder={dispositifContent.placeholder || ""}
                   target={dispositifContent.target}
@@ -139,7 +141,7 @@ export const contenuDispositif = (props: Props) => {
               )
             }
           </Col>
-          {!props.sideView && props.uiArray[key].isHover && !isMobile && (
+          {props.uiArray[key].isHover && !isMobile && (
             <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
               {
                 // on the right, contains reaction and reading
@@ -168,7 +170,6 @@ export const contenuDispositif = (props: Props) => {
             handleMenuChange={props.handleMenuChange}
             onEditorStateChange={props.onEditorStateChange}
             addItem={props.addItem}
-            sideView={props.sideView}
             typeContenu={props.typeContenu}
             uiArray={props.uiArray}
             disableEdit={props.disableEdit}

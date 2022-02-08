@@ -126,7 +126,7 @@ export const CardBodyContent = (props: Props) => {
   }
 
   if (
-    ["Titre de séjour", "Acte de naissance OFPRA"].includes(props.subitem.title)
+    props.subitem.title && ["Titre de séjour", "Acte de naissance OFPRA"].includes(props.subitem.title)
   ) {
     return (
       <div>

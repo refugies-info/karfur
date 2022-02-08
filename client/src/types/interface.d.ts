@@ -156,9 +156,9 @@ export interface User {
 
 export interface DispositifContent {
   type: string;
-  title: string;
-  editable: boolean;
-  content: string;
+  title?: string;
+  content?: string;
+  editable?: boolean;
   children?: DispositifContent[];
   placeholder?: string;
   tutoriel?: Record<string, string>;
@@ -179,6 +179,16 @@ export interface DispositifContent {
   contentBody?: string;
   ageTitle?: string;
   noContent?: boolean;
+  editorState?: any;
+  isMapLoaded?: boolean;
+  papiers?: any[];
+  duree?: string;
+  delai?: string;
+  timeStepDuree?: string;
+  timeStepDelai?: string;
+  tooltipFooter?: string;
+  option?: any;
+  markers?: any[];
 }
 
 interface Membre {
@@ -276,6 +286,8 @@ export interface IDispositif {
   updatedAt: Moment;
   nbVues: number;
   nbMercis: number;
+  timeSpent?: number;
+  lastModificationDate?: number;
 }
 
 export interface UserStructureMembre {

@@ -1,6 +1,7 @@
 import React from "react";
 import h2p from "html2plaintext";
 import Image from "next/image";
+import { DispositifContent } from "types/interface";
 
 export type ShortContent = {
   titreInformatif: string
@@ -29,15 +30,16 @@ const showModals = {
   variante: false,
 };
 
-const menu = [
+const menu: DispositifContent[] = [
   {
     title: "C'est quoi ?",
     content: "",
+    type: ""
   },
   {
     title: "C'est pour qui ?",
     type: "cards",
-    content: null,
+    content: "",
     children: [
       {
         type: "card",
@@ -102,7 +104,8 @@ const menu = [
   },
   {
     title: "Pourquoi c'est intéressant ?",
-    content: null,
+    content: "",
+    type: "",
 
     children: [
       {
@@ -114,7 +117,8 @@ const menu = [
   },
   {
     title: "Comment je m'engage ?",
-    content: null,
+    content: "",
+    type: "",
 
     children: [
       {
@@ -133,16 +137,19 @@ const infocardFranceEntiere = {
   titleIcon: "pin-outline",
   typeIcon: "eva",
   departments: ["All"],
+  editable: false,
+  content: ""
 };
-const menuDemarche = [
+const menuDemarche: DispositifContent[] = [
   {
     title: "C'est quoi ?",
     content: "",
+    type: ""
   },
   {
     title: "C'est pour qui ?",
     type: "cards",
-    content: null,
+    content: "",
 
     children: [
       infocardFranceEntiere,
@@ -171,7 +178,8 @@ const menuDemarche = [
   },
   {
     title: "Comment faire ?",
-    content: null,
+    content: "",
+    type: "",
 
     children: [
       {
@@ -202,7 +210,8 @@ const menuDemarche = [
   },
   {
     title: "Et après ?",
-    content: null,
+    content: "",
+    type: "",
 
     children: [
       {
