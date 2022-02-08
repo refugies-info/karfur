@@ -47,6 +47,7 @@ export const updateDispositifInDB = async (
     | { audienceAge: AudienceAge[]; contenu: any }
     | { nbVues: number }
     | { draftReminderMailSentDate: number }
+    | { draftSecondReminderMailSentDate: number }
     | { lastReminderMailSentToUpdateContentDate: number }
     | { $pull: { [x: string]: { suggestionId: string } } }
     | { tags: any }
@@ -94,6 +95,7 @@ export const getDraftDispositifs = async (): Promise<
     { status: "Brouillon" },
     {
       draftReminderMailSentDate: 1,
+      draftSecondReminderMailSentDate: 1,
       creatorId: 1,
       updatedAt: 1,
       lastModificationDate: 1,
