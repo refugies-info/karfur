@@ -5,5 +5,5 @@ interface Window {
   removeEventListener: (arg1: string, arg2: () => void) => void;
   pageYOffset: number;
   open: (arg1: string, arg2: string) => void;
-  location: { href: string };
+  location: { href: string, replace: any };
 }
