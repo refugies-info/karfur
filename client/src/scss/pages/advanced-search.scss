@@ -212,28 +212,6 @@
       padding: 16px;
     }
   }
-
-  .card-footer {
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
-    padding: 15px;
-    border: none;
-    text-align: right;
-    color: $blancSimple;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    &.bg-null {
-      background-color: $noir;
-    }
-    &.correct-radius {
-      border-bottom-right-radius: 12px;
-      border-bottom-left-radius: 12px;
-    }
-    &.no-icon {
-      justify-content: flex-end;
-    }
-  }
 }
 .grid-container {
   display: grid;

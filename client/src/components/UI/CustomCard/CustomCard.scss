@@ -88,18 +88,29 @@
   }
 
   .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
-    border: none;
+    text-align: right;
+    color: $blancSimple;
+    padding: 15px;
+
     &.bg-null {
       background-color: $noir;
+    }
+    &.no-icon {
+      justify-content: flex-end;
     }
   }
 
   &.add-card {
-    padding-right: 0px;
+    padding-right: 0;
     width: 100%;
     background-color: $gris;
+
     .card-footer {
       background-color: $grisFonce;
     }
