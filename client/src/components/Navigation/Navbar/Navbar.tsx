@@ -79,7 +79,7 @@ const Navbar = () => {
   // Auth
   useEffect(() => {
     setIsAuth(API.isAuth());
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (

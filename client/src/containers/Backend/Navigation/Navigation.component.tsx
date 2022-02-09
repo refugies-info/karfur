@@ -3,16 +3,17 @@ import styled from "styled-components";
 import { navigationData } from "./data";
 import { NavButton } from "./components/NavButton";
 import { Props } from "./Navigation.container";
-import API from "../../../utils/API";
+import API from "utils/API";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserStructureActionCreator } from "../../../services/UserStructure/userStructure.actions";
-import { fetchUserActionCreator } from "../../../services/User/user.actions";
-import { userSelector } from "../../../services/User/user.selectors";
+import { setUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
+import { fetchUserActionCreator } from "services/User/user.actions";
+import { userSelector } from "services/User/user.selectors";
 import {
   userStructureDisposAssociesSelector,
   userStructureHasResponsibleSeenNotification,
-} from "../../../services/UserStructure/userStructure.selectors";
+} from "services/UserStructure/userStructure.selectors";
 import { getNbNewNotifications } from "../UserNotifications/lib";
+import { useRouter } from "next/router";
 
 export type SelectedPage =
   | "notifications"
@@ -37,6 +38,7 @@ export const NavigationComponent: React.FunctionComponent<Props> = (
   props: Props
 ) => {
   const user = useSelector(userSelector);
+  const router = useRouter();
   const isAdmin = user && user.admin;
   const hasStructure = user && user.membreStruct;
 
@@ -55,7 +57,7 @@ export const NavigationComponent: React.FunctionComponent<Props> = (
     API.logout();
     dispatch(fetchUserActionCreator());
     dispatch(setUserStructureActionCreator(null));
-    return props.history.push("/");
+    router.push("/");
   };
   const onButtonClick = (type: SelectedPage) => {
     if (type === "traductions") {
