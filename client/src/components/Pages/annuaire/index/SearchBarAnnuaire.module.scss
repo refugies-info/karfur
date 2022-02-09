@@ -29,7 +29,12 @@
     &.dark {
       background: $noir;
       color: $blanc;
+      border-color: $noir;
       cursor: pointer;
+
+      svg {
+        fill: $blanc !important;
+      }
     }
   }
   .dropdown {

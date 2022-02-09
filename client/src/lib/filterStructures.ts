@@ -20,7 +20,6 @@ export const filterStructuresByType = (arrayTofilter: SimplifiedStructure[], typ
   });
 };
 
-
 export const filterStructuresByKeword = (arrayTofilter: SimplifiedStructure[], keyword: string) => {
   let newArrayKeyword: SimplifiedStructure[] = [];
   if (keyword.length > 0) {

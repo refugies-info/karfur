@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
-import Skeleton from "react-loading-skeleton";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { NextParsedUrlQuery } from "next/dist/server/request-meta";
@@ -26,16 +25,46 @@ import {
 } from "lib/filterStructures";
 import styles from "scss/pages/annuaire.module.scss";
 
-const Annuaire = (props: any) => {
-  const [keyword, setKeyword] = useState("");
-  const [typeSelected, setTypeSelected] = useState<string[]>([]);
-  const [ville, setVille] = useState("");
-  const [depName, setDepName] = useState("");
-  const [depNumber, setDepNumber] = useState("");
-  const [isCityFocus, setIsCityFocus] = useState(false);
-  const [isCitySelected, setIsCitySelected] = useState(false);
+const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
+  let typeSelectedFromUrl: string[] = [];
+  if (query.isAssociation) {
+    typeSelectedFromUrl.push("Association");
+  }
+  if (query.isEntreprise) {
+    typeSelectedFromUrl.push("Entreprise");
+  }
+  if (query.isEcole) {
+    typeSelectedFromUrl.push("École");
+  }
+  if (query.isUni) {
+    typeSelectedFromUrl.push("Université");
+  }
+  if (query.isOpe) {
+    typeSelectedFromUrl.push("Opérateur");
+  }
+  if (query.isPublic) {
+    typeSelectedFromUrl.push("Établissement publicateur");
+  }
+  if (query.isReseau) {
+    typeSelectedFromUrl.push("Réseau d'acteurs");
+  }
+  if (query.isCenter) {
+    typeSelectedFromUrl.push("Centre de formation");
+  }
 
+  return typeSelectedFromUrl;
+};
+
+const Annuaire = (props: any) => {
   const router = useRouter();
+
+  const [keyword, setKeyword] = useState(router.query.keyword as string || "");
+  const [typeSelected, setTypeSelected] = useState<string[]>(computeTypeFromUrl(router.query) || []);
+  const [ville, setVille] = useState(router.query.ville as string || "");
+  const [depName, setDepName] = useState(router.query.depName as string || "");
+  const [depNumber, setDepNumber] = useState(router.query.depNumber as string || "");
+  const [isCityFocus, setIsCityFocus] = useState(false);
+  const [isCitySelected, setIsCitySelected] = useState(!!router.query.depNumber || !!router.query.depName);
 
   const resetAllFilter = useCallback(() => {
     setIsCitySelected(false);
@@ -71,61 +100,6 @@ const Annuaire = (props: any) => {
   );
   const [filteredStructures, setFilteredStructures] = useState(initialFilteredStructures);
 
-  const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
-    let typeSelectedFromUrl: string[] = [];
-    if (query.isAssociation) {
-      typeSelectedFromUrl.push("Association");
-    }
-    if (query.isEntreprise) {
-      typeSelectedFromUrl.push("Entreprise");
-    }
-    if (query.isEcole) {
-      typeSelectedFromUrl.push("École");
-    }
-    if (query.isUni) {
-      typeSelectedFromUrl.push("Université");
-    }
-    if (query.isOpe) {
-      typeSelectedFromUrl.push("Opérateur");
-    }
-    if (query.isPublic) {
-      typeSelectedFromUrl.push("Établissement publicateur");
-    }
-    if (query.isReseau) {
-      typeSelectedFromUrl.push("Réseau d'acteurs");
-    }
-    if (query.isCenter) {
-      typeSelectedFromUrl.push("Centre de formation");
-    }
-
-    return typeSelectedFromUrl;
-  };
-
-  useEffect(() => {
-      let keywordFromUrl = router.query.keyword;
-      let typeSelectedFromUrl = computeTypeFromUrl(router.query);
-      let villeFromUrl = router.query.ville;
-      let depNameFromUrl = router.query.depName;
-      let depNumberFromUrl = router.query.depNumber;
-      if (keywordFromUrl) {
-        setKeyword(keywordFromUrl as string);
-      }
-      if (typeSelectedFromUrl) {
-        setTypeSelected(typeSelectedFromUrl);
-      }
-      if (depNameFromUrl) {
-        setDepName(depNameFromUrl as string);
-        setVille(villeFromUrl as string);
-        setIsCitySelected(true);
-      }
-      if (depNumberFromUrl) {
-        setDepNumber(depNumberFromUrl as string);
-        setVille(villeFromUrl as string);
-        setIsCitySelected(true);
-      }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   useEffect(() => {
     const computeUrlFromState = (query: {
       depName?: string | undefined;
@@ -133,9 +107,10 @@ const Annuaire = (props: any) => {
       keyword?: string;
       ville?: string;
     }) => {
-      router.push({ search: qs.stringify(query) });
+      router.push({ search: qs.stringify(query) },  undefined, { shallow: true });
     };
 
+    // build url
     let query: {
       depName?: string | undefined;
       depNumber?: string;
@@ -202,7 +177,7 @@ const Annuaire = (props: any) => {
 
   // Bug router: https://github.com/vercel/next.js/issues/18127#issuecomment-950907739
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [typeSelected, depName, depNumber, keyword, isCitySelected, ville]);
+  }, [typeSelected, depName, depNumber, keyword, isCitySelected]);
 
   const resetSearch = useCallback(() => {
     setFilteredStructures(initialFilteredStructures);

@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { SearchBarAnnuaire } from "./SearchBarAnnuaire";
 import { SimplifiedStructure } from "types/interface";
 import { useTranslation } from "next-i18next";
@@ -31,7 +30,6 @@ interface Props {
 export const Header = (props: Props) => {
   const isRTL = useRTL();
   const { t } = useTranslation();
-  const router = useRouter();
 
   return (
     <>

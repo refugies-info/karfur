@@ -22,7 +22,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
 
   if (isInBrowser()) {
     // CRISP
-    window.$crisp = [];
+    window.$crisp = [["safe", true]];
     window.CRISP_WEBSITE_ID = "74e04b98-ef6b-4cb0-9daf-f8a2b643e121";
 
     // AXEPTION
