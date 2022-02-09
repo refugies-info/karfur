@@ -1,6 +1,13 @@
 import { colors } from "colors";
 
-export const table_contenu = {
+type TableContenu = {
+  title: string
+  headers: {
+    name: string
+    order?: string
+  }[]
+}
+export const table_contenu: TableContenu = {
   title: "Contenu",
   headers: [
     {
@@ -44,7 +51,15 @@ const yellow = "#FFEB3B";
 const red = "#F44336";
 const lightGreen = "#8BC34A";
 
-export const correspondingStatus = [
+type CorrespondingStatus = {
+  storedStatus: string
+  displayedStatus: string
+  color: string
+  order: number
+  textColor?: string
+}
+
+export const correspondingStatus: CorrespondingStatus[] = [
   { storedStatus: "Actif", displayedStatus: "Publié", color: green, order: 5 },
   {
     storedStatus: "En attente",
@@ -100,7 +115,16 @@ export const correspondingStatus = [
 const darkBlue = colors.bleuCharte;
 const lightBlue = colors.lightBlue;
 
-export const progressionData = [
+type ProgressionData = {
+  storedStatus: string
+  displayedStatus: string
+  color: string
+  group: number
+  textColor: string
+}
+
+
+export const progressionData: ProgressionData[] = [
   {
     storedStatus: "Nouveau !",
     displayedStatus: "Nouveau !",

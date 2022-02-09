@@ -7,7 +7,7 @@ import { defaultStaticProps } from "lib/getDefaultStaticProps";
 
 const Backend = () =>
   <>
-    <SEO />
+    <SEO title="Administration" />
     {isInBrowser() && (
       <Router>
         <Switch>

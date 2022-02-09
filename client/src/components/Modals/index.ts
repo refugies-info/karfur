@@ -32,4 +32,4 @@ export {
   Modal,
   DraftModal,
   ShareContentOnMobileModal,
-};
+}

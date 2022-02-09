@@ -1,4 +1,10 @@
-export const targetByTag = [
+type Target = {
+  name: string
+  targetDispositif: number
+  targetDemarche: number
+}
+
+export const targetByTag: Target[] = [
   {
     name: "apprendre le français",
     targetDispositif: 12,

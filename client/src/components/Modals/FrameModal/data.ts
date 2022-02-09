@@ -1,4 +1,9 @@
-export const sectionUrlCorrespondencies = [
+type SectionUrlCorrespondencies = {
+  section: string
+  tutoUrl: string
+}
+
+export const sectionUrlCorrespondencies: SectionUrlCorrespondencies[] = [
   {
     section: "Tags",
     tutoUrl:
