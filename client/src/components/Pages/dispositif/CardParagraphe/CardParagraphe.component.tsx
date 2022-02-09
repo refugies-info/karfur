@@ -6,7 +6,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import { Props } from "./CardParagraphe.container";
 import { DispositifContent, Tag } from "types/interface";
-import { filtres, cardTitlesDispositif, cardTitlesDemarche, ShortContent } from "data/dispositif";
+import { cardTitlesDispositif, cardTitlesDemarche, ShortContent } from "data/dispositif";
 import { FrenchLevelModal } from "../FrenchLevelModal";
 import GeolocModal from "components/Modals/GeolocModal/GeolocModal";
 import API from "utils/API";

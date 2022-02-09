@@ -3,7 +3,6 @@ import API from "utils/API";
 import {
   contenu,
   menu as menuDispositif,
-  filtres,
   customConvertOption,
   infocardsDemarcheTitles,
   infocardFranceEntiere,
@@ -19,6 +18,7 @@ import {
 } from "draft-js";
 import h2p from "html2plaintext";
 import { colors } from "colors";
+import { tags } from "data/tags";
 
 let htmlToDraft: any = null;
 if (isInBrowser()) {
@@ -221,7 +221,7 @@ export const handleContentClickInComponent = (
 
 export const getMainTag = (dispositif: IDispositif | null): Tag => {
   if (dispositif && dispositif.tags.length > 0) {
-    const tag = filtres.tags.find(
+    const tag = tags.find(
       (x) => x && x.name === dispositif.tags[0].name
     )
     if (tag) return tag;

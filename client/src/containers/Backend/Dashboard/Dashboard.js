@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import moment from "moment/min/moment-with-locales";
 import API from "utils/API";
-import { filtres } from "data/dispositif";
 import _ from "lodash";
 import { targetByTag } from "./data";
 import FButton from "components/FigmaUI/FButton/FButton";
@@ -9,6 +8,7 @@ import { NoGeolocModal } from "./NoGeolocModal";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
 import styles from "./Dashboard.module.scss";
+import { tags } from "data/tags";
 
 moment.locale("fr");
 
@@ -57,7 +57,7 @@ class Dashboard extends Component {
       });
     });
 
-    filtres.tags.map((tag) => {
+    tags.map((tag) => {
       API.count_dispositifs({
         "tags.0.name": tag.name,
         status: "Actif",

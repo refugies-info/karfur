@@ -9,8 +9,8 @@ import { Tag, IDispositif } from "types/interface";
 import { SelectedFilter } from "./SelectedFilter/SelectedFilter";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 declare const window: Window;
-import { filtres } from "data/dispositif";
 import { initial_data } from "data/searchFilters";
+import { tags } from "data/tags";
 
 interface Props {
   nbFilteredResults: number;
@@ -178,7 +178,7 @@ export const MobileAdvancedSearch = (props: Props) => {
             break;
           case "tags.name":
             setTagSelected(
-              filtres.tags.filter(
+              tags.filter(
                 (filtre: any) => filtre.name === item.value
               )[0]
             );

@@ -4,10 +4,10 @@ import { Modal } from "reactstrap";
 import styled from "styled-components";
 import FButton from "components/FigmaUI/FButton/FButton";
 import FInput from "components/FigmaUI/FInput/FInput";
-import { filtres } from "data/dispositif";
 import { TagButton } from "./TagButton";
 import { useDispatch } from "react-redux";
 import { createNeedActionCreator } from "services/Needs/needs.actions";
+import { tags } from "data/tags";
 
 interface Props {
   show: boolean;
@@ -74,7 +74,7 @@ export const AddNeedModal = (props: Props) => {
       <Title>Ajouter un nouveau besoin</Title>
       <SubTitle>Choix du thème*</SubTitle>
       <TagsContainer>
-        {filtres.tags.map((tag) => (
+        {tags.map((tag) => (
           <TagButton
             key={tag.short}
             name={tag.short}

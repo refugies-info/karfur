@@ -83,6 +83,7 @@ const CatList = (props: Props) => {
                 {tag.icon ? (
                   <IconContainer isRTL={isRTL}>
                     <Streamline
+                      //@ts-ignore
                       name={tag.icon}
                       stroke={"white"}
                       width={22}

@@ -4,9 +4,9 @@ import FButton from "components/FigmaUI/FButton/FButton";
 import FInput from "components/FigmaUI/FInput/FInput";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
-import { filtres } from "data/dispositif";
 import Streamline from "assets/streamline/index";
 import styles from "./DispositifValidateModal.module.scss";
+import { tags } from "data/tags";
 
 const CheckContainer = styled.div`
   background: ${(props) => (props.missingElement ? "#FFE2B8" : "#def7c2")};
@@ -121,7 +121,7 @@ const onCheckContainerClick = (section: string, toggleModal: any, missingElement
 };
 
 const getTagElement = (tag: any) => {
-  return tag ? filtres.tags.filter((item) => item.name === tag.name)[0] : null;
+  return tag ? tags.filter((item) => item.name === tag.name)[0] : null;
 };
 
 interface Props {

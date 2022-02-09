@@ -1,4 +1,4 @@
-import { filtres } from "data/dispositif";
+import { tags } from "./tags";
 
 const initial_data = [
   // {
@@ -23,7 +23,7 @@ const initial_data = [
     placeholder: "thème",
     query: "apprendre le français",
     queryName: "tags.name",
-    children: filtres.tags,
+    children: tags,
   },
   {
     title: "J'habite à",

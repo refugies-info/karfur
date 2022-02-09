@@ -3,9 +3,9 @@ import { Modal } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Streamline from "assets/streamline";
-import { filtres } from "data/dispositif";
 import { initial_data } from "data/searchFilters";
 import styles from "./MobileSearchFilterModal.module.scss";
+import { tags } from "data/tags";
 
 interface Props {
   selectOption: (item: any, type: string) => void;
@@ -23,7 +23,7 @@ export const MobileSearchFilterModal = (props: Props) => {
 
   const data: any =
     props.type === "thème"
-      ? filtres.tags
+      ? tags
       : props.type === "age"
       ? initial_data.filter(
           (item: { title: string }) => item.title === "J'ai"

@@ -95,6 +95,7 @@ import { DispositifContent, IDispositif, Language, Structure, Tag } from "types/
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { toggleLangueActionCreator } from "services/Langue/langue.actions";
 import useRTL from "hooks/useRTL";
+import { tags } from "data/tags";
 
 moment.locale("fr");
 
@@ -1843,7 +1844,7 @@ const Dispositif = (props: Props) => {
           <TagsModal
             tags={dispositif?.tags || []}
             validate={validateTags}
-            categories={filtres.tags}
+            categories={tags}
             show={showTagsModal}
             toggle={() => setShowTagsModal(!showTagsModal)}
             toggleTutorielModal={toggleTutorielModal}

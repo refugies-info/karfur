@@ -10,7 +10,6 @@ import type { IDispositif } from "types/interface";
 import * as themes from "data/synonym";
 import Streamline from "assets/streamline";
 import NoResultPlaceholder from "./NoResultPlaceholder";
-import { filtres } from "data/dispositif";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -18,6 +17,7 @@ import useOutsideClick from "hooks/useOutsideClick";
 
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import useRTL from "hooks/useRTL";
+import { tags } from "data/tags";
 
 const SearchModalContainer = styled.div`
   position: fixed;
@@ -292,7 +292,7 @@ const AdvancedSearchBar = (props: Props) => {
                   <>
                     <SectionTitle>Thèmes</SectionTitle>
                     {searchThemes.map((elem, index) => {
-                      const selectedTag = filtres.tags.find((tag) => tag.short === elem);
+                      const selectedTag = tags.find((tag) => tag.short === elem);
                       return (
                         <ThemeContainer
                           key={"theme-" + index}
@@ -364,7 +364,7 @@ const AdvancedSearchBar = (props: Props) => {
                   <>
                     <SectionTitle>Fiches</SectionTitle>
                     {searchDispositifs.map((elem, index) => {
-                      var selectedTag = filtres.tags.find((tag) => (
+                      var selectedTag = tags.find((tag) => (
                         elem.tags[0] ? tag.short === elem.tags[0].short : false
                       ));
                       return (

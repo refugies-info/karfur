@@ -7,11 +7,11 @@ import { Structure } from "types/interface";
 import { DayHoursPrecisions } from "./DayHoursPrecisions";
 import { ActivityCard } from "components/Pages/annuaire-create/ActivityCard";
 import { activities } from "data/activities";
-import { filtres } from "data/dispositif";
 import { NoActivity } from "./NoActivity";
 import Skeleton from "react-loading-skeleton";
 import { colors } from "colors";
 import FButton from "components/FigmaUI/FButton/FButton";
+import { tags } from "data/tags";
 
 interface Props {
   structure: Structure | null;
@@ -182,7 +182,7 @@ const getActivityDetails = (activity: string) => {
   if (!correspondingActivity) return { tag: null };
   const theme = correspondingActivity[0].tag;
 
-  const correspondingTag = filtres.tags.filter((tag) => tag.short === theme);
+  const correspondingTag = tags.filter((tag) => tag.short === theme);
   return { tag: correspondingTag[0], image: correspondingActivity[0].image };
 };
 

@@ -132,7 +132,6 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
                       stroke={"white"}
                       width={22}
                       height={22}
-                      marginLeft={10}
                     />
                   ) : null}
                 </>
@@ -177,7 +176,6 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
                       stroke={"white"}
                       width={22}
                       height={22}
-                      marginLeft={10}
                     />
                   ) : null}
                 </>
@@ -220,7 +218,6 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
                       stroke={"white"}
                       width={22}
                       height={22}
-                      marginLeft={10}
                     />
                   ) : null}
                 </>

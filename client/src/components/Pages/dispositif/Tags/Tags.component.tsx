@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import { withRouter } from "next/router";
-import { filtres } from "data/dispositif";
 import { Tag } from "types/interface";
 import { Props } from "./Tags.container";
 import FSearchBtn from "components/FigmaUI/FSearchBtn/FSearchBtn";
 import FButton from "components/FigmaUI/FButton/FButton";
 import Streamline from "assets/streamline";
 import styles from "./Tags.module.scss";
+import { tags } from "data/tags";
 
 export interface PropsBeforeInjection {
   tags: Tag[];
@@ -83,7 +83,7 @@ export class Tags extends Component<Props> {
       <div className={styles.tags}>
         {(this.props.tags || []).map((tag: Tag, key: number) => {
           if (tag) {
-            var tagIcon = filtres.tags.find((elem) => elem.name === tag.name);
+            var tagIcon = tags.find((elem) => elem.name === tag.name);
             return (
               <div key={key}>
                 <FSearchBtn

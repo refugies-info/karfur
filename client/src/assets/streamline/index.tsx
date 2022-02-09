@@ -1,11 +1,11 @@
 import React from "react";
 
-import Elearning from "./Elearning.js";
-import House from "./House.js";
-import Briefcase from "./Briefcase.js";
-import Measure from "./Measure.js";
-import Glasses from "./Glasses.js";
-import Bus from "./Bus.js";
+import Elearning from "./Elearning";
+import House from "./House";
+import Briefcase from "./Briefcase";
+import Measure from "./Measure";
+import Glasses from "./Glasses";
+import Bus from "./Bus";
 import Triumph from "./Triumph";
 import HeartBeat from "./HeartBeat";
 import Couple from "./Couple";
@@ -16,9 +16,17 @@ import Search from "./Search";
 import Message from "./Message";
 import Menu from "./Menu";
 import Tag from "./Tag";
+import { iconName } from "types/interface";
 
-const Streamline = ({ name = "house", ...props }) => {
-  switch (name) {
+interface Props {
+  name?: iconName;
+  stroke?: string;
+  width?: number;
+  height?: number;
+}
+
+const Streamline = (props: Props) => {
+  switch (props.name) {
     case "house":
       return <House {...props} />;
     case "elearning":

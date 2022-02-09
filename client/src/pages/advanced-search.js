@@ -20,7 +20,7 @@ import { MobileAdvancedSearch } from "containers/AdvancedSearch/MobileAdvancedSe
 import API from "utils/API";
 import { initial_data, filtres_contenu, tris } from "data/searchFilters";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { filtres } from "data/dispositif";
+import { tags } from "data/tags";
 import FButton from "components/FigmaUI/FButton/FButton";
 import FSearchBtn from "components/FigmaUI/FSearchBtn/FSearchBtn";
 import { BookmarkedModal } from "components/Modals/index";
@@ -342,7 +342,7 @@ export class AdvancedSearch extends Component {
       this.setState(
         produce((draft) => {
           if (tag) {
-            const tagValue = filtres.tags.find(
+            const tagValue = tags.find(
               (x) => x.name === decodeURIComponent(tag)
             );
             draft.selectedTag = tagValue;
@@ -350,12 +350,12 @@ export class AdvancedSearch extends Component {
             draft.recherche[0].value = decodeURIComponent(tag);
             draft.recherche[0].active = true;
             draft.recherche[0].short =
-              filtres.tags &&
-              filtres.tags.find((x) => x.name === decodeURIComponent(tag))
+              tags &&
+              tags.find((x) => x.name === decodeURIComponent(tag))
                 .short;
             draft.recherche[0].icon =
-              filtres.tags &&
-              filtres.tags.find((x) => x.name === decodeURIComponent(tag)).icon;
+              tags &&
+              tags.find((x) => x.name === decodeURIComponent(tag)).icon;
             draft.activeTri = "";
           }
           if (topValue && bottomValue) {
@@ -681,7 +681,7 @@ export class AdvancedSearch extends Component {
     }));
 
     if (this.state.activeTri === "Par thème") {
-      const themesObject = filtres.tags.map((tag) => {
+      const themesObject = tags.map((tag) => {
         return {
           [tag.short]: dispositifs.filter((elem) => {
             if (elem.tags[0]) {
@@ -772,7 +772,7 @@ export class AdvancedSearch extends Component {
   };
 
   selectTag = (tag = {}) => {
-    const tagValue = filtres.tags.find((x) => x.short === tag) || {};
+    const tagValue = tags.find((x) => x.short === tag) || {};
     this.setState((pS) => ({
       recherche: pS.recherche.map((x, i) =>
         i === 0
@@ -1322,7 +1322,7 @@ export class AdvancedSearch extends Component {
                     this.state.activeTri === "Par thème"
                       ? "#f1e8f5"
                       : this.state.recherche[0] && this.state.recherche[0].value
-                      ? filtres.tags.find(
+                      ? tags.find(
                           (elem) => elem.short === this.state.recherche[0].short
                         )["lightColor"]
                       : "#e4e5e6",
@@ -1332,7 +1332,7 @@ export class AdvancedSearch extends Component {
                   <div style={{ width: "100%" }}>
                     {this.state.themesObject.map((theme, index) => {
                       var themeKey = Object.keys(theme);
-                      var selectedTheme = filtres.tags.find(
+                      var selectedTheme = tags.find(
                         (elem) => elem.short === themeKey[0]
                       );
                       return (
@@ -2053,7 +2053,7 @@ export class AdvancedSearch extends Component {
               this.state.activeTri === "Par thème"
                 ? "#f1e8f5"
                 : this.state.recherche[0] && this.state.recherche[0].value
-                ?  (filtres.tags.find(
+                ?  (tags.find(
                   (elem) => elem.short === this.state.recherche[0].short
                 ))["lightColor"]
                 : "#e4e5e6",

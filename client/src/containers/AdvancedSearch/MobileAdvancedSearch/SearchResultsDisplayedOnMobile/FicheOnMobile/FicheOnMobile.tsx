@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import { colors } from "colors";
 import Streamline from "assets/streamline";
-import { filtres } from "data/dispositif";
+import { tags } from "data/tags";
 
 interface Props {
   item: IDispositif;
@@ -85,7 +85,7 @@ export const FicheOnMobile = (props: Props) => {
               name={
                 props.item.tags[0].icon
                   ? props.item.tags[0].icon
-                  : filtres.tags.filter(
+                  : tags.filter(
                       (el) => el.short === props.item.tags[0].short
                     )[0].icon
               }

@@ -17,7 +17,6 @@ import HomeSearch from "components/Pages/homepage/HomeSearch";
 import CatList from "components/Pages/homepage/CatList";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/FigmaUI/FButton/FButton";
-import { filtres } from "data/dispositif";
 import iphone from "assets/figma/iphone.svg";
 import {
   illustration_homeCard_dispositif,
@@ -31,6 +30,7 @@ import styles from "scss/pages/homepage.module.scss";
 import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import useRTL from "hooks/useRTL";
+import { tags } from "data/tags";
 
 const CoronaAlert = styled.div`
   display: flex;
@@ -200,7 +200,7 @@ const Homepage = (props: Props) => {
             />
           </div>
         </div>
-        {popup ? <CatList tags={filtres.tags} /> : null}
+        {popup ? <CatList tags={tags} /> : null}
         <div className="chevron-wrapper">
           <a
             href="#plan"

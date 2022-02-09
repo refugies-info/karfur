@@ -4,9 +4,9 @@ import { jsUcfirst } from "lib";
 import _ from "lodash";
 import { UserStructure } from "types/interface";
 import { activities } from "data/activities";
-import { filtres } from "data/dispositif";
 import { ActivityCard } from "./ActivityCard";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { tags } from "data/tags";
 
 const MainContainer = styled.div``;
 const HelpContainer = styled.div`
@@ -123,7 +123,7 @@ export const Step3 = (props: Props) => {
         <div style={{ marginTop: "24px" }} />
       )}
       {Object.keys(groupedActivities).map((activity) => {
-        const correspondingTag = filtres.tags.filter(
+        const correspondingTag = tags.filter(
           (tag) => tag.short === activity
         );
 

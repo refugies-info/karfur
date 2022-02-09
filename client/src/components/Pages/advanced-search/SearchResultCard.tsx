@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link"
-import { filtres } from "data/dispositif";
 import CustomCard from "components/UI/CustomCard/CustomCard";
 import { CardBody, CardFooter } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import Streamline from "assets/streamline";
+import { tags } from "data/tags";
 
 const CardText = styled.p`
   font-weight: 14px;
@@ -50,7 +50,7 @@ const SearchResultCard = (props: Props) => {
       shortTagFull = props.dispositif.tags[0].short;
     }
     if (shortTagFull) {
-      iconTag = filtres.tags.find((tag) => tag.short === shortTagFull);
+      iconTag = tags.find((tag) => tag.short === shortTagFull);
     }
 
     return (

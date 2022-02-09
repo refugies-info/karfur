@@ -41,6 +41,24 @@ export interface UiObject {
   children: any
 }
 
+// TAGS
+type iconName = "house" |
+  "elearning" |
+  "briefcase" |
+  "measure" |
+  "glasses" |
+  "bus" |
+  "triumph" |
+  "heartBeat" |
+  "couple" |
+  "soccer" |
+  "flag" |
+  "office" |
+  "search" |
+  "message" |
+  "menu" |
+  "tag" |
+  "";
 export interface Tag {
   darkColor: string;
   hoverColor: string;
@@ -48,7 +66,7 @@ export interface Tag {
   lightColor: string;
   name: string;
   short: string;
-  icon: string;
+  icon: iconName;
 }
 export interface SimplifiedUser {
   username: string;
