@@ -46,7 +46,6 @@ import SideTrad from "components/Pages/dispositif/SideTrad/SideTrad";
 import ExpertSideTrad from "components/Pages/dispositif/SideTrad/ExpertSideTrad";
 import DemarcheCreateModal from "components/Modals/DemarcheCreateModal/DemarcheCreateModal";
 import { initializeTimer } from "containers/Translation/functions";
-import { readAudio, stopAudio } from "lib/readAudio";
 import {
   contenu,
   menu as menuDispositif,
@@ -170,7 +169,6 @@ const Dispositif = (props: Props) => {
   const [withHelp, setWithHelp] = useState(process.env.NODE_ENV !== "development");
   const [inputBtnClicked, setInputBtnClicked] = useState(false);
   const [time, setTime] = useState(0);
-  const [initialTime, setInitialTime] = useState(0);
   const [printing, setPrinting] = useState(false);
   const [didThank, setDidThank] = useState(false);
   const [finalValidation, setFinalValidation] = useState(false);
@@ -202,7 +200,7 @@ const Dispositif = (props: Props) => {
 
   // Initial data
   const [menu, setMenu] = useState<DispositifContent[]>(dispositif ? generateMenu(dispositif) : []);
-
+  const timer = useRef<number|undefined>();
 
   useEffect(() => {
     if (!user) dispatch(fetchUserActionCreator());
@@ -216,19 +214,10 @@ const Dispositif = (props: Props) => {
           router.push(user ? "/" : "/login");
           return;
         }
-
-        /* WRONG INIT?
-        //Enregistrement automatique du dispositif toutes les 3 minutes
-        if (dispositif.status === "Brouillon" && this._isMounted) {
-          this.initializeTimer(3 * 60 * 1000, () => {
-            this.valider_dispositif("Brouillon", true);
-          });
-        }
-        WHY THIS?
+        /* WHY THIS?
         const secondarySponsor = dispositif.sponsors.filter((sponsor) => !sponsor._id && sponsor.nom);
         const sponsors = secondarySponsor || []; */
 
-        if (dispositif.status === "Brouillon") setInitialTime(dispositif?.timeSpent || 0);
         //document.title = this.state.content.titreMarque || this.state.content.titreInformatif;
       }
     }
@@ -238,9 +227,6 @@ const Dispositif = (props: Props) => {
       if (isAuth) {
         // TODO : init empty dispositif
         // initialize the creation of a new dispositif if user is logged in
-        // this.initializeTimer(3 * 60 * 1000, () =>
-        //   this.valider_dispositif("Brouillon", true)
-        // ); //Enregistrement automatique du dispositif toutes les 3 minutes
         const menuContenu = dispositif?.typeContenu === "demarche" ? menuDemarche : menuDispositif;
         setDisableEdit(false);
         // setUiArray(generateUiArray(menuContenu, true));
@@ -265,9 +251,18 @@ const Dispositif = (props: Props) => {
     }
   }, []); // TODO : reload on change language
 
-  /* componentWillUnmount() {
-      clearInterval(this.timer);
-    } */
+  // Auto-save
+  useEffect(() => {
+    if (!disableEdit) {
+      if (timer.current) clearInterval(timer.current);
+      timer.current = initializeTimer(3 * 60 * 1000, () => {
+        // eslint-disable-next-line no-use-before-define
+        valider_dispositif("Brouillon", true);
+      });
+    }
+    return () => { if (timer.current) clearInterval(timer.current) }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [disableEdit]);
 
   const onInputClicked = (ev: any) => {
     // when clicking on titreInformatif or titreMarque (name of asso)
@@ -917,7 +912,7 @@ const Dispositif = (props: Props) => {
       this.props.location.state.previousRoute === "advanced-search"
     ) {
       this.props.history.go(-1);
-    } else { */
+    } else { */ //TODO : location.state
     router.push({ pathname: "/advanced-search" });
     // }
   };

@@ -66,7 +66,6 @@ export class TranslationHOC extends Component {
     traductionsFaites: [],
     translating: true,
     time: 0,
-    initialTime: 0,
     autosuggest: false,
     disableBtn: false,
     jsonId: null,

@@ -36,8 +36,6 @@ export const updateNbViews = (dispositif: IDispositif, translating: boolean) => 
 }
 
 export const isContentForbidden = (dispositif: IDispositif, admin: boolean, user: User | null) => {
-  // eslint-disable-next-line no-console
-  console.log(dispositif, admin, user);
   return dispositif.status !== "Actif" && !admin &&
     !(user?.contributions || []).includes(dispositif._id) &&
     (!dispositif.mainSponsor ||
