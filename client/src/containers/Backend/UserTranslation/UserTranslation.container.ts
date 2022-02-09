@@ -3,7 +3,8 @@ import {
   PropsBeforeInjection,
   UserTranslationComponent,
 } from "./UserTranslation.component";
-import { withTranslation, WithTranslation } from "react-i18next";
+import { withTranslation } from "next-i18next";
+import { WithTranslation } from "react-i18next";
 
 interface InjectedProps extends WithTranslation {}
 export interface Props extends PropsBeforeInjection, InjectedProps {}

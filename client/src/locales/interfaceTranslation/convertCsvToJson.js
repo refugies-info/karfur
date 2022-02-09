@@ -23,7 +23,7 @@ const convertCsvToJson = async (language) => {
   });
 
   const stringify = JSON.stringify(finalJson);
-  fs.writeFileSync("../" + language + "/translation.json", stringify);
+  fs.writeFileSync("../" + language + "/common.json", stringify);
 };
 
 const main = async () => {

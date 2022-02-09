@@ -1,6 +1,6 @@
 import React from "react";
 import { Spinner } from "reactstrap";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import styles from "./AudioBtn.module.scss";

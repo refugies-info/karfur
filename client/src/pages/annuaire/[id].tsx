@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useLayoutEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import _ from "lodash";
-import i18n from "i18n";
 import { useRouter } from "next/router";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -45,7 +45,7 @@ const AnnuaireDetail = () => {
   const router = useRouter()
   const structureId = router.query.id as string;
 
-  const locale = i18n.language;
+  const locale = router.locale || "fr";
   const [currentLoadedLocale, setCurrentLoadedLocale] = useState(locale);
 
   // Reload structure if locale change
@@ -90,17 +90,21 @@ const AnnuaireDetail = () => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(store => async ({query}) => {
+export const getServerSideProps = wrapper.getServerSideProps(store => async ({query, locale}) => {
   if (query.id) {
     const action = fetchSelectedStructureActionCreator({
       id: query.id as string,
-      locale: "fr" // TODO: fix language here
+      locale: locale || "fr"
     });
     store.dispatch(action);
     store.dispatch(END);
     await store.sagaTask?.toPromise();
   }
-  return {props: {}}
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || "fr", ["common"])),
+    },
+  }
 });
 
 export default AnnuaireDetail;

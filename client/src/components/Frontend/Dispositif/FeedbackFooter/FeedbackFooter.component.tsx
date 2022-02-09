@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { Props } from "./FeedbackFooter.container";
 import { colors } from "colors";

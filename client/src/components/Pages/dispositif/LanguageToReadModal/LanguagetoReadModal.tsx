@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import FButton from "components/FigmaUI/FButton/FButton";
 import styled from "styled-components";

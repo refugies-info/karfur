@@ -4,8 +4,8 @@ import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import traductionIconBlanc from "assets/icon_traduction_blanc.svg";
 import icon_mobilisation from "assets/icon_mobilisation.svg";
-import i18n from "i18n";
 import Image from "next/image";
+import useRTL from "hooks/useRTL";
 
 declare const window: Window;
 interface Props {
@@ -70,7 +70,7 @@ const IconContainer = styled.div`
 `;
 
 export const HomePageMobileSection = (props: Props) => {
-  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  const isRTL = useRTL();
 
   return (
     <SectionContainer backgroundColor={props.backgroundColor}>

@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { initGA, Event } from "lib/tracking";
 import { useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Highlighter from "react-highlight-words";
 import { debounce } from "lodash";
-import i18n from "i18n";
 import type { IDispositif } from "types/interface";
 import * as themes from "data/synonym";
 import Streamline from "assets/streamline";
@@ -18,6 +17,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import useOutsideClick from "hooks/useOutsideClick";
 
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
+import useRTL from "hooks/useRTL";
 
 const SearchModalContainer = styled.div`
   position: fixed;
@@ -158,7 +158,7 @@ const AdvancedSearchBar = (props: Props) => {
 
   var wrapperRef: React.MutableRefObject<Element|undefined> = useRef();
 
-  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  const isRTL = useRTL();
 
   useOutsideClick(wrapperRef, () => {
     toggleSearchModal(false);
@@ -187,7 +187,7 @@ const AdvancedSearchBar = (props: Props) => {
     const themesMatchedArray: string[] = [];
     for (const [key, theme] of Object.entries(
       //@ts-ignore
-      themes[i18n.language === "ti-ER" ? "ti" : i18n.language]
+      themes[router.locale || "fr"]
     )) {
       for (const synonym of theme as string[]) {
         if (

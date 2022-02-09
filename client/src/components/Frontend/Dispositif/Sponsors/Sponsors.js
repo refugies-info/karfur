@@ -26,11 +26,11 @@ import CreationContent from "../CreationContent/CreationContent";
 import { updateUserActionCreator } from "services/User/user.actions";
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
 import { colors } from "colors";
-import i18n from "i18n";
 import { SponsorSection } from "./SponsorSection/SponsorSection";
 import CustomModal from "./CustomModal";
 import ImgModal from "./ImgModal";
 import styles from "./Sponsors.module.scss";
+import { withRouter } from "next/router";
 
 const SponsorContainer = styled.div`
   padding: 0px 0px 0px 16px;
@@ -502,7 +502,7 @@ class Sponsors extends Component {
       mainSponsor,
       deduplicatedSponsors
     );
-    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+    const isRTL = ["ar", "ps", "fa"].includes(this.props.router.locale);
     return (
       <div
         className={styles.container}
@@ -1287,4 +1287,4 @@ const mapDispatchToProps = {
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
   forwardRef: true,
-})(Sponsors);
+})(withRouter(Sponsors));

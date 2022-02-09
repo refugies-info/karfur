@@ -1,5 +1,5 @@
 import React, { ChangeEventHandler } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import FButton from "components/FigmaUI/FButton/FButton";
 import FInput from "components/FigmaUI/FInput/FInput";
 import styles from "scss/components/login.module.scss";

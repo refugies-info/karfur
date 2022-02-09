@@ -3,7 +3,8 @@ import {
   PropsBeforeInjection,
   NavigationComponent,
 } from "./Navigation.component";
-import { withTranslation, TranslationProps } from "react-i18next";
+import { withTranslation } from "next-i18next";
+import { TranslationProps } from "react-i18next";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 
 interface InjectedProps extends RouteComponentProps, TranslationProps {}

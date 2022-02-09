@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import styled from "styled-components";
-import i18n from "i18n";
 import { Mission } from "components/Pages/qui-sommes-nous/Mission";
 import { Problematic } from "components/Pages/qui-sommes-nous/Problematic";
 import { Contribution } from "components/Pages/qui-sommes-nous/Contribution";
@@ -11,6 +10,7 @@ import { assetsOnServer } from "assets/assetsOnServer";
 import type { Member } from "data/members";
 import SEO from "components/Seo";
 import { NextPage } from "next";
+import { defaultStaticProps } from "lib/getDefaultStaticProps";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -273,5 +273,7 @@ const QuiSommesNous: NextPage = () => {
     </MainContainer>
   );
 };
+
+export const getStaticProps = defaultStaticProps;
 
 export default QuiSommesNous;

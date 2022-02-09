@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import _ from "lodash";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { Table } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { markerInfo } from "data/markerInfo";

@@ -2,8 +2,7 @@ import React, { useRef } from "react";
 import ContentEditable from "react-contenteditable";
 import dynamic from "next/dynamic";
 import { EditorBlock } from "draft-js";
-import i18n from "i18n";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import {
   boldBtn,
   italicBtn,
@@ -21,6 +20,7 @@ import { colors } from "colors";
 import isInBrowser from "lib/isInBrowser";
 import styles from "./EditableParagraph.module.scss";
 import { ContentBlock, EditorProps, EditorState } from "react-draft-wysiwyg";
+import { useRouter } from "next/router";
 
 const Editor = dynamic<EditorProps>(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
@@ -112,6 +112,7 @@ interface Props {
 }
 const EditableParagraph = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
   let editorReference = useRef();
 
   const setEditorReference = (ref: any) => {
@@ -150,7 +151,7 @@ const EditableParagraph = (props: Props) => {
             customBlockRenderFunc={myBlockRenderer}
             stripPastedStyles
             localization={{
-              locale: i18n.language,
+              locale: router.locale
             }}
             toolbar={{
               options: ["inline", "list", "link"], //, 'embedded'

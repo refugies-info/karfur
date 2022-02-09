@@ -3,7 +3,7 @@ import { Col, Row, Collapse } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
 import { QuickToolbar } from "components/Pages/dispositif/QuickToolbar";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import {
   CardParagraphe,
   PlusCard,

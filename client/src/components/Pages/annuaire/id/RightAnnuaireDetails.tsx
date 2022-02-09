@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { IDispositif } from "types/interface";
 import { ObjectId } from "mongodb";
 import SearchResultCard from "components/Pages/advanced-search/SearchResultCard";

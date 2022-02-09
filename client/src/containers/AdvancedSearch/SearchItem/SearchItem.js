@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import { withTranslation } from "react-i18next";
+import { withTranslation } from "next-i18next";
 import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import ReactDependentScript from "react-dependent-script";
 import Autocomplete from "react-google-autocomplete";
 import FSearchBtn from "../../../components/FigmaUI/FSearchBtn/FSearchBtn";
 import Streamline from "../../../assets/streamline";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import i18n from "../../../i18n";
 
 // import variables from 'scss/colors.scss';
 import styles from "./SearchItem.module.scss";
 import fsb_styles from "components/FigmaUI/FSearchBtn/FSearchBtn.module.scss"
+import { withRouter } from "next/router";
 
 export class SearchItem extends Component {
   constructor(props) {
@@ -66,7 +66,7 @@ export class SearchItem extends Component {
   render() {
     const { t, item, keyValue, isBigDesktop } = this.props;
     const { dropdownOpen, isMounted, ville, villeAuto } = this.state;
-    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+    const isRTL = ["ar", "ps", "fa"].includes(this.props.router.locale);
 
     return (
       <div className={styles.search_col}>
@@ -272,4 +272,4 @@ export class SearchItem extends Component {
   }
 }
 
-export default withTranslation()(SearchItem);
+export default withRouter(withTranslation()(SearchItem));

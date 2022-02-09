@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import _ from "lodash";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 import FButton from "components/FigmaUI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -27,12 +27,12 @@ import { colors } from "colors";
 import { EtapeModal } from "components/Modals";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
-import i18n from "i18n";
 import styles from "./EtapeParagraphe.module.scss";
 import { DispositifContent, Tag, UiObject } from "types/interface";
 import { demarcheSteps, Option, ShortContent } from "data/dispositif";
 import { EditorState } from "draft-js";
 import { UiElement } from "services/SelectedDispositif/selectedDispositif.reducer";
+import useRTL from "hooks/useRTL";
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>
@@ -139,9 +139,9 @@ const EtapeParagraphe = (props: Props) => {
 
   useEffect(() => {
     if (
-      (!isOptionSelected && props.subitem.option.value1,
-      props.subitem.option.value2,
-      props.subitem.option.checked !== undefined)
+      (!isOptionSelected && props.subitem.option?.value1,
+      props.subitem.option?.value2,
+      props.subitem.option?.checked !== undefined)
     ) {
       const { checked, value1, value2, value3, value4, texte } = props.subitem.option;
       const subItemPapiers = props.subitem?.papiers || [];
@@ -166,9 +166,9 @@ const EtapeParagraphe = (props: Props) => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    props.subitem.option.value1,
-    props.subitem.option.value2,
-    props.subitem.option.checked,
+    props.subitem.option?.value1,
+    props.subitem.option?.value2,
+    props.subitem.option?.checked,
   ]);
 
   const toggleModal = () => setShowModal(!showModal);
@@ -283,7 +283,7 @@ const EtapeParagraphe = (props: Props) => {
   const isAccordeonOpen = !!safeUiArray(keyValue, subkey, "accordion");
   const darkColor = props.mainTag?.darkColor || colors.darkColor;
   const lightColor = props.mainTag?.lightColor || colors.lightColor;
-  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  const isRTL = useRTL();
 
   return (
     <div

@@ -1,16 +1,16 @@
 //@ts-nocheck
 import React, { useEffect, useState, useRef } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 //@ts-ignore
 import Flippy, { FrontSide, BackSide } from "react-flippy";
 import { colors } from "colors";
 import Streamline from "assets/streamline";
 import Ripples from "react-ripples";
-import i18n from "i18n";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { Tag } from "types/interface";
 import styles from "./HomeSearch.module.scss";
+import useRTL from "hooks/useRTL";
 
 const IconContainer = styled.div`
   display: flex;
@@ -31,7 +31,7 @@ const HomeSearch = (props: Props) => {
   const [indexFront, setIndexFront] = useState(0);
   const [indexBack, setIndexBack] = useState(1);
 
-  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  const isRTL = useRTL();
   const { t } = useTranslation();
   const flippy: any = useRef();
 

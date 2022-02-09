@@ -2,7 +2,8 @@ import { connect } from "react-redux";
 import { compose } from "recompose";
 import { PropsBeforeInjection, Tags } from "./Tags.component";
 import { RootState } from "services/rootReducer";
-import { withTranslation, WithTranslation } from "react-i18next";
+import { withTranslation } from "next-i18next";
+import { WithTranslation } from "react-i18next";
 import { deleteTagActionCreator } from "services/SelectedDispositif/selectedDispositif.actions";
 
 // TO DO : use redux instead of state local, be careful that info are synchronized

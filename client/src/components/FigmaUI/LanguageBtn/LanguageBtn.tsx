@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import FButton from "../FButton/FButton";
 import { toggleLangueModalActionCreator } from "services/Langue/langue.actions";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
-import i18n from "i18n";
 import styles from "./LanguageBtn.module.scss";
+import { useRouter } from "next/router";
 
 interface Props {
   hideTextOnMobile?: boolean
@@ -12,8 +12,9 @@ interface Props {
 
 const LanguageBtn = (props: Props) => {
   const allLanguages = useSelector(allLanguesSelector);
+  const router = useRouter();
   const current =
-    (allLanguages || []).find((x) => x.i18nCode === i18n.language) || null;
+    (allLanguages || []).find((x) => x.i18nCode === router.locale) || null;
   const langueCode =
     allLanguages.length > 0 && current ? current.langueCode : "fr";
   const dispatch = useDispatch();

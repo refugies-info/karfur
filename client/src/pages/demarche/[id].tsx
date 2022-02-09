@@ -1,16 +1,17 @@
 import Dispositif from "components/Frontend/Dispositif/Dispositif"
 import { wrapper } from "services/configureStore";
 import { END } from "redux-saga";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { fetchSelectedDispositifActionCreator } from "services/SelectedDispositif/selectedDispositif.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
 
 const DispositifPage = () => <Dispositif type="detail" />
 
-export const getServerSideProps = wrapper.getServerSideProps(store => async ({ query }) => {
+export const getServerSideProps = wrapper.getServerSideProps(store => async ({ query, locale }) => {
   if (query.id) {
     const action = fetchSelectedDispositifActionCreator({
       selectedDispositifId: query.id as string,
-      locale: "fr" // TODO: fix language here
+      locale: locale || "fr"
     });
     store.dispatch(action);
     store.dispatch(fetchUserActionCreator());
@@ -27,7 +28,11 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ q
   }
 
   // 200
-  return {props: {}}
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || "fr", ["common"])),
+    },
+  }
 });
 
 export default DispositifPage;

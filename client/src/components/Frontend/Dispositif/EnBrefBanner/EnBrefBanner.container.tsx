@@ -1,7 +1,8 @@
-import { withTranslation, WithTranslation } from "react-i18next";
+import { withTranslation } from "next-i18next";
+import { WithTranslation } from "react-i18next";
 import { compose } from "recompose";
 import { PropsBeforeInjection, EnBrefBanner } from "./EnBrefBanner.component";
-import { RootState } from "../../../../services/rootReducer";
+import { RootState } from "services/rootReducer";
 import { connect } from "react-redux";
 
 // not ready to take menu from store because it does not update yet when modifying something

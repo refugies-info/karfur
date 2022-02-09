@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import styles from "scss/pages/legal-pages.module.scss";
 import SEO from "components/Seo";
+import { defaultStaticProps } from "lib/getDefaultStaticProps";
 
 const PolitiqueConfidentialite = () => {
   return (
@@ -114,5 +115,7 @@ const PolitiqueConfidentialite = () => {
     </div>
   );
 };
+
+export const getStaticProps = defaultStaticProps;
 
 export default PolitiqueConfidentialite;

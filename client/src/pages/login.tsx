@@ -1,9 +1,8 @@
 import React, { useState, useEffect, ReactElement } from "react";
 import { Form } from "reactstrap";
-import i18n from "i18n";
 import Swal from "sweetalert2";
 import { useSelector, useDispatch } from "react-redux";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import {
   fetchLanguesActionCreator,
@@ -31,6 +30,7 @@ import UsernameField from "components/Pages/login/UsernameField";
 import { colors } from "colors";
 import styles from "scss/components/login.module.scss";
 import SEO from "components/Seo";
+import { defaultStaticProps } from "lib/getDefaultStaticProps";
 
 type Structure = {
   nom: string;
@@ -106,9 +106,9 @@ const Login = () => {
 
   const changeLanguage = (lng: string) => {
     dispatch(toggleLangueActionCreator(lng));
-    if (i18n.getResourceBundle(lng, "translation")) {
-      i18n.changeLanguage(lng);
-    }
+    const { pathname, asPath, query } = router;
+    router.push({ pathname, query }, asPath, { locale: lng });
+
     if (showLangModal) {
       dispatch(toggleLangueModalActionCreator());
     }
@@ -242,6 +242,7 @@ const Login = () => {
     if (step === 2) {
       return t("Login.Double authentification", "Double authentification ");
     }
+    return "";
   };
 
   const getHashedEmail = () => {
@@ -278,6 +279,7 @@ const Login = () => {
     if (step === 2) {
       return t("Login.code_sent_sms", { phone: smsSentTo });
     }
+    return "";
   };
 
   const getFormTemplate = () => {
@@ -435,7 +437,7 @@ const Login = () => {
         </div>
         <LanguageModal
           show={showLangModal}
-          currentLanguage={i18n.language}
+          currentLanguage={router.locale || "fr"}
           toggle={() => dispatch(toggleLangueModalActionCreator())}
           changeLanguage={changeLanguage}
           languages={langues}
@@ -445,6 +447,8 @@ const Login = () => {
     </div>
   );
 };
+
+export const getStaticProps = defaultStaticProps;
 
 export default Login;
 

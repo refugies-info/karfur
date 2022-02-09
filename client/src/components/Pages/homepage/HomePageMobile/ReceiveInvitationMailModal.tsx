@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent } from "react";
 import { Modal } from "reactstrap";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import Swal from "sweetalert2";
 import { FButtonMobile } from "components/FigmaUI/FButtonMobile/FButtonMobile";

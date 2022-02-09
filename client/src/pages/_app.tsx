@@ -1,6 +1,7 @@
 import React, { ReactElement, ReactNode } from "react";
 import type { AppProps } from "next/app";
 import Script from "next/script";
+import { appWithTranslation } from "next-i18next";
 import type { NextPage } from "next";
 import { wrapper } from "services/configureStore";
 import Layout from "components/Layout/Layout";
@@ -40,4 +41,4 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   )
 }
 
-export default wrapper.withRedux(App);
+export default wrapper.withRedux(appWithTranslation(App));

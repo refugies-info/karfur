@@ -1,9 +1,8 @@
 import React, { useState, useEffect, ReactElement } from "react";
 import { Form } from "reactstrap";
-import i18n from "i18n";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import styled from "styled-components";
@@ -32,6 +31,7 @@ import setAuthToken from "utils/setAuthToken";
 import { logger } from "logger";
 import styles from "scss/components/login.module.scss";
 import SEO from "components/Seo";
+import { defaultStaticProps } from "lib/getDefaultStaticProps";
 
 const StyledHeader = styled.div`
   font-weight: 600;
@@ -91,9 +91,9 @@ const Register = () => {
 
   const changeLanguage = (lng: string) => {
     dispatch(toggleLangueActionCreator(lng))
-    if (i18n.getResourceBundle(lng, "translation")) {
-      i18n.changeLanguage(lng);
-    }
+    const { pathname, asPath, query } = router;
+    router.push({ pathname, query }, asPath, { locale: lng });
+
     if (showLangModal) {
       dispatch(toggleLangueModalActionCreator());
     }
@@ -349,7 +349,7 @@ const Register = () => {
           </ContentContainer>
           <LanguageModal
             show={showLangModal}
-            currentLanguage={i18n.language}
+            currentLanguage={router.locale || "fr"}
             toggle={() => dispatch(toggleLangueModalActionCreator())}
             changeLanguage={changeLanguage}
             languages={langues}
@@ -359,6 +359,8 @@ const Register = () => {
       </div>
     );
 }
+
+export const getStaticProps = defaultStaticProps;
 
 export default Register;
 

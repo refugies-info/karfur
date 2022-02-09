@@ -4,10 +4,10 @@ const Papa = require("papaparse");
 const convertJsonToCsv = (langue) => {
   // import french
   const jsonFrench = JSON.parse(
-    fs.readFileSync("../fr/translation.json").toString()
+    fs.readFileSync("../fr/common.json").toString()
   );
   const jsonLangue = JSON.parse(
-    fs.readFileSync("../" + langue + "/translation.json").toString()
+    fs.readFileSync("../" + langue + "/common.json").toString()
   );
   const titleArrayFrench = Object.keys(jsonFrench);
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { withTranslation } from "react-i18next";
-import { withRouter } from "next/router"
+import { withTranslation } from "next-i18next";
+import { withRouter } from "next/router";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Tooltip } from "reactstrap";
 import Swal from "sweetalert2";
 import qs from "query-string";
@@ -9,7 +10,6 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import produce from "immer";
 import withSizes from "react-sizes";
-import i18n from "i18n";
 import Streamline from "assets/streamline";
 import SearchItem from "containers/AdvancedSearch/SearchItem/SearchItem";
 import SearchResultCard from "components/Pages/advanced-search/SearchResultCard";
@@ -1100,10 +1100,10 @@ export class AdvancedSearch extends Component {
       isBigDesktop,
       languei18nCode,
     } = this.props;
-    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+    const isRTL = ["ar", "ps", "fa"].includes(this.props.router.locale);
     const current =
       (this.props.langues || []).find(
-        (x) => x.i18nCode === this.props.i18n.language
+        (x) => x.i18nCode === this.props.router.locale
       ) || {};
     const langueCode =
       this.props.langues.length > 0 && current ? current.langueCode : "fr";
@@ -2116,10 +2116,16 @@ const mapSizesToProps = ({ width }) => ({
   isBigDesktop: width >= 1565,
 });
 
-export const getServerSideProps = wrapper.getServerSideProps(store => async () => {
+export const getServerSideProps = wrapper.getServerSideProps(store => async ({locale}) => {
   store.dispatch(fetchActiveDispositifsActionsCreator());
   store.dispatch(END);
   await store.sagaTask?.toPromise();
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || "fr", ["common"])),
+    },
+  }
 });
 
 export default withRouter(

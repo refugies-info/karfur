@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal } from "reactstrap";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Streamline from "assets/streamline";
 import { filtres } from "data/dispositif";

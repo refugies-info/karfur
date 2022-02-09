@@ -6,7 +6,6 @@ import {
   updateUserFavoritesActionCreator,
   fetchUserFavoritesActionCreator,
 } from "../../../../services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
-import i18n from "../../../../i18n";
 import { act } from "react-test-renderer";
 import "jest-styled-components";
 
@@ -27,11 +26,6 @@ jest.mock(
     };
   }
 );
-
-jest.mock("../../../../i18n", () => ({
-  __esModule: true, // this property makes it work
-  default: { language: "fr" },
-}));
 
 describe("UserFavorites", () => {
   beforeEach(() => {
@@ -162,7 +156,6 @@ describe("UserFavorites", () => {
   });
 
   it("should dispatch updateUserFavoritesActionCreator when click on Tout supprimer and language is en", () => {
-    i18n.language = "en";
     window.scrollTo = jest.fn();
 
     let component;
@@ -186,7 +179,6 @@ describe("UserFavorites", () => {
   });
 
   it("should dispatch updateUserFavoritesActionCreator when click on one dispositif and language is en", () => {
-    i18n.language = "ps";
     window.scrollTo = jest.fn();
 
     let component;

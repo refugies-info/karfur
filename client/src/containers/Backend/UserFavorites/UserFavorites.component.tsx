@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchUserFavoritesActionCreator,
   updateUserFavoritesActionCreator,
-} from "../../../services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
-import i18n from "../../../i18n";
-import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
-import { userFavoritesSelector } from "../../../services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
+} from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { userFavoritesSelector } from "services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
 import styled from "styled-components";
 import SearchResultCard from "components/Pages/advanced-search/SearchResultCard";
 import { Props } from "../UserProfile/UserProfile.container";
@@ -17,12 +16,13 @@ import {
   FavoritesContainer,
   CardsContainer,
 } from "./components/SubComponents";
-import { FrameModal } from "../../../components/Modals";
+import { FrameModal } from "components/Modals";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
-import { IUserFavorite } from "../../../types/interface";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
+import { IUserFavorite } from "types/interface";
+import FButton from "components/FigmaUI/FButton/FButton";
 import { FavoritesLoading } from "./components/FavoritesLoading";
 import { Navigation } from "../Navigation";
+import { useRouter } from "next/router";
 declare const window: Window;
 
 export interface PropsBeforeInjection {
@@ -50,8 +50,9 @@ export const UserFavoritesComponent = (props: Props) => {
   const [showTutoModal, setShowTutoModal] = useState(false);
   const toggleTutoModal = () => setShowTutoModal(!showTutoModal);
 
+  const router = useRouter();
   const dispatch = useDispatch();
-  const locale = i18n.language;
+  const locale = router.locale || "fr";
 
   useEffect(() => {
     dispatch(fetchUserFavoritesActionCreator(locale));

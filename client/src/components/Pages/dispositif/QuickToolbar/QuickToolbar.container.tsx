@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
-import { withTranslation, WithTranslation } from "react-i18next";
+import { withTranslation } from "next-i18next";
+import { WithTranslation } from "react-i18next";
 import { compose } from "recompose";
 import { PropsBeforeInjection, QuickToolbar } from "./QuickToolbar.component";
 import { RootState } from "services/rootReducer";

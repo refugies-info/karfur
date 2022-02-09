@@ -1,6 +1,6 @@
 import React from "react";
 import { Input, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import {colors} from "colors";
 
 import FButton from "../../FigmaUI/FButton/FButton";

@@ -39,7 +39,7 @@ const MainContainer = styled.div`
   flex-direction: column;
 `;
 
-const availableLanguages = ["fa", "en", "ru", "ps", "ar", "ti-ER"];
+const availableLanguages = ["fa", "en", "ru", "ps", "ar", "ti"];
 const getLangueName = (
   langueId: ObjectId | null,
   userTradLanguages: UserLanguage[]

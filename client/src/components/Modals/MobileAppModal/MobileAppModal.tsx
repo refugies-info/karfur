@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, ModalBody } from "reactstrap";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { isIOS } from "react-device-detect";
 import Image from "next/image";
 import { FButtonMobile } from "components/FigmaUI/FButtonMobile/FButtonMobile";

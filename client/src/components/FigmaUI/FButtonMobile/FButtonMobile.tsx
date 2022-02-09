@@ -1,9 +1,9 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
-import i18n from "i18n";
+import { useTranslation } from "next-i18next";
 import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./FButtonMobile.module.scss";
+import useRTL from "hooks/useRTL";
 
 interface Props {
   name: string;
@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const FButtonMobile = (props: Props) => {
-  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  const isRTL = useRTL();
   const { t } = useTranslation();
 
   return (

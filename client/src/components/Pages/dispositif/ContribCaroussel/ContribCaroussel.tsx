@@ -9,7 +9,7 @@ import {
   CarouselItem,
   Badge,
 } from "reactstrap";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import isInBrowser from "lib/isInBrowser";
 import { colors } from "colors";

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import routes from "routes";
 import isInBrowser from "lib/isInBrowser";
 import SEO from "components/Seo";
+import { defaultStaticProps } from "lib/getDefaultStaticProps";
 
 const Backend = () =>
   <>
@@ -25,5 +26,7 @@ const Backend = () =>
       </Router>
     )}
   </>
+
+export const getServerSideProps = defaultStaticProps;
 
 export default Backend;

@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import Link from "next/link";
 import { isMobile } from "react-device-detect";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { Language } from "types/interface";
 import { colorAvancement } from "lib/colors";
 import FButton from "components/FigmaUI/FButton/FButton";

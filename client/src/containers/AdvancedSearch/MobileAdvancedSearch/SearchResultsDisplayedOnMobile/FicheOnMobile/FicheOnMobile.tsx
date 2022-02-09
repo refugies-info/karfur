@@ -1,6 +1,6 @@
 import React from "react";
 import { IDispositif } from "types/interface";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import { colors } from "colors";
 import Streamline from "assets/streamline";

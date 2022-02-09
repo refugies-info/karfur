@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
 import { useRouter } from "next/router";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { NextParsedUrlQuery } from "next/dist/server/request-meta";
 import { ObjectId } from "mongodb";
 import qs from "query-string";
@@ -252,13 +253,15 @@ const Annuaire = (props: any) => {
   );
 };
 
-export const getStaticProps = wrapper.getStaticProps(store => async () => {
+export const getStaticProps = wrapper.getStaticProps(store => async ({locale}) => {
   store.dispatch(fetchActiveStructuresActionCreator());
   store.dispatch(END);
   await store.sagaTask?.toPromise();
 
   return {
-    props: {},
+    props: {
+      ...(await serverSideTranslations(locale || "fr", ["common"])),
+    },
     revalidate: 30
   };
 });

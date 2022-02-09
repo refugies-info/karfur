@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import i18n from "i18n";
 import Image from "next/image";
 import { ThemeButton } from "components/FigmaUI/ThemeButton/ThemeButton";
 import type { Tag } from "types/interface";
 import placeholder from "assets/placeholder_annuaire.png";
+import useRTL from "hooks/useRTL";
 
 interface Props {
   activity: string;
@@ -78,7 +78,7 @@ const Text = styled.div`
 `;
 
 export const ActivityCard = (props: Props) => {
-  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  const isRTL = useRTL();
 
   return (
     <CardContainer

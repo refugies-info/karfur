@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { colors } from "colors";
-import i18n from "i18n";
 import { initial_data } from "data/searchFilters";
 import { initGA, PageView } from "lib/tracking";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
@@ -30,6 +29,8 @@ import icon_mobilisation from "assets/icon_mobilisation.svg";
 import { assetsOnServer } from "assets/assetsOnServer";
 import styles from "scss/pages/homepage.module.scss";
 import SEO from "components/Seo";
+import { defaultStaticProps } from "lib/getDefaultStaticProps";
+import useRTL from "hooks/useRTL";
 
 const CoronaAlert = styled.div`
   display: flex;
@@ -127,7 +128,7 @@ const Homepage = (props: Props) => {
   const toggleOverlay = () => setOverlay(!overlay);
 
   const searchItem = initial_data[0];
-  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  const isRTL = useRTL();
   searchItem.title = "J'ai besoin de";
 
   return (
@@ -495,5 +496,7 @@ const Homepage = (props: Props) => {
     </div>
   );
 };
+
+export const getStaticProps = defaultStaticProps;
 
 export default Homepage;

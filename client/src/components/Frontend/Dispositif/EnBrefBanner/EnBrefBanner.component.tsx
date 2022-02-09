@@ -1,7 +1,7 @@
 import React from "react";
 import { Row } from "reactstrap";
 import h2p from "html2plaintext";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { Props } from "./EnBrefBanner.container";
 import { DispositifContent } from "types/interface";
 import { infoCardIcon } from "../../../Icon/Icon";

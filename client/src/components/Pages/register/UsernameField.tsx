@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import FInput from "components/FigmaUI/FInput/FInput";
 import FButton from "components/FigmaUI/FButton/FButton";
 import styles from "scss/components/login.module.scss";

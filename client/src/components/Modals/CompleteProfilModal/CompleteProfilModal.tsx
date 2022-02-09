@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { Modal } from "reactstrap";
 import Swal from "sweetalert2";
 import FInput from "components/FigmaUI/FInput/FInput";

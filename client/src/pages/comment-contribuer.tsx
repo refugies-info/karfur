@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import Image from "next/image";
 import { useSelector } from "react-redux";
-import i18n from "i18n";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import API from "utils/API";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { userSelector } from "services/User/user.selectors";
@@ -27,6 +27,7 @@ import SEO from "components/Seo";
 import { wrapper } from "services/configureStore";
 import { END } from "redux-saga";
 import { fetchLanguesActionCreator } from "services/Langue/langue.actions";
+import useRTL from "hooks/useRTL";
 
 interface Props {
   nbExperts: number
@@ -52,7 +53,7 @@ const CommentContribuer = (props: Props) => {
     );
   };
   const activeLangues = getActiveLangues();
-  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  const isRTL = useRTL();
 
   return (
     <div className={styles.container}>
@@ -427,7 +428,7 @@ const CommentContribuer = (props: Props) => {
   )
 };
 
-export const getStaticProps = wrapper.getStaticProps(store => async () => {
+export const getStaticProps = wrapper.getStaticProps(store => async ({locale}) => {
   store.dispatch(fetchLanguesActionCreator());
   store.dispatch(END);
   await store.sagaTask?.toPromise();
@@ -438,11 +439,13 @@ export const getStaticProps = wrapper.getStaticProps(store => async () => {
     const usersStats = await API.getFiguresOnUsers();
     nbExperts = usersStats.data.data.nbExperts;
     nbTraductors = usersStats.data.data.nbTraductors;
-  } catch(e) {}
+  } catch (e) { }
+
   return {
     props: {
       nbExperts,
-      nbTraductors
+      nbTraductors,
+      ...(await serverSideTranslations(locale || "fr", ["common"])),
     },
     revalidate: 60
   };

@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import PseudoFooter from "./PseudoFooter";
 import styles from "scss/components/login.module.scss";
 

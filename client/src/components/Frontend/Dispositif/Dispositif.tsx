@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, createRef } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { Col, Row, Spinner } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
@@ -12,7 +12,6 @@ import {
   convertFromRaw,
   ContentState,
 } from "draft-js";
-import i18n from "i18n";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
 import h2p from "html2plaintext";
@@ -95,6 +94,7 @@ import { userSelector } from "services/User/user.selectors";
 import { DispositifContent, IDispositif, Language, Structure, Tag } from "types/interface";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { toggleLangueActionCreator } from "services/Langue/langue.actions";
+import useRTL from "hooks/useRTL";
 
 moment.locale("fr");
 
@@ -249,7 +249,7 @@ const Dispositif = (props: Props) => {
         // state: { redirectTo: "/dispositif" }, // TODO : location.state
       }
     }
-  }, []); // TODO : reload on change language
+  }, []);
 
   // Auto-save
   useEffect(() => {
@@ -925,7 +925,7 @@ const Dispositif = (props: Props) => {
   const createPdf = () => {
     if (!dispositif) return;
     initGA();
-    Event("EXPORT_PDF", i18n.language, "label");
+    Event("EXPORT_PDF", router.locale || "fr", "label");
     let newUiArray = [...dispositif.uiArray];
     newUiArray = newUiArray.map((x) => ({
       ...x,
@@ -1014,7 +1014,7 @@ const Dispositif = (props: Props) => {
       dispatch(
         fetchSelectedDispositifActionCreator({
           selectedDispositifId: dispositif._id.toString(),
-          locale: "fr", //TODO: ln
+          locale: router.locale || "fr",
         })
       );
       setDisableEdit(status !== "Accepté structure");
@@ -1189,28 +1189,28 @@ const Dispositif = (props: Props) => {
 
   const changeLanguage = (lng: string) => {
     dispatch(toggleLangueActionCreator(lng));
-    if (i18n.getResourceBundle(lng, "translation")) {
-      i18n.changeLanguage(lng);
-    }
+    const { pathname, asPath, query } = router;
+    router.push({ pathname, query }, asPath, { locale: lng });
   }
 
-  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  const isRTL = useRTL();
   const mainTag = getMainTag(dispositif);
   const tag = mainTag.short.split(" ").join("-");
   const possibleLanguages = createPossibleLanguagesObject(
     dispositif?.avancement,
     langues
   );
+  const locale = router.locale || "fr";
   const langueSelected = langues.find(
-    (item) => item.i18nCode === i18n.language
+    (item) => item.i18nCode === locale
   );
 
   const isTranslated =
     (dispositif &&
       dispositif.avancement &&
-      dispositif.avancement[i18n.language] &&
-      dispositif.avancement[i18n.language] === 1) ||
-    i18n.language === "fr";
+      dispositif.avancement[locale] &&
+      dispositif.avancement[locale] === 1) ||
+    locale === "fr";
 
   return (
     <div
@@ -1304,7 +1304,7 @@ const Dispositif = (props: Props) => {
                 translating={!!props.translating}
                 status={dispositif?.status || ""}
                 typeContenu={dispositif?.typeContenu || "dispositif"}
-                langue={i18n.language}
+                langue={router.locale || "fr"}
                 mainTag={mainTag}
                 t={t}
               />

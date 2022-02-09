@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import i18n from "i18n";
 import { useSelector, useDispatch } from "react-redux";
 import API from "utils/API";
 import AudioBtn from "components/UI/AudioBtn/AudioBtn";
@@ -35,6 +34,7 @@ import { getNbNewNotifications } from "containers/Backend/UserNotifications/lib"
 import { isMobile } from "react-device-detect";
 import styles from "./Navbar.module.scss";
 import marioProfile from "assets/mario-profile.jpg";
+import useRTL from "hooks/useRTL";
 
 const IconButton = styled.div`
   background-color: ${colors.noir};
@@ -119,7 +119,7 @@ const Navbar = () => {
     user.user && user.user.picture
       ? user.user.picture.secure_url
       : marioProfile;
-  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  const isRTL = useRTL();
   const pathName = user.membreStruct
     ? "/backend/user-dash-notifications"
     : "/backend";
@@ -163,7 +163,7 @@ const Navbar = () => {
 
       <div className={styles.center_buttons}>
         <AudioBtn
-          enabled={["fr", "en", "ar", "ru"].includes(i18n.language)}
+          enabled={["fr", "en", "ar", "ru"].includes(router.locale || "fr")}
           toggleAudio={() => dispatch(toggleTTSActionCreator())}
           ttsActive={ttsActive}
           ttsLoading={ttsLoading}

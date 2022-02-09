@@ -15,7 +15,7 @@ import { colors } from "colors";
 import { Props } from "./LeftSideDispositif.container";
 import { DispositifContent, Tag } from "types/interface";
 import { send_sms } from "components/Pages/dispositif/function";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 declare const window: Window;
 export interface PropsBeforeInjection {

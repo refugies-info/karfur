@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
-import i18n from "i18n";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DirectionProvider, { DIRECTIONS } from "react-with-direction/dist/DirectionProvider";
 import Navbar from "components/Navigation/Navbar/Navbar";
@@ -27,6 +26,9 @@ import Footer from "components/Layout/Footer";
 import { readAudio, stopAudio } from "lib/readAudio";
 import { toggleSpinner } from "services/Tts/tts.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { useRouter } from "next/router";
+import useRTL from "hooks/useRTL";
+import { userDetailsSelector } from "services/User/user.selectors";
 
 interface Props {
   children: any
@@ -34,46 +36,39 @@ interface Props {
 
 const Layout = (props: Props) => {
   const [showMobileModal, setShowMobileModal] = useState(false);
-  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  const isRTL = useRTL();
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const ttsActive = useSelector(ttsActiveSelector);
   const showLangModal = useSelector(showLangModalSelector);
   const langues = useSelector(allLanguesSelector);
+  const user = useSelector(userDetailsSelector);
   const isLanguagesLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_LANGUES));
   const dispositifs = useSelector(activeDispositifsSelector);
 
-
-  const switchToLanguage = useCallback((lng: string) => {
-    dispatch(toggleLangueActionCreator(lng));
-    if (i18n.getResourceBundle(lng, "translation")) {
-      i18n.changeLanguage(lng);
-    }
-  }, [dispatch]);
-
   const changeLanguage = (lng: string) => {
-    switchToLanguage(lng);
+    dispatch(toggleLangueActionCreator(lng));
+
+    const { pathname, asPath, query } = router;
+    router.push({ pathname, query }, asPath, { locale: lng });
+
     if (showLangModal) {
       dispatch(toggleLangueModalActionCreator());
     }
   };
 
   useEffect(() => {
-    dispatch(fetchUserActionCreator());
+    if (!user) {
+      dispatch(fetchUserActionCreator());
+    }
     if (dispositifs.length === 0) {
       dispatch(fetchActiveDispositifsActionsCreator());
     }
     if (langues.length === 0) {
       dispatch(fetchLanguesActionCreator());
     }
-
-    const storedLanguei18nCode = localStorage.getItem("languei18nCode");
-    if (storedLanguei18nCode && storedLanguei18nCode !== "fr") {
-      switchToLanguage(storedLanguei18nCode);
-    } else if (!storedLanguei18nCode) {
-      dispatch(toggleLangueModalActionCreator());
-    }
-  }, [dispatch, switchToLanguage]);
+  }, [dispositifs.length, langues.length, user, dispatch]);
 
   const computeFullSentence = (nodeList: any) => {
     let sentence = "";
@@ -97,7 +92,7 @@ const Layout = (props: Props) => {
       if (sentence) {
         readAudio(
           sentence,
-          i18n.language,
+          router.locale,
           null,
           false,
           ttsActive,
@@ -127,7 +122,7 @@ const Layout = (props: Props) => {
 
         <LanguageModal
           show={showLangModal}
-          currentLanguage={i18n.language}
+          currentLanguage={router.locale || "fr"}
           toggle={() => dispatch(toggleLangueModalActionCreator())}
           changeLanguage={changeLanguage}
           languages={langues}

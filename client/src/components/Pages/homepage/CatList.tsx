@@ -1,13 +1,13 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import i18n from "i18n";
 import FSearchBtn from "components/FigmaUI/FSearchBtn/FSearchBtn";
 import Streamline from "assets/streamline";
 import { motion } from "framer-motion";
 import { Tag } from "types/interface";
 import styles from "./CatList.module.scss";
+import useRTL from "hooks/useRTL";
 
 const InnerButton = styled.div`
   display: flex;
@@ -49,7 +49,7 @@ interface Props {
 }
 
 const CatList = (props: Props) => {
-  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  const isRTL = useRTL();
   const { t } = useTranslation();
   const router = useRouter();
 

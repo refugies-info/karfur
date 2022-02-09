@@ -21,6 +21,7 @@ import { userStructureIdSelector } from "services/User/user.selectors";
 import { userStructureSelector } from "services/UserStructure/userStructure.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { UserStructure } from "types/interface";
 import styles from "scss/pages/annuaire-create.module.scss";
 import SEO from "components/Seo";
@@ -231,5 +232,7 @@ const AnnuaireCreate = () => {
     </div>
   );
 };
+
+export const getStaticProps = defaultStaticProps;
 
 export default AnnuaireCreate;

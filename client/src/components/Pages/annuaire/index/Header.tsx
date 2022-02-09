@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import i18n from "i18n";
 import { SearchBarAnnuaire } from "./SearchBarAnnuaire";
 import { SimplifiedStructure } from "types/interface";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import styles from "./Header.module.scss";
+import useRTL from "hooks/useRTL";
 
 interface Props {
   letters: string[];
@@ -29,7 +29,7 @@ interface Props {
 }
 
 export const Header = (props: Props) => {
-  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  const isRTL = useRTL();
   const { t } = useTranslation();
   const router = useRouter();
 

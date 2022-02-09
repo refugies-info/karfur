@@ -5,8 +5,7 @@ import Swal from "sweetalert2";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useTranslation } from "react-i18next";
-import i18n from "i18n";
+import { useTranslation } from "next-i18next";
 import setAuthToken from "utils/setAuthToken";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import {
@@ -31,6 +30,7 @@ import API from "utils/API";
 import { colors } from "colors";
 import styles from "scss/components/login.module.scss";
 import SEO from "components/Seo";
+import { defaultStaticProps } from "lib/getDefaultStaticProps";
 
 const StyledHeader = styled.div`
   font-weight: 600;
@@ -70,9 +70,10 @@ const Reset = () => {
 
   useEffect(() => {
     dispatch(fetchLanguesActionCreator());
-    const token = Array.isArray(router.query.id)
+/*     const token = Array.isArray(router.query.id)
       ? router.query.id[0]
-      : router.query.id;
+      : router.query.id; */ // TODO : fix
+    const token = "";
     if (!token) {
       setIsLoading(false);
       setIsError(true);
@@ -147,9 +148,9 @@ const Reset = () => {
 
   const changeLanguage = (lng: string) => {
     dispatch(toggleLangueActionCreator(lng));
-    if (i18n.getResourceBundle(lng, "translation")) {
-      i18n.changeLanguage(lng);
-    }
+    const { pathname, asPath, query } = router;
+    router.push({ pathname, query }, asPath, { locale: lng });
+
     if (showLangModal) {
       dispatch(toggleLangueModalActionCreator());
     }
@@ -238,7 +239,7 @@ const Reset = () => {
         </ContentContainer>
         <LanguageModal
           show={showLangModal}
-          currentLanguage={i18n.language}
+          currentLanguage={router.locale || "fr"}
           toggle={() => dispatch(toggleLangueModalActionCreator())}
           changeLanguage={changeLanguage}
           languages={langues}
@@ -248,6 +249,8 @@ const Reset = () => {
     </div>
   );
 };
+
+export const getStaticProps = defaultStaticProps;
 
 export default Reset;
 
