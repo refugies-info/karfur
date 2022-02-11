@@ -424,7 +424,7 @@ export class AdvancedSearch extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.isLoading !== this.props.isLoading) {
+    if (!this.props.isLoading && prevProps.isLoading) {
       this.queryDispositifs(null, this.props);
     }
 
@@ -437,18 +437,18 @@ export class AdvancedSearch extends Component {
       });
     } */
 
-    if (prevProps.languei18nCode !== this.props.languei18nCode) {
-      this.setState(
-        {
-          filterLanguage: "",
-          activeFiltre:
-            this.state.activeFiltre === "traduction"
-              ? ""
-              : this.state.activeFiltre,
-        },
-        () => this.queryDispositifs(null, this.props)
-      );
-    }
+    // if (prevProps.languei18nCode !== this.props.languei18nCode) {
+    //   this.setState(
+    //     {
+    //       filterLanguage: "",
+    //       activeFiltre:
+    //         this.state.activeFiltre === "traduction"
+    //           ? ""
+    //           : this.state.activeFiltre,
+    //     },
+    //     () => this.queryDispositifs(null, this.props)
+    //   );
+    // }
   }
 
   getActiveTri = (tri) => {
@@ -559,7 +559,7 @@ export class AdvancedSearch extends Component {
       // inject parameters in the url
       this.props.router.push({
         search: qs.stringify(newQueryParam),
-      });
+      }, undefined, { shallow: true });
     }
     // delete localisation filter from the query before calling the back end
     delete query.dep;
