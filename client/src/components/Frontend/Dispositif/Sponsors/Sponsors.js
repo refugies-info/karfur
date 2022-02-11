@@ -31,6 +31,7 @@ import CustomModal from "./CustomModal";
 import ImgModal from "./ImgModal";
 import styles from "./Sponsors.module.scss";
 import { withRouter } from "next/router";
+import { getBaseUrl } from "lib/getBaseUrl";
 
 const SponsorContainer = styled.div`
   padding: 0px 0px 0px 16px;
@@ -180,13 +181,7 @@ const MobileSponsorSection = styled.div`
   margin-right: ${(props) => props.isRTL && "32px"};
 `;
 
-const burl =
-  process.env.NEXT_PUBLIC_REACT_APP_ENV === "development"
-    ? "http://localhost:3000/"
-    : process.env.NEXT_PUBLIC_REACT_APP_ENV === "staging"
-    ? "https://staging.refugies.info/"
-    : "https://www.refugies.info/";
-
+const burl = getBaseUrl();
 class Sponsors extends Component {
   state = {
     showModals: [
