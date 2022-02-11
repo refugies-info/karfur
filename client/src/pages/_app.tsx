@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode, useEffect } from "react";
 import type { AppProps } from "next/app";
 import Script from "next/script";
 import { appWithTranslation } from "next-i18next";
@@ -7,6 +7,8 @@ import { wrapper } from "services/configureStore";
 import Layout from "components/Layout/Layout";
 import isInBrowser from "lib/isInBrowser";
 import "scss/index.scss";
+import { useRouter } from "next/router";
+import { initGA, PageView } from "lib/tracking";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -19,6 +21,7 @@ type AppPropsWithLayout = AppProps & {
 const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   const defaultLayout = (page: ReactElement) => <Layout>{page}</Layout>;
   const getLayout = Component.getLayout ?? defaultLayout;
+  const router = useRouter();
 
   if (isInBrowser()) {
     // CRISP
@@ -30,6 +33,16 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
       clientId: process.env.NEXT_PUBLIC_REACT_APP_AXEPTIO_CLIENTID,
     };
   }
+
+  // ANALYTICS
+  useEffect(() => {
+    initGA();
+    const handleRouteChange = () => { PageView() }
+    router.events.on("routeChangeComplete", handleRouteChange)
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange)
+    }
+  }, []);
 
   return (
     <>

@@ -16,8 +16,7 @@ import { NoResult } from "components/Pages/annuaire/index/NoResult";
 import { LetterSection } from "components/Pages/annuaire/index/LetterSection";
 import { Header } from "components/Pages/annuaire/index/Header";
 import SEO from "components/Seo";
-// import { history } from "services/configureStore";
-import { Event, initGA } from "lib/tracking";
+import { Event} from "lib/tracking";
 import {
   filterStructuresByType,
   filterStructuresByKeword,
@@ -90,7 +89,6 @@ const Annuaire = (props: any) => {
   }, []);
 
   useEffect(() => {
-    initGA();
     Event("ANNUAIRE_VIEW", "VIEW", "label");
   }, []);
 

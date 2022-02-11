@@ -5,7 +5,6 @@ import { FETCH_USER, SAVE_USER } from "../user.actionTypes";
 import API from "../../../utils/API";
 import { setUserActionCreator, fetchUserActionCreator } from "../user.actions";
 import { testUser } from "../../../__fixtures__/user";
-// import { push } from "connected-react-router";
 import {
   startLoading,
   LoadingStatusKey,

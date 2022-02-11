@@ -16,7 +16,7 @@ import { Language } from "types/interface";
 import { colorAvancement } from "lib/colors";
 import FButton from "components/FigmaUI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { Event, initGA } from "lib/tracking";
+import { Event } from "lib/tracking";
 import { activatedLanguages } from "data/activatedLanguages";
 import styles from "./LanguageModal.module.scss";
 
@@ -73,7 +73,6 @@ const LanguageModal = (props: Props) => {
                   key={ln.i18nCode}
                   disabled={!ln.avancement}
                   onClick={() => {
-                    initGA();
                     Event("CHANGE_LANGUAGE", ln.i18nCode, "label");
                     props.changeLanguage(ln.i18nCode);
                   }}

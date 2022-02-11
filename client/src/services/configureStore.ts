@@ -22,13 +22,3 @@ export const makeStore = () => {
 }
 
 export const wrapper = createWrapper<Store<RootState>>(makeStore, { debug: false })
-
-/*
-import { createBrowserHistory } from "history";
-import ReactGA from "react-ga";
-
-export const history = createBrowserHistory();
-history.listen((location) => {
-  ReactGA.pageview(location.pathname + location.search);
-});
-*/

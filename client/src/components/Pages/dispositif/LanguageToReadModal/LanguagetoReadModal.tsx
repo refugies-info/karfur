@@ -3,7 +3,7 @@ import { useTranslation } from "next-i18next";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import FButton from "components/FigmaUI/FButton/FButton";
 import styled from "styled-components";
-import { initGA, Event } from "lib/tracking";
+import { Event } from "lib/tracking";
 import { Language } from "types/interface";
 
 const ButtonContainer = styled.div`
@@ -42,7 +42,6 @@ export const LanguageToReadModal = (props: Props) => {
                   height: "56px",
                 }}
                 onClick={() => {
-                  initGA();
                   Event("CHANGE_LANGUAGE", langue.i18nCode, "label");
                   props.changeLanguage(langue.i18nCode);
                   props.toggle();

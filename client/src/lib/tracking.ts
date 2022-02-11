@@ -1,19 +1,26 @@
 import ReactGA from "react-ga";
 import { logger } from "logger";
 
+/**
+ * Inits GA. Must be fired once only
+ */
 export const initGA = () => {
-  if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") {
-    return;
+  if (process.env.NEXT_PUBLIC_REACT_APP_ENV === "production") {
+    const trackingId = process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_ANALYTICS;
+    if (trackingId) ReactGA.initialize(trackingId);
   }
-  const trackingId = process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_ANALYTICS;
-  if (trackingId) ReactGA.initialize(trackingId);
 };
 
+/**
+ * Adds a page view in analytics
+ */
 export const PageView = () => {
+  const url = window.location.pathname + window.location.search;
   if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") {
+    logger.info("PageView", url);
     return;
   }
-  ReactGA.pageview(window.location.pathname + window.location.search);
+  ReactGA.pageview(url);
 };
 
 /**
@@ -28,8 +35,8 @@ export const Event = (category: string, action: string, label: string) => {
     return;
   }
   ReactGA.event({
-    category: category,
-    action: action,
-    label: label,
+    category,
+    action,
+    label,
   });
 };

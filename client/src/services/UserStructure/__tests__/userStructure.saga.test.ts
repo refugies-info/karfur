@@ -5,7 +5,6 @@ import latestActionsSaga, {
   updateUserStructure,
 } from "../userStructure.saga";
 import API from "../../../utils/API";
-// import { push } from "connected-react-router";
 import {
   startLoading,
   LoadingStatusKey,

@@ -80,7 +80,7 @@ import {
 } from "lib/dispositifPage";
 import { EnBrefBanner } from "components/Frontend/Dispositif/EnBrefBanner";
 import { FeedbackFooter } from "components/Frontend/Dispositif/FeedbackFooter";
-import { initGA, Event } from "lib/tracking";
+import { Event } from "lib/tracking";
 import { logger } from "logger";
 import { isMobile } from "react-device-detect";
 import { PdfCreateModal } from "components/Modals/PdfCreateModal/PdfCreateModal";
@@ -958,7 +958,6 @@ const Dispositif = (props: Props) => {
 
   const createPdf = () => {
     if (!dispositif) return;
-    initGA();
     Event("EXPORT_PDF", router.locale || "fr", "label");
     let newUiArray = [...dispositif.uiArray];
     newUiArray = newUiArray.map((x) => ({
@@ -1694,7 +1693,6 @@ const Dispositif = (props: Props) => {
                             type="white"
                             className="ml-10 mb-2"
                             onClick={() => {
-                              initGA();
                               Event(
                                 "CHANGE_LANGUAGE",
                                 langue.i18nCode,

@@ -7,7 +7,6 @@ import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { colors } from "colors";
 import { initial_data } from "data/searchFilters";
-import { initGA, PageView } from "lib/tracking";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import { MobileSearchFilterModal } from "containers/AdvancedSearch/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
 import { HomeCard } from "components/Pages/homepage/HomeCard";
@@ -107,11 +106,6 @@ const Homepage = (props: Props) => {
 
   const { t } = useTranslation();
   const router = useRouter();
-
-  useEffect(() => {
-    initGA();
-    PageView();
-  }, []);
 
   const selectOption = (_item: any) => {
     router.push({

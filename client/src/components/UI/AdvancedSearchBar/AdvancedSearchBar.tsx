@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { initGA, Event } from "lib/tracking";
+import { Event } from "lib/tracking";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
@@ -204,7 +204,6 @@ const AdvancedSearchBar = (props: Props) => {
       || (elem.titreMarque && normalize(elem.titreMarque).includes(text))
     ));
 
-    initGA();
     Event("USE_SEARCHBAR", value, "label");
   };
 
