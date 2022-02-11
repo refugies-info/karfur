@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import Swal from "sweetalert2";
 import querySearch from "stringquery";
@@ -16,14 +17,17 @@ import {
   fetchTranslationsActionCreator,
   addTradActionCreator,
 } from "../../services/Translation/translation.actions";
+import { withRouter } from "react-router-dom";
+import { fetchSelectedDispositifActionCreator } from "services/SelectedDispositif/selectedDispositif.actions";
+import isInBrowser from "lib/isInBrowser";
 
 let last_target = null;
 let letter_pressed = null;
 
-const htmlToDraft = dynamic(
-  () => import("html-to-draftjs"),
-  { ssr: false }
-);
+let htmlToDraft = null;
+if (isInBrowser()) {
+  htmlToDraft = require("html-to-draftjs").default;
+}
 export class TranslationHOC extends Component {
   constructor(props) {
     super(props);
@@ -33,44 +37,39 @@ export class TranslationHOC extends Component {
   }
 
   state = {
-    value: "",
+    // value: "",
     francais: {
       title: "",
       body: "",
-    },
-    translated: {
-      body: "",
-      title: "",
     },
     texte_traduit: "",
     texte_a_traduire: "",
     avancement: 1,
     isComplete: false,
-
-    itemId: "",
-    isExpert: false,
     isStructure: false,
     path: [],
     id: "",
-    locale: "",
-    translationId: "",
-    langue: {},
-    tooltipOpen: false,
     nbMotsRestants: 0,
-    score: -1,
     type: "",
+    time: 0,
+    disableBtn: false,
+    jsonId: null,
+    langueBackupId: null,
+
+    translated: {
+      body: "",
+      title: "",
+    },
+    itemId: "",
+    isExpert: false,
+    locale: "",
+    langue: {},
     traduction: {
       initialText: { contenu: new Array(menu.length).fill(false) },
       translatedText: { contenu: new Array(menu.length).fill(false) },
     },
     traductionsFaites: [],
-    translating: true,
-    time: 0,
     autosuggest: false,
-    disableBtn: false,
-    jsonId: null,
-    langueBackupId: null,
-    traducteur: {},
   };
 
   componentDidMount() {
@@ -119,7 +118,7 @@ export class TranslationHOC extends Component {
 
   // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
-    if (nextProps.match.params.id !== this.props.match.params.id) {
+    if (nextProps.location.search !== this.props.location.search) {
       this._initializeComponent(nextProps);
     }
   }
@@ -143,17 +142,20 @@ export class TranslationHOC extends Component {
 
   _initializeComponent = async (props) => {
     this.initializeTimer();
-    let itemId = null;
-    try {
-      itemId = props.match.params.id;
-    } catch (e) {}
-    const { locale, langueBackupId } = await this._setLangue(props);
+    const searchParams = (new URL(document.location)).searchParams;
+    const languageId = searchParams.get("language");
+    const itemId = searchParams.get("dispositif");
+    const { locale, langueBackupId } = await this._setLangue(languageId);
     const isExpert = this.props.isExpert;
     const type =
-      (props.match.path || "").includes("dispositif") ||
-      (props.match.path || "").includes("demarche")
+      (props.location.pathname || "").includes("dispositif") ||
+      (props.location.pathname || "").includes("demarche")
         ? "dispositif"
         : "string";
+    this.props.fetchSelectedDispositif({
+      selectedDispositifId: itemId,
+      locale: "fr"
+    });
     this.setState({ type, itemId, locale, isExpert, langueBackupId });
     if (itemId && type === "dispositif") {
       //...(!isExpert && userId && {userId})
@@ -166,18 +168,13 @@ export class TranslationHOC extends Component {
     this.props.fetchTranslations(itemId, locale);
   };
 
-  _setLangue = async (props) => {
+  _setLangue = async (languageId) => {
     let langue = null;
     try {
-      langue = props.location.state.langue;
-    } catch (e) {
-      try {
-        const params = querySearch(props.location.search);
-        langue = (
-          await API.get_langues({ _id: params.id }, {}, "langueBackupId")
-        ).data.data[0];
-      } catch (err) {}
-    }
+      langue = (
+        await API.get_langues({ _id: languageId }, {}, "langueBackupId")
+      ).data.data[0];
+    } catch (err) {}
     this._isMounted && this.setState({ langue });
     return {
       locale: langue.i18nCode,
@@ -401,14 +398,11 @@ export class TranslationHOC extends Component {
           clearInterval(this.timer);
           this.props.history.push({
             pathname:
-              "/" +
+              "/backend/" +
               (isExpert ? "validation" : "traduction") +
               "/" +
-              (_.get(results, "0.typeContenu") || type) +
-              "/" +
-              _.get(results, "0._id"),
-            search: "?id=" + langue._id,
-            state: { langue: langue },
+              (_.get(results, "0.typeContenu") || type),
+            search: `?language=${langue._id}&dispositif=${_.get(results, "0._id")}`
           });
           this.setState({ disableBtn: false });
         }
@@ -458,6 +452,7 @@ export class TranslationHOC extends Component {
     if (this.state.type === "dispositif") {
       return (
         <Dispositif
+          type="translation"
           translate={this.translate}
           fwdSetState={this.fwdSetState}
           handleChange={this.handleChange}
@@ -465,12 +460,22 @@ export class TranslationHOC extends Component {
           onEditorStateChange={this.onEditorStateChange}
           onSkip={this.onSkip}
           getTrads={this.get_trads}
-          {...this.state} // TO DO : spread
-          {...this.props} // TO DO : spread
+
+          dispositif={this.props.selectedDispositif}
+          translated={this.state.translated}
+          isExpert={this.state.isExpert}
+          locale={this.state.locale}
+          langue={this.state.langue}
+          traduction={this.state.traduction}
+          traductionsFaites={this.state.traductionsFaites}
+          autosuggest={this.state.autosuggest}
+
+          translations={this.props.translations}
+          translation={this.props.translation}
         />
       );
     }
-    return false;
+    return null;
   }
 }
 
@@ -480,12 +485,14 @@ const mapStateToProps = (state) => {
     isExpert: state.user.expertTrad,
     translations: state.translation.translations,
     translation: state.translation.translation,
+    selectedDispositif: state.selectedDispositif,
   };
 };
 
 const mapDispatchToProps = {
   fetchTranslations: fetchTranslationsActionCreator,
+  fetchSelectedDispositif: fetchSelectedDispositifActionCreator,
   addTranslation: addTradActionCreator,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TranslationHOC);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TranslationHOC));

@@ -25,8 +25,8 @@ if (isInBrowser()) {
   htmlToDraft = require("html-to-draftjs").default;
 }
 
-export const updateNbViews = (dispositif: IDispositif, translating: boolean) => {
-  if (dispositif.status === "Actif" && !translating) {
+export const updateNbViews = (dispositif: IDispositif) => {
+  if (dispositif.status === "Actif") {
     const nbVues = dispositif.nbVues ? dispositif.nbVues + 1 : 1;
     return API.updateNbVuesOrFavoritesOnContent({
       query: { id: dispositif._id, nbVues },

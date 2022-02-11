@@ -146,8 +146,32 @@ const initialShowModals = showModals;
 const MAX_NUMBER_CHARACTERS_INFOCARD = 40;
 
 interface Props {
-  translating?: boolean;
   type: "detail" | "create" | "translation";
+
+  // translation
+  translate?: (text: any, target: any, item: any, toEditor?: boolean) => void
+  handleChange?: (ev: any) => void
+  valider?: (tradData?: {}) => Promise<void>
+  onEditorStateChange?: (editorState: any, target?: string) => void
+  onSkip?: () => void
+  getTrads?: () => void
+  fwdSetState?: (fn: any, cb: any) => false | void
+  isExpert?: boolean
+  translated?: {
+    body: string
+    title: string
+  }
+  itemId?: string
+  locale?: string
+  langue?: any
+  traduction?: {
+    initialText: { contenu: any[] },
+    translatedText: { contenu: any[] },
+  },
+  traductionsFaites?: any[]
+  autosuggest?: boolean
+  translations?: any
+  translation?: any
 }
 
 const Dispositif = (props: Props) => {
@@ -208,7 +232,7 @@ const Dispositif = (props: Props) => {
 
     if (props.type === "detail") { // DETAIL
       if (dispositif) {
-        updateNbViews(dispositif, !!props.translating);
+        updateNbViews(dispositif);
 
         // case dispositif not active and user neither admin nor contributor nor in structure
         if (isContentForbidden(dispositif, admin, user)) { // TODO: not secure
@@ -221,9 +245,20 @@ const Dispositif = (props: Props) => {
 
         //document.title = this.state.content.titreMarque || this.state.content.titreInformatif;
       }
-    }
+    } else if (props.type === "translation") { // TRANSLATION
+      if (dispositif) {
+        // case dispositif not active and user neither admin nor contributor nor in structure
+        if (isContentForbidden(dispositif, admin, user)) { // TODO: not secure
+          router.push(user ? "/" : "/login");
+          return;
+        }
+        /* WHY THIS?
+        const secondarySponsor = dispositif.sponsors.filter((sponsor) => !sponsor._id && sponsor.nom);
+        const sponsors = secondarySponsor || []; */
 
-    if (props.type === "create") { // CREATE
+        document.title = dispositif.titreMarque || dispositif.titreInformatif;
+      }
+    } else if (props.type === "create") { // CREATE
       const isAuth = API.isAuth();
       if (isAuth) {
         // TODO : init empty dispositif
@@ -299,8 +334,6 @@ const Dispositif = (props: Props) => {
       }
     }
   };
-
-  // const fwdSetState = (fn, cb) => this.setState(fn, cb); // TODO : handle in SideTrad
 
   const handleMenuChange = (ev: any, value: any = null) => {
     const node = ev.currentTarget;
@@ -1222,7 +1255,7 @@ const Dispositif = (props: Props) => {
           ? " edition-mode"
           : isMobile
           ? ""
-          : props.translating
+          : props.type === "translation"
           ? " side-view-mode"
           : printing && isRTL
           ? " printing-mode print-rtl"
@@ -1234,34 +1267,70 @@ const Dispositif = (props: Props) => {
     >
       <SEO />
       <Row className="main-row">
-        {props.translating &&
-          {
-            /* <Col xl="4" lg="4" md="4" sm="4" xs="4" className="side-col">
-              {!this.props.isExpert ? (
-                <SideTrad
-                  menu={this.state.menu}
-                  content={this.state.content}
-                  updateUIArray={this.updateUIArray}
-                  typeContenu={typeContenu}
-                  {...this.props} // TO DO : spread
-                />
-              ) : (
-                <ExpertSideTrad
-                  menu={this.state.menu}
-                  content={this.state.content}
-                  updateUIArray={this.updateUIArray}
-                  typeContenu={typeContenu}
-                  {...this.props} // TO DO : spread
-                />
-              )}
-            </Col> */
-          }}
+        {props.type === "translation" &&
+          (
+            <Col xl="4" lg="4" md="4" sm="4" xs="4" className="side-col">
+            {user &&
+              (!props.isExpert ? (
+                  <SideTrad
+                    menu={menu}
+                    content={getContent(dispositif)}
+                    updateUIArray={updateUIArray}
+                    typeContenu={dispositif?.typeContenu || "dispositif"}
+                    translated={props.translated}
+                    itemId={props.itemId}
+                    isExpert={props.isExpert}
+                    locale={props.locale}
+                    langue={props.langue}
+                    traduction={props.traduction}
+                    traductionsFaites={props.traductionsFaites}
+                    autosuggest={props.autosuggest}
+                    translations={props.translations}
+                    translation={props.translation}
+                    translate={props.translate}
+                    fwdSetState={props.fwdSetState}
+                    handleChange={props.fwdSetState}
+                    valider={props.valider}
+                    onEditorStateChange={props.onEditorStateChange}
+                    onSkip={props.onSkip}
+                    getTrads={props.getTrads}
+                    user={user}
+                  />
+                ) : (
+                  <ExpertSideTrad
+                    menu={menu}
+                    content={getContent(dispositif)}
+                    updateUIArray={updateUIArray}
+                    typeContenu={dispositif?.typeContenu || "dispositif"}
+                    translated={props.translated}
+                    itemId={props.itemId}
+                    isExpert={props.isExpert}
+                    locale={props.locale}
+                    langue={props.langue}
+                    traduction={props.traduction}
+                    traductionsFaites={props.traductionsFaites}
+                    autosuggest={props.autosuggest}
+                    translations={props.translations}
+                    translation={props.translation}
+                    translate={props.translate}
+                    fwdSetState={props.fwdSetState}
+                    handleChange={props.handleChange}
+                    valider={props.valider}
+                    onEditorStateChange={props.onEditorStateChange}
+                    onSkip={props.onSkip}
+                    getTrads={props.getTrads}
+                    user={user}
+                  />
+                ))
+             }
+            </Col>
+          )}
         <Col
-          xl={props.translating ? "8" : "12"}
-          lg={props.translating ? "8" : "12"}
-          md={props.translating ? "8" : "12"}
-          sm={props.translating ? "8" : "12"}
-          xs={props.translating ? "8" : "12"}
+          xl={props.type === "translation" ? "8" : "12"}
+          lg={props.type === "translation" ? "8" : "12"}
+          md={props.type === "translation" ? "8" : "12"}
+          sm={props.type === "translation" ? "8" : "12"}
+          xs={props.type === "translation" ? "8" : "12"}
           className="main-col"
         >
           <section className={styles.banniere + " " + styles[tag]}>
@@ -1302,7 +1371,7 @@ const Dispositif = (props: Props) => {
                 toggleDispositifCreateModal={() =>
                   setShowDispositifCreateModal(!showDispositifCreateModal)
                 }
-                translating={!!props.translating}
+                translating={props.type === "translation"}
                 status={dispositif?.status || ""}
                 typeContenu={dispositif?.typeContenu || "dispositif"}
                 langue={router.locale || "fr"}
@@ -1450,7 +1519,7 @@ const Dispositif = (props: Props) => {
           )}
 
           <Row className="no-margin-right">
-            {!props.translating && !printing && !isMobile && (
+            {props.type !== "translation" && !printing && !isMobile && (
               <Col
                 xl="3"
                 lg="3"
@@ -1486,10 +1555,10 @@ const Dispositif = (props: Props) => {
             )}
 
             <Col
-              xl={props.translating || printing ? "12" : "7"}
-              lg={props.translating || printing ? "12" : "7"}
-              md={props.translating || printing ? "12" : "10"}
-              sm={props.translating || printing ? "12" : "10"}
+              xl={props.type === "translation" || printing ? "12" : "7"}
+              lg={props.type === "translation" || printing ? "12" : "7"}
+              md={props.type === "translation" || printing ? "12" : "10"}
+              sm={props.type === "translation" || printing ? "12" : "10"}
               xs="12"
               className="pt-40 col-middle"
               id={"pageContent"}
@@ -1765,7 +1834,7 @@ const Dispositif = (props: Props) => {
                 sm="2"
                 xs="2"
                 className={
-                  "aside-right pt-40" + (props.translating ? " sideView" : "")
+                  "aside-right pt-40" + (props.type === "translation" ? " sideView" : "")
                 }
               />
             )}

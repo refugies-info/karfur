@@ -48,7 +48,7 @@ const BookmarkedModal = (props: Props) => {
               "Dispositif.favoriSaved",
               "Votre recherche est désormais disponible dans votre profil dans la rubrique"
             )}{" "}
-            <Link href="/backend">
+            <Link href="/backend/user-favorites">
               <a>{t("Dispositif.Mes favoris", "Mes favoris")}</a>
             </Link>
           </>

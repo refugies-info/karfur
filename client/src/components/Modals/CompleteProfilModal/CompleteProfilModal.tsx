@@ -39,12 +39,11 @@ export const CompleteProfilModal = (props: Props) => {
       if (!props.isExpert && props.element.tradStatus === "Validée") return;
       return router.push({
         pathname:
+          "/backend" +
           (props.isExpert ? "/validation" : "/traduction") +
           "/" +
-          (props.element.typeContenu || "dispositif") +
-          "/" +
-          props.element._id,
-        search: "?id=" + props.langueId,
+          (props.element.typeContenu || "dispositif"),
+          search: `?language=${props.langueId}&dispositif=${props.element._id}`
       });
     }
     return;

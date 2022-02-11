@@ -1,35 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 import {
   userSelectedLanguageSelector,
   userSelector,
-} from "../../../services/User/user.selectors";
+} from "services/User/user.selectors";
 import { Props } from "./UserTranslation.container";
-import { fetchDispositifsWithTranslationsStatusActionCreator } from "../../../services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
-import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
-import { dispositifsWithTranslationsStatusSelector } from "../../../services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.selectors";
+import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { dispositifsWithTranslationsStatusSelector } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.selectors";
 import { LoadingDispositifsWithTranslationsStatus } from "./components/LoadingDispositifsWithTranslationsStatus";
 import { StartTranslating } from "./components/StartTranslating";
 import { TranslationsAvancement } from "./components/TranslationsAvancement";
 import styled from "styled-components";
-import { colors } from "../../../colors";
+import { colors } from "colors";
 import { TranslationLanguagesChoiceModal } from "./components/TranslationLanguagesChoiceModal";
-import { FrameModal } from "../../../components/Modals";
-import { CompleteProfilModal } from "../../../components/Modals/CompleteProfilModal/CompleteProfilModal";
+import { FrameModal } from "components/Modals";
+import { CompleteProfilModal } from "components/Modals/CompleteProfilModal/CompleteProfilModal";
 
-import API from "../../../utils/API";
-import { Indicators, UserLanguage } from "../../../types/interface";
+import API from "utils/API";
+import { Indicators, UserLanguage } from "types/interface";
 import { Navigation } from "../Navigation";
 import { TranslationNeedsModal } from "./components/TranslationNeedsModal";
 import { OneNeedTranslationModal } from "./components/OneNeedTranslationModal";
 import { ObjectId } from "mongodb";
-import { needsSelector } from "../../../services/Needs/needs.selectors";
+import { needsSelector } from "services/Needs/needs.selectors";
 
 declare const window: Window;
 export interface PropsBeforeInjection {
   match: any;
-  history: any;
   user: { username: string; password: string; email?: string };
 }
 
@@ -82,7 +82,8 @@ export const UserTranslationComponent = (props: Props) => {
 
   const [indicators, setIndicators] = useState<null | Indicators>(null);
 
-  const langueInUrl = props.match.params.id;
+  //@ts-ignore
+  const langueInUrl = useParams()?.id;
 
   const userTradLanguages = useSelector(userSelectedLanguageSelector);
   const userFirstTradLanguage =
@@ -94,6 +95,7 @@ export const UserTranslationComponent = (props: Props) => {
   );
 
   const user = useSelector(userSelector);
+  let history = useHistory();
 
   const isLoadingUser = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_USER)
@@ -120,17 +122,17 @@ export const UserTranslationComponent = (props: Props) => {
     window.scrollTo(0, 0);
 
     if (userFirstTradLanguage && !langueInUrl) {
-      return props.history.push(
+      return history.push(
         "/backend/user-translation/" + userFirstTradLanguage
       );
     }
 
     if (langueInUrl && !userFirstTradLanguage) {
-      return props.history.push("/backend/user-translation");
+      return history.push("/backend/user-translation");
     }
 
     if (!availableLanguages.includes(langueInUrl)) {
-      return props.history.push("/backend/user-translation");
+      return history.push("/backend/user-translation");
     }
     const loadIndicators = async () => {
       if (user && user.user) {
@@ -255,7 +257,7 @@ export const UserTranslationComponent = (props: Props) => {
       <MainContainer>
         <TranslationsAvancement
           userTradLanguages={userTradLanguages}
-          history={props.history}
+          history={history}
           actualLanguage={langueInUrl}
           isExpert={user.expertTrad}
           isAdmin={user.admin}

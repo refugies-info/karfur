@@ -122,7 +122,7 @@ const Navbar = () => {
   const isRTL = useRTL();
   const pathName = user.membreStruct
     ? "/backend/user-dash-notifications"
-    : "/backend";
+    : "/backend/user-favorites";
 
   const nbNewNotifications = getNbNewNotifications(
     dispositifsAssocies,

@@ -35,15 +35,16 @@ import styled from "styled-components";
 import { updateTradActionCreator } from "services/Translation/translation.actions";
 import styles from "./SideTrad.module.scss";
 import Image from "next/image";
+import isInBrowser from "lib/isInBrowser";
 
 const Editor = dynamic(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
   { ssr: false }
 );
-const htmlToDraft = dynamic(
-  () => import("html-to-draftjs"),
-  { ssr: false }
-);
+let htmlToDraft = null;
+if (isInBrowser()) {
+  htmlToDraft = require("html-to-draftjs").default;
+}
 
 const AlertModified = styled.div`
   height: 40px;
@@ -136,64 +137,6 @@ class SideTrad extends Component {
     this.setState({ startingTime: moment() });
   }
 
-  /*   UNSAFE_componentWillReceiveProps(nextProps) {
-    //update when receiving api's return, working with sagas
-    if (
-      this.props.translations !== nextProps.translations &&
-      nextProps.translations
-    ) {
-      console.log("inside componenet will receive props", this.props.translations , nextProps.translations );
-      const { translations } = nextProps;
-      if (translations.length) {
-        const userTrad = translations.find(
-          (trad) => trad.userId._id === this.props.user._id
-        );
-        if (userTrad) {
-          this.setState({
-            avancement:
-              this._countValidated([userTrad.translatedText]) /
-              (this._countContents(this.props.menu) +
-                this.state.pointeurs.length -
-                this.props.menu.length),
-          });
-        }
-      }
-      this.props.fwdSetState({ disableBtn: false });
-      if (this.state.initialize) {
-        console.log('wrong here');
-        this.goChange(true, false);
-      }
-    }
-    if (
-      this.props.translation !== nextProps.translation &&
-      nextProps.translation
-    ) {
-      if (nextProps.translation.avancement >= 1) {
-        Swal.fire({
-          title: "Yay...",
-          text: "La traduction a bien été enregistrée",
-          type: "success",
-          timer: 1000,
-        });
-        this.props.onSkip();
-      }
-    }
-    if (
-      this.state.initialize === false &&
-      nextProps.content.titreInformatif !== this.props.content.titreInformatif
-    ) {
-      this._initializeComponent(nextProps);
-      this.setState({ initialize: true });
-    }
-    if (
-      this.state.initializeTrad === false &&
-      nextProps.traductionsFaites !== this.props.traductionsFaites
-    ) {
-      this._initializeComponent(nextProps);
-      this.setState({ initializeTrad: true });
-    }
-  }
- */
   //similar to the function in SideTrad.js
   componentDidUpdate(prevProps, prevState) {
     const { currIdx, currSubIdx, currSubName, availableListTrad } = this.state;
@@ -1395,7 +1338,12 @@ class SideTrad extends Component {
             {autosuggest && (
               <div className={styles.google_suggest}>
                 Suggestion par{" "}
-                <Image src={logo_google} className={styles.google_logo} alt="google" />
+                <Image
+                  src={logo_google}
+                  alt="google"
+                  width={13}
+                  height={13}
+                />
               </div>
             )}
           </div>

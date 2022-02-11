@@ -74,12 +74,11 @@ export const TranslationAvancementTable = (props: Props) => {
       if (!props.isExpert && element.tradStatus === "Validée") return;
       return props.history.push({
         pathname:
+          "/backend" +
           (props.isExpert ? "/validation" : "/traduction") +
           "/" +
-          (element.typeContenu || "dispositif") +
-          "/" +
-          element._id,
-        search: "?id=" + props.langueId,
+          (element.typeContenu || "dispositif"),
+        search: `?language=${props.langueId}&dispositif=${element._id}`
       });
     }
   };

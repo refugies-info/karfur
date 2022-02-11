@@ -39,10 +39,10 @@ const Editor = dynamic(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
   { ssr: false }
 );
-const htmlToDraft = dynamic(
-  () => import("html-to-draftjs"),
-  { ssr: false }
-);
+let htmlToDraft = null;
+if (isInBrowser()) {
+  htmlToDraft = require("html-to-draftjs").default;
+}
 
 const AlertModified = styled.div`
   height: 40px;
@@ -117,46 +117,6 @@ class SideTrad extends Component {
   componentDidMount() {
     this.setState({ startingTime: moment() });
   }
-
-  /*   UNSAFE_componentWillReceiveProps(nextProps) {
-    if (
-      this.props.translations !== nextProps.translations &&
-      nextProps.translations
-    ) {
-      const { translations } = nextProps;
-      if (translations.length) {
-        const userTrad = translations.find(
-          (trad) => trad.userId._id === this.props.user._id
-        );
-        const expertTrad = translations.find(
-          (trad) => trad.userId._id === trad.validatorId
-        );
-        if (userTrad && userTrad.status === "À revoir") {
-          this.setState({ avancement: userTrad.avancement });
-        } else if (expertTrad && expertTrad.status === "À revoir") {
-          this.setState({ avancement: expertTrad.avancement });
-        } else {
-          this.setState({ avancement: translations[0].avancement });
-        }
-      }
-      this.props.fwdSetState({ disableBtn: false });
-      this.goChange(true, false);
-    }
-    if (
-      this.state.initialize === false &&
-      nextProps.content.titreInformatif !== this.props.content.titreInformatif
-    ) {
-      this._initializeComponent(nextProps);
-      this.setState({ initialize: true });
-    }
-    if (
-      this.state.initializeTrad === false &&
-      nextProps.traductionsFaites !== this.props.traductionsFaites
-    ) {
-      this._initializeComponent(nextProps);
-      this.setState({ initializeTrad: true });
-    }
-  } */
 
   componentDidUpdate(prevProps, prevState) {
     const {
@@ -1214,7 +1174,12 @@ class SideTrad extends Component {
             {autosuggest && (
               <div className={styles.google_suggest}>
                 Suggestion par{" "}
-                <Image src={logo_google} className={styles.google_logo} alt="google" />
+                <Image
+                  src={logo_google}
+                  alt="google"
+                  width={13}
+                  height={13}
+                />
               </div>
             )}
           </div>
