@@ -48,6 +48,12 @@ jest.mock("../../../modules/mail/sendPublishedTradMailToStructure", () => ({
   sendPublishedTradMailToStructure: jest.fn(),
 }));
 
+jest.mock("../../../schema/schemaError", () => ({
+  ErrorDB: {
+    save: jest.fn(),
+  }
+}));
+
 describe("validateTranslations", () => {
   beforeEach(() => {
     jest.clearAllMocks();

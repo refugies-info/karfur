@@ -5,6 +5,12 @@ import { getDispositifsWithCreatorId } from "../../../modules/dispositif/disposi
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getDispositifsWithCreatorId: jest.fn(),
 }));
+jest.mock("../../../schema/schemaError", () => ({
+  Error: {
+    save: jest.fn(),
+  }
+}));
+
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
   const res: MockResponse = {};
