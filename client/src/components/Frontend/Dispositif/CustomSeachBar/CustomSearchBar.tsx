@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const CustomSearchBar = (props: Props) => (
-  <div className={styles.container + (!props.withMargin ? styles.no_margin : "")}>
+  <div className={`${styles.container} ${!props.withMargin && styles.no_margin}`}>
     <Input
       onChange={props.onChange}
       type="text"

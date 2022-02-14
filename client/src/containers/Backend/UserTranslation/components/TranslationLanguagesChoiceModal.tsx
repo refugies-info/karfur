@@ -231,7 +231,8 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
     <Modal
       isOpen={props.show}
       toggle={props.toggle}
-      className="modal-traducteur"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
       size="md"
     >
       <Header>Choix de vos langues</Header>

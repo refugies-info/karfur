@@ -147,6 +147,7 @@ const MAX_NUMBER_CHARACTERS_INFOCARD = 40;
 
 interface Props {
   type: "detail" | "create" | "translation";
+  typeContenu: "dispositif" | "demarche";
 
   // translation
   translate?: (text: any, target: any, item: any, toEditor?: boolean) => void
@@ -258,7 +259,7 @@ const Dispositif = (props: Props) => {
       const isAuth = API.isAuth();
       if (isAuth) {
         // initialize the creation of a new dispositif if user is logged in
-        const menuContenu = dispositif?.typeContenu === "demarche" ? menuDemarche : menuDispositif;
+        const menuContenu = props.typeContenu === "demarche" ? menuDemarche : menuDispositif;
         let emptyDispositif: IDispositif = {
           //@ts-ignore
           _id: "",
@@ -288,7 +289,7 @@ const Dispositif = (props: Props) => {
           titreInformatif: contenu.titreInformatif,
           titreMarque: contenu.titreMarque,
           traductions: [],
-          typeContenu: "dispositif",
+          typeContenu: props.typeContenu,
           updatedAt: moment(),
           nbVues: 0,
           nbMercis: 0,

@@ -457,6 +457,7 @@ export class TranslationHOC extends Component {
           getTrads={this.get_trads}
 
           dispositif={this.props.selectedDispositif}
+          typeContenu={this.props.selectedDispositif.typeContenu}
           translated={this.state.translated}
           isExpert={this.state.isExpert}
           locale={this.state.locale}
