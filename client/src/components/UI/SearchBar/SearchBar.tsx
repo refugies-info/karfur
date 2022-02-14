@@ -17,7 +17,6 @@ import {
 import { colors } from "colors";
 import Image from "next/image";
 import { SimplifiedStructure, SimplifiedUser } from "types/interface";
-// import "./SearchBar.scss";
 
 type Suggestion = SimplifiedStructure | SimplifiedUser;
 
@@ -142,6 +141,9 @@ const SearchBar = (props: Props) => {
             src={suggestion.picture.secure_url}
             className="selection-logo mr-10"
             alt="logo"
+            width={40}
+            height={40}
+            objectFit="contain"
           />
         )}
         <span className="name">
@@ -168,7 +170,7 @@ const SearchBar = (props: Props) => {
   };
 
   return (
-    <div className={"md-form form-sm form-2 pl-0 isArray" + props.className}>
+    <div className={"md-form form-sm form-2 pl-0 isArray " + props.className}>
       <Autosuggest
         shouldRenderSuggestions={(value) => value.length >= 0}
         highlightFirstSuggestion
@@ -182,7 +184,7 @@ const SearchBar = (props: Props) => {
       {isNoResult && props.structures && !isLoadingResults && (
         <NoResultContainer>
           {" "}
-          <Image src={NoResultImage} height={90} alt="no results" />
+          <Image src={NoResultImage} width={127} height={90} alt="no results" />
           <div>
             <NoResultTextContainer>
               Aucune structure trouvée...

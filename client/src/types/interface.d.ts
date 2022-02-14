@@ -173,9 +173,9 @@ export interface User {
 }
 
 export interface DispositifContent {
-  type: string;
+  type?: string;
   title?: string;
-  content?: string;
+  content?: string|null;
   editable?: boolean;
   children?: DispositifContent[];
   placeholder?: string;

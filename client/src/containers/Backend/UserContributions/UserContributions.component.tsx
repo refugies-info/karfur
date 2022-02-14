@@ -197,7 +197,6 @@ export const UserContributionsComponent = (props: Props) => {
                 passHref
               >
                 <FButton
-                  tag={NavHashLink}
                   type="dark"
                   name="file-add-outline"
                   tag="a"

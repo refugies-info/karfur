@@ -1,12 +1,5 @@
-import boldBtn from "./boldBtn.svg";
-import italicBtn from "./italicBtn.svg";
-import underBtn from "./underBtn.svg";
-import listBtn from "./listBtn.svg";
-import imgBtn from "./imgBtn.svg";
 import videoBtn from "./videoBtn.svg";
-import linkBtn from "./linkBtn.svg";
 import countrySide from "./countrySide.svg";
-
 import interieur_2 from "./interieur_2.svg";
 import interieur_3 from "./interieur_3.svg";
 import interieur_4 from "./interieur_4.svg";
@@ -31,13 +24,7 @@ import icon_France from "./icon_France.svg";
 import structure_definie from "./structure_definie.svg";
 
 export {
-  boldBtn,
-  italicBtn,
-  underBtn,
-  listBtn,
-  imgBtn,
   videoBtn,
-  linkBtn,
   countrySide,
   interieur_2,
   interieur_3,

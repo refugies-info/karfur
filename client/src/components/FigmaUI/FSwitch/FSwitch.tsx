@@ -28,6 +28,7 @@ const FSwitch = (props: Props) => {
           checked={props.checked}
           aria-checked={props.checked}
           onClick={props.onClick}
+          readOnly
         />
         <span className="switch-slider" />
       </label>

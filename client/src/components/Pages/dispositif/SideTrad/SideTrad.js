@@ -14,14 +14,7 @@ import _ from "lodash";
 
 import FButton from "components/FigmaUI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import {
-  boldBtn,
-  italicBtn,
-  underBtn,
-  listBtn,
-  logo_google,
-  linkBtn,
-} from "assets/figma/index";
+import { logo_google } from "assets/figma/index";
 import marioProfile from "assets/mario-profile.jpg";
 import { RejectTradModal } from "components/Modals";
 import moment from "moment";
@@ -1145,13 +1138,13 @@ class SideTrad extends Component {
                   inDropdown: false,
                   options: ["bold", "italic", "underline"],
                   className: "bloc-gauche-inline blc-gh",
-                  bold: { icon: boldBtn, className: "inline-btn btn-bold" },
+                  bold: { icon: "/icons/toolbar/boldBtn.svg", className: "inline-btn btn-bold" },
                   italic: {
-                    icon: italicBtn,
+                    icon: "/icons/toolbar/italicBtn.svg",
                     className: "inline-btn btn-italic",
                   },
                   underline: {
-                    icon: underBtn,
+                    icon: "/icons/toolbar/underBtn.svg",
                     className: "inline-btn btn-underline",
                   },
                 },
@@ -1159,13 +1152,13 @@ class SideTrad extends Component {
                   inDropdown: false,
                   options: ["unordered"],
                   className: "inline-btn blc-gh",
-                  unordered: { icon: listBtn, className: "list-btn" },
+                  unordered: { icon: "/icons/toolbar/listBtn.svg", className: "list-btn" },
                 },
                 link: {
                   inDropdown: false,
                   options: ["link"],
                   className: "bloc-gauche-list blc-gh",
-                  link: { icon: linkBtn, className: "btn-link" },
+                  link: { icon: "/icons/toolbar/linkBtn.svg", className: "btn-link" },
                   defaultTargetOption: "_blank",
                   showOpenOptionOnHover: true,
                 },

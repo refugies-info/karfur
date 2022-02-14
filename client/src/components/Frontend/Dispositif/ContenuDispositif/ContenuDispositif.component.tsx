@@ -71,13 +71,11 @@ export const contenuDispositif = (props: Props) => {
   // props.menu is an array of the different sections (for example for a dispositif it is C'est quoi, C'est pour qui, Pourquoi c'est intéressant and Comment je m'engage)
   return props.menu.map((dispositifContent: DispositifContent, key: number) => {
     return (
-      <div key={key} className={"contenu-wrapper"} id={"contenu-" + key}>
+      <div key={key} className="contenu-wrapper" id={"contenu-" + key}>
         <Row className="relative-position nopadding content-row">
           <Col
             xs="12"
-            className={
-              "contenu " + (props.uiArray[key]?.isHover ? " isHovered" : "")
-            }
+            className={"contenu " + (props.uiArray[key]?.isHover ? " isHovered" : "")}
             onMouseEnter={() => props.updateUIArray(key, null, "isHover")}
           >
             {!isMobile && (
@@ -87,14 +85,9 @@ export const contenuDispositif = (props: Props) => {
             )}
             <div style={{ display: "flex", flexDirection: "row" }}>
               <h3
-                className={
-                  "contenu-title " + (key !== 0 ? " mt-20" : "")
-                }
+                className={"contenu-title " + (key !== 0 ? " mt-20" : "")}
                 style={{ color: props.mainTag.darkColor }}
               >
-                {
-                  // display title of dispositif
-                }
                 {dispositifContent.title && getTitle(dispositifContent.title)}
               </h3>
               {!disableEdit &&
@@ -116,8 +109,7 @@ export const contenuDispositif = (props: Props) => {
                   </div>
                 )}
             </div>
-            {
-              // EditableParagraph displays content (but not children) in lecture mode and deal with edition in edition mode
+            { // EditableParagraph displays content (but not children) in lecture mode and deal with edition in edition mode
               dispositifContent.content !== null && dispositifContent.content !== "null" && (
                 <EditableParagraph
                   keyValue={key}

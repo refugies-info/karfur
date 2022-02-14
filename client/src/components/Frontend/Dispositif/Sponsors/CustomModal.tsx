@@ -22,9 +22,10 @@ const CustomModal = (props: Props) => (
     isOpen={props.showModals[props.keyValue].show}
     toggle={() => props.toggleModal(props.modal.name)}
     className={styles.custom_modal}
+    contentClassName={styles.modal_content}
     key={props.keyValue}
   >
-    <ModalBody className={styles.modal_content}>
+    <ModalBody>
       <h3>{props.title}</h3>
       {props.children}
     </ModalBody>

@@ -286,13 +286,12 @@ const Dispositif = (props: Props) => {
           suggestions: [],
           tags: [],
           titreInformatif: contenu.titreInformatif,
-          titreMarque: contenu.titreInformatif,
+          titreMarque: contenu.titreMarque,
           traductions: [],
           typeContenu: "dispositif",
           updatedAt: moment(),
           nbVues: 0,
           nbMercis: 0,
-          uiArray: generateUiArray(menuContenu, true)
         }
         setDisableEdit(false);
         setShowDispositifCreateModal(true);
@@ -302,14 +301,15 @@ const Dispositif = (props: Props) => {
               ...x,
               type: x.type || "paragraphe",
               isFakeContent: true,
-              content: x.type ? "" : (x.content || ""),
+              content: x.type ? null : x.content,
               editorState: EditorState.createWithContent(
                 ContentState.createFromBlockArray(htmlToDraft("").contentBlocks)
               ),
             };
           })
         );
-      dispatch(setSelectedDispositifActionCreator(emptyDispositif));
+        dispatch(setSelectedDispositifActionCreator(emptyDispositif));
+        dispatch(setUiArrayActionCreator(generateUiArray(menuContenu, true)));
       } else {
         router.push({ pathname: "/login" });
         // state: { redirectTo: "/dispositif" }, // TODO : location.state

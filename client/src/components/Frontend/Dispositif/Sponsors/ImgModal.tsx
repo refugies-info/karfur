@@ -40,6 +40,7 @@ const ImgModal = (props: Props) => {
       isOpen={props.showModals[props.keyValue].show}
       toggle={() => props.toggleModal(props.modal.name)}
       className={styles.img_modal}
+      contentClassName={styles.modal_content}
     >
       <div className={`${styles.input} ${styles.inline}`}>
         <span>Ajouter un logo</span>

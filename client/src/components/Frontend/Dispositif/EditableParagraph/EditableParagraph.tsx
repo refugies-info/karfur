@@ -3,14 +3,8 @@ import ContentEditable from "react-contenteditable";
 import dynamic from "next/dynamic";
 import { EditorBlock } from "draft-js";
 import { useTranslation } from "next-i18next";
-import {
-  boldBtn,
-  italicBtn,
-  underBtn,
-  listBtn,
-  imgBtn,
-  linkBtn,
-} from "assets/figma";
+import { ContentBlock, EditorProps, EditorState } from "react-draft-wysiwyg";
+import { useRouter } from "next/router";
 import CustomOption from "./CustomOption/CustomOption";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/FigmaUI/FButton/FButton";
@@ -19,8 +13,6 @@ import { logger } from "logger";
 import { colors } from "colors";
 import isInBrowser from "lib/isInBrowser";
 import styles from "./EditableParagraph.module.scss";
-import { ContentBlock, EditorProps, EditorState } from "react-draft-wysiwyg";
-import { useRouter } from "next/router";
 
 const Editor = dynamic<EditorProps>(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
@@ -28,7 +20,7 @@ const Editor = dynamic<EditorProps>(
 );
 
 interface AddBtnProps {
-  type: string;
+  type: string|undefined;
   keyValue: number;
   subkey: number;
   addItem: any;
@@ -103,7 +95,7 @@ interface Props {
   placeholder: string | undefined
   editorState: EditorState
   onEditorStateChange: any
-  type: string
+  type: string|undefined
   addItem: (key: any, type?: string, subkey?: string | null) => void
   content: any
   handleMenuChange: (ev: any, value?: any) => any
@@ -159,10 +151,10 @@ const EditableParagraph = (props: Props) => {
                 inDropdown: false,
                 options: ["bold", "italic", "underline"],
                 className: "bloc-gauche-inline blc-gh",
-                bold: { icon: boldBtn, className: "inline-btn btn-bold" },
-                italic: { icon: italicBtn, className: "inline-btn btn-italic" },
+                bold: { icon: "/icons/toolbar/boldBtn.svg", className: "inline-btn btn-bold" },
+                italic: { icon: "/icons/toolbar/italicBtn.svg", className: "inline-btn btn-italic" },
                 underline: {
-                  icon: underBtn,
+                  icon: "/icons/toolbar/underBtn.svg",
                   className: "inline-btn btn-underline",
                 },
               },
@@ -170,11 +162,11 @@ const EditableParagraph = (props: Props) => {
                 inDropdown: false,
                 options: ["unordered"],
                 className: "bloc-gauche-list blc-gh",
-                unordered: { icon: listBtn, className: "list-btn" },
+                unordered: { icon: "/icons/toolbar/listBtn.svg", className: "list-btn" },
               },
               image: {
                 className: "bloc-droite-image",
-                icon: imgBtn,
+                icon: "/icons/toolbar/imgBtn.svg",
                 urlEnabled: true,
                 uploadEnabled: true,
                 uploadCallback: uploadImageCallBack,
@@ -186,7 +178,7 @@ const EditableParagraph = (props: Props) => {
                 inDropdown: false,
                 options: ["link"],
                 className: "bloc-gauche-inline blc-gh",
-                link: { icon: linkBtn, className: "btn-link" },
+                link: { icon: "/icons/toolbar/linkBtn.svg", className: "btn-link" },
                 showOpenOptionOnHover: true,
               },
             }}

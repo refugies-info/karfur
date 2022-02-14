@@ -34,12 +34,11 @@ const menu: DispositifContent[] = [
   {
     title: "C'est quoi ?",
     content: "",
-    type: ""
   },
   {
     title: "C'est pour qui ?",
     type: "cards",
-    content: "",
+    content: null,
     children: [
       {
         type: "card",
@@ -104,9 +103,7 @@ const menu: DispositifContent[] = [
   },
   {
     title: "Pourquoi c'est intéressant ?",
-    content: "",
-    type: "",
-
+    content: null,
     children: [
       {
         isFakeContent: true,
@@ -117,9 +114,7 @@ const menu: DispositifContent[] = [
   },
   {
     title: "Comment je m'engage ?",
-    content: "",
-    type: "",
-
+    content: null,
     children: [
       {
         type: "accordion",

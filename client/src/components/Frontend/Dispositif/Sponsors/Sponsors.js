@@ -1206,7 +1206,7 @@ class Sponsors extends Component {
                   </h5>
                   <MyStructureContainer>
                     {" "}
-                    {mainSponsor.picture && mainSponsor.picture.secure_url && (
+                    {mainSponsor?.picture?.secure_url && (
                       <Image
                         src={mainSponsor.picture.secure_url}
                         className={styles.selection_logo}
@@ -1217,7 +1217,7 @@ class Sponsors extends Component {
                       />
                     )}
                     <span>
-                      {mainSponsor.acronyme} - {mainSponsor.nom}
+                      {mainSponsor?.acronyme || ""} - {mainSponsor?.nom || ""}
                     </span>
                   </MyStructureContainer>
                   <div>
