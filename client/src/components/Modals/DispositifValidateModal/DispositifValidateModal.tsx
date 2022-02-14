@@ -13,7 +13,13 @@ interface Props {
   onChange: any
   titreInformatif: string
   titreMarque: string
-  validate: any
+  saveDispositif: (
+    arg?: string,
+    arg1?: boolean,
+    arg2?: boolean,
+    arg3?: boolean,
+    arg4?: boolean
+  ) => void;
   toggleTutorielModal: any
   tags: any[]
   mainSponsor: Structure | undefined
@@ -26,7 +32,7 @@ interface Props {
 
 const DispositifValidateModal = (props: Props) => {
   const validateAndClose = () => {
-    props.validate();
+    props.saveDispositif();
     props.toggle();
   };
   let geoloc = false;

@@ -242,8 +242,6 @@ const Dispositif = (props: Props) => {
         /* WHY THIS?
         const secondarySponsor = dispositif.sponsors.filter((sponsor) => !sponsor._id && sponsor.nom);
         const sponsors = secondarySponsor || []; */
-
-        //document.title = this.state.content.titreMarque || this.state.content.titreInformatif;
       }
     } else if (props.type === "translation") { // TRANSLATION
       if (dispositif) {
@@ -255,18 +253,49 @@ const Dispositif = (props: Props) => {
         /* WHY THIS?
         const secondarySponsor = dispositif.sponsors.filter((sponsor) => !sponsor._id && sponsor.nom);
         const sponsors = secondarySponsor || []; */
-
-        document.title = dispositif.titreMarque || dispositif.titreInformatif;
       }
     } else if (props.type === "create") { // CREATE
       const isAuth = API.isAuth();
       if (isAuth) {
-        // TODO : init empty dispositif
         // initialize the creation of a new dispositif if user is logged in
         const menuContenu = dispositif?.typeContenu === "demarche" ? menuDemarche : menuDispositif;
+        let emptyDispositif: IDispositif = {
+          //@ts-ignore
+          _id: "",
+          abstract: contenu.abstract,
+          audience: [],
+          audienceAge: [],
+          autoSave: false,
+          //@ts-ignore
+          avancement: 1,
+          bravo: [],
+          contact: contenu.contact,
+          contenu: [],
+          created_at: moment(),
+          //@ts-ignore
+          externalLink: contenu.abstract,
+          //@ts-ignore
+          mainSponsor: null,
+          merci: [],
+          nbMots: 0,
+          niveauFrancais: [],
+          participants: [],
+          signalements: [],
+          sponsors: [],
+          status: "Brouillon",
+          suggestions: [],
+          tags: [],
+          titreInformatif: contenu.titreInformatif,
+          titreMarque: contenu.titreInformatif,
+          traductions: [],
+          typeContenu: "dispositif",
+          updatedAt: moment(),
+          nbVues: 0,
+          nbMercis: 0,
+          uiArray: generateUiArray(menuContenu, true)
+        }
         setDisableEdit(false);
-        // setUiArray(generateUiArray(menuContenu, true));
-        setShowDispositifCreateModal(true); //A modifier avant la mise en prod
+        setShowDispositifCreateModal(true);
         setMenu(
           menuContenu.map((x) => {
             return {
@@ -280,6 +309,7 @@ const Dispositif = (props: Props) => {
             };
           })
         );
+      dispatch(setSelectedDispositifActionCreator(emptyDispositif));
       } else {
         router.push({ pathname: "/login" });
         // state: { redirectTo: "/dispositif" }, // TODO : location.state
@@ -293,7 +323,7 @@ const Dispositif = (props: Props) => {
       if (timer.current) clearInterval(timer.current);
       timer.current = initializeTimer(3 * 60 * 1000, () => {
         // eslint-disable-next-line no-use-before-define
-        valider_dispositif("Brouillon", true);
+        saveDispositif("Brouillon", true);
       });
     }
     return () => { if (timer.current) clearInterval(timer.current) }
@@ -809,7 +839,7 @@ const Dispositif = (props: Props) => {
       }
 
       API.set_user_info(newUser).then(() => {
-        dispatch(fetchUserActionCreator);
+        dispatch(fetchUserActionCreator());
         setShowSpinnerBookmark(false);
         setShowBookmarkModal(!pinned);
         setIsAuth(true);
@@ -951,11 +981,11 @@ const Dispositif = (props: Props) => {
     // }
   };
 
+  // PDF
   const closePdf = () => {
     setShowSpinnerPrint(false);
     setPrinting(false);
   };
-
   const createPdf = () => {
     if (!dispositif) return;
     Event("EXPORT_PDF", router.locale || "fr", "label");
@@ -973,7 +1003,6 @@ const Dispositif = (props: Props) => {
     setShowSpinnerPrint(true);
     setPrinting(true);
   };
-
   const printPdf = () => {
     if (isInBrowser()) window.print();
   };
@@ -1057,7 +1086,7 @@ const Dispositif = (props: Props) => {
     });
   };
 
-  const valider_dispositif = (
+  const saveDispositif = (
     status = "En attente",
     auto = false,
     sauvegarde = false,
@@ -1102,9 +1131,12 @@ const Dispositif = (props: Props) => {
       ...dispositif,
       ...content,
       contenu: generateContenu(menu),
-      // avancement: 1,
       autoSave: auto,
-      lastModificationDate: Date.now()
+      lastModificationDate: Date.now(),
+      //@ts-ignore
+      dispositifId: dispositif._id,
+      //@ts-ignore
+      avancement: 1,
     };
 
     if (dispositif._id && dispositif.status !== "Brouillon") {
@@ -1145,7 +1177,7 @@ const Dispositif = (props: Props) => {
       }
     }
 
-    logger.info("[valider_dispositif] dispositif before call", { newDispositif });
+    logger.info("[saveDispositif] dispositif before call", { newDispositif });
     API.addDispositif(newDispositif).then((data) => {
       const newDispo = data.data.data;
       if (!continueEditing) {
@@ -1264,7 +1296,7 @@ const Dispositif = (props: Props) => {
       }
       ref={newRef}
     >
-      <SEO />
+      <SEO title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}/>
       <Row className="main-row">
         {props.type === "translation" &&
           (
@@ -1366,7 +1398,6 @@ const Dispositif = (props: Props) => {
                 toggleDispositifValidateModal={toggleDispositifValidateModal}
                 toggleTutoModal={toggleTutorielModal}
                 editDispositif={editDispositif}
-                valider_dispositif={valider_dispositif}
                 toggleDispositifCreateModal={() =>
                   setShowDispositifCreateModal(!showDispositifCreateModal)
                 }
@@ -1554,9 +1585,7 @@ const Dispositif = (props: Props) => {
             )}
 
             <Col
-              xl={props.type === "translation" || printing ? "12" : "7"}
               lg={props.type === "translation" || printing ? "12" : "7"}
-              md={props.type === "translation" || printing ? "12" : "10"}
               sm={props.type === "translation" || printing ? "12" : "10"}
               xs="12"
               className="pt-40 col-middle"
@@ -1636,9 +1665,6 @@ const Dispositif = (props: Props) => {
                   // Part about last update
                   <Row className="fiabilite-row">
                     <Col
-                      lg="auto"
-                      md="auto"
-                      sm="auto"
                       xs="auto"
                       className="col align-right"
                     >
@@ -1895,7 +1921,7 @@ const Dispositif = (props: Props) => {
             onChange={handleChange}
             titreInformatif={dispositif?.titreInformatif || ""}
             titreMarque={dispositif?.titreMarque || ""}
-            validate={valider_dispositif}
+            saveDispositif={saveDispositif}
             toggleTutorielModal={toggleTutorielModal}
             tags={dispositif?.tags || []}
             mainSponsor={dispositif?.mainSponsor}
@@ -1933,7 +1959,7 @@ const Dispositif = (props: Props) => {
           <DraftModal
             show={showDraftModal}
             toggle={() => setShowDraftModal(!showDraftModal)}
-            valider_dispositif={valider_dispositif}
+            saveDispositif={saveDispositif}
             navigateToMiddleOffice={() =>
               router.push("/backend/user-dash-contrib")
             }

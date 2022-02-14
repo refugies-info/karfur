@@ -7,7 +7,7 @@ import styles from "./DraftModal.module.scss";
 interface Props {
   toggle: () => void;
   show: boolean;
-  valider_dispositif: (
+  saveDispositif: (
     arg: string,
     arg1: boolean,
     arg2: boolean,
@@ -100,7 +100,7 @@ export const DraftModal = (props: Props) => (
           name="log-out-outline"
           className="mr-8"
           onClick={() => {
-            props.valider_dispositif(
+            props.saveDispositif(
               props.status || "Brouillon",
               false,
               true,
@@ -119,7 +119,7 @@ export const DraftModal = (props: Props) => (
           type="validate"
           name="save-outline"
           onClick={() => {
-            props.valider_dispositif(
+            props.saveDispositif(
               props.status || "Brouillon",
               false,
               true,

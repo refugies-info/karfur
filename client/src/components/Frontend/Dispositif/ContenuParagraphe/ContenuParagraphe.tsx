@@ -123,7 +123,7 @@ const ContenuParagraphe = (props: Props) => {
   const { t } = useTranslation();
 
   const safeUiArray = (key: number, subkey: number, node: string) => {
-    const children = props.uiArray[key].children;
+    const children = props.uiArray[key]?.children;
     if (children === undefined) return false;
     return props.uiArray[key] &&
     children &&

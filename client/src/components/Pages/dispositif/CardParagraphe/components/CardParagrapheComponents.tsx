@@ -25,7 +25,7 @@ export const GeolocTooltipItem = (props: any) => {
       <button
         key={id + "d"}
         id={"Tooltip-" + id}
-        className={"bg-darkColor active "}
+        className={"bg-darkColor " + styles.active}
         style={{ backgroundColor: mainTag.darkColor }}
       >
         {item.split(" ")[0].length > 1
@@ -175,7 +175,7 @@ export const FrenchCECRLevel = (props: FrenchCECRLevelProps) => (
       .map((nv, key) => (
         <button
           key={key}
-          className={"bg-darkColor active"}
+          className={"bg-darkColor " + styles.active}
           style={{ backgroundColor: props.mainTag.darkColor }}
         >
           {nv}

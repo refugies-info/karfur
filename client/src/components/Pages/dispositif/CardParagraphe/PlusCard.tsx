@@ -28,10 +28,13 @@ export const PlusCard = (props: PlusCardProps) => {
   return (
     <Col xl="4" lg="6" md="6" sm="12" xs="12" className={parentStyles.card_col}>
       <Card
-        className={styles.add_card}
+        className={styles.add_card+ " "+parentStyles.card}
         onClick={() => props.addItem(props.keyValue, "card", nextTitle)}
       >
-        <CardHeader className="bg-darkColor" style={{ backgroundColor: props.mainTag.darkColor}}>
+        <CardHeader
+          className={parentStyles.card_header + " bg-darkColor"}
+          style={{ backgroundColor: props.mainTag.darkColor }}
+        >
           Ajouter un item
         </CardHeader>
         <CardBody className={styles.card_body}>

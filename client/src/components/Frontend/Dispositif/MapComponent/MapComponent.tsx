@@ -32,7 +32,7 @@ const MapComponent = (props: Props) => {
   const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds();
     (props.markers || []).forEach((child: any) => {
-      if (child.type === Marker) {
+      if (!!child.latitude && !!child.longitude) {
         bounds.extend(
           new window.google.maps.LatLng(
             child.latitude,

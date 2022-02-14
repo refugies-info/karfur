@@ -19,7 +19,6 @@ export interface PropsBeforeInjection {
   toggleModal: (arg1: boolean, arg2: string) => void;
   toggleDispositifValidateModal: () => void;
   editDispositif: () => void;
-  valider_dispositif: (arg1: string) => void;
   toggleDispositifCreateModal: () => void;
   toggleTutoModal: (section: string) => void;
   translating: boolean;
@@ -42,7 +41,6 @@ export class TopRightHeader extends React.Component<Props> {
    * toggleModal : toggle modal to accept or not content (for a sponsor and status 'En attente')
    * toggleDispositifValidateModal : toggle modal to attach dispositif to structure
    * editDispositif  : when click on pen button to modify dispositif
-   * valider_dispositif : used to validate dispositif in Brouillon state
    * toggleDispositifCreateModal : toggle modal to explain how to write when clicking on 'Besoin d'aide'
    * translating
    * status: status of the content

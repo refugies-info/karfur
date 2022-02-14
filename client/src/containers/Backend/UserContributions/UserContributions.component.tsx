@@ -27,6 +27,7 @@ import Swal from "sweetalert2";
 import Skeleton from "react-loading-skeleton";
 import { fetchUserStructureActionCreator } from "../../../services/UserStructure/userStructure.actions";
 import { Navigation } from "../Navigation";
+import Link from "next/link";
 
 declare const window: Window;
 
@@ -191,14 +192,19 @@ export const UserContributionsComponent = (props: Props) => {
               >
                 Explications
               </FButton>
-              <FButton
-                tag={NavHashLink}
-                to="/comment-contribuer#ecrire"
-                type="dark"
-                name="file-add-outline"
+              <Link
+                href="/comment-contribuer#ecrire"
+                passHref
               >
-                Créer une nouvelle fiche
-              </FButton>
+                <FButton
+                  tag={NavHashLink}
+                  type="dark"
+                  name="file-add-outline"
+                  tag="a"
+                >
+                  Créer une nouvelle fiche
+                </FButton>
+              </Link>
             </div>
           </TitleContainer>
           <WhiteContainer>

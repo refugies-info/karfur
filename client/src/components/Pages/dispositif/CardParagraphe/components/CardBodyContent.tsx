@@ -179,7 +179,6 @@ export const CardBodyContent = (props: Props) => {
     <ContentEditable
       //@ts-ignore
       id={props.keyValue}
-      className={styles.card_input}
       data-subkey={props.subkey}
       data-target="contentTitle"
       html={texte} // innerHTML of the editable div

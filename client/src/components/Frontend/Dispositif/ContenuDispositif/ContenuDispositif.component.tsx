@@ -74,12 +74,9 @@ export const contenuDispositif = (props: Props) => {
       <div key={key} className={"contenu-wrapper"} id={"contenu-" + key}>
         <Row className="relative-position nopadding content-row">
           <Col
-            lg="12"
-            md="12"
-            sm="12"
             xs="12"
             className={
-              "contenu " + (props.uiArray[key].isHover ? " isHovered" : "")
+              "contenu " + (props.uiArray[key]?.isHover ? " isHovered" : "")
             }
             onMouseEnter={() => props.updateUIArray(key, null, "isHover")}
           >
@@ -141,7 +138,7 @@ export const contenuDispositif = (props: Props) => {
               )
             }
           </Col>
-          {props.uiArray[key].isHover && !isMobile && (
+          {props.uiArray[key]?.isHover && !isMobile && (
             <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
               {
                 // on the right, contains reaction and reading

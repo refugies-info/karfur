@@ -1,6 +1,7 @@
 .add_card {
   background-color: rgba(0, 0, 0, 0.05);
   text-align: center;
+  cursor: pointer;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
