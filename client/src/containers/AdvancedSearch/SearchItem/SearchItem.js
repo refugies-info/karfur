@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import { withTranslation } from "next-i18next";
 import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
-import ReactDependentScript from "react-dependent-script";
 import Autocomplete from "react-google-autocomplete";
-import FSearchBtn from "../../../components/FigmaUI/FSearchBtn/FSearchBtn";
-import Streamline from "../../../assets/streamline";
-import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-
-// import variables from 'scss/colors.scss';
+import FSearchBtn from "components/FigmaUI/FSearchBtn/FSearchBtn";
+import Streamline from "assets/streamline";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./SearchItem.module.scss";
 import fsb_styles from "components/FigmaUI/FSearchBtn/FSearchBtn.module.scss"
 import { withRouter } from "next/router";
@@ -97,54 +94,47 @@ export class SearchItem extends Component {
           </FSearchBtn>
         ) : item.queryName === "localisation" && ville === "" && this.props.geoSearch ? (
           isMounted && (
-            <ReactDependentScript
-              loadingComponent={<div>Chargement de Google Maps...</div>}
-              scripts={[
-                "https://maps.googleapis.com/maps/api/js?key=" +
-                  process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY +
-                  "&v=3.exp&libraries=places&language=fr&region=FR",
-              ]}
-            >
-              <div className="position-relative">
-                <Autocomplete
-                  ref={(input) => {
-                    input && input.refs.input.focus();
+            <div className="position-relative">
+              <Autocomplete
+                apiKey={process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY || ""}
+                ref={(input) => {
+                  input && input.refs.input.focus();
+                }}
+                className={[
+                      fsb_styles.search_btn,
+                      fsb_styles.extra_padding,
+                      fsb_styles.in_header,
+                      styles.search_autocomplete,
+                      (item.active ? fsb_styles.active : "")
+                  ].join(" ")
+                }
+                onBlur={() =>
+                  ville === "" &&
+                  villeAuto === "" &&
+                  this.props.switchGeoSearch(false)
+                }
+                placeholder={item.placeholder}
+                id="villeAuto"
+                value={villeAuto}
+                onChange={this.handleChange}
+                onPlaceSelected={this.onPlaceSelected}
+                options={{
+                  componentRestrictions: { country: "fr" }
+                }}
+              />
+              {item.active && (
+                <EVAIcon
+                  name="close-outline"
+                  size="large"
+                  className="ml-10"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    this.props.desactiver(keyValue);
+                    this.initializeVille();
                   }}
-                      className={[
-                        fsb_styles.search_btn,
-                        fsb_styles.extra_padding,
-                        fsb_styles.in_header,
-                        styles.search_autocomplete,
-                        (item.active ? fsb_styles.active : "")
-                    ].join(" ")
-                  }
-                  onBlur={() =>
-                    ville === "" &&
-                    villeAuto === "" &&
-                    this.props.switchGeoSearch(false)
-                  }
-                  placeholder={item.placeholder}
-                  id="villeAuto"
-                  value={villeAuto}
-                  onChange={this.handleChange}
-                  onPlaceSelected={this.onPlaceSelected}
-                  types={["(cities)"]}
-                  componentRestrictions={{ country: "fr" }}
                 />
-                {item.active && (
-                  <EVAIcon
-                    name="close-outline"
-                    size="large"
-                    className="ml-10"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      this.props.desactiver(keyValue);
-                      this.initializeVille();
-                    }}
-                  />
-                )}
-              </div>
-            </ReactDependentScript>
+              )}
+            </div>
           )
         ) : item.queryName === "localisation" && !this.props.geoSearch ? (
           <FSearchBtn

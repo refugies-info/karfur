@@ -1,20 +1,26 @@
-.places_input {
-  box-sizing: border-box;
-  border: none;
-  width: 330px;
-  height: 40px;
+.places {
   margin-top: 30px;
   margin-left: 30px;
-  padding: 12px;
-  border-radius: 12px;
-  font-size: 16px;
-  outline: none;
-  text-overflow: ellipsis;
-}
+  display: inline-block;
+  position: relative;
+  z-index: 5;
 
-.places_icon {
-  position: absolute;
-  right: 10px;
-  top: 40px;
-  z-index: 2;
+  .input {
+    box-sizing: border-box;
+    border: none;
+    width: 330px;
+    height: 40px;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+    text-overflow: ellipsis;
+  }
+
+  .icon {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    z-index: 2;
+  }
 }

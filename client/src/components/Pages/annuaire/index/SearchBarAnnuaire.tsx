@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { Input } from "reactstrap";
-// @ts-ignore
-import ReactDependentScript from "react-dependent-script";
-import Autocomplete from "react-google-autocomplete";
 import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import { structureTypes } from "data/structureTypes";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { SimplifiedStructure } from "types/interface";
+import Autocomplete from "react-google-autocomplete";
 import styles from "./SearchBarAnnuaire.module.scss";
 interface Props {
   t: any;
@@ -48,7 +46,7 @@ export const SearchBarAnnuaire = (props: Props) => {
 
   const handleChange = (e: any) => props.setVille(e.target.value);
 
-  const onPlaceSelected = (place: any) => {
+  const onPlaceSelected: any = (place: any) => {
     if (
       place.address_components.find((item: any) =>
         item.types.includes("postal_code")
@@ -189,41 +187,27 @@ export const SearchBarAnnuaire = (props: Props) => {
             id="bookmarkBtn"
             size={"large"}
           />
-          <ReactDependentScript
-            loadingComponent={<div>Chargement de Google Maps...</div>}
-            scripts={[
-              "https://maps.googleapis.com/maps/api/js?key=" +
-                process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY +
-                "&v=3.exp&libraries=places&language=fr&region=FR",
-            ]}
-          >
-            <div className={styles.city_input}>
-              {true && ( //@ts-ignore
-                <Autocomplete
-                  ref={(input: any) => {
-                    input && input.refs.input.focus();
-                  }}
-                  className={styles.autocomplete}
-                  onBlur={() => {
-                    props.setIsCityFocus(false);
-                  }}
-                  placeholder={""}
-                  id="villeAuto"
-                  value={props.ville}
-                  onChange={handleChange}
-                  onPlaceSelected={onPlaceSelected}
-                  types={["(cities)"]}
-                  componentRestrictions={{ country: "fr" }}
-                />
-              )}
-              <EVAIcon
-                name="close-circle"
-                size="large"
-                className="ml-10"
-                onClick={() => {}}
-              />
-            </div>
-          </ReactDependentScript>
+          <div className={styles.city_input}>
+            <Autocomplete
+              apiKey={process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY || ""}
+              className={styles.autocomplete}
+              onBlur={() => { props.setIsCityFocus(false) }}
+              placeholder=""
+              id="villeAuto"
+              value={props.ville}
+              onChange={handleChange}
+              onPlaceSelected={onPlaceSelected}
+              options={{
+                componentRestrictions: { country: "fr" }
+              }}
+            />
+            <EVAIcon
+              name="close-circle"
+              size="large"
+              className="ml-10"
+              onClick={() => { }}
+            />
+          </div>
         </div>
       )}{" "}
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>

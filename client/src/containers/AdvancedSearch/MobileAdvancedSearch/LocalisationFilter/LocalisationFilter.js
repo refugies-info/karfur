@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "colors";
-import ReactDependentScript from "react-dependent-script";
 import Autocomplete from "react-google-autocomplete";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 
@@ -56,26 +55,19 @@ export const LocalisationFilter = (props) => {
     <>
       {props.geoSearch ? (
         <FilterButton>
-          <ReactDependentScript
-            loadingComponent={<div>Chargement de Google Maps...</div>}
-            scripts={[
-              "https://maps.googleapis.com/maps/api/js?key=" +
-                process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY +
-                "&v=3.exp&libraries=places&language=fr&region=FR",
-            ]}
-          >
-            <div className="position-relative">
-              <Autocomplete
-                onBlur={() => props.ville === ""}
-                id="villeAuto"
-                value={props.ville}
-                onChange={handleChange}
-                onPlaceSelected={onPlaceSelected}
-                types={["(cities)"]}
-                componentRestrictions={{ country: "fr" }}
-              />
-            </div>
-          </ReactDependentScript>
+          <div className="position-relative">
+            <Autocomplete
+              apiKey={process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY || ""}
+              onBlur={() => props.ville === ""}
+              id="villeAuto"
+              value={props.ville}
+              onChange={handleChange}
+              onPlaceSelected={onPlaceSelected}
+              options={{
+                componentRestrictions: { country: "fr" }
+              }}
+            />
+          </div>
         </FilterButton>
       ) : (
         <SelectedFilter>
