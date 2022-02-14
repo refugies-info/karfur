@@ -12,7 +12,6 @@ import produce from "immer";
 import API from "../../utils/API";
 import Dispositif from "components/Frontend/Dispositif/Dispositif";
 import { menu } from "data/dispositif";
-import { initializeTimer } from "./functions";
 import {
   fetchTranslationsActionCreator,
   addTradActionCreator,
@@ -33,7 +32,6 @@ export class TranslationHOC extends Component {
     super(props);
     this.mountTime = 0;
     this._isMounted = false;
-    this.initializeTimer = initializeTimer.bind(this);
   }
 
   state = {
@@ -125,7 +123,6 @@ export class TranslationHOC extends Component {
 
   componentWillUnmount() {
     this._isMounted = false;
-    clearInterval(this.timer);
   }
   // eslint-disable-next-line react/no-deprecated
   componentWillUpdate(_, nextState) {
@@ -141,7 +138,6 @@ export class TranslationHOC extends Component {
   }
 
   _initializeComponent = async (props) => {
-    this.initializeTimer();
     const searchParams = (new URL(document.location)).searchParams;
     const languageId = searchParams.get("language");
     const itemId = searchParams.get("dispositif");
@@ -395,7 +391,6 @@ export class TranslationHOC extends Component {
             "/backend/user-translation/" + langue.i18nCode
           );
         } else {
-          clearInterval(this.timer);
           this.props.history.push({
             pathname:
               "/backend/" +
