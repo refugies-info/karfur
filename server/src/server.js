@@ -27,10 +27,7 @@ mongoose.set("debug", false);
 let db_path = MONGODB_URI;
 
 mongoose
-  .connect(db_path, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
+  .connect(db_path)
   .then(() => {
     logger.info("Connected to mongoDB");
   })

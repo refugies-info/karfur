@@ -11,6 +11,22 @@ jest.mock("../../../modules/traductions/traductions.repository", () => ({
   getTraductionsByLanguage: jest.fn(),
 }));
 
+jest.mock("../../../schema/schemaDispositif", () => ({
+  Dispositif: {
+    find: jest.fn(),
+  }
+}));
+jest.mock("../../../schema/schemaTraduction", () => ({
+  Traduction: {
+    find: jest.fn(),
+  }
+}));
+jest.mock("../../../schema/schemaError", () => ({
+  Error: {
+    save: jest.fn(),
+  }
+}));
+
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
   const res: MockResponse = {};

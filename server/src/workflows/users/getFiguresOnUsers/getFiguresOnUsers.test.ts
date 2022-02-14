@@ -13,6 +13,13 @@ const mockResponse = (): MockResponse => {
 
 jest.mock("../../../logger");
 
+jest.mock("../../../schema/schemaUser", () => ({
+  User: {
+    find: jest.fn(),
+  }
+}));
+
+
 const tradRole = {
   _id: "5ce57c969aadae8734c7aeec",
   nom: "Trad",
@@ -65,9 +72,7 @@ const users2 = [
 
 describe("getFiguresOnUsers", () => {
   it("should return correct figures", async () => {
-    User.find = jest
-      .fn()
-      .mockReturnValue({ populate: jest.fn().mockResolvedValue(users) });
+    User.find.mockReturnValueOnce({ populate: jest.fn().mockResolvedValue(users) });
     const res = mockResponse();
     await getFiguresOnUsers({}, res);
     expect(res.status).toHaveBeenCalledWith(200);
@@ -81,9 +86,7 @@ describe("getFiguresOnUsers", () => {
   });
 
   it("should return correct figures", async () => {
-    User.find = jest
-      .fn()
-      .mockReturnValue({ populate: jest.fn().mockResolvedValue(users2) });
+    User.find.mockReturnValueOnce({ populate: jest.fn().mockResolvedValue(users2) });
     const res = mockResponse();
     await getFiguresOnUsers({}, res);
     expect(res.status).toHaveBeenCalledWith(200);
@@ -97,7 +100,7 @@ describe("getFiguresOnUsers", () => {
   });
 
   it("should return zero values if user.find throws", async () => {
-    User.find = jest.fn().mockReturnValue({
+    User.find.mockReturnValueOnce({
       populate: jest.fn().mockRejectedValue(new Error("error")),
     });
     const res = mockResponse();
