@@ -1,9 +1,6 @@
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import Swal from "sweetalert2";
-import querySearch from "stringquery";
 import h2p from "html2plaintext";
-import dynamic from "next/dynamic"
 import { EditorState, ContentState } from "draft-js";
 import { connect } from "react-redux";
 import _ from "lodash";
