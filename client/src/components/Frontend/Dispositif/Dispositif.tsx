@@ -161,6 +161,7 @@ interface Props {
     initialText: { contenu: any[] },
     translatedText: { contenu: any[] },
   },
+  francais?: any
   traductionsFaites?: any[]
   autosuggest?: boolean
   translations?: any
@@ -1308,6 +1309,7 @@ const Dispositif = (props: Props) => {
                     locale={props.locale}
                     langue={props.langue}
                     traduction={props.traduction}
+                    francais={props.francais}
                     traductionsFaites={props.traductionsFaites}
                     autosuggest={props.autosuggest}
                     translations={props.translations}
@@ -1333,6 +1335,7 @@ const Dispositif = (props: Props) => {
                     locale={props.locale}
                     langue={props.langue}
                     traduction={props.traduction}
+                    francais={props.francais}
                     traductionsFaites={props.traductionsFaites}
                     autosuggest={props.autosuggest}
                     translations={props.translations}
@@ -1742,7 +1745,7 @@ const Dispositif = (props: Props) => {
 
               <ContenuDispositif
                 content={getContent(dispositif)}
-                showMapButton={(val: boolean) => setAddMapBtn(val)}
+                showMapButton={(val: boolean) => { setAddMapBtn(val) }}
                 updateUIArray={updateUIArray}
                 handleContentClick={handleContentClick}
                 handleMenuChange={handleMenuChange}

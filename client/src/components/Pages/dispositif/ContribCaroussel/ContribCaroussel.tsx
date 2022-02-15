@@ -96,7 +96,7 @@ const ContribCarousel = (props: Props) => {
     ).groupedData;
 
     setReduceContributors(reducedContributors);
-  }, [props.contributeurs, nbCards]);
+  }, [props.contributeurs]);
 
   return (
     <div className={styles.contributors}>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import ReactHtmlParser from "react-html-parser";
 import { Spinner, Tooltip, Progress } from "reactstrap";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
@@ -34,9 +33,12 @@ const Editor = dynamic(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
   { ssr: false }
 );
+
 let htmlToDraft = null;
+let ReactHtmlParser = null;
 if (isInBrowser()) {
   htmlToDraft = require("html-to-draftjs").default;
+  ReactHtmlParser = require("react-html-parser").default;
 }
 
 const AlertModified = styled.div`
@@ -1174,7 +1176,7 @@ class SideTrad extends Component {
         <div className={styles.langue_data}>
           <h5>Texte français initial</h5>
           <i
-            className={"flag-icon flag-icon-fr mb-8 " + styles.flag_margin}
+            className={"flag-icon flag-icon-fr " + styles.flag_margin}
             title="fr"
             id="fr"
           ></i>
@@ -1196,7 +1198,7 @@ class SideTrad extends Component {
             this.initial_text = initial_text;
           }}
         >
-          {/* {ReactHtmlParser((francais || {}).body || "", options)} */}
+          {ReactHtmlParser((francais || {}).body || "", options)}
         </div>
         {this.state.currIdx === "abstract" ? (
           <AlertModified type={modified ? "modified" : "abstract"}>

@@ -457,12 +457,13 @@ export class TranslationHOC extends Component {
           getTrads={this.get_trads}
 
           dispositif={this.props.selectedDispositif}
-          typeContenu={this.props.selectedDispositif.typeContenu}
+          typeContenu={this.props.selectedDispositif?.typeContenu || "dispositif"}
           translated={this.state.translated}
           isExpert={this.state.isExpert}
           locale={this.state.locale}
           langue={this.state.langue}
           traduction={this.state.traduction}
+          francais={this.state.francais}
           traductionsFaites={this.state.traductionsFaites}
           autosuggest={this.state.autosuggest}
 
