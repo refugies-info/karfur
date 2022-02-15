@@ -103,14 +103,6 @@ let htmlToDraft: any = null;
 if (isInBrowser()) {
   htmlToDraft = require("html-to-draftjs").default;
 }
-const NotificationContainer = dynamic(
-  () => import("react-notifications").then((mod) => mod.NotificationContainer),
-  { ssr: false }
-);
-const NotificationManager = dynamic(
-  () => import("react-notifications").then((mod) => mod.NotificationManager),
-  { ssr: false }
-);
 
 const InfoBoxLanguageContainer = styled.div`
   display: flex;
@@ -1211,18 +1203,19 @@ const Dispositif = (props: Props) => {
       } else {
         if (isInBrowser()) {
           //@ts-ignore
-          NotificationManager.success(
-            "Retrouvez votre contribution dans votre page 'Mon profil'",
-            "Enregistrement automatique",
-            5000,
-            () => {
-              Swal.fire(
-                "Enregistrement automatique",
-                "Retrouvez votre contribution dans votre page 'Mon profil'",
-                "success"
-              );
-            }
-          );
+          // TODO: fix
+          // NotificationManager.success(
+          //   "Retrouvez votre contribution dans votre page 'Mon profil'",
+          //   "Enregistrement automatique",
+          //   5000,
+          //   () => {
+          //     Swal.fire(
+          //       "Enregistrement automatique",
+          //       "Retrouvez votre contribution dans votre page 'Mon profil'",
+          //       "success"
+          //     );
+          //   }
+          // );
         }
       }
       dispatch(setSelectedDispositifActionCreator(newDispo));
@@ -1978,7 +1971,7 @@ const Dispositif = (props: Props) => {
             t={t}
           />
 
-          {isInBrowser() && <NotificationContainer />}
+          {/* {isInBrowser() && <NotificationContainer />} TODO: fix */}
 
           {isDispositifLoading && (
             <div className="ecran-protection no-main">
