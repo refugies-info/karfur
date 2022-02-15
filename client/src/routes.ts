@@ -11,7 +11,16 @@ import {
 } from "./containers/Backend/UserStructure";
 import { UserTranslation } from "./containers/Backend/UserTranslation";
 
-const routes = [
+type Role = "Trad" | "ExpertTrad" | "Admin" | "hasStructure" | "User" | "Contrib";
+export type RouteType = {
+  path: string,
+  exact?: boolean,
+  name: string,
+  component: any,
+  restriction: Role[]
+}
+
+const routes: RouteType[] = [
   {
     path: "/backend/traduction",
     exact: true,

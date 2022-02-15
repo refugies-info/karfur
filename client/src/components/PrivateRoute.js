@@ -1,4 +1,5 @@
 import React from "react";
+import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import API from "../utils/API";
@@ -8,7 +9,7 @@ import { fetchUserActionCreator } from "../services/User/user.actions";
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { user, fetchUser } = rest;
 
-  const updateLastConnexion = () => {
+/*   const updateLastConnexion = () => {
     if (
       API.isAuth &&
       user &&
@@ -23,9 +24,27 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       API.set_user_info(user);
     }
   };
-  updateLastConnexion();
+  updateLastConnexion(); */
+
+  const isAuthorized = (user, route) => {
+      if (API.isAuth() === false && (route.restriction || []).length > 0) {
+        return <Redirect to={{ pathname: "/login", state: { redirectTo: path } }} />
+      } else if (API.isAuth() && (route.restriction || []).length > 0) {
+        const roles = (user && user.roles) || [];
+        const hasAuthorizedRole = roles.filter((x) => route.restriction.includes(x.nom)).length > 0;
+        const hasRouteRestrictionHasStructure = route.restriction.includes("hasStructure");
+        const hasUserStructure = (user?.structures || []).length > 0 ? true : false;
+        if (hasAuthorizedRole || (hasRouteRestrictionHasStructure && hasUserStructure )) {
+          return true
+        }
+        return false;
+      }
+      return true;
+    }
+  }
+
   return (
-    {/* <Route
+    <Route
       {...rest}
       render={(props) => {
         var path = props.location.pathname;
@@ -73,16 +92,16 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
               (hasUserStructure && hasRouteRestrictionHasStructure)
             ) {
               return (
-                <Component {...props} socket={socket} socketFn={socketFn} />
+                <Component {...props} />
               );
             }
             return <UnauthorizedAccess />;
           }
-          return <Component {...props} socket={socket} socketFn={socketFn} />;
+          return <Component {...props} />;
         }
-        return <Component {...props} socket={socket} socketFn={socketFn} />;
+        return <Component {...props} />;
       }}
-    /> */}
+    />
   );
 };
 
