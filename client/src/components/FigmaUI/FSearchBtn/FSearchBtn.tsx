@@ -34,6 +34,7 @@ const FSearchBtn = (props: Props) => {
     noHover,
     lighter,
     smallFont,
+    desactiver,
     ...bProps
   } = props;
 

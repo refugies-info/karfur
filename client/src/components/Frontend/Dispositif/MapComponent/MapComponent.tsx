@@ -49,8 +49,7 @@ const MapComponent = (props: Props) => {
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={{ width: "100%", height: 470 }}
-      center={{ lat: 48.856614, lng: 2.3522219 }}
-      zoom={5}
+      zoom={7}
       onLoad={onLoad}
       onUnmount={onUnmount}
       options={{
