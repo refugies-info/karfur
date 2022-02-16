@@ -30,8 +30,9 @@ const MapComponent = (props: Props) => {
   });
 
   const onLoad = useCallback(function callback(map) {
+    if (props.markers.length === 0) return;
     const bounds = new window.google.maps.LatLngBounds();
-    (props.markers || []).forEach((child: any) => {
+    props.markers.forEach((child: any) => {
       if (!!child.latitude && !!child.longitude) {
         bounds.extend(
           new window.google.maps.LatLng(
@@ -49,7 +50,8 @@ const MapComponent = (props: Props) => {
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={{ width: "100%", height: 470 }}
-      zoom={7}
+      center={props.markers.length === 0 ? { lat: 48.856614, lng: 2.3522219 } : undefined}
+      zoom={5}
       onLoad={onLoad}
       onUnmount={onUnmount}
       options={{

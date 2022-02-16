@@ -12,6 +12,11 @@
   .form_field{
     margin-bottom: 10px;
 
+    .label {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
     &.inline_div{
       display: flex;
       justify-content: space-between;
@@ -33,12 +38,12 @@
     margin-top: 10px;
     input{
       border-radius: 12px;
-      border: none;
+      border: 0.5px solid gray;
       padding: 10px 10px 10px 40px;
     }
     .input_icon{
       position: absolute;
-      top: 24px !important;
+      top: 14px;
       left: 10px;
       z-index: 4;
       line-height: 20px;
