@@ -32,6 +32,8 @@ import ImgModal from "./ImgModal";
 import styles from "./Sponsors.module.scss";
 import { withRouter } from "next/router";
 import { getBaseUrl } from "lib/getBaseUrl";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 
 const SponsorContainer = styled.div`
   padding: 0px 0px 0px 16px;
@@ -217,8 +219,12 @@ class Sponsors extends Component {
     animating: false,
   };
 
-  componentDidMount() {
-    if (this.props.structures.length === 0) {
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.disableEdit && !this.props.disableEdit
+      && this.props.structures.length === 0
+      && !this.props.isLoadingStructures
+    ) {
       this.props.fetchActiveStructuresActionCreator();
     }
   }
@@ -1272,6 +1278,9 @@ const mapStateToProps = (state) => {
     user: state.user.user,
     userStructure: state.userStructure,
     structures: state.activeStructures,
+    isLoadingStructures: isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES)(
+      state
+    ),
   };
 };
 

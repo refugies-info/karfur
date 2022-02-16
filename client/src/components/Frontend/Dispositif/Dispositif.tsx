@@ -96,6 +96,8 @@ import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { toggleLangueActionCreator } from "services/Langue/langue.actions";
 import useRTL from "hooks/useRTL";
 import { tags } from "data/tags";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 
 moment.locale("fr");
 
@@ -214,6 +216,7 @@ const Dispositif = (props: Props) => {
 
   const dispositif = useSelector(selectedDispositifSelector); // loaded by serverSideProps
   const user = useSelector(userDetailsSelector);
+  const isUserLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
   const admin = useSelector(userSelector)?.admin;
   const langues = useSelector(allLanguesSelector);
 
@@ -222,7 +225,7 @@ const Dispositif = (props: Props) => {
   const timer = useRef<number|undefined>();
 
   useEffect(() => {
-    if (!user) dispatch(fetchUserActionCreator());
+    if (!user && !isUserLoading) dispatch(fetchUserActionCreator());
 
     if (props.type === "detail") { // DETAIL
       if (dispositif) {

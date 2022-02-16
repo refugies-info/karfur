@@ -42,10 +42,12 @@ const Layout = (props: Props) => {
 
   const ttsActive = useSelector(ttsActiveSelector);
   const showLangModal = useSelector(showLangModalSelector);
-  const langues = useSelector(allLanguesSelector);
   const user = useSelector(userDetailsSelector);
+  const isUserLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
+  const langues = useSelector(allLanguesSelector);
   const isLanguagesLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_LANGUES));
   const dispositifs = useSelector(activeDispositifsSelector);
+  const isDispositifsLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
 
   const changeLanguage = (lng: string) => {
     dispatch(toggleLangueActionCreator(lng));
@@ -59,16 +61,24 @@ const Layout = (props: Props) => {
   };
 
   useEffect(() => {
-    if (!user) {
+    if (!user && !isUserLoading) {
       dispatch(fetchUserActionCreator());
     }
-    if (dispositifs.length === 0) {
+    if (dispositifs.length === 0 && !isDispositifsLoading) {
       dispatch(fetchActiveDispositifsActionsCreator());
     }
-    if (langues.length === 0) {
+    if (langues.length === 0 && !isLanguagesLoading) {
       dispatch(fetchLanguesActionCreator());
     }
-  }, [dispositifs.length, langues.length, user, dispatch]);
+  }, [
+    dispositifs.length,
+    isDispositifsLoading,
+    langues.length,
+    isLanguagesLoading,
+    user,
+    isUserLoading,
+    dispatch
+  ]);
 
   const computeFullSentence = (nodeList: any) => {
     let sentence = "";

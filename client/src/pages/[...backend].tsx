@@ -25,8 +25,8 @@ const Backend = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!user) dispatch(fetchUserActionCreator());
-  }, [user, dispatch]);
+    if (!user && !isLoading) dispatch(fetchUserActionCreator());
+  }, [user, isLoading, dispatch]);
 
   const isAuthorized = (route: RouteType) => {
     if ((route.restriction || []).length === 0) { // No restriction: OK
