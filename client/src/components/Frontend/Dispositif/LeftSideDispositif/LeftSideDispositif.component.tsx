@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ListGroup,
   ListGroupItem,
@@ -16,7 +16,6 @@ import { Props } from "./LeftSideDispositif.container";
 import { DispositifContent, Tag } from "types/interface";
 import { send_sms } from "components/Pages/dispositif/function";
 import { useTranslation } from "next-i18next";
-import isInBrowser from "lib/isInBrowser";
 
 declare const window: Window;
 export interface PropsBeforeInjection {
@@ -46,6 +45,9 @@ export interface PropsBeforeInjection {
 
 export const LeftSideDispositif = (props: Props) => {
   const { t } = useTranslation();
+  const [emailBody, setEmailBody] = useState(
+    "Voici le lien vers cette fiche : "
+  );
 
   // when clicking on 'Voir le site'
   // if lecture mode : navigate to the link
@@ -61,8 +63,9 @@ export const LeftSideDispositif = (props: Props) => {
         )
     : props.toggleInputBtnClicked;
 
-  const emailBody = "Voici le lien vers cette fiche : "
-    + isInBrowser() ? window.location.href : "";
+  useEffect(() => {
+    setEmailBody((emailBody) => emailBody + window.location.href);
+  }, []);
 
   const getTitle = (title: string) => {
     if (title === "La démarche par étapes")
@@ -206,7 +209,11 @@ export const LeftSideDispositif = (props: Props) => {
                 props.closePdf();
               }}
               trigger={() => (
-                <FButton className="print_buttons_btn" type="light-action" name="printer-outline">
+                <FButton
+                  className="print_buttons_btn"
+                  type="light-action"
+                  name="printer-outline"
+                >
                   {t("Dispositif.Imprimer", "Imprimer")}
                 </FButton>
               )}
