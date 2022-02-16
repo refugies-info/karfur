@@ -1,4 +1,3 @@
-// import "./TranslationNeedsModal.scss";
 import React, { useState, useEffect } from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
@@ -8,6 +7,7 @@ import { needSelector } from "services/Needs/needs.selectors";
 import FInput from "components/FigmaUI/FInput/FInput";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { saveNeedActionCreator } from "services/Needs/needs.actions";
+import styles from "./TranslationNeedsModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -89,7 +89,8 @@ export const OneNeedTranslationModal = (props: Props) => {
       <Modal
         isOpen={props.show}
         toggle={props.toggle}
-        className="modal-besoins"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
         size="md"
       >
         <Header>{"Traduction d'un besoin : "}</Header>
@@ -112,7 +113,8 @@ export const OneNeedTranslationModal = (props: Props) => {
     <Modal
       isOpen={props.show}
       toggle={props.toggle}
-      className="modal-besoins"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
       size="md"
     >
       <Title>Version française : </Title>

@@ -1,33 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavHashLink } from "react-router-hash-link";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import styled from "styled-components";
 import {
   fetchUserContributionsActionCreator,
   deleteDispositifActionCreator,
-} from "../../../services/UserContributions/userContributions.actions";
-import { userContributionsSelector } from "../../../services/UserContributions/userContributions.selectors";
+} from "services/UserContributions/userContributions.actions";
+import { userContributionsSelector } from "services/UserContributions/userContributions.selectors";
 import {
   userStructureDisposAssociesSelector,
   userStructureNameSelector,
   userStructureSelector,
-} from "../../../services/UserStructure/userStructure.selectors";
-import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
+} from "services/UserStructure/userStructure.selectors";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { formatContributions } from "./functions";
-import styled from "styled-components";
 import { NoContribution } from "./components/NoContribution";
-import { FrameModal } from "../../../components/Modals";
+import { FrameModal } from "components/Modals";
 import { ContribContainer } from "./components/SubComponents";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
+import FButton from "components/FigmaUI/FButton/FButton";
 import { UserContribTable } from "./components/UserContribTable";
 import { ObjectId } from "mongodb";
-import { colors } from "../../../colors";
+import { colors } from "colors";
 import Swal from "sweetalert2";
 import Skeleton from "react-loading-skeleton";
-import { fetchUserStructureActionCreator } from "../../../services/UserStructure/userStructure.actions";
+import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
 import { Navigation } from "../Navigation";
-import Link from "next/link";
 
 declare const window: Window;
 
@@ -62,6 +62,7 @@ export const UserContributionsComponent = (props: Props) => {
   const toggleTutoModal = () => setShowTutoModal(!showTutoModal);
 
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const userContributions = useSelector(userContributionsSelector);
   const userStructureContributions = useSelector(
@@ -88,7 +89,7 @@ export const UserContributionsComponent = (props: Props) => {
       );
     }
     window.scrollTo(0, 0);
-  }, []);
+  }, [dispatch, userStructure]);
 
   const contributions = formatContributions(
     userContributions,
@@ -96,7 +97,7 @@ export const UserContributionsComponent = (props: Props) => {
     userStructureName
   );
 
-  const onContributionRowClick = (burl: string) => props.history.push(burl);
+  const onContributionRowClick = (burl: string) => router.push(burl);
 
   const deleteDispositif = (
     event: any,

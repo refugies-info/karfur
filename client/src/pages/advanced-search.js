@@ -299,7 +299,7 @@ export class AdvancedSearch extends Component {
       this.props.location.state === "dispositifs" ||
       this.props.location.state === "demarches"
         ? null
-        : this.props.location.state; */
+        : this.props.location.state; // TODO : location.state */
 
     let tag = this.props.router.query.tag || tagFromNav;
 

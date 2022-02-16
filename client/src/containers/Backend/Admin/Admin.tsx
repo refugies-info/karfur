@@ -30,7 +30,7 @@ const OngletText = styled.span`
 const OngletContainer = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: center;
   margin-top: 12px;
   margin-bottom: 12px;
   cursor: pointer;
@@ -43,18 +43,27 @@ interface TabProps {
   iconNotSelected: string
   text: string
 }
-const Onglet = (props: TabProps) => (
-  <OngletContainer>
-    <div style={{ marginBottom: "3px" }}>
-      <EVAIcon
-        name={props.isSelected ? props.iconSelected : props.iconNotSelected}
-        fill={props.isSelected ? colors.bleuCharte : colors.noir}
-        className="mr-8"
-      />
-    </div>
-    <OngletText isActive={props.isSelected}>{props.text}</OngletText>
-  </OngletContainer>
-);
+const Onglet = (props: TabProps) => {
+  return (
+    <OngletContainer>
+      <div style={{ width: 20, height: 20, marginRight: 8, marginBottom: 5 }}>
+        {props.isSelected ?
+          <EVAIcon
+            key={1}
+            name={props.iconSelected}
+            fill={colors.bleuCharte}
+          /> :
+          <EVAIcon
+            key={2}
+            name={props.iconNotSelected}
+            fill={colors.noir}
+          />
+        }
+      </div>
+      <OngletText isActive={props.isSelected}>{props.text}</OngletText>
+    </OngletContainer>
+  );
+}
 
 export const Admin = () => {
   const [activeTab, setActiveTab] = useState("0");

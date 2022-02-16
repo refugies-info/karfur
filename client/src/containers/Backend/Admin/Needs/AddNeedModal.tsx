@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Modal } from "reactstrap";
-// import "./NeedDetailsModal.scss";
 import styled from "styled-components";
 import FButton from "components/FigmaUI/FButton/FButton";
 import FInput from "components/FigmaUI/FInput/FInput";
@@ -8,6 +7,7 @@ import { TagButton } from "./TagButton";
 import { useDispatch } from "react-redux";
 import { createNeedActionCreator } from "services/Needs/needs.actions";
 import { tags } from "data/tags";
+import styles from "./NeedDetailsModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -69,7 +69,8 @@ export const AddNeedModal = (props: Props) => {
     <Modal
       isOpen={props.show}
       toggle={props.toggleModal}
-      className="need-details-modal"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
     >
       <Title>Ajouter un nouveau besoin</Title>
       <SubTitle>Choix du thème*</SubTitle>

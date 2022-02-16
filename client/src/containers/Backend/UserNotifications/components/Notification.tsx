@@ -1,9 +1,10 @@
 import React from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
-import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import moment, { Moment } from "moment";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import { colors } from "../../../../colors";
+import FButton from "components/FigmaUI/FButton/FButton";
+import { colors } from "colors";
 
 const Container = styled.div`
   background: ${(props) => (props.read ? colors.blancSimple : colors.focus)};
@@ -84,6 +85,7 @@ const getFormattedDate = (createdAt: Moment) => {
   return "Depuis " + nbDays + " jours";
 };
 export const Notification = (props: Props) => {
+  const router = useRouter();
   const onNotifClick = (event: any) => {
     event.stopPropagation();
     if (props.type === "reaction") {
@@ -92,11 +94,11 @@ export const Notification = (props: Props) => {
     }
 
     if (props.type === "annuaire") {
-      return props.history.push("/annuaire-create");
+      return router.push("/annuaire-create");
     }
 
-    if (props.type === "new content") {
-      return props.history.push(props.link);
+    if (props.type === "new content" && props.link) {
+      return router.push(props.link);
     }
   };
 
