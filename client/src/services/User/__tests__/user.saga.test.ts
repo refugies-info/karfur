@@ -82,7 +82,6 @@ describe("[Saga] User", () => {
         .put(
           push({
             pathname: "/backend/user-translation",
-            state: { user: testUser },
           })
         )
         .next()

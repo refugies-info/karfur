@@ -47,7 +47,6 @@ export function* fetchUser(
       yield put(
         yield call(
           Router.push, "/backend/user-translation"
-          // state: { user: action.payload.user }, // TODO : location.state
         )
       );
     }

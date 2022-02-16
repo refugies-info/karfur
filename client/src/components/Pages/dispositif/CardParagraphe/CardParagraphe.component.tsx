@@ -167,7 +167,7 @@ export class CardParagraphe extends Component<Props> {
     const { subitem, subkey, disableEdit } = this.props;
 
     let dispositifId = "";
-/*     if (this.props.location.pathname) {
+/*     if (this.props.location.pathname) { // TODO
       let pathVariables = this.props.location.pathname.split("/");
       if (pathVariables.length === 3 && pathVariables[1] === "dispositif") {
         dispositifId = pathVariables[2];

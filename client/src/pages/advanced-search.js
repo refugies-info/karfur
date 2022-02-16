@@ -293,16 +293,8 @@ export class AdvancedSearch extends Component {
     // window.addEventListener("scroll", this.handleScrolling);
     this._isMounted = true;
     this.retrieveCookies();
-    // Retrieve filters value from url parameters
-    let tagFromNav = "";
-      /* this.props.location.state === "clean-filters" ||
-      this.props.location.state === "dispositifs" ||
-      this.props.location.state === "demarches"
-        ? null
-        : this.props.location.state; // TODO : location.state */
 
-    let tag = this.props.router.query.tag || tagFromNav;
-
+    let tag = this.props.router.query.tag;
     let bottomValue = this.props.router.query.bottomValue;
     let dep = this.props.router.query.dep;
     let city = this.props.router.query.city;
@@ -427,15 +419,6 @@ export class AdvancedSearch extends Component {
     if (!this.props.isLoading && prevProps.isLoading) {
       this.queryDispositifs(null, this.props);
     }
-
-    /* if (
-      prevProps.location.state !== "clean-filters" &&
-      this.props.location.state === "clean-filters"
-    ) {
-      this.setState({
-        recherche: initial_data.map((x) => ({ ...x, active: false })),
-      });
-    } */
 
     // if (prevProps.languei18nCode !== this.props.languei18nCode) {
     //   this.setState(

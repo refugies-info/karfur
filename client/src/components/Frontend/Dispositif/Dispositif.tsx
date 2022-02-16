@@ -309,7 +309,6 @@ const Dispositif = (props: Props) => {
         dispatch(setUiArrayActionCreator(generateUiArray(menuContenu, true)));
       } else {
         router.push({ pathname: "/login" });
-        // state: { redirectTo: "/dispositif" }, // TODO : location.state
       }
     }
   }, []);

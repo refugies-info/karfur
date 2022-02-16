@@ -58,7 +58,7 @@ export const FicheOnMobile = (props: Props) => {
         "/" +
         (props.item.typeContenu || "dispositif") +
         (props.item._id ? "/" + props.item._id : ""),
-      state: { previousRoute: "advanced-search" },
+      state: { previousRoute: "advanced-search" }, // TODO: location.state
     });
   };
   return (

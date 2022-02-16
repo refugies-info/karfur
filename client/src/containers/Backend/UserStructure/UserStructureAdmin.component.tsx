@@ -23,7 +23,7 @@ export const UserStructureAdminComponent = (props: Props) => {
   const toggleReload = () => setReload(!reload);
   const user = useSelector(userSelector);
 
-  const structureId = props.location.state.structure;
+  const structureId = props.location.state.structure; // TODO: location.state
   useEffect(() => {
     const loadStructure = async () => {
       if (structureId) {

@@ -34,8 +34,7 @@ const Backend = () => {
     }
 
     if (!API.isAuth()) { // Restriction and no auth: NOK
-      const redirectTo = isInBrowser() ? window.location.pathname : "";
-      return <Redirect to={{ pathname: "/login", state: { redirectTo } }} />;
+      return <Redirect to={{ pathname: "/login" }} />;
     }
 
     // Restriction and role: CHECK

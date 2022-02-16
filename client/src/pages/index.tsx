@@ -109,8 +109,7 @@ const Homepage = (props: Props) => {
 
   const selectOption = (_item: any) => {
     router.push({
-      pathname: "/advanced-search",
-      // state: item.name,
+      pathname: "/advanced-search" // TODO : add filter in URI
     });
   };
   const togglePopup = () => setPopup(!popup);

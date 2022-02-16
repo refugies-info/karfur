@@ -16,6 +16,7 @@ import { Props } from "./LeftSideDispositif.container";
 import { DispositifContent, Tag } from "types/interface";
 import { send_sms } from "components/Pages/dispositif/function";
 import { useTranslation } from "next-i18next";
+import isInBrowser from "lib/isInBrowser";
 
 declare const window: Window;
 export interface PropsBeforeInjection {
@@ -60,7 +61,8 @@ export const LeftSideDispositif = (props: Props) => {
         )
     : props.toggleInputBtnClicked;
 
-  const emailBody = "Voici le lien vers cette fiche : " // + window.location.href;
+  const emailBody = "Voici le lien vers cette fiche : "
+    + isInBrowser() ? window.location.href : "";
 
   const getTitle = (title: string) => {
     if (title === "La démarche par étapes")

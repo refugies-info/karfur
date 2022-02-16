@@ -172,10 +172,7 @@ const Navbar = () => {
         {isMobile ? (
           <IconButton
             onClick={() => {
-              router.push({
-                pathname: "/advanced-search",
-                // state: "clean-filters",
-              });
+              router.push({ pathname: "/advanced-search" });
             }}
           >
             <EVAIcon name="search" size="large" fill={colors.blanc} />

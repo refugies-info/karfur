@@ -488,8 +488,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
               props.history.push({
                 pathname: "/backend/user-dash-structure-selected",
                 state: {
-                  admin: true,
-                  structure: structure._id,
+                  structure: structure._id, // TODO: location.state
                 },
               });
             }}
