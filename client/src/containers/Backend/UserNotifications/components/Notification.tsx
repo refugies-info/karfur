@@ -100,6 +100,7 @@ export const Notification = (props: Props) => {
     if (props.type === "new content" && props.link) {
       return router.push(props.link);
     }
+    return;
   };
 
   const onReactionDeleteClick = (event: any) => {

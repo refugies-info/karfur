@@ -2,10 +2,8 @@
   display: block;
   position: relative;
   padding-left: 20px;
-  padding-top: 10px;
   margin-bottom: 0;
   cursor: pointer;
-  border-radius: 10px;
   font-size: 16px;
   user-select: none;
 
@@ -34,7 +32,6 @@
     background-color: white;
     border: solid #ccc;
     border-width: 1px;
-    border-radius: 10px;
 
     &:after {
       content: "";
