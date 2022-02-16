@@ -131,13 +131,9 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (
-      user &&
-      user.user &&
-      user.user.selectedLanguages &&
-      user.user.selectedLanguages.length > 0
-    ) {
-      setSelectedLangues(user.user.selectedLanguages);
+    const selectedLanguages = user?.user?.selectedLanguages;
+    if (selectedLanguages && selectedLanguages.length > 0) {
+      setSelectedLangues(selectedLanguages);
     }
   }, [isLoading, user]);
 
@@ -195,15 +191,15 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
     }
 
     if (!isLangueSelected) {
-      const newSelectedLangues: UserLanguage[] = []; /* selectedLangues.concat({
+      const newSelectedLangue: UserLanguage = {
         //@ts-ignore
         _id: langue._id,
         i18nCode: langue.i18nCode,
         langueCode: langue.langueCode,
         langueFr: langue.langueFr,
         langueLoc: langue.langueLoc,
-      }); */
-      setSelectedLangues(newSelectedLangues);
+      };
+      setSelectedLangues([...selectedLangues, newSelectedLangue]);
     }
   };
 
