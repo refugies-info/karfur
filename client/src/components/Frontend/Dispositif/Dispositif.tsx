@@ -395,43 +395,6 @@ const Dispositif = (props: Props) => {
     setIsModified(true);
   };
 
-  const updateUI = (
-    key: number,
-    subkey: number | undefined,
-    editable: boolean
-  ) => {
-    if (
-      editable &&
-      (subkey === undefined || (subkey === 0 && key > 1)) &&
-      withHelp
-    ) {
-      try {
-        //On place le curseur à l'intérieur du wysiwyg et on ajuste la hauteur
-        const target =
-          key === 0 || subkey !== undefined
-            ? "editeur-" + key + "-" + subkey
-            : key === 1
-            ? "card-col col-lg-4"
-            : undefined;
-        if (!target) return;
-        let parentNode: HTMLInputElement = document?.getElementsByClassName(
-          target
-        )[0] as HTMLInputElement;
-        if (subkey && parentNode) {
-          (parentNode
-            ?.getElementsByClassName("public-DraftEditor-content")[0] as HTMLInputElement)
-            ?.focus();
-          if (isInBrowser()) window?.getSelection()?.addRange(document?.createRange());
-          const height = (parentNode.getElementsByClassName("public-DraftEditorPlaceholder-inner")?.[0] as HTMLElement)?.offsetHeight + "px";
-          (parentNode.getElementsByClassName("DraftEditor-root")[0] as HTMLElement).style.height = height;
-        }
-      } catch (e: any) {
-        logger.error("error", { error: e.message });
-      }
-      setInputBtnClicked(false);
-    }
-  };
-
   const updateUIArray = (
     key: number,
     subkey: number | null = null,
@@ -491,7 +454,6 @@ const Dispositif = (props: Props) => {
       }
 
       setMenu(newMenu);
-      updateUI(key, subkey, editable);
     }
   };
 

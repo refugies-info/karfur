@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ContentEditable from "react-contenteditable";
 import dynamic from "next/dynamic";
 import { EditorBlock } from "draft-js";
@@ -22,7 +22,7 @@ const Editor = dynamic<EditorProps>(
 interface AddBtnProps {
   type: string|undefined;
   keyValue: number;
-  subkey: number;
+  subkey?: number;
   addItem: any;
 }
 const AddModuleBtn = (props: AddBtnProps) => {
@@ -91,7 +91,7 @@ interface Props {
   editable: boolean
   disableEdit: boolean
   keyValue: number
-  subkey: number
+  subkey?: number
   placeholder: string | undefined
   editorState: EditorState
   onEditorStateChange: any
@@ -105,12 +105,27 @@ interface Props {
 const EditableParagraph = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
-  let editorReference = useRef();
+  const editorReference = useRef<any>(null);
+  const [focused, setFocused] = useState(false);
 
   const setEditorReference = (ref: any) => {
-    editorReference = ref;
-    if (ref) ref.focus();
+    editorReference.current = ref;
   };
+
+  useEffect(() => {
+    if (props.editable
+      && !props.disableEdit
+      && !focused
+      && editorReference.current
+    ) {
+      editorReference.current.focus();
+      setFocused(true);
+    }
+
+    if (!props.editable && props.disableEdit) {
+      setFocused(false);
+    }
+  }, [props.editable, props.disableEdit, focused]);
 
   if (props.editable && !props.disableEdit) {
     return (
@@ -123,17 +138,15 @@ const EditableParagraph = (props: Props) => {
               "toolbar-editeur" + (props.keyValue === 0 ? " no-top" : "")
             }
             editorClassName="editor-editeur"
-            wrapperClassName={
-              "wrapper-editeur editeur-" + props.keyValue + "-" + props.subkey
-            }
+            wrapperClassName="wrapper-editeur"
             placeholder={props.placeholder}
-            onEditorStateChange={(editorState: EditorState) =>
+            onEditorStateChange={(editorState: EditorState) => {
               props.onEditorStateChange(
                 editorState,
                 props.keyValue,
                 props.subkey
-              )
-            }
+              );
+            }}
             editorState={props.editorState}
             toolbarCustomButtons={[
               // eslint-disable-next-line react/jsx-key

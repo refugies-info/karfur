@@ -113,7 +113,6 @@ export const contenuDispositif = (props: Props) => {
               dispositifContent.content !== null && dispositifContent.content !== "null" && (
                 <EditableParagraph
                   keyValue={key}
-                  subkey={0} // TODO: ok?
                   handleMenuChange={props.handleMenuChange}
                   onEditorStateChange={props.onEditorStateChange}
                   handleContentClick={props.handleContentClick}
