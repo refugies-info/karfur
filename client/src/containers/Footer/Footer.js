@@ -188,6 +188,14 @@ export class Footer extends Component {
               >
                 {t("Mentions légales", "Mentions légales")}
               </div>
+              <div
+                className="lien-footer"
+                onClick={() => {
+                  this.props.history.push("/declaration-accessibilite");
+                }}
+              >
+                {t("Footer.accessibility_link", "Accessibilité : non conforme")}
+              </div>
             </LinkContainer>
           </ColumnContainer>
           <ButtonContainer>
