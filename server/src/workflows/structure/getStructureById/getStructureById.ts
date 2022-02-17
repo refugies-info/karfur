@@ -61,7 +61,6 @@ const addDisposAssociesIfNeeded = (
     );
     return {
       ...structure.toJSON(),
-      // @ts-ignore populate dispos associes
       dispositifsAssocies: simplifiedDispositifsAssocies,
     };
   }
@@ -81,7 +80,7 @@ const addMembresIfNeeded = async (
         const neededFields = { username: 1, picture: 1, last_connected: 1 };
         const populateMembre = await getUserById(membre.userId, neededFields);
         membresArray.push({
-          ...populateMembre.toJSON(),
+          ...populateMembre.toJSON({flattenMaps: false}),
           roles: membre.roles,
           added_at: membre.added_at,
           userId: membre.userId,

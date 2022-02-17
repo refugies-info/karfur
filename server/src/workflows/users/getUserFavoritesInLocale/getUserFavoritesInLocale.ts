@@ -69,10 +69,10 @@ export const getUserFavoritesInLocale = async (
     await asyncForEach(favorites, async (favorite) => {
       const dispositif = await getDispositifById(favorite._id, neededFields);
       if (dispositif.status !== "Actif") return;
-      turnToLocalized(dispositif, locale);
+      const localizedDispositif = turnToLocalized(dispositif, locale);
 
       // @ts-ignore
-      const formattedDispositif = formatDispositif(dispositif);
+      const formattedDispositif = formatDispositif(localizedDispositif);
       result.push(formattedDispositif);
     });
 
