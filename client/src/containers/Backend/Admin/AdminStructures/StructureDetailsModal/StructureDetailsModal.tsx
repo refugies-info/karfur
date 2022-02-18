@@ -487,9 +487,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
             onClick={() => {
               props.history.push({
                 pathname: "/backend/user-dash-structure-selected",
-                state: {
-                  structure: structure._id, // TODO: location.state
-                },
+                search: `?id=${structure._id}`,
               });
             }}
           >

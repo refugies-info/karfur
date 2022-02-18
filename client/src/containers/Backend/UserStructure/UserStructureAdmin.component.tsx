@@ -23,8 +23,10 @@ export const UserStructureAdminComponent = (props: Props) => {
   const toggleReload = () => setReload(!reload);
   const user = useSelector(userSelector);
 
-  const structureId = props.location.state.structure; // TODO: location.state
   useEffect(() => {
+    const searchParams = (new URL(document.location.href)).searchParams;
+    const structureId = searchParams.get("id");
+
     const loadStructure = async () => {
       if (structureId) {
         setIsLoading(true);
@@ -33,9 +35,10 @@ export const UserStructureAdminComponent = (props: Props) => {
         setIsLoading(false);
       }
     };
+
     loadStructure();
     window.scrollTo(0, 0);
-  }, [reload, structureId]);
+  }, [reload]);
 
   const membres = structure ? structure.membres : [];
 
