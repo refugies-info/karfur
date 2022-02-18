@@ -16,7 +16,6 @@ export interface PropsBeforeInjection {
   addTag: (tags: Tag[]) => void;
   openTag: () => void;
   deleteTag: (idx: number) => void;
-  t: any;
   toggleTutorielModal: (arg: string) => void;
   displayTuto: boolean;
   updateUIArray: (arg: number) => void;

@@ -25,7 +25,6 @@ export interface PropsBeforeInjection {
   handleContentClick: (arg1: any, arg2: boolean, arg3: number) => void;
   toggleModal: (arg1: boolean, arg2: string) => void;
   removeItem: (arg1: number, arg2: number) => void;
-  t: any;
 }
 
 export class QuickToolbar extends Component<Props, StateType> {

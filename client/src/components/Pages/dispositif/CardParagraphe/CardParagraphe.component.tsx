@@ -44,7 +44,6 @@ export interface PropsBeforeInjection {
   typeContenu: "dispositif" | "demarche";
   disableEdit: boolean;
   mainTag: Tag;
-  t: any;
   toggleTutorielModal: (arg: string) => void;
   toggleGeolocModal: (arg1: boolean) => void;
   changeTitle: (arg1: number, arg2: number, arg3: string, arg4: string) => void;
@@ -320,7 +319,6 @@ export class CardParagraphe extends Component<Props> {
             hideModal={() => this.toggleFrenchLevelModal(false)}
             selectedLevels={subitem.niveaux}
             validateLevels={this.validateLevels}
-            t={this.props.t}
           />
         )}
         {subitem.title === "Zone d'action" ? (

@@ -4,7 +4,7 @@ module.exports = {
     defaultLocale: "fr",
     localePath: "./src/locales",
 
-    debug: process.env.NODE_ENV === "development",
+    debug: false, // process.env.NODE_ENV === "development",
     saveMissing: false,
     interpolation: {
       escapeValue: true, // react already safes from xss

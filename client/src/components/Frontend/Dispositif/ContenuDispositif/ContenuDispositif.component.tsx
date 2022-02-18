@@ -33,7 +33,6 @@ export interface PropsBeforeInjection {
   addMapBtn: boolean;
   printing: boolean;
   mainTag: Tag;
-  t: any;
   toggleModal: (show: boolean, name: string) => void
   toggleTutorielModal: (arg: string) => void;
   toggleGeolocModal: (val: boolean) => void;
@@ -142,7 +141,6 @@ export const contenuDispositif = (props: Props) => {
                   disableEdit={disableEdit}
                   toggleModal={props.toggleModal}
                   removeItem={props.removeItem}
-                  t={props.t}
                 />
               }
             </Col>

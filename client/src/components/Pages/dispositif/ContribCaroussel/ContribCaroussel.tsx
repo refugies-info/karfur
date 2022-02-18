@@ -42,19 +42,13 @@ const ContribCarousel = (props: Props) => {
     setActiveIndex(nextIndex);
   };
 
-  const goToIndex = (newIndex: number) => {
-    if (animating) return;
-    setActiveIndex(newIndex);
-  };
-
-  const width = isInBrowser() ? window.innerWidth : 0;
-  const nbCards = Math.floor(
-    (((width - 2 * 10) * 7) / 12 - 2 * (15 + 20)) / (140 + 20)
-  );
-
   // Contributors
   const [reducedContributors, setReduceContributors] = useState<any[]>([]);
   useEffect(() => {
+    const nbCards = Math.floor(
+      (((window.innerWidth - 2 * 10) * 7) / 12 - 2 * (15 + 20)) / (140 + 20)
+    );
+
     // there may be duplicates in db in Dispositif.participants
     const deduplicatedContributors = _.uniqBy(props.contributeurs, "username");
 

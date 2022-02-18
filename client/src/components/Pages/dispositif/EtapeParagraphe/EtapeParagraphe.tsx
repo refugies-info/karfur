@@ -920,7 +920,6 @@ const EtapeParagraphe = (props: Props) => {
               show={safeUiArray(keyValue, subkey, "isHover")}
               keyValue={keyValue}
               subkey={subkey}
-              t={t}
               item={props.item}
               handleContentClick={props.handleContentClick}
               disableEdit={props.disableEdit}

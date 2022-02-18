@@ -26,7 +26,6 @@ import { useRouter } from "next/router";
 declare const window: Window;
 
 export interface PropsBeforeInjection {
-  t: any;
 }
 
 export const MainContainer = styled.div`

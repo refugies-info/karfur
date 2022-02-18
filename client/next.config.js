@@ -12,11 +12,12 @@ module.exports = {
   webpack: (config) => {
     config.resolve.fallback = {
       events: false,
-      buffer: false
+      buffer: false,
+      process: require.resolve("process/browser"),
     };
     return config;
   },
-  experimental: {
+  compiler: {
     styledComponents: true
   }
 }

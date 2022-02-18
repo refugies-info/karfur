@@ -104,7 +104,6 @@ const RowContainer = styled.div`
   flex-direction: row;
 `;
 export interface PropsBeforeInjection {
-  t: any;
 }
 
 const getUserImage = (user: User) =>

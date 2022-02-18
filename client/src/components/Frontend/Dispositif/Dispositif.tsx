@@ -312,6 +312,7 @@ const Dispositif = (props: Props) => {
         router.push({ pathname: "/login" });
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Auto-save
@@ -796,6 +797,7 @@ const Dispositif = (props: Props) => {
     if (API.isAuth() && user) {
       const newUser = { ...user };
       const pinned = isPinned(dispositif, user);
+      if (!newUser.cookies) newUser.cookies = {};
       if (pinned) {
         newUser.cookies.dispositifsPinned = (
           user?.cookies?.dispositifsPinned || []
@@ -1502,7 +1504,6 @@ const Dispositif = (props: Props) => {
                     displayTuto={displayTuto}
                     updateUIArray={updateUIArray}
                     isRTL={isRTL}
-                    t={t}
                     router={router}
                     typeContenu={dispositif?.typeContenu || "dispositif"}
                   />
@@ -1721,7 +1722,6 @@ const Dispositif = (props: Props) => {
                 addItem={addItem}
                 typeContenu={dispositif?.typeContenu || "dispositif"}
                 uiArray={dispositif?.uiArray || []}
-                t={t}
                 disableEdit={disableEdit}
                 menu={menu}
                 removeItem={removeItem}

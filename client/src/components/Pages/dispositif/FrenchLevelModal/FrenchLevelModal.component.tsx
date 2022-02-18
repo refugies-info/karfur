@@ -12,7 +12,6 @@ export interface PropsBeforeInjection {
   hideModal: () => void;
   selectedLevels: string[] | undefined;
   validateLevels: (arg: string[]) => void;
-  t: any;
 }
 
 interface StateType {

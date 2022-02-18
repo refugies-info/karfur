@@ -185,7 +185,6 @@ const ContenuParagraphe = (props: Props) => {
                   toggleGeolocModal={props.toggleGeolocModal}
                   showGeolocModal={props.showGeolocModal}
                   typeContenu={props.typeContenu}
-                  t={t}
                 />
               );
             }
@@ -240,7 +239,6 @@ const ContenuParagraphe = (props: Props) => {
                   toggleGeolocModal={props.toggleGeolocModal}
                   showGeolocModal={props.showGeolocModal}
                   typeContenu={props.typeContenu}
-                  t={t}
                 />
               ) : subitem.type === "map" && !props.printing ? (
                 <MapParagraphe
@@ -425,7 +423,6 @@ const ContenuParagraphe = (props: Props) => {
                           handleContentClick={props.handleContentClick}
                           toggleModal={props.toggleModal}
                           removeItem={props.removeItem}
-                          t={t}
                         />
                       </Col>
                     )}
@@ -507,7 +504,6 @@ const ContenuParagraphe = (props: Props) => {
                               handleContentClick={props.handleContentClick}
                               toggleModal={props.toggleModal}
                               removeItem={props.removeItem}
-                              t={t}
                             />
                           </Col>
                         )}
