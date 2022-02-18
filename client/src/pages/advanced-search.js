@@ -1092,7 +1092,7 @@ export class AdvancedSearch extends Component {
       this.props.langues.length > 0 && current ? current.langueCode : "fr";
     return (
       <div className="animated fadeIn advanced-search">
-        <SEO />
+        <SEO title="Recherche" />
         {isMobile ? (
           <MobileAdvancedSearch
             t={t}

@@ -172,7 +172,7 @@ const QuiSommesNous: NextPage = () => {
 
   return (
     <MainContainer>
-      <SEO />
+      <SEO title="Qui sommes nous ?" />
       <HeaderContainer>
         <div style={{ marginTop: 240, marginBottom: 28 }}>
           <HeaderTextContainer>

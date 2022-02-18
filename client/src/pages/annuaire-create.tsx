@@ -88,7 +88,7 @@ const AnnuaireCreate = () => {
 
   return (
     <div className={styles.container}>
-      <SEO />
+      <SEO title="Annuaire" />
       <div className={styles.left}>
         <div className={styles.header}>
           <div>

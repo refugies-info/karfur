@@ -8,7 +8,7 @@ import FButton from "components/FigmaUI/FButton/FButton";
 const NotFound = () => {
   return (
     <div className={styles.container + " animated fadeIn texte-small"}>
-      <SEO />
+      <SEO title="Page non trouvée" />
       <h1>Page non trouvée</h1>
       <Link href="/" passHref>
         <FButton

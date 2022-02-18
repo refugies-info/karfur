@@ -126,7 +126,7 @@ const Homepage = (props: Props) => {
 
   return (
     <div className="animated fadeIn homepage">
-      <SEO />
+      <SEO title="Accueil" />
       {overlay ? <div className="overlay" /> : null}
       <section className={styles.hero}>
         <div className="hero-container">

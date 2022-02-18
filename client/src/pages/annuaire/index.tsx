@@ -188,7 +188,7 @@ const Annuaire = () => {
 
   return (
     <div className={styles.container}>
-      <SEO />
+      <SEO title="Annuaire" />
       <Header
         resetSearch={resetSearch}
         letters={letters}

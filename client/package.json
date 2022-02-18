@@ -83,8 +83,7 @@
     "test:types": "tsc --noEmit",
     "test:unit": "jest --runInBand",
     "test:lint": "next lint",
-    "fix:lint": "next lint --fix",
-    "analyze": "source-map-explorer 'build/static/js/*.js'"
+    "fix:lint": "next lint --fix"
   },
   "proxy": "http://localhost:8000",
   "bugs": {

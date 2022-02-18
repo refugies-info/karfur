@@ -7,7 +7,7 @@ import { defaultStaticProps } from "lib/getDefaultStaticProps";
 const PolitiqueConfidentialite = () => {
   return (
     <div className={styles.legal_pages + " animated fadeIn texte-small"}>
-      <SEO />
+      <SEO title="Politique de confidentialité" />
       <h1>Politique de confidentialité</h1>
       <h2>Qui sommes-nous ?</h2>
       <p>

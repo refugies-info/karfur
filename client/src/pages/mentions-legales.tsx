@@ -7,7 +7,7 @@ import { defaultStaticProps } from "lib/getDefaultStaticProps";
 const MentionsLegales = () => {
   return (
     <div className={styles.legal_pages + " animated fadeIn texte-small"}>
-      <SEO />
+      <SEO title="Mentions légales" />
       <h1>Mentions légales</h1>
       <h2>Site édité par</h2>
       <strong>Refugies.info</strong>

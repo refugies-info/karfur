@@ -57,7 +57,7 @@ const CommentContribuer = (props: Props) => {
 
   return (
     <div className={styles.container}>
-      <SEO />
+      <SEO title="Comment contribuer ?" />
       <div className={styles.header}>
         <h1>
           {t("CommentContribuer.Comment contribuer", "Comment contribuer ?")}

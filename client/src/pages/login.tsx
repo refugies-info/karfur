@@ -352,7 +352,7 @@ const Login = () => {
   };
   return (
     <div className="app">
-      <SEO />
+      <SEO title="Se connecter" />
       <div className={styles.container}>
         <div
           style={{

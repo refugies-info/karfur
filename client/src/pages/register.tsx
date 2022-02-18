@@ -254,7 +254,7 @@ const Register = () => {
 
     return (
       <div className="app">
-        <SEO />
+        <SEO title="Créer un nouveau compte" />
         <div className={styles.container}>
           <ContentContainer>
             <GoBackButton step={step} goBack={goBack} />
