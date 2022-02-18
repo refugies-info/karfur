@@ -83,12 +83,8 @@ const Navbar = () => {
 
   useEffect(() => {
     if (
-      router.pathname.includes("dispositif") /*  &&
-        location.state &&
-        location.state.editable */ ||
-      router.pathname.includes("demarche") /* &&
-        location.state &&
-        location.state.editable */ ||
+      (router.pathname.includes("dispositif") && router.query.edit !== undefined) ||
+      (router.pathname.includes("demarche") && router.query.edit !== undefined) ||
       router.pathname.includes("user-profile") ||
       router.pathname.includes("advanced-search") ||
       router.pathname.includes("qui-sommes-nous") ||
@@ -99,7 +95,7 @@ const Navbar = () => {
     } else {
       setScroll(false);
     }
-  }, [router.pathname]);
+  }, [router.pathname, router.query]);
 
   const goBack = () => {
     router.back();

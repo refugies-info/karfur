@@ -322,6 +322,16 @@ const Dispositif = (props: Props) => {
         saveDispositif("Brouillon", true);
       });
     }
+
+    const hasEditParam = router.query.edit === "";
+    if (dispositif?._id && (
+      (hasEditParam && disableEdit) || (!hasEditParam && !disableEdit)  // needs redirect
+    )) {
+      router.replace({
+        pathname: `/${props.typeContenu}/${dispositif._id.toString()}`,
+        search: disableEdit ? null : "edit"
+      }, undefined, { shallow: true });
+    }
     return () => { if (timer.current) clearInterval(timer.current) }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [disableEdit]);

@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useEffect } from "react";
+import React, { ReactElement, ReactNode, useCallback, useEffect, useState } from "react";
 import type { AppProps } from "next/app";
 import Script from "next/script";
 import { appWithTranslation } from "next-i18next";
@@ -21,6 +21,7 @@ type AppPropsWithLayout = AppProps & {
 const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   const defaultLayout = (page: ReactElement) => <Layout>{page}</Layout>;
   const getLayout = Component.getLayout ?? defaultLayout;
+  const [history, setHistory] = useState<string[]>([]);
   const router = useRouter();
 
   if (isInBrowser()) {
@@ -34,14 +35,29 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
     };
   }
 
+  const handleRouteChange = useCallback((
+    url: string,
+    { shallow }: { shallow: boolean }
+  ) => {
+    if (!shallow) PageView();
+
+    setHistory(prevHistory => { // add to history if url is new
+      if (prevHistory[0] !== url) return [url, ...prevHistory];
+      return prevHistory;
+    });
+  }, []);
+
   // ANALYTICS
   useEffect(() => {
     initGA();
-    const handleRouteChange = () => { PageView() }
+    handleRouteChange(router.asPath, { shallow: false }); // initial route
+
     router.events.on("routeChangeComplete", handleRouteChange)
     return () => {
       router.events.off("routeChangeComplete", handleRouteChange)
     }
+  // Bug router: https://github.com/vercel/next.js/issues/18127#issuecomment-950907739
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -49,7 +65,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
       <Script src="https://client.crisp.chat/l.js" strategy="lazyOnload" />
       <Script src="//static.axept.io/sdk.js" strategy="lazyOnload" />
 
-      {getLayout(<Component {...pageProps} />)}
+      {getLayout(<Component history={history} {...pageProps} />)}
     </>
   )
 }
