@@ -52,7 +52,7 @@ export const UserStructureComponent = () => {
       );
     }
     window.scrollTo(0, 0);
-  }, [dispatch, userStructure]);
+  }, [dispatch]);
 
   const isLoadingFetch = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE)
