@@ -19,9 +19,9 @@ type AppPropsWithLayout = AppProps & {
 }
 
 const App = ({ Component, pageProps }: AppPropsWithLayout) => {
-  const defaultLayout = (page: ReactElement) => <Layout>{page}</Layout>;
-  const getLayout = Component.getLayout ?? defaultLayout;
   const [history, setHistory] = useState<string[]>([]);
+  const defaultLayout = (page: ReactElement) => <Layout history={history}>{page}</Layout>;
+  const getLayout = Component.getLayout ?? defaultLayout;
   const router = useRouter();
 
   if (isInBrowser()) {

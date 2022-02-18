@@ -34,7 +34,11 @@ const MainContainer = styled.div`
   background-color: ${colors.gris};
 `;
 
-const AnnuaireDetail = () => {
+interface Props {
+  history: string[]
+}
+
+const AnnuaireDetail = (props: Props) => {
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_STRUCTURE)
   );
@@ -73,6 +77,7 @@ const AnnuaireDetail = () => {
         <LeftAnnuaireDetail
           structure={structure}
           isLoading={isLoading}
+          history={props.history}
         />
 
         <MiddleAnnuaireDetail

@@ -54,7 +54,7 @@ const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
   return typeSelectedFromUrl;
 };
 
-const Annuaire = (props: any) => {
+const Annuaire = () => {
   const router = useRouter();
 
   const [keyword, setKeyword] = useState(router.query.keyword as string || "");
@@ -183,10 +183,7 @@ const Annuaire = (props: any) => {
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
   const onStructureCardClick = (id: ObjectId) =>
-    router.push({
-      pathname: `/annuaire/${id}`,
-      // state: "from_annuaire_lecture", // TODO : location.state
-    });
+    router.push({ pathname: `/annuaire/${id}` });
   const lettersClickable = defineLettersClickable(filteredStructures);
 
   return (
@@ -219,7 +216,7 @@ const Annuaire = (props: any) => {
               structures={filteredStructures}
             />
           ) : (
-            <NoResult resetAllFilter={resetAllFilter} t={props.t} />
+            <NoResult resetAllFilter={resetAllFilter} />
           )}
         </div>
     </div>

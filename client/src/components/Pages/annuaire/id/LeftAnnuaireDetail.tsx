@@ -13,6 +13,7 @@ import styles from "./LeftAnnuaireDetail.module.scss";
 interface Props {
   structure: Structure | null;
   isLoading: boolean;
+  history: string[]
 }
 
 export const LeftAnnuaireDetail = (props: Props) => {
@@ -26,11 +27,11 @@ export const LeftAnnuaireDetail = (props: Props) => {
   };
 
   const onClickGoBack = () => {
-    /* if (props.history.location.state === "from_annuaire_lecture") {
-      // props.history.go(-1);
-    } else { */
+    if (props.history[1]?.includes("annuaire")) {
+      router.push(props.history[1]);
+    } else {
       router.push("/annuaire");
-    // }
+    }
   };
   if (props.structure && !props.isLoading) {
     return (

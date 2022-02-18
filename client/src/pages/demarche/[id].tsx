@@ -5,7 +5,11 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { fetchSelectedDispositifActionCreator } from "services/SelectedDispositif/selectedDispositif.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
 
-const DispositifPage = () => <Dispositif type="detail" typeContenu="demarche" />
+interface Props {
+  history: string[]
+}
+
+const DispositifPage = (props: Props) => <Dispositif type="detail" typeContenu="demarche" history={props.history} />
 
 export const getServerSideProps = wrapper.getServerSideProps(store => async ({ query, locale }) => {
   if (query.id) {

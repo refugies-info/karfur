@@ -32,6 +32,7 @@ import { userDetailsSelector } from "services/User/user.selectors";
 
 interface Props {
   children: any
+  history: string[]
 }
 
 const Layout = (props: Props) => {
@@ -121,7 +122,7 @@ const Layout = (props: Props) => {
   return (
     <DirectionProvider direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
       <div onMouseOver={toggleHover}>
-        <Navbar />
+        <Navbar history={props.history} />
         <div className="app-body">
           <main className="content">
             {props.children}

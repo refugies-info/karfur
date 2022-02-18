@@ -452,6 +452,7 @@ export class TranslationHOC extends Component {
           onEditorStateChange={this.onEditorStateChange}
           onSkip={this.onSkip}
           getTrads={this.get_trads}
+          history={[]}
 
           dispositif={this.props.selectedDispositif}
           typeContenu={this.props.selectedDispositif?.typeContenu || "dispositif"}

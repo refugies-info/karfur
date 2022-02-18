@@ -142,6 +142,7 @@ const MAX_NUMBER_CHARACTERS_INFOCARD = 40;
 interface Props {
   type: "detail" | "create" | "translation";
   typeContenu: "dispositif" | "demarche";
+  history: string[];
 
   // translation
   translate?: (text: any, target: any, item: any, toEditor?: boolean) => void
@@ -938,15 +939,11 @@ const Dispositif = (props: Props) => {
   };
 
   const goBack = () => {
-    /* if (
-      this.props.location.state &&
-      this.props.location.state.previousRoute &&
-      this.props.location.state.previousRoute === "advanced-search"
-    ) {
-      this.props.history.go(-1);
-    } else { */ //TODO : location.state
-    router.push({ pathname: "/advanced-search" });
-    // }
+    if (props.history[1]?.includes("advanced-search")) {
+      router.push(props.history[1]);
+    } else {
+      router.push({ pathname: "/advanced-search" });
+    }
   };
 
   // PDF
@@ -976,11 +973,6 @@ const Dispositif = (props: Props) => {
   };
 
   const editDispositif = (_ = null, disableEdit = false) => {
-    /* this.props.history.push({
-      state: {
-        editable: true,
-      },
-    }); */ // TODO : location.state
     if (!dispositif) return;
     setDisableEdit(disableEdit);
     const newUiArray = [...menu].map((x, i) => ({

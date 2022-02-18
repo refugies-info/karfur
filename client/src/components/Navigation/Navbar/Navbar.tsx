@@ -47,7 +47,11 @@ const IconButton = styled.div`
   width: 50px;
 `;
 
-const Navbar = () => {
+interface Props {
+  history: string[]
+}
+
+const Navbar = (props: Props) => {
   const [visible, setVisible] = useState(true);
   const [scroll, setScroll] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
@@ -98,16 +102,11 @@ const Navbar = () => {
   }, [router.pathname, router.query]);
 
   const goBack = () => {
-    router.back();
-    /* if (
-      location.state &&
-      location.state.previousRoute &&
-      location.state.previousRoute === "advanced-search"
-    ) {
-      this.props.history.go(-1);
+    if (props.history[1]?.includes("advanced-search")) {
+      router.push(props.history[1]);
     } else {
-      this.props.history.push({ pathname: "/advanced-search" });
-    } */
+      router.push({ pathname: "/advanced-search" });
+    }
   };
 
   const path = router.pathname || "";
