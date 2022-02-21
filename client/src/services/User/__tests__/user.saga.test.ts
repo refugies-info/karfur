@@ -11,6 +11,8 @@ import {
   finishLoading,
 } from "../../LoadingStatus/loadingStatus.actions";
 import { fetchUserStructureActionCreator } from "../../UserStructure/userStructure.actions";
+import mockRouter from "next-router-mock";
+jest.mock("next/router",  () => require("next-router-mock"));
 
 describe("[Saga] User", () => {
   describe("pilot", () => {
@@ -79,11 +81,7 @@ describe("[Saga] User", () => {
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER))
         .next()
-        .put(
-          push({
-            pathname: "/backend/user-translation",
-          })
-        )
+        .call(mockRouter.push, "/backend/user-translation")
         .next()
         .isDone();
     });

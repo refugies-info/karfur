@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import { RootState } from "../../src/services/rootReducer";
 import { initialMockStore } from "../../src/__fixtures__/reduxStore";
+import { BrowserRouter as Router } from "react-router-dom";
 
 interface WrapWithProvidersAndRenderParams {
   Component: React.FunctionComponent<unknown>;

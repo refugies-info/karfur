@@ -44,11 +44,9 @@ export function* fetchUser(
     logger.info("[fetchUser] saga finish");
 
     if (action.payload && action.payload.shouldRedirect) {
-      yield put(
-        yield call(
-          Router.push, "/backend/user-translation"
-        )
-      );
+      yield call(
+        Router.push, "/backend/user-translation"
+      )
     }
   } catch (error) {
     logger.error("Error while fetching user", { error });

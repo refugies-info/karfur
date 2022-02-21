@@ -2,19 +2,25 @@
 import { UserProfileComponent } from "../UserProfile.component";
 import { act } from "react-test-renderer";
 import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProvidersAndRender";
-import { initialMockStore } from "../../../../__fixtures__/reduxStore";
-import API from "../../../../utils/API";
-import { saveUserActionCreator } from "../../../../services/User/user.actions";
+import { initialMockStore } from "__fixtures__/reduxStore";
+import API from "utils/API";
+import { saveUserActionCreator } from "services/User/user.actions";
 import Swal from "sweetalert2";
 import "jest-styled-components";
+jest.mock("next/router", () => require("next-router-mock"));
+jest.mock("next/image", () => {
+  const Image = () => <></>;
+  return Image
+});
 
-jest.mock("../../../../utils/API", () => ({
+
+jest.mock("utils/API", () => ({
   __esModule: true, // this property makes it work
   default: { updateUser: jest.fn(), changePassword: jest.fn() },
 }));
 
-jest.mock("../../../../services/User/user.actions", () => {
-  const actions = jest.requireActual("../../../../services/User/user.actions");
+jest.mock("services/User/user.actions", () => {
+  const actions = jest.requireActual("services/User/user.actions");
   return {
     saveUserActionCreator: jest.fn(actions.saveUserActionCreator),
     fetchUserActionCreator: jest.fn(actions.fetchUserActionCreator),

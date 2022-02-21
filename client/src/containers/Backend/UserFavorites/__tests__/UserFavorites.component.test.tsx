@@ -1,19 +1,26 @@
 // @ts-nocheck
 import { UserFavoritesComponent } from "../UserFavorites.component";
-import { initialMockStore } from "../../../../__fixtures__/reduxStore";
+import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProvidersAndRender";
 import {
   updateUserFavoritesActionCreator,
   fetchUserFavoritesActionCreator,
-} from "../../../../services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
+} from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import { act } from "react-test-renderer";
+import routerMock from "next/router";
+jest.mock("next/router", () => require("next-router-mock"));
+jest.mock("next/image", () => {
+  const Image = () => <></>;
+  return Image
+});
+
 import "jest-styled-components";
 
 jest.mock(
-  "../../../../services/UserFavoritesInLocale/UserFavoritesInLocale.actions",
+  "services/UserFavoritesInLocale/UserFavoritesInLocale.actions",
   () => {
     const actions = jest.requireActual(
-      "../../../../services/UserFavoritesInLocale/UserFavoritesInLocale.actions"
+      "services/UserFavoritesInLocale/UserFavoritesInLocale.actions"
     );
 
     return {
@@ -156,6 +163,7 @@ describe("UserFavorites", () => {
   });
 
   it("should dispatch updateUserFavoritesActionCreator when click on Tout supprimer and language is en", () => {
+    routerMock.locale = "en";
     window.scrollTo = jest.fn();
 
     let component;
@@ -178,7 +186,8 @@ describe("UserFavorites", () => {
     });
   });
 
-  it("should dispatch updateUserFavoritesActionCreator when click on one dispositif and language is en", () => {
+  it("should dispatch updateUserFavoritesActionCreator when click on one dispositif and language is ps", () => {
+    routerMock.locale = "ps";
     window.scrollTo = jest.fn();
 
     let component;

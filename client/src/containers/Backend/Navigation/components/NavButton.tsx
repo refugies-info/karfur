@@ -66,7 +66,7 @@ export const NavButton = (props: NavButtonProps) => {
   return (
     <button
       className={`${styles.btn} ${styles[getColor(props.type)]} ${
-        props.isSelected && styles.active
+        props.isSelected ? styles.active : ""
       }`}
       onClick={props.onClick}
     >

@@ -1,79 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UserProfile should disable save when new password too weak 1`] = `
-.c13 {
+.c10 {
   width: 100%;
   margin-right: 16px;
 }
 
-.c14 {
+.c11 {
   font-weight: bold;
   font-size: 12px;
   line-height: 15px;
 }
 
-.c15 {
+.c12 {
   color: #f44336;
   font-size: 16px;
   line-height: 20px;
   margin-top: 16px;
-}
-
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #212121;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #ffffff;
-  padding: 16px;
-}
-
-.c3 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
 }
 
 .c0 {
@@ -89,7 +32,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
   align-self: center;
 }
 
-.c4 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -111,7 +54,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
   margin-bottom: 42px;
 }
 
-.c8 {
+.c5 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -129,7 +72,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
   height: fit-content;
 }
 
-.c5 {
+.c2 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -151,7 +94,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
   height: fit-content;
 }
 
-.c6 {
+.c3 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -159,11 +102,11 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
   margin-bottom: 16px;
 }
 
-.c7 {
+.c4 {
   word-wrap: break-word;
 }
 
-.c9 {
+.c6 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -171,7 +114,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
   margin-top: 0px;
 }
 
-.c12 {
+.c9 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -179,11 +122,11 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
   margin-top: 24px;
 }
 
-.c11 {
+.c8 {
   width: 480px;
 }
 
-.c10 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -205,108 +148,186 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
   <div
     className="c0"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c2"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c3"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black active"
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c4 user-profile"
+    className="c1 container"
   >
     <div
-      className="c5"
+      className="c2"
     >
-      <img
-        alt="my-image"
-        className="user-img"
-        src={Object {}}
-      />
       <div
-        className="c6"
+        className="c3"
       >
         username
       </div>
       <button
-        className="figma-btn dark upload-button mb-16"
+        className="btn  dark upload_btn  mb-16 "
       >
         <span
           className="mr-10"
@@ -329,31 +350,31 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
         Modifier ma photo
       </button>
       <div
-        className="c7"
+        className="c4"
       >
         Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.
       </div>
     </div>
     <div
-      className="c8"
+      className="c5"
     >
       <div>
         <div
-          className="c9"
+          className="c6"
         >
           Votre pseudonyme
         </div>
         <div
-          className="c10"
+          className="c7"
         >
           <div
-            className="c11"
+            className="c8"
           >
             <div
-              className="mb-10 figma-input-group input-group"
+              className="input mb-10 input-group"
             >
               <div
-                className="icon-prepend input-group-prepend"
+                className="prepend input-group-prepend"
               >
                 <span>
                   <i
@@ -366,10 +387,10 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
               </div>
               <input
                 autoFocus={false}
-                className=" has-prepend new-size form-control"
+                className=" has_prepend new_size  form-control"
                 id="username"
                 onChange={[Function]}
-                style={null}
+                style={Object {}}
                 type="text"
                 value="username"
               />
@@ -377,7 +398,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
           </div>
           <div>
             <button
-              className="figma-btn validate-light ml-8"
+              className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
               testID="test-save-pseudo"
@@ -397,28 +418,28 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
           </div>
         </div>
         <div
-          className="c7"
+          className="c4"
         >
           Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
         </div>
       </div>
       <div>
         <div
-          className="c12"
+          className="c9"
         >
           Votre email
         </div>
         <div
-          className="c10"
+          className="c7"
         >
           <div
-            className="c11"
+            className="c8"
           >
             <div
-              className="mb-10 figma-input-group input-group"
+              className="input mb-10 input-group"
             >
               <div
-                className="icon-prepend input-group-prepend"
+                className="prepend input-group-prepend"
               >
                 <span>
                   <i
@@ -431,11 +452,11 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
               </div>
               <input
                 autoFocus={false}
-                className=" has-prepend new-size form-control"
+                className=" has_prepend new_size  form-control"
                 id="email"
                 onChange={[Function]}
                 placeholder="Renseignez votre adresse email"
-                style={null}
+                style={Object {}}
                 type="text"
                 value="email@gmail.com"
               />
@@ -443,7 +464,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
           </div>
           <div>
             <button
-              className="figma-btn validate-light ml-8"
+              className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
               testID="test-save-email"
@@ -463,24 +484,24 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
           </div>
         </div>
         <div
-          className="c7"
+          className="c4"
         >
           Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
         </div>
       </div>
       <div
-        className="c12"
+        className="c9"
       >
         Votre mot de passe
       </div>
       <div
-        className="c11"
+        className="c8"
       >
         <div
-          className="mb-10 figma-input-group input-group"
+          className="input mb-10 input-group"
         >
           <div
-            className="icon-prepend input-group-prepend"
+            className="prepend input-group-prepend"
           >
             <span>
               <i
@@ -493,7 +514,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
           </div>
           <input
             autoFocus={true}
-            className="password-input has-prepend new-size form-control"
+            className="password-input has_prepend new_size  form-control"
             id="current-password"
             onChange={[Function]}
             placeholder="Votre mot de passe actuel"
@@ -506,7 +527,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
             value="current"
           />
           <div
-            className="icon-append input-group-append"
+            className="append input-group-append"
             onClick={[Function]}
           >
             <span>
@@ -521,7 +542,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
         </div>
       </div>
       <div
-        className="c11"
+        className="c8"
       >
         <div
           style={
@@ -541,10 +562,10 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
             }
           >
             <div
-              className="mb-10 figma-input-group input-group"
+              className="input mb-10 input-group"
             >
               <div
-                className="icon-prepend input-group-prepend"
+                className="prepend input-group-prepend"
               >
                 <span>
                   <i
@@ -558,15 +579,15 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
               <input
                 autoComplete="new-password"
                 autoFocus={false}
-                className="password-input has-prepend new-size form-control"
+                className="password-input has_prepend new_size  form-control"
                 id="new-password"
                 onChange={[Function]}
                 placeholder="Votre nouveau mot de passe"
-                style={null}
+                style={Object {}}
                 type="password"
               />
               <div
-                className="icon-append input-group-append"
+                className="append input-group-append"
                 onClick={[Function]}
               >
                 <span>
@@ -592,14 +613,15 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
           }
         >
           <div
-            className="c13"
+            className="c10"
           >
             <div
               className="progress"
+              style={Object {}}
             >
               <div
                 aria-valuemax={100}
-                aria-valuemin="0"
+                aria-valuemin={0}
                 aria-valuenow={9.09090909090909}
                 className="progress-bar bg-danger"
                 role="progressbar"
@@ -612,13 +634,13 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
             </div>
           </div>
           <div
-            className="c14"
+            className="c11"
           >
             Faible
           </div>
         </div>
         <div
-          className="c15"
+          className="c12"
         >
           <b>
             Oups, votre mot de passe est trop faible.
@@ -636,7 +658,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
         }
       >
         <button
-          className="figma-btn validate-light "
+          className="btn  validate-light  "
           disabled={true}
           onClick={[Function]}
           testID="test-save-password"
@@ -660,63 +682,6 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
 `;
 
 exports[`UserProfile should render correctly 1`] = `
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #212121;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #ffffff;
-  padding: 16px;
-}
-
-.c3 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
-}
-
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -730,7 +695,7 @@ exports[`UserProfile should render correctly 1`] = `
   align-self: center;
 }
 
-.c4 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -752,7 +717,7 @@ exports[`UserProfile should render correctly 1`] = `
   margin-bottom: 42px;
 }
 
-.c8 {
+.c5 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -770,7 +735,7 @@ exports[`UserProfile should render correctly 1`] = `
   height: fit-content;
 }
 
-.c5 {
+.c2 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -792,7 +757,7 @@ exports[`UserProfile should render correctly 1`] = `
   height: fit-content;
 }
 
-.c6 {
+.c3 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -800,11 +765,11 @@ exports[`UserProfile should render correctly 1`] = `
   margin-bottom: 16px;
 }
 
-.c7 {
+.c4 {
   word-wrap: break-word;
 }
 
-.c9 {
+.c6 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -812,7 +777,7 @@ exports[`UserProfile should render correctly 1`] = `
   margin-top: 0px;
 }
 
-.c12 {
+.c9 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -820,11 +785,11 @@ exports[`UserProfile should render correctly 1`] = `
   margin-top: 24px;
 }
 
-.c11 {
+.c8 {
   width: 480px;
 }
 
-.c10 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -846,108 +811,186 @@ exports[`UserProfile should render correctly 1`] = `
   <div
     className="c0"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c2"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c3"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black active"
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c4 user-profile"
+    className="c1 container"
   >
     <div
-      className="c5"
+      className="c2"
     >
-      <img
-        alt="my-image"
-        className="user-img"
-        src={Object {}}
-      />
       <div
-        className="c6"
+        className="c3"
       >
         username
       </div>
       <button
-        className="figma-btn dark upload-button mb-16"
+        className="btn  dark upload_btn  mb-16 "
       >
         <span
           className="mr-10"
@@ -970,31 +1013,31 @@ exports[`UserProfile should render correctly 1`] = `
         Modifier ma photo
       </button>
       <div
-        className="c7"
+        className="c4"
       >
         Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.
       </div>
     </div>
     <div
-      className="c8"
+      className="c5"
     >
       <div>
         <div
-          className="c9"
+          className="c6"
         >
           Votre pseudonyme
         </div>
         <div
-          className="c10"
+          className="c7"
         >
           <div
-            className="c11"
+            className="c8"
           >
             <div
-              className="mb-10 figma-input-group input-group"
+              className="input mb-10 input-group"
             >
               <div
-                className="icon-prepend input-group-prepend"
+                className="prepend input-group-prepend"
               >
                 <span>
                   <i
@@ -1007,10 +1050,10 @@ exports[`UserProfile should render correctly 1`] = `
               </div>
               <input
                 autoFocus={false}
-                className=" has-prepend new-size form-control"
+                className=" has_prepend new_size  form-control"
                 id="username"
                 onChange={[Function]}
-                style={null}
+                style={Object {}}
                 type="text"
                 value="username"
               />
@@ -1018,7 +1061,7 @@ exports[`UserProfile should render correctly 1`] = `
           </div>
           <div>
             <button
-              className="figma-btn validate-light ml-8"
+              className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
               testID="test-save-pseudo"
@@ -1038,28 +1081,28 @@ exports[`UserProfile should render correctly 1`] = `
           </div>
         </div>
         <div
-          className="c7"
+          className="c4"
         >
           Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
         </div>
       </div>
       <div>
         <div
-          className="c12"
+          className="c9"
         >
           Votre email
         </div>
         <div
-          className="c10"
+          className="c7"
         >
           <div
-            className="c11"
+            className="c8"
           >
             <div
-              className="mb-10 figma-input-group input-group"
+              className="input mb-10 input-group"
             >
               <div
-                className="icon-prepend input-group-prepend"
+                className="prepend input-group-prepend"
               >
                 <span>
                   <i
@@ -1072,11 +1115,11 @@ exports[`UserProfile should render correctly 1`] = `
               </div>
               <input
                 autoFocus={false}
-                className=" has-prepend new-size form-control"
+                className=" has_prepend new_size  form-control"
                 id="email"
                 onChange={[Function]}
                 placeholder="Renseignez votre adresse email"
-                style={null}
+                style={Object {}}
                 type="text"
                 value="email@gmail.com"
               />
@@ -1084,7 +1127,7 @@ exports[`UserProfile should render correctly 1`] = `
           </div>
           <div>
             <button
-              className="figma-btn validate-light ml-8"
+              className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
               testID="test-save-email"
@@ -1104,18 +1147,18 @@ exports[`UserProfile should render correctly 1`] = `
           </div>
         </div>
         <div
-          className="c7"
+          className="c4"
         >
           Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
         </div>
       </div>
       <div
-        className="c12"
+        className="c9"
       >
         Votre mot de passe
       </div>
       <button
-        className="figma-btn dark "
+        className="btn  dark  "
         onClick={[Function]}
         testID="test-modify-password"
       >
@@ -1137,63 +1180,6 @@ exports[`UserProfile should render correctly 1`] = `
 `;
 
 exports[`UserProfile should render correctly when changing password 1`] = `
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #212121;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #ffffff;
-  padding: 16px;
-}
-
-.c3 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
-}
-
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1207,7 +1193,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
   align-self: center;
 }
 
-.c4 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1229,7 +1215,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
   margin-bottom: 42px;
 }
 
-.c8 {
+.c5 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -1247,7 +1233,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
   height: fit-content;
 }
 
-.c5 {
+.c2 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -1269,7 +1255,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
   height: fit-content;
 }
 
-.c6 {
+.c3 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -1277,11 +1263,11 @@ exports[`UserProfile should render correctly when changing password 1`] = `
   margin-bottom: 16px;
 }
 
-.c7 {
+.c4 {
   word-wrap: break-word;
 }
 
-.c9 {
+.c6 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -1289,7 +1275,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
   margin-top: 0px;
 }
 
-.c12 {
+.c9 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -1297,11 +1283,11 @@ exports[`UserProfile should render correctly when changing password 1`] = `
   margin-top: 24px;
 }
 
-.c11 {
+.c8 {
   width: 480px;
 }
 
-.c10 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1323,108 +1309,186 @@ exports[`UserProfile should render correctly when changing password 1`] = `
   <div
     className="c0"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c2"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c3"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black active"
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c4 user-profile"
+    className="c1 container"
   >
     <div
-      className="c5"
+      className="c2"
     >
-      <img
-        alt="my-image"
-        className="user-img"
-        src={Object {}}
-      />
       <div
-        className="c6"
+        className="c3"
       >
         username
       </div>
       <button
-        className="figma-btn dark upload-button mb-16"
+        className="btn  dark upload_btn  mb-16 "
       >
         <span
           className="mr-10"
@@ -1447,31 +1511,31 @@ exports[`UserProfile should render correctly when changing password 1`] = `
         Modifier ma photo
       </button>
       <div
-        className="c7"
+        className="c4"
       >
         Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.
       </div>
     </div>
     <div
-      className="c8"
+      className="c5"
     >
       <div>
         <div
-          className="c9"
+          className="c6"
         >
           Votre pseudonyme
         </div>
         <div
-          className="c10"
+          className="c7"
         >
           <div
-            className="c11"
+            className="c8"
           >
             <div
-              className="mb-10 figma-input-group input-group"
+              className="input mb-10 input-group"
             >
               <div
-                className="icon-prepend input-group-prepend"
+                className="prepend input-group-prepend"
               >
                 <span>
                   <i
@@ -1484,10 +1548,10 @@ exports[`UserProfile should render correctly when changing password 1`] = `
               </div>
               <input
                 autoFocus={false}
-                className=" has-prepend new-size form-control"
+                className=" has_prepend new_size  form-control"
                 id="username"
                 onChange={[Function]}
-                style={null}
+                style={Object {}}
                 type="text"
                 value="username"
               />
@@ -1495,7 +1559,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
           </div>
           <div>
             <button
-              className="figma-btn validate-light ml-8"
+              className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
               testID="test-save-pseudo"
@@ -1515,28 +1579,28 @@ exports[`UserProfile should render correctly when changing password 1`] = `
           </div>
         </div>
         <div
-          className="c7"
+          className="c4"
         >
           Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
         </div>
       </div>
       <div>
         <div
-          className="c12"
+          className="c9"
         >
           Votre email
         </div>
         <div
-          className="c10"
+          className="c7"
         >
           <div
-            className="c11"
+            className="c8"
           >
             <div
-              className="mb-10 figma-input-group input-group"
+              className="input mb-10 input-group"
             >
               <div
-                className="icon-prepend input-group-prepend"
+                className="prepend input-group-prepend"
               >
                 <span>
                   <i
@@ -1549,11 +1613,11 @@ exports[`UserProfile should render correctly when changing password 1`] = `
               </div>
               <input
                 autoFocus={false}
-                className=" has-prepend new-size form-control"
+                className=" has_prepend new_size  form-control"
                 id="email"
                 onChange={[Function]}
                 placeholder="Renseignez votre adresse email"
-                style={null}
+                style={Object {}}
                 type="text"
                 value="email@gmail.com"
               />
@@ -1561,7 +1625,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
           </div>
           <div>
             <button
-              className="figma-btn validate-light ml-8"
+              className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
               testID="test-save-email"
@@ -1581,24 +1645,24 @@ exports[`UserProfile should render correctly when changing password 1`] = `
           </div>
         </div>
         <div
-          className="c7"
+          className="c4"
         >
           Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
         </div>
       </div>
       <div
-        className="c12"
+        className="c9"
       >
         Votre mot de passe
       </div>
       <div
-        className="c11"
+        className="c8"
       >
         <div
-          className="mb-10 figma-input-group input-group"
+          className="input mb-10 input-group"
         >
           <div
-            className="icon-prepend input-group-prepend"
+            className="prepend input-group-prepend"
           >
             <span>
               <i
@@ -1611,16 +1675,16 @@ exports[`UserProfile should render correctly when changing password 1`] = `
           </div>
           <input
             autoFocus={true}
-            className="password-input has-prepend new-size form-control"
+            className="password-input has_prepend new_size  form-control"
             id="current-password"
             onChange={[Function]}
             placeholder="Votre mot de passe actuel"
-            style={null}
+            style={Object {}}
             type="password"
             value=""
           />
           <div
-            className="icon-append input-group-append"
+            className="append input-group-append"
             onClick={[Function]}
           >
             <span>
@@ -1635,7 +1699,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
         </div>
       </div>
       <div
-        className="c11"
+        className="c8"
       >
         <div
           style={
@@ -1655,10 +1719,10 @@ exports[`UserProfile should render correctly when changing password 1`] = `
             }
           >
             <div
-              className="mb-10 figma-input-group input-group"
+              className="input mb-10 input-group"
             >
               <div
-                className="icon-prepend input-group-prepend"
+                className="prepend input-group-prepend"
               >
                 <span>
                   <i
@@ -1672,15 +1736,15 @@ exports[`UserProfile should render correctly when changing password 1`] = `
               <input
                 autoComplete="new-password"
                 autoFocus={false}
-                className="password-input has-prepend new-size form-control"
+                className="password-input has_prepend new_size  form-control"
                 id="new-password"
                 onChange={[Function]}
                 placeholder="Votre nouveau mot de passe"
-                style={null}
+                style={Object {}}
                 type="password"
               />
               <div
-                className="icon-append input-group-append"
+                className="append input-group-append"
                 onClick={[Function]}
               >
                 <span>
@@ -1709,7 +1773,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
         }
       >
         <button
-          className="figma-btn validate-light "
+          className="btn  validate-light  "
           disabled={true}
           onClick={[Function]}
           testID="test-save-password"
@@ -1733,69 +1797,12 @@ exports[`UserProfile should render correctly when changing password 1`] = `
 `;
 
 exports[`UserProfile should render correctly when loading 1`] = `
-.c6 {
+.c3 {
   width: 160px;
   height: 160px;
   border-radius: 50%;
   background-color: #ffffff;
   margin-bottom: 8px;
-}
-
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #212121;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #ffffff;
-  padding: 16px;
-}
-
-.c3 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
 }
 
 .c0 {
@@ -1811,7 +1818,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
   align-self: center;
 }
 
-.c4 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1833,7 +1840,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
   margin-bottom: 42px;
 }
 
-.c7 {
+.c4 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -1851,7 +1858,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
   height: fit-content;
 }
 
-.c5 {
+.c2 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -1873,7 +1880,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
   height: fit-content;
 }
 
-.c8 {
+.c5 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -1881,7 +1888,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
   margin-top: 0px;
 }
 
-.c9 {
+.c6 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -1901,98 +1908,181 @@ exports[`UserProfile should render correctly when loading 1`] = `
   <div
     className="c0"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c2"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c3"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black active"
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c4"
+    className="c1"
   >
     <div
-      className="c5"
+      className="c2"
     >
       <div
-        className="c6"
+        className="c3"
       />
       <div
         className="css-nitgap-SkeletonTheme"
@@ -2013,10 +2103,10 @@ exports[`UserProfile should render correctly when loading 1`] = `
       </div>
     </div>
     <div
-      className="c7"
+      className="c4"
     >
       <div
-        className="c8"
+        className="c5"
       >
         Votre pseudonyme
       </div>
@@ -2037,7 +2127,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
         </span>
       </div>
       <div
-        className="c9"
+        className="c6"
       >
         Votre email
       </div>
@@ -2058,7 +2148,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
         </span>
       </div>
       <div
-        className="c9"
+        className="c6"
       >
         Votre mot de passe
       </div>

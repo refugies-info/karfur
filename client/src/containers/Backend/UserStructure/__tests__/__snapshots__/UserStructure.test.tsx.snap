@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UserStructure should render correctly when add member modal is open 1`] = `
-.c3 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -23,7 +23,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin-bottom: 42px;
 }
 
-.c6 {
+.c4 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -37,7 +37,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   flex-direction: column;
 }
 
-.c4 {
+.c2 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -59,7 +59,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   height: fit-content;
 }
 
-.c8 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -74,7 +74,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   align-items: flex-end;
 }
 
-.c10 {
+.c8 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -85,14 +85,14 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin: 0px 8px 0px 8px;
 }
 
-.c9 {
+.c7 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
 }
 
-.c15 {
+.c13 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -114,11 +114,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   cursor: pointer;
 }
 
-.c15:hover {
+.c13:hover {
   background-color: #212121;
 }
 
-.c16 {
+.c14 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -140,11 +140,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   cursor: pointer;
 }
 
-.c16:hover {
+.c14:hover {
   background-color: #f44336;
 }
 
-.c11 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -158,63 +158,63 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   align-items: center;
 }
 
-.c12 {
+.c10 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #0421b1;
+}
+
+.c15 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c11 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c16 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c12 {
+  color: #0421b1;
+  max-width: 190px;
 }
 
 .c17 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
   color: #212121;
-}
-
-.c13 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #0421b1;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  max-width: 190px;
 }
 
 .c18 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c14 {
-  color: #0421b1;
-  max-width: 190px;
-}
-
-.c19 {
-  color: #212121;
-  max-width: 190px;
-}
-
-.c20 {
   font-weight: normal;
   font-size: 32px;
   line-height: 40px;
 }
 
-.c22 {
+.c20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -229,7 +229,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin-top: 8px;
 }
 
-.c21 {
+.c19 {
   background: #2d9cdb;
   border-radius: 12px;
   padding: 16px;
@@ -241,7 +241,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin-bottom: 15px;
 }
 
-.c5 {
+.c3 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -249,7 +249,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin-bottom: 30px;
 }
 
-.c7 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -261,44 +261,6 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-}
-
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
 }
 
 .c0 {
@@ -326,109 +288,187 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   <div
     className="c0"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c2"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c3 structure-detail"
+    className="c1 container"
   >
     <div
-      className="c4"
+      className="c2"
     >
-      <img
-        alt="ACRO"
-        className="sponsor-img"
-        src={Object {}}
-      />
       <div
-        className="c5"
+        className="c3"
       >
         structureTest
       </div>
       <a
         aria-current={null}
-        className="figma-btn dark "
+        className="btn  dark  "
         href="/annuaire/structureId"
         onClick={[Function]}
       >
@@ -446,33 +486,33 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
       </a>
     </div>
     <div
-      className="c6"
+      className="c4"
     >
       <div
-        className="c7"
+        className="c5"
       >
         <div
-          className="c8"
+          className="c6"
         >
           <div
-            className="c9"
+            className="c7"
           >
             Membres
           </div>
           <div
-            className="c10"
+            className="c8"
           >
             2
           </div>
           <div
-            className="c9"
+            className="c7"
           >
             
           </div>
         </div>
         <div>
           <button
-            className="figma-btn dark "
+            className="btn  dark  "
             onClick={[Function]}
             testID="test-add-member"
           >
@@ -520,14 +560,10 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c9"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c12"
+                    className="c10"
                   >
                     membre2
                   </div>
@@ -537,7 +573,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c13"
+                  className="c11"
                 >
                   Responsable
                 </div>
@@ -546,7 +582,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c12"
                 >
                   Non disponible
                 </div>
@@ -555,7 +591,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c12"
                 >
                   Non disponible
                 </div>
@@ -572,7 +608,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                   }
                 >
                   <div
-                    className="c15"
+                    className="c13"
                     onClick={[Function]}
                   >
                     <div
@@ -593,7 +629,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     </div>
                   </div>
                   <div
-                    className="c16"
+                    className="c14"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -624,14 +660,10 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c9"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c17"
+                    className="c15"
                   >
                     membre1
                   </div>
@@ -641,7 +673,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c18"
+                  className="c16"
                 >
                   Rédacteur
                 </div>
@@ -650,7 +682,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c19"
+                  className="c17"
                 >
                   Non disponible
                 </div>
@@ -659,7 +691,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c19"
+                  className="c17"
                 >
                   Non disponible
                 </div>
@@ -676,7 +708,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                   }
                 >
                   <div
-                    className="c15"
+                    className="c13"
                     onClick={[Function]}
                   >
                     <div
@@ -697,7 +729,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     </div>
                   </div>
                   <div
-                    className="c16"
+                    className="c14"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -727,12 +759,12 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
     </div>
     <div>
       <div
-        className="c20"
+        className="c18"
       >
         Ajouter un membre
       </div>
       <div
-        className="c21"
+        className="c19"
       >
         <b>
           Attention :
@@ -741,19 +773,19 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
       </div>
       <div>
         <div
-          className="mb-10 figma-input-group input-group"
+          className="input mb-10 input-group"
         >
           <input
             autoFocus={true}
-            className="  new-size form-control"
+            className="  new_size  form-control"
             id="value"
             onChange={[Function]}
-            style={null}
+            style={Object {}}
             type="text"
             value=""
           />
           <div
-            className="icon-append input-group-append"
+            className="append input-group-append"
           >
             <span>
               <i
@@ -768,10 +800,10 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
         
       </div>
       <div
-        className="c22"
+        className="c20"
       >
         <button
-          className="figma-btn outline-black mr-8"
+          className="btn  outline-black mr-8 "
           onClick={[Function]}
         >
           <span
@@ -787,7 +819,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
           Annuler
         </button>
         <button
-          className="figma-btn validate "
+          className="btn  validate  "
           disabled={true}
           onClick={[Function]}
         >
@@ -811,7 +843,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
 `;
 
 exports[`UserStructure should render correctly when edit member modal is open, select respo and validate 1`] = `
-.c3 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -833,7 +865,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-bottom: 42px;
 }
 
-.c6 {
+.c4 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -847,7 +879,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   flex-direction: column;
 }
 
-.c4 {
+.c2 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -869,7 +901,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   height: fit-content;
 }
 
-.c8 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -884,7 +916,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   align-items: flex-end;
 }
 
-.c10 {
+.c8 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -895,14 +927,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin: 0px 8px 0px 8px;
 }
 
-.c9 {
+.c7 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
 }
 
-.c15 {
+.c13 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -924,11 +956,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   cursor: pointer;
 }
 
-.c15:hover {
+.c13:hover {
   background-color: #212121;
 }
 
-.c16 {
+.c14 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -950,11 +982,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   cursor: pointer;
 }
 
-.c16:hover {
+.c14:hover {
   background-color: #f44336;
 }
 
-.c11 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -968,57 +1000,57 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   align-items: center;
 }
 
-.c12 {
+.c10 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #0421b1;
+}
+
+.c15 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c11 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c16 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c12 {
+  color: #0421b1;
+  max-width: 190px;
 }
 
 .c17 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-}
-
-.c13 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #0421b1;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c18 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c14 {
-  color: #0421b1;
-  max-width: 190px;
-}
-
-.c19 {
   color: #212121;
   max-width: 190px;
 }
 
-.c23 {
+.c21 {
   background: #E0E0E0;
   border-width: 1px;
   border-style: solid;
@@ -1031,7 +1063,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   color: #212121;
 }
 
-.c26 {
+.c24 {
   background: #ffffff;
   border-width: 1px;
   border-style: solid;
@@ -1044,14 +1076,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   color: #212121;
 }
 
-.c25 {
+.c23 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
   margin-bottom: 10px;
 }
 
-.c24 {
+.c22 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1069,14 +1101,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   align-items: center;
 }
 
-.c21 {
+.c19 {
   font-weight: normal;
   font-size: 32px;
   line-height: 40px;
   margin-right: 15px;
 }
 
-.c27 {
+.c25 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1091,7 +1123,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-top: 12px;
 }
 
-.c20 {
+.c18 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1106,13 +1138,13 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-bottom: 16px;
 }
 
-.c22 {
+.c20 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
 }
 
-.c5 {
+.c3 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -1120,7 +1152,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-bottom: 30px;
 }
 
-.c7 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1132,44 +1164,6 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-}
-
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
 }
 
 .c0 {
@@ -1197,109 +1191,187 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   <div
     className="c0"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c2"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c3 structure-detail"
+    className="c1 container"
   >
     <div
-      className="c4"
+      className="c2"
     >
-      <img
-        alt="ACRO"
-        className="sponsor-img"
-        src={Object {}}
-      />
       <div
-        className="c5"
+        className="c3"
       >
         structureTest
       </div>
       <a
         aria-current={null}
-        className="figma-btn dark "
+        className="btn  dark  "
         href="/annuaire/structureId"
         onClick={[Function]}
       >
@@ -1317,33 +1389,33 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       </a>
     </div>
     <div
-      className="c6"
+      className="c4"
     >
       <div
-        className="c7"
+        className="c5"
       >
         <div
-          className="c8"
+          className="c6"
         >
           <div
-            className="c9"
+            className="c7"
           >
             Membres
           </div>
           <div
-            className="c10"
+            className="c8"
           >
             2
           </div>
           <div
-            className="c9"
+            className="c7"
           >
             
           </div>
         </div>
         <div>
           <button
-            className="figma-btn dark "
+            className="btn  dark  "
             onClick={[Function]}
             testID="test-add-member"
           >
@@ -1391,14 +1463,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c9"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c12"
+                    className="c10"
                   >
                     membre2
                   </div>
@@ -1408,7 +1476,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c13"
+                  className="c11"
                 >
                   Responsable
                 </div>
@@ -1417,7 +1485,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c12"
                 >
                   Non disponible
                 </div>
@@ -1426,7 +1494,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c12"
                 >
                   Non disponible
                 </div>
@@ -1443,7 +1511,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   }
                 >
                   <div
-                    className="c15"
+                    className="c13"
                     onClick={[Function]}
                   >
                     <div
@@ -1464,7 +1532,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     </div>
                   </div>
                   <div
-                    className="c16"
+                    className="c14"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -1495,14 +1563,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c9"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c17"
+                    className="c15"
                   >
                     membre1
                   </div>
@@ -1512,7 +1576,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c18"
+                  className="c16"
                 >
                   Rédacteur
                 </div>
@@ -1521,7 +1585,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c19"
+                  className="c17"
                 >
                   Non disponible
                 </div>
@@ -1530,7 +1594,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c19"
+                  className="c17"
                 >
                   Non disponible
                 </div>
@@ -1547,7 +1611,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   }
                 >
                   <div
-                    className="c15"
+                    className="c13"
                     onClick={[Function]}
                   >
                     <div
@@ -1568,7 +1632,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     </div>
                   </div>
                   <div
-                    className="c16"
+                    className="c14"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -1599,32 +1663,28 @@ exports[`UserStructure should render correctly when edit member modal is open, s
     <div />
     <div>
       <div
-        className="c20"
+        className="c18"
       >
         <div
-          className="c21"
+          className="c19"
         >
           Modifier le rôle de
         </div>
-        <img
-          className="user-img mr-8"
-          src={Object {}}
-        />
         <div
-          className="c22"
+          className="c20"
         >
           membre1
         </div>
       </div>
       <div
-        className="c23"
+        className="c21"
         onClick={[Function]}
       >
         <div
-          className="c24"
+          className="c22"
         >
           <div
-            className="c25"
+            className="c23"
           >
             Nommer « rédacteur » 
           </div>
@@ -1647,14 +1707,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         <br />
       </div>
       <div
-        className="c26"
+        className="c24"
         onClick={[Function]}
       >
         <div
-          className="c24"
+          className="c22"
         >
           <div
-            className="c25"
+            className="c23"
           >
             Nommer « responsable »
           </div>
@@ -1685,10 +1745,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         </span>
       </div>
       <div
-        className="c27"
+        className="c25"
       >
         <button
-          className="figma-btn outline-black mr-8"
+          className="btn  outline-black mr-8 "
           onClick={[Function]}
         >
           <span
@@ -1704,7 +1764,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           Annuler
         </button>
         <button
-          className="figma-btn validate "
+          className="btn  validate  "
           disabled={true}
           onClick={[Function]}
           testID="test-validate-edit"
@@ -1728,7 +1788,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 `;
 
 exports[`UserStructure should render correctly when edit member modal is open, select respo and validate 2`] = `
-.c3 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1750,7 +1810,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-bottom: 42px;
 }
 
-.c6 {
+.c4 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -1764,7 +1824,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   flex-direction: column;
 }
 
-.c4 {
+.c2 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -1786,7 +1846,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   height: fit-content;
 }
 
-.c8 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1801,7 +1861,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   align-items: flex-end;
 }
 
-.c10 {
+.c8 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -1812,14 +1872,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin: 0px 8px 0px 8px;
 }
 
-.c9 {
+.c7 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
 }
 
-.c15 {
+.c13 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -1841,11 +1901,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   cursor: pointer;
 }
 
-.c15:hover {
+.c13:hover {
   background-color: #212121;
 }
 
-.c16 {
+.c14 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -1867,11 +1927,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   cursor: pointer;
 }
 
-.c16:hover {
+.c14:hover {
   background-color: #f44336;
 }
 
-.c11 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1885,57 +1945,57 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   align-items: center;
 }
 
-.c12 {
+.c10 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #0421b1;
+}
+
+.c15 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c11 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c16 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c12 {
+  color: #0421b1;
+  max-width: 190px;
 }
 
 .c17 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-}
-
-.c13 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #0421b1;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c18 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c14 {
-  color: #0421b1;
-  max-width: 190px;
-}
-
-.c19 {
   color: #212121;
   max-width: 190px;
 }
 
-.c23 {
+.c21 {
   background: #ffffff;
   border-width: 1px;
   border-style: solid;
@@ -1948,7 +2008,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   color: #212121;
 }
 
-.c26 {
+.c24 {
   background: #2d9cdb;
   border-width: 1px;
   border-style: solid;
@@ -1961,14 +2021,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   color: #ffffff;
 }
 
-.c25 {
+.c23 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
   margin-bottom: 10px;
 }
 
-.c24 {
+.c22 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1986,14 +2046,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   align-items: center;
 }
 
-.c21 {
+.c19 {
   font-weight: normal;
   font-size: 32px;
   line-height: 40px;
   margin-right: 15px;
 }
 
-.c27 {
+.c25 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2008,7 +2068,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-top: 12px;
 }
 
-.c20 {
+.c18 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2023,13 +2083,13 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-bottom: 16px;
 }
 
-.c22 {
+.c20 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
 }
 
-.c5 {
+.c3 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -2037,7 +2097,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-bottom: 30px;
 }
 
-.c7 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2049,44 +2109,6 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-}
-
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
 }
 
 .c0 {
@@ -2114,109 +2136,187 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   <div
     className="c0"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c2"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c3 structure-detail"
+    className="c1 container"
   >
     <div
-      className="c4"
+      className="c2"
     >
-      <img
-        alt="ACRO"
-        className="sponsor-img"
-        src={Object {}}
-      />
       <div
-        className="c5"
+        className="c3"
       >
         structureTest
       </div>
       <a
         aria-current={null}
-        className="figma-btn dark "
+        className="btn  dark  "
         href="/annuaire/structureId"
         onClick={[Function]}
       >
@@ -2234,33 +2334,33 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       </a>
     </div>
     <div
-      className="c6"
+      className="c4"
     >
       <div
-        className="c7"
+        className="c5"
       >
         <div
-          className="c8"
+          className="c6"
         >
           <div
-            className="c9"
+            className="c7"
           >
             Membres
           </div>
           <div
-            className="c10"
+            className="c8"
           >
             2
           </div>
           <div
-            className="c9"
+            className="c7"
           >
             
           </div>
         </div>
         <div>
           <button
-            className="figma-btn dark "
+            className="btn  dark  "
             onClick={[Function]}
             testID="test-add-member"
           >
@@ -2308,14 +2408,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c9"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c12"
+                    className="c10"
                   >
                     membre2
                   </div>
@@ -2325,7 +2421,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c13"
+                  className="c11"
                 >
                   Responsable
                 </div>
@@ -2334,7 +2430,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c12"
                 >
                   Non disponible
                 </div>
@@ -2343,7 +2439,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c12"
                 >
                   Non disponible
                 </div>
@@ -2360,7 +2456,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   }
                 >
                   <div
-                    className="c15"
+                    className="c13"
                     onClick={[Function]}
                   >
                     <div
@@ -2381,7 +2477,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     </div>
                   </div>
                   <div
-                    className="c16"
+                    className="c14"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -2412,14 +2508,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c9"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c17"
+                    className="c15"
                   >
                     membre1
                   </div>
@@ -2429,7 +2521,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c18"
+                  className="c16"
                 >
                   Rédacteur
                 </div>
@@ -2438,7 +2530,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c19"
+                  className="c17"
                 >
                   Non disponible
                 </div>
@@ -2447,7 +2539,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c19"
+                  className="c17"
                 >
                   Non disponible
                 </div>
@@ -2464,7 +2556,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   }
                 >
                   <div
-                    className="c15"
+                    className="c13"
                     onClick={[Function]}
                   >
                     <div
@@ -2485,7 +2577,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     </div>
                   </div>
                   <div
-                    className="c16"
+                    className="c14"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -2516,32 +2608,28 @@ exports[`UserStructure should render correctly when edit member modal is open, s
     <div />
     <div>
       <div
-        className="c20"
+        className="c18"
       >
         <div
-          className="c21"
+          className="c19"
         >
           Modifier le rôle de
         </div>
-        <img
-          className="user-img mr-8"
-          src={Object {}}
-        />
         <div
-          className="c22"
+          className="c20"
         >
           membre1
         </div>
       </div>
       <div
-        className="c23"
+        className="c21"
         onClick={[Function]}
       >
         <div
-          className="c24"
+          className="c22"
         >
           <div
-            className="c25"
+            className="c23"
           >
             Nommer « rédacteur » 
           </div>
@@ -2564,14 +2652,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         <br />
       </div>
       <div
-        className="c26"
+        className="c24"
         onClick={[Function]}
       >
         <div
-          className="c24"
+          className="c22"
         >
           <div
-            className="c25"
+            className="c23"
           >
             Nommer « responsable »
           </div>
@@ -2602,10 +2690,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         </span>
       </div>
       <div
-        className="c27"
+        className="c25"
       >
         <button
-          className="figma-btn outline-black mr-8"
+          className="btn  outline-black mr-8 "
           onClick={[Function]}
         >
           <span
@@ -2621,7 +2709,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           Annuler
         </button>
         <button
-          className="figma-btn validate "
+          className="btn  validate  "
           disabled={false}
           onClick={[Function]}
           testID="test-validate-edit"
@@ -2645,7 +2733,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 `;
 
 exports[`UserStructure should render correctly when loading 1`] = `
-.c3 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2667,7 +2755,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
   margin-bottom: 42px;
 }
 
-.c6 {
+.c4 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -2681,7 +2769,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
   flex-direction: column;
 }
 
-.c4 {
+.c2 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -2703,7 +2791,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
   height: fit-content;
 }
 
-.c7 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2718,7 +2806,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
   align-items: flex-end;
 }
 
-.c9 {
+.c7 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -2729,56 +2817,18 @@ exports[`UserStructure should render correctly when loading 1`] = `
   margin: 0px 8px 0px 8px;
 }
 
-.c8 {
+.c6 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
 }
 
-.c5 {
+.c3 {
   width: 160px;
   height: 160px;
   background-color: #ffffff;
   margin-bottom: 8px;
-}
-
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
 }
 
 .c0 {
@@ -2806,98 +2856,181 @@ exports[`UserStructure should render correctly when loading 1`] = `
   <div
     className="c0"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c2"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c3"
+    className="c1"
   >
     <div
-      className="c4"
+      className="c2"
     >
       <div
-        className="c5"
+        className="c3"
       />
       <div
         className="css-nitgap-SkeletonTheme"
@@ -2918,23 +3051,23 @@ exports[`UserStructure should render correctly when loading 1`] = `
       </div>
     </div>
     <div
-      className="c6"
+      className="c4"
     >
       <div
-        className="c7"
+        className="c5"
       >
         <div
-          className="c8"
+          className="c6"
         >
           Membres
         </div>
         <div
-          className="c9"
+          className="c7"
         >
           ...
         </div>
         <div
-          className="c8"
+          className="c6"
         >
           
         </div>
@@ -2996,44 +3129,6 @@ exports[`UserStructure should render correctly when loading 1`] = `
 `;
 
 exports[`UserStructure should render correctly when no structure 1`] = `
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
-}
-
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -3047,7 +3142,7 @@ exports[`UserStructure should render correctly when no structure 1`] = `
   align-self: center;
 }
 
-.c3 {
+.c1 {
   margin-top: 60px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -3065,7 +3160,7 @@ exports[`UserStructure should render correctly when no structure 1`] = `
   flex: 1;
 }
 
-.c4 {
+.c2 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -3085,95 +3180,178 @@ exports[`UserStructure should render correctly when no structure 1`] = `
   <div
     className="c0"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c2"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c3"
+    className="c1"
   >
     <div
-      className="c4"
+      className="c2"
     >
       Une erreur est survenue. Veuillez recharger la page ou contacter l'équipe de réfugiés.info via le live chat en bas à droite de votre écran.
     </div>
@@ -3182,7 +3360,7 @@ exports[`UserStructure should render correctly when no structure 1`] = `
 `;
 
 exports[`UserStructure should render correctly when structure with membres when user is redacteur 1`] = `
-.c3 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3204,7 +3382,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin-bottom: 42px;
 }
 
-.c6 {
+.c4 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -3218,7 +3396,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   flex-direction: column;
 }
 
-.c4 {
+.c2 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -3240,7 +3418,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   height: fit-content;
 }
 
-.c8 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3255,7 +3433,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   align-items: flex-end;
 }
 
-.c10 {
+.c8 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -3266,14 +3444,14 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin: 0px 8px 0px 8px;
 }
 
-.c9 {
+.c7 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
 }
 
-.c11 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3287,21 +3465,21 @@ exports[`UserStructure should render correctly when structure with membres when 
   align-items: center;
 }
 
-.c12 {
+.c10 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #0421b1;
-}
-
-.c15 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
 }
 
 .c13 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c11 {
   background: #ffffff;
   border-radius: 8px;
   padding: 8px;
@@ -3309,35 +3487,35 @@ exports[`UserStructure should render correctly when structure with membres when 
   font-size: 16px;
   line-height: 20px;
   color: #0421b1;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c16 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
 
 .c14 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c12 {
   color: #0421b1;
   max-width: 190px;
 }
 
-.c17 {
+.c15 {
   color: #212121;
   max-width: 190px;
 }
 
-.c5 {
+.c3 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -3345,7 +3523,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin-bottom: 30px;
 }
 
-.c7 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3357,44 +3535,6 @@ exports[`UserStructure should render correctly when structure with membres when 
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-}
-
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
 }
 
 .c0 {
@@ -3422,109 +3562,187 @@ exports[`UserStructure should render correctly when structure with membres when 
   <div
     className="c0"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c2"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c3 structure-detail"
+    className="c1 container"
   >
     <div
-      className="c4"
+      className="c2"
     >
-      <img
-        alt="ACRO"
-        className="sponsor-img"
-        src={Object {}}
-      />
       <div
-        className="c5"
+        className="c3"
       >
         structureTest
       </div>
       <a
         aria-current={null}
-        className="figma-btn dark "
+        className="btn  dark  "
         href="/annuaire/structureId"
         onClick={[Function]}
       >
@@ -3542,26 +3760,26 @@ exports[`UserStructure should render correctly when structure with membres when 
       </a>
     </div>
     <div
-      className="c6"
+      className="c4"
     >
       <div
-        className="c7"
+        className="c5"
       >
         <div
-          className="c8"
+          className="c6"
         >
           <div
-            className="c9"
+            className="c7"
           >
             Membres
           </div>
           <div
-            className="c10"
+            className="c8"
           >
             2
           </div>
           <div
-            className="c9"
+            className="c7"
           >
             
           </div>
@@ -3597,14 +3815,10 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c9"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c12"
+                    className="c10"
                   >
                     membre1
                   </div>
@@ -3614,7 +3828,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c13"
+                  className="c11"
                 >
                   Rédacteur
                 </div>
@@ -3623,7 +3837,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c12"
                 >
                   Non disponible
                 </div>
@@ -3632,7 +3846,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c12"
                 >
                   Non disponible
                 </div>
@@ -3645,14 +3859,10 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c9"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c15"
+                    className="c13"
                   >
                     membre2
                   </div>
@@ -3662,7 +3872,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c16"
+                  className="c14"
                 >
                   Responsable
                 </div>
@@ -3671,7 +3881,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c17"
+                  className="c15"
                 >
                   Non disponible
                 </div>
@@ -3680,7 +3890,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c17"
+                  className="c15"
                 >
                   Non disponible
                 </div>
@@ -3695,7 +3905,7 @@ exports[`UserStructure should render correctly when structure with membres when 
 `;
 
 exports[`UserStructure should render correctly when structure with membres when user is respo 1`] = `
-.c3 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3717,7 +3927,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin-bottom: 42px;
 }
 
-.c6 {
+.c4 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -3731,7 +3941,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   flex-direction: column;
 }
 
-.c4 {
+.c2 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -3753,7 +3963,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   height: fit-content;
 }
 
-.c8 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3768,7 +3978,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   align-items: flex-end;
 }
 
-.c10 {
+.c8 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -3779,14 +3989,14 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin: 0px 8px 0px 8px;
 }
 
-.c9 {
+.c7 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
 }
 
-.c15 {
+.c13 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -3808,11 +4018,11 @@ exports[`UserStructure should render correctly when structure with membres when 
   cursor: pointer;
 }
 
-.c15:hover {
+.c13:hover {
   background-color: #212121;
 }
 
-.c16 {
+.c14 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -3834,11 +4044,11 @@ exports[`UserStructure should render correctly when structure with membres when 
   cursor: pointer;
 }
 
-.c16:hover {
+.c14:hover {
   background-color: #f44336;
 }
 
-.c11 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3852,57 +4062,57 @@ exports[`UserStructure should render correctly when structure with membres when 
   align-items: center;
 }
 
-.c12 {
+.c10 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #0421b1;
+}
+
+.c15 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c11 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c16 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c12 {
+  color: #0421b1;
+  max-width: 190px;
 }
 
 .c17 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-}
-
-.c13 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #0421b1;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c18 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c14 {
-  color: #0421b1;
-  max-width: 190px;
-}
-
-.c19 {
   color: #212121;
   max-width: 190px;
 }
 
-.c5 {
+.c3 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -3910,7 +4120,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin-bottom: 30px;
 }
 
-.c7 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3922,44 +4132,6 @@ exports[`UserStructure should render correctly when structure with membres when 
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-}
-
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
 }
 
 .c0 {
@@ -3987,109 +4159,187 @@ exports[`UserStructure should render correctly when structure with membres when 
   <div
     className="c0"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c2"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c3 structure-detail"
+    className="c1 container"
   >
     <div
-      className="c4"
+      className="c2"
     >
-      <img
-        alt="ACRO"
-        className="sponsor-img"
-        src={Object {}}
-      />
       <div
-        className="c5"
+        className="c3"
       >
         structureTest
       </div>
       <a
         aria-current={null}
-        className="figma-btn dark "
+        className="btn  dark  "
         href="/annuaire/structureId"
         onClick={[Function]}
       >
@@ -4107,33 +4357,33 @@ exports[`UserStructure should render correctly when structure with membres when 
       </a>
     </div>
     <div
-      className="c6"
+      className="c4"
     >
       <div
-        className="c7"
+        className="c5"
       >
         <div
-          className="c8"
+          className="c6"
         >
           <div
-            className="c9"
+            className="c7"
           >
             Membres
           </div>
           <div
-            className="c10"
+            className="c8"
           >
             2
           </div>
           <div
-            className="c9"
+            className="c7"
           >
             
           </div>
         </div>
         <div>
           <button
-            className="figma-btn dark "
+            className="btn  dark  "
             onClick={[Function]}
             testID="test-add-member"
           >
@@ -4181,14 +4431,10 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c9"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c12"
+                    className="c10"
                   >
                     membre2
                   </div>
@@ -4198,7 +4444,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c13"
+                  className="c11"
                 >
                   Responsable
                 </div>
@@ -4207,7 +4453,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c12"
                 >
                   Non disponible
                 </div>
@@ -4216,7 +4462,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c12"
                 >
                   Non disponible
                 </div>
@@ -4233,7 +4479,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                   }
                 >
                   <div
-                    className="c15"
+                    className="c13"
                     onClick={[Function]}
                   >
                     <div
@@ -4254,7 +4500,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     </div>
                   </div>
                   <div
-                    className="c16"
+                    className="c14"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -4285,14 +4531,10 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c9"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c17"
+                    className="c15"
                   >
                     membre1
                   </div>
@@ -4302,7 +4544,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c18"
+                  className="c16"
                 >
                   Rédacteur
                 </div>
@@ -4311,7 +4553,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c19"
+                  className="c17"
                 >
                   Non disponible
                 </div>
@@ -4320,7 +4562,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c19"
+                  className="c17"
                 >
                   Non disponible
                 </div>
@@ -4337,7 +4579,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                   }
                 >
                   <div
-                    className="c15"
+                    className="c13"
                     onClick={[Function]}
                   >
                     <div
@@ -4358,7 +4600,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     </div>
                   </div>
                   <div
-                    className="c16"
+                    className="c14"
                     disabled={false}
                     onClick={[Function]}
                   >

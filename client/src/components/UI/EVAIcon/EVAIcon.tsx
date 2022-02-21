@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import * as eva from "eva-icons";
 
 const SIZE = {
-  small: "12",
-  medium: "20",
-  large: "24",
-  xlarge: "30",
-  hero: "60",
-  xhero: "80",
+  small: "12px",
+  medium: "20px",
+  large: "24px",
+  xlarge: "30px",
+  hero: "60px",
+  xhero: "80px",
 };
 
 interface Props {
@@ -26,7 +26,7 @@ interface Props {
 
 const EVAIcon = (props: Props) => {
   const { name, fill } = props;
-  const size = typeof props.size === "number" ? props.size : SIZE[props.size];
+  const size = typeof props.size === "number" ? `${props.size}px` : SIZE[props.size];
 
   useEffect(() => {
     eva.replace({ name, fill, size })
@@ -34,8 +34,8 @@ const EVAIcon = (props: Props) => {
 
   return (
     <span
-      id={props.id || ""}
-      className={props.className || ""}
+      id={props.id}
+      className={props.className}
       onClick={props.onClick}
     >
       <i

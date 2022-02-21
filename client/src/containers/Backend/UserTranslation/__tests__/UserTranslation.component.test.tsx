@@ -1,18 +1,32 @@
 //@ts-nocheck
 import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProvidersAndRender";
 import { UserTranslationComponent } from "../UserTranslation.component";
-import { initialMockStore } from "../../../../__fixtures__/reduxStore";
-import { fetchDispositifsWithTranslationsStatusActionCreator } from "../../../../services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
+import { initialMockStore } from "__fixtures__/reduxStore";
+import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
 import { act } from "react-test-renderer";
-import { dispositifsWithTranslations } from "../../../../__fixtures__/dispositifsWithTrad";
-import API from "../../../../utils/API";
+import { dispositifsWithTranslations } from "__fixtures__/dispositifsWithTrad";
+import API from "utils/API";
+import { useParams } from "react-router-dom";
 import "jest-styled-components";
+jest.mock("next/router", () => require("next-router-mock"));
+jest.mock("next/image", () => {
+  const Image = () => <></>;
+  return Image
+});
+
+// Mock history
+const push = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useParams: jest.fn(),
+  useHistory: () => ({ push }),
+}));
 
 jest.mock(
-  "../../../../services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions",
+  "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions",
   () => {
     const actions = jest.requireActual(
-      "../../../../services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions"
+      "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions"
     );
     return {
       fetchDispositifsWithTranslationsStatusActionCreator: jest.fn(
@@ -21,7 +35,7 @@ jest.mock(
     };
   }
 );
-jest.mock("../../../../utils/API");
+jest.mock("utils/API");
 
 describe("user translation", () => {
   beforeEach(() => {
@@ -29,6 +43,7 @@ describe("user translation", () => {
   });
 
   it("should return loader langue in url = first selected langue", () => {
+    useParams.mockReturnValueOnce({ id: "en" });
     window.scrollTo = jest.fn();
     let component;
     act(() => {
@@ -43,7 +58,6 @@ describe("user translation", () => {
             user: { selectedLanguages: [{ i18nCode: "en" }], _id: "userId" },
           },
         },
-        compProps: { match: { params: { id: "en" } } },
       });
     });
     expect(
@@ -52,9 +66,9 @@ describe("user translation", () => {
     expect(API.get_progression).toHaveBeenCalledWith({ userId: "userId" });
     expect(component.toJSON()).toMatchSnapshot();
   });
-  const push = jest.fn();
 
   it("should redirect if user has language but not langue in url + snap view without content", () => {
+    useParams.mockReturnValueOnce({});
     window.scrollTo = jest.fn();
     let component;
     act(() => {
@@ -65,18 +79,14 @@ describe("user translation", () => {
           user: { user: { selectedLanguages: [{ i18nCode: "en" }] } },
           dispositifsWithTranslations: [],
         },
-        compProps: { match: { params: { id: undefined } }, history: { push } },
       });
     });
-    expect(
-      fetchDispositifsWithTranslationsStatusActionCreator
-    ).not.toHaveBeenCalled();
-    expect(API.get_progression).not.toHaveBeenCalled();
     expect(push).toHaveBeenCalledWith("/backend/user-translation/en");
     expect(component.toJSON()).toMatchSnapshot();
   });
 
   it("should redirect if user has no language but langue in url", () => {
+    useParams.mockReturnValueOnce({ id: "en" });
     window.scrollTo = jest.fn();
     let component;
     act(() => {
@@ -87,7 +97,6 @@ describe("user translation", () => {
           user: { user: { selectedLanguages: [] } },
           dispositifsWithTranslations: [],
         },
-        compProps: { match: { params: { id: "en" } }, history: { push } },
       });
     });
     expect(
@@ -98,6 +107,7 @@ describe("user translation", () => {
   });
 
   it("should redirect if user has no language but langue in url + snap no langue", () => {
+    useParams.mockReturnValueOnce({ id: "test" });
     window.scrollTo = jest.fn();
     let component;
     act(() => {
@@ -108,7 +118,6 @@ describe("user translation", () => {
           user: { user: { selectedLanguages: [] } },
           dispositifsWithTranslations: [{ _id: "id" }],
         },
-        compProps: { match: { params: { id: "test" } }, history: { push } },
       });
     });
     expect(
@@ -120,6 +129,7 @@ describe("user translation", () => {
   });
 
   it("should render correctly with non expert, non admin", () => {
+    useParams.mockReturnValueOnce({ id: "en" });
     window.scrollTo = jest.fn();
     let component;
     act(() => {
@@ -133,7 +143,6 @@ describe("user translation", () => {
           },
           dispositifsWithTranslations,
         },
-        compProps: { match: { params: { id: "en" } }, history: { push } },
       });
     });
 
@@ -142,12 +151,13 @@ describe("user translation", () => {
       component.root.findByProps({ testID: "test-line-id3" }).props.onClick();
     });
     expect(push).toHaveBeenCalledWith({
-      pathname: "/traduction/dispositif/id3",
-      search: "?id=idEn",
+      pathname: "/backend/traduction/dispositif",
+      search: "?language=idEn&dispositif=id3",
     });
   });
 
   it("should render correctly with expert, non admin", () => {
+    useParams.mockReturnValueOnce({ id: "en" });
     window.scrollTo = jest.fn();
     let component;
     act(() => {
@@ -161,20 +171,20 @@ describe("user translation", () => {
           },
           dispositifsWithTranslations,
         },
-        compProps: { match: { params: { id: "en" } }, history: { push } },
       });
     });
     act(() => {
       component.root.findByProps({ testID: "test-line-id6" }).props.onClick();
     });
     expect(push).toHaveBeenCalledWith({
-      pathname: "/validation/dispositif/id6",
-      search: "?id=idEn",
+      pathname: "/backend/validation/dispositif",
+      search: "?language=idEn&dispositif=id6",
     });
     expect(component.toJSON()).toMatchSnapshot();
   });
 
   it("should render correctly with expert, admin", () => {
+    useParams.mockReturnValueOnce({ id: "en" });
     window.scrollTo = jest.fn();
     let component;
     act(() => {
@@ -189,7 +199,7 @@ describe("user translation", () => {
           },
           dispositifsWithTranslations,
         },
-        compProps: { match: { params: { id: "en" } } },
+        compProps: { },
       });
     });
 
@@ -197,6 +207,7 @@ describe("user translation", () => {
   });
 
   it("should change language", () => {
+    useParams.mockReturnValueOnce({ id: "en" });
     window.scrollTo = jest.fn();
     let component;
     act(() => {
@@ -214,7 +225,6 @@ describe("user translation", () => {
           },
           dispositifsWithTranslations,
         },
-        compProps: { match: { params: { id: "en" } }, history: { push } },
       });
     });
     component.root.findByProps({ testID: "test-langue-idPs" }).props.onClick();

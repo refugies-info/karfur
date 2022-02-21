@@ -21,6 +21,8 @@ import {
 import { userSelector } from "../../User/user.selectors";
 import { setUserRoleInStructureActionCreator } from "../../User/user.actions";
 import { userStructureSelector } from "../userStructure.selectors";
+import mockRouter from "next-router-mock";
+jest.mock("next/router",  () => require("next-router-mock"));
 
 describe("[Saga] Structures", () => {
   describe("pilot", () => {
@@ -52,7 +54,7 @@ describe("[Saga] Structures", () => {
         .next({ userId: "userId" })
         .put(setUserRoleInStructureActionCreator([]))
         .next()
-        .put(push("/"))
+        .call(mockRouter.push, "/")
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
@@ -102,7 +104,7 @@ describe("[Saga] Structures", () => {
         .next({ userId: "id" })
         .put(setUserRoleInStructureActionCreator(["membre"]))
         .next()
-        .put(push("/"))
+        .call(mockRouter.push, "/")
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()

@@ -1,44 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UserNotifications should render correctly when 0 notif 1`] = `
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
-}
-
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -52,7 +14,7 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
   align-self: center;
 }
 
-.c3 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -64,14 +26,14 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
   height: fit-content;
 }
 
-.c5 {
+.c3 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
 }
 
-.c4 {
+.c2 {
   color: #5e5e5e;
   margin-top: 20px;
   display: -webkit-box;
@@ -99,98 +61,181 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
   <div
     className="c0"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c2"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c3"
+    className="c1"
   >
     <div
-      className="c4"
+      className="c2"
     >
       <div
-        className="c5"
+        className="c3"
       >
         Aucune notification ! 
       </div>
@@ -201,19 +246,14 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
             "marginTop": "32px",
           }
         }
-      >
-        <img
-          alt="no-notification"
-          src="https://storage.googleapis.com/refugies-info-assets/middle-office/aucune_notification.svg"
-        />
-      </div>
+      />
     </div>
   </div>
 </div>
 `;
 
 exports[`UserNotifications should render correctly when loading 1`] = `
-.c4 {
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -228,7 +268,7 @@ exports[`UserNotifications should render correctly when loading 1`] = `
   align-items: flex-end;
 }
 
-.c6 {
+.c4 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -239,49 +279,11 @@ exports[`UserNotifications should render correctly when loading 1`] = `
   margin: 0px 8px 0px 8px;
 }
 
-.c5 {
+.c3 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
-}
-
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
 }
 
 .c0 {
@@ -297,7 +299,7 @@ exports[`UserNotifications should render correctly when loading 1`] = `
   align-self: center;
 }
 
-.c3 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -321,108 +323,191 @@ exports[`UserNotifications should render correctly when loading 1`] = `
   <div
     className="c0"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c2"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c3"
+    className="c1"
   >
     <div
-      className="c4"
+      className="c2"
     >
       <div
-        className="c5"
+        className="c3"
       >
         Vous avez
       </div>
       <div
-        className="c6"
+        className="c4"
       >
         ...
       </div>
       <div
-        className="c5"
+        className="c3"
       >
         nouvelle notification.
       </div>
@@ -464,7 +549,7 @@ exports[`UserNotifications should render correctly when loading 1`] = `
 `;
 
 exports[`UserNotifications should render correctly when notif not read annuaire, not read reaction, not read new content, read reaction  1`] = `
-.c7 {
+.c5 {
   background: #2d9cdb;
   border-radius: 12px;
   padding: 8px 8px 8px 20px;
@@ -490,11 +575,11 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   border-color: #2d9cdb;
 }
 
-.c7:hover {
+.c5:hover {
   border-color: #212121;
 }
 
-.c12 {
+.c10 {
   background: #ffffff;
   border-radius: 12px;
   padding: 8px 8px 8px 20px;
@@ -520,11 +605,11 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   border-color: #ffffff;
 }
 
-.c12:hover {
+.c10:hover {
   border-color: #212121;
 }
 
-.c8 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -538,7 +623,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   align-items: center;
 }
 
-.c9 {
+.c7 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -546,7 +631,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   margin-left: 20px;
 }
 
-.c13 {
+.c11 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -554,7 +639,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   margin-left: 20px;
 }
 
-.c11 {
+.c9 {
   background: #edebeb;
   border-radius: 8px;
   padding: 8px;
@@ -564,7 +649,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   margin-left: 8px;
 }
 
-.c10 {
+.c8 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
@@ -573,7 +658,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   margin-left: 8px;
 }
 
-.c14 {
+.c12 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
@@ -582,7 +667,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   margin-left: 8px;
 }
 
-.c4 {
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -597,7 +682,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   align-items: flex-end;
 }
 
-.c6 {
+.c4 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -608,49 +693,11 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   margin: 0px 8px 0px 8px;
 }
 
-.c5 {
+.c3 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
-}
-
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
 }
 
 .c0 {
@@ -666,7 +713,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   align-self: center;
 }
 
-.c3 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -690,118 +737,201 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   <div
     className="c0"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="star"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="file-add"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c2"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              data-eva="person"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out-outline"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              data-eva="log-out"
+              data-eva-fill="#fff"
+              data-eva-height="20px"
+              data-eva-width="20px"
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c3"
+    className="c1"
   >
     <div
-      className="c4"
+      className="c2"
     >
       <div
-        className="c5"
+        className="c3"
       >
         Vous avez
       </div>
       <div
-        className="c6"
+        className="c4"
       >
         3
       </div>
       <div
-        className="c5"
+        className="c3"
       >
         nouvelles notifications.
       </div>
     </div>
     <div
-      className="c7"
+      className="c5"
       onClick={[Function]}
     >
       <div
-        className="c8"
+        className="c6"
       >
         <span>
           <i
@@ -812,16 +942,16 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           />
         </span>
         <div
-          className="c9"
+          className="c7"
         >
           Recensez votre structure dans l'annuaire de l'intégration
         </div>
       </div>
       <div
-        className="c8"
+        className="c6"
       >
         <button
-          className="figma-btn dark mr-8"
+          className="btn  dark mr-8 "
         >
           <span
             className="mr-10"
@@ -836,7 +966,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           Compléter la fiche annuaire
         </button>
         <button
-          className="figma-btn error ml-8"
+          className="btn  error ml-8 "
           onClick={[Function]}
           testID="test-delete-annuaire"
         >
@@ -854,11 +984,11 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
       </div>
     </div>
     <div
-      className="c7"
+      className="c5"
       onClick={[Function]}
     >
       <div
-        className="c8"
+        className="c6"
       >
         <span>
           <i
@@ -869,21 +999,21 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           />
         </span>
         <div
-          className="c9"
+          className="c7"
         >
           Une nouvelle fiche a été attribuée à votre structure
         </div>
       </div>
       <div
-        className="c8"
+        className="c6"
       >
         <div
-          className="c10"
+          className="c8"
         >
           Depuis 5 jours
         </div>
         <button
-          className="figma-btn dark "
+          className="btn  dark  "
         >
           <span
             className="mr-10"
@@ -900,11 +1030,11 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
       </div>
     </div>
     <div
-      className="c7"
+      className="c5"
       onClick={[Function]}
     >
       <div
-        className="c8"
+        className="c6"
       >
         <span>
           <i
@@ -915,26 +1045,26 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           />
         </span>
         <div
-          className="c9"
+          className="c7"
         >
           Nouvelle réaction sur la fiche :
         </div>
         <div
-          className="c11"
+          className="c9"
         >
           titre info
         </div>
       </div>
       <div
-        className="c8"
+        className="c6"
       >
         <div
-          className="c10"
+          className="c8"
         >
           Depuis 5 jours
         </div>
         <button
-          className="figma-btn dark "
+          className="btn  dark  "
         >
           <span
             className="mr-10"
@@ -949,7 +1079,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           Voir la réaction
         </button>
         <button
-          className="figma-btn error ml-8"
+          className="btn  error ml-8 "
           onClick={[Function]}
           testID="test-delete-reaction"
         >
@@ -967,11 +1097,11 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
       </div>
     </div>
     <div
-      className="c12"
+      className="c10"
       onClick={[Function]}
     >
       <div
-        className="c8"
+        className="c6"
       >
         <span>
           <i
@@ -982,26 +1112,26 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           />
         </span>
         <div
-          className="c13"
+          className="c11"
         >
           Nouvelle réaction sur la fiche :
         </div>
         <div
-          className="c11"
+          className="c9"
         >
           titre info2
         </div>
       </div>
       <div
-        className="c8"
+        className="c6"
       >
         <div
-          className="c14"
+          className="c12"
         >
           Depuis 5 jours
         </div>
         <button
-          className="figma-btn dark "
+          className="btn  dark  "
         >
           <span
             className="mr-10"
@@ -1016,7 +1146,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           Voir la réaction
         </button>
         <button
-          className="figma-btn error ml-8"
+          className="btn  error ml-8 "
           onClick={[Function]}
           testID="test-delete-reaction"
         >
