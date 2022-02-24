@@ -12,12 +12,12 @@ import withSizes from "react-sizes";
 import Streamline from "assets/streamline";
 import { isMobile } from "react-device-detect";
 import { END } from "redux-saga";
-import SearchItem from "containers/AdvancedSearch/SearchItem/SearchItem";
+import SearchItem from "components/Pages/advanced-search/SearchItem/SearchItem";
 import SearchResultCard from "components/Pages/advanced-search/SearchResultCard";
 import SeeMoreCard from "components/Pages/advanced-search/SeeMoreCard";
 import LoadingCard from "components/Pages/advanced-search/LoadingCard";
 import NoResultPlaceholder from "components/Pages/advanced-search/NoResultPlaceholder";
-import { MobileAdvancedSearch } from "containers/AdvancedSearch/MobileAdvancedSearch/MobileAdvancedSearch";
+import { MobileAdvancedSearch } from "components/Pages/advanced-search/MobileAdvancedSearch/MobileAdvancedSearch";
 import API from "utils/API";
 import {
   filtres_contenu,
@@ -36,7 +36,7 @@ import FButton from "components/FigmaUI/FButton/FButton";
 import FSearchBtn from "components/FigmaUI/FSearchBtn/FSearchBtn";
 import { BookmarkedModal } from "components/Modals/index";
 import { fetchUserActionCreator } from "services/User/user.actions";
-import { filterContents } from "containers/AdvancedSearch/filterContents";
+import { filterContents } from "lib/filterContents";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { colors } from "colors";

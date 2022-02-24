@@ -9,7 +9,7 @@ import qs from "query-string";
 import { colors } from "colors";
 import { searchTheme } from "data/searchFilters";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
-import { MobileSearchFilterModal } from "containers/AdvancedSearch/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
+import { MobileSearchFilterModal } from "components/Pages/advanced-search/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
 import { HomeCard } from "components/Pages/homepage/HomeCard";
 import { BecomeTesterModal } from "components/Pages/homepage/BecomeTesterModal";
 import { HomePageMobile } from "components/Pages/homepage/HomePageMobile/HomePageMobile";
