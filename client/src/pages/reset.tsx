@@ -23,7 +23,6 @@ import PasswordField from "components/Pages/register/PasswordField";
 import FButton from "components/FigmaUI/FButton/FButton";
 import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
 import LanguageBtn from "components/FigmaUI/LanguageBtn/LanguageBtn";
-import GoBackButton from "components/Pages/register/GoBackButton";
 import { computePasswordStrengthScore } from "lib/index";
 import API from "utils/API";
 
@@ -70,10 +69,8 @@ const Reset = () => {
 
   useEffect(() => {
     dispatch(fetchLanguesActionCreator());
-/*     const token = Array.isArray(router.query.id)
-      ? router.query.id[0]
-      : router.query.id; */ // TODO : fix
-    const token = "";
+    const token = new URLSearchParams(window.location.search).get("token");
+
     if (!token) {
       setIsLoading(false);
       setIsError(true);
@@ -158,7 +155,7 @@ const Reset = () => {
 
   if (isLoading) {
     return (
-      <div className="loading-access">
+      <div className={styles.reset_loading_access}>
         <SEO />
         <h3>
           {t(
@@ -171,7 +168,7 @@ const Reset = () => {
     );
   } else if (isError) {
     return (
-      <div className="loading-access">
+      <div className={styles.reset_loading_access}>
         <SEO />
         <h5>
           {t(
@@ -197,7 +194,6 @@ const Reset = () => {
       <SEO />
       <div className={styles.container}>
         <ContentContainer>
-          {/* <GoBackButton step={step} goBack={goBack} /> */}
           <LanguageBtn />
           <FButton
             tag="a"

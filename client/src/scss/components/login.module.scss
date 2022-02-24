@@ -80,3 +80,12 @@
     color: #e8140f;
   }
 }
+
+// Reset
+.reset_loading_access{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -19,12 +19,12 @@ interface StateType {
 export interface PropsBeforeInjection {
   show: boolean;
   keyValue: number;
-  subkey: number;
+  subkey?: number;
   disableEdit: boolean;
   item: DispositifContent;
-  handleContentClick: (arg1: any, arg2: boolean, arg3: number) => void;
+  handleContentClick: (arg1: any, arg2: boolean, arg3?: number) => void;
   toggleModal: (arg1: boolean, arg2: string) => void;
-  removeItem: (arg1: number, arg2: number) => void;
+  removeItem: (arg1: number, arg2: number|null) => void;
 }
 
 export class QuickToolbar extends Component<Props, StateType> {
@@ -125,7 +125,7 @@ export class QuickToolbar extends Component<Props, StateType> {
           this.props.subkey
         );
       } else if (id === 2) {
-        this.props.removeItem(this.props.keyValue, this.props.subkey);
+        this.props.removeItem(this.props.keyValue, this.props.subkey || null);
       }
     }
   };

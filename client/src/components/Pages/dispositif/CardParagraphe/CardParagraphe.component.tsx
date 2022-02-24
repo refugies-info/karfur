@@ -29,6 +29,7 @@ type Element = any;
 export interface PropsBeforeInjection {
   subkey: number;
   keyValue: number;
+  dispositifId?: string;
   updateUIArray: (
     key: number,
     arg: number|null,
@@ -165,14 +166,6 @@ export class CardParagraphe extends Component<Props> {
   render() {
     const { subitem, subkey, disableEdit } = this.props;
 
-    let dispositifId = "";
-/*     if (this.props.location.pathname) { // TODO
-      let pathVariables = this.props.location.pathname.split("/");
-      if (pathVariables.length === 3 && pathVariables[1] === "dispositif") {
-        dispositifId = pathVariables[2];
-      }
-    } */
-
     // filter cards to have maximum one infocard by category
     const availablecardTitles =
       this.props.typeContenu === "dispositif"
@@ -271,7 +264,7 @@ export class CardParagraphe extends Component<Props> {
               <AdminGeolocPublicationButton
                 admin={this.props.admin}
                 subitem={subitem}
-                dispositifId={dispositifId}
+                dispositifId={this.props.dispositifId || ""}
                 disableEdit={this.props.disableEdit}
                 onValidateGeoloc={this.onValidateGeoloc}
               />

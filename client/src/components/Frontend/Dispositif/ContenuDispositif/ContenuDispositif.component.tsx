@@ -135,7 +135,6 @@ export const contenuDispositif = (props: Props) => {
                 <QuickToolbar
                   show={props.uiArray[key].isHover}
                   keyValue={key}
-                  subkey={0} // TODO: ok?
                   item={dispositifContent}
                   handleContentClick={props.handleContentClick}
                   disableEdit={disableEdit}

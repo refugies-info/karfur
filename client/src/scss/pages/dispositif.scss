@@ -39,40 +39,6 @@ $imgHeight: 350px;
     padding-left: 0;
   }
 
-  .subtitle-container { // TODO: module ?
-    display: inline-block;
-    width: 100%;
-
-    h1 {
-      float: left;
-    }
-    .profile-header-container {
-      text-align: center;
-      float: right;
-    }
-
-    .profile-header-img > img.img-circle {
-      width: 20px;
-      height: 20px;
-      border: 2px solid #51d2b7;
-    }
-
-    .profile-header {
-      margin-top: 43px;
-    }
-
-    .rank-label-container {
-      margin-top: -19px;
-      text-align: center;
-    }
-
-    .label.label-default.rank-label {
-      background-color: rgb(81, 210, 183);
-      padding: 5px 10px 5px 10px;
-      border-radius: 27px;
-    }
-  }
-
   .list-group.list-group-flush,
   .print-buttons {
     flex: 0 0 100%;

@@ -18,7 +18,6 @@ interface Props {
 const Footer = (props: Props) => {
   const { t } = useTranslation();
   const contactSupportCallback = React.useCallback(() => {
-    //@ts-ignore
     window.$crisp.push(["do", "chat:open"]);
   }, [])
 
@@ -65,12 +64,12 @@ const Footer = (props: Props) => {
   if (props.resetPasswordPossible) {
     return (
       <>
-        <div>
+        <div className={styles.footer_links}>
           <button onClick={props.resetPassword} className={styles.link}>
             {t("Login.Renvoyer le lien", "Renvoyer le lien")}
           </button>
         </div>
-        <div style={{ marginTop: 16 }}>
+        <div className={styles.footer_links} style={{ marginTop: 16 }}>
           <ContactSupport />
         </div>
       </>

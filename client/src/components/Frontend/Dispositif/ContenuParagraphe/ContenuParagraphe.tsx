@@ -23,9 +23,10 @@ import {
 } from "data/dispositif";
 import { isMobile } from "react-device-detect";
 import styles from "./ContenuParagraphe.module.scss";
-import { DispositifContent, Tag, UiObject } from "types/interface";
+import { DispositifContent, Tag } from "types/interface";
 import { EditorState } from "draft-js";
 import { UiElement } from "services/SelectedDispositif/selectedDispositif.reducer";
+import { useRouter } from "next/router";
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>
@@ -121,6 +122,7 @@ interface Props {
 }
 const ContenuParagraphe = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   const safeUiArray = (key: number, subkey: number, node: string) => {
     const children = props.uiArray[key]?.children;
@@ -165,6 +167,7 @@ const ContenuParagraphe = (props: Props) => {
                 <CardParagraphe
                   key={i}
                   subkey={i}
+                  dispositifId={router.query.id as string}
                   subitem={subDispositifContent}
                   disableEdit={props.disableEdit}
                   changeTitle={props.changeTitle}
@@ -220,6 +223,7 @@ const ContenuParagraphe = (props: Props) => {
                 <CardParagraphe
                   subkey={index}
                   subitem={subitem}
+                  dispositifId={router.query.id as string}
                   disableEdit={props.disableEdit}
                   changeTitle={props.changeTitle}
                   handleMenuChange={props.handleMenuChange}
