@@ -104,7 +104,7 @@ export class HomePage extends Component {
     overlay: false,
     showGoToDesktopModal: false,
     showTagModal: false,
-    showNewslettreModal: false,
+    showNewslettreModal: new URLSearchParams(window.location.search).get("newsletter") === "",
     showBecomeTesterModal: false,
     parrainage: true,
   };
