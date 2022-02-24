@@ -14,10 +14,15 @@
     margin-right: 16px;
 
     @include media-max("tablet-up") {
-      width: 100px;
+      display: none;
     }
   }
-  .logo_webmobile {
+  .logo_img_mobile {
+    display: none;
     margin-left: 16px;
+
+    @include media-max("tablet-up") {
+      display: block;
+    }
   }
 }

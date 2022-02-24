@@ -1,108 +1,113 @@
+import { Tag } from "types/interface";
 import { tags } from "./tags";
 
-const initial_data = [
-  // {
-  //   title:'Je suis',
-  //   value: 'réfugié ou accompagnant',
-  //   query: 'réfugié',
-  //   queryName: 'audience',
-  //   children:[
-  //     {
-  //       name: 'réfugié ou accompagnant',
-  //       query:'réfugié',
-  //     },
-  //     {
-  //       name: 'une organisation',
-  //       query:'associations',
-  //     }
-  //   ]
-  // },
-  {
-    title: "J'ai besoin de",
-    value: null,
-    placeholder: "thème",
-    query: "apprendre le français",
-    queryName: "tags.name",
-    children: tags,
-  },
-  {
-    title: "J'habite à",
-    value: null,
-    placeholder: "ma ville",
-    queryName: "localisation",
-  },
+// FILTERS
+export type AvailableFilters = "theme" | "age" | "frenchLevel" | "loc";
+export type AgeFilter = {
+  name: "moins de 18 ans" | "entre 18 et 25 ans" | "entre 25 et 56 ans" | "56 ans et plus";
+  bottomValue: number;
+  topValue: number;
+}
+export type FrenchLevelFilter = {
+  name: "pas du tout" | "un peu" | "moyennement" | "bien";
+  query: string[]
+}
+export type SearchItemType = {
+  title: string
+  type: AvailableFilters;
+  placeholder: string
+  children?: Tag[] | AgeFilter[] | FrenchLevelFilter[];
+  title2?: string
+  append?: string
+}
 
-  {
-    title: "J'ai",
-    value: null,
-    placeholder: "âge",
-    queryName: "audienceAge",
-    children: [
-      {
-        name: "moins de 18 ans",
-        bottomValue: -1,
-        topValue: 18,
-      },
-      {
-        name: "entre 18 et 25 ans",
-        bottomValue: 18,
-        topValue: 25,
-      },
-      {
-        name: "entre 25 et 56 ans",
-        bottomValue: 25,
-        topValue: 56,
-      },
-      {
-        name: "56 ans et plus",
-        bottomValue: 56,
-        topValue: 120,
-      },
-    ],
-  },
-  {
-    title: "Je parle",
-    value: null,
-    placeholder: "niveau de français",
-    title2: "français",
-    queryName: "niveauFrancais",
-    append: "Quel est mon niveau ?",
-    children: [
-      {
-        name: "pas du tout",
-        query: { $nin: ["Débutant", "Intermédiaire", "Avancé"] },
-      },
-      {
-        name: "un peu",
-        query: { $nin: ["Intermédiaire", "Avancé"] },
-      },
-      {
-        name: "moyennement",
-        query: { $nin: ["Avancé"] },
-      },
-      {
-        name: "bien",
-        query: undefined,
-      },
-    ],
-  },
-];
+export const searchTheme: SearchItemType = {
+  title: "J'ai besoin de",
+  placeholder: "thème",
+  type: "theme",
+  children: tags,
+};
+export const searchLoc: SearchItemType = {
+  title: "J'habite à",
+  type: "loc",
+  placeholder: "ma ville",
+};
+export const searchAge: SearchItemType = {
+  title: "J'ai",
+  type: "age",
+  placeholder: "âge",
+  children: [
+    {
+      name: "moins de 18 ans",
+      bottomValue: -1,
+      topValue: 18,
+    },
+    {
+      name: "entre 18 et 25 ans",
+      bottomValue: 18,
+      topValue: 25,
+    },
+    {
+      name: "entre 25 et 56 ans",
+      bottomValue: 25,
+      topValue: 56,
+    },
+    {
+      name: "56 ans et plus",
+      bottomValue: 56,
+      topValue: 120,
+    },
+  ],
+};
+export const searchFrench: SearchItemType = {
+  title: "Je parle",
+  type: "frenchLevel",
+  placeholder: "niveau de français",
+  title2: "français",
+  append: "Quel est mon niveau ?",
+  children: [
+    {
+      name: "pas du tout",
+      query: ["Débutant", "Intermédiaire", "Avancé"],
+    },
+    {
+      name: "un peu",
+      query: ["Intermédiaire", "Avancé"],
+    },
+    {
+      name: "moyennement",
+      query: ["Avancé"],
+    },
+    {
+      name: "bien",
+      query: [],
+    },
+  ],
+};
 
-const filtres_contenu = [
+// TYPES
+export type Filtres = {
+  name: "Dispositifs" | "Démarches";
+  value: "dispositifs" | "demarches";
+}
+export const filtres_contenu: Filtres[] = [
   {
     name: "Dispositifs",
-    query: {
-      $or: [{ typeContenu: { $exists: false } }, { typeContenu: "dispositif" }],
-    },
+    value: "dispositifs"
   },
-  { name: "Démarches", query: { typeContenu: "demarche" } },
+  {
+    name: "Démarches",
+    value: "demarches"
+  },
 ];
 
-const tris = [
-  // { name: "A > Z", value: "titreInformatif" },
+// SORT
+export type Tris = {
+  name: "Derniers ajouts" | "Les plus visités" | "Par thème";
+  value: "created_at" | "nbVues" | "theme";
+}
+export const tris: Tris[] = [
   { name: "Derniers ajouts", value: "created_at" },
   { name: "Les plus visités", value: "nbVues" },
-  { name: "Par thème" },
+  { name: "Par thème", value: "theme" },
 ];
-
-export { initial_data, filtres_contenu, tris };

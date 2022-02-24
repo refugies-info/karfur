@@ -302,10 +302,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             className=""
           >
             <i
-              data-eva="star-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -316,10 +317,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             className=""
           >
             <i
-              data-eva="star"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -339,10 +341,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             className="mr-10"
           >
             <i
-              data-eva="file-add-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -353,10 +356,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             className="mr-10"
           >
             <i
-              data-eva="file-add"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -393,10 +397,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             className=""
           >
             <i
-              data-eva="person-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -407,10 +412,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             className=""
           >
             <i
-              data-eva="person"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -430,10 +436,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             className="mr-10"
           >
             <i
-              data-eva="log-out-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -444,10 +451,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             className="mr-10"
           >
             <i
-              data-eva="log-out"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -476,10 +484,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
           className="mr-10"
         >
           <i
-            data-eva="book-outline"
-            data-eva-fill="#fff"
-            data-eva-height="20px"
-            data-eva-width="20px"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-book-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"book\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z\\"/></g></g></svg>",
+              }
+            }
           />
         </span>
         Voir dans l'annuaire
@@ -520,10 +529,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
               className="mr-10"
             >
               <i
-                data-eva="person-add-outline"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-1V5a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0V8h1a1 1 0 0 0 0-2z\\"/><path d=\\"M10 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M10 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                  }
+                }
               />
             </span>
             Ajouter un membre
@@ -620,10 +630,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     >
                       <span>
                         <i
-                          data-eva="edit"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-edit\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"edit\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -642,10 +653,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     >
                       <span>
                         <i
-                          data-eva="trash"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -720,10 +732,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     >
                       <span>
                         <i
-                          data-eva="edit"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-edit\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"edit\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -742,10 +755,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     >
                       <span>
                         <i
-                          data-eva="trash"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -789,10 +803,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
           >
             <span>
               <i
-                data-eva="search-outline"
-                data-eva-fill="#212121"
-                data-eva-height="20px"
-                data-eva-width="20px"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-search-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"search\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z\\"/></g></g></svg>",
+                  }
+                }
               />
             </span>
           </div>
@@ -810,10 +825,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             className="mr-10"
           >
             <i
-              data-eva="close-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-close-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"close\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><path d=\\"M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
           Annuler
@@ -827,10 +843,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             className="mr-10"
           >
             <i
-              data-eva="checkmark-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-checkmark-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"checkmark\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
           Ajouter
@@ -1205,10 +1222,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className=""
           >
             <i
-              data-eva="star-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -1219,10 +1237,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className=""
           >
             <i
-              data-eva="star"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -1242,10 +1261,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className="mr-10"
           >
             <i
-              data-eva="file-add-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -1256,10 +1276,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className="mr-10"
           >
             <i
-              data-eva="file-add"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -1296,10 +1317,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className=""
           >
             <i
-              data-eva="person-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -1310,10 +1332,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className=""
           >
             <i
-              data-eva="person"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -1333,10 +1356,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className="mr-10"
           >
             <i
-              data-eva="log-out-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -1347,10 +1371,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className="mr-10"
           >
             <i
-              data-eva="log-out"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -1379,10 +1404,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           className="mr-10"
         >
           <i
-            data-eva="book-outline"
-            data-eva-fill="#fff"
-            data-eva-height="20px"
-            data-eva-width="20px"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-book-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"book\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z\\"/></g></g></svg>",
+              }
+            }
           />
         </span>
         Voir dans l'annuaire
@@ -1423,10 +1449,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
               className="mr-10"
             >
               <i
-                data-eva="person-add-outline"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-1V5a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0V8h1a1 1 0 0 0 0-2z\\"/><path d=\\"M10 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M10 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                  }
+                }
               />
             </span>
             Ajouter un membre
@@ -1523,10 +1550,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     >
                       <span>
                         <i
-                          data-eva="edit"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-edit\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"edit\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -1545,10 +1573,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     >
                       <span>
                         <i
-                          data-eva="trash"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -1623,10 +1652,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     >
                       <span>
                         <i
-                          data-eva="edit"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-edit\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"edit\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -1645,10 +1675,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     >
                       <span>
                         <i
-                          data-eva="trash"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -1690,10 +1721,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           </div>
           <span>
             <i
-              data-eva="radio-button-on"
-              data-eva-fill="#212121"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-radio-button-on\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"radio-button-on\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z\\"/><path d=\\"M12 7a5 5 0 1 0 5 5 5 5 0 0 0-5-5z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </div>
@@ -1720,10 +1752,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           </div>
           <span>
             <i
-              data-eva="radio-button-off"
-              data-eva-fill="#212121"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-radio-button-off\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"radio-button-off\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </div>
@@ -1755,10 +1788,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className="mr-10"
           >
             <i
-              data-eva="close-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-close-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"close\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><path d=\\"M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
           Annuler
@@ -1773,10 +1807,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className="mr-10"
           >
             <i
-              data-eva="checkmark-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-checkmark-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"checkmark\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
           Valider
@@ -2150,10 +2185,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className=""
           >
             <i
-              data-eva="star-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -2164,10 +2200,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className=""
           >
             <i
-              data-eva="star"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -2187,10 +2224,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className="mr-10"
           >
             <i
-              data-eva="file-add-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -2201,10 +2239,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className="mr-10"
           >
             <i
-              data-eva="file-add"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -2241,10 +2280,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className=""
           >
             <i
-              data-eva="person-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -2255,10 +2295,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className=""
           >
             <i
-              data-eva="person"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -2278,10 +2319,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className="mr-10"
           >
             <i
-              data-eva="log-out-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -2292,10 +2334,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className="mr-10"
           >
             <i
-              data-eva="log-out"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -2324,10 +2367,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           className="mr-10"
         >
           <i
-            data-eva="book-outline"
-            data-eva-fill="#fff"
-            data-eva-height="20px"
-            data-eva-width="20px"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-book-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"book\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z\\"/></g></g></svg>",
+              }
+            }
           />
         </span>
         Voir dans l'annuaire
@@ -2368,10 +2412,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
               className="mr-10"
             >
               <i
-                data-eva="person-add-outline"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-1V5a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0V8h1a1 1 0 0 0 0-2z\\"/><path d=\\"M10 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M10 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                  }
+                }
               />
             </span>
             Ajouter un membre
@@ -2468,10 +2513,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     >
                       <span>
                         <i
-                          data-eva="edit"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-edit\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"edit\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -2490,10 +2536,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     >
                       <span>
                         <i
-                          data-eva="trash"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -2568,10 +2615,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     >
                       <span>
                         <i
-                          data-eva="edit"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-edit\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"edit\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -2590,10 +2638,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     >
                       <span>
                         <i
-                          data-eva="trash"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -2635,10 +2684,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           </div>
           <span>
             <i
-              data-eva="radio-button-off"
-              data-eva-fill="#212121"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-radio-button-off\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"radio-button-off\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </div>
@@ -2665,10 +2715,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           </div>
           <span>
             <i
-              data-eva="radio-button-on"
-              data-eva-fill="#ffffff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-radio-button-on\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"radio-button-on\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z\\"/><path d=\\"M12 7a5 5 0 1 0 5 5 5 5 0 0 0-5-5z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </div>
@@ -2700,10 +2751,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className="mr-10"
           >
             <i
-              data-eva="close-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-close-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"close\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><path d=\\"M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
           Annuler
@@ -2718,10 +2770,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className="mr-10"
           >
             <i
-              data-eva="checkmark-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-checkmark-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"checkmark\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
           Valider
@@ -2870,10 +2923,11 @@ exports[`UserStructure should render correctly when loading 1`] = `
             className=""
           >
             <i
-              data-eva="star-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -2884,10 +2938,11 @@ exports[`UserStructure should render correctly when loading 1`] = `
             className=""
           >
             <i
-              data-eva="star"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -2907,10 +2962,11 @@ exports[`UserStructure should render correctly when loading 1`] = `
             className="mr-10"
           >
             <i
-              data-eva="file-add-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -2921,10 +2977,11 @@ exports[`UserStructure should render correctly when loading 1`] = `
             className="mr-10"
           >
             <i
-              data-eva="file-add"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -2961,10 +3018,11 @@ exports[`UserStructure should render correctly when loading 1`] = `
             className=""
           >
             <i
-              data-eva="person-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -2975,10 +3033,11 @@ exports[`UserStructure should render correctly when loading 1`] = `
             className=""
           >
             <i
-              data-eva="person"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -2998,10 +3057,11 @@ exports[`UserStructure should render correctly when loading 1`] = `
             className="mr-10"
           >
             <i
-              data-eva="log-out-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3012,10 +3072,11 @@ exports[`UserStructure should render correctly when loading 1`] = `
             className="mr-10"
           >
             <i
-              data-eva="log-out"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3194,10 +3255,11 @@ exports[`UserStructure should render correctly when no structure 1`] = `
             className=""
           >
             <i
-              data-eva="star-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3208,10 +3270,11 @@ exports[`UserStructure should render correctly when no structure 1`] = `
             className=""
           >
             <i
-              data-eva="star"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3231,10 +3294,11 @@ exports[`UserStructure should render correctly when no structure 1`] = `
             className="mr-10"
           >
             <i
-              data-eva="file-add-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3245,10 +3309,11 @@ exports[`UserStructure should render correctly when no structure 1`] = `
             className="mr-10"
           >
             <i
-              data-eva="file-add"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3285,10 +3350,11 @@ exports[`UserStructure should render correctly when no structure 1`] = `
             className=""
           >
             <i
-              data-eva="person-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3299,10 +3365,11 @@ exports[`UserStructure should render correctly when no structure 1`] = `
             className=""
           >
             <i
-              data-eva="person"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3322,10 +3389,11 @@ exports[`UserStructure should render correctly when no structure 1`] = `
             className="mr-10"
           >
             <i
-              data-eva="log-out-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3336,10 +3404,11 @@ exports[`UserStructure should render correctly when no structure 1`] = `
             className="mr-10"
           >
             <i
-              data-eva="log-out"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3576,10 +3645,11 @@ exports[`UserStructure should render correctly when structure with membres when 
             className=""
           >
             <i
-              data-eva="star-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3590,10 +3660,11 @@ exports[`UserStructure should render correctly when structure with membres when 
             className=""
           >
             <i
-              data-eva="star"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3613,10 +3684,11 @@ exports[`UserStructure should render correctly when structure with membres when 
             className="mr-10"
           >
             <i
-              data-eva="file-add-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3627,10 +3699,11 @@ exports[`UserStructure should render correctly when structure with membres when 
             className="mr-10"
           >
             <i
-              data-eva="file-add"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3667,10 +3740,11 @@ exports[`UserStructure should render correctly when structure with membres when 
             className=""
           >
             <i
-              data-eva="person-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3681,10 +3755,11 @@ exports[`UserStructure should render correctly when structure with membres when 
             className=""
           >
             <i
-              data-eva="person"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3704,10 +3779,11 @@ exports[`UserStructure should render correctly when structure with membres when 
             className="mr-10"
           >
             <i
-              data-eva="log-out-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3718,10 +3794,11 @@ exports[`UserStructure should render correctly when structure with membres when 
             className="mr-10"
           >
             <i
-              data-eva="log-out"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -3750,10 +3827,11 @@ exports[`UserStructure should render correctly when structure with membres when 
           className="mr-10"
         >
           <i
-            data-eva="book-outline"
-            data-eva-fill="#fff"
-            data-eva-height="20px"
-            data-eva-width="20px"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-book-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"book\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z\\"/></g></g></svg>",
+              }
+            }
           />
         </span>
         Voir dans l'annuaire
@@ -4173,10 +4251,11 @@ exports[`UserStructure should render correctly when structure with membres when 
             className=""
           >
             <i
-              data-eva="star-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -4187,10 +4266,11 @@ exports[`UserStructure should render correctly when structure with membres when 
             className=""
           >
             <i
-              data-eva="star"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -4210,10 +4290,11 @@ exports[`UserStructure should render correctly when structure with membres when 
             className="mr-10"
           >
             <i
-              data-eva="file-add-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -4224,10 +4305,11 @@ exports[`UserStructure should render correctly when structure with membres when 
             className="mr-10"
           >
             <i
-              data-eva="file-add"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -4264,10 +4346,11 @@ exports[`UserStructure should render correctly when structure with membres when 
             className=""
           >
             <i
-              data-eva="person-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -4278,10 +4361,11 @@ exports[`UserStructure should render correctly when structure with membres when 
             className=""
           >
             <i
-              data-eva="person"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -4301,10 +4385,11 @@ exports[`UserStructure should render correctly when structure with membres when 
             className="mr-10"
           >
             <i
-              data-eva="log-out-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -4315,10 +4400,11 @@ exports[`UserStructure should render correctly when structure with membres when 
             className="mr-10"
           >
             <i
-              data-eva="log-out"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </span>
@@ -4347,10 +4433,11 @@ exports[`UserStructure should render correctly when structure with membres when 
           className="mr-10"
         >
           <i
-            data-eva="book-outline"
-            data-eva-fill="#fff"
-            data-eva-height="20px"
-            data-eva-width="20px"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-book-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"book\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z\\"/></g></g></svg>",
+              }
+            }
           />
         </span>
         Voir dans l'annuaire
@@ -4391,10 +4478,11 @@ exports[`UserStructure should render correctly when structure with membres when 
               className="mr-10"
             >
               <i
-                data-eva="person-add-outline"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-1V5a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0V8h1a1 1 0 0 0 0-2z\\"/><path d=\\"M10 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M10 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                  }
+                }
               />
             </span>
             Ajouter un membre
@@ -4491,10 +4579,11 @@ exports[`UserStructure should render correctly when structure with membres when 
                     >
                       <span>
                         <i
-                          data-eva="edit"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-edit\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"edit\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -4513,10 +4602,11 @@ exports[`UserStructure should render correctly when structure with membres when 
                     >
                       <span>
                         <i
-                          data-eva="trash"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -4591,10 +4681,11 @@ exports[`UserStructure should render correctly when structure with membres when 
                     >
                       <span>
                         <i
-                          data-eva="edit"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-edit\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"edit\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -4613,10 +4704,11 @@ exports[`UserStructure should render correctly when structure with membres when 
                     >
                       <span>
                         <i
-                          data-eva="trash"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>

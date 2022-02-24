@@ -7,6 +7,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import Streamline from "assets/streamline";
 import { tags } from "data/tags";
+import { IDispositif, IUserFavorite } from "types/interface";
 
 const CardText = styled.p`
   font-weight: 14px;
@@ -22,21 +23,17 @@ const BookmarkedContainer = styled.div`
 `;
 
 interface Props {
-  pin: any
-  pinnedList: any[]
-  dispositif: any
+  pin: (e: any, dispositif: IDispositif|IUserFavorite) => void
+  pinnedList: string[]|undefined
+  dispositif: IDispositif|IUserFavorite
   showPinned: boolean
 }
 
 const SearchResultCard = (props: Props) => {
-  const pinned =
-  props.pinnedList.includes(props.dispositif._id) ||
-  props.pinnedList.filter(
-      (pinnedDispostif) =>
-        pinnedDispostif && pinnedDispostif._id === props.dispositif._id
-    ).length > 0;
+  const pinned = !props.pinnedList ? false : !!props.pinnedList.find(
+    (pinnedDispostifId) => pinnedDispostifId === props.dispositif._id.toString()
+  );
 
-  if (!props.dispositif.hidden) {
     let shortTag = "";
     let shortTagFull = "";
     let iconTag = null;
@@ -46,7 +43,7 @@ const SearchResultCard = (props: Props) => {
       props.dispositif.tags[0] &&
       props.dispositif.tags[0].short
     ) {
-      shortTag = (props.dispositif.tags[0].short || {}).replace(/ /g, "-");
+      shortTag = (props.dispositif.tags[0].short || "").replace(/ /g, "-");
       shortTagFull = props.dispositif.tags[0].short;
     }
     if (shortTagFull) {
@@ -58,7 +55,7 @@ const SearchResultCard = (props: Props) => {
         className={
           "card-col puff-in-center " + (props.dispositif.typeContenu || "dispositif")
         }
-        key={props.dispositif._id}
+        key={props.dispositif._id.toString()}
       >
         <Link
           href={{
@@ -127,8 +124,6 @@ const SearchResultCard = (props: Props) => {
         </Link>
       </div>
     );
-  }
-  return null;
 };
 
 export default SearchResultCard;

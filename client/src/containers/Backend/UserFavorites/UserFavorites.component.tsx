@@ -18,12 +18,11 @@ import {
 } from "./components/SubComponents";
 import { FrameModal } from "components/Modals";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
-import { IUserFavorite } from "types/interface";
+import { IDispositif, IUserFavorite } from "types/interface";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { FavoritesLoading } from "./components/FavoritesLoading";
 import { Navigation } from "../Navigation";
 import { useRouter } from "next/router";
-declare const window: Window;
 
 export interface PropsBeforeInjection {
 }
@@ -56,7 +55,7 @@ export const UserFavoritesComponent = (props: Props) => {
   useEffect(() => {
     dispatch(fetchUserFavoritesActionCreator(locale));
     window.scrollTo(0, 0);
-  }, [locale]);
+  }, [locale, dispatch]);
 
   const isLoadingFetch = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_USER_FAVORITES)
@@ -78,8 +77,8 @@ export const UserFavoritesComponent = (props: Props) => {
       </div>
     );
 
-  const pinnedList = favorites.map((favorite) => favorite._id);
-  const removePinnedDispositif = (e: any, dispositif: IUserFavorite) => {
+  const pinnedList = favorites.map((favorite) => favorite._id.toString());
+  const removePinnedDispositif = (e: any, dispositif: IDispositif | IUserFavorite) => {
     e.stopPropagation();
     e.preventDefault();
     dispatch(
@@ -149,7 +148,6 @@ export const UserFavoritesComponent = (props: Props) => {
             {favorites.map((fav) => (
               <CardContainer key={fav._id}>
                 <SearchResultCard
-                  //@ts-ignore
                   pin={removePinnedDispositif}
                   pinnedList={pinnedList}
                   dispositif={fav}

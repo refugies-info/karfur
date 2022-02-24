@@ -3,14 +3,14 @@ import { Modal } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Streamline from "assets/streamline";
-import { initial_data } from "data/searchFilters";
+import { AvailableFilters, searchTheme, searchAge, searchFrench } from "data/searchFilters";
 import styles from "./MobileSearchFilterModal.module.scss";
 import { tags } from "data/tags";
 
 interface Props {
-  selectOption: (item: any, type: string) => void;
+  selectOption: (item: string, type: AvailableFilters) => void;
   toggle: () => void;
-  type: string;
+  type: AvailableFilters;
   show: boolean;
   title: string;
   defaultTitle: string;
@@ -21,23 +21,23 @@ interface Props {
 export const MobileSearchFilterModal = (props: Props) => {
   const { t } = useTranslation();
 
-  const data: any =
-    props.type === "thème"
-      ? tags
+  const data =
+    props.type === "theme"
+      ? searchTheme.children
       : props.type === "age"
-      ? initial_data.filter(
-          (item: { title: string }) => item.title === "J'ai"
-        )[0].children
-      : props.type === "french"
-      ? initial_data.filter(
-          (item: { title: string }) => item.title === "Je parle"
-        )[0].children
-      : null;
+      ? searchAge.children
+      : props.type === "frenchLevel"
+      ? searchFrench.children
+      : undefined;
 
-  const selectOption = (item: any, type: string) => {
+  const selectOption = (item: string, type: AvailableFilters) => {
     props.selectOption(item, type);
     props.toggle();
   };
+
+  const findTag = (tagName: string) => {
+    return tags.find(tag => tag.name === tagName);
+  }
 
   return (
     <Modal
@@ -55,28 +55,28 @@ export const MobileSearchFilterModal = (props: Props) => {
       </div>
       {/* Display list of possible values */}
       {data &&
-        data.map((item: any, index: number) => {
+        data.map((item, index: number) => {
           return (
             <div key={index}>
-              {props.type === "thème" ? (
+              {props.type === "theme" ? (
                 <button
-                  onClick={() => selectOption(item, props.type)}
+                  onClick={() => selectOption(item.name, props.type)}
                   className={`${styles.filter_btn} ${styles.theme}`}
-                  style={{ backgroundColor: item.darkColor}}
+                  style={{ backgroundColor: findTag(item.name)?.darkColor}}
                 >
                   {t("Tags." + item.name, item.name)}
-                  {item.icon ? (
+                  {findTag(item.name)?.icon ? (
                     <Streamline
-                      name={item.icon}
+                      name={findTag(item.name)?.icon}
                       stroke={"white"}
                       width={22}
                       height={22}
                     />
                   ) : null}
                 </button>
-              ) : props.type === "age" || props.type === "french" ? (
+              ) : props.type === "age" || props.type === "frenchLevel" ? (
                 <button
-                  onClick={() => selectOption(item, props.type)}
+                  onClick={() => selectOption(item.name, props.type)}
                   className={`${styles.filter_btn} ${styles.other}`}
                 >
                   <div className="m-auto">

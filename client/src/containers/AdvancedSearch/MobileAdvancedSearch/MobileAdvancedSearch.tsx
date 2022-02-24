@@ -8,22 +8,16 @@ import { SearchResultsDisplayedOnMobile } from "./SearchResultsDisplayedOnMobile
 import { Tag, IDispositif } from "types/interface";
 import { SelectedFilter } from "./SelectedFilter/SelectedFilter";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-declare const window: Window;
-import { initial_data } from "data/searchFilters";
+import { AvailableFilters } from "data/searchFilters";
 import { tags } from "data/tags";
+import { SearchQuery } from "pages/advanced-search";
 
 interface Props {
   nbFilteredResults: number;
-  recherche: string[];
-  addParamasInRechercher: (index: number, item: any) => void;
+  addToQuery: (query: Partial<SearchQuery>) => void;
   queryDispositifs: () => void;
-  desactiver: (index: number) => void;
-  query: {
-    city?: string;
-    tag?: string;
-    bottomValue?: string;
-    niveauFrancais?: string;
-  };
+  removeFromQuery: (filter: AvailableFilters) => void;
+  query: SearchQuery
   principalThemeList: IDispositif[];
   principalThemeListFullFrance: IDispositif[];
   dispositifs: IDispositif[];
@@ -31,7 +25,6 @@ interface Props {
   secondaryThemeList: IDispositif[];
   secondaryThemeListFullFrance: IDispositif[];
   totalFicheCount: number;
-  history: any;
   isLoading: boolean;
 }
 
@@ -51,7 +44,7 @@ const SearchBoutton = styled.div`
   background-color: ${(props) =>
     props.isDisabled
       ? colors.grey
-      : props.isUrlEmpty || props.isUserModifyingSearch
+      : props.showFilterForm || props.isUserModifyingSearch
       ? colors.vert
       : props.tagSelected
       ? props.tagSelected.darkColor
@@ -108,26 +101,23 @@ export const MobileAdvancedSearch = (props: Props) => {
   const [showTagModal, setShowTagModal] = useState(false);
   const [tagSelected, setTagSelected] = useState<Tag | null>(null);
   const [showAgeModal, setShowAgeModal] = useState(false);
-  const [ageSelected, setAgeSelected] = useState<{ name: string } | null>(null);
+  const [ageSelected, setAgeSelected] = useState<string| null>(null);
   const [showFrenchModal, setShowFrenchModal] = useState(false);
-  const [frenchSelected, setFrenchSelected] =
-    useState<{ name: string } | null>(null);
+  const [frenchSelected, setFrenchSelected] = useState<string| null>(null);
   const [ville, setVille] = useState("");
   const [geoSearch, setGeoSearch] = useState(false);
-  const [isUrlEmpty, setIsUrlEmpty] = useState(true);
-  const isSearchButtonDisabled =
-    !tagSelected && !ageSelected && !frenchSelected && ville === "";
+  const [showFilterForm, setShowFilterForm] = useState(true);
   const [showMoreFiltre, setShowMoreFiltre] = useState(false);
 
-  const toggleShowModal = (modal: string) => {
+  const toggleShowModal = (modal: AvailableFilters) => {
     switch (modal) {
-      case "thème":
+      case "theme":
         setShowTagModal(!showTagModal);
         break;
       case "age":
         setShowAgeModal(!showAgeModal);
         break;
-      case "french":
+      case "frenchLevel":
         setShowFrenchModal(!showFrenchModal);
         break;
       default:
@@ -137,84 +127,16 @@ export const MobileAdvancedSearch = (props: Props) => {
 
   const toggleShowFiltre = () => setShowMoreFiltre(!showMoreFiltre);
 
-  const selectOption = (item: any, type: string) => {
-    let index = 0;
-    let el;
-    switch (type) {
-      case "thème":
-        el = props.recherche.filter(
-          (item: any) => item.queryName === "tags.name"
-        )[0];
-        index = props.recherche.indexOf(el);
-        setTagSelected(item);
-        break;
-      case "age":
-        el = props.recherche.filter(
-          (item: any) => item.queryName === "audienceAge"
-        )[0];
-        index = props.recherche.indexOf(el);
-        setAgeSelected(item);
-        break;
-      case "french":
-        el = props.recherche.filter(
-          (item: any) => item.queryName === "niveauFrancais"
-        )[0];
-        index = props.recherche.indexOf(el);
-        setFrenchSelected(item);
-        break;
-      default:
-        break;
-    }
-    props.addParamasInRechercher(index, item);
+  const selectOption = (itemName: string, type: AvailableFilters) => {
+    props.addToQuery({ [type]: itemName });
   };
 
   useEffect(() => {
-    setIsUrlEmpty(Object.keys(props.query)[0] === "");
-    props.recherche.map((item: any) => {
-      if (item.value) {
-        switch (item.queryName) {
-          case "localisation":
-            setVille(item.value);
-            break;
-          case "tags.name":
-            setTagSelected(
-              tags.filter(
-                (filtre: any) => filtre.name === item.value
-              )[0]
-            );
-            break;
-          case "audienceAge":
-            let children = initial_data.filter(
-              (filtre: any) => filtre.queryName === "audienceAge"
-            )[0].children;
-            if (children) {
-              setAgeSelected(
-                // @ts-ignore
-                children.filter(
-                  (filtre: any) => filtre.name === item.value.toString()
-                )[0]
-              );
-            }
-            break;
-          case "niveauFrancais":
-            let child = initial_data.filter(
-              (item: any) => item.queryName === "niveauFrancais"
-            )[0].children;
-            if (child) {
-              setFrenchSelected(
-                // @ts-ignore
-                child.filter(
-                  (filtre: any) => filtre.name === item.value.toString()
-                )[0]
-              );
-            }
-            break;
-
-          default:
-            break;
-        }
-      }
-    });
+    const tag =  tags.find(tag => tag.name === props.query.theme);
+    setTagSelected(tag || null);
+    setVille(props.query.loc?.city || "");
+    setAgeSelected(props.query.age || null);
+    setFrenchSelected(props.query.frenchLevel || null);
 
     return () => {
       setTagSelected(null);
@@ -224,18 +146,20 @@ export const MobileAdvancedSearch = (props: Props) => {
     };
   }, [props.query]);
 
+  const isSearchButtonDisabled =
+    !tagSelected && !ageSelected && !frenchSelected && ville === "";
+
   const onSearchClick = () => {
     if (isSearchButtonDisabled) return;
-    if (isUrlEmpty) return props.queryDispositifs();
-    return props.history.push();
+    setShowFilterForm(!showFilterForm);
   };
 
   return (
     <MainContainer>
-      {!isUrlEmpty && (
+      {!showFilterForm && (
         <SearchBoutton
           isDisabled={isSearchButtonDisabled}
-          isUrlEmpty={isUrlEmpty}
+          showFilterForm={showFilterForm}
           tagSelected={tagSelected}
           onClick={onSearchClick}
         >
@@ -252,7 +176,7 @@ export const MobileAdvancedSearch = (props: Props) => {
           </SearchTitle>
         </SearchBoutton>
       )}
-      {isUrlEmpty ? (
+      {showFilterForm ? (
         <>
           <TextTitle>
             {t("SearchItem.J'ai besoin de", "J'ai besoin de")}
@@ -260,11 +184,10 @@ export const MobileAdvancedSearch = (props: Props) => {
           <SelectedFilter
             toggleShowModal={toggleShowModal}
             tagSelected={tagSelected}
-            type="thème"
+            type="theme"
             title={"Tags.choisir un thème"}
             defaultTitle={"choisir un thème"}
-            desactiver={props.desactiver}
-            recherche={props.recherche}
+            removeFromQuery={() => props.removeFromQuery("theme")}
           />
 
           <TextTitle>
@@ -272,13 +195,12 @@ export const MobileAdvancedSearch = (props: Props) => {
           </TextTitle>
           {geoSearch || ville !== "" ? (
             <LocalisationFilter
-              setState={setVille}
+              setVille={setVille}
               ville={ville}
               geoSearch={geoSearch}
               setGeoSearch={setGeoSearch}
-              addParamasInRechercher={props.addParamasInRechercher}
-              recherche={props.recherche}
-              desactiver={props.desactiver}
+              addToQuery={props.addToQuery}
+              removeFromQuery={props.removeFromQuery}
             ></LocalisationFilter>
           ) : (
             <>
@@ -298,8 +220,7 @@ export const MobileAdvancedSearch = (props: Props) => {
                 title={"SearchItem.choisir mon âge"}
                 defaultTitle={"choisir mon âge"}
                 setState={setAgeSelected}
-                desactiver={props.desactiver}
-                recherche={props.recherche}
+                removeFromQuery={() => props.removeFromQuery("age")}
               />
 
               <TextTitle>
@@ -309,12 +230,11 @@ export const MobileAdvancedSearch = (props: Props) => {
               <SelectedFilter
                 toggleShowModal={toggleShowModal}
                 otherFilterSelected={frenchSelected}
-                type="french"
+                type="frenchLevel"
                 title={"Tags.niveau de français"}
                 defaultTitle={"niveau de français"}
                 setState={setFrenchSelected}
-                desactiver={props.desactiver}
-                recherche={props.recherche}
+                removeFromQuery={() => props.removeFromQuery("frenchLevel")}
               />
             </>
           )}
@@ -332,12 +252,12 @@ export const MobileAdvancedSearch = (props: Props) => {
           {showTagModal && (
             <MobileSearchFilterModal
               selectOption={selectOption}
-              type="thème"
+              type="theme"
               title="Tags.thème"
               defaultTitle="thème"
               sentence="SearchItem.J'ai besoin de"
               defaultSentence="J'ai besoin de"
-              toggle={() => toggleShowModal("thème")}
+              toggle={() => toggleShowModal("theme")}
               show={showTagModal}
             />
           )}
@@ -356,12 +276,12 @@ export const MobileAdvancedSearch = (props: Props) => {
           {showFrenchModal && (
             <MobileSearchFilterModal
               selectOption={selectOption}
-              type="french"
+              type="frenchLevel"
               title="SearchItem.le français"
               defaultTitle="le français"
               sentence="SearchItem.Je parle"
               defaultSentence="Je parle"
-              toggle={() => toggleShowModal("french")}
+              toggle={() => toggleShowModal("frenchLevel")}
               show={showFrenchModal}
             />
           )}
@@ -369,8 +289,6 @@ export const MobileAdvancedSearch = (props: Props) => {
       ) : (
         <SearchResultsDisplayedOnMobile
           tagSelected={tagSelected}
-          ageSelected={ageSelected}
-          frenchSelected={frenchSelected}
           ville={ville}
           principalThemeList={props.principalThemeList}
           principalThemeListFullFrance={props.principalThemeListFullFrance}
@@ -381,13 +299,12 @@ export const MobileAdvancedSearch = (props: Props) => {
           totalFicheCount={props.totalFicheCount}
           nbFilteredResults={props.nbFilteredResults}
           isLoading={props.isLoading}
-          history={props.history}
         />
       )}
-      {isUrlEmpty && (
+      {showFilterForm && (
         <SearchBoutton
           isDisabled={isSearchButtonDisabled}
-          isUrlEmpty={isUrlEmpty}
+          showFilterForm={showFilterForm}
           tagSelected={tagSelected}
           onClick={onSearchClick}
         >

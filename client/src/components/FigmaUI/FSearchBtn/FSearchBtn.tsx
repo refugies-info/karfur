@@ -7,7 +7,7 @@ interface Props {
   className?: string;
   active?: boolean;
   color?: string;
-  desactiver?: any;
+  iconCallback?: any;
   children?: any;
   inHeader?: boolean;
   filter?: boolean;
@@ -17,6 +17,7 @@ interface Props {
   noHover?: boolean;
   lighter?: boolean;
   smallFont?: boolean;
+  noIcon?: boolean;
   [x: string]: any;
 }
 
@@ -34,7 +35,8 @@ const FSearchBtn = (props: Props) => {
     noHover,
     lighter,
     smallFont,
-    desactiver,
+    iconCallback,
+    noIcon,
     ...bProps
   } = props;
 
@@ -57,12 +59,12 @@ const FSearchBtn = (props: Props) => {
       {...bProps}
     >
       {children}
-      {active && (
+      {active && !noIcon && (
         <EVAIcon
           className="ml-10"
           name="close-outline"
           fill={filter ? "black" : ""}
-          onClick={props.desactiver || null}
+          onClick={props.iconCallback || null}
         />
       )}
     </button>

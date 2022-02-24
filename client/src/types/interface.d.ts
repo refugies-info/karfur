@@ -145,6 +145,11 @@ export interface UserLanguage {
   _id: ObjectId;
 }
 
+export interface DispositifPinned {
+  _id: string
+  datePin: Moment
+}
+
 export interface User {
   username: string;
   email?: string;
@@ -164,7 +169,9 @@ export interface User {
   contributions?: ObjectId[];
   noteTraduction?: number;
   status?: string;
-  cookies?: any;
+  cookies?: {
+    dispositifsPinned?: DispositifPinned[]
+  };
   structures?: ObjectId[];
   last_connected?: Moment;
   updatedAt: Moment;

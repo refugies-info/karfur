@@ -16,7 +16,6 @@ import {
   toggleTTSActionCreator,
   toggleSpinner,
 } from "services/Tts/tts.actions";
-import styled from "styled-components";
 import Streamline from "assets/streamline";
 import {
   userStructureHasResponsibleSeenNotification,
@@ -35,17 +34,6 @@ import { isMobile } from "react-device-detect";
 import styles from "./Navbar.module.scss";
 import marioProfile from "assets/mario-profile.jpg";
 import useRTL from "hooks/useRTL";
-
-const IconButton = styled.div`
-  background-color: ${colors.noir};
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  height: 50px;
-  width: 50px;
-`;
 
 interface Props {
   history: string[]
@@ -165,13 +153,14 @@ const Navbar = (props: Props) => {
         />
         <LanguageBtn hideTextOnMobile={true} />
         {isMobile ? (
-          <IconButton
+          <button
+            className={styles.mobile_search_btn}
             onClick={() => {
               router.push({ pathname: "/advanced-search" });
             }}
           >
             <EVAIcon name="search" size="large" fill={colors.blanc} />
-          </IconButton>
+          </button>
         ) : (
           <AdvancedSearchBar
             visible={visible}

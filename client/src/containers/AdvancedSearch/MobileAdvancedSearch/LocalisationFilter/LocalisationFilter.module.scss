@@ -1,0 +1,33 @@
+@import "src/scss/colors";
+
+.btn {
+  padding: 16px;
+  height: 53px;
+  width: 100%;
+  background-color: $blancSimple;
+  border: 1px solid;
+  color: $noir;
+  font-weight: bold;
+  border-color: $noir;
+  border-radius: 12px;
+  padding-top: 12px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter {
+  align-items: center;
+  padding: 16px;
+  height: 53px;
+  width: 100%;
+  background-color: $noir;
+  color: $blanc;
+  text-align: left;
+  font-weight: bold;
+  border-color: #212121;
+  border-radius: 12px;
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+}

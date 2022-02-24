@@ -801,11 +801,11 @@ const Dispositif = (props: Props) => {
       if (pinned) {
         newUser.cookies.dispositifsPinned = (
           user?.cookies?.dispositifsPinned || []
-        ).filter((x: any) => x._id !== dispositif._id);
+        ).filter((x) => x._id !== dispositif._id.toString());
       } else {
         newUser.cookies.dispositifsPinned = [
           ...(user?.cookies?.dispositifsPinned || []),
-          { _id: dispositif._id, datePin: new Date() },
+          { _id: dispositif._id.toString(), datePin: moment() },
         ];
       }
 

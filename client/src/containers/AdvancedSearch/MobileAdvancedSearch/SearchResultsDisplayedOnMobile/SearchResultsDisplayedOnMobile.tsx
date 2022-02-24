@@ -7,11 +7,10 @@ import { colors } from "colors";
 import Streamline from "assets/streamline";
 import { LoadingFicheOnMobile } from "./LoadingFicheOnMobile";
 import NoResultPlaceholder from "components/Pages/advanced-search/NoResultPlaceholder";
+import { useRouter } from "next/router";
 
 interface Props {
   tagSelected: null | Tag;
-  ageSelected: { name: string } | null;
-  frenchSelected: { name: string } | null;
   ville: string;
   principalThemeList: IDispositif[];
   principalThemeListFullFrance: IDispositif[];
@@ -22,7 +21,6 @@ interface Props {
   totalFicheCount: number;
   nbFilteredResults: number;
   isLoading: boolean;
-  history: any;
 }
 const TotalCountTitle = styled.div`
   font-weight: bold;
@@ -72,6 +70,7 @@ const City = styled.div`
 
 export const SearchResultsDisplayedOnMobile = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   if (props.isLoading) {
     return (
@@ -95,8 +94,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
       </TotalCountTitle>
 
       {props.nbFilteredResults === 0 && props.ville === "" && (
-        //@ts-ignore
-        <NoResultPlaceholder restart={props.history.push} />
+        <NoResultPlaceholder restart={() => router.push("/advanced-search")} />
       )}
 
       {props.tagSelected && props.ville === "" ? (
@@ -107,8 +105,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
             return (
               <FicheOnMobile
                 key={index}
-                item={item}
-                history={props.history}
+                dispositif={item}
               />
             );
           })}
@@ -145,8 +142,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
               return (
                 <FicheOnMobile
                   key={index}
-                  item={item}
-                  history={props.history}
+                  dispositif={item}
                 />
               );
             })}
@@ -191,8 +187,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
 
                 <FicheOnMobile
                   key={index}
-                  item={item}
-                  history={props.history}
+                  dispositif={item}
                 />
               );
             })}
@@ -231,8 +226,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
                 //Display all dispositif about this tag as primary or secondary tag and all France as location
 
                 <FicheOnMobile
-                  item={item}
-                  history={props.history}
+                  dispositif={item}
                   key={index}
                 />
               );
@@ -253,8 +247,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
               //Display all dispositif about this location
               <FicheOnMobile
                 key={index}
-                item={item}
-                history={props.history}
+                dispositif={item}
               />
             );
           })}
@@ -276,8 +269,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
 
                 <FicheOnMobile
                   key={index}
-                  item={item}
-                  history={props.history}
+                  dispositif={item}
                 />
               );
             }

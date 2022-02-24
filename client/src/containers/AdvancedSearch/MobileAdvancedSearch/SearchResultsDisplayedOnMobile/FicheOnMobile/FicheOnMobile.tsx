@@ -5,10 +5,10 @@ import styled from "styled-components";
 import { colors } from "colors";
 import Streamline from "assets/streamline";
 import { tags } from "data/tags";
+import { useRouter } from "next/router";
 
 interface Props {
-  item: IDispositif;
-  history: any;
+  dispositif: IDispositif;
 }
 
 const ItemContainer = styled.div`
@@ -51,41 +51,42 @@ const PictoCircle = styled.div`
 
 export const FicheOnMobile = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   const navigateToContent = () => {
-    return props.history.push({
+    return router.push({
       pathname:
         "/" +
-        (props.item.typeContenu || "dispositif") +
-        (props.item._id ? "/" + props.item._id : ""),
+        (props.dispositif.typeContenu || "dispositif") +
+        (props.dispositif._id ? "/" + props.dispositif._id : ""),
     });
   };
   return (
     <div>
-      {props.item.tags[0] && (
+      {props.dispositif.tags[0] && (
         <ItemContainer
-          darkColor={props.item.tags[0].darkColor}
-          typeContenu={props.item.typeContenu}
-          lightColor={props.item.tags[0].lightColor}
+          darkColor={props.dispositif.tags[0].darkColor}
+          typeContenu={props.dispositif.typeContenu}
+          lightColor={props.dispositif.tags[0].lightColor}
           onClick={navigateToContent}
         >
-          <TitleText color={props.item.tags[0].darkColor}>
-            {props.item.titreInformatif}
-            {props.item.titreMarque && (
+          <TitleText color={props.dispositif.tags[0].darkColor}>
+            {props.dispositif.titreInformatif}
+            {props.dispositif.titreMarque && (
               <SubTitleText>
                 {" " + t("Dispositif.avec", "avec") + " "}{" "}
-                {props.item.titreMarque}
+                {props.dispositif.titreMarque}
               </SubTitleText>
             )}
           </TitleText>
 
-          <PictoCircle color={props.item.tags[0].darkColor}>
+          <PictoCircle color={props.dispositif.tags[0].darkColor}>
             <Streamline
               name={
-                props.item.tags[0].icon
-                  ? props.item.tags[0].icon
+                props.dispositif.tags[0].icon
+                  ? props.dispositif.tags[0].icon
                   : tags.filter(
-                      (el) => el.short === props.item.tags[0].short
+                      (el) => el.short === props.dispositif.tags[0].short
                     )[0].icon
               }
               stroke={"white"}

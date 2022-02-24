@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as eva from "eva-icons";
 
 const SIZE = {
@@ -27,9 +27,16 @@ interface Props {
 const EVAIcon = (props: Props) => {
   const { name, fill } = props;
   const size = typeof props.size === "number" ? `${props.size}px` : SIZE[props.size];
+  const [svg, setSvg] = useState("");
 
   useEffect(() => {
-    eva.replace({ name, fill, size })
+    setSvg(
+      eva.icons[name].toSvg({
+        fill,
+        width: size,
+        height: size
+      })
+    );
   }, [name, fill, size]);
 
   return (
@@ -38,12 +45,7 @@ const EVAIcon = (props: Props) => {
       className={props.className}
       onClick={props.onClick}
     >
-      <i
-        data-eva={name}
-        data-eva-fill={fill}
-        data-eva-height={size}
-        data-eva-width={size}
-      />
+      <i dangerouslySetInnerHTML={{ __html: svg }}></i>
     </span>
   );
 }

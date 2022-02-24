@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
+import qs from "query-string";
 import { colors } from "colors";
-import { initial_data } from "data/searchFilters";
+import { searchTheme } from "data/searchFilters";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import { MobileSearchFilterModal } from "containers/AdvancedSearch/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
 import { HomeCard } from "components/Pages/homepage/HomeCard";
@@ -107,9 +108,10 @@ const Homepage = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
 
-  const selectOption = (_item: any) => {
+  const selectOption =  (tagName: string) => {
     router.push({
-      pathname: "/advanced-search" // TODO : add filter in URI
+      pathname: "/advanced-search",
+      search: qs.stringify({tag: tagName}),
     });
   };
   const togglePopup = () => setPopup(!popup);
@@ -120,9 +122,7 @@ const Homepage = (props: Props) => {
   const closeParrainage = () => setParrainage(false);
   const toggleOverlay = () => setOverlay(!overlay);
 
-  const searchItem = initial_data[0];
   const isRTL = useRTL();
-  searchItem.title = "J'ai besoin de";
 
   return (
     <div className="animated fadeIn homepage">
@@ -186,7 +186,7 @@ const Homepage = (props: Props) => {
 
           <div className="search-row">
             <HomeSearch
-              searchItem={searchItem}
+              searchItem={searchTheme}
               togglePopup={togglePopup}
               toggleOverlay={toggleOverlay}
               toggleModal={toggleShowTagModal}
@@ -470,7 +470,7 @@ const Homepage = (props: Props) => {
       )}
       <MobileSearchFilterModal
         selectOption={selectOption}
-        type="thème"
+        type="theme"
         title="Tags.thème"
         defaultTitle="thème"
         sentence="SearchItem.J'ai besoin de"

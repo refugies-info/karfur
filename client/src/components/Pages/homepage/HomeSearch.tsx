@@ -11,6 +11,7 @@ import { isMobile } from "react-device-detect";
 import { Tag } from "types/interface";
 import styles from "./HomeSearch.module.scss";
 import useRTL from "hooks/useRTL";
+import { SearchItemType } from "data/searchFilters";
 
 const IconContainer = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ const IconContainer = styled.div`
 `;
 
 interface Props {
-  searchItem: any;
+  searchItem: SearchItemType;
   togglePopup: () => void;
   toggleOverlay: () => void;
   toggleModal: () => void;
@@ -201,12 +202,6 @@ const HomeSearch = (props: Props) => {
               : t("Tags." + searchItem.placeholder, searchItem.placeholder)}
           </button>
         </Ripples>
-      )}
-
-      {searchItem.title2 && (
-        <span className="ml-10">
-          {t("SearchItem." + searchItem.title2, searchItem.title2)}
-        </span>
       )}
     </div>
   );

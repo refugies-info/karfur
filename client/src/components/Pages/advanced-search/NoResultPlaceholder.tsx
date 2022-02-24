@@ -52,7 +52,7 @@ const NoResultsText = styled.p`
 
 interface Props {
   restart: () => void
-  writeNew: () => void
+  writeNew?: () => void
 }
 
 const NoResultPlaceholder = (props: Props) => {

@@ -1,27 +1,34 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { isMobile } from "react-device-detect";
 
-import { logoRI, logo_mobile } from "../../assets/figma";
+import { logoRI, logo_mobile } from "assets/figma";
 import styles from "./Logo.module.scss";
 
 const Logo = () => {
   return (
     <Link href="/">
       <a className={`${styles.logo} mr-10`}>
-        {!isMobile ?
+        <div
+          className={styles.logo_img}
+        >
           <Image
+            key="logo"
             src={logoRI}
-            className={styles.logo_img}
-            alt="logo refugies-info"
-          /> :
-          <Image
-            src={logo_mobile}
-            className={styles.logo_webmobile}
             alt="logo refugies-info"
           />
-        }
+        </div>
+        <div
+          className={styles.logo_img_mobile}
+        >
+          <Image
+            key="logo_mobile"
+            src={logo_mobile}
+            alt="logo refugies-info"
+            width={50}
+            height={50}
+          />
+        </div>
       </a>
     </Link>
   );

@@ -148,6 +148,17 @@ $avatarSize: 52px;
       }
     }
   }
+  .mobile_search_btn {
+    background-color: $noir;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    border: none;
+  }
   .auth_btn {
     @include media-max("desktop-down") {
       :global(span.mr-10) {

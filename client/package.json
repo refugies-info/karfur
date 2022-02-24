@@ -116,6 +116,7 @@
     "@types/react-redux": "^7.1.9",
     "@types/react-router-hash-link": "^1.2.1",
     "@types/react-scrollspy": "^3.3.2",
+    "@types/react-sizes": "^2.0.0",
     "@types/reactstrap": "^7.1.6",
     "@types/recompose": "^0.30.7",
     "@types/styled-components": "^5.1.1",
