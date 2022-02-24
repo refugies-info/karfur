@@ -4,12 +4,9 @@ import { Col, Row, Spinner } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import ContentEditable from "react-contenteditable";
-import dynamic from "next/dynamic";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import {
   EditorState,
-  convertToRaw,
-  convertFromRaw,
   ContentState,
 } from "draft-js";
 import moment from "moment/min/moment-with-locales";
@@ -43,7 +40,6 @@ import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs
 import ContribCaroussel from "components/Pages/dispositif/ContribCaroussel/ContribCaroussel";
 import SideTrad from "components/Pages/dispositif/SideTrad/SideTrad";
 import ExpertSideTrad from "components/Pages/dispositif/SideTrad/ExpertSideTrad";
-import DemarcheCreateModal from "components/Modals/DemarcheCreateModal/DemarcheCreateModal";
 import { initializeTimer } from "containers/Translation/functions";
 import {
   contenu,
@@ -53,8 +49,6 @@ import {
   showModals,
   menuDemarche,
   customConvertOption,
-  infocardsDemarcheTitles,
-  infocardFranceEntiere,
   ShortContent,
 } from "data/dispositif";
 import { BackButton } from "components/Frontend/Dispositif/BackButton";
@@ -102,8 +96,13 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 moment.locale("fr");
 
 let htmlToDraft: any = null;
+let NotificationManager: any = null;
+let NotificationContainer: any = null;
 if (isInBrowser()) {
   htmlToDraft = require("html-to-draftjs").default;
+  const ReactNotifications = require("react-notifications/dist/react-notifications.js");
+  NotificationManager = ReactNotifications.NotificationManager;
+  NotificationContainer = ReactNotifications.NotificationContainer;
 }
 
 const InfoBoxLanguageContainer = styled.div`
@@ -1171,20 +1170,18 @@ const Dispositif = (props: Props) => {
         });
       } else {
         if (isInBrowser()) {
-          //@ts-ignore
-          // TODO: fix
-          // NotificationManager.success(
-          //   "Retrouvez votre contribution dans votre page 'Mon profil'",
-          //   "Enregistrement automatique",
-          //   5000,
-          //   () => {
-          //     Swal.fire(
-          //       "Enregistrement automatique",
-          //       "Retrouvez votre contribution dans votre page 'Mon profil'",
-          //       "success"
-          //     );
-          //   }
-          // );
+          NotificationManager.success(
+            "Retrouvez votre contribution dans votre page 'Mon profil'",
+            "Enregistrement automatique",
+            5000,
+            () => {
+              Swal.fire(
+                "Enregistrement automatique",
+                "Retrouvez votre contribution dans votre page 'Mon profil'",
+                "success"
+              );
+            }
+          );
         }
       }
       dispatch(setSelectedDispositifActionCreator(newDispo));
@@ -1940,7 +1937,9 @@ const Dispositif = (props: Props) => {
             t={t}
           />
 
-          {/* {isInBrowser() && <NotificationContainer />} TODO: fix */}
+          {isInBrowser() && NotificationContainer !== null &&
+            <NotificationContainer />
+          }
 
           {isDispositifLoading && (
             <div className="ecran-protection no-main">
