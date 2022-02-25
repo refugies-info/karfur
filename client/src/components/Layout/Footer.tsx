@@ -149,6 +149,11 @@ const Footer = () => {
                 {t("Mentions légales", "Mentions légales")}
               </a>
             </Link>
+            <Link href="/declaration-accessibilite">
+              <a className={styles.link}>
+                {t("Footer.accessibility_link", "Accessibilité : non conforme")}
+              </a>
+            </Link>
           </LinkContainer>
         </ColumnContainer>
         <ButtonContainer>

@@ -7,6 +7,7 @@ const logger = require("../../logger");
 const nodemailer = require("nodemailer");
 import { computePasswordStrengthScore } from "../../libs/computePasswordStrengthScore";
 import { sendResetPasswordMail } from "../../modules/mail/mail.service";
+import formatPhoneNumber from "../../libs/formatPhoneNumber";
 
 const transporter = nodemailer.createTransport({
   host: "pro2.mail.ovh.net",
@@ -167,7 +168,7 @@ function set_user_info(req, res) {
       _id: user._id,
     };
     if (user.email) userToSave.email = user.email;
-    if (user.phone) userToSave.phone = user.phone;
+    if (user.phone) userToSave.phone = formatPhoneNumber(user.phone);
     if (user.last_connected) userToSave.last_connected = user.last_connected;
     if (user.cookies) userToSave.cookies = user.cookies;
     if (user.traducteur) {

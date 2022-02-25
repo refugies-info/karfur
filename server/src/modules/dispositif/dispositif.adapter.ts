@@ -12,10 +12,11 @@ import { isTitreInformatifObject } from "../../types/typeguards";
 
 export const filterDispositifsForDraftReminders = (
   dispositifs: DispositifPopulatedDoc[],
-  nbDaysBeforeReminder: number
+  nbDaysBeforeReminder: number,
+  reminderDateProp: "draftReminderMailSentDate" | "draftSecondReminderMailSentDate"
 ) =>
   dispositifs.filter((dispositif) => {
-    if (dispositif.draftReminderMailSentDate) {
+    if (dispositif.get(reminderDateProp)) {
       logger.info(
         `[sendDraftReminderMail] dispositif with id ${dispositif._id} has already received reminder`
       );
@@ -85,7 +86,7 @@ interface Dispositif {
   creatorId: { _id: ObjectId; username: string; email?: string };
 }
 
-interface FormattedDispositif {
+export interface FormattedDispositif {
   creatorId: ObjectId;
   username: string;
   email: string;

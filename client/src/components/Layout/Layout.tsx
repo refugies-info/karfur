@@ -65,6 +65,13 @@ const Layout = (props: Props) => {
     if (!user && !isUserLoading) {
       dispatch(fetchUserActionCreator());
     }
+  }, [
+    user,
+    isUserLoading,
+    dispatch
+  ]);
+
+  useEffect(() => {
     if (dispositifs.length === 0 && !isDispositifsLoading) {
       dispatch(fetchActiveDispositifsActionsCreator());
     }
@@ -76,8 +83,6 @@ const Layout = (props: Props) => {
     isDispositifsLoading,
     langues.length,
     isLanguagesLoading,
-    user,
-    isUserLoading,
     dispatch
   ]);
 

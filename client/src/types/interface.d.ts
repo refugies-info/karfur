@@ -116,6 +116,7 @@ export interface SimplifiedDispositif {
   lastAdminUpdate?: Moment;
   lastReminderMailSentToUpdateContentDate?: Moment;
   draftReminderMailSentDate?: Moment;
+  draftSecondReminderMailSentDate?: Moment;
   lastModificationDate?: Moment;
   needs?: ObjectId[];
   tags: Tag[];

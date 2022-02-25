@@ -31,6 +31,7 @@ import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import useRTL from "hooks/useRTL";
 import { tags } from "data/tags";
+import isInBrowser from "lib/isInBrowser";
 
 const CoronaAlert = styled.div`
   display: flex;
@@ -101,7 +102,9 @@ const Homepage = (props: Props) => {
   const [popup, setPopup] = useState(false);
   const [overlay, setOverlay] = useState(false);
   const [showTagModal, setShowTagModal] = useState(false);
-  const [showNewslettreModal, setShowNewslettreModal] = useState(false);
+  const [showNewslettreModal, setShowNewslettreModal] = useState(
+    isInBrowser() ? new URLSearchParams(window.location.search).get("newsletter") === "" : false
+  );
   const [showBecomeTesterModal, setShowBecomeTesterModal] = useState(false);
   const [parrainage, setParrainage] = useState(false);
 

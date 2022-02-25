@@ -120,7 +120,8 @@ export const sendOneDraftReminderMailService = async (
   username: string,
   titreInformatif: string,
   userId: ObjectId,
-  dispositifId: ObjectId
+  dispositifId: ObjectId,
+  reminder: "first" | "second"
 ) => {
   try {
     logger.info("[sendOneDraftReminderMailService]  received", {
@@ -140,7 +141,7 @@ export const sendOneDraftReminderMailService = async (
         titreInformatif,
       },
     };
-    const templateName = "oneDraftReminder";
+    const templateName = reminder === "first" ? "oneDraftReminder" : "secondOneDraftReminder";
     sendMail(templateName, dynamicData);
     await addMailEvent({ templateName, username, email, userId, dispositifId });
     return;
@@ -196,7 +197,8 @@ export const sendUpdateReminderMailService = async (
 export const sendMultipleDraftsReminderMailService = async (
   email: string,
   username: string,
-  userId: ObjectId
+  userId: ObjectId,
+  reminder: "first" | "second"
 ) => {
   try {
     logger.info("[sendMultipleDraftsReminderMailService] received", {
@@ -214,7 +216,7 @@ export const sendMultipleDraftsReminderMailService = async (
         pseudo: username,
       },
     };
-    const templateName = "multipleDraftsReminder";
+    const templateName = reminder === "first" ? "multipleDraftsReminder" : "secondMultipleDraftReminder";
     sendMail(templateName, dynamicData);
     await addMailEvent({ templateName, username, email, userId });
     return;
@@ -560,46 +562,3 @@ export const sendNewReponsableMailService = async (
     });
   }
 };
-
-/* TODO: to delete once sent */
-interface Enabled2FaEmail {
-  userId: ObjectId;
-  email: string;
-  pseudonyme: string;
-  structurename: string;
-}
-
-export const sendEnabled2FaEmailMailService = async (
-  data: Enabled2FaEmail
-) => {
-  try {
-    logger.info("[sendEnabled2FaEmailMailService] received");
-
-    const dynamicData = {
-      to: data.email,
-      from: {
-        email: "contact@refugies.info",
-        name: "L'équipe de Réfugiés.info",
-      },
-      reply_to: "contact@email.refugies.info",
-      dynamicTemplateData: {
-        pseudonyme: data.pseudonyme,
-        structurename: data.structurename,
-      },
-    };
-    const templateName = "enabled2FaEmail";
-    sendMail(templateName, dynamicData);
-    await addMailEvent({
-      templateName,
-      username: data.pseudonyme,
-      email: data.email,
-      userId: data.userId,
-    });
-    return;
-  } catch (error) {
-    logger.error("[sendEnabled2FaEmailMailService] error", {
-      error: error.message,
-    });
-  }
-};
-

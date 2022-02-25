@@ -332,14 +332,20 @@ export const DetailsModal = (props: Props) => {
               </CreatorContainer>
               {dispositif.status === "Brouillon" && (
                 <>
-                  <Title>Envoi relance brouillon</Title>
-                  {dispositif.draftReminderMailSentDate
-                    ? `Envoyé le : ${moment(
-                        dispositif.draftReminderMailSentDate
-                      ).format("LLL")}`
-                    : !dispositif.creatorId || !dispositif.creatorId.email
-                    ? "Non envoyé (pas de mail renseigné)"
-                    : "Non envoyé"}
+                  <Title>Envoi relance(s) brouillon</Title>
+                  {!dispositif.draftReminderMailSentDate && !dispositif.draftSecondReminderMailSentDate ?
+                    `Non envoyé ${!dispositif?.creatorId?.email && "(pas de mail renseigné)"}` :
+                    (
+                      <>
+                        {dispositif.draftReminderMailSentDate &&
+                          <div>Le {moment(dispositif.draftReminderMailSentDate).format("LLL")}</div>
+                        }
+                        {dispositif.draftSecondReminderMailSentDate &&
+                          <div>Le {moment(dispositif.draftSecondReminderMailSentDate).format("LLL")}</div>
+                        }
+                      </>
+                    )
+                  }
                 </>
               )}
             </LeftPart>
