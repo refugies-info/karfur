@@ -15,6 +15,7 @@ import {
   startLoading,
   LoadingStatusKey,
   finishLoading,
+  setError,
 } from "../LoadingStatus/loadingStatus.actions";
 import { fetchUserStructureActionCreator } from "../UserStructure/userStructure.actions";
 
@@ -33,7 +34,7 @@ export function* fetchActiveDispositifs(): SagaIterator {
   } catch (error) {
     logger.error("Error while fetching dispositifs", { error });
     yield put(setActiveDispositifsActionsCreator([]));
-    yield put(finishLoading(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
+    yield put(setError(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS, "Error while fetching dispositifs"));
   }
 }
 

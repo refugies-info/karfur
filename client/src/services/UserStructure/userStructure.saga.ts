@@ -28,9 +28,10 @@ export function* fetchUserStructure(
     yield put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE));
     logger.info("[fetchUserStructure] fetching user structure");
     const { structureId, shouldRedirect } = action.payload;
+    if (!structureId) return;
     const data = yield call(
       API.getStructureById,
-      structureId,
+      structureId.toString(),
       true,
       "fr",
       true

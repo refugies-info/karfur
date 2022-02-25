@@ -16,7 +16,7 @@ import { fetchUserActionCreator } from "services/User/user.actions";
 // selectors
 import { ttsActiveSelector } from "services/Tts/tts.selector";
 import { showLangModalSelector, allLanguesSelector } from "services/Langue/langue.selectors";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { hasErroredSelector, isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 
 import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
@@ -42,12 +42,6 @@ const Layout = (props: Props) => {
 
   const ttsActive = useSelector(ttsActiveSelector);
   const showLangModal = useSelector(showLangModalSelector);
-  const user = useSelector(userDetailsSelector);
-  const isUserLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
-  const langues = useSelector(allLanguesSelector);
-  const isLanguagesLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_LANGUES));
-  const dispositifs = useSelector(activeDispositifsSelector);
-  const isDispositifsLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
 
   const changeLanguage = (lng: string) => {
     dispatch(toggleLangueActionCreator(lng));
@@ -59,29 +53,48 @@ const Layout = (props: Props) => {
       dispatch(toggleLangueModalActionCreator());
     }
   };
-
+  // USER
+  const user = useSelector(userDetailsSelector);
+  const isUserLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
+  const hasUserError = useSelector(hasErroredSelector(LoadingStatusKey.FETCH_USER));
   useEffect(() => {
-    if (!user && !isUserLoading) {
+    if (!user && !isUserLoading && !hasUserError) {
       dispatch(fetchUserActionCreator());
     }
   }, [
     user,
     isUserLoading,
+    hasUserError,
     dispatch
   ]);
 
+  // DISPOSITIFS
+  const dispositifs = useSelector(activeDispositifsSelector);
+  const isDispositifsLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
+  const hasDispositifsError = useSelector(hasErroredSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
   useEffect(() => {
-    if (dispositifs.length === 0 && !isDispositifsLoading) {
+    if (dispositifs.length === 0 && !isDispositifsLoading && !hasDispositifsError) {
       dispatch(fetchActiveDispositifsActionsCreator());
-    }
-    if (langues.length === 0 && !isLanguagesLoading) {
-      dispatch(fetchLanguesActionCreator());
     }
   }, [
     dispositifs.length,
     isDispositifsLoading,
+    hasDispositifsError,
+    dispatch
+  ]);
+
+  // LANGUAGES
+  const langues = useSelector(allLanguesSelector);
+  const isLanguagesLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_LANGUES));
+  const hasLanguagesError = useSelector(hasErroredSelector(LoadingStatusKey.FETCH_LANGUES));
+  useEffect(() => {
+    if (langues.length === 0 && !isLanguagesLoading && !hasLanguagesError) {
+      dispatch(fetchLanguesActionCreator());
+    }
+  }, [
     langues.length,
     isLanguagesLoading,
+    hasLanguagesError,
     dispatch
   ]);
 

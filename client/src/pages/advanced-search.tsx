@@ -625,7 +625,7 @@ export class AdvancedSearch extends Component<Props, State> {
         },
         () => {
           const newUserCookies = {
-            _id: this.props.user?._id || "",
+            _id: this.props.user?._id,
             cookies: { ...(this.props.user?.cookies || {}) }
           };
           newUserCookies.cookies.dispositifsPinned = [

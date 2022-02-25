@@ -16,7 +16,7 @@ import Swal from "sweetalert2";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import _ from "lodash";
-import API from "utils/API.js";
+import API from "utils/API";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/FigmaUI/FButton/FButton";
 import FInput from "components/FigmaUI/FInput/FInput";

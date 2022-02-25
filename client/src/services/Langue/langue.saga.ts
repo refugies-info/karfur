@@ -7,6 +7,7 @@ import {
   startLoading,
   finishLoading,
   LoadingStatusKey,
+  setError,
 } from "../LoadingStatus/loadingStatus.actions";
 import { fetchActiveDispositifsActionsCreator } from "../ActiveDispositifs/activeDispositifs.actions";
 import { logger } from "../../logger";
@@ -21,6 +22,7 @@ export function* fetchLangues(): SagaIterator {
     const { message } = error as Error;
     logger.error("Error while fetching langues", { error: message });
     yield put(setLanguesActionCreator([]));
+    yield put(setError(LoadingStatusKey.FETCH_LANGUES, "Error while fetching langues"));
   }
 }
 

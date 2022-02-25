@@ -16,7 +16,7 @@ const UnauthorizedAccess = () => {
           tag="a"
           fill={colors.noir}
           name="arrow-back-outline"
-          tabindex="1"
+          tabIndex="1"
         >
           {t("UnauthorizedAccess.Revenir à l'accueil", "Revenir à l'accueil")}
         </FButton>
