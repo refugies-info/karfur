@@ -58,7 +58,7 @@ export const LetterSection = (props: Props) => {
   return (
     <div className={styles.letter_container}>
       {(props.structures || []).map((structure, key) => (
-        <>
+        <div key={key} className={styles.list_item}>
           {key === 0 && (
             <div id="A" key={"anchor_" + key} className={styles.anchor} />
           )}
@@ -82,7 +82,7 @@ export const LetterSection = (props: Props) => {
             onStructureCardClick={props.onStructureCardClick}
             id={structure._id}
           />
-        </>
+        </div>
       ))}
     </div>
   );

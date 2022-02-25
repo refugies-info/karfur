@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createRef, useEffect, useState } from "react";
 import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { Input } from "reactstrap";
@@ -32,6 +32,7 @@ export const SearchBarAnnuaire = (props: Props) => {
   const [dropdownOpen, setOpen] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
+  const autocompleteRef = createRef<any>();
 
   const selectType = (item: string) => {
     if (props.typeSelected && !props.typeSelected.includes(item)) {
@@ -99,6 +100,13 @@ export const SearchBarAnnuaire = (props: Props) => {
     props.setTypeSelected(array);
     toggle();
   };
+
+  useEffect(() => {
+    if (props.isCityFocus) {
+      autocompleteRef.current?.focus();
+    }
+  }, [autocompleteRef, props.isCityFocus])
+
 
   return (
     <div className={styles.container}>
@@ -197,6 +205,7 @@ export const SearchBarAnnuaire = (props: Props) => {
               value={props.ville}
               onChange={handleChange}
               onPlaceSelected={onPlaceSelected}
+              ref={autocompleteRef}
               options={{
                 componentRestrictions: { country: "fr" }
               }}
