@@ -6,9 +6,6 @@ import dynamic from "next/dynamic"
 import h2p from "html2plaintext";
 import { EditorState, ContentState } from "draft-js";
 import { convertToHTML } from "draft-convert";
-import DirectionProvider, {
-  DIRECTIONS,
-} from "react-with-direction/dist/DirectionProvider";
 import _ from "lodash";
 import moment from "moment";
 
@@ -1254,7 +1251,7 @@ class SideTrad extends Component {
             id={langue.langueCode}
           ></i>
         </div>
-        <DirectionProvider direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
+        <div dir={isRTL ? "rtl" : "ltr"}>
           <div
             className={
               userId &&
@@ -1342,7 +1339,7 @@ class SideTrad extends Component {
               </div>
             )}
           </div>
-        </DirectionProvider>
+        </div>
         {validated && !modifiedNew && !modified ? (
           <AlertExpert type={"validated"}>
             <EVAIcon

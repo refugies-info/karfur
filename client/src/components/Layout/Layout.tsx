@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import DirectionProvider, { DIRECTIONS } from "react-with-direction/dist/DirectionProvider";
 import Navbar from "components/Navigation/Navbar/Navbar";
 
 // actions
@@ -125,31 +124,29 @@ const Layout = (props: Props) => {
   }
 
   return (
-    <DirectionProvider direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
-      <div onMouseOver={toggleHover}>
-        <Navbar history={props.history} />
-        <div className="app-body">
-          <main className="content">
-            {props.children}
-          </main>
-        </div>
-
-        <Footer />
-
-        <LanguageModal
-          show={showLangModal}
-          currentLanguage={router.locale || "fr"}
-          toggle={() => dispatch(toggleLangueModalActionCreator())}
-          changeLanguage={changeLanguage}
-          languages={langues}
-          isLanguagesLoading={isLanguagesLoading}
-        />
-        <MobileAppModal
-          show={showMobileModal}
-          toggle={toggleMobileAppModal}
-        />
+    <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover}>
+      <Navbar history={props.history} />
+      <div className="app-body">
+        <main className="content">
+          {props.children}
+        </main>
       </div>
-    </DirectionProvider>
+
+      <Footer />
+
+      <LanguageModal
+        show={showLangModal}
+        currentLanguage={router.locale || "fr"}
+        toggle={() => dispatch(toggleLangueModalActionCreator())}
+        changeLanguage={changeLanguage}
+        languages={langues}
+        isLanguagesLoading={isLanguagesLoading}
+      />
+      <MobileAppModal
+        show={showMobileModal}
+        toggle={toggleMobileAppModal}
+      />
+    </div>
   );
 
 }
