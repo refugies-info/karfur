@@ -48,7 +48,8 @@ See SubComponents.test.tsx for examples of snapshot tests.
 
 ### Routing
 
-TO DO
+The routing has a specific behavior in RI, because the app host the website and the backoffice. 
+To learn more, please the the [routing guide](./routing.md).
 
 ### Assets
 

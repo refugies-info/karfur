@@ -1,122 +1,122 @@
 # General Architecture
 
-[`assets`](#assets)
-[`components`](#components)
-[`containers`](#containers)
-[`data`](#data)
-[`hooks`](#hooks)
-[`lib`](#lib)
-[`locales`](#locales)
-[`pages`](#pages)
-[`scss`](#scss)
-[`services`](#services)
-[`types`](#types)
+- [`assets`](#assets)
+- [`components`](#components)
+- [`containers`](#containers)
+- [`data`](#data)
+- [`hooks`](#hooks)
+- [`lib`](#lib)
+- [`locales`](#locales)
+- [`pages`](#pages)
+- [`scss`](#scss)
+- [`services`](#services)
+- [`types`](#types)
 
-# assets
+## assets
 
 Contains the assets of the projects. In order to have a light bundle, put the assets on GCP bucket like explained in assets storage doc in private repo.
 
-# components
+## components
 
-## Responsibility
-
-TO DO
-
-## Collaborators
+### Responsibility
 
 TO DO
 
-## Checks
+### Collaborators
 
 TO DO
 
-# containers
-
-## Responsibility
+### Checks
 
 TO DO
 
-## Collaborators
+## containers
+
+### Responsibility
 
 TO DO
 
-## Checks
+### Collaborators
 
 TO DO
 
-# data
+### Checks
 
-## Responsibility
+TO DO
+
+## data
+
+### Responsibility
 
 pieces of data needed in components or pages
 
-## Checks
+### Checks
 
 - ✅ Fully typed
 
-# hooks
+## hooks
 
-## Responsibility
+### Responsibility
 
 custom hooks used across the components and pages
 
-## Checks
+### Checks
 
 - ✅ Fully typed
 
-# lib
+## lib
 
-## Responsibility
+### Responsibility
 
 A lib is a singleton with the intelligence to do non business related stuff. It is reusable.
 
-## Collaborators
+### Collaborators
 
 TO DO
 
-## Checks
+### Checks
 
 - ✅ Fully tested
 
 
-# locales
+## locales
 
 Contains :
 
 - for the 6 langages the commong.json files (translation of interface words)
 - the folder **interfaceTranslation** with scripts to convert json to csv and vice versa for experts translation (see [doc](../../client/src/locales/interfaceTranslation/README.md))
 
-# pages
+## pages
 
-## Responsibility
+### Responsibility
 
 Contains all the pages of the app. Each file is automatically used as a page by NextJS.
 
-## Checks
+### Checks
 
 TO DO
 
-# scss
+## scss
 
-## Responsibility
+### Responsibility
 
 Contains all the global CSS files. For more informations, read the [styling guide](./styling.md).
 
-## Checks
+### Checks
 
 - ✅ Fully tested
 
-# services
+## services
 
-## Responsibility
+### Responsibility
 
 contains redux store
 
-## Checks
+### Checks
 
 - ✅ Fully tested
 
-# types
+## types
 
 Contains :
 
