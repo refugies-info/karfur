@@ -2,14 +2,13 @@ import React from "react";
 import { Col } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import FButton from "components/FigmaUI/FButton/FButton";
-import { Props } from "./BackButton.container";
 import styles from "./BackButton.module.scss";
 
-export interface PropsBeforeInjection {
+interface Props {
   goBack: () => void;
 }
 
-export const BackButton: React.FunctionComponent<Props> = (props: Props) => {
+const BackButton: React.FunctionComponent<Props> = (props: Props) => {
   const { t } = useTranslation();
   return (
     <Col
@@ -27,3 +26,5 @@ export const BackButton: React.FunctionComponent<Props> = (props: Props) => {
     </Col>
   );
 };
+
+export default BackButton;

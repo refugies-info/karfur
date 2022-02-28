@@ -4,10 +4,10 @@ import {
   ProfilePictureContainer,
   ProfileContainer,
   Title,
-} from "../UserProfile.component";
+} from "../UserProfile";
 import styled from "styled-components";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import { colors } from "../../../../colors";
+import { colors } from "colors";
 
 const ImageContainer = styled.div`
   width: 160px;

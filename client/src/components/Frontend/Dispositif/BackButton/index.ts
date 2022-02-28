@@ -1,1 +1,3 @@
-export { BackButtonContainer as BackButton } from "./BackButton.container";
+import BackButton from "./BackButton";
+
+export default BackButton;

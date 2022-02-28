@@ -1,2 +1,3 @@
-export { CardParagrapheContainer as CardParagraphe } from "./CardParagraphe.container";
-export { PlusCard } from "./PlusCard";
+import CardParagraphe from "./CardParagraphe";
+
+export default CardParagraphe;

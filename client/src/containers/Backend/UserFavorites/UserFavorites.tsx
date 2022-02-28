@@ -9,7 +9,6 @@ import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selector
 import { userFavoritesSelector } from "services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
 import styled from "styled-components";
 import SearchResultCard from "components/Pages/advanced-search/SearchResultCard";
-import { Props } from "../UserProfile/UserProfile.container";
 import { NoFavorites } from "./components/NoFavorites.component";
 import {
   CardContainer,
@@ -21,11 +20,9 @@ import { TitleWithNumber } from "../middleOfficeSharedComponents";
 import { IDispositif, IUserFavorite } from "types/interface";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { FavoritesLoading } from "./components/FavoritesLoading";
-import { Navigation } from "../Navigation";
+import Navigation from "../Navigation";
 import { useRouter } from "next/router";
-
-export interface PropsBeforeInjection {
-}
+import { useTranslation } from "next-i18next";
 
 export const MainContainer = styled.div`
   display: flex;
@@ -44,7 +41,8 @@ const TitleContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `;
-export const UserFavoritesComponent = (props: Props) => {
+const UserFavorites = () => {
+  const { t } = useTranslation();
   const [showTutoModal, setShowTutoModal] = useState(false);
   const toggleTutoModal = () => setShowTutoModal(!showTutoModal);
 
@@ -72,7 +70,7 @@ export const UserFavoritesComponent = (props: Props) => {
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
         <Navigation selected="favoris" />
         <MainContainer>
-          <FavoritesLoading t={props.t} />
+          <FavoritesLoading t={t} />
         </MainContainer>
       </div>
     );
@@ -104,7 +102,7 @@ export const UserFavoritesComponent = (props: Props) => {
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
         <Navigation selected="favoris" />
         <MainContainer>
-          <NoFavorites t={props.t} toggleTutoModal={toggleTutoModal} />
+          <NoFavorites t={t} toggleTutoModal={toggleTutoModal} />
           {showTutoModal && (
             <FrameModal
               show={showTutoModal}
@@ -123,11 +121,11 @@ export const UserFavoritesComponent = (props: Props) => {
           <TitleContainer>
             <TitleWithNumber
               amount={favorites.length}
-              textSingular={props.t(
+              textSingular={t(
                 "UserFavorites.fiche sauvegardée",
                 "fiche sauvegardée"
               )}
-              textPlural={props.t(
+              textPlural={t(
                 "UserFavorites.fiches sauvegardées",
                 "fiches sauvegardées"
               )}
@@ -139,14 +137,14 @@ export const UserFavoritesComponent = (props: Props) => {
                 onClick={removeAllFavorites}
                 testID="test-delete-button"
               >
-                {props.t("UserFavorites.Tout supprimer", "Tout supprimer")}
+                {t("UserFavorites.Tout supprimer", "Tout supprimer")}
               </FButton>
             </div>
           </TitleContainer>
 
           <CardsContainer>
-            {favorites.map((fav) => (
-              <CardContainer key={fav._id}>
+            {favorites.map((fav, index) => (
+              <CardContainer key={index}>
                 <SearchResultCard
                   pin={removePinnedDispositif}
                   pinnedList={pinnedList}
@@ -161,3 +159,5 @@ export const UserFavoritesComponent = (props: Props) => {
     </div>
   );
 };
+
+export default UserFavorites;

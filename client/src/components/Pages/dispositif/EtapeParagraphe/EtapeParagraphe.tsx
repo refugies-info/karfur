@@ -19,7 +19,7 @@ import { useTranslation } from "next-i18next";
 
 import FButton from "components/FigmaUI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { QuickToolbar } from "../QuickToolbar";
+import QuickToolbar from "../QuickToolbar";
 import EditableParagraph from "components/Frontend/Dispositif/EditableParagraph/EditableParagraph";
 import FInput from "components/FigmaUI/FInput/FInput";
 
@@ -28,23 +28,30 @@ import { EtapeModal } from "components/Modals";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import styles from "./EtapeParagraphe.module.scss";
-import { DispositifContent, Tag, UiObject } from "types/interface";
-import { demarcheSteps, Option, ShortContent } from "data/dispositif";
+import { DispositifContent, Tag} from "types/interface";
+import { demarcheSteps, ShortContent } from "data/dispositif";
 import { EditorState } from "draft-js";
 import { UiElement } from "services/SelectedDispositif/selectedDispositif.reducer";
 import useRTL from "hooks/useRTL";
 
+interface AccordeonProps {
+  newDisableEdit: boolean
+  subkey: number
+  isAccordeonOpen: boolean
+  darkColor: string
+  lightColor: string
+}
 const StyledAccordeon = styled.div`
-  padding: ${(props) =>
+  padding: ${(props: AccordeonProps) =>
     props.newDisableEdit || props.subkey === 0
       ? "16px"
       : "16px 62px 16px 16px"};
 
-  border: ${(props) =>
+  border: ${(props: AccordeonProps) =>
     props.newDisableEdit && props.isAccordeonOpen
       ? `solid 2px ${props.darkColor}`
       : "none"};
-  background: ${(props) =>
+  background: ${(props: AccordeonProps) =>
     props.newDisableEdit && props.isAccordeonOpen
       ? props.lightColor
       : "#f2f2f2"};
@@ -55,7 +62,7 @@ const StyledAccordeon = styled.div`
   display: flex;
   position: relative;
   flex-direction: row;
-  box-shadow: ${(props) =>
+  box-shadow: ${(props: AccordeonProps) =>
     props.newDisableEdit && !props.isAccordeonOpen
       ? "0px 10px 15px rgba(0, 0, 0, 0.25)"
       : "none"};
@@ -67,12 +74,15 @@ const StyledHeader = styled.div`
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
-  color: ${(props) => props.darkColor};
+  color: ${(props: {darkColor: string}) => props.darkColor};
   align-items: center;
 `;
-
+interface StepProps {
+  isRTL: boolean
+  darkColor: string
+}
 const StyledStep = styled.div`
-  background: ${(props) => props.darkColor};
+  background: ${(props: StepProps) => props.darkColor};
   border-radius: 50%;
   color: white;
   height: 36px;
@@ -80,8 +90,8 @@ const StyledStep = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: ${(props) => (props.isRTL ? "0px" : "16px")};
-  margin-left: ${(props) => (props.isRTL ? "16px" : "0px")};
+  margin-right: ${(props: StepProps) => (props.isRTL ? "0px" : "16px")};
+  margin-left: ${(props: StepProps) => (props.isRTL ? "16px" : "0px")};
 `;
 
 interface Props {

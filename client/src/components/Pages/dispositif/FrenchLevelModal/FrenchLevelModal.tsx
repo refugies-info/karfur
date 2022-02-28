@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Modal } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { FrenchLevelButton } from "./FrenchLevelButton/FrenchLevelButton";
 import FButton from "components/FigmaUI/FButton/FButton";
-import { Props } from "./FrenchLevelModal.container";
 import { frenchLevels } from "data/frenchLevel";
 import styles from "./FrenchLevelModal.module.scss";
-export interface PropsBeforeInjection {
+import { useTranslation } from "next-i18next";
+interface Props {
   show: boolean;
   disableEdit: boolean;
   hideModal: () => void;
@@ -14,42 +14,33 @@ export interface PropsBeforeInjection {
   validateLevels: (arg: string[]) => void;
 }
 
-interface StateType {
-  selectedLevels: string[];
-}
+const FrenchLevelModal = (props: Props) => {
+  const { t } = useTranslation();
+  const [selectedLevels, setSelectedLevels] = useState<string[]>(props.selectedLevels || []);
 
-export class FrenchLevelModalComponent extends Component<Props> {
-  state: StateType = {
-    selectedLevels: this.props.selectedLevels || [],
-  };
-
-  updateSelectedLevels = (level: string) => {
-    const selectedLevels = this.state.selectedLevels;
+  const updateSelectedLevels = (level: string) => {
     const selectedLevelsUpdated = selectedLevels.some((x) => x === level)
       ? selectedLevels.filter((x) => x !== level)
       : [...selectedLevels, level];
 
-    this.setState({
-      selectedLevels: selectedLevelsUpdated,
-    });
+    setSelectedLevels(selectedLevelsUpdated)
   };
 
-  onValidate = () => {
-    this.props.validateLevels(this.state.selectedLevels);
-    this.props.hideModal();
+  const onValidate = () => {
+    props.validateLevels(selectedLevels);
+    props.hideModal();
   };
 
-  render() {
     return (
       <Modal
-        isOpen={this.props.show}
+        isOpen={props.show}
         contentClassName={styles.modal}
         size="lg"
-        toggle={this.props.hideModal}
+        toggle={props.hideModal}
       >
         {" "}
         <div
-          onClick={this.props.hideModal}
+          onClick={props.hideModal}
           className={styles.close}
         >
           <EVAIcon
@@ -60,14 +51,14 @@ export class FrenchLevelModalComponent extends Component<Props> {
         </div>
         <div className={styles.container}>
           <p className={styles.title}>
-            {this.props.t(
+            {t(
               "ModaleNiveauDeFrançais.Niveau de langue",
               "Niveau de langue"
             )}
           </p>
           {frenchLevels.map((element, key: number) => {
-            const isSelected = this.state.selectedLevels
-              ? this.state.selectedLevels.includes(element.level)
+            const isSelected = selectedLevels
+              ? selectedLevels.includes(element.level)
               : false;
             return (
               <div key={key} className={styles.section}>
@@ -76,19 +67,19 @@ export class FrenchLevelModalComponent extends Component<Props> {
                     isSelected={isSelected}
                     isHover={false}
                     frenchLevel={element.level}
-                    onClick={this.updateSelectedLevels}
-                    disableEdit={this.props.disableEdit}
+                    onClick={updateSelectedLevels}
+                    disableEdit={props.disableEdit}
                   />
                 </div>
                 <div className={styles.description}>
                   <p className={`${styles.subtitle} ${isSelected ? styles.selected : ""}`}>
-                    {this.props.t(
+                    {t(
                       "ModaleNiveauDeFrançais." + element.title + " title",
                       element.title
                     )}
                   </p>
                   <p className={styles.description_text}>
-                    {this.props.t(
+                    {t(
                       "ModaleNiveauDeFrançais." +
                         element.title +
                         " description",
@@ -100,11 +91,11 @@ export class FrenchLevelModalComponent extends Component<Props> {
                       href={element.linkToKnowMore}
                       rel="noopener noreferrer"
                     >
-                      {this.props.t("En savoir plus", "En savoir plus")}
+                      {t("En savoir plus", "En savoir plus")}
                     </a>
                   </p>
                 </div>
-                {this.props.disableEdit && element.linkToMakeTheTest && (
+                {props.disableEdit && element.linkToMakeTheTest && (
                   <div className={styles.test_btn_container}>
                     <FButton
                       type="dark"
@@ -113,7 +104,7 @@ export class FrenchLevelModalComponent extends Component<Props> {
                       target="_blank"
                     >
                       <span className={styles.test_btn_text}>
-                        {this.props.t(
+                        {t(
                           "ModaleNiveauDeFrançais.Faire le test",
                           "Faire le test"
                         )}
@@ -125,7 +116,7 @@ export class FrenchLevelModalComponent extends Component<Props> {
             );
           })}
           <div className={styles.level}>
-            {this.props.t(
+            {t(
               "ModaleNiveauDeFrançais.Ces niveaux sont issus du",
               "Ces niveaux sont issus du"
             )}{" "}
@@ -141,7 +132,7 @@ export class FrenchLevelModalComponent extends Component<Props> {
             </a>{" "}
             (CECR).
           </div>
-          {!this.props.disableEdit && (
+          {!props.disableEdit && (
             <div className={styles.group_btn_container}>
               <FButton
                 type="help"
@@ -158,15 +149,15 @@ export class FrenchLevelModalComponent extends Component<Props> {
                     marginRight: 10,
                   }}
                 >
-                  <FButton type="outline-black" onClick={this.props.hideModal}>
+                  <FButton type="outline-black" onClick={props.hideModal}>
                     <span className={styles.btn_text}>Annuler</span>
                   </FButton>
                 </div>
                 <FButton
                   type="validate"
                   name="checkmark"
-                  onClick={this.onValidate}
-                  disabled={this.state.selectedLevels.length === 0}
+                  onClick={onValidate}
+                  disabled={selectedLevels.length === 0}
                 >
                   <span className={styles.btn_text}>Valider</span>
                 </FButton>
@@ -177,4 +168,5 @@ export class FrenchLevelModalComponent extends Component<Props> {
       </Modal>
     );
   }
-}
+
+export default FrenchLevelModal;

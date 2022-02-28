@@ -3,7 +3,7 @@ import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProvidersAndRender";
 import { act } from "react-test-renderer";
 import "jest-styled-components";
-import { UserNotificationsComponent } from "../UserNotifications.component";
+import UserNotifications from "../UserNotifications";
 import {
   fetchUserStructureActionCreator,
   setUserStructureActionCreator,
@@ -57,7 +57,7 @@ describe("UserNotifications", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserNotificationsComponent,
+        Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: true } },
@@ -78,7 +78,7 @@ describe("UserNotifications", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserNotificationsComponent,
+        Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
@@ -138,7 +138,7 @@ describe("UserNotifications", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserNotificationsComponent,
+        Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
@@ -166,7 +166,7 @@ describe("UserNotifications", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserNotificationsComponent,
+        Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
@@ -193,7 +193,7 @@ describe("UserNotifications", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserNotificationsComponent,
+        Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
@@ -220,7 +220,7 @@ describe("UserNotifications", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserNotificationsComponent,
+        Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
@@ -255,7 +255,7 @@ describe("UserNotifications", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserNotificationsComponent,
+        Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },

@@ -2,15 +2,13 @@ import React from "react";
 import { Col, Row, Collapse } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
-import { QuickToolbar } from "components/Pages/dispositif/QuickToolbar";
+import QuickToolbar from "components/Pages/dispositif/QuickToolbar";
 import { useTranslation } from "next-i18next";
-import {
-  CardParagraphe,
-  PlusCard,
-} from "components/Pages/dispositif/CardParagraphe";
+import CardParagraphe from "components/Pages/dispositif/CardParagraphe";
+import {PlusCard} from "components/Pages/dispositif/CardParagraphe/PlusCard";
 import MapParagraphe from "components/Pages/dispositif/MapParagraphe/MapParagraphe";
 import MapParagraphePrint from "components/Pages/dispositif/MapParagraphe/MapParagraphePrint";
-import EtapeParagraphe from "components/Pages/dispositif/EtapeParagraphe/EtapeParagraphe";
+import EtapeParagraphe from "components/Pages/dispositif/EtapeParagraphe";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { colors } from "colors";
@@ -28,15 +26,22 @@ import { EditorState } from "draft-js";
 import { UiElement } from "services/SelectedDispositif/selectedDispositif.reducer";
 import { useRouter } from "next/router";
 
+interface AccordeonProps {
+  disableEdit: boolean
+  subkey: number
+  isAccordeonOpen: boolean
+  darkColor: string
+  lightColor: string
+}
 const StyledAccordeon = styled.div`
-  padding: ${(props) =>
+  padding: ${(props: AccordeonProps) =>
     props.disableEdit || props.subkey === 0 ? "16px" : "16px 62px 16px 16px"};
 
-  border: ${(props) =>
+  border: ${(props: AccordeonProps) =>
     props.disableEdit && props.isAccordeonOpen
       ? `solid 2px ${props.darkColor}`
       : "none"};
-  background: ${(props) =>
+  background: ${(props: AccordeonProps) =>
     props.disableEdit && props.isAccordeonOpen ? props.lightColor : "#f2f2f2"};
   border-radius: 12px;
   outline: none;
@@ -45,7 +50,7 @@ const StyledAccordeon = styled.div`
   display: flex;
   position: relative;
   flex-direction: row;
-  box-shadow: ${(props) =>
+  box-shadow: ${(props: AccordeonProps) =>
     props.disableEdit && !props.isAccordeonOpen
       ? "0px 10px 15px rgba(0, 0, 0, 0.25)"
       : "none"};
@@ -57,7 +62,7 @@ const StyledHeader = styled.div`
   font-weight: bold;
   font-size: ${isMobile ? "18px" : "22px"};
   line-height: 28px;
-  color: ${(props) => props.darkColor};
+  color: ${(props: { darkColor: string}) => props.darkColor};
 `;
 const MobileInfoCardsSection = styled.div`
   display: flex;

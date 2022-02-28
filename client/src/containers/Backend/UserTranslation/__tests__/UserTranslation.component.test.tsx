@@ -1,6 +1,6 @@
 //@ts-nocheck
 import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProvidersAndRender";
-import { UserTranslationComponent } from "../UserTranslation.component";
+import UserTranslation from "../UserTranslation";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
 import { act } from "react-test-renderer";
@@ -48,7 +48,7 @@ describe("user translation", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserTranslationComponent,
+        Component: UserTranslation,
         reduxState: {
           ...initialMockStore,
           loadingStatus: {
@@ -73,7 +73,7 @@ describe("user translation", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserTranslationComponent,
+        Component: UserTranslation,
         reduxState: {
           ...initialMockStore,
           user: { user: { selectedLanguages: [{ i18nCode: "en" }] } },
@@ -91,7 +91,7 @@ describe("user translation", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserTranslationComponent,
+        Component: UserTranslation,
         reduxState: {
           ...initialMockStore,
           user: { user: { selectedLanguages: [] } },
@@ -112,7 +112,7 @@ describe("user translation", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserTranslationComponent,
+        Component: UserTranslation,
         reduxState: {
           ...initialMockStore,
           user: { user: { selectedLanguages: [] } },
@@ -134,7 +134,7 @@ describe("user translation", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserTranslationComponent,
+        Component: UserTranslation,
         reduxState: {
           ...initialMockStore,
           user: {
@@ -162,7 +162,7 @@ describe("user translation", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserTranslationComponent,
+        Component: UserTranslation,
         reduxState: {
           ...initialMockStore,
           user: {
@@ -189,7 +189,7 @@ describe("user translation", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserTranslationComponent,
+        Component: UserTranslation,
         reduxState: {
           ...initialMockStore,
           user: {
@@ -212,7 +212,7 @@ describe("user translation", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserTranslationComponent,
+        Component: UserTranslation,
         reduxState: {
           ...initialMockStore,
           user: {

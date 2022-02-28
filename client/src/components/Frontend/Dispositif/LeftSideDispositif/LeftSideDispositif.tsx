@@ -8,17 +8,14 @@ import {
 } from "reactstrap";
 import Scrollspy from "react-scrollspy";
 import ReactToPrint from "react-to-print";
-
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { colors } from "colors";
-import { Props } from "./LeftSideDispositif.container";
 import { DispositifContent, Tag } from "types/interface";
 import { send_sms } from "components/Pages/dispositif/function";
 import { useTranslation } from "next-i18next";
 
-declare const window: Window;
-export interface PropsBeforeInjection {
+interface Props {
   menu: DispositifContent[];
   showSpinner: boolean;
   content: {
@@ -43,7 +40,7 @@ export interface PropsBeforeInjection {
   mainTag: Tag;
 }
 
-export const LeftSideDispositif = (props: Props) => {
+const LeftSideDispositif = (props: Props) => {
   const { t } = useTranslation();
   const [emailBody, setEmailBody] = useState(
     "Voici le lien vers cette fiche : "
@@ -225,3 +222,5 @@ export const LeftSideDispositif = (props: Props) => {
     </div>
   );
 };
+
+export default LeftSideDispositif;

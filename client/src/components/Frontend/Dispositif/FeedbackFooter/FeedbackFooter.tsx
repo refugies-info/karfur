@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { useTranslation } from "next-i18next";
 import FButton from "components/FigmaUI/FButton/FButton";
-import { Props } from "./FeedbackFooter.container";
 import { colors } from "colors";
 import styles from "./FeedbackFooter.module.scss";
 import isInBrowser from "lib/isInBrowser";
@@ -36,14 +35,14 @@ const CountButtonContainer = styled.div`
   color:${(props) => (props.didThank ? colors.blancSimple : colors.noir)};
 `;
 
-export interface PropsBeforeInjection {
+interface Props {
   pushReaction: (arg1: null, arg2: string) => void;
   didThank: boolean;
   nbThanks: number;
   color: string;
 }
 
-export const FeedbackFooter = (props: Props) => {
+const FeedbackFooter = (props: Props) => {
   const { t } = useTranslation();
   const { nbThanks, pushReaction, didThank } = props;
 
@@ -105,3 +104,5 @@ export const FeedbackFooter = (props: Props) => {
     </FeedbackContainer>
   );
 };
+
+export default FeedbackFooter;

@@ -1,1 +1,3 @@
-export { TagsContainer as Tags } from "./Tags.container";
+import Tags from "./Tags";
+
+export default Tags;

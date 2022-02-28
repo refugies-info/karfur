@@ -6,7 +6,6 @@ import { userDetailsSelector } from "services/User/user.selectors";
 import { User, Event } from "types/interface";
 import marioProfile from "assets/mario-profile.jpg";
 import FButton from "components/FigmaUI/FButton/FButton";
-import { Props } from "./UserProfile.container";
 import FInput from "components/FigmaUI/FInput/FInput";
 import { PasswordField } from "./components/PasswordField";
 import { CodePhoneValidationModal } from "components/Modals/CodePhoneValidationModal/CodePhoneValidationModal";
@@ -24,10 +23,9 @@ import { userStructureMembresSelector } from "services/UserStructure/userStructu
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { UserProfileLoading } from "./components/UserProfileLoading";
 import { colors } from "colors";
-import { Navigation } from "../Navigation";
+import Navigation from "../Navigation";
 import styles from "./UserProfile.module.scss";
-
-declare const window: Window;
+import { useTranslation } from "next-i18next";
 
 export const MainContainer = styled.div`
   display: flex;
@@ -92,7 +90,7 @@ export const Title = styled.div`
   font-size: 18px;
   line-height: 23px;
   margin-bottom: 8px;
-  margin-top: ${(props) => props.marginTop || 0}px;
+  margin-top: ${(props: {marginTop?: number}) => props.marginTop || 0}px;
 `;
 
 const FInputContainer = styled.div`
@@ -103,15 +101,15 @@ const RowContainer = styled.div`
   display: flex;
   flex-direction: row;
 `;
-export interface PropsBeforeInjection {
-}
 
 const getUserImage = (user: User) =>
   user.picture && user.picture.secure_url
     ? user.picture.secure_url
     : marioProfile;
 
-export const UserProfileComponent = (props: Props) => {
+export const UserProfile = () => {
+  const { t } = useTranslation();
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState<string | undefined>("");
   const [phone, setPhone] = useState<string | undefined>("");
@@ -359,7 +357,7 @@ export const UserProfileComponent = (props: Props) => {
     return (
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
         <Navigation selected="profil" />
-        <UserProfileLoading t={props.t} />
+        <UserProfileLoading t={t} />
       </div>
     );
 
@@ -369,7 +367,7 @@ export const UserProfileComponent = (props: Props) => {
         <Navigation selected="profil" />
         <MainContainer>
           <ErrorContainer>
-            {props.t(
+            {t(
               "UserProfile.ErreurChargement",
               "Une erreur est survenue, veuillez recharger la page !"
             )}
@@ -410,10 +408,10 @@ export const UserProfileComponent = (props: Props) => {
               <Spinner color="success" className="ml-10" />
             )}
             {!isPictureUploading &&
-              props.t("UserProfile.Modifier ma photo", "Modifier ma photo")}
+              t("UserProfile.Modifier ma photo", "Modifier ma photo")}
           </FButton>
           <DescriptionText>
-            {props.t(
+            {t(
               "UserProfile.photoUsage",
               "Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer."
             )}
@@ -422,7 +420,7 @@ export const UserProfileComponent = (props: Props) => {
         <ProfileContainer>
           <div>
             <Title>
-              {props.t("UserProfile.votre pseudo", "Votre pseudonyme")}
+              {t("UserProfile.votre pseudo", "Votre pseudonyme")}
             </Title>
             <RowContainer>
               <FInputContainer>
@@ -445,12 +443,12 @@ export const UserProfileComponent = (props: Props) => {
                   onClick={onPseudoModificationValidate}
                   testID="test-save-pseudo"
                 >
-                  {props.t("UserProfile.Enregistrer", "Enregistrer")}
+                  {t("UserProfile.Enregistrer", "Enregistrer")}
                 </FButton>
               </div>
             </RowContainer>
             <DescriptionText>
-              {props.t(
+              {t(
                 "UserProfile.pseudoExplication",
                 "Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer."
               )}
@@ -458,7 +456,7 @@ export const UserProfileComponent = (props: Props) => {
           </div>
           <div>
             <Title marginTop={24}>
-              {props.t("Register.Votre email", "Votre email")}
+              {t("Register.Votre email", "Votre email")}
             </Title>
             <RowContainer>
               <FInputContainer>
@@ -470,7 +468,7 @@ export const UserProfileComponent = (props: Props) => {
                   autoFocus={false}
                   prepend
                   prependName="email-outline"
-                  placeholder={props.t(
+                  placeholder={t(
                     "Register.Renseignez votre adresse email",
                     "Renseignez votre adresse email"
                   )}
@@ -485,17 +483,17 @@ export const UserProfileComponent = (props: Props) => {
                   onClick={onEmailModificationValidate}
                   testID="test-save-email"
                 >
-                  {props.t("UserProfile.Enregistrer", "Enregistrer")}
+                  {t("UserProfile.Enregistrer", "Enregistrer")}
                 </FButton>
               </div>
             </RowContainer>
             {notEmailError && (
               <ErrorMessageContainer>
-                {`${props.t("Register.Ceci n'est pas un email,")} ${props.t("Register.vérifiez l'orthographe")}`}
+                {`${t("Register.Ceci n'est pas un email,")} ${t("Register.vérifiez l'orthographe")}`}
               </ErrorMessageContainer>
             )}
             <DescriptionText>
-              {props.t(
+              {t(
                 "UserProfile.emailExplication",
                 "Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site."
               )}
@@ -504,7 +502,7 @@ export const UserProfileComponent = (props: Props) => {
           {showPhone &&
             <div>
               <Title marginTop={24}>
-                {props.t("Register.Votre numéro de téléphone", "Votre numéro de téléphone")}
+                {t("Register.Votre numéro de téléphone", "Votre numéro de téléphone")}
               </Title>
               <RowContainer>
                 <FInputContainer>
@@ -519,10 +517,10 @@ export const UserProfileComponent = (props: Props) => {
                     prependName="smartphone-outline"
                     error={!user.phone && !phone}
                     placeholder={(!user.phone && !phone) ?
-                      props.t(
+                      t(
                         "Register.Aucun numéro de téléphone",
                         "Aucun numéro de téléphone")
-                      : props.t(
+                      : t(
                         "Register.Renseignez votre numéro de téléphone",
                         "Renseignez votre numéro de téléphone")
                     }
@@ -537,17 +535,17 @@ export const UserProfileComponent = (props: Props) => {
                     onClick={onPhoneModificationValidate}
                     testID="test-save-phone"
                   >
-                    {props.t("UserProfile.Enregistrer", "Enregistrer")}
+                    {t("UserProfile.Enregistrer", "Enregistrer")}
                   </FButton>
                 </div>
               </RowContainer>
               {notPhoneError && (
                 <ErrorMessageContainer>
-                  {props.t("Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie")}
+                  {t("Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie")}
                 </ErrorMessageContainer>
               )}
               <DescriptionText>
-                {props.t(
+                {t(
                   "UserProfile.phoneExplication",
                   "Si vous modifiez votre numéro de téléphone, un code de confirmation vous sera demandé pour mettre à jour la double authentification."
                 )}
@@ -555,7 +553,7 @@ export const UserProfileComponent = (props: Props) => {
             </div>
           }
           <Title marginTop={24}>
-            {props.t("UserProfile.Votre mot de passe", "Votre mot de passe")}
+            {t("UserProfile.Votre mot de passe", "Votre mot de passe")}
           </Title>
           {!isModifyPasswordOpen && (
             <FButton
@@ -564,7 +562,7 @@ export const UserProfileComponent = (props: Props) => {
               onClick={openModifyPassword}
               testID="test-modify-password"
             >
-              {props.t(
+              {t(
                 "UserProfile.modifyPassword",
                 "Modifier mon mot de passe"
               )}
@@ -600,7 +598,7 @@ export const UserProfileComponent = (props: Props) => {
                   onChange={onChange}
                   passwordVisible={isNewPasswordVisible}
                   onClick={toggleNewPasswordVisibility}
-                  t={props.t}
+                  t={t}
                   passwordScore={newPasswordScore}
                 />
               </FInputContainer>
@@ -630,7 +628,7 @@ export const UserProfileComponent = (props: Props) => {
                     onClick={modifyPassword}
                     testID="test-save-password"
                   >
-                    {props.t("UserProfile.Enregistrer", "Enregistrer")}
+                    {t("UserProfile.Enregistrer", "Enregistrer")}
                   </FButton>
                 )}
               </div>
@@ -642,7 +640,7 @@ export const UserProfileComponent = (props: Props) => {
         visible={codePhoneModalVisible}
         onValidate={onSubmitCode}
         isLoading={isLoadingSave}
-        t={props.t}
+        t={t}
         code={code}
         error={errorSave}
         phone={phone || ""}
@@ -652,3 +650,5 @@ export const UserProfileComponent = (props: Props) => {
     </div>
   );
 };
+
+export default UserProfile;

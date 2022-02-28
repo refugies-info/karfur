@@ -1,1 +1,3 @@
-export { FrenchLevelModalContainer as FrenchLevelModal } from "./FrenchLevelModal.container";
+import FrenchLevelModal from "./FrenchLevelModal";
+
+export default FrenchLevelModal;

@@ -2,17 +2,16 @@ import React from "react";
 import { Row } from "reactstrap";
 import h2p from "html2plaintext";
 import { useTranslation } from "next-i18next";
-import { Props } from "./EnBrefBanner.container";
 import { DispositifContent } from "types/interface";
 import { infoCardIcon } from "../../../Icon/Icon";
 import { jsUcfirst } from "lib";
 
-export interface PropsBeforeInjection {
+interface Props {
   menu: DispositifContent[];
   isRTL: boolean;
 }
 
-export const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
+const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
   // display En Bref and a summary of infocards
   const { t } = useTranslation();
 
@@ -129,3 +128,5 @@ export const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
     </Row>
   );
 };
+
+export default EnBrefBanner;

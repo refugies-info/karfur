@@ -27,9 +27,7 @@ import { colors } from "colors";
 import Swal from "sweetalert2";
 import Skeleton from "react-loading-skeleton";
 import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
-import { Navigation } from "../Navigation";
-
-declare const window: Window;
+import Navigation from "../Navigation";
 
 const MainContainer = styled.div`
   display: flex;
@@ -56,7 +54,7 @@ const WhiteContainer = styled.div`
 interface Props {
   history: any;
 }
-export const UserContributionsComponent = (props: Props) => {
+const UserContributions = (props: Props) => {
   const [showTutoModal, setShowTutoModal] = useState(false);
   const [tutoModalDisplayed, setTutoModalDisplayed] = useState("");
   const toggleTutoModal = () => setShowTutoModal(!showTutoModal);
@@ -228,3 +226,5 @@ export const UserContributionsComponent = (props: Props) => {
     </div>
   );
 };
+
+export default UserContributions;

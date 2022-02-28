@@ -356,12 +356,12 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
           onChange={[Function]}
           type="file"
         />
-        Modifier ma photo
+        UserProfile.Modifier ma photo
       </button>
       <div
         className="c4"
       >
-        Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.
+        UserProfile.photoUsage
       </div>
     </div>
     <div
@@ -371,7 +371,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
         <div
           className="c6"
         >
-          Votre pseudonyme
+          UserProfile.votre pseudo
         </div>
         <div
           className="c7"
@@ -424,21 +424,21 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
                   }
                 />
               </span>
-              Enregistrer
+              UserProfile.Enregistrer
             </button>
           </div>
         </div>
         <div
           className="c4"
         >
-          Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
+          UserProfile.pseudoExplication
         </div>
       </div>
       <div>
         <div
           className="c9"
         >
-          Votre email
+          Register.Votre email
         </div>
         <div
           className="c7"
@@ -467,7 +467,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
                 className=" has_prepend new_size  form-control"
                 id="email"
                 onChange={[Function]}
-                placeholder="Renseignez votre adresse email"
+                placeholder="Register.Renseignez votre adresse email"
                 style={Object {}}
                 type="text"
                 value="email@gmail.com"
@@ -492,20 +492,20 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
                   }
                 />
               </span>
-              Enregistrer
+              UserProfile.Enregistrer
             </button>
           </div>
         </div>
         <div
           className="c4"
         >
-          Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
+          UserProfile.emailExplication
         </div>
       </div>
       <div
         className="c9"
       >
-        Votre mot de passe
+        UserProfile.Votre mot de passe
       </div>
       <div
         className="c8"
@@ -598,7 +598,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
                 className="password-input has_prepend new_size  form-control"
                 id="new-password"
                 onChange={[Function]}
-                placeholder="Votre nouveau mot de passe"
+                placeholder="UserProfile.Votre nouveau mot de passe"
                 style={Object {}}
                 type="password"
               />
@@ -653,14 +653,14 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
           <div
             className="c11"
           >
-            Faible
+            Register.Faible
           </div>
         </div>
         <div
           className="c12"
         >
           <b>
-            Oups, votre mot de passe est trop faible.
+            Register.Mot de passe trop faible
           </b>
         </div>
       </div>
@@ -691,7 +691,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
               }
             />
           </span>
-          Enregistrer
+          UserProfile.Enregistrer
         </button>
       </div>
     </div>
@@ -1037,12 +1037,12 @@ exports[`UserProfile should render correctly 1`] = `
           onChange={[Function]}
           type="file"
         />
-        Modifier ma photo
+        UserProfile.Modifier ma photo
       </button>
       <div
         className="c4"
       >
-        Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.
+        UserProfile.photoUsage
       </div>
     </div>
     <div
@@ -1052,7 +1052,7 @@ exports[`UserProfile should render correctly 1`] = `
         <div
           className="c6"
         >
-          Votre pseudonyme
+          UserProfile.votre pseudo
         </div>
         <div
           className="c7"
@@ -1105,21 +1105,21 @@ exports[`UserProfile should render correctly 1`] = `
                   }
                 />
               </span>
-              Enregistrer
+              UserProfile.Enregistrer
             </button>
           </div>
         </div>
         <div
           className="c4"
         >
-          Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
+          UserProfile.pseudoExplication
         </div>
       </div>
       <div>
         <div
           className="c9"
         >
-          Votre email
+          Register.Votre email
         </div>
         <div
           className="c7"
@@ -1148,7 +1148,7 @@ exports[`UserProfile should render correctly 1`] = `
                 className=" has_prepend new_size  form-control"
                 id="email"
                 onChange={[Function]}
-                placeholder="Renseignez votre adresse email"
+                placeholder="Register.Renseignez votre adresse email"
                 style={Object {}}
                 type="text"
                 value="email@gmail.com"
@@ -1173,20 +1173,20 @@ exports[`UserProfile should render correctly 1`] = `
                   }
                 />
               </span>
-              Enregistrer
+              UserProfile.Enregistrer
             </button>
           </div>
         </div>
         <div
           className="c4"
         >
-          Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
+          UserProfile.emailExplication
         </div>
       </div>
       <div
         className="c9"
       >
-        Votre mot de passe
+        UserProfile.Votre mot de passe
       </div>
       <button
         className="btn  dark  "
@@ -1204,7 +1204,7 @@ exports[`UserProfile should render correctly 1`] = `
             }
           />
         </span>
-        Modifier mon mot de passe
+        UserProfile.modifyPassword
       </button>
     </div>
   </div>
@@ -1549,12 +1549,12 @@ exports[`UserProfile should render correctly when changing password 1`] = `
           onChange={[Function]}
           type="file"
         />
-        Modifier ma photo
+        UserProfile.Modifier ma photo
       </button>
       <div
         className="c4"
       >
-        Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.
+        UserProfile.photoUsage
       </div>
     </div>
     <div
@@ -1564,7 +1564,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
         <div
           className="c6"
         >
-          Votre pseudonyme
+          UserProfile.votre pseudo
         </div>
         <div
           className="c7"
@@ -1617,21 +1617,21 @@ exports[`UserProfile should render correctly when changing password 1`] = `
                   }
                 />
               </span>
-              Enregistrer
+              UserProfile.Enregistrer
             </button>
           </div>
         </div>
         <div
           className="c4"
         >
-          Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
+          UserProfile.pseudoExplication
         </div>
       </div>
       <div>
         <div
           className="c9"
         >
-          Votre email
+          Register.Votre email
         </div>
         <div
           className="c7"
@@ -1660,7 +1660,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
                 className=" has_prepend new_size  form-control"
                 id="email"
                 onChange={[Function]}
-                placeholder="Renseignez votre adresse email"
+                placeholder="Register.Renseignez votre adresse email"
                 style={Object {}}
                 type="text"
                 value="email@gmail.com"
@@ -1685,20 +1685,20 @@ exports[`UserProfile should render correctly when changing password 1`] = `
                   }
                 />
               </span>
-              Enregistrer
+              UserProfile.Enregistrer
             </button>
           </div>
         </div>
         <div
           className="c4"
         >
-          Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
+          UserProfile.emailExplication
         </div>
       </div>
       <div
         className="c9"
       >
-        Votre mot de passe
+        UserProfile.Votre mot de passe
       </div>
       <div
         className="c8"
@@ -1787,7 +1787,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
                 className="password-input has_prepend new_size  form-control"
                 id="new-password"
                 onChange={[Function]}
-                placeholder="Votre nouveau mot de passe"
+                placeholder="UserProfile.Votre nouveau mot de passe"
                 style={Object {}}
                 type="password"
               />
@@ -1838,7 +1838,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
               }
             />
           </span>
-          Enregistrer
+          UserProfile.Enregistrer
         </button>
       </div>
     </div>
@@ -2166,7 +2166,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
       <div
         className="c5"
       >
-        Votre pseudonyme
+        UserProfile.votre pseudo
       </div>
       <div
         className="css-nitgap-SkeletonTheme"
@@ -2187,7 +2187,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
       <div
         className="c6"
       >
-        Votre email
+        Register.Votre email
       </div>
       <div
         className="css-nitgap-SkeletonTheme"
@@ -2208,7 +2208,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
       <div
         className="c6"
       >
-        Votre mot de passe
+        UserProfile.Votre mot de passe
       </div>
       <div
         className="css-nitgap-SkeletonTheme"

@@ -421,7 +421,7 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
           <div
             className="c4"
           >
-            fiche sauvegardée
+            UserFavorites.fiches sauvegardée
           </div>
         </div>
       </div>
@@ -431,7 +431,7 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
         <div
           className="c7"
         >
-          Comment ajouter des fiches en favoris ?
+          UserFavorites.Comment ajouter
           <button
             className="btn  tuto mr-10 "
             onClick={[Function]}
@@ -447,7 +447,7 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
                 }
               />
             </span>
-            Voir la vidéo
+            UserFavorites.Voir la vidéo
           </button>
         </div>
         <div
@@ -950,7 +950,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           <div
             className="c5"
           >
-            fiches sauvegardées
+            UserFavorites.fiches sauvegardées
           </div>
         </div>
         <div>
@@ -970,7 +970,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 }
               />
             </span>
-            Tout supprimer
+            UserFavorites.Tout supprimer
           </button>
         </div>
       </div>
@@ -1579,7 +1579,7 @@ exports[`UserFavorites should render correctly when loading 1`] = `
           <div
             className="c4"
           >
-            fiche sauvegardée
+            UserFavorites.fiche sauvegardée
           </div>
         </div>
       </div>

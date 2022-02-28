@@ -5,7 +5,6 @@ import {
   userSelectedLanguageSelector,
   userSelector,
 } from "services/User/user.selectors";
-import { Props } from "./UserTranslation.container";
 import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -21,17 +20,11 @@ import { CompleteProfilModal } from "components/Modals/CompleteProfilModal/Compl
 
 import API from "utils/API";
 import { Indicators, UserLanguage } from "types/interface";
-import { Navigation } from "../Navigation";
+import Navigation from "../Navigation";
 import { TranslationNeedsModal } from "./components/TranslationNeedsModal";
 import { OneNeedTranslationModal } from "./components/OneNeedTranslationModal";
 import { ObjectId } from "mongodb";
 import { needsSelector } from "services/Needs/needs.selectors";
-
-declare const window: Window;
-export interface PropsBeforeInjection {
-  match: any;
-  user: { username: string; password: string; email?: string };
-}
 
 const MainContainer = styled.div`
   display: flex;
@@ -57,7 +50,7 @@ const getLangueName = (
   return { langueSelectedFr: null, langueI18nCode: null };
 };
 
-export const UserTranslationComponent = (props: Props) => {
+const UserTranslation = () => {
   const [
     showOneNeedTranslationModal,
     setShowOneNeedTranslationModal,
@@ -320,3 +313,5 @@ export const UserTranslationComponent = (props: Props) => {
     </div>
   );
 };
+
+export default UserTranslation;

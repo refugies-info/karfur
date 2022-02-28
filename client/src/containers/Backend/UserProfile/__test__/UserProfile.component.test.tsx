@@ -1,7 +1,7 @@
 // @ts-nocheck
-import { UserProfileComponent } from "../UserProfile.component";
+import UserProfile from "../UserProfile";
 import { act } from "react-test-renderer";
-import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProvidersAndRender";
+import { wrapWithProvidersAndRender, translationMock } from "../../../../../jest/lib/wrapWithProvidersAndRender";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import API from "utils/API";
 import { saveUserActionCreator } from "services/User/user.actions";
@@ -37,7 +37,7 @@ describe("UserProfile", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserProfileComponent,
+        Component: UserProfile,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER: { isLoading: true } },
@@ -53,7 +53,7 @@ describe("UserProfile", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserProfileComponent,
+        Component: UserProfile,
         reduxState: {
           ...initialMockStore,
           user: { user: { email: "email@gmail.com", username: "username" } },
@@ -75,7 +75,7 @@ describe("UserProfile", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserProfileComponent,
+        Component: UserProfile,
         reduxState: {
           ...initialMockStore,
           user: { user: { email: "email@gmail.com", username: "username" } },
@@ -100,7 +100,7 @@ describe("UserProfile", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserProfileComponent,
+        Component: UserProfile,
         reduxState: {
           ...initialMockStore,
           user: {
@@ -142,7 +142,7 @@ describe("UserProfile", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserProfileComponent,
+        Component: UserProfile,
         reduxState: {
           ...initialMockStore,
           user: {
@@ -187,7 +187,7 @@ describe("UserProfile", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserProfileComponent,
+        Component: UserProfile,
         reduxState: {
           ...initialMockStore,
           user: {
@@ -237,7 +237,7 @@ describe("UserProfile", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserProfileComponent,
+        Component: UserProfile,
         reduxState: {
           ...initialMockStore,
           user: {

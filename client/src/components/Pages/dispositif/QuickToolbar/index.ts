@@ -1,1 +1,3 @@
-export { QuickToolbarContainer as QuickToolbar } from "./QuickToolbar.container";
+import QuickToolbar from "./QuickToolbar";
+
+export default QuickToolbar;

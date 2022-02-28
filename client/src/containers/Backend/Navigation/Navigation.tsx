@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { navigationData } from "./data";
 import { NavButton } from "./components/NavButton";
-import { Props } from "./Navigation.container";
 import API from "utils/API";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
@@ -14,6 +13,7 @@ import {
 } from "services/UserStructure/userStructure.selectors";
 import { getNbNewNotifications } from "../UserNotifications/lib";
 import { useRouter } from "next/router";
+import { useHistory } from "react-router-dom";
 
 export type SelectedPage =
   | "notifications"
@@ -24,7 +24,7 @@ export type SelectedPage =
   | "structure"
   | "admin"
   | "logout";
-export interface PropsBeforeInjection {
+interface Props {
   selected: SelectedPage;
 }
 
@@ -34,11 +34,12 @@ const NavigationContainer = styled.div`
   align-self: center;
 `;
 
-export const NavigationComponent: React.FunctionComponent<Props> = (
+const NavigationComponent: React.FunctionComponent<Props> = (
   props: Props
 ) => {
   const user = useSelector(userSelector);
   const router = useRouter();
+  const history = useHistory();
   const isAdmin = user && user.admin;
   const hasStructure = user && user.membreStruct;
 
@@ -61,25 +62,25 @@ export const NavigationComponent: React.FunctionComponent<Props> = (
   };
   const onButtonClick = (type: SelectedPage) => {
     if (type === "traductions") {
-      return props.history.push("/backend/user-translation");
+      return history.push("/backend/user-translation");
     }
     if (type === "notifications") {
-      return props.history.push("/backend/user-dash-notifications");
+      return history.push("/backend/user-dash-notifications");
     }
     if (type === "favoris") {
-      return props.history.push("/backend/user-favorites");
+      return history.push("/backend/user-favorites");
     }
     if (type === "contributions") {
-      return props.history.push("/backend/user-dash-contrib");
+      return history.push("/backend/user-dash-contrib");
     }
     if (type === "structure") {
-      return props.history.push("/backend/user-dash-structure");
+      return history.push("/backend/user-dash-structure");
     }
     if (type === "profil") {
-      return props.history.push("/backend/user-profile");
+      return history.push("/backend/user-profile");
     }
     if (type === "admin") {
-      return props.history.push("/backend/admin");
+      return history.push("/backend/admin");
     }
     if (type === "logout") {
       return disconnect();
@@ -99,8 +100,6 @@ export const NavigationComponent: React.FunctionComponent<Props> = (
             isSelected={props.selected === data.type}
             type={data.type}
             onClick={() => onButtonClick(data.type)}
-            // @ts-ignore
-            t={props.t}
             nbNewNotifications={nbNewNotifications}
           />
         );
@@ -108,3 +107,5 @@ export const NavigationComponent: React.FunctionComponent<Props> = (
     </NavigationContainer>
   );
 };
+
+export default NavigationComponent;

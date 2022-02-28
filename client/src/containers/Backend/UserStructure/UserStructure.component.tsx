@@ -3,22 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchUserStructureActionCreator,
   updateUserStructureActionCreator,
-} from "../../../services/UserStructure/userStructure.actions";
+} from "services/UserStructure/userStructure.actions";
 import {
   userStructureSelector,
   userStructureMembresSelector,
-} from "../../../services/UserStructure/userStructure.selectors";
-import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
+} from "services/UserStructure/userStructure.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { UserStructureLoading } from "./components/UserStructureLoading";
 
 import { UserStructureDetails } from "./components/UserStructureDetails";
 import styled from "styled-components";
-import { colors } from "../../../colors";
-import { userSelector } from "../../../services/User/user.selectors";
+import { colors } from "colors";
+import { userSelector } from "services/User/user.selectors";
 import { ObjectId } from "mongodb";
 import Swal from "sweetalert2";
-import { Navigation } from "../Navigation";
+import Navigation from "../Navigation";
 
 const ErrorContainer = styled.div`
   margin-top: 60px;
@@ -35,8 +35,6 @@ const ErrorText = styled.div`
   color: ${colors.error};
   margin-top: 60px;
 `;
-
-declare const window: Window;
 
 export const UserStructureComponent = () => {
   const dispatch = useDispatch();

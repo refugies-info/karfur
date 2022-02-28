@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { UserFavoritesComponent } from "../UserFavorites.component";
+import UserFavorites from "../UserFavorites";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProvidersAndRender";
 import {
@@ -43,7 +43,7 @@ describe("UserFavorites", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserFavoritesComponent,
+        Component: UserFavorites,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_FAVORITES: { isLoading: true } },
@@ -61,7 +61,7 @@ describe("UserFavorites", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserFavoritesComponent,
+        Component: UserFavorites,
         compProps: { t: (_: string, element2: string) => element2 },
       });
     });
@@ -132,7 +132,7 @@ describe("UserFavorites", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserFavoritesComponent,
+        Component: UserFavorites,
         compProps: { t: (_: string, element2: string) => element2 },
         reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
       });
@@ -146,7 +146,7 @@ describe("UserFavorites", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserFavoritesComponent,
+        Component: UserFavorites,
         compProps: { t: (_: string, element2: string) => element2 },
         reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
       });
@@ -169,7 +169,7 @@ describe("UserFavorites", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserFavoritesComponent,
+        Component: UserFavorites,
         compProps: { t: (_: string, element2: string) => element2 },
         reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
       });
@@ -193,7 +193,7 @@ describe("UserFavorites", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserFavoritesComponent,
+        Component: UserFavorites,
         compProps: { t: (_: string, element2: string) => element2 },
         reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
       });

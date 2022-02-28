@@ -18,13 +18,13 @@ import CustomTabPane from "components/Backend/Admin/CustomTabPane";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import styled from "styled-components";
-import { Navigation } from "../Navigation";
+import Navigation from "../Navigation";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import styles from "./Admin.module.scss";
 
 const OngletText = styled.span`
-  color: ${(props) => (props.isActive ? colors.bleuCharte : colors.darkColor)};
-  font-weight: ${(props) => (props.isActive ? "bold" : "normal")};
+  color: ${(props: {isActive: boolean}) => (props.isActive ? colors.bleuCharte : colors.darkColor)};
+  font-weight: ${(props: {isActive: boolean}) => (props.isActive ? "bold" : "normal")};
 `;
 
 const OngletContainer = styled.div`

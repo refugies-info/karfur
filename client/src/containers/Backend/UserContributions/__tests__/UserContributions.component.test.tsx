@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { UserContributionsComponent } from "../UserContributions.component";
+import UserContributions from "../UserContributions";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProvidersAndRender";
 import Swal from "sweetalert2";
@@ -48,7 +48,7 @@ describe("userContributions", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserContributionsComponent,
+        Component: UserContributions,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_CONTRIBUTIONS: { isLoading: true } },
@@ -65,7 +65,7 @@ describe("userContributions", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserContributionsComponent,
+        Component: UserContributions,
       });
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
@@ -144,7 +144,7 @@ describe("userContributions", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserContributionsComponent,
+        Component: UserContributions,
         reduxState: {
           ...initialMockStore,
           userContributions,
@@ -165,7 +165,7 @@ describe("userContributions", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserContributionsComponent,
+        Component: UserContributions,
         reduxState: {
           ...initialMockStore,
           userContributions,
@@ -189,7 +189,7 @@ describe("userContributions", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserContributionsComponent,
+        Component: UserContributions,
         reduxState: {
           ...initialMockStore,
           userContributions: [userContributions[0]],

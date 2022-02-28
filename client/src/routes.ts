@@ -1,15 +1,15 @@
 import Dashboard from "./containers/Backend/Dashboard/Dashboard";
-import { Admin } from "./containers/Backend/Admin/Admin";
-import { UserContributions } from "./containers/Backend/UserContributions";
-import { UserProfile } from "./containers/Backend/UserProfile";
+import Admin from "./containers/Backend/Admin";
+import UserContributions from "./containers/Backend/UserContributions";
+import UserProfile from "./containers/Backend/UserProfile";
 import Translation from "./containers/Translation/Translation";
-import { UserNotifications } from "./containers/Backend/UserNotifications";
-import { UserFavorites } from "./containers/Backend/UserFavorites";
+import UserNotifications from "./containers/Backend/UserNotifications";
+import UserFavorites from "./containers/Backend/UserFavorites";
 import {
   UserStructure,
   UserAdminStructure,
 } from "./containers/Backend/UserStructure";
-import { UserTranslation } from "./containers/Backend/UserTranslation";
+import UserTranslation from "./containers/Backend/UserTranslation";
 
 type Role = "Trad" | "ExpertTrad" | "Admin" | "hasStructure" | "User" | "Contrib";
 export type RouteType = {

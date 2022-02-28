@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { SelectedPage } from "../Navigation.component";
+import { SelectedPage } from "../Navigation";
 import traductionIcon from "assets/icon_traduction.svg";
 import traductionIconBlanc from "assets/icon_traduction_blanc.svg";
 import styles from "./NavButton.module.scss";

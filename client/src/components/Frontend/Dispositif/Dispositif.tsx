@@ -5,18 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import ContentEditable from "react-contenteditable";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import {
-  EditorState,
-  ContentState,
-} from "draft-js";
+import { EditorState, ContentState } from "draft-js";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
 import h2p from "html2plaintext";
 import _ from "lodash";
 import { convertToHTML } from "draft-convert";
+import { isMobile } from "react-device-detect";
+import styled from "styled-components";
 import API from "utils/API";
+// components
 import Sponsors from "components/Frontend/Dispositif/Sponsors/Sponsors";
-import { ContenuDispositif } from "components/Frontend/Dispositif/ContenuDispositif";
+import ContenuDispositif from "components/Frontend/Dispositif/ContenuDispositif";
 import {
   BookmarkedModal,
   DispositifCreateModal,
@@ -30,17 +30,23 @@ import {
   ShareContentOnMobileModal,
 } from "components/Modals/index";
 import FButton from "components/FigmaUI/FButton/FButton";
-import { Tags } from "components/Pages/dispositif/Tags";
+import Tags from "components/Pages/dispositif/Tags";
 import { LanguageToReadModal } from "components/Pages/dispositif/LanguageToReadModal/LanguagetoReadModal";
-import { LeftSideDispositif } from "components/Frontend/Dispositif/LeftSideDispositif";
-import { BandeauEdition } from "components/Frontend/Dispositif/BandeauEdition";
-import { TopRightHeader } from "components/Frontend/Dispositif/TopRightHeader";
-import { fetchUserActionCreator } from "services/User/user.actions";
+import LeftSideDispositif from "components/Frontend/Dispositif/LeftSideDispositif";
+import BandeauEdition from "components/Frontend/Dispositif/BandeauEdition";
+import TopRightHeader from "components/Frontend/Dispositif/TopRightHeader";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import ContribCaroussel from "components/Pages/dispositif/ContribCaroussel/ContribCaroussel";
 import SideTrad from "components/Pages/dispositif/SideTrad/SideTrad";
 import ExpertSideTrad from "components/Pages/dispositif/SideTrad/ExpertSideTrad";
-import { initializeTimer } from "containers/Translation/functions";
+import EnBrefBanner from "components/Frontend/Dispositif/EnBrefBanner";
+import FeedbackFooter from "components/Frontend/Dispositif/FeedbackFooter";
+import { PdfCreateModal } from "components/Modals/PdfCreateModal/PdfCreateModal";
+import BackButton from "components/Frontend/Dispositif/BackButton";
+import { colors } from "colors";
+import SEO from "components/Seo";
+// data
+import { tags } from "data/tags";
 import {
   contenu,
   menu as menuDispositif,
@@ -51,15 +57,9 @@ import {
   customConvertOption,
   ShortContent,
 } from "data/dispositif";
-import { BackButton } from "components/Frontend/Dispositif/BackButton";
-import { colors } from "colors";
-import {
-  fetchSelectedDispositifActionCreator,
-  updateUiArrayActionCreator,
-  updateSelectedDispositifActionCreator,
-  setUiArrayActionCreator,
-  setSelectedDispositifActionCreator,
-} from "services/SelectedDispositif/selectedDispositif.actions";
+// lib
+import isInBrowser from "lib/isInBrowser";
+import { Event } from "lib/tracking";
 import {
   updateNbViews,
   generateUiArray,
@@ -72,26 +72,28 @@ import {
   getContent,
   isContentForbidden,
 } from "lib/dispositifPage";
-import { EnBrefBanner } from "components/Frontend/Dispositif/EnBrefBanner";
-import { FeedbackFooter } from "components/Frontend/Dispositif/FeedbackFooter";
-import { Event } from "lib/tracking";
 import { logger } from "logger";
-import { isMobile } from "react-device-detect";
-import { PdfCreateModal } from "components/Modals/PdfCreateModal/PdfCreateModal";
-import styled from "styled-components";
-import isInBrowser from "lib/isInBrowser";
-import styles from "scss/pages/dispositif.module.scss";
-import SEO from "components/Seo";
+import { initializeTimer } from "containers/Translation/functions";
+import { DispositifContent, IDispositif, Language, Structure, Tag } from "types/interface";
+import useRTL from "hooks/useRTL";
+// store
+import {
+  fetchSelectedDispositifActionCreator,
+  updateUiArrayActionCreator,
+  updateSelectedDispositifActionCreator,
+  setUiArrayActionCreator,
+  setSelectedDispositifActionCreator,
+} from "services/SelectedDispositif/selectedDispositif.actions";
+import { userSelector } from "services/User/user.selectors";
+import { fetchUserActionCreator } from "services/User/user.actions";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { userDetailsSelector } from "services/User/user.selectors";
-import { userSelector } from "services/User/user.selectors";
-import { DispositifContent, IDispositif, Language, Structure, Tag } from "types/interface";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { toggleLangueActionCreator } from "services/Langue/langue.actions";
-import useRTL from "hooks/useRTL";
-import { tags } from "data/tags";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+// style
+import styles from "scss/pages/dispositif.module.scss";
 
 moment.locale("fr");
 
@@ -1368,7 +1370,6 @@ const Dispositif = (props: Props) => {
                 typeContenu={dispositif?.typeContenu || "dispositif"}
                 langue={router.locale || "fr"}
                 mainTag={mainTag}
-                t={t}
               />
             </Row>
             <Col lg="12" md="12" sm="12" xs="12" className={styles.title}>
@@ -1494,14 +1495,11 @@ const Dispositif = (props: Props) => {
                     tags={dispositif?.tags || []}
                     disableEdit={disableEdit}
                     changeTag={changeTag}
-                    addTag={addTag}
                     openTag={() => setShowTagsModal(true)}
-                    deleteTag={deleteTag}
                     toggleTutorielModal={toggleTutorielModal}
                     displayTuto={displayTuto}
                     updateUIArray={updateUIArray}
                     isRTL={isRTL}
-                    router={router}
                     typeContenu={dispositif?.typeContenu || "dispositif"}
                   />
                 }

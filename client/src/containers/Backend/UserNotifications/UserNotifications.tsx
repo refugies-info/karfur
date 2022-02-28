@@ -26,9 +26,7 @@ import Skeleton from "react-loading-skeleton";
 import { assetsOnServer } from "assets/assetsOnServer";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
 import { colors } from "colors";
-import { Navigation } from "../Navigation";
-
-declare const window: Window;
+import Navigation from "../Navigation";
 
 const MainContainer = styled.div`
   background: ${colors.lightGrey}
@@ -55,11 +53,10 @@ const CenterContainer = styled.div`
   align-items: center;
 `;
 
-export interface PropsBeforeInjection {
-  t: any;
+interface Props {
   history: any;
 }
-export const UserNotificationsComponent = (props: PropsBeforeInjection) => {
+const UserNotifications = (props: Props) => {
   const [selectedReaction, setSelectedReaction] =
     useState<FormattedNotification | null>(null);
   const [showReactionModal, setShowReactionModal] = useState(false);
@@ -266,3 +263,5 @@ export const UserNotificationsComponent = (props: PropsBeforeInjection) => {
     </div>
   );
 };
+
+export default UserNotifications;

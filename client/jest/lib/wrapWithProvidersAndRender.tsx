@@ -3,8 +3,8 @@ import React from "react";
 import renderer from "react-test-renderer";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
-import { RootState } from "../../src/services/rootReducer";
-import { initialMockStore } from "../../src/__fixtures__/reduxStore";
+import { RootState } from "services/rootReducer";
+import { initialMockStore } from "__fixtures__/reduxStore";
 import { BrowserRouter as Router } from "react-router-dom";
 
 interface WrapWithProvidersAndRenderParams {
