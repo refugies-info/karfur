@@ -11,7 +11,7 @@ A component must have its own folder, which contains:
 ## How to write a component?
 
 A component must be a functional component:
-```js
+```tsx
 const BackButton = () => {
   return (
     <div>...</div>
@@ -20,7 +20,7 @@ const BackButton = () => {
 ```
 
 A component must be typed:
-```js
+```tsx
 interface Props {
   backCallback: (screen: string) => void
   text: string

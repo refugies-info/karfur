@@ -67,7 +67,7 @@ The choice has been made to use [SCSS modules](https://create-react-app.dev/docs
     className={cls(styles.container, props.checked && styles.checked)}
     ></div>
   )
-
+  ```
 
 ## Helpers
 
@@ -85,6 +85,10 @@ To use any color in a SCSS file, you must use it from the `scss/colors.scss` fil
 ### Responsive
 
 You must use the custom mixins to keep responsive consistent:
+- `media-max` will apply the styles for all the screens, up to your parameter.
+- `media-min` will apply the styles for all the screens, starting from your parameter.
+
+Example:
 ```scss
 .btn {
   padding: 10px;
@@ -94,6 +98,8 @@ You must use the custom mixins to keep responsive consistent:
   }
 }
 ```
+
+
 
 The available breakpoints are the following ones:
 ```
