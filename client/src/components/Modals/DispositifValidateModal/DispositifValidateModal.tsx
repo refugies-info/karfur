@@ -112,7 +112,7 @@ const DispositifValidateModal = (props: Props) => {
             rel="noopener noreferrer"
             type="help"
             name="question-mark-circle-outline"
-            fill={colors.noir}
+            fill={colors.gray90}
             className="mr-8"
           >
             Centre d'aide

@@ -1,12 +1,12 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 
 .footer {
   position: absolute;
   width: 100%;
-  background: $noir;
+  background: $gray90;
   padding: 60px 60px;
-  color: #ffffff;
+  color: $white;
 
   @include media-max("tablet-up") {
     padding: 60px 60px;
@@ -33,7 +33,7 @@
     margin-top: 20px;
   }
 
-  $placeholderColor: $noir;
+  $placeholderColor: $gray90;
   *::-webkit-input-placeholder {
     color: $placeholderColor;
   }

@@ -36,7 +36,7 @@ const InformationContainer = styled.div`
 
   font-size: 16px;
   line-height: 20px;
-  color: ${colors.blancSimple};
+  color: ${colors.white};
   margin-bottom: 15px;
 `;
 
@@ -80,7 +80,7 @@ export const AddMemberModal = (props: Props) => {
         ajouter a déjà créé un compte sur réfugiés.info.
       </InformationContainer>
       {isLoading && (
-        <SkeletonTheme color={colors.blancSimple}>
+        <SkeletonTheme color={colors.white}>
           <Skeleton count={1} height={50} />
         </SkeletonTheme>
       )}

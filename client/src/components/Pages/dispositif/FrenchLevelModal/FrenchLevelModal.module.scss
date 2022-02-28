@@ -1,3 +1,6 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
 .container {
   margin: 40px;
 
@@ -16,7 +19,7 @@
     color: black;
 
     .selected {
-      color: #4caf50;
+      color: $validationHover;
     }
   }
 
@@ -73,7 +76,7 @@
 .modal {
   mix-blend-mode: normal;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
+  border-radius: $radius;
   border: none;
   background: #fbfbfb;
 

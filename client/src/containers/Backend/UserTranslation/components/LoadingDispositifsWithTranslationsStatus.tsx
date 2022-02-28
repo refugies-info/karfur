@@ -35,7 +35,7 @@ const FilterBarContainer = styled.div`
 `;
 
 const TableContainer = styled.div`
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   border-radius: 12px;
   padding: 32px;
 `;
@@ -61,7 +61,7 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
     <MainContainer>
       <RowContainer>
         <Row>
-          <SkeletonTheme color={colors.blancSimple}>
+          <SkeletonTheme color={colors.white}>
             <Skeleton width={120} height={50} count={1} />
           </SkeletonTheme>
         </Row>
@@ -128,7 +128,7 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
           <tbody>
             {arrayLines.map((_, key) => {
               return (
-                <tr key={key} className={"bg-blancSimple"}>
+                <tr key={key} className={"bg-white"}>
                   <td>
                     <SkeletonTheme color="#CDCDCD">
                       <Skeleton width={50} count={1} />

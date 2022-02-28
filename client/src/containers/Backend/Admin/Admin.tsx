@@ -23,7 +23,7 @@ import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import styles from "./Admin.module.scss";
 
 const OngletText = styled.span`
-  color: ${(props: {isActive: boolean}) => (props.isActive ? colors.bleuCharte : colors.darkColor)};
+  color: ${(props: {isActive: boolean}) => (props.isActive ? colors.bleuCharte : colors.gray90)};
   font-weight: ${(props: {isActive: boolean}) => (props.isActive ? "bold" : "normal")};
 `;
 
@@ -56,7 +56,7 @@ const Onglet = (props: TabProps) => {
           <EVAIcon
             key={2}
             name={props.iconNotSelected}
-            fill={colors.noir}
+            fill={colors.gray90}
           />
         }
       </div>

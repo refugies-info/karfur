@@ -577,7 +577,7 @@ class Sponsors extends Component {
                       <EVAIcon
                         name="trash-2-outline"
                         size="large"
-                        fill={colors.blanc}
+                        fill={colors.gray10}
                       />
                       <DeleteButtonFullText>Supprimer</DeleteButtonFullText>
                     </DeleteButtonFull>
@@ -695,7 +695,7 @@ class Sponsors extends Component {
                               <EVAIcon
                                 name="edit-outline"
                                 size="large"
-                                fill={colors.noir}
+                                fill={colors.gray90}
                               />
                               <EditText>Editer</EditText>
                             </EditButton>
@@ -705,7 +705,7 @@ class Sponsors extends Component {
                               <EVAIcon
                                 name="trash-2-outline"
                                 size="large"
-                                fill={colors.blanc}
+                                fill={colors.gray10}
                               />
                             </DeleteButtonSmall>
                           </SponsorListContainer>
@@ -768,7 +768,7 @@ class Sponsors extends Component {
             <div>
               <FButton
                 type="white"
-                fill={colors.noir}
+                fill={colors.gray90}
                 onClick={this.toggleModal}
                 className="ml-auto mr-8"
               >
@@ -777,7 +777,7 @@ class Sponsors extends Component {
               <FButton
                 type="validate"
                 name="checkmark-outline"
-                fill={colors.noir}
+                fill={colors.gray90}
                 disabled={
                   (!checked || (!user.email && !user.phone)) &&
                   !mesStructures.some((x) => x.checked)
@@ -796,12 +796,12 @@ class Sponsors extends Component {
         >
           {this.state.banner ? (
             <div className={styles.warning + " bg-focus mt-16 mb-16"}>
-              <EVAIcon name="info" fill={colors.blanc} className={styles.info_icon} />
+              <EVAIcon name="info" fill={colors.gray10} className={styles.info_icon} />
               <div
                 onClick={() => this.setState({ banner: false })}
                 className={styles.close_icon}
               >
-                <EVAIcon name="close-outline" fill={colors.blanc} />
+                <EVAIcon name="close-outline" fill={colors.gray10} />
               </div>
               <p style={{ marginBottom: 0 }}>
                 Renseignez ci-dessous le nom de la structure responsable de
@@ -881,7 +881,7 @@ class Sponsors extends Component {
             <div>
               <FButton
                 type="white"
-                fill={colors.noir}
+                fill={colors.gray90}
                 onClick={() => {
                   this.toggleModal("responsabilite");
                   this.handleChangeValueEntered("");
@@ -895,7 +895,7 @@ class Sponsors extends Component {
               <FButton
                 type="validate"
                 name="checkmark-outline"
-                fill={colors.noir}
+                fill={colors.gray90}
                 onClick={() => {
                   this.props.addMainSponsor(this.state.selected);
                   this.toggleModal("envoye");
@@ -955,12 +955,12 @@ class Sponsors extends Component {
           </FormGroup>
           {this.state.banner ? (
             <div className={styles.warning + " bg-focus mt-16 mb-16"}>
-              <EVAIcon name="info" fill={colors.blanc} className={styles.info_icon} />
+              <EVAIcon name="info" fill={colors.gray10} className={styles.info_icon} />
               <div
                 onClick={() => this.setState({ banner: false })}
                 className={styles.close_icon}
               >
-                <EVAIcon name="close-outline" fill={colors.blanc} />
+                <EVAIcon name="close-outline" fill={colors.gray10} />
               </div>
               <p style={{ marginBottom: 0 }}>
                 Si oui, le responsable de la structure sera notifié de votre
@@ -998,7 +998,7 @@ class Sponsors extends Component {
               <FButton
                 type="white"
                 name="arrow-back-outline"
-                fill={colors.noir}
+                fill={colors.gray90}
                 onClick={() => {
                   this.toggleModal("responsabilite");
                   this.handleChangeValueEntered("");
@@ -1011,7 +1011,7 @@ class Sponsors extends Component {
               <FButton
                 type="validate"
                 name="checkmark-outline"
-                fill={colors.noir}
+                fill={colors.gray90}
                 disabled={
                   !this.state.structure.nom ||
                   !this.state.structure.contact ||

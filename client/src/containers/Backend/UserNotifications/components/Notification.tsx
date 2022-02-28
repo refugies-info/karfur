@@ -7,7 +7,7 @@ import FButton from "components/FigmaUI/FButton/FButton";
 import { colors } from "colors";
 
 const Container = styled.div`
-  background: ${(props: {read: boolean}) => (props.read ? colors.blancSimple : colors.focus)};
+  background: ${(props: {read: boolean}) => (props.read ? colors.white : colors.focus)};
   border-radius: 12px;
   padding: 8px 8px 8px 20px;
   margin: 8px 0px 0px 0px;
@@ -18,10 +18,10 @@ const Container = styled.div`
   cursor: pointer;
   border-width: 2px;
   border-style: solid;
-  border-color: ${(props: {read: boolean}) => (props.read ? colors.blancSimple : colors.focus)};
+  border-color: ${(props: {read: boolean}) => (props.read ? colors.white : colors.focus)};
 
   &:hover {
-    border-color: ${colors.noir};
+    border-color: ${colors.gray90};
   }
 `;
 const RowContainer = styled.div`
@@ -34,7 +34,7 @@ const TextContainer = styled.div`
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
-  color: ${(props: {read: boolean}) => (props.read ? colors.noir : colors.blancSimple)};
+  color: ${(props: {read: boolean}) => (props.read ? colors.gray90 : colors.white)};
   margin-left: 20px;
 `;
 
@@ -52,7 +52,7 @@ const DateContainer = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props: {read: boolean}) => (props.read ? colors.error : colors.blancSimple)};
+  color: ${(props: {read: boolean}) => (props.read ? colors.error : colors.white)};
   margin-right: 8px;
   margin-left: 8px;
 `;
@@ -123,7 +123,7 @@ export const Notification = (props: Props) => {
       <RowContainer>
         <EVAIcon
           name={props.read ? "bell-outline" : "bell"}
-          fill={props.read ? colors.noir : colors.blancSimple}
+          fill={props.read ? colors.gray90 : colors.white}
         />
         <TextContainer read={props.read}>{getText(props.type)}</TextContainer>
         {props.type === "reaction" && props.title && (

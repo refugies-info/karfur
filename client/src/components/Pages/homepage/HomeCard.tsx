@@ -70,8 +70,8 @@ export const HomeCard = (props: Props) => {
       <FButtonMobile
         name={props.iconName}
         isDisabled={props.isDisabled}
-        fill={colors.noir}
-        color={colors.blancSimple}
+        fill={colors.gray90}
+        color={colors.white}
         onClick={props.onClick}
         title={props.buttonTitle}
         defaultTitle={props.defaultBoutonTitle}

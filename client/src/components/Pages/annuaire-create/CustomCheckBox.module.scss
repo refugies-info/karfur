@@ -1,9 +1,11 @@
+@import "src/scss/colors";
+
 .container {
   width: 20px;
   height: 20px;
-  background: #ffffff;
-  border: 1px solid #cdcdcd;
-  border-color: #cdcdcd;
+  background: $white;
+  border: 1px solid $gray50;
+  border-color: $gray50;
   box-sizing: border-box;
   border-radius: 3px;
   margin-right: 8px;

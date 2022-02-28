@@ -37,13 +37,13 @@
 
 // Footer
 .footer_links {
-  color: $grisFonce;
+  color: $gray70;
   font-size: 16px;
   line-height: 20px;
   margin-top: 64px;
 
   .link {
-    color: $grisFonce;
+    color: $gray70;
     background: transparent;
     font-weight: bold;
     font-size: 1rem;
@@ -63,7 +63,7 @@
 }
 
 .reset_message {
-  color: #828282;
+  color: $gray70;
   font-size: 16px;
   line-height: 20px;
   margin-bottom: 16px;
@@ -71,7 +71,7 @@
 .precisions_message {
   font-size: 16px;
   line-height: 20px;
-  color: #828282;
+  color: $gray70;
   margin-top: 16px;
 }
 .email_message {

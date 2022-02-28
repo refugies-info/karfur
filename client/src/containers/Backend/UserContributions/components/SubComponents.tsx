@@ -22,14 +22,14 @@ const Container = styled.div`
   font-size: 12px;
   line-height: 15px;
   color: ${(props: {isDarkBackground: boolean}) =>
-    props.isDarkBackground ? colors.blancSimple : colors.darkColor};
+    props.isDarkBackground ? colors.white : colors.gray90};
   background-color: ${(props: {isDarkBackground: boolean}) =>
-    props.isDarkBackground ? colors.darkColor : colors.blancSimple};
+    props.isDarkBackground ? colors.gray90 : colors.white};
   padding: 8px;
   border-radius: 6px;
   width: fit-content;
   cursor: pointer;
-  border: 1px solid ${colors.noir};
+  border: 1px solid ${colors.gray90};
 `;
 
 export const TypeContenu = (props: {
@@ -62,7 +62,7 @@ export const Responsabilite = (props: { responsable: string | null }) => {
             props.responsable === "Moi" ? "person-outline" : "briefcase-outline"
           }
           size={20}
-          fill={colors.noir}
+          fill={colors.gray90}
         />
       </div>
       {limitNbCaracters(props.responsable, 30)}
@@ -88,7 +88,7 @@ const ContribStyledStatusContainer = styled.div`
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
-  color: ${(props: ContribStyledStatusContainerProps) => (props.textColor ? props.textColor : colors.blancSimple)};
+  color: ${(props: ContribStyledStatusContainerProps) => (props.textColor ? props.textColor : colors.white)};
 `;
 
 export const ContribStyledStatus = (props: { text: string; size?: string }) => {
@@ -125,7 +125,7 @@ export const StatutHeader = (props: { onClick: () => void }) => {
       <EVAIcon
         name={"question-mark-circle-outline"}
         size={20}
-        fill={colors.noir}
+        fill={colors.gray90}
         className="ml-8"
       />
     </RowContainer>

@@ -1,4 +1,5 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
+@import "src/scss/variables";
 @import "src/scss/mixins/responsive";
 
 .btn {
@@ -8,7 +9,7 @@
   line-height: 20px;
   display: flex;
   flex-direction: row;
-  border-radius: 12px;
+  border-radius: $radius;
   height: 68px;
   width: 100%;
   padding: 24px;

@@ -1,3 +1,6 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
 .modal {
   padding: 20px;
   height: 850px !important;
@@ -22,8 +25,8 @@
   .help {
     display: flex;
     flex-direction: row;
-    background: #2d9cdb;
-    border-radius: 12px;
+    background: $focus;
+    border-radius: $radius;
     padding: 16px;
     margin-bottom: 24px;
     position: relative;
@@ -44,13 +47,13 @@
   }
 
   .checkbox {
-    border-radius: 12px;
+    border-radius: $radius;
     width: fit-content;
     padding: 14px;
     font-weight: normal;
     font-size: 16px;
     line-height: 20px;
-    color: #828282;
+    color: $gray70;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -59,22 +62,22 @@
 
     .text {
       font-weight: normal;
-      color: #828282;
+      color: $gray70;
       margin-bottom: 0;
     }
     .text_checked {
       font-weight: bolder;
-      color: #212121;
+      color: $gray90;
       margin-bottom: 0;
     }
   }
 
   .selected {
-    background: #8bc34a;
-    border-radius: 12px;
+    background: $validationDefault;
+    border-radius: $radius;
     font-weight: bold;
     font-size: 16px;
-    color: #ffffff;
+    color: $white;
     padding: 15px;
     width: fit-content;
     margin-bottom: 8px;

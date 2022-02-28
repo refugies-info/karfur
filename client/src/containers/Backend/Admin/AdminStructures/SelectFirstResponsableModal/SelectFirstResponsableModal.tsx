@@ -23,7 +23,7 @@ const ModifyLink = styled.div`
   cursor: pointer;
 `;
 const SelectedUser = styled.div`
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   width: 100%;
   padding: 8px;
   border-radius: 12px;

@@ -1,15 +1,16 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/variables";
 
 body .btn {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  border-radius: 12px;
+  border-radius: $radius;
   padding: 15px;
   cursor: pointer;
   border: 0.5px solid transparent;
-  color: $noir;
+  color: $gray90;
   width: fit-content;
   text-decoration: none;
   white-space: nowrap;
@@ -28,16 +29,16 @@ body .btn {
     transition: all 0.5s ease;
 
     svg {
-      fill: $noir;
+      fill: $gray90;
     }
   }
   &:not(.theme) {
     &:hover {
-      color: $noir;
+      color: $gray90;
     }
     &:active {
-      background: $noirCD;
-      color: $noir;
+      background: $gray50;
+      color: $gray90;
     }
     &:focus {
       outline: 0;
@@ -46,17 +47,17 @@ body .btn {
 
     &:disabled,
     &.disabled {
-      background: $gris;
-      color: $grisFonce;
+      background: $gray20;
+      color: $gray70;
       cursor: not-allowed;
       svg {
-        fill: $grisFonce;
+        fill: $gray70;
       }
       &:hover {
-        background-color: $gris;
-        color: $grisFonce;
+        background-color: $gray20;
+        color: $gray70;
         svg {
-          fill: $grisFonce;
+          fill: $gray70;
         }
       }
     }
@@ -65,88 +66,88 @@ body .btn {
   // TYPES
   &.default {
     svg {
-      fill: $noir;
+      fill: $gray90;
     }
   }
   &.saved {
     background: $lightgreen;
-    color: $noir;
+    color: $gray90;
     svg {
       fill: $vert;
     }
   }
   &.modified {
     background: $lightOrange;
-    color: $noir;
+    color: $gray90;
     svg {
       fill: $orange;
     }
   }
   &.white {
-    background: $blancSimple;
-    color: $noir;
+    background: $white;
+    color: $gray90;
     svg {
-      fill: $noir;
+      fill: $gray90;
     }
     &:hover {
       transition: all 0.5s ease;
-      background: $noir;
-      color: $blancSimple;
+      background: $gray90;
+      color: $white;
       svg {
-        fill: $blancSimple;
+        fill: $white;
       }
     }
   }
   &.white-yellow-hover {
-    background: $blancSimple;
-    color: $noir;
+    background: $white;
+    color: $gray90;
     svg {
-      fill: $noir;
+      fill: $gray90;
     }
     &:hover {
       transition: all 0.5s ease;
       background: #f9ef98;
-      color: $noir;
+      color: $gray90;
       svg {
-        fill: $noir;
+        fill: $gray90;
       }
     }
   }
   &.dark {
-    background: $noir;
-    color: #ffffff;
+    background: $gray90;
+    color: $white;
     svg {
-      fill: $blancSimple;
+      fill: $white;
     }
     &:hover {
       transition: all 0.5s ease;
       background: #000000;
-      color: #ffffff;
+      color: $white;
       svg {
-        fill: $blancSimple;
+        fill: $white;
       }
     }
     &:not(:disabled):not(.disabled):active {
       background: #000000;
-      color: #ffffff;
+      color: $white;
       svg {
-        fill: $blancSimple;
+        fill: $white;
       }
     }
   }
   &.validate-light {
     background: $vert;
-    color: $blancSimple;
+    color: $white;
     svg {
-      fill: $blancSimple;
+      fill: $white;
     }
     &:not(:disabled):not(.disabled):hover {
       transition: all 0.5s ease;
       background: $vertFonce;
-      color: $blancSimple;
+      color: $white;
       box-shadow: none;
       svg {
-        fill: $blancSimple;
+        fill: $white;
       }
     }
     &:not(:disabled):not(.disabled):active {
@@ -155,34 +156,34 @@ body .btn {
     }
 
     &:disabled {
-      background: #828282;
-      color: $blancSimple;
+      background: $gray70;
+      color: $white;
 
       &:hover {
-        background-color: #828282;
-        color: $blancSimple;
+        background-color: $gray70;
+        color: $white;
         svg {
-          fill: $blancSimple;
+          fill: $white;
         }
       }
       svg {
-        fill: $blancSimple;
+        fill: $white;
       }
     }
   }
   &.validate {
     background: $vert;
-    color: $blancSimple;
+    color: $white;
     svg {
-      fill: $blancSimple;
+      fill: $white;
     }
     &:not(:disabled):not(.disabled):hover {
       transition: all 0.5s ease;
       background: $vertFonce;
-      color: $blancSimple;
+      color: $white;
       box-shadow: none;
       svg {
-        fill: $blancSimple;
+        fill: $white;
       }
     }
     &:not(:disabled):not(.disabled):active {
@@ -192,17 +193,17 @@ body .btn {
   }
   &.validate-mockup {
     background: $vert;
-    color: $blancSimple;
+    color: $white;
     svg {
-      fill: $blancSimple;
+      fill: $white;
     }
     &:not(:disabled):not(.disabled):hover {
       transition: all 0.5s ease;
       background: $vertFonce;
-      color: $blancSimple;
+      color: $white;
       box-shadow: none;
       svg {
-        fill: $blancSimple;
+        fill: $white;
       }
     }
     &:not(:disabled):not(.disabled):active {
@@ -211,50 +212,50 @@ body .btn {
     }
     &.disabled {
       background: $orange;
-      color: $blanc;
+      color: $gray10;
       cursor: not-allowed;
       svg {
-        fill: $blanc;
+        fill: $gray10;
       }
     }
   }
   &.login {
-    background: #0421b1;
-    color: $blancSimple;
+    background: $bleuCharte;
+    color: $white;
     svg {
-      fill: $blancSimple;
+      fill: $white;
     }
     &:hover {
-      background: $blancSimple;
-      color: #0421b1;
-      border-color: #0421b1;
+      background: $white;
+      color: $bleuCharte;
+      border-color: $bleuCharte;
       svg {
-        fill: #0421b1;
+        fill: $bleuCharte;
       }
     }
   }
   &.signup {
-    background: $blancSimple;
-    color: #0421b1;
+    background: $white;
+    color: $bleuCharte;
     svg {
-      fill: #0421b1;
+      fill: $bleuCharte;
     }
     &:hover {
-      background: #0421b1;
-      color: $blancSimple;
+      background: $bleuCharte;
+      color: $white;
       svg {
-        fill: $blancSimple;
+        fill: $white;
       }
     }
   }
   &.error {
     background: $error;
-    color: $blancSimple;
+    color: $white;
     &:hover {
       background: $rouge;
-      color: $blancSimple;
+      color: $white;
       svg {
-        fill: $blancSimple;
+        fill: $white;
       }
     }
     &:not(:disabled):not(.disabled):active {
@@ -263,24 +264,24 @@ body .btn {
   }
   &.light-action {
     //min-width: 40px;
-    color: $noir;
-    background: $blancSimple;
+    color: $gray90;
+    background: $white;
     svg {
-      fill: $noir;
+      fill: $gray90;
     }
     &:not(:disabled):hover {
-      background: $noir;
+      background: $gray90;
       box-shadow: none;
-      color: $blancSimple;
+      color: $white;
       svg {
-        fill: $blancSimple;
+        fill: $white;
       }
     }
     &:not(:disabled):not(.disabled):active {
-      background: $noir;
-      color: #ffffff;
+      background: $gray90;
+      color: $white;
       svg {
-        fill: #ffffff;
+        fill: $white;
       }
     }
   }
@@ -291,77 +292,77 @@ body .btn {
     margin-top: 0;
     justify-content: center;
     align-items: center;
-    background-color: #cdcdcd;
+    background-color: $gray50;
   }
   &.thanks {
     background: transparent;
-    color: $grisFonce;
-    border: 0.5px solid $grisFonce;
+    color: $gray70;
+    border: 0.5px solid $gray70;
     padding: 15px 20px;
     &:hover {
       background: $validationDefault;
-      color: $blancSimple;
+      color: $white;
       border: 0.5px solid $validationDefault;
     }
     &:active {
       background: $validationHover;
-      color: $blancSimple;
+      color: $white;
       border: 0.5px solid $validationHover;
     }
     &.clicked {
       background: $validationHover;
-      color: $blancSimple;
+      color: $white;
       border: 0.5px solid $validationHover;
     }
   }
   &.outline {
-    border: 0.5px solid #ffffff;
+    border: 0.5px solid $white;
     background: transparent;
-    color: #ffffff;
+    color: $white;
     transition: all 0.2s ease;
     &:hover {
-      color: $noir;
-      border-color: $blancSimple;
-      background: $blancSimple;
+      color: $gray90;
+      border-color: $white;
+      background: $white;
       svg {
-        fill: $noir;
+        fill: $gray90;
       }
     }
   }
   &.outline-black {
-    border: 0.5px solid $noir;
+    border: 0.5px solid $gray90;
     background: transparent;
-    color: $noir;
+    color: $gray90;
     transition: all 0.4s ease;
     svg {
-      fill: $noir;
+      fill: $gray90;
     }
     &:hover {
-      border-color: $noir;
-      background: $noir;
-      color: $blancSimple;
+      border-color: $gray90;
+      background: $gray90;
+      color: $white;
       svg {
-        fill: $blancSimple;
+        fill: $white;
       }
     }
   }
   &.pill {
-    border-radius: 12px;
+    border-radius: $radius;
     height: auto;
-    border: 0.5px solid #ffffff;
+    border: 0.5px solid $white;
     background: transparent;
-    color: #ffffff;
+    color: $white;
     transition: all 0.2s ease;
 
     svg {
-      fill: $blanc;
+      fill: $gray10;
     }
     &:hover,
     &:not(:disabled):not(.disabled):active,
     &:focus {
-      background: $blanc;
+      background: $gray10;
       svg {
-        fill: $noir;
+        fill: $gray90;
       }
     }
     &:hover {
@@ -375,15 +376,15 @@ body .btn {
     }
 
     &.pill-dark {
-      border-color: $noir;
-      color: $noir;
+      border-color: $gray90;
+      color: $gray90;
       svg {
-        fill: $noir;
+        fill: $gray90;
       }
       &:hover {
         background-color: #000000;
         svg {
-          fill: $blanc;
+          fill: $gray10;
         }
       }
     }
@@ -401,9 +402,9 @@ body .btn {
     }
     &:hover {
       background: $error;
-      color: $blancSimple;
+      color: $white;
       svg {
-        fill: $blancSimple;
+        fill: $white;
       }
     }
     &:not(:disabled):not(.disabled):active {
@@ -412,14 +413,14 @@ body .btn {
   }
   &.tuto {
     background: $focus;
-    color: $blancSimple;
+    color: $white;
     outline: 0;
     border: 0.5px solid transparent;
     svg {
-      fill: $blancSimple;
+      fill: $white;
     }
     &:hover {
-      background: #d2edfc;
+      background: $bgfocus;
       color: $focus;
       svg {
         fill: $focus;
@@ -430,10 +431,10 @@ body .btn {
     }
   }
   &.edit {
-    background: #f9ef99;
-    color: $noir;
+    background: $attention;
+    color: $gray90;
     svg {
-      fill: $noir;
+      fill: $gray90;
     }
     &:hover {
       box-shadow: none;
@@ -441,35 +442,35 @@ body .btn {
   }
   &.precision {
     background: $attention;
-    color: $darkColor;
+    color: $gray90;
     svg {
-      fill: $darkColor;
+      fill: $gray90;
     }
   }
   &.fill-dark {
-    background: $noir;
-    color: $blancSimple;
+    background: $gray90;
+    color: $white;
     svg {
-      fill: $blancSimple;
+      fill: $white;
     }
 
     &:hover {
-      background: #ffffff;
+      background: $white;
       border: 1px solid #000000;
-      color: $noir;
+      color: $gray90;
 
       svg {
-        fill: $noir;
+        fill: $gray90;
       }
     }
   }
 
   // Utilisé lorsqu'un bouton utilise la couleur de thème de façon dynamique dans le JS
   &.theme {
-    background: $noir;
-    color: $blanc;
+    background: $gray90;
+    color: $gray10;
     svg {
-      fill: $blanc;
+      fill: $gray10;
     }
     &:hover {
       box-shadow: none;

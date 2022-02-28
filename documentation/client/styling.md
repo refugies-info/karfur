@@ -75,7 +75,7 @@ The choice has been made to use [SCSS modules](https://create-react-app.dev/docs
 
 To use any color in a SCSS file, you must use it from the `scss/colors.scss` file:
 ```scss
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 
 .btn {
   color: $lightgreen;

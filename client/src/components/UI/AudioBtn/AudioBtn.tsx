@@ -28,7 +28,7 @@ const AudioBtn = (props: Props) => {
         ) : (
           <EVAIcon
             name={"volume-up" + (props.ttsActive ? "" : "-outline")}
-            fill={props.ttsActive ? "#FFFFFF" : colors.noir}
+            fill={props.ttsActive ? "#FFFFFF" : colors.gray90}
             id="audioBtn"
             className={styles.icon}
           />

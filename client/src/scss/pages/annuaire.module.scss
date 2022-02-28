@@ -1,9 +1,11 @@
+@import "src/scss/colors";
+
 .container {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: auto;
-  background: #e5e5e5;
+  background: $gray40;
 }
 
 .content {

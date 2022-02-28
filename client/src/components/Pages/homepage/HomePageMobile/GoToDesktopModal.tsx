@@ -64,7 +64,7 @@ export const GoToDesktopModal = (props: Props) => {
             name="email-outline"
             isDisabled={false}
             fill="white"
-            color={colors.noir}
+            color={colors.gray90}
             onClick={props.toggleShowInvitationEmailModal}
             title="Register.Me le rappeler par email"
             defaultTitle="Me le rappeler par email"

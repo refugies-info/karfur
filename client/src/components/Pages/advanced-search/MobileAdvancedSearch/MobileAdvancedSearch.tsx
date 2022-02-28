@@ -49,7 +49,7 @@ const SearchBoutton = styled.div`
   width: 100%;
   background-color: ${(props: SearchBouttonProps) =>
     props.isDisabled
-      ? colors.grey
+      ? colors.gray60
       : props.showFilterForm || props.isUserModifyingSearch
       ? colors.vert
       : props.tagSelected
@@ -72,11 +72,11 @@ const FilterButton = styled.div`
   height: 53px;
   width: 100%;
   align-items: center;
-  background-color: ${colors.blancSimple};
+  background-color: ${colors.white};
   border: 1px solid;
-  color: ${colors.noir};
+  color: ${colors.gray90};
   font-weight: bold;
-  border-color: ${colors.noir};
+  border-color: ${colors.gray90};
   border-radius: 12px;
   margin: 10px 0;
   display: flex;
@@ -95,7 +95,7 @@ const SearchTitle = styled.div`
 
 const ShowMoreFiltreTextContainer = styled.div`
   text-decoration: underline;
-  color: ${colors.grisFonce};
+  color: ${colors.gray70};
   font-size: 18px;
   margin: 10px auto;
   height: 23px;

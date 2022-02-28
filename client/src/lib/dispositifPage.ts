@@ -227,9 +227,9 @@ export const getMainTag = (dispositif: IDispositif | null): Tag => {
     if (tag) return tag;
   }
   return {
-    darkColor: colors.darkColor,
-    lightColor: colors.lightColor,
-    hoverColor: colors.gris,
+    darkColor: colors.gray90,
+    lightColor: colors.gray20,
+    hoverColor: colors.gray20,
     short: "noImage",
     illustrationColor: "",
     name: "",

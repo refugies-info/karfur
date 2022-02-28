@@ -46,7 +46,7 @@ const DemarcheCreateModal = (props: Props) => {
                 className="mr-8"
                 name="clock-outline"
                 size="large"
-                fill={colors.noir}
+                fill={colors.gray90}
               />
               <span className={styles.inline_custom}>
                 ≈ {props.typeContenu === "demarche" ? 40 : 20} min
@@ -146,7 +146,7 @@ const DemarcheCreateModal = (props: Props) => {
             <FButton
               type="outline-black"
               name="arrow-back"
-              fill={colors.noir}
+              fill={colors.gray90}
               onClick={() => changeStep(false)}
               className="mr-10"
             />
@@ -159,7 +159,7 @@ const DemarcheCreateModal = (props: Props) => {
             <FButton
               type="outline-black"
               name="arrow-forward"
-              fill={colors.noir}
+              fill={colors.gray90}
               onClick={changeStep}
             />
           )}

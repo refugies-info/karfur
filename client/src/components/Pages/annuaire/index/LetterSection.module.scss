@@ -1,3 +1,6 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
 .letter_container {
   display: flex;
   flex-direction: row;
@@ -20,8 +23,8 @@
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
-  background: #ffffff;
-  border-radius: 12px;
+  background: $white;
+  border-radius: $radius;
   width: 198px;
   height: 271px;
   margin-right: 8px;

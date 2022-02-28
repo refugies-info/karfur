@@ -58,7 +58,7 @@ export const LocalisationFilter = (props: Props) => {
               props.removeFromQuery("loc");
             }}
           >
-            <EVAIcon name="close" fill={colors.blanc} size="large" />
+            <EVAIcon name="close" fill={colors.gray10} size="large" />
           </div>
         </div>
       )}

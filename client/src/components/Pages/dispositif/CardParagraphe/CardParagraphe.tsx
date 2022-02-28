@@ -275,7 +275,7 @@ const CardParagraphe = (props: Props) => {
                     <EVAIcon
                       size="xlarge"
                       name="close-circle"
-                      fill={colors.noirCD}
+                      fill={colors.gray50}
                     />
                   </div>
                 </div>

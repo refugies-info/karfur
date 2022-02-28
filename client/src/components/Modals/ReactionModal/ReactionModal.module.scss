@@ -1,12 +1,14 @@
+@import "src/scss/colors";
+
 .modal {
   min-width: 650px;
 
   .modal_content {
     box-shadow: 0 0 40px #3c3434;
-    border: 1px solid #f2f2f2;
+    border: 1px solid $gray20;
     box-sizing: border-box;
     border-radius: 8px;
-    background: #f2f2f2;
+    background: $gray20;
     padding: 30px 40px;
 
     .modal_header {
@@ -40,7 +42,7 @@
       font-size: 16px;
       line-height: 20px;
       padding: 20px;
-      color: #828282;
+      color: $gray70;
     }
     .modal_footer {
       border: none;

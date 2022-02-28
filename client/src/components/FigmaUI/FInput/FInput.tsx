@@ -44,7 +44,7 @@ const FInput = (props: Props) => {
           {!props.error ? (
             <EVAIcon
               name={props.prependName}
-              fill={props.prependFill || colors.noir}
+              fill={props.prependFill || colors.gray90}
             />
           ) : (
             <EVAIcon
@@ -90,7 +90,7 @@ const FInput = (props: Props) => {
           ) : (
             <EVAIcon
               name={props.appendName}
-              fill={props.appendFill || colors.noir}
+              fill={props.appendFill || colors.gray90}
             />
           )}
         </InputGroupAddon>

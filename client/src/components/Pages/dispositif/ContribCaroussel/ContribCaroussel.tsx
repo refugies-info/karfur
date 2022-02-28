@@ -114,14 +114,14 @@ const ContribCarousel = (props: Props) => {
             <EVAIcon
               name="arrow-ios-back-outline"
               size="large"
-              fill={colors.darkColor}
+              fill={colors.gray90}
             />
           </button>
           <button className="reset-btn" onClick={() => next(reducedContributors.length)}>
             <EVAIcon
               name="arrow-ios-forward-outline"
               size="large"
-              fill={colors.darkColor}
+              fill={colors.gray90}
             />
           </button>
         </Col>

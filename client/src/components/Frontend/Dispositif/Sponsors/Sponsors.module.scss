@@ -1,12 +1,13 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/variables";
 
 $taille: 60px;
 $tailleBig: 80px;
 
 .container {
   color: white;
-  background-color: $darkColor;
+  background-color: $gray90;
   padding: 32px;
 
   @include media-max("tablet-up") {
@@ -73,8 +74,8 @@ $tailleBig: 80px;
   margin-bottom: 10px;
   font-weight: bold;
   font-size: 16px;
-  color: $noir;
-  border-radius: 12px;
+  color: $gray90;
+  border-radius: $radius;
 
   &.inline {
     display: flex;
@@ -82,14 +83,14 @@ $tailleBig: 80px;
     align-items: center;
     flex-direction: row;
     margin-bottom: 20px;
-    background-color: #ffffff;
+    background-color: $white;
     padding: 16px;
   }
 
   .input_group {
     margin-top: 10px;
     input {
-      border-radius: 12px;
+      border-radius: $radius;
       border: none;
       padding: 10px 10px 10px 40px;
     }
@@ -104,7 +105,7 @@ $tailleBig: 80px;
 }
 
 .warning {
-  border-radius: 12px;
+  border-radius: $radius;
   padding: 10px 40px 10px 60px;
   position: relative;
   color: white;
@@ -133,7 +134,7 @@ $tailleBig: 80px;
 .selection_wrapper {
   display: flex;
   align-items: center;
-  border-radius: 12px;
+  border-radius: $radius;
   padding: 10px 20px;
 }
 
@@ -155,10 +156,10 @@ $tailleBig: 80px;
 
 .author {
   padding: 10px 20px 10px 40px;
-  border: 0.5px solid $noir;
-  border-radius: 12px;
+  border: 0.5px solid $gray90;
+  border-radius: $radius;
   width: -webkit-fill-available;
-  background-color: $blanc;
+  background-color: $gray10;
   cursor: pointer;
 }
 
@@ -167,8 +168,8 @@ $tailleBig: 80px;
   display: flex;
   padding: 10px 10px 10px 30px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
-  border-radius: 12px;
-  background-color: #ffffff;
+  border-radius: $radius;
+  background-color: $white;
   height: 50px;
   align-items: center;
   margin-bottom: 150px;
@@ -178,12 +179,12 @@ $tailleBig: 80px;
   overflow: hidden;
   width: 650px;
   max-width: 60vw;
-  background: $blanc;
+  background: $gray10;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
+  border-radius: $radius;
 
   .modal_content {
-    background-color: $gris;
+    background-color: $gray20;
     padding: 20px;
     border: none;
     min-height: 80vh;
@@ -205,9 +206,9 @@ $tailleBig: 80px;
 
 .img_modal {
   .modal_content {
-    background-color: $gris;
+    background-color: $gray20;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
+    border-radius: $radius;
     padding: 40px;
     flex-direction: column;
   }

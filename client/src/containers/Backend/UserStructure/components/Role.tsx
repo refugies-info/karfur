@@ -9,18 +9,18 @@ const MainContainer = styled.div`
       ? colors.focus
       : props.state === "current"
       ? colors.grey2
-      : colors.blancSimple};
+      : colors.white};
   border-width: 1px;
   border-style: solid;
   border-color: ${(props) =>
-    props.state === "selected" ? colors.focus : colors.noir};
+    props.state === "selected" ? colors.focus : colors.gray90};
   box-sizing: border-box;
   border-radius: 12px;
   padding: 16px;
   margin: 4px 0px 4px 0px;
   cursor: pointer;
   color: ${(props) =>
-    props.state === "selected" ? colors.blancSimple : colors.noir};
+    props.state === "selected" ? colors.white : colors.gray90};
 `;
 
 const Title = styled.div`
@@ -62,7 +62,7 @@ export const Role = (props: Props) => (
           "radio-button-" +
           (["selected", "current"].includes(props.state) ? "on" : "off")
         }
-        fill={props.state === "selected" ? colors.blancSimple : colors.noir}
+        fill={props.state === "selected" ? colors.white : colors.gray90}
       />
     </Row>
     Éditer et valider les fiches <br />

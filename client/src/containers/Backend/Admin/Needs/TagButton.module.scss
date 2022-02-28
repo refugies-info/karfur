@@ -1,10 +1,12 @@
+@import "src/scss/colors";
+
 .btn {
   border-radius: 8px;
   padding: 10px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #ffffff;
+  color: $white;
   display: flex;
   flex-direction: row;
   width: fit-content;

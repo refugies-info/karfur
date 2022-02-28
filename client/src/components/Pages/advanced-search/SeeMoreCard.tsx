@@ -47,7 +47,7 @@ const SeeMoreCard = (props: Props) => {
         <CardBody>
           <CardText color={props.theme.darkColor}>{t("AdvancedSearch.Voir les fiches", "Voir toutes les fiches")}</CardText>
           <SeeMoreButton color={props.theme.darkColor}>
-          <EVAIcon name="expand-outline" fill={colors.blanc} />
+          <EVAIcon name="expand-outline" fill={colors.gray10} />
             <SeeMoreText mr={props.isRTL ? 8 : 0}>
               {t("Tags." + props.theme.short, props.theme.short)}
             </SeeMoreText>

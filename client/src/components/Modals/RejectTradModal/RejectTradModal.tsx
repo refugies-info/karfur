@@ -102,7 +102,7 @@ const RejectTradModal = (props: Props) => {
               >
                 <EVAIcon
                   name={"radio-button-" + (clicked[key] ? "on" : "off")}
-                  fill={colors.noir}
+                  fill={colors.gray90}
                   className="mr-10"
                 />
                 {r.text}
@@ -119,7 +119,7 @@ const RejectTradModal = (props: Props) => {
                 name={
                   "radio-button-" + (clicked[reasons.length] ? "on" : "off")
                 }
-                fill={colors.noir}
+                fill={colors.gray90}
                 className="mr-10"
               />
               <span>Message personnalisé à : </span>

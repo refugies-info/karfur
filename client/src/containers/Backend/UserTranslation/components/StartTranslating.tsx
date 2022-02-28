@@ -22,7 +22,7 @@ const MainContainer = styled.div`
 `;
 
 const WhiteContainer = styled.div`
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   border-radius: 12px;
   width: 1040px;
   display: flex;

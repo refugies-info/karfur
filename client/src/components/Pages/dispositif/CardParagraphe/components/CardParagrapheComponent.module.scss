@@ -1,13 +1,13 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 
 .niveaux_wrapper {
   margin-top: -5px;
 
   button {
-    border: 0.5px solid $noirCD;
+    border: 0.5px solid $gray50;
     border-radius: 6px;
     padding: 8px;
-    color: $noirCD;
+    color: $gray50;
     // background: transparent;
     margin-right: 5px;
     margin-top: 5px;
@@ -15,7 +15,7 @@
     font-size: 22px;
 
     &.active {
-      color: #ffffff;
+      color: $white;
       background-color: inherit;
       border: none;
       outline: none;

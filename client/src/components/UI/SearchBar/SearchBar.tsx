@@ -116,7 +116,7 @@ const SearchBar = (props: Props) => {
             <span>{props.createNewCta || "Créer une nouvelle structure"}</span>
           </span>
           <span>
-            <EVAIcon name="plus-circle-outline" fill={colors.grisFonce} />
+            <EVAIcon name="plus-circle-outline" fill={colors.gray70} />
           </span>
         </span>
       );

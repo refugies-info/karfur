@@ -110,7 +110,7 @@ const LeftSideDispositif = (props: Props) => {
                 <EVAIcon
                   className="link-icon"
                   name="link-outline"
-                  fill={colors.grisFonce}
+                  fill={colors.gray70}
                 />
                 <Input
                   value={props.content.externalLink}
@@ -122,7 +122,7 @@ const LeftSideDispositif = (props: Props) => {
                   onClick={onLinkClicked}
                   className="check-icon"
                   name="checkmark-circle-2"
-                  fill={colors.grisFonce}
+                  fill={colors.gray70}
                 />
               </InputGroup>
             ) : (

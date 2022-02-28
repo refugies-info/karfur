@@ -102,7 +102,7 @@ const ImgModal = (props: Props) => {
           <EVAIcon
             className={styles.input_icon}
             name="briefcase-outline"
-            fill={colors.noir}
+            fill={colors.gray90}
           />
           <FInput
             id="nom"
@@ -127,7 +127,7 @@ const ImgModal = (props: Props) => {
           <EVAIcon
             className={styles.input_icon}
             name="link-outline"
-            fill={colors.noir}
+            fill={colors.gray90}
           />
           <FInput
             id="link"

@@ -6,12 +6,12 @@ const CategoryContainer = styled.div`
   border-radius: 12px;
   padding: 8px;
   background-color: ${(props: {isSelected: boolean}) =>
-    props.isSelected ? colors.vert : colors.blancSimple};
+    props.isSelected ? colors.vert : colors.white};
   width: fit-content;
   margin: 4px;
   cursor: pointer;
   color: ${(props: {isSelected: boolean}) =>
-    props.isSelected ? colors.blancSimple : colors.darkColor};
+    props.isSelected ? colors.white : colors.gray90};
 `;
 
 interface Props {

@@ -143,7 +143,7 @@ export const TranslationNeedsModal = (props: Props) => {
           <tbody>
             {arrayLines.map((_, key) => {
               return (
-                <tr key={key} className={"bg-blancSimple"}>
+                <tr key={key} className={"bg-white"}>
                   <td>
                     <SkeletonTheme color="#CDCDCD">
                       <Skeleton width={170} count={1} />

@@ -1,4 +1,5 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
+@import "src/scss/variables";
 
 .etape {
   .etape_title {
@@ -23,8 +24,8 @@
     }
   }
   .etape_data {
-    border-right: 1px solid $grisFonce;
-    color: $grisFonce;
+    border-right: 1px solid $gray70;
+    color: $gray70;
     padding: 10px;
     &:last-child {
       border: none;
@@ -32,13 +33,13 @@
   }
   .bloc_configuration {
     background: $attention;
-    border-radius: 12px;
+    border-radius: $radius;
     padding: 20px;
     margin-top: 20px;
 
     .row_config {
-      background: $blanc;
-      border-radius: 12px;
+      background: $gray10;
+      border-radius: $radius;
       padding: 10px;
       display: flex;
       align-items: center;
@@ -53,10 +54,10 @@
 
         .col_config.active {
           background: $validationDefault;
-          color: #ffffff;
+          color: $white;
           border: none;
           svg {
-            fill: #ffffff;
+            fill: $white;
           }
         }
       }
@@ -65,19 +66,19 @@
       display: flex;
     }
     .col_config {
-      background: $gris;
-      border: 0.5px solid $gris;
-      border-radius: 12px;
+      background: $gray20;
+      border: 0.5px solid $gray20;
+      border-radius: $radius;
       padding: 10px;
       font-weight: bold;
       cursor: pointer;
 
       &.active {
-        background: $noir;
-        border: 0.5px solid $noir;
-        color: #ffffff;
+        background: $gray90;
+        border: 0.5px solid $gray90;
+        color: $white;
         svg {
-          fill: #ffffff;
+          fill: $white;
         }
       }
     }
@@ -100,10 +101,10 @@
     .etape_input,
     .etape_dropdown :global(.dropdown-toggle) {
       padding: 10px;
-      background: $gris;
-      border-radius: 12px;
+      background: $gray20;
+      border-radius: $radius;
       border: none;
-      color: $grisFonce;
+      color: $gray70;
 
       &.docs_dropdown {
         padding-left: 0;
@@ -123,14 +124,14 @@
       font-weight: bold;
     }
     .plus_btn_docs {
-      background: $grisFonce;
+      background: $gray70;
       padding: 10px;
       border-radius: 12px 0px 0px 12px;
       margin-right: 10px;
     }
     .idx_docs {
-      background: $noir;
-      color: #ffffff;
+      background: $gray90;
+      color: $white;
       padding: 10px;
       border-radius: 12px 0 0 12px;
       margin-right: 10px;
@@ -145,7 +146,7 @@
       align-items: center;
     }
     .no_info {
-      color: $grisFonce;
+      color: $gray70;
       label {
         font-weight: normal;
       }
@@ -157,8 +158,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background: $gris;
-    border-radius: 12px;
+    background: $gray20;
+    border-radius: $radius;
     margin-bottom: 20px;
 
     .real_btns :global(.figma-btn) {

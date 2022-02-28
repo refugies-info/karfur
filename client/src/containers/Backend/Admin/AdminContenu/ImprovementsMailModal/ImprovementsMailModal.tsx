@@ -66,7 +66,7 @@ const EmailText = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props: {hasEmail: boolean}) => (props.hasEmail ? colors.darkColor : colors.error)};
+  color: ${(props: {hasEmail: boolean}) => (props.hasEmail ? colors.gray90 : colors.error)};
   margin-left: 5px;
 `;
 

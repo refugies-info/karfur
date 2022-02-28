@@ -1,3 +1,5 @@
+@import "src/scss/variables";
+
 .options {
   list-style-type: none;
   display: flex;
@@ -7,7 +9,7 @@
   justify-content: center;
   padding: 5px;
   max-width: 75%;
-  border-radius: 12px;
+  border-radius: $radius;
   margin: 15px;
   z-index: 4;
 
@@ -17,7 +19,7 @@
     color: white;
     font-weight: 600;
     padding: 10px 10px;
-    border-radius: 12px;
+    border-radius: $radius;
     background-color: black;
   }
   .menu {
@@ -28,11 +30,11 @@
     color: black;
     font-weight: 600;
     padding: 10px 10px;
-    border-radius: 12px;
+    border-radius: $radius;
     background-color: white;
   }
 /*   .figma-btn {
-    border-radius: 12px;
+    border-radius: $radius;
     border-width: 1px;
     border-color: black;
     margin: 5px;

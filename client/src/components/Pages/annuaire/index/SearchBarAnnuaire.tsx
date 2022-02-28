@@ -127,7 +127,7 @@ export const SearchBarAnnuaire = (props: Props) => {
         {props.keyword === "" ? (
           <EVAIcon
             name="search-outline"
-            fill={colors.noir}
+            fill={colors.gray90}
             id="bookmarkBtn"
             className="ml-10"
             size={"large"}
@@ -135,7 +135,7 @@ export const SearchBarAnnuaire = (props: Props) => {
         ) : (
           <EVAIcon
             name="close-circle"
-            fill={colors.noir}
+            fill={colors.gray90}
             id="bookmarkBtn"
             className="ml-10"
             size={"large"}
@@ -147,7 +147,7 @@ export const SearchBarAnnuaire = (props: Props) => {
         <div className={styles.btn}>
           <EVAIcon
             name="pin-outline"
-            fill={colors.noir}
+            fill={colors.gray90}
             className="mr-10"
             id="bookmarkBtn"
             size={"large"}
@@ -164,7 +164,7 @@ export const SearchBarAnnuaire = (props: Props) => {
         <div className={`${styles.btn} ${styles.dark}`}>
           <EVAIcon
             name="pin-outline"
-            fill={colors.blancSimple}
+            fill={colors.white}
             className="mr-10"
             id="bookmarkBtn"
             size={"large"}
@@ -178,7 +178,7 @@ export const SearchBarAnnuaire = (props: Props) => {
           </div>{" "}
           <EVAIcon
             name="close-circle"
-            fill={colors.blancSimple}
+            fill={colors.white}
             className="ml-10"
             size={"large"}
             onClick={() => {
@@ -190,7 +190,7 @@ export const SearchBarAnnuaire = (props: Props) => {
         <div className={styles.btn}>
           <EVAIcon
             name="pin-outline"
-            fill={colors.noir}
+            fill={colors.gray90}
             className="mr-10"
             id="bookmarkBtn"
             size={"large"}
@@ -237,7 +237,7 @@ export const SearchBarAnnuaire = (props: Props) => {
           {props.typeSelected && props.typeSelected.length > 0 && (
             <EVAIcon
               name="close-circle"
-              fill={colors.blancSimple}
+              fill={colors.white}
               onClick={(e: any) => {
                 e.stopPropagation();
                 props.setTypeSelected([]);
@@ -271,7 +271,7 @@ export const SearchBarAnnuaire = (props: Props) => {
                   {props.typeSelected && props.typeSelected.includes(item) && (
                     <EVAIcon
                       name="close-circle"
-                      fill={colors.blancSimple}
+                      fill={colors.white}
                       onClick={(e: any) => {
                         e.stopPropagation();
                         removeType(item);

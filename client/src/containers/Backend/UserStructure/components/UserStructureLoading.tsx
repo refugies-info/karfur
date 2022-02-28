@@ -13,7 +13,7 @@ export const UserStructureLoading = () => (
   <MainContainer>
     <StructurePictureContainer>
       <div className={styles.img} />
-      <SkeletonTheme color={colors.blancSimple}>
+      <SkeletonTheme color={colors.white}>
         <Skeleton count={1} height={20} width={160} />
       </SkeletonTheme>
     </StructurePictureContainer>
@@ -25,13 +25,13 @@ export const UserStructureLoading = () => (
         textSingular=""
         amount={0}
       />
-      <SkeletonTheme color={colors.blancSimple}>
+      <SkeletonTheme color={colors.white}>
         <Skeleton count={1} height={50} width={700} />
       </SkeletonTheme>
-      <SkeletonTheme color={colors.blancSimple}>
+      <SkeletonTheme color={colors.white}>
         <Skeleton count={1} height={50} width={700} />
       </SkeletonTheme>
-      <SkeletonTheme color={colors.blancSimple}>
+      <SkeletonTheme color={colors.white}>
         <Skeleton count={1} height={50} width={700} />
       </SkeletonTheme>
     </StructureContainer>

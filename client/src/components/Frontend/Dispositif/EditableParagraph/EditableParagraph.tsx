@@ -68,7 +68,7 @@ interface BlockProps {}
 const MyCustomBlock = (props: BlockProps) => (
   <div className="bloc-rouge">
     <div className="icon-left-side">
-      <EVAIcon name="info-outline" fill={colors.noir} className="flex-center" />
+      <EVAIcon name="info-outline" fill={colors.gray90} className="flex-center" />
     </div>
     <div className="right-side">
       <b>Bon à savoir :</b>

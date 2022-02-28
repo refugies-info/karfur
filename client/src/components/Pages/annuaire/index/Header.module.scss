@@ -20,7 +20,7 @@
   .title {
     height: 74px;
     padding: 4px 8px 4px 8px;
-    background: #ffffff;
+    background: $white;
     width: fit-content;
     margin-left: 72px;
     color: $bleuCharte;
@@ -70,22 +70,22 @@
   position: relative;
   z-index: 25;
   cursor: default;
-  background: #ffffff;
+  background: $white;
   color: #C6C6C6;
   margin: 4px;
 
   &:hover {
     color: #C6C6C6;
-    background: #ffffff;
+    background: $white;
   }
 
   &.clickable {
     cursor: pointer;
-    color: #212121;
+    color: $gray90;
 
     &:hover {
-      background: #212121;
-      color: #ffffff;
+      background: $gray90;
+      color: $white;
     }
   }
 }

@@ -1,4 +1,4 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 
 .toolbar {
   width: fit-content;
@@ -28,7 +28,7 @@
       align-items: center;
 
       &.unactive {
-        background-color: $lightColor;
+        background-color: $gray20;
       }
       &.active {
         background-color: $validationHover;
@@ -39,7 +39,7 @@
 
 .tooltip_dark_back {
   :global(.tooltip-inner) {
-    background: $darkColor;
+    background: $gray90;
     border-radius: 8px;
     font-size: 14px;
     line-height: 18px;
@@ -49,7 +49,7 @@
     max-width: 260px;
   }
   :global(.arrow:before) {
-    border-top-color: $darkColor;
-    border-bottom-color: $darkColor;
+    border-top-color: $gray90;
+    border-bottom-color: $gray90;
   }
 }

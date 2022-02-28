@@ -73,7 +73,7 @@ const SearchResultCard = (props: Props) => {
                     //@ts-ignore
                     testID={"test-toggle-pin-" + props.dispositif._id}
                   >
-                    <EVAIcon name="star" fill={colors.blanc} size="medium" />
+                    <EVAIcon name="star" fill={colors.gray10} size="medium" />
                   </div>
                 )}
                 <h5>{props.dispositif.titreInformatif}</h5>

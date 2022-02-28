@@ -1,5 +1,6 @@
 @import "src/scss/mixins/responsive";
 @import "src/scss/colors";
+@import "src/scss/variables";
 
 $imgWidth: 300px;
 $imgHeight: 350px;
@@ -69,7 +70,7 @@ $imgHeight: 350px;
     }
   }
   .left-side-col {
-    background: $gris;
+    background: $gray20;
     padding: 40px 45px;
     @include media-max("lg-limit") {
       padding: 20px 30px;
@@ -96,7 +97,7 @@ $imgHeight: 350px;
     .list-group-item {
       background: inherit;
       &:hover {
-        color: $noir;
+        color: $gray90;
         font-weight: normal;
       }
     }
@@ -135,7 +136,7 @@ $imgHeight: 350px;
   }
 
   .public-DraftEditorPlaceholder-root {
-    color: $noir;
+    color: $gray90;
   }
 
   .public-DraftEditorPlaceholder-root.public-DraftEditorPlaceholder-hasFocus {
@@ -162,7 +163,7 @@ $imgHeight: 350px;
     top: 70px;
 
     .blc-gh {
-      background: $noir;
+      background: $gray90;
       padding: 10px;
       &.bloc-gauche-inline {
         border-radius: 12px 0 0 12px;
@@ -182,7 +183,7 @@ $imgHeight: 350px;
     .blc-gh-media,
     .rdw-image-wrapper,
     .rdw-embedded-wrapper {
-      background: $darkColor;
+      background: $gray90;
       padding: 10px;
     }
     .rdw-image-wrapper {
@@ -229,7 +230,7 @@ $imgHeight: 350px;
 
   h3.contenu-title {
     line-height: normal;
-    color: $darkColor;
+    color: $gray90;
     margin-bottom: 40px;
     @include media-max("tablet-up") {
       font-size: 28px;
@@ -325,7 +326,7 @@ $imgHeight: 350px;
     }
   }
   &.reading-mode .contenu.isHovered {
-    border-right: 4px solid $darkColor;
+    border-right: 4px solid $gray90;
     position: relative;
 
     &:after,
@@ -350,15 +351,15 @@ $imgHeight: 350px;
     padding-left: 60px;
     padding-top: 15px;
     padding-bottom: 15px;
-    background: $darkColor;
+    background: $gray90;
     margin-right: 0;
     .dropdown-menu.show {
-      border-radius: 12px;
+      border-radius: $radius;
       border: none;
       outline: none;
       .dropdown-item {
         &:active {
-          background-color: $noir;
+          background-color: $gray90;
         }
         &:focus {
           outline: none;
@@ -368,7 +369,7 @@ $imgHeight: 350px;
 
     .en-bref {
       font-size: 24px;
-      color: #ffffff;
+      color: $white;
     }
     .mt-10 {
       margin-top: 10px;
@@ -378,7 +379,7 @@ $imgHeight: 350px;
       box-sizing: border-box;
       font-size: 18px;
       line-height: normal;
-      color: #ffffff;
+      color: $white;
       height: 40px;
       width: fit-content;
       display: flex;
@@ -388,7 +389,7 @@ $imgHeight: 350px;
         font-weight: normal;
         font-size: 16px;
         line-height: 20px;
-        color: #ffffff;
+        color: $white;
         .no-decoration {
           color: inherit;
           text-decoration: none;
@@ -426,7 +427,7 @@ $imgHeight: 350px;
       white-space: nowrap;
       font-size: 16px;
       line-height: 35px;
-      color: #828282;
+      color: $gray70;
       &.align-right {
         padding: 0;
       }
@@ -459,7 +460,7 @@ $imgHeight: 350px;
     [contenteditable="true"]:empty:before {
       content: attr(placeholder);
       display: block;
-      color: #828282;
+      color: $gray70;
     }
 
     .contenu-accordeon {
@@ -494,7 +495,7 @@ $imgHeight: 350px;
 
   .bloc-rouge {
     background: $erreur;
-    border-radius: 12px;
+    border-radius: $radius;
     padding: 20px;
     display: flex;
     margin-bottom: 10px;
@@ -514,13 +515,13 @@ $imgHeight: 350px;
   }
 
   .arevoir {
-    background-color: #ff9800 !important;
+    background-color: $orange !important;
     //border-radius: 6px;
   }
 
   .discussion-footer {
-    background: $darkColor;
-    color: #ffffff;
+    background: $gray90;
+    color: $white;
     padding: 35px 40px;
     font-size: 18px;
     @include media-max("lg-limit") {
@@ -557,7 +558,7 @@ $imgHeight: 350px;
         padding-left: 40px;
         z-index: 1;
         border: none;
-        border-radius: 12px;
+        border-radius: $radius;
         box-shadow: none;
       }
       .link-icon,
@@ -575,7 +576,7 @@ $imgHeight: 350px;
         cursor: pointer;
         &:hover {
           svg {
-            fill: $noir;
+            fill: $gray90;
           }
         }
       }
@@ -609,20 +610,20 @@ $imgHeight: 350px;
   div[contenteditable="true"]:empty:before {
     content: attr(placeholder);
     display: block;
-    color: $noir;
+    color: $gray90;
   }
 
   .wrapper-editeur {
-    border: 1px dashed $darkColor;
-    border-radius: 12px;
+    border: 1px dashed $gray90;
+    border-radius: $radius;
     position: relative;
   }
 
   .bg-darkColor {
-    background: $darkColor;
+    background: $gray90;
   }
   .bg-lightColor {
-    background: $lightColor;
+    background: $gray20;
   }
 
   .variante-col {
@@ -641,11 +642,11 @@ $imgHeight: 350px;
     transform: translateX(100%);
     z-index: 4;
     width: calc(20vw - 40px);
-    background: $gris;
+    background: $gray20;
 
     .radio-btn {
       margin-top: 30px;
-      background: #ffffff;
+      background: $white;
       cursor: pointer;
       box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
       width: 20px;
@@ -668,7 +669,7 @@ $imgHeight: 350px;
     position: relative;
   }
   .in-variante {
-    background: $gris;
+    background: $gray20;
     &.variante-selected,
     &.variante-selected .variante-radio {
       background: $bgfocus;
@@ -687,7 +688,7 @@ $imgHeight: 350px;
   .modal-content {
     background: #fbfbfb;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
+    border-radius: $radius;
     font-size: 18px;
     line-height: 23px;
     padding: 23px;
@@ -711,14 +712,14 @@ $imgHeight: 350px;
           color: #e58e26;
         }
         .make-it-green {
-          color: #2ca12a;
+          color: $vert;
         }
       }
     }
   }
 }
 .custom-tooltip {
-  border-radius: 12px;
+  border-radius: $radius;
 
   .tooltipContainer {
     margin-bottom: 10px;
@@ -746,10 +747,10 @@ $imgHeight: 350px;
       height: 10px;
       display: inline-block;
       border-radius: 50%;
-      border: 0.5px solid #ffffff;
+      border: 0.5px solid $white;
     }
     .active .round-tab {
-      background: #ffffff;
+      background: $white;
     }
   }
 
@@ -761,23 +762,23 @@ $imgHeight: 350px;
   }
 
   &.first-tooltip-wrapper {
-    background: #ffffff;
+    background: $white;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
     padding: 40px;
 
     .tooltipFooter {
       .round-tab {
-        border: 0.5px solid $noir;
+        border: 0.5px solid $gray90;
       }
       .active .round-tab {
-        background: $noir;
+        background: $gray90;
       }
     }
   }
 
   &.tooltip-wrapper {
-    background-color: $noir;
-    border-radius: 12px;
+    background-color: $gray90;
+    border-radius: $radius;
     color: white;
     font-size: 16px;
     line-height: 20px;
@@ -787,7 +788,7 @@ $imgHeight: 350px;
     width: 800px;
 
     .polygon {
-      fill: $noir;
+      fill: $gray90;
     }
   }
 }

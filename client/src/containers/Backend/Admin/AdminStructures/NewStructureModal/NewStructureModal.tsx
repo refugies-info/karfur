@@ -69,7 +69,7 @@ const ResponsableContainer = styled.div`
   border-radius: 16px;
   padding: 8px;
   margin-bottom: 8px;
-  border-color: ${colors.cardColor};
+  border-color: ${colors.gray70};
 `;
 interface Props {
   show: boolean;

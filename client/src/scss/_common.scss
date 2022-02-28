@@ -1,5 +1,6 @@
 @import 'mixins/responsive';
 @import 'colors';
+@import "src/scss/variables";
 
 $theme-list: (
   Français #37277c #f0e8f5 #ada8d4,
@@ -117,7 +118,7 @@ html body {
     color: $validationHover;
   }
   .color-jaune {
-    color: $uiattention;
+    color: $yellow;
   }
   .color-orange {
     color: $orange;
@@ -125,8 +126,8 @@ html body {
   .color-rouge {
     color: $error;
   }
-  .color-grisFonce {
-    color: $grisFonce;
+  .color-gray70 {
+    color: $gray70;
   }
   .color-focus {
     color: $focus;
@@ -167,7 +168,7 @@ html body {
     box-shadow: none !important;
   }
   .dropdown-menu.show {
-    border-radius: 12px;
+    border-radius: $radius;
     border: none;
   }
   .profile-img-pin {
@@ -185,11 +186,11 @@ html body {
   .bg-validation {
     background: $validation;
   }
-  .bg-gris {
-    background: $gris;
+  .bg-gray20 {
+    background: $gray20;
   }
-  .bg-dark-gris {
-    background: $grisFonce;
+  .bg-dark-gray20 {
+    background: $gray70;
   }
   .bg-standby {
     background: $standby;
@@ -204,7 +205,7 @@ html body {
     background: $error;
   }
   .bg-black {
-    background: #212121;
+    background: $gray90;
   }
 
   .flex-center {

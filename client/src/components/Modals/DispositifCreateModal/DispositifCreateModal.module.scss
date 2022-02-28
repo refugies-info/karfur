@@ -1,3 +1,6 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
 .modal {
   min-width: 650px;
 
@@ -5,7 +8,7 @@
     background: #edebeb;
     border: hidden;
     box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
-    border-radius: 12px;
+    border-radius: $radius;
     mix-blend-mode: normal; /* Shadow autour */
   }
 
@@ -30,7 +33,7 @@
   }
   .container {
     padding: 40px;
-    border-radius: 12px;
+    border-radius: $radius;
   }
   .btn_container {
     display: flex;
@@ -38,8 +41,8 @@
     justify-content: space-between;
   }
   .type_contenu {
-    background: #ffffff;
-    border-radius: 12px;
+    background: $white;
+    border-radius: $radius;
     padding: 8px 16px;
     margin-left: 13px;
     font-weight: bold;
@@ -53,8 +56,8 @@
     line-height: 28px;
   }
   .video {
-    background: #d2edfc;
-    border-radius: 12px;
+    background: $bgfocus;
+    border-radius: $radius;
     height: 300px;
     display: flex;
     align-items: center;
@@ -62,7 +65,7 @@
     margin-bottom: 82px;
   }
   .yellow {
-    background: #f9ef99;
+    background: $attention;
     font-weight: bold;
     font-size: 22px;
     line-height: 28px;

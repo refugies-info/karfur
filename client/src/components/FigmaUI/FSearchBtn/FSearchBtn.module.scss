@@ -1,14 +1,15 @@
 @import 'src/scss/mixins/responsive';
 @import 'src/scss/colors.scss';
+@import "src/scss/variables";
 
 .search_btn{
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background: $grisFonce;
+  background: $gray70;
   border-radius: 10px;
-  color: $cardColor;
+  color: $gray70;
   font-weight: 600;
   font-size: 20px;
   padding: 10px;
@@ -17,18 +18,18 @@
   border: 0.5px solid transparent;
 
   &:hover{
-    color: $noir;
+    color: $gray90;
   }
   &:focus{
     outline: none;
-    color: #FFFFFF;
+    color: $white;
     border: 0.5px solid #2D9CDB;
   }
 
   // Styles
   &.active{
-    color: #FFFFFF;
-    background: $noir;
+    color: $white;
+    background: $gray90;
   }
   &.lighter {
     filter: saturate(80%) opacity(50%) brightness(110%);
@@ -38,9 +39,9 @@
   }
   &.filter{
     background: transparent;
-    color: #FFFFFF;
+    color: $white;
     margin-right: 10px;
-    border-radius: 12px;
+    border-radius: $radius;
     border: 1px solid white;
     font-weight: normal;
     padding: 8px;
@@ -52,18 +53,18 @@
     &.active {
       color: black !important;
       font-weight: 600;
-      background: #ffffff;
+      background: $white;
     }
   }
   &.color{
-    color: #FFFFFF;
+    color: $white;
 
     &:hover{
       filter:brightness(80%);
     }
   }
   &.in_header {
-    color: $blanc;
+    color: $gray10;
     font-size: 18px;
 
     @include media-min("big-desktop") {

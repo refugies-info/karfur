@@ -1,7 +1,8 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/variables";
 
-$placeholderColor: $blanc;
+$placeholderColor: $gray10;
 
 .search_col {
   padding-right: 16px;
@@ -22,8 +23,8 @@ $placeholderColor: $blanc;
   .dropdown {
     // display: flex;
     box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
-    background: $blanc;
-    border-radius: 12px;
+    background: $gray10;
+    border-radius: $radius;
     padding: 10px;
     z-index: 3;
     flex-direction: row;

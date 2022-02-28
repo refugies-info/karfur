@@ -1,6 +1,6 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 
-$placeholderColor: $noir;
+$placeholderColor: $gray90;
 $borderRadius: 12px;
 
 .input {
@@ -22,10 +22,10 @@ $borderRadius: 12px;
 
   input,
   textarea {
-    background: #ffffff;
+    background: $white;
     border-radius: $borderRadius !important;
-    border: 0.5px solid $noir;
-    color: $noir;
+    border: 0.5px solid $gray90;
+    color: $gray90;
     outline: none;
 
     &.error {
@@ -42,18 +42,18 @@ $borderRadius: 12px;
       }
     }
     &:hover {
-      background: $gris;
-      border: 0.5px solid $noir;
+      background: $gray20;
+      border: 0.5px solid $gray90;
     }
     &:focus::-webkit-input-placeholder {
-      color: $grisFonce;
+      color: $gray70;
     }
     &:focus:-moz-placeholder {
-      color: $grisFonce;
+      color: $gray70;
     }
     &:focus {
       box-shadow: none;
-      background: $blanc;
+      background: $gray10;
     }
     // TODO : wont work
     &.password-input {

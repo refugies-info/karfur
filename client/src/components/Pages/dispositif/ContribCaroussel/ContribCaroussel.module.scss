@@ -1,4 +1,5 @@
 @import 'src/scss/colors.scss';
+@import "src/scss/variables";
 
 .contributors {
   background: #F2F2F2;
@@ -15,12 +16,12 @@
       display: inline;
       margin-right: 6px;
       font-size: 24px;
-      color: $darkColor;
+      color: $gray90;
     }
     .badge {
       margin-right: 33px;
       font-size: 11px;
-      color: $darkColor;
+      color: $gray90;
     }
   }
 
@@ -48,8 +49,8 @@
 }
 
 .card {
-  background: #FFFFFF;
-  border-radius: 12px;
+  background: $white;
+  border-radius: $radius;
   width:140px;
   text-align: center;
   display: flex;

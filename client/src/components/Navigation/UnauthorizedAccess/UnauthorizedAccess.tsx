@@ -14,7 +14,7 @@ const UnauthorizedAccess = () => {
       <Link href="/" passHref>
         <FButton
           tag="a"
-          fill={colors.noir}
+          fill={colors.gray90}
           name="arrow-back-outline"
           tabIndex="1"
         >

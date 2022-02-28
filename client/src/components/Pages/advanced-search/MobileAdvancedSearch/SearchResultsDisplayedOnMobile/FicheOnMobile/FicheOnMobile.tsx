@@ -23,7 +23,7 @@ const ItemContainer = styled.div`
   min-height: 76px;
   margin: 13px 0;
   background-color: ${(props: ItemContainerProps) =>
-    props.typeContenu === "dispositif" ? colors.blanc : props.lightColor};
+    props.typeContenu === "dispositif" ? colors.gray10 : props.lightColor};
   border-radius: 12px;
   align-items: center;
   padding: 16px;

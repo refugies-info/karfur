@@ -267,7 +267,7 @@ const Register = () => {
               className="footer-btn"
               type="help"
               name="question-mark-circle-outline"
-              fill={colors.noir}
+              fill={colors.gray90}
             >
               {t("Login.Centre d'aide", "Centre d'aide")}
             </FButton>

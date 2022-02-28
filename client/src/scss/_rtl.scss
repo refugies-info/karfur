@@ -18,7 +18,7 @@ html body div[dir="rtl"] {
     }
     &.reading-mode .contenu.isHovered {
       border-right: none;
-      border-left: 4px solid $darkColor;
+      border-left: 4px solid $gray90;
       &:after,
       &:before {
         right: 100%;
@@ -26,7 +26,7 @@ html body div[dir="rtl"] {
       }
       &:before {
         border-right-color: inherit;
-        border-left-color: #ffffff;
+        border-left-color: $white;
       }
     }
     .contenu-wrapper .toolbar-col {

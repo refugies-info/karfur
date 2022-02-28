@@ -1,8 +1,10 @@
+@import "src/scss/colors";
+
 .container {
   display: flex;
   flex-direction: row;
   font-size: 16px;
   line-height: 20px;
-  color: #828282;
+  color: $gray70;
   margin-top: 16px;
 }

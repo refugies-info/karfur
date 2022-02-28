@@ -1,4 +1,5 @@
 @import "src/scss/colors";
+@import "src/scss/variables";
 
 .top_right {
   text-align: right;
@@ -21,7 +22,7 @@
       flex-direction: column;
       align-content: space-between;
       border-radius: 12px 12px 0 0;
-      background: $gris;
+      background: $gray20;
       z-index: 2;
 
       .full_width {
@@ -47,9 +48,9 @@
       }
       &:hover {
         background: $error;
-        color: $blancSimple;
+        color: $white;
         svg {
-          fill: $blancSimple;
+          fill: $white;
         }
       }
     }
@@ -64,7 +65,7 @@
   justify-content: flex-end;
 
   .icon {
-    border-radius: 12px;
+    border-radius: $radius;
     margin-right: 11px;
     box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
   }

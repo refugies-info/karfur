@@ -87,7 +87,7 @@ const EtapeModal = (props: Props) => {
               <FButton
                 type="light-action"
                 name="printer-outline"
-                fill={colors.noir}
+                fill={colors.gray90}
               >
                 {t("Dispositif.Imprimer", "Imprimer")}
               </FButton>
@@ -109,7 +109,7 @@ const EtapeModal = (props: Props) => {
                 navigator.clipboard.writeText(displayedText);
               }}
             >
-              <EVAIcon name="copy-outline" fill={colors.noir} />
+              <EVAIcon name="copy-outline" fill={colors.gray90} />
             </div>
           </h5>
         </div>
@@ -169,7 +169,7 @@ const EtapeModal = (props: Props) => {
           type="validate"
           name="checkmark-outline"
           onClick={props.toggle}
-          fill={colors.noir}
+          fill={colors.gray90}
         >
           {t("Dispositif.compris", "Ok, j’ai compris")}
         </FButton>

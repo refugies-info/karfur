@@ -24,7 +24,7 @@ export const FButtonMobile = (props: Props) => {
       onClick={props.isDisabled ? () => {} : props.onClick}
       className={styles.btn}
       style={{
-        backgroundColor: props.isDisabled ? colors.grey : props.color,
+        backgroundColor: props.isDisabled ? colors.gray60 : props.color,
         color: props.fill
       }}
     >

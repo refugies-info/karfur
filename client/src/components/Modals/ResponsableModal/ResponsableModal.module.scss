@@ -1,12 +1,13 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
+@import "src/scss/variables";
 
 .modal {
   max-width: 650px;
 
   .modal_content {
-    background: $gris;
+    background: $gray20;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
-    border-radius: 12px;
+    border-radius: $radius;
     padding: 20px 40px;
     border: none;
 

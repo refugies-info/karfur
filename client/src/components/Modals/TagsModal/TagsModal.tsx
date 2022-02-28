@@ -310,7 +310,7 @@ const DispositifValidateModal = (props: Props) => {
               type="dark"
               name="shield-outline"
               disabled={!tag1 || (tag1 && !tag2 && !tag3 && !noTag)}
-              fill={colors.noir}
+              fill={colors.gray90}
               onClick={validateThemes}
             >
               {"Valider seulement les thèmes"}
@@ -325,7 +325,7 @@ const DispositifValidateModal = (props: Props) => {
                 className="footer-btn"
                 type="help"
                 name="question-mark-circle-outline"
-                fill={colors.noir}
+                fill={colors.gray90}
               >
                 {"Centre d'aide"}
               </FButton>
@@ -345,7 +345,7 @@ const DispositifValidateModal = (props: Props) => {
           <FButton
             type="outline-black"
             name="arrow-back"
-            fill={colors.noir}
+            fill={colors.gray90}
             className="mr-10"
             onClick={props.toggle}
           >

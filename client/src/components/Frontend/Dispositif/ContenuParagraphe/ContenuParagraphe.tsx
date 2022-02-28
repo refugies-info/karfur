@@ -77,7 +77,7 @@ const AddModuleBtnTag = (props: BtnProps) => {
       <FButton
         type="edit"
         name="pin-outline"
-        fill={colors.blanc}
+        fill={colors.gray10}
         onClick={props.onClick}
       >
         {"Ajouter une carte interactive"}
@@ -146,12 +146,12 @@ const ContenuParagraphe = (props: Props) => {
   const darkColor =
     props.mainTag && props.mainTag.darkColor
       ? props.mainTag.darkColor
-      : colors.darkColor;
+      : colors.gray90;
 
   const lightColor =
     props.mainTag && props.mainTag.lightColor
       ? props.mainTag.lightColor
-      : colors.lightColor;
+      : colors.gray20;
 
   const nbChildren = (props.dispositifContent?.children || []).length;
 
@@ -471,7 +471,7 @@ const ContenuParagraphe = (props: Props) => {
                                 }
                                 className="delete-icon ml-10 cursor-pointer"
                                 name="minus-circle-outline"
-                                fill={colors.noir}
+                                fill={colors.gray90}
                               />
                             )}
                           </h4>

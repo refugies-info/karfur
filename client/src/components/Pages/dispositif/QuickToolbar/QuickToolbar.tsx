@@ -125,7 +125,7 @@ const QuickToolbar = (props: Props) => {
                 >
                   <EVAIcon
                     name={"message-circle" + (fill[0] ? "" : "-outline")}
-                    fill={colors.darkColor}
+                    fill={colors.gray90}
                   />
                   <Tooltip
                     className={styles.tooltip_dark_back}
@@ -154,7 +154,7 @@ const QuickToolbar = (props: Props) => {
                       name={
                         "volume-up" + (fill[1] || ttsActive ? "" : "-outline")
                       }
-                      fill={isVoiceActiv ? colors.blanc : colors.darkColor}
+                      fill={isVoiceActiv ? colors.gray10 : colors.gray90}
                     />
 
                     <Tooltip

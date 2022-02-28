@@ -6,7 +6,7 @@ import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { colors } from "../../../../colors";
 
 const HelpCard = styled.div`
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   border-radius: 12px;
   padding: 13px;
   width: 248px;
@@ -23,7 +23,7 @@ const HelpCard = styled.div`
 `;
 
 const EmptyCardContainer = styled.div`
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   border-radius: 12px;
   width: 248px;
   height: 248px;
@@ -35,7 +35,7 @@ const EmptyCardContainer = styled.div`
 `;
 
 const GrayLine = styled.div`
-  background: ${colors.grey};
+  background: ${colors.gray60};
   border-radius: 8px;
   width: ${(props: {width: string}) => props.width};
   height: 28px;
@@ -43,7 +43,7 @@ const GrayLine = styled.div`
 `;
 
 const SmallGrayLine = styled.div`
-  background: ${colors.grey};
+  background: ${colors.gray60};
   border-radius: 3px;
   width: ${(props: {width: string}) => props.width};
   height: 14px;
@@ -52,7 +52,7 @@ const SmallGrayLine = styled.div`
 `;
 
 const BottomContainer = styled.div`
-  background: ${colors.grey};
+  background: ${colors.gray60};
   height: 50px;
   width: 100%;
   border-radius: 0px 0px 12px 12px;
@@ -62,7 +62,7 @@ const BottomContainer = styled.div`
 `;
 
 const WhiteContainer = styled.div`
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   border-radius: 3px;
   width: 180px;
   height: 14px;

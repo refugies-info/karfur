@@ -12,7 +12,7 @@ $avatarSize: 52px;
   left: 0;
   background: linear-gradient(
     98.59deg,
-    #ffffff 15.84%,
+    $white 15.84%,
     rgba(255, 255, 255, 0) 37.34%
   );
   display: flex;
@@ -20,7 +20,7 @@ $avatarSize: 52px;
   align-items: center;
   padding: 0 45px;
   z-index: 90;
-  color: $noir;
+  color: $gray90;
   transition: top 0.6s;
 
   @include media-max("tablet-up") {
@@ -40,7 +40,7 @@ $avatarSize: 52px;
   &.rtl {
     background: linear-gradient(
       267.06deg,
-      #ffffff 13.69%,
+      $white 13.69%,
       rgba(255, 255, 255, 0) 31.19%
     );
 
@@ -70,7 +70,7 @@ $avatarSize: 52px;
       font-weight: bold;
       font-size: 16px;
       line-height: 20px;
-      color: #ffffff;
+      color: $white;
     }
     .user_picture {
       height: 100%;
@@ -149,8 +149,8 @@ $avatarSize: 52px;
     }
   }
   .mobile_search_btn {
-    background-color: $noir;
-    border-radius: 12px;
+    background-color: $gray90;
+    border-radius: $radius;
     display: flex;
     flex-direction: column;
     justify-content: center;

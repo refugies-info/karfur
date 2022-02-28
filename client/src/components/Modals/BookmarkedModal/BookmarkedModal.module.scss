@@ -1,13 +1,14 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
+@import "src/scss/variables";
 
 .bookmark_modal {
   width: 400px;
   max-width: 90vw;
 
   .modal_content {
-    background: $gris;
+    background: $gray20;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
+    border-radius: $radius;
     font-size: 18px;
     line-height: 23px;
     border: none;
@@ -36,10 +37,10 @@
   .bookmark_icon {
     border-radius: 50%;
     &.success {
-      background: #4caf50;
+      background: $validationHover;
     }
     &.oups {
-      background: #0421b1;
+      background: $bleuCharte;
     }
     width: 40px;
     height: 40px;

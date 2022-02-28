@@ -291,8 +291,8 @@ const EtapeParagraphe = (props: Props) => {
   }
 
   const isAccordeonOpen = !!safeUiArray(keyValue, subkey, "accordion");
-  const darkColor = props.mainTag?.darkColor || colors.darkColor;
-  const lightColor = props.mainTag?.lightColor || colors.lightColor;
+  const darkColor = props.mainTag?.darkColor || colors.gray90;
+  const lightColor = props.mainTag?.lightColor || colors.gray20;
   const isRTL = useRTL();
 
   return (
@@ -378,7 +378,7 @@ const EtapeParagraphe = (props: Props) => {
                 <div className={styles.etape_data} id="etape-option">
                   <EVAIcon
                     name={((subitem.option || {}).logo || "at") + "-outline"}
-                    fill={colors.grisFonce}
+                    fill={colors.gray70}
                     className="mr-8"
                   />
                   <span>
@@ -403,7 +403,7 @@ const EtapeParagraphe = (props: Props) => {
                 <div className={styles.etape_data} id="etape-duree">
                   <EVAIcon
                     name="clock-outline"
-                    fill={colors.grisFonce}
+                    fill={colors.gray70}
                     className="mr-8"
                   />
                   <span>
@@ -428,7 +428,7 @@ const EtapeParagraphe = (props: Props) => {
                 <div className={styles.etape_data} id="etape-delai">
                   <EVAIcon
                     name="undo"
-                    fill={colors.grisFonce}
+                    fill={colors.gray70}
                     className="mr-8"
                   />
                   <span>
@@ -461,7 +461,7 @@ const EtapeParagraphe = (props: Props) => {
                 <div className={styles.etape_data} id="etape-papiers">
                   <EVAIcon
                     name="file-text-outline"
-                    fill={colors.grisFonce}
+                    fill={colors.gray70}
                     className="mr-8"
                   />
                   <span>{(subitem.papiers || []).length || 0}</span>
@@ -511,7 +511,7 @@ const EtapeParagraphe = (props: Props) => {
                   >
                     <EVAIcon
                       name={option.logo + "-outline"}
-                      fill={colors.noir}
+                      fill={colors.gray90}
                       className="mr-10"
                     />
                     <span>{option.texte}</span>
@@ -662,7 +662,7 @@ const EtapeParagraphe = (props: Props) => {
             >
               <EVAIcon
                 name="clock-outline"
-                fill={colors.noir}
+                fill={colors.gray90}
                 className="mr-10"
               />
               <b>Cette étape prend :</b>
@@ -698,7 +698,7 @@ const EtapeParagraphe = (props: Props) => {
                   ))}
                 </DropdownMenu>
               </ButtonDropdown>
-              <span className="color-grisFonce">
+              <span className="color-gray70">
                 Précisez le temps nécessaire pour faire cette étape.
               </span>
             </div>
@@ -710,7 +710,7 @@ const EtapeParagraphe = (props: Props) => {
                 (validatedRow[2] ? styles.validated : "")
               }
             >
-              <EVAIcon name="undo" fill={colors.noir} className="mr-10" />
+              <EVAIcon name="undo" fill={colors.gray90} className="mr-10" />
               <b>Délai de réponse :</b>
 
               <Input
@@ -745,7 +745,7 @@ const EtapeParagraphe = (props: Props) => {
                 </DropdownMenu>
               </ButtonDropdown>
 
-              <span className="color-grisFonce">
+              <span className="color-gray70">
                 Précisez le délai de réponse légal ou constaté.
               </span>
             </div>
@@ -761,7 +761,7 @@ const EtapeParagraphe = (props: Props) => {
             >
               <EVAIcon
                 name="file-text"
-                fill={colors.noir}
+                fill={colors.gray90}
                 className="mr-10 mb-10"
               />
               <b className="mr-10 mb-10">
@@ -852,7 +852,7 @@ const EtapeParagraphe = (props: Props) => {
                 type="validate"
                 name="checkmark-outline"
                 onClick={toggleConfigurationOpen}
-                fill={colors.noir}
+                fill={colors.gray90}
                 disabled={!validatedRow.includes(true)}
               >
                 Valider
@@ -874,7 +874,7 @@ const EtapeParagraphe = (props: Props) => {
                     type="dark"
                     name="link-outline"
                     className="mr-10"
-                    fill={colors.noir}
+                    fill={colors.gray90}
                     onClick={toggleModal}
                   >
                     {subitem.option.ctaField

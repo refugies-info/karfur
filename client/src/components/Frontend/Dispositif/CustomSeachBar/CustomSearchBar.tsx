@@ -22,7 +22,7 @@ export const CustomSearchBar = (props: Props) => (
     />
     <EVAIcon
       name="search-outline"
-      fill={colors.noir}
+      fill={colors.gray90}
       id="bookmarkBtn"
       size="large"
     />

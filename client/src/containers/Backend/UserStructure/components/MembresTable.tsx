@@ -24,22 +24,22 @@ const UserName = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props: {isUser: boolean}) => (props.isUser ? colors.bleuCharte : colors.noir)};
+  color: ${(props: {isUser: boolean}) => (props.isUser ? colors.bleuCharte : colors.gray90)};
 `;
 
 const RoleContainer = styled.div`
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   border-radius: 8px;
   padding: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props: {isUser: boolean}) => (props.isUser ? colors.bleuCharte : colors.noir)};
+  color: ${(props: {isUser: boolean}) => (props.isUser ? colors.bleuCharte : colors.gray90)};
   width: fit-content;
 `;
 
 const DateContainer = styled.div`
-  color: ${(props: {isUser: boolean}) => (props.isUser ? colors.bleuCharte : colors.noir)};
+  color: ${(props: {isUser: boolean}) => (props.isUser ? colors.bleuCharte : colors.gray90)};
   max-width: 190px;
 `;
 interface Props {

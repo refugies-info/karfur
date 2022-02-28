@@ -16,7 +16,7 @@ const ItemContainer = styled.div`
   min-height: 76px;
   margin: 13px 0;
   background-color: ${(props: ItemContainerProps) =>
-    props.typeContenu === "dispositif" ? colors.blanc : props.lightColor};
+    props.typeContenu === "dispositif" ? colors.gray10 : props.lightColor};
   border-radius: 12px;
   align-items: center;
   padding: 16px;
@@ -44,13 +44,13 @@ export const LoadingFicheOnMobile = () => {
   return (
     <div>
       <ItemContainer darkColor={""} typeContenu={"dispositif"} lightColor={""}>
-        <TitleText color={colors.darkColor}>
-          <SkeletonTheme color={colors.noirCD}>
+        <TitleText color={colors.gray90}>
+          <SkeletonTheme color={colors.gray50}>
             <Skeleton width={200} count={1} />
           </SkeletonTheme>
         </TitleText>
 
-        <PictoCircle color={colors.noirCD}></PictoCircle>
+        <PictoCircle color={colors.gray50}></PictoCircle>
       </ItemContainer>
     </div>
   );

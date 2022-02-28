@@ -99,7 +99,7 @@ const CatList = (props: Props) => {
       })}
       <motion.li
         key={props.tags.length}
-        className={styles.link + " bg-noir"}
+        className={styles.link + " bg-gray90"}
         variants={itemanim}
       >
         <a target="_blank" href="https://soliguide.fr/" rel="noopener noreferrer">
@@ -121,7 +121,7 @@ const CatList = (props: Props) => {
           onClick={() => {
             router.push("/advanced-search");
           }}
-          className={styles.menu + " bg-blanc"}
+          className={styles.menu + " bg-gray10"}
         >
           <InnerButton>
             <IconContainer isRTL={isRTL}>

@@ -1,8 +1,9 @@
 @import 'src/scss/colors.scss';
+@import "src/scss/variables";
 
 .container {
   .compulsory{
-    border-radius: 12px;
+    border-radius: $radius;
     padding: 16px;
     position: absolute;
     right: 0;
@@ -37,7 +38,7 @@
   .input_group{
     margin-top: 10px;
     input{
-      border-radius: 12px;
+      border-radius: $radius;
       border: 0.5px solid gray;
       padding: 10px 10px 10px 40px;
     }
@@ -61,10 +62,10 @@
     .form-check{
       padding: 10px;
       padding-left: 30px;
-      border: 0.5px solid $noir;
+      border: 0.5px solid $gray90;
       box-sizing: border-box;
-      border-radius: 12px;
-      color: $noir;
+      border-radius: $radius;
+      color: $gray90;
     }
   }
 
@@ -87,8 +88,8 @@
 
   .creator_wrapper{
     display: flex;
-    border: 0.5px solid $grisFonce;
-    border-radius: 12px;
+    border: 0.5px solid $gray70;
+    border-radius: $radius;
     &:not(:empty){
       padding: 20px;
       margin-bottom: 10px;

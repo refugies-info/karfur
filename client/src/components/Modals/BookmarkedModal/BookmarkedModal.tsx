@@ -33,7 +33,7 @@ const BookmarkedModal = (props: Props) => {
             success ? styles.success : styles.oups
           }`}
         >
-          <EVAIcon name="star" fill={colors.blanc} />
+          <EVAIcon name="star" fill={colors.gray10} />
         </div>
         <div>
           {success

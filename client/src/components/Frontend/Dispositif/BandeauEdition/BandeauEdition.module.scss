@@ -1,8 +1,9 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
+@import "src/scss/variables";
 
 .container {
   background: $attention;
-  border-radius: 12px;
+  border-radius: $radius;
   position: fixed;
   width: 100%;
   z-index: 15;
@@ -24,7 +25,7 @@
   }
 
   .content {
-    background: #ffffff;
+    background: $white;
     border-radius: 6px;
     font-size: 12px;
     line-height: 15px;
@@ -41,7 +42,7 @@
   }
 
   .yellow_text {
-    background: #f9ef99;
+    background: $attention;
     font-weight: bold;
     font-size: 22px;
     line-height: 28px;
@@ -76,10 +77,10 @@
   .dashed {
     background: repeating-linear-gradient(
       -45deg,
-      $uiattention,
-      $uiattention 20px,
-      $noir 20px,
-      $noir 40px
+      $yellow,
+      $yellow 20px,
+      $gray90 20px,
+      $gray90 40px
     );
     height: 10px;
     border-radius: 0;

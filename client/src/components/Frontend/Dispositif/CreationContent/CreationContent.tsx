@@ -54,7 +54,7 @@ const CreationContent = (props: Props) => {
               <EVAIcon
                 className={styles.input_icon}
                 name="pricetags-outline"
-                fill={colors.noir}
+                fill={colors.gray90}
               />
               <FInput
                 id="nom"
@@ -72,12 +72,12 @@ const CreationContent = (props: Props) => {
         <b style={{ fontSize: "22px" }}>Responsable à contacter</b>
         {banner ? (
           <div className={parentStyles.warning + " bg-focus mt-16 mb-16"}>
-            <EVAIcon name="info" fill={colors.blanc} className={parentStyles.info_icon} />
+            <EVAIcon name="info" fill={colors.gray10} className={parentStyles.info_icon} />
             <div
               onClick={() => setBanner(false)}
               className={parentStyles.close_icon}
             >
-              <EVAIcon name="close-outline" fill={colors.blanc} />
+              <EVAIcon name="close-outline" fill={colors.gray10} />
             </div>
             <p style={{ marginBottom: 0 }}>
               Notre équipe va contacter au plus vite cette personne pour
@@ -95,7 +95,7 @@ const CreationContent = (props: Props) => {
               <EVAIcon
                 className={styles.input_icon}
                 name="person-outline"
-                fill={colors.noir}
+                fill={colors.gray90}
               />
               <FInput
                 id="contact"
@@ -113,7 +113,7 @@ const CreationContent = (props: Props) => {
               <EVAIcon
                 className={styles.input_icon}
                 name="phone-outline"
-                fill={colors.noir}
+                fill={colors.gray90}
               />
               <FInput
                 id="phone_contact"
@@ -131,7 +131,7 @@ const CreationContent = (props: Props) => {
           <EVAIcon
             className={styles.input_icon}
             name="at-outline"
-            fill={colors.noir}
+            fill={colors.gray90}
           />
           <FInput
             id="mail_contact"
@@ -240,7 +240,7 @@ const CreationContent = (props: Props) => {
                   <EVAIcon
                     className={styles.input_icon}
                     name="award-outline"
-                    fill={colors.noir}
+                    fill={colors.gray90}
                   />
                   <Input
                     id="siren"
@@ -256,7 +256,7 @@ const CreationContent = (props: Props) => {
                   <EVAIcon
                     className={styles.input_icon}
                     name="award-outline"
-                    fill={colors.noir}
+                    fill={colors.gray90}
                   />
                   <Input
                     id="siret"
@@ -272,7 +272,7 @@ const CreationContent = (props: Props) => {
               <EVAIcon
                 className={styles.input_icon}
                 name="pin-outline"
-                fill={colors.noir}
+                fill={colors.gray90}
               />
               <Input
                 id="adresse"
@@ -286,7 +286,7 @@ const CreationContent = (props: Props) => {
               <EVAIcon
                 className={styles.input_icon}
                 name="at-outline"
-                fill={colors.noir}
+                fill={colors.gray90}
               />
               <Input
                 id="mail_generique"
@@ -348,7 +348,7 @@ const CreationContent = (props: Props) => {
               <EVAIcon
                 className={styles.input_icon}
                 name="eye-off-outline"
-                fill={colors.noir}
+                fill={colors.gray90}
               />
               <Input
                 id="alt"

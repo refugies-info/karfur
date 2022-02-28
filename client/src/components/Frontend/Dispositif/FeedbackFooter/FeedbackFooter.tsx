@@ -31,8 +31,8 @@ const CountButtonContainer = styled.div`
   border-radius: 12px;
   font-weight: bold;
   line-height:20px;
-  background-color:${(props: {didThank: boolean}) => (props.didThank ? colors.vert : colors.gris)}
-  color:${(props: {didThank: boolean}) => (props.didThank ? colors.blancSimple : colors.noir)};
+  background-color:${(props: {didThank: boolean}) => (props.didThank ? colors.vert : colors.gray20)}
+  color:${(props: {didThank: boolean}) => (props.didThank ? colors.white : colors.gray90)};
 `;
 
 interface Props {

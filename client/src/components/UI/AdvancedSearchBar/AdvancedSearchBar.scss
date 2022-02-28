@@ -1,5 +1,6 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/variables";
 
 .highlighter {
   font-weight: bold;
@@ -47,7 +48,7 @@
     width: 100%;
     font-size: 16px;
     z-index: 2;
-    border-radius: 12px;
+    border-radius: $radius;
     border: none;
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
   }
@@ -60,7 +61,7 @@
     height: 300px;
     max-height: 100%;
     text-align: left;
-    background-color: $gris;
+    background-color: $gray20;
   }
 
   .react-autosuggest__suggestion {
@@ -88,7 +89,7 @@
   }
 
   .highlight {
-    color: $noir;
+    color: $gray90;
     font-weight: bold;
   }
 
@@ -98,7 +99,7 @@
 
   .plus-btn {
     padding: 12px;
-    background: $grisFonce;
+    background: $gray70;
     border-radius: 1000px;
     display: inline-block;
     line-height: 18px;
@@ -114,9 +115,9 @@
   }
 
   .react-autosuggest__container input {
-    background: $blancSimple;
-    border: 0.5px solid $grisFonce;
-    border-radius: 12px;
+    background: $white;
+    border: 0.5px solid $gray70;
+    border-radius: $radius;
     padding-right: 42px;
     padding-left: 15px;
     font-size: 16px;
@@ -124,7 +125,7 @@
     height: 50px;
     width: 100%;
     &:hover {
-      background-color: $gris;
+      background-color: $gray20;
     }
     &:focus::-webkit-input-placeholder {
       color: transparent;
@@ -135,18 +136,18 @@
 
     &::placeholder {
       /* Chrome, Firefox, Opera, Safari 10.1+ */
-      color: $noir;
+      color: $gray90;
       opacity: 1; /* Firefox */
     }
 
     &:-ms-input-placeholder {
       /* Internet Explorer 10-11 */
-      color: $noir;
+      color: $gray90;
     }
 
     &::-ms-input-placeholder {
       /* Microsoft Edge */
-      color: $noir;
+      color: $gray90;
     }
   }
 
@@ -156,7 +157,7 @@
     right: 5px;
     font-size: 24px;
     transform: matrix(-1, 0, 0, 1, 0, 0) translateY(-50%);
-    color: $noir;
+    color: $gray90;
     top: 25px;
 
     &.icon-only {
@@ -179,27 +180,27 @@
     .react-autosuggest__suggestions-container--open {
       background: transparent;
       box-shadow: none;
-      border-radius: 12px;
+      border-radius: $radius;
       position: relative;
       top: 0;
     }
     .react-autosuggest__suggestions-list {
       background: transparent;
-      border-radius: 12px;
+      border-radius: $radius;
     }
     .react-autosuggest__suggestion {
       padding: 10px 15px;
-      background: $blancSimple;
-      border-radius: 12px;
+      background: $white;
+      border-radius: $radius;
       margin-top: 10px;
-      border: 0.5px solid $grisFonce;
+      border: 0.5px solid $gray70;
 
       &:hover {
         background: $validation;
       }
     }
     .name {
-      color: $grisFonce;
+      color: $gray70;
     }
     .selection-logo {
       max-width: 40px;
@@ -213,7 +214,7 @@
   }
   .oeil-btn {
     padding: 10px;
-    background: $gris;
+    background: $gray20;
     border-radius: 10px;
   }
 }

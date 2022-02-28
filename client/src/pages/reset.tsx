@@ -178,7 +178,7 @@ const Reset = () => {
           ...
         </h5>
         <Link href="/login" passHref>
-          <FButton tag="a" fill={colors.noir} name="arrow-back-outline">
+          <FButton tag="a" fill={colors.gray90} name="arrow-back-outline">
             {t(
               "Login.Revenir à la page de connexion",
               "Revenir à la page de connexion"
@@ -203,7 +203,7 @@ const Reset = () => {
             className="footer-btn"
             type="help"
             name="question-mark-circle-outline"
-            fill={colors.noir}
+            fill={colors.gray90}
           >
             {t("Login.Centre d'aide", "Centre d'aide")}
           </FButton>

@@ -32,7 +32,7 @@ interface Props {
 }
 
 const TableContainer = styled.div`
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   border-radius: 12px;
   padding: 32px;
 `;

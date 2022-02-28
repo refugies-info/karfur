@@ -969,7 +969,7 @@ class SideTrad extends Component {
           <FButton
             type="light-action"
             name={"close" + "-outline"}
-            fill={colors.noir}
+            fill={colors.gray90}
             className="mr-10 mb-10"
             onClick={() => this._endingFeedback()}
           >
@@ -1037,7 +1037,7 @@ class SideTrad extends Component {
           <AlertModified type={modified ? "modified" : "abstract"}>
             <EVAIcon
               name="info"
-              fill={colors.noir}
+              fill={colors.gray90}
               id="alert-info"
               className={"mr-10 mb-1"}
             />
@@ -1217,7 +1217,7 @@ class SideTrad extends Component {
                     <FButton
                       type="light-action"
                       name="arrow-ios-back-outline"
-                      fill={colors.blanc}
+                      fill={colors.gray10}
                       onClick={() =>
                         this.nextProposition(
                           this.state.propositionIndex === 0
@@ -1245,7 +1245,7 @@ class SideTrad extends Component {
                       {""}
                       <EVAIcon
                         name="arrow-ios-forward-outline"
-                        fill={colors.blanc}
+                        fill={colors.gray10}
                         //className="ml-10"
                       />
                     </FButton>
@@ -1275,7 +1275,7 @@ class SideTrad extends Component {
               <FButton
                 type="outline-black"
                 name="arrow-back-outline"
-                fill={colors.noir}
+                fill={colors.gray90}
                 onClick={() => this.goChange(false)}
                 className="mt-10"
                 style={{ marginRight: 5 }}
@@ -1291,7 +1291,7 @@ class SideTrad extends Component {
               {""}
               <EVAIcon
                 name="arrow-forward-outline"
-                fill={colors.noir}
+                fill={colors.gray90}
                 //className="ml-10"
               />
             </FButton>
@@ -1301,7 +1301,7 @@ class SideTrad extends Component {
               <FButton
                 type="outline-black"
                 name={"edit-outline"}
-                fill={colors.noir}
+                fill={colors.gray90}
                 className="mr-10 mt-10"
                 onClick={this.modifyNew}
               >
@@ -1311,7 +1311,7 @@ class SideTrad extends Component {
               <FButton
                 type="outline-black"
                 name={"close-circle-outline"}
-                fill={colors.noir}
+                fill={colors.gray90}
                 className="mr-10 mt-10"
                 onClick={this.modifyNew}
               >
@@ -1321,7 +1321,7 @@ class SideTrad extends Component {
               <FButton
                 type="outline-black"
                 name="refresh-outline"
-                fill={colors.noir}
+                fill={colors.gray90}
                 onClick={this.reset}
                 className="mt-10 mr-10"
               >

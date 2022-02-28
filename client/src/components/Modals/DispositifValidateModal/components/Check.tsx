@@ -55,7 +55,7 @@ const TextMockup = styled.div`
 
 const TagNameContainer = styled.div`
   font-size: 16px;
-  color: ${colors.blancSimple};
+  color: ${colors.white};
 `;
 
 const CardContainer = styled.div`
@@ -101,7 +101,7 @@ const MockupCardContainer = styled.div`
   width: 252px;
   min-width: 248px;
   background-color: ${(props: MockupCardContainerProps) =>
-    props.typeContenu === "dispositif" ? colors.blancSimple : props.lightColor};
+    props.typeContenu === "dispositif" ? colors.white : props.lightColor};
   border-radius: 12px;
   border: ${(props: MockupCardContainerProps) =>
     props.typeContenu === "demarche" && props.color
@@ -195,7 +195,7 @@ const Check = (props: Props) => {
               <EVAIcon
                 name={"chevron-right-outline"}
                 size="xlarge"
-                fill={colors.noir}
+                fill={colors.gray90}
               />
             </div>
             <MockupCardContainer

@@ -1,15 +1,16 @@
 @import "src/scss/colors";
+@import "src/scss/variables";
 
 .btn {
   padding: 16px;
   height: 53px;
   width: 100%;
-  background-color: $blancSimple;
+  background-color: $white;
   border: 1px solid;
-  color: $noir;
+  color: $gray90;
   font-weight: bold;
-  border-color: $noir;
-  border-radius: 12px;
+  border-color: $gray90;
+  border-radius: $radius;
   padding-top: 12px;
   margin: 10px 0;
   display: flex;
@@ -21,12 +22,12 @@
   padding: 16px;
   height: 53px;
   width: 100%;
-  background-color: $noir;
-  color: $blanc;
+  background-color: $gray90;
+  color: $gray10;
   text-align: left;
   font-weight: bold;
-  border-color: #212121;
-  border-radius: 12px;
+  border-color: $gray90;
+  border-radius: $radius;
   margin: 5px 0;
   display: flex;
   justify-content: space-between;

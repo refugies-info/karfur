@@ -11,12 +11,12 @@ const Header = styled.div`
   font-size: 28px;
   line-height: 35px;
   align-self: center;
-  color: ${colors.noir};
+  color: ${colors.gray90};
   margin-bottom: 40px;
 `;
 
 const WhiteContainer = styled.div`
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   border-radius: 12px;
   width: 100%;
   height: 300px;

@@ -33,12 +33,12 @@ const FilterButton = styled.div`
   padding: 16px;
   height: 53px;
   width: 100%;
-  background-color: ${colors.blancSimple};
+  background-color: ${colors.white};
   border: 1px solid;
   align-items: center;
-  color: ${colors.noir};
+  color: ${colors.gray90};
   font-weight: bold;
-  border-color: ${colors.noir};
+  border-color: ${colors.gray90};
   border-radius: 12px;
   margin: 10px 0;
   display: flex;
@@ -97,7 +97,7 @@ export const SelectedFilter = (props: Props) => {
         <>
           {props.otherFilterSelected ? (
             <SelectedFilterButton
-              color={colors.noir}
+              color={colors.gray90}
               textColor="white"
               textAlign="left"
               onClick={() => props.toggleShowModal(props.type)}
@@ -113,14 +113,14 @@ export const SelectedFilter = (props: Props) => {
                   props.removeFromQuery();
                 }}
               >
-                <EVAIcon name="close" fill={colors.blanc} size="large" />
+                <EVAIcon name="close" fill={colors.gray10} size="large" />
               </div>
             </SelectedFilterButton>
           ) : (
             <>
               <FilterButton onClick={() => props.toggleShowModal(props.type)}>
                 {t(props.title, props.defaultTitle)}
-                <EVAIcon name="chevron-down" fill={colors.noir} size="large" />
+                <EVAIcon name="chevron-down" fill={colors.gray90} size="large" />
               </FilterButton>
             </>
           )}

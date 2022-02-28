@@ -1,14 +1,15 @@
 @import 'src/scss/colors.scss';
 @import 'src/scss/mixins/responsive';
+@import "src/scss/variables";
 
 .modal {
   overflow: scroll;
   max-height: 100vh;
   width: 650px;
   max-width: 60vw;
-  background: $gris;
+  background: $gray20;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
+  border-radius: $radius;
 
   @include media-max("tablet-up") {
     max-width: 100%;
@@ -26,20 +27,20 @@
       margin-top:20px;
     }
     .list_group_item{
-      border-radius: 12px;
+      border-radius: $radius;
       margin-bottom: 10px;
       border:none;
       outline: none;
-      background: $blanc;
+      background: $gray10;
 
       &:hover{
         box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
       }
       &.active{
-        border: 0.5px solid $noir;
+        border: 0.5px solid $gray90;
         box-sizing: border-box;
-        border-radius: 12px;
-        color: $noir;
+        border-radius: $radius;
+        color: $gray90;
       }
     }
     textarea{

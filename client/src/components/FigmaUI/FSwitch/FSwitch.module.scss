@@ -4,17 +4,17 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  color: $noir;
+  color: $gray90;
   font-weight: bold;
   font-size: 16px;
 
   :global(.switch-input:checked + .switch-slider){
-    background-color: #4caf50 !important;
-    border-color: #4caf50 !important;
+    background-color: $validationHover !important;
+    border-color: $validationHover !important;
 
     &:before{
-      background: #ffffff;
-      border-color: #ffffff;
+      background: $white;
+      border-color: $white;
     }
   }
   :global(.switch-slider){

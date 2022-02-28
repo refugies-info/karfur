@@ -1,4 +1,5 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
+@import "src/scss/variables";
 
 .modal {
   :global(.modal-title) {
@@ -8,7 +9,7 @@
   }
 
   .title_wrapper {
-    color: $grisFonce;
+    color: $gray70;
     display: flex;
     flex-direction: column;
 
@@ -24,10 +25,10 @@
   }
 
   .infos {
-    background: $noir;
-    border-radius: 12px;
+    background: $gray90;
+    border-radius: $radius;
     padding: 10px 20px;
-    color: #ffffff;
+    color: $white;
     margin-bottom: 30px;
     cursor: pointer;
 
@@ -39,8 +40,8 @@
     }
   }
   .copy {
-    background: #ffffff;
-    border-radius: 12px;
+    background: $white;
+    border-radius: $radius;
     padding: 10px;
     line-height: 20px;
   }
@@ -49,8 +50,8 @@
     margin-bottom: 30px;
 
     .item {
-      background: $gris;
-      border-radius: 12px;
+      background: $gray20;
+      border-radius: $radius;
       padding: 10px;
       padding-left: 40px;
       margin-bottom: 10px;

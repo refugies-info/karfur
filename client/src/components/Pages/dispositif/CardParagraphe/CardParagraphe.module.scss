@@ -1,5 +1,6 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/variables";
 
 .card_col {
   padding: 0 5px 0 5px;
@@ -20,10 +21,10 @@
   .card {
     margin-top: -40px;
     min-height: 230px;
-    border-radius: 12px;
+    border-radius: $radius;
     border: none;
     height: 300px;
-    background-color: $noirCD;
+    background-color: $gray50;
 
     @include media-max("tablet-up") {
       height: 290px;
@@ -1185,10 +1186,10 @@
   .card_header {
     display: inline-flex;
     align-items: center;
-    background-color: $darkColor;
+    background-color: $gray90;
     border: none;
     border-radius: 12px 12px 0 0;
-    color: #ffffff;
+    color: $white;
     padding: 10px 15px;
 
     :global(.form-control) {
@@ -1204,7 +1205,7 @@
   .card_body {
     padding-bottom: 12px;
     line-height: 20px;
-    color: $noir;
+    color: $gray90;
 
     :global(.dropdown-menu.show) {
       border-radius: 0;
@@ -1240,7 +1241,7 @@
     border: none;
 
     .btn {
-      border-radius: 12px;
+      border-radius: $radius;
       font-size: 16px;
       font-weight: bold;
     }
@@ -1251,7 +1252,7 @@
       font-style: italic;
       font-size: 16px;
       opacity: 0.6;
-      color: #ffffff;
+      color: $white;
       background: transparent;
     }
   }
@@ -1266,7 +1267,7 @@
     }
     &:hover {
       svg {
-        fill: $noir;
+        fill: $gray90;
       }
     }
   }
@@ -1284,12 +1285,12 @@
   text-align: center;
   margin: 0;
   width: 40px;
-  color: $noir;
+  color: $gray90;
   height: 40px;
-  background-color: $jauneClair;
+  background-color: $lightYellow;
   &:active,
   &:focus {
-    background-color: $gris;
+    background-color: $gray20;
   }
 }
 
@@ -1297,14 +1298,14 @@
   .show {
     opacity: 1 !important;
     .tooltip-inner {
-      background: $noir;
+      background: $gray90;
       opacity: 1;
       padding: 20px;
       text-align: left;
       max-width: 260px;
 
       .arrow {
-        border-top-color: $noir;
+        border-top-color: $gray90;
       }
     }
   }
@@ -1312,5 +1313,5 @@
 
 .bs-tooltip-bottom .arrow::before,
 .bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
-  border-bottom-color: $noir;
+  border-bottom-color: $gray90;
 }

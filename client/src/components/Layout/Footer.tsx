@@ -165,7 +165,7 @@ const Footer = () => {
               className={styles.btn}
               type="light-action"
               name="email-outline"
-              fill={colors.noir}
+              fill={colors.gray90}
             >
               {t(
                 "Footer.Je m'abonne à la newsletter",
@@ -181,7 +181,7 @@ const Footer = () => {
               className={styles.btn}
               type="light-action"
               name="plus-circle-outline"
-              fill={colors.noir}
+              fill={colors.gray90}
             >
               {t(
                 "Footer.Demander des fonctionnalités",
@@ -198,7 +198,7 @@ const Footer = () => {
               className={styles.btn}
               type="tuto"
               name="question-mark-circle-outline"
-              fill={colors.noir}
+              fill={colors.gray90}
             >
               {t("Footer.Centre d'aide", "Consulter le centre d'aide")}
             </FButton>

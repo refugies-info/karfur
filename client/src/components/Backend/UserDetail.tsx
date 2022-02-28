@@ -18,7 +18,7 @@ const UserDetailContainer = styled.div`
   margin-bottom: 10px;
   border-width: 1px;
   border-style: solid;
-  border-color: ${(props: {isSelected: boolean}) => (props.isSelected ? colors.focus : colors.noir)};
+  border-color: ${(props: {isSelected: boolean}) => (props.isSelected ? colors.focus : colors.gray90)};
   border-radius: 12px;
   padding: 8px;
   display: flex;
@@ -38,7 +38,7 @@ const UserDetailContainer = styled.div`
 const Text = styled.div`
   font-size: 16px;
   line-height: 20px;
-  color: ${(props: {isSelected: boolean}) => (props.isSelected ? colors.blancSimple : colors.noir)};
+  color: ${(props: {isSelected: boolean}) => (props.isSelected ? colors.white : colors.gray90)};
 `;
 
 const RowContainer = styled.div`
@@ -77,7 +77,7 @@ export const UserDetail = (props: Props) => {
       </RowContainer>
       <EVAIcon
         name={props.isSelected ? "radio-button-on" : "radio-button-off-outline"}
-        fill={props.isSelected ? colors.blancSimple : colors.noir}
+        fill={props.isSelected ? colors.white : colors.gray90}
       />
     </UserDetailContainer>
   );

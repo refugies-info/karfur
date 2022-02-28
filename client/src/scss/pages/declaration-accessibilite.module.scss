@@ -1,7 +1,8 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
+@import "src/scss/variables";
 
 .container {
-  background: #ffffff;
+  background: $white;
   max-width: 544px;
   margin: auto;
   padding: 30px 10px;
@@ -55,7 +56,7 @@
 
   .box {
     box-shadow: 1px 1px 9px 0 rgba(33, 33, 33, 0.24);
-    border-radius: 12px;
+    border-radius: $radius;
     width: 100%;
     padding: 24px;
     text-align: center;

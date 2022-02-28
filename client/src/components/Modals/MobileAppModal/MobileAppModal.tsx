@@ -45,8 +45,8 @@ const LanguageModal = (props: Props) => {
           <div className={styles.close_btn}>
             <FButtonMobile
               name="close-outline"
-              fill={colors.noir}
-              color={colors.blancSimple}
+              fill={colors.gray90}
+              color={colors.white}
               onClick={props.toggle}
               isDisabled={false}
               title="MobileAppModal.Rester sur le navigateur"
@@ -55,7 +55,7 @@ const LanguageModal = (props: Props) => {
           </div>
           <FButtonMobile
             name="external-link-outline"
-            fill={colors.blancSimple}
+            fill={colors.white}
             color={colors.validationDefault}
             onClick={() => window.open(storeLink)}
             isDisabled={false}

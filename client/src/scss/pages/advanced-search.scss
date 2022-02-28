@@ -1,8 +1,9 @@
 @import "src/scss/mixins/responsive";
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
+@import "src/scss/variables";
 
 .advanced-search {
-  background: #e5e5e5;
+  background: $gray40;
   flex: 1 1;
   display: flex;
   justify-content: flex-start;
@@ -10,7 +11,7 @@
   margin-top: -75px;
 
   .search-bar {
-    background: #ffffff;
+    background: $white;
     box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
     margin-left: 68px;
     margin-right: 68px;
@@ -53,7 +54,7 @@
     // align-items: center;
   }
   .options-dropdown {
-    background: $grisFonce;
+    background: $gray70;
     border-radius: 50%;
     width: 45px;
     height: 45px;
@@ -63,7 +64,7 @@
       align-items: center;
     }
     &.active {
-      background: $noir;
+      background: $gray90;
     }
   }
 
@@ -77,7 +78,7 @@
     }
 
     .side-options {
-      color: $grisFonce;
+      color: $gray70;
       font-size: 18px;
       line-height: 26px;
       cursor: pointer;
@@ -88,17 +89,17 @@
           overflow: hidden;
         }
         &:hover {
-          color: $noir;
+          color: $gray90;
         }
         &.active {
-          color: $noir;
+          color: $gray90;
           font-weight: bold;
         }
       }
     }
   }
   .side-option.dropdown-item.active {
-    color: $noir;
+    color: $gray90;
     font-weight: bold;
     background-color: transparent;
   }
@@ -122,7 +123,7 @@
     }
     &:focus {
       svg {
-        fill: $noir;
+        fill: $gray90;
       }
     }
   }
@@ -137,7 +138,7 @@
   }
 
   .card {
-    border-radius: 12px;
+    border-radius: $radius;
     height: 250px;
     cursor: pointer;
     &:hover {
@@ -150,7 +151,7 @@
   .card-col {
     .card {
       //border: none;
-      border-radius: 12px;
+      border-radius: $radius;
       width: 252px;
       height: 252px;
     }
@@ -181,18 +182,18 @@
   .no-result {
     .no-result-card {
       cursor: pointer;
-      border-radius: 12px;
+      border-radius: $radius;
       font-size: 16px;
       line-height: 21px;
       height: 250px;
       scrollbar-width: 0;
       border: none;
-      background: #ffffff;
+      background: $white;
 
       @include media-max("desktop-up") {
         font-size: 12px;
       }
-      color: $noir;
+      color: $gray90;
     }
     ::-webkit-scrollbar {
       display: none;
@@ -223,17 +224,17 @@
 
 .language-filter-button {
   cursor: pointer;
-  background-color: #f2f2f2;
+  background-color: $gray20;
   padding: 8px;
   margin: 0px 8px 0px 0px;
   border-radius: 8px;
   color: black;
   &:hover > span {
-    background-color: #212121;
+    background-color: $gray90;
     color: white !important;
   }
   &:hover {
-    background-color: #212121;
+    background-color: $gray90;
     color: white !important;
   }
 }

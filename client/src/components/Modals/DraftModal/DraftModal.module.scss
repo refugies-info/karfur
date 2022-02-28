@@ -1,3 +1,6 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
 .modal {
   min-width: 650px;
 
@@ -5,13 +8,13 @@
     background: #fbfbfb;
     border: hidden;
     box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
-    border-radius: 12px;
+    border-radius: $radius;
     mix-blend-mode: normal; /* Shadow autour */
   }
 
   .container {
     padding: 40px;
-    border-radius: 12px;
+    border-radius: $radius;
   }
   .header {
     font-weight: bold;
@@ -33,15 +36,15 @@
     margin-bottom: 32px;
 
     .left {
-      background: #ffffff;
-      border-radius: 12px;
+      background: $white;
+      border-radius: $radius;
       padding: 16px;
       width: 280px;
       background-image: url(../../../assets/illu_pasdepanique.svg);
     }
     .right {
-      background: #ffffff;
-      border-radius: 12px;
+      background: $white;
+      border-radius: $radius;
       padding: 16px;
       width: 280px;
       background-image: url(../../../assets/illu_bonasavoir.svg);
@@ -63,7 +66,7 @@
   .infos_footer {
     display: flex;
     flex-direction: row;
-    background: #ffffff;
+    background: $white;
     font-weight: bold;
     font-size: 18px;
     line-height: 23px;
@@ -74,7 +77,7 @@
     .right {
       display: flex;
       flex-direction: row;
-      background: #ffffff;
+      background: $white;
       font-weight: bold;
       font-size: 18px;
       line-height: 23px;

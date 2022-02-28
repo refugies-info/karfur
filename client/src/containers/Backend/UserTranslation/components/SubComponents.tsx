@@ -113,7 +113,7 @@ const TradStatusContainer = styled.div`
   font-weight: bold;
   font-size: 12px;
   line-height: 15px;
-  color: ${colors.blancSimple};
+  color: ${colors.white};
   padding: 8px;
   background-color: ${(props: {backgroundColor: string}) => props.backgroundColor};
   border-radius: 8px;
@@ -152,10 +152,10 @@ const FilterButtonContainer = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props: FilterButtonContainerProps) => (props.isSelected ? colors.blancSimple : props.color)};
+  color: ${(props: FilterButtonContainerProps) => (props.isSelected ? colors.white : props.color)};
   padding: 17px;
   background-color: ${(props: FilterButtonContainerProps) =>
-    props.isSelected ? props.color : colors.blancSimple};
+    props.isSelected ? props.color : colors.white};
   border-radius: 12px;
   width: fit-content;
   margin-right: 10px;
@@ -194,11 +194,11 @@ interface TypeContenuFilterButtonProps {
 const TypeContenuFilterButtonContainer = styled.div`
   padding: 15px;
   background-color: ${(props: {isSelected: boolean}) =>
-    props.isSelected ? colors.noir : colors.blancSimple};
+    props.isSelected ? colors.gray90 : colors.white};
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props: {isSelected: boolean}) => (props.isSelected ? colors.blancSimple : colors.noir)};
+  color: ${(props: {isSelected: boolean}) => (props.isSelected ? colors.white : colors.gray90)};
   cursor: pointer;
   border-radius: 12px;
   margin-right: 10px;

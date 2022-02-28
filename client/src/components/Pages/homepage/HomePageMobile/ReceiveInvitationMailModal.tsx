@@ -76,7 +76,7 @@ const CloseIconContainer = styled.div`
   height: 40px;
   width: 40px;
   border-radius: 50%;
-  background-color: ${colors.noir};
+  background-color: ${colors.gray90};
   right: 10px;
   top: 8px;
 `;
@@ -140,7 +140,7 @@ export const ReceiveInvitationMailModal = (props: Props) => {
     >
       <MainContainer>
         <CloseIconContainer onClick={props.toggle}>
-          <EVAIcon name="close" fill={colors.blancSimple} size={"large"} />
+          <EVAIcon name="close" fill={colors.white} size={"large"} />
         </CloseIconContainer>
         <TitleContainer>
           {t(

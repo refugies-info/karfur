@@ -190,7 +190,7 @@ const HomeSearch = (props: Props) => {
               justifyContent: "center",
               flexDirection: "row",
               borderRadius: 10,
-              backgroundColor: colors.grisFonce,
+              backgroundColor: colors.gray70,
               // fontWeight: "600",
             }}
           >

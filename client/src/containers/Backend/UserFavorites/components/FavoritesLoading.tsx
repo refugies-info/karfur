@@ -6,7 +6,7 @@ import Skeleton from "react-loading-skeleton";
 import { colors } from "../../../../colors";
 
 const LoadingCardContainer = styled.div`
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   border-radius: 12px;
   width: 248px;
   height: 248px;
@@ -18,7 +18,7 @@ const LoadingCardContainer = styled.div`
 `;
 
 const BottomContainer = styled.div`
-  background:${colors.grey}
+  background:${colors.gray60}
   height: 50px;
   width: 100%;
   border-radius: 0px 0px 12px 12px;

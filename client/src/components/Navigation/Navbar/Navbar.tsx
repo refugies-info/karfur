@@ -159,7 +159,7 @@ const Navbar = (props: Props) => {
               router.push({ pathname: "/advanced-search" });
             }}
           >
-            <EVAIcon name="search" size="large" fill={colors.blanc} />
+            <EVAIcon name="search" size="large" fill={colors.gray10} />
           </button>
         ) : (
           <AdvancedSearchBar

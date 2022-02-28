@@ -176,7 +176,7 @@ const UserTranslation = () => {
           display: "flex",
           flexDirection: "column",
           flex: 1,
-          backgroundColor: colors.gris,
+          backgroundColor: colors.gray20,
           marginTop: "-95px",
           paddingTop: "100px",
         }}
@@ -200,7 +200,7 @@ const UserTranslation = () => {
           display: "flex",
           flexDirection: "column",
           flex: 1,
-          backgroundColor: colors.gris,
+          backgroundColor: colors.gray20,
           marginTop: "-95px",
           paddingTop: "100px",
         }}
@@ -235,7 +235,7 @@ const UserTranslation = () => {
         display: "flex",
         flexDirection: "column",
         flex: 1,
-        backgroundColor: colors.gris,
+        backgroundColor: colors.gray20,
         marginTop: "-95px",
         paddingTop: "100px",
       }}

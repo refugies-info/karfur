@@ -1,3 +1,6 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
 .modal {
   min-width: 650px;
 
@@ -5,7 +8,7 @@
     background: #edebeb;
     border: hidden;
     box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
-    border-radius: 12px;
+    border-radius: $radius;
     mix-blend-mode: normal;
   }
   .header {
@@ -22,7 +25,7 @@
   }
   .container {
     padding: 40px;
-    border-radius: 12px;
+    border-radius: $radius;
   }
   .icon {
     position: absolute;
@@ -42,8 +45,8 @@
     line-height: 28px;
   }
   .video {
-    background: #d2edfc;
-    border-radius: 12px;
+    background: $bgfocus;
+    border-radius: $radius;
     height: 300px;
     display: flex;
     align-items: center;

@@ -1,12 +1,13 @@
 @import "src/scss/colors";
+@import "src/scss/variables";
 
 .modal {
   min-width: 600px;
-  background: $gris;
+  background: $gray20;
   border: hidden;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
-  color: $noir;
+  border-radius: $radius;
+  color: $gray90;
   padding: 40px;
 
   .title {
@@ -21,7 +22,7 @@
   .explaination {
     width: 520px;
     background-color: $focus;
-    border-radius: 12px;
+    border-radius: $radius;
     padding: 16px;
     color: white;
     font-size: 16px;
@@ -46,7 +47,7 @@
   }
 
   .modal_content {
-    background: $gris;
+    background: $gray20;
     border: hidden;
   }
 }

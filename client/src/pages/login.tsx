@@ -372,7 +372,7 @@ const Login = () => {
                 className="footer-btn"
                 type="tuto"
                 name="question-mark-circle-outline"
-                fill={colors.noir}
+                fill={colors.gray90}
               >
                 {t("Login.Centre d'aide", "Centre d'aide")}
               </FButton>

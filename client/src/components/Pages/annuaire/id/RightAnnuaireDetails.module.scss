@@ -36,7 +36,7 @@
   }
 
   .figure {
-    background: #ffffff;
+    background: $white;
     box-shadow: 0 4px 8px rgba(33, 33, 33, 0.25);
     border-radius: 4px;
     font-weight: bold;
@@ -45,7 +45,7 @@
     height: fit-content;
     width: fit-content;
     padding: 4px;
-    color: #212121;
+    color: $gray90;
 
     &.red {
       color: #F44336;
@@ -66,7 +66,7 @@
     font-weight: bold;
     font-size: 22px;
     line-height: 28px;
-    color: #828282;
+    color: $gray70;
     margin-right: 24px;
     margin-left: 24px;
   }

@@ -5,9 +5,9 @@
 .audio_btn {
   position: relative;
   height: 52px;
-  background: $blanc;
+  background: $gray10;
   box-sizing: border-box;
-  border: 0.5px solid $blanc;
+  border: 0.5px solid $gray10;
   border-radius: $radius;
   user-select: none;
   display: flex;
@@ -27,19 +27,19 @@
   }
 
   &:hover {
-    background: $noir;
-    border-color: $noir;
+    background: $gray90;
+    border-color: $gray90;
     box-shadow: 0 4px 7px rgba(0, 0, 0, 0.1);
-    color: $blanc;
+    color: $gray10;
     svg {
-      fill: $blanc;
+      fill: $gray10;
     }
   }
 
   &.pressed {
     background: $vert;
     border: none;
-    color: $blanc;
+    color: $gray10;
   }
 
   .text {

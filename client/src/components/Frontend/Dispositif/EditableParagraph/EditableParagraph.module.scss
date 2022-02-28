@@ -7,15 +7,15 @@
 
     .dropdown-item{
       font-size: 14px;
-      color: #FFFFFF;
+      color: $white;
       display:flex;
       padding-right: 15px;
       padding-left: 15px;
       &:hover{
-        background-color:#FFFFFF;
-        color:$noir;
+        background-color:$white;
+        color:$gray90;
         svg{
-          fill: $noir;
+          fill: $gray90;
         }
       }
       i{

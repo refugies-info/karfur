@@ -110,7 +110,7 @@ if (isInBrowser()) {
 const InfoBoxLanguageContainer = styled.div`
   display: flex;
   max-width: 1002px;
-  color: ${colors.blanc};
+  color: ${colors.gray10};
   background-color: ${colors.focus};
   border-radius: 12px;
   padding: 16px;
@@ -121,7 +121,7 @@ const InfoBoxLanguageContainer = styled.div`
 
 const TextOtherLanguageContainer = styled.p`
   display: flex;
-  color: ${colors.grisFonce};
+  color: ${colors.gray70};
   font-size: 18px;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -1577,7 +1577,7 @@ const Dispositif = (props: Props) => {
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <EVAIcon
                       name={"alert-triangle"}
-                      fill={colors.blanc}
+                      fill={colors.gray10}
                       className="mr-10"
                     ></EVAIcon>
                     <div>
@@ -1604,7 +1604,7 @@ const Dispositif = (props: Props) => {
                       setShowAlertBoxLanguage(!showAlertBoxLanguage)
                     }
                     name={"close"}
-                    fill={colors.blanc}
+                    fill={colors.gray10}
                     className="ml-10"
                   ></EVAIcon>
                 </InfoBoxLanguageContainer>
@@ -1665,7 +1665,7 @@ const Dispositif = (props: Props) => {
                         </span>
                         <EVAIcon
                           name={"chevron-down-outline"}
-                          fill={colors.noir}
+                          fill={colors.gray90}
                           className="ml-10"
                           size="xlarge"
                         ></EVAIcon>

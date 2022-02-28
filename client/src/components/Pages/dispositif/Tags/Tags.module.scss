@@ -1,4 +1,5 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
+@import "src/scss/variables";
 
 .tags {
   z-index: 10;
@@ -29,23 +30,23 @@
   }
 
   .plus_btn {
-    background: $jauneClair;
-    border-radius: 12px;
+    background: $lightYellow;
+    border-radius: $radius;
     font-weight: bold;
     font-size: 16px;
     line-height: 20px;
-    color: $noir;
+    color: $gray90;
     border: none;
     padding: 10px;
     height: 50px;
 
     &:hover {
-      background-color: $gris;
+      background-color: $gray20;
     }
 
     svg {
       margin-right: 10px;
-      fill: $noir;
+      fill: $gray90;
     }
     i {
       margin-right: 10px;
@@ -53,7 +54,7 @@
 
     &.icon {
       svg {
-        fill: $noir;
+        fill: $gray90;
         margin-right: 2px;
       }
     }

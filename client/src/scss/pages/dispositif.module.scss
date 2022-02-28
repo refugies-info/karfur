@@ -5,7 +5,7 @@
   margin-top: -75px;
   background-size: cover;
   background-repeat: no-repeat;
-  background: $blanc;
+  background: $gray10;
   background-position: 0;
   position: relative;
 
@@ -47,7 +47,7 @@
       font-style: normal;
       font-weight: bold;
       font-size: 52px;
-      color: $noir;
+      color: $gray90;
       background-color: rgba(255, 255, 255, 0.95);
       line-height: 60px;
       padding: 15px 20px;
@@ -59,7 +59,7 @@
       font-style: normal;
       font-weight: normal;
       font-size: 32px;
-      color: $noir;
+      color: $gray90;
       background-color: rgba(255, 255, 255, 0.95);
       line-height: 34px;
       padding-top: 0;
@@ -73,7 +73,7 @@
   .mobile_title {
     font-style: normal;
     font-weight: bold;
-    color: $noir;
+    color: $gray90;
     text-transform: initial;
     margin-bottom: 0;
     font-size: 22px;
@@ -86,7 +86,7 @@
   .mobile_title_sponsor {
     font-style: normal;
     font-weight: normal;
-    color: $noir;
+    color: $gray90;
     line-height: 34px;
     padding-top: 0;
     font-size: 16px;
@@ -99,8 +99,8 @@
   .mobile_title_text {
     display: inline;
     padding: 4px 0;
-    background-color: #ffffff;
-    box-shadow: 8px 0 0 #ffffff, -8px 0 0 #ffffff;
+    background-color: $white;
+    box-shadow: 8px 0 0 $white, -8px 0 0 $white;
     box-decoration-break: clone;
   }
 

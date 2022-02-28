@@ -26,12 +26,12 @@ import {
 } from "assets/figma";
 import icon_mobilisation from "assets/icon_mobilisation.svg";
 import { assetsOnServer } from "assets/assetsOnServer";
-import styles from "scss/pages/homepage.module.scss";
 import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import useRTL from "hooks/useRTL";
 import { tags } from "data/tags";
 import isInBrowser from "lib/isInBrowser";
+import styles from "scss/pages/homepage.module.scss";
 
 const CoronaAlert = styled.div`
   display: flex;
@@ -207,7 +207,7 @@ const Homepage = (props: Props) => {
                 className={isRTL ? "bottom-slider-rtl" : "bottom-slider"}
                 name="arrow-circle-down"
                 size="xhero"
-                fill={colors.blancSimple}
+                fill={colors.white}
               />
             </div>
           </a>
@@ -223,7 +223,7 @@ const Homepage = (props: Props) => {
             defaultBoutonTitle="Je cherche"
             iconName="search-outline"
             backgroundColor={colors.blueGreen}
-            textColor={colors.blancSimple}
+            textColor={colors.white}
             image={illustration_homeCard_dispositif}
             isDisabled={false}
             onClick={() => {
@@ -240,7 +240,7 @@ const Homepage = (props: Props) => {
             defaultBoutonTitle="Je cherche"
             iconName="search-outline"
             backgroundColor={colors.lightBlue2}
-            textColor={colors.blancSimple}
+            textColor={colors.white}
             image={illustration_homeCard_demarche}
             isDisabled={false}
             onClick={() => {
@@ -263,7 +263,7 @@ const Homepage = (props: Props) => {
             }
             iconName={isMobile ? "alert-circle-outline" : "search-outline"}
             backgroundColor={colors.purple}
-            textColor={colors.blancSimple}
+            textColor={colors.white}
             image={illustration_homeCard_annuaire}
             isDisabled={isMobile ? true : false}
             onClick={() => {

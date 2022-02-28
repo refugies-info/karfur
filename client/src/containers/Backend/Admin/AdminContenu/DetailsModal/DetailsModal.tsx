@@ -89,7 +89,7 @@ const Title = styled.div`
 
 const StructureContainer = styled.div`
   background: ${(props: {noStructure?: boolean}) =>
-    props.noStructure ? colors.erreur : colors.blancSimple};
+    props.noStructure ? colors.erreur : colors.white};
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -119,7 +119,7 @@ const ButtonsContainer = styled.div`
 const CreatorContainer = styled.div`
   border-radius: 12px;
   padding: 8px;
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   display: flex;
   flex-direction: row;
   width: fit-content;
@@ -245,7 +245,7 @@ export const DetailsModal = (props: Props) => {
               <RowContainer>
                 {dispositif.titreMarque && (
                   <TitreMarque>
-                    <span style={{ color: colors.cardColor }}>avec </span>
+                    <span style={{ color: colors.gray70 }}>avec </span>
                     {dispositif.titreMarque}
                   </TitreMarque>
                 )}
@@ -410,7 +410,7 @@ export const DetailsModal = (props: Props) => {
                       dispositif.mainSponsor.picture &&
                       dispositif.mainSponsor.picture.secure_url && (
                         <Image
-                          className={styles.sopnsor_img}
+                          className={styles.sponsor_img}
                           src={(dispositif.mainSponsor.picture || {}).secure_url}
                           alt={dispositif.mainSponsor.nom}
                           width={140}

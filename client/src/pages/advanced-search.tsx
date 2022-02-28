@@ -94,7 +94,7 @@ const SearchToggle = styled.div`
   border-radius: 12px;
   border: 0.5px solid;
   margin-right: ${(props: SearchToggleProps) => (props.isRtl ? "10px" : "")};
-  color: ${(props: SearchToggleProps) => (props.visible ? colors.blancSimple : colors.bleuCharte)};
+  color: ${(props: SearchToggleProps) => (props.visible ? colors.white : colors.bleuCharte)};
   border-color: ${(props: SearchToggleProps) =>
     props.visible ? "transparent" : colors.bleuCharte};
   background-color: ${(props: SearchToggleProps) =>
@@ -865,7 +865,7 @@ export class AdvancedSearch extends Component<Props, State> {
                       )}{" "}
                     <EVAIcon
                       name={this.state.searchToggleVisible ? "arrow-ios-upward-outline" : "arrow-ios-downward-outline"}
-                      fill={this.state.searchToggleVisible ? colors.blancSimple : colors.bleuCharte}
+                      fill={this.state.searchToggleVisible ? colors.white : colors.bleuCharte}
                     />
                   </div>
                 </SearchToggle>

@@ -1,14 +1,15 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/variables";
 
 .map {
   margin-top: 40px;
 
   .header {
-    background: $darkColor;
+    background: $gray90;
     border-radius: 0 12px 0 0;
     padding: 10px;
-    color: #ffffff;
+    color: $white;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -28,7 +29,7 @@
     .right_menu {
       width: 400px;
       max-width: 50%;
-      background: $gris;
+      background: $gray20;
       box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
       padding: 20px 40px;
       transform: width 0.45;
@@ -53,7 +54,7 @@
 
       label {
         font-size: 12px;
-        color: $grisFonce;
+        color: $gray70;
         margin-bottom: 0;
       }
       .marker_input {
@@ -61,7 +62,7 @@
         @include media-max("tablet-up") {
           font-size: 16px;
         }
-        color: $darkColor;
+        color: $gray90;
         &.no_highlight {
           background: transparent;
         }
@@ -76,7 +77,7 @@
       [contenteditable="true"]:empty:before {
         content: attr(placeholder);
         display: block;
-        color: #828282;
+        color: $gray70;
       }
     }
   }
@@ -100,7 +101,7 @@
   left: 0;
 }
 .btn {
-  background-color: #8bc34a;
+  background-color: $validationDefault;
   height: 50px;
   display: flex;
   margin-top: 25px;
@@ -109,8 +110,8 @@
   font-size: 16px;
   font-weight: bold;
   text-align: center;
-  border-radius: 12px;
-  color: #ffffff;
+  border-radius: $radius;
+  color: $white;
 }
 
 .slide {

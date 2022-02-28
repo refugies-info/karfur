@@ -46,7 +46,7 @@ const FrameModal = (props: Props) => {
           href={getTutoUrl()}
           type="dark"
           name="external-link"
-          fill={colors.noir}
+          fill={colors.gray90}
           className="mr-10"
           target="_blank"
         >

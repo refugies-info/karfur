@@ -77,7 +77,7 @@ const MapComponent = (props: Props) => {
             <EVAIcon
               className={styles.icon}
               name="search-outline"
-              fill={colors.grisFonce}
+              fill={colors.gray70}
             />
           </div>
         </StandaloneSearchBox>

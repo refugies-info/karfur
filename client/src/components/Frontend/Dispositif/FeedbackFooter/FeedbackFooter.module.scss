@@ -1,9 +1,10 @@
 
-  @import "src/scss/colors.scss";
+  @import "src/scss/colors";
   @import "src/scss/mixins/responsive";
+  @import "src/scss/variables";
 
   .container {
-    background: $blanc;
+    background: $gray10;
 
     display: flex;
     justify-content: space-between;
@@ -28,15 +29,15 @@
       justify-content: center;
       font-weight: bold;
       font-size: 16px;
-      border-radius: 12px;
+      border-radius: $radius;
       border: 0.5px solid;
       padding: 15px 20px;
       &:hover {
-        background: darken($color: $gris, $amount: 0);
+        background: darken($color: $gray20, $amount: 0);
       }
       &:active {
         background: $validationHover;
-        color: #ffffff;
+        color: $white;
         border: none;
       }
       &::after {

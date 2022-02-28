@@ -48,12 +48,12 @@ export const HomePageMobile = () => {
         iconType="eva"
         buttonTitle="Homepage.Je propose une fiche"
         defaultBoutonTitle="Je propose une fiche"
-        backgroundColor={colors.blanc}
-        textColor={colors.noir}
+        backgroundColor={colors.gray10}
+        textColor={colors.gray90}
         isDisabled={false}
         onClick={toggleGoToDesktopModal}
-        buttonColor={colors.noir}
-        buttonTextColor={colors.blanc}
+        buttonColor={colors.gray90}
+        buttonTextColor={colors.gray10}
       />
       <HomePageMobileSection
         image={illustration_aidez_traduire}
@@ -66,11 +66,11 @@ export const HomePageMobile = () => {
         buttonTitle="Homepage.J'aide à traduire"
         defaultBoutonTitle="J'aide à traduire"
         backgroundColor={colors.lightGrey}
-        textColor={colors.noir}
+        textColor={colors.gray90}
         isDisabled={false}
         onClick={toggleShowHelpToTranslateModal}
-        buttonColor={colors.noir}
-        buttonTextColor={colors.blanc}
+        buttonColor={colors.gray90}
+        buttonTextColor={colors.gray10}
       />
 
       <HomePageMobileSection
@@ -84,11 +84,11 @@ export const HomePageMobile = () => {
         buttonTitle="Homepage.Je veux être informé"
         defaultBoutonTitle="Je veux être informé"
         backgroundColor={colors.bleuCharte}
-        textColor={colors.blancSimple}
+        textColor={colors.white}
         isDisabled={false}
         onClick={toggleShowNewsletterModal}
-        buttonColor={colors.blanc}
-        buttonTextColor={colors.noir}
+        buttonColor={colors.gray10}
+        buttonTextColor={colors.gray90}
       />
       <GoToDesktopModal
         toggle={toggleGoToDesktopModal}

@@ -32,7 +32,7 @@ const SubTitle = styled.div`
 
 const LangueItemContainer = styled.div`
   background: ${(props: {isSelected: boolean}) =>
-    props.isSelected ? colors.validation : colors.gris};
+    props.isSelected ? colors.validation : colors.gray20};
   border-radius: 12px;
   display: flex;
   flex-direction: row;
@@ -56,11 +56,11 @@ const LanguesContainer = styled.div`
 
 const CheckBoxContainer = styled.div`
   background: ${(props: {isSelected: boolean}) =>
-    props.isSelected ? colors.validationDefault : colors.blancSimple};
+    props.isSelected ? colors.validationDefault : colors.white};
   border: ${(props: {isSelected: boolean}) =>
     props.isSelected
       ? `1px solid ${colors.validationDefault}`
-      : `1px solid ${colors.noirCD}`};
+      : `1px solid ${colors.gray50}`};
 
   box-sizing: border-box;
   border-radius: 3px;

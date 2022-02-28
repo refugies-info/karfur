@@ -1,10 +1,11 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/variables";
 
 .homepage {
   flex: 1 1;
-  color: $noir;
-  background: $blancSimple;
+  color: $gray90;
+  background: $white;
   max-width: 100%;
   outline: none;
   z-index: 1;
@@ -57,7 +58,7 @@
       justify-content: space-between;
       background: rgba(255, 255, 255, 1);
       box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.25);
-      border-radius: 12px;
+      border-radius: $radius;
       width: fit-content;
       z-index: 5;
     }
@@ -136,10 +137,10 @@
       margin-bottom: 42px;
     }
     .card-col {
-      border-radius: 12px;
+      border-radius: $radius;
       .card {
         height: 520px;
-        border-radius: 12px;
+        border-radius: $radius;
         border: none;
         padding: 40px;
 
@@ -178,29 +179,29 @@
           }
           .homebtn {
             background: rgba(255, 255, 255, 0.95);
-            color: $noir;
+            color: $gray90;
             transition: all 0.5s ease;
             padding: 10px 20px;
             box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
             display: flex;
             align-items: center;
             &:hover {
-              background: $noir;
-              color: $blancSimple;
+              background: $gray90;
+              color: $white;
               box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
               svg {
                 transition: all 0.5s ease;
-                fill: $blancSimple;
+                fill: $white;
               }
             }
             &:disabled {
               svg {
-                fill: $blancSimple;
+                fill: $white;
               }
-              background: $grisFonce;
-              color: $blancSimple;
+              background: $gray70;
+              color: $white;
               &:hover {
-                background: $grisFonce;
+                background: $gray70;
               }
             }
           }
@@ -215,7 +216,7 @@
   .input-group.md-form.form-sm.form-2 {
     flex: 1;
     margin-right: 10px;
-    border-radius: 12px;
+    border-radius: $radius;
     height: 100%;
 
     .react-autosuggest__container {
@@ -227,17 +228,17 @@
 
       .react-autosuggest__input {
         width: 100%;
-        border-radius: 12px;
-        border: 0.5px solid $grisFonce;
+        border-radius: $radius;
+        border: 0.5px solid $gray70;
         height: 100%;
       }
     }
   }
 
   .input-group-text {
-    background: $noir;
+    background: $gray90;
     border-radius: 0 12px 12px 0;
-    color: #ffffff;
+    color: $white;
     font-size: 16px;
     font-weight: bold;
     border: 0.5px solid #3c3c3c;
@@ -252,7 +253,7 @@
 
   .background-wrapper {
     border-radius: 50%;
-    background-color: $noir;
+    background-color: $gray90;
   }
   .slide-animation {
     position: absolute;
@@ -269,7 +270,7 @@
       mix-blend-mode: normal;
       filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.25));
     }
-    background: $noir;
+    background: $gray90;
     border-radius: 50%;
     z-index: 1;
     transition: all 0.5s ease;
@@ -281,7 +282,7 @@
 
   .bottom-slider {
     position: absolute;
-    fill: $blancSimple;
+    fill: $white;
     z-index: 10;
     svg {
       margin-left: -15px;
@@ -291,9 +292,9 @@
     &:hover {
       svg {
         transition: all 0.5s ease;
-        fill: $gris;
+        fill: $gray20;
         @include media-max("tablet-up") {
-          fill: $blancSimple;
+          fill: $white;
         }
       }
     }
@@ -301,7 +302,7 @@
 
   .bottom-slider-rtl {
     position: absolute;
-    fill: $blancSimple;
+    fill: $white;
     z-index: 10;
     svg {
       margin-right: -15px;
@@ -311,9 +312,9 @@
     &:hover {
       svg {
         transition: all 0.5s ease;
-        fill: $gris;
+        fill: $gray20;
         @include media-max("tablet-up") {
-          fill: $blancSimple;
+          fill: $white;
         }
       }
     }
@@ -378,7 +379,7 @@
   --------------------------------------------------------------*/
   .parrainage-alert {
     border-radius: 12px 12px 12px 12px;
-    background-color: #2d9cdb;
+    background-color: $focus;
     padding: 16px;
     margin-top: -70px;
     box-shadow: 0 10px 15px 0 #00000040;

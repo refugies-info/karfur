@@ -80,7 +80,7 @@ const SubTitle = styled.div`
 const PossibleNeedsContainer = styled.div`
   max-height: 350px;
   overflow-y: auto;
-  background-color: ${colors.grey};
+  background-color: ${colors.gray60};
   margin-top: -10px;
   border-radius: 12px;
 `;

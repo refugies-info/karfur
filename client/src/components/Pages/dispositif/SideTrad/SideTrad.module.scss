@@ -1,10 +1,10 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 
 .side_trad {
   display: flex;
   flex-direction: column;
   height: 94vh;
-  background: #f2f2f2;
+  background: $gray20;
   padding: 20px 20px 20px 20px;
   margin-bottom: 50px;
   position: fixed;
@@ -41,7 +41,7 @@
     padding: 20px;
     margin-bottom: 20px;
     position: relative;
-    background-color: #d2edfc;
+    background-color: $bgfocus;
 
     &.no_margin_modified {
       margin-bottom: 0;
@@ -50,12 +50,12 @@
     }
     &.no_margin_abstract {
       margin-bottom: 0;
-      background-color: #f9ef99 !important;
+      background-color: $attention !important;
       border-radius: 12px 12px 0 0;
     }
     &.no_margin_validated {
       margin-bottom: 0;
-      background-color: #def6c2 !important;
+      background-color: $lightgreen !important;
       border-radius: 12px 12px 0 0;
     }
   }
@@ -67,16 +67,16 @@
     flex: 1;
     border-radius: 12px 12px 12px 12px;
     padding: 0 0 0 20px;
-    border: 0.5px solid $noir;
-    background: #ffffff;
+    border: 0.5px solid $gray90;
+    background: $white;
     flex-direction: column;
 
     &.no_margin_validated {
-      background-color: #def6c2 !important;
+      background-color: $lightgreen !important;
       border: none;
     }
     &.editor_validated {
-      background-color: #def6c2 !important;
+      background-color: $lightgreen !important;
     }
     .body {
       flex: 1;
@@ -105,7 +105,7 @@
         }
 
         &.editor_validated {
-          background-color: #def6c2 !important;
+          background-color: $lightgreen !important;
         }
       }
 
@@ -166,7 +166,7 @@
       align-items: center;
       flex: 1;
       font-weight: bold;
-      border: 0.5px solid $noir;
+      border: 0.5px solid $gray90;
       border-width: 0 0.5px 0.5px 0.5px;
       border-radius: 0 0 12px 0;
       padding: 10px;
@@ -185,7 +185,7 @@
       align-items: center;
       flex: 1;
       font-weight: bold;
-      border: 0.5px solid $noir;
+      border: 0.5px solid $gray90;
       border-width: 0 0.5px 0.5px 0.5px;
       border-radius: 0 0 12px 0;
       padding: 10px;
@@ -200,8 +200,8 @@
       display: flex;
       align-items: center;
       flex: 1;
-      background: $noir;
-      color: #ffffff;
+      background: $gray90;
+      color: $white;
       border-radius: 0 0 0 12px;
       padding: 10px;
       height: 60px;
@@ -216,6 +216,6 @@
     right: 12px;
     font-size: 12px;
     line-height: 15px;
-    color: $noirCD;
+    color: $gray50;
   }
 }

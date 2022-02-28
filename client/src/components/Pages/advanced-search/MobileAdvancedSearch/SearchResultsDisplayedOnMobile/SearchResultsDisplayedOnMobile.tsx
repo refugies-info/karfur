@@ -27,14 +27,14 @@ const TotalCountTitle = styled.div`
   font-size: 16px;
   text-align: center;
   margin: 13px;
-  color: ${colors.grisFonce};
+  color: ${colors.gray70};
 `;
 
 const AProposTitle = styled.div`
   font-size: 22px;
   font-weight: bold;
   text-align: center;
-  color: ${colors.grisFonce};
+  color: ${colors.gray70};
   margin-top: 25px;
   display: flex;
   justify-content: center;

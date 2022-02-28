@@ -1,9 +1,10 @@
 @import 'src/scss/mixins/responsive';
 @import 'src/scss/colors.scss';
+@import "src/scss/variables";
 
 .modal {
   .modal-content{
-    background: #FFFFFF;
+    background: $white;
     height: 680px;
 
     .modal_header{
@@ -28,7 +29,7 @@
       right: 20px;
     }
     .content {
-      color: $noir;
+      color: $gray90;
       margin-bottom: 10px;
     }
     h5{
@@ -37,8 +38,8 @@
       margin-bottom: 15px;
     }
     .list {
-      background: $blanc;
-      border-radius: 12px;
+      background: $gray10;
+      border-radius: $radius;
       margin-bottom: 0;
       padding: 20px;
       padding-left: 40px;
@@ -52,7 +53,7 @@
     }
     .image{
       box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
-      border-radius: 12px;
+      border-radius: $radius;
       padding: 30px;
       margin-bottom: 30px;
       margin-top: 14px;
@@ -69,8 +70,8 @@
       .btn{
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
         background: #FBFBFB;
-        border-radius: 12px;
-        color:$noir;
+        border-radius: $radius;
+        color:$gray90;
         font-size: 18px;
         line-height: 23px;
         i{
@@ -94,10 +95,10 @@
         height: 20px;
         display: inline-block;
         border-radius: 50%;
-        border: 0.5px solid $noir;
+        border: 0.5px solid $gray90;
 
         .active & {
-          background: $noir;
+          background: $gray90;
         }
         .active.ended &{
           background: $validationDefault;
@@ -116,8 +117,8 @@
     line-height: 20px;
     font-weight: bold;
     padding: 20px;
-    background: $blanc;
-    border-radius: 12px;
+    background: $gray10;
+    border-radius: $radius;
 
     .inline_custom{
       display: inline-flex;

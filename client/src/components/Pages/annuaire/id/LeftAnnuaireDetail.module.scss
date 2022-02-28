@@ -1,3 +1,6 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
 .container {
   width: 390px;
   background-image: url(../../../../assets/annuaire/illu_annuaire_big.svg);
@@ -10,8 +13,8 @@
 }
 
 .logo {
-  background: #ffffff;
-  border-radius: 12px;
+  background: $white;
+  border-radius: $radius;
   width: 296px;
   height: 168px;
   display: flex;

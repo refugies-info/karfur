@@ -1,5 +1,6 @@
-@import "src/scss/colors.scss";
+@import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/variables";
 
 .modal {
   @include media-min("tablet-up") {
@@ -14,9 +15,9 @@
   }
 
   .modal_content {
-    background: #ffffff;
+    background: $white;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
+    border-radius: $radius;
     border: none;
   }
 
@@ -25,7 +26,7 @@
     padding: 1.25rem;
 
     .close {
-      color: $noir;
+      color: $gray90;
       outline: none;
       text-shadow: none;
       position: absolute;
@@ -54,7 +55,7 @@
       font-weight: bold;
       font-size: 24px;
       line-height: 30px;
-      color: $noir;
+      color: $gray90;
     }
 
     .subtitle {
@@ -69,30 +70,30 @@
 
   .list_group_item {
     padding: 15px;
-    border: 0.5px solid $noir;
-    color: $noir;
+    border: 0.5px solid $gray90;
+    color: $gray90;
     border-radius: 12px !important;
     margin-bottom: 10px !important;
     cursor: pointer;
 
     &:hover {
       transition: all 0.5s ease;
-      color: $blancSimple;
-      background: $noir;
+      color: $white;
+      background: $gray90;
     }
     /*   &.disabled {
-    color: $noirCD;
-    border-color: $noirCD;
+    color: $gray50;
+    border-color: $gray50;
   } */
     &.unavailable {
-      background: $grisFonce;
+      background: $gray70;
       border: none;
-      color: #ffffff;
+      color: $white;
       padding: 10px;
       box-shadow: none;
     }
     &.active {
-      color: $blancSimple;
+      color: $white;
       background-color: $validationHover;
       border: 0.5px solid $validationHover;
     }

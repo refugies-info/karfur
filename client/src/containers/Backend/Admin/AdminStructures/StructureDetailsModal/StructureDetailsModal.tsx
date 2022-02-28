@@ -96,7 +96,7 @@ const TextInfoFichesContainer = styled.div`
 const TextNoFicheContainer = styled.div`
   padding-left: 32px;
   font-weight: bold;
-color:${colors.grisFonce}
+color:${colors.gray70}
   font-size: 22px;
 `;
 
