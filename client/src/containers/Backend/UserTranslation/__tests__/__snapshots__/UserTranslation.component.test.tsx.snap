@@ -4084,7 +4084,7 @@ exports[`user translation should return loader langue in url = first selected la
             </thead>
             <tbody>
               <tr
-                className="bg-blancSimple"
+                className="bg-white"
               >
                 <td>
                   <div
@@ -4214,7 +4214,7 @@ exports[`user translation should return loader langue in url = first selected la
                 </td>
               </tr>
               <tr
-                className="bg-blancSimple"
+                className="bg-white"
               >
                 <td>
                   <div
@@ -4344,7 +4344,7 @@ exports[`user translation should return loader langue in url = first selected la
                 </td>
               </tr>
               <tr
-                className="bg-blancSimple"
+                className="bg-white"
               >
                 <td>
                   <div
@@ -4474,7 +4474,7 @@ exports[`user translation should return loader langue in url = first selected la
                 </td>
               </tr>
               <tr
-                className="bg-blancSimple"
+                className="bg-white"
               >
                 <td>
                   <div
@@ -4604,7 +4604,7 @@ exports[`user translation should return loader langue in url = first selected la
                 </td>
               </tr>
               <tr
-                className="bg-blancSimple"
+                className="bg-white"
               >
                 <td>
                   <div
@@ -4734,7 +4734,7 @@ exports[`user translation should return loader langue in url = first selected la
                 </td>
               </tr>
               <tr
-                className="bg-blancSimple"
+                className="bg-white"
               >
                 <td>
                   <div
@@ -4864,7 +4864,7 @@ exports[`user translation should return loader langue in url = first selected la
                 </td>
               </tr>
               <tr
-                className="bg-blancSimple"
+                className="bg-white"
               >
                 <td>
                   <div
@@ -4994,7 +4994,7 @@ exports[`user translation should return loader langue in url = first selected la
                 </td>
               </tr>
               <tr
-                className="bg-blancSimple"
+                className="bg-white"
               >
                 <td>
                   <div
@@ -5124,7 +5124,7 @@ exports[`user translation should return loader langue in url = first selected la
                 </td>
               </tr>
               <tr
-                className="bg-blancSimple"
+                className="bg-white"
               >
                 <td>
                   <div
@@ -5254,7 +5254,7 @@ exports[`user translation should return loader langue in url = first selected la
                 </td>
               </tr>
               <tr
-                className="bg-blancSimple"
+                className="bg-white"
               >
                 <td>
                   <div
@@ -5384,7 +5384,7 @@ exports[`user translation should return loader langue in url = first selected la
                 </td>
               </tr>
               <tr
-                className="bg-blancSimple"
+                className="bg-white"
               >
                 <td>
                   <div
@@ -5514,7 +5514,7 @@ exports[`user translation should return loader langue in url = first selected la
                 </td>
               </tr>
               <tr
-                className="bg-blancSimple"
+                className="bg-white"
               >
                 <td>
                   <div

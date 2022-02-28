@@ -29,7 +29,6 @@
     "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.21",
     "lodash.debounce": "^4.0.8",
-    "lottie-web": "^5.4.4",
     "moment": "^2.24.0",
     "mongodb": "^3.5.8",
     "next": "^12.1.0",

@@ -149,8 +149,7 @@ const EditableParagraph = (props: Props) => {
             }}
             editorState={props.editorState}
             toolbarCustomButtons={[
-              // eslint-disable-next-line react/jsx-key
-              <CustomOption editorState={props.editorState} />,
+              <CustomOption key={1} editorState={props.editorState} />,
             ]}
             // blockRendererFn={myBlockRenderer}
             customBlockRenderFunc={myBlockRenderer}
