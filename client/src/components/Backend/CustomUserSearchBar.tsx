@@ -1,21 +1,16 @@
 import React, { useState } from "react";
 import { SimplifiedUser } from "types/interface";
-import styled from "styled-components";
 import { ObjectId } from "mongodb";
 import FInput from "components/FigmaUI/FInput/FInput";
 import { UserDetail } from "components/Backend/UserDetail";
 import { removeAccents } from "lib";
+import styles from "./CustomUserSearchBar.module.scss";
 
 interface Props {
   dataArray: SimplifiedUser[];
   onSelectItem: (data: SimplifiedUser | null) => void;
   selectedItemId: ObjectId | null;
 }
-
-const UsersContainer = styled.div`
-  max-height: 255px;
-  overflow-y: auto;
-`;
 
 const filterUser = (data: SimplifiedUser[], search: string) => {
   return data.filter(
@@ -50,7 +45,7 @@ export const CustomUserSearchBar = (props: Props) => {
         appendName="search-outline"
       />
       {value && (
-        <UsersContainer>
+        <div className={styles.container}>
           {filteredUsers.map((user, index) => (
             <UserDetail
               key={index}
@@ -59,7 +54,7 @@ export const CustomUserSearchBar = (props: Props) => {
               onSelectItem={props.onSelectItem}
             />
           ))}
-        </UsersContainer>
+        </div>
       )}
     </div>
   );

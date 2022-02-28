@@ -1,13 +1,8 @@
 import React from "react";
-import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import FButton from "components/FigmaUI/FButton/FButton";
+import styles from "./SocialLinks.module.scss";
 
-declare const window: Window;
-const ButtonContainer = styled.div`
-  padding-top: 4px;
-  padding-bottom: 4px;
-`;
 interface Props {
   websites: string[] | undefined;
   facebook: string | undefined;
@@ -27,7 +22,7 @@ export const SocialsLink = (props: Props) => {
     <div>
       {props.websites &&
         props.websites.map((website) => (
-          <ButtonContainer key={website}>
+          <div key={website} className={styles.button}>
             <FButton
               type="white"
               name="globe"
@@ -35,10 +30,10 @@ export const SocialsLink = (props: Props) => {
             >
               {t("Annuaire.Visiter internet", "Visiter le site internet")}
             </FButton>
-          </ButtonContainer>
+          </div>
         ))}
       {props.facebook && (
-        <ButtonContainer>
+        <div className={styles.button}>
           <FButton
             type="white"
             name="facebook"
@@ -46,10 +41,10 @@ export const SocialsLink = (props: Props) => {
           >
             {t("Annuaire.facebook", "Suivre sur Facebook")}
           </FButton>
-        </ButtonContainer>
+        </div>
       )}
       {props.twitter && (
-        <ButtonContainer>
+        <div className={styles.button}>
           <FButton
             type="white"
             name="twitter"
@@ -57,10 +52,10 @@ export const SocialsLink = (props: Props) => {
           >
             {t("Annuaire.twitter", "Suivre sur Twitter")}
           </FButton>
-        </ButtonContainer>
+        </div>
       )}
       {props.linkedin && (
-        <ButtonContainer>
+        <div className={styles.button}>
           <FButton
             type="white"
             name="linkedin"
@@ -68,7 +63,7 @@ export const SocialsLink = (props: Props) => {
           >
             {t("Annuaire.linkedin", "Suivre sur LinkedIn")}
           </FButton>
-        </ButtonContainer>
+        </div>
       )}
     </div>
   )

@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { navigationData } from "./data";
 import { NavButton } from "./components/NavButton";
 import API from "utils/API";
@@ -14,6 +13,7 @@ import {
 import { getNbNewNotifications } from "../UserNotifications/lib";
 import { useRouter } from "next/router";
 import { useHistory } from "react-router-dom";
+import styles from "./Navigation.module.scss";
 
 export type SelectedPage =
   | "notifications"
@@ -27,12 +27,6 @@ export type SelectedPage =
 interface Props {
   selected: SelectedPage;
 }
-
-const NavigationContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-self: center;
-`;
 
 const NavigationComponent: React.FunctionComponent<Props> = (
   props: Props
@@ -88,7 +82,7 @@ const NavigationComponent: React.FunctionComponent<Props> = (
     return;
   };
   return (
-    <NavigationContainer>
+    <div className={styles.container}>
       {navigationData.map((data) => {
         if (data.access === "admin" && !isAdmin) return;
         if (data.access === "hasStructure" && !hasStructure) return;
@@ -104,7 +98,7 @@ const NavigationComponent: React.FunctionComponent<Props> = (
           />
         );
       })}
-    </NavigationContainer>
+    </div>
   );
 };
 

@@ -43,17 +43,11 @@ import { ImprovementsMailModal } from "./ImprovementsMailModal/ImprovementsMailM
 import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
 
 import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
-import styled from "styled-components";
 import { needsSelector } from "services/Needs/needs.selectors";
 import Link from "next/link";
+import styles from "./AdminContenu.module.scss";
 
 moment.locale("fr");
-
-const RowContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
 
 export const compare = (a, b) => {
   const orderA = a.order;
@@ -449,7 +443,7 @@ export const AdminContenu = () => {
                     />
                   </td>
                   <td className="align-middle">
-                    <RowContainer>
+                    <div className={styles.row}>
                       <ColoredRound
                         color={
                           areNeedsCompatibleWithTags
@@ -458,7 +452,7 @@ export const AdminContenu = () => {
                         }
                       />
                       {element.needs ? element.needs.length : 0}
-                    </RowContainer>
+                    </div>
                   </td>
                   <td
                     className="align-middle"

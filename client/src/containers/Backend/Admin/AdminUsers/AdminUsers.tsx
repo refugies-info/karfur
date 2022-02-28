@@ -2,7 +2,6 @@ import marioProfile from "assets/mario-profile.jpg";
 import React, { useState } from "react";
 import moment from "moment/min/moment-with-locales";
 import { useDispatch } from "react-redux";
-import styled from "styled-components";
 import {
   SearchBarContainer,
   StyledHeader,
@@ -49,20 +48,6 @@ import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
 import styles from "./AdminUsers.module.scss";
 
 moment.locale("fr");
-
-const RoleContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 150px;
-`;
-
-const LangueContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 150px;
-`;
 
 export const AdminUsers = () => {
   const defaultSortedHeader = {
@@ -425,24 +410,24 @@ export const AdminUsers = () => {
                     className="align-middle"
                     onClick={() => setSelectedUserIdAndToggleModal(element)}
                   >
-                    <RoleContainer>
+                    <div className={styles.item_container}>
                       {(element.roles || []).map((role) => (
                         <Role key={role} role={role} />
                       ))}
-                    </RoleContainer>
+                    </div>
                   </td>
                   <td
                     className="align-middle"
                     onClick={() => setSelectedUserIdAndToggleModal(element)}
                   >
-                    <LangueContainer>
+                    <div className={styles.item_container}>
                       {(element.langues || []).map((langue) => (
                         <LangueFlag
                           langue={langue.langueCode}
                           key={langue.langueCode}
                         />
                       ))}
-                    </LangueContainer>
+                    </div>
                   </td>
 
                   <td

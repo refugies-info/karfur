@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UserStructure should render correctly when add member modal is open 1`] = `
-.c1 {
+.c0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -23,7 +23,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin-bottom: 42px;
 }
 
-.c4 {
+.c3 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -37,7 +37,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   flex-direction: column;
 }
 
-.c2 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -59,7 +59,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   height: fit-content;
 }
 
-.c6 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -74,7 +74,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   align-items: flex-end;
 }
 
-.c8 {
+.c7 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -85,11 +85,37 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin: 0px 8px 0px 8px;
 }
 
-.c7 {
+.c6 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
+}
+
+.c12 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c12:hover {
+  background-color: #212121;
 }
 
 .c13 {
@@ -115,36 +141,10 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
 }
 
 .c13:hover {
-  background-color: #212121;
-}
-
-.c14 {
-  width: 40px;
-  height: 40px;
-  background-color: #828282;
-  border-radius: 8px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-right: 4px;
-  margin-left: 4px;
-  cursor: pointer;
-}
-
-.c14:hover {
   background-color: #f44336;
 }
 
-.c9 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -158,63 +158,63 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   align-items: center;
 }
 
-.c10 {
+.c9 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #0421b1;
+}
+
+.c14 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c10 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .c15 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .c11 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
   color: #0421b1;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  max-width: 190px;
 }
 
 .c16 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
   color: #212121;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c12 {
-  color: #0421b1;
   max-width: 190px;
 }
 
 .c17 {
-  color: #212121;
-  max-width: 190px;
-}
-
-.c18 {
   font-weight: normal;
   font-size: 32px;
   line-height: 40px;
 }
 
-.c20 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -229,7 +229,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin-top: 8px;
 }
 
-.c19 {
+.c18 {
   background: #2d9cdb;
   border-radius: 12px;
   padding: 16px;
@@ -241,7 +241,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin-bottom: 15px;
 }
 
-.c3 {
+.c2 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -249,7 +249,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin-bottom: 30px;
 }
 
-.c5 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -263,19 +263,6 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   justify-content: space-between;
 }
 
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
 <div
   style={
     Object {
@@ -286,7 +273,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   }
 >
   <div
-    className="c0"
+    className="container"
   >
     <button
       className="btn black "
@@ -464,13 +451,13 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
     </button>
   </div>
   <div
-    className="c1 container"
+    className="c0 container"
   >
     <div
-      className="c2"
+      className="c1"
     >
       <div
-        className="c3"
+        className="c2"
       >
         structureTest
       </div>
@@ -495,26 +482,26 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
       </a>
     </div>
     <div
-      className="c4"
+      className="c3"
     >
       <div
-        className="c5"
+        className="c4"
       >
         <div
-          className="c6"
+          className="c5"
         >
           <div
-            className="c7"
+            className="c6"
           >
             Membres
           </div>
           <div
-            className="c8"
+            className="c7"
           >
             2
           </div>
           <div
-            className="c7"
+            className="c6"
           >
             
           </div>
@@ -570,10 +557,10 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c9"
+                  className="c8"
                 >
                   <div
-                    className="c10"
+                    className="c9"
                   >
                     membre2
                   </div>
@@ -583,7 +570,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c10"
                 >
                   Responsable
                 </div>
@@ -592,7 +579,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c12"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -601,7 +588,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c12"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -618,7 +605,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                   }
                 >
                   <div
-                    className="c13"
+                    className="c12"
                     onClick={[Function]}
                   >
                     <div
@@ -640,7 +627,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     </div>
                   </div>
                   <div
-                    className="c14"
+                    className="c13"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -672,10 +659,10 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c9"
+                  className="c8"
                 >
                   <div
-                    className="c15"
+                    className="c14"
                   >
                     membre1
                   </div>
@@ -685,7 +672,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c16"
+                  className="c15"
                 >
                   Rédacteur
                 </div>
@@ -694,7 +681,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c17"
+                  className="c16"
                 >
                   Non disponible
                 </div>
@@ -703,7 +690,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c17"
+                  className="c16"
                 >
                   Non disponible
                 </div>
@@ -720,7 +707,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                   }
                 >
                   <div
-                    className="c13"
+                    className="c12"
                     onClick={[Function]}
                   >
                     <div
@@ -742,7 +729,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     </div>
                   </div>
                   <div
-                    className="c14"
+                    className="c13"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -773,12 +760,12 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
     </div>
     <div>
       <div
-        className="c18"
+        className="c17"
       >
         Ajouter un membre
       </div>
       <div
-        className="c19"
+        className="c18"
       >
         <b>
           Attention :
@@ -815,7 +802,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
         
       </div>
       <div
-        className="c20"
+        className="c19"
       >
         <button
           className="btn  outline-black mr-8 "
@@ -860,7 +847,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
 `;
 
 exports[`UserStructure should render correctly when edit member modal is open, select respo and validate 1`] = `
-.c1 {
+.c0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -882,7 +869,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-bottom: 42px;
 }
 
-.c4 {
+.c3 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -896,7 +883,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   flex-direction: column;
 }
 
-.c2 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -918,7 +905,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   height: fit-content;
 }
 
-.c6 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -933,7 +920,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   align-items: flex-end;
 }
 
-.c8 {
+.c7 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -944,11 +931,37 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin: 0px 8px 0px 8px;
 }
 
-.c7 {
+.c6 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
+}
+
+.c12 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c12:hover {
+  background-color: #212121;
 }
 
 .c13 {
@@ -974,36 +987,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 }
 
 .c13:hover {
-  background-color: #212121;
-}
-
-.c14 {
-  width: 40px;
-  height: 40px;
-  background-color: #828282;
-  border-radius: 8px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-right: 4px;
-  margin-left: 4px;
-  cursor: pointer;
-}
-
-.c14:hover {
   background-color: #f44336;
 }
 
-.c9 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1017,57 +1004,57 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   align-items: center;
 }
 
-.c10 {
+.c9 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #0421b1;
+}
+
+.c14 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c10 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .c15 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .c11 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
   color: #0421b1;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  max-width: 190px;
 }
 
 .c16 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c12 {
-  color: #0421b1;
-  max-width: 190px;
-}
-
-.c17 {
   color: #212121;
   max-width: 190px;
 }
 
-.c21 {
+.c20 {
   background: #E0E0E0;
   border-width: 1px;
   border-style: solid;
@@ -1080,7 +1067,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   color: #212121;
 }
 
-.c24 {
+.c23 {
   background: #ffffff;
   border-width: 1px;
   border-style: solid;
@@ -1093,14 +1080,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   color: #212121;
 }
 
-.c23 {
+.c22 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
   margin-bottom: 10px;
 }
 
-.c22 {
+.c21 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1118,14 +1105,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   align-items: center;
 }
 
-.c19 {
+.c18 {
   font-weight: normal;
   font-size: 32px;
   line-height: 40px;
   margin-right: 15px;
 }
 
-.c25 {
+.c24 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1140,7 +1127,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-top: 12px;
 }
 
-.c18 {
+.c17 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1155,13 +1142,13 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-bottom: 16px;
 }
 
-.c20 {
+.c19 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
 }
 
-.c3 {
+.c2 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -1169,7 +1156,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-bottom: 30px;
 }
 
-.c5 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1183,19 +1170,6 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   justify-content: space-between;
 }
 
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
 <div
   style={
     Object {
@@ -1206,7 +1180,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   }
 >
   <div
-    className="c0"
+    className="container"
   >
     <button
       className="btn black "
@@ -1384,13 +1358,13 @@ exports[`UserStructure should render correctly when edit member modal is open, s
     </button>
   </div>
   <div
-    className="c1 container"
+    className="c0 container"
   >
     <div
-      className="c2"
+      className="c1"
     >
       <div
-        className="c3"
+        className="c2"
       >
         structureTest
       </div>
@@ -1415,26 +1389,26 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       </a>
     </div>
     <div
-      className="c4"
+      className="c3"
     >
       <div
-        className="c5"
+        className="c4"
       >
         <div
-          className="c6"
+          className="c5"
         >
           <div
-            className="c7"
+            className="c6"
           >
             Membres
           </div>
           <div
-            className="c8"
+            className="c7"
           >
             2
           </div>
           <div
-            className="c7"
+            className="c6"
           >
             
           </div>
@@ -1490,10 +1464,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c9"
+                  className="c8"
                 >
                   <div
-                    className="c10"
+                    className="c9"
                   >
                     membre2
                   </div>
@@ -1503,7 +1477,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c10"
                 >
                   Responsable
                 </div>
@@ -1512,7 +1486,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c12"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -1521,7 +1495,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c12"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -1538,7 +1512,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   }
                 >
                   <div
-                    className="c13"
+                    className="c12"
                     onClick={[Function]}
                   >
                     <div
@@ -1560,7 +1534,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     </div>
                   </div>
                   <div
-                    className="c14"
+                    className="c13"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -1592,10 +1566,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c9"
+                  className="c8"
                 >
                   <div
-                    className="c15"
+                    className="c14"
                   >
                     membre1
                   </div>
@@ -1605,7 +1579,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c16"
+                  className="c15"
                 >
                   Rédacteur
                 </div>
@@ -1614,7 +1588,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c17"
+                  className="c16"
                 >
                   Non disponible
                 </div>
@@ -1623,7 +1597,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c17"
+                  className="c16"
                 >
                   Non disponible
                 </div>
@@ -1640,7 +1614,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   }
                 >
                   <div
-                    className="c13"
+                    className="c12"
                     onClick={[Function]}
                   >
                     <div
@@ -1662,7 +1636,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     </div>
                   </div>
                   <div
-                    className="c14"
+                    className="c13"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -1694,28 +1668,28 @@ exports[`UserStructure should render correctly when edit member modal is open, s
     <div />
     <div>
       <div
-        className="c18"
+        className="c17"
       >
         <div
-          className="c19"
+          className="c18"
         >
           Modifier le rôle de
         </div>
         <div
-          className="c20"
+          className="c19"
         >
           membre1
         </div>
       </div>
       <div
-        className="c21"
+        className="c20"
         onClick={[Function]}
       >
         <div
-          className="c22"
+          className="c21"
         >
           <div
-            className="c23"
+            className="c22"
           >
             Nommer « rédacteur » 
           </div>
@@ -1739,14 +1713,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         <br />
       </div>
       <div
-        className="c24"
+        className="c23"
         onClick={[Function]}
       >
         <div
-          className="c22"
+          className="c21"
         >
           <div
-            className="c23"
+            className="c22"
           >
             Nommer « responsable »
           </div>
@@ -1778,7 +1752,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         </span>
       </div>
       <div
-        className="c25"
+        className="c24"
       >
         <button
           className="btn  outline-black mr-8 "
@@ -1823,7 +1797,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 `;
 
 exports[`UserStructure should render correctly when edit member modal is open, select respo and validate 2`] = `
-.c1 {
+.c0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1845,7 +1819,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-bottom: 42px;
 }
 
-.c4 {
+.c3 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -1859,7 +1833,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   flex-direction: column;
 }
 
-.c2 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -1881,7 +1855,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   height: fit-content;
 }
 
-.c6 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1896,7 +1870,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   align-items: flex-end;
 }
 
-.c8 {
+.c7 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -1907,11 +1881,37 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin: 0px 8px 0px 8px;
 }
 
-.c7 {
+.c6 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
+}
+
+.c12 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c12:hover {
+  background-color: #212121;
 }
 
 .c13 {
@@ -1937,36 +1937,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 }
 
 .c13:hover {
-  background-color: #212121;
-}
-
-.c14 {
-  width: 40px;
-  height: 40px;
-  background-color: #828282;
-  border-radius: 8px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-right: 4px;
-  margin-left: 4px;
-  cursor: pointer;
-}
-
-.c14:hover {
   background-color: #f44336;
 }
 
-.c9 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1980,57 +1954,57 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   align-items: center;
 }
 
-.c10 {
+.c9 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #0421b1;
+}
+
+.c14 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c10 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .c15 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .c11 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
   color: #0421b1;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  max-width: 190px;
 }
 
 .c16 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c12 {
-  color: #0421b1;
-  max-width: 190px;
-}
-
-.c17 {
   color: #212121;
   max-width: 190px;
 }
 
-.c21 {
+.c20 {
   background: #ffffff;
   border-width: 1px;
   border-style: solid;
@@ -2043,7 +2017,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   color: #212121;
 }
 
-.c24 {
+.c23 {
   background: #2d9cdb;
   border-width: 1px;
   border-style: solid;
@@ -2056,14 +2030,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   color: #ffffff;
 }
 
-.c23 {
+.c22 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
   margin-bottom: 10px;
 }
 
-.c22 {
+.c21 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2081,14 +2055,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   align-items: center;
 }
 
-.c19 {
+.c18 {
   font-weight: normal;
   font-size: 32px;
   line-height: 40px;
   margin-right: 15px;
 }
 
-.c25 {
+.c24 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2103,7 +2077,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-top: 12px;
 }
 
-.c18 {
+.c17 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2118,13 +2092,13 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-bottom: 16px;
 }
 
-.c20 {
+.c19 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
 }
 
-.c3 {
+.c2 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -2132,7 +2106,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-bottom: 30px;
 }
 
-.c5 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2146,19 +2120,6 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   justify-content: space-between;
 }
 
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
 <div
   style={
     Object {
@@ -2169,7 +2130,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   }
 >
   <div
-    className="c0"
+    className="container"
   >
     <button
       className="btn black "
@@ -2347,13 +2308,13 @@ exports[`UserStructure should render correctly when edit member modal is open, s
     </button>
   </div>
   <div
-    className="c1 container"
+    className="c0 container"
   >
     <div
-      className="c2"
+      className="c1"
     >
       <div
-        className="c3"
+        className="c2"
       >
         structureTest
       </div>
@@ -2378,26 +2339,26 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       </a>
     </div>
     <div
-      className="c4"
+      className="c3"
     >
       <div
-        className="c5"
+        className="c4"
       >
         <div
-          className="c6"
+          className="c5"
         >
           <div
-            className="c7"
+            className="c6"
           >
             Membres
           </div>
           <div
-            className="c8"
+            className="c7"
           >
             2
           </div>
           <div
-            className="c7"
+            className="c6"
           >
             
           </div>
@@ -2453,10 +2414,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c9"
+                  className="c8"
                 >
                   <div
-                    className="c10"
+                    className="c9"
                   >
                     membre2
                   </div>
@@ -2466,7 +2427,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c10"
                 >
                   Responsable
                 </div>
@@ -2475,7 +2436,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c12"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -2484,7 +2445,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c12"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -2501,7 +2462,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   }
                 >
                   <div
-                    className="c13"
+                    className="c12"
                     onClick={[Function]}
                   >
                     <div
@@ -2523,7 +2484,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     </div>
                   </div>
                   <div
-                    className="c14"
+                    className="c13"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -2555,10 +2516,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c9"
+                  className="c8"
                 >
                   <div
-                    className="c15"
+                    className="c14"
                   >
                     membre1
                   </div>
@@ -2568,7 +2529,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c16"
+                  className="c15"
                 >
                   Rédacteur
                 </div>
@@ -2577,7 +2538,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c17"
+                  className="c16"
                 >
                   Non disponible
                 </div>
@@ -2586,7 +2547,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c17"
+                  className="c16"
                 >
                   Non disponible
                 </div>
@@ -2603,7 +2564,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   }
                 >
                   <div
-                    className="c13"
+                    className="c12"
                     onClick={[Function]}
                   >
                     <div
@@ -2625,7 +2586,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     </div>
                   </div>
                   <div
-                    className="c14"
+                    className="c13"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -2657,28 +2618,28 @@ exports[`UserStructure should render correctly when edit member modal is open, s
     <div />
     <div>
       <div
-        className="c18"
+        className="c17"
       >
         <div
-          className="c19"
+          className="c18"
         >
           Modifier le rôle de
         </div>
         <div
-          className="c20"
+          className="c19"
         >
           membre1
         </div>
       </div>
       <div
-        className="c21"
+        className="c20"
         onClick={[Function]}
       >
         <div
-          className="c22"
+          className="c21"
         >
           <div
-            className="c23"
+            className="c22"
           >
             Nommer « rédacteur » 
           </div>
@@ -2702,14 +2663,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         <br />
       </div>
       <div
-        className="c24"
+        className="c23"
         onClick={[Function]}
       >
         <div
-          className="c22"
+          className="c21"
         >
           <div
-            className="c23"
+            className="c22"
           >
             Nommer « responsable »
           </div>
@@ -2741,7 +2702,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         </span>
       </div>
       <div
-        className="c25"
+        className="c24"
       >
         <button
           className="btn  outline-black mr-8 "
@@ -2786,7 +2747,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 `;
 
 exports[`UserStructure should render correctly when loading 1`] = `
-.c1 {
+.c0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2808,7 +2769,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
   margin-bottom: 42px;
 }
 
-.c4 {
+.c2 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -2822,7 +2783,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
   flex-direction: column;
 }
 
-.c2 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -2844,7 +2805,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
   height: fit-content;
 }
 
-.c5 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2859,7 +2820,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
   align-items: flex-end;
 }
 
-.c7 {
+.c5 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -2870,31 +2831,11 @@ exports[`UserStructure should render correctly when loading 1`] = `
   margin: 0px 8px 0px 8px;
 }
 
-.c6 {
+.c4 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
-}
-
-.c3 {
-  width: 160px;
-  height: 160px;
-  background-color: #ffffff;
-  margin-bottom: 8px;
-}
-
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
 }
 
 <div
@@ -2907,7 +2848,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
   }
 >
   <div
-    className="c0"
+    className="container"
   >
     <button
       className="btn black "
@@ -3085,13 +3026,13 @@ exports[`UserStructure should render correctly when loading 1`] = `
     </button>
   </div>
   <div
-    className="c1"
+    className="c0"
   >
     <div
-      className="c2"
+      className="c1"
     >
       <div
-        className="c3"
+        className="img"
       />
       <div
         className="css-nitgap-SkeletonTheme"
@@ -3112,23 +3053,23 @@ exports[`UserStructure should render correctly when loading 1`] = `
       </div>
     </div>
     <div
-      className="c4"
+      className="c2"
     >
       <div
-        className="c5"
+        className="c3"
       >
         <div
-          className="c6"
+          className="c4"
         >
           Membres
         </div>
         <div
-          className="c7"
+          className="c5"
         >
           ...
         </div>
         <div
-          className="c6"
+          className="c4"
         >
           
         </div>
@@ -3191,19 +3132,6 @@ exports[`UserStructure should render correctly when loading 1`] = `
 
 exports[`UserStructure should render correctly when no structure 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
-.c1 {
   margin-top: 60px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -3221,7 +3149,7 @@ exports[`UserStructure should render correctly when no structure 1`] = `
   flex: 1;
 }
 
-.c2 {
+.c1 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -3239,7 +3167,7 @@ exports[`UserStructure should render correctly when no structure 1`] = `
   }
 >
   <div
-    className="c0"
+    className="container"
   >
     <button
       className="btn black "
@@ -3417,10 +3345,10 @@ exports[`UserStructure should render correctly when no structure 1`] = `
     </button>
   </div>
   <div
-    className="c1"
+    className="c0"
   >
     <div
-      className="c2"
+      className="c1"
     >
       Une erreur est survenue. Veuillez recharger la page ou contacter l'équipe de réfugiés.info via le live chat en bas à droite de votre écran.
     </div>
@@ -3429,7 +3357,7 @@ exports[`UserStructure should render correctly when no structure 1`] = `
 `;
 
 exports[`UserStructure should render correctly when structure with membres when user is redacteur 1`] = `
-.c1 {
+.c0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3451,7 +3379,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin-bottom: 42px;
 }
 
-.c4 {
+.c3 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -3465,7 +3393,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   flex-direction: column;
 }
 
-.c2 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -3487,7 +3415,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   height: fit-content;
 }
 
-.c6 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3502,7 +3430,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   align-items: flex-end;
 }
 
-.c8 {
+.c7 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -3513,14 +3441,14 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin: 0px 8px 0px 8px;
 }
 
-.c7 {
+.c6 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
 }
 
-.c9 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3534,57 +3462,57 @@ exports[`UserStructure should render correctly when structure with membres when 
   align-items: center;
 }
 
-.c10 {
+.c9 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #0421b1;
-}
-
-.c13 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-}
-
-.c11 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #0421b1;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c14 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
 }
 
 .c12 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c10 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c13 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c11 {
   color: #0421b1;
   max-width: 190px;
 }
 
-.c15 {
+.c14 {
   color: #212121;
   max-width: 190px;
 }
 
-.c3 {
+.c2 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -3592,7 +3520,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin-bottom: 30px;
 }
 
-.c5 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3606,19 +3534,6 @@ exports[`UserStructure should render correctly when structure with membres when 
   justify-content: space-between;
 }
 
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
 <div
   style={
     Object {
@@ -3629,7 +3544,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   }
 >
   <div
-    className="c0"
+    className="container"
   >
     <button
       className="btn black "
@@ -3807,13 +3722,13 @@ exports[`UserStructure should render correctly when structure with membres when 
     </button>
   </div>
   <div
-    className="c1 container"
+    className="c0 container"
   >
     <div
-      className="c2"
+      className="c1"
     >
       <div
-        className="c3"
+        className="c2"
       >
         structureTest
       </div>
@@ -3838,26 +3753,26 @@ exports[`UserStructure should render correctly when structure with membres when 
       </a>
     </div>
     <div
-      className="c4"
+      className="c3"
     >
       <div
-        className="c5"
+        className="c4"
       >
         <div
-          className="c6"
+          className="c5"
         >
           <div
-            className="c7"
+            className="c6"
           >
             Membres
           </div>
           <div
-            className="c8"
+            className="c7"
           >
             2
           </div>
           <div
-            className="c7"
+            className="c6"
           >
             
           </div>
@@ -3893,10 +3808,10 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c9"
+                  className="c8"
                 >
                   <div
-                    className="c10"
+                    className="c9"
                   >
                     membre1
                   </div>
@@ -3906,7 +3821,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c10"
                 >
                   Rédacteur
                 </div>
@@ -3915,7 +3830,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c12"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -3924,7 +3839,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c12"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -3937,10 +3852,10 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c9"
+                  className="c8"
                 >
                   <div
-                    className="c13"
+                    className="c12"
                   >
                     membre2
                   </div>
@@ -3950,7 +3865,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c13"
                 >
                   Responsable
                 </div>
@@ -3959,7 +3874,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c15"
+                  className="c14"
                 >
                   Non disponible
                 </div>
@@ -3968,7 +3883,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c15"
+                  className="c14"
                 >
                   Non disponible
                 </div>
@@ -3983,7 +3898,7 @@ exports[`UserStructure should render correctly when structure with membres when 
 `;
 
 exports[`UserStructure should render correctly when structure with membres when user is respo 1`] = `
-.c1 {
+.c0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -4005,7 +3920,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin-bottom: 42px;
 }
 
-.c4 {
+.c3 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -4019,7 +3934,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   flex-direction: column;
 }
 
-.c2 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -4041,7 +3956,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   height: fit-content;
 }
 
-.c6 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -4056,7 +3971,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   align-items: flex-end;
 }
 
-.c8 {
+.c7 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -4067,11 +3982,37 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin: 0px 8px 0px 8px;
 }
 
-.c7 {
+.c6 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
+}
+
+.c12 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c12:hover {
+  background-color: #212121;
 }
 
 .c13 {
@@ -4097,36 +4038,10 @@ exports[`UserStructure should render correctly when structure with membres when 
 }
 
 .c13:hover {
-  background-color: #212121;
-}
-
-.c14 {
-  width: 40px;
-  height: 40px;
-  background-color: #828282;
-  border-radius: 8px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-right: 4px;
-  margin-left: 4px;
-  cursor: pointer;
-}
-
-.c14:hover {
   background-color: #f44336;
 }
 
-.c9 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -4140,57 +4055,57 @@ exports[`UserStructure should render correctly when structure with membres when 
   align-items: center;
 }
 
-.c10 {
+.c9 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #0421b1;
+}
+
+.c14 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c10 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .c15 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .c11 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
   color: #0421b1;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  max-width: 190px;
 }
 
 .c16 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c12 {
-  color: #0421b1;
-  max-width: 190px;
-}
-
-.c17 {
   color: #212121;
   max-width: 190px;
 }
 
-.c3 {
+.c2 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -4198,7 +4113,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin-bottom: 30px;
 }
 
-.c5 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -4212,19 +4127,6 @@ exports[`UserStructure should render correctly when structure with membres when 
   justify-content: space-between;
 }
 
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
 <div
   style={
     Object {
@@ -4235,7 +4137,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   }
 >
   <div
-    className="c0"
+    className="container"
   >
     <button
       className="btn black "
@@ -4413,13 +4315,13 @@ exports[`UserStructure should render correctly when structure with membres when 
     </button>
   </div>
   <div
-    className="c1 container"
+    className="c0 container"
   >
     <div
-      className="c2"
+      className="c1"
     >
       <div
-        className="c3"
+        className="c2"
       >
         structureTest
       </div>
@@ -4444,26 +4346,26 @@ exports[`UserStructure should render correctly when structure with membres when 
       </a>
     </div>
     <div
-      className="c4"
+      className="c3"
     >
       <div
-        className="c5"
+        className="c4"
       >
         <div
-          className="c6"
+          className="c5"
         >
           <div
-            className="c7"
+            className="c6"
           >
             Membres
           </div>
           <div
-            className="c8"
+            className="c7"
           >
             2
           </div>
           <div
-            className="c7"
+            className="c6"
           >
             
           </div>
@@ -4519,10 +4421,10 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c9"
+                  className="c8"
                 >
                   <div
-                    className="c10"
+                    className="c9"
                   >
                     membre2
                   </div>
@@ -4532,7 +4434,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c10"
                 >
                   Responsable
                 </div>
@@ -4541,7 +4443,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c12"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -4550,7 +4452,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c12"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -4567,7 +4469,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                   }
                 >
                   <div
-                    className="c13"
+                    className="c12"
                     onClick={[Function]}
                   >
                     <div
@@ -4589,7 +4491,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     </div>
                   </div>
                   <div
-                    className="c14"
+                    className="c13"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -4621,10 +4523,10 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c9"
+                  className="c8"
                 >
                   <div
-                    className="c15"
+                    className="c14"
                   >
                     membre1
                   </div>
@@ -4634,7 +4536,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c16"
+                  className="c15"
                 >
                   Rédacteur
                 </div>
@@ -4643,7 +4545,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c17"
+                  className="c16"
                 >
                   Non disponible
                 </div>
@@ -4652,7 +4554,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c17"
+                  className="c16"
                 >
                   Non disponible
                 </div>
@@ -4669,7 +4571,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                   }
                 >
                   <div
-                    className="c13"
+                    className="c12"
                     onClick={[Function]}
                   >
                     <div
@@ -4691,7 +4593,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     </div>
                   </div>
                   <div
-                    className="c14"
+                    className="c13"
                     disabled={false}
                     onClick={[Function]}
                   >

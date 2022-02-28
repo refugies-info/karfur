@@ -1,16 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 import { useTranslation } from "next-i18next";
-
-const Container = styled.div`
-  font-size: 16px;
-  line-height: 20px;
-  padding: 8px;
-  width: fit-content;
-  background: #ffffff;
-  border-radius: 4px;
-  margin-bottom: 8px;
-`;
+import styles from "./StructureType.module.scss";
 
 interface Props {
   type: string;
@@ -19,8 +9,8 @@ export const StructureType = (props: Props) => {
   const { t } = useTranslation();
 
   return (
-    <Container>
+    <div className={styles.container}>
       {t("Annuaire." + props.type, props.type)}
-    </Container>
+    </div>
   )
 }

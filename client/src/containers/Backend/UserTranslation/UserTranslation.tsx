@@ -12,7 +12,6 @@ import { dispositifsWithTranslationsStatusSelector } from "services/DispositifsW
 import { LoadingDispositifsWithTranslationsStatus } from "./components/LoadingDispositifsWithTranslationsStatus";
 import { StartTranslating } from "./components/StartTranslating";
 import { TranslationsAvancement } from "./components/TranslationsAvancement";
-import styled from "styled-components";
 import { colors } from "colors";
 import { TranslationLanguagesChoiceModal } from "./components/TranslationLanguagesChoiceModal";
 import { FrameModal } from "components/Modals";
@@ -25,12 +24,7 @@ import { TranslationNeedsModal } from "./components/TranslationNeedsModal";
 import { OneNeedTranslationModal } from "./components/OneNeedTranslationModal";
 import { ObjectId } from "mongodb";
 import { needsSelector } from "services/Needs/needs.selectors";
-
-const MainContainer = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-`;
+import styles from "./UserTranslation.module.scss";
 
 const availableLanguages = ["fa", "en", "ru", "ps", "ar", "ti"];
 const getLangueName = (
@@ -188,11 +182,11 @@ const UserTranslation = () => {
         }}
       >
         <Navigation selected="traductions" />
-        <MainContainer>
+        <div className={styles.container}>
           <LoadingDispositifsWithTranslationsStatus
             toggleTutoModal={toggleTutoModal}
           />
-        </MainContainer>
+        </div>
       </div>
     );
 
@@ -212,7 +206,7 @@ const UserTranslation = () => {
         }}
       >
         <Navigation selected="traductions" />
-        <MainContainer>
+        <div className={styles.container}>
           <StartTranslating
             toggleTraducteurModal={toggleTraducteurModal}
             toggleTutoModal={toggleTutoModal}
@@ -230,7 +224,7 @@ const UserTranslation = () => {
               section={"Traduction"}
             />
           )}
-        </MainContainer>
+        </div>
       </div>
     );
   }
@@ -247,7 +241,7 @@ const UserTranslation = () => {
       }}
     >
       <Navigation selected="traductions" />
-      <MainContainer>
+      <div className={styles.container}>
         <TranslationsAvancement
           userTradLanguages={userTradLanguages}
           history={history}
@@ -309,7 +303,7 @@ const UserTranslation = () => {
             langueI18nCode={langueInUrl}
           />
         )}
-      </MainContainer>
+      </div>
     </div>
   );
 };

@@ -1,16 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import FInput from "components/FigmaUI/FInput/FInput";
 import FButton from "components/FigmaUI/FButton/FButton";
 import styles from "scss/components/login.module.scss";
 
-const PseudoPrecisions = styled.div`
-  font-size: 16px;
-  line-height: 20px;
-  color: #828282;
-  margin-top: 16px;
-`;
 interface Props {
   value: string;
   pseudoAlreadyTaken: boolean;
@@ -55,7 +48,7 @@ const UsernameField = (props: Props) => {
           </FButton>
         </div>
       </div>
-      <PseudoPrecisions>
+      <div className={styles.precisions_message}>
         <div>
           {t(
             "Register.Pseudo usage",
@@ -65,7 +58,7 @@ const UsernameField = (props: Props) => {
         <div>
           {t("Register.Exemples", "Exemples : Guillaume Dupont, Nora78")}
         </div>
-      </PseudoPrecisions>
+      </div>
 
       {props.pseudoAlreadyTaken && (
         <div className={styles.error_message}>

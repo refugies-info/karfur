@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { colors } from "colors";
-import styled from "styled-components";
 import {
   illustration_connaitre_initiative,
   illustration_aidez_traduire,
@@ -14,11 +13,6 @@ import { HelpToTranslateMobileModal } from "./HelpToTranslateMobileModal";
 
 interface Props {
 }
-
-const MainContainer = styled.div`
-  position: relative;
-  color=${colors.noir};
-`;
 
 export const HomePageMobile = () => {
   const [showGoToDesktopModal, setShowGoToDesktopModal] = useState(false);
@@ -43,7 +37,7 @@ export const HomePageMobile = () => {
   };
 
   return (
-    <MainContainer>
+    <div className="position-relative">
       <HomePageMobileSection
         image={illustration_connaitre_initiative}
         title="Homepage.Faites connaître votre initiative"
@@ -114,6 +108,6 @@ export const HomePageMobile = () => {
         toggle={toggleShowHelpToTranslateModal}
         show={showHelpToTranslateModal}
       />
-    </MainContainer>
+    </div>
   );
 };

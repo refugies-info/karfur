@@ -4,21 +4,15 @@ import {
   StructurePictureContainer,
   StructureContainer,
 } from "./SubComponents";
-import styled from "styled-components";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import { colors } from "../../../../colors";
+import { colors } from "colors";
 import { TitleWithNumber } from "../../middleOfficeSharedComponents";
+import styles from "./UserStructureLoading.module.scss";
 
-const ImageContainer = styled.div`
-  width: 160px;
-  height: 160px;
-  background-color: ${colors.blancSimple};
-  margin-bottom: 8px;
-`;
 export const UserStructureLoading = () => (
   <MainContainer>
     <StructurePictureContainer>
-      <ImageContainer />
+      <div className={styles.img} />
       <SkeletonTheme color={colors.blancSimple}>
         <Skeleton count={1} height={20} width={160} />
       </SkeletonTheme>

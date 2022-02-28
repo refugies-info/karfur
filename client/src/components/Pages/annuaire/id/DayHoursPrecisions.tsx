@@ -1,36 +1,28 @@
 import React from "react";
-import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import {
   OpeningHours,
   DetailedOpeningHours,
 } from "types/interface";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import styles from "./DayHoursPrecisions.module.scss";
 
 interface Props {
   day: string;
   openingHours: OpeningHours | undefined;
 }
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 4px;
-  margin-bottom: 4px;
-`;
-
 const Closed = (props: { day: string  }) => {
   const { t } = useTranslation();
 
   return (
-    <Container>
+    <div className={styles.container}>
       <div style={{ marginBottom: "2px" }}>
         <EVAIcon name="close-circle" fill="#F44336" className="mr-8" />
       </div>
       {t("Annuaire." + props.day, props.day) +
         " : " + t("Annuaire.fermé", "fermé")}
-    </Container>
+    </div>
   )
 }
 
@@ -76,7 +68,7 @@ const Opened = (props: {
   const { day, details } = props;
 
   return (
-    <Container>
+    <div className={styles.container}>
       <div style={{ marginBottom: "2px" }}>
         <EVAIcon name="checkmark-circle-2" fill="#4CAF50" className="mr-8" />
       </div>
@@ -88,7 +80,7 @@ const Opened = (props: {
           details.to1,
           t
         )}
-    </Container>
+    </div>
   );
 };
 

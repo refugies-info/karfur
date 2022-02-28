@@ -2,19 +2,6 @@
 
 exports[`UserNotifications should render correctly when 0 notif 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
-.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -26,14 +13,14 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
   height: fit-content;
 }
 
-.c3 {
+.c2 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
 }
 
-.c2 {
+.c1 {
   color: #5e5e5e;
   margin-top: 20px;
   display: -webkit-box;
@@ -59,7 +46,7 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
   }
 >
   <div
-    className="c0"
+    className="container"
   >
     <button
       className="btn black "
@@ -237,13 +224,13 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
     </button>
   </div>
   <div
-    className="c1"
+    className="c0"
   >
     <div
-      className="c2"
+      className="c1"
     >
       <div
-        className="c3"
+        className="c2"
       >
         Aucune notification ! 
       </div>
@@ -261,7 +248,7 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
 `;
 
 exports[`UserNotifications should render correctly when loading 1`] = `
-.c2 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -276,7 +263,7 @@ exports[`UserNotifications should render correctly when loading 1`] = `
   align-items: flex-end;
 }
 
-.c4 {
+.c3 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -287,7 +274,7 @@ exports[`UserNotifications should render correctly when loading 1`] = `
   margin: 0px 8px 0px 8px;
 }
 
-.c3 {
+.c2 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
@@ -295,19 +282,6 @@ exports[`UserNotifications should render correctly when loading 1`] = `
 }
 
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
-.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -329,7 +303,7 @@ exports[`UserNotifications should render correctly when loading 1`] = `
   }
 >
   <div
-    className="c0"
+    className="container"
   >
     <button
       className="btn black "
@@ -507,23 +481,23 @@ exports[`UserNotifications should render correctly when loading 1`] = `
     </button>
   </div>
   <div
-    className="c1"
+    className="c0"
   >
     <div
-      className="c2"
+      className="c1"
     >
       <div
-        className="c3"
+        className="c2"
       >
         Vous avez
       </div>
       <div
-        className="c4"
+        className="c3"
       >
         ...
       </div>
       <div
-        className="c3"
+        className="c2"
       >
         nouvelle notification.
       </div>
@@ -565,7 +539,7 @@ exports[`UserNotifications should render correctly when loading 1`] = `
 `;
 
 exports[`UserNotifications should render correctly when notif not read annuaire, not read reaction, not read new content, read reaction  1`] = `
-.c5 {
+.c4 {
   background: #2d9cdb;
   border-radius: 12px;
   padding: 8px 8px 8px 20px;
@@ -591,11 +565,11 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   border-color: #2d9cdb;
 }
 
-.c5:hover {
+.c4:hover {
   border-color: #212121;
 }
 
-.c10 {
+.c9 {
   background: #ffffff;
   border-radius: 12px;
   padding: 8px 8px 8px 20px;
@@ -621,11 +595,11 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   border-color: #ffffff;
 }
 
-.c10:hover {
+.c9:hover {
   border-color: #212121;
 }
 
-.c6 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -639,7 +613,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   align-items: center;
 }
 
-.c7 {
+.c6 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -647,7 +621,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   margin-left: 20px;
 }
 
-.c11 {
+.c10 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -655,7 +629,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   margin-left: 20px;
 }
 
-.c9 {
+.c8 {
   background: #edebeb;
   border-radius: 8px;
   padding: 8px;
@@ -665,7 +639,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   margin-left: 8px;
 }
 
-.c8 {
+.c7 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
@@ -674,7 +648,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   margin-left: 8px;
 }
 
-.c12 {
+.c11 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
@@ -683,7 +657,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   margin-left: 8px;
 }
 
-.c2 {
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -698,7 +672,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   align-items: flex-end;
 }
 
-.c4 {
+.c3 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -709,7 +683,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   margin: 0px 8px 0px 8px;
 }
 
-.c3 {
+.c2 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
@@ -717,19 +691,6 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
 }
 
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
-.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -751,7 +712,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   }
 >
   <div
-    className="c0"
+    className="container"
   >
     <button
       className="btn black "
@@ -929,33 +890,33 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
     </button>
   </div>
   <div
-    className="c1"
+    className="c0"
   >
     <div
-      className="c2"
+      className="c1"
     >
       <div
-        className="c3"
+        className="c2"
       >
         Vous avez
       </div>
       <div
-        className="c4"
+        className="c3"
       >
         3
       </div>
       <div
-        className="c3"
+        className="c2"
       >
         nouvelles notifications.
       </div>
     </div>
     <div
-      className="c5"
+      className="c4"
       onClick={[Function]}
     >
       <div
-        className="c6"
+        className="c5"
       >
         <span>
           <i
@@ -967,13 +928,13 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           />
         </span>
         <div
-          className="c7"
+          className="c6"
         >
           Recensez votre structure dans l'annuaire de l'intégration
         </div>
       </div>
       <div
-        className="c6"
+        className="c5"
       >
         <button
           className="btn  dark mr-8 "
@@ -1011,11 +972,11 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
       </div>
     </div>
     <div
-      className="c5"
+      className="c4"
       onClick={[Function]}
     >
       <div
-        className="c6"
+        className="c5"
       >
         <span>
           <i
@@ -1027,16 +988,16 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           />
         </span>
         <div
-          className="c7"
+          className="c6"
         >
           Une nouvelle fiche a été attribuée à votre structure
         </div>
       </div>
       <div
-        className="c6"
+        className="c5"
       >
         <div
-          className="c8"
+          className="c7"
         >
           Depuis 5 jours
         </div>
@@ -1059,11 +1020,11 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
       </div>
     </div>
     <div
-      className="c5"
+      className="c4"
       onClick={[Function]}
     >
       <div
-        className="c6"
+        className="c5"
       >
         <span>
           <i
@@ -1075,21 +1036,21 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           />
         </span>
         <div
-          className="c7"
+          className="c6"
         >
           Nouvelle réaction sur la fiche :
         </div>
         <div
-          className="c9"
+          className="c8"
         >
           titre info
         </div>
       </div>
       <div
-        className="c6"
+        className="c5"
       >
         <div
-          className="c8"
+          className="c7"
         >
           Depuis 5 jours
         </div>
@@ -1129,11 +1090,11 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
       </div>
     </div>
     <div
-      className="c10"
+      className="c9"
       onClick={[Function]}
     >
       <div
-        className="c6"
+        className="c5"
       >
         <span>
           <i
@@ -1145,21 +1106,21 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           />
         </span>
         <div
-          className="c11"
+          className="c10"
         >
           Nouvelle réaction sur la fiche :
         </div>
         <div
-          className="c9"
+          className="c8"
         >
           titre info2
         </div>
       </div>
       <div
-        className="c6"
+        className="c5"
       >
         <div
-          className="c12"
+          className="c11"
         >
           Depuis 5 jours
         </div>

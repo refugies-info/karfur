@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useLayoutEffect } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import _ from "lodash";
@@ -12,27 +11,10 @@ import { LeftAnnuaireDetail } from "components/Pages/annuaire/id/LeftAnnuaireDet
 import { MiddleAnnuaireDetail } from "components/Pages/annuaire/id/MiddleAnnuaireDetails";
 import { RightAnnuaireDetails } from "components/Pages/annuaire/id/RightAnnuaireDetails";
 import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
-import { colors } from "colors";
 import SEO from "components/Seo";
 import { wrapper } from "services/configureStore";
 import { END } from "redux-saga";
-import { Context } from "next-redux-wrapper";
-import { NextPageContext } from "next";
-import { ObjectId } from "mongodb";
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex: 1 1 0%;
-`;
-
-const MainContainer = styled.div`
-  display: flex;
-  flex: 1;
-  max-height: 105vh;
-  margin-top: -75px;
-  background-color: ${colors.gris};
-`;
+import styles from "scss/pages/annuaire-id.module.scss";
 
 interface Props {
   history: string[]
@@ -71,9 +53,9 @@ const AnnuaireDetail = (props: Props) => {
       : false;
 
   return (
-    <MainContainer>
+    <div className={styles.container}>
       <SEO />
-      <Content className="annuaire-detail">
+      <div className={styles.content}>
         <LeftAnnuaireDetail
           structure={structure}
           isLoading={isLoading}
@@ -90,8 +72,8 @@ const AnnuaireDetail = (props: Props) => {
             dispositifsAssocies={structure && structure.dispositifsAssocies}
           />
         }
-      </Content>
-    </MainContainer>
+      </div>
+    </div>
   );
 };
 

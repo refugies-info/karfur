@@ -9,23 +9,8 @@ import FButton from "components/FigmaUI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { markerInfo } from "data/markerInfo";
 import { colors } from "colors";
-import styled from "styled-components";
-import styles from "./MapParagraphe.module.scss";
 import { Tag } from "types/interface";
-
-const StyledButton = styled.div`
-  background-color: #8bc34a;
-  height: 50px;
-  display: flex;
-  margin-top: 25px;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  border-radius: 12px;
-  color: #ffffff;
-`;
+import styles from "./MapParagraphe.module.scss";
 
 const refs: any = {};
 interface Props {
@@ -309,7 +294,7 @@ const MapParagraphe = (props: Props) => {
                 </>
               )}
               {isMobile && (
-                <StyledButton onClick={onClose}>
+                <div className={styles.btn} onClick={onClose}>
                   <div
                     style={{
                       display: "flex",
@@ -320,7 +305,7 @@ const MapParagraphe = (props: Props) => {
                     <EVAIcon name="checkmark" className="mr-10" />
                     {t("Ok", "Ok")}
                   </div>
-                </StyledButton>
+                </div>
               )}
             </div>
           </div>

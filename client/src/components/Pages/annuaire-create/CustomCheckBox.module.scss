@@ -1,0 +1,20 @@
+.container {
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  border: 1px solid #cdcdcd;
+  border-color: #cdcdcd;
+  box-sizing: border-box;
+  border-radius: 3px;
+  margin-right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &.checked {
+    background:#4CAF50;
+    border-color: #4CAF50;
+
+  }
+}

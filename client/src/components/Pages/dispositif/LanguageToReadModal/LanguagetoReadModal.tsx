@@ -2,14 +2,9 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import FButton from "components/FigmaUI/FButton/FButton";
-import styled from "styled-components";
 import { Event } from "lib/tracking";
 import { Language } from "types/interface";
-
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+import styles from "./LanguagetoReadModal.module.scss";
 
 interface Props {
   show: boolean
@@ -29,7 +24,7 @@ export const LanguageToReadModal = (props: Props) => {
         </span>
       </ModalHeader>
       <ModalBody>
-        <ButtonContainer>
+        <div className={styles.btn_container}>
           {props.languages.map((langue, index) => {
             return (
               <FButton
@@ -58,7 +53,7 @@ export const LanguageToReadModal = (props: Props) => {
               </FButton>
             );
           })}
-        </ButtonContainer>
+        </div>
       </ModalBody>
     </Modal>
   );

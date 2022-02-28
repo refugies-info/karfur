@@ -3,6 +3,7 @@ import React from "react";
 import FButton from "components/FigmaUI/FButton/FButton";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
+import styles from "./CardFooterContent.module.scss";
 
 interface Props {
   subitem: DispositifContent;
@@ -11,12 +12,6 @@ interface Props {
   t: any;
   toggleFrenchLevelModal: (arg: boolean) => void;
 }
-
-const ButtonText = styled.p`
-  font-size: 16px;
-  line-height: 20px;
-  margin: 0;
-`;
 
 export const CardFooterContent = (props: Props) => {
   // in lecture mode, display button with a link to evaluate french level in infocard Niveau de français
@@ -44,7 +39,7 @@ export const CardFooterContent = (props: Props) => {
         name="plus-circle-outline"
         onClick={() => props.toggleFrenchLevelModal(true)}
       >
-        <ButtonText>Préciser le niveau</ButtonText>
+        <p className={styles.btn_text}>Préciser le niveau</p>
       </FButton>
     );
   }

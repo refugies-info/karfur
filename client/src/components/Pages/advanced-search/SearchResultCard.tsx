@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import Link from "next/link"
 import CustomCard from "components/UI/CustomCard/CustomCard";
 import { CardBody, CardFooter } from "reactstrap";
@@ -8,19 +7,7 @@ import { colors } from "colors";
 import Streamline from "assets/streamline";
 import { tags } from "data/tags";
 import { IDispositif, IUserFavorite } from "types/interface";
-
-const CardText = styled.p`
-  font-weight: 14px;
-`;
-
-const BookmarkedContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  height: 40px;
-  width: 40px;
-`;
+import styles from "./SearchResultCard.module.scss";
 
 interface Props {
   pin: (e: any, dispositif: IDispositif|IUserFavorite) => void
@@ -80,17 +67,17 @@ const SearchResultCard = (props: Props) => {
             >
               <CardBody>
                 {props.showPinned && (
-                  <BookmarkedContainer
-                    className={"bookmark-icon" + (pinned ? " pinned" : "")}
+                  <div
+                    className={styles.container + " bookmark-icon" + (pinned ? " pinned" : "")}
                     onClick={(e: any) => props.pin(e, props.dispositif)}
                     //@ts-ignore
                     testID={"test-toggle-pin-" + props.dispositif._id}
                   >
                     <EVAIcon name="star" fill={colors.blanc} size="medium" />
-                  </BookmarkedContainer>
+                  </div>
                 )}
                 <h5>{props.dispositif.titreInformatif}</h5>
-                <CardText>{props.dispositif.abstract}</CardText>
+                <p className={styles.text}>{props.dispositif.abstract}</p>
               </CardBody>
               {props.dispositif.typeContenu !== "demarche" && (
                 <CardFooter

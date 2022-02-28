@@ -23,7 +23,8 @@
     "target": "es2018",
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "src",
-    "incremental": true
+    "incremental": true,
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "exclude": [
     "node_modules"

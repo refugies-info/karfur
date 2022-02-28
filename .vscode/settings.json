@@ -3,5 +3,7 @@
   "eslint.workingDirectories": [
     "./client",
     "./server"
-  ]
+  ],
+  "typescript.tsdk": "client/node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }
