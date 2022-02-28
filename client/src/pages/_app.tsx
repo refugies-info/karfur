@@ -6,9 +6,9 @@ import type { NextPage } from "next";
 import { wrapper } from "services/configureStore";
 import Layout from "components/Layout/Layout";
 import isInBrowser from "lib/isInBrowser";
-import "scss/index.scss";
 import { useRouter } from "next/router";
 import { initGA, PageView } from "lib/tracking";
+import "scss/index.scss";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
