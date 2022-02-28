@@ -66,7 +66,7 @@ const EmailText = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props) => (props.hasEmail ? colors.darkColor : colors.error)};
+  color: ${(props: {hasEmail: boolean}) => (props.hasEmail ? colors.darkColor : colors.error)};
   margin-left: 5px;
 `;
 
@@ -265,11 +265,11 @@ export const ImprovementsMailModal = (props: Props) => {
         <Title>Créateur de la fiche</Title>
       )}
 
-      {usersToDisplay.map((user) => {
+      {usersToDisplay.map((user, index) => {
         const hasEmail = !!user.email;
         const email = user.email || "pas d'email renseigné";
         return (
-          <UserContainer key={user._id}>
+          <UserContainer key={index}>
             <Image
               className={styles.user_img}
               src={getUserImage(user)}

@@ -96,7 +96,7 @@ export const Structure = (props: StructureProps) => (
 );
 
 const MainContainer = styled.div`
-  background: ${(props) => (props.isSelected ? "#4CAF50" : "#828282")};
+  background: ${(props: {isSelected: boolean}) => (props.isSelected ? "#4CAF50" : "#828282")};
   border-radius: 12px;
   padding: 8px;
   width: fit-content;

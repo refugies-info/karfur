@@ -18,14 +18,18 @@ const MainContainer = styled.div`
   flex-direction: row;
   margin-right: 16px;
   align-items: center;
-  cursor: ${(props) => (props.hasMultipleLanguages ? "pointer" : "default")};
+  cursor: ${(props: {hasMultipleLanguages: boolean}) => (props.hasMultipleLanguages ? "pointer" : "default")};
 `;
 
+interface TitleProps {
+  hasMultipleLanguages: boolean
+  isSelected: boolean
+}
 const Title = styled.div`
   font-weight: bold;
-  font-size: ${(props) => (props.isSelected ? "28px" : "16px")};
-  line-height: ${(props) => (props.isSelected ? "35px" : "20px")};
-  text-decoration-line: ${(props) =>
+  font-size: ${(props: TitleProps) => (props.isSelected ? "28px" : "16px")};
+  line-height: ${(props: TitleProps) => (props.isSelected ? "35px" : "20px")};
+  text-decoration-line: ${(props: TitleProps) =>
     props.isSelected && props.hasMultipleLanguages ? "underline" : "none"};
 `;
 export const LanguageTitle = (props: Props) => (
@@ -111,7 +115,7 @@ const TradStatusContainer = styled.div`
   line-height: 15px;
   color: ${colors.blancSimple};
   padding: 8px;
-  background-color: ${(props) => props.backgroundColor};
+  background-color: ${(props: {backgroundColor: string}) => props.backgroundColor};
   border-radius: 8px;
   width: fit-content;
 `;
@@ -140,13 +144,17 @@ export const TradStatus = (props: TradStatusProps) => {
   );
 };
 
+interface FilterButtonContainerProps {
+  isSelected: boolean
+  color: string
+}
 const FilterButtonContainer = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props) => (props.isSelected ? colors.blancSimple : props.color)};
+  color: ${(props: FilterButtonContainerProps) => (props.isSelected ? colors.blancSimple : props.color)};
   padding: 17px;
-  background-color: ${(props) =>
+  background-color: ${(props: FilterButtonContainerProps) =>
     props.isSelected ? props.color : colors.blancSimple};
   border-radius: 12px;
   width: fit-content;
@@ -185,12 +193,12 @@ interface TypeContenuFilterButtonProps {
 
 const TypeContenuFilterButtonContainer = styled.div`
   padding: 15px;
-  background-color: ${(props) =>
+  background-color: ${(props: {isSelected: boolean}) =>
     props.isSelected ? colors.noir : colors.blancSimple};
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props) => (props.isSelected ? colors.blancSimple : colors.noir)};
+  color: ${(props: {isSelected: boolean}) => (props.isSelected ? colors.blancSimple : colors.noir)};
   cursor: pointer;
   border-radius: 12px;
   margin-right: 10px;

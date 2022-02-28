@@ -121,7 +121,6 @@ const MemberCard = (props: MemberProps) => {
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
         isHover={isHover}
-        membreSelected={props.memberSelected}
       >
         {isHover ? (
           <LinkContainer>

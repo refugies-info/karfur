@@ -25,11 +25,11 @@ const LangueContainer = styled.a`
 `;
 const ProgressContainer = styled.div`
   width: 100px;
-  margin-left: ${(props) => (props.isRTL ? "8px" : "24px")};
-  margin-right: ${(props) => (props.isRTL ? "24px" : "8px")};
+  margin-left: ${(props: {isRTL: boolean}) => (props.isRTL ? "8px" : "24px")};
+  margin-right: ${(props: {isRTL: boolean}) => (props.isRTL ? "24px" : "8px")};
 `;
 const AvancementContainer = styled.div`
-  color: ${(props) => props.color};
+  color: ${(props: {color?: string}) => props.color};
 `;
 
 interface Props {

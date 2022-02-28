@@ -9,14 +9,14 @@ import styles from "./DispositifValidateModal.module.scss";
 import { tags } from "data/tags";
 
 const CheckContainer = styled.div`
-  background: ${(props) => (props.missingElement ? "#FFE2B8" : "#def7c2")};
+  background: ${(props: {missingElement: boolean}) => (props.missingElement ? "#FFE2B8" : "#def7c2")};
   border-radius: 12px;
   padding: 18px;
   justify-content: space-between;
   flex-direction: column;
   margin-bottom: 16px;
   display: flex;
-  cursor: ${(props) => (props.missingElement ? "pointer" : "default")};
+  cursor: ${(props: {missingElement: boolean}) => (props.missingElement ? "pointer" : "default")};
 `;
 
 const Row = styled.div`
@@ -30,7 +30,7 @@ const Title = styled.div`
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
-  color: ${(props) => (props.missingElement ? "#FF9800" : "#4caf50")};
+  color: ${(props: {missingElement: boolean}) => (props.missingElement ? "#FF9800" : "#4caf50")};
 `;
 
 const TitleMockup = styled.div`
@@ -38,14 +38,14 @@ const TitleMockup = styled.div`
   font-size: 22px;
   margin-bottom: 11px;
   line-height: 27px;
-  color: ${(props) =>
+  color: ${(props: {typeContenu?: string, color?: string}) =>
     props.typeContenu === "demarche" && props.color ? props.color : "black"};
 `;
 
 const TextMockup = styled.div`
   font-size: 16px;
   line-height: 20px;
-  color: ${(props) =>
+  color: ${(props: {textlength: number, typeContenu?: string, color?: string}) =>
     props.textlength > 110
       ? "red"
       : props.typeContenu === "demarche" && props.color
@@ -63,7 +63,7 @@ const CardContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 16px;
-  height: ${(props) =>
+  height: ${(props: {typeContenu?: string}) =>
     props.typeContenu === "dispositif" ? "198px" : "248px"};
   min-width: 252px;
   max-width: 252px;
@@ -71,7 +71,7 @@ const CardContainer = styled.div`
 `;
 
 const TagContainer = styled.div`
-  background-color: ${(props) => props.color};
+  background-color: ${(props: {color: string}) => props.color};
   height: 50px;
   min-width: 248px;
   border-radius: 0 0 12px 12px;
@@ -91,14 +91,19 @@ const EmptyTextContainer = styled.div`
   border: ${colors.orange} dashed 2px;
 `;
 
+interface MockupCardContainerProps {
+  typeContenu?: string
+  lightColor: string
+  color?: string
+}
 const MockupCardContainer = styled.div`
   height: 248px;
   width: 252px;
   min-width: 248px;
-  background-color: ${(props) =>
+  background-color: ${(props: MockupCardContainerProps) =>
     props.typeContenu === "dispositif" ? colors.blancSimple : props.lightColor};
   border-radius: 12px;
-  border: ${(props) =>
+  border: ${(props: MockupCardContainerProps) =>
     props.typeContenu === "demarche" && props.color
       ? props.color + " solid 2px"
       : props.typeContenu === "demarche"
@@ -211,9 +216,7 @@ const Check = (props: Props) => {
                   textlength={props.abstract?.length || 0}
                 >
                   {!props.abstract && (
-                    <EmptyTextContainer
-                      typeContenu={props.typeContenu}
-                    ></EmptyTextContainer>
+                    <EmptyTextContainer></EmptyTextContainer>
                   )}
                   {props.abstract && props.abstract.length > 0 ? props.abstract : ""}
                 </TextMockup>

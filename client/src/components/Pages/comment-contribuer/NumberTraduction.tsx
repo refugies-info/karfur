@@ -11,7 +11,7 @@ const NumberTraductionContainer = styled.a`
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
-  width: ${(props) => props.width};
+  width: ${(props: {width: number}) => props.width}px;
   margin-right: 32px;
 `;
 const NumberContainer = styled.div`
@@ -22,8 +22,8 @@ const NumberContainer = styled.div`
   font-size: 40px;
   line-height: 51px;
   padding: 8px 16px;
-  margin-right: ${(props) => (props.isRTL ? "0px" : "8px")};
-  margin-left: ${(props) => (props.isRTL ? "8px" : "0px")};
+  margin-right: ${(props: {isRTL: boolean}) => (props.isRTL ? "0px" : "8px")};
+  margin-left: ${(props: {isRTL: boolean}) => (props.isRTL ? "8px" : "0px")};
 `;
 
 interface Props {

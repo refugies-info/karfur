@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+interface MainContainerProps {
+  isClickable: boolean
+}
 const MainContainer = styled.a`
   border-radius: 8px;
   width: 36px;
@@ -14,13 +17,13 @@ const MainContainer = styled.a`
   box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
   position: relative;
   z-index: 25;
-  cursor: ${(props) => (props.isClickable ? "pointer" : "default")};
+  cursor: ${(props: MainContainerProps) => (props.isClickable ? "pointer" : "default")};
   background: #ffffff;
-  color: ${(props) => (!props.isClickable ? "#C6C6C6" : "#212121")};
+  color: ${(props: MainContainerProps) => (!props.isClickable ? "#C6C6C6" : "#212121")};
   margin: 4px;
   &:hover {
-    background: ${(props) => (props.isClickable ? "#212121" : "")};
-    color: ${(props) => (props.isClickable ? "#ffffff" : "")};
+    background: ${(props: MainContainerProps) => (props.isClickable ? "#212121" : "")};
+    color: ${(props: MainContainerProps) => (props.isClickable ? "#ffffff" : "")};
   }
 `;
 

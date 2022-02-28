@@ -36,12 +36,16 @@ const HelpDescription = styled.div`
   font-weight: normal;
   font-size: 16px;
 `;
+interface TagActivityProps {
+  backgroundColor: string
+  color: string
+}
 const TagActivity = styled.div`
   width: 740px;
-  background: ${(props) => props.backgroundColor};
+  background: ${(props: TagActivityProps) => props.backgroundColor};
   border-radius: 12px;
   margin-bottom: 16px;
-  color: ${(props) => props.color};
+  color: ${(props: TagActivityProps) => props.color};
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;

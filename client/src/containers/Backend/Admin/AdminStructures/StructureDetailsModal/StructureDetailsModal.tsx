@@ -86,7 +86,7 @@ const TitleFichesContainer = styled.div`
   padding-bottom: 5px;
   max-width: 450px;
   cursor: pointer;
-  color: ${(props) => props.color};
+  color: ${(props: {color: string}) => props.color};
 `;
 const TextInfoFichesContainer = styled.div`
   padding-left: 32px;
@@ -417,7 +417,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                 <>
                   <TitleFichesContainer
                     color={dispositif.color}
-                    key={dispositif._id}
+                    key={index}
                     onClick={() => {
                       props.toggleModal();
                       props.setSelectedContentIdAndToggleModal(

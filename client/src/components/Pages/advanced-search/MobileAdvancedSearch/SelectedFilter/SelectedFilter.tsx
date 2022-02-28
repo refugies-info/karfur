@@ -7,15 +7,20 @@ import { colors } from "colors";
 import { Tag } from "types/interface";
 import { AvailableFilters } from "data/searchFilters";
 
+interface SelectedFilterButtonProps {
+  color: string
+  textColor: string
+  textAlign: string
+}
 const SelectedFilterButton = styled.div`
   align-items: center;
   padding: 16px;
   height: 53px;
   width: 100%;
   align-items: center;
-  background-color: ${(props) => props.color};
-  color: ${(props) => props.textColor};
-  text-align: ${(props) => props.textAlign};
+  background-color: ${(props: SelectedFilterButtonProps) => props.color};
+  color: ${(props: SelectedFilterButtonProps) => props.textColor};
+  text-align: ${(props: SelectedFilterButtonProps) => props.textAlign};
   font-weight: bold;
   border-color: #212121;
   border-radius: 12px;

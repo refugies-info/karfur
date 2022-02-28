@@ -4,7 +4,7 @@ import { colors } from "../../../../colors";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 
 const MainContainer = styled.div`
-  background: ${(props) =>
+  background: ${(props: {state: string}) =>
     props.state === "selected"
       ? colors.focus
       : props.state === "current"

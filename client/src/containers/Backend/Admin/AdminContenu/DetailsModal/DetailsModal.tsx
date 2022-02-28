@@ -88,7 +88,7 @@ const Title = styled.div`
 `;
 
 const StructureContainer = styled.div`
-  background: ${(props) =>
+  background: ${(props: {noStructure?: boolean}) =>
     props.noStructure ? colors.erreur : colors.blancSimple};
   border-radius: 12px;
   display: flex;
@@ -405,7 +405,7 @@ export const DetailsModal = (props: Props) => {
                     {dispositif.mainSponsor.nom}
                   </TitleSponsorContainer>
 
-                  <LogoContainer spaceBetween={true}>
+                  <LogoContainer>
                     {dispositif.mainSponsor &&
                       dispositif.mainSponsor.picture &&
                       dispositif.mainSponsor.picture.secure_url && (
@@ -436,7 +436,7 @@ export const DetailsModal = (props: Props) => {
               {!dispositif.mainSponsor && (
                 <StructureContainer noStructure={true}>
                   Aucune structure définie !
-                  <LogoContainer spaceBetween={true}>
+                  <LogoContainer>
                     <Image
                       className={styles.sponsor_img}
                       src={noStructure}

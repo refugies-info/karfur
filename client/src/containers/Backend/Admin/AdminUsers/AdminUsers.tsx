@@ -49,7 +49,6 @@ import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
 import styles from "./AdminUsers.module.scss";
 
 moment.locale("fr");
-declare const window: Window;
 
 const RoleContainer = styled.div`
   display: flex;

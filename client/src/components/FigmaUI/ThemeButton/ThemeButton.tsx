@@ -5,7 +5,7 @@ import { Tag } from "types/interface";
 import Streamline from "assets/streamline";
 
 const ThemeButtonContainer = styled.div`
-  background-color: ${(props) => props.color};
+  background-color: ${(props: {color: string}) => props.color};
   display: flex;
   flex-direction: row;
   padding: 8px;
@@ -20,7 +20,7 @@ const ThemeText = styled.p`
   color: white;
   font-size: 12px;
   margin-left: 8px;
-  margin-right: ${(props) => (props.mr ? `${props.mr}px` : "0px")};
+  margin-right: ${(props: {mr?: number}) => (props.mr ? `${props.mr}px` : "0px")};
   align-self: center;
   margin-bottom: 0px;
 `;
@@ -34,7 +34,7 @@ export const ThemeButton = (props: Props) => {
   const { t } = useTranslation();
 
   return (
-    <ThemeButtonContainer ml={8} color={props.tag ? props.tag.darkColor : null}>
+    <ThemeButtonContainer color={props.tag ? props.tag.darkColor : ""}>
       <Streamline
         name={props.tag ? props.tag.icon : undefined}
         stroke={"white"}

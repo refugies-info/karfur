@@ -53,7 +53,7 @@ const NavBarContainer = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1;
-  top: ${(props) =>
+  top: ${(props: {isToolbarVisible: boolean}) =>
     !props.isToolbarVisible ? "0px !important" : "0px !important"};
 `;
 
@@ -67,8 +67,8 @@ const NavBarText = styled.div`
     color: #f2f2f2;
   }
 
-  background: ${(props) => (props.isVisibleSection ? "#212121" : "#f2f2f2")};
-  color: ${(props) => (props.isVisibleSection ? "#f2f2f2" : "#212121")};
+  background: ${(props: {isVisibleSection: boolean}) => (props.isVisibleSection ? "#212121" : "#f2f2f2")};
+  color: ${(props: {isVisibleSection: boolean}) => (props.isVisibleSection ? "#f2f2f2" : "#212121")};
 `;
 
 const SectionHeader = styled.div`

@@ -61,7 +61,7 @@ const Title = styled.div`
 const RemainingCaracters = styled.div`
   margin-top: 8px;
   align-self: flex-end;
-  color: ${(props) => (props.caractersRemaining ? "#4CAF50" : "red")};
+  color: ${(props: {caractersRemaining: boolean}) => (props.caractersRemaining ? "#4CAF50" : "red")};
 `;
 
 const NB_CARACTERS_MAX = 1000;

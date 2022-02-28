@@ -32,7 +32,7 @@ const Header = styled.div`
 `;
 
 const StatusContainer = styled.div`
-  background-color: ${(props) => props.backgroundColor};
+  background-color: ${(props: {backgroundColor: string}) => props.backgroundColor};
   border-radius: 8px;
   padding: 10px;
   font-weight: bold;

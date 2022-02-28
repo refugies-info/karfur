@@ -9,13 +9,13 @@ interface Props {
 
 const MainContainer = styled.div`
   width: 360px;
-  background: ${(props) => (props.hasModifications ? "#ffe2b8" : "#BDF0C7")};
+  background: ${(props: {hasModifications: boolean}) => (props.hasModifications ? "#ffe2b8" : "#BDF0C7")};
   border-radius: 12px;
   padding: 10px;
   font-weight: bold;
   font-size: 16px;
   line-height: 22px;
-  color: ${(props) => (props.hasModifications ? " #ff9800" : "#4CAF50")};
+  color: ${(props: {hasModifications: boolean}) => (props.hasModifications ? " #ff9800" : "#4CAF50")};
   display: flex;
   flex-direction: row;
   justify-content: space-between;

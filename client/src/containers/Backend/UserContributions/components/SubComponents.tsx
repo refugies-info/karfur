@@ -21,9 +21,9 @@ const Container = styled.div`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  color: ${(props) =>
+  color: ${(props: {isDarkBackground: boolean}) =>
     props.isDarkBackground ? colors.blancSimple : colors.darkColor};
-  background-color: ${(props) =>
+  background-color: ${(props: {isDarkBackground: boolean}) =>
     props.isDarkBackground ? colors.darkColor : colors.blancSimple};
   padding: 8px;
   border-radius: 6px;
@@ -70,20 +70,25 @@ export const Responsabilite = (props: { responsable: string | null }) => {
   );
 };
 
+interface ContribStyledStatusContainerProps {
+  size?: string
+  textColor?: string
+  color: string
+}
 const ContribStyledStatusContainer = styled.div`
   display: flex;
   align-items: center;
   font-weight: bold;
-  border-radius: ${(props) => (props.size === "large" ? "12px" : "6px")};
-  padding: ${(props) => (props.size === "large" ? "15px" : "8px")};
-  background-color: ${(props) => props.color};
-  width: ${(props) => (props.size === "large" ? "fit-content" : "fit-content")};
-  height: ${(props) => (props.size === "large" ? "54px" : "")};
+  border-radius: ${(props: ContribStyledStatusContainerProps) => (props.size === "large" ? "12px" : "6px")};
+  padding: ${(props: ContribStyledStatusContainerProps) => (props.size === "large" ? "15px" : "8px")};
+  background-color: ${(props: ContribStyledStatusContainerProps) => props.color};
+  width: ${(props: ContribStyledStatusContainerProps) => (props.size === "large" ? "fit-content" : "fit-content")};
+  height: ${(props: ContribStyledStatusContainerProps) => (props.size === "large" ? "54px" : "")};
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
-  color: ${(props) => (props.textColor ? props.textColor : colors.blancSimple)};
+  color: ${(props: ContribStyledStatusContainerProps) => (props.textColor ? props.textColor : colors.blancSimple)};
 `;
 
 export const ContribStyledStatus = (props: { text: string; size?: string }) => {

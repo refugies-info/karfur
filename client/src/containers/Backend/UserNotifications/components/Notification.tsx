@@ -7,7 +7,7 @@ import FButton from "components/FigmaUI/FButton/FButton";
 import { colors } from "colors";
 
 const Container = styled.div`
-  background: ${(props) => (props.read ? colors.blancSimple : colors.focus)};
+  background: ${(props: {read: boolean}) => (props.read ? colors.blancSimple : colors.focus)};
   border-radius: 12px;
   padding: 8px 8px 8px 20px;
   margin: 8px 0px 0px 0px;
@@ -18,7 +18,7 @@ const Container = styled.div`
   cursor: pointer;
   border-width: 2px;
   border-style: solid;
-  border-color: ${(props) => (props.read ? colors.blancSimple : colors.focus)};
+  border-color: ${(props: {read: boolean}) => (props.read ? colors.blancSimple : colors.focus)};
 
   &:hover {
     border-color: ${colors.noir};
@@ -34,7 +34,7 @@ const TextContainer = styled.div`
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
-  color: ${(props) => (props.read ? colors.noir : colors.blancSimple)};
+  color: ${(props: {read: boolean}) => (props.read ? colors.noir : colors.blancSimple)};
   margin-left: 20px;
 `;
 
@@ -52,7 +52,7 @@ const DateContainer = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props) => (props.read ? colors.error : colors.blancSimple)};
+  color: ${(props: {read: boolean}) => (props.read ? colors.error : colors.blancSimple)};
   margin-right: 8px;
   margin-left: 8px;
 `;
@@ -117,6 +117,7 @@ export const Notification = (props: Props) => {
     <Container
       read={props.read}
       onClick={(event: any) => onNotifClick(event)}
+      //@ts-ignore
       testID={"test-notif-" + props.type}
     >
       <RowContainer>

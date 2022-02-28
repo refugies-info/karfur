@@ -24,20 +24,24 @@ const MainContainer = styled.div`
   border-radius: 12px;
   height: 440px;
   width: 312px;
-  background-color: ${(props) => props.backgroundColor};
+  background-color: ${(props: {backgroundColor: string}) => props.backgroundColor};
   margin: 8px;
   justify-content: center;
   text-align: center;
   position: relative;
 `;
 
+interface TextContainerProps {
+  textColor: string
+  text: string
+}
 const TextContainer = styled.div`
-  color: ${(props) => props.textColor};
+  color: ${(props: TextContainerProps) => props.textColor};
   font-size: 22px;
   font-weight: bold;
   padding-left: 20px;
   padding-right: 20px;
-  margin-top: ${(props) =>
+  margin-top: ${(props: TextContainerProps) =>
     props.text === "Homepage.Lire le lexique"
       ? "-5px"
       : props.text ===

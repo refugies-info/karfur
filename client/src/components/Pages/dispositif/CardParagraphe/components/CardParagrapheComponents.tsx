@@ -197,7 +197,7 @@ const TitleTextBody = styled.p`
   padding-bottom: 12px;
   padding-top: 10px;
   font-weight: 600;
-  margin-top: ${(props) => props.mt || 0};
+  margin-top: ${(props: {mt?: string}) => props.mt || 0};
 `;
 
 export const DepartmentsSelected = (props: DepartmentsSelectedProps) => (

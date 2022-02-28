@@ -24,7 +24,7 @@ const UserName = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props) => (props.isUser ? colors.bleuCharte : colors.noir)};
+  color: ${(props: {isUser: boolean}) => (props.isUser ? colors.bleuCharte : colors.noir)};
 `;
 
 const RoleContainer = styled.div`
@@ -34,12 +34,12 @@ const RoleContainer = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props) => (props.isUser ? colors.bleuCharte : colors.noir)};
+  color: ${(props: {isUser: boolean}) => (props.isUser ? colors.bleuCharte : colors.noir)};
   width: fit-content;
 `;
 
 const DateContainer = styled.div`
-  color: ${(props) => (props.isUser ? colors.bleuCharte : colors.noir)};
+  color: ${(props: {isUser: boolean}) => (props.isUser ? colors.bleuCharte : colors.noir)};
   max-width: 190px;
 `;
 interface Props {

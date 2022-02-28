@@ -27,8 +27,8 @@ const SearchModalContainer = styled.div`
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.25);
   padding: 8px;
   top: 100px;
-  right: ${(props) => (props.rtl ? null : "100px")};
-  left: ${(props) => (props.rtl ? "100px" : null)};
+  right: ${(props: {rtl: boolean}) => (props.rtl ? null : "100px")};
+  left: ${(props: {rtl: boolean}) => (props.rtl ? "100px" : null)};
 `;
 
 const NoSearchModalContainer = styled.div`
@@ -39,15 +39,15 @@ const NoSearchModalContainer = styled.div`
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.25);
   padding: 8px;
   top: 100px;
-  right: ${(props) => (props.rtl ? null : "100px")};
-  left: ${(props) => (props.rtl ? "100px" : null)};
+  right: ${(props: {rtl: boolean}) => (props.rtl ? null : "100px")};
+  left: ${(props: {rtl: boolean}) => (props.rtl ? "100px" : null)};
 `;
 
 const SeeAllButton = styled.button`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background: ${(props) => (props.black ? "#212121" : "#ffffff")};
+  background: ${(props: {black?: boolean}) => (props.black ? "#212121" : "#ffffff")};
   border-radius: 12px;
   padding: 8px;
   height: 65px;
@@ -63,8 +63,8 @@ const SeeAllButton = styled.button`
 const ResultSection = styled.div`
   background: #ffffff;
   border-radius: 12px;
-  margin-right: ${(props) => (props.mr ? "8px" : "0px")};
-  margin-left: ${(props) => (props.ml ? "8px" : null)};
+  margin-right: ${(props: {mr?: boolean, ml?: boolean}) => (props.mr ? "8px" : "0px")};
+  margin-left: ${(props: {mr?: boolean, ml?: boolean}) => (props.ml ? "8px" : null)};
   height: 280px;
   width: 50%;
   padding: 8px;
@@ -81,45 +81,54 @@ const SectionTitle = styled.p`
   line-height: 20px;
 `;
 
+interface SeeAllSectionTitleProps {
+  white?: boolean
+  rtl: boolean
+}
 const SeeAllSectionTitle = styled.p`
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
-  color: ${(props) => (props.white ? "#ffffff" : "#828282")};
-  margin-left: ${(props) => (props.rtl ? null : "10px")};
-  margin-right: ${(props) => (props.rtl ? "10px" : null)};
+  color: ${(props: SeeAllSectionTitleProps) => (props.white ? "#ffffff" : "#828282")};
+  margin-left: ${(props: SeeAllSectionTitleProps) => (props.rtl ? null : "10px")};
+  margin-right: ${(props: SeeAllSectionTitleProps) => (props.rtl ? "10px" : null)};
   margin-bottom: 0px;
   align-self: center;
 `;
+interface ThemeButtonProps {
+  mr: boolean
+  ml: boolean
+  color: string
+}
 const ThemeButton = styled.div`
-  background-color: ${(props) => props.color};
+  background-color: ${(props: ThemeButtonProps) => props.color};
   display: flex;
   flex-direction: row;
   padding: 12px;
   border-radius: 12px;
   justify-content: center;
   align-items: center;
-  margin-left: ${(props) => (props.ml ? "8px" : "0px")};
-  margin-right: ${(props) => (props.mr ? "8px" : "0px")};
+  margin-left: ${(props: ThemeButtonProps) => (props.ml ? "8px" : "0px")};
+  margin-right: ${(props: ThemeButtonProps) => (props.mr ? "8px" : "0px")};
 `;
 const ThemeText = styled.p`
   color: white;
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 0px;
-  margin-left: ${(props) => (props.rtl ? null : "8px")};
-  margin-right: ${(props) => (props.rtl ? "8px" : null)};
+  margin-left: ${(props: {rtl: boolean}) => (props.rtl ? null : "8px")};
+  margin-right: ${(props: {rtl: boolean}) => (props.rtl ? "8px" : null)};
 `;
 
 const ThemeActionText = styled.p`
-  color: ${(props) => props.color};
+  color: ${(props: {color: string}) => props.color};
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 0px;
 `;
 
 const ThemeDispositifText = styled.p`
-  color: ${(props) => props.color};
+  color: ${(props: {color: string}) => props.color};
   font-size: 18px;
   margin-bottom: 0px;
   text-align: left;
@@ -137,7 +146,7 @@ const ThemeContainer = styled.button`
     outline: none !important;
   }
   &:hover {
-    background-color: ${(props) => (props.color ? props.color : "white")};
+    background-color: ${(props: {color?: string}) => (props.color ? props.color : "white")};
   }
   border: 0px;
 `;
@@ -156,7 +165,7 @@ const AdvancedSearchBar = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
 
-  var wrapperRef: React.MutableRefObject<Element|undefined> = useRef();
+  var wrapperRef: React.MutableRefObject<any> = useRef();
 
   const isRTL = useRTL();
 
@@ -314,10 +323,10 @@ const AdvancedSearchBar = (props: Props) => {
                               });
                             }
                           }}
-                          color={selectedTag ? selectedTag.lightColor : null}
+                          color={selectedTag ? selectedTag.lightColor : ""}
                         >
                           <ThemeActionText
-                            color={selectedTag ? selectedTag.darkColor : null}
+                            color={selectedTag ? selectedTag.darkColor : ""}
                           >
                             {
                               selectedTag ? t(
@@ -330,7 +339,7 @@ const AdvancedSearchBar = (props: Props) => {
                           <ThemeButton
                             ml={isRTL ? false : true}
                             mr={isRTL ? true : false}
-                            color={selectedTag ? selectedTag.darkColor : null}
+                            color={selectedTag ? selectedTag.darkColor : ""}
                           >
                             <Streamline
                               name={selectedTag ? selectedTag.icon : undefined}
@@ -369,7 +378,7 @@ const AdvancedSearchBar = (props: Props) => {
                       return (
                         <ThemeContainer
                           key={"disp-" + index}
-                          color={selectedTag ? selectedTag.lightColor : null}
+                          color={selectedTag ? selectedTag.lightColor : ""}
                           onClick={() => {
                             setSearchText("");
                             router.push(
@@ -380,7 +389,7 @@ const AdvancedSearchBar = (props: Props) => {
                           }}
                         >
                           <ThemeButton
-                            color={selectedTag ? selectedTag.darkColor : null}
+                            color={selectedTag ? selectedTag.darkColor : ""}
                             mr={isRTL ? false : true}
                             ml={isRTL ? true : false}
                           >
@@ -392,7 +401,7 @@ const AdvancedSearchBar = (props: Props) => {
                             />
                           </ThemeButton>
                           <ThemeDispositifText
-                            color={selectedTag ? selectedTag.darkColor : null}
+                            color={selectedTag ? selectedTag.darkColor : ""}
                           >
                             <Highlighter
                               //highlightClassName="highlighter"

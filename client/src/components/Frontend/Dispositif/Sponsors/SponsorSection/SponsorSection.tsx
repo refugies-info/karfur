@@ -58,15 +58,20 @@ const SponsorTitle = styled.div`
   text-align: center;
 `;
 
+interface MainContainerProps {
+  totalNumberOfSponsor: number
+  index: number
+  isRTL: boolean
+}
 const MainContainer = styled.div`
-  padding-right: ${(props) =>
+  padding-right: ${(props: MainContainerProps) =>
     props.index === props.totalNumberOfSponsor - 1 ? "16px" : "0px"};
-  padding-top: ${(props) => (props.index > 1 ? "45px" : "0px")};
-  padding-left: ${(props) => (props.index === 1 ? "16px" : "0px")};
+  padding-top: ${(props: MainContainerProps) => (props.index > 1 ? "45px" : "0px")};
+  padding-left: ${(props: MainContainerProps) => (props.index === 1 ? "16px" : "0px")};
   display: flex;
   flex-direction: column;
 
-  border-left: ${(props) =>
+  border-left: ${(props: MainContainerProps) =>
     props.index === 1 && !props.isRTL ? "2px solid rgb(255, 255, 255)" : null};
 `;
 
@@ -79,10 +84,7 @@ export const SponsorSection = (props: Props) => {
           totalNumberOfSponsor={props.totalNumberOfSponsor}
           isRTL={props.isRTL}
         >
-          <SectionTitle
-            index={props.index}
-            totalNumberOfSponsor={props.totalNumberOfSponsor}
-          >
+          <SectionTitle>
             Responsable
           </SectionTitle>
           <SponsorCard>

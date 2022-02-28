@@ -9,21 +9,25 @@ interface PropsType {
   disableEdit: boolean;
 }
 
+interface ComponentProps {
+  disableEdit: boolean
+  isSelected: boolean
+}
 const StyledContainerEdit = styled.div`
   border-radius: 50%;
   width: 40px;
   height: 40px;
   border-width: 1px
   border-style : solid
-  border-color : ${(props: PropsType) =>
+  border-color : ${(props: ComponentProps) =>
     props.isSelected ? "#4CAF50" : "black"};
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props: PropsType) =>
+  background-color: ${(props: ComponentProps) =>
     props.isSelected ? "#4CAF50" : "white"};
-  cursor: ${(props: PropsType) => (props.disableEdit ? "default" : "pointer")};
-  color: ${(props: PropsType) => (props.isSelected ? "white" : "black")};
+  cursor: ${(props: ComponentProps) => (props.disableEdit ? "default" : "pointer")};
+  color: ${(props: ComponentProps) => (props.isSelected ? "white" : "black")};
 
 
   &:hover {
@@ -39,15 +43,15 @@ const StyledContainerLecture = styled.div`
   height: 40px;
   border-width: 1px
   border-style : solid
-  border-color : ${(props: PropsType) =>
+  border-color : ${(props: ComponentProps) =>
     props.isSelected ? "#4CAF50" : "black"};
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props: PropsType) =>
+  background-color: ${(props: ComponentProps) =>
     props.isSelected ? "#4CAF50" : "white"};
-  cursor: ${(props: PropsType) => (props.disableEdit ? "default" : "pointer")};
-  color: ${(props: PropsType) => (props.isSelected ? "white" : "black")};
+  cursor: ${(props: ComponentProps) => (props.disableEdit ? "default" : "pointer")};
+  color: ${(props: ComponentProps) => (props.isSelected ? "white" : "black")};
 `;
 
 const StyledText = styled.div`

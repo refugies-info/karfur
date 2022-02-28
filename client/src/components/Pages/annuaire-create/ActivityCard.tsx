@@ -18,17 +18,23 @@ interface Props {
   tag?: Tag;
 }
 
+interface CardContainerProps {
+  isLectureMode: boolean
+  isSelected: boolean
+  lightColor: string
+  darkColor: string
+}
 const CardContainer = styled.div`
   width: 200px;
-  height: ${(props) => (props.isLectureMode ? "260px" : "220px")};
-  background: ${(props) => (props.isSelected ? props.lightColor : "#ffffff")};
-  border-color: ${(props) =>
+  height: ${(props: CardContainerProps) => (props.isLectureMode ? "260px" : "220px")};
+  background: ${(props: CardContainerProps) => (props.isSelected ? props.lightColor : "#ffffff")};
+  border-color: ${(props: CardContainerProps) =>
     props.isSelected
       ? props.isLectureMode
         ? props.lightColor
         : props.darkColor
       : "#ffffff"};
-  color: ${(props) => props.darkColor};
+  color: ${(props: CardContainerProps) => props.darkColor};
 
   border-radius: 12px;
   padding: 16px;
@@ -39,7 +45,7 @@ const CardContainer = styled.div`
   margin-left: 8px;
   margin-top: 8px;
   margin-bottom: 8px;
-  cursor: ${(props) => !props.isLectureMode && "pointer"};
+  cursor: ${(props: CardContainerProps) => !props.isLectureMode && "pointer"};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,12 +53,12 @@ const CardContainer = styled.div`
   border-style: solid;
 
   &:hover {
-    background-color: ${(props) =>
+    background-color: ${(props: CardContainerProps) =>
       props.isSelected ? props.lightColor : "#ffffff"};
-    color: ${(props) => props.darkColor};
+    color: ${(props: CardContainerProps) => props.darkColor};
     border-width: 3px;
     border-style: solid;
-    border-color: ${(props) =>
+    border-color: ${(props: CardContainerProps) =>
       props.isLectureMode ? props.lightColor : props.darkColor};
   }
 `;

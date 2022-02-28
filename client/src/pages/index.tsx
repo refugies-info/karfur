@@ -72,7 +72,7 @@ const CardContainer = styled.div`
   flex-wrap: nowrap;
   overflow: auto;
   justify-content: ${isMobile ? "" : "center"};
-  margin: ${(props) => (props.isRTL ? "0 0 0 20px" : "0 20px 0 0")};
+  margin: ${(props: {isRTL: boolean}) => (props.isRTL ? "0 0 0 20px" : "0 20px 0 0")};
 `;
 
 const MainTitleContainer = styled.div`
@@ -91,8 +91,8 @@ const ButtonContainerRow = styled.div`
 `;
 
 const ButtonSeparator = styled.div`
-  margin-right: ${(props) => (props.isRTL ? "0px" : "10px")};
-  margin-left: ${(props) => (props.isRTL ? "10px" : "0px")};
+  margin-right: ${(props: {isRTL: boolean}) => (props.isRTL ? "0px" : "10px")};
+  margin-left: ${(props: {isRTL: boolean}) => (props.isRTL ? "10px" : "0px")};
 `;
 
 interface Props {}
@@ -288,7 +288,7 @@ const Homepage = (props: Props) => {
       </section>
 
       {isMobile ? (
-        <HomePageMobile t={t} />
+        <HomePageMobile />
       ) : (
         <>
           <section id="contribution" className={`${styles.section} ${styles.contribution}`}>

@@ -11,11 +11,11 @@ const CardText = styled.p`
   font-size: 32px;
   line-height: 40px !important;
   font-weight: 600;
-  color: ${props => props.color};
+  color: ${(props: {color: string}) => props.color};
 `;
 
 const SeeMoreButton = styled.div`
-  background-color: ${props => props.color};
+  background-color: ${(props: {color: string}) => props.color};
   align-self: flex-end;
   display: flex;
   flex-direction: row;
@@ -28,7 +28,7 @@ const SeeMoreText = styled.p`
   color: white;
   font-size: 18px;
   margin-left: 8px;
-  margin-right: ${(props) => (props.mr ? `${props.mr}px` : "0px")};
+  margin-right: ${(props: {mr?: number}) => (props.mr ? `${props.mr}px` : "0px")};
   font-weight: bold;
 `
 

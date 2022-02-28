@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import React from "react";
-import { colors } from "../../../../../colors";
+import { colors } from "colors";
 
 const CategoryContainer = styled.div`
   border-radius: 12px;
   padding: 8px;
-  background-color: ${(props) =>
+  background-color: ${(props: {isSelected: boolean}) =>
     props.isSelected ? colors.vert : colors.blancSimple};
   width: fit-content;
   margin: 4px;
   cursor: pointer;
-  color: ${(props) =>
+  color: ${(props: {isSelected: boolean}) =>
     props.isSelected ? colors.blancSimple : colors.darkColor};
 `;
 

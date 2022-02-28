@@ -5,9 +5,9 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 const MainContainer = styled.div`
   width: 20px;
   height: 20px;
-  background: ${(props) => (props.checked ? "#4CAF50" : "#ffffff")};
+  background: ${(props: {checked: boolean}) => (props.checked ? "#4CAF50" : "#ffffff")};
   border: 1px solid #cdcdcd;
-  border-color: ${(props) => (props.checked ? "#4CAF50" : "#cdcdcd")};
+  border-color: ${(props: {checked: boolean}) => (props.checked ? "#4CAF50" : "#cdcdcd")};
   box-sizing: border-box;
   border-radius: 3px;
   margin-right: 8px;

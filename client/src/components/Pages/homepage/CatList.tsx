@@ -17,8 +17,8 @@ const InnerButton = styled.div`
 
 const IconContainer = styled.div`
   display: flex;
-  margin-right: ${(props) => (props.isRTL ? "0px" : "10px")};
-  margin-left: ${(props) => (props.isRTL ? "10px" : "0px")};
+  margin-right: ${(props: {isRTL: boolean}) => (props.isRTL ? "0px" : "10px")};
+  margin-left: ${(props: {isRTL: boolean}) => (props.isRTL ? "10px" : "0px")};
   justify-content: center;
   align-items: center;
 `;

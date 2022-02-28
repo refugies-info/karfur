@@ -19,7 +19,7 @@ const TitleFramed = styled.div`
   color: #fbfbfb;
   background: #212121;
   padding: 4px 8px;
-  width: ${(props) => props.width};
+  width: ${(props: {width: string}) => props.width};
   margin-top: 4px;
 `;
 const DescriptionText = styled.div`

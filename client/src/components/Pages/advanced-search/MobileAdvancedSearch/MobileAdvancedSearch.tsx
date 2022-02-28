@@ -38,10 +38,16 @@ const MainContainer = styled.div`
   width: 100%;
 `;
 
+interface SearchBouttonProps {
+  isDisabled: boolean
+  showFilterForm: boolean
+  isUserModifyingSearch?: boolean
+  tagSelected: Tag | null
+}
 const SearchBoutton = styled.div`
   height: 53px;
   width: 100%;
-  background-color: ${(props) =>
+  background-color: ${(props: SearchBouttonProps) =>
     props.isDisabled
       ? colors.grey
       : props.showFilterForm || props.isUserModifyingSearch

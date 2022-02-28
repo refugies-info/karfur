@@ -1474,7 +1474,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                 >
                   <div
                     className="c16"
-                    order="typeContenu"
+                    order={true}
                   >
                     Type
                     <span>
@@ -1493,7 +1493,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                 >
                   <div
                     className="c16"
-                    order="titreInformatif"
+                    order={true}
                   >
                     Titre
                     <span>
@@ -1512,7 +1512,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                 >
                   <div
                     className="c16"
-                    order="avancementTrad"
+                    order={true}
                   >
                     Progression
                     <span>
@@ -1531,7 +1531,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                 >
                   <div
                     className="c16"
-                    order="avancementExpert"
+                    order={true}
                   >
                     Validation
                     <span>
@@ -1550,7 +1550,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                 >
                   <div
                     className="c16"
-                    order="nbMots"
+                    order={true}
                   >
                     Mots
                     <span>
@@ -1569,7 +1569,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                 >
                   <div
                     className="c16"
-                    order="created_at"
+                    order={true}
                   >
                     Depuis
                     <span>
@@ -1588,7 +1588,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                 >
                   <div
                     className="c16"
-                    order="tradStatus"
+                    order={true}
                   >
                     Statut
                     <span>
@@ -1607,7 +1607,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                 >
                   <div
                     className="c16"
-                    order="lastTradUpdatedAt"
+                    order={true}
                   >
                     Dernière trad
                     <span>
@@ -2487,7 +2487,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                 >
                   <div
                     className="c16"
-                    order="typeContenu"
+                    order={true}
                   >
                     Type
                     <span>
@@ -2506,7 +2506,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                 >
                   <div
                     className="c16"
-                    order="titreInformatif"
+                    order={true}
                   >
                     Titre
                     <span>
@@ -2525,7 +2525,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                 >
                   <div
                     className="c16"
-                    order="avancementTrad"
+                    order={true}
                   >
                     Progression
                     <span>
@@ -2544,7 +2544,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                 >
                   <div
                     className="c16"
-                    order="avancementExpert"
+                    order={true}
                   >
                     Validation
                     <span>
@@ -2563,7 +2563,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                 >
                   <div
                     className="c16"
-                    order="nbMots"
+                    order={true}
                   >
                     Mots
                     <span>
@@ -2582,7 +2582,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                 >
                   <div
                     className="c16"
-                    order="created_at"
+                    order={true}
                   >
                     Depuis
                     <span>
@@ -2601,7 +2601,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                 >
                   <div
                     className="c16"
-                    order="tradStatus"
+                    order={true}
                   >
                     Statut
                     <span>
@@ -2620,7 +2620,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                 >
                   <div
                     className="c16"
-                    order="lastTradUpdatedAt"
+                    order={true}
                   >
                     Dernière trad
                     <span>
@@ -3413,7 +3413,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                 >
                   <div
                     className="c14"
-                    order="typeContenu"
+                    order={true}
                   >
                     Type
                     <span>
@@ -3432,7 +3432,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                 >
                   <div
                     className="c14"
-                    order="titreInformatif"
+                    order={true}
                   >
                     Titre
                     <span>
@@ -3451,7 +3451,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                 >
                   <div
                     className="c14"
-                    order="avancementTrad"
+                    order={true}
                   >
                     Progression
                     <span>
@@ -3470,7 +3470,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                 >
                   <div
                     className="c14"
-                    order="nbMots"
+                    order={true}
                   >
                     Mots
                     <span>
@@ -3489,7 +3489,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                 >
                   <div
                     className="c14"
-                    order="created_at"
+                    order={true}
                   >
                     Depuis
                     <span>
@@ -3508,7 +3508,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                 >
                   <div
                     className="c14"
-                    order="tradStatus"
+                    order={true}
                   >
                     Statut
                     <span>
@@ -3527,7 +3527,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                 >
                   <div
                     className="c14"
-                    order="lastTradUpdatedAt"
+                    order={true}
                   >
                     Dernière trad
                     <span>

@@ -10,7 +10,7 @@ import isInBrowser from "lib/isInBrowser";
 const FeedbackContainer = styled.div`
   display: flex;
   flex-direction: ${isMobile ? "column" : "row"};
-  color: ${(props) => props.color};
+  color: ${(props: {color: string}) => props.color};
 `;
 const ButtonContainer = styled.div`
   display: flex;
@@ -31,8 +31,8 @@ const CountButtonContainer = styled.div`
   border-radius: 12px;
   font-weight: bold;
   line-height:20px;
-  background-color:${(props) => (props.didThank ? colors.vert : colors.gris)}
-  color:${(props) => (props.didThank ? colors.blancSimple : colors.noir)};
+  background-color:${(props: {didThank: boolean}) => (props.didThank ? colors.vert : colors.gris)}
+  color:${(props: {didThank: boolean}) => (props.didThank ? colors.blancSimple : colors.noir)};
 `;
 
 interface Props {

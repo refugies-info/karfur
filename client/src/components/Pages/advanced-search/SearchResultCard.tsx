@@ -83,6 +83,7 @@ const SearchResultCard = (props: Props) => {
                   <BookmarkedContainer
                     className={"bookmark-icon" + (pinned ? " pinned" : "")}
                     onClick={(e: any) => props.pin(e, props.dispositif)}
+                    //@ts-ignore
                     testID={"test-toggle-pin-" + props.dispositif._id}
                   >
                     <EVAIcon name="star" fill={colors.blanc} size="medium" />

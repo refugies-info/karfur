@@ -7,7 +7,7 @@ export const StyledSort = styled.div`
   justify-content: flex-end;
   align-items: flex-end;
   margin-right: 8px;
-  margin-top: ${(props) => (props.marginTop ? props.marginTop : "0px")};
+  margin-top: ${(props: {marginTop?: string}) => (props.marginTop ? props.marginTop : "0px")};
 `;
 
 export const StyledTitle = styled.div`

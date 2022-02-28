@@ -77,11 +77,14 @@ const ThemeListContainer = styled.div`
   display: grid;
   justify-content: start;
   align-content: start;
-  grid-template-columns: ${(props) =>
+  grid-template-columns: ${(props: {columns?: number}) =>
     `repeat(${props.columns || 5}, minmax(260px, 300px))`};
   background-color: ${(props) => props.color};
 `;
-
+interface SearchToggleProps {
+  isRtl: boolean
+  visible: boolean
+}
 const SearchToggle = styled.div`
   display: flex;
   justify-content: center;
@@ -90,11 +93,11 @@ const SearchToggle = styled.div`
   padding: 10px;
   border-radius: 12px;
   border: 0.5px solid;
-  margin-right: ${(props) => (props.isRtl ? "10px" : "")};
-  color: ${(props) => (props.visible ? colors.blancSimple : colors.bleuCharte)};
-  border-color: ${(props) =>
+  margin-right: ${(props: SearchToggleProps) => (props.isRtl ? "10px" : "")};
+  color: ${(props: SearchToggleProps) => (props.visible ? colors.blancSimple : colors.bleuCharte)};
+  border-color: ${(props: SearchToggleProps) =>
     props.visible ? "transparent" : colors.bleuCharte};
-  background-color: ${(props) =>
+  background-color: ${(props: SearchToggleProps) =>
     props.visible ? colors.bleuCharte : "transparent"};
   align-self: center;
   cursor: pointer;
@@ -116,14 +119,17 @@ const FilterBar = styled.div`
   margin-left: 68px;
   margin-right: 68px;
   z-index: 2;
-  transform: translateY(${(props) => props.visibleSearch ? "-10px" : "-84px"});
-  opacity: ${(props) => (props.visibleSearch ? "1" : "0")};
+  transform: translateY(${(props: {visibleSearch: boolean}) => props.visibleSearch ? "-10px" : "-84px"});
+  opacity: ${(props: {visibleSearch: boolean}) => (props.visibleSearch ? "1" : "0")};
   transition: transform 0.6s;
   height: 80px;
 `;
-
+interface ThemeButtonProps {
+  color: string
+  ml?: number
+}
 const ThemeButton = styled.div`
-  background-color: ${(props) => props.color};
+  background-color: ${(props: ThemeButtonProps) => props.color || "black"};
   display: flex;
   flex-direction: row;
   padding: 12px;
@@ -131,13 +137,13 @@ const ThemeButton = styled.div`
   justify-content: center;
   align-items: center;
   margin-right: 20px;
-  margin-left: ${(props) => (props.ml ? `${props.ml}px` : "0px")};
+  margin-left: ${(props: ThemeButtonProps) => (props.ml ? `${props.ml}px` : "0px")};
 `;
 const ThemeText = styled.p`
   color: white;
   font-size: 18px;
   margin-left: 8px;
-  margin-right: ${(props) => (props.mr ? `${props.mr}px` : "0px")};
+  margin-right: ${(props: {mr?: number}) => (props.mr ? `${props.mr}px` : "0px")};
   font-weight: bold;
 `;
 
@@ -145,7 +151,7 @@ const ThemeTextAlone = styled.p`
   color: white;
   font-size: 18px;
   margin-left: 0px;
-  margin-right: ${(props) => (props.mr ? `${props.mr}px` : "0px")};
+  margin-right: ${(props:  {mr?: number}) => (props.mr ? `${props.mr}px` : "0px")};
   font-weight: bold;
 `;
 
@@ -182,7 +188,7 @@ const ShowFullFrancePrimary = styled.div`
   margin-top: 48px;
   margin-bottom: 48px;
 
-  background: ${(props) => (props.active ? "white" : "transparent")};
+  background: ${(props: {active?: boolean}) => (props.active ? "white" : "transparent")};
 
   border: 2px solid #5e5e5e;
   box-sizing: border-box;
@@ -210,7 +216,7 @@ const ShowFullFranceSecondary = styled.div`
   margin-top: 48px;
   margin-bottom: 48px;
 
-  background: ${(props) => (props.active ? "white" : "transparent")};
+  background: ${(props: {active?: boolean}) => (props.active ? "white" : "transparent")};
 
   border: 2px solid #5e5e5e;
   box-sizing: border-box;
@@ -1125,7 +1131,7 @@ export class AdvancedSearch extends Component<Props, State> {
                       </ThemeHeaderTitle>
                       <ThemeButton
                         ml={8}
-                        color={selectedTag ? selectedTag.darkColor : null}
+                        color={selectedTag ? selectedTag.darkColor : ""}
                       >
                         <Streamline
                           name={selectedTag ? selectedTag.icon : undefined}
@@ -1306,7 +1312,7 @@ export class AdvancedSearch extends Component<Props, State> {
                       </ThemeHeaderTitle>
                       <ThemeButton
                         ml={8}
-                        color={selectedTag ? selectedTag.darkColor : null}
+                        color={selectedTag ? selectedTag.darkColor : ""}
                       >
                         <Streamline
                           name={selectedTag ? selectedTag.icon : undefined}
@@ -1785,6 +1791,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({lo
 });
 
 export default withRouter(
+  //@ts-ignore
   connect(
     mapStateToProps,
     mapDispatchToProps

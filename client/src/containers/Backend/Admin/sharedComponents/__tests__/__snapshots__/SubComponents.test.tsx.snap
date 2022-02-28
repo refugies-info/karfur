@@ -497,6 +497,7 @@ exports[`should render StyledStatus Accepté structure  1`] = `
 <div
   className="c0"
   color="#FF9800"
+  disabled={false}
 >
   Accepté
 </div>
@@ -521,6 +522,7 @@ exports[`should render StyledStatus Brouillon  1`] = `
 <div
   className="c0"
   color="#FFEB3B"
+  disabled={false}
 >
   Brouillon
 </div>
@@ -545,6 +547,7 @@ exports[`should render StyledStatus En attente admin  1`] = `
 <div
   className="c0"
   color="#8BC34A"
+  disabled={false}
 >
   À valider
 </div>
@@ -569,6 +572,7 @@ exports[`should render StyledStatus En attente non prioritaire  1`] = `
 <div
   className="c0"
   color="#F44336"
+  disabled={false}
 >
   Sans structure
 </div>
@@ -593,6 +597,7 @@ exports[`should render StyledStatus Rejeté structure  1`] = `
 <div
   className="c0"
   color="#F44336"
+  disabled={false}
 >
   Rejeté
 </div>
@@ -617,6 +622,7 @@ exports[`should render StyledStatus Supprimé  1`] = `
 <div
   className="c0"
   color="#F44336"
+  disabled={false}
 >
   Supprimé
 </div>
@@ -641,6 +647,7 @@ exports[`should render StyledStatus actif  1`] = `
 <div
   className="c0"
   color="#4CAF50"
+  disabled={false}
 >
   Publié
 </div>
@@ -665,6 +672,7 @@ exports[`should render StyledStatus en attente  1`] = `
 <div
   className="c0"
   color="#FF9800"
+  disabled={false}
 >
   En attente
 </div>
@@ -689,6 +697,7 @@ exports[`should render StyledStatus no corresponding status  1`] = `
 <div
   className="c0"
   color="#0421b1"
+  disabled={false}
 >
   Nouveau !
 </div>
@@ -713,6 +722,7 @@ exports[`should render StyledStatus no corresponding with color  1`] = `
 <div
   className="c0"
   color="color"
+  disabled={false}
 >
   test
 </div>
@@ -737,6 +747,7 @@ exports[`should render StyledStatus no corresponding with override  1`] = `
 <div
   className="c0"
   color="#828282"
+  disabled={false}
 >
   test
 </div>
@@ -757,7 +768,7 @@ exports[`should render TabHeader down 1`] = `
 
 <div
   className="c0"
-  order="true"
+  order={true}
 >
   test
   <span>
@@ -786,7 +797,7 @@ exports[`should render TabHeader no order 1`] = `
 
 <div
   className="c0"
-  order={null}
+  order={false}
 >
   test
 </div>
@@ -807,7 +818,7 @@ exports[`should render TabHeader up 1`] = `
 
 <div
   className="c0"
-  order="true"
+  order={true}
 >
   test
   <span>

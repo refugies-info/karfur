@@ -16,7 +16,7 @@ interface Props {
 }
 
 const MainContainer = styled.div`
-  background: ${(props) => (props.isDayChecked ? "#DEF7C2" : "#f2f2f2")};
+  background: ${(props: {isDayChecked: boolean}) => (props.isDayChecked ? "#DEF7C2" : "#f2f2f2")};
   border-radius: 12px;
   padding: 12px;
   margin-top: 4px;

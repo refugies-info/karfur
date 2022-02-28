@@ -10,15 +10,19 @@ import { useRouter } from "next/router";
 interface Props {
   dispositif: IDispositif;
 }
-
+interface ItemContainerProps {
+  typeContenu: "demarche" | "dispositif"
+  darkColor: string
+  lightColor: string
+}
 const ItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  border: ${(props) =>
+  border: ${(props: ItemContainerProps) =>
     props.typeContenu === "demarche" ? `2px solid ${props.darkColor}` : null};
   min-height: 76px;
   margin: 13px 0;
-  background-color: ${(props) =>
+  background-color: ${(props: ItemContainerProps) =>
     props.typeContenu === "dispositif" ? colors.blanc : props.lightColor};
   border-radius: 12px;
   align-items: center;
@@ -26,7 +30,7 @@ const ItemContainer = styled.div`
 `;
 
 const TitleText = styled.div`
-  color: ${(props) => props.color};
+  color: ${(props: {color: string}) => props.color};
   display: flex;
   flex-direction: column;
   font-size: 16px;
@@ -34,7 +38,6 @@ const TitleText = styled.div`
 `;
 
 const SubTitleText = styled.div`
-  color: ${(props) => props.color};
   font-size: 16px;
   font-weight: normal;
 `;
@@ -46,7 +49,7 @@ const PictoCircle = styled.div`
   align-items: center;
   min-width: 44px;
   height: 44px;
-  background-color: ${(props) => props.color}; ;
+  background-color: ${(props: {color: string}) => props.color}; ;
 `;
 
 export const FicheOnMobile = (props: Props) => {

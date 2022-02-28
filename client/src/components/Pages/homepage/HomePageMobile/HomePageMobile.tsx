@@ -12,9 +12,7 @@ import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterM
 import { ReceiveInvitationMailModal } from "./ReceiveInvitationMailModal";
 import { HelpToTranslateMobileModal } from "./HelpToTranslateMobileModal";
 
-declare const window: Window;
 interface Props {
-  t: (text: string, defaultText: string) => void;
 }
 
 const MainContainer = styled.div`
@@ -22,7 +20,7 @@ const MainContainer = styled.div`
   color=${colors.noir};
 `;
 
-export const HomePageMobile = (props: Props) => {
+export const HomePageMobile = () => {
   const [showGoToDesktopModal, setShowGoToDesktopModal] = useState(false);
   const [showNewslettreModal, setShowNewsletterModal] = useState(false);
   const [showHelpToTranslateModal, setshowHelpToTranslateModal] =
@@ -56,7 +54,6 @@ export const HomePageMobile = (props: Props) => {
         iconType="eva"
         buttonTitle="Homepage.Je propose une fiche"
         defaultBoutonTitle="Je propose une fiche"
-        t={props.t}
         backgroundColor={colors.blanc}
         textColor={colors.noir}
         isDisabled={false}
@@ -74,7 +71,6 @@ export const HomePageMobile = (props: Props) => {
         iconType="traduction"
         buttonTitle="Homepage.J'aide à traduire"
         defaultBoutonTitle="J'aide à traduire"
-        t={props.t}
         backgroundColor={colors.lightGrey}
         textColor={colors.noir}
         isDisabled={false}
@@ -93,7 +89,6 @@ export const HomePageMobile = (props: Props) => {
         iconName="email-outline"
         buttonTitle="Homepage.Je veux être informé"
         defaultBoutonTitle="Je veux être informé"
-        t={props.t}
         backgroundColor={colors.bleuCharte}
         textColor={colors.blancSimple}
         isDisabled={false}
@@ -105,7 +100,6 @@ export const HomePageMobile = (props: Props) => {
         toggle={toggleGoToDesktopModal}
         show={showGoToDesktopModal}
         toggleShowInvitationEmailModal={toggleShowInvitationEmailModal}
-        t={props.t}
       />
       <SubscribeNewsletterModal
         toggle={toggleShowNewsletterModal}

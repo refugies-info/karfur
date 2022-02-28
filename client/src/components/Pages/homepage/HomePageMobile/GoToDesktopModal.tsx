@@ -6,12 +6,11 @@ import { FButtonMobile } from "components/FigmaUI/FButtonMobile/FButtonMobile";
 import { colors } from "colors";
 import Image from "next/image";
 import styles from "scss/components/modals.module.scss";
+import { useTranslation } from "next-i18next";
 
-declare const window: Window;
 interface Props {
   toggle: () => void;
   show: boolean;
-  t: (a: string, b: string) => void;
   toggleShowInvitationEmailModal: () => void;
 }
 
@@ -36,49 +35,53 @@ const ButtonContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-export const GoToDesktopModal = (props: Props) => (
-  <Modal
-    isOpen={props.show}
-    toggle={props.toggle}
-    className={styles.modal}
-    contentClassName={styles.modal_content}
-  >
-    <MainContainer>
-      <Image src={rendez_vous_ordinateur} alt="image newsletter" />
-      <TitleContainer>
-        {props.t(
-          "Register.Rendez-vous sur votre ordinateur",
-          "Rendez-vous sur votre ordinateur"
-        )}
-      </TitleContainer>
-      <TextContainer>
-        {props.t(
-          "Register.Créez-vous un compte depuis votre ordinateur pour participer",
-          "Créez-vous un compte depuis votre ordinateur pour participer"
-        )}
-      </TextContainer>
-      <ButtonContainer>
-        <FButtonMobile
-          name="email-outline"
-          isDisabled={false}
-          fill="white"
-          color={colors.noir}
-          onClick={props.toggleShowInvitationEmailModal}
-          title="Register.Me le rappeler par email"
-          defaultTitle="Me le rappeler par email"
-        />
-      </ButtonContainer>
-      <ButtonContainer>
-        <FButtonMobile
-          name="checkmark-outline"
-          isDisabled={false}
-          fill="white"
-          color={colors.vert}
-          onClick={props.toggle}
-          title="Dispositif.compris"
-          defaultTitle="Ok, compris !"
-        />
-      </ButtonContainer>
-    </MainContainer>
-  </Modal>
-);
+export const GoToDesktopModal = (props: Props) => {
+  const { t } = useTranslation();
+
+  return (
+    <Modal
+      isOpen={props.show}
+      toggle={props.toggle}
+      className={styles.modal}
+      contentClassName={styles.modal_content}
+    >
+      <MainContainer>
+        <Image src={rendez_vous_ordinateur} alt="image newsletter" />
+        <TitleContainer>
+          {t(
+            "Register.Rendez-vous sur votre ordinateur",
+            "Rendez-vous sur votre ordinateur"
+          )}
+        </TitleContainer>
+        <TextContainer>
+          {t(
+            "Register.Créez-vous un compte depuis votre ordinateur pour participer",
+            "Créez-vous un compte depuis votre ordinateur pour participer"
+          )}
+        </TextContainer>
+        <ButtonContainer>
+          <FButtonMobile
+            name="email-outline"
+            isDisabled={false}
+            fill="white"
+            color={colors.noir}
+            onClick={props.toggleShowInvitationEmailModal}
+            title="Register.Me le rappeler par email"
+            defaultTitle="Me le rappeler par email"
+          />
+        </ButtonContainer>
+        <ButtonContainer>
+          <FButtonMobile
+            name="checkmark-outline"
+            isDisabled={false}
+            fill="white"
+            color={colors.vert}
+            onClick={props.toggle}
+            title="Dispositif.compris"
+            defaultTitle="Ok, compris !"
+          />
+        </ButtonContainer>
+      </MainContainer>
+    </Modal>
+  );
+}

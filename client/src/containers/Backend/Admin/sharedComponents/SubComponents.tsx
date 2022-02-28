@@ -5,12 +5,16 @@ import { limitNbCaracters } from "lib";
 import { correspondingStatus, progressionData } from "../AdminContenu/data";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
-
+interface SimplifiedStructure {
+  _id: ObjectId;
+  status: string;
+  nom: string;
+}
 const Container = styled.div`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  color: ${(props) =>
+  color: ${(props: {isDarkBackground: boolean}) =>
     props.isDarkBackground ? colors.blancSimple : colors.darkColor};
   background-color: ${(props) =>
     props.isDarkBackground ? colors.darkColor : colors.blancSimple};
@@ -99,11 +103,7 @@ const StructureName = styled.div`
   word-break: break-all;
   max-width: 280px;
 `;
-interface SimplifiedStructure {
-  _id: ObjectId;
-  status: string;
-  nom: string;
-}
+
 export const Structure = (props: { sponsor: SimplifiedStructure | null }) => {
   const { sponsor } = props;
   const { structureName, statusColor } = getStructureNameAndStatus(sponsor);
@@ -115,17 +115,22 @@ export const Structure = (props: { sponsor: SimplifiedStructure | null }) => {
   );
 };
 
+interface StyledStatusContainer {
+  disabled: boolean
+  textColor?: string
+  color: string
+}
 export const StyledStatusContainer = styled.div`
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
-  background-color: ${(props) => props.color};
+  background-color: ${(props: StyledStatusContainer ) => props.color};
   width: fit-content;
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  color: ${(props) => (props.textColor ? props.textColor : colors.blancSimple)};
+  cursor: ${(props: StyledStatusContainer ) => (props.disabled ? "not-allowed" : "pointer")};
+  color: ${(props: StyledStatusContainer ) => (props.textColor ? props.textColor : colors.blancSimple)};
 `;
 export const getColorAndStatus = (text: string) => {
   const correspondingStatusElement = correspondingStatus.filter(
@@ -182,13 +187,17 @@ export const StyledStatus = (props: {
     <StyledStatusContainer
       color={color}
       textColor={textColor}
-      disabled={props.disabled}
+      disabled={!!props.disabled}
     >
       {status}
     </StyledStatusContainer>
   );
 };
 
+interface ButtonContainerProps {
+  disabled?: boolean
+  hoverColor?: string
+}
 const ButtonContainer = styled.div`
   width: 40px;
   height: 40px;
@@ -201,10 +210,10 @@ const ButtonContainer = styled.div`
   margin-left:4px
 
 
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  cursor: ${(props: ButtonContainerProps) => (props.disabled ? "not-allowed" : "pointer")};
 
   &:hover {
-    background-color: ${(props) =>
+    background-color: ${(props: ButtonContainerProps) =>
       props.disabled ? colors.grisFonce : props.hoverColor};
   }
 `;
@@ -216,6 +225,7 @@ export const ValidateButton = (props: {
     onClick={props.onClick}
     disabled={props.disabled}
     hoverColor={colors.validationHover}
+    //@ts-ignore
     testID="validate-button"
   >
     <div style={{ marginBottom: "4px" }}>
@@ -259,6 +269,7 @@ export const DeleteButton = (props: {
     onClick={props.onClick}
     hoverColor={colors.error}
     disabled={props.disabled}
+    //@ts-ignore
     testID="delete-button"
   >
     <div style={{ marginBottom: "4px" }}>
@@ -268,9 +279,9 @@ export const DeleteButton = (props: {
 );
 
 const FilterButtonContainer = styled.div`
-  background: ${(props) =>
+  background: ${(props: {isSelected: boolean}) =>
     props.isSelected ? colors.darkColor : colors.blancSimple};
-  color: ${(props) =>
+  color: ${(props: {isSelected: boolean}) =>
     props.isSelected ? colors.blancSimple : colors.darkColor};
   border-radius: 12px;
   font-weight: normal;
@@ -300,7 +311,7 @@ const StyledTabHeader = styled.div`
   display: flex;
   flex-direction: row;
   font-weight: "bold";
-  cursor: ${(props) => props.order && "pointer"};
+  cursor: ${(props: {order: boolean}) => props.order && "pointer"};
 `;
 
 export const TabHeader = (props: {
@@ -309,7 +320,7 @@ export const TabHeader = (props: {
   isSortedHeader: boolean;
   sens: string;
 }) => (
-  <StyledTabHeader isSortedHeader={props.isSortedHeader} order={props.order}>
+  <StyledTabHeader order={!!props.order}>
     {props.name}
     {props.order && (
       <EVAIcon name={`chevron-${props.sens}`} fill={colors.noir} />
