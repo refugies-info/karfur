@@ -63,7 +63,6 @@
     "react-scrollspy": "^3.4.0",
     "react-sizes": "^2.0.0",
     "react-to-print": "^2.12.1",
-    "react-window-size": "^1.2.2",
     "reactstrap": "^8.10.1",
     "redux": "^4.0.1",
     "redux-saga": "^1.1.3",
