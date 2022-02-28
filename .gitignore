@@ -36,3 +36,4 @@ yarn-error.log*
 /client/src/locales/interfaceTranslation/csvAfterTrad
 /client/public/fonts/CircularStd
 /client/src/scss/fonts/CircularStd
+/client/tsconfig.tsbuildinfo
