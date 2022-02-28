@@ -72,7 +72,7 @@
         background: #FBFBFB;
         border-radius: $radius;
         color:$gray90;
-        font-size: 18px;
+        font-size: $text-large;
         line-height: 23px;
         i{
           margin-right:10px;
@@ -113,7 +113,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    font-size: 16px;
+    font-size: $text-normal;
     line-height: 20px;
     font-weight: bold;
     padding: 20px;

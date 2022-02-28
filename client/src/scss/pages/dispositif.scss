@@ -61,7 +61,7 @@ $imgHeight: 350px;
     border: none;
     padding: 0;
     line-height: 35px;
-    font-size: 18px;
+    font-size: $text-large;
   }
 
   &.side-view-mode {
@@ -243,7 +243,7 @@ $imgHeight: 350px;
 
   .contenu {
     padding: 0 40px 0 0;
-    font-size: 18px;
+    font-size: $text-large;
     line-height: 27px;
     @include media-max("tablet-up") {
       padding: 0;
@@ -273,7 +273,7 @@ $imgHeight: 350px;
     li {
       margin-bottom: 27px;
       line-height: 27px;
-      font-size: 18px;
+      font-size: $text-large;
     }
 
     .relative-position {
@@ -377,7 +377,7 @@ $imgHeight: 350px;
 
     .tag-wrapper {
       box-sizing: border-box;
-      font-size: 18px;
+      font-size: $text-large;
       line-height: normal;
       color: $white;
       height: 40px;
@@ -387,7 +387,7 @@ $imgHeight: 350px;
 
       .tag-item {
         font-weight: normal;
-        font-size: 16px;
+        font-size: $text-normal;
         line-height: 20px;
         color: $white;
         .no-decoration {
@@ -425,14 +425,14 @@ $imgHeight: 350px;
       display: flex;
       align-items: flex-start;
       white-space: nowrap;
-      font-size: 16px;
+      font-size: $text-normal;
       line-height: 35px;
       color: $gray70;
       &.align-right {
         padding: 0;
       }
       @include media-max("tablet-up") {
-        font-size: 18px;
+        font-size: $text-large;
       }
     }
     .date-maj {
@@ -470,7 +470,7 @@ $imgHeight: 350px;
         font-weight: bold;
       }
       p {
-        font-size: 18px;
+        font-size: $text-large;
         line-height: 27px;
       }
       &.etape-accordeon {
@@ -523,7 +523,7 @@ $imgHeight: 350px;
     background: $gray90;
     color: $white;
     padding: 35px 40px;
-    font-size: 18px;
+    font-size: $text-large;
     @include media-max("lg-limit") {
       width: 116%;
     }
@@ -689,7 +689,7 @@ $imgHeight: 350px;
     background: #fbfbfb;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
     border-radius: $radius;
-    font-size: 18px;
+    font-size: $text-large;
     line-height: 23px;
     padding: 23px;
 
@@ -780,7 +780,7 @@ $imgHeight: 350px;
     background-color: $gray90;
     border-radius: $radius;
     color: white;
-    font-size: 16px;
+    font-size: $text-normal;
     line-height: 20px;
     max-width: 100%;
     padding: 20px;

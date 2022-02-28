@@ -1,4 +1,5 @@
 @import "src/scss/mixins/responsive";
+@import "src/scss/variables";
 
 .logo {
   margin: auto;
@@ -6,7 +7,7 @@
   color: inherit;
 
   @include media-max("phone-down") {
-    font-size: 18px;
+    font-size: $text-large;
   }
 
   .logo_img {

@@ -58,9 +58,9 @@
         margin-bottom: 0;
       }
       .marker_input {
-        font-size: 18px;
+        font-size: $text-large;
         @include media-max("tablet-up") {
-          font-size: 16px;
+          font-size: $text-normal;
         }
         color: $gray90;
         &.no_highlight {
@@ -70,7 +70,7 @@
           font-weight: bold;
           font-size: 24px;
           @include media-max("tablet-up") {
-            font-size: 18px;
+            font-size: $text-large;
           }
         }
       }
@@ -107,7 +107,7 @@
   margin-top: 25px;
   flex-direction: column;
   justify-content: center;
-  font-size: 16px;
+  font-size: $text-normal;
   font-weight: bold;
   text-align: center;
   border-radius: $radius;

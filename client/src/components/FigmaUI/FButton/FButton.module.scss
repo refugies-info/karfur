@@ -4,7 +4,7 @@
 
 body .btn {
   font-weight: bold;
-  font-size: 16px;
+  font-size: $text-normal;
   line-height: 20px;
   border-radius: $radius;
   padding: 15px;
@@ -18,7 +18,7 @@ body .btn {
   align-items: center;
 
   @include media-max("sm-limit") {
-    font-size: 16px;
+    font-size: $text-normal;
   }
 
   &.filter {

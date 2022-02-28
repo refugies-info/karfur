@@ -16,7 +16,7 @@
 
   .title {
     font-weight: bold;
-    font-size: 18px;
+    font-size: $text-large;
     line-height: 23px;
     margin-bottom: 16px;
     margin-top: 8px;
@@ -36,7 +36,7 @@
       color: #fbfbfb;
       font-style: normal;
       font-weight: normal;
-      font-size: 16px;
+      font-size: $text-normal;
     }
   }
 
@@ -51,7 +51,7 @@
     width: fit-content;
     padding: 14px;
     font-weight: normal;
-    font-size: 16px;
+    font-size: $text-normal;
     line-height: 20px;
     color: $gray70;
     display: flex;
@@ -76,7 +76,7 @@
     background: $validationDefault;
     border-radius: $radius;
     font-weight: bold;
-    font-size: 16px;
+    font-size: $text-normal;
     color: $white;
     padding: 15px;
     width: fit-content;
@@ -87,7 +87,7 @@
   }
 
   .btn_text {
-    font-size: 16px;
+    font-size: $text-normal;
     line-height: 20px;
     margin: 0;
   }

@@ -1,5 +1,6 @@
 @import "src/scss/mixins/responsive";
 @import "src/scss/colors";
+@import "src/scss/variables";
 
 .banniere {
   margin-top: -75px;
@@ -89,7 +90,7 @@
     color: $gray90;
     line-height: 34px;
     padding-top: 0;
-    font-size: 16px;
+    font-size: $text-normal;
     padding-left: 8px;
     padding-right: 8px;
     margin-top: 8px;

@@ -1,4 +1,5 @@
 @import "src/scss/colors";
+@import "src/scss/variables";
 
 .modal {
   min-width: 650px;
@@ -30,7 +31,7 @@
       margin-bottom: 80px;
 
       .inner {
-        font-size: 16px;
+        font-size: $text-normal;
         line-height: 20px;
         margin-bottom: 8px;
       }
@@ -39,7 +40,7 @@
     .input {
       border-radius: 6px;
       height: 370px;
-      font-size: 16px;
+      font-size: $text-normal;
       line-height: 20px;
       padding: 20px;
       color: $gray70;

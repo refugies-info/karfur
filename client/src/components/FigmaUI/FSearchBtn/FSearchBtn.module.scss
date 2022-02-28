@@ -45,7 +45,7 @@
     border: 1px solid white;
     font-weight: normal;
     padding: 8px;
-    font-size: 16px;
+    font-size: $text-normal;
 
     &:hover{
       filter:brightness(80%);
@@ -65,7 +65,7 @@
   }
   &.in_header {
     color: $gray10;
-    font-size: 18px;
+    font-size: $text-large;
 
     @include media-min("big-desktop") {
       font-size: 22px;
@@ -107,6 +107,6 @@
     }
   }
   &.small_font {
-    font-size: 16px;
+    font-size: $text-normal;
   }
 }

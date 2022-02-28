@@ -1,4 +1,5 @@
 @import 'src/scss/colors.scss';
+@import "src/scss/variables";
 
 .switch {
   display: flex;
@@ -6,7 +7,7 @@
   align-items: center;
   color: $gray90;
   font-weight: bold;
-  font-size: 16px;
+  font-size: $text-normal;
 
   :global(.switch-input:checked + .switch-slider){
     background-color: $validationHover !important;

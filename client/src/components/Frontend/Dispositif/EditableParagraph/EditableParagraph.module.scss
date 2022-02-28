@@ -1,4 +1,5 @@
 @import 'src/scss/colors.scss';
+@import "src/scss/variables";
 
 .plus_wrapper{
   :global(.dropdown-menu){
@@ -6,7 +7,7 @@
     border-radius: 8px;
 
     .dropdown-item{
-      font-size: 14px;
+      font-size: $text-small;
       color: $white;
       display:flex;
       padding-right: 15px;

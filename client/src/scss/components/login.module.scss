@@ -1,4 +1,5 @@
 @import "src/scss/colors";
+@import "src/scss/variables";
 
 .container {
   display: flex;
@@ -15,7 +16,7 @@
 }
 .label {
   font-weight: bold;
-  font-size: 16px;
+  font-size: $text-normal;
   line-height: 20px;
   margin-top: 64px;
   margin-bottom: 16px;
@@ -38,7 +39,7 @@
 // Footer
 .footer_links {
   color: $gray70;
-  font-size: 16px;
+  font-size: $text-normal;
   line-height: 20px;
   margin-top: 64px;
 
@@ -57,26 +58,26 @@
 // Messages
 .error_message {
   color: #e8140f;
-  font-size: 16px;
+  font-size: $text-normal;
   line-height: 20px;
   margin-top: 16px;
 }
 
 .reset_message {
   color: $gray70;
-  font-size: 16px;
+  font-size: $text-normal;
   line-height: 20px;
   margin-bottom: 16px;
 }
 .precisions_message {
-  font-size: 16px;
+  font-size: $text-normal;
   line-height: 20px;
   color: $gray70;
   margin-top: 16px;
 }
 .email_message {
   font-weight: bold;
-  font-size: 16px;
+  font-size: $text-normal;
   line-height: 20px;
   margin-top: 64px;
   margin-bottom: 16px;

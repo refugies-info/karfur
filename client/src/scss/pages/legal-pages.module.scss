@@ -1,4 +1,5 @@
 @import "src/scss/colors";
+@import "src/scss/variables";
 
 .legal_pages {
   flex: 1 1;
@@ -7,7 +8,7 @@
   padding: 5% 25%;
 
   p {
-    font-size: 18px;
+    font-size: $text-large;
     line-height: 22px;
   }
 

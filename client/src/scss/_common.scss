@@ -53,7 +53,7 @@ html {
 html body {
   height: 100%;
   min-height: 100vh;
-  font-size: 16px;
+  font-size: $text-normal;
 
   [contenteditable] {
     -webkit-user-select: text;
@@ -103,7 +103,7 @@ html body {
 
   .texte-small {
     font-weight: normal;
-    font-size: 16px;
+    font-size: $text-normal;
     line-height: 19px;
     @include media-max("sm-limit") {
       font-size: 11px;

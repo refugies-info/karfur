@@ -68,7 +68,7 @@ $avatarSize: 52px;
       width: 100%;
       position: relative;
       font-weight: bold;
-      font-size: 16px;
+      font-size: $text-normal;
       line-height: 20px;
       color: $white;
     }
@@ -99,7 +99,7 @@ $avatarSize: 52px;
   .advanced_search_btn {
     border-width: 0;
     outline: none;
-    font-size: 16px;
+    font-size: $text-normal;
     color: white;
     margin-right: 10px;
     font-weight: 600;

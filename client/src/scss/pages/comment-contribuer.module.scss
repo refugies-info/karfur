@@ -111,7 +111,7 @@
   }
   .description {
     font-weight: normal;
-    font-size: 16px;
+    font-size: $text-normal;
     line-height: 20px;
     margin-bottom: 32px;
   }
@@ -168,7 +168,7 @@
 
     p {
       background-color: $white;
-      font-size: 18px;
+      font-size: $text-large;
       width:fit-content;
       font-weight: normal;
       padding : 5px 10px;
@@ -182,13 +182,13 @@
   margin-bottom: 20px;
 }
 .sub_text {
-  font-size: 18px;
+  font-size: $text-large;
   font-weight: normal;
 }
 
 .dispo {
   color: $white;
-  font-size: 16px;
+  font-size: $text-normal;
   padding: 12px 10px 0 10px;
   font-weight: bold;
 }

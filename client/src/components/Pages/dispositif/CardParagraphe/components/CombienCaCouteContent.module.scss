@@ -1,3 +1,5 @@
+@import "src/scss/variables";
+
 .price_details {
   display: inline-flex;
   align-items: center;
@@ -6,6 +8,6 @@
 
 .price_frequency {
   font-weight: normal;
-  font-size: 16px;
+  font-size: $text-normal;
   margin-left: 10px;
 }

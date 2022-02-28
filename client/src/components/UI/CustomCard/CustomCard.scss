@@ -18,7 +18,7 @@
 .custom-card.card {
   cursor: pointer;
   border-radius: $radius;
-  font-size: 16px;
+  font-size: $text-normal;
   line-height: 21px;
   height: 250px;
   scrollbar-width: 0;
@@ -75,7 +75,7 @@
     margin-bottom: 8px;
 
     @include media-max("desktop-up") {
-      font-size: 16px;
+      font-size: $text-normal;
     }
   }
 

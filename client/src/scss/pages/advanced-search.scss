@@ -73,13 +73,13 @@
     justify-content: center;
 
     .right-side {
-      font-size: 18px;
+      font-size: $text-large;
       max-width: 100%;
     }
 
     .side-options {
       color: $gray70;
-      font-size: 18px;
+      font-size: $text-large;
       line-height: 26px;
       cursor: pointer;
       .side-option {
@@ -183,7 +183,7 @@
     .no-result-card {
       cursor: pointer;
       border-radius: $radius;
-      font-size: 16px;
+      font-size: $text-normal;
       line-height: 21px;
       height: 250px;
       scrollbar-width: 0;

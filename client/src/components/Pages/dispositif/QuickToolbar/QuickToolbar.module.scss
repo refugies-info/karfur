@@ -1,4 +1,5 @@
 @import "src/scss/colors";
+@import "src/scss/variables";
 
 .toolbar {
   width: fit-content;
@@ -41,7 +42,7 @@
   :global(.tooltip-inner) {
     background: $gray90;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: $text-small;
     line-height: 18px;
     opacity: 1;
     padding: 20px;

@@ -12,13 +12,13 @@
   }
 
   p {
-    font-size: 18px;
+    font-size: $text-large;
     line-height: 23px;
     margin-bottom: 24px;
 
     &.text_muted {
       color: #5E5E5E;
-      font-size: 16px;
+      font-size: $text-normal;
       line-height: 20px;
     }
 
@@ -32,7 +32,7 @@
     padding-left: 24px;
 
     li {
-      font-size: 18px;
+      font-size: $text-large;
 
       a {
         text-decoration: underline;

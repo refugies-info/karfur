@@ -1242,7 +1242,7 @@
 
     .btn {
       border-radius: $radius;
-      font-size: 16px;
+      font-size: $text-normal;
       font-weight: bold;
     }
     .footer-content {
@@ -1250,7 +1250,7 @@
     }
     .footer-input {
       font-style: italic;
-      font-size: 16px;
+      font-size: $text-normal;
       opacity: 0.6;
       color: $white;
       background: transparent;

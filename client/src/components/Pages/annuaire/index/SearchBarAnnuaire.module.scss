@@ -19,7 +19,7 @@
     padding: 12px;
     border: 0.5px solid $white;
     border-radius: $radius;
-    font-size: 16px;
+    font-size: $text-normal;
     margin-right: 12px;
     align-items: center;
   }
@@ -51,7 +51,7 @@
   }
 
   .results {
-    font-size: 16px;
+    font-size: $text-normal;
     font-weight: bold;
     padding: 12px;
     color: $gray10;
@@ -62,7 +62,7 @@
     padding: 12px;
     border-radius: $radius;
     font-weight: bold;
-    font-size: 16px;
+    font-size: $text-normal;
     align-items: center;
     margin-right: 12px;
     border: 0.5px solid white;

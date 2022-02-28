@@ -58,7 +58,7 @@
   }
   .subtitle {
     font-weight: bold;
-    font-size: 18px;
+    font-size: $text-large;
     line-height: 23px;
     margin-top: 190px;
   }
@@ -68,7 +68,7 @@
     flex-direction: row;
     background: $white;
     font-weight: bold;
-    font-size: 18px;
+    font-size: $text-large;
     line-height: 23px;
     margin-top: 8px;
     padding: 8px;
@@ -79,7 +79,7 @@
       flex-direction: row;
       background: $white;
       font-weight: bold;
-      font-size: 18px;
+      font-size: $text-large;
       line-height: 23px;
       margin-top: 8px;
       padding: 8px;

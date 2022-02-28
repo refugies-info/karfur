@@ -25,7 +25,7 @@
     border-radius: $radius;
     padding: 16px;
     color: white;
-    font-size: 16px;
+    font-size: $text-normal;
     margin-top: 8px;
 
     .title_container {
@@ -41,7 +41,7 @@
 
   .error {
     color: $error;
-    font-size: 16px;
+    font-size: $text-normal;
     line-height: 20px;
     margin-top: 16px;
   }

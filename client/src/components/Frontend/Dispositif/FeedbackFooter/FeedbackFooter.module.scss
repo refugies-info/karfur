@@ -10,7 +10,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 35px 20px 35px 40px;
-    font-size: 18px;
+    font-size: $text-large;
 
     h5 {
       @include media-max("tablet-up") {
@@ -20,7 +20,7 @@
     }
     span {
       @include media-max("tablet-up") {
-        font-size: 18px;
+        font-size: $text-large;
         text-align: center;
       }
     }
@@ -28,7 +28,7 @@
       width: -webkit-fill-available;
       justify-content: center;
       font-weight: bold;
-      font-size: 16px;
+      font-size: $text-normal;
       border-radius: $radius;
       border: 0.5px solid;
       padding: 15px 20px;

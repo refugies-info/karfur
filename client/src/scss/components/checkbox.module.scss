@@ -1,10 +1,12 @@
+@import "src/scss/variables";
+
 .checkbox {
   display: block;
   position: relative;
   padding-left: 20px;
   margin-bottom: 0;
   cursor: pointer;
-  font-size: 16px;
+  font-size: $text-normal;
   user-select: none;
 
   input {
