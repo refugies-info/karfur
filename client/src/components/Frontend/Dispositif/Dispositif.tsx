@@ -1223,6 +1223,8 @@ const Dispositif = (props: Props) => {
   const isRTL = useRTL();
   const mainTag = getMainTag(dispositif);
   const tag = mainTag.short.split(" ").join("-");
+  //@ts-ignore
+  const bannerStyle = styles[tag];
   const possibleLanguages = createPossibleLanguagesObject(
     dispositif?.avancement,
     langues
@@ -1328,7 +1330,7 @@ const Dispositif = (props: Props) => {
           xs={props.type === "translation" ? "8" : "12"}
           className="main-col"
         >
-          <section className={styles.banniere + " " + styles[tag]}>
+          <section className={styles.banniere + " " + bannerStyle}>
             {!disableEdit && (
               // yellow banner in top of a demarche to create a variante
               // To see this component, create a new demarche then select an existing demarche
