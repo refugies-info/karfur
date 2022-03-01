@@ -25,6 +25,7 @@ import { CardFooterContent } from "./components/CardFooterContent";
 import { CardHeaderContent } from "./components/CardHeaderContent";
 import { isMobile } from "react-device-detect";
 import styles from "./CardParagraphe.module.scss";
+import { cls } from "lib/classname";
 
 // difficult to type
 type Element = any;
@@ -169,7 +170,9 @@ const CardParagraphe = (props: Props) => {
       safeMainTag;
 
     if (props.subitem.title === "Combien ça coûte ?")
+      //@ts-ignore
       return styles[className + "-" + props.subitem.free];
+    //@ts-ignore
     return styles[className];
   };
 
@@ -183,7 +186,7 @@ const CardParagraphe = (props: Props) => {
         }
       >
         <Card
-          className={[styles.card, computeCardClassName()].join(" ")}
+          className={cls(styles.card, computeCardClassName())}
           id={"info-card-" + props.keyValue + "-" + props.subkey}
         >
           <CardHeader

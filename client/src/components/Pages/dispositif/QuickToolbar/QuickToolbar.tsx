@@ -10,6 +10,7 @@ import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { ttsActiveSelector } from "services/Tts/tts.selector";
 import { languei18nSelector } from "services/Langue/langue.selectors";
+import { cls } from "lib/classname";
 
 interface Props {
   show: boolean;
@@ -117,7 +118,7 @@ const QuickToolbar = (props: Props) => {
             <Row>
               <Col lg="6" md="6" sm="12" xs="12" className={styles.col}>
                 <Button
-                  className={[styles.btn_pill, styles.unactive].join(" ")}
+                  className={cls(styles.btn_pill, styles.unactive)}
                   id="eva-icon-0"
                   onMouseEnter={() => _hoverOn(0)}
                   onMouseLeave={_hoverOff}
@@ -141,10 +142,10 @@ const QuickToolbar = (props: Props) => {
               {showLanguageButton && (
                 <Col md="6" xs="12" className={styles.col}>
                   <Button
-                    className={[
+                    className={cls(
                       styles.btn_pill,
                       isVoiceActiv ? styles.active : styles.unactive,
-                    ].join(" ")}
+                    )}
                     id="eva-icon-1"
                     onMouseEnter={() => _hoverOn(1)}
                     onMouseLeave={_hoverOff}

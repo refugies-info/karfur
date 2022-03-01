@@ -2,6 +2,7 @@ import React from "react";
 import Streamline from "assets/streamline";
 import { iconName } from "types/interface";
 import styles from "./TagButton.module.scss";
+import { cls } from "lib/classname";
 
 interface Props {
   name: string;
@@ -21,11 +22,11 @@ export const TagButton = (props: Props) => {
   return (
     <button
       onClick={onTagClick}
-      className={[
+      className={cls(
         styles.btn,
-        props.isSelected ? styles.selected : "",
-        !!props.onClick ? styles.clickable : ""
-      ].join(" ")}
+        !!props.isSelected && styles.selected,
+        !!props.onClick && styles.clickable
+      )}
       style={{ backgroundColor: props.color }}
     >
       {props.icon ? (

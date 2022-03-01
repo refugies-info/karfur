@@ -4,6 +4,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import styles from "./FInput.module.scss";
 import { InputType } from "reactstrap/lib/Input";
+import { cls } from "lib/classname";
 
 interface Props {
   id: string;
@@ -65,12 +66,12 @@ const FInput = (props: Props) => {
         autoComplete={props.autoComplete}
         disabled={props.disabled}
         name={props.name}
-        className={[
-          props.inputClassName,
-          props.prepend ? styles.has_prepend : "",
-          props.newSize ? styles.new_size : "",
-          props.error ? styles.error : "",
-        ].join(" ")}
+        className={cls(
+          props.inputClassName || "",
+          !!props.newSize && styles.new_size,
+          !!props.prepend && styles.has_prepend,
+          !!props.error && styles.error,
+        )}
         style={
           props.inputClassName === "password-input" && props.value
             ? { width: props.value.length * 10 }

@@ -10,6 +10,7 @@ import {
 } from "reactstrap";
 import parentStyles from "../CardParagraphe.module.scss";
 import styles from "./CombienCaCouteContent.module.scss";
+import { cls } from "lib/classname";
 
 interface Props {
   disableEdit: boolean;
@@ -82,7 +83,7 @@ export const CombienCaCouteContent = (props: Props) => {
           <ButtonDropdown
             isOpen={!props.disableEdit && props.isOptionsOpen}
             toggle={props.toggleOptions}
-            className={[parentStyles.content_title, styles.price_frequency].join(" ")}
+            className={cls(parentStyles.content_title, styles.price_frequency)}
           >
             <DropdownToggle caret={!props.disableEdit}>
               <span>

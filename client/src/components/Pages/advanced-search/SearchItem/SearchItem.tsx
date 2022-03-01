@@ -16,6 +16,7 @@ import {
 } from "data/searchFilters";
 import { tags } from "data/tags";
 import { Tag } from "types/interface";
+import { cls } from "lib/classname";
 
 interface Props {
   geoSearch: boolean;
@@ -114,13 +115,13 @@ const SearchItem = (props: Props) => {
             <div className="position-relative">
               <Autocomplete
                 apiKey={process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY || ""}
-                className={[
+                className={cls(
                   fsb_styles.search_btn,
                   fsb_styles.extra_padding,
                   fsb_styles.in_header,
                   styles.search_autocomplete,
                   active ? fsb_styles.active : "",
-                ].join(" ")}
+                )}
                 onBlur={() =>
                   ville === "" && villeAuto === "" && props.switchGeoSearch(false)
                 }
@@ -169,13 +170,13 @@ const SearchItem = (props: Props) => {
             tag="div"
             aria-haspopup={false}
             aria-expanded={dropdownOpen}
-            className={[
+            className={cls(
               fsb_styles.search_btn,
               fsb_styles.extra_padding,
               fsb_styles.in_header,
-              currentTag ? "bg-" + currentTag.short.split(" ").join("-") : "",
-              props.searchItem.type !== "theme" && active ? fsb_styles.active : "",
-            ].join(" ")}
+              !!currentTag && "bg-" + currentTag.short.split(" ").join("-"),
+              props.searchItem.type !== "theme" && active && fsb_styles.active,
+            )}
           >
             {active && props.searchItem.type === "theme" && currentTag && (
               <div
@@ -227,10 +228,10 @@ const SearchItem = (props: Props) => {
           </DropdownToggle>
           <DropdownMenu className={styles.dropdown}>
             <div
-              className={[
+              className={cls(
                 styles.options,
-                props.searchItem.type === "theme" ? styles.tags : "",
-              ].join(" ")}
+                props.searchItem.type === "theme" && styles.tags,
+              )}
             >
               {(props.searchItem?.children || []).map(
                 (item: any, idx: number) => {
