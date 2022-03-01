@@ -20,6 +20,8 @@
   }
   .link {
     margin-top: 25px;
+    max-width: 300px;
+    white-space: normal;
 
     &:first-child {
       margin-top: 0;
