@@ -57,4 +57,12 @@ export const activatedLanguages: Language[] = [
     avancement: 1,
     avancementTrad: 0,
   },
+  {
+    langueFr: "Ukrainien",
+    langueLoc: "українська мова",
+    langueCode: "ua",
+    i18nCode: "uk",
+    avancement: 1,
+    avancementTrad: 0,
+  },
 ]

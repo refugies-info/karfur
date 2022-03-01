@@ -108,7 +108,7 @@ const QuickToolbar = (props: Props) => {
     }
   };
 
-  const showLanguageButton = ["fr", "en", "ar", "ru"].includes(activeLangue);
+  const showLanguageButton = ["fr", "en", "ar", "ru", "uk"].includes(activeLangue);
   if (props.show) {
     if (props.disableEdit) {
       return (

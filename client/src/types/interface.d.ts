@@ -444,6 +444,7 @@ export interface Need {
   ru?: NeedDetail;
   ps?: NeedDetail;
   fa?: NeedDetail;
+  uk?: NeedDetail;
   _id: ObjectId;
   tagName: string;
   created_at: Moment;
@@ -457,4 +458,5 @@ export type AvailableLanguageI18nCode =
   | "ar"
   | "ti"
   | "ru"
+  | "uk"
   | "fa";

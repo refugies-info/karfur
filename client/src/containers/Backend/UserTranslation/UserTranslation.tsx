@@ -25,8 +25,9 @@ import { OneNeedTranslationModal } from "./components/OneNeedTranslationModal";
 import { ObjectId } from "mongodb";
 import { needsSelector } from "services/Needs/needs.selectors";
 import styles from "./UserTranslation.module.scss";
+import { activatedLanguages } from "data/activatedLanguages";
 
-const availableLanguages = ["fa", "en", "ru", "ps", "ar", "ti"];
+const availableLanguages = activatedLanguages.map(l => l.i18nCode);
 const getLangueName = (
   langueId: ObjectId | null,
   userTradLanguages: UserLanguage[]

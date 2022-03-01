@@ -146,7 +146,7 @@ const Navbar = (props: Props) => {
 
       <div className={styles.center_buttons}>
         <AudioBtn
-          enabled={["fr", "en", "ar", "ru"].includes(router.locale || "fr")}
+          enabled={["fr", "en", "ar", "ru", "uk"].includes(router.locale || "fr")}
           toggleAudio={() => dispatch(toggleTTSActionCreator())}
           ttsActive={ttsActive}
           ttsLoading={ttsLoading}
