@@ -1090,7 +1090,7 @@ const Dispositif = (props: Props) => {
         }
       }
     }
-    let newDispositif: IDispositif = {
+    let newDispositif: Partial<IDispositif> = {
       ...dispositif,
       ...content,
       contenu: generateContenu(menu),
@@ -1104,6 +1104,10 @@ const Dispositif = (props: Props) => {
 
     if (dispositif._id && dispositif.status !== "Brouillon") {
       newDispositif.timeSpent = time;
+    }
+
+    if (newDispositif?._id?.toString() === "") { // for creation
+      delete newDispositif._id;
     }
 
     const cardElement = menu.find((x) => x.title === "C'est pour qui ?")?.children || [];
