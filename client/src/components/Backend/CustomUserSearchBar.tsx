@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { SimplifiedUser } from "types/interface";
 import { ObjectId } from "mongodb";
-import FInput from "components/FigmaUI/FInput/FInput";
+import FInput from "components/UI/FInput/FInput";
 import { UserDetail } from "components/Backend/UserDetail";
 import { removeAccents } from "lib";
 import styles from "./CustomUserSearchBar.module.scss";

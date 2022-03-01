@@ -2,7 +2,7 @@ import { ContribContainer } from "./SubComponents";
 import React from "react";
 import { NavHashLink } from "react-router-hash-link";
 import styled from "styled-components";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import FButton from "../../../../components/UI/FButton/FButton";
 import { colors } from "../../../../colors";
 import Link from "next/link";
 

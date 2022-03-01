@@ -9,7 +9,7 @@ import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selector
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { SimplifiedStructure } from "types/interface";
 import { colors } from "colors";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import { ObjectId } from "mongodb";
 import Swal from "sweetalert2";

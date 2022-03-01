@@ -5,7 +5,7 @@ import EditableParagraph from "../EditableParagraph/EditableParagraph";
 import QuickToolbar from "components/Pages/dispositif/QuickToolbar";
 import ContenuParagraphe from "../ContenuParagraphe";
 import { DispositifContent, Tag, UiObject } from "types/interface";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { isMobile } from "react-device-detect";
 import { ShortContent } from "data/dispositif";
 import { EditorState } from "draft-js";

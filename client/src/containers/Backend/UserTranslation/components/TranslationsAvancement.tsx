@@ -13,7 +13,7 @@ import {
 } from "./SubComponents";
 import { TranslationAvancementTable } from "./TranslationAvancementTable";
 import { filterData } from "./functions";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import { User } from "types/interface";

@@ -3,7 +3,7 @@ import { Responsable } from "types/interface";
 import React from "react";
 import Image from "next/image";
 import marioProfile from "assets/mario-profile.jpg";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import styles from "./AdminStructureComponents.module.scss";
 
 export const RowContainer = styled.div`

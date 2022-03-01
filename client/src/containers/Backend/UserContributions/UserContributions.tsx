@@ -20,7 +20,7 @@ import { NoContribution } from "./components/NoContribution";
 import { FrameModal } from "components/Modals";
 import { ContribContainer } from "./components/SubComponents";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { UserContribTable } from "./components/UserContribTable";
 import { ObjectId } from "mongodb";
 import { colors } from "colors";

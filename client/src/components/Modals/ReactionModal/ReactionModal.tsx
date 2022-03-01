@@ -3,7 +3,7 @@ import { Input, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import {colors} from "colors";
 
-import FButton from "../../FigmaUI/FButton/FButton";
+import FButton from "../../UI/FButton/FButton";
 import styles from "./ReactionModal.module.scss";
 
 interface Props {

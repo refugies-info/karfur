@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import { colors } from "colors";
 import _ from "lodash";
 
-import FButton from "../../FigmaUI/FButton/FButton";
+import FButton from "../../UI/FButton/FButton";
 import { sectionUrlCorrespondencies } from "./data";
 
 import styles from "./FrameModal.module.scss";

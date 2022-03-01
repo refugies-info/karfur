@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { rejectionFiche } from "assets/figma";
 import styles from "./RejectionModal.module.scss";
 import Image from "next/image";

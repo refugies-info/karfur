@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Structure, Picture } from "types/interface";
 import { StructureType } from "./StructureType";
 import { SocialsLink } from "./SocialsLink";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import placeholder from "assets/annuaire/placeholder_logo_annuaire.svg";
 import styles from "./LeftAnnuaireDetail.module.scss";
 

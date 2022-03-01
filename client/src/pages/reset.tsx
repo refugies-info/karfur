@@ -20,9 +20,9 @@ import {
 } from "services/Langue/langue.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import PasswordField from "components/Pages/register/PasswordField";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
-import LanguageBtn from "components/FigmaUI/LanguageBtn/LanguageBtn";
+import LanguageBtn from "components/UI/LanguageBtn/LanguageBtn";
 import { computePasswordStrengthScore } from "lib/index";
 import API from "utils/API";
 

@@ -10,7 +10,7 @@ import { activities } from "data/activities";
 import { NoActivity } from "./NoActivity";
 import Skeleton from "react-loading-skeleton";
 import { colors } from "colors";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { tags } from "data/tags";
 
 interface Props {

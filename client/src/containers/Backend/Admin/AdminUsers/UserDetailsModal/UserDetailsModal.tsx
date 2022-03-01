@@ -11,14 +11,14 @@ import moment from "moment/min/moment-with-locales";
 import { useSelector, useDispatch } from "react-redux";
 import marioProfile from "assets/mario-profile.jpg";
 import { userSelector } from "services/AllUsers/allUsers.selector";
-import FInput from "components/FigmaUI/FInput/FInput";
+import FInput from "components/UI/FInput/FInput";
 import { RowContainer } from "../../AdminStructures/components/AdminStructureComponents";
 import {
   Structure,
   RoleCheckBox,
   LangueDetail,
 } from "../ components/AdminUsersComponents";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { ObjectId } from "mongodb";
 import API from "utils/API";
 import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";

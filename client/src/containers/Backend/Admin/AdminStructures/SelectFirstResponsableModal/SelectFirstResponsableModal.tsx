@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { SimplifiedUser } from "types/interface";
 import { ObjectId } from "mongodb";
 import API from "utils/API";

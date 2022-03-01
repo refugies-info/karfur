@@ -3,7 +3,7 @@ import { ModalBody, ModalFooter } from "reactstrap";
 
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { interieur_2, interieur_3, interieur_4 } from "assets/figma";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import Modal from "../Modal";
 
 import { colors } from "colors";

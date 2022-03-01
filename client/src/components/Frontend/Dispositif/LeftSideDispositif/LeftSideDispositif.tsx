@@ -9,7 +9,7 @@ import {
 import Scrollspy from "react-scrollspy";
 import ReactToPrint from "react-to-print";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
 import { DispositifContent, Tag } from "types/interface";
 import { send_sms } from "components/Pages/dispositif/function";

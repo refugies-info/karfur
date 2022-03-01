@@ -10,7 +10,7 @@ import {
 import { DispositifContent, Tag } from "types/interface";
 import { jsUcfirstInfocards } from "./functions";
 import styled from "styled-components";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import parentStyles from "../CardParagraphe.module.scss";
 import styles from "./CardParagrapheComponent.module.scss";
 

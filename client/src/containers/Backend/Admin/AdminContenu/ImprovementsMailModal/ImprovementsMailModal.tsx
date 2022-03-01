@@ -16,7 +16,7 @@ import { SimplifiedCreator } from "types/interface";
 import marioProfile from "assets/mario-profile.jpg";
 import { colors } from "colors";
 import { Category } from "./Components";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import Swal from "sweetalert2";
 import styles from "./ImprovementsMailModal.module.scss";

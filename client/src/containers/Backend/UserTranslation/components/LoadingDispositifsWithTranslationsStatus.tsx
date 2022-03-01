@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
 import { FilterButton, TypeContenuFilterButton } from "./SubComponents";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import FButton from "../../../../components/UI/FButton/FButton";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { Table } from "reactstrap";
 import { CustomSearchBar } from "../../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";

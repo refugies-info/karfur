@@ -2,12 +2,12 @@ import React, { useState, useEffect, createRef } from "react";
 import { useTranslation } from "next-i18next";
 import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import Autocomplete from "react-google-autocomplete";
-import FSearchBtn from "components/FigmaUI/FSearchBtn/FSearchBtn";
+import FSearchBtn from "components/UI/FSearchBtn/FSearchBtn";
 import Streamline from "assets/streamline";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import useRTL from "hooks/useRTL";
 import styles from "./SearchItem.module.scss";
-import fsb_styles from "components/FigmaUI/FSearchBtn/FSearchBtn.module.scss";
+import fsb_styles from "components/UI/FSearchBtn/FSearchBtn.module.scss";
 import { SearchQuery } from "pages/advanced-search";
 import {
   SearchItemType,

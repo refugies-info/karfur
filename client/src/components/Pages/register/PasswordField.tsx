@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import { Progress } from "reactstrap";
 import { computePasswordStrengthScore } from "lib/index";
-import FInput from "components/FigmaUI/FInput/FInput";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FInput from "components/UI/FInput/FInput";
+import FButton from "components/UI/FButton/FButton";
 import { colorAvancement } from "lib/colors";
 import styles from "scss/components/login.module.scss";
 

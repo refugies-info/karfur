@@ -3,7 +3,7 @@ import Link from "next/link";
 import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import styles from "scss/pages/404.module.scss";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 
 const NotFound = () => {
   return (

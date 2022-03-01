@@ -2,11 +2,11 @@ import React from "react";
 import { ModalBody } from "reactstrap";
 import styled from "styled-components";
 
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import Modal from "../Modal";
 
 import { colors } from "colors";
-import FInput from "components/FigmaUI/FInput/FInput";
+import FInput from "components/UI/FInput/FInput";
 
 const Title = styled.h2`
   margin-top: 20px;

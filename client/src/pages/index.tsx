@@ -16,7 +16,7 @@ import { HomePageMobile } from "components/Pages/homepage/HomePageMobile/HomePag
 import HomeSearch from "components/Pages/homepage/HomeSearch";
 import CatList from "components/Pages/homepage/CatList";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import iphone from "assets/figma/iphone.svg";
 import {
   illustration_homeCard_dispositif,

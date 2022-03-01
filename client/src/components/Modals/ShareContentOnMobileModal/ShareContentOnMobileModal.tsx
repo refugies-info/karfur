@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { ShareButton } from "components/FigmaUI/ShareButton/ShareButton";
+import { ShareButton } from "components/UI/ShareButton/ShareButton";
 import {
   send_sms,
   sharingOptions,

@@ -7,7 +7,7 @@ import { ContentBlock, EditorProps, EditorState } from "react-draft-wysiwyg";
 import { useRouter } from "next/router";
 import CustomOption from "./CustomOption/CustomOption";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import { logger } from "logger";
 import { colors } from "colors";

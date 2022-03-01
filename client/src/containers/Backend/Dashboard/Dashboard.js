@@ -3,7 +3,7 @@ import moment from "moment/min/moment-with-locales";
 import API from "utils/API";
 import _ from "lodash";
 import { targetByTag } from "./data";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { NoGeolocModal } from "./NoGeolocModal";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";

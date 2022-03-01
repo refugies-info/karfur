@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Col, Card, CardBody, CardFooter, Spinner } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { isUserAllowedToModify } from "./functions";
 import { isMobile } from "react-device-detect";
 import { userDetailsSelector, userSelector } from "services/User/user.selectors";

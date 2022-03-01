@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Modal } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import styles from "./DispositifCreateModal.module.scss";
 
 interface Props {

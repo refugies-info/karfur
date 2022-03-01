@@ -38,7 +38,7 @@ import {
 } from "types/interface";
 import { compare } from "../AdminContenu/AdminContenu";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { NewStructureModal } from "./NewStructureModal/NewStructureModal";

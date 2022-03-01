@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import { ThemeButton } from "components/FigmaUI/ThemeButton/ThemeButton";
+import { ThemeButton } from "components/UI/ThemeButton/ThemeButton";
 import type { Tag } from "types/interface";
 import placeholder from "assets/placeholder_annuaire.png";
 import useRTL from "hooks/useRTL";

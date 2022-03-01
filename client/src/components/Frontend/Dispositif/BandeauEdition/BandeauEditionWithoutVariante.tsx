@@ -1,5 +1,5 @@
 import React from "react";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import styles from "./BandeauEdition.module.scss";
 
 interface Props {

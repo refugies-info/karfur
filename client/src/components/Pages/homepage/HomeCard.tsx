@@ -3,7 +3,7 @@ import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import Image from "next/image";
 import { colors } from "colors";
-import { FButtonMobile } from "components/FigmaUI/FButtonMobile/FButtonMobile";
+import { FButtonMobile } from "components/UI/FButtonMobile/FButtonMobile";
 
 declare const window: Window;
 interface Props {

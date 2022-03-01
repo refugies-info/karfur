@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal } from "reactstrap";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./DraftModal.module.scss";
 

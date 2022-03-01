@@ -6,7 +6,7 @@ import {
   DetailedOpeningHours,
 } from "types/interface";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FInput from "components/FigmaUI/FInput/FInput";
+import FInput from "components/UI/FInput/FInput";
 import { days } from "data/days";
 import { departments } from "data/departments";
 import { HoursDetails } from "./HoursDetails";

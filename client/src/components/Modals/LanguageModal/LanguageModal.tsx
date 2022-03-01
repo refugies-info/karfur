@@ -14,7 +14,7 @@ import { isMobile } from "react-device-detect";
 import { useTranslation } from "next-i18next";
 import { Language } from "types/interface";
 import { colorAvancement } from "lib/colors";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { Event } from "lib/tracking";
 import { activatedLanguages } from "data/activatedLanguages";

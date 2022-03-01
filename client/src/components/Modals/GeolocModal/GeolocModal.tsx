@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { filtres } from "data/dispositif";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { CustomDropDown } from "components/Pages/annuaire-create/CustomDropdown";
 import { CustomCheckBox } from "components/Pages/annuaire-create/CustomCheckBox";
-import FInput from "components/FigmaUI/FInput/FInput";
+import FInput from "components/UI/FInput/FInput";
 import Modal from "../Modal";
 import styles from "./GeolocModal.module.scss";
 

@@ -4,8 +4,8 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { Modal } from "reactstrap";
 import Swal from "sweetalert2";
-import FInput from "components/FigmaUI/FInput/FInput";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FInput from "components/UI/FInput/FInput";
+import FButton from "components/UI/FButton/FButton";
 import { saveUserActionCreator } from "services/User/user.actions";
 import styles from "./CompleteProfilModal.module.scss";
 

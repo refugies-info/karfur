@@ -34,7 +34,7 @@ import {
   ColoredRound,
 } from "../sharedComponents/SubComponents";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { DetailsModal } from "./DetailsModal/DetailsModal";
 import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";

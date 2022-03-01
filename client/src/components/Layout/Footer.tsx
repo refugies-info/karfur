@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import { colors } from "colors";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import styles from "./Footer.module.scss";
 
 const MainContainer = styled.div`

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Spinner } from "reactstrap";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { useRouter } from "next/router";
 import { AnnuaireGauge } from "components/Pages/annuaire-create/AnnuaireGauge";
 import { Step1 } from "components/Pages/annuaire-create/Step1";

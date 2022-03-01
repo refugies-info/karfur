@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { useTranslation } from "next-i18next";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
 import styles from "./FeedbackFooter.module.scss";
 import isInBrowser from "lib/isInBrowser";

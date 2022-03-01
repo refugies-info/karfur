@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import Image from "next/image";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { assetsOnServer } from "assets/assetsOnServer";
 
 const ContributionContentContainer = styled.div`

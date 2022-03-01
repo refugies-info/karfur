@@ -1,5 +1,5 @@
 import React from "react";
-import FSwitch from "components/FigmaUI/FSwitch/FSwitch";
+import FSwitch from "components/UI/FSwitch/FSwitch";
 import { DispositifContent, Tag } from "types/interface";
 import {
   Input,

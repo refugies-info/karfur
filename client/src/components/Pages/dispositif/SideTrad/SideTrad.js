@@ -8,7 +8,7 @@ import { EditorState, ContentState } from "draft-js";
 import { convertToHTML } from "draft-convert";
 import _ from "lodash";
 
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { logo_google } from "assets/figma/index";
 import marioProfile from "assets/mario-profile.jpg";

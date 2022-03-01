@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import FButton from "components/FigmaUI/FButton/FButton";
-import FInput from "components/FigmaUI/FInput/FInput";
+import FButton from "components/UI/FButton/FButton";
+import FInput from "components/UI/FInput/FInput";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import Streamline from "assets/streamline/index";

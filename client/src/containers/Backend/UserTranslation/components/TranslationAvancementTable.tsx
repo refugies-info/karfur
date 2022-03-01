@@ -9,7 +9,7 @@ import { ProgressWithValue, TradStatus } from "./SubComponents";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
 import API from "utils/API";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
 import { useDispatch } from "react-redux";
 import { ObjectId } from "mongodb";

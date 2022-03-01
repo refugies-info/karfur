@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import FInput from "components/FigmaUI/FInput/FInput";
+import FInput from "components/UI/FInput/FInput";
 import { Progress } from "reactstrap";
 import { colorAvancement } from "lib/colors";
 import { Event } from "types/interface";

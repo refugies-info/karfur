@@ -11,7 +11,7 @@ import {
 import _ from "lodash";
 import ContentEditable from "react-contenteditable";
 import ReactToPrint from "react-to-print";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import Modal from "../Modal";

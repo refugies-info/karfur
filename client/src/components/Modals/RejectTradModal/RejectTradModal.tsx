@@ -7,7 +7,7 @@ import {
   ListGroupItem,
 } from "reactstrap";
 import Swal from "sweetalert2";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import API from "utils/API";
 import marioProfile from "assets/mario-profile.jpg";

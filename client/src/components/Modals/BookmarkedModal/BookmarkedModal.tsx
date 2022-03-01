@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
 import styles from "./BookmarkedModal.module.scss";
 

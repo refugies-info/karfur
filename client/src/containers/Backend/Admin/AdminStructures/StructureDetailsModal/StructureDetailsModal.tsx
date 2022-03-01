@@ -9,9 +9,9 @@ import {
 import { Modal, Input, Spinner } from "reactstrap";
 import Image from "next/image";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import FInput from "components/FigmaUI/FInput/FInput";
+import FInput from "components/UI/FInput/FInput";
 import moment from "moment/min/moment-with-locales";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import noStructure from "assets/noStructure.png";
 import { ObjectId } from "mongodb";

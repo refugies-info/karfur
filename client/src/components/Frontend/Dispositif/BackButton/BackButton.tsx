@@ -1,7 +1,7 @@
 import React from "react";
 import { Col } from "reactstrap";
 import { useTranslation } from "next-i18next";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import styles from "./BackButton.module.scss";
 
 interface Props {

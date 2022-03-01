@@ -18,7 +18,7 @@ import {
 import { FrameModal } from "components/Modals";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
 import { IDispositif, IUserFavorite } from "types/interface";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { FavoritesLoading } from "./components/FavoritesLoading";
 import Navigation from "../Navigation";
 import { useRouter } from "next/router";

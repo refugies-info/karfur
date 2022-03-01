@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
-import FButton from "components/FigmaUI/FButton/FButton";
-import FInput from "components/FigmaUI/FInput/FInput";
+import FButton from "components/UI/FButton/FButton";
+import FInput from "components/UI/FInput/FInput";
 import { TagButton } from "./TagButton";
 import { useDispatch } from "react-redux";
 import { createNeedActionCreator } from "services/Needs/needs.actions";

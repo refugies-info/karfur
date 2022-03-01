@@ -2,7 +2,7 @@ import { FavoritesContainer, CardsContainer } from "./SubComponents";
 import React from "react";
 import { TitleWithNumber } from "../../middleOfficeSharedComponents";
 import styled from "styled-components";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import FButton from "../../../../components/UI/FButton/FButton";
 import { colors } from "../../../../colors";
 
 const HelpCard = styled.div`

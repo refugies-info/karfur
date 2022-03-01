@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { ObjectId } from "mongodb";
 import { needSelector } from "services/Needs/needs.selectors";
-import FInput from "components/FigmaUI/FInput/FInput";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FInput from "components/UI/FInput/FInput";
+import FButton from "components/UI/FButton/FButton";
 import { saveNeedActionCreator } from "services/Needs/needs.actions";
 import styles from "./TranslationNeedsModal.module.scss";
 

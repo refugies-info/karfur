@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "reactstrap";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import styled from "styled-components";
 import { colors } from "colors";
 import { useDispatch, useSelector } from "react-redux";

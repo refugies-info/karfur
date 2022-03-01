@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Input, Spinner } from "reactstrap";
-import FInput from "components/FigmaUI/FInput/FInput";
+import FInput from "components/UI/FInput/FInput";
 import { UserStructure } from "types/interface";
 import PlaceholderLogo from "assets/Placeholder_logo.png";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import Image from "next/image";
 

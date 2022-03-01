@@ -4,7 +4,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { Input } from "reactstrap";
 import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import { structureTypes } from "data/structureTypes";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { SimplifiedStructure } from "types/interface";
 import Autocomplete from "react-google-autocomplete";
 import styles from "./SearchBarAnnuaire.module.scss";

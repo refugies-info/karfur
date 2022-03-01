@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import FInput from "components/FigmaUI/FInput/FInput";
+import FInput from "components/UI/FInput/FInput";
 import { UserStructure } from "types/interface";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { structureTypes } from "data/structureTypes";
 import { CustomDropDown } from "./CustomDropdown";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";

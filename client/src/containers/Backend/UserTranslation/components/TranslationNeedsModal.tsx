@@ -12,7 +12,7 @@ import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { colors } from "colors";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import FrameModal from "components/Modals/FrameModal/FrameModal";
 import styles from "./TranslationNeedsModal.module.scss";

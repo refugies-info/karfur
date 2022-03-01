@@ -1,6 +1,6 @@
 import { DispositifContent } from "types/interface";
 import React from "react";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { isMobile } from "react-device-detect";
 import styles from "./CardFooterContent.module.scss";
 

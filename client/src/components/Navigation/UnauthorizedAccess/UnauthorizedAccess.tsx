@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import Link from "next/link";
 import {colors} from "colors";
 import styles from "./UnauthorizedAccess.module.scss";

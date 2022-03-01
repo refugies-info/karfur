@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Link from "next/link";
 import SEO from "components/Seo";

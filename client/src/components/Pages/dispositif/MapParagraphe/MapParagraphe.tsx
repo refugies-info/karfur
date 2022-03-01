@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 import ContentEditable from "react-contenteditable";
 import Swal from "sweetalert2";
 import MapComponent from "components/Frontend/Dispositif/MapComponent/MapComponent";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { markerInfo } from "data/markerInfo";
 import { colors } from "colors";

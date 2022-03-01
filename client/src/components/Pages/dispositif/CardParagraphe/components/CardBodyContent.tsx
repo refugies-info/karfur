@@ -4,7 +4,7 @@ import { DispositifContent, Tag } from "types/interface";
 import { DropDownContent } from "./CardParagrapheComponents";
 
 import styled from "styled-components";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { getTextForAgeInfocard, jsUcfirstInfocards } from "./functions";
 import ContentEditable from "react-contenteditable";
 import { CombienCaCouteContent } from "./CombienCaCouteContent";

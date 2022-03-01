@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 
 interface Props {
   step: number

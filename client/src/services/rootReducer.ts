@@ -96,13 +96,7 @@ const combinedReducer = combineReducers({
 });
 
 export const appReducer: Reducer<any, any> = (state, action) => {
-  if (action.type === HYDRATE) {
-    /* keep only specific updates to avoid side effects
-    const nextState = {
-      ...state, // use previous state
-      ...action.payload, // apply delta from hydration
-    }; */
-
+  if (action.type === HYDRATE) { // action sent the Next with the server side data
     const nextState = { ...state };
 
     // add to store if not already in

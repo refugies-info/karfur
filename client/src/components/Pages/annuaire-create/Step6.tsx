@@ -1,7 +1,7 @@
 import React from "react";
 import { ObjectId } from "mongodb";
 import Link from "next/link";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import gif from "assets/annuaire/GIF-annuaire.gif";
 import Image from "next/image";
 import styles from "./Step6.module.scss";

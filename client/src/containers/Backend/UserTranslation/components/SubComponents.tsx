@@ -4,7 +4,7 @@ import { UserLanguage, TranslationStatus } from "types/interface";
 import { colorAvancement } from "lib/colors";
 import { Progress } from "reactstrap";
 import { colors } from "colors";
-import FSwitch from "components/FigmaUI/FSwitch/FSwitch";
+import FSwitch from "components/UI/FSwitch/FSwitch";
 import styles from "./SubComponents.module.scss";
 
 interface Props {

@@ -19,8 +19,8 @@ import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selector
 
 import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
 import { Gauge } from "components/UI/Gauge/Gauge";
-import LanguageBtn from "components/FigmaUI/LanguageBtn/LanguageBtn";
-import FButton from "components/FigmaUI/FButton/FButton";
+import LanguageBtn from "components/UI/LanguageBtn/LanguageBtn";
+import FButton from "components/UI/FButton/FButton";
 import GoBackButton from "components/Pages/register/GoBackButton";
 import PasswordField from "components/Pages/register/PasswordField";
 import UsernameField from "components/Pages/register/UsernameField";

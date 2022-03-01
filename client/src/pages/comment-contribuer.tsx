@@ -7,7 +7,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import API from "utils/API";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { userSelector } from "services/User/user.selectors";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { CompleteProfilModal } from "components/Modals/CompleteProfilModal/CompleteProfilModal";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { assetsOnServer } from "assets/assetsOnServer";

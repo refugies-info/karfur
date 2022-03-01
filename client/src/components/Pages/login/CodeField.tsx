@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler } from "react";
 import { useTranslation } from "next-i18next";
-import FButton from "components/FigmaUI/FButton/FButton";
-import FInput from "components/FigmaUI/FInput/FInput";
+import FButton from "components/UI/FButton/FButton";
+import FInput from "components/UI/FInput/FInput";
 import styles from "scss/components/login.module.scss";
 
 interface Props {

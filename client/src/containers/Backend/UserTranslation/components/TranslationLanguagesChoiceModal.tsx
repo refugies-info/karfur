@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal } from "reactstrap";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { useSelector, useDispatch } from "react-redux";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { userSelector } from "services/User/user.selectors";

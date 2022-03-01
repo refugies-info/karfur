@@ -29,7 +29,7 @@ import {
   DraftModal,
   ShareContentOnMobileModal,
 } from "components/Modals/index";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import Tags from "components/Pages/dispositif/Tags";
 import { LanguageToReadModal } from "components/Pages/dispositif/LanguageToReadModal/LanguagetoReadModal";
 import LeftSideDispositif from "components/Frontend/Dispositif/LeftSideDispositif";

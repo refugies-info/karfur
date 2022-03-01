@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { partners } from "data/partners";
 import Image from "next/image";
 

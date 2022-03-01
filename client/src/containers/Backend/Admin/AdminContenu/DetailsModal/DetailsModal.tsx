@@ -6,7 +6,7 @@ import {
   TypeContenu,
   StyledStatus,
 } from "../../sharedComponents/SubComponents";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { correspondingStatus, progressionData } from "../data";
 import { compare } from "../AdminContenu";
 import moment from "moment/min/moment-with-locales";

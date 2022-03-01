@@ -8,8 +8,8 @@ import {
 } from "reactstrap";
 import Image from "next/image";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FButton from "components/FigmaUI/FButton/FButton";
-import FInput from "components/FigmaUI/FInput/FInput";
+import FButton from "components/UI/FButton/FButton";
+import FInput from "components/UI/FInput/FInput";
 import { colors } from "colors";
 import styles from "./Sponsors.module.scss";
 import { Tag } from "types/interface";

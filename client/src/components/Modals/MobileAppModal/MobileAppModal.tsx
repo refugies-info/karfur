@@ -3,7 +3,7 @@ import { Modal, ModalBody } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import { isIOS } from "react-device-detect";
 import Image from "next/image";
-import { FButtonMobile } from "components/FigmaUI/FButtonMobile/FButtonMobile";
+import { FButtonMobile } from "components/UI/FButtonMobile/FButtonMobile";
 import { colors } from "colors";
 import illuMobileApp from "assets/illu_mobile_app.png";
 import { iosStoreLink, androidStoreLink } from "data/storeLinks";

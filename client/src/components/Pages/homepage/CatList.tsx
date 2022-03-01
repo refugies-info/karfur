@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import FSearchBtn from "components/FigmaUI/FSearchBtn/FSearchBtn";
+import FSearchBtn from "components/UI/FSearchBtn/FSearchBtn";
 import Streamline from "assets/streamline";
 import { motion } from "framer-motion";
 import { Tag } from "types/interface";

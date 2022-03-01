@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { FrenchLevelButton } from "./FrenchLevelButton/FrenchLevelButton";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { frenchLevels } from "data/frenchLevel";
 import styles from "./FrenchLevelModal.module.scss";
 import { useTranslation } from "next-i18next";

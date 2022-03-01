@@ -10,7 +10,7 @@ import MapParagraphe from "components/Pages/dispositif/MapParagraphe/MapParagrap
 import MapParagraphePrint from "components/Pages/dispositif/MapParagraphe/MapParagraphePrint";
 import EtapeParagraphe from "components/Pages/dispositif/EtapeParagraphe";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
 import styled from "styled-components";
 import {

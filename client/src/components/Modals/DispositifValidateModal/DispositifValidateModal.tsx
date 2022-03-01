@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, ModalHeader, ModalFooter } from "reactstrap";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import Check from "./components/Check";
 import styles from "./DispositifValidateModal.module.scss";
 import { Structure } from "types/interface";

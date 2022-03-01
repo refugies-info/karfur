@@ -17,11 +17,11 @@ import ContentEditable from "react-contenteditable";
 import _ from "lodash";
 import { useTranslation } from "next-i18next";
 
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import QuickToolbar from "../QuickToolbar";
 import EditableParagraph from "components/Frontend/Dispositif/EditableParagraph/EditableParagraph";
-import FInput from "components/FigmaUI/FInput/FInput";
+import FInput from "components/UI/FInput/FInput";
 
 import { colors } from "colors";
 import { EtapeModal } from "components/Modals";

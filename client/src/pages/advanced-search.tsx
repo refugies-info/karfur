@@ -32,8 +32,8 @@ import {
 } from "data/searchFilters";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { tags } from "data/tags";
-import FButton from "components/FigmaUI/FButton/FButton";
-import FSearchBtn from "components/FigmaUI/FSearchBtn/FSearchBtn";
+import FButton from "components/UI/FButton/FButton";
+import FSearchBtn from "components/UI/FSearchBtn/FSearchBtn";
 import { BookmarkedModal } from "components/Modals/index";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { filterContents } from "lib/filterContents";

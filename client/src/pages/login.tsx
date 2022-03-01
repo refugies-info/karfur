@@ -18,8 +18,8 @@ import {
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import API from "utils/API";
 import setAuthToken from "utils/setAuthToken";
-import LanguageBtn from "components/FigmaUI/LanguageBtn/LanguageBtn";
-import FButton from "components/FigmaUI/FButton/FButton";
+import LanguageBtn from "components/UI/LanguageBtn/LanguageBtn";
+import FButton from "components/UI/FButton/FButton";
 import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
 import GoBackButton from "components/Pages/login/GoBackButton";
 import Footer from "components/Pages/login/Footer";

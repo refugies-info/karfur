@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import moment, { Moment } from "moment";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
 
 const Container = styled.div`

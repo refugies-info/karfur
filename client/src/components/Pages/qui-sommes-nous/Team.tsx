@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import Alain from "assets/qui-sommes-nous/Alain.png";
 import Agathe from "assets/qui-sommes-nous/Agathe.png";
 import Nour from "assets/qui-sommes-nous/Nour.png";

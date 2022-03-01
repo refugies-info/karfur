@@ -7,7 +7,7 @@ import { debounce } from "lodash";
 import { useTranslation } from "next-i18next";
 import NoResultImage from "assets/no_results.svg";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import {
   escapeRegexCharacters,
   getSuggestionValue,

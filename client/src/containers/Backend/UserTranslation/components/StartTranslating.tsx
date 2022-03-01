@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "colors";
 import Image from "next/image";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import traductionIconBlanc from "assets/icon_traduction_blanc.svg";
 import styles from "containers/Backend/Navigation/components/NavButton.module.scss";
 
