@@ -562,14 +562,16 @@ class Sponsors extends Component {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Image
-                      className={styles.sponsor_img}
-                      src={(mainSponsor.picture || {}).secure_url}
-                      alt={mainSponsor.acronyme}
-                      width={160}
-                      height={110}
-                      objectFit="contain"
-                    />
+                    {mainSponsor?.picture?.secure_url &&
+                      <Image
+                        className={styles.sponsor_img}
+                        src={mainSponsor.picture.secure_url}
+                        alt={mainSponsor.acronyme}
+                        width={160}
+                        height={110}
+                        objectFit="contain"
+                      />
+                    }
                   </ImageLink>
                   <SponsorTitle>{mainSponsor.nom}</SponsorTitle>
                   {!disableEdit ? (
