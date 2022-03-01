@@ -62,7 +62,8 @@
     "language_choice": "Which language do you prefer?",
     "my_profile": "My information",
     "reinit_app2": "Your information to filter the cards will be deleted. The application will then start again from the start.",
-    "delete_data": "Your information (language, city, age and level of French) will be removed."
+    "delete_data": "Your information (language, city, age and level of French) will be removed.",
+    "accessibility": "Accessibility statement"
   },
   "tags": {
     "Français": "French",
