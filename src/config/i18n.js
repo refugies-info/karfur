@@ -21,4 +21,7 @@ export const supportedLocales = {
   fa: {
     translationFileLoader: () => require("../translations/fa.json"),
   },
+  uk: {
+    translationFileLoader: () => require("../translations/uk.json"),
+  },
 };

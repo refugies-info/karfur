@@ -12,6 +12,7 @@ export type ContentsState = {
   fa: SimplifiedContent[],
   ru: SimplifiedContent[],
   ar: SimplifiedContent[],
+  uk: SimplifiedContent[],
   nbLocalizedContent: number|null,
   nbGlobalContent: number|null,
 }
@@ -24,6 +25,7 @@ export const initialContentsState = {
   fa: [],
   ru: [],
   ar: [],
+  uk: [],
   nbLocalizedContent: null,
   nbGlobalContent: null,
 };

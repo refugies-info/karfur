@@ -11,6 +11,7 @@ describe("[Reducer] selected content", () => {
       fa: null,
       "ti-ER": null,
       ru: null,
+      uk: null,
     };
     expect(
       selectedContentReducer(
@@ -25,6 +26,7 @@ describe("[Reducer] selected content", () => {
       fa: null,
       "ti-ER": null,
       ru: null,
+      uk: null,
     });
   });
 });

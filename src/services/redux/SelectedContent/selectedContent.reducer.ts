@@ -10,6 +10,7 @@ export type SelectedContentState = {
   fa: Content | null;
   "ti-ER": Content | null;
   ru: Content | null;
+  uk: Content | null;
 };
 
 export const initialSelectedContentState = {
@@ -20,6 +21,7 @@ export const initialSelectedContentState = {
   fa: null,
   "ti-ER": null,
   ru: null,
+  uk: null,
 };
 export const selectedContentReducer = createReducer<
   SelectedContentState,

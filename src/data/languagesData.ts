@@ -40,4 +40,9 @@ export const activatedLanguages: {
     langueLoc: "ትግርኛ",
     i18nCode: "ti-ER",
   },
+  {
+    langueFr: "Ukrainien",
+    langueLoc: "українська мова",
+    i18nCode: "uk"
+  }
 ];

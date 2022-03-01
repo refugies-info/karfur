@@ -48,13 +48,14 @@ const convertJsonToCsv = (langue) => {
 };
 
 const main = () => {
-  // langues : en, ar, fa, ps, ru, ti-ER
-  convertJsonToCsv("ar");
-  convertJsonToCsv("en");
-  convertJsonToCsv("fa");
-  convertJsonToCsv("ps");
-  convertJsonToCsv("ru");
-  convertJsonToCsv("ti-ER");
+  // langues : en, ar, fa, ps, ru, ti-ER, uk
+  // convertJsonToCsv("ar");
+  // convertJsonToCsv("en");
+  // convertJsonToCsv("fa");
+  // convertJsonToCsv("ps");
+  // convertJsonToCsv("ru");
+  // convertJsonToCsv("ti-ER");
+  convertJsonToCsv("uk");
 };
 
 main();

@@ -1048,6 +1048,141 @@ exports[`LanguageChoiceModal should render correctly 1`] = `
                 </View>
               </View>
             </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#EDEBEB",
+                    "height": 1,
+                    "marginLeft": 16,
+                    "marginRight": 16,
+                  },
+                ]
+              }
+            />
+          </View>
+          <View>
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#F6F6F6",
+                  "borderRadius": 12,
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "flexWrap": "wrap",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 16,
+                }
+              }
+              testID="test-language-button-Ukrainien"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "display": "flex",
+                      "flexDirection": "row",
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#FFFFFF",
+                        "borderRadius": 4,
+                        "display": "flex",
+                        "elevation": 6,
+                        "height": 17,
+                        "justifyContent": "center",
+                        "marginBottom": 4,
+                        "marginLeft": 4,
+                        "marginRight": 4,
+                        "marginTop": 4,
+                        "shadowColor": "rgba(33, 33, 33, 0.16)",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 1,
+                        "shadowRadius": 8,
+                        "width": 22,
+                      },
+                    ]
+                  }
+                >
+                  <react-native-svg
+                    height={15}
+                    width={20}
+                  />
+                </View>
+                <Text
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 8,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  українська мова
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "display": "flex",
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    isSelected={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "fontFamily": "circularBook",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     - 
+                    Ukrainien
+                  </Text>
+                </View>
+              </View>
+            </View>
           </View>
         </View>
       </RCTScrollView>

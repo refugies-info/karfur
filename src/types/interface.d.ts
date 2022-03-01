@@ -50,7 +50,8 @@ export type AvailableLanguageI18nCode =
   | "ar"
   | "ti-ER"
   | "ru"
-  | "fa";
+  | "fa"
+  | "uk";
 
 export interface DispositifContent {
   type: string;
@@ -126,6 +127,7 @@ export interface Need {
   ru?: NeedDetail;
   ps?: NeedDetail;
   fa?: NeedDetail;
+  uk?: NeedDetail;
   _id: ObjectId;
   tagName: string;
   created_at: Moment;

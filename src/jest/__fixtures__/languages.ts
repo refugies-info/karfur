@@ -41,4 +41,10 @@ export const mockedLanguageData = [
     i18nCode: "ar",
     langueFr: "Arabe",
   },
+  {
+    _id: "xxxxx",
+    avancementTrad: 0.8439716312056738,
+    i18nCode: "uk",
+    langueFr: "Ukrainien",
+  },
 ];
