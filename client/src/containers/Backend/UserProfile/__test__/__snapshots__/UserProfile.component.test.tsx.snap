@@ -384,7 +384,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
               </div>
               <input
                 autoFocus={false}
-                className=" has_prepend new_size  form-control"
+                className="has_prepend new_size form-control"
                 id="username"
                 onChange={[Function]}
                 style={Object {}}
@@ -451,7 +451,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
               </div>
               <input
                 autoFocus={false}
-                className=" has_prepend new_size  form-control"
+                className="has_prepend new_size form-control"
                 id="email"
                 onChange={[Function]}
                 placeholder="Register.Renseignez votre adresse email"
@@ -515,7 +515,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
           </div>
           <input
             autoFocus={true}
-            className="password-input has_prepend new_size  form-control"
+            className="password-input has_prepend new_size form-control"
             id="current-password"
             onChange={[Function]}
             placeholder="Votre mot de passe actuel"
@@ -582,7 +582,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
               <input
                 autoComplete="new-password"
                 autoFocus={false}
-                className="password-input has_prepend new_size  form-control"
+                className="password-input has_prepend new_size form-control"
                 id="new-password"
                 onChange={[Function]}
                 placeholder="UserProfile.Votre nouveau mot de passe"
@@ -1052,7 +1052,7 @@ exports[`UserProfile should render correctly 1`] = `
               </div>
               <input
                 autoFocus={false}
-                className=" has_prepend new_size  form-control"
+                className="has_prepend new_size form-control"
                 id="username"
                 onChange={[Function]}
                 style={Object {}}
@@ -1119,7 +1119,7 @@ exports[`UserProfile should render correctly 1`] = `
               </div>
               <input
                 autoFocus={false}
-                className=" has_prepend new_size  form-control"
+                className="has_prepend new_size form-control"
                 id="email"
                 onChange={[Function]}
                 placeholder="Register.Renseignez votre adresse email"
@@ -1551,7 +1551,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
               </div>
               <input
                 autoFocus={false}
-                className=" has_prepend new_size  form-control"
+                className="has_prepend new_size form-control"
                 id="username"
                 onChange={[Function]}
                 style={Object {}}
@@ -1618,7 +1618,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
               </div>
               <input
                 autoFocus={false}
-                className=" has_prepend new_size  form-control"
+                className="has_prepend new_size form-control"
                 id="email"
                 onChange={[Function]}
                 placeholder="Register.Renseignez votre adresse email"
@@ -1682,7 +1682,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
           </div>
           <input
             autoFocus={true}
-            className="password-input has_prepend new_size  form-control"
+            className="password-input has_prepend new_size form-control"
             id="current-password"
             onChange={[Function]}
             placeholder="Votre mot de passe actuel"
@@ -1745,7 +1745,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
               <input
                 autoComplete="new-password"
                 autoFocus={false}
-                className="password-input has_prepend new_size  form-control"
+                className="password-input has_prepend new_size form-control"
                 id="new-password"
                 onChange={[Function]}
                 placeholder="UserProfile.Votre nouveau mot de passe"

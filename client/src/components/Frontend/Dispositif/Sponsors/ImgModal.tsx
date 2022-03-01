@@ -12,13 +12,13 @@ import FButton from "components/UI/FButton/FButton";
 import FInput from "components/UI/FInput/FInput";
 import { colors } from "colors";
 import styles from "./Sponsors.module.scss";
-import { Tag } from "types/interface";
+import { Picture, Tag } from "types/interface";
 
 interface Props {
   modal: any
   keyValue: number
   showModals: any
-  imgData: any
+  imgData: Picture | null
   link: any
   nom: string
   sponsorLoading: boolean
@@ -44,12 +44,12 @@ const ImgModal = (props: Props) => {
     >
       <div className={`${styles.input} ${styles.inline}`}>
         <span>Ajouter un logo</span>
-        {props.imgData.secure_url ? (
+        {props.imgData?.secure_url ? (
           <div className={styles.image_wrapper}>
             <Image
               className={styles.sponsor_img}
               src={props.imgData.secure_url}
-              alt={props.imgData.alt}
+              alt=""
               width={160}
               height={110}
               objectFit="contain"

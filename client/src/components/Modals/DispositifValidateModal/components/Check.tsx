@@ -139,7 +139,6 @@ interface Props {
   abstract?: string
   onChange?: any
   toggleTagsModal?: any
-  toggleSponsorModal?: any
   titreInformatif?: string
   titreMarque?: string
   typeContenu?: string

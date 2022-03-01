@@ -68,8 +68,8 @@ const FInput = (props: Props) => {
         name={props.name}
         className={cls(
           props.inputClassName || "",
-          !!props.newSize && styles.new_size,
           !!props.prepend && styles.has_prepend,
+          !!props.newSize && styles.new_size,
           !!props.error && styles.error,
         )}
         style={

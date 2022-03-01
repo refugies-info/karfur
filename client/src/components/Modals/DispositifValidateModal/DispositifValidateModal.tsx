@@ -96,7 +96,6 @@ const DispositifValidateModal = (props: Props) => {
             (props.abstract || "").length > 110 || !props.abstract
           }
           toggleTagsModal={props.toggleTagsModal}
-          toggleSponsorModal={props.toggleSponsorModal}
           titreInformatif={props.titreInformatif}
           titreMarque={props.titreMarque}
           tags={props.tags}

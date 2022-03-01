@@ -2,21 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import styles from "../Sponsors.module.scss";
+import { Structure } from "types/interface";
 
 interface Props {
   index: number;
   totalNumberOfSponsor: number;
   sponsor: {
-    type: string;
-    object: {
-      _id?: string;
-      picture?: any;
-      nom: string;
-      acronyme?: string;
-      link?: string;
-      alt?: string;
-    };
-  };
+    type: string
+    object: Structure | undefined;
+  }
   burl: string;
   isRTL: boolean;
 }
@@ -76,6 +70,7 @@ const MainContainer = styled.div`
 `;
 
 export const SponsorSection = (props: Props) => {
+  const structure = props.sponsor.object;
   return (
     <>
       {props.sponsor.type === "mainSponsor" ? (
@@ -87,25 +82,27 @@ export const SponsorSection = (props: Props) => {
           <SectionTitle>
             Responsable
           </SectionTitle>
-          <SponsorCard>
-            <ImageLink
-              href={`${props.burl}annuaire/${props.sponsor.object._id}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                className={styles.sponsor_img}
-                src={(props.sponsor.object.picture || {}).secure_url}
-                alt={props.sponsor.object.acronyme}
-                width={160}
-                height={110}
-                objectFit="contain"
-              />
-            </ImageLink>
-            <SponsorTitle>{props.sponsor.object.nom}</SponsorTitle>
-          </SponsorCard>
+          {structure &&
+            <SponsorCard>
+              <ImageLink
+                href={`${props.burl}annuaire/${structure._id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  className={styles.sponsor_img}
+                  src={(structure.picture || {}).secure_url}
+                  alt={structure.acronyme}
+                  width={160}
+                  height={110}
+                  objectFit="contain"
+                />
+              </ImageLink>
+              <SponsorTitle>{structure.nom}</SponsorTitle>
+            </SponsorCard>
+          }
         </MainContainer>
-      ) : props.sponsor.type === "deduplicatedSponsors" ? (
+      ) : structure && props.sponsor.type === "deduplicatedSponsors" ? (
         <MainContainer
           index={props.index}
           totalNumberOfSponsor={props.totalNumberOfSponsor}
@@ -113,22 +110,22 @@ export const SponsorSection = (props: Props) => {
         >
           {props.index === 1 && <SectionTitle>Partenaires</SectionTitle>}
           <SponsorCard>
-            {props.sponsor.object.link &&
-            props.sponsor.object.picture &&
-            props.sponsor.object.picture.secure_url ? (
+            {structure.link &&
+            structure.picture &&
+            structure.picture.secure_url ? (
               <ImageLink
                 href={
-                  ((props.sponsor.object.link || "").includes("http")
+                  ((structure.link || "").includes("http")
                     ? ""
-                    : "http://") + props.sponsor.object.link
+                    : "http://") + structure.link
                 }
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Image
                   className={styles.sponsor_img}
-                  src={props.sponsor.object.picture.secure_url}
-                  alt={props.sponsor.object.alt}
+                  src={structure.picture.secure_url}
+                  alt={structure.alt}
                   width={160}
                   height={110}
                   objectFit="contain"
@@ -136,12 +133,12 @@ export const SponsorSection = (props: Props) => {
               </ImageLink>
             ) : (
               <ImageLink>
-                {props.sponsor.object.picture &&
-                  props.sponsor.object.picture.secure_url && (
+                {structure.picture &&
+                  structure.picture.secure_url && (
                     <Image
                       className={styles.sponsor_img}
-                      src={props.sponsor.object.picture.secure_url}
-                      alt={props.sponsor.object.alt}
+                      src={structure.picture.secure_url}
+                      alt={structure.alt}
                       width={160}
                       height={110}
                       objectFit="contain"
@@ -149,7 +146,7 @@ export const SponsorSection = (props: Props) => {
                   )}
               </ImageLink>
             )}
-            <SponsorTitle>{props.sponsor.object.nom}</SponsorTitle>
+            <SponsorTitle>{structure.nom}</SponsorTitle>
           </SponsorCard>
         </MainContainer>
       ) : null}
