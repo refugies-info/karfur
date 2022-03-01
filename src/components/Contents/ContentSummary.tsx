@@ -10,6 +10,8 @@ import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import NoLogo from "../../theme/images/contents/structure_no_logo.png";
 import { DemarcheImage } from "./DemarcheImage";
+import { logEventInFirebase } from "../../utils/logEvent";
+import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import Highlight from "../Search/Highlight";
 
 const IMAGE_SIZE = 58;
@@ -99,6 +101,12 @@ interface Props {
 export const ContentSummary = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
 
+  const logEventOnClick = (id: string) => {
+    logEventInFirebase(FirebaseEvent.CLIC_CONTENT, {
+      contentId: id
+    });
+  }
+
   const actionButton = (props.actionPress !== undefined) ?
     <ActionButton
       onPress={props.actionPress}
@@ -132,6 +140,7 @@ export const ContentSummary = (props: Props) => {
               backScreen: props.backScreen
             }
           });
+          logEventOnClick(props.contentId);
         }}
       >
         <TitleContainer>
@@ -208,7 +217,8 @@ export const ContentSummary = (props: Props) => {
             colors: props.themeTag,
             backScreen: props.backScreen
           }
-        })
+        });
+        logEventOnClick(props.contentId);
       }}
     >
       <TitleContainer>

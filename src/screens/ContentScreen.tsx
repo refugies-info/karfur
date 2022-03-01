@@ -429,6 +429,9 @@ export const ContentScreen = ({
           },
         });
       }
+      logEventInFirebase(FirebaseEvent.ADD_FAVORITE, {
+        contentId: selectedContent?._id || "unknown"
+      });
     }
   };
 
@@ -558,6 +561,11 @@ export const ContentScreen = ({
 
   // SHARE
   const shareContent = async (content: Content) => {
+    logEventInFirebase(FirebaseEvent.SHARE_CONTENT, {
+      titreInformatif: content.titreInformatif,
+      contentId: content._id
+    });
+
     const siteUrl = Config.siteUrl;
     try {
       const shareData = (Platform.OS === "ios") ? {
