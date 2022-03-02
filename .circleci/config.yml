@@ -8,6 +8,7 @@ jobs:
         - staging-frontend
         - staging-backend
         - dev
+        - gcp-config
     working_directory: ~/refugies-info
     docker:
       - image: circleci/node:10.13.0
