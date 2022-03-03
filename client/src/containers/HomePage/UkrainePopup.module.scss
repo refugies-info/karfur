@@ -1,0 +1,54 @@
+@import "src/scss/colors";
+@import "src/scss/global.scss";
+
+.ukraine {
+  background: white;
+  display: inline-block;
+  text-align: left;
+  padding: 16px;
+  border-radius: 12px;
+  margin-top: -60px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
+  max-width: 90%;
+
+  @include media-max("tablet-up") {
+    margin-top: -40px;
+  }
+
+  h4 {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 35px;
+    color: $bleuCharte;
+  }
+}
+.text {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 28px;
+  margin-right: 10px;
+
+  @include media-max("tablet-up") {
+    display: block;
+  }
+}
+.btn {
+  box-shadow: 1px 1px 2px rgba(33, 33, 33, 0.4);
+  padding: 8px 12px !important;
+
+  @include media-max("tablet-up") {
+    width: 100% !important;
+    text-align: center !important;
+    display: inline !important;
+    padding: 12px !important;
+  }
+}
+.icon {
+  margin-left: 8px;
+
+  @include media-max("tablet-up") {
+    display: none;
+  }
+}
+
