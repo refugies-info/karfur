@@ -409,7 +409,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
             : "Non connue"}
         </div>
         <div>
-          <FichesColumnContainer>Fiche de la structure</FichesColumnContainer>
+          <FichesColumnContainer>Fiche(s) de la structure</FichesColumnContainer>
           {structure.dispositifsSimplified &&
           structure.dispositifsSimplified.length ? (
             structure.dispositifsSimplified.map((dispositif, index) => {
