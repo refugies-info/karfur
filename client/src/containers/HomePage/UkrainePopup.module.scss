@@ -3,45 +3,57 @@
 
 .ukraine {
   background: white;
-  display: inline-block;
+  display: inline-flex;
   text-align: left;
   padding: 16px;
   border-radius: 12px;
-  margin-top: -60px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
   max-width: 90%;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
 
   @include media-max("tablet-up") {
     margin-top: -40px;
-  }
-
-  h4 {
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 35px;
-    color: $bleuCharte;
+    display: inline-block;
+    position: relative;
+    top: inherit;
+    transform: none;
+    margin-left: 0;
   }
 }
 .text {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   line-height: 28px;
   margin-right: 10px;
+  margin-bottom: 0;
 
   @include media-max("tablet-up") {
     display: block;
   }
+
+  span {
+    display: block;
+  }
+
+  .blue {
+    color: $bleuCharte;
+  }
 }
 .btn {
   box-shadow: 1px 1px 2px rgba(33, 33, 33, 0.4);
-  padding: 8px 12px !important;
+  margin-left: 24px;
 
   @include media-max("tablet-up") {
     width: 100% !important;
     text-align: center !important;
     display: inline !important;
-    padding: 12px !important;
+    margin-left: 0;
+    margin-top: 12px;
   }
 }
 .icon {

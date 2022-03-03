@@ -6,23 +6,15 @@ import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 const UkrainePopup = () => {
   return (
     <div className={styles.ukraine}>
-      <h4>Solidarité avec l’Ukraine 🇺🇦</h4>
-      <p className="mb-2">
-        <span className={styles.text}>
-          🇺🇦 Vous êtes ressortissant ukrainien ?
-        </span>
-        <FButton type="login" className={styles.btn}>
-          Trouver de l’information traduite
-          <EVAIcon name="arrow-forward" className={styles.icon} />
-        </FButton>
+      <p className={styles.text}>
+        <span className={styles.blue}>Solidarité avec l’Ukraine 🇺🇦</span>
+        <span>Portail d’information unique</span>
       </p>
-      <p className="mb-0">
-        <span className={styles.text}>🇫🇷 Vous voulez aider en France ?</span>
-        <FButton type="login" className={styles.btn}>
-          M’engager avec une association
-          <EVAIcon name="arrow-forward" className={styles.icon} />
-        </FButton>
-      </p>
+
+      <FButton type="login" className={styles.btn}>
+        ukraine.refugies.info
+        <EVAIcon name="arrow-forward" className={styles.icon} />
+      </FButton>
     </div>
   );
 };
