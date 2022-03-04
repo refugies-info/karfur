@@ -18,11 +18,13 @@ import isInBrowser from "lib/isInBrowser";
 import SEO from "components/Seo";
 import API from "utils/API";
 import styles from "scss/pages/backend.module.scss";
+import { useRouter } from "next/router";
 
 const Backend = () => {
   const user = useSelector(userDetailsSelector);
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     if (!user && !isLoading) dispatch(fetchUserActionCreator());
@@ -47,6 +49,8 @@ const Backend = () => {
     );
   };
 
+  const locale = router.locale && router.locale !== "fr" ? "/" + router.locale : "";
+
   return (
     <>
       <SEO title="Administration" />
@@ -62,7 +66,7 @@ const Backend = () => {
                 route.component ? (
                   <Route
                     key={idx}
-                    path={route.path}
+                    path={locale + route.path}
                     exact={route.exact}
                     name={route.name}
                     render={() =>
