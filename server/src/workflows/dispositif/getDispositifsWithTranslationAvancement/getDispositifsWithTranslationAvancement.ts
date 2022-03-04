@@ -6,6 +6,7 @@ import { getTraductionsByLanguage } from "../../../modules/traductions/traductio
 import { ObjectId } from "mongoose";
 import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
 import { getTradStatus } from "../../../modules/traductions/traductions.service";
+import { availableLanguages } from "../../../libs/getFormattedLocale";
 
 interface Query {
   locale: string;
@@ -24,7 +25,6 @@ interface Result {
   tradStatus: string;
 }
 
-const availableLanguages = ["fa", "en", "ru", "ps", "ar", "ti-ER"];
 export const getDispositifsWithTranslationAvancement = async (
   req: RequestFromClient<Query>,
   res: Res

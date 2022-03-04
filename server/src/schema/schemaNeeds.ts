@@ -14,6 +14,7 @@ var needsSchema = new mongoose.Schema(
     fa: { text: String, updatedAt: Date },
     "ti-ER": { text: String, updatedAt: Date },
     ps: { text: String, updatedAt: Date },
+    uk: { text: String, updatedAt: Date },
   },
   { timestamps: { createdAt: "created_at" } }
 );
@@ -31,6 +32,7 @@ export interface NeedDoc extends mongoose.Document {
   "ti-ER"?: NeedTranslation;
   fa?: NeedTranslation;
   ru?: NeedTranslation;
+  uk?: NeedTranslation;
 
   createdAt: Moment;
   _id: ObjectId;

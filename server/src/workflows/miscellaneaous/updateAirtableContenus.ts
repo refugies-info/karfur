@@ -16,16 +16,8 @@ import { getActiveDispositifsFromDBWithoutPopulate } from "../../modules/disposi
 import { ObjectId } from "mongoose";
 import moment from "moment";
 import { checkRequestIsFromPostman } from "../../libs/checkAuthorizations";
+import { getFormattedLocale } from "../../libs/getFormattedLocale";
 
-const getFormattedLocale = (locale: string) => {
-  if (locale === "en") return "Anglais";
-  if (locale === "ar") return "Arabe";
-  if (locale === "ru") return "Russe";
-  if (locale === "ti-ER") return "Tigrynia";
-  if (locale === "ps") return "Pachto";
-  if (locale === "fa") return "Persan";
-  return "locale not found";
-};
 
 const getFormattedAvancement = (
   avancement: Record<string, string> | string
@@ -36,7 +28,7 @@ const getFormattedAvancement = (
   const langues = Object.keys(avancement);
   return langues
     .filter((langue) => langue !== "fr")
-    .map((langue) => getFormattedLocale(langue));
+    .map((langue) => getFormattedLocale(langue, "short"));
 };
 const addDispositifInContenusAirtable = (
   title: string,
