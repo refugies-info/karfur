@@ -11,7 +11,7 @@ steps:
     args: [
       "build",
       "-t", "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
-      "-t",  "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:latest",
+      "-t", "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:latest",
       "--build-arg", "APP_SERVER_URL=${_APP_SERVER_URL}", "."
     ]
     dir: client
@@ -30,7 +30,7 @@ steps:
         "--region", "${_REGION}",
         "--platform", "managed",
         "--image", "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
-        "--port", 3000,
+        "--port", "3000",
         "--memory", "1G",
         "--allow-unauthenticated"
       ]
